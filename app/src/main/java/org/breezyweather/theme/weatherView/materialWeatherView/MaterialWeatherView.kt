@@ -24,6 +24,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
     private var mDaytime = false
     private var mFirstCardMarginTop = 0
     private var mGravitySensorEnabled: Boolean = true
+    private var mAnimatable: Boolean = true
     private var mDrawable: Boolean = false
 
     /**
@@ -115,7 +116,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
         mPreviousView = mCurrentView
         mCurrentView = prev
         mCurrentView?.let {
-            it.update(weatherKind, daytime, mGravitySensorEnabled)
+            it.update(weatherKind, daytime, mGravitySensorEnabled, mAnimatable)
             it.drawable = mDrawable
         } ?: run {
             mCurrentView = MaterialPainterView(
@@ -124,7 +125,8 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
                 daytime,
                 mDrawable,
                 mPreviousView?.scrollRate ?: 0f,
-                mGravitySensorEnabled
+                mGravitySensorEnabled,
+                mAnimatable
             )
             addView(mCurrentView)
         }
@@ -136,7 +138,12 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
                 interpolator = AccelerateDecelerateInterpolator()
                 playTogether(
                     ObjectAnimator.ofFloat(mCurrentView as MaterialPainterView, "alpha", 0f, 1f),
-                    ObjectAnimator.ofFloat(mPreviousView as MaterialPainterView, "alpha", it.alpha, 0f)
+                    ObjectAnimator.ofFloat(
+                        mPreviousView as MaterialPainterView,
+                        "alpha",
+                        it.alpha,
+                        0f
+                    )
                 )
             }.also { it.start() }
         } ?: run {
@@ -169,6 +176,10 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
         mPreviousView?.let {
             it.drawable = drawable
         }
+    }
+
+    override fun setAnimatable(animatable: Boolean) {
+        mAnimatable = animatable
     }
 
     override fun setGravitySensorEnabled(enabled: Boolean) {

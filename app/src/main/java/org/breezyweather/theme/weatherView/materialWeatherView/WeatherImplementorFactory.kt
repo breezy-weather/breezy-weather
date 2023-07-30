@@ -13,21 +13,25 @@ object WeatherImplementorFactory {
     fun getWeatherImplementor(
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
-        @Size(2) sizes: IntArray
+        @Size(2) sizes: IntArray,
+        animate: Boolean
     ): WeatherAnimationImplementor? = when (weatherKind) {
         WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
             SunImplementor(
-                sizes
+                sizes,
+                animate
             )
         } else {
             MeteorShowerImplementor(
-                sizes
+                sizes,
+                animate
             )
         }
 
         WeatherView.WEATHER_KIND_CLOUDY ->
             CloudImplementor(
                 sizes,
+                animate,
                 CloudImplementor.TYPE_CLOUDY,
                 daytime
             )
@@ -35,6 +39,7 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_CLOUD ->
             CloudImplementor(
                 sizes,
+                animate,
                 CloudImplementor.TYPE_CLOUD,
                 daytime
             )
@@ -42,6 +47,7 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_FOG ->
             CloudImplementor(
                 sizes,
+                animate,
                 CloudImplementor.TYPE_FOG,
                 daytime
             )
@@ -49,12 +55,14 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_HAIL ->
             HailImplementor(
                 sizes,
+                animate,
                 daytime
             )
 
         WeatherView.WEATHER_KIND_HAZE ->
             CloudImplementor(
                 sizes,
+                animate,
                 CloudImplementor.TYPE_HAZE,
                 daytime
             )
@@ -62,6 +70,7 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_RAINY ->
             RainImplementor(
                 sizes,
+                animate,
                 RainImplementor.TYPE_RAIN,
                 daytime
             )
@@ -69,12 +78,14 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_SNOW ->
             SnowImplementor(
                 sizes,
+                animate,
                 daytime
             )
 
         WeatherView.WEATHER_KIND_THUNDERSTORM ->
             RainImplementor(
                 sizes,
+                animate,
                 RainImplementor.TYPE_THUNDERSTORM,
                 daytime
             )
@@ -82,6 +93,7 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_THUNDER ->
             CloudImplementor(
                 sizes,
+                animate,
                 CloudImplementor.TYPE_THUNDER,
                 daytime
             )
@@ -89,12 +101,14 @@ object WeatherImplementorFactory {
         WeatherView.WEATHER_KIND_WIND ->
             WindImplementor(
                 sizes,
+                animate,
                 daytime
             )
 
         WeatherView.WEATHER_KIND_SLEET ->
             RainImplementor(
                 sizes,
+                animate,
                 RainImplementor.TYPE_SLEET,
                 daytime
             )

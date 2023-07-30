@@ -20,8 +20,12 @@ import kotlin.math.sin
  * Rain implementor.
  */
 class RainImplementor(
-    @Size(2) canvasSizes: IntArray, @TypeRule type: Int, daylight: Boolean
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean,
+    @TypeRule type: Int,
+    daylight: Boolean
 ) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
@@ -213,6 +217,9 @@ class RainImplementor(
         @Size(2) canvasSizes: IntArray, interval: Long,
         rotation2D: Float, rotation3D: Float
     ) {
+        // do not display any rain effects if animations are turned off
+        if (!mAnimate) return
+
         for (r in mRains) {
             r.move(
                 interval,

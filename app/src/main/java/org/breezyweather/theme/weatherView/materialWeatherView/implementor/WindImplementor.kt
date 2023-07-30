@@ -13,8 +13,11 @@ import kotlin.math.pow
 import kotlin.math.sin
 
 class WindImplementor(
-    @Size(2) canvasSizes: IntArray, daylight: Boolean
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean,
+    daylight: Boolean
 ) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true

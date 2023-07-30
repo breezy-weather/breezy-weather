@@ -15,7 +15,11 @@ import kotlin.math.sin
 /**
  * Meteor shower implementor.
  */
-class MeteorShowerImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimationImplementor() {
+class MeteorShowerImplementor(
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean
+) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
@@ -143,7 +147,7 @@ class MeteorShowerImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimation
             Color.rgb(240, 220, 151)
         )
 
-        mMeteors = Array(10) {
+        mMeteors = Array(if(mAnimate) 10 else 0) {
             Meteor(
                 viewWidth, viewHeight,
                 colors[random.nextInt(colors.size)], random.nextFloat()

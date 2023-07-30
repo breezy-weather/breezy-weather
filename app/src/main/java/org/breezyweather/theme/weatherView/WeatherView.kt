@@ -34,6 +34,7 @@ interface WeatherView {
     @get:WeatherKindRule
     val weatherKind: Int
     fun setDrawable(drawable: Boolean)
+    fun setAnimatable(animatable: Boolean)
     fun setGravitySensorEnabled(enabled: Boolean)
 
     companion object {
