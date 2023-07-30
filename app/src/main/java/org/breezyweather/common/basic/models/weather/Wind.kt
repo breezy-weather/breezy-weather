@@ -20,7 +20,7 @@ data class Wind(
      */
     val degree: Float? = null,
     /**
-     * In km/h
+     * In m/s
      */
     val speed: Float? = null
 ) : Serializable {
@@ -125,17 +125,17 @@ data class Wind(
     }
 
     companion object {
-        const val WIND_SPEED_0 = 2f
-        const val WIND_SPEED_1 = 6f
-        const val WIND_SPEED_2 = 12f
-        const val WIND_SPEED_3 = 19f
-        const val WIND_SPEED_4 = 30f
-        const val WIND_SPEED_5 = 40f
-        const val WIND_SPEED_6 = 51f
-        const val WIND_SPEED_7 = 62f
-        const val WIND_SPEED_8 = 75f
-        const val WIND_SPEED_9 = 87f
-        const val WIND_SPEED_10 = 103f
-        const val WIND_SPEED_11 = 117f
+        const val WIND_SPEED_0 = 0.5f
+        const val WIND_SPEED_1 = 1.5f
+        const val WIND_SPEED_2 = 3.3f
+        const val WIND_SPEED_3 = 5.5f
+        const val WIND_SPEED_4 = 7.9f
+        const val WIND_SPEED_5 = 10.7f
+        const val WIND_SPEED_6 = 13.8f
+        const val WIND_SPEED_7 = 17.1f
+        const val WIND_SPEED_8 = 20.7f
+        const val WIND_SPEED_9 = 24.4f
+        const val WIND_SPEED_10 = 28.4f
+        const val WIND_SPEED_11 = 32.6f
     }
 }
