@@ -201,7 +201,7 @@ private fun getHourlyList(
                 dewPoint = hourlyResult.dewPoint?.getOrNull(i),
                 pressure = hourlyResult.surfacePressure?.getOrNull(i),
                 cloudCover = hourlyResult.cloudCover?.getOrNull(i),
-                visibility = hourlyResult.visibility?.getOrNull(i)?.div(1000.0)?.toFloat()
+                visibility = hourlyResult.visibility?.getOrNull(i)?.toFloat()
             )
         )
     }

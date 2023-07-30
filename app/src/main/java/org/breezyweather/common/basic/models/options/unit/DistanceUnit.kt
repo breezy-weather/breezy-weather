@@ -12,22 +12,22 @@ enum class DistanceUnit(
     override val unitFactor: Float
 ): UnitEnum<Float> {
 
-    KM("km", 1f),
-    M("m", 1000f),
-    MI("mi", 0.6213f),
-    NMI("nmi", 0.5399f),
-    FT("ft", 3280.8398f);
+    M("m", 1f),
+    KM("km", 1f / 1000f),
+    MI("mi", 1f / 1609.344f),
+    NMI("nmi", 1f / 1852f),
+    FT("ft", 3.28084f);
 
     companion object {
 
         fun getInstance(
             value: String
         ) = when (value) {
-            "m" -> M
+            "km" -> KM
             "mi" -> MI
             "nmi" -> NMI
             "ft" -> FT
-            else -> KM
+            else -> M
         }
     }
 

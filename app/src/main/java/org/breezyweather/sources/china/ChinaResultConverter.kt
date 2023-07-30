@@ -91,7 +91,7 @@ fun convert(
                 forecastResult.current.pressure!!.value!!.toFloat()
             } else null,
             visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) {
-                forecastResult.current.visibility!!.value!!.toFloatOrNull()
+                forecastResult.current.visibility!!.value!!.toFloatOrNull()?.times(1000)
             } else null,
             hourlyForecast = if (minutelyResult.precipitation != null) {
                 minutelyResult.precipitation.description

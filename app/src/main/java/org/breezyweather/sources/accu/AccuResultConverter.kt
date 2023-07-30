@@ -125,8 +125,8 @@ fun convert(
             dewPoint = currentResult.DewPoint?.Metric?.Value?.toFloat(),
             pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
             cloudCover = currentResult.CloudCover,
-            visibility = currentResult.Visibility?.Metric?.Value?.toFloat(),
-            ceiling = (currentResult.Ceiling?.Metric?.Value?.div(1000.0))?.toFloat(),
+            visibility = currentResult.Visibility?.Metric?.Value?.times(1000)?.toFloat(),
+            ceiling = currentResult.Ceiling?.Metric?.Value?.toFloat(),
             dailyForecast = convertUnit(context, dailyResult.Headline?.Text),
             hourlyForecast = convertUnit(context, minuteResult?.Summary?.LongPhrase)
         ),
@@ -303,7 +303,7 @@ private fun getHourlyList(
             relativeHumidity = result.RelativeHumidity?.toFloat(),
             dewPoint = result.DewPoint?.Value?.toFloat(),
             cloudCover = result.CloudCover,
-            visibility = result.Visibility?.Value?.toFloat()
+            visibility = result.Visibility?.Value?.times(1000)?.toFloat()
         )
     }
 }

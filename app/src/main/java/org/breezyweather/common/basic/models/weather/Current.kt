@@ -8,8 +8,8 @@ import java.io.Serializable
  * default unit
  * [.relativeHumidity] : [RelativeHumidityUnit.PERCENT]
  * [.dewPoint] : [TemperatureUnit.C]
- * [.visibility] : [DistanceUnit.KM]
- * [.ceiling] : [DistanceUnit.KM]
+ * [.visibility] : [DistanceUnit.M]
+ * [.ceiling] : [DistanceUnit.M]
  */
 data class Current(
     val weatherText: String? = null,

@@ -116,7 +116,7 @@ private fun getCurrentForecast(result: HereWeatherData?): Current? {
         relativeHumidity = result.humidity?.toFloat(),
         dewPoint = result.dewPoint,
         pressure = result.barometerPressure,
-        visibility = result.visibility,
+        visibility = result.visibility?.times(1000)
     )
 }
 
@@ -194,7 +194,7 @@ private fun getHourlyForecast(
             relativeHumidity = result.humidity?.toFloat(),
             dewPoint = result.dewPoint,
             pressure = result.barometerPressure,
-            visibility = result.visibility
+            visibility = result.visibility?.times(1000)
         )
     }
 }

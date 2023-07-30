@@ -72,7 +72,7 @@ private fun getCurrentForecast(result: PirateWeatherCurrently?): Current? {
         dewPoint = result.dewPoint,
         pressure = result.pressure,
         cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-        visibility = result.visibility,
+        visibility = result.visibility?.times(1000)
     )
 }
 
@@ -108,7 +108,7 @@ private fun getDailyForecast(
             moonPhase = MoonPhase(
                 angle = result.moonPhase?.times(360)?.roundToInt(), // Seems correct
             ),
-            uV = UV(index = result.uvIndex),
+            uV = UV(index = result.uvIndex)
         )
     }
 }
@@ -148,7 +148,7 @@ private fun getHourlyForecast(
             dewPoint = result.dewPoint,
             pressure = result.pressure,
             cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-            visibility = result.visibility,
+            visibility = result.visibility?.times(1000)
         )
     }
 }

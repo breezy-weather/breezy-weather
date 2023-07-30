@@ -59,7 +59,7 @@ fun convert(
             dewPoint = oneCallResult.current.dewPoint,
             pressure = oneCallResult.current.pressure?.toFloat(),
             cloudCover = oneCallResult.current.clouds,
-            visibility = (oneCallResult.current.visibility?.div(1000.0))?.toFloat()
+            visibility = oneCallResult.current.visibility?.toFloat()
         ) else null,
         dailyForecast = getDailyList(oneCallResult.daily),
         hourlyForecast = getHourlyList(oneCallResult.hourly, airPollutionResult),
