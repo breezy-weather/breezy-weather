@@ -136,12 +136,26 @@ Uses Open-Meteo for location search.
 
 ## Pirate Weather
 
-*TODO*
+*Last checked: 2023-07-30*
+
+See: https://github.com/alexander0042/pirateweather/
+
+| Endpoint    | Version |
+|-------------|---------|
+| Forecast    | v1.5.4  |
+
+We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
 
 
 ## HERE
 
-*TODO*
+*Last checked: 2023-07-30*
+
+| Endpoint            | Version |
+|---------------------|---------|
+| Weather Destination | v3      |
+| Geocode             | v1      |
+| Reverse geocode     | v1      |
 
 
 ## Météo-France
