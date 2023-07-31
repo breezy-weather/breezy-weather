@@ -6,7 +6,7 @@ This is a user-end guide to weather sources available in Breezy Weather. If you 
 
 **Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding).
 
-When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country.
+When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country. If you're based in the USA, you could try [Forecast Advisor](https://forecastadvisor.com/), though it's worth noting it's missing comparison data for several of Breezy Weather's sources.
 
 Additional sources are available to configure but requires an API key. You can find them at the bottom of this page.
 
