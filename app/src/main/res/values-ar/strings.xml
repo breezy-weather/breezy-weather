@@ -620,4 +620,5 @@
     <string name="weather_message_invalid_location">الموقع غير صالح ، يرجى حذفه وإعادة إضافته</string>
     <string name="weather_alert_data_by">بيانات التنبيه حسب $</string>
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
+    <string name="wind_gusts">هبوب الرياح</string>
 </resources>
