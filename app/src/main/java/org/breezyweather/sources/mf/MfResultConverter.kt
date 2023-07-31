@@ -38,48 +38,27 @@ import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
-fun convert(location: Location?, result: MfForecastResult): Location? {
-    return if (result.properties == null || result.geometry == null
-        || result.geometry.coordinates?.getOrNull(0) == null || result.geometry.coordinates.getOrNull(1) == null) {
-        null
-    } else if (location != null && !location.province.isNullOrEmpty()
-        && location.city.isNotEmpty()
-        && !location.district.isNullOrEmpty()
-    ) {
+fun convert(location: Location, result: MfForecastResult): Location {
+    return if (result.properties == null) {
+        location
+    } else {
         Location(
             cityId = null,
-            latitude = result.geometry.coordinates[1],
-            longitude = result.geometry.coordinates[0],
+            latitude = location.latitude,
+            longitude = location.longitude,
             timeZone = TimeZone.getTimeZone(result.properties.timezone),
             country = result.properties.country,
             countryCode = result.properties.country.substring(0, 2),
-            province = location.province, // Département
-            provinceCode = location.provinceCode, // Département
-            city = location.city,
-            district = location.district,
+            province = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
+                getFrenchDepartmentName(result.properties.frenchDepartment)
+            } else null, // Département
+            provinceCode = result.properties.frenchDepartment, // Département
+            city = result.properties.name,
             weatherSource = "mf",
             airQualitySource = location.airQualitySource,
             allergenSource = location.allergenSource,
             minutelySource = location.minutelySource,
             alertSource = location.alertSource
-        )
-    } else {
-        Location(
-            cityId = null,
-            latitude = result.geometry.coordinates[1],
-            longitude = result.geometry.coordinates[0],
-            timeZone = TimeZone.getTimeZone(result.properties.timezone),
-            country = result.properties.country,
-            countryCode = result.properties.country.substring(0, 2),
-            province = if (!result.properties.frenchDepartment.isNullOrEmpty())
-                getFrenchDepartmentName(result.properties.frenchDepartment) else null, // Département
-            provinceCode = result.properties.frenchDepartment, // Département
-            city = result.properties.name,
-            weatherSource = "mf",
-            airQualitySource = location?.airQualitySource,
-            allergenSource = location?.allergenSource,
-            minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource
         )
     }
 }

@@ -37,54 +37,27 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
-    location: Location?,
     result: OpenMeteoLocationResult
 ): Location {
-    return if (location != null && !location.province.isNullOrEmpty()
-        && location.city.isNotEmpty()
-        && !location.district.isNullOrEmpty()
-    ) {
-        Location(
-            cityId = result.id.toString(),
-            latitude = result.latitude,
-            longitude = result.longitude,
-            timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
-            countryCode = result.countryCode,
-            province = location.province,
-            provinceCode = location.provinceCode,
-            city = location.city,
-            weatherSource = "openmeteo",
-            airQualitySource = location.airQualitySource,
-            allergenSource = location.allergenSource,
-            minutelySource = location.minutelySource,
-            alertSource = location.alertSource
-        )
-    } else {
-        Location(
-            cityId = result.id.toString(),
-            latitude = result.latitude,
-            longitude = result.longitude,
-            timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
-            countryCode = result.countryCode,
-            province = if (result.admin2.isNullOrEmpty()) {
-                if (result.admin1.isNullOrEmpty()) {
-                    if (result.admin3.isNullOrEmpty()) {
-                        result.admin4
-                    } else result.admin3
-                } else result.admin1
-            } else result.admin2,
-            // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
-            provinceCode = if (result.countryCode == "FR") getFrenchDepartmentCode(result.admin2 ?: "") else null,
-            city = result.name,
-            weatherSource = "openmeteo",
-            airQualitySource = location?.airQualitySource,
-            allergenSource = location?.allergenSource,
-            minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource
-        )
-    }
+    return Location(
+        cityId = result.id.toString(),
+        latitude = result.latitude,
+        longitude = result.longitude,
+        timeZone = TimeZone.getTimeZone(result.timezone),
+        country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
+        countryCode = result.countryCode,
+        province = if (result.admin2.isNullOrEmpty()) {
+            if (result.admin1.isNullOrEmpty()) {
+                if (result.admin3.isNullOrEmpty()) {
+                    result.admin4
+                } else result.admin3
+            } else result.admin1
+        } else result.admin2,
+        // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
+        provinceCode = if (result.countryCode == "FR") getFrenchDepartmentCode(result.admin2 ?: "") else null,
+        city = result.name,
+        weatherSource = "openmeteo"
+    )
 }
 
 fun convert(

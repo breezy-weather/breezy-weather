@@ -38,9 +38,9 @@ fun convert(
     return results.map { item ->
         Location(
             cityId = item.id,
-            latitude = item.position.lat,
-            longitude = item.position.lng,
-            timeZone = TimeZone.getTimeZone(item.timeZone?.name),
+            latitude = location?.latitude ?: item.position.lat,
+            longitude = location?.longitude ?: item.position.lng,
+            timeZone = TimeZone.getTimeZone(item.timeZone.name),
             country = item.address.countryName,
             countryCode = item.address.countryCode,
             province = item.address.state,

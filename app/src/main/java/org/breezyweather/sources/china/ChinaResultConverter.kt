@@ -30,7 +30,10 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 
-fun convert(location: Location?, result: ChinaLocationResult): Location {
+fun convert(
+    location: Location?,
+    result: ChinaLocationResult
+): Location {
     return Location(
         cityId = result.locationKey!!.replace("weathercn:", ""),
         latitude = location?.latitude ?: result.latitude!!.toFloat(),

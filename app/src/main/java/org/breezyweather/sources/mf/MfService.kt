@@ -184,7 +184,7 @@ class MfService @Inject constructor(
             getToken()
         ).map {
             val locationList: MutableList<Location> = ArrayList()
-            val locationConverted = convert(null, it)
+            val locationConverted = convert(location, it)
             if (locationConverted != null) {
                 locationList.add(locationConverted)
                 locationList
