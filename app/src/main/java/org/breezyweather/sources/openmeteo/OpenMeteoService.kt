@@ -167,7 +167,7 @@ class OpenMeteoService @Inject constructor(
             }
 
             results.results.map {
-                convert(null, it)
+                convert(it)
             }
         }
     }
