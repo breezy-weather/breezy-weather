@@ -415,7 +415,7 @@
     <string name="settings_location_access_switch_summaryOff">Leiskite, jei norite pridėti savo dabartinę vietą kaip vietą.</string>
     <string name="settings_location_access_background_title">Prieiga prie vietos fone</string>
     <string name="settings_location_access_precise_title">Įrenginio GPS naudojimas</string>
-    <string name="settings_location_access_precise_summaryOff">Jei sunku nustatyti buvimo vietą, įjunkite \"Tikslios vietovės naudojimas\".</string>
+    <string name="settings_location_access_precise_summaryOff">Jei sunku nustatyti buvimo vietą, įjunkite “Tikslios vietovės naudojimas”.</string>
     <string name="settings_appearance_summary">Kalba, tamsusis režimas, piktogramų paketas, vienetai</string>
     <string name="settings_appearance">Išvaizda</string>
     <string name="settings_none">Be</string>

@@ -147,6 +147,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("pl"), "nid", "https://github.com/nidmb"),
         TranslatorItem(arrayOf("pl"), "Eryk Michalak", "https://github.com/gnu-ewm"),
         TranslatorItem(arrayOf("pl"), "HackZy01", "https://github.com/HackZy01"),
+        TranslatorItem(arrayOf("pt"), "Silvério Santos", "https://github.com/SantosSi"),
         TranslatorItem(arrayOf("pt_rBR"), "Fabio Raitz", "mailto:fabioraitz@outlook.com"),
         TranslatorItem(arrayOf("pt_rBR"), "Washington Luiz Candido dos Santos Neto", "https://hosted.weblate.org/user/Netocon/"),
         TranslatorItem(arrayOf("pt_rBR"), "mf", "https://hosted.weblate.org/user/marfS2/"),
@@ -172,6 +173,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", "https://github.com/misaka-13766"),
         TranslatorItem(arrayOf("zh_rCN"), "losky2987", "https://github.com/losky2987"),
         TranslatorItem(arrayOf("zh_rCN"), "thdcloud", "https://github.com/thdcloud"),
+        TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "thaumiel9", "https://github.com/thaumiel9"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
