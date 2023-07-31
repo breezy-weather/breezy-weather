@@ -1,4 +1,5 @@
 [versions]
+aboutlib_version = "10.8.3"
 accompanist = "0.30.1"
 activity = "1.7.2"
 adaptiveiconview = "v0.0.3"
@@ -38,6 +39,7 @@ swiperefreshlayout = "1.1.0"
 work-runtime = "2.8.1"
 
 [libraries]
+aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose", version.ref = "aboutlib_version" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -95,6 +97,7 @@ work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlib_version" }
 daggerHilt = { id = "dagger.hilt.android.plugin", version.ref = "dagger" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.objectbox).apply(false)
     alias(libs.plugins.daggerHilt)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.aboutLibraries)
 }
 
 android {
@@ -212,6 +213,7 @@ dependencies {
     // utils.
     implementation libs.suncalc
     implementation libs.lunarcalendar
+    implementation libs.aboutLibraries
 
     // debugImplementation because LeakCanary should only run in debug builds.
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
