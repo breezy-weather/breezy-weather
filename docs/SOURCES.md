@@ -19,7 +19,7 @@ Here are some suggestions based on various criteria or testimonies (you can sugg
 | Europe            |              |             | Open-Meteo  |              |              |
 | United States     | [Forecast Advisor](https://forecastadvisor.com/) | | |  |              |
 | France            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
-| Norway            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
+| Norway            | MET Norway   | MET Norway  | Open-Meteo  | MET Norway   |              |
 
 Note that secondary sources are coming in next version (v4.5.0-beta) and are not available yet. In the meantime, you can add the same city with two different sources.
 
