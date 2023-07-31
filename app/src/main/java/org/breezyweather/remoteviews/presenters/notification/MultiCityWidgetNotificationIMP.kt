@@ -104,7 +104,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
         } else current.temperature?.temperature
         val timeStr = StringBuilder()
-        timeStr.append(location.getCityName(context))
+        timeStr.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
             timeStr.append(", ").append(LunarHelper.getLunarDate(Date()))
         }
@@ -201,9 +201,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
     private fun getCityTitle(context: Context, location: Location, unit: TemperatureUnit): String {
         val builder = StringBuilder(
-            if (location.isCurrentPosition) {
-                context.getString(R.string.location_current)
-            } else location.getCityName(context)
+            location.getPlace(context, true)
         )
         location.weather?.dailyForecast?.getOrNull(0)?.let {
             builder.append(", ").append(

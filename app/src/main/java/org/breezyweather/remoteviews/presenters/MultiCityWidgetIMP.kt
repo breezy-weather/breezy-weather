@@ -69,7 +69,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
         cityIds.forEachIndexed { i, cityId ->
             locationList.getOrNull(i)?.let { location ->
                 views.setViewVisibility(cityId[0], View.VISIBLE)
-                views.setTextViewText(cityId[1], location.getCityName(context))
+                views.setTextViewText(cityId[1], location.getPlace(context))
                 if (location.isDaylight) {
                     location.weather?.dailyForecast?.getOrNull(i)?.day?.weatherCode?.let {
                         views.setViewVisibility(cityId[2], View.VISIBLE)

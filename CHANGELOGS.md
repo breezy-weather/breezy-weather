@@ -5,6 +5,8 @@ Due to a technical change, cached weather data will be cleared on update.
 **Weather sources**
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
+- Fix locations displayed in parenthesis with AccuWeather (existing locations will need to be readded)
+- Fix missing location name missing with AccuWeather when localized name was not available (will now fallback to English name)
 
 **Data**
 - Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.

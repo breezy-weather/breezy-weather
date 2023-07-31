@@ -139,7 +139,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
         } else current.temperature?.temperature
         val timeStr = StringBuilder()
-        timeStr.append(location.getCityName(context))
+        timeStr.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
             timeStr.append(", ").append(LunarHelper.getLunarDate(Date()))
         }

@@ -166,7 +166,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[0]
             "symmetry" -> {
                 val stringBuilder = StringBuilder()
-                stringBuilder.append(location.getCityName(context))
+                stringBuilder.append(location.getPlace(context))
                 if (weather.current?.temperature?.temperature != null) {
                     stringBuilder.append("\n")
                         .append(weather.current.temperature.getTemperature(context, unit, 0))
@@ -242,7 +242,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     ): String? {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
-                "rectangle" -> (location.getCityName(context)
+                "rectangle" -> (location.getPlace(context)
                         + " "
                         + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
 
@@ -250,7 +250,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
 
-                "tile", "mini", "vertical" -> (location.getCityName(context)
+                "tile", "mini", "vertical" -> (location.getPlace(context)
                         + " " + Widgets.getWeek(context, location.timeZone)
                         + " " + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
 
@@ -265,7 +265,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 } else null
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
-                "rectangle" -> (location.getCityName(context)
+                "rectangle" -> (location.getPlace(context)
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
@@ -273,7 +273,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
-                "tile", "mini", "vertical" -> (location.getCityName(context)
+                "tile", "mini", "vertical" -> (location.getPlace(context)
                         + " " + Widgets.getWeek(context, location.timeZone)
                         + " " + LunarHelper.getLunarDate(Date()))
 

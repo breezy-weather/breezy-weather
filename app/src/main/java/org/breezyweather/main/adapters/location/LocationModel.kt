@@ -21,7 +21,7 @@ class LocationModel(
     var weatherText: String? = null
     val currentPosition: Boolean = location.isCurrentPosition
     val residentPosition: Boolean = location.isResidentPosition
-    val title: String = if (location.isCurrentPosition) context.getString(R.string.location_current) else location.place()
+    val title: String = location.getPlace(context, true)
     val body: String = if (location.isUsable) location.administrationLevels() else context.getString(R.string.location_current_not_found_yet)
     var alerts: String? = null
 

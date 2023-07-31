@@ -288,7 +288,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.dewPoint?.let {
                         temperatureUnit.getValueText(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
-                ).replace("\$l$", location.getCityName(context))
+                ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
                 .replace("\$ut$", weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))

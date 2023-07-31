@@ -60,7 +60,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
             if (settings.language.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
         )
         val builder = StringBuilder()
-        builder.append(location.getCityName(context))
+        builder.append(location.getPlace(context))
         if (weather.current?.temperature?.temperature != null) {
             builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit, 0))
         }

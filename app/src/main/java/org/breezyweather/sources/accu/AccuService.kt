@@ -183,11 +183,8 @@ class AccuService @Inject constructor(
             details = false,
             alias = "Always"
         ).map { results ->
-            // TODO: Why? This will use searched terms as zip code even if the zip code is incomplete
-            val zipCode = if (query.matches("[a-zA-Z0-9]*".toRegex())) query else null
-
             results.map {
-                convert(null, it, zipCode)
+                convert(null, it)
             }
         }
     }
@@ -209,7 +206,7 @@ class AccuService @Inject constructor(
             location.latitude.toString() + "," + location.longitude
         ).map {
             val locationList: MutableList<Location> = ArrayList()
-            locationList.add(convert(location, it, null))
+            locationList.add(convert(location, it))
             locationList
         }
     }

@@ -97,7 +97,7 @@ private fun buildRemoteViews(
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,
-        location.getCityName(context)
+        location.getPlace(context)
     )
     if (weather == null) {
         return views

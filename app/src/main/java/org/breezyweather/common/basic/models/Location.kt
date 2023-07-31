@@ -134,25 +134,6 @@ data class Location(
         return formattedId.hashCode()
     }
 
-    fun getCityName(context: Context): String {
-        val text = if (!district.isNullOrEmpty() && district != "市辖区" && district != "无") {
-            district
-        } else if (city.isNotEmpty() && city != "市辖区") {
-            city
-        } else if (!province.isNullOrEmpty()) {
-            province
-        } else if (isCurrentPosition) {
-            context.getString(R.string.location_current)
-        } else {
-            ""
-        }
-
-        if (!text.endsWith(")")) {
-            return text
-        }
-        return text.substringBeforeLast('(')
-    }
-
     override fun toString(): String {
         val builder = StringBuilder("$country $province")
         if (province != city
@@ -168,7 +149,10 @@ data class Location(
         return builder.toString()
     }
 
-    fun place(): String {
+    fun getPlace(context: Context, showCurrentPositionInPriority: Boolean = false): String {
+        if (showCurrentPositionInPriority && isCurrentPosition) {
+            return context.getString(R.string.location_current)
+        }
         val builder = StringBuilder()
         if (city.isNotEmpty()) {
             builder.append(city)
@@ -178,6 +162,9 @@ data class Location(
                 builder.append(", ")
             }
             builder.append(district)
+        }
+        if (builder.toString().isEmpty() && isCurrentPosition) {
+            return context.getString(R.string.location_current)
         }
         return builder.toString()
     }
@@ -206,7 +193,7 @@ data class Location(
             return true
         }
         return if (isEquals(province, location.province)
-            && getCityName(c) == location.getCityName(c)
+            && getPlace(c) == location.getPlace(c)
         ) {
             true
         } else {

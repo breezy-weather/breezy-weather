@@ -315,7 +315,7 @@ class HomeFragment : MainModuleFragment() {
         val daylight = location?.isDaylight ?: true
         val weatherKind = WeatherViewController.getWeatherKind(location?.weather)
 
-        binding.toolbar.title = location?.getCityName(requireContext())
+        binding.toolbar.title = location?.getPlace(requireContext())
 
         val textColor = ThemeManager.getInstance(requireContext())
             .weatherThemeDelegate

@@ -22,6 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
@@ -134,13 +135,14 @@ class SearchActivity : GeoActivity() {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                     }
                     if (listResourceState.value.first.isNotEmpty()) {
+                        val context = LocalContext.current
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             items(listResourceState.value.first) { location ->
                                 ListItem(
-                                    headlineContent = { Text(location.place()) },
+                                    headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
                                         finishSelf(location)

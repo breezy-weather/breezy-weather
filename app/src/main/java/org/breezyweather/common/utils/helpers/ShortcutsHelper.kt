@@ -76,9 +76,7 @@ object ShortcutsHelper {
                     } else {
                         getIcon(provider, WeatherCode.CLEAR, true)
                     }
-                title = if (list[i].isCurrentPosition) {
-                    context.getString(R.string.location_current)
-                } else list[i].getCityName(context)
+                title = list[i].getPlace(context, true)
                 shortcutList.add(
                     ShortcutInfo.Builder(context, list[i].formattedId)
                         .setIcon(icon)

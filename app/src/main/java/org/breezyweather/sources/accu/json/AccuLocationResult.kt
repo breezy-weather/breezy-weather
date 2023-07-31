@@ -10,6 +10,7 @@ data class AccuLocationResult(
     val Key: String,
     val Type: String?,
     val LocalizedName: String?,
+    val EnglishName: String?,
     val Country: AccuLocationArea,
     val AdministrativeArea: AccuLocationArea?,
     val TimeZone: AccuLocationTimeZone,

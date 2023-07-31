@@ -41,7 +41,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val temperature = if (tempIcon) tempFeelsLikeOrAir else null
 
         val subtitle = StringBuilder()
-        subtitle.append(location.getCityName(context))
+        subtitle.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
             subtitle.append(", ").append(LunarHelper.getLunarDate(Date()))
         } else {

@@ -46,44 +46,22 @@ import kotlin.math.roundToInt
 
 fun convert(
     location: Location?,
-    result: AccuLocationResult,
-    zipCode: String?
+    result: AccuLocationResult
 ): Location {
-    return if (location != null && !location.province.isNullOrEmpty()
-        && location.city.isNotEmpty()
-        && !location.district.isNullOrEmpty()
-    ) {
-        Location(
-            cityId = result.Key,
-            latitude = result.GeoPosition.Latitude.toFloat(),
-            longitude = result.GeoPosition.Longitude.toFloat(),
-            timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
-            country = result.Country.LocalizedName,
-            province = location.province,
-            city = location.city,
-            district = location.district + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu",
-            airQualitySource = location.airQualitySource,
-            allergenSource = location.allergenSource,
-            minutelySource = location.minutelySource,
-            alertSource = location.alertSource
-        )
-    } else {
-        Location(
-            cityId = result.Key,
-            latitude = result.GeoPosition.Latitude.toFloat(),
-            longitude = result.GeoPosition.Longitude.toFloat(),
-            timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
-            country = result.Country.LocalizedName,
-            province = result.AdministrativeArea?.LocalizedName ?: "",
-            city = result.LocalizedName + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu",
-            airQualitySource = location?.airQualitySource,
-            allergenSource = location?.allergenSource,
-            minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource
-        )
-    }
+    return Location(
+        cityId = result.Key,
+        latitude = location?.latitude ?: result.GeoPosition.Latitude.toFloat(),
+        longitude = location?.longitude ?: result.GeoPosition.Longitude.toFloat(),
+        timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
+        country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
+        province = result.AdministrativeArea?.LocalizedName?.ifEmpty { result.AdministrativeArea.EnglishName },
+        city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
+        weatherSource = "accu",
+        airQualitySource = location?.airQualitySource,
+        allergenSource = location?.allergenSource,
+        minutelySource = location?.minutelySource,
+        alertSource = location?.alertSource
+    )
 }
 
 fun convert(
