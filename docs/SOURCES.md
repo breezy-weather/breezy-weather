@@ -6,9 +6,22 @@ This is a user-end guide to weather sources available in Breezy Weather. If you 
 
 **Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding).
 
-When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country. If you're based in the USA, you could try [Forecast Advisor](https://forecastadvisor.com/), though it's worth noting it's missing comparison data for several of Breezy Weather's sources.
 
-Additional sources are available to configure but requires an API key. You can find them at the bottom of this page.
+## Accuracy
+
+When deciding about which source you want to use, accuracy of data is probably the most important criteria.
+
+Here are some suggestions based on various criteria or testimonies (you can suggest others in GitHub discussions):
+
+| Country/Continent | Main source  | Air quality | Pollen      | Minutely     | Alerts       |
+| ----------------- | ------------ | ----------- | ----------- | ------------ | ------------ |
+| North America     |              |             | AccuWeather |              |              |
+| Europe            |              |             | Open-Meteo  |              |              |
+| United States     | [Forecast Advisor](https://forecastadvisor.com/) | | |  |              |
+| France            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
+| Norway            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
+
+Note that secondary sources are coming in next version (v4.5.0-beta) and are not available yet. In the meantime, you can add the same city with two different sources.
 
 
 ## Status
@@ -17,6 +30,8 @@ Additional sources are available to configure but requires an API key. You can f
 |---------------|------------|-------------|------------|---------------|----------------|--------------|--------|
 | **API key**   | None       | Optional    | None       | Rate-limited¹ | Rate-limited¹  | Optional     | None   |
 | **Countries** | Worldwide² | Worldwide²  | Worldwide² | Worldwide²    | Worldwide²     | Worldwide²   | China  |
+
+Additional sources are available to configure but requires an API key. You can find them at the bottom of this page.
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features may not be available everywhere.
