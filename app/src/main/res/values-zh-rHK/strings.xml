@@ -43,14 +43,14 @@
     <string name="short_friday">週五</string>
     <string name="short_saturday">週六</string>
     <string name="short_sunday">週日</string>
-    <string name="temperature_real_feel">體感溫度</string>
-    <string name="temperature_real_feel_shade">陰面體感溫度</string>
+    <string name="temperature_real_feel">真實體感</string>
+    <string name="temperature_real_feel_shade">陰面真實體感</string>
     <string name="temperature_apparent">地表溫度</string>
     <string name="temperature_wind_chill">風寒溫度</string>
     <string name="temperature_wet_bulb">濕球溫度</string>
     <string name="temperature_degree_day">度日溫度</string>
     <string name="precipitation_total">總量</string>
-    <string name="precipitation_thunderstorm">暴風雨</string>
+    <string name="precipitation_thunderstorm">雷暴</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">冰</string>
@@ -110,7 +110,7 @@
     <!-- feedback. -->
     <string name="notification_location_in_background">正在後台進行定位</string>
     <string name="dialog_permissions_location_title">獲取位置信息</string>
-    <string name="dialog_permissions_location_content">微風天氣需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
+    <string name="dialog_permissions_location_content">微風天氣 需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
     <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
     <string name="dialog_permissions_location_background_content">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設定爲“始终允许”。</string>
     <string name="location_message_failed_to_locate">定位失敗</string>
@@ -133,7 +133,7 @@
     <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。
 \n
 \n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為晴”。</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">當天天氣</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度 (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度 (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">體感溫度（℃/℉）</string>
@@ -156,7 +156,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">星期（短）</string>
     <string name="widget_custom_subtitle_keyword_dd_description">每日概覽</string>
     <string name="widget_custom_subtitle_keyword_hd_description">小時概覽</string>
-    <string name="widget_custom_subtitle_keyword_enter_description">回車</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">換行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日白天天氣，明日，……，4天後</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日夜間天氣，明日，……，4天後</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">今日白天溫度，明日，……，4天後（℃/℉）</string>
@@ -174,9 +174,9 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">今日月相，明日，……，4天後</string>
     <string name="widget_live_wallpaper_weather_kind">天氣</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
-    <string name="location_message_added">收藏成功</string>
+    <string name="location_message_added">添加成功</string>
     <string name="location_message_deleted">刪除成功</string>
-    <string name="location_message_list_cannot_be_empty">收藏位置不能留空</string>
+    <string name="location_message_list_cannot_be_empty">位置列表不能為空</string>
     <string name="location_search_placeholder">鍵入一個地址…</string>
     <string name="location_current_not_found_yet">尚未進行定位…</string>
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
@@ -186,9 +186,9 @@
     <string name="notification_precipitation_today">今日可能出現降水。</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水。</string>
     <string name="location_resident_message">設定為常駐城市</string>
-    <string name="location_resident_dialog">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。
-\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
-    <string name="allergen_tap_to_see_more">點擊可獲取更多…</string>
+    <string name="location_resident_dialog">微風天氣 將根據您當前的位置自動顯示和隱藏常駐城市。
+\n例如，您可以將您的家鄉設置為常駐城市。在旅行時可以查看家鄉的天氣。當您回到家時，您家鄉的天氣將被隱藏並替換為您當前位置的天氣。</string>
+    <string name="allergen_tap_to_see_more">點擊查看更多…</string>
     <!-- content description -->
     <string name="action_back">回退</string>
     <string name="settings_icon_packs_check_details">視檢詳情</string>
@@ -299,8 +299,8 @@
     <string name="weather_kind_hail">冰雹</string>
     <string name="weather_kind_fog">霧</string>
     <string name="weather_kind_haze">霾</string>
-    <string name="weather_kind_thunder">雷暴</string>
-    <string name="weather_kind_thunderstorm">雷雨</string>
+    <string name="weather_kind_thunder">閃電</string>
+    <string name="weather_kind_thunderstorm">雷暴</string>
     <string name="weather_kind_wind">風</string>
     <!-- Units -->
     <string name="unit_kph">千米/時</string>
@@ -383,7 +383,7 @@
     <string name="message_network_unavailable">網絡不可用</string>
     <string name="settings_background_updates">後台更新</string>
     <string name="settings_main_section_displayed_data">顯示數據</string>
-    <string name="settings_main_header_details_title">顯示在頂部的詳細數據</string>
+    <string name="settings_main_header_details_title">顯示在頂部的詳情數據</string>
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_yesterday_alert_lines_in_trends">概覽中的昨日/預警橫線</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
@@ -489,7 +489,7 @@
     <string name="setting_weather_source_accu_hours">小時數</string>
     <string name="dialog_permissions_notification_content">點擊此處啟用有關天氣預警的通知，或稍後在“設定”中決定。</string>
     <string name="settings_main">主界面</string>
-    <string name="location_results_by">位置來源 $</string>
+    <string name="location_results_by">定位結果來源 $</string>
     <string name="action_add_from_map">從地圖添加</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">輕微或中度雷雨</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">大陣雪</string>
@@ -504,7 +504,7 @@
     <string name="air_quality_level_1_description">空氣質量對於大多數人來說都是理想的； 享受正常的戶外活動。</string>
     <string name="air_quality_level_3">輕度污染</string>
     <string name="air_quality_level_3_description">空氣污染程度已達到高水平，對敏感人群不健康。 如果您出現呼吸困難或喉嚨刺激等症狀，請減少外出時間。</string>
-    <string name="uv_alert_level">預警等級</string>
+    <string name="uv_alert_level">警報級別</string>
     <string name="message_tap_again_to_exit">再次點擊即可退出</string>
     <string name="openmeteo_weather_text_mainly_clear">大致天晴</string>
     <string name="openmeteo_weather_text_rain_moderate_intensity">中雨</string>
@@ -549,7 +549,7 @@
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 提供商均被使用。</string>
     <string name="settings_weather_source">天氣提供商</string>
     <string name="settings_weather_sources_current_location">當前位置的天氣提供商</string>
-    <string name="settings_source_default_value">默認（不變）</string>
+    <string name="settings_source_default_value">默認（不更改）</string>
     <string name="weather_source_accu_preference_hours_72">72小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>
     <string name="weather_source_accu_preference_days_15">15 天</string>
@@ -622,4 +622,5 @@
     <string name="settings_location">定位</string>
     <string name="settings_location_summary">位置提供商設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
+    <string name="about_dependencies">依賴</string>
 </resources>
