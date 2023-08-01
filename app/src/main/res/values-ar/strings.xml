@@ -620,4 +620,5 @@
     <string name="weather_alert_data_by">بيانات التنبيه حسب $</string>
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
     <string name="wind_gusts">هبوب الرياح</string>
+    <string name="about_dependencies">التبعيات</string>
 </resources>
