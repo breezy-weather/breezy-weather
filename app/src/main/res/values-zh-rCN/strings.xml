@@ -623,4 +623,5 @@
     <string name="weather_message_invalid_location">位置无效，请删除并重新添加</string>
     <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
     <string name="wind_gusts">阵风</string>
+    <string name="about_dependencies">依赖</string>
 </resources>
