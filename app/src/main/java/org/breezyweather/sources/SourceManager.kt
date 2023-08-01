@@ -1,5 +1,6 @@
 package org.breezyweather.sources
 
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
@@ -56,7 +57,8 @@ class SourceManager @Inject constructor(
     // Weather
     fun getWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
     fun getWeatherSource(id: String): MainWeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-    fun getWeatherSourceOrDefault(id: String): MainWeatherSource = getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
+    fun getWeatherSourceOrDefault(id: String): MainWeatherSource = getWeatherSource(id)
+        ?: getWeatherSource(BuildConfig.DEFAULT_WEATHER_SOURCE)!!
     fun getConfiguredWeatherSources(): List<MainWeatherSource> = getWeatherSources().filter {
         it !is ConfigurableSource || it.isConfigured
     }
@@ -77,8 +79,6 @@ class SourceManager @Inject constructor(
 
 
     companion object {
-        // TODO: At least this one should be configurable, F-Droid probably wants "openmeteo"
-        const val DEFAULT_WEATHER_SOURCE = "accu"
         private const val DEFAULT_LOCATION_SOURCE = "native"
         private const val DEFAULT_LOCATION_SEARCH_SOURCE = "openmeteo"
     }

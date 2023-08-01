@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationSearchException
@@ -80,7 +81,7 @@ class SearchActivityRepository @Inject internal constructor(
         set(value) {
             mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, value).apply()
         }
-        get() = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, "accu") ?: ""
+        get() = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
 
     fun cancel() {
         mCompositeDisposable.clear()

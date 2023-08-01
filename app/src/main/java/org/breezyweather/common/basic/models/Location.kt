@@ -3,6 +3,7 @@ package org.breezyweather.common.basic.models
 import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Weather
@@ -30,7 +31,7 @@ data class Location(
     val district: String? = null,
 
     val weather: Weather? = null,
-    val weatherSource: String = SourceManager.DEFAULT_WEATHER_SOURCE,
+    val weatherSource: String = BuildConfig.DEFAULT_WEATHER_SOURCE,
     val airQualitySource: String? = null,
     val allergenSource: String? = null,
     val minutelySource: String? = null,
