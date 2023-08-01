@@ -379,7 +379,7 @@
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
     <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и провайдеры GPS.</string>
     <string name="settings_source_default_value">По умолчанию</string>
-    <string name="settings_weather_sources_current_location">Провайдер погоды для текущего местоположения</string>
+    <string name="settings_weather_sources_current_location">Источник информации о погоде для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
     <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
@@ -407,7 +407,7 @@
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
-    <string name="settings_weather_sources_summary">Настройки провайдера погоды, default location search source</string>
+    <string name="settings_weather_sources_summary">Настройки источников информации о погоды, default location search source</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои Breezy Weather, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
@@ -578,7 +578,7 @@
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
     <string name="settings_location_summary">Настройки провайдера местоположения</string>
-    <string name="settings_weather_sources">Провайдер погоды</string>
+    <string name="settings_weather_sources">Источники погоды</string>
     <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
@@ -609,7 +609,7 @@
     <string name="allergen_level_3">Средний</string>
     <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
     <string name="location_resident_location">Местоположение места жительства</string>
-    <string name="settings_weather_source">Провайдер погоды</string>
+    <string name="settings_weather_source">Источник погоды</string>
     <string name="location_resident_location_summaryOn">Включено. Отображается, если находится в пределах 20 км от текущего местоположения, в противном случае скрыт.</string>
     <string name="location_resident_location_summaryOff">Выключено. Местоположение всегда доступно.</string>
     <string name="action_delete">Удалить</string>
@@ -621,4 +621,8 @@
     <string name="weather_minutely_data_by">Поминутные данные об осадках предоставлены $</string>
     <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
+    <string name="minutely_precipitations">Поминутные осадки</string>
+    <string name="action_save">Сохранить</string>
+    <string name="settings_weather_source_main">Основной источник</string>
+    <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде для этого местоположения</string>
 </resources>
