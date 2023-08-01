@@ -3,7 +3,7 @@
     <!-- app. -->
     <string name="app_name">Počasí</string>
     <!-- keyword. -->
-    <string name="location_current">Aktuální poloha</string>
+    <string name="location_current">Aktuální umístění</string>
     <string name="location_resident">Bydliště</string>
     <string name="short_today">Dnes</string>
     <string name="notification_refreshed_at">Aktualizováno</string>
@@ -422,7 +422,7 @@
     <string name="settings_widgets_configure_widget_summary">Konfigurace tohoto widgetu</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Obrácené pořadí denních/nočních teplot</string>
     <string name="settings_debug">Ladění</string>
-    <string name="locations">Polohy</string>
+    <string name="locations">Umístění</string>
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -443,7 +443,7 @@
     <string name="air_quality_no2_info_origin">Okolní zdroje NO₂ vznikají při vysokoteplotním spalování paliv v procesech, jako je vytápění, doprava, průmysl a výroba energie. Mezi domácí zdroje oxidů dusíku (NOₓ) patří zařízení, která spalují paliva, jako jsou pece, krby a plynové sporáky a trouby.</string>
     <string name="air_quality_co_info_origin">Vzniká nedokonalým spalováním uhlíkatých paliv, jako je dřevo, benzín, uhlí, zemní plyn a petrolej, v jednoduchých kamnech, otevřených ohništích, knotových lampách, pecích a krbech. Převažujícím zdrojem oxidu uhelnatého (CO) v ovzduší jsou motorová vozidla.</string>
     <string name="air_quality_co_info_consequences">Oxid uhelnatý proniká přes plicní tkáně do krevního oběhu a ztěžuje tělesným buňkám vazbu kyslíku. Tento nedostatek kyslíku poškozuje tkáně a buňky. Vystavení oxidu uhelnatému může způsobit potíže s dýcháním, vyčerpání, závratě a další příznaky podobné chřipce. Vystavení vysokým hladinám oxidu uhelnatého může být smrtelné.</string>
-    <string name="location_none_added_yet_instructions">Zatím nebyla přidána žádná poloha. Klepněte na ikonu vyhledávání a přidejte polohu ručně nebo přidejte svou aktuální polohu z plovoucího tlačítka.</string>
+    <string name="location_none_added_yet_instructions">Zatím nebylo přidáno žádné umístění. Klepněte na ikonu vyhledávání a přidejte umístění ručně nebo přidejte své aktuální umístění z plovoucího tlačítka.</string>
     <string name="location_search_no_results_advice">Ujistěte se, že vaše vyhledávání je napsáno správně a není příliš konkrétní. Případně můžete zkusit jiného poskytovatele počasí, který může poskytnout jiné výsledky vyhledávání polohy.</string>
     <string name="message_parsing_error_content">Ujistěte se, že jste aktualizovali nejnovější verzi aplikace. Server může být dočasně nedostupný, v takovém případě to zkuste později. Pokud problém přetrvává, vypište prosím protokol o pádu z nastavení ladění a nahlaste problém na GitHub.</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorovat, když je baterie vybitá</string>
@@ -481,7 +481,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_location_list">Seznam poloh</string>
     <string name="wind_direction_short_SE">JV</string>
-    <string name="alerts_to_follow">Aktivní upozornění, klepněte sem pro jejich zobrazení.</string>
+    <string name="alerts_to_follow">Nadcházející upozornění, klepněte sem pro jejich zobrazení.</string>
     <string name="wind_direction_short_N">S</string>
     <string name="wind_direction_short_E">V</string>
     <string name="wind_direction_short_S">J</string>
@@ -598,4 +598,21 @@
     <string name="settings_location_summary">Nastavení poskytovatelů polohy</string>
     <string name="temperature_degree_day_heating">Vytápěcí denostupeň</string>
     <string name="temperature_degree_day_cooling">Chladící denostupeň</string>
+    <string name="setting_weather_source_accu_hours">Hodiny</string>
+    <string name="allergen_level_3">Střední</string>
+    <string name="setting_weather_source_accu_days">Dny</string>
+    <string name="wind_gusts">Poryvy větru</string>
+    <string name="allergen_alder">Olše</string>
+    <string name="allergen_level_5">Velmi vysoká</string>
+    <string name="allergen_level_4">Vysoká</string>
+    <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od $</string>
+    <string name="weather_allergen_data_by">Údaje o alergenech od $</string>
+    <string name="weather_minutely_data_by">Údaje o minutových srážkách od $</string>
+    <string name="minutely_precipitations">Minutové srážky</string>
+    <string name="allergen_birch">Bříza</string>
+    <string name="allergen_mugwort">Pelyněk</string>
+    <string name="allergen_olive">Oliva</string>
+    <string name="allergen_level_0">Žádné</string>
+    <string name="allergen_level_2">Nízká</string>
+    <string name="allergen_level_1">Velmi nízká</string>
 </resources>
