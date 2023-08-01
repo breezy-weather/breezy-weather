@@ -48,7 +48,6 @@ fun LocationPreference(
         }
         if (location.isCurrentPosition) {
             val locationSources = activity.sourceManager.getLocationSources()
-            val weatherSources = activity.sourceManager.getConfiguredWeatherSources()
             SourceView(
                 title = stringResource(R.string.settings_location_service),
                 iconId = R.drawable.ic_location,
@@ -57,23 +56,6 @@ fun LocationPreference(
                 helpMeChoose = null
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
-                onClose()
-            }
-            SourceView(
-                title = stringResource(R.string.settings_weather_source),
-                iconId = R.drawable.ic_factory,
-                selectedKey = location.weatherSource,
-                sourceList = weatherSources,
-            ) { sourceId ->
-                val newLocation = location.copy(
-                    weatherSource = sourceId
-                    // Should we clean old weather data?
-                )
-                LocationEntityRepository.writeLocation(newLocation)
-                // TODO: Leads to "Updated in background" message
-                EventBus.instance
-                    .with(Location::class.java)
-                    .postValue(newLocation)
                 onClose()
             }
         } else {
