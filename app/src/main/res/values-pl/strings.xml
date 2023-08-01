@@ -441,4 +441,5 @@
     <string name="air_quality_level_2_description">Jakość powietrza jest akceptowalna dla większości osób. Jednak osoby wrażliwe mogą doświadczać niewielkich lub umiarkowanych objawów od długotrwałego narażenia.</string>
     <string name="precipitation_between_time">Opady między $1 a $2</string>
     <string name="wind_gusts">Porywy wiatru</string>
+    <string name="air_quality_level_3_description">Powietrze osiągnęło wysoki poziom zanieczyszczenia i jest niezdrowe dla wrażliwych osób. Jeśli odczuwasz objawy, takie jak trudności w oddychaniu lub podrażnienie gardła, ogranicz czas spędzany na zewnątrz</string>
 </resources>
