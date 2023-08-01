@@ -126,6 +126,8 @@ private fun getDailyList(
     dailyForecasts: List<AccuForecastDailyForecast>,
     timeZone: TimeZone
 ): List<Daily> {
+    val supportsAllergens = supportsAllergens(dailyForecasts)
+
     return dailyForecasts.map { forecasts ->
         val theDay = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!
         Daily(
@@ -215,11 +217,29 @@ private fun getDailyList(
             moonPhase = MoonPhase(
                 angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
-            allergen = getDailyPollen(forecasts.AirAndPollen),
+            allergen = if (supportsAllergens) getDailyPollen(forecasts.AirAndPollen) else null,
             uV = getDailyUV(forecasts.AirAndPollen),
             hoursOfSun = forecasts.HoursOfSun?.toFloat()
         )
     }
+}
+
+/**
+ * Accu returns 0 / m³ for all days if they don’t measure it, instead of null values
+ * This function will tell us if they measured at least one allergen during the 15-day period
+ * to make the difference between a 0 and a null
+ */
+fun supportsAllergens(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
+    dailyForecasts.forEach { daily ->
+        val allergens = listOf(
+            daily.AirAndPollen?.firstOrNull { it.Name == "Tree" },
+            daily.AirAndPollen?.firstOrNull { it.Name == "Grass" },
+            daily.AirAndPollen?.firstOrNull { it.Name == "Ragweed" },
+            daily.AirAndPollen?.firstOrNull { it.Name == "Mold" }
+        ).filter { it?.Value != null && it.Value > 0 }
+        if (allergens.isNotEmpty()) return true
+    }
+    return false
 }
 
 private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Allergen? {

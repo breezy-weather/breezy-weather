@@ -6,10 +6,11 @@ Due to a technical change, cached weather data will be cleared on update.
 - Show licenses of our dependencies in the About section (@Cod3dDOT)
 
 **Weather sources**
-- Add support for HERE (@Cod3dDOT)
-- Fix precipitation probability on OpenWeather (@Cod3dDOT)
-- Fix locations displayed in parenthesis with AccuWeather (existing locations will need to be readded)
-- Fix missing location name missing with AccuWeather when localized name was not available (will now fallback to English name)
+- [HERE] Add support (@Cod3dDOT)
+- [OpenWeather] Fix precipitation probability (@Cod3dDOT)
+- [AccuWeather] Fix locations displayed in parenthesis (existing locations will need to be readded)
+- [AccuWeather] Fix missing location name missing when localized name was not available (will now fallback to English name)
+- [AccuWeather] Fix allergens card being shown on countries where it is not supported
 
 **Data**
 - Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.
