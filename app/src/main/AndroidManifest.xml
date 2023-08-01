@@ -191,6 +191,12 @@
             android:screenOrientation="user" />
 
         <activity
+            android:name=".settings.activities.ThirdPartyLicenseActivity"
+            android:label="@string/action_third_party_licenses"
+            android:screenOrientation="user"
+            android:theme="@style/BreezyWeatherTheme" />
+
+        <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_widgets_live_wallpaper_title"
             android:theme="@style/BreezyWeatherTheme"
