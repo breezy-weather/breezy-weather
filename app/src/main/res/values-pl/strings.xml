@@ -436,4 +436,9 @@
     <string name="air_quality_level_4_description">Skutki zdrowotne mogą być natychmiast odczuwalne przez wrażliwe osoby. Osoby zdrowe mogą doświadczać trudności w oddychaniu i podrażnienia gardła przy długotrwałym narażeniu. Ogranicz aktywność na świeżym powietrzu.</string>
     <string name="air_quality_index">Wskaźnik jakości powietrza</string>
     <string name="air_quality_level_5_description">Skutki zdrowotne będą natychmiast odczuwalne przez osoby wrażliwe, powinny one unikać aktywności na świeżym powietrzu. Osoby zdrowe mogą doświadczyć trudności w oddychaniu i podrażnienia gardła; Należy rozważyć pozostanie w pomieszczeniach i zmianę planów związanych z aktywnością na świeżym powietrzu.</string>
+    <string name="wind_strength">Siła wiatru</string>
+    <string name="air_quality_level_2">Dostateczna</string>
+    <string name="air_quality_level_2_description">Jakość powietrza jest akceptowalna dla większości osób. Jednak osoby wrażliwe mogą doświadczać niewielkich lub umiarkowanych objawów od długotrwałego narażenia.</string>
+    <string name="precipitation_between_time">Opady między $1 a $2</string>
+    <string name="wind_gusts">Porywy wiatru</string>
 </resources>
