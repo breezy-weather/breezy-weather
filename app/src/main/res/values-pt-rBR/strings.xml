@@ -633,4 +633,6 @@
     <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
     <string name="about_contribution_weather_source">Adicionado suporte para novas fontes meteorológicas</string>
     <string name="settings_weather_source">Provedor metereológico</string>
+    <string name="wind_gusts">Rajadas de vento</string>
+    <string name="about_dependencies">Dependências</string>
 </resources>
