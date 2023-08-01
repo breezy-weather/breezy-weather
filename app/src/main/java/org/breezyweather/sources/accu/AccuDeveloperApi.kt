@@ -57,8 +57,8 @@ interface AccuDeveloperApi {
 
     @GET("alerts/v1/{city_key}")
     fun getAlertsByCityKey(
-        @Query("apikey") apikey: String,
         @Path("city_key") city_key: String,
+        @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean
     ): Observable<List<AccuAlertResult>>

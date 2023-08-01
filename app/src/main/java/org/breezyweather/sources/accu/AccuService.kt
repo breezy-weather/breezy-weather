@@ -120,8 +120,8 @@ class AccuService @Inject constructor(
             }
         } else {
             mApi.getAlertsByCityKey(
-                apiKey,
                 location.cityId,
+                apiKey,
                 languageCode,
                 details = true
             ).onErrorResumeNext {

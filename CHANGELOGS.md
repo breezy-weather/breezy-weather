@@ -11,6 +11,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - [AccuWeather] Fix locations displayed in parenthesis (existing locations will need to be readded)
 - [AccuWeather] Fix missing location name missing when localized name was not available (will now fallback to English name)
 - [AccuWeather] Fix allergens card being shown on countries where it is not supported
+- [AccuWeather] Fix weather data refresh failure when using Developer portal
 
 **Data**
 - Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.
