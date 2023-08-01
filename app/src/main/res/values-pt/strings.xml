@@ -92,7 +92,7 @@
     <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
     <string name="notification_updating_weather_data">Atualizando dados de clima (%1$d/%2$d)</string>
     <!-- action -->
-    <string name="alerts">Alerta</string>
+    <string name="alerts">Alertas</string>
     <string name="action_search">Pesquisa</string>
     <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
@@ -617,4 +617,5 @@
     <string name="openmeteo_weather_text_snow_slight_intensity">Neve de baixa intensidade</string>
     <string name="openmeteo_weather_text_rain_showers_slight">Chuvas leves</string>
     <string name="notification_precipitation_today">Pode haver precipitação hoje.</string>
+    <string name="about_dependencies">Dependências</string>
 </resources>
