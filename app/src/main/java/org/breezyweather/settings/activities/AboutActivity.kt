@@ -78,6 +78,12 @@ class AboutActivity : GeoActivity() {
             )
         },
         AboutAppLinkItem(
+            iconId = R.drawable.ic_contract,
+            titleId = R.string.about_dependencies
+        ) {
+            IntentHelper.startDependenciesActivity(this@AboutActivity)
+        },
+        AboutAppLinkItem(
             iconId = R.drawable.ic_forum,
             titleId = R.string.about_matrix,
         ) {
@@ -86,12 +92,6 @@ class AboutActivity : GeoActivity() {
                 "https://matrix.to/#/#breezy-weather:matrix.org"
             )
         },
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_contract,
-            titleId = R.string.about_third_party_licenses
-        ) {
-            IntentHelper.startThirdPartyLicenseActivity(this@AboutActivity)
-        }
     )
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", "https://github.com/papjul"),

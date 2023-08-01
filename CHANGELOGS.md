@@ -2,6 +2,9 @@
 
 Due to a technical change, cached weather data will be cleared on update.
 
+**New features**
+- Show licenses of our dependencies in the About section (@Cod3dDOT)
+
 **Weather sources**
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
@@ -18,6 +21,7 @@ Due to a technical change, cached weather data will be cleared on update.
 
 **Other fixes**
 - Fix contrast issue on Main screen Allergen card in some cases
+- Fix "Material You - Current" widget not being resizable to 2 cells on height (@Cod3dDOT)
 - Fix reverse geocoding would replace longitude and latitude of current location resulting in weather data for city coordinates instead of current coordinates
 - Fix database keeping old "current location" weather data, making app data size grow
 - Fix overwrite of weather data when "current location" and a manually added city shared the same city and weather source (issue particularly noticeable with AccuWeather)

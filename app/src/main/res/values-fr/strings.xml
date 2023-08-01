@@ -553,6 +553,7 @@
     <string name="settings_color_dark_always">Toujours sombre</string>
 
     <string name="about_source_code">Code source</string>
+    <string name="about_dependencies">Dépendences</string>
     <string name="about_contributors">Contributeurs</string>
     <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
     <string name="about_contribution_weather_source">A ajouté le support de nouvelle(s) source(s) météo</string>

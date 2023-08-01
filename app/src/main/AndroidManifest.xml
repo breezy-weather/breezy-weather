@@ -191,8 +191,8 @@
             android:screenOrientation="user" />
 
         <activity
-            android:name=".settings.activities.ThirdPartyLicenseActivity"
-            android:label="@string/action_third_party_licenses"
+            android:name=".settings.activities.DependenciesActivity"
+            android:label="@string/action_dependencies"
             android:screenOrientation="user"
             android:theme="@style/BreezyWeatherTheme" />
 

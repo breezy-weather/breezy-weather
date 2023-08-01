@@ -24,7 +24,7 @@ import org.breezyweather.settings.activities.PreviewIconActivity
 import org.breezyweather.settings.activities.SelectLocationProviderActivity
 import org.breezyweather.settings.activities.SelectWeatherProviderActivity
 import org.breezyweather.settings.activities.SettingsActivity
-import org.breezyweather.settings.activities.ThirdPartyLicenseActivity
+import org.breezyweather.settings.activities.DependenciesActivity
 
 /**
  * Intent helper.
@@ -178,8 +178,8 @@ object IntentHelper {
         activity.startActivity(Intent(activity, AboutActivity::class.java))
     }
 
-    fun startThirdPartyLicenseActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, ThirdPartyLicenseActivity::class.java))
+    fun startDependenciesActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, DependenciesActivity::class.java))
     }
 
     fun startApplicationDetailsActivity(context: Context, pkgName: String? = context.packageName) {
