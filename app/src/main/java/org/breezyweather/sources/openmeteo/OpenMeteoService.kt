@@ -5,12 +5,12 @@ import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
-import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
@@ -110,15 +110,28 @@ class OpenMeteoService @Inject constructor(
             windspeedUnit = "ms"
         )
 
-        val airQualityAllergenHourly = airQualityHourly + allergenHourly
-        val aqi = mAirQualityApi.getAirQuality(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
-            airQualityAllergenHourly.joinToString(",")
-        )
-        return Observable.zip(weather, aqi) {
-                openMeteoWeatherResult: OpenMeteoWeatherResult,
-                openMeteoAirQualityResult: OpenMeteoAirQualityResult
+        val aqi = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+            || !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
+        ) {
+            val airQualityAllergenHourly =
+                (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                    airQualityHourly
+                } else arrayOf()) +
+                (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+                    allergenHourly
+                } else arrayOf())
+            mAirQualityApi.getAirQuality(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                airQualityAllergenHourly.joinToString(",")
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(OpenMeteoAirQualityResult())
+            }
+        }
+        return Observable.zip(weather, aqi) { openMeteoWeatherResult: OpenMeteoWeatherResult,
+                                              openMeteoAirQualityResult: OpenMeteoAirQualityResult
             ->
             convert(
                 context,
@@ -129,8 +142,12 @@ class OpenMeteoService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
-    override val airQualityAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN
+    )
+    override val airQualityAttribution =
+        "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
     override val allergenAttribution = airQualityAttribution
     override val minutelyAttribution = null
     override val alertAttribution = null
@@ -139,8 +156,9 @@ class OpenMeteoService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val airQualityAllergenHourly = (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
-                (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
+        val airQualityAllergenHourly =
+            (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
+                    (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
         return mAirQualityApi.getAirQuality(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
@@ -173,9 +191,9 @@ class OpenMeteoService @Inject constructor(
     }
 
     companion object {
-        private const val OPEN_METEO_AIR_QUALITY_BASE_URL = "https://air-quality-api.open-meteo.com/"
-        // TODO: make it private once it is modularized
-        const val OPEN_METEO_GEOCODING_BASE_URL = "https://geocoding-api.open-meteo.com/"
+        private const val OPEN_METEO_AIR_QUALITY_BASE_URL =
+            "https://air-quality-api.open-meteo.com/"
+        private const val OPEN_METEO_GEOCODING_BASE_URL = "https://geocoding-api.open-meteo.com/"
         private const val OPEN_METEO_WEATHER_BASE_URL = "https://api.open-meteo.com/"
     }
 }

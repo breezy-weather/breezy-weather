@@ -328,7 +328,6 @@
     <string name="settings_items_drag_to_sort">Atingeți pentru a trage elementele din listă pentru a le sorta</string>
     <string name="settings_source_default_value">Implicit (neschimbat)</string>
     <string name="settings_icon_packs_check_details">Verificați detaliile</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">cheie ATMO AURA</string>
     <string name="unit_kn">Nod</string>
     <string name="unit_kn_voice">Noduri</string>
     <string name="unit_cm_voice">Centimetri</string>

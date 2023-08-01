@@ -443,7 +443,6 @@
     <string name="action_add_from_map">从地图中添加</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA 密钥</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>

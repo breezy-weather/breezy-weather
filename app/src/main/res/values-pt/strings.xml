@@ -247,7 +247,6 @@
     <string name="settings_weather_sources_current_location">Provedor metereológico para a localização atual</string>
     <string name="settings_source_default_value">Padrão (inalterado)</string>
     <string name="settings_source_api_key">Chave de API</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Chave do ATMO AURA</string>
     <string name="settings_icon_packs_title">Pacotes de ícones</string>
     <string name="settings_icon_packs_weather_icon_grey">Ícone cinzento</string>
     <string name="settings_main">Ecrã principal</string>

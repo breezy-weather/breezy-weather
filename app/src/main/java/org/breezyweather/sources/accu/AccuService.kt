@@ -7,31 +7,41 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.accu.json.*
+import org.breezyweather.sources.accu.json.AccuAirQualityResult
+import org.breezyweather.sources.accu.json.AccuAlertResult
+import org.breezyweather.sources.accu.json.AccuCurrentResult
+import org.breezyweather.sources.accu.json.AccuForecastDailyResult
+import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
+import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
+import org.breezyweather.sources.openmeteo.convertSecondary
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 class AccuService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
+    LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "accu"
     override val name = "AccuWeather"
@@ -91,7 +101,9 @@ class AccuService @Inject constructor(
             details = true,
             metric = true // Converted later
         )
-        val minute = if (mApi is AccuEnterpriseApi) {
+        val minute = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+            && mApi is AccuEnterpriseApi
+        ) {
             mApi.getMinutely(
                 apiKey,
                 location.latitude.toString() + "," + location.longitude,
@@ -107,30 +119,37 @@ class AccuService @Inject constructor(
                 emitter.onNext(AccuMinutelyResult())
             }
         }
-        val alert = if (mApi is AccuEnterpriseApi) {
-            mApi.getAlertsByPosition(
-                apiKey,
-                location.latitude.toString() + "," + location.longitude,
-                languageCode,
-                details = true
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(ArrayList())
+        val alert = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            if (mApi is AccuEnterpriseApi) {
+                mApi.getAlertsByPosition(
+                    apiKey,
+                    location.latitude.toString() + "," + location.longitude,
+                    languageCode,
+                    details = true
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(ArrayList())
+                    }
+                }
+            } else {
+                mApi.getAlertsByCityKey(
+                    location.cityId,
+                    apiKey,
+                    languageCode,
+                    details = true
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(ArrayList())
+                    }
                 }
             }
         } else {
-            mApi.getAlertsByCityKey(
-                location.cityId,
-                apiKey,
-                languageCode,
-                details = true
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(ArrayList())
-                }
+            Observable.create { emitter ->
+                emitter.onNext(ArrayList())
             }
         }
-        val airQuality = if (mApi is AccuEnterpriseApi) {
+        val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+            && mApi is AccuEnterpriseApi) {
             mApi.getAirQuality(
                 location.cityId, apiKey,
                 pollutants = true,
@@ -145,13 +164,19 @@ class AccuService @Inject constructor(
                 emitter.onNext(AccuAirQualityResult())
             }
         }
-        return Observable.zip(current, daily, hourly, minute, alert, airQuality) {
-                accuRealtimeResults: List<AccuCurrentResult>,
-                accuDailyResult: AccuForecastDailyResult,
-                accuHourlyResults: List<AccuForecastHourlyResult>,
-                accuMinutelyResult: AccuMinutelyResult,
-                accuAlertResults: List<AccuAlertResult>,
-                accuAirQualityResult: AccuAirQualityResult
+        return Observable.zip(
+            current,
+            daily,
+            hourly,
+            minute,
+            alert,
+            airQuality
+        ) { accuRealtimeResults: List<AccuCurrentResult>,
+            accuDailyResult: AccuForecastDailyResult,
+            accuHourlyResults: List<AccuForecastHourlyResult>,
+            accuMinutelyResult: AccuMinutelyResult,
+            accuAlertResults: List<AccuAlertResult>,
+            accuAirQualityResult: AccuAirQualityResult
             ->
             convert(
                 context,
@@ -162,6 +187,80 @@ class AccuService @Inject constructor(
                 accuMinutelyResult,
                 accuAlertResults,
                 accuAirQualityResult
+            )
+        }
+    }
+
+    // SECONDARY WEATHER SOURCE
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return (supportedFeatures.contains(feature)
+                && isConfigured && portal.id == "entreprise")
+    }
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+    override val airQualityAttribution = null // Only supported by city key
+    override val allergenAttribution = null // Only supported by city key
+    override val minutelyAttribution = weatherAttribution
+    override val alertAttribution = weatherAttribution
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        if (portal.id != "entreprise") {
+            return Observable.error(SecondaryWeatherException())
+        }
+
+        val apiKey = getApiKeyOrDefault()
+        val languageCode = SettingsManager.getInstance(context).language.code
+        val minute = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mEnterpriseApi.getMinutely(
+                apiKey,
+                location.latitude.toString() + "," + location.longitude,
+                languageCode,
+                details = true
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(AccuMinutelyResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(AccuMinutelyResult())
+            }
+        }
+        val alert = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mEnterpriseApi.getAlertsByPosition(
+                apiKey,
+                location.latitude.toString() + "," + location.longitude,
+                languageCode,
+                details = true
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(ArrayList())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(ArrayList())
+            }
+        }
+        return Observable.zip(
+            minute,
+            alert
+        ) { accuMinutelyResult: AccuMinutelyResult,
+            accuAlertResults: List<AccuAlertResult>
+            ->
+            convertSecondary(
+                accuMinutelyResult,
+                accuAlertResults
             )
         }
     }
@@ -246,6 +345,7 @@ class AccuService @Inject constructor(
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.ACCU_WEATHER_KEY }
     }
+
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
 

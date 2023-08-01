@@ -525,7 +525,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_alerts">預警</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA 密鑰</string>
     <string name="weather_message_invalid_location">位置無效，請刪除並重新添加</string>
     <string name="weather_allergen_data_by">過敏原數據來源 $</string>
     <string name="weather_minutely_data_by">分鐘降水量數據來源 $</string>

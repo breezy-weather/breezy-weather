@@ -409,7 +409,6 @@
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para sua localização atual.</string>
     <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se você tiver problemas para obter uma localização.</string>
     <string name="settings_weather_sources">Provedor de dados metereológicos</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Chave do ATMO AURA</string>
     <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>

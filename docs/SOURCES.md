@@ -2,9 +2,9 @@
 
 This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
 
-**AccuWeather** is the most complete source, although you may not need so much completeness (not many people cares about ceiling, for example).
+**AccuWeather** is the most complete source, although you may not need so much completeness (not many people care about ceiling, for example).
 
-**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding).
+**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (short-term forecast accuracy, alerts, realtime precipitations and reverse geocoding).
 
 
 ## Accuracy
@@ -49,15 +49,24 @@ Additional sources are available to configure but requires an API key. You can f
 | **Precipitation**               | ✅          | ✅ (RSI)       | ✅                  | ✅ (RS)      | ✅ (RS)         | ✅ (RS)        | ❌       |
 | **Precipitation probability**   | ✅          | ✅ (TRSI)      | ✅ (T)              | ✅           | ✅              | ✅ (RSI)       | Daily   |
 | **Wind**                        | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
+| **UV**                          | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ❌       |
+| **Sun & Moon & Moon phase**     | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
+
+Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
+
+
+## Features that can be added from other sources
+
+The following features, if not available from your selected source, can be added from another source, starting from v4.5.0.
+
+| Sources                         | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
+|---------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
 | **Air quality**                 | ✅          | ✅             | Norway             | ✅           | ❌              | France (AURA) | Current |
 | **Allergens**                   | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
-| **UV**                          | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ❌       |
 | **Precipitations in next hour** | ❌          | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
-| **Sun & Moon & Moon phase**     | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
 | **Alerts**                      | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
-
 
 Legend:
 
@@ -67,8 +76,6 @@ Legend:
 | T      | Thunderstorm |
 | S      | Snow         |
 | I      | Ice          |
-
-Ultimate goal of the app would be to modularize as to have a main weather source, and then being able to complete “precipitations in next hour” and “alerts” from one or more sources.
 
 
 ## Other weather data
@@ -99,6 +106,8 @@ Ultimate goal of the app would be to modularize as to have a main weather source
 
 # Additional sources with mandatory API key
 
+## Main features
+
 | Sources                         | HERE     |
 |---------------------------------|----------|
 | **Daily (days)**                | 6        |
@@ -108,12 +117,22 @@ Ultimate goal of the app would be to modularize as to have a main weather source
 | **Precipitation**               | ✅        |
 | **Precipitation probability**   | ✅        |
 | **Wind**                        | ✅        |
+| **UV**                          | ✅        |
+| **Sun & Moon & Moon phase**     | ✅        |
+
+## Features that can be added from other sources
+
+| Sources                         | HERE     |
+|---------------------------------|----------|
 | **Air quality**                 | ❌        |
 | **Allergens**                   | ❌        |
-| **UV**                          | ✅        |
 | **Precipitations in next hour** | ❌        |
-| **Sun & Moon & Moon phase**     | ✅        |
 | **Alerts**                      | US (NWS) |
+
+## Other weather data
+
+| Sources                         | HERE     |
+|---------------------------------|----------|
 | **Humidity**                    | ✅        |
 | **Dew point**                   | ✅        |
 | **Pressure**                    | ✅        |
@@ -125,3 +144,20 @@ Ultimate goal of the app would be to modularize as to have a main weather source
 | **Yesterday temperature**       | ❌        |
 | **Search**                      | ✅        |
 | **Reverse geocoding**           | ✅        |
+
+
+# Combinable sources
+
+From v4.5.0, you can combine your main weather source with other sources:
+
+| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | HERE | Météo-France | China³ | ATMO AURA      |
+|-----------------|------------|-------------|-------------|-------------|----------------|------|--------------|--------|----------------|
+| **Air quality** | ✅          | ❌           | Norway      | ✅          | ❌              | ❌    | ❌           | ❌      | France (AURA) |
+| **Allergens**   | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌    | ❌            | ❌      | ❌            |
+| **Alerts**      | ❌          | ✅           | ❌           | ✅          | ✅              | ❌¹   | France       | ❌      | ❌             |
+| **Minutely**    | ❌          | ✅           | Nordic area | ✅          | ✅              | ❌    | France       | ❌      | ❌             |
+
+❌ means that it’s either not supported or doesn’t support longitude/latitude.
+
+¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
+² Not restricted but currently only works in Europe

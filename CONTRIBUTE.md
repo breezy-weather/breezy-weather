@@ -2,7 +2,11 @@
 
 ## Rules for inclusion of new weather sources
 
-To be candidate for inclusion in the project, a weather source must have a free-tier available with hourly forecast at minimum.
+To be candidate for inclusion in the project, a weather source must:
+- have a free-tier available with hourly forecast at minimum
+- not require credit card information to have a free key (OpenWeather is exempted as it didn’t require it at the time it was implemented)
+
+Additionally, we usually don’t accept sources that are just frontends to other sources (for example, if they use AccuWeather data, we will just use AccuWeather directly).
 
 Examples of weather sources that don’t fit: Apple WeatherKit (no free-tier), Weatherbit (free-tier doesn’t have hourly).
 

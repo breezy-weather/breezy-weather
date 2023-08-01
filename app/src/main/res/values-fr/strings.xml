@@ -134,6 +134,7 @@
     <string name="hourly_forecast">Prévisions heure par heure</string>
     <string name="minutely_forecast">Prévisions minute par minute</string>
     <string name="precipitation_forecast">Prévisions de précipitations</string>
+    <string name="minutely_precipitations">Précipitations minute par minute</string>
     <string name="air_quality">"Qualité de l’air"</string>
     <string name="allergen">Allergènes</string>
     <string name="details">Détails</string>
@@ -171,6 +172,7 @@
 
     <string name="action_next">Suivant</string>
     <string name="action_done">OK</string>
+    <string name="action_save">Enregistrer</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_undo">Annuler</string>
     <string name="settings_enabled">Actif</string>
@@ -332,11 +334,12 @@
     <string name="settings_location_access_precise_title">Usage du GPS de l’appareil</string>
     <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation et le GPS de l’appareil sont tous les deux utilisés.</string>
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
-    <string name="settings_weather_source">Fournisseur météo</string>
-    <string name="settings_weather_sources">Fournisseurs météo</string>
-    <string name="settings_weather_sources_summary">Paramètres des fournisseurs météo</string>
+    <string name="settings_weather_source">Source météo</string>
+    <string name="settings_weather_sources">Sources météo</string>
+    <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
+    <string name="settings_weather_source_main">Source principale</string>
+    <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>
     <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Clé ATMO AURA</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
     <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
     <string name="air_quality_pm25">PM2,5</string>

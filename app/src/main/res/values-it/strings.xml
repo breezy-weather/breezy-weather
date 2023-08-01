@@ -391,7 +391,6 @@
     <string name="locations">Località</string>
     <string name="location_search_change_weather_source">Cambia provider meteo</string>
     <string name="settings_weather_source_open_weather_one_call_version">Versione OneCall</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Chiave ATMO AURA</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_packs_title">Pacchetti icone</string>
     <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione</string>

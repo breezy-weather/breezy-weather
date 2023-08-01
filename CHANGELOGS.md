@@ -3,15 +3,8 @@
 Due to a technical change, cached weather data will be cleared on update.
 
 **New features**
+- Initial support for secondary weather sources, allows you to complete missing data with other sources. Available from the “Edit” button in the footer of the main screen.
 - Show licenses of our dependencies in the About section (@Cod3dDOT)
-
-**Weather sources**
-- [HERE] Add support (@Cod3dDOT)
-- [OpenWeather] Fix precipitation probability (@Cod3dDOT)
-- [AccuWeather] Fix locations displayed in parenthesis (existing locations will need to be readded)
-- [AccuWeather] Fix missing location name missing when localized name was not available (will now fallback to English name)
-- [AccuWeather] Fix allergens card being shown on countries where it is not supported
-- [AccuWeather] Fix weather data refresh failure when using Developer portal
 
 **Data**
 - Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.
@@ -20,6 +13,21 @@ Due to a technical change, cached weather data will be cleared on update.
 - Reduce meteor spawning on clear night condition (@Cod3dDOT)
 - Fix sensor stuttering (@Cod3dDOT)
 - Fix Fog condition always showing Clear instead
+
+**Weather sources**
+- [HERE] Full support added (@Cod3dDOT)
+- [Open-Meteo] Add air quality and allergens support as secondary source
+- [AccuWeather] Add minutely and alerts support as secondary source
+- [AccuWeather] Fix locations displayed in parenthesis (existing locations will need to be re-added)
+- [AccuWeather] Fix missing location name missing when localized name was not available (will now fallback to English name)
+- [AccuWeather] Fix allergens card being shown on countries where it is not supported
+- [AccuWeather] Fix weather data refresh failure when using Developer portal
+- [MET Norway] Add air quality and minutely support as secondary source
+- [OpenWeather] Add minutely and alerts support as secondary source
+- [OpenWeather] Fix precipitation probability (@Cod3dDOT)
+- [Pirate Weather] Add minutely and alerts support as secondary source
+- [Météo-France] Add minutely and alerts support as secondary source
+- [Atmo Aura] Is no longer provided as part of Météo-France. Needs to be added as a secondary source for compatible locations.
 
 **Other fixes**
 - Fix contrast issue on Main screen Allergen card in some cases

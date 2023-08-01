@@ -14,7 +14,9 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
@@ -197,4 +199,26 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "sleetshowers" -> WeatherCode.SLEET
         else -> null
     }
+}
+
+fun convertSecondary(
+    nowcastResult: MetNoNowcastResult,
+    airQualityResult: MetNoAirQualityResult
+): SecondaryWeatherWrapper {
+    val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
+
+    airQualityResult.data?.time?.forEach {
+        airQualityHourly[it.from] = AirQuality(
+            pM25 = it.variables?.pm25Concentration?.value,
+            pM10 = it.variables?.pm10Concentration?.value,
+            sO2 = it.variables?.so2Concentration?.value,
+            nO2 = it.variables?.no2Concentration?.value,
+            o3 = it.variables?.o3Concentration?.value
+        )
+    }
+
+    return SecondaryWeatherWrapper(
+        airQuality = AirQualityWrapper(hourlyForecast = airQualityHourly),
+        minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries)
+    )
 }

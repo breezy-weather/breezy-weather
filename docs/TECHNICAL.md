@@ -182,23 +182,3 @@ Uses Open-Meteo for location search.
 ## China
 
 *Undocumented*
-
-
-# Combinable sources
-
-In v4.5.0, we will add the ability to complete one source with another.
-
-This table helps keeping track of what was implemented and what remains to do. Priority will be given to feature supported worldwide.
-
-| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | HERE | Météo-France | China³ |
-|-----------------|------------|-------------|-------------|-------------|----------------|------|--------------|--------|
-| **Air quality** | ✅          | Enterprise  | Norway      | ❌¹          | ❌              | ❌    | ❌³           | ❌      |
-| **Allergens**   | ✅          | ❌           | ❌           | ❌           | ❌              | ❌    | ❌            | ❌      |
-| **Alerts**      | ❌          | Enterprise  | ❌           | *TODO*      | *TODO*         | ❌²   | France       | ❌      |
-| **Minutely**    | ❌          | Enterprise  | Nordic area | *TODO*      | *TODO*         | ❌    | France       | China  |
-
-❌ means that it’s either not supported or doesn’t support longitude/latitude.
-
-¹ Not enough data to make it useful as a combinable source
-² Only supports NWS alerts, but has many duplicate issues, so not worth implementing
-³ Support for AURA will be removed and recommendation will be to use a secondary source.

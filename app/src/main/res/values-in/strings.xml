@@ -272,7 +272,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Suhu sebagai Ikon Bilah Status</string>
     <string name="settings_widgets_notification_feels_like_switch">Gunakan suhu Feels Like</string>
     <string name="settings_source_default_value">Bawaan (tidak diubah)</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Kunci ATMO AURA</string>
     <string name="settings_background_updates_refresh_1h">1 jam</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 jam</string>
     <string name="settings_background_updates_refresh_never">Tidak pernah</string>

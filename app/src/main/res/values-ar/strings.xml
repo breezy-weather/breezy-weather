@@ -271,7 +271,6 @@
     <string name="settings_weather_sources_current_location">مزود الطقس للموقع الحالي</string>
     <string name="settings_icon_packs_weather_adaptive_icon">أيقونة الطقس</string>
     <string name="settings_icon_packs_weather_icon_grey">رمز رمادي</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">مفتاح ATMO AURA</string>
     <string name="settings_main_summary">ترتيب البطاقات، العناصر المعروضة، الرسوم المتحركة</string>
     <string name="settings_items_drag_to_sort">انقر لسحب عناصر القائمة لفرزها</string>
     <string name="settings_main_header_details_title">التفاصيل في العنوان</string>

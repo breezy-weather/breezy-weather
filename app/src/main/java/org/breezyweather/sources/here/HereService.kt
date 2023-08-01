@@ -28,7 +28,8 @@ import javax.inject.Inject
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource,
+    ConfigurableSource {
     override val id = "here"
     override val name = "HERE"
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
@@ -75,12 +76,14 @@ class HereService @Inject constructor(
             "observation",
             "forecast7daysSimple",
             "forecastHourly",
-            "forecastAstronomy",
-            "nwsAlerts",
+            "forecastAstronomy"
         )
         val forecast = mWeatherApi.getForecast(
             apiKey,
-            products.joinToString(separator = ","),
+            products.joinToString(separator = ",") +
+                    if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                        ",nwsAlerts"
+                    } else "",
             "${location.latitude},${location.longitude}",
             "metric",
             languageCode,
@@ -165,6 +168,7 @@ class HereService @Inject constructor(
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.HERE_KEY }
     }
+
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
 

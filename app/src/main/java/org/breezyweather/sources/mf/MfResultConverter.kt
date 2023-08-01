@@ -3,7 +3,6 @@ package org.breezyweather.sources.mf
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Base
@@ -19,6 +18,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
@@ -32,7 +32,6 @@ import org.breezyweather.sources.mf.json.MfForecastProbability
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
-import org.breezyweather.sources.mf.json.atmoaura.AtmoAuraPointResult
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -69,8 +68,7 @@ fun convert(
     forecastResult: MfForecastResult,
     ephemerisResult: MfEphemerisResult,
     rainResult: MfRainResult?,
-    warningsResult: MfWarningsResult,
-    aqiAtmoAuraResult: AtmoAuraPointResult?
+    warningsResult: MfWarningsResult
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
@@ -100,8 +98,7 @@ fun convert(
         ),
         hourlyForecast = getHourlyList(
             forecastResult.properties.forecast,
-            forecastResult.properties.probabilityForecast,
-            aqiAtmoAuraResult
+            forecastResult.properties.probabilityForecast
         ),
         minutelyForecast = getMinutelyList(rainResult),
         alertList = getWarningsList(warningsResult)
@@ -167,8 +164,7 @@ private fun getDailyList(
 
 private fun getHourlyList(
     hourlyForecastList: List<MfForecastHourly>,
-    probabilityForecastResult: List<MfForecastProbability>?,
-    aqiAtmoAuraResult: AtmoAuraPointResult?
+    probabilityForecastResult: List<MfForecastProbability>?
 ): List<HourlyWrapper> {
     return hourlyForecastList.map { hourlyForecast ->
         HourlyWrapper(
@@ -189,42 +185,11 @@ private fun getHourlyList(
                 speed = hourlyForecast.windSpeed?.toFloat(),
                 gusts = hourlyForecast.windSpeedGust?.toFloat() // Seems to be always 0? Or not available in low wind speeds maybe
             ),
-            airQuality = getAirQuality(hourlyForecast.time, aqiAtmoAuraResult),
             relativeHumidity = hourlyForecast.relativeHumidity?.toFloat(),
             pressure = hourlyForecast.pSea,
             cloudCover = hourlyForecast.totalCloudCover
         )
     }
-}
-
-// This can be improved by adding results from other regions
-private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoAuraPointResult?): AirQuality? {
-    if (aqiAtmoAuraResult == null) return null
-
-    var pm25: Float? = null
-    var pm10: Float? = null
-    var so2: Float? = null
-    var no2: Float? = null
-    var o3: Float? = null
-    aqiAtmoAuraResult.polluants
-        ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
-        ?.forEach { p -> when (p.polluant) {
-                "o3" -> o3 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                "no2" -> no2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                "pm2.5" -> pm25 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                "pm10" -> pm10 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                "so2" -> so2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-            }
-        }
-
-    // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
-    return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null) AirQuality(
-        pM25 = pm25,
-        pM10 = pm10,
-        sO2 = so2,
-        nO2 = no2,
-        o3 = o3
-    ) else null
 }
 
 private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitation {
@@ -435,6 +400,19 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
             else -> null
         }
     }
+}
+
+/**
+ * Secondary convert
+ */
+fun convertSecondary(
+    minuteResult: MfRainResult,
+    alertResultList: MfWarningsResult
+): SecondaryWeatherWrapper {
+    return SecondaryWeatherWrapper(
+        minutelyForecast = getMinutelyList(minuteResult),
+        alertList = getWarningsList(alertResultList)
+    )
 }
 
 fun getFrenchDepartmentName(frenchDepartmentCode: String): String? {

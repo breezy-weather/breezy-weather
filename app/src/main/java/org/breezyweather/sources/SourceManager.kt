@@ -10,6 +10,7 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationSource
+import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.china.ChinaService
 import org.breezyweather.sources.here.HereService
@@ -30,7 +31,8 @@ class SourceManager @Inject constructor(
     pirateWeatherService: PirateWeatherService,
     hereService: HereService,
     mfService: MfService,
-    chinaService: ChinaService
+    chinaService: ChinaService,
+    atmoAuraService: AtmoAuraService
 ) {
     // TODO: Initialize lazily
     private val sourceList: List<Source> = listOf(
@@ -46,7 +48,10 @@ class SourceManager @Inject constructor(
         pirateWeatherService,
         hereService,
         mfService,
-        chinaService
+        chinaService,
+
+        // Secondary weather sources
+        atmoAuraService
     )
 
     // Location

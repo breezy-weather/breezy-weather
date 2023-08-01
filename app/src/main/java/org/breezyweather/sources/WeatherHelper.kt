@@ -131,9 +131,12 @@ class WeatherHelper @Inject constructor(
                     yesterday = t.yesterday,
                     dailyForecast = dailyForecast,
                     hourlyForecast = hourlyForecast,
-                    minutelyForecast = t.minutelyForecast ?: emptyList(),
-                    // Don’t save past alerts in database
-                    alertList = t.alertList?.filter { it.endDate == null || it.endDate.time > Date().time } ?: emptyList()
+                    minutelyForecast = secondaryWeatherWrapper?.minutelyForecast
+                        ?: t.minutelyForecast ?: emptyList(),
+                    alertList = (secondaryWeatherWrapper?.alertList ?: t.alertList)?.filter {
+                        // Don’t save past alerts in database
+                        it.endDate == null || it.endDate.time > Date().time
+                    } ?: emptyList()
                 )
                 WeatherEntityRepository.writeWeather(location, weather)
                 if (weather.yesterday == null) {
@@ -144,7 +147,6 @@ class WeatherHelper @Inject constructor(
 
     /**
      * TODO: Can probably be optimized with coroutines
-     * TODO: Still a WIP
      */
     private suspend fun requestSecondaryWeather(
         context: Context, location: Location,
@@ -152,30 +154,43 @@ class WeatherHelper @Inject constructor(
     ): SecondaryWeatherWrapper? {
         if (secondarySources.isEmpty()) return null
         
-        val secondarySourceCalls = mutableListOf<SecondaryWeatherWrapper>()
+        val secondarySourceCalls = mutableMapOf<String, SecondaryWeatherWrapper>()
         secondarySources.forEach { entry ->
             val service = mSourceManager.getSecondaryWeatherSource(entry.key)
             if (service == null) {
                 throw SourceNotInstalledException()
             }
             entry.value.forEach {
+                // We could also check for isFeatureSupportedForLocation but it’s probably best to
+                // let the source decide if it wants to throw the error itself
                 if (!service.supportedFeatures.contains(it)) {
-                    // TODO: throw UnsupportedSecondaryWeatherSourceFeature()
+                    // TODO: throw UnsupportedSecondaryWeatherFeature()
                     throw SecondaryWeatherException()
                 }
             }
-            secondarySourceCalls.add(
+            secondarySourceCalls[entry.key] =
                 service.requestSecondaryWeather(context, location, entry.value).awaitFirstOrElse {
                     throw SecondaryWeatherException()
                 }
-            )
         }
 
         /**
-         * TODO: Merge multiple calls, making sure we only keep the data requested for each,
-         * Only returns one source without checking the data at the moment
+         * Make sure we return data from the correct secondary source
          */
-        return secondarySourceCalls.getOrNull(0)
+        return SecondaryWeatherWrapper(
+            airQuality = if (!location.airQualitySource.isNullOrEmpty() && location.airQualitySource != location.weatherSource) {
+                secondarySourceCalls[location.airQualitySource]?.airQuality
+            } else null,
+            allergen = if (!location.allergenSource.isNullOrEmpty() && location.allergenSource != location.weatherSource) {
+                secondarySourceCalls[location.allergenSource]?.allergen
+            } else null,
+            minutelyForecast = if (!location.minutelySource.isNullOrEmpty() && location.minutelySource != location.weatherSource) {
+                secondarySourceCalls[location.minutelySource]?.minutelyForecast
+            } else null,
+            alertList = if (!location.alertSource.isNullOrEmpty() && location.alertSource != location.weatherSource) {
+                secondarySourceCalls[location.alertSource]?.alertList
+            } else null
+        )
     }
 
     fun requestSearchLocations(

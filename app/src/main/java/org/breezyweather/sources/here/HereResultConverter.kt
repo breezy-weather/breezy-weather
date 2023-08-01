@@ -15,11 +15,9 @@ import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
-import org.breezyweather.sources.here.json.HereGeocodingResult
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult

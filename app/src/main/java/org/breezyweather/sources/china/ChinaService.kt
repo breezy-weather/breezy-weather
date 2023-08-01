@@ -50,23 +50,29 @@ class ChinaService @Inject constructor(
             isGlobal = false,
             SettingsManager.getInstance(context).language.code
         )
-        val forecast = mApi.getMinutelyWeather(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
-            SettingsManager.getInstance(context).language.code,
-            isGlobal = false,
-            appKey = "weather20151024",
-            locationKey = "weathercn%3A" + location.cityId,
-            sign = "zUFJoAR2ZVrDy1vF3D07"
-        )
-        return Observable.zip(mainly, forecast) {
+        val minutely = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mApi.getMinutelyWeather(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                SettingsManager.getInstance(context).language.code,
+                isGlobal = false,
+                appKey = "weather20151024",
+                locationKey = "weathercn%3A" + location.cityId,
+                sign = "zUFJoAR2ZVrDy1vF3D07"
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(ChinaMinutelyResult())
+            }
+        }
+        return Observable.zip(mainly, minutely) {
                 mainlyResult: ChinaForecastResult,
-                forecastResult: ChinaMinutelyResult
+                minutelyResult: ChinaMinutelyResult
             ->
             convert(
                 location,
                 mainlyResult,
-                forecastResult
+                minutelyResult
             )
         }
     }

@@ -1,15 +1,15 @@
-package org.breezyweather.sources.mf
+package org.breezyweather.sources.atmoaura
 
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
-import org.breezyweather.sources.mf.json.atmoaura.AtmoAuraPointResult
+import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 
 /**
  * API Atmo AURA
  * Covers Auvergne-Rhône-Alpes
  */
-interface AtmoAuraIqaApi {
+interface AtmoAuraAirQualityApi {
     @GET("air2go/v3/point?with_list=true")
     fun getPointDetails(
         @Query("api_token") apiToken: String,

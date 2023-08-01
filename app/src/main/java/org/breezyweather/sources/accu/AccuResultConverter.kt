@@ -6,6 +6,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
@@ -15,7 +16,6 @@ import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationDuration
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -23,7 +23,9 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
@@ -324,8 +326,8 @@ fun getAirQualityForHour(
     var co: Float? = null
     accuAirQualityDataList
         .firstOrNull { it.epochDate == requestedTime }
-        ?.pollutants?.forEach {
-            p -> when (p.type) {
+        ?.pollutants?.forEach { p ->
+            when (p.type) {
                 "O3" -> o3 = p.concentration.value?.toFloat()
                 "NO2" -> no2 = p.concentration.value?.toFloat()
                 "PM2_5" -> pm25 = p.concentration.value?.toFloat()
@@ -401,6 +403,7 @@ private fun convertUnit(context: Context, text: String?): String? {
 }
 
 // FIXME: issue #441, #463
+// TODO: Replace with per-location setting for "metric" parameter
 private fun convertUnit(
     context: Context,
     text: String,
@@ -420,7 +423,8 @@ private fun convertUnit(
                 targetUnit.getName(context).toRegex()
             ).dropLastWhile { it.isEmpty() }.toTypedArray()
             val numberTexts =
-                targetSplitResults[0].split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                targetSplitResults[0].split("-".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
             for (i in numberTexts.indices) {
                 var number = numberTexts[i].toFloat()
                 number = targetUnit.getValueInDefaultUnit(number)
@@ -446,4 +450,17 @@ private fun arrayToString(array: Array<String>): String {
         }
     }
     return builder.toString()
+}
+
+/**
+ * Secondary convert
+ */
+fun convertSecondary(
+    minuteResult: AccuMinutelyResult?,
+    alertResultList: List<AccuAlertResult>
+): SecondaryWeatherWrapper {
+    return SecondaryWeatherWrapper(
+        minutelyForecast = getMinutelyList(minuteResult),
+        alertList = getAlertList(alertResultList)
+    )
 }

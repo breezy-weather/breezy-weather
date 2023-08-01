@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChinaMinutelyResult(
-    val precipitation: ChinaMinutelyPrecipitation?
+    val precipitation: ChinaMinutelyPrecipitation? = null
 )

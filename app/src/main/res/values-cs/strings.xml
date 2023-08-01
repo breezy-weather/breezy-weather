@@ -266,7 +266,6 @@
     <string name="settings_notifications_section_forecast">Přepověď</string>
     <string name="settings_widgets_notification_temp_icon_switch">Teplota jako ikona v liště</string>
     <string name="settings_source_default_value">Výchozí (nezměněné)</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">Klíč ATMO AURA</string>
     <string name="location_service_native">Nativní API</string>
     <string name="settings_automatic">Automaticky</string>
     <string name="settings_none">Žádný</string>

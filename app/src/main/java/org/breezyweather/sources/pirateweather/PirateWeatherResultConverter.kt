@@ -15,6 +15,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
@@ -201,12 +202,6 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
     }
 }
 
-/**
- * Gets weather code
- *
- * Unfortunately, PirateWeather does not report weather codes
- * See https://docs.pirateweather.net/en/latest/API/#icon
- */
 private fun getWeatherCode(icon: String?): WeatherCode? {
     return when (icon) {
         "rain" -> WeatherCode.RAIN
@@ -219,4 +214,14 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "cloudy" -> WeatherCode.CLOUDY
         else -> null
     }
+}
+
+fun convertSecondary(
+    forecastResult: PirateWeatherForecastResult
+): SecondaryWeatherWrapper {
+
+    return SecondaryWeatherWrapper(
+        minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
+        alertList = getAlertList(forecastResult.alerts)
+    )
 }

@@ -5,23 +5,26 @@ import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
-import org.breezyweather.sources.metno.json.MetNoSunResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
+import org.breezyweather.sources.metno.json.MetNoSunResult
+import org.breezyweather.sources.pirateweather.convertSecondary
 import retrofit2.Retrofit
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 
 class MetNoService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"
     override val name = "MET Norway"
@@ -64,8 +67,12 @@ class MetNoService @Inject constructor(
         // Nowcast only for Norway, Sweden, Finland and Denmark
         // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
         // but safer to limit to guaranteed countries
+        // Even if minutely is in "ignoredFeatures", we keep it as it also contains "current"
         val nowcast = if (!location.countryCode.isNullOrEmpty()
-            && location.countryCode in arrayOf("NO", "SE", "FI", "DK")) {
+            && arrayOf("NO", "SE", "FI", "DK").any {
+                it.equals(location.countryCode, ignoreCase = true)
+            }
+        ) {
             mApi.getNowcast(
                 userAgent,
                 location.latitude.toDouble(),
@@ -82,29 +89,37 @@ class MetNoService @Inject constructor(
         }
 
         // Air quality only for Norway
-        val airQuality = if (!location.countryCode.isNullOrEmpty()
-            && location.countryCode == "NO") {
-            mApi.getAirQuality(
-                userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble()
-            ).onErrorResumeNext {
+        val airQuality =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+                && !location.countryCode.isNullOrEmpty()
+                && location.countryCode.equals("NO", ignoreCase = true)
+            ) {
+                mApi.getAirQuality(
+                    userAgent,
+                    location.latitude.toDouble(),
+                    location.longitude.toDouble()
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MetNoAirQualityResult())
+                    }
+                }
+            } else {
                 Observable.create { emitter ->
                     emitter.onNext(MetNoAirQualityResult())
                 }
             }
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MetNoAirQualityResult())
-            }
-        }
 
-        return Observable.zip(forecast, sun, moon, nowcast, airQuality) {
-                metNoForecast: MetNoForecastResult,
-                metNoSun: MetNoSunResult,
-                metNoMoon: MetNoMoonResult,
-                metNoNowcast: MetNoNowcastResult,
-                metNoAirQuality: MetNoAirQualityResult
+        return Observable.zip(
+            forecast,
+            sun,
+            moon,
+            nowcast,
+            airQuality
+        ) { metNoForecast: MetNoForecastResult,
+            metNoSun: MetNoSunResult,
+            metNoMoon: MetNoMoonResult,
+            metNoNowcast: MetNoNowcastResult,
+            metNoAirQuality: MetNoAirQualityResult
             ->
             convert(
                 location,
@@ -117,8 +132,83 @@ class MetNoService @Inject constructor(
         }
     }
 
+    // SECONDARY WEATHER SOURCE
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return (
+                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+                        && !location.countryCode.isNullOrEmpty()
+                        && arrayOf("NO", "SE", "FI", "DK").any {
+                    it.equals(location.countryCode, ignoreCase = true)
+                }
+                ) || (
+                feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+                        && !location.countryCode.isNullOrEmpty()
+                        && location.countryCode.equals("NO", ignoreCase = true)
+                )
+    }
+
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+    )
+    override val airQualityAttribution = weatherAttribution
+    override val allergenAttribution = null
+    override val minutelyAttribution = weatherAttribution
+    override val alertAttribution = null
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        val nowcast =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                mApi.getNowcast(
+                    userAgent,
+                    location.latitude.toDouble(),
+                    location.longitude.toDouble()
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MetNoNowcastResult())
+                    }
+                }
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoNowcastResult())
+                }
+            }
+
+        val airQuality =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getAirQuality(
+                    userAgent,
+                    location.latitude.toDouble(),
+                    location.longitude.toDouble()
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MetNoAirQualityResult())
+                    }
+                }
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoAirQualityResult())
+                }
+            }
+
+        return Observable.zip(nowcast, airQuality) { metNoNowcast: MetNoNowcastResult,
+                                                     metNoAirQuality: MetNoAirQualityResult
+            ->
+            convertSecondary(
+                metNoNowcast,
+                metNoAirQuality
+            )
+        }
+    }
+
     companion object {
         private const val METNO_BASE_URL = "https://api.met.no/weatherapi/"
-        private val userAgent = "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
+        private const val userAgent =
+            "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
     }
 }

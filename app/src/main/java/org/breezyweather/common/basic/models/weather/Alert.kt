@@ -11,7 +11,7 @@ import java.util.*
  * All properties are [androidx.annotation.NonNull].
  */
 class Alert(
-    val alertId: Long,
+    val alertId: Long, // TODO: Replace with a hash
     val startDate: Date? = null,
     val endDate: Date? = null,
     val description: String,

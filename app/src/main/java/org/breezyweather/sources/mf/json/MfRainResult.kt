@@ -7,6 +7,6 @@ import java.util.Date
 
 @Serializable
 data class MfRainResult(
-    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date?,
-    val properties: MfRainProperties?
+    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date? = null,
+    val properties: MfRainProperties? = null
 )

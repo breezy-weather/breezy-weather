@@ -1,4 +1,4 @@
-package org.breezyweather.sources.mf.json.atmoaura
+package org.breezyweather.sources.atmoaura.json
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

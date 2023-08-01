@@ -391,7 +391,6 @@
     <string name="settings_weather_sources_current_location">Доставчик на прогноза за текущото местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA ключ</string>
     <string name="settings_appearance">Изглед</string>
     <string name="settings_appearance_summary">Език, тъмен режим, пакет с икони, мерни единици</string>
     <string name="settings_appearance_icon_pack_title">Пакет икони</string>

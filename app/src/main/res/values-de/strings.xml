@@ -449,7 +449,6 @@
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
     <string name="weather_air_quality_and_allergen_data_by">Luftqualitäts- und Pollenflugdaten von $</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_packs_title">Symbolpakete</string>
     <string name="settings_main_cards_title">Karten</string>

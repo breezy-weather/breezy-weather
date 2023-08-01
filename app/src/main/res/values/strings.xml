@@ -8,6 +8,7 @@
     <string name="hourly_forecast">Hourly forecast</string>
     <string name="minutely_forecast">Minutely forecast</string>
     <string name="precipitation_forecast">Precipitation forecast</string>
+    <string name="minutely_precipitations">Minutely precipitations</string>
     <string name="air_quality">Air quality</string>
     <string name="allergen">Allergen</string>
     <string name="ephemeris">Sun &amp; moon</string>
@@ -300,6 +301,7 @@
     <string name="action_back">Back</string>
     <string name="action_next">Next</string>
     <string name="action_done">Done</string>
+    <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_undo">Undo</string>
     <string name="action_set">Set</string>
@@ -464,11 +466,13 @@
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
     <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
-    <string name="settings_weather_source">Weather provider</string>
-    <string name="settings_weather_sources">Weather providers</string>
-    <string name="settings_weather_sources_summary">Weather providers settings</string>
+    <string name="settings_weather_source">Weather source</string>
+    <string name="settings_weather_sources">Weather sources</string>
+    <string name="settings_weather_sources_summary">Weather data sources settings</string>
+    <string name="settings_weather_source_main">Main source</string>
+    <string name="settings_weather_sources_per_location_summary">Customize weather data sources for this location</string>
     <string name="settings_weather_providers_section_general" translatable="false">@string/settings_section_general</string>
-    <string name="settings_weather_sources_current_location">Weather provider for current location</string>
+    <string name="settings_weather_sources_current_location">Weather source for current location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>
     <string name="settings_source_api_key">API key</string>
     <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
@@ -477,8 +481,8 @@
     <string name="settings_weather_provider_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_here_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>

@@ -296,7 +296,6 @@
     <string name="settings_background_updates_worker_info_title">Worker 정보</string>
     <string name="settings_weather_sources">날씨 제공 업체</string>
     <string name="settings_weather_sources_current_location">현재 위치에 사용할 날씨 제공 업체</string>
-    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA 키</string>
     <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 버전</string>
     <string name="notification_channel_background_services">백그라운드 서비스</string>

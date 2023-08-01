@@ -8,6 +8,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.preference.EditTextPreference
@@ -15,16 +16,20 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.sources.openweather.convertSecondary
+import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 class PirateWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "pirateweather"
     override val name = "PirateWeather"
@@ -58,6 +63,36 @@ class PirateWeatherService @Inject constructor(
         )
 
         return pirateWeatherResult.map { convert(it) }
+    }
+
+    // SECONDARY WEATHER SOURCE
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+    override val airQualityAttribution = null
+    override val allergenAttribution = null
+    override val minutelyAttribution = weatherAttribution
+    override val alertAttribution = weatherAttribution
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        val apiKey = getApiKeyOrDefault()
+        val languageCode = SettingsManager.getInstance(context).language.code
+        val pirateWeatherResult = mApi.getForecast(
+            apiKey,
+            location.latitude,
+            location.longitude,
+            "si", // represents metric,
+            languageCode
+        )
+
+        return pirateWeatherResult.map { convertSecondary(it) }
     }
 
     // CONFIG

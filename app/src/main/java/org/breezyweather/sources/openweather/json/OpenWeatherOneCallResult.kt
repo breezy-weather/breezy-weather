@@ -7,12 +7,12 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenWeatherOneCallResult(
-    val lat: Float?,
-    val lon: Float?,
-    val timezone: String?,
-    val current: OpenWeatherOneCallCurrent?,
-    val minutely: List<OpenWeatherOneCallMinutely>?,
-    val hourly: List<OpenWeatherOneCallHourly>?,
-    val daily: List<OpenWeatherOneCallDaily>?,
-    val alerts: List<OpenWeatherOneCallAlert>?
+    val lat: Float? = null,
+    val lon: Float? = null,
+    val timezone: String? = null,
+    val current: OpenWeatherOneCallCurrent? = null,
+    val minutely: List<OpenWeatherOneCallMinutely>? = null,
+    val hourly: List<OpenWeatherOneCallHourly>? = null,
+    val daily: List<OpenWeatherOneCallDaily>? = null,
+    val alerts: List<OpenWeatherOneCallAlert>? = null
 )
