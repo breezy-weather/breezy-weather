@@ -268,7 +268,7 @@
     <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ للحصول على تحديثات خلفية حية لموقعك الحالي.</string>
     <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_source_default_value">افتراضي (بدون تغيير)</string>
-    <string name="settings_weather_sources_current_location">مزود الطقس للموقع الحالي</string>
+    <string name="settings_weather_sources_current_location">مصدر الطقس للموقع الحالي</string>
     <string name="settings_icon_packs_weather_adaptive_icon">أيقونة الطقس</string>
     <string name="settings_icon_packs_weather_icon_grey">رمز رمادي</string>
     <string name="settings_main_summary">ترتيب البطاقات، العناصر المعروضة، الرسوم المتحركة</string>
@@ -422,7 +422,7 @@
     <string name="about_matrix">خادم ماتريكس</string>
     <string name="about_source_code">الشفرة المصدرية</string>
     <string name="about_contributors">المساهمون</string>
-    <string name="settings_weather_sources">مقدمو خدمات الطقس</string>
+    <string name="settings_weather_sources">مصادر الطقس</string>
     <string name="unit_mm_voice">ملليمتر</string>
     <string name="air_quality_index">مؤشر جودة الهواء</string>
     <string name="air_quality_level_6">خطير</string>
@@ -612,7 +612,7 @@
     <string name="location_resident_location_summaryOn">ممكن. تظهر في نطاق 20 كم من الموقع الحالي ، مخفية بخلاف ذلك.</string>
     <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
-    <string name="settings_weather_source">مزود الطقس</string>
+    <string name="settings_weather_source">مصدر الطقس</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء $</string>
     <string name="weather_allergen_data_by">بيانات مسببات الحساسية بمقدار $</string>
     <string name="weather_minutely_data_by">بيانات الترسبات الدقيقة حسب $</string>
@@ -621,4 +621,8 @@
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
     <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
+    <string name="settings_weather_source_main">المصدر الرئيسي</string>
+    <string name="minutely_precipitations">الترسبات الدقيقة</string>
+    <string name="action_save">حفظ</string>
+    <string name="settings_weather_sources_per_location_summary">تخصيص مصادر بيانات الطقس لهذا الموقع</string>
 </resources>
