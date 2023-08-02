@@ -8,7 +8,7 @@
     <string name="hourly_forecast">Hourly forecast</string>
     <string name="minutely_forecast">Minutely forecast</string>
     <string name="precipitation_forecast">Precipitation forecast</string>
-    <string name="minutely_precipitations">Minutely precipitations</string>
+    <string name="minutely_precipitations">Precipitations minute by minute</string>
     <string name="air_quality">Air quality</string>
     <string name="allergen">Allergen</string>
     <string name="ephemeris">Sun &amp; moon</string>
@@ -215,7 +215,7 @@
     <string name="weather_air_quality_data_by">Air quality data by $</string>
     <string name="weather_allergen_data_by">Allergen data by $</string>
     <string name="weather_air_quality_and_allergen_data_by">Air quality and allergen data by $</string>
-    <string name="weather_minutely_data_by">Minutely precipitations data by $</string>
+    <string name="weather_minutely_data_by">Precipitations minute by minute data by $</string>
     <string name="weather_alert_data_by">Alert data by $</string>
     <!-- $ = weather data source -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>

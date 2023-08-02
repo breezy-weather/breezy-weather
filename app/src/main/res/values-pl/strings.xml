@@ -522,7 +522,7 @@
     <string name="weather_api_key_required_missing_title">Brak wymaganego klucza API</string>
     <string name="weather_api_key_required_missing_content">Aby korzystać z tego dostawcy, musisz podać klucz API.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrukcje specyficzne dla producentów</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Niektórzy producenci mają dodatkowe ograniczenia aplikacji, które zabijają usługi działające w tle. Witryna Don\'t kill my app! zawiera informacje o tym, jak to naprawić.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Niektórzy producenci mają dodatkowe ograniczenia aplikacji, które zabijają usługi działające w tle. Witryna Don’t kill my app! zawiera informacje o tym, jak to naprawić.</string>
     <string name="settings_location_summary">Ustawienia dostawców lokalizacji</string>
     <string name="temperature_degree_day_heating">Stopień ogrzewania</string>
     <string name="temperature_degree_day_cooling">Stopień chłodzenia</string>
@@ -562,7 +562,7 @@
     <string name="unit_mmph_voice">Milimetrów na godzinę</string>
     <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
     <string name="settings_widgets_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
-    <string name="settings_location_access_background_summaryOff">Włącz opcję \"Zawsze zezwalaj\", aby odświeżać bieżącą lokalizację w tle.</string>
+    <string name="settings_location_access_background_summaryOff">Włącz opcję “Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
     <string name="settings_weather_sources_current_location">Źródło pogody dla bieżącej lokalizacji</string>
     <string name="settings_units_summary">Temperatura, opady, odległość, prędkość, ciśnienie</string>
     <string name="settings_main_cards_other_element_animations_switch">Animacje innych elementów</string>
