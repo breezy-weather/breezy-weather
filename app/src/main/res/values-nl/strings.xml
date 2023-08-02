@@ -38,7 +38,7 @@
     <string name="wind_strength_10">Zware storm</string>
     <string name="wind_strength_11">Zeer zware storm</string>
     <string name="wind_strength_12">Orkaan</string>
-    <string name="daily_forecast">Dagelijks</string>
+    <string name="daily_forecast">Voorspelling per dag</string>
     <string name="hourly_forecast">Per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
     <string name="details">Details</string>
