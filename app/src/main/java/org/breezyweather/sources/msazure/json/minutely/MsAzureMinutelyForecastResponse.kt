@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MsAzureMinutelyForecastResponse(
-    val intervals: List<MsAzureMinutelyForecast>?
+    val intervals: List<MsAzureMinutelyForecast>? = null
 )

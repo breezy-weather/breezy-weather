@@ -9,8 +9,8 @@ import java.util.Date
 
 @Serializable
 data class MsAzureCurrentConditions(
-    @Serializable(DateSerializer::class) @SerialName("dateTime") val time: Date,
-    @SerialName("phrase") val description: String?,
+    @Serializable(DateSerializer::class) val dateTime: Date,
+    val phrase: String?,
     val iconCode: Int?,
     val hasPrecipitation: Boolean?,
     val isDayTime: Boolean?,
@@ -29,5 +29,5 @@ data class MsAzureCurrentConditions(
     val apparentTemperature: MsAzureWeatherUnit?,
     val windChillTemperature: MsAzureWeatherUnit?,
     val wetBulbTemperature: MsAzureWeatherUnit?,
-    @SerialName("temperatureSummary") val pastTemperature: MsAzurePastTemperature?
+    val temperatureSummary: MsAzurePastTemperature?
 )

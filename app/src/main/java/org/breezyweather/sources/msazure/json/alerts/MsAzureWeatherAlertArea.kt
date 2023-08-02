@@ -1,6 +1,5 @@
 package org.breezyweather.sources.msazure.json.alerts
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
@@ -9,7 +8,7 @@ import java.util.Date
 data class MsAzureWeatherAlertArea(
     val name: String?,
     val summary: String?,
-    @Serializable(DateSerializer::class) @SerialName("startTime") val start: Date,
-    @Serializable(DateSerializer::class) @SerialName("endTime") val end: Date,
+    @Serializable(DateSerializer::class) val startTime: Date,
+    @Serializable(DateSerializer::class) val endTime: Date,
     val alertDetails: String?
 )

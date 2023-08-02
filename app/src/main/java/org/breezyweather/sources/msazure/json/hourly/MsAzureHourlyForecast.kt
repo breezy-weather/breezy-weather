@@ -1,6 +1,5 @@
 package org.breezyweather.sources.msazure.json.hourly
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
 import org.breezyweather.sources.msazure.json.MsAzureWeatherUnit
@@ -9,9 +8,9 @@ import java.util.Date
 
 @Serializable
 data class MsAzureHourlyForecast(
-    @Serializable(DateSerializer::class) @SerialName("date") val time: Date,
+    @Serializable(DateSerializer::class) val date: Date,
     val iconCode: Int?,
-    @SerialName("iconPhrase") val description: String?,
+    val iconPhrase: String?,
     val hasPrecipitation: Boolean?,
     val isDaylight: Boolean?,
     val temperature: MsAzureWeatherUnit?,

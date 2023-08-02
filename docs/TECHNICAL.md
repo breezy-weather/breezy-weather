@@ -147,6 +147,11 @@ See: https://github.com/alexander0042/pirateweather/
 We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
 
 
+## Microsoft Azure
+
+*TODO*
+
+
 ## HERE
 
 *Last checked: 2023-07-30*

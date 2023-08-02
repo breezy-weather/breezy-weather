@@ -7,7 +7,7 @@ import java.util.Date
 
 @Serializable
 data class MsAzureMinutelyForecast(
-    @Serializable(DateSerializer::class) @SerialName("startTime") val time: Date,
+    @Serializable(DateSerializer::class) val startTime: Date,
     val minute: Int?,
-    @SerialName("dbz") val precipitationIntensity: Double?
+    val dbz: Double?
 )

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MsAzureWeatherAlertsResponse(
-    val results: List<MsAzureWeatherAlert>?
+    val results: List<MsAzureWeatherAlert>? = null
 )
 
 

@@ -19,7 +19,7 @@ import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
-import org.breezyweather.sources.msazure.MsAzureWeatherService
+import org.breezyweather.sources.msazure.MsAzureService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
@@ -36,7 +36,7 @@ class SourceManager @Inject constructor(
     ipSbService: IpSbLocationService,
     metNoService: MetNoService,
     mfService: MfService,
-    msAzureService: MsAzureWeatherService,
+    msAzureService: MsAzureService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService

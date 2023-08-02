@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MsAzureAirQualityForecastResponse(
-    val results: List<MsAzureAirQualityForecast>?
+    val results: List<MsAzureAirQualityForecast>? = null
 )

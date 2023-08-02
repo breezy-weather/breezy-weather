@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MsAzureWeatherUnit(
-    val value: Double
+    val value: Double?
 )

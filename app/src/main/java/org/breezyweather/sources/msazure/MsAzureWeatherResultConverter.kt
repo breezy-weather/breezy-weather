@@ -23,6 +23,7 @@ import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.sources.accu.json.AccuForecastDailyForecast
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirPollutant
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForecast
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForecastResponse
@@ -32,12 +33,13 @@ import org.breezyweather.sources.msazure.json.current.MsAzureCurrentConditions
 import org.breezyweather.sources.msazure.json.current.MsAzureCurrentConditionsResponse
 import org.breezyweather.sources.msazure.json.daily.MsAzureDailyForecast
 import org.breezyweather.sources.msazure.json.daily.MsAzureDailyForecastResponse
-import org.breezyweather.sources.msazure.json.daily.MsAzureWeatherAirTraits
+import org.breezyweather.sources.msazure.json.daily.MsAzureWeatherAirAndPollen
 import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecast
 import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecastResponse
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecast
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecastResponse
 import java.util.Date
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 
 
@@ -53,8 +55,7 @@ fun convertPrimary(
     hourlyAirQualityForecastResponse: MsAzureAirQualityForecastResponse,
     alertsResponse: MsAzureWeatherAlertsResponse
 ): WeatherWrapper {
-    if (currentConditionsResponse.results.isNullOrEmpty() ||
-        hourlyForecastResponse.forecasts.isNullOrEmpty() ||
+    if (hourlyForecastResponse.forecasts.isNullOrEmpty() ||
         dailyForecastResponse.forecasts.isNullOrEmpty()
     ) {
         throw WeatherException()
@@ -62,25 +63,19 @@ fun convertPrimary(
 
     return WeatherWrapper(
         base = Base(
-            publishDate = currentConditionsResponse.results.getOrNull(0)?.time ?: Date()
+            publishDate = currentConditionsResponse.results?.getOrNull(0)?.dateTime ?: Date()
         ),
-        yesterday = getYesterdayConditions(
-            currentConditionsResponse.results.getOrNull(0)
-        ),
+        yesterday = getYesterdayConditions(currentConditionsResponse.results?.getOrNull(0)),
         current = getCurrentForecast(
-            currentConditionsResponse.results.getOrNull(0),
+            currentConditionsResponse.results?.getOrNull(0),
             currentAirQualityResponse.results?.getOrNull(0)
         ),
-        dailyForecast = getDailyForecast(
-            dailyForecastResponse.forecasts
-        ),
+        dailyForecast = getDailyForecast(dailyForecastResponse.forecasts),
         hourlyForecast = getHourlyForecast(
             hourlyForecastResponse.forecasts,
             hourlyAirQualityForecastResponse.results
         ),
-        minutelyForecast = getMinutelyForecast(
-            minutelyForecastResponse.intervals
-        ),
+        minutelyForecast = getMinutelyForecast(minutelyForecastResponse.intervals),
         alertList = getAlertList(alertsResponse.results)
     )
 }
@@ -98,17 +93,17 @@ fun convertSecondary(
                 currentAirQualityResponse.results?.getOrNull(0)?.pollutants
             ),
             hourlyForecast = hourlyAirQualityForecastResponse.results?.associate {
-                Pair(it.time, getAirQuality(it.pollutants))
+                Pair(it.dateTime, getAirQuality(it.pollutants))
             }
         ),
-        allergen = AllergenWrapper(
-            dailyForecast = dailyForecastResponse.forecasts?.associate {
-                Pair(it.time, getAllergen(it.airTraits))
-            }
-        ),
-        minutelyForecast = getMinutelyForecast(
-            minutelyForecastResponse.intervals
-        ),
+        allergen = if (supportsAllergens(dailyForecastResponse.forecasts)) {
+            AllergenWrapper(
+                dailyForecast = dailyForecastResponse.forecasts?.associate {
+                    Pair(it.date, getAllergen(it.airAndPollen))
+                }
+            )
+        } else null,
+        minutelyForecast = getMinutelyForecast(minutelyForecastResponse.intervals),
         alertList = getAlertList(alertsResponse.results)
     )
 }
@@ -120,9 +115,9 @@ private fun getYesterdayConditions(conditions: MsAzureCurrentConditions?): Histo
     if (conditions == null) return null
 
     return History(
-        date = Date(conditions.time.time.hours.minus(24.hours).inWholeMilliseconds),
-        daytimeTemperature = conditions.pastTemperature?.pastTwentyFourHours?.maximum?.value?.toFloat(),
-        nighttimeTemperature = conditions.pastTemperature?.pastTwentyFourHours?.minimum?.value?.toFloat()
+        date = Date(conditions.dateTime.time.hours.minus(24.hours).inWholeMilliseconds),
+        daytimeTemperature = conditions.temperatureSummary?.pastTwentyFourHours?.maximum?.value?.toFloat(),
+        nighttimeTemperature = conditions.temperatureSummary?.pastTwentyFourHours?.minimum?.value?.toFloat()
     )
 }
 
@@ -136,7 +131,7 @@ private fun getCurrentForecast(
     if (conditions == null) return null
 
     return Current(
-        weatherText = conditions.description,
+        weatherText = conditions.phrase,
         weatherCode = getWeatherCode(conditions.iconCode),
         temperature = Temperature(
             temperature = conditions.temperature?.value?.toFloat(),
@@ -151,9 +146,7 @@ private fun getCurrentForecast(
             speed = conditions.wind?.speed?.value?.toFloat(),
             gusts = conditions.windGust?.speed?.value?.toFloat()
         ),
-        uV = UV(
-            index = conditions.uvIndex?.toFloat()
-        ),
+        uV = UV(index = conditions.uvIndex?.toFloat()),
         airQuality = getAirQuality(aqResult?.pollutants),
         relativeHumidity = conditions.relativeHumidity?.toFloat(),
         dewPoint = conditions.dewPoint?.value?.toFloat(),
@@ -169,9 +162,10 @@ private fun getDailyForecast(
 ): List<Daily>? {
     if (days.isNullOrEmpty()) return null
 
-    return days.mapIndexed { i, day ->
+    val supportsAllergens = supportsAllergens(days)
+    return days.map { day ->
         Daily(
-            date = day.time,
+            date = day.date,
             day = HalfDay(
                 weatherText = day.day?.shortPhrase,
                 weatherCode = getWeatherCode(day.day?.iconCode),
@@ -241,12 +235,14 @@ private fun getDailyForecast(
                 cloudCover = day.night?.cloudCover
             ),
             degreeDay = DegreeDay(
-                heating = day.degreeDay?.heating?.value?.toFloat(),
-                cooling = day.degreeDay?.cooling?.value?.toFloat()
+                heating = day.degreeDaySummary?.heating?.value?.toFloat(),
+                cooling = day.degreeDaySummary?.cooling?.value?.toFloat()
             ),
-            allergen = getAllergen(day.airTraits),
+            allergen = if (supportsAllergens) {
+                getAllergen(day.airAndPollen)
+            } else null,
             uV = UV(
-                index = day.airTraits?.find { it.name == "UVIndex" }?.value?.toFloat()
+                index = day.airAndPollen?.find { it.name == "UVIndex" }?.value?.toFloat()
             ),
             hoursOfSun = day.hoursOfSun?.toFloat()
         )
@@ -264,9 +260,9 @@ private fun getHourlyForecast(
 
     return hours.mapIndexed { i, hour ->
         HourlyWrapper(
-            date = hour.time,
+            date = hour.date,
             isDaylight = hour.isDaylight,
-            weatherText = hour.description,
+            weatherText = hour.iconPhrase,
             weatherCode = getWeatherCode(hour.iconCode),
             temperature = Temperature(
                 temperature = hour.temperature?.value?.toFloat(),
@@ -291,9 +287,7 @@ private fun getHourlyForecast(
                 gusts = hour.windGust?.speed?.value?.toFloat()
             ),
             airQuality = getAirQuality(aqResults?.getOrNull(i)?.pollutants),
-            uV = UV(
-                index = hour.uvIndex?.toFloat(),
-            ),
+            uV = UV(index = hour.uvIndex?.toFloat()),
             relativeHumidity = hour.relativeHumidity?.toFloat(),
             dewPoint = hour.dewPoint?.value?.toFloat(),
             cloudCover = hour.cloudCover,
@@ -317,9 +311,9 @@ private fun getMinutelyForecast(
         val interval = minute.minute?.minus(previousMinute) ?: 1
         minutelyList.add(
             Minutely(
-                date = minute.time,
+                date = minute.startTime,
                 minuteInterval = interval,
-                precipitationIntensity = minute.precipitationIntensity
+                dbz = minute.dbz?.roundToInt()
             )
         )
         previousMinute += interval
@@ -338,8 +332,8 @@ private fun getAlertList(
     return alerts.map { alert ->
         Alert(
             alertId = alert.alertId,
-            startDate = alert.alertAreas?.getOrNull(0)?.start,
-            endDate = alert.alertAreas?.getOrNull(0)?.end,
+            startDate = alert.alertAreas?.getOrNull(0)?.startTime,
+            endDate = alert.alertAreas?.getOrNull(0)?.endTime,
             description = alert.description?.localized ?: "",
             content = alert.alertAreas?.getOrNull(0)?.alertDetails,
             priority = alert.priority ?: 1
@@ -348,18 +342,32 @@ private fun getAlertList(
 }
 
 /**
- * Returns allergen info from MsnWeatherAirTraits
+ * Accu/MsAzure returns 0 / m³ for all days if they don’t measure it, instead of null values
+ * This function will tell us if they measured at least one allergen during the 15-day period
+ * to make the difference between a 0 and a null
  */
-private fun getAllergen(airTraits: List<MsAzureWeatherAirTraits>?): Allergen {
+fun supportsAllergens(dailyForecasts: List<MsAzureDailyForecast>?): Boolean {
+    dailyForecasts?.forEach { daily ->
+        val allergens = listOf(
+            daily.airAndPollen?.firstOrNull { it.name == "Tree" },
+            daily.airAndPollen?.firstOrNull { it.name == "Grass" },
+            daily.airAndPollen?.firstOrNull { it.name == "Ragweed" },
+            daily.airAndPollen?.firstOrNull { it.name == "Mold" }
+        ).filter { it?.value != null && it.value > 0 }
+        if (allergens.isNotEmpty()) return true
+    }
+    return false
+}
+
+/**
+ * Returns allergen info from MsAzureWeatherAirAndPollen
+ */
+private fun getAllergen(airAndPollen: List<MsAzureWeatherAirAndPollen>?): Allergen {
     return Allergen(
-        tree = airTraits?.find { it.name == "Tree" }?.value,
-        alder = airTraits?.find { it.name == "Alder" }?.value,
-        birch = airTraits?.find { it.name == "Birch" }?.value,
-        grass = airTraits?.find { it.name == "Grass" }?.value,
-        olive = airTraits?.find { it.name == "Olive" }?.value,
-        ragweed = airTraits?.find { it.name == "Ragweed" }?.value,
-        mugwort = airTraits?.find { it.name == "Mugwort" }?.value,
-        mold = airTraits?.find { it.name == "Mold" }?.value
+        tree = airAndPollen?.firstOrNull { it.name == "Tree" }?.value,
+        grass = airAndPollen?.firstOrNull { it.name == "Grass" }?.value,
+        ragweed = airAndPollen?.firstOrNull { it.name == "Ragweed" }?.value,
+        mold = airAndPollen?.firstOrNull { it.name == "Mold" }?.value
     )
 }
 
@@ -368,12 +376,12 @@ private fun getAllergen(airTraits: List<MsAzureWeatherAirTraits>?): Allergen {
  */
 private fun getAirQuality(pollutants: List<MsAzureAirPollutant>?): AirQuality {
     return AirQuality(
-        pM25 = pollutants?.find { it.type == "PM2.5" }?.concentration?.value?.toFloat(),
-        pM10 = pollutants?.find { it.type == "PM10" }?.concentration?.value?.toFloat(),
-        sO2 = pollutants?.find { it.type == "SO2" }?.concentration?.value?.toFloat(),
-        nO2 = pollutants?.find { it.type == "NO2" }?.concentration?.value?.toFloat(),
-        o3 = pollutants?.find { it.type == "O3" }?.concentration?.value?.toFloat(),
-        cO = pollutants?.find { it.type == "CO" }?.concentration?.value?.div(1000)?.toFloat()
+        pM25 = pollutants?.firstOrNull { it.type == "PM2.5" }?.concentration?.value?.toFloat(),
+        pM10 = pollutants?.firstOrNull { it.type == "PM10" }?.concentration?.value?.toFloat(),
+        sO2 = pollutants?.firstOrNull { it.type == "SO2" }?.concentration?.value?.toFloat(),
+        nO2 = pollutants?.firstOrNull { it.type == "NO2" }?.concentration?.value?.toFloat(),
+        o3 = pollutants?.firstOrNull { it.type == "O3" }?.concentration?.value?.toFloat(),
+        cO = pollutants?.firstOrNull { it.type == "CO" }?.concentration?.value?.div(1000)?.toFloat()
     )
 }
 

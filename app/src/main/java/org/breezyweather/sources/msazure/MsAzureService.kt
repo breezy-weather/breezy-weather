@@ -28,24 +28,24 @@ import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecastRe
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class MsAzureWeatherService @Inject constructor(
+class MsAzureService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
-    override val id = "msazureweather"
+    override val id = "msazure"
     override val name = "Microsoft Azure"
 
     // https://www.microsoft.com/licensing/terms/product/PrivacyandSecurityTerms/all
     override val privacyPolicyUrl = "https://privacy.microsoft.com/en-us/privacystatement"
 
-    override val color = Color.rgb(0, 127, 255)
+    override val color = Color.rgb(116, 116, 116)
     override val weatherAttribution =
         "Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399"
 
     private val mApi by lazy {
         client
-            .baseUrl(MS_WEATHER_BASE_URL)
+            .baseUrl(MS_AZURE_WEATHER_BASE_URL)
             .build()
             .create(MsAzureWeatherApi::class.java)
     }
@@ -63,50 +63,66 @@ class MsAzureWeatherService @Inject constructor(
         val query = "${location.latitude},${location.longitude}"
 
         val currentConditionsRequest = mApi.getCurrentConditions(
-            apiKey,
-            query,
-            lang
+            apiKey, query, lang
         )
-
         val dailyForecastRequest = mApi.getDailyForecast(
-            apiKey,
-            query,
-            15,
-            lang
+            apiKey, query, 15, lang
         )
-
         val hourlyForecastRequest = mApi.getHourlyForecast(
-            apiKey,
-            query,
-            240,
-            lang
+            apiKey, query, 240, lang
         )
-
-        val minutelyForecastRequest = mApi.getMinutelyForecast(
-            apiKey,
-            query,
-            1,
-            lang
-        )
-
-        val currentAirQualityRequest = mApi.getCurrentAirQuality(
-            apiKey,
-            query,
-            lang
-        )
-
-        val hourlyAirQualityForecastRequest = mApi.getHourlyAirQuality(
-            apiKey,
-            query,
-            96,
-            lang
-        )
-
-        val alertsRequest = mApi.getWeatherAlerts(
-            apiKey,
-            query,
-            lang
-        )
+        val minutelyForecastRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mApi.getMinutelyForecast(
+                apiKey, query, 1, lang
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureMinutelyForecastResponse())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureMinutelyForecastResponse())
+            }
+        }
+        val currentAirQualityRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getCurrentAirQuality(
+                apiKey, query, lang
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureAirQualityForecastResponse())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureAirQualityForecastResponse())
+            }
+        }
+        val hourlyAirQualityForecastRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getHourlyAirQuality(
+                apiKey, query, 96, lang
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureAirQualityForecastResponse())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureAirQualityForecastResponse())
+            }
+        }
+        val alertsRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getWeatherAlerts(
+                apiKey, query, lang
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureWeatherAlertsResponse())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureWeatherAlertsResponse())
+            }
+        }
 
         return Observable.zip(
             currentConditionsRequest,
@@ -141,10 +157,10 @@ class MsAzureWeatherService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
-    override val airQualityAttribution = null
-    override val allergenAttribution = null
+    override val airQualityAttribution = weatherAttribution
+    override val allergenAttribution = weatherAttribution
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
 
@@ -159,38 +175,51 @@ class MsAzureWeatherService @Inject constructor(
         val lang = SettingsManager.getInstance(context).language.code
         val query = "${location.latitude},${location.longitude}"
 
-        val dailyForecastRequest = mApi.getDailyForecast(
-            apiKey,
-            query,
-            15,
-            lang
-        )
-
-        val minutelyForecastRequest = mApi.getMinutelyForecast(
-            apiKey,
-            query,
-            1,
-            lang
-        )
-
-        val currentAirQualityRequest = mApi.getCurrentAirQuality(
-            apiKey,
-            query,
-            lang
-        )
-
-        val hourlyAirQualityForecastRequest = mApi.getHourlyAirQuality(
-            apiKey,
-            query,
-            96,
-            lang
-        )
-
-        val alertsRequest = mApi.getWeatherAlerts(
-            apiKey,
-            query,
-            lang
-        )
+        val dailyForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            mApi.getDailyForecast(
+                apiKey, query, 15, lang
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureDailyForecastResponse())
+            }
+        }
+        val minutelyForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mApi.getMinutelyForecast(
+                apiKey, query, 1, lang
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureMinutelyForecastResponse())
+            }
+        }
+        val currentAirQualityRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getCurrentAirQuality(
+                apiKey, query, lang
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureAirQualityForecastResponse())
+            }
+        }
+        val hourlyAirQualityForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getHourlyAirQuality(
+                apiKey, query, 96, lang
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureAirQualityForecastResponse())
+            }
+        }
+        val alertsRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mApi.getWeatherAlerts(
+                apiKey, query, lang
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MsAzureWeatherAlertsResponse())
+            }
+        }
 
         return Observable.zip(
             dailyForecastRequest,
@@ -248,6 +277,6 @@ class MsAzureWeatherService @Inject constructor(
     }
 
     companion object {
-        private const val MS_WEATHER_BASE_URL = "https://atlas.microsoft.com/weather/"
+        private const val MS_AZURE_WEATHER_BASE_URL = "https://atlas.microsoft.com/weather/"
     }
 }
