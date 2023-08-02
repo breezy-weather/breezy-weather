@@ -273,9 +273,10 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.WeatherProviders.route) {
-                    WeatherProvidersSettingsScreen(
+                    WeatherSourcesSettingsScreen(
                         context = this@SettingsActivity,
-                        mainWeatherSources = sourceManager.getWeatherSources(),
+                        configurableSources = sourceManager.getConfigurableSources(),
+                        locationSearchSources = sourceManager.getConfiguredLocationSearchSources(),
                         paddingValues = paddings,
                     )
                 }

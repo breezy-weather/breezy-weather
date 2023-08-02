@@ -9,6 +9,7 @@ import kotlinx.serialization.SerializationException
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
@@ -53,6 +54,7 @@ class SearchActivityRepository @Inject internal constructor(
                                 }
                             }
                         }
+                        is ApiLimitReachedException -> RequestErrorType.API_LIMIT_REACHED
                         is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
                         is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
                         is MissingFieldException, is SerializationException, is ParsingException -> {

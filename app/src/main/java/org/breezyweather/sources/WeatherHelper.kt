@@ -18,6 +18,7 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.db.repositories.HistoryEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.settings.SettingsManager
 import java.util.Date
 import javax.inject.Inject
 
@@ -37,7 +38,7 @@ class WeatherHelper @Inject constructor(
             return Observable.error(LocationException())
         }
 
-        val service = mSourceManager.getWeatherSource(location.weatherSource)
+        val service = mSourceManager.getMainWeatherSource(location.weatherSource)
         if (service == null) {
             return Observable.error(SourceNotInstalledException())
         }
@@ -198,13 +199,13 @@ class WeatherHelper @Inject constructor(
         query: String,
         enabledSource: String
     ): Observable<List<Location>> {
-        val service = mSourceManager.getWeatherSource(enabledSource)
+        val service = mSourceManager.getMainWeatherSource(enabledSource)
         if (service == null) {
             return Observable.error(SourceNotInstalledException())
         }
 
         val searchService = if (service !is LocationSearchSource) {
-            mSourceManager.getDefaultLocationSearchSource()
+            mSourceManager.getLocationSearchSourceOrDefault(SettingsManager.getInstance(context).locationSearchSource)
         } else service
 
         // Debug source is not online

@@ -70,10 +70,11 @@ class MainActivity : GeoActivity(),
         location.let {
             viewModel.updateLocationFromBackground(it)
 
-            if (isActivityStarted
+            // TODO: Leads to annoying popup, disabling for now
+            /*if (isActivityStarted
                 && it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
                 SnackbarHelper.showSnackbar(getString(R.string.message_updated_in_background))
-            }
+            }*/
         }
     }
 

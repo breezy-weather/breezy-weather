@@ -67,6 +67,21 @@ enum class Language(
             }
         }
 
+    // Used by GeoNames, accepts "Hant" for traditional chinese but no country code otherwise
+    val codeAlt: String
+        get() {
+            val locale = locale
+            val language = locale.language
+            val country = locale.country
+            return if (!country.isNullOrEmpty()
+                && (country.equals("tw", ignoreCase = true) || country.equals("hk", ignoreCase = true))
+            ) {
+                language.lowercase() + "-Hant"
+            } else {
+                language.lowercase()
+            }
+        }
+
     val codeWithCountry: String
         get() {
             val locale = locale

@@ -3,13 +3,18 @@
 Due to a technical change, cached weather data will be cleared on update.
 
 **New features**
-- Initial support for secondary weather sources, allows you to complete missing data with other sources. Available from the “Edit” button in the footer of the main screen.
+- Support for secondary weather sources, allows you to complete missing data with other sources (air quality, allergens, precipitations by minute, alerts). Available from the “Edit” button in the footer of the main screen.
+- IP.SB is now available as an alternative to GPS and Baidu IP Location. It’s based on IP so it provides less accurate results than GPS, but it’s fast and provides rather close results in our experience. Use it if you would like to use current location without giving your exact GPS position to weather source.
+- Add a setting to allow changing the default location search source for weather sources which don’t have a location search feature.
+- Add GeoNames as optional location search source. This source has fuzzy search support, but is rate-limited so only switch if you need it.
+- Add privacy policy of app and sources in the About section (Info icon) of Settings
 - Show licenses of our dependencies in the About section (@Cod3dDOT)
 
 **Data**
 - Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.
 
 **Animations**
+- When animations are disabled, it will now for some of them show static elements (clouds, sun, stars) (@Cod3dDOT)
 - Reduce meteor spawning on clear night condition (@Cod3dDOT)
 - Fix sensor stuttering (@Cod3dDOT)
 - Fix Fog condition always showing Clear instead
@@ -19,7 +24,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - [Open-Meteo] Add air quality and allergens support as secondary source
 - [AccuWeather] Add minutely and alerts support as secondary source
 - [AccuWeather] Fix locations displayed in parenthesis (existing locations will need to be re-added)
-- [AccuWeather] Fix missing location name missing when localized name was not available (will now fallback to English name)
+- [AccuWeather] Fix missing location name when localized name was not available (will now fallback to English name)
 - [AccuWeather] Fix allergens card being shown on countries where it is not supported
 - [AccuWeather] Fix weather data refresh failure when using Developer portal
 - [MET Norway] Add air quality and minutely support as secondary source
@@ -36,7 +41,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - Fix database keeping old "current location" weather data, making app data size grow
 - Fix overwrite of weather data when "current location" and a manually added city shared the same city and weather source (issue particularly noticeable with AccuWeather)
 
-Translation updates.
+**Translation updates**
 
 
 # Version 4.4.1-beta

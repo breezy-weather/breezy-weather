@@ -11,14 +11,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.common.source.Source
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
@@ -52,7 +49,7 @@ fun LocationPreference(
                 title = stringResource(R.string.settings_location_service),
                 iconId = R.drawable.ic_location,
                 selectedKey = SettingsManager.getInstance(activity).locationSource,
-                sourceList = locationSources,
+                sourceList = locationSources.associate { it.id to it.name },
                 helpMeChoose = null
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
@@ -96,10 +93,10 @@ private fun SecondarySourcesPreference(
     val dialogOpenState = remember { mutableStateOf(false) }
     val hasChangedASource = remember { mutableStateOf(false) }
     val weatherSource = remember { mutableStateOf(location.weatherSource) }
-    val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: location.weatherSource) }
-    val allergenSource = remember { mutableStateOf(location.allergenSource ?: location.weatherSource) }
-    val minutelySource = remember { mutableStateOf(location.minutelySource ?: location.weatherSource) }
-    val alertSource = remember { mutableStateOf(location.alertSource ?: location.weatherSource) }
+    val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
+    val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
+    val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
+    val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
 
     PreferenceView(
         titleId = R.string.settings_weather_sources,
@@ -111,40 +108,35 @@ private fun SecondarySourcesPreference(
     }
 
     if (dialogOpenState.value) {
-        val mainWeatherSource = sourceManager.getWeatherSource(location.weatherSource)!!
         val secondarySources = sourceManager.getSecondaryWeatherSources()
-        val compatibleAirQualitySources = listOf(mainWeatherSource) +
-                secondarySources.filter {
-                    it.id != location.weatherSource &&
-                            it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
-                            it.isFeatureSupportedForLocation(
-                                SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, location
-                            )
-                }
-        val compatibleAllergenSources = listOf(mainWeatherSource) +
-                secondarySources.filter {
-                    it.id != location.weatherSource &&
-                            it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
-                            && it.isFeatureSupportedForLocation(
-                        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN, location
+        val compatibleAirQualitySources = secondarySources.filter {
+            it.id != location.weatherSource &&
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+                    it.isFeatureSupportedForLocation(
+                        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, location
                     )
-                }
-        val compatibleMinutelySources = listOf(mainWeatherSource) +
-                secondarySources.filter {
-                    it.id != location.weatherSource &&
-                            it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
-                            && it.isFeatureSupportedForLocation(
-                        SecondaryWeatherSourceFeature.FEATURE_MINUTELY, location
-                    )
-                }
-        val compatibleAlertSources = listOf(mainWeatherSource) +
-                secondarySources.filter {
-                    it.id != location.weatherSource &&
-                            it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
-                            && it.isFeatureSupportedForLocation(
-                        SecondaryWeatherSourceFeature.FEATURE_ALERT, location
-                    )
-                }
+        }
+        val compatibleAllergenSources = secondarySources.filter {
+            it.id != location.weatherSource &&
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
+                    && it.isFeatureSupportedForLocation(
+                SecondaryWeatherSourceFeature.FEATURE_ALLERGEN, location
+            )
+        }
+        val compatibleMinutelySources = secondarySources.filter {
+            it.id != location.weatherSource &&
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                    && it.isFeatureSupportedForLocation(
+                SecondaryWeatherSourceFeature.FEATURE_MINUTELY, location
+            )
+        }
+        val compatibleAlertSources = secondarySources.filter {
+            it.id != location.weatherSource &&
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+                    && it.isFeatureSupportedForLocation(
+                SecondaryWeatherSourceFeature.FEATURE_ALERT, location
+            )
+        }
 
         AlertDialog(
             onDismissRequest = { dialogOpenState.value = false },
@@ -158,11 +150,11 @@ private fun SecondarySourcesPreference(
             text = {
                 Column {
                     if (location.isCurrentPosition) { // TODO: Allow for others as well
-                        val weatherSources = sourceManager.getConfiguredWeatherSources()
+                        val weatherSources = sourceManager.getConfiguredMainWeatherSources()
                         SourceView(
                             title = stringResource(R.string.settings_weather_source_main),
                             selectedKey = weatherSource.value,
-                            sourceList = weatherSources,
+                            sourceList = weatherSources.associate { it.id to it.name },
                         ) { sourceId ->
                             weatherSource.value = sourceId
                             hasChangedASource.value = true
@@ -171,7 +163,8 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.air_quality),
                         selectedKey = airQualitySource.value,
-                        sourceList = compatibleAirQualitySources,
+                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                compatibleAirQualitySources.associate { it.id to it.name },
                     ) { sourceId ->
                         airQualitySource.value = sourceId
                         hasChangedASource.value = true
@@ -179,7 +172,8 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.allergen),
                         selectedKey = allergenSource.value,
-                        sourceList = compatibleAllergenSources,
+                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                compatibleAllergenSources.associate { it.id to it.name },
                     ) { sourceId ->
                         allergenSource.value = sourceId
                         hasChangedASource.value = true
@@ -187,7 +181,8 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.minutely_forecast),
                         selectedKey = minutelySource.value,
-                        sourceList = compatibleMinutelySources,
+                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                compatibleMinutelySources.associate { it.id to it.name },
                     ) { sourceId ->
                         minutelySource.value = sourceId
                         hasChangedASource.value = true
@@ -195,7 +190,8 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.alerts),
                         selectedKey = alertSource.value,
-                        sourceList = compatibleAlertSources,
+                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                compatibleAlertSources.associate { it.id to it.name },
                     ) { sourceId ->
                         alertSource.value = sourceId
                         hasChangedASource.value = true
@@ -258,7 +254,7 @@ private fun SourceView(
     title: String,
     @DrawableRes iconId: Int? = null,
     selectedKey: String,
-    sourceList: List<Source>,
+    sourceList: Map<String, String>,
     helpMeChoose: String? = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md",
     onValueChanged: (String) -> Unit,
 ) {
@@ -267,12 +263,10 @@ private fun SourceView(
         title = title,
         iconId = iconId,
         selectedKey = selectedKey,
-        valueArray = sourceList.map { it.id }.toTypedArray(),
-        nameArray = sourceList.map { it.name }.toTypedArray(),
+        valueArray = sourceList.map { it.key }.toTypedArray(),
+        nameArray = sourceList.map { it.value }.toTypedArray(),
         summary = { _, value ->
-            sourceList
-                .firstOrNull { it.id == value }
-                ?.name
+            sourceList.getOrElse(value) { null }
         },
         onValueChanged = { sourceId ->
             onValueChanged(sourceId)

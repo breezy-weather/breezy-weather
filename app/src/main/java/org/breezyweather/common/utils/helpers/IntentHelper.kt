@@ -25,6 +25,7 @@ import org.breezyweather.settings.activities.SelectLocationProviderActivity
 import org.breezyweather.settings.activities.SelectWeatherProviderActivity
 import org.breezyweather.settings.activities.SettingsActivity
 import org.breezyweather.settings.activities.DependenciesActivity
+import org.breezyweather.settings.activities.PrivacyPolicyActivity
 
 /**
  * Intent helper.
@@ -180,6 +181,10 @@ object IntentHelper {
 
     fun startDependenciesActivity(activity: Activity) {
         activity.startActivity(Intent(activity, DependenciesActivity::class.java))
+    }
+
+    fun startPrivacyPolicyActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, PrivacyPolicyActivity::class.java))
     }
 
     fun startApplicationDetailsActivity(context: Context, pkgName: String? = context.packageName) {

@@ -32,6 +32,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
@@ -55,13 +56,14 @@ class SearchActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
+        val context = LocalContext.current
         val dialogOpenState = remember { mutableStateOf(false) }
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
         val enabledSourceState = viewModel.enabledSource.collectAsState()
-        val weatherSource = sourceManager.getWeatherSourceOrDefault(enabledSourceState.value)
+        val weatherSource = sourceManager.getMainWeatherSourceOrDefault(enabledSourceState.value)
         val locationSearchSource = if (weatherSource !is LocationSearchSource) {
-            sourceManager.getDefaultLocationSearchSource()
+            sourceManager.getLocationSearchSourceOrDefault(SettingsManager.getInstance(context).locationSearchSource)
         } else weatherSource
 
         Material3Scaffold(
@@ -195,7 +197,7 @@ class SearchActivity : GeoActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        items(sourceManager.getConfiguredWeatherSources()) {
+                        items(sourceManager.getConfiguredMainWeatherSources()) {
                             RadioButton(
                                 selected = weatherSource.id == it.id,
                                 onClick = {

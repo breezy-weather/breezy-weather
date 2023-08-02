@@ -2,6 +2,7 @@ package org.breezyweather.sources
 
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -13,7 +14,9 @@ import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.here.HereService
+import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.msazure.MsAzureWeatherService
@@ -23,24 +26,31 @@ import org.breezyweather.sources.pirateweather.PirateWeatherService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
-    androidLocationSource: AndroidLocationSource,
-    baiduIPService: BaiduIPLocationService,
-    openMeteoService: OpenMeteoService,
     accuService: AccuService,
-    metNoService: MetNoService,
-    openWeatherService: OpenWeatherService,
-    pirateWeatherService: PirateWeatherService,
-    hereService: HereService,
-    msAzureService: MsAzureWeatherService,
-    mfService: MfService,
+    androidLocationSource: AndroidLocationSource,
+    atmoAuraService: AtmoAuraService,
+    baiduIPService: BaiduIPLocationService,
     chinaService: ChinaService,
-    atmoAuraService: AtmoAuraService
+    geoNamesService: GeoNamesService,
+    hereService: HereService,
+    ipSbService: IpSbLocationService,
+    metNoService: MetNoService,
+    mfService: MfService,
+    msAzureService: MsAzureWeatherService,
+    openMeteoService: OpenMeteoService,
+    openWeatherService: OpenWeatherService,
+    pirateWeatherService: PirateWeatherService
 ) {
     // TODO: Initialize lazily
+    // The order of this list is preserved in "source chooser" dialogs
     private val sourceList: List<Source> = listOf(
         // Location sources
         androidLocationSource,
+        ipSbService,
         baiduIPService,
+
+        // Location search sources
+        geoNamesService,
 
         // Weather sources
         openMeteoService,
@@ -48,8 +58,8 @@ class SourceManager @Inject constructor(
         metNoService,
         openWeatherService,
         pirateWeatherService,
-        hereService,
         msAzureService,
+        hereService,
         mfService,
         chinaService,
 
@@ -57,17 +67,22 @@ class SourceManager @Inject constructor(
         atmoAuraService
     )
 
+    fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
+    fun getHttpSources(): List<HttpSource> = sourceList.filterIsInstance<HttpSource>()
+
+
     // Location
     fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
     fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
-    fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id) ?: getLocationSource(DEFAULT_LOCATION_SOURCE)!!
+    fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
+        ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
-    fun getWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
-    fun getWeatherSource(id: String): MainWeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-    fun getWeatherSourceOrDefault(id: String): MainWeatherSource = getWeatherSource(id)
-        ?: getWeatherSource(BuildConfig.DEFAULT_WEATHER_SOURCE)!!
-    fun getConfiguredWeatherSources(): List<MainWeatherSource> = getWeatherSources().filter {
+    fun getMainWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
+    fun getMainWeatherSource(id: String): MainWeatherSource? = getMainWeatherSources().firstOrNull { it.id == id }
+    fun getMainWeatherSourceOrDefault(id: String): MainWeatherSource = getMainWeatherSource(id)
+        ?: getMainWeatherSource(BuildConfig.DEFAULT_WEATHER_SOURCE)!!
+    fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources().filter {
         it !is ConfigurableSource || it.isConfigured
     }
 
@@ -78,16 +93,17 @@ class SourceManager @Inject constructor(
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()
     fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources().firstOrNull { it.id == id }
-    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id) ?: getLocationSearchSource(DEFAULT_LOCATION_SEARCH_SOURCE)!!
-    fun getDefaultLocationSearchSource(): LocationSearchSource = getLocationSearchSources().firstOrNull { it.id == DEFAULT_LOCATION_SEARCH_SOURCE }!!
+    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id)
+        ?: getLocationSearchSource(BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE)!!
+    fun getConfiguredLocationSearchSources(): List<LocationSearchSource> = getLocationSearchSources().filter {
+        it !is ConfigurableSource || it.isConfigured
+    }
 
     // Reverse geocoding
     fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
 
+    // Configurables sources
+    fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()
 
-    companion object {
-        private const val DEFAULT_LOCATION_SOURCE = "native"
-        private const val DEFAULT_LOCATION_SEARCH_SOURCE = "openmeteo"
-    }
 }

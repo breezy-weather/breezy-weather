@@ -197,6 +197,12 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
+            android:name=".settings.activities.PrivacyPolicyActivity"
+            android:label="@string/about_privacy_policy"
+            android:screenOrientation="user"
+            android:theme="@style/BreezyWeatherTheme" />
+
+        <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_widgets_live_wallpaper_title"
             android:theme="@style/BreezyWeatherTheme"

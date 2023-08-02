@@ -500,7 +500,7 @@
     <string name="location_resident_location_summaryOn">Įjungta. Rodoma, jei iki dabartinės buvimo vietos yra 20 km, kitu atveju - paslėpta.</string>
     <string name="location_resident_location_summaryOff">Išjungta. Vieta visada prieinama.</string>
     <string name="action_delete">Ištrinti</string>
-    <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai</string>
+    <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai, default location search source</string>
     <string name="settings_weather_sources_current_location">Dabartinės vietos orų duomenų teikėjas</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
     <string name="wind_gusts">Vėjo gūsiai</string>

@@ -97,11 +97,12 @@ Legend:
 
 | Sources               | Open-Meteo | AccuWeather | MET Norway     | OpenWeather    | Pirate Weather | Météo-France   | China |
 |-----------------------|------------|-------------|----------------|----------------|----------------|----------------|-------|
-| **Search**            | ✅          | ✅           | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅¹    |
-| **Reverse geocoding** | ❌²         | ✅           | ❌²             | ❌²             | ❌²             | ✅²             | ✅¹    |
+| **Search**            | ✅          | ✅           | Default       | Default        | Default        | Default        | ✅³    |
+| **Reverse geocoding** | ❌²         | ✅           | ❌²             | ❌²             | ❌²             | ✅²             | ✅³    |
 
-* ¹ TimeZone is assumed to be China
+* ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
+* ³ TimeZone is assumed to be China
 
 
 # Additional sources with mandatory API key
@@ -159,5 +160,5 @@ From v4.5.0, you can combine your main weather source with other sources:
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
-¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
-² Not restricted but currently only works in Europe
+* ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
+* ² Not restricted but currently only works in Europe

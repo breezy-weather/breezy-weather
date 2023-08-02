@@ -46,7 +46,7 @@ class LocationHelper @Inject constructor(
                 throw ReverseGeocodingException()
             }
         } else {
-            location // returned as-is if no reverse geocoding source
+            currentLocation // returned as-is if no reverse geocoding source
         }
     }
 
@@ -80,7 +80,18 @@ class LocationHelper @Inject constructor(
                 location.copy(
                     latitude = result.latitude,
                     longitude = result.longitude,
-                    timeZone = TimeZone.getDefault()
+                    /*
+                     * Don’t keep old data as the user can have changed position
+                     * It avoids keeping old data from a reverse geocoding-compatible weather source
+                     * onto a weather source without reverse geocoding
+                     */
+                    timeZone = result.timeZone ?: TimeZone.getDefault(),
+                    country = result.country ?: "",
+                    countryCode = result.countryCode ?: "",
+                    province = result.province ?: "",
+                    provinceCode = result.provinceCode ?: "",
+                    city = result.city ?: "",
+                    district = result.district ?: ""
                 )
             }
     }

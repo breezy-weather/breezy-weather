@@ -83,6 +83,8 @@ alt="Get it on GitHub" align="center" height="80" />
   - AccuWeather
   - MET Norway
   - OpenWeatherMap
+  - Pirate Weather
+  - HERE (API key required)
   - Météo France
   - Mixed China sources
 </details>

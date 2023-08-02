@@ -387,7 +387,7 @@
     <string name="settings_location_access_precise_summaryOn">Активирано. Използват се както мрежата на устройството, така и GPS доставчиците.</string>
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
-    <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето</string>
+    <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето, default location search source</string>
     <string name="settings_weather_sources_current_location">Доставчик на прогноза за текущото местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>

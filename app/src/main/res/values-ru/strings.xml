@@ -407,7 +407,7 @@
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
-    <string name="settings_weather_sources_summary">Настройки провайдера погоды</string>
+    <string name="settings_weather_sources_summary">Настройки провайдера погоды, default location search source</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои Breezy Weather, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>

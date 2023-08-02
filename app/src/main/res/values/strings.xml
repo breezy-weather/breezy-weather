@@ -17,7 +17,7 @@
     <string name="alerts">Alerts</string>
     <string name="alerts_count">$ weather alerts</string>
     <!-- $ = alert count. -->
-    <string name="alerts_to_follow">Alerts to follow, tap here to see them.</string>
+    <string name="alerts_to_follow">Upcoming alerts, tap here to see them.</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Yda</string>
     <string name="short_today">Today</string>
@@ -210,14 +210,14 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-    <!-- Weather providers -->
+    <!-- Weather sources -->
     <string name="weather_data_by">Data by $</string>
     <string name="weather_air_quality_data_by">Air quality data by $</string>
     <string name="weather_allergen_data_by">Allergen data by $</string>
     <string name="weather_air_quality_and_allergen_data_by">Air quality and allergen data by $</string>
     <string name="weather_minutely_data_by">Minutely precipitations data by $</string>
     <string name="weather_alert_data_by">Alert data by $</string>
-    <!-- $ = weather data provider -->
+    <!-- $ = weather data source -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
@@ -225,9 +225,9 @@
     <string name="weather_api_limit_reached_title">API requests limit reached</string>
     <string name="weather_api_limit_reached_content">To workaround the limit, add your own API key.</string>
     <string name="weather_api_unauthorized_title">API access unauthorized</string>
-    <string name="weather_api_unauthorized_content">On some weather providers, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
+    <string name="weather_api_unauthorized_content">On some weather data sources, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
     <string name="weather_api_key_required_missing_title">Required API key missing</string>
-    <string name="weather_api_key_required_missing_content">To use this provider, you need to provide an API key.</string>
+    <string name="weather_api_key_required_missing_content">To use this source, you need to provide an API key.</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
     <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
@@ -250,10 +250,10 @@
     <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
     <string name="location_current">Current location</string>
     <string name="location_resident">Resident location</string>
-    <string name="location_search_weather_source">Weather provider</string>
-    <string name="location_search_change_weather_source">Change weather provider</string>
+    <string name="location_search_weather_source">Weather source</string>
+    <string name="location_search_change_weather_source">Change weather source</string>
     <string name="location_results_by">Location results by $</string>
-    <!-- $ = location provider -->
+    <!-- $ = location source -->
     <string name="location_message_added">Location added</string>
     <string name="location_message_deleted">Location deleted</string>
     <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
@@ -263,16 +263,16 @@
     <string name="location_message_failed_to_locate">Failed to find current location</string>
     <string name="location_message_permission_missing">Access location permission missing</string>
     <string name="location_message_permission_background_missing">Access location in background permission missing</string>
-    <string name="location_message_reverse_geocoding_failed">Weather provider failed to find a matching location</string>
+    <string name="location_message_reverse_geocoding_failed">Weather source failed to find a matching location</string>
     <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Select location provider</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Select location service</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “$”</string>
     <string name="location_search_placeholder">Search for a location…</string>
     <!-- Example: AccuWeather can’t find djglidfjg -->
     <string name="location_search_no_results">$1 can’t find $2</string>
-    <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another weather provider which may produce different location search results.</string>
+    <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another weather data source which may produce different location search results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <string name="location_resident_location">Resident location</string>
     <string name="location_resident_location_summaryOn">Enabled. Shown if within 20 km of current location, hidden otherwise.</string>
@@ -284,7 +284,7 @@
     <!-- Actions -->
     <string name="action_location_list">Location list</string>
     <string name="action_search">Search</string>
-    <string name="action_choose_weather_source">Choose weather provider</string>
+    <string name="action_choose_weather_source">Choose weather source</string>
     <string name="action_add_current_location">Add current location</string>
     <string name="action_add_from_map">Add from map</string>
     <string name="action_add_new_location">Add a new location</string>
@@ -453,7 +453,7 @@
     <string name="settings_background_updates_worker_info_running" translatable="false">Running</string>
     <!-- “Location” here means “Locating you”, check your Android settings to know the correct word -->
     <string name="settings_location">Location</string>
-    <string name="settings_location_summary">Location providers settings</string>
+    <string name="settings_location_summary">Location services settings</string>
     <string name="settings_location_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_location_service">Location service</string>
     <string name="settings_location_access_permission_already_granted">Permission already granted</string>
@@ -468,10 +468,11 @@
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
     <string name="settings_weather_source">Weather source</string>
     <string name="settings_weather_sources">Weather sources</string>
-    <string name="settings_weather_sources_summary">Weather data sources settings</string>
+    <string name="settings_weather_sources_summary">Weather data sources settings, default location search source</string>
     <string name="settings_weather_source_main">Main source</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources for this location</string>
     <string name="settings_weather_providers_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_weather_sources_default_location_search">Default location search source</string>
     <string name="settings_weather_sources_current_location">Weather source for current location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>
     <string name="settings_source_api_key">API key</string>
@@ -484,6 +485,7 @@
     <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
+    <string name="settings_source_geonames_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>
@@ -551,6 +553,7 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
     <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
+    <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
@@ -655,6 +658,7 @@
     <string name="notification_style_cities">Cities</string>
     <!-- About -->
     <string name="about_app">About app</string>
+    <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrix server</string>
     <string name="about_source_code">Source code</string>
     <string name="about_dependencies">Dependencies</string>
@@ -662,7 +666,7 @@
     <string name="about_translators">Translators</string>
     <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
     <string name="about_contribution_weather_source">Added support for new weather source(s)</string>
-    <!-- Providers specific terms -->
+    <!-- Sources specific terms -->
     <!-- Weather texts for Open-Meteo, based on WMO terms -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
     <string name="openmeteo_weather_text_clear_sky">Clear sky</string>

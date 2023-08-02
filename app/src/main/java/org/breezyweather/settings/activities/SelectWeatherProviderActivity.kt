@@ -17,7 +17,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.settings.compose.WeatherProvidersSettingsScreen
+import org.breezyweather.settings.compose.WeatherSourcesSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -58,9 +58,10 @@ class SelectWeatherProviderActivity : GeoActivity() {
                 startDestination = SettingsScreenRouter.WeatherProviders.route
             ) {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
-                    WeatherProvidersSettingsScreen(
+                    WeatherSourcesSettingsScreen(
                         context = this@SelectWeatherProviderActivity,
-                        mainWeatherSources = sourceManager.getConfiguredWeatherSources(),
+                        configurableSources = sourceManager.getConfigurableSources(),
+                        locationSearchSources = sourceManager.getConfiguredLocationSearchSources(),
                         paddingValues = paddings,
                     )
                 }

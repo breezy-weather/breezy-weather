@@ -286,44 +286,6 @@ fun convertSecondary(
 /**
  * Functions for debugging purposes (tracking NPE)
  */
-fun debugConvert(
-    location: Location?,
-    result: OpenMeteoLocationResult
-): Location {
-    return if (location != null && !location.province.isNullOrEmpty()
-        && location.city.isNotEmpty()
-        && !location.district.isNullOrEmpty()
-    ) {
-        Location(
-            cityId = result.id.toString(),
-            latitude = result.latitude,
-            longitude = result.longitude,
-            timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
-            city = location.city,
-            weatherSource = "openmeteo",
-            airQualitySource = location.airQualitySource,
-            allergenSource = location.allergenSource,
-            minutelySource = location.minutelySource,
-            alertSource = location.alertSource
-        )
-    } else {
-        Location(
-            cityId = result.id.toString(),
-            latitude = result.latitude,
-            longitude = result.longitude,
-            timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
-            city = result.name,
-            weatherSource = "openmeteo",
-            airQualitySource = location?.airQualitySource,
-            allergenSource = location?.allergenSource,
-            minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource
-        )
-    }
-}
-
 // Sometimes used in dev to make some null-safety checks
 // TODO: Should be moved to its own DebugWeatherService
 fun debugConvert(
@@ -331,7 +293,7 @@ fun debugConvert(
     weatherResult: OpenMeteoWeatherResult,
     airQualityResult: OpenMeteoAirQualityResult
 ): WeatherWrapper {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     if (weatherResult.daily != null) {
         for (i in 1 until weatherResult.daily.time.size) {
             val daily = Daily(date = Date(weatherResult.daily.time[i].times(1000)))
@@ -339,7 +301,7 @@ fun debugConvert(
         }
     }
 
-    val hourlyList: MutableList<HourlyWrapper> = ArrayList()
+    val hourlyList = mutableListOf<HourlyWrapper>()
     if (weatherResult.hourly != null) {
         for (i in weatherResult.hourly.time.indices) {
             // Add to the app only if starts in the current hour
