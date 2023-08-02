@@ -118,6 +118,22 @@ data class Location(
             return false
         }
 
+        if (airQualitySource != other.airQualitySource) {
+            return false
+        }
+
+        if (allergenSource != other.allergenSource) {
+            return false
+        }
+
+        if (minutelySource != other.minutelySource) {
+            return false
+        }
+
+        if (alertSource != other.alertSource) {
+            return false
+        }
+
         val thisWeather = weather
         val otherWeather = other.weather
         if (thisWeather == null && otherWeather == null) {

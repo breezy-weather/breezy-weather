@@ -108,7 +108,6 @@ private fun SecondarySourcesPreference(
     }
 
     if (dialogOpenState.value) {
-        val mainWeatherSource = sourceManager.getMainWeatherSource(location.weatherSource)!!
         val secondarySources = sourceManager.getSecondaryWeatherSources()
         val compatibleAirQualitySources = secondarySources.filter {
             it.id != location.weatherSource &&
