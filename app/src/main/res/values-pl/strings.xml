@@ -115,7 +115,7 @@
     <string name="location_dialog_failed_to_locate_title">Nie można poprawnie ustalić lokalizacji\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Włącz informacje o lokalizacji</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Wybierz dostawcę lokalizacji</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Wybierz usługę lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń “$”</string>
     <string name="widget_label_view_style">Wybierz styl</string>
     <string name="widget_label_show_widget_card">Kolor tła</string>
@@ -284,7 +284,7 @@
     <string name="settings_main_cards_title">Karty</string>
     <string name="settings_main_hourly_trends_title">Trendy godzinne</string>
     <string name="null_data_text">N/A</string>
-    <string name="location_search_weather_source">Dostawca usług pogodowych</string>
+    <string name="location_search_weather_source">Źródło danych pogodowych</string>
     <string name="widget_style_nano">Nano</string>
     <string name="settings_background_updates">Aktualizacje w tle</string>
     <string name="settings_widgets_notification_style_title">Styl</string>
@@ -445,11 +445,11 @@
     <string name="air_quality_pm_info_title">Cząstki stałe (PM2.5 i PM10)</string>
     <string name="air_quality_pm_explanations_consequences">Cząstki stałe są najbardziej szkodliwą formą zanieczyszczenia powietrza ze względu na ich zdolność do przenikania głęboko do płuc i mózgu z krwiobiegu, powodując problemy zdrowotne, takie jak choroby serca, choroby płuc i przedwczesną śmierć.</string>
     <string name="weather_data_by">Dane według $</string>
-    <string name="location_search_no_results_advice">Upewnij się, że wyszukiwanie jest napisane poprawnie i nie jest zbyt szczegółowe. Alternatywnie możesz wypróbować innego dostawcę pogody, który może zwrócić inne wyniki wyszukiwania lokalizacji.</string>
+    <string name="location_search_no_results_advice">Upewnij się, że wyszukiwanie jest napisane poprawnie i nie jest zbyt szczegółowe. Alternatywnie możesz wypróbować inne źródło danych pogodowych, które może zwrócić inne wyniki wyszukiwania lokalizacji.</string>
     <string name="location_none_added_yet_instructions">Nie dodano jeszcze żadnej lokalizacji. Dotknij ikony wyszukiwania, aby ręcznie dodać lokalizację, lub dodaj bieżącą lokalizację za pomocą pływającego przycisku.</string>
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
-    <string name="location_message_reverse_geocoding_failed">Dostawca pogody nie znalazł pasującej lokalizacji</string>
+    <string name="location_message_reverse_geocoding_failed">Źródło danych pogodowych nie znalazło pasującej lokalizacji</string>
     <string name="widget_material_you_current">Material You - Aktualnie</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optymalizacja baterii jest już wyłączona.</string>
     <string name="location_message_search_failed">Wyszukiwanie lokalizacji nie powiodło się</string>
@@ -461,7 +461,7 @@
     <string name="settings_background_updates_battery_optimization">Wyłącz optymalizację baterii</string>
     <string name="settings_background_updates_battery_optimization_summary">Jest to pierwsza rzecz, którą należy wypróbować, gdy nie otrzymujesz powiadomień lub widżety nie odświeżają się.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nie udało się otworzyć ustawień urządzenia.</string>
-    <string name="action_choose_weather_source">Wybierz dostawcę pogody</string>
+    <string name="action_choose_weather_source">Wybierz źródło danych pogodowych</string>
     <string name="location_search_no_results">$1 nie może znaleźć $2</string>
     <string name="action_add_current_location">Dodaj bieżącą lokalizację</string>
     <string name="action_add_from_map">Dodaj z mapy</string>
@@ -477,7 +477,7 @@
     <string name="allergen_birch">Brzoza</string>
     <string name="allergen_mugwort">Bylica</string>
     <string name="allergen_olive">Oliwka</string>
-    <string name="location_search_change_weather_source">Zmień dostawcę pogody</string>
+    <string name="location_search_change_weather_source">Zmień źródło danych pogodowych</string>
     <string name="location_message_permission_background_missing">Brak pozwolenia na dostęp do lokalizacji w tle</string>
     <string name="dialog_permissions_notification_content">Dotknij tutaj, aby włączyć powiadomienia o alertach pogodowych, lub zdecyduj później w Ustawieniach.</string>
     <string name="location_results_by">Wyniki lokalizacji według $</string>
@@ -509,7 +509,7 @@
     <string name="weather_air_quality_data_by">Dane dotyczące jakości powietrza według $</string>
     <string name="weather_allergen_data_by">Dane dotyczące alergenów według $</string>
     <string name="weather_air_quality_and_allergen_data_by">Dane dotyczące jakości powietrza i alergenów według $</string>
-    <string name="weather_minutely_data_by">Minutowe dane dotyczące opadów według $</string>
+    <string name="weather_minutely_data_by">Dane dotyczące opadów minuta po minucie według $</string>
     <string name="weather_alert_data_by">Dane alertów według $</string>
     <string name="weather_message_secondary_data_refresh_failed">Odświeżanie danych pogodowych dla dodatkowego źródła pogody nie powiodło się</string>
     <string name="weather_api_limit_reached_content">Aby obejść ten limit, dodaj własny klucz API.</string>
@@ -518,12 +518,12 @@
     <string name="ephemeris_sunset_at">Zachód słońca o $</string>
     <string name="ephemeris_moonrise_at">Wschód księżyca o $</string>
     <string name="dialog_permissions_location_content">Breezy Weather musi zbierać informacje o Twojej lokalizacji na pierwszym planie lub w tle, aby dostarczać dane pogodowe dla Twojej bieżącej lokalizacji. W tym celu poprosimy o pewne uprawnienia. Informacje o Twojej lokalizacji będą wykorzystywane wyłącznie do uzyskiwania danych pogodowych w Twojej bieżącej lokalizacji. Jeśli nie chcesz udostępniać informacji o swojej lokalizacji, możesz odrzucić te wymagania i ręcznie ustawić swoją lokalizację przez stronę zarządzania.</string>
-    <string name="weather_api_unauthorized_content">W przypadku niektórych dostawców pogody musisz podać własny klucz API. Jeśli już go podałeś, sprawdź ponownie podany klucz API.</string>
+    <string name="weather_api_unauthorized_content">W przypadku niektórych źródeł danych pogodowych musisz podać własny klucz API. Jeśli już go podałeś, sprawdź ponownie podany klucz API.</string>
     <string name="weather_api_key_required_missing_title">Brak wymaganego klucza API</string>
-    <string name="weather_api_key_required_missing_content">Aby korzystać z tego dostawcy, musisz podać klucz API.</string>
+    <string name="weather_api_key_required_missing_content">Aby korzystać z tego źródła, musisz podać klucz API.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrukcje specyficzne dla producentów</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Niektórzy producenci mają dodatkowe ograniczenia aplikacji, które zabijają usługi działające w tle. Witryna Don’t kill my app! zawiera informacje o tym, jak to naprawić.</string>
-    <string name="settings_location_summary">Ustawienia dostawców lokalizacji</string>
+    <string name="settings_location_summary">Ustawienia usług lokalizacji</string>
     <string name="temperature_degree_day_heating">Stopień ogrzewania</string>
     <string name="temperature_degree_day_cooling">Stopień chłodzenia</string>
     <string name="air_quality_o3_info_origin">Powstaje w wyniku reakcji fotochemicznych z zanieczyszczeniami, takimi jak lotne związki organiczne, tlenek węgla i tlenki azotu (NOₓ) emitowane przez pojazdy i przemysł. Ze względu na charakter fotochemiczny najwyższe poziomy ozonu obserwuje się w okresach słonecznej pogody.</string>
@@ -547,7 +547,7 @@
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">Marznący deszcz o niewielkim nasileniu</string>
     <string name="unit_mgpcum_voice">Miligramów na metr sześcienny</string>
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest zarówno sieć urządzenia, jak i dostawcy GPS.</string>
-    <string name="settings_weather_sources_summary">Ustawienia źródeł danych pogodowych</string>
+    <string name="settings_weather_sources_summary">Ustawienia źródeł danych pogodowych, domyślne źródło wyszukiwania lokalizacji</string>
     <string name="settings_main_summary">Kolejność kart, wyświetlane elementy, animacje</string>
     <string name="settings_main_header_details_title">Szczegóły w nagłówku</string>
     <string name="settings_notifications_summary">Alerty pogodowe, opady, prognoza pogody</string>
@@ -562,7 +562,7 @@
     <string name="unit_mmph_voice">Milimetrów na godzinę</string>
     <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
     <string name="settings_widgets_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
-    <string name="settings_location_access_background_summaryOff">Włącz opcję “Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
+    <string name="settings_location_access_background_summaryOff">Włącz opcję „Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
     <string name="settings_weather_sources_current_location">Źródło pogody dla bieżącej lokalizacji</string>
     <string name="settings_units_summary">Temperatura, opady, odległość, prędkość, ciśnienie</string>
     <string name="settings_main_cards_other_element_animations_switch">Animacje innych elementów</string>
@@ -618,7 +618,7 @@
     <string name="air_quality_co_info_origin">Powstaje w wyniku niecałkowitego spalania paliw zawierających węgiel, takich jak drewno, benzyna, węgiel, gaz ziemny i nafta w prostych piecach, kominkach, lampach knotowych, piecach, kominkach. Głównym źródłem tlenku węgla (CO) w otaczającym powietrzu są pojazdy silnikowe.</string>
     <string name="air_quality_co_info_introduction">Tlenek węgla (CO) to trujący, łatwopalny gaz, który jest bezbarwny, bezwonny, niedrażniący i nie ma smaku.</string>
     <string name="settings_widgets">Widżety i animowana tapeta</string>
-    <string name="minutely_precipitations">Opady minutowo</string>
+    <string name="minutely_precipitations">Opady minuta po minucie</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć alerty, które nadejdą.</string>
     <string name="air_quality_o3_info_title">Ozon na poziomie gruntu (O₃)</string>
     <string name="settings_widgets_section_widgets_in_use">Widżety w użyciu</string>
@@ -628,4 +628,8 @@
     <string name="action_save">Zapisz</string>
     <string name="settings_weather_source_main">Główne źródło</string>
     <string name="settings_weather_sources_per_location_summary">Dostosuj źródła danych pogodowych dla tej lokalizacji</string>
+    <string name="message_parsing_error_content">Upewnij się, że zaktualizowałeś do najnowszej wersji aplikacji. Serwer może być tymczasowo nie dostępny, w tym przypadku spróbuj ponownie później. Jeśli problem się utrwala, proszę o wygenerowanie dziennika crasha z ustawień debugowania i zgłoszenie problemu na GitHubie.</string>
+    <string name="settings_weather_sources_default_location_search">Domyślne źródło wyszukiwania lokalizacji</string>
+    <string name="about_privacy_policy">Polityka prywatności</string>
+    <string name="about_contact">Kontakt</string>
 </resources>
