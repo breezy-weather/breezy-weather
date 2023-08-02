@@ -438,7 +438,7 @@
     <string name="location_search_no_results">$1 無法找到 $2</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_background_updates_worker_info_summary">最後運行：$</string>
-    <string name="settings_weather_sources">天氣提供商</string>
+    <string name="settings_weather_sources">天氣數據源</string>
     <string name="unit_kelvin_short">K</string>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">小凍雨</string>
     <string name="uv_index_0_2">低</string>
@@ -547,8 +547,8 @@
     <string name="weather_air_quality_data_by">空氣質量數據來源 $</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 提供商均被使用。</string>
-    <string name="settings_weather_source">天氣提供商</string>
-    <string name="settings_weather_sources_current_location">當前位置的天氣提供商</string>
+    <string name="settings_weather_source">天氣數據源</string>
+    <string name="settings_weather_sources_current_location">當前位置的天氣數據源</string>
     <string name="settings_source_default_value">默認（不更改）</string>
     <string name="weather_source_accu_preference_hours_72">72小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>
@@ -623,4 +623,8 @@
     <string name="settings_location_summary">位置提供商設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
     <string name="about_dependencies">依賴</string>
+    <string name="minutely_precipitations">分鐘降水量</string>
+    <string name="action_save">保存</string>
+    <string name="settings_weather_sources_per_location_summary">自定義該位置的天氣數據源</string>
+    <string name="settings_weather_source_main">主要數據源</string>
 </resources>
