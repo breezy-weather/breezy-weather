@@ -67,6 +67,7 @@ android {
         it.buildConfigField "String", "HERE_KEY", "\"${properties.getProperty("breezy.here.key") ?: ""}\""
         it.buildConfigField "String", "MF_WSFT_JWT_KEY", "\"${properties.getProperty("breezy.mf.jwtKey") ?: ""}\""
         it.buildConfigField "String", "MF_WSFT_KEY", "\"${properties.getProperty("breezy.mf.key") ?: ""}\""
+        it.buildConfigField "String", "MS_AZURE_KEY", "\"${properties.getProperty("breezy.msazureweather.key") ?: ""}\""
         it.buildConfigField "String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
         it.buildConfigField "String", "PIRATE_WEATHER_KEY", "\"${properties.getProperty("breezy.pirateweather.key") ?: ""}\""
     }
