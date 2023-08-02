@@ -67,7 +67,7 @@ private class TranslatorItem(
 
 class AboutActivity : GeoActivity() {
 
-    private val aboutAppLinks = arrayOf(
+    private val contactLinks = arrayOf(
         AboutAppLinkItem(
             iconId = R.drawable.ic_github,
             titleId = R.string.about_source_code,
@@ -76,12 +76,6 @@ class AboutActivity : GeoActivity() {
                 this@AboutActivity,
                 "https://github.com/breezy-weather/breezy-weather"
             )
-        },
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_contract,
-            titleId = R.string.about_dependencies
-        ) {
-            IntentHelper.startDependenciesActivity(this@AboutActivity)
         },
         AboutAppLinkItem(
             iconId = R.drawable.ic_forum,
@@ -93,6 +87,21 @@ class AboutActivity : GeoActivity() {
             )
         },
     )
+    private val aboutAppLinks = arrayOf(
+        AboutAppLinkItem(
+            iconId = R.drawable.ic_shield_lock,
+            titleId = R.string.about_privacy_policy
+        ) {
+            IntentHelper.startPrivacyPolicyActivity(this@AboutActivity)
+        },
+        AboutAppLinkItem(
+            iconId = R.drawable.ic_contract,
+            titleId = R.string.about_dependencies
+        ) {
+            IntentHelper.startDependenciesActivity(this@AboutActivity)
+        },
+    )
+
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", "https://github.com/papjul"),
         ContributorItem("WangDaYeeeeee", "https://github.com/WangDaYeeeeee", R.string.about_contribution_WangDaYeeeeee),
@@ -224,6 +233,17 @@ class AboutActivity : GeoActivity() {
             ) {
                 item {
                     Header()
+                    SectionTitle(stringResource(R.string.about_contact))
+                }
+                items(contactLinks) { item ->
+                    AboutAppLink(
+                        iconId = item.iconId,
+                        title = stringResource(item.titleId),
+                        onClick = item.onClick,
+                    )
+                }
+
+                item {
                     SectionTitle(stringResource(R.string.about_app))
                 }
                 items(aboutAppLinks) { item ->

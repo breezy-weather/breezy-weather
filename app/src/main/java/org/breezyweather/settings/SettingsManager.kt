@@ -2,6 +2,7 @@ package org.breezyweather.settings
 
 import android.content.Context
 import org.breezyweather.BreezyWeather
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.*
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
@@ -11,6 +12,7 @@ import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.sources.SourceManager
 
 class SettingsChangedMessage
 
@@ -117,7 +119,13 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("location_service", "native") ?: ""
+        get() = config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
+    var locationSearchSource: String
+        set(value) {
+            config.edit().putString("location_search_source", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("location_search_source", null) ?: BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE
 
     // unit.
     var temperatureUnit: TemperatureUnit

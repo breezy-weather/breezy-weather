@@ -186,10 +186,11 @@
 
     <string name="locations">Emplacements</string>
     <string name="location_none_added_yet_instructions">Aucun emplacement ajouté pour l’instant. Veuillez appuyer sur l’icône de recherche pour ajouter manuellement un emplacement, ou ajoutez votre position actuelle depuis le bouton flottant.</string>
-    <string name="location_search_weather_source">Fournisseur météo</string>
-    <string name="location_search_change_weather_source">Changer le fournisseur météo</string>
+    <string name="location_search_weather_source">Source météo</string>
+    <string name="location_search_change_weather_source">Changer la source météo</string>
 
     <string name="about_app">À propos</string>
+    <string name="about_contact">Contact</string>
     <string name="about_translators">Traducteurs</string>
 
     <!-- Date format strings. -->
@@ -215,7 +216,7 @@
     <string name="location_message_search_failed">Échec de recherche d’emplacements</string>
     <string name="location_message_failed_to_locate">Échec de géolocalisation</string>
     <string name="location_message_permission_missing">Permission d’accéder à la position manquante</string>
-    <string name="location_message_reverse_geocoding_failed">Le fournisseur météo ne reconnaît pas votre emplacement</string>
+    <string name="location_message_reverse_geocoding_failed">La source météo ne reconnaît pas votre emplacement</string>
     <string name="location_message_permission_background_missing">Permission d’accéder à la position en arrière-plan manquante</string>
     <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
     <string name="weather_message_secondary_data_refresh_failed">Échec d’actualisation des données météo d’une source secondaire</string>
@@ -223,14 +224,14 @@
     <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Vérifiez les permissions de localisation</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activez les informations de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Sélectionnez un fournisseur de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Sélectionnez un service de localisation</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « $ »</string>
     <string name="weather_api_limit_reached_title">Limite de requêtes API atteinte</string>
     <string name="weather_api_limit_reached_content">Pour contourner la limite, ajoutez votre propre clé API.</string>
     <string name="weather_api_unauthorized_title">Accès API non autorisé</string>
-    <string name="weather_api_unauthorized_content">Pour certains fournisseurs météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
+    <string name="weather_api_unauthorized_content">Pour certaines sources météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="weather_api_key_required_missing_title">Clé API requise manquante</string>
-    <string name="weather_api_key_required_missing_content">Pour utiliser ce fournisseur, vous devez fournir une clé API.</string>
+    <string name="weather_api_key_required_missing_content">Pour utiliser cette source, vous devez fournir une clé API.</string>
     <string name="widget_label_view_style">Apparence</string>
     <string name="widget_label_show_widget_card">Couleur d’arrière-plan</string>
     <string name="widget_label_show_widget_card_alpha">Transparence</string>
@@ -293,7 +294,7 @@
     <string name="location_search_placeholder">Rechercher une localisation…</string>
     <string name="location_current_not_found_yet">Pas encore localisé…</string>
     <string name="location_search_no_results">$1 n’a pu trouver aucun résultat pour $2</string>
-    <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer un autre fournisseur météo qui peut produire des résultats de recherche d’emplacements différents.</string>
+    <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de données météo qui peut produire des résultats de recherche d’emplacements différents.</string>
 
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
 
@@ -336,7 +337,7 @@
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
     <string name="settings_weather_source">Source météo</string>
     <string name="settings_weather_sources">Sources météo</string>
-    <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
+    <string name="settings_weather_sources_summary">Paramètres des sources de données météo, source de recherche d’emplacements par défaut</string>
     <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>
     <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>
@@ -450,7 +451,8 @@
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
     <string name="settings_background_updates_worker_info_summary">Dernière exécution : $</string>
     <string name="settings_location">Localisation</string>
-    <string name="settings_weather_sources_current_location">Fournisseur météo pour ma localisation</string>
+    <string name="settings_weather_sources_default_location_search">Source de recherche d’emplacements par défaut</string>
+    <string name="settings_weather_sources_current_location">Source météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
@@ -503,6 +505,7 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre de statut</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
+    <string name="about_privacy_policy">Politique de confidentialité</string>
     <string name="settings_debug">Débogage</string>
     <string name="settings_debug_summary">Journaux d’incident</string>
     <string name="settings_debug_dump_crash_logs_title">Exporter les journaux d’incident</string>
@@ -672,7 +675,7 @@
     <string name="unit_ppcm_voice">Par mètre cube</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Serveur Matrix</string>
-    <string name="action_choose_weather_source">Choisir le fournisseur météo</string>
+    <string name="action_choose_weather_source">Choisir la source des données météo</string>
 
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>

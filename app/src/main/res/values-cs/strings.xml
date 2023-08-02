@@ -344,7 +344,7 @@
     <string name="settings_location_access_background_title">Přístup k poloze na pozadí</string>
     <string name="settings_location_access_switch_summaryOn">Povoleno. Jako umístění můžete přidat svou aktuální polohu.</string>
     <string name="settings_weather_sources">Poskytovatelé počasí</string>
-    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí</string>
+    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí, default location search source</string>
     <string name="settings_weather_sources_current_location">Poskytovatel počasí pro aktuální polohu</string>
     <string name="settings_location_access_background_summaryOn">Povoleno. Aplikace bude moci na pozadí obnovovat údaje o počasí pro vaši aktuální polohu.</string>
     <string name="settings_location_access_background_summaryOff">Povolte možnost „Povolit po celou dobu“, chcete-li mít aktualizace na pozadí pro aktuální polohu.</string>

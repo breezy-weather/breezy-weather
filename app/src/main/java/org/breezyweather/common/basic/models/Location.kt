@@ -201,6 +201,15 @@ data class Location(
         }
     }
 
+    val airQualitySourceNotNull: String
+        get() = if (airQualitySource.isNullOrEmpty()) weatherSource else airQualitySource
+    val allergenSourceNotNull: String
+        get() = if (allergenSource.isNullOrEmpty()) weatherSource else allergenSource
+    val minutelySourceNotNull: String
+        get() = if (minutelySource.isNullOrEmpty()) weatherSource else minutelySource
+    val alertSourceNotNull: String
+        get() = if (alertSource.isNullOrEmpty()) weatherSource else alertSource
+
     companion object {
 
         const val CURRENT_POSITION_ID = "CURRENT_POSITION"

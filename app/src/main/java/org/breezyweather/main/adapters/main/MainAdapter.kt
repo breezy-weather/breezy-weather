@@ -115,7 +115,7 @@ class MainAdapter(
                     mProvider!!,
                     mListAnimationEnabled,
                     mItemAnimationEnabled,
-                    sourceManager.getWeatherSource(mLocation!!.weatherSource)
+                    sourceManager
                 )
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)

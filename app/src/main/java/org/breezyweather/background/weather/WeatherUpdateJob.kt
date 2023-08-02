@@ -37,6 +37,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
@@ -217,6 +218,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                                                         }
                                                     }
                                                 }
+                                                is ApiLimitReachedException -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
                                                 is SocketTimeoutException -> context.getString(RequestErrorType.SERVER_TIMEOUT.shortMessage)
                                                 is ApiKeyMissingException -> context.getString(RequestErrorType.API_KEY_REQUIRED_MISSING.shortMessage)
                                                 is InvalidLocationException -> context.getString(RequestErrorType.INVALID_LOCATION.shortMessage)

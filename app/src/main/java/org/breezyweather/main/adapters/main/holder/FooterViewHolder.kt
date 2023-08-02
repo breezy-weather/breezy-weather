@@ -29,10 +29,12 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.Source
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.main.MainActivity
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -46,7 +48,7 @@ class FooterViewHolder(
     fun onBindView(
         context: Context, location: Location, provider: ResourceProvider,
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean,
-        mainWeatherSource: MainWeatherSource? // TODO: Pass list of credits as parameter instead of making the ViewHolder calculate everything
+        sourceManager: SourceManager
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
@@ -54,26 +56,97 @@ class FooterViewHolder(
             .weatherThemeDelegate
             .getHomeCardMargins(context).toFloat()
 
+        val distinctSources = mutableMapOf<String, Source?>()
+        listOf(
+            location.weatherSource,
+            location.airQualitySourceNotNull,
+            location.allergenSourceNotNull,
+            location.minutelySourceNotNull,
+            location.alertSourceNotNull
+        ).distinct().forEach {
+            distinctSources[it] = sourceManager.getSource(it)
+        }
+
+        val credits = mutableMapOf<String, String?>()
+        credits["weather"] = if (distinctSources[location.weatherSource] is MainWeatherSource) {
+            (distinctSources[location.weatherSource] as MainWeatherSource).weatherAttribution
+        } else null
+        credits["minutely"] = if (distinctSources[location.minutelySource] is SecondaryWeatherSource
+            && (distinctSources[location.minutelySource] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
+            (distinctSources[location.minutelySource] as SecondaryWeatherSource).minutelyAttribution
+        } else null
+        credits["alert"] = if (distinctSources[location.alertSource] is SecondaryWeatherSource
+            && (distinctSources[location.alertSource] as SecondaryWeatherSource).alertAttribution != credits["weather"]) {
+            (distinctSources[location.alertSource] as SecondaryWeatherSource).alertAttribution
+        } else null
+        credits["airQuality"] = if (distinctSources[location.airQualitySource] is SecondaryWeatherSource
+            && (distinctSources[location.airQualitySource] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
+            (distinctSources[location.airQualitySource] as SecondaryWeatherSource).airQualityAttribution
+        } else null
+        credits["allergen"] = if (distinctSources[location.allergenSource] is SecondaryWeatherSource
+            && (distinctSources[location.allergenSource] as SecondaryWeatherSource).allergenAttribution != credits["weather"]) {
+            (distinctSources[location.allergenSource] as SecondaryWeatherSource).allergenAttribution
+        } else null
+
         val creditsText = StringBuilder()
-        creditsText.append(
-            context.getString(R.string.weather_data_by)
-                .replace("$", mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
-        )
-        if (location.airQualitySource.isNullOrEmpty()) {
-            if (mainWeatherSource is SecondaryWeatherSource
-                && mainWeatherSource.weatherAttribution != mainWeatherSource.allergenAttribution
-            ) {
-                mainWeatherSource.allergenAttribution?.let {
-                    creditsText.append("\n")
-                        .append(
+        if (location.weather != null) {
+            creditsText.append(
+                context.getString(R.string.weather_data_by)
+                    .replace("$", credits["weather"] ?: context.getString(R.string.null_data_text))
+            )
+            if (location.weather.minutelyForecast.isNotEmpty()
+                && !credits["minutely"].isNullOrEmpty()) {
+                creditsText.append(
+                    "\n" +
+                    context.getString(R.string.weather_minutely_data_by)
+                        .replace("$", credits["minutely"]!!)
+                )
+            }
+            if (location.weather.alertList.isNotEmpty()
+                && !credits["minutely"].isNullOrEmpty()) {
+                creditsText.append(
+                    "\n" +
+                    context.getString(R.string.weather_alert_data_by)
+                        .replace("$", credits["alert"]!!)
+                )
+            }
+            // Open-Meteo has a lengthy credits so we merge air quality and allergen identical credit in that case
+            if (!credits["airQuality"].isNullOrEmpty()) {
+                if (!credits["allergen"].isNullOrEmpty()) {
+                    if (credits["airQuality"] == credits["allergen"]) {
+                        creditsText.append(
+                            "\n" +
                             context.getString(R.string.weather_air_quality_and_allergen_data_by)
-                                .replace("$", it)
+                                .replace("$", credits["airQuality"]!!)
                         )
+                    } else {
+                        creditsText.append(
+                            "\n" +
+                            context.getString(R.string.weather_air_quality_data_by)
+                                .replace("$", credits["airQuality"]!!) +
+                            "\n" +
+                            context.getString(R.string.weather_allergen_data_by)
+                                .replace("$", credits["allergen"]!!)
+                        )
+                    }
+                } else {
+                    creditsText.append(
+                        "\n" +
+                        context.getString(R.string.weather_air_quality_data_by)
+                            .replace("$", credits["airQuality"]!!)
+                    )
+                }
+            } else {
+                if (!credits["allergen"].isNullOrEmpty()) {
+                    creditsText.append(
+                        "\n" +
+                        context.getString(R.string.weather_allergen_data_by)
+                            .replace("$", credits["allergen"]!!)
+                    )
                 }
             }
-        } else {
-            // TODO
         }
+
 
         composeView.setContent {
             BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
