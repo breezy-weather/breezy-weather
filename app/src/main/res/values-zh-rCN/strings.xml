@@ -454,7 +454,7 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
-    <string name="settings_weather_sources_current_location">当前位置使用的天气数据提供商</string>
+    <string name="settings_weather_sources_current_location">当前位置的天气数据源</string>
     <string name="location_search_weather_source">天气数据提供方</string>
     <string name="location_message_permission_missing">缺少访问位置的权限</string>
     <string name="settings_icon_packs_title">图标包</string>
@@ -501,7 +501,7 @@
     <string name="settings_location_access_background_summaryOn">已启用。应用将能够在后台更新你当前位置的天气数据。</string>
     <string name="settings_location_access_background_summaryOff">请设置为“始终允许”来启用后台更新当前位置的功能。</string>
     <string name="settings_location_access_precise_summaryOn">启用。同时使用设备的网络和 GPS 定位。</string>
-    <string name="settings_weather_sources">天气数据提供商</string>
+    <string name="settings_weather_sources">天气数据源</string>
     <string name="weather_source_accu_preference_days_10">十天</string>
     <string name="settings_location_access_switch_summaryOff">如果你想要将当前定位作为一个位置的话，请允许该权限。</string>
     <string name="location_search_change_weather_source">更改天气数据提供方</string>
@@ -613,7 +613,7 @@
     <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
     <string name="location_resident_location">常驻位置</string>
     <string name="location_resident_location_summaryOn">已启用。 如果距离当前位置 20 公里以内则显示，否则隐藏。</string>
-    <string name="settings_weather_source">天气数据提供方</string>
+    <string name="settings_weather_source">天气数据源</string>
     <string name="action_delete">删除</string>
     <string name="weather_air_quality_data_by">空气质量数据由 $ 提供</string>
     <string name="weather_minutely_data_by">每分钟降水量数据由 $ 提供</string>
@@ -624,4 +624,8 @@
     <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
     <string name="wind_gusts">阵风</string>
     <string name="about_dependencies">依赖</string>
+    <string name="action_save">保存</string>
+    <string name="settings_weather_source_main">主要来源</string>
+    <string name="settings_weather_sources_per_location_summary">为当前位置自定义天气数据源</string>
+    <string name="minutely_precipitations">分钟降水量</string>
 </resources>
