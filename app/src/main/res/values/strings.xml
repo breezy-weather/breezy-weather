@@ -275,7 +275,8 @@
     <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another weather data source which may produce different location search results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <string name="location_resident_location">Resident location</string>
-    <string name="location_resident_location_summaryOn">Enabled. Hidden when within 20 km of current location.</string>
+    <!-- $ = 20 km, will be replaced by the selected unit by the user -->
+    <string name="location_resident_location_summaryOn">Enabled. Hidden when within $ of current location.</string>
     <string name="location_resident_location_summaryOff">Disabled. Location always available.</string>
     <!-- To be deprecated -->
     <string name="location_resident_message">Set as resident city</string>

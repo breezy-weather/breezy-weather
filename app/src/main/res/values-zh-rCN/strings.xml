@@ -627,7 +627,7 @@
     <string name="settings_weather_source_main">主要来源</string>
     <string name="settings_weather_sources_per_location_summary">为当前位置自定义天气数据源</string>
     <string name="minutely_precipitations">每分钟降水量</string>
-    <string name="location_resident_location_summaryOn">已启用。当距离您20km以内时隐藏。</string>
+    <string name="location_resident_location_summaryOn">已启用。当距离您$以内时隐藏。</string>
     <string name="settings_weather_sources_default_location_search">默认位置搜索源</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contact">联络方式</string>

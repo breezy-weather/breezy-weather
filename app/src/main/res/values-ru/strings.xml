@@ -624,7 +624,7 @@
     <string name="action_save">Сохранить</string>
     <string name="settings_weather_source_main">Основной источник</string>
     <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде для этого местоположения</string>
-    <string name="location_resident_location_summaryOn">Включено. Скрыто когда на расстоянии больше 20 км от текущего местоположения.</string>
+    <string name="location_resident_location_summaryOn">Включено. Скрыто когда на расстоянии больше $ от текущего местоположения.</string>
     <string name="settings_weather_sources_default_location_search">Сервис поиска местоположения по умолчанию</string>
     <string name="about_privacy_policy">Политика конфиденциальности</string>
     <string name="about_contact">Контакты</string>

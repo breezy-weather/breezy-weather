@@ -57,11 +57,16 @@ fun LocationPreference(
             }
         } else {
             SwitchPreferenceView(
-                titleId = R.string.location_resident_location,
+                title = stringResource(R.string.location_resident_location),
                 iconId = R.drawable.ic_tag_plus,
-                summaryOnId = R.string.location_resident_location_summaryOn,
-                summaryOffId = R.string.location_resident_location_summaryOff,
+                summary = { context, it ->
+                    context.getString(if (it) {
+                        R.string.location_resident_location_summaryOn
+                    } else R.string.location_resident_location_summaryOff)
+                        .replace("$", "20 km") // TODO: Convert
+                },
                 checked = location.isResidentPosition,
+                card = false,
                 onValueChanged = {
                     val newLocation = location.copy(
                         isResidentPosition = it
@@ -73,7 +78,6 @@ fun LocationPreference(
                         .with(Location::class.java)
                         .postValue(newLocation)
                 },
-                card = false
             )
         }
         SecondarySourcesPreference(
