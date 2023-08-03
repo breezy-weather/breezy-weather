@@ -110,7 +110,7 @@
     <!-- feedback. -->
     <string name="notification_location_in_background">正在後台進行定位</string>
     <string name="dialog_permissions_location_title">獲取位置信息</string>
-    <string name="dialog_permissions_location_content">微風天氣 需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
+    <string name="dialog_permissions_location_content">Breezy天氣 需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
     <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
     <string name="dialog_permissions_location_background_content">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設定爲“始终允许”。</string>
     <string name="location_message_failed_to_locate">無法找到當前位置</string>
