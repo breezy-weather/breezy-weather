@@ -114,12 +114,12 @@
     <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
     <string name="dialog_permissions_location_background_content">爲了讓應用程序可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設定爲“始终允许”。</string>
     <string name="location_message_failed_to_locate">無法找到當前位置</string>
-    <string name="weather_message_data_refresh_failed">獲取天氣數據失敗</string>
+    <string name="weather_message_data_refresh_failed">天氣數據刷新失敗</string>
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">檢查位置權限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">開啟位置信息</string>
     <string name="location_dialog_failed_to_locate_action_select_source">選擇定位服務</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">手動添加城市並刪除“$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">手動添加位置並刪除“$”</string>
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
     <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
@@ -174,10 +174,10 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">今日月相，明日，……，4天後</string>
     <string name="widget_live_wallpaper_weather_kind">天氣</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
-    <string name="location_message_added">添加成功</string>
-    <string name="location_message_deleted">刪除成功</string>
+    <string name="location_message_added">位置添加成功</string>
+    <string name="location_message_deleted">位置刪除成功</string>
     <string name="location_message_list_cannot_be_empty">位置列表不能為空</string>
-    <string name="location_search_placeholder">鍵入一個地址…</string>
+    <string name="location_search_placeholder">鍵入一個位置…</string>
     <string name="location_current_not_found_yet">尚未找到當前位置…</string>
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
     <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
@@ -391,7 +391,7 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣數據源無法找到匹配的位置</string>
     <string name="action_undo">撤消</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">模擬時鐘</string>
     <string name="settings_background_updates_refresh_title">刷新頻率</string>
     <string name="settings_background_updates_refresh_never">從不</string>
     <string name="settings_background_updates_section_troubleshoot">故障排除</string>
@@ -436,7 +436,7 @@
     <string name="weather_source_accu_preference_hours_24">24小時</string>
     <string name="location_none_added_yet_instructions">尚未添加位置。請點擊搜尋圖標手動添加位置，或通過浮動按鈕添加您當前的位置。</string>
     <string name="location_search_no_results">$1 無法找到 $2</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">無襯線體（濃體）</string>
     <string name="settings_background_updates_worker_info_summary">最後運行：$</string>
     <string name="settings_weather_sources">天氣數據源</string>
     <string name="unit_kelvin_short">K</string>
@@ -450,7 +450,7 @@
     <string name="location_search_change_weather_source">更改天氣數據源</string>
     <string name="action_choose_weather_source">選擇天氣數據源</string>
     <string name="location_search_no_results_advice">確保您的搜尋拼寫正確並且不要太具體。或者，您可以嘗試其他天氣數據源，這可能會產生不同的位置搜尋結果。</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">無襯線體</string>
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOff">如果您無法獲取位置，請啟用“使用精確位置”。</string>
     <string name="settings_source_api_key">API密鑰</string>
@@ -544,7 +544,7 @@
     <string name="allergen_level_5">甚高</string>
     <string name="weather_data_by">數據來源 $</string>
     <string name="weather_air_quality_data_by">空氣質量數據來源 $</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 定位均被使用。</string>
     <string name="settings_weather_source">天氣數據源</string>
     <string name="settings_weather_sources_current_location">當前位置的天氣數據源</string>
@@ -566,7 +566,7 @@
     <string name="air_quality_pm_explanations_origin">有些顆粒物是自然產生的，源自火山、沙塵暴、森林和草原火災、活植被和海浪。 人類活動也會產生大量顆粒物，例如交通和運輸、工業活動、發電廠、建築工地、廢物燃燒或田野。</string>
     <string name="air_quality_o3_info_introduction">地面臭氧（O₃）是煙霧的主要成分。 儘管分子相同，但地面臭氧可能對人類健康有害，而平流層臭氧可以保護地球免受過量紫外線輻射。</string>
     <string name="location_message_search_failed">位置搜尋失敗</string>
-    <string name="settings_weather_sources_summary">天氣數據源設定, 默認位置搜尋源</string>
+    <string name="settings_weather_sources_summary">天氣數據源設定、默認位置搜尋源</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">中度毛毛雨</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
@@ -617,7 +617,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">一些製造商有額外的應用程序限制，會終止後台服務。Don’t kill my app! 網站有有關如何修復它的信息。</string>
     <string name="settings_background_updates_worker_info_title">進程信息</string>
     <string name="settings_units_summary">溫度、降水量、距離、速度、壓力</string>
-    <string name="about_contribution_WangDaYeeeeee">原始項目 幾何天氣 的開發者</string>
+    <string name="about_contribution_WangDaYeeeeee">原始項目 幾何天氣 開發者</string>
     <string name="settings_location">定位</string>
     <string name="settings_location_summary">定位服務設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
