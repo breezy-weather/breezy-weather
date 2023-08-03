@@ -400,7 +400,6 @@
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="location_resident_location">Local de residência</string>
-    <string name="location_resident_location_summaryOn">Ativado. Mostrado se estiver dentro de 20 km da localização atual, oculto caso contrário.</string>
     <string name="action_delete">Apagar</string>
     <string name="widget_style_tile">Bloco</string>
     <string name="weather_source_openweather_version_2_5">Versão 2.5</string>

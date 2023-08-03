@@ -600,7 +600,6 @@
     <string name="allergen_level_1">Много ниско</string>
     <string name="allergen_level_4">Високо</string>
     <string name="allergen_level_5">Много високо</string>
-    <string name="location_resident_location_summaryOn">Активирано. Показва се, ако е в рамките на 20 км от текущото местоположение, в противен случай е скрито.</string>
     <string name="location_resident_location">Местоположение на пребиваване</string>
     <string name="location_resident_location_summaryOff">Деактивирано. Местоположението е винаги налично.</string>
     <string name="settings_weather_source">Доставчик на времето</string>

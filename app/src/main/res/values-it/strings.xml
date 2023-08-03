@@ -572,7 +572,6 @@
     <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Pioggia gelata, forte intensità</string>
     <string name="openmeteo_weather_text_snow_slight_intensity">Neve, intensità lieve</string>
     <string name="openmeteo_weather_text_snow_moderate_intensity">Neve, intensità moderata</string>
-    <string name="location_resident_location_summaryOn">Abilitata. Verrà mostrata solo se entro 20 km dalla posizione corrente.</string>
     <string name="location_resident_location_summaryOff">Disabilitata. Questa località sarà sempre disponibile.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
     <string name="settings_weather_source">Fonte meteo</string>

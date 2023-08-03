@@ -622,7 +622,6 @@
     <string name="allergen_level_4">Alto</string>
     <string name="allergen_level_5">Muito alto</string>
     <string name="location_resident_location">Local de residência</string>
-    <string name="location_resident_location_summaryOn">Habilitado. Mostrado se estiver dentro de 20 km da localização atual, oculto caso contrário.</string>
     <string name="location_resident_location_summaryOff">Desabilitado. Localização sempre disponível.</string>
     <string name="action_delete">Excluir</string>
     <string name="weather_air_quality_data_by">Dados de qualidade do ar por $</string>

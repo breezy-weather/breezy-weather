@@ -589,7 +589,6 @@
     <string name="openmeteo_weather_text_snow_showers_heavy">Intensywne opady śniegu</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Burza z piorunami lekka lub umiarkowana</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Burza z silnym gradem</string>
-    <string name="location_resident_location_summaryOn">Włączone. Wyświetlane, jeśli jest w odległości 20 km od bieżącej lokalizacji, w przeciwnym razie ukryte.</string>
     <string name="location_resident_location_summaryOff">Wyłączone. Lokalizacja zawsze dostępna.</string>
     <string name="settings_weather_source">Źródło pogody</string>
     <string name="settings_source_api_key">Klucz API</string>

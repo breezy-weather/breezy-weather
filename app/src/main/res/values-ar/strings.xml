@@ -609,7 +609,6 @@
     <string name="allergen_level_2">منخفض</string>
     <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
     <string name="location_resident_location">موقع الإقامة</string>
-    <string name="location_resident_location_summaryOn">ممكن. تظهر في نطاق 20 كم من الموقع الحالي ، مخفية بخلاف ذلك.</string>
     <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
     <string name="settings_weather_source">مصدر الطقس</string>

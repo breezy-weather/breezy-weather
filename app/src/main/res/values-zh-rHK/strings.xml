@@ -515,7 +515,6 @@
     <string name="air_quality_level_2_description">空氣質量對於大多數人來說通常是可以接受的。 然而，敏感群體可能會因長期接觸而出現輕微到中度的症狀。</string>
     <string name="settings_appearance_summary">語言、暗色模式、圖標風格、單位</string>
     <string name="location_resident_location">常駐位置</string>
-    <string name="location_resident_location_summaryOn">已啟用。如果距離當前位置 20 公里以內則顯示，否則隱藏。</string>
     <string name="location_resident_location_summaryOff">已禁用。位置始終可用。</string>
     <string name="action_delete">刪除</string>
     <string name="about_contribution_weather_source">添加了對新天氣源的支持</string>

@@ -612,7 +612,6 @@
     <string name="allergen_level_3">中</string>
     <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
     <string name="location_resident_location">常驻位置</string>
-    <string name="location_resident_location_summaryOn">已启用。 如果距离当前位置 20 公里以内则显示，否则隐藏。</string>
     <string name="settings_weather_source">天气数据源</string>
     <string name="action_delete">删除</string>
     <string name="weather_air_quality_data_by">空气质量数据由 $ 提供</string>

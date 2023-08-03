@@ -586,7 +586,6 @@
     <string name="message_source_not_installed_error_title">Sursa nu mai este disponibilă</string>
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: $</string>
     <string name="location_resident_location">Locația rezidentă</string>
-    <string name="location_resident_location_summaryOn">Activat. Afișat dacă se află la mai puțin de 20 km de locația curentă, altfel este ascuns.</string>
     <string name="location_resident_location_summaryOff">Dezactivat. Locația este întotdeauna disponibilă.</string>
     <string name="action_delete">Ștergeți</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>

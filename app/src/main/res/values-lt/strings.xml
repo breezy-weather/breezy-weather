@@ -497,7 +497,6 @@
     <string name="settings_color_day_always">Visada diena</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_resident_location">Gyvenamoji vieta</string>
-    <string name="location_resident_location_summaryOn">Įjungta. Rodoma, jei iki dabartinės buvimo vietos yra 20 km, kitu atveju - paslėpta.</string>
     <string name="location_resident_location_summaryOff">Išjungta. Vieta visada prieinama.</string>
     <string name="action_delete">Ištrinti</string>
     <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai, default location search source</string>
