@@ -46,7 +46,10 @@ class LocationHelper @Inject constructor(
                 throw ReverseGeocodingException()
             }
         } else {
-            currentLocation // returned as-is if no reverse geocoding source
+            // Returned as-is if no reverse geocoding source
+            // but write in case the location service has provided us information
+            LocationEntityRepository.writeLocation(currentLocation)
+            currentLocation
         }
     }
 
