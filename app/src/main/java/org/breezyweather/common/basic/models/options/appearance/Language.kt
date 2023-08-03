@@ -38,6 +38,7 @@ enum class Language(
     PORTUGUESE("portuguese", Locale("pt")),
     PORTUGUESE_BR("portuguese_brazilian", Locale("pt", "BR")),
     ROMANIAN("romanian", Locale("ro")),
+    SLOVAK("slovak", Locale("sk")),
     SLOVENIAN("slovenian", Locale("sl", "SI")),
     FINNISH("finnish", Locale("fi")),
     VIETNAMESE("vietnamese", Locale("vi")),
@@ -119,6 +120,7 @@ enum class Language(
             "portuguese" -> PORTUGUESE
             "portuguese_brazilian" -> PORTUGUESE_BR
             "romanian" -> ROMANIAN
+            "slovak" -> SLOVAK
             "slovenian" -> SLOVENIAN
             "finnish" -> FINNISH
             "vietnamese" -> VIETNAMESE

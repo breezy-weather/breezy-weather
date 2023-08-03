@@ -177,6 +177,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ru"), "Denio", "mailto:deniosens@yandex.ru"),
         TranslatorItem(arrayOf("ru"), "Егор Ермаков", "https://hosted.weblate.org/user/creepen/"),
         TranslatorItem(arrayOf("ru"), "kilimov25", "https://github.com/kilimov25"),
+        TranslatorItem(arrayOf("sk"), "Kuko", "https://hosted.weblate.org/user/kuko7/"),
         TranslatorItem(arrayOf("sl_rSI"), "Gregor", "mailto:glakner@gmail.com"),
         TranslatorItem(arrayOf("sr"), "Milan Andrejić", "mailto:amikia@hotmail.com"),
         TranslatorItem(arrayOf("tr"), "Mehmet Saygin Yilmaz", "mailto:memcos@gmail.com"),

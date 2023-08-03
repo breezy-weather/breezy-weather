@@ -42,7 +42,9 @@ Due to a technical change, cached weather data will be cleared on update.
 - Fix database keeping old "current location" weather data, making app data size grow
 - Fix overwrite of weather data when "current location" and a manually added city shared the same city and weather source (issue particularly noticeable with AccuWeather)
 
-**Translation updates**
+**Translations**
+- Slovak added (Kuko)
+- Others updated
 
 
 # Version 4.4.1-beta
