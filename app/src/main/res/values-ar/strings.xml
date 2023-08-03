@@ -113,7 +113,7 @@
     <string name="location_dialog_failed_to_locate_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">إختيار مزود خدمة الموقع</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">إختيار خدمة الموقع</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً ”$“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
@@ -162,7 +162,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">الخلفية الحية</string>
-    <string name="settings_location_service">مزود خدمة الموقع</string>
+    <string name="settings_location_service">خدمة الموقع</string>
     <string name="settings_appearance_dark_mode_title">الوضع الداكن</string>
     <string name="settings_appearance_icon_pack_title">شكل الأيقونات</string>
     <string name="settings_appearance">المظهر</string>
@@ -283,8 +283,8 @@
     <string name="openmeteo_weather_text_snow_showers_slight">زخات ثلجية طفيفة</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">زخات ثلجية غزيرة</string>
     <string name="settings_units_summary">درجة الحرارة ، هطول الأمطار ، المسافة ، السرعة ، الضغط</string>
-    <string name="location_search_weather_source">مزود الطقس</string>
-    <string name="location_search_change_weather_source">تغيير مزود الطقس</string>
+    <string name="location_search_weather_source">مصدر الطقس</string>
+    <string name="location_search_change_weather_source">تغيير مصدر الطقس</string>
     <string name="settings_icon_packs_title">حزم الرموز</string>
     <string name="settings_icon_packs_check_details">تحقق من التفاصيل</string>
     <string name="settings_main_section_options">الخيارات</string>
@@ -367,7 +367,7 @@
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
-    <string name="alerts_to_follow">تنبيهات لمتابعتها، اضغط هنا لعرضها.</string>
+    <string name="alerts_to_follow">تنبيهات قادمة، أنقر هنا لرؤيتهم.</string>
     <string name="wind_direction_short_N">شم</string>
     <string name="wind_direction_short_NE">ش ش</string>
     <string name="wind_direction_short_E">ش</string>
@@ -450,10 +450,10 @@
     <string name="weather_api_limit_reached_content">للتغلب على الحد ، أضف مفتاح API الخاص بك.</string>
     <string name="weather_api_unauthorized_title">الوصول إلى واجهة برمجة التطبيقات غير مصرح به</string>
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
-    <string name="weather_api_key_required_missing_content">لاستخدام هذا الموفر ، تحتاج إلى توفير مفتاح API.</string>
+    <string name="weather_api_key_required_missing_content">لاستخدام هذا المصدر ، تحتاج إلى توفير مفتاح API.</string>
     <string name="settings_weather_source_portal">منفذ</string>
     <string name="location_none_added_yet_instructions">لم تتم إضافة موقع حتى الآن. يرجى النقر على أيقونة البحث لإضافة موقع يدويا ، أو إضافة موقعك الحالي من الزر العائم.</string>
-    <string name="location_message_reverse_geocoding_failed">فشل مزود الطقس في العثور على موقع مطابق</string>
+    <string name="location_message_reverse_geocoding_failed">فشل مصدر الطقس في العثور على موقع مطابق</string>
     <string name="action_close">اغلاق</string>
     <string name="null_data_text">غير متوفر</string>
     <string name="widget_label_hide_lunar">إخفاء التقويم القمري</string>
@@ -487,9 +487,9 @@
     <string name="air_quality_so2_info_origin">يتم إطلاقه بشكل طبيعي عن طريق النشاط البركاني ومشتق في الغالب من احتراق الوقود الأحفوري للتدفئة المنزلية والصناعات وتوليد الطاقة.</string>
     <string name="air_quality_co_info_consequences">ينتشر أول أكسيد الكربون عبر أنسجة الرئة وفي مجرى الدم ، مما يجعل من الصعب على خلايا الجسم الارتباط بالأكسجين. هذا النقص في الأكسجين يضر الأنسجة والخلايا. يمكن أن يسبب التعرض لأول أكسيد الكربون صعوبات في التنفس والإرهاق والدوخة وأعراض أخرى تشبه أعراض الأنفلونزا. التعرض لمستويات عالية من أول أكسيد الكربون يمكن أن يكون مميتا.</string>
     <string name="air_quality_co_info_origin">يتم إنتاجه عن طريق الاحتراق غير الكامل للوقود الكربوني مثل الخشب والبنزين والفحم والغاز الطبيعي والكيروسين في المواقد البسيطة والحرائق المفتوحة ومصابيح الفتيل والأفران والمدافئ. المصدر السائد لأول أكسيد الكربون (CO) في الهواء المحيط هو من السيارات.</string>
-    <string name="weather_api_unauthorized_content">في بعض موفري الطقس ، تحتاج إلى توفير مفتاح API الخاص بك. إذا كنت قد قدمت واحدة بالفعل ، فيرجى التحقق مرة أخرى من مفتاح واجهة برمجة التطبيقات الذي قدمته.</string>
+    <string name="weather_api_unauthorized_content">في بعض مصادر الطقس ، تحتاج إلى توفير مفتاح API الخاص بك. إذا كنت قد قدمت واحدة بالفعل ، فيرجى التحقق مرة أخرى من مفتاح واجهة برمجة التطبيقات الذي قدمته.</string>
     <string name="location_search_no_results">$1 لا يمكن العثور على $2</string>
-    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددا للغاية. بدلا من ذلك ، يمكنك تجربة مزود طقس آخر قد ينتج عنه نتائج بحث مختلفة عن الموقع.</string>
+    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددا للغاية. بدلا من ذلك ، يمكنك تجربة مصدر بيانات آخر قد ينتج عنه نتائج بحث مختلفة عن الموقع.</string>
     <string name="dialog_permissions_notification_title">ابق على اطلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتمكين الإشعارات حول تنبيهات الطقس ، أو حدد لاحقا في الإعدادات.</string>
     <string name="precipitation_none">لاتوجد احتمالية هطول</string>
@@ -505,7 +505,7 @@
     <string name="action_see_more">انظر أكثر</string>
     <string name="location_service_native">واجهة برمجة التطبيقات الأصلية</string>
     <string name="action_location_list">قائمة المواقع</string>
-    <string name="action_choose_weather_source">اختر مزود الطقس</string>
+    <string name="action_choose_weather_source">اختر مصدر الطقس</string>
     <string name="action_add_current_location">إضافة الموقع الحالي</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">وقت الإشعار لتوقعات اليوم التالي</string>
     <string name="settings_main_section_animations">الرسوم المتحركه</string>
@@ -579,7 +579,7 @@
     <string name="widget_custom_subtitle_keyword_xms_description">غروب القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="settings_appearance_summary">اللغة ، الوضع المظلم ، حزمة الرموز ، الوحدات</string>
     <string name="settings_location">الموقع</string>
-    <string name="settings_location_summary">إعدادات موفري الموقع</string>
+    <string name="settings_location_summary">إعدادات خدمة الموقع</string>
     <string name="settings_main">الشاشة الرئيسية</string>
     <string name="action_show_errors">انقر لرؤية التفاصيل</string>
     <string name="notification_update_error">%1$d فشل التحديث</string>
@@ -614,14 +614,18 @@
     <string name="settings_weather_source">مصدر الطقس</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء $</string>
     <string name="weather_allergen_data_by">بيانات مسببات الحساسية بمقدار $</string>
-    <string name="weather_minutely_data_by">بيانات الترسبات الدقيقة حسب $</string>
+    <string name="weather_minutely_data_by">بيانات الترسبات دقيقة بدقية بواسطة $</string>
     <string name="weather_message_invalid_location">الموقع غير صالح ، يرجى حذفه وإعادة إضافته</string>
     <string name="weather_alert_data_by">بيانات التنبيه حسب $</string>
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
     <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
     <string name="settings_weather_source_main">المصدر الرئيسي</string>
-    <string name="minutely_precipitations">الترسبات الدقيقة</string>
+    <string name="minutely_precipitations">الترسبات دقيقة بدقيقة</string>
     <string name="action_save">حفظ</string>
     <string name="settings_weather_sources_per_location_summary">تخصيص مصادر بيانات الطقس لهذا الموقع</string>
+    <string name="location_resident_location_summaryOn">جاهز مخفي في مدى 20 كيلومترا من الموقع الحالي.</string>
+    <string name="settings_weather_sources_default_location_search">المصدر الافتراضي للبحث عن الموقع</string>
+    <string name="about_privacy_policy">سياسة الخصوصية</string>
+    <string name="about_contact">الاتصال</string>
 </resources>
