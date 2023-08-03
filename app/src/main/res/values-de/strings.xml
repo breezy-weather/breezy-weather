@@ -49,7 +49,7 @@
     <string name="settings_changes_apply_after_restart">Änderungen werden bei Neustart übernommen</string>
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Standortanbieter auswählen</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Standortdienst auswählen</string>
     <string name="notification_precipitation_short_term">In den nächsten Stunden kann Niederschlag auftreten.</string>
     <string name="widget_label_show_widget_card">Widgethintergrund</string>
     <string name="widget_label_show_widget_card_alpha">Transparenz</string>
@@ -326,7 +326,7 @@
     <string name="dialog_permissions_location_title">Zugriff auf Standortinformationen</string>
     <string name="settings_color_night_always">Immer Nacht</string>
     <string name="openmeteo_weather_text_rain_showers_slight">Leichte Regenschauer</string>
-    <string name="alerts_to_follow">Für Warnmeldungen hier Tippen zum Ansehen.</string>
+    <string name="alerts_to_follow">Für anstehende Warnmeldungen antippen.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Gewitter mit leichtem Hagel</string>
     <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Gefrierender Sprühregen, mäßig/stark</string>
     <string name="unit_nmi">nmi</string>
@@ -479,7 +479,7 @@
     <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
     <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
-    <string name="weather_api_key_required_missing_content">Um diesen Anbieter nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
+    <string name="weather_api_key_required_missing_content">Um diese Quelle nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
     <string name="settings_debug_summary">Absturzprotokolle</string>
@@ -515,7 +515,7 @@
     <string name="location_service_native">Native API</string>
     <string name="action_location_list">Ortsliste</string>
     <string name="settings_location">Standort</string>
-    <string name="settings_location_summary">Einstellungen der Standortanbieter</string>
+    <string name="settings_location_summary">Einstellungen der Standortdienste</string>
     <string name="action_undo">Rückgängig</string>
     <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Ort hinzufügen möchten.</string>
     <string name="settings_location_access_background_summaryOff">Bitte aktivieren Sie „Immer zulassen“, um Hintergrundaktualisierungen für Ihren aktuellen Standort zu erhalten.</string>
@@ -614,4 +614,13 @@
     <string name="weather_minutely_data_by">Minutengenaue Niederschlagsdaten von $</string>
     <string name="weather_alert_data_by">Warndaten von $</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von $</string>
+    <string name="location_resident_location_summaryOn">Aktiviert. Ausgeblendet, wenn im 20 km-Umkreis des aktuellen Standorts.</string>
+    <string name="action_save">Speichern</string>
+    <string name="settings_weather_source_main">Hauptquelle</string>
+    <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
+    <string name="minutely_precipitations">Minutengenaue Niederschläge</string>
+    <string name="settings_weather_sources_default_location_search">Standardquelle für die Ortssuche</string>
+    <string name="about_dependencies">Abhängigkeiten</string>
+    <string name="about_privacy_policy">Datenschutzerklärung</string>
+    <string name="about_contact">Kontakt</string>
 </resources>
