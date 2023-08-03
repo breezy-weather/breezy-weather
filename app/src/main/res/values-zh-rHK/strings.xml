@@ -112,7 +112,7 @@
     <string name="dialog_permissions_location_title">獲取位置信息</string>
     <string name="dialog_permissions_location_content">Breezy天氣 需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
     <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
-    <string name="dialog_permissions_location_background_content">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設定爲“始终允许”。</string>
+    <string name="dialog_permissions_location_background_content">爲了讓應用程序可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設定爲“始终允许”。</string>
     <string name="location_message_failed_to_locate">無法找到當前位置</string>
     <string name="weather_message_data_refresh_failed">獲取天氣數據失敗</string>
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
@@ -472,7 +472,7 @@
     <string name="openmeteo_weather_text_rain_slight_intensity">小雨</string>
     <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">稠密凍毛毛雨</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">中陣雨</string>
-    <string name="message_parsing_error_content">確保您已更新到該應用程序的最新版本。服務器可能暫時不可用，請稍後重試。如果問題仍然存在，請從調試設定轉儲崩潰日誌，並在 GitHub 上報告問題。</string>
+    <string name="message_parsing_error_content">確保您已將應用程序更新到最新版本。服務器可能暫時不可用，請稍後重試。如果問題仍然存在，請從調試設定轉儲崩潰日誌，並在 GitHub 上報告問題。</string>
     <string name="air_quality_level_1">優</string>
     <string name="widget_style_mini">Mini 風格</string>
     <string name="action_continue">繼續</string>
@@ -614,7 +614,7 @@
     <string name="widget_style_nano">Nano 風格</string>
     <string name="settings_background_updates_battery_optimization_disabled">電池優化已被禁用。</string>
     <string name="settings_background_updates_dont_kill_my_app_title">製造商具體說明</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">一些製造商有額外的應用程序限制，會終止後台服務。Don’t kill my app 網站有有關如何修復它的信息。</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">一些製造商有額外的應用程序限制，會終止後台服務。Don’t kill my app! 網站有有關如何修復它的信息。</string>
     <string name="settings_background_updates_worker_info_title">進程信息</string>
     <string name="settings_units_summary">溫度、降水量、距離、速度、壓力</string>
     <string name="about_contribution_WangDaYeeeeee">原始項目 幾何天氣 的開發者</string>
@@ -629,4 +629,5 @@
     <string name="about_privacy_policy">隱私權政策</string>
     <string name="about_contact">聯絡</string>
     <string name="settings_weather_sources_default_location_search">默認位置搜寻源</string>
+    <string name="location_resident_location_summaryOn">已啟用。 在當前位置 20km 範圍內隱藏。</string>
 </resources>
