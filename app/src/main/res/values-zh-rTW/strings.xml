@@ -387,7 +387,7 @@
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_yesterday_alert_lines_in_trends">概覽中的昨日/預警橫線</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
-    <string name="settings_widgets_live_wallpaper_error">無法啟動壁紙選擇器。您仍然可以通過在主屏幕壁紙選擇器中選擇“動態壁紙”來啟用 微風天氣 壁紙。</string>
+    <string name="settings_widgets_live_wallpaper_error">無法啟動壁紙選擇器。您仍然可以通過在主屏幕壁紙選擇器中選擇“動態壁紙”來啟用 Breezy Weather 壁紙。</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣數據源無法找到匹配的位置</string>
     <string name="action_undo">撤消</string>
