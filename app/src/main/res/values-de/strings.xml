@@ -614,7 +614,7 @@
     <string name="weather_minutely_data_by">Minutengenaue Niederschlagsdaten von $</string>
     <string name="weather_alert_data_by">Warndaten von $</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von $</string>
-    <string name="location_resident_location_summaryOn">Aktiviert. Ausgeblendet, wenn im 20 km-Umkreis des aktuellen Standorts.</string>
+    <string name="location_resident_location_summaryOn">Aktiviert. Ausgeblendet, wenn im $-Umkreis des aktuellen Standorts.</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_source_main">Hauptquelle</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
