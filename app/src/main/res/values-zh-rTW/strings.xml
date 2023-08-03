@@ -391,7 +391,7 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣數據源無法找到匹配的位置</string>
     <string name="action_undo">撤消</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">模擬時鐘</string>
     <string name="settings_background_updates_refresh_title">刷新頻率</string>
     <string name="settings_background_updates_refresh_never">從不</string>
     <string name="settings_background_updates_section_troubleshoot">故障排除</string>
@@ -436,7 +436,7 @@
     <string name="weather_source_accu_preference_hours_24">24小時</string>
     <string name="location_none_added_yet_instructions">尚未添加位置。請點擊搜尋圖標手動添加位置，或通過浮動按鈕添加您當前的位置。</string>
     <string name="location_search_no_results">$1 無法找到 $2</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">無襯線體（濃體）</string>
     <string name="settings_background_updates_worker_info_summary">最後運行：$</string>
     <string name="settings_weather_sources">天氣數據源</string>
     <string name="unit_kelvin_short">K</string>
@@ -450,7 +450,7 @@
     <string name="location_search_change_weather_source">更改天氣數據源</string>
     <string name="action_choose_weather_source">選擇天氣數據源</string>
     <string name="location_search_no_results_advice">確保您的搜尋拼寫正確並且不要太具體。或者，您可以嘗試其他天氣數據源，這可能會產生不同的位置搜尋結果。</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">無襯線體</string>
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOff">如果您無法獲取位置，請啟用“使用精確位置”。</string>
     <string name="settings_source_api_key">API密鑰</string>
@@ -544,7 +544,7 @@
     <string name="allergen_level_5">甚高</string>
     <string name="weather_data_by">數據來源 $</string>
     <string name="weather_air_quality_data_by">空氣質量數據來源 $</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 定位均被使用。</string>
     <string name="settings_weather_source">天氣數據源</string>
     <string name="settings_weather_sources_current_location">當前位置的天氣數據源</string>
