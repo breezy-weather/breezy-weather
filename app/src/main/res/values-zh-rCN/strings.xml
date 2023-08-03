@@ -160,12 +160,12 @@
     <string name="location_dialog_failed_to_locate_title">无法正常进行定位？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">检查位置权限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">选择位置信息提供商</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">选择位置服务源</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“$”</string>
     <string name="weather_api_limit_reached_title">达到 API 请求次数上限</string>
     <string name="weather_api_limit_reached_content">要绕过此限制，请添加你自己的 API 密钥。</string>
     <string name="weather_api_unauthorized_title">API 访问认证未通过</string>
-    <string name="weather_api_unauthorized_content">对于某些天气提供商，您需要提供自己的 API 密钥。如果您已经提供了，请仔细检查您提供的 API 密钥。</string>
+    <string name="weather_api_unauthorized_content">对于某些天气数据源，您需要提供自己的 API 密钥。如果您已经提供，请再次检查您提供的 API 密钥。</string>
     <string name="widget_label_view_style">界面风格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
     <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
@@ -449,13 +449,13 @@
     <string name="settings_main_background_animation_disabled">关闭</string>
     <string name="alerts_to_follow">有即将到来的警报，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
-    <string name="action_choose_weather_source">选择天气提供商</string>
+    <string name="action_choose_weather_source">选择天气数据源</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
     <string name="settings_weather_sources_current_location">当前位置的天气数据源</string>
-    <string name="location_search_weather_source">天气数据提供方</string>
+    <string name="location_search_weather_source">天气数据源</string>
     <string name="location_message_permission_missing">缺少访问位置的权限</string>
     <string name="settings_icon_packs_title">图标包</string>
     <string name="settings_background_updates_refresh_title">刷新频率</string>
@@ -480,7 +480,7 @@
     <string name="settings_background_updates_worker_info_title">进程信息</string>
     <string name="settings_weather_source_portal">门户</string>
     <string name="setting_weather_source_accu_days">天数</string>
-    <string name="weather_api_key_required_missing_content">要使用这个数据提供商，您需要提供一个 API 密钥。</string>
+    <string name="weather_api_key_required_missing_content">为了使用这个数据源，您需要提供一个 API 密钥。</string>
     <string name="weather_source_accu_preference_days_1">一天</string>
     <string name="action_see_more">查看更多</string>
     <string name="message_network_unavailable">网络不可用</string>
@@ -492,7 +492,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">无法打开设备设置。</string>
     <string name="settings_background_updates_battery_optimization_disabled">电池优化已禁用。</string>
     <string name="settings_location">定位</string>
-    <string name="settings_location_summary">位置提供商设定</string>
+    <string name="settings_location_summary">位置服务源设置</string>
     <string name="settings_location_access_precise_title">设备 GPS 的使用情况</string>
     <string name="settings_location_access_precise_summaryOff">如果获取当前定位失败，请启用“使用确切位置”。</string>
     <string name="settings_weather_sources_summary">天气数据提供商设置, default location search source</string>
@@ -504,7 +504,7 @@
     <string name="settings_weather_sources">天气数据源</string>
     <string name="weather_source_accu_preference_days_10">十天</string>
     <string name="settings_location_access_switch_summaryOff">如果你想要将当前定位作为一个位置的话，请允许该权限。</string>
-    <string name="location_search_change_weather_source">更改天气数据提供方</string>
+    <string name="location_search_change_weather_source">更改天气数据源</string>
     <string name="settings_section_general">一般选项</string>
     <string name="settings_background_updates_battery_optimization_summary">当你收不到通知或者微件不更新的时候，这是首先要尝试的事。</string>
     <string name="settings_location_access_permission_already_granted">已获得权限</string>
@@ -545,7 +545,7 @@
     <string name="settings_debug_dump_crash_logs_summary">将错误日志保存为文件，以便于发送给开发者</string>
     <string name="notification_channel_background_services">后台服务</string>
     <string name="settings_widgets_notification_style_title">风格</string>
-    <string name="location_message_reverse_geocoding_failed">天气数据提供商未找到符合的位置</string>
+    <string name="location_message_reverse_geocoding_failed">天气数据源未找到符合的位置</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="action_undo">撤消</string>
     <string name="notification_channel_widget">微件</string>
@@ -582,7 +582,7 @@
     <string name="air_quality_no2_info_origin">环境中的二氧化氮来源于供暖、运输、工业和发电等过程中燃料的高温燃烧。家庭氮氧化物（NOₓ）来源包括燃烧燃料的设备，如火炉、壁炉、煤气炉和烤箱。</string>
     <string name="air_quality_so2_info_consequences">接触二氧化硫与哮喘患者住院和急诊就诊有关。</string>
     <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
-    <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他天气提供商，这可能会产生不同的位置搜索结果。</string>
+    <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他天气数据源，这可能会产生不同的位置搜索结果。</string>
     <string name="location_search_no_results">$1 找不到 $2</string>
     <string name="action_show_errors">点击以查看详情</string>
     <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
@@ -627,4 +627,8 @@
     <string name="settings_weather_source_main">主要来源</string>
     <string name="settings_weather_sources_per_location_summary">为当前位置自定义天气数据源</string>
     <string name="minutely_precipitations">每分钟降水量</string>
+    <string name="location_resident_location_summaryOn">已启用。当距离您20km以内时隐藏。</string>
+    <string name="settings_weather_sources_default_location_search">默认位置搜索源</string>
+    <string name="about_privacy_policy">隐私政策</string>
+    <string name="about_contact">联络方式</string>
 </resources>
