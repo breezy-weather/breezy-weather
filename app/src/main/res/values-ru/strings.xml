@@ -102,7 +102,7 @@
     <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Выбрать источник определения местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Выбрать сервис определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
     <string name="dialog_permissions_location_background_content">Чтобы разрешить приложению доступ к местоположению в фоне, чтобы мы могли следить за изменениями местоположения и предоставлять актуальный прогноз погоды, включите доступ к местоположению “Разрешить в любом режиме”.</string>
@@ -286,8 +286,8 @@
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
-    <string name="location_search_weather_source">Провайдер погоды</string>
-    <string name="location_search_change_weather_source">Сменить провайдера погоды</string>
+    <string name="location_search_weather_source">Источник погоды</string>
+    <string name="location_search_change_weather_source">Изменить источник погоды</string>
     <string name="weather_air_quality_and_allergen_data_by">Данные о качестве воздуха от $</string>
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
@@ -347,7 +347,7 @@
     <string name="weather_source_accu_preference_hours_240">240 часов</string>
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
-    <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
+    <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим источником, добавьте свой API-ключ.</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дней</string>
     <string name="weather_source_accu_preference_days_15">15 дней</string>
@@ -362,13 +362,13 @@
     <string name="air_quality_level_5_description">Люди с повышенной чувствительностью могут мгновенно почувствовать себя плохо, им следует избегать пребывания на улице. У здоровых людей могут возникать симптомы затрудненного дыхания или раздражения горла; рекомендуется оставаться в помещении и перенести мероприятия на улице.</string>
     <string name="air_quality_level_6_description">Любое пребывание на улице, даже в течение нескольких минут, может привести к серьезным осложнениям у всех. Старайтесь не выходить на улицу.</string>
     <string name="weather_api_limit_reached_title">Превышен лимит API-вызовов</string>
-    <string name="weather_api_unauthorized_content">Для некоторых сервисов необходимо использовать свой собственный API-ключ. Если вы уже добавили его, пожалуйста, перепроверьте правильность API-ключ.</string>
+    <string name="weather_api_unauthorized_content">Для некоторых источниках погоды необходимо использовать свой собственный API-ключ. Если вы уже добавили его, пожалуйста, перепроверьте правильность API-ключ.</string>
     <string name="weather_source_accu_preference_hours_12">12 часов</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="uv_alert_level">Внимание</string>
     <string name="settings_background_updates_battery_optimization">Отключить оптимизацию батареи</string>
     <string name="settings_background_updates_section_troubleshoot">Отладка</string>
-    <string name="location_message_reverse_geocoding_failed">Провайдеру погоды не удалось найти подходящее местоположение</string>
+    <string name="location_message_reverse_geocoding_failed">Источнику погоды не удалось найти подходящее местоположение</string>
     <string name="settings_section_general">Основное</string>
     <string name="settings_background_updates">Фоновые обновления</string>
     <string name="settings_background_updates_summary">Частота обновления, отладка</string>
@@ -538,7 +538,7 @@
     <string name="air_quality_co_info_origin">Он образуется при неполном сгорании углеродистого топлива, такого как древесина, бензин, уголь, природный газ и керосин, в простых печах, открытом огне, фитильных лампах, печах, каминах. Основным источником угарного газа (СО) в окружающем воздухе являются автомобили.</string>
     <string name="air_quality_co_info_consequences">Угарный газ диффундирует через ткани легких и попадает в кровоток, что затрудняет связывание клеток организма с кислородом. Недостаток кислорода повреждает ткани и клетки. Воздействие угарного газа может вызвать затрудненное дыхание, истощение, головокружение и другие симптомы гриппа. Воздействие высоких уровней угарного газа может быть смертельным.</string>
     <string name="location_none_added_yet_instructions">Местоположение еще не добавлено. Нажмите на значок поиска, чтобы добавить местоположение вручную, или добавьте свое текущее местоположение с помощью кнопки.</string>
-    <string name="location_search_no_results_advice">Убедитесь, что поисковый запрос написан правильно и не слишком специфичен. Вы также можете попробовать другого провайдера погоды, который может дать другие результаты поиска местоположения.</string>
+    <string name="location_search_no_results_advice">Убедитесь, что поисковый запрос написан правильно и не слишком специфичен. Вы также можете попробовать другого источника информации, который может дать другие результаты поиска местоположения.</string>
     <string name="location_search_no_results">$1 не может найти $2</string>
     <string name="settings_background_updates_refresh_title">Частота обновления</string>
     <string name="dialog_permissions_location_content">Breezy Weather необходимо собирать информацию о вашем местоположении на сейчас или в фоне, чтобы предоставлять данные о погоде для вашего текущего местоположения. Для этого мы запросим некоторые разрешения. Информация о вашем местоположении будет использоваться только для получения данных о погоде в вашем текущем местоположении. Если вы не хотите делиться информацией о своем местоположении, вы можете отклонить эти требования и вручную указать свое местоположение в панели управления.</string>
@@ -564,7 +564,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
     <string name="settings_icon_packs_weather_icon_light">Светлая иконка</string>
     <string name="action_location_list">Список местоположений</string>
-    <string name="action_choose_weather_source">Выберите провайдера погоды</string>
+    <string name="action_choose_weather_source">Выберите источник погоды</string>
     <string name="action_add_new_location">Добавить новое местоположение</string>
     <string name="settings_background_updates_battery_optimization_summary">Это первое, что нужно попробовать, если вы не получаете уведомления или виджеты не обновляются.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не удалось открыть настройки устройства.</string>
@@ -577,7 +577,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">У некоторых производителей есть дополнительные ограничения приложений, которые отключают фоновые службы. На сайте Don’t kill my app! есть информация как это исправить.</string>
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
-    <string name="settings_location_summary">Настройки провайдера местоположения</string>
+    <string name="settings_location_summary">Настройки сервисов местоположения</string>
     <string name="settings_weather_sources">Источники погоды</string>
     <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
@@ -624,4 +624,8 @@
     <string name="action_save">Сохранить</string>
     <string name="settings_weather_source_main">Основной источник</string>
     <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде для этого местоположения</string>
+    <string name="location_resident_location_summaryOn">Включено. Скрыто когда на расстоянии больше 20 км от текущего местоположения.</string>
+    <string name="settings_weather_sources_default_location_search">Сервис поиска местоположения по умолчанию</string>
+    <string name="about_privacy_policy">Политика конфиденциальности</string>
+    <string name="about_contact">Контакты</string>
 </resources>
