@@ -113,6 +113,7 @@ private fun SecondarySourcesPreference(
     }
 
     if (dialogOpenState.value) {
+        val weatherSources = sourceManager.getConfiguredMainWeatherSources()
         val secondarySources = sourceManager.getSecondaryWeatherSources()
         val compatibleAirQualitySources = secondarySources.filter {
             it.id != location.weatherSource &&
@@ -154,8 +155,7 @@ private fun SecondarySourcesPreference(
             },
             text = {
                 Column {
-                    if (location.isCurrentPosition) { // TODO: Allow for others as well
-                        val weatherSources = sourceManager.getConfiguredMainWeatherSources()
+                    if (location.isCurrentPosition) {
                         SourceView(
                             title = stringResource(R.string.settings_weather_source_main),
                             selectedKey = weatherSource.value,
@@ -163,6 +163,15 @@ private fun SecondarySourcesPreference(
                         ) { sourceId ->
                             weatherSource.value = sourceId
                             hasChangedASource.value = true
+                        }
+                    } else {
+                        SourceView(
+                            title = stringResource(R.string.settings_weather_source_main),
+                            selectedKey = weatherSource.value,
+                            enabled = false,
+                            sourceList = weatherSources.associate { it.id to it.name },
+                        ) { sourceId ->
+                            // TODO: To be implemented
                         }
                     }
                     SourceView(
@@ -216,17 +225,9 @@ private fun SecondarySourcesPreference(
                                 alertSource = alertSource.value
                             )
                             LocationEntityRepository.writeLocation(newLocation)
-                            // TODO: Leads to "Updated in background" message
                             EventBus.instance
                                 .with(Location::class.java)
                                 .postValue(newLocation)
-                            // TODO: Doesn’t work without a full restart of the app
-                            /*SnackbarHelper.showSnackbar(
-                                content = context.getString(R.string.settings_changes_apply_after_restart),
-                                action = context.getString(R.string.action_restart)
-                            ) {
-                                BreezyWeather.instance.recreateAllActivities()
-                            }*/
                             onClose()
                         }
 
@@ -259,6 +260,7 @@ private fun SourceView(
     title: String,
     @DrawableRes iconId: Int? = null,
     selectedKey: String,
+    enabled: Boolean = true,
     sourceList: Map<String, String>,
     helpMeChoose: String? = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md",
     onValueChanged: (String) -> Unit,
@@ -289,6 +291,7 @@ private fun SourceView(
                 }
             }
         } else null,
+        enabled = enabled,
         card = false
     )
 }
