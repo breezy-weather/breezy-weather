@@ -141,6 +141,7 @@ class MsAzureService @Inject constructor(
             alertsResponse: MsAzureWeatherAlertsResponse
             ->
             convertPrimary(
+                location,
                 currentConditionsResponse,
                 dailyForecastResponse,
                 hourlyForecastResponse,

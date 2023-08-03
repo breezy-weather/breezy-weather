@@ -1,5 +1,6 @@
 package org.breezyweather.sources.msazure
 
+import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Allergen
@@ -23,6 +24,7 @@ import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.accu.json.AccuForecastDailyForecast
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirPollutant
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForecast
@@ -39,6 +41,7 @@ import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecastRespon
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecast
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecastResponse
 import java.util.Date
+import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 
@@ -47,6 +50,7 @@ import kotlin.time.Duration.Companion.hours
  * Converts Microsoft Azure Maps responses into a forecast
  */
 fun convertPrimary(
+    location: Location,
     currentConditionsResponse: MsAzureCurrentConditionsResponse,
     dailyForecastResponse: MsAzureDailyForecastResponse,
     hourlyForecastResponse: MsAzureHourlyForecastResponse,
@@ -70,7 +74,7 @@ fun convertPrimary(
             currentConditionsResponse.results?.getOrNull(0),
             currentAirQualityResponse.results?.getOrNull(0)
         ),
-        dailyForecast = getDailyForecast(dailyForecastResponse.forecasts),
+        dailyForecast = getDailyForecast(dailyForecastResponse.forecasts, location.timeZone),
         hourlyForecast = getHourlyForecast(
             hourlyForecastResponse.forecasts,
             hourlyAirQualityForecastResponse.results
@@ -158,14 +162,15 @@ private fun getCurrentForecast(
 }
 
 private fun getDailyForecast(
-    days: List<MsAzureDailyForecast>?
+    days: List<MsAzureDailyForecast>?,
+    timeZone: TimeZone
 ): List<Daily>? {
     if (days.isNullOrEmpty()) return null
 
     val supportsAllergens = supportsAllergens(days)
     return days.map { day ->
         Daily(
-            date = day.date,
+            date = day.date.toTimezoneNoHour(timeZone)!!,
             day = HalfDay(
                 weatherText = day.day?.shortPhrase,
                 weatherCode = getWeatherCode(day.day?.iconCode),
