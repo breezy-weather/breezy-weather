@@ -627,4 +627,5 @@
     <string name="settings_weather_sources_default_location_search">المصدر الافتراضي للبحث عن الموقع</string>
     <string name="about_privacy_policy">سياسة الخصوصية</string>
     <string name="about_contact">الاتصال</string>
+    <string name="location_resident_location_summaryOn">مفعل مخفي في حدود $ من الموقع الحالي.</string>
 </resources>
