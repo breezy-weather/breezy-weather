@@ -180,9 +180,7 @@ private fun getDailyForecast(
     val supportsAllergens = supportsAllergens(days)
     return days.map { day ->
         Daily(
-            date = day.date.toTimezoneNoHour(
-                timezone?.id.let { TimeZone.getTimeZone(it) } ?: locationTz
-            )!!,
+            date = day.date.toTimezoneNoHour(locationTz)!!,
             day = HalfDay(
                 weatherText = day.day?.shortPhrase,
                 weatherCode = getWeatherCode(day.day?.iconCode),
@@ -440,8 +438,7 @@ fun convertGeocoding(
             "AdminDivision1",
             "AdminDivision2",
             "CountryRegion"
-        ) &&
-                it.geometry?.coordinates?.size == 2
+        ) && it.geometry?.coordinates?.size == 2
     }.map {
         Location(
             // because microsoft decided to be different
@@ -466,7 +463,9 @@ fun convertReverseGeocoding(
         Location(
             latitude = location.latitude,
             longitude = location.longitude,
-            timeZone = timezone.timeZones?.get(index)?.id.let { TimeZone.getTimeZone(it) } ?: location.timeZone,
+            timeZone = if (!timezone.timeZones?.get(index)?.id.isNullOrEmpty()) {
+                TimeZone.getTimeZone(timezone.timeZones!![index].id)
+            } else location.timeZone,
             country = it.properties?.address?.countryRegion?.name ?: "",
             countryCode = it.properties?.address?.countryRegion?.code,
             province = it.properties?.address?.adminDistricts?.getOrNull(0)?.shortName,

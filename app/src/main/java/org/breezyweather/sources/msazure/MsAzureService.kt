@@ -265,8 +265,7 @@ class MsAzureService @Inject constructor(
     }
 
     // GEOCODING
-    override val locationSearchAttribution: String
-        get() = weatherAttribution
+    override val locationSearchAttribution = weatherAttribution
 
     override fun requestLocationSearch(
         context: Context,
@@ -300,14 +299,11 @@ class MsAzureService @Inject constructor(
         val query = "${location.latitude},${location.longitude}"
 
         val tzRequest = mApi.getTimezone(
-            apiKey,
-            query
+            apiKey, query
         )
 
         val geocodingRequest = mApi.reverseGeocode(
-            apiKey,
-            lang,
-            query
+            apiKey, lang, query
         )
 
         return Observable.zip(tzRequest, geocodingRequest) {
