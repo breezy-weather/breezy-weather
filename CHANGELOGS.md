@@ -20,7 +20,6 @@ Due to a technical change, cached weather data will be cleared on update.
 - Fix Fog condition always showing Clear instead
 
 **Weather sources**
-- [Microsoft Azure] Weather-only support added (@Cod3dDOT)
 - [HERE] Full support added (@Cod3dDOT)
 - [Open-Meteo] Add air quality and allergens support as secondary source
 - [AccuWeather] Add minutely and alerts support as secondary source

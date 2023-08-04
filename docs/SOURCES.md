@@ -15,7 +15,6 @@ Here are some suggestions based on various criteria or testimonies (you can sugg
 
 | Country/Continent | Main source  | Air quality | Pollen      | Minutely     | Alerts       |
 | ----------------- | ------------ | ----------- | ----------- | ------------ | ------------ |
-| North America     |              |             | AccuWeather |              |              |
 | Europe            |              |             | Open-Meteo  |              |              |
 | United States     | [Forecast Advisor](https://forecastadvisor.com/) | | |  |              |
 | France            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
@@ -109,54 +108,54 @@ Legend:
 
 ## Main features
 
-| Sources                         | Microsoft Azure | HERE     |
-|---------------------------------|-----------------|----------|
-| **Daily (days)**                | 10              | 6        |
-| **Hourly (days)**               | 10              | 6        |
-| **Weather**                     | ✅               | ✅        |
-| **Temperature**                 | ✅               | ✅        |
-| **Precipitation**               | ✅               | ✅        |
-| **Precipitation probability**   | ✅               | ✅        |
-| **Wind**                        | ✅               | ✅        |
-| **UV**                          | ✅               | ✅        |
-| **Sun & Moon & Moon phase**     | ✅               | ✅        |
+| Sources                         | HERE     |
+|---------------------------------|----------|
+| **Daily (days)**                | 6        |
+| **Hourly (days)**               | 6        |
+| **Weather**                     | ✅        |
+| **Temperature**                 | ✅        |
+| **Precipitation**               | ✅        |
+| **Precipitation probability**   | ✅        |
+| **Wind**                        | ✅        |
+| **UV**                          | ✅        |
+| **Sun & Moon & Moon phase**     | ✅        |
 
 ## Features that can be added from other sources
 
-| Sources                         | Microsoft Azure | HERE     |
-|---------------------------------|-----------------|----------|
-| **Air quality**                 | ✅               | ❌        |
-| **Allergens**                   | ✅               | ❌        |
-| **Precipitations in next hour** | ✅               | ❌        |
-| **Alerts**                      | ✅               | US (NWS) |
+| Sources                         | HERE     |
+|---------------------------------|----------|
+| **Air quality**                 | ❌        |
+| **Allergens**                   | ❌        |
+| **Precipitations in next hour** | ❌        |
+| **Alerts**                      | US (NWS) |
 
 ## Other weather data
 
-| Sources                         | Microsoft Azure | HERE     |
-|---------------------------------|-----------------|----------|
-| **Humidity**                    | ✅               | ✅        |
-| **Dew point**                   | ✅               | ✅        |
-| **Pressure**                    | Current         | ✅        |
-| **Cloud cover**                 | ✅               | ❌        |
-| **Visibility**                  | ✅               | ✅        |
-| **Ceiling**                     | ✅               | ❌        |
-| **Precipitation duration**      | ✅               | ❌        |
-| **Hours of sun**                | ✅               | ✅        |
-| **Yesterday temperature**       | ✅               | ❌        |
-| **Search**                      | *In progress*   | ✅        |
-| **Reverse geocoding**           | *In progress*   | ✅        |
+| Sources                         | HERE     |
+|---------------------------------|----------|
+| **Humidity**                    | ✅        |
+| **Dew point**                   | ✅        |
+| **Pressure**                    | ✅        |
+| **Cloud cover**                 | ❌        |
+| **Visibility**                  | ✅        |
+| **Ceiling**                     | ❌        |
+| **Precipitation duration**      | ❌        |
+| **Hours of sun**                | ✅        |
+| **Yesterday temperature**       | ❌        |
+| **Search**                      | ✅        |
+| **Reverse geocoding**           | ✅        |
 
 
 # Combinable sources
 
 From v4.5.0, you can combine your main weather source with other sources:
 
-| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Microsoft Azure | Météo-France | ATMO AURA      |
-|-----------------|------------|-------------|-------------|-------------|----------------|-----------------|--------------|----------------|
-| **Air quality** | ✅          | ❌           | Norway      | ✅          | ❌              | ✅              | ❌           | France (AURA) |
-| **Allergens**   | ✅²         | ❌           | ❌           | ❌          | ❌              | ✅              | ❌            | ❌            |
-| **Alerts**      | ❌          | ✅           | ❌           | ✅          | ✅              | ✅              | France       | ❌             |
-| **Minutely**    | ❌          | ✅           | Nordic area | ✅          | ✅              | ✅              | France       | ❌             |
+| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA      |
+|-----------------|------------|-------------|-------------|-------------|----------------|--------------|----------------|
+| **Air quality** | ✅          | ❌           | Norway      | ✅          | ❌              | ❌           | France (AURA) |
+| **Allergens**   | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌            | ❌            |
+| **Alerts**      | ❌          | ✅           | ❌           | ✅          | ✅              | France       | ❌             |
+| **Minutely**    | ❌          | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
