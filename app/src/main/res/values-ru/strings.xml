@@ -79,10 +79,10 @@
     <string name="ephemeris_moon_phase_waning_crescent">Старая луна</string>
     <string name="daily_forecast">Ежедневный</string>
     <string name="hourly_forecast">Почасовой</string>
-    <string name="minutely_forecast">Поминутный</string>
+    <string name="minutely_forecast">Поминутный прогноз</string>
     <string name="precipitation_forecast">Прогноз осадков</string>
     <string name="air_quality">Качество воздуха</string>
-    <string name="allergen">Аллерген</string>
+    <string name="allergen">Аллергены</string>
     <string name="details">Подробно</string>
     <string name="ephemeris">Восход и закат</string>
     <string name="action_next">Далее</string>
@@ -175,7 +175,7 @@
     <string name="allergen_tap_to_see_more">Дополнительно…</string>
     <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
     <!-- action -->
-    <string name="alerts">Оповещение</string>
+    <string name="alerts">Оповещения</string>
     <string name="action_search">Поиск</string>
     <string name="action_settings">Настройки</string>
     <string name="action_preview">Предпросмотр</string>
@@ -199,7 +199,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
-    <string name="settings_location_service">Провайдер местоположения</string>
+    <string name="settings_location_service">Источник местоположения</string>
     <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
     <string name="settings_appearance_icon_pack_title">Иконки</string>
     <string name="settings_appearance">Вид</string>
@@ -375,7 +375,7 @@
     <string name="settings_location_access_background_summaryOff">Пожалуйста, включите «Разрешить в фоне», чтобы иметь фоновое обновление для вашего текущего местоположения.</string>
     <string name="settings_location_access_background_summaryOn">Включено. Приложение сможет обновлять данные о погоде для вашего текущего местоположения в фоновом режиме.</string>
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
-    <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и провайдеры GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и источники GPS.</string>
     <string name="settings_source_default_value">По умолчанию</string>
     <string name="settings_weather_sources_current_location">Источник информации о погоде для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
@@ -401,7 +401,7 @@
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
-    <string name="settings_weather_sources_summary">Настройки источников информации о погоды, default location search source</string>
+    <string name="settings_weather_sources_summary">Настройки источников информации о погоды, источник поиска местоположения по умолчанию</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои Breezy Weather, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
