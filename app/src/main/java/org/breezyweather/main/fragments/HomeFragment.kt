@@ -145,7 +145,7 @@ class HomeFragment : MainModuleFragment() {
             SettingsManager.getInstance(requireContext()).isGravitySensorEnabled
         )
 
-        weatherView.setAnimatable(
+        weatherView.setDoAnimate(
             isBackgroundAnimationEnabled()
         )
 

@@ -76,6 +76,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mDaytime = false
         private var mVisible = false
         private var mAnimate = false
+        private var hasDrawn = false
         private var mDeviceOrientation: DeviceOrientation = DeviceOrientation.TOP
         private var mIntervalController: AsyncHelper.Controller? = null
         private var mHandlerThread: HandlerThread? = null
@@ -106,9 +107,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
                     }
                     mBackground?.draw(canvas)
                     if (mIntervalComputer != null && mRotators != null) {
+                        var interval = mIntervalComputer!!.interval
+                        if (!mAnimate) {
+                            if (hasDrawn) interval = 0.0
+                            else hasDrawn = true
+                        }
                         mImplementor?.updateData(
                             mAdaptiveSize,
-                            if (mAnimate) mIntervalComputer!!.interval.toLong() else 0,
+                            interval.toLong(),
                             mRotators!![0].rotation.toFloat(),
                             mRotators!![1].rotation.toFloat()
                         )
@@ -196,6 +202,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         private fun setWeatherImplementor() {
+            hasDrawn = false
             mImplementor = WeatherImplementorFactory.getWeatherImplementor(
                 mWeatherKind,
                 mDaytime,

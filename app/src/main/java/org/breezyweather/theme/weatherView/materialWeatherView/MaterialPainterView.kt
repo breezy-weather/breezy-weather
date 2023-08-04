@@ -75,9 +75,7 @@ class MaterialPainterView(
             orientationListener.disable()
         }
 
-    private var drawnFrames = 0
-    private val drawFramesLimit = 50
-
+    private var hasDrawn = false
     private var mDeviceOrientation: DeviceOrientation? = null
 
     private enum class DeviceOrientation {
@@ -249,8 +247,8 @@ class MaterialPainterView(
 
         var interval = intervalComputer!!.interval
         if (!animatable) {
-            interval -= drawnFrames.toDouble() / drawFramesLimit * interval
-            if (drawnFrames < drawFramesLimit) drawnFrames += 1
+            if (hasDrawn) interval = 0.0
+            else hasDrawn = true
         }
 
         impl!!.updateData(
@@ -318,7 +316,7 @@ class MaterialPainterView(
     )
 
     private fun setWeatherImplementor() {
-        drawnFrames = 0
+        hasDrawn = false
         impl = WeatherImplementorFactory.getWeatherImplementor(
             weatherKind,
             daylight,

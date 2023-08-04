@@ -24,7 +24,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
     private var mDaytime = false
     private var mFirstCardMarginTop = 0
     private var mGravitySensorEnabled: Boolean = true
-    private var mAnimatable: Boolean = true
+    private var mAnimate: Boolean = true
     private var mDrawable: Boolean = false
 
     /**
@@ -116,7 +116,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
         mPreviousView = mCurrentView
         mCurrentView = prev
         mCurrentView?.let {
-            it.update(weatherKind, daytime, mGravitySensorEnabled, mAnimatable)
+            it.update(weatherKind, daytime, mGravitySensorEnabled, mAnimate)
             it.drawable = mDrawable
         } ?: run {
             mCurrentView = MaterialPainterView(
@@ -126,7 +126,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
                 mDrawable,
                 mPreviousView?.scrollRate ?: 0f,
                 mGravitySensorEnabled,
-                mAnimatable
+                mAnimate
             )
             addView(mCurrentView)
         }
@@ -178,8 +178,8 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
         }
     }
 
-    override fun setAnimatable(animatable: Boolean) {
-        mAnimatable = animatable
+    override fun setDoAnimate(animate: Boolean) {
+        mAnimate = animate
     }
 
     override fun setGravitySensorEnabled(enabled: Boolean) {
