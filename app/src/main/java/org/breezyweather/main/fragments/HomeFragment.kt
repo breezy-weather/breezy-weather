@@ -11,8 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
@@ -47,6 +51,7 @@ class HomeFragment : MainModuleFragment() {
 
     private val previewOffset = EqualtableLiveData(0)
     private var callback: Callback? = null
+    private var lastCurrentLocation: Location? = null
 
     interface Callback {
         fun onManageIconClicked()
@@ -197,23 +202,41 @@ class HomeFragment : MainModuleFragment() {
         binding.recyclerView.addOnScrollListener(OnScrollListener().also { scrollListener = it })
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 
-        viewModel.currentLocation.observe(viewLifecycleOwner) {
-            updateViews(it?.location)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.currentLocation.collect {
+                    // TODO: Dirty workaround to avoid recollecting on lifecycle resume
+                    if (it?.location != lastCurrentLocation) {
+                        updateViews(it?.location)
+                        lastCurrentLocation = it?.location
+                    }
+                }
+            }
         }
 
-        viewModel.loading.observe(viewLifecycleOwner) { setRefreshing(it) }
-
-        viewModel.indicator.observe(viewLifecycleOwner) {
-            binding.switchLayout.isEnabled = it.total > 1
-
-            if (binding.switchLayout.totalCount != it.total
-                || binding.switchLayout.position != it.index
-            ) {
-                binding.switchLayout.setData(it.index, it.total)
-                binding.indicator.setSwitchView(binding.switchLayout)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loading.collect {
+                    setRefreshing(it)
+                }
             }
+        }
 
-            binding.indicator.visibility = if (it.total > 1) View.VISIBLE else View.GONE
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.indicator.collect {
+                    binding.switchLayout.isEnabled = it.total > 1
+
+                    if (binding.switchLayout.totalCount != it.total
+                        || binding.switchLayout.position != it.index
+                    ) {
+                        binding.switchLayout.setData(it.index, it.total)
+                        binding.indicator.setSwitchView(binding.switchLayout)
+                    }
+
+                    binding.indicator.visibility = if (it.total > 1) View.VISIBLE else View.GONE
+                }
+            }
         }
 
         previewOffset.observe(viewLifecycleOwner) {

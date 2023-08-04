@@ -35,6 +35,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - [Atmo Aura] Is no longer provided as part of Météo-France. Needs to be added as a secondary source for compatible locations.
 
 **Other fixes**
+- Fix location no longer updated when tapped for the first time
 - Fix contrast issue on Main screen Allergen card in some cases
 - Fix "Material You - Current" widget not being resizable to 2 cells on height (@Cod3dDOT)
 - Fix reverse geocoding would replace longitude and latitude of current location resulting in weather data for city coordinates instead of current coordinates

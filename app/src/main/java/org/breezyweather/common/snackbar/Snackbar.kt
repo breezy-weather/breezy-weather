@@ -319,6 +319,7 @@ class Snackbar private constructor(
             return insets
         }
 
+        @Deprecated("Deprecated in Java")
         override fun fitSystemWindows(insets: Rect): Boolean {
             mWindowInsets.set(insets)
             SnackbarAnimationUtils.consumeInsets(this, mWindowInsets)

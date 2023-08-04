@@ -31,6 +31,7 @@ open class FitSystemBarRecyclerView @JvmOverloads constructor(
         return mHelper.onApplyWindowInsets(insets)
     }
 
+    @Deprecated("Deprecated in Java")
     public override fun fitSystemWindows(insets: Rect): Boolean {
         return mHelper.fitSystemWindows(insets)
     }

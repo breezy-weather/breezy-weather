@@ -78,6 +78,7 @@ class PixelMoonDrawable : Drawable() {
         mPaint.setColorFilter(colorFilter)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getOpacity(): Int {
         return PixelFormat.OPAQUE
     }

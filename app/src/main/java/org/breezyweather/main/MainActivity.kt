@@ -248,46 +248,49 @@ class MainActivity : GeoActivity(),
                 }
             }
         }
-        viewModel.locationPermissionsRequest.observe(this) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || it == null
-                || it.permissionList.isEmpty()
-                || !it.consume()) {
-                return@observe
-            }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.locationPermissionsRequest.collect {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        && it != null
+                        && it.permissionList.isNotEmpty()
+                        && it.consume()) {
+                        // only show dialog if we need request basic location permissions.
+                        var showLocationPermissionDialog = false
+                        for (permission in it.permissionList) {
+                            if (isLocationPermission(permission)) {
+                                showLocationPermissionDialog = true
+                                break
+                            }
+                        }
 
-            // only show dialog if we need request basic location permissions.
-            var showLocationPermissionDialog = false
-            for (permission in it.permissionList) {
-                if (isLocationPermission(permission)) {
-                    showLocationPermissionDialog = true
-                    break
-                }
-            }
+                        if (showLocationPermissionDialog && !viewModel.statementManager.isLocationPermissionDialogAlreadyShown) {
+                            // only show dialog once.
+                            MaterialAlertDialogBuilder(this@MainActivity)
+                                .setTitle(R.string.dialog_permissions_location_title)
+                                .setMessage(R.string.dialog_permissions_location_content)
+                                .setPositiveButton(R.string.action_next) { _, _ ->
+                                    // mark declared.
+                                    viewModel.statementManager.setLocationPermissionDialogAlreadyShown()
 
-            if (showLocationPermissionDialog && !viewModel.statementManager.isLocationPermissionDialogAlreadyShown) {
-                // only show dialog once.
-                MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.dialog_permissions_location_title)
-                    .setMessage(R.string.dialog_permissions_location_content)
-                    .setPositiveButton(R.string.action_next) { _, _ ->
-                        // mark declared.
-                        viewModel.statementManager.setLocationPermissionDialogAlreadyShown()
-
-                        val request = viewModel.locationPermissionsRequest.value
-                        if (request != null
-                            && request.permissionList.isNotEmpty()
-                            && request.target != null) {
-                            requestPermissions(
-                                request.permissionList.toTypedArray(),
-                                0
-                            )
+                                    val request = viewModel.locationPermissionsRequest.value
+                                    if (request != null
+                                        && request.permissionList.isNotEmpty()
+                                        && request.target != null
+                                    ) {
+                                        requestPermissions(
+                                            request.permissionList.toTypedArray(),
+                                            0
+                                        )
+                                    }
+                                }
+                                .setCancelable(false)
+                                .show()
+                        } else {
+                            requestPermissions(it.permissionList.toTypedArray(), 0)
                         }
                     }
-                    .setCancelable(false)
-                    .show()
-            } else {
-                requestPermissions(it.permissionList.toTypedArray(), 0)
+                }
             }
         }
         viewModel.requestErrorType.observe(this) {

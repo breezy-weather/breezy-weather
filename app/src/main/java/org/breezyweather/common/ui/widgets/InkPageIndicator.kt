@@ -262,6 +262,7 @@ class InkPageIndicator @JvmOverloads constructor(
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun fitSystemWindows(insets: Rect): Boolean {
         setPadding(0, 0, 0, insets.bottom)
         return false

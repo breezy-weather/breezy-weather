@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoViewModel
@@ -31,8 +32,9 @@ class MainActivityViewModel @Inject constructor(
 ) : GeoViewModel(application),
     MainActivityRepository.WeatherRequestCallback {
 
-    // live data.
-    val currentLocation = EqualtableLiveData<DayNightLocation?>()
+    // flow
+    private val _currentLocation: MutableStateFlow<DayNightLocation?> = MutableStateFlow(null)
+    val currentLocation = _currentLocation.asStateFlow()
     private val _validLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val validLocationList = _validLocationList.asStateFlow()
     private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
@@ -41,10 +43,12 @@ class MainActivityViewModel @Inject constructor(
     private val _dialogChooseCurrentLocationWeatherSourceOpen = MutableStateFlow(false)
     val dialogChooseCurrentLocationWeatherSourceOpen = _dialogChooseCurrentLocationWeatherSourceOpen.asStateFlow()
 
-    val loading = EqualtableLiveData<Boolean>()
-    val indicator = EqualtableLiveData<Indicator>()
+    private val _loading = MutableStateFlow(false)
+    val loading = _loading.asStateFlow()
+    private val _indicator = MutableStateFlow(Indicator(total = 0, index = 0)) // Is overwritten on init
+    val indicator = _indicator.asStateFlow()
 
-    val locationPermissionsRequest = MutableLiveData<PermissionsRequest?>()
+    val locationPermissionsRequest: MutableStateFlow<PermissionsRequest?> = MutableStateFlow(null)
     val requestErrorType = BusLiveData<RequestErrorType?>(Handler(Looper.getMainLooper()))
 
     // inner data.
@@ -77,17 +81,15 @@ class MainActivityViewModel @Inject constructor(
         initCompleted = false
 
         current?.let {
-            currentLocation.setValue(DayNightLocation(location = it))
+            _currentLocation.value = DayNightLocation(location = it)
         }
         _validLocationList.value = Pair(validList, id)
         _totalLocationList.value = Pair(totalList, id)
 
-        loading.setValue(false)
-        indicator.setValue(
-            Indicator(
-                total = validList.size,
-                index = validList.indexOfFirst { it.formattedId == id }
-            )
+        _loading.value = false
+        _indicator.value = Indicator(
+            total = validList.size,
+            index = validList.indexOfFirst { it.formattedId == id }
         )
 
         locationPermissionsRequest.value = null
@@ -139,7 +141,7 @@ class MainActivityViewModel @Inject constructor(
             }
         }
 
-        indicator.postValue(Indicator(total = valid.size, index = index))
+        _indicator.value = Indicator(total = valid.size, index = index)
 
         // update current location.
         setCurrentLocation(valid[index])
@@ -155,7 +157,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun setCurrentLocation(location: Location) {
-        currentLocation.postValue(DayNightLocation(location = location))
+        _currentLocation.value = DayNightLocation(location = location)
         savedStateHandle[KEY_FORMATTED_ID] = location.formattedId
 
         checkToUpdateCurrentLocation()
@@ -174,7 +176,7 @@ class MainActivityViewModel @Inject constructor(
 
         updateInnerData(location)
 
-        loading.postValue(false)
+        _loading.value = false
         updating = false
     }
 
@@ -199,7 +201,7 @@ class MainActivityViewModel @Inject constructor(
                     checkPermissions = true,
                 )
             } else {
-                loading.postValue(true)
+                _loading.value = true
                 updating = false
             }
             return
@@ -224,12 +226,12 @@ class MainActivityViewModel @Inject constructor(
         if (updating) return
         val locationToCheck = currentLocation.value?.location
         if (locationToCheck == null) {
-            loading.postValue(true)
-            loading.postValue(false)
+            _loading.value = true
+            _loading.value = false
             return
         }
 
-        loading.postValue(true)
+        _loading.value = true
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
@@ -255,7 +257,7 @@ class MainActivityViewModel @Inject constructor(
         if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
-            viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch {
                 repository.getWeather(
                     getApplication(),
                     locationToCheck,
@@ -275,7 +277,7 @@ class MainActivityViewModel @Inject constructor(
 
     fun cancelRequest() {
         updating = false
-        loading.postValue(false)
+        _loading.value = false
     }
 
     fun checkToUpdate() {
@@ -310,7 +312,7 @@ class MainActivityViewModel @Inject constructor(
             if (index >= 0) {
                 setCurrentLocation(locationList[index])
 
-                indicator.setValue(Indicator(total = locationList.size, index = index))
+                _indicator.value = Indicator(total = locationList.size, index = index)
 
                 _totalLocationList.value = Pair(totalLocationList.value.first, formattedId)
                 _validLocationList.value = Pair(validLocationList.value.first, formattedId)
@@ -341,9 +343,7 @@ class MainActivityViewModel @Inject constructor(
         // update location.
         setCurrentLocation(validLocationList.value.first[index])
 
-        indicator.postValue(
-            Indicator(total = validLocationList.value.first.size, index = index)
-        )
+        _indicator.value = Indicator(total = validLocationList.value.first.size, index = index)
 
         _totalLocationList.value = Pair(totalLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
         _validLocationList.value = Pair(validLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")

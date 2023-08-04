@@ -27,6 +27,7 @@ class RotateDrawable(private val mDrawable: Drawable?) : Drawable() {
         mDrawable?.colorFilter = colorFilter
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getOpacity(): Int {
         return PixelFormat.OPAQUE
     }

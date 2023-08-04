@@ -137,7 +137,6 @@ class SearchActivity : GeoActivity() {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                     }
                     if (listResourceState.value.first.isNotEmpty()) {
-                        val context = LocalContext.current
                         LazyColumn(
                             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -238,6 +237,7 @@ class SearchActivity : GeoActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         finishSelf(null)
     }

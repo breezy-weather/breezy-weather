@@ -37,25 +37,6 @@ class PermissionsRequest(
     }
 }
 
-class SelectableLocationList(
-    val locationList: List<Location>,
-    val selectedId: String,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (other is SelectableLocationList) {
-            return locationList == other.locationList
-                    && selectedId == other.selectedId
-        }
-        return false
-    }
-
-    override fun hashCode(): Int {
-        var result = locationList.hashCode()
-        result = 31 * result + selectedId.hashCode()
-        return result
-    }
-}
-
 class DayNightLocation(
     val location: Location,
     val daylight: Boolean = location.isDaylight

@@ -97,6 +97,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         updateHostView()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
             setBottomSheetState(true)
