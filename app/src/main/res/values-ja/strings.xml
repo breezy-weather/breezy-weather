@@ -87,7 +87,7 @@
     <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質指数</string>
     <string name="allergen">アレルギー</string>
-    <string name="details">詳細</string>
+    <string name="details">その他</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次</string>
     <string name="action_done">完了</string>
@@ -97,7 +97,7 @@
     <string name="action_set">設定</string>
     <string name="action_help">ヘルプ</string>
     <string name="action_learn_more">もっと詳しく</string>
-    <string name="about_app">アプリについて</string>
+    <string name="about_app">Breezy Weather</string>
     <string name="about_translators">翻訳者</string>
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -214,11 +214,11 @@
     <string name="settings_main_gravity_sensor_switch">重力センサー</string>
     <string name="settings_appearance_language_title">言語</string>
     <string name="settings_units">単位</string>
-    <string name="settings_units_temperature">気温単位</string>
-    <string name="settings_units_distance">距離単位</string>
-    <string name="settings_units_precipitation">降水量単位</string>
-    <string name="settings_units_pressure">圧力単位</string>
-    <string name="settings_units_speed">速度単位</string>
+    <string name="settings_units_temperature">気温</string>
+    <string name="settings_units_distance">距離</string>
+    <string name="settings_units_precipitation">降水量</string>
+    <string name="settings_units_pressure">気圧</string>
+    <string name="settings_units_speed">速度</string>
     <string name="settings_notifications_section_forecast">予報の通知</string>
     <string name="settings_widgets_notification_temp_icon_switch">気温を通知バーに表示する</string>
     <string name="location_resident">居住地</string>
@@ -269,7 +269,7 @@
     <string name="weather_kind_wind">風</string>
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
-    <string name="settings_background_updates_battery_optimization_summary">通知を受信しない、またはウィジェットが更新されない場合にお試しください。</string>
+    <string name="settings_background_updates_battery_optimization_summary">通知を受信できない･ウィジェットが更新されない場合にお試しください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>
     <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10日</string>
@@ -309,4 +309,38 @@
     <string name="air_quality_level_5">非常に不健康</string>
     <string name="air_quality_level_2_description">大気の質は、ほとんどの人にとって一般的に許容範囲である。しかし、敏感なグループでは、長期間の暴露により軽度から中等度の症状を経験する可能性がある。</string>
     <string name="air_quality_level_3">貧しい</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池残量が少ない場合は無効にする</string>
+    <string name="settings_main_header_details_title">ヘッダーに表示するデータ</string>
+    <string name="settings_main_section_displayed_data">表示するデータ</string>
+    <string name="settings_background_updates_summary">更新間隔･自動更新の問題対処</string>
+    <string name="settings_background_updates">バックグラウンドの自動更新</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。
+\nDon\'t kill my app! にその対処方法が掲載されています。</string>
+    <string name="settings_notifications">通知</string>
+    <string name="settings_main">トップ画面</string>
+    <string name="settings_main_hourly_trends_title">毎時予報</string>
+    <string name="settings_main_section_options">オプション</string>
+    <string name="settings_widgets">ウィジェット･ライブ壁紙</string>
+    <string name="about_contribution_WangDaYeeeeee">原作アプリ Geometric Weather の開発者</string>
+    <string name="settings_units_summary">気温･降水量･距離･速度･気圧</string>
+    <string name="settings_background_updates_worker_info_summary">最終実行: $</string>
+    <string name="settings_main_cards_title">カード</string>
+    <string name="settings_main_background_animation_disabled">無効</string>
+    <string name="settings_background_updates_refresh_title">更新間隔</string>
+    <string name="settings_background_updates_worker_info_title">バックグラウンド更新情報</string>
+    <string name="settings_main_background_animation_title">背景のアニメーション</string>
+    <string name="settings_main_summary">カードの順序･表示する情報･アニメーション</string>
+    <string name="settings_main_section_animations">アニメーション</string>
+    <string name="about_matrix">Matrixサーバー</string>
+    <string name="settings_appearance_summary">言語･ダークモード･アイコンパック･単位</string>
+    <string name="settings_main_background_animation_enabled">有効</string>
+    <string name="settings_background_updates_section_troubleshoot">更新ができない場合の対処方法</string>
+    <string name="about_source_code">ソースコード</string>
+    <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
+    <string name="settings_main_daily_trends_title">日時予報</string>
+    <string name="about_contributors">貢献者</string>
+    <string name="about_contribution_weather_source">新しい気象ソースへの対応を追加</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">メーカーごとの改善方法</string>
+    <string name="minutely_precipitations">毎分降水量</string>
+    <string name="settings_location">位置情報</string>
 </resources>
