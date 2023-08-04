@@ -76,7 +76,8 @@ class CloudImplementor(
         val centerY: Float,
         radius: Float,
         @field:ColorInt @param:ColorInt val color: Int,
-        val duration: Long
+        val duration: Long,
+        val animate: Boolean
     ) {
         var radius: Float
         var alpha = 0f
@@ -84,10 +85,16 @@ class CloudImplementor(
 
         init {
             this.radius = (radius * (0.7 + 0.3 * Random().nextFloat())).toFloat()
-            computeAlpha(duration, progress)
+            if (!animate) {
+                alpha = Random().nextFloat()
+            } else {
+                computeAlpha(duration, progress)
+            }
         }
 
         fun shine(interval: Long) {
+            if (!animate) return
+
             progress = (progress + interval) % duration
             computeAlpha(duration, progress)
         }
@@ -465,7 +472,8 @@ class CloudImplementor(
                         y.toFloat(),
                         radius,
                         colors[i % colors.size],
-                        duration
+                        duration,
+                        mAnimate
                     )
                 }
                 initialize(clouds, stars)
