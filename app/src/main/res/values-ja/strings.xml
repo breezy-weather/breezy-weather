@@ -97,7 +97,7 @@
     <string name="action_set">設定</string>
     <string name="action_help">ヘルプ</string>
     <string name="action_learn_more">もっと詳しく</string>
-    <string name="about_app">Breezy Weather</string>
+    <string name="about_app">アプリについて</string>
     <string name="about_translators">翻訳者</string>
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -315,7 +315,7 @@
     <string name="settings_background_updates_summary">更新間隔･自動更新の問題対処</string>
     <string name="settings_background_updates">バックグラウンドの自動更新</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。
-\nDon\'t kill my app! にその対処方法が掲載されています。</string>
+\nDon’t kill my app! にその対処方法が掲載されています。</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_main">トップ画面</string>
     <string name="settings_main_hourly_trends_title">毎時予報</string>
