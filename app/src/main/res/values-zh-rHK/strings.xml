@@ -43,8 +43,8 @@
     <string name="short_friday">週五</string>
     <string name="short_saturday">週六</string>
     <string name="short_sunday">週日</string>
-    <string name="temperature_real_feel">真實體感</string>
-    <string name="temperature_real_feel_shade">陰面真實體感</string>
+    <string name="temperature_real_feel">真實體感®</string>
+    <string name="temperature_real_feel_shade">陰面真實體感™</string>
     <string name="temperature_apparent">地表溫度</string>
     <string name="temperature_wind_chill">風寒溫度</string>
     <string name="temperature_wet_bulb">濕球溫度</string>
