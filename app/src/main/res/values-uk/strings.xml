@@ -2,7 +2,7 @@
 <resources>
     <string name="air_quality_level_3_description">Повітря досягло високого рівня забруднення і є нездоровим для чутливих груп. Скоротіть час перебування на вулиці, якщо ви відчуваєте такі симптоми, як утруднене дихання або подразнення горла.</string>
     <string name="precipitation_intensity_heavy">Проливний дощ</string>
-    <string name="air_quality_level_4_description">Вразливі групи можуть відразу відчути вплив на здоров\'я. Здорові люди можуть відчувати утруднене дихання та подразнення горла при тривалому впливі. Обмежте активність на свіжому повітрі.</string>
+    <string name="air_quality_level_4_description">Вразливі групи можуть відразу відчути вплив на здоров’я. Здорові люди можуть відчувати утруднене дихання та подразнення горла при тривалому впливі. Обмежте активність на свіжому повітрі.</string>
     <string name="uv_index_6_7">Високий</string>
     <string name="precipitation_intensity_rainstorm">Злива</string>
     <string name="wind">Вітер</string>
@@ -53,7 +53,7 @@
     <string name="air_quality_level_6">Небезпечне</string>
     <string name="air_quality_no2_voice">Оксид азота</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="air_quality_pm25_voice">PM два точка п\'ять</string>
+    <string name="air_quality_pm25_voice">PM два точка п’ять</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM десять</string>
     <string name="air_quality_so2">SO₂</string>

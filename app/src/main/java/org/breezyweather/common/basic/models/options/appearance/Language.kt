@@ -47,6 +47,7 @@ enum class Language(
     BULGARIAN("bulgarian", Locale("bg")),
     RUSSIAN("russian", Locale("ru")),
     SERBIAN("serbian", Locale("sr")),
+    UKRAINIAN("ukrainian", Locale("uk")),
     ARABIC("arabic", Locale("ar")),
     KURDISH_SORANI("kurdish_sorani", Locale("ckb")),
     KOREAN("korean", Locale("ko")),
@@ -129,6 +130,7 @@ enum class Language(
             "bulgarian" -> BULGARIAN
             "russian" -> RUSSIAN
             "serbian" -> SERBIAN
+            "ukrainian" -> UKRAINIAN
             "arabic" -> ARABIC
             "kurdish_sorani" -> KURDISH_SORANI
             "korean" -> KOREAN

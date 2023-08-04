@@ -184,6 +184,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("tr"), "Ali D.", "mailto:siyaha@gmail.com"),
         TranslatorItem(arrayOf("tr"), "metezd", "https://hosted.weblate.org/user/metezd/"),
         TranslatorItem(arrayOf("tr"), "Furkan Karcıoğlu", "https://github.com/frknkrc44"),
+        TranslatorItem(arrayOf("uk"), "Cod3d.", "https://github.com/Cod3dDOT"),
         TranslatorItem(arrayOf("vi"), "minb", "https://hosted.weblate.org/user/minbe/"),
         TranslatorItem(arrayOf("vi"), "Fairy", "https://hosted.weblate.org/user/Fairy/"),
         TranslatorItem(arrayOf("vi"), "ngocanhtve", "https://github.com/ngocanhtve"),

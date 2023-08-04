@@ -43,6 +43,7 @@ Due to a technical change, cached weather data will be cleared on update.
 
 **Translations**
 - Slovak added (Kuko)
+- Ukrainian added (@Cod3dDOT)
 - Others updated
 
 
