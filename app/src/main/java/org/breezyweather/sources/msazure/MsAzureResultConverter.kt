@@ -4,6 +4,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -23,9 +24,9 @@ import org.breezyweather.common.basic.wrappers.AllergenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.sources.accu.json.AccuForecastDailyForecast
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirPollutant
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForecast
 import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForecastResponse
@@ -36,10 +37,13 @@ import org.breezyweather.sources.msazure.json.current.MsAzureCurrentConditionsRe
 import org.breezyweather.sources.msazure.json.daily.MsAzureDailyForecast
 import org.breezyweather.sources.msazure.json.daily.MsAzureDailyForecastResponse
 import org.breezyweather.sources.msazure.json.daily.MsAzureWeatherAirAndPollen
+import org.breezyweather.sources.msazure.json.geocoding.MsAzureGeocodingResponse
 import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecast
 import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecastResponse
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecast
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecastResponse
+import org.breezyweather.sources.msazure.json.timezone.MsAzureTz
+import org.breezyweather.sources.msazure.json.timezone.MsAzureTzResponse
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -51,6 +55,7 @@ import kotlin.time.Duration.Companion.hours
  */
 fun convertPrimary(
     location: Location,
+    tzResponse: MsAzureTzResponse,
     currentConditionsResponse: MsAzureCurrentConditionsResponse,
     dailyForecastResponse: MsAzureDailyForecastResponse,
     hourlyForecastResponse: MsAzureHourlyForecastResponse,
@@ -74,7 +79,11 @@ fun convertPrimary(
             currentConditionsResponse.results?.getOrNull(0),
             currentAirQualityResponse.results?.getOrNull(0)
         ),
-        dailyForecast = getDailyForecast(dailyForecastResponse.forecasts, location.timeZone),
+        dailyForecast = getDailyForecast(
+            dailyForecastResponse.forecasts,
+            tzResponse.timeZones?.getOrNull(0),
+            location.timeZone
+        ),
         hourlyForecast = getHourlyForecast(
             hourlyForecastResponse.forecasts,
             hourlyAirQualityForecastResponse.results
@@ -163,14 +172,17 @@ private fun getCurrentForecast(
 
 private fun getDailyForecast(
     days: List<MsAzureDailyForecast>?,
-    timeZone: TimeZone
+    timezone: MsAzureTz?,
+    locationTz: TimeZone
 ): List<Daily>? {
     if (days.isNullOrEmpty()) return null
 
     val supportsAllergens = supportsAllergens(days)
     return days.map { day ->
         Daily(
-            date = day.date.toTimezoneNoHour(timeZone)!!,
+            date = day.date.toTimezoneNoHour(
+                timezone?.id.let { TimeZone.getTimeZone(it) } ?: locationTz
+            )!!,
             day = HalfDay(
                 weatherText = day.day?.shortPhrase,
                 weatherCode = getWeatherCode(day.day?.iconCode),
@@ -238,6 +250,10 @@ private fun getDailyForecast(
                     gusts = day.night?.windGust?.speed?.value?.toFloat()
                 ),
                 cloudCover = day.night?.cloudCover
+            ),
+            sun = Astro(
+                riseDate = timezone?.referenceTime?.sunrise,
+                setDate = timezone?.referenceTime?.sunset
             ),
             degreeDay = DegreeDay(
                 heating = day.degreeDaySummary?.heating?.value?.toFloat(),
@@ -410,4 +426,53 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
         32 -> WeatherCode.WIND
         else -> null
     }
+}
+
+fun convertGeocoding(
+    result: MsAzureGeocodingResponse
+): List<Location> {
+    if (result.features.isNullOrEmpty()) throw LocationSearchException()
+
+    return result.features.filter {
+        it.properties?.type in arrayOf(
+            "Neighborhood",
+            "PopulatedPlace",
+            "AdminDivision1",
+            "AdminDivision2",
+            "CountryRegion"
+        ) &&
+                it.geometry?.coordinates?.size == 2
+    }.map {
+        Location(
+            // because microsoft decided to be different
+            latitude = it.geometry?.coordinates?.get(1)!!.toFloat(),
+            longitude = it.geometry.coordinates[0]!!.toFloat(),
+            timeZone = TimeZone.getDefault(),
+            country = it.properties?.address?.countryRegion?.name ?: "",
+            province = it.properties?.address?.adminDistricts?.getOrNull(0)?.shortName,
+            city = it.properties?.address?.locality ?: "",
+            district = it.properties?.address?.adminDistricts?.getOrNull(1)?.shortName,
+            weatherSource = "msazure"
+        )
+    }
+}
+
+fun convertReverseGeocoding(
+    location: Location,
+    timezone: MsAzureTzResponse,
+    result: MsAzureGeocodingResponse
+): List<Location> {
+    return result.features?.mapIndexed { index, it ->
+        Location(
+            latitude = location.latitude,
+            longitude = location.longitude,
+            timeZone = timezone.timeZones?.get(index)?.id.let { TimeZone.getTimeZone(it) } ?: location.timeZone,
+            country = it.properties?.address?.countryRegion?.name ?: "",
+            countryCode = it.properties?.address?.countryRegion?.code,
+            province = it.properties?.address?.adminDistricts?.getOrNull(0)?.shortName,
+            city = it.properties?.address?.locality ?: "",
+            district = it.properties?.address?.adminDistricts?.getOrNull(1)?.shortName,
+            weatherSource = "msazure"
+        )
+    } ?: listOf()
 }

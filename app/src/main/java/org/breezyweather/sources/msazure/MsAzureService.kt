@@ -14,7 +14,9 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
@@ -23,16 +25,18 @@ import org.breezyweather.sources.msazure.json.airquality.MsAzureAirQualityForeca
 import org.breezyweather.sources.msazure.json.alerts.MsAzureWeatherAlertsResponse
 import org.breezyweather.sources.msazure.json.current.MsAzureCurrentConditionsResponse
 import org.breezyweather.sources.msazure.json.daily.MsAzureDailyForecastResponse
+import org.breezyweather.sources.msazure.json.geocoding.MsAzureGeocodingResponse
 import org.breezyweather.sources.msazure.json.hourly.MsAzureHourlyForecastResponse
 import org.breezyweather.sources.msazure.json.minutely.MsAzureMinutelyForecastResponse
+import org.breezyweather.sources.msazure.json.timezone.MsAzureTzResponse
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 class MsAzureService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
-
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
+    LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
     override val id = "msazure"
     override val name = "Microsoft Azure"
 
@@ -45,9 +49,9 @@ class MsAzureService @Inject constructor(
 
     private val mApi by lazy {
         client
-            .baseUrl(MS_AZURE_WEATHER_BASE_URL)
+            .baseUrl(MS_AZURE_BASE_URL)
             .build()
-            .create(MsAzureWeatherApi::class.java)
+            .create(MsAzureApi::class.java)
     }
 
     override fun requestWeather(
@@ -62,6 +66,10 @@ class MsAzureService @Inject constructor(
 
         val query = "${location.latitude},${location.longitude}"
 
+        val tzRequest = mApi.getTimezone(
+            apiKey,
+            query
+        )
         val currentConditionsRequest = mApi.getCurrentConditions(
             apiKey, query, lang
         )
@@ -71,60 +79,65 @@ class MsAzureService @Inject constructor(
         val hourlyForecastRequest = mApi.getHourlyForecast(
             apiKey, query, 240, lang
         )
-        val minutelyForecastRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
-            mApi.getMinutelyForecast(
-                apiKey, query, 1, lang
-            ).onErrorResumeNext {
+        val minutelyForecastRequest =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                mApi.getMinutelyForecast(
+                    apiKey, query, 1, lang
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MsAzureMinutelyForecastResponse())
+                    }
+                }
+            } else {
                 Observable.create { emitter ->
                     emitter.onNext(MsAzureMinutelyForecastResponse())
                 }
             }
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureMinutelyForecastResponse())
-            }
-        }
-        val currentAirQualityRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getCurrentAirQuality(
-                apiKey, query, lang
-            ).onErrorResumeNext {
+        val currentAirQualityRequest =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getCurrentAirQuality(
+                    apiKey, query, lang
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MsAzureAirQualityForecastResponse())
+                    }
+                }
+            } else {
                 Observable.create { emitter ->
                     emitter.onNext(MsAzureAirQualityForecastResponse())
                 }
             }
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureAirQualityForecastResponse())
-            }
-        }
-        val hourlyAirQualityForecastRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getHourlyAirQuality(
-                apiKey, query, 96, lang
-            ).onErrorResumeNext {
+        val hourlyAirQualityForecastRequest =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getHourlyAirQuality(
+                    apiKey, query, 96, lang
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MsAzureAirQualityForecastResponse())
+                    }
+                }
+            } else {
                 Observable.create { emitter ->
                     emitter.onNext(MsAzureAirQualityForecastResponse())
                 }
             }
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureAirQualityForecastResponse())
-            }
-        }
-        val alertsRequest = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getWeatherAlerts(
-                apiKey, query, lang
-            ).onErrorResumeNext {
+        val alertsRequest =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getWeatherAlerts(
+                    apiKey, query, lang
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MsAzureWeatherAlertsResponse())
+                    }
+                }
+            } else {
                 Observable.create { emitter ->
                     emitter.onNext(MsAzureWeatherAlertsResponse())
                 }
             }
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureWeatherAlertsResponse())
-            }
-        }
 
         return Observable.zip(
+            tzRequest,
             currentConditionsRequest,
             dailyForecastRequest,
             hourlyForecastRequest,
@@ -132,7 +145,8 @@ class MsAzureService @Inject constructor(
             currentAirQualityRequest,
             hourlyAirQualityForecastRequest,
             alertsRequest
-        ) { currentConditionsResponse: MsAzureCurrentConditionsResponse,
+        ) { tzResponse: MsAzureTzResponse,
+            currentConditionsResponse: MsAzureCurrentConditionsResponse,
             dailyForecastResponse: MsAzureDailyForecastResponse,
             hourlyForecastResponse: MsAzureHourlyForecastResponse,
             minutelyForecastResponse: MsAzureMinutelyForecastResponse,
@@ -142,6 +156,7 @@ class MsAzureService @Inject constructor(
             ->
             convertPrimary(
                 location,
+                tzResponse,
                 currentConditionsResponse,
                 dailyForecastResponse,
                 hourlyForecastResponse,
@@ -176,51 +191,56 @@ class MsAzureService @Inject constructor(
         val lang = SettingsManager.getInstance(context).language.code
         val query = "${location.latitude},${location.longitude}"
 
-        val dailyForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-            mApi.getDailyForecast(
-                apiKey, query, 15, lang
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureDailyForecastResponse())
+        val dailyForecastRequest =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+                mApi.getDailyForecast(
+                    apiKey, query, 15, lang
+                )
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureDailyForecastResponse())
+                }
             }
-        }
-        val minutelyForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
-            mApi.getMinutelyForecast(
-                apiKey, query, 1, lang
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureMinutelyForecastResponse())
+        val minutelyForecastRequest =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                mApi.getMinutelyForecast(
+                    apiKey, query, 1, lang
+                )
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureMinutelyForecastResponse())
+                }
             }
-        }
-        val currentAirQualityRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getCurrentAirQuality(
-                apiKey, query, lang
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureAirQualityForecastResponse())
+        val currentAirQualityRequest =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getCurrentAirQuality(
+                    apiKey, query, lang
+                )
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureAirQualityForecastResponse())
+                }
             }
-        }
-        val hourlyAirQualityForecastRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getHourlyAirQuality(
-                apiKey, query, 96, lang
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureAirQualityForecastResponse())
+        val hourlyAirQualityForecastRequest =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                mApi.getHourlyAirQuality(
+                    apiKey, query, 96, lang
+                )
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureAirQualityForecastResponse())
+                }
             }
-        }
-        val alertsRequest = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-            mApi.getWeatherAlerts(
-                apiKey, query, lang
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(MsAzureWeatherAlertsResponse())
+        val alertsRequest =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                mApi.getWeatherAlerts(
+                    apiKey, query, lang
+                )
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MsAzureWeatherAlertsResponse())
+                }
             }
-        }
 
         return Observable.zip(
             dailyForecastRequest,
@@ -244,6 +264,58 @@ class MsAzureService @Inject constructor(
         }
     }
 
+    // GEOCODING
+    override val locationSearchAttribution: String
+        get() = weatherAttribution
+
+    override fun requestLocationSearch(
+        context: Context,
+        query: String
+    ): Observable<List<Location>> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        val apiKey = getApiKeyOrDefault()
+        val lang = SettingsManager.getInstance(context).language.code
+
+        return mApi.geocode(
+            apiKey,
+            lang,
+            query,
+            max = 20
+        ).map { results ->
+            convertGeocoding(results)
+        }
+    }
+
+    override fun requestReverseGeocodingLocation(
+        context: Context,
+        location: Location
+    ): Observable<List<Location>> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        val apiKey = getApiKeyOrDefault()
+        val lang = SettingsManager.getInstance(context).language.code
+        val query = "${location.latitude},${location.longitude}"
+
+        val tzRequest = mApi.getTimezone(
+            apiKey,
+            query
+        )
+
+        val geocodingRequest = mApi.reverseGeocode(
+            apiKey,
+            lang,
+            query
+        )
+
+        return Observable.zip(tzRequest, geocodingRequest) {
+            tzResponse: MsAzureTzResponse,
+            geocodingResponse: MsAzureGeocodingResponse ->
+            convertReverseGeocoding(location, tzResponse, geocodingResponse)
+        }
+    }
 
     // CONFIG
     private val config = SourceConfigStore(context, id)
@@ -278,6 +350,6 @@ class MsAzureService @Inject constructor(
     }
 
     companion object {
-        private const val MS_AZURE_WEATHER_BASE_URL = "https://atlas.microsoft.com/weather/"
+        private const val MS_AZURE_BASE_URL = "https://atlas.microsoft.com/"
     }
 }
