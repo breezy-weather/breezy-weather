@@ -9,6 +9,7 @@
 
 **Other fixes**
 - Fix some widgets crash when weather text was missing (detected on MET Norway)
+- Fix wrong daytime/nighttime computing on some sources when location timezone is different than device timezone
 
 
 # Version 4.5.0-beta

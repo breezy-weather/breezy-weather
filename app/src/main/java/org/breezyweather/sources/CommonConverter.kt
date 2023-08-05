@@ -18,6 +18,7 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -452,8 +453,7 @@ private fun getHourlyListByHalfDay(
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
         val theDayAtMidnight = Date(hourly.date.time - (6 * 3600 * 1000))
-            .toTimezoneNoHour(timeZone)
-        val theDayFormatted = theDayAtMidnight?.getFormattedDate(timeZone, "yyyy-MM-dd")
+        val theDayFormatted = theDayAtMidnight.toTimezoneNoHour(timeZone)?.getFormattedDate(timeZone, "yyyy-MM-dd")
         if (theDayFormatted != null) {
             if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
                 hourlyByHalfDay[theDayFormatted] = hashMapOf(
@@ -461,8 +461,8 @@ private fun getHourlyListByHalfDay(
                     "night" to ArrayList()
                 )
             }
-            if (hourly.date.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
-                // 06:00 to 17:59 is the day
+            if (theDayAtMidnight.toCalendarWithTimeZone(timeZone).get(Calendar.HOUR_OF_DAY) < 12) {
+                // 06:00 to 17:59 is the day (12 because we shifted by 6 hours)
                 hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
             } else {
                 // 18:00 to 05:59 is the night

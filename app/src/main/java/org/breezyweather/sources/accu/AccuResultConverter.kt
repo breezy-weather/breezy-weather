@@ -131,9 +131,8 @@ private fun getDailyList(
     val supportsAllergens = supportsAllergens(dailyForecasts)
 
     return dailyForecasts.map { forecasts ->
-        val theDay = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!
         Daily(
-            date = theDay,
+            date = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!,
             day = HalfDay(
                 weatherText = convertUnit(context, forecasts.Day?.LongPhrase),
                 weatherPhase = forecasts.Day?.ShortPhrase,
