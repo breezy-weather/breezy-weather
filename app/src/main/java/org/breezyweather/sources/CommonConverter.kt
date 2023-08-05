@@ -20,7 +20,6 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes
@@ -452,22 +451,21 @@ private fun getHourlyListByHalfDay(
 
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-        val theDayAtMidnight = Date(hourly.date.time - (6 * 3600 * 1000))
-        val theDayFormatted = theDayAtMidnight.toTimezoneNoHour(timeZone)?.getFormattedDate(timeZone, "yyyy-MM-dd")
-        if (theDayFormatted != null) {
-            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
-                hourlyByHalfDay[theDayFormatted] = hashMapOf(
-                    "day" to ArrayList(),
-                    "night" to ArrayList()
-                )
-            }
-            if (theDayAtMidnight.toCalendarWithTimeZone(timeZone).get(Calendar.HOUR_OF_DAY) < 12) {
-                // 06:00 to 17:59 is the day (12 because we shifted by 6 hours)
-                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
-            } else {
-                // 18:00 to 05:59 is the night
-                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
-            }
+        val theDayShifted = Date(hourly.date.time - (6 * 3600 * 1000))
+        val theDayFormatted = theDayShifted.getFormattedDate(timeZone, "yyyy-MM-dd")
+
+        if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+            hourlyByHalfDay[theDayFormatted] = hashMapOf(
+                "day" to mutableListOf(),
+                "night" to mutableListOf()
+            )
+        }
+        if (theDayShifted.toCalendarWithTimeZone(timeZone).get(Calendar.HOUR_OF_DAY) < 12) {
+            // 06:00 to 17:59 is the day (12 because we shifted by 6 hours)
+            hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
+        } else {
+            // 18:00 to 05:59 is the night
+            hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
         }
     }
 
