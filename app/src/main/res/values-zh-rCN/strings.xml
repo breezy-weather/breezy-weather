@@ -105,9 +105,8 @@
     <string name="allergen">过敏原</string>
     <string name="details">详情数据</string>
     <string name="ephemeris">日月升落</string>
-    <string name="openmeteo_weather_text_clear_sky">晴朗</string>
+    <string name="common_weather_text_clear_sky">晴朗</string>
     <string name="openmeteo_weather_text_mainly_clear">基本晴朗</string>
-    <string name="openmeteo_weather_text_partly_cloudy">有云</string>
     <string name="openmeteo_weather_text_overcast">阴天</string>
     <string name="openmeteo_weather_text_fog">雾</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉积雾凇</string>
@@ -340,14 +339,13 @@
     <string name="widget_subtitle_data_lunar">农历</string>
     <string name="widget_subtitle_data_custom">自定义</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">晴</string>
-    <string name="weather_kind_partly_cloudy">多云</string>
-    <string name="weather_kind_cloudy">阴</string>
-    <string name="weather_kind_rain">雨</string>
-    <string name="weather_kind_snow">雪</string>
-    <string name="weather_kind_sleet">冻雨</string>
+    <string name="common_weather_text_partly_cloudy">多云</string>
+    <string name="common_weather_text_cloudy">阴</string>
+    <string name="common_weather_text_rain">雨</string>
+    <string name="common_weather_text_snow">雪</string>
+    <string name="common_weather_text_sleet">冻雨</string>
     <string name="weather_kind_hail">冰雹</string>
-    <string name="weather_kind_fog">雾</string>
+    <string name="common_weather_text_fog">雾</string>
     <string name="weather_kind_haze">霾</string>
     <string name="weather_kind_thunder">雷暴</string>
     <string name="weather_kind_thunderstorm">雷雨</string>

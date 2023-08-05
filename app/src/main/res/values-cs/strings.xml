@@ -300,14 +300,13 @@
     <string name="widget_subtitle_data_lunar">Lunární kalendář</string>
     <string name="widget_subtitle_data_custom">Vlastní</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Jasno</string>
-    <string name="weather_kind_partly_cloudy">Polojasno</string>
-    <string name="weather_kind_cloudy">Oblačno</string>
-    <string name="weather_kind_rain">Déšť</string>
-    <string name="weather_kind_snow">Sníh</string>
-    <string name="weather_kind_sleet">Sníh s deštěm</string>
+    <string name="common_weather_text_partly_cloudy">Polojasno</string>
+    <string name="common_weather_text_cloudy">Oblačno</string>
+    <string name="common_weather_text_rain">Déšť</string>
+    <string name="common_weather_text_snow">Sníh</string>
+    <string name="common_weather_text_sleet">Sníh s deštěm</string>
     <string name="weather_kind_hail">Kroupy</string>
-    <string name="weather_kind_fog">Mhla</string>
+    <string name="common_weather_text_fog">Mhla</string>
     <string name="weather_kind_haze">Opar</string>
     <string name="weather_kind_thunder">Hřmění</string>
     <string name="weather_kind_thunderstorm">Bouřka</string>
@@ -431,8 +430,7 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_alerts">Výstrahy</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Skoro zataženo</string>
-    <string name="openmeteo_weather_text_clear_sky">Jasno</string>
+    <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="openmeteo_weather_text_drizzle_light_intensity">Intenzita mrholení</string>
     <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Mrznoucí déšť silné intenzity</string>
     <string name="openmeteo_weather_text_snow_slight_intensity">Mírná intenzita sněžení</string>

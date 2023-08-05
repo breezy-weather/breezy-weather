@@ -290,14 +290,13 @@
     <string name="widget_subtitle_data_lunar">Calendario lunare</string>
     <string name="widget_subtitle_data_custom">Personalizzato</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Sereno</string>
-    <string name="weather_kind_partly_cloudy">Parzialmente nuvoloso</string>
-    <string name="weather_kind_cloudy">Nuvoloso</string>
-    <string name="weather_kind_rain">Pioggia</string>
-    <string name="weather_kind_snow">Neve</string>
-    <string name="weather_kind_sleet">Nevischio</string>
+    <string name="common_weather_text_partly_cloudy">Parzialmente nuvoloso</string>
+    <string name="common_weather_text_cloudy">Nuvoloso</string>
+    <string name="common_weather_text_rain">Pioggia</string>
+    <string name="common_weather_text_snow">Neve</string>
+    <string name="common_weather_text_sleet">Nevischio</string>
     <string name="weather_kind_hail">Grandine</string>
-    <string name="weather_kind_fog">Nebbia</string>
+    <string name="common_weather_text_fog">Nebbia</string>
     <string name="weather_kind_haze">Foschia</string>
     <string name="weather_kind_thunder">Tuono</string>
     <string name="weather_kind_thunderstorm">Temporale</string>
@@ -472,7 +471,6 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Server Matrix</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Parzialmente nuvoloso</string>
     <string name="openmeteo_weather_text_overcast">Coperto</string>
     <string name="openmeteo_weather_text_drizzle_light_intensity">Pioviggine di leggera intensità</string>
     <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Pioviggine gelata intensa</string>
@@ -508,7 +506,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">Avvisi</string>
     <string name="about_contribution_WangDaYeeeeee">Sviluppatore del progetto originario Geometric Weather</string>
-    <string name="openmeteo_weather_text_clear_sky">Cielo sereno</string>
+    <string name="common_weather_text_clear_sky">Cielo sereno</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>

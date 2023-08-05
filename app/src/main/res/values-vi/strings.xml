@@ -149,14 +149,13 @@
     <string name="dew_point">Điểm sương</string>
     <string name="cloud_cover">Mây che phủ</string>
     <string name="ceiling">Mái vòm</string>
-    <string name="weather_kind_clear">Trong</string>
-    <string name="weather_kind_partly_cloudy">Mây rải rác</string>
-    <string name="weather_kind_cloudy">Có mây phủ</string>
-    <string name="weather_kind_rain">Mưa</string>
-    <string name="weather_kind_snow">Tuyết rơi</string>
-    <string name="weather_kind_sleet">Mưa đá</string>
+    <string name="common_weather_text_partly_cloudy">Mây rải rác</string>
+    <string name="common_weather_text_cloudy">Có mây phủ</string>
+    <string name="common_weather_text_rain">Mưa</string>
+    <string name="common_weather_text_snow">Tuyết rơi</string>
+    <string name="common_weather_text_sleet">Mưa đá</string>
     <string name="weather_kind_hail">Mưa đá</string>
-    <string name="weather_kind_fog">Sương mù</string>
+    <string name="common_weather_text_fog">Sương mù</string>
     <string name="weather_kind_haze">Sương mù</string>
     <string name="weather_kind_thunder">Sấm</string>
     <string name="weather_kind_thunderstorm">Giông bão</string>
@@ -457,7 +456,7 @@
     <string name="unit_ft_voice">Bước chân</string>
     <string name="unit_atm_voice">Atmotphe</string>
     <string name="unit_mgpcum_voice">Miligam trên mét khối</string>
-    <string name="openmeteo_weather_text_clear_sky">Trời trong</string>
+    <string name="common_weather_text_clear_sky">Trời trong</string>
     <string name="unit_h_voice">Giờ</string>
     <string name="unit_ppcm_voice">Trên mét khối</string>
     <string name="notification_channel_background_services">Dịch vụ chạy dưới nền</string>
@@ -468,7 +467,6 @@
     <string name="notification_channel_widget">Tiện ích</string>
     <string name="notification_precipitation_today">Có thể sẽ có mưa vào hôm nay.</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Mưa phùn vừa</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Mây rải rác</string>
     <string name="openmeteo_weather_text_overcast">U ám</string>
     <string name="openmeteo_weather_text_fog">Sương mù</string>
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Mưa phùn nặng</string>

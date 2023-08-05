@@ -201,14 +201,13 @@
     <string name="widget_subtitle_data_lunar">تقويم قمري</string>
     <string name="widget_subtitle_data_custom">مخصص</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">صافي</string>
-    <string name="weather_kind_partly_cloudy">غائم جزئياً</string>
-    <string name="weather_kind_cloudy">غائم</string>
-    <string name="weather_kind_rain">مطر</string>
-    <string name="weather_kind_snow">ثلج</string>
-    <string name="weather_kind_sleet">مطر متجمد</string>
+    <string name="common_weather_text_partly_cloudy">غائم جزئياً</string>
+    <string name="common_weather_text_cloudy">غائم</string>
+    <string name="common_weather_text_rain">مطر</string>
+    <string name="common_weather_text_snow">ثلج</string>
+    <string name="common_weather_text_sleet">مطر متجمد</string>
     <string name="weather_kind_hail">بَرَد</string>
-    <string name="weather_kind_fog">ضباب</string>
+    <string name="common_weather_text_fog">ضباب</string>
     <string name="weather_kind_haze">مُغبَر</string>
     <string name="weather_kind_thunder">رعد</string>
     <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
@@ -386,7 +385,7 @@
     <string name="unit_mph_voice">ميل في الساعة</string>
     <string name="unit_cmph">سم / ساعة</string>
     <string name="unit_h">ساعة</string>
-    <string name="openmeteo_weather_text_clear_sky">سماء صافية</string>
+    <string name="common_weather_text_clear_sky">سماء صافية</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">زخات مطر معتدلة</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">عاصفة رعدية مع برد خفيف</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
@@ -469,7 +468,6 @@
     <string name="settings_weather_sources_summary">إعدادات موفري الطقس, default location search source</string>
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
-    <string name="openmeteo_weather_text_partly_cloudy">غائم جزئياً</string>
     <string name="openmeteo_weather_text_fog">ضباب</string>
     <string name="air_quality_pm_info_title">الجسيمات (PM2.5 و PM10)</string>
     <string name="wind_direction_short_W">غ</string>

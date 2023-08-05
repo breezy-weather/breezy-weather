@@ -263,14 +263,13 @@
     <string name="widget_subtitle_data_custom">Personaliza</string>
     <string name="settings_none">Cap</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Clar</string>
-    <string name="weather_kind_partly_cloudy">Parcialment ennuvolat</string>
-    <string name="weather_kind_cloudy">Núvols</string>
-    <string name="weather_kind_rain">Pluja</string>
-    <string name="weather_kind_snow">Neu</string>
-    <string name="weather_kind_sleet">Aiguaneu</string>
+    <string name="common_weather_text_partly_cloudy">Parcialment ennuvolat</string>
+    <string name="common_weather_text_cloudy">Núvols</string>
+    <string name="common_weather_text_rain">Pluja</string>
+    <string name="common_weather_text_snow">Neu</string>
+    <string name="common_weather_text_sleet">Aiguaneu</string>
     <string name="weather_kind_hail">Calamarsa</string>
-    <string name="weather_kind_fog">Boira</string>
+    <string name="common_weather_text_fog">Boira</string>
     <string name="weather_kind_haze">Boirina</string>
     <string name="weather_kind_thunder">Trons</string>
     <string name="weather_kind_thunderstorm">Tempesta elèctrica</string>

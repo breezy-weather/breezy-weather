@@ -166,14 +166,13 @@
     <string name="widget_subtitle_data_lunar">Lunarni koledar</string>
     <string name="widget_subtitle_data_custom">Po meri</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Čisto</string>
-    <string name="weather_kind_partly_cloudy">Delno oblačno</string>
-    <string name="weather_kind_cloudy">Oblačno</string>
-    <string name="weather_kind_rain">Dež</string>
-    <string name="weather_kind_snow">Sneg</string>
-    <string name="weather_kind_sleet">Ledeni dež</string>
+    <string name="common_weather_text_partly_cloudy">Delno oblačno</string>
+    <string name="common_weather_text_cloudy">Oblačno</string>
+    <string name="common_weather_text_rain">Dež</string>
+    <string name="common_weather_text_snow">Sneg</string>
+    <string name="common_weather_text_sleet">Ledeni dež</string>
     <string name="weather_kind_hail">Toča</string>
-    <string name="weather_kind_fog">Megla</string>
+    <string name="common_weather_text_fog">Megla</string>
     <string name="weather_kind_haze">Meglica</string>
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>

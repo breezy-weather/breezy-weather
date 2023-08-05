@@ -108,13 +108,12 @@
     <string name="dew_point">Rasos taškas</string>
     <string name="cloud_cover">Debesuotumas</string>
     <string name="ceiling">Lubos</string>
-    <string name="weather_kind_clear">Giedra</string>
-    <string name="weather_kind_partly_cloudy">Šiek tiek apsiniaukę</string>
-    <string name="weather_kind_cloudy">Apsiniaukę</string>
-    <string name="weather_kind_sleet">Šlapdriba</string>
+    <string name="common_weather_text_partly_cloudy">Šiek tiek apsiniaukę</string>
+    <string name="common_weather_text_cloudy">Apsiniaukę</string>
+    <string name="common_weather_text_sleet">Šlapdriba</string>
     <string name="weather_kind_hail">Kruša</string>
-    <string name="weather_kind_fog">Rūkas</string>
-    <string name="weather_kind_rain">Lietus</string>
+    <string name="common_weather_text_fog">Rūkas</string>
+    <string name="common_weather_text_rain">Lietus</string>
     <string name="weather_kind_haze">Migla</string>
     <string name="weather_kind_thunder">Žaibai</string>
     <string name="weather_kind_thunderstorm">Perkūnija</string>
@@ -190,7 +189,7 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Pilnatis</string>
     <string name="ephemeris_moonset_at">Mėnulio nusileidimas $</string>
     <string name="daytime">Diena</string>
-    <string name="weather_kind_snow">Sniegas</string>
+    <string name="common_weather_text_snow">Sniegas</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="weather_source_accu_preference_hours_12">12 valandų</string>
     <string name="weather_api_limit_reached_content">Jei norite padidinti limitą, pridėkite savo API raktą.</string>

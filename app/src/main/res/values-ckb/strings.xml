@@ -73,12 +73,11 @@
     <string name="dew_point">خاڵی شەبنەم</string>
     <string name="cloud_cover">داپۆشینی هەور</string>
     <string name="ceiling">بنمیچ</string>
-    <string name="weather_kind_clear">ڕوون</string>
-    <string name="weather_kind_partly_cloudy">تا ڕاده‌یه‌ک هەوراوی</string>
-    <string name="weather_kind_cloudy">هەوراوی</string>
-    <string name="weather_kind_rain">باران</string>
-    <string name="weather_kind_snow">بەفر</string>
-    <string name="weather_kind_sleet">بارانی بەستوو</string>
+    <string name="common_weather_text_partly_cloudy">تا ڕاده‌یه‌ک هەوراوی</string>
+    <string name="common_weather_text_cloudy">هەوراوی</string>
+    <string name="common_weather_text_rain">باران</string>
+    <string name="common_weather_text_snow">بەفر</string>
+    <string name="common_weather_text_sleet">بارانی بەستوو</string>
     <string name="weather_kind_haze">مژ</string>
     <string name="weather_kind_thunder">گەوارە</string>
     <string name="weather_kind_wind">با</string>
@@ -166,7 +165,7 @@
     <string name="ephemeris_sunrise_at">خۆرهەڵاتن لە $</string>
     <string name="daytime">کاتی ڕۆژ</string>
     <string name="weather_kind_hail">تەرزە</string>
-    <string name="weather_kind_fog">تەم</string>
+    <string name="common_weather_text_fog">تەم</string>
     <string name="date_format_short">M-d</string>
     <string name="weather_kind_thunderstorm">هەورەتریشقە</string>
     <string name="short_today">ئەمڕۆ</string>

@@ -141,9 +141,8 @@
     <string name="ephemeris">Soleil &amp; lune</string>
 
     <!-- Weather texts -->
-    <string name="openmeteo_weather_text_clear_sky">Ciel dégagé</string>
+    <string name="common_weather_text_clear_sky">Ciel dégagé</string>
     <string name="openmeteo_weather_text_mainly_clear">Principalement dégagé</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Partiellement couvert</string>
     <string name="openmeteo_weather_text_overcast">Couvert</string>
     <string name="openmeteo_weather_text_fog">Brouillard</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
@@ -535,14 +534,13 @@
     <string name="air_quality_level_6_description">Toute exposition à l’air, y compris pendant quelques minutes, risque de déboucher sur des problèmes de santé graves pour tous. Évitez les activités en extérieur.</string>
 
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Dégagé</string>
-    <string name="weather_kind_partly_cloudy">Partiellement couvert</string>
-    <string name="weather_kind_cloudy">Nuageux</string>
-    <string name="weather_kind_rain">Pluie</string>
-    <string name="weather_kind_snow">Neige</string>
-    <string name="weather_kind_sleet">Neige fondue</string>
+    <string name="common_weather_text_partly_cloudy">Partiellement couvert</string>
+    <string name="common_weather_text_cloudy">Nuageux</string>
+    <string name="common_weather_text_rain">Pluie</string>
+    <string name="common_weather_text_snow">Neige</string>
+    <string name="common_weather_text_sleet">Neige fondue</string>
     <string name="weather_kind_hail">Grêle</string>
-    <string name="weather_kind_fog">Brouillard</string>
+    <string name="common_weather_text_fog">Brouillard</string>
     <string name="weather_kind_haze">Brume</string>
     <string name="weather_kind_thunder">Tonnerre</string>
     <string name="weather_kind_thunderstorm">Orage</string>

@@ -255,14 +255,13 @@
     <string name="widget_subtitle_data_lunar">旧暦</string>
     <string name="widget_subtitle_data_custom">カスタム</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">晴れ</string>
-    <string name="weather_kind_partly_cloudy">一部曇り</string>
-    <string name="weather_kind_cloudy">曇り</string>
-    <string name="weather_kind_rain">雨</string>
-    <string name="weather_kind_snow">雪</string>
-    <string name="weather_kind_sleet">みぞれ</string>
+    <string name="common_weather_text_partly_cloudy">一部曇り</string>
+    <string name="common_weather_text_cloudy">曇り</string>
+    <string name="common_weather_text_rain">雨</string>
+    <string name="common_weather_text_snow">雪</string>
+    <string name="common_weather_text_sleet">みぞれ</string>
     <string name="weather_kind_hail">ひょう</string>
-    <string name="weather_kind_fog">霧</string>
+    <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">かすみ</string>
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>

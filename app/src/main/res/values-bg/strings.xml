@@ -258,14 +258,13 @@
     <string name="dew_point">Точка на оросяване</string>
     <string name="cloud_cover">Облачно покритие</string>
     <string name="ceiling">Облачен Таван</string>
-    <string name="weather_kind_clear">Ясно</string>
-    <string name="weather_kind_partly_cloudy">Променлива облачност</string>
-    <string name="weather_kind_cloudy">Облачно</string>
-    <string name="weather_kind_rain">Дъжд</string>
-    <string name="weather_kind_snow">Сняг</string>
-    <string name="weather_kind_sleet">Суграшица</string>
+    <string name="common_weather_text_partly_cloudy">Променлива облачност</string>
+    <string name="common_weather_text_cloudy">Облачно</string>
+    <string name="common_weather_text_rain">Дъжд</string>
+    <string name="common_weather_text_snow">Сняг</string>
+    <string name="common_weather_text_sleet">Суграшица</string>
     <string name="weather_kind_hail">Градушка</string>
-    <string name="weather_kind_fog">Мъгла</string>
+    <string name="common_weather_text_fog">Мъгла</string>
     <string name="weather_kind_haze">Мараня</string>
     <string name="weather_kind_thunder">Гръмотевици</string>
     <string name="weather_kind_thunderstorm">Гръмотевична буря</string>
@@ -482,7 +481,7 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_hpa_voice">Хектопаскали</string>
     <string name="about_translators">Преводачи</string>
-    <string name="openmeteo_weather_text_clear_sky">Ясно небе</string>
+    <string name="common_weather_text_clear_sky">Ясно небе</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">Умерени валежи от дъжд</string>
     <string name="openmeteo_weather_text_snow_showers_slight">Слаб снеговалеж</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">Силен снеговалеж</string>
@@ -566,7 +565,6 @@
     <string name="about_contribution_WangDaYeeeeee">Разработчик на оригиналния проект Geometric Weather</string>
     <string name="openmeteo_weather_text_overcast">Облачно</string>
     <string name="openmeteo_weather_text_mainly_clear">Предимно ясно</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Променлива облачност</string>
     <string name="openmeteo_weather_text_fog">Мъгла</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Отлагане на мъгла</string>
     <string name="openmeteo_weather_text_drizzle_light_intensity">Ръмеж с лека интензивност</string>

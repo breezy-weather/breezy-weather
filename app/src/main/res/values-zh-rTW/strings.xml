@@ -290,14 +290,13 @@
     <string name="widget_subtitle_data_lunar">農曆</string>
     <string name="widget_subtitle_data_custom">自定義</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">晴</string>
-    <string name="weather_kind_partly_cloudy">多雲</string>
-    <string name="weather_kind_cloudy">陰</string>
-    <string name="weather_kind_rain">雨</string>
-    <string name="weather_kind_snow">雪</string>
-    <string name="weather_kind_sleet">凍雨</string>
+    <string name="common_weather_text_partly_cloudy">多雲</string>
+    <string name="common_weather_text_cloudy">陰</string>
+    <string name="common_weather_text_rain">雨</string>
+    <string name="common_weather_text_snow">雪</string>
+    <string name="common_weather_text_sleet">凍雨</string>
     <string name="weather_kind_hail">冰雹</string>
-    <string name="weather_kind_fog">霧</string>
+    <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">霾</string>
     <string name="weather_kind_thunder">閃電</string>
     <string name="weather_kind_thunderstorm">雷暴</string>
@@ -416,7 +415,7 @@
     <string name="settings_main_summary">卡片順序、顯示項目、動畫</string>
     <string name="unit_kelvin">K</string>
     <string name="about_source_code">源代碼</string>
-    <string name="openmeteo_weather_text_clear_sky">天晴</string>
+    <string name="common_weather_text_clear_sky">天晴</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">大雪</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷暴伴有大冰雹</string>
     <string name="weather_api_key_required_missing_title">缺少所需的 API 密鑰</string>
@@ -518,7 +517,6 @@
     <string name="location_resident_location_summaryOff">已禁用。位置始終可用。</string>
     <string name="action_delete">刪除</string>
     <string name="about_contribution_weather_source">添加了對新天氣源的支持</string>
-    <string name="openmeteo_weather_text_partly_cloudy">多雲</string>
     <string name="action_share">分享</string>
     <string name="settings_widgets_summary">設定壁紙、配置使用的小部件、通知欄部件</string>
     <string name="unit_fahrenheit_short">°</string>

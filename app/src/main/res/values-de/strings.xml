@@ -194,15 +194,14 @@
     <string name="wind_direction_short_E">O</string>
     <string name="uv_index_11">Extrem</string>
     <string name="uv_index_3_5">Mäßig</string>
-    <string name="weather_kind_snow">Schnee</string>
+    <string name="common_weather_text_snow">Schnee</string>
     <string name="weather_kind_wind">Wind</string>
-    <string name="weather_kind_fog">Nebel</string>
-    <string name="weather_kind_clear">Klar</string>
+    <string name="common_weather_text_fog">Nebel</string>
     <string name="wind_direction_short_S">S</string>
     <string name="wind_direction_short_SW">SW</string>
     <string name="uv_index_0_2">Niedrig</string>
-    <string name="weather_kind_partly_cloudy">Teils bewölkt</string>
-    <string name="weather_kind_cloudy">Bewölkt</string>
+    <string name="common_weather_text_partly_cloudy">Teils bewölkt</string>
+    <string name="common_weather_text_cloudy">Bewölkt</string>
     <string name="weather_kind_thunderstorm">Gewitter</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="weather_kind_thunder">Donner</string>
@@ -213,8 +212,8 @@
     <string name="wind_direction_short_NW">NW</string>
     <string name="precipitation_none">Kein Niederschlag</string>
     <string name="uv_index_8_10">Sehr hoch</string>
-    <string name="weather_kind_rain">Regen</string>
-    <string name="weather_kind_sleet">Schneeregen</string>
+    <string name="common_weather_text_rain">Regen</string>
+    <string name="common_weather_text_sleet">Schneeregen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag zwischen $1 und $2</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall Version</string>
@@ -241,7 +240,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
-    <string name="openmeteo_weather_text_clear_sky">Klarer Himmel</string>
+    <string name="common_weather_text_clear_sky">Klarer Himmel</string>
     <string name="openmeteo_weather_text_mainly_clear">Überwiegend klar</string>
     <string name="openmeteo_weather_text_fog">Nebel</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Raueis mit Nebel</string>
@@ -319,7 +318,6 @@
     <string name="openmeteo_weather_text_overcast">Bedeckt</string>
     <string name="unit_mph">mph</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Breitengrad</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Teils bewölkt</string>
     <string name="unit_h">h</string>
     <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, fügen Sie Ihren eigenen API-Schlüssel hinzu.</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Leichter Regen</string>

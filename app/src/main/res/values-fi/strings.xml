@@ -296,14 +296,13 @@
     <string name="widget_subtitle_data_lunar">Kuukalenteri</string>
     <string name="widget_subtitle_data_custom">Mukautettu</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Selkeää</string>
-    <string name="weather_kind_partly_cloudy">Osittain pilvistä</string>
-    <string name="weather_kind_cloudy">Pilvistä</string>
-    <string name="weather_kind_rain">Sadetta</string>
-    <string name="weather_kind_snow">Lumisadetta</string>
-    <string name="weather_kind_sleet">Räntäsadetta</string>
+    <string name="common_weather_text_partly_cloudy">Osittain pilvistä</string>
+    <string name="common_weather_text_cloudy">Pilvistä</string>
+    <string name="common_weather_text_rain">Sadetta</string>
+    <string name="common_weather_text_snow">Lumisadetta</string>
+    <string name="common_weather_text_sleet">Räntäsadetta</string>
     <string name="weather_kind_hail">Rakeita</string>
-    <string name="weather_kind_fog">Sumua</string>
+    <string name="common_weather_text_fog">Sumua</string>
     <string name="weather_kind_haze">Usvaa</string>
     <string name="weather_kind_thunder">Ukkosta</string>
     <string name="weather_kind_thunderstorm">Ukkosmyrskyä</string>

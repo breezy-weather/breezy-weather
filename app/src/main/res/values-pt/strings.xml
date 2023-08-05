@@ -285,10 +285,10 @@
     <string name="allergen_level_2">Baixo</string>
     <string name="allergen_level_3">Moderado</string>
     <string name="allergen_level_4">Alto</string>
-    <string name="weather_kind_partly_cloudy">Parcialmente nublado</string>
-    <string name="weather_kind_cloudy">Nublado</string>
-    <string name="weather_kind_rain">Chuva</string>
-    <string name="weather_kind_snow">Neve</string>
+    <string name="common_weather_text_partly_cloudy">Parcialmente nublado</string>
+    <string name="common_weather_text_cloudy">Nublado</string>
+    <string name="common_weather_text_rain">Chuva</string>
+    <string name="common_weather_text_snow">Neve</string>
     <string name="weather_data_by">Dados fornecidos por $</string>
     <string name="weather_source_accu_preference_days_10">10 dias</string>
     <string name="location_search_change_weather_source">Mudar provedor metereológico</string>
@@ -470,9 +470,8 @@
     <string name="unit_km">km</string>
     <string name="unit_km_voice">Quilômetros</string>
     <string name="about_contribution_WangDaYeeeeee">Programador do projeto original Geometric Weather</string>
-    <string name="openmeteo_weather_text_clear_sky">Céu limpo</string>
+    <string name="common_weather_text_clear_sky">Céu limpo</string>
     <string name="openmeteo_weather_text_mainly_clear">Principalmente limpo</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Parcialmente nublado</string>
     <string name="openmeteo_weather_text_overcast">Nublado</string>
     <string name="openmeteo_weather_text_fog">Neblina</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
@@ -524,7 +523,6 @@
     <string name="allergen_level_5">Muito alto</string>
     <string name="ephemeris_sunset_at">Pôr do sol às $</string>
     <string name="ephemeris_moonrise_at">Nascer da lua às $</string>
-    <string name="weather_kind_clear">Limpo</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="location_search_no_results_advice">Certifique-se de que a sua pesquisa esteja escrita corretamente e não seja muito específica. Como alternativa, pode tentar outro provedor de meteorologia, que pode produzir resultados de pesquisa de local diferentes.</string>
     <string name="location_resident_location_summaryOff">Desativado. Localização sempre disponível.</string>
@@ -551,9 +549,9 @@
     <string name="air_quality_pm_explanations_introduction">Os particulados ou material particulado atmosférico são partículas microscópicas de matéria sólida ou líquida suspensas no ar.</string>
     <string name="air_quality_pm_explanations_origin">Alguns particulados ocorrem naturalmente, originados de vulcões, tempestades de poeira, incêndios em florestas e pastagens, vegetação viva e borrifos do mar. As atividades humanas também geram quantidades significativas de particulados, como tráfego e transporte, atividades industriais, usinas de energia, canteiros de obras, queima de resíduos ou campos.</string>
     <string name="air_quality_pm_explanations_consequences">Os particulados são a forma mais prejudicial de poluição do ar devido à sua capacidade de penetrar profundamente nos pulmões e no cérebro a partir das correntes sanguíneas, causando problemas de saúde como doenças cardíacas, pulmonares e morte prematura.</string>
-    <string name="weather_kind_sleet">Chuva de pedras</string>
+    <string name="common_weather_text_sleet">Chuva de pedras</string>
     <string name="weather_kind_hail">Granizo</string>
-    <string name="weather_kind_fog">Névoa</string>
+    <string name="common_weather_text_fog">Névoa</string>
     <string name="weather_kind_thunder">Trovão</string>
     <string name="action_location_list">Lista de locais</string>
     <string name="action_restart">Reiniciar</string>

@@ -255,14 +255,13 @@
     <string name="widget_clock_font_sans_serif_black">굵은 산 세리프(고딕)</string>
     <string name="widget_clock_font_analog">아날로그</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">맑음</string>
-    <string name="weather_kind_partly_cloudy">구름 조금</string>
-    <string name="weather_kind_cloudy">흐림</string>
-    <string name="weather_kind_rain">비</string>
-    <string name="weather_kind_snow">눈</string>
-    <string name="weather_kind_sleet">진눈깨비</string>
+    <string name="common_weather_text_partly_cloudy">구름 조금</string>
+    <string name="common_weather_text_cloudy">흐림</string>
+    <string name="common_weather_text_rain">비</string>
+    <string name="common_weather_text_snow">눈</string>
+    <string name="common_weather_text_sleet">진눈깨비</string>
     <string name="weather_kind_hail">우박</string>
-    <string name="weather_kind_fog">안개</string>
+    <string name="common_weather_text_fog">안개</string>
     <string name="weather_kind_haze">실안개</string>
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
@@ -427,9 +426,8 @@
     <string name="about_matrix">Matrix 서버</string>
     <string name="about_source_code">소스 코드</string>
     <string name="about_contributors">기여해 주신 분들</string>
-    <string name="openmeteo_weather_text_clear_sky">맑음</string>
+    <string name="common_weather_text_clear_sky">맑음</string>
     <string name="openmeteo_weather_text_mainly_clear">대체로 맑음</string>
-    <string name="openmeteo_weather_text_partly_cloudy">구름 조금</string>
     <string name="openmeteo_weather_text_overcast">흐림</string>
     <string name="openmeteo_weather_text_fog">안개</string>
     <string name="weather_api_limit_reached_title">API 요청 수 한계 도달</string>

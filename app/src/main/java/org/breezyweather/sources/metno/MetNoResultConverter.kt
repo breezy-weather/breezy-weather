@@ -1,5 +1,7 @@
 package org.breezyweather.sources.metno
 
+import android.content.Context
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Astro
@@ -34,6 +36,7 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
+    context: Context,
     location: Location,
     forecastResult: MetNoForecastResult,
     sunResult: MetNoSunResult,
@@ -54,7 +57,7 @@ fun convert(
             publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
         ),
         current = if (currentTimeseries != null) Current(
-            weatherText = null, // TODO: From symbolCode
+            weatherText = getWeatherText(context, currentTimeseries.symbolCode),
             weatherCode = getWeatherCode(currentTimeseries.symbolCode),
             temperature = Temperature(
                 temperature = currentTimeseries.instant?.details?.airTemperature,
@@ -74,6 +77,7 @@ fun convert(
             forecastResult.properties.timeseries
         ),
         hourlyForecast = getHourlyList(
+            context,
             forecastResult.properties.timeseries,
             airQualityResult
         ),
@@ -82,6 +86,7 @@ fun convert(
 }
 
 private fun getHourlyList(
+    context: Context,
     forecastTimeseries: List<MetNoForecastTimeseries>,
     airQualityResult: MetNoAirQualityResult
 ): List<HourlyWrapper> {
@@ -90,7 +95,7 @@ private fun getHourlyList(
 
         HourlyWrapper(
             date = hourlyForecast.time,
-            weatherText = null, // TODO: From symbolCode
+            weatherText = getWeatherText(context, hourlyForecast.data?.symbolCode),
             weatherCode = getWeatherCode(hourlyForecast.data?.symbolCode),
             temperature = Temperature(
                 temperature = hourlyForecast.data?.instant?.details?.airTemperature,
@@ -197,6 +202,55 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "heavysnow", "heavysnowshowers", "lightsnow", "lightsnowshowers", "snow", "snowshowers" -> WeatherCode.SNOW
         "heavysleet", "heavysleetshowers", "lightsleet", "lightsleetshowers", "sleet",
         "sleetshowers" -> WeatherCode.SLEET
+        else -> null
+    }
+}
+
+private fun getWeatherText(context: Context, icon: String?): String? {
+    return if (icon == null) {
+        null
+    } else when(icon.replace("_night", "").replace("_day", "")) {
+        "clearsky" -> context.getString(R.string.metno_weather_text_clearsky)
+        "cloudy" -> context.getString(R.string.metno_weather_text_cloudy)
+        "fair" -> context.getString(R.string.metno_weather_text_fair)
+        "fog" -> context.getString(R.string.metno_weather_text_fog)
+        "heavyrain" -> context.getString(R.string.metno_weather_text_heavyrain)
+        "heavyrainandthunder" -> context.getString(R.string.metno_weather_text_heavyrainandthunder)
+        "heavyrainshowers" -> context.getString(R.string.metno_weather_text_heavyrainshowers)
+        "heavyrainshowersandthunder" -> context.getString(R.string.metno_weather_text_heavyrainshowersandthunder)
+        "heavysleet" -> context.getString(R.string.metno_weather_text_heavysleet)
+        "heavysleetandthunder" -> context.getString(R.string.metno_weather_text_heavysleetandthunder)
+        "heavysleetshowers" -> context.getString(R.string.metno_weather_text_heavysleetshowers)
+        "heavysleetshowersandthunder" -> context.getString(R.string.metno_weather_text_heavysleetshowersandthunder)
+        "heavysnow" -> context.getString(R.string.metno_weather_text_heavysnow)
+        "heavysnowandthunder" -> context.getString(R.string.metno_weather_text_heavysnowandthunder)
+        "heavysnowshowers" -> context.getString(R.string.metno_weather_text_heavysnowshowers)
+        "heavysnowshowersandthunder" -> context.getString(R.string.metno_weather_text_heavysnowshowersandthunder)
+        "lightrain" -> context.getString(R.string.metno_weather_text_lightrain)
+        "lightrainandthunder" -> context.getString(R.string.metno_weather_text_lightrainandthunder)
+        "lightrainshowers" -> context.getString(R.string.metno_weather_text_lightrainshowers)
+        "lightrainshowersandthunder" -> context.getString(R.string.metno_weather_text_lightrainshowersandthunder)
+        "lightsleet" -> context.getString(R.string.metno_weather_text_lightsleet)
+        "lightsleetandthunder" -> context.getString(R.string.metno_weather_text_lightsleetandthunder)
+        "lightsleetshowers" -> context.getString(R.string.metno_weather_text_lightsleetshowers)
+        "lightsnow" -> context.getString(R.string.metno_weather_text_lightsnow)
+        "lightsnowandthunder" -> context.getString(R.string.metno_weather_text_lightsnowandthunder)
+        "lightsnowshowers" -> context.getString(R.string.metno_weather_text_lightsnowshowers)
+        "lightssleetshowersandthunder" -> context.getString(R.string.metno_weather_text_lightssleetshowersandthunder)
+        "lightssnowshowersandthunder" -> context.getString(R.string.metno_weather_text_lightssnowshowersandthunder)
+        "partlycloudy" -> context.getString(R.string.metno_weather_text_partlycloudy)
+        "rain" -> context.getString(R.string.metno_weather_text_rain)
+        "rainandthunder" -> context.getString(R.string.metno_weather_text_rainandthunder)
+        "rainshowers" -> context.getString(R.string.metno_weather_text_rainshowers)
+        "rainshowersandthunder" -> context.getString(R.string.metno_weather_text_rainshowersandthunder)
+        "sleet" -> context.getString(R.string.metno_weather_text_sleet)
+        "sleetandthunder" -> context.getString(R.string.metno_weather_text_sleetandthunder)
+        "sleetshowers" -> context.getString(R.string.metno_weather_text_sleetshowers)
+        "sleetshowersandthunder" -> context.getString(R.string.metno_weather_text_sleetshowersandthunder)
+        "snow" -> context.getString(R.string.metno_weather_text_snow)
+        "snowandthunder" -> context.getString(R.string.metno_weather_text_snowandthunder)
+        "snowshowers" -> context.getString(R.string.metno_weather_text_snowshowers)
+        "snowshowersandthunder" -> context.getString(R.string.metno_weather_text_snowshowersandthunder)
         else -> null
     }
 }

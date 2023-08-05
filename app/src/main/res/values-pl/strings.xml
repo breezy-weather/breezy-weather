@@ -248,14 +248,13 @@
     <string name="widget_subtitle_data_lunar">Kalendarz księżycowy</string>
     <string name="widget_subtitle_data_custom">Inny</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Bezchmurnie</string>
-    <string name="weather_kind_partly_cloudy">Częściowe zachmurzonie</string>
-    <string name="weather_kind_cloudy">Zachmurzenie</string>
-    <string name="weather_kind_rain">Deszcz</string>
-    <string name="weather_kind_snow">Śnieg</string>
-    <string name="weather_kind_sleet">Śnieg z deszczem</string>
+    <string name="common_weather_text_partly_cloudy">Częściowe zachmurzonie</string>
+    <string name="common_weather_text_cloudy">Zachmurzenie</string>
+    <string name="common_weather_text_rain">Deszcz</string>
+    <string name="common_weather_text_snow">Śnieg</string>
+    <string name="common_weather_text_sleet">Śnieg z deszczem</string>
     <string name="weather_kind_hail">Grad</string>
-    <string name="weather_kind_fog">Mgła</string>
+    <string name="common_weather_text_fog">Mgła</string>
     <string name="weather_kind_haze">Mgiełka</string>
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
@@ -300,7 +299,6 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Częściowe zachmurzonie</string>
     <string name="unit_atm_voice">Atmosfery</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="openmeteo_weather_text_overcast">Zachmurzenie</string>
@@ -334,7 +332,7 @@
     <string name="unit_mm">mm</string>
     <string name="unit_cm">cm</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="openmeteo_weather_text_clear_sky">Czyste niebo</string>
+    <string name="common_weather_text_clear_sky">Czyste niebo</string>
     <string name="unit_mm_voice">Minilitry</string>
     <string name="about_contributors">Współtwórcy</string>
     <string name="unit_mi_voice">Mile</string>

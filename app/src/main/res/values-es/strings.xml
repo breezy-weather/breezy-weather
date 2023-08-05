@@ -262,14 +262,13 @@
     <string name="widget_subtitle_data_lunar">Calendario lunar</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Despejado</string>
-    <string name="weather_kind_partly_cloudy">Parcialmente nublado</string>
-    <string name="weather_kind_cloudy">Nublado</string>
-    <string name="weather_kind_rain">Lluvia</string>
-    <string name="weather_kind_snow">Nieve</string>
-    <string name="weather_kind_sleet">Aguanieve</string>
+    <string name="common_weather_text_partly_cloudy">Parcialmente nublado</string>
+    <string name="common_weather_text_cloudy">Nublado</string>
+    <string name="common_weather_text_rain">Lluvia</string>
+    <string name="common_weather_text_snow">Nieve</string>
+    <string name="common_weather_text_sleet">Aguanieve</string>
     <string name="weather_kind_hail">Granizo</string>
-    <string name="weather_kind_fog">Niebla</string>
+    <string name="common_weather_text_fog">Niebla</string>
     <string name="weather_kind_haze">Neblina</string>
     <string name="weather_kind_thunder">Truenos</string>
     <string name="weather_kind_thunderstorm">Tormenta eléctrica</string>

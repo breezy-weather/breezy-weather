@@ -43,7 +43,7 @@ Additional sources are available to configure but requires an API key. You can f
 |---------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
 | **Daily (days)**                | 15         | 15            | ~10                | 7 or 8      | 8              | 14            | 15      |
 | **Hourly (days)**               | 16         | 10            | ~10                | 2           | 2              | 15            | 1       |
-| **Weather**                     | ✅          | ✅             | *Text in progress* | ✅           | ✅              | ✅             | ✅       |
+| **Weather**                     | ✅          | ✅             | ✅                 | ✅           | ✅              | ✅             | ✅       |
 | **Temperature**                 | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
 | **Precipitation**               | ✅          | ✅ (RSI)       | ✅                  | ✅ (RS)      | ✅ (RS)         | ✅ (RS)        | ❌       |
 | **Precipitation probability**   | ✅          | ✅ (TRSI)      | ✅ (T)              | ✅           | ✅              | ✅ (RSI)       | Daily   |

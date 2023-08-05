@@ -267,14 +267,13 @@
     <string name="widget_subtitle_data_lunar">Calendar lunar</string>
     <string name="widget_subtitle_data_custom">Personalizat</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Senin</string>
-    <string name="weather_kind_partly_cloudy">Parțial noros</string>
-    <string name="weather_kind_cloudy">Noros</string>
-    <string name="weather_kind_rain">Ploaie</string>
-    <string name="weather_kind_snow">Ninsoare</string>
-    <string name="weather_kind_sleet">Lapoviță</string>
+    <string name="common_weather_text_partly_cloudy">Parțial noros</string>
+    <string name="common_weather_text_cloudy">Noros</string>
+    <string name="common_weather_text_rain">Ploaie</string>
+    <string name="common_weather_text_snow">Ninsoare</string>
+    <string name="common_weather_text_sleet">Lapoviță</string>
     <string name="weather_kind_hail">Grindină</string>
-    <string name="weather_kind_fog">Ceață</string>
+    <string name="common_weather_text_fog">Ceață</string>
     <string name="weather_kind_haze">Vizibilitate redusă</string>
     <string name="weather_kind_thunder">Trăsnet</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
@@ -311,7 +310,6 @@
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Parțial înnorat</string>
     <string name="openmeteo_weather_text_fog">Ceaţă</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">Ninsoare intensă</string>
     <string name="openmeteo_weather_text_rain_heavy_intensity">Ploaie intensă</string>
@@ -386,7 +384,7 @@
     <string name="unit_mph">mph</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m">m</string>
-    <string name="openmeteo_weather_text_clear_sky">Cer senin</string>
+    <string name="common_weather_text_clear_sky">Cer senin</string>
     <string name="alerts_count">$ alerte de vreme</string>
     <string name="precipitation_none">Fără precipitații</string>
     <string name="precipitation_between_time">Precipitații între $1 și $2</string>

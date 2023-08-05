@@ -250,14 +250,13 @@
     <string name="widget_subtitle_data_lunar">Лунный календарь</string>
     <string name="widget_subtitle_data_custom">Пользовательский</string>
     <!-- Weather kind -->
-    <string name="weather_kind_clear">Ясно</string>
-    <string name="weather_kind_partly_cloudy">Переменная облачность</string>
-    <string name="weather_kind_cloudy">Облачно</string>
-    <string name="weather_kind_rain">Дождь</string>
-    <string name="weather_kind_snow">Снег</string>
-    <string name="weather_kind_sleet">Мокрый снег</string>
+    <string name="common_weather_text_partly_cloudy">Переменная облачность</string>
+    <string name="common_weather_text_cloudy">Облачно</string>
+    <string name="common_weather_text_rain">Дождь</string>
+    <string name="common_weather_text_snow">Снег</string>
+    <string name="common_weather_text_sleet">Мокрый снег</string>
     <string name="weather_kind_hail">Град</string>
-    <string name="weather_kind_fog">Туман</string>
+    <string name="common_weather_text_fog">Туман</string>
     <string name="weather_kind_haze">Дымка</string>
     <string name="weather_kind_thunder">Гроза</string>
     <string name="weather_kind_thunderstorm">Буря</string>
@@ -449,7 +448,7 @@
     <string name="openmeteo_weather_text_overcast">Пасмурно</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Изморось</string>
     <string name="openmeteo_weather_text_rain_showers_slight">Кратковременные ливни</string>
-    <string name="openmeteo_weather_text_clear_sky">Ясно</string>
+    <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="unit_cmph_voice">Сантиметров в час</string>
     <string name="alerts_to_follow">Подписаться на объявления о погоде.</string>
     <string name="wind_direction_short_variable">Значение</string>
@@ -517,7 +516,6 @@
     <string name="unit_h_voice">часы</string>
     <string name="unit_ppcm_voice">На кубический метр</string>
     <string name="notification_channel_widget">Виджет</string>
-    <string name="openmeteo_weather_text_partly_cloudy">Переменная облачность</string>
     <string name="openmeteo_weather_text_drizzle_light_intensity">Слабая изморось</string>
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Сильная изморось</string>
     <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Переохлаждённая изморось</string>
