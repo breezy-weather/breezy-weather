@@ -85,6 +85,30 @@ object WeatherEntityRepository {
         }
     }
 
+    fun deleteWeather(formattedId: String) {
+        boxStore.callInTxNoException {
+            deleteWeather(
+                selectWeatherEntityList(formattedId)
+            )
+            HistoryEntityRepository.deleteLocationHistoryEntity(
+                HistoryEntityRepository.selectHistoryEntityList(formattedId)
+            )
+            DailyEntityRepository.deleteDailyEntityList(
+                DailyEntityRepository.selectDailyEntityList(formattedId)
+            )
+            HourlyEntityRepository.deleteHourlyEntityList(
+                HourlyEntityRepository.selectHourlyEntityList(formattedId)
+            )
+            MinutelyEntityRepository.deleteMinutelyEntityList(
+                MinutelyEntityRepository.selectMinutelyEntityList(formattedId)
+            )
+            AlertEntityRepository.deleteAlertList(
+                AlertEntityRepository.selectLocationAlertEntity(formattedId)
+            )
+            true
+        }
+    }
+
     fun deleteWeather(entityList: List<WeatherEntity>) {
         boxStore.boxFor(WeatherEntity::class.java).remove(entityList)
     }

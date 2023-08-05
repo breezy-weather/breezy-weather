@@ -6,6 +6,9 @@
 **Weather sources**
 - [AccuWeather] Was not showing in secondary source list, fixed
 
+**Other fixes**
+- Fix some widgets crash when weather text was missing (detected on MET Norway)
+
 
 # Version 4.5.0-beta
 

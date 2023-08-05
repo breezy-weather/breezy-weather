@@ -263,7 +263,5 @@ In the footer, you have credits and acknowledgment for the weather source used f
 You also have an Edit button that lets you access different options, such as:
 - Reorganize main screen (applies to all locations)
 - (Current location only) Change location service
-- (Current location only) Change weather source
 - (Manually added locations only) Set location as resident city
-
-Note that at the moment you can’t change the weather source for an existing manually added location, you will have to add a new location from the location list and then delete the old one.
+- Change main weather source or secondary weather sources (air quality, allergens, precipitations minute by minute, alerts)

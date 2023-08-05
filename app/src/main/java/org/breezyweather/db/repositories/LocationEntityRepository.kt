@@ -28,6 +28,11 @@ object LocationEntityRepository {
             if (dbEntity == null) {
                 insertLocationEntity(entity)
             } else {
+                if (oldFormattedId != null && location.formattedId != oldFormattedId) {
+                    // Clean up weather data from oldFormattedId if we changed formattedId
+                    WeatherEntityRepository.deleteWeather(oldFormattedId)
+                }
+
                 entity.id = dbEntity.id
                 updateLocationEntity(entity)
             }
