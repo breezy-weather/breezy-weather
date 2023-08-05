@@ -149,10 +149,10 @@ object Widgets {
 
     fun buildWidgetDayStyleText(context: Context, weather: Weather, unit: TemperatureUnit): Array<String> {
         val texts = arrayOf(
-            weather.current?.weatherText,
-            weather.current?.temperature?.getTemperature(context, unit, 0),
-            weather.dailyForecast.getOrNull(0)?.day?.temperature?.getShortTemperature(context, unit),
-            weather.dailyForecast.getOrNull(0)?.night?.temperature?.getShortTemperature(context, unit),
+            weather.current?.weatherText ?: "",
+            weather.current?.temperature?.getTemperature(context, unit, 0) ?: "",
+            weather.dailyForecast.getOrNull(0)?.day?.temperature?.getShortTemperature(context, unit) ?: "",
+            weather.dailyForecast.getOrNull(0)?.night?.temperature?.getShortTemperature(context, unit) ?: "",
         )
         val paint = TextPaint()
         val widths = FloatArray(4)
