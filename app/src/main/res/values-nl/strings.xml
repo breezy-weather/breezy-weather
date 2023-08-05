@@ -110,4 +110,6 @@
     <string name="widget_style_vertical">Verticaal</string>
     <string name="widget_subtitle_data_feels_like">Gevoelstemperatuur</string>
     <string name="widget_subtitle_data_lunar">Maankalender</string>
+    <string name="minutely_forecast">Verwachting per minuut</string>
+    <string name="precipitation_forecast">Neerslagverwachting</string>
 </resources>
