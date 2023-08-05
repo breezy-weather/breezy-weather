@@ -21,10 +21,10 @@ object LocationEntityRepository {
         }
     }
 
-    fun writeLocation(location: Location) {
+    fun writeLocation(location: Location, oldFormattedId: String? = null) {
         val entity = LocationEntityGenerator.generate(location)
         boxStore.callInTxNoException {
-            val dbEntity = selectLocationEntity(location.formattedId)
+            val dbEntity = selectLocationEntity(oldFormattedId ?: location.formattedId)
             if (dbEntity == null) {
                 insertLocationEntity(entity)
             } else {

@@ -1,5 +1,8 @@
 # Version 4.5.1-beta (next version)
 
+**New features**
+- Allow to change main source for a manually added location.
+
 **Weather sources**
 - [AccuWeather] Was not showing in secondary source list, fixed
 

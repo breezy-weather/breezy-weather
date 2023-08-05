@@ -97,27 +97,24 @@ class MainActivityRepository @Inject constructor(
     suspend fun getWeather(
         context: Context,
         location: Location,
-        locate: Boolean,
         callback: WeatherRequestCallback,
     ) {
         try {
             var locationThrowable: Throwable? = null
-            val locationToProcess = if (locate) {
-                try {
-                    locationHelper.getCurrentLocationWithReverseGeocoding(
-                        context,
-                        location,
-                        false
-                    )
-                } catch (e: Throwable) {
-                    // If we failed to locate, throw an error later
-                    // but still refresh with latest known position
-                    if (location.isUsable) {
-                        locationThrowable = e
-                        location
-                    } else throw e
-                }
-            } else location
+            val locationToProcess = try {
+                locationHelper.getLocation(
+                    context,
+                    location,
+                    false
+                )
+            } catch (e: Throwable) {
+                // If we failed to locate, throw an error later
+                // but still refresh with latest known position
+                if (location.isUsable) {
+                    locationThrowable = e
+                    location
+                } else throw e
+            }
 
             val requestWeather = weatherHelper.requestWeather(
                 context,

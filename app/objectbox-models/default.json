@@ -706,7 +706,7 @@
     },
     {
       "id": "6:4252433662761383759",
-      "lastPropertyId": "20:679004505855096220",
+      "lastPropertyId": "21:3557173066653448748",
       "name": "LocationEntity",
       "properties": [
         {
@@ -804,6 +804,11 @@
           "id": "20:679004505855096220",
           "name": "alertSource",
           "type": 9
+        },
+        {
+          "id": "21:3557173066653448748",
+          "name": "needsGeocodeRefresh",
+          "type": 1
         }
       ],
       "relations": []

@@ -24,31 +24,52 @@ import javax.inject.Inject
 class LocationHelper @Inject constructor(
     private val sourceManager: SourceManager
 ) {
-    suspend fun getCurrentLocationWithReverseGeocoding(
+    suspend fun getLocation(
         context: Context, location: Location, background: Boolean
     ): Location {
-        val currentLocation = requestCurrentLocation(context, location, background).awaitFirstOrElse {
-            throw LocationException()
-        }
+        val currentLocation = if (location.isCurrentPosition) {
+            requestCurrentLocation(context, location, background).awaitFirstOrElse {
+                throw LocationException()
+            }
+        } else location
         val source = location.weatherSource
         val weatherService = sourceManager.getReverseGeocodingSource(source)
         return if (weatherService != null) {
-            weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
-                if (locationList.isNotEmpty()) {
-                    val src = locationList[0]
-                    val locationWithGeocodeInfo = src.copy(isCurrentPosition = true)
-                    LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
-                    locationWithGeocodeInfo
-                } else {
+            if (location.isCurrentPosition || location.needsGeocodeRefresh
+                || !weatherService.isUsable(location)) {
+                weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
+                    if (locationList.isNotEmpty()) {
+                        val result = locationList[0]
+                        val locationWithGeocodeInfo = location.copy(
+                            cityId = result.cityId,
+                            timeZone = result.timeZone,
+                            country = result.country,
+                            countryCode = result.countryCode ?: "",
+                            province = result.province ?: "",
+                            provinceCode = result.provinceCode ?: "",
+                            city = result.city,
+                            district = result.district ?: "",
+                            needsGeocodeRefresh = false
+                        )
+                        LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
+                        locationWithGeocodeInfo
+                    } else {
+                        throw ReverseGeocodingException()
+                    }
+                }.awaitFirstOrElse {
                     throw ReverseGeocodingException()
                 }
-            }.awaitFirstOrElse {
-                throw ReverseGeocodingException()
-            }
+            } else currentLocation
         } else {
             // Returned as-is if no reverse geocoding source
-            // but write in case the location service has provided us information
-            LocationEntityRepository.writeLocation(currentLocation)
+            // but write in case the location service has provided us information for current
+            if (location.isCurrentPosition) {
+                LocationEntityRepository.writeLocation(currentLocation)
+            } else if (location.needsGeocodeRefresh) {
+                LocationEntityRepository.writeLocation(
+                    currentLocation.copy(needsGeocodeRefresh = false)
+                )
+            }
             currentLocation
         }
     }

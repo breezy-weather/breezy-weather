@@ -8,6 +8,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -39,6 +40,10 @@ class ChinaService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
+        if (location.cityId.isNullOrEmpty()) {
+            throw ReverseGeocodingException()
+        }
+
         val mainly = mApi.getForecastWeather(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
@@ -94,6 +99,10 @@ class ChinaService @Inject constructor(
                 }
                 locationList
             }
+    }
+
+    override fun isUsable(location: Location): Boolean {
+        return !location.cityId.isNullOrEmpty()
     }
 
     override fun requestReverseGeocodingLocation(

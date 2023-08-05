@@ -286,6 +286,10 @@ class AccuService @Inject constructor(
         }
     }
 
+    override fun isUsable(location: Location): Boolean {
+        return !location.cityId.isNullOrEmpty()
+    }
+
     override fun requestReverseGeocodingLocation(
         context: Context,
         location: Location

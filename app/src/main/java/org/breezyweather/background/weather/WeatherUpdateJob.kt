@@ -191,15 +191,13 @@ class WeatherUpdateJob @AssistedInject constructor(
                                         skippedUpdates.add(location to context.getString(R.string.weather_refresh_skipped_already_recently_updated))
                                     } else {
                                         try {
-                                            val locationToProceed = if (location.isCurrentPosition) {
-                                                try {
-                                                    updateLocation(location)
-                                                } catch (e: Throwable) {
-                                                    // If we failed to locate, let this silently fail
-                                                    // and refresh weather with latest known position
-                                                    if (location.isUsable) location else throw e
-                                                }
-                                            } else location
+                                            val locationToProceed = try {
+                                                updateLocation(location)
+                                            } catch (e: Throwable) {
+                                                // If we failed to locate, let this silently fail
+                                                // and refresh weather with latest known position
+                                                if (location.isUsable) location else throw e
+                                            }
 
                                             val weather = updateWeather(locationToProceed)
                                             newUpdates.add(location to locationToProceed.copy(weather = weather))
@@ -313,7 +311,7 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @return location updated.
      */
     private suspend fun updateLocation(location: Location): Location {
-        return locationHelper.getCurrentLocationWithReverseGeocoding(
+        return locationHelper.getLocation(
             context,
             location,
             true

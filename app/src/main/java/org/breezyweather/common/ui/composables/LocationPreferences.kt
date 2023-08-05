@@ -96,7 +96,8 @@ private fun SecondarySourcesPreference(
     onClose: (() -> Unit)
 ) {
     val dialogOpenState = remember { mutableStateOf(false) }
-    val hasChangedASource = remember { mutableStateOf(false) }
+    val hasChangedMainSource = remember { mutableStateOf(false) }
+    val hasChangedASecondarySource = remember { mutableStateOf(false) }
     val weatherSource = remember { mutableStateOf(location.weatherSource) }
     val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
     val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
@@ -155,24 +156,13 @@ private fun SecondarySourcesPreference(
             },
             text = {
                 Column {
-                    if (location.isCurrentPosition) {
-                        SourceView(
-                            title = stringResource(R.string.settings_weather_source_main),
-                            selectedKey = weatherSource.value,
-                            sourceList = weatherSources.associate { it.id to it.name },
-                        ) { sourceId ->
-                            weatherSource.value = sourceId
-                            hasChangedASource.value = true
-                        }
-                    } else {
-                        SourceView(
-                            title = stringResource(R.string.settings_weather_source_main),
-                            selectedKey = weatherSource.value,
-                            enabled = false,
-                            sourceList = weatherSources.associate { it.id to it.name },
-                        ) { sourceId ->
-                            // TODO: To be implemented
-                        }
+                    SourceView(
+                        title = stringResource(R.string.settings_weather_source_main),
+                        selectedKey = weatherSource.value,
+                        sourceList = weatherSources.associate { it.id to it.name },
+                    ) { sourceId ->
+                        weatherSource.value = sourceId
+                        hasChangedMainSource.value = true
                     }
                     SourceView(
                         title = stringResource(R.string.air_quality),
@@ -181,7 +171,7 @@ private fun SecondarySourcesPreference(
                                 compatibleAirQualitySources.associate { it.id to it.name },
                     ) { sourceId ->
                         airQualitySource.value = sourceId
-                        hasChangedASource.value = true
+                        hasChangedASecondarySource.value = true
                     }
                     SourceView(
                         title = stringResource(R.string.allergen),
@@ -190,7 +180,7 @@ private fun SecondarySourcesPreference(
                                 compatibleAllergenSources.associate { it.id to it.name },
                     ) { sourceId ->
                         allergenSource.value = sourceId
-                        hasChangedASource.value = true
+                        hasChangedASecondarySource.value = true
                     }
                     SourceView(
                         title = stringResource(R.string.minutely_forecast),
@@ -199,7 +189,7 @@ private fun SecondarySourcesPreference(
                                 compatibleMinutelySources.associate { it.id to it.name },
                     ) { sourceId ->
                         minutelySource.value = sourceId
-                        hasChangedASource.value = true
+                        hasChangedASecondarySource.value = true
                     }
                     SourceView(
                         title = stringResource(R.string.alerts),
@@ -208,7 +198,7 @@ private fun SecondarySourcesPreference(
                                 compatibleAlertSources.associate { it.id to it.name },
                     ) { sourceId ->
                         alertSource.value = sourceId
-                        hasChangedASource.value = true
+                        hasChangedASecondarySource.value = true
                     }
                 }
             },
@@ -216,21 +206,23 @@ private fun SecondarySourcesPreference(
                 TextButton(
                     onClick = {
                         dialogOpenState.value = false
-                        if (hasChangedASource.value) {
+                        if (hasChangedMainSource.value || hasChangedASecondarySource.value) {
                             val newLocation = location.copy(
+                                // Reset cityId when changing source as they are linked to source
+                                cityId = if (hasChangedMainSource.value) "" else location.cityId,
                                 weatherSource = weatherSource.value,
                                 airQualitySource = airQualitySource.value,
                                 allergenSource = allergenSource.value,
                                 minutelySource = minutelySource.value,
-                                alertSource = alertSource.value
+                                alertSource = alertSource.value,
+                                needsGeocodeRefresh = hasChangedMainSource.value
                             )
-                            LocationEntityRepository.writeLocation(newLocation)
+                            LocationEntityRepository.writeLocation(newLocation, location.formattedId)
                             EventBus.instance
                                 .with(Location::class.java)
                                 .postValue(newLocation)
                             onClose()
                         }
-
                     }
                 ) {
                     Text(

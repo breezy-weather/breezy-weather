@@ -37,7 +37,9 @@ data class Location(
     val alertSource: String? = null,
 
     val isCurrentPosition: Boolean = false,
-    val isResidentPosition: Boolean = false
+    val isResidentPosition: Boolean = false,
+
+    val needsGeocodeRefresh: Boolean = false
 ) : Parcelable {
 
     val formattedId: String
@@ -74,6 +76,7 @@ data class Location(
         parcel.writeString(alertSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (isResidentPosition) 1 else 0)
+        parcel.writeByte(if (needsGeocodeRefresh) 1 else 0)
     }
 
     override fun describeContents() = 0
@@ -95,7 +98,8 @@ data class Location(
         minutelySource = parcel.readString(),
         alertSource = parcel.readString(),
         isCurrentPosition = parcel.readByte() != 0.toByte(),
-        isResidentPosition = parcel.readByte() != 0.toByte()
+        isResidentPosition = parcel.readByte() != 0.toByte(),
+        needsGeocodeRefresh = parcel.readByte() != 0.toByte()
     )
 
     override fun equals(other: Any?): Boolean {
@@ -131,6 +135,10 @@ data class Location(
         }
 
         if (alertSource != other.alertSource) {
+            return false
+        }
+
+        if (needsGeocodeRefresh != other.needsGeocodeRefresh) {
             return false
         }
 

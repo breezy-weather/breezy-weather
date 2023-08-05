@@ -105,7 +105,11 @@ class MainActivityViewModel @Inject constructor(
     private fun updateInnerData(location: Location) {
         val total = ArrayList(totalLocationList.value.first)
         for (i in total.indices) {
-            if (total[i].formattedId == location.formattedId) {
+            if (total[i].formattedId == location.formattedId ||
+                // Hacky way to get a manually added location which changed weather source to refresh
+                (location.needsGeocodeRefresh && total[i].longitude == location.longitude
+                        && total[i].latitude == location.latitude)
+                ) {
                 total[i] = location
                 break
             }
@@ -131,7 +135,12 @@ class MainActivityViewModel @Inject constructor(
 
         var index = 0
         for (i in valid.indices) {
-            if (valid[i].formattedId == currentLocation.value?.location?.formattedId) {
+            if (valid[i].formattedId == currentLocation.value?.location?.formattedId ||
+                // Hacky way to get a manually added location which changed weather source to refresh
+                (currentLocation.value?.location?.needsGeocodeRefresh == true
+                        && total[i].longitude == currentLocation.value?.location?.longitude
+                        && total[i].latitude == currentLocation.value?.location?.latitude)
+            ) {
                 index = i
                 break
             }
@@ -235,7 +244,6 @@ class MainActivityViewModel @Inject constructor(
                 repository.getWeather(
                     getApplication(),
                     locationToCheck,
-                    locationToCheck.isCurrentPosition,
                     this@MainActivityViewModel
                 )
             }
@@ -257,7 +265,6 @@ class MainActivityViewModel @Inject constructor(
                 repository.getWeather(
                     getApplication(),
                     locationToCheck,
-                    locationToCheck.isCurrentPosition,
                     this@MainActivityViewModel
                 )
             }

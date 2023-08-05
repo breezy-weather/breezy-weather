@@ -38,5 +38,7 @@ data class LocationEntity(
     var alertSource: String? = null,
 
     var currentPosition: Boolean = false,
-    var residentPosition: Boolean = false
+    var residentPosition: Boolean = false,
+
+    var needsGeocodeRefresh: Boolean = false
 )

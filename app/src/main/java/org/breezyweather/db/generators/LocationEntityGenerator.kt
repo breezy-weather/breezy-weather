@@ -23,7 +23,8 @@ object LocationEntityGenerator {
             minutelySource = location.minutelySource,
             alertSource = location.alertSource,
             currentPosition = location.isCurrentPosition,
-            residentPosition = location.isResidentPosition
+            residentPosition = location.isResidentPosition,
+            needsGeocodeRefresh = location.needsGeocodeRefresh
         )
     }
 
@@ -54,7 +55,8 @@ object LocationEntityGenerator {
             entity.minutelySource,
             entity.alertSource,
             entity.currentPosition,
-            entity.residentPosition
+            entity.residentPosition,
+            entity.needsGeocodeRefresh
         )
     }
 

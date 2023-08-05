@@ -241,6 +241,8 @@ class MfService @Inject constructor(
         }
     }
 
+    override fun isUsable(location: Location): Boolean = true
+
     override fun requestReverseGeocodingLocation(
         context: Context,
         location: Location
@@ -255,14 +257,7 @@ class MfService @Inject constructor(
             "iso",
             getToken()
         ).map {
-            val locationList: MutableList<Location> = ArrayList()
-            val locationConverted = convert(location, it)
-            if (locationConverted != null) {
-                locationList.add(locationConverted)
-                locationList
-            } else {
-                throw ReverseGeocodingException()
-            }
+            listOf(convert(location, it))
         }
     }
 

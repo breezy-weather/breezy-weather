@@ -10,6 +10,12 @@ import org.breezyweather.common.basic.models.Location
 interface ReverseGeocodingSource : Source {
 
     /**
+     * Returns true if location can be used directly
+     * or false if needs a reverse geocoding processing before it can be used
+     */
+    fun isUsable(location: Location): Boolean
+
+    /**
      * Returns location converted to Breezy Weather Location object
      * cityId is mandatory
      */
