@@ -33,7 +33,6 @@ import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
-import org.breezyweather.sources.openmeteo.convertSecondary
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -76,7 +75,7 @@ class AccuService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val mApi = if (portal.id == "enterprise") mEnterpriseApi else mDeveloperApi
+        val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
 
         val languageCode = SettingsManager.getInstance(context).language.code
         val current = mApi.getCurrent(
@@ -192,16 +191,15 @@ class AccuService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override fun isFeatureSupportedForLocation(
-        feature: SecondaryWeatherSourceFeature, location: Location
-    ): Boolean {
-        return (supportedFeatures.contains(feature)
-                && isConfigured && portal.id == "entreprise")
-    }
     override val supportedFeatures = listOf(
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return (isConfigured && portal == AccuPortalPreference.ENTERPRISE)
+    }
     override val airQualityAttribution = null // Only supported by city key
     override val allergenAttribution = null // Only supported by city key
     override val minutelyAttribution = weatherAttribution
@@ -214,7 +212,7 @@ class AccuService @Inject constructor(
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
-        if (portal.id != "entreprise") {
+        if (portal != AccuPortalPreference.ENTERPRISE) {
             return Observable.error(SecondaryWeatherException())
         }
 
@@ -274,7 +272,7 @@ class AccuService @Inject constructor(
         }
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
-        val mApi = if (portal.id == "enterprise") mEnterpriseApi else mDeveloperApi
+        val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocation(
             apiKey,
             query,
@@ -297,7 +295,7 @@ class AccuService @Inject constructor(
         }
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
-        val mApi = if (portal.id == "enterprise") mEnterpriseApi else mDeveloperApi
+        val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
             apiKey,
             languageCode,

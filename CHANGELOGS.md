@@ -1,4 +1,10 @@
-# Version 4.5.0-beta (next version)
+# Version 4.5.1-beta (next version)
+
+**Weather sources**
+- [AccuWeather] Was not showing in secondary source list, fixed
+
+
+# Version 4.5.0-beta
 
 Due to a technical change, cached weather data will be cleared on update.
 

@@ -155,11 +155,17 @@ class MfService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
         return isConfigured && (
                 feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+                        && !location.countryCode.isNullOrEmpty()
+                        && location.countryCode.equals("FR", ignoreCase = true)
                 ) || (
                 feature == SecondaryWeatherSourceFeature.FEATURE_ALERT
                         && !location.countryCode.isNullOrEmpty()
@@ -167,11 +173,6 @@ class MfService @Inject constructor(
                         && !location.provinceCode.isNullOrEmpty()
                 )
     }
-
-    override val supportedFeatures = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
-    )
     override val airQualityAttribution = null
     override val allergenAttribution = null
     override val minutelyAttribution = weatherAttribution
