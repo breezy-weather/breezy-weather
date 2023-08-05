@@ -6,6 +6,7 @@
 **Weather sources**
 - [AccuWeather] Was not showing in secondary source list, fixed
 - [MET Norway] Add weather text
+- [OpenWeather] Add more days of air quality
 
 **Other fixes**
 - Fix some widgets crash when weather text was missing (detected on MET Norway)

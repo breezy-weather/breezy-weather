@@ -36,6 +36,22 @@ import kotlin.math.sin
  * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA
  */
 
+fun getDailyAirQualityFromHourly(
+    hourlyAirQuality: Map<Date, AirQuality>?,
+    timeZone: TimeZone
+): MutableMap<Date, AirQuality> {
+    val dailyAirQualityMap = mutableMapOf<Date, AirQuality>()
+    hourlyAirQuality?.entries?.groupBy {
+        it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
+    }?.forEach { entry ->
+        val airQuality = getDailyAirQualityFromSecondaryHourlyList(entry.value)
+        if (airQuality != null) {
+            dailyAirQualityMap[entry.key.toDateNoHour(timeZone)!!] = airQuality
+        }
+    }
+    return dailyAirQualityMap
+}
+
 /**
  * Complete daily data missing on SecondaryWeatherWrapper early
  * to avoid being unable to do it later
@@ -51,16 +67,9 @@ fun completeMissingSecondaryWeatherDailyData(
         || (!initialSecondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty()
                 && initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
         val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) {
-            val dailyAirQualityMap: MutableMap<Date, AirQuality> = mutableMapOf()
-            initialSecondaryWeatherWrapper.airQuality?.hourlyForecast?.entries?.groupBy {
-                it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
-            }?.forEach { entry ->
-                val airQuality = getDailyAirQualityFromSecondaryHourlyList(entry.value)
-                if (airQuality != null) {
-                    dailyAirQualityMap[entry.key.toDateNoHour(timeZone)!!] = airQuality
-                }
-            }
-            dailyAirQualityMap
+            getDailyAirQualityFromHourly(
+                initialSecondaryWeatherWrapper.airQuality?.hourlyForecast, timeZone
+            )
         } else initialSecondaryWeatherWrapper.airQuality!!.dailyForecast
 
         val dailyAllergen: Map<Date, Allergen>? = if (initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty()) {
