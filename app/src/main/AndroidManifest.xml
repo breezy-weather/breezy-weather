@@ -335,7 +335,6 @@
 
         <service
             android:name=".wallpaper.MaterialLiveWallpaperService"
-            android:directBootAware="true"
             android:permission="android.permission.BIND_WALLPAPER"
             android:exported="true">
             <intent-filter>

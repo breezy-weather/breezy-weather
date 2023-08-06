@@ -1,4 +1,10 @@
-# Version 4.5.1-beta (next version)
+# Next version
+
+**Other fixes**
+- Fix live wallpaper being black after reboot
+
+
+# Version 4.5.1-beta
 
 **New features**
 - Allow to change main source for a manually added location.

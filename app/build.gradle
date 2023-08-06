@@ -16,8 +16,8 @@ android {
         applicationId "org.breezyweather"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 40501
-        versionName "4.5.1-beta"
+        versionCode 40502
+        versionName "4.5.2-beta"
 
         multiDexEnabled true
         ndk.abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
