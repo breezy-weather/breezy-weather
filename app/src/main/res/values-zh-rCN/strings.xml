@@ -154,7 +154,7 @@
     <string name="widget_label_black_text">暗色字体</string>
     <string name="widget_label_text_size">文字尺寸</string>
     <string name="widget_label_clock_font">时钟字体</string>
-    <string name="widget_label_hide_lunar">隐藏阴历</string>
+    <string name="widget_label_hide_lunar">隐藏农历</string>
     <string name="widget_label_align_end">右对齐</string>
     <string name="widget_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。
 \n
@@ -220,8 +220,8 @@
     <string name="action_back">返回</string>
     <string name="settings_icon_packs_check_details">查看详情</string>
     <string name="alerts_count">$条天气预警</string>
-    <string name="air_quality_pm25_voice">PM二点五</string>
-    <string name="air_quality_pm10_voice">PM十</string>
+    <string name="air_quality_pm25_voice">PM2.5</string>
+    <string name="air_quality_pm10_voice">PM10</string>
     <string name="air_quality_so2_voice">二氧化硫</string>
     <string name="air_quality_no2_voice">二氧化氮</string>
     <string name="air_quality_o3_voice">臭氧</string>
@@ -408,7 +408,7 @@
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
-    <string name="unit_celsius">摄氏度</string>
+    <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
     <string name="about_matrix">Matrix 服务器</string>
@@ -422,14 +422,14 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">开</string>
+    <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
     <string name="alerts_to_follow">有新的警报，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_source">选择天气数据源</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="unit_fahrenheit">华氏度</string>
+    <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
     <string name="settings_weather_sources_current_location">当前位置的天气数据源</string>
@@ -440,15 +440,15 @@
     <string name="settings_background_updates_section_troubleshoot">故障排除</string>
     <string name="settings_background_updates_battery_optimization">禁用电池优化</string>
     <string name="settings_location_access_switch_title">访问位置信息</string>
-    <string name="weather_source_accu_preference_days_5">五天</string>
-    <string name="weather_source_accu_preference_days_15">十五天</string>
+    <string name="weather_source_accu_preference_days_5">5天</string>
+    <string name="weather_source_accu_preference_days_15">15天</string>
     <string name="setting_weather_source_accu_hours">小时数</string>
-    <string name="weather_source_accu_preference_hours_1">一小时</string>
-    <string name="weather_source_accu_preference_hours_120">一百二十小时</string>
-    <string name="weather_source_accu_preference_hours_12">十二小时</string>
-    <string name="weather_source_accu_preference_hours_24">二十四小时</string>
+    <string name="weather_source_accu_preference_hours_1">1小时</string>
+    <string name="weather_source_accu_preference_hours_120">120小时</string>
+    <string name="weather_source_accu_preference_hours_12">12小时</string>
+    <string name="weather_source_accu_preference_hours_24">24小时</string>
     <string name="action_share">分享</string>
-    <string name="weather_source_accu_preference_hours_72">七十二小时</string>
+    <string name="weather_source_accu_preference_hours_72">72小时</string>
     <string name="settings_background_updates">后台更新</string>
     <string name="settings_background_updates_dont_kill_my_app_title">OEM特定说明</string>
     <string name="weather_air_quality_and_allergen_data_by">空气质量和大气污染数据来自 $</string>
@@ -459,7 +459,7 @@
     <string name="settings_weather_source_portal">门户</string>
     <string name="setting_weather_source_accu_days">天数</string>
     <string name="weather_api_key_required_missing_content">为使用此数据源，您需要提供一个 API 密钥。</string>
-    <string name="weather_source_accu_preference_days_1">一天</string>
+    <string name="weather_source_accu_preference_days_1">1天</string>
     <string name="action_see_more">查看更多</string>
     <string name="message_network_unavailable">网络不可用</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 密钥</string>
@@ -480,7 +480,7 @@
     <string name="settings_location_access_background_summaryOff">请选择“始终允许”来启用后台位置更新。</string>
     <string name="settings_location_access_precise_summaryOn">已启用。设备网络定位和 GPS 定位已同时使用。</string>
     <string name="settings_weather_sources">天气数据源</string>
-    <string name="weather_source_accu_preference_days_10">十天</string>
+    <string name="weather_source_accu_preference_days_10">10天</string>
     <string name="settings_location_access_switch_summaryOff">如果你想要将当前定位作为一个位置的话，请允许该权限。</string>
     <string name="location_search_change_weather_source">更改天气数据源</string>
     <string name="settings_section_general">一般选项</string>
@@ -576,7 +576,7 @@
     <string name="settings_source_api_key">API密钥</string>
     <string name="temperature_degree_day_cooling">制冷度日</string>
     <string name="message_source_not_installed_error_title">来源不再可用</string>
-    <string name="weather_source_accu_preference_hours_240">二百四十小时</string>
+    <string name="weather_source_accu_preference_hours_240">240小时</string>
     <string name="action_help_me_choose">帮助我选择</string>
     <string name="allergen_alder">桤木</string>
     <string name="allergen_birch">桦木</string>
@@ -609,4 +609,12 @@
     <string name="settings_weather_sources_default_location_search">默认位置搜索源</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contact">联络方式</string>
+    <string name="common_weather_text_rain_light">小雨</string>
+    <string name="common_weather_text_snow_heavy">大雪</string>
+    <string name="common_weather_text_snow_light">小雪</string>
+    <string name="common_weather_text_snow_moderate">中雪</string>
+    <string name="common_weather_text_rain_moderate">中雨</string>
+    <string name="common_weather_text_rain_heavy">大雨</string>
+    <string name="common_weather_text_rain_freezing">冻雨</string>
+    <string name="common_weather_text_rain_snow_mixed">雨夹雪</string>
 </resources>
