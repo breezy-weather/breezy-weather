@@ -267,7 +267,6 @@
     <string name="common_weather_text_cloudy">Núvols</string>
     <string name="common_weather_text_rain">Pluja</string>
     <string name="common_weather_text_snow">Neu</string>
-    <string name="common_weather_text_sleet">Aiguaneu</string>
     <string name="weather_kind_hail">Calamarsa</string>
     <string name="common_weather_text_fog">Boira</string>
     <string name="weather_kind_haze">Boirina</string>

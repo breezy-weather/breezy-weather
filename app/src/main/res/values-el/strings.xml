@@ -250,7 +250,6 @@
     <string name="common_weather_text_cloudy">Συννεφιασμένος</string>
     <string name="common_weather_text_rain">Βροχή</string>
     <string name="common_weather_text_snow">Χιόνι</string>
-    <string name="common_weather_text_sleet">Χιονόνερο</string>
     <string name="weather_kind_hail">Χαλάζι</string>
     <string name="common_weather_text_fog">Ομίχλη</string>
     <string name="weather_kind_haze">Καταχνιά</string>

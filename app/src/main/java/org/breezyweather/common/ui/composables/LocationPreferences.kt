@@ -192,7 +192,7 @@ private fun SecondarySourcesPreference(
                         hasChangedASecondarySource.value = true
                     }
                     SourceView(
-                        title = stringResource(R.string.minutely_forecast),
+                        title = stringResource(R.string.minutely_precipitations),
                         selectedKey = minutelySource.value,
                         sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
                                 compatibleMinutelySources.associate { it.id to it.name },

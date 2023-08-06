@@ -656,20 +656,56 @@
     <string name="about_contribution_weather_source">Added support for new weather source(s)</string>
     <!-- Weather condition text -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
+    <!-- We don’t use all of them currently, but they might come useful some day -->
     <string name="common_weather_text_clear_sky">Clear sky</string>
+    <string name="common_weather_text_mainly_clear">Mainly clear</string>
     <string name="common_weather_text_partly_cloudy">Partly cloudy</string>
     <string name="common_weather_text_cloudy">Cloudy</string>
+    <string name="common_weather_text_overcast">Overcast</string>
     <string name="common_weather_text_fog">Fog</string>
     <string name="common_weather_text_rain">Rain</string>
-    <string name="common_weather_text_sleet">Sleet</string>
+    <string name="common_weather_text_rain_light">Light rain</string>
+    <string name="common_weather_text_rain_moderate">Moderate rain</string>
+    <string name="common_weather_text_rain_heavy">Heavy rain</string>
+    <!-- Rain showers is an intense rain, generally over a short period -->
+    <string name="common_weather_text_rain_showers">Rain showers</string>
+    <string name="common_weather_text_rain_showers_light">Light rain showers</string>
+    <string name="common_weather_text_rain_showers_moderate">Moderate rain showers</string>
+    <string name="common_weather_text_rain_showers_heavy">Heavy rain showers</string>
+    <string name="common_weather_text_rain_freezing">Freezing rain</string>
+    <string name="common_weather_text_rain_freezing_light">Light freezing rain</string>
+    <string name="common_weather_text_rain_freezing_heavy">Heavy freezing rain</string>
+    <!-- Don’t use “sleet” here as it doesn’t mean the same thing in en-US -->
+    <!-- You can use “melting snow” or “wet snow” if sounds better in your language -->
+    <string name="common_weather_text_rain_snow_mixed">Rain and snow mixed</string>
+    <string name="common_weather_text_rain_snow_mixed_light">Light rain and snow mixed</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">Heavy rain and snow mixed</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">Rain and snow mixed showers</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Light rain and snow mixed showers</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Heavy rain and snow mixed showers</string>
     <string name="common_weather_text_snow">Snow</string>
+    <string name="common_weather_text_snow_light">Light snow</string>
+    <string name="common_weather_text_snow_moderate">Moderate snow</string>
+    <string name="common_weather_text_snow_heavy">Heavy snow</string>
+    <string name="common_weather_text_snow_showers">Snow showers</string>
+    <string name="common_weather_text_snow_showers_light">Light snow showers</string>
+    <string name="common_weather_text_snow_showers_heavy">Heavy snow showers</string>
+    <string name="common_weather_text_snow_grains">Snow grains</string>
+    <!-- Drizzle is a very thin rain, almost can’t feel it -->
+    <string name="common_weather_text_drizzle">Drizzle</string>
+    <string name="common_weather_text_drizzle_light">Light drizzle</string>
+    <string name="common_weather_text_drizzle_moderate">Moderate drizzle</string>
+    <string name="common_weather_text_drizzle_heavy">Heavy drizzle</string>
+    <string name="common_weather_text_drizzle_freezing">Freezing drizzle</string>
+    <string name="common_weather_text_drizzle_freezing_light">Light freezing drizzle</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">Heavy freezing drizzle</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
     <string name="weather_kind_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
     <string name="weather_kind_rain" translatable="false">@string/common_weather_text_rain</string>
     <string name="weather_kind_snow" translatable="false">@string/common_weather_text_snow</string>
-    <string name="weather_kind_sleet" translatable="false">@string/common_weather_text_sleet</string>
+    <string name="weather_kind_sleet" translatable="false">@string/common_weather_text_rain_snow_mixed</string>
     <string name="weather_kind_hail">Hail</string>
     <string name="weather_kind_fog" translatable="false">@string/common_weather_text_fog</string>
     <string name="weather_kind_haze">Haze</string>
@@ -677,76 +713,61 @@
     <string name="weather_kind_thunderstorm">Thunderstorm</string>
     <string name="weather_kind_wind">Wind</string>
     <!-- Weather texts for Open-Meteo, based on WMO terms -->
+    <!-- https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM -->
     <string name="openmeteo_weather_text_clear_sky" translatable="false">@string/common_weather_text_clear_sky</string>
-    <string name="openmeteo_weather_text_mainly_clear">Mainly clear</string>
+    <string name="openmeteo_weather_text_mainly_clear" translatable="false">@string/common_weather_text_mainly_clear</string>
     <string name="openmeteo_weather_text_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
-    <string name="openmeteo_weather_text_overcast">Overcast</string>
+    <string name="openmeteo_weather_text_overcast" translatable="false">@string/common_weather_text_overcast</string>
     <string name="openmeteo_weather_text_fog" translatable="false">@string/common_weather_text_fog</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Drizzle light intensity</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Drizzle moderate intensity</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Drizzle dense intensity</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Freezing drizzle light intensity</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Freezing drizzle dense intensity</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Rain slight intensity</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Rain moderate intensity</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Rain heavy intensity</string>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Freezing rain light intensity</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Freezing rain heavy intensity</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Snow slight intensity</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Snow moderate intensity</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Snow heavy intensity</string>
-    <string name="openmeteo_weather_text_snow_grains">Snow grains</string>
-    <string name="openmeteo_weather_text_rain_showers_slight">Rain showers slight</string>
-    <string name="openmeteo_weather_text_rain_showers_moderate">Rain showers moderate</string>
-    <string name="openmeteo_weather_text_rain_showers_violent">Rain showers violent</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Snow showers slight</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy">Snow showers heavy</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity" translatable="false">@string/common_weather_text_drizzle_light</string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity" translatable="false">@string/common_weather_text_drizzle_moderate</string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity" translatable="false">@string/common_weather_text_drizzle_heavy</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity" translatable="false">@string/common_weather_text_drizzle_freezing_light</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity" translatable="false">@string/common_weather_text_drizzle_freezing_heavy</string>
+    <string name="openmeteo_weather_text_rain_slight_intensity" translatable="false">@string/common_weather_text_rain_light</string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity" translatable="false">@string/common_weather_text_rain_moderate</string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity" translatable="false">@string/common_weather_text_rain_heavy</string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity" translatable="false">@string/common_weather_text_rain_freezing_light</string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity" translatable="false">@string/common_weather_text_rain_freezing_heavy</string>
+    <string name="openmeteo_weather_text_snow_slight_intensity" translatable="false">@string/common_weather_text_snow_light</string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity" translatable="false">@string/common_weather_text_snow_moderate</string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity" translatable="false">@string/common_weather_text_snow_heavy</string>
+    <string name="openmeteo_weather_text_snow_grains" translatable="false">@string/common_weather_text_snow_grains</string>
+    <string name="openmeteo_weather_text_rain_showers_slight" translatable="false">@string/common_weather_text_rain_showers_light</string>
+    <string name="openmeteo_weather_text_rain_showers_moderate" translatable="false">@string/common_weather_text_rain_showers_moderate</string>
+    <string name="openmeteo_weather_text_rain_showers_violent" translatable="false">@string/common_weather_text_rain_showers_heavy</string>
+    <string name="openmeteo_weather_text_snow_showers_slight" translatable="false">@string/common_weather_text_snow_showers_light</string>
+    <string name="openmeteo_weather_text_snow_showers_heavy" translatable="false">@string/common_weather_text_snow_showers_heavy</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
     <!-- Weather texts for MET Norway -->
     <string name="metno_weather_text_clearsky" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="metno_weather_text_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
-    <string name="metno_weather_text_fair">Fair</string>
+    <string name="metno_weather_text_fair" translatable="false">@string/common_weather_text_mainly_clear</string>
     <string name="metno_weather_text_fog" translatable="false">@string/common_weather_text_fog</string>
-    <string name="metno_weather_text_heavyrain">Heavy rain</string>
-    <string name="metno_weather_text_heavyrainandthunder">Heavy rain and thunder</string>
-    <string name="metno_weather_text_heavyrainshowers">Heavy rain showers</string>
-    <string name="metno_weather_text_heavyrainshowersandthunder">Heavy rain showers and thunder</string>
-    <string name="metno_weather_text_heavysleet">Heavy sleet</string>
-    <string name="metno_weather_text_heavysleetandthunder">Heavy sleet and thunder</string>
-    <string name="metno_weather_text_heavysleetshowers">Heavy sleet showers</string>
-    <string name="metno_weather_text_heavysleetshowersandthunder">Heavy sleet showers and thunder</string>
-    <string name="metno_weather_text_heavysnow">Heavy snow</string>
-    <string name="metno_weather_text_heavysnowandthunder">Heavy snow and thunder</string>
-    <string name="metno_weather_text_heavysnowshowers">Heavy snow showers</string>
-    <string name="metno_weather_text_heavysnowshowersandthunder">Heavy snow showers and thunder</string>
-    <string name="metno_weather_text_lightrain">Light rain</string>
-    <string name="metno_weather_text_lightrainandthunder">Light rain and thunder</string>
-    <string name="metno_weather_text_lightrainshowers">Light rain showers</string>
-    <string name="metno_weather_text_lightrainshowersandthunder">Light rain showers and thunder</string>
-    <string name="metno_weather_text_lightsleet">Light sleet</string>
-    <string name="metno_weather_text_lightsleetandthunder">Light sleet and thunder</string>
-    <string name="metno_weather_text_lightsleetshowers">Light sleet showers</string>
-    <string name="metno_weather_text_lightsnow">Light snow</string>
-    <string name="metno_weather_text_lightsnowandthunder">Light snow and thunder</string>
-    <string name="metno_weather_text_lightsnowshowers">Light snow showers</string>
-    <string name="metno_weather_text_lightssleetshowersandthunder">Light sleet showers and thunder</string>
-    <string name="metno_weather_text_lightssnowshowersandthunder">Light snow showers and thunder</string>
+    <string name="metno_weather_text_heavyrain" translatable="false">@string/common_weather_text_rain_heavy</string>
+    <string name="metno_weather_text_heavyrainshowers" translatable="false">@string/common_weather_text_rain_showers_heavy</string>
+    <string name="metno_weather_text_heavysleet" translatable="false">@string/common_weather_text_rain_snow_mixed_heavy</string>
+    <string name="metno_weather_text_heavysleetshowers" translatable="false">@string/common_weather_text_rain_snow_mixed_showers_heavy</string>
+    <string name="metno_weather_text_heavysnow" translatable="false">@string/common_weather_text_snow_heavy</string>
+    <string name="metno_weather_text_heavysnowshowers" translatable="false">@string/common_weather_text_snow_showers_heavy</string>
+    <string name="metno_weather_text_lightrain" translatable="false">@string/common_weather_text_rain_light</string>
+    <string name="metno_weather_text_lightrainshowers" translatable="false">@string/common_weather_text_rain_showers_light</string>
+    <string name="metno_weather_text_lightsleet" translatable="false">@string/common_weather_text_rain_snow_mixed_light</string>
+    <string name="metno_weather_text_lightsleetshowers" translatable="false">@string/common_weather_text_rain_snow_mixed_showers_heavy</string>
+    <string name="metno_weather_text_lightsnow" translatable="false">@string/common_weather_text_snow_light</string>
+    <string name="metno_weather_text_lightsnowshowers" translatable="false">@string/common_weather_text_snow_showers_light</string>
     <string name="metno_weather_text_partlycloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
     <string name="metno_weather_text_rain" translatable="false">@string/common_weather_text_rain</string>
-    <string name="metno_weather_text_rainandthunder">Rain and thunder</string>
-    <string name="metno_weather_text_rainshowers">Rain showers</string>
-    <string name="metno_weather_text_rainshowersandthunder">Rain showers and thunder</string>
-    <string name="metno_weather_text_sleet" translatable="false">@string/common_weather_text_sleet</string>
-    <string name="metno_weather_text_sleetandthunder">Sleet and thunder</string>
-    <string name="metno_weather_text_sleetshowers">Sleet showers</string>
-    <string name="metno_weather_text_sleetshowersandthunder">Sleet showers and thunder</string>
+    <string name="metno_weather_text_rainshowers" translatable="false">@string/common_weather_text_rain_showers</string>
+    <string name="metno_weather_text_sleet" translatable="false">@string/common_weather_text_rain_snow_mixed</string>
+    <string name="metno_weather_text_sleetshowers" translatable="false">@string/common_weather_text_rain_snow_mixed_showers</string>
     <string name="metno_weather_text_snow" translatable="false">@string/common_weather_text_snow</string>
-    <string name="metno_weather_text_snowandthunder">Snow and thunder</string>
-    <string name="metno_weather_text_snowshowers">Snow showers</string>
-    <string name="metno_weather_text_snowshowersandthunder">Snow showers and thunder</string>
+    <string name="metno_weather_text_snowshowers" translatable="false">@string/common_weather_text_snow_showers</string>
+    <!-- Example: Heavy rain and thunder -->
+    <string name="metno_weather_text_andthunder">$ and thunder</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>

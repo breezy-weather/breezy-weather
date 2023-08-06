@@ -194,7 +194,6 @@
     <string name="wind_direction_short_SW">SW</string>
     <string name="wind_direction_short_W">W</string>
     <string name="common_weather_text_partly_cloudy">Перемінна хмарність</string>
-    <string name="common_weather_text_sleet">Мокрий сніг</string>
     <string name="common_weather_text_fog">Туман</string>
     <string name="weather_data_by">Дані від $</string>
     <string name="weather_air_quality_data_by">Дані про якість повітря від $</string>

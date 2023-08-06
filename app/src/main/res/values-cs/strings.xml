@@ -304,7 +304,6 @@
     <string name="common_weather_text_cloudy">Oblačno</string>
     <string name="common_weather_text_rain">Déšť</string>
     <string name="common_weather_text_snow">Sníh</string>
-    <string name="common_weather_text_sleet">Sníh s deštěm</string>
     <string name="weather_kind_hail">Kroupy</string>
     <string name="common_weather_text_fog">Mhla</string>
     <string name="weather_kind_haze">Opar</string>
@@ -359,7 +358,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Uložit protokoly o chybách do souboru pro sdílení s vývojáři</string>
     <string name="unit_m">m</string>
     <string name="unit_nmi">nmi</string>
-    <string name="openmeteo_weather_text_rain_showers_slight">Mírné dešťové přeháňky</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Bouřka s drobným krupobitím</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Bouřka se silným krupobitím</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
@@ -379,8 +377,7 @@
     <string name="unit_ftps">ft/s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_inph">inch/h</string>
-    <string name="openmeteo_weather_text_mainly_clear">Skoro jasno</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Silná intenzita sněžení</string>
+    <string name="common_weather_text_mainly_clear">Skoro jasno</string>
     <string name="weather_refresh_skipped_already_recently_updated">Nedávno aktualizováno</string>
     <string name="weather_api_unauthorized_content">U některých poskytovatelů počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li použít tohoto poskytovatele, musíte zadat klíč API.</string>
@@ -404,7 +401,7 @@
     <string name="unit_km">km</string>
     <string name="notification_update_error">%1$d aktualizace se nezdařila/y</string>
     <string name="about_matrix">Server Matrix</string>
-    <string name="openmeteo_weather_text_overcast">Zataženo</string>
+    <string name="common_weather_text_overcast">Zataženo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas oznámení předpovědi na další den</string>
     <string name="wind_strength">Síla větru</string>
     <string name="uv_index_11">Extrémní</string>
@@ -431,9 +428,6 @@
     <string name="unit_h">h</string>
     <string name="notification_channel_alerts">Výstrahy</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Intenzita mrholení</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Mrznoucí déšť silné intenzity</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Mírná intenzita sněžení</string>
     <string name="air_quality_o3_info_title">Přízemní (troposférický) ozon (O₃)</string>
     <string name="air_quality_so2_info_title">Oxid siřičitý (SO₂)</string>
     <string name="air_quality_o3_info_introduction">Přízemní ozon (O₃) je hlavní složkou smogu. Ačkoli se jedná o stejnou molekulu, přízemní ozon může být škodlivý pro lidské zdraví, na rozdíl od stratosférického ozonu, který chrání Zemi před nadměrným UV zářením.</string>
@@ -447,15 +441,9 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorovat, když je baterie vybitá</string>
     <string name="settings_background_updates_battery_optimization_summary">To je první věc, kterou je třeba vyzkoušet, když nedostáváte oznámení nebo se widgety neobnovují.</string>
     <string name="settings_widgets_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
-    <string name="openmeteo_weather_text_rain_showers_moderate">Středně silné dešťové přeháňky</string>
-    <string name="openmeteo_weather_text_rain_showers_violent">Prudké dešťové přeháňky</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Mírné sněhové přeháňky</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy">Silné sněhové přeháňky</string>
     <string name="wind_direction_short_NE">SV</string>
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Mrholení střední intenzity</string>
-    <string name="openmeteo_weather_text_fog">Mlha</string>
     <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu Breezy Weather můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
     <string name="unit_lpsqmph_voice">Litry na metr čtvereční za hodinu</string>
     <string name="unit_celsius">°C</string>
@@ -465,7 +453,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
     <string name="air_quality_level_2">Slušný</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Hustá intenzita mrholení</string>
     <string name="unit_mm">mm</string>
     <string name="unit_mph">mph</string>
     <string name="unit_kn">kn</string>
@@ -507,7 +494,6 @@
     <string name="unit_ft">ft</string>
     <string name="unit_atm">atm</string>
     <string name="unit_mgpcum">mg/m³</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Déšť mírné intenzity</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>
@@ -539,9 +525,6 @@
     <string name="unit_mmph_voice">Milimetry za hodinu</string>
     <string name="unit_cmph_voice">Centimetry za hodinu</string>
     <string name="notification_channel_background_services">Služby na pozadí</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Déšť silné intenzity</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Déšť střední intenzity</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Střední intenzita sněžení</string>
     <string name="unit_mb">mb</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_hpa">hPa</string>

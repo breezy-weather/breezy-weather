@@ -259,7 +259,6 @@
     <string name="common_weather_text_cloudy">曇り</string>
     <string name="common_weather_text_rain">雨</string>
     <string name="common_weather_text_snow">雪</string>
-    <string name="common_weather_text_sleet">みぞれ</string>
     <string name="weather_kind_hail">ひょう</string>
     <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">かすみ</string>

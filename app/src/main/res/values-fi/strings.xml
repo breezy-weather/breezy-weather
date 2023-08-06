@@ -300,7 +300,6 @@
     <string name="common_weather_text_cloudy">Pilvistä</string>
     <string name="common_weather_text_rain">Sadetta</string>
     <string name="common_weather_text_snow">Lumisadetta</string>
-    <string name="common_weather_text_sleet">Räntäsadetta</string>
     <string name="weather_kind_hail">Rakeita</string>
     <string name="common_weather_text_fog">Sumua</string>
     <string name="weather_kind_haze">Usvaa</string>

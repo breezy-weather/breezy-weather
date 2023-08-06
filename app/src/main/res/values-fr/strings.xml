@@ -142,29 +142,10 @@
 
     <!-- Weather texts -->
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
-    <string name="openmeteo_weather_text_mainly_clear">Principalement dégagé</string>
-    <string name="openmeteo_weather_text_overcast">Couvert</string>
-    <string name="openmeteo_weather_text_fog">Brouillard</string>
+    <string name="common_weather_text_mainly_clear">Principalement dégagé</string>
+    <string name="common_weather_text_overcast">Couvert</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Bruine de faible intensité</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Bruine d’intensité modérée</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Bruine d’intensité élevée</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Bruine verglaçante de faible intensité</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Bruine verglaçante d’intensité élevée</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Pluie de faible intensité</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Pluie d’intensité modérée</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Pluie d’intensité élevée</string>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Pluie verglaçante de faible intensité</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Pluie verglaçante d’intensité élevée</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Neige de faible intensité</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Neige d’intensité modérée</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Neige d’intensité élevée</string>
-    <string name="openmeteo_weather_text_snow_grains">Neige en grains</string>
-    <string name="openmeteo_weather_text_rain_showers_slight">Faibles averses de pluie</string>
-    <string name="openmeteo_weather_text_rain_showers_moderate">Averses de pluie modérées</string>
-    <string name="openmeteo_weather_text_rain_showers_violent">Averses de pluie violentes</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Faibles averses de neige</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy">Importantes averses de neige</string>
+    <string name="common_weather_text_snow_grains">Neige en grains</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
@@ -538,7 +519,9 @@
     <string name="common_weather_text_cloudy">Nuageux</string>
     <string name="common_weather_text_rain">Pluie</string>
     <string name="common_weather_text_snow">Neige</string>
-    <string name="common_weather_text_sleet">Neige fondue</string>
+    <string name="common_weather_text_rain_light">Pluie faible</string>
+    <string name="common_weather_text_rain_moderate">Pluie modérée</string>
+    <string name="common_weather_text_rain_heavy">Pluie forte</string>
     <string name="weather_kind_hail">Grêle</string>
     <string name="common_weather_text_fog">Brouillard</string>
     <string name="weather_kind_haze">Brume</string>
@@ -678,4 +661,31 @@
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>
     <string name="notification_update_error">%1$d mise(s) à jour en échec</string>
+    <string name="common_weather_text_snow_light">Neige légère</string>
+    <string name="common_weather_text_snow_moderate">Neige modérée</string>
+    <string name="common_weather_text_snow_heavy">Neige forte</string>
+    <string name="common_weather_text_rain_showers">Averses de pluie</string>
+    <string name="common_weather_text_rain_showers_light">Averses de pluie légères</string>
+    <string name="common_weather_text_rain_showers_moderate">Averses de pluie modérées</string>
+    <string name="common_weather_text_rain_showers_heavy">Averses de pluie fortes</string>
+    <string name="common_weather_text_snow_showers">Averses de neige</string>
+    <string name="common_weather_text_snow_showers_light">Averses de neige légères</string>
+    <string name="common_weather_text_snow_showers_heavy">Averses de neige fortes</string>
+    <string name="common_weather_text_rain_freezing">Pluie verglaçante</string>
+    <string name="common_weather_text_rain_freezing_light">Pluie verglaçante légère</string>
+    <string name="common_weather_text_rain_freezing_heavy">Pluie verglaçante forte</string>
+    <string name="common_weather_text_drizzle">Bruine</string>
+    <string name="common_weather_text_drizzle_light">Bruine légère</string>
+    <string name="common_weather_text_drizzle_moderate">Bruine modérée</string>
+    <string name="common_weather_text_drizzle_heavy">Bruine forte</string>
+    <string name="common_weather_text_drizzle_freezing">Bruine verglaçante</string>
+    <string name="common_weather_text_drizzle_freezing_light">Bruine verglaçante légère</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">Bruine verglaçante forte</string>
+    <string name="common_weather_text_rain_snow_mixed">Neige mouillée</string>
+    <string name="common_weather_text_rain_snow_mixed_light">Neige mouillée légère</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">Neige mouillée forte</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">Averses de neige mouillée</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Averses de neige mouillée légères</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Averses de neige mouillée fortes</string>
+    <string name="metno_weather_text_andthunder">$ et tonnerre</string>
 </resources>

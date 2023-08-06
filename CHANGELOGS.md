@@ -14,6 +14,9 @@
 - Fix wrong daytime/nighttime computing on some sources when location timezone is different than device timezone
 - Add missing vertical scrolls for phones with small displays on location settings
 
+**Translations**
+- Some Open-Meteo weather texts were reworded to make it easier to make them common with other sources
+
 
 # Version 4.5.0-beta
 

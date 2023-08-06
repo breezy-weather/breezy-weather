@@ -259,7 +259,6 @@
     <string name="common_weather_text_cloudy">흐림</string>
     <string name="common_weather_text_rain">비</string>
     <string name="common_weather_text_snow">눈</string>
-    <string name="common_weather_text_sleet">진눈깨비</string>
     <string name="weather_kind_hail">우박</string>
     <string name="common_weather_text_fog">안개</string>
     <string name="weather_kind_haze">실안개</string>
@@ -427,9 +426,8 @@
     <string name="about_source_code">소스 코드</string>
     <string name="about_contributors">기여해 주신 분들</string>
     <string name="common_weather_text_clear_sky">맑음</string>
-    <string name="openmeteo_weather_text_mainly_clear">대체로 맑음</string>
-    <string name="openmeteo_weather_text_overcast">흐림</string>
-    <string name="openmeteo_weather_text_fog">안개</string>
+    <string name="common_weather_text_mainly_clear">대체로 맑음</string>
+    <string name="common_weather_text_overcast">흐림</string>
     <string name="weather_api_limit_reached_title">API 요청 수 한계 도달</string>
     <string name="weather_api_limit_reached_content">API 키를 직접 추가하여 요청 제한을 풀 수 있습니다.</string>
     <string name="weather_api_unauthorized_title">API 접근 허용 불가</string>

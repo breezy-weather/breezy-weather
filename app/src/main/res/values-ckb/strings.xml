@@ -77,7 +77,6 @@
     <string name="common_weather_text_cloudy">هەوراوی</string>
     <string name="common_weather_text_rain">باران</string>
     <string name="common_weather_text_snow">بەفر</string>
-    <string name="common_weather_text_sleet">بارانی بەستوو</string>
     <string name="weather_kind_haze">مژ</string>
     <string name="weather_kind_thunder">گەوارە</string>
     <string name="weather_kind_wind">با</string>

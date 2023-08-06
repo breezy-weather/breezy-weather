@@ -170,7 +170,6 @@
     <string name="common_weather_text_cloudy">Oblačno</string>
     <string name="common_weather_text_rain">Dež</string>
     <string name="common_weather_text_snow">Sneg</string>
-    <string name="common_weather_text_sleet">Ledeni dež</string>
     <string name="weather_kind_hail">Toča</string>
     <string name="common_weather_text_fog">Megla</string>
     <string name="weather_kind_haze">Meglica</string>

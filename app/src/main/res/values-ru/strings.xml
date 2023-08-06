@@ -254,7 +254,6 @@
     <string name="common_weather_text_cloudy">Облачно</string>
     <string name="common_weather_text_rain">Дождь</string>
     <string name="common_weather_text_snow">Снег</string>
-    <string name="common_weather_text_sleet">Мокрый снег</string>
     <string name="weather_kind_hail">Град</string>
     <string name="common_weather_text_fog">Туман</string>
     <string name="weather_kind_haze">Дымка</string>
@@ -386,7 +385,6 @@
     <string name="settings_widgets_section_widgets_in_use">Используемые виджеты</string>
     <string name="settings_debug">Отладка</string>
     <string name="settings_debug_dump_crash_logs_summary">Сохраняет журналы с ошибками в файл для отправки разработчикам</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Сильный снег</string>
     <string name="null_data_text">Недоступно</string>
     <string name="settings_units_summary">Температура, осадки, расстояние, скорость, давление</string>
     <string name="settings_appearance_summary">Язык, тёмная тема, набор иконок, единицы измерения</string>
@@ -399,10 +397,7 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_atm_voice">Атмосферы</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик оригинального проекта Geometric Weather</string>
-    <string name="openmeteo_weather_text_mainly_clear">В основном ясно</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Слабый снег</string>
-    <string name="openmeteo_weather_text_rain_showers_moderate">Умеренные ливни</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Снег</string>
+    <string name="common_weather_text_mainly_clear">В основном ясно</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
@@ -445,9 +440,7 @@
     <string name="unit_km_voice">Километры</string>
     <string name="unit_mugpcum_voice">Микрограммы на кубический метр</string>
     <string name="unit_mgpcum">мг/м³</string>
-    <string name="openmeteo_weather_text_overcast">Пасмурно</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Изморось</string>
-    <string name="openmeteo_weather_text_rain_showers_slight">Кратковременные ливни</string>
+    <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="unit_cmph_voice">Сантиметров в час</string>
     <string name="alerts_to_follow">Подписаться на объявления о погоде.</string>
@@ -458,8 +451,6 @@
     <string name="unit_mmhg_voice">Миллиметров ртути</string>
     <string name="unit_inhg_voice">Дюймов ртути</string>
     <string name="notification_channel_alerts">Оповещения</string>
-    <string name="openmeteo_weather_text_fog">Туман</string>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Сильный дождь со снегом</string>
     <string name="alerts_count">Оповещения о погоде</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Оповещения в прогнозе</string>
@@ -476,11 +467,8 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_mmph_voice">Миллиметров в час</string>
     <string name="about_contributors">Участники</string>
-    <string name="openmeteo_weather_text_rain_showers_violent">Сильные ливни</string>
-    <string name="openmeteo_weather_text_snow_grains">Снежная крупа</string>
+    <string name="common_weather_text_snow_grains">Снежная крупа</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Средняя гроза</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Снегопад</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy">Сильный снегопад</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="air_quality_pm_explanations_introduction">Твёрдые частицы или атмосферные твердые частицы представляют собой микроскопические частицы твердого или жидкого вещества, взвешенные в воздухе.</string>
     <string name="air_quality_pm_explanations_consequences">Твердые частицы являются наиболее вредной формой загрязнения воздуха из-за их способности проникать глубоко в легкие и мозг из кровотока, вызывая проблемы со здоровьем, такие как болезни сердца, болезни легких и преждевременную смерть.</string>
@@ -516,9 +504,6 @@
     <string name="unit_h_voice">часы</string>
     <string name="unit_ppcm_voice">На кубический метр</string>
     <string name="notification_channel_widget">Виджет</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Слабая изморось</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Сильная изморось</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Переохлаждённая изморось</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза с сильным градом</string>
     <string name="air_quality_index">Индекс качества воздуха</string>
     <string name="air_quality_pm25">PM2.5</string>
@@ -554,11 +539,6 @@
     <string name="unit_hpa_voice">Гектопаскали</string>
     <string name="about_matrix">Сервер Matrix</string>
     <string name="about_source_code">Исходный код</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Слабый дождь</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Дождь</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Сильный ледяной дождь</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Сильный дождь</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Слабая переохлаждённая изморось</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
     <string name="settings_icon_packs_weather_icon_light">Светлая иконка</string>
     <string name="action_location_list">Список местоположений</string>

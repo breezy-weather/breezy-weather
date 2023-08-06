@@ -207,52 +207,41 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 }
 
 private fun getWeatherText(context: Context, icon: String?): String? {
-    return if (icon == null) {
-        null
-    } else when(icon.replace("_night", "").replace("_day", "")) {
+    if (icon == null) return null
+    val weatherWithoutThunder = when (icon
+        .replace("_night", "")
+        .replace("_day", "")
+        .replace("andthunder", "")) {
         "clearsky" -> context.getString(R.string.metno_weather_text_clearsky)
         "cloudy" -> context.getString(R.string.metno_weather_text_cloudy)
         "fair" -> context.getString(R.string.metno_weather_text_fair)
         "fog" -> context.getString(R.string.metno_weather_text_fog)
         "heavyrain" -> context.getString(R.string.metno_weather_text_heavyrain)
-        "heavyrainandthunder" -> context.getString(R.string.metno_weather_text_heavyrainandthunder)
         "heavyrainshowers" -> context.getString(R.string.metno_weather_text_heavyrainshowers)
-        "heavyrainshowersandthunder" -> context.getString(R.string.metno_weather_text_heavyrainshowersandthunder)
         "heavysleet" -> context.getString(R.string.metno_weather_text_heavysleet)
-        "heavysleetandthunder" -> context.getString(R.string.metno_weather_text_heavysleetandthunder)
         "heavysleetshowers" -> context.getString(R.string.metno_weather_text_heavysleetshowers)
-        "heavysleetshowersandthunder" -> context.getString(R.string.metno_weather_text_heavysleetshowersandthunder)
         "heavysnow" -> context.getString(R.string.metno_weather_text_heavysnow)
-        "heavysnowandthunder" -> context.getString(R.string.metno_weather_text_heavysnowandthunder)
         "heavysnowshowers" -> context.getString(R.string.metno_weather_text_heavysnowshowers)
-        "heavysnowshowersandthunder" -> context.getString(R.string.metno_weather_text_heavysnowshowersandthunder)
         "lightrain" -> context.getString(R.string.metno_weather_text_lightrain)
-        "lightrainandthunder" -> context.getString(R.string.metno_weather_text_lightrainandthunder)
         "lightrainshowers" -> context.getString(R.string.metno_weather_text_lightrainshowers)
-        "lightrainshowersandthunder" -> context.getString(R.string.metno_weather_text_lightrainshowersandthunder)
         "lightsleet" -> context.getString(R.string.metno_weather_text_lightsleet)
-        "lightsleetandthunder" -> context.getString(R.string.metno_weather_text_lightsleetandthunder)
         "lightsleetshowers" -> context.getString(R.string.metno_weather_text_lightsleetshowers)
         "lightsnow" -> context.getString(R.string.metno_weather_text_lightsnow)
-        "lightsnowandthunder" -> context.getString(R.string.metno_weather_text_lightsnowandthunder)
         "lightsnowshowers" -> context.getString(R.string.metno_weather_text_lightsnowshowers)
-        "lightssleetshowersandthunder" -> context.getString(R.string.metno_weather_text_lightssleetshowersandthunder)
-        "lightssnowshowersandthunder" -> context.getString(R.string.metno_weather_text_lightssnowshowersandthunder)
         "partlycloudy" -> context.getString(R.string.metno_weather_text_partlycloudy)
         "rain" -> context.getString(R.string.metno_weather_text_rain)
-        "rainandthunder" -> context.getString(R.string.metno_weather_text_rainandthunder)
         "rainshowers" -> context.getString(R.string.metno_weather_text_rainshowers)
-        "rainshowersandthunder" -> context.getString(R.string.metno_weather_text_rainshowersandthunder)
         "sleet" -> context.getString(R.string.metno_weather_text_sleet)
-        "sleetandthunder" -> context.getString(R.string.metno_weather_text_sleetandthunder)
         "sleetshowers" -> context.getString(R.string.metno_weather_text_sleetshowers)
-        "sleetshowersandthunder" -> context.getString(R.string.metno_weather_text_sleetshowersandthunder)
         "snow" -> context.getString(R.string.metno_weather_text_snow)
-        "snowandthunder" -> context.getString(R.string.metno_weather_text_snowandthunder)
         "snowshowers" -> context.getString(R.string.metno_weather_text_snowshowers)
-        "snowshowersandthunder" -> context.getString(R.string.metno_weather_text_snowshowersandthunder)
         else -> null
     }
+
+    return if (icon.contains("andthunder")) {
+        context.getString(R.string.metno_weather_text_andthunder)
+            .replace("$", weatherWithoutThunder ?: context.getString(R.string.null_data_text))
+    } else weatherWithoutThunder
 }
 
 fun convertSecondary(

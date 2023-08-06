@@ -294,7 +294,6 @@
     <string name="common_weather_text_cloudy">Nuvoloso</string>
     <string name="common_weather_text_rain">Pioggia</string>
     <string name="common_weather_text_snow">Neve</string>
-    <string name="common_weather_text_sleet">Nevischio</string>
     <string name="weather_kind_hail">Grandine</string>
     <string name="common_weather_text_fog">Nebbia</string>
     <string name="weather_kind_haze">Foschia</string>
@@ -433,16 +432,10 @@
     <string name="settings_widgets_monochrome_icons_title">Icone monocromatiche</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_atm">atm</string>
-    <string name="openmeteo_weather_text_fog">Nebbia</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Pioggia intensa</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Pioggia di moderata intensità</string>
     <string name="unit_kpa">kPa</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Pioviggine intensa</string>
-    <string name="openmeteo_weather_text_mainly_clear">Prevalentemente sereno</string>
+    <string name="common_weather_text_mainly_clear">Prevalentemente sereno</string>
     <string name="about_source_code">Codice sorgente</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Pioviggine gelata di leggera intensità</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Pioggia di lieve intensità</string>
     <string name="settings_weather_sources_current_location">Provider meteo per la posizione corrente</string>
     <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni</string>
     <string name="settings_main_section_displayed_data">Dati visualizzati</string>
@@ -471,9 +464,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Server Matrix</string>
-    <string name="openmeteo_weather_text_overcast">Coperto</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Pioviggine di leggera intensità</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Pioviggine gelata intensa</string>
+    <string name="common_weather_text_overcast">Coperto</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
@@ -512,7 +503,6 @@
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
     <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
     <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Pioviggine di moderata intensità</string>
     <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
     <string name="settings_location">Geolocalizzazione</string>
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
@@ -554,8 +544,6 @@
     <string name="temperature_degree_day_cooling">Gradi giorno di raffreddamento</string>
     <string name="air_quality_o3_info_introduction">L’ozono (O₃) a livello del suolo è un componente importante dell’inquinamento. Pur essendo la stessa molecola dell’ozono nella stratosfera che protegge la terra da un eccesso di raggi UV, l’ozono a livello del suolo può essere nocivo alla salute umana.</string>
     <string name="message_source_not_installed_error_title">Fonte non più disponibile</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Neve, forte intensità</string>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Pioggia gelata, intensità lieve</string>
     <string name="null_data_text">N.D.</string>
     <string name="action_help_me_choose">Aiutami a scegliere</string>
     <string name="action_undo">Annulla</string>
@@ -567,9 +555,6 @@
     <string name="allergen_alder">Ontano</string>
     <string name="allergen_olive">Olivo</string>
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Pioggia gelata, forte intensità</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Neve, intensità lieve</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Neve, intensità moderata</string>
     <string name="location_resident_location_summaryOff">Disabilitata. Questa località sarà sempre disponibile.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
     <string name="settings_weather_source">Fonte meteo</string>

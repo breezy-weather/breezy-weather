@@ -226,8 +226,6 @@
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="about_contributors">Contribuidores</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Garoa de intensidade moderada</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Chuva de leve intensidade</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Pôr da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="unit_kph">km/h</string>
@@ -339,7 +337,7 @@
     <string name="unit_mmhg_voice">Milímetros de mercúrio</string>
     <string name="unit_h_voice">horas</string>
     <string name="notification_precipitation_short_term">Precipitação pode ocorrer nas próximas horas.</string>
-    <string name="openmeteo_weather_text_snow_grains">Grãos de neve</string>
+    <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
     <string name="temperature_wet_bulb">Bulbo húmido</string>
@@ -439,9 +437,6 @@
     <string name="unit_inhg">inHg</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Chuva de intensidade moderada</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Neve de intensidade moderada</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Neve de alta intensidade</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>
     <string name="settings_icon_packs_get_more">Obter mais</string>
@@ -471,12 +466,9 @@
     <string name="unit_km_voice">Quilômetros</string>
     <string name="about_contribution_WangDaYeeeeee">Programador do projeto original Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
-    <string name="openmeteo_weather_text_mainly_clear">Principalmente limpo</string>
-    <string name="openmeteo_weather_text_overcast">Nublado</string>
-    <string name="openmeteo_weather_text_fog">Neblina</string>
+    <string name="common_weather_text_mainly_clear">Principalmente limpo</string>
+    <string name="common_weather_text_overcast">Nublado</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Garoa de intensidade baixa</string>
-    <string name="openmeteo_weather_text_rain_showers_violent">Chuvas violentas</string>
     <string name="weather_air_quality_data_by">Dados de qualidade do ar por $</string>
     <string name="weather_allergen_data_by">Dados de alergênicos por $</string>
     <string name="weather_air_quality_and_allergen_data_by">Dados de qualidade do ar e de pólen por $</string>
@@ -492,12 +484,7 @@
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="air_quality_so2_info_introduction">O dióxido de enxofre (SO₂) é um gás tóxico incolor responsável pelo odor dos fósforos queimados.</string>
     <string name="null_data_text">N/A</string>
-    <string name="openmeteo_weather_text_rain_showers_moderate">Chuvas moderadas</string>
     <string name="action_refresh">Atualizar</string>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Chuva congelante de baixa intensidade</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Chuva congelante de forte intensidade</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Leve chuvas de neve</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy">Chuvas de neve pesadas</string>
     <string name="air_quality_no2_info_consequences">A exposição ao dióxido de nitrogênio pode irritar as vias aéreas e agravar doenças respiratórias. Além disso, o NO₂ é um importante precursor do ozônio, um poluente intimamente ligado à asma e a outras doenças respiratórias.</string>
     <string name="wind_direction_short_S">S</string>
     <string name="wind_direction_short_SW">SO</string>
@@ -532,9 +519,6 @@
     <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
     <string name="settings_units_temperature">Unidade de temperatura</string>
     <string name="about_contribution_weather_source">Adicionado suporte para novas fontes meteorológicas</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Garoa de grande intensidade</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Chuvisco congelante de baixa intensidade</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Garoa congelante de alta intensidade</string>
     <string name="air_quality_index">Índice de qualidade do ar</string>
     <string name="air_quality_level_3_description">A qualidade do ar atingiu um nível elevado de poluição e está prejudicial para grupos sensíveis. Reduza o tempo gasto ao ar livre se sente sintomas como dificuldade para respirar ou irritação na garganta.</string>
     <string name="air_quality_level_4">Insalubre</string>
@@ -549,7 +533,6 @@
     <string name="air_quality_pm_explanations_introduction">Os particulados ou material particulado atmosférico são partículas microscópicas de matéria sólida ou líquida suspensas no ar.</string>
     <string name="air_quality_pm_explanations_origin">Alguns particulados ocorrem naturalmente, originados de vulcões, tempestades de poeira, incêndios em florestas e pastagens, vegetação viva e borrifos do mar. As atividades humanas também geram quantidades significativas de particulados, como tráfego e transporte, atividades industriais, usinas de energia, canteiros de obras, queima de resíduos ou campos.</string>
     <string name="air_quality_pm_explanations_consequences">Os particulados são a forma mais prejudicial de poluição do ar devido à sua capacidade de penetrar profundamente nos pulmões e no cérebro a partir das correntes sanguíneas, causando problemas de saúde como doenças cardíacas, pulmonares e morte prematura.</string>
-    <string name="common_weather_text_sleet">Chuva de pedras</string>
     <string name="weather_kind_hail">Granizo</string>
     <string name="common_weather_text_fog">Névoa</string>
     <string name="weather_kind_thunder">Trovão</string>
@@ -610,9 +593,6 @@
     <string name="unit_kph_voice">Quilómetros por hora</string>
     <string name="unit_mps">m/s</string>
     <string name="notification_style_native">Nativo</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Chuva de forte intensidade</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Neve de baixa intensidade</string>
-    <string name="openmeteo_weather_text_rain_showers_slight">Chuvas leves</string>
     <string name="notification_precipitation_today">Pode haver precipitação hoje.</string>
     <string name="about_dependencies">Dependências</string>
 </resources>
