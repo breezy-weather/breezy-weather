@@ -61,12 +61,12 @@
     <string name="wind_strength_4">和风</string>
     <string name="wind_strength_5">清风</string>
     <string name="wind_strength_6">强风</string>
-    <string name="wind_strength_7">疾风／劲风</string>
+    <string name="wind_strength_7">疾风</string>
     <string name="wind_strength_8">大风</string>
     <string name="wind_strength_9">烈风</string>
     <string name="wind_strength_10">狂风</string>
     <string name="wind_strength_11">暴风</string>
-    <string name="wind_strength_12">飓风／颱風</string>
+    <string name="wind_strength_12">飓风</string>
     <string name="wind_direction_short_variable">无风向</string>
     <string name="wind_direction_short_N">北风</string>
     <string name="wind_direction_short_NE">东北风</string>
@@ -331,7 +331,7 @@
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">风</string>
     <!-- Air quality -->
-    <string name="air_quality_level_1">極佳</string>
+    <string name="air_quality_level_1">极好</string>
     <string name="air_quality_level_1_description">空氣品質對大多數人來說很理想；享受您的正常戶外活動吧。</string>
     <string name="air_quality_level_2">一般</string>
     <string name="air_quality_level_2_description">空氣品質對大多數人來說一般是可接受的。但敏感人群長期暴露在戶外可能會出現輕度至中度症狀。</string>
