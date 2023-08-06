@@ -286,4 +286,5 @@
     <string name="settings_background_updates_refresh_3h">3 jam</string>
     <string name="settings_background_updates_refresh_6h">6 jam</string>
     <string name="settings_background_updates_refresh_12h">12 jam</string>
+    <string name="minutely_precipitations">Curah hujan per menit</string>
 </resources>
