@@ -628,4 +628,7 @@
     <string name="common_weather_text_snow_showers_light">Leichte Schneeschauer</string>
     <string name="common_weather_text_drizzle_light">Leichter Sprühregen</string>
     <string name="common_weather_text_drizzle_moderate">Mäßiger Sprühregen</string>
+    <string name="common_weather_text_rain_snow_mixed_light">Leichter Regen und Schnee gemischt</string>
+    <string name="common_weather_text_rain_snow_mixed">Regen und Schnee gemischt</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">Starker Regen und Schnee gemischt</string>
 </resources>
