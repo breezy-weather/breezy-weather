@@ -54,7 +54,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(daily.day.wind.degree)
+                    rotate(daily.day.wind.degree + 180)
                 }
             } else null
             dayIcon?.colorFilter = PorterDuffColorFilter(dayWindColor, PorterDuff.Mode.SRC_ATOP)
@@ -88,7 +88,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(daily.night.wind.degree)
+                    rotate(daily.night.wind.degree + 180)
                 }
             } else null
             nightIcon?.colorFilter = PorterDuffColorFilter(nightWindColor, PorterDuff.Mode.SRC_ATOP)

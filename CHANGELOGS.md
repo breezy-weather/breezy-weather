@@ -9,6 +9,7 @@
 - [OpenWeather] Add more days of air quality
 
 **Other fixes**
+- Fix wind direction on daily/hourly trends
 - Fix some widgets crash when weather text was missing (detected on MET Norway)
 - Fix wrong daytime/nighttime computing on some sources when location timezone is different than device timezone
 
