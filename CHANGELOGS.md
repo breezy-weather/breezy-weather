@@ -16,6 +16,7 @@
 
 **Translations**
 - Some Open-Meteo weather texts were reworded to make it easier to make them common with other sources
+- Dutch and Russian updated
 
 
 # Version 4.5.0-beta
