@@ -2,6 +2,8 @@ package org.breezyweather.common.ui.composables
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -9,6 +11,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
@@ -31,7 +34,10 @@ fun LocationPreference(
     includeMainScreenSettings: Boolean = false,
     onClose: (() -> Unit)
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+    ) {
         if (includeMainScreenSettings) {
             PreferenceView(
                 titleId = R.string.settings_main,
@@ -155,7 +161,10 @@ private fun SecondarySourcesPreference(
                 )
             },
             text = {
-                Column {
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState())
+                ) {
                     SourceView(
                         title = stringResource(R.string.settings_weather_source_main),
                         selectedKey = weatherSource.value,

@@ -12,6 +12,7 @@
 - Fix wind direction on daily/hourly trends
 - Fix some widgets crash when weather text was missing (detected on MET Norway)
 - Fix wrong daytime/nighttime computing on some sources when location timezone is different than device timezone
+- Add missing vertical scrolls for phones with small displays on location settings
 
 
 # Version 4.5.0-beta
