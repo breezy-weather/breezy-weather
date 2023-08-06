@@ -1,3 +1,20 @@
+/**
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.sources
 
 import org.breezyweather.common.basic.models.Location
@@ -31,11 +48,23 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
+/**
+ * /!\ WARNING /!\
+ * It took me a lot of time to write these functions.
+ * I would appreciate you don’t steal my work into a proprietary software.
+ * LPGLv3+ allows you to reuse my code but you have to respect its terms, basically
+ * crediting the work of Breezy Weather along with giving a copy of its license.
+ * If you already use a GPL license, you’re done. However, if you are using a
+ * proprietary-friendly open source license such as MIT or Apache, you will have to
+ * make an exception for the file you’re using my functions in.
+ * For example, you will distribute your app under the MIT license with LPGLv3 exception
+ * for file X. Basically, your app can become proprietary, however this file will have to
+ * always stay free and open source if you add any modification to it.
+ */
 
 /**
  * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA
  */
-
 fun getDailyAirQualityFromHourly(
     hourlyAirQuality: Map<Date, AirQuality>?,
     timeZone: TimeZone
