@@ -95,7 +95,7 @@
     <string name="uv_index_0_2">低</string>
     <string name="uv_index_3_5">中</string>
     <string name="uv_index_6_7">高</string>
-    <string name="uv_index_8_10">甚高</string>
+    <string name="uv_index_8_10">很高</string>
     <string name="uv_index_11">极高</string>
     <string name="daily_forecast">每日预报</string>
     <string name="hourly_forecast">小时预报</string>
@@ -332,17 +332,17 @@
     <string name="weather_kind_wind">风</string>
     <!-- Air quality -->
     <string name="air_quality_level_1">极好</string>
-    <string name="air_quality_level_1_description">空气质量对于大多数人都很理想的，享受正常的户外活动吧。</string>
-    <string name="air_quality_level_2">一般</string>
-    <string name="air_quality_level_2_description">空氣品質對大多數人來說一般是可接受的。但敏感人群長期暴露在戶外可能會出現輕度至中度症狀。</string>
-    <string name="air_quality_level_3">不佳</string>
-    <string name="air_quality_level_3_description">空氣污染達到了很高的水準，這對敏感人群是不健康的。如果您出現呼吸困難或喉嚨刺激等症狀，請減少在戶外的時間。</string>
+    <string name="air_quality_level_1_description">空气质量对大多数人来说是理想的；可正常户外活动。</string>
+    <string name="air_quality_level_2">有利</string>
+    <string name="air_quality_level_2_description">空气质量对大多数人来说是可接受的。然而，敏感人群长期暴露可能会出现轻微或中度症状。</string>
+    <string name="air_quality_level_3">差</string>
+    <string name="air_quality_level_3_description">空气污染已经达到了很高水平，对敏感人群是不健康的。如果您感到呼吸困难或喉咙刺激等症状，应减少户外活动时间。</string>
     <string name="air_quality_level_4">不健康</string>
-    <string name="air_quality_level_4_description">敏感人群可能會立即感受到健康影響。健康人群長期暴露在戶外可能會出現呼吸困難和喉嚨刺激。限制戶外活動。</string>
+    <string name="air_quality_level_4_description">敏感人群可能立即感受到对健康的影响。健康人群长时间接触可能会出现呼吸困难和喉咙刺激。限制户外活动。</string>
     <string name="air_quality_level_5">很不健康</string>
-    <string name="air_quality_level_5_description">敏感人群將會立即感受到健康影響，應避免戶外活動。健康人群可能會出現呼吸困難和喉嚨刺激；考慮待在室內並重新安排戶外活動。</string>
-    <string name="air_quality_level_6">危險</string>
-    <string name="air_quality_level_6_description">暴露在空气中，即使是几分钟，都会对每个人的健康造成严重影响。应避免户外活动。</string>
+    <string name="air_quality_level_5_description">敏感人群会立即感到健康影响，应避免户外活动。健康人群可能会感到呼吸困难和喉咙刺激；考虑待在室内，重新安排户外活动。</string>
+    <string name="air_quality_level_6">危险</string>
+    <string name="air_quality_level_6_description">在空气中的任何暴露，哪怕只是几分钟，都会对每个人的健康造成严重影响。避免户外活动。</string>
     <!-- Units -->
     <string name="unit_kph">千米/时</string>
     <string name="unit_kph_voice">千米每小时</string>
