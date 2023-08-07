@@ -50,7 +50,7 @@
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日温度</string>
     <string name="precipitation_total">总量</string>
-    <string name="precipitation_thunderstorm">暴风雨</string>
+    <string name="precipitation_thunderstorm">雷暴</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">冰</string>
