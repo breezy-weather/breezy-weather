@@ -71,7 +71,7 @@
     <string name="precipitation_intensity_light">Pioggerella</string>
     <string name="precipitation_intensity_middle">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
-    <string name="precipitation_intensity_rainstorm">Temporale</string>
+    <string name="precipitation_intensity_rainstorm">Tempesta di pioggia</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Primo quarto</string>
@@ -625,4 +625,15 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale leggero o moderato</string>
     <string name="message_parsing_error_content">Assicurarti di aver aggiornato all\'ultima versione dell\'applicazione. Il server potrebbe essere temporaneamente non disponibile; in tal caso, riprova più tardi. Se il problema persiste, crea un log degli arresti anomali dalle impostazioni di debug e segnala un problema su GitHub.</string>
     <string name="about_dependencies">Dipendenze</string>
+    <string name="common_weather_text_rain_showers">Rovesci di pioggia</string>
+    <string name="common_weather_text_rain_showers_heavy">Rovesci intensi</string>
+    <string name="common_weather_text_rain_showers_light">Rovesci leggeri</string>
+    <string name="common_weather_text_rain_showers_moderate">Rovesci moderati</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">Rovesci di pioggia mista a neve</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Rovesci leggeri di pioggia mista a neve</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Rovesci intensi di pioggia mista a neve</string>
+    <string name="common_weather_text_snow_showers">Rovesci di neve</string>
+    <string name="common_weather_text_snow_showers_light">Rovesci leggeri di neve</string>
+    <string name="common_weather_text_snow_showers_heavy">Rovesci intensi di neve</string>
+    <string name="common_weather_text_snow_grains">Neve a granelli</string>
 </resources>
