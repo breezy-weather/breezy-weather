@@ -37,7 +37,8 @@ object ApiHelpDialog {
         val view = LayoutInflater
             .from(activity)
             .inflate(R.layout.dialog_api_help, null, false)
-        view.findViewById<TextView>(R.id.dialog_api_help_content).setText(content)
+        view.findViewById<TextView>(R.id.dialog_api_help_content).text =
+            activity.getString(content).replace("$", "15")
         initWidget(
             activity,
             view,

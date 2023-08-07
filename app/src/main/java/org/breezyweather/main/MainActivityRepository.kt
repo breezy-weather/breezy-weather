@@ -21,6 +21,7 @@ import android.content.Context
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
+import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
@@ -33,6 +34,7 @@ import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
+import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -117,6 +119,12 @@ class MainActivityRepository @Inject constructor(
         callback: WeatherRequestCallback,
     ) {
         try {
+            if (location.weather != null && location.weather.isValid(0.02f)
+                && !BreezyWeather.instance.debugMode) { // 72 seconds
+                callback.onCompleted(location, RequestErrorType.ALREADY_UP_TO_DATE)
+                return
+            }
+
             var locationThrowable: Throwable? = null
             val locationToProcess = try {
                 locationHelper.getLocation(
@@ -156,6 +164,7 @@ class MainActivityRepository @Inject constructor(
                     is ApiLimitReachedException -> RequestErrorType.API_LIMIT_REACHED
                     is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
                     is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
+                    is UpdateNotAvailableYetException -> RequestErrorType.UPDATE_NOT_YET_AVAILABLE
                     is LocationException -> RequestErrorType.LOCATION_FAILED
                     is MissingPermissionLocationException -> RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING
                     // Should never happen, we are not in background, but just in case:
@@ -191,6 +200,7 @@ class MainActivityRepository @Inject constructor(
                 is ApiLimitReachedException -> RequestErrorType.API_LIMIT_REACHED
                 is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
                 is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
+                is UpdateNotAvailableYetException -> RequestErrorType.UPDATE_NOT_YET_AVAILABLE
                 is InvalidLocationException -> RequestErrorType.INVALID_LOCATION
                 is LocationException -> RequestErrorType.LOCATION_FAILED
                 is MissingPermissionLocationException -> RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING

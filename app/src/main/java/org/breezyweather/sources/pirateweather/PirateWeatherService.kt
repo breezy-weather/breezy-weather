@@ -28,6 +28,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -70,6 +71,11 @@ class PirateWeatherService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
+        if (apiKey == BuildConfig.PIRATE_WEATHER_KEY && location.weather != null
+            && location.weather.isValid(0.25f)
+            && !BreezyWeather.instance.debugMode) {
+            return Observable.error(UpdateNotAvailableYetException())
+        }
         val languageCode = SettingsManager.getInstance(context).language.code
         val pirateWeatherResult = mApi.getForecast(
             apiKey,

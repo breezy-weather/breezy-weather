@@ -21,6 +21,7 @@ import android.content.Context
 import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
@@ -28,6 +29,7 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -70,6 +72,11 @@ class OpenWeatherService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
+        if (apiKey == BuildConfig.OPEN_WEATHER_KEY && location.weather != null
+            && location.weather.isValid(0.25f)
+            && !BreezyWeather.instance.debugMode) {
+            return Observable.error(UpdateNotAvailableYetException())
+        }
         val languageCode = SettingsManager.getInstance(context).language.code
         val oneCall = mApi.getOneCall(
             oneCallVersion.id,

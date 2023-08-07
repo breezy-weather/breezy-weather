@@ -32,6 +32,20 @@ enum class RequestErrorType(
     NETWORK_UNAVAILABLE(
         shortMessage = R.string.message_network_unavailable
     ),
+    ALREADY_UP_TO_DATE(
+        shortMessage = R.string.message_already_up_to_date
+    ),
+    UPDATE_NOT_YET_AVAILABLE(
+        shortMessage = R.string.message_update_not_yet_available_title,
+        actionButtonMessage = R.string.action_learn_more,
+        showDialogAction = {
+            ApiHelpDialog.show(
+                it,
+                R.string.message_update_not_yet_available_title,
+                R.string.message_update_not_yet_available_content
+            )
+        }
+    ),
     SERVER_TIMEOUT(
         shortMessage = R.string.message_server_timeout
     ),

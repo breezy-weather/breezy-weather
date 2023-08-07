@@ -12,7 +12,7 @@ The source may be temporarily unavailable, please retry a few hours later. If th
 The source may be temporarily unavailable, please retry later or check your network. If the problem persists and you use a custom DNS, VPN or have a firewall, please check them as well.
 
 
-### “Required API key missing” / “API requests limit reached” / “API access unauthorized”
+### “Required API key missing” / “API requests limit reached” / “API access unauthorized” / “Update not yet available”
 
 For most sources, we only have a limited number of calls allowed for free for all users of our app. If too many users use the same source, the only way to be able to continue using it is to check instructions on the source website to have your own API key. This may be troublesome, but if you have your own API key, the rate-limit will only apply to you (one user vs all users of Breezy Weather).
 

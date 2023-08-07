@@ -31,9 +31,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
@@ -45,9 +42,7 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.atmoaura.AtmoAuraAirQualityApi
 import org.breezyweather.sources.mf.json.*
-import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.*
