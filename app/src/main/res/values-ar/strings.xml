@@ -606,4 +606,16 @@
     <string name="about_privacy_policy">سياسة الخصوصية</string>
     <string name="about_contact">الاتصال</string>
     <string name="location_resident_location_summaryOn">مفعل مخفي في حدود $ من الموقع الحالي.</string>
+    <string name="common_weather_text_rain_moderate">أمطر متوسطة</string>
+    <string name="common_weather_text_rain_snow_mixed_light">مطر خفيف وثلج مجتمعان</string>
+    <string name="common_weather_text_rain_heavy">مطر غزير</string>
+    <string name="common_weather_text_rain_light">أمطار خفيفة</string>
+    <string name="common_weather_text_rain_showers">رشات مطر</string>
+    <string name="common_weather_text_rain_showers_moderate">رشات مطر متوسطة</string>
+    <string name="common_weather_text_rain_freezing">مطر متجمد</string>
+    <string name="common_weather_text_rain_freezing_light">مطر متجمد خفيف</string>
+    <string name="common_weather_text_rain_showers_light">رشات مطر خفيفة</string>
+    <string name="common_weather_text_rain_showers_heavy">رشات مطر ثقيل</string>
+    <string name="common_weather_text_rain_freezing_heavy">مطر متجمد غزير</string>
+    <string name="common_weather_text_rain_snow_mixed">مطر وثلج مجتمعان</string>
 </resources>
