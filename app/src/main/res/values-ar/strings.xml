@@ -618,4 +618,6 @@
     <string name="common_weather_text_rain_showers_heavy">رشات مطر ثقيل</string>
     <string name="common_weather_text_rain_freezing_heavy">مطر متجمد غزير</string>
     <string name="common_weather_text_rain_snow_mixed">مطر وثلج مجتمعان</string>
+    <string name="message_update_not_yet_available_title">التحديث غير متوفر بعد</string>
+    <string name="common_weather_text_snow_showers">رشة ثلج</string>
 </resources>
