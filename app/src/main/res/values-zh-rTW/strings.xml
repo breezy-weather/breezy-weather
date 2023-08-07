@@ -600,7 +600,7 @@
     <string name="settings_location_summary">定位服務設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
     <string name="about_dependencies">依賴</string>
-    <string name="minutely_precipitations">分鐘降水量</string>
+    <string name="minutely_precipitations">每分鐘降水量</string>
     <string name="action_save">保存</string>
     <string name="settings_weather_sources_per_location_summary">自定義該位置的天氣數據源</string>
     <string name="settings_weather_source_main">主要數據源</string>
