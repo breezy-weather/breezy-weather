@@ -119,7 +119,7 @@
     <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Controlla i permessi di Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Abilita la Localizzazione</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Fornitore servizio Localizzazione</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Seleziona servizio di posizione</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “$”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
     <string name="widget_label_hide_lunar">Nascondi il calendario lunare</string>
@@ -219,7 +219,7 @@
     <string name="message_updated_in_background">Aggiornato in background</string>
     <string name="notification_precipitation_today">Oggi potrebbero verificarsi delle precipitazioni.</string>
     <string name="notification_precipitation_short_term">Nelle prossime ore potrebbero verificarsi precipitazioni.</string>
-    <string name="location_resident_message">Imposta come città residente</string>
+    <string name="location_resident_message">Imposta una città di residenza</string>
     <string name="location_resident_dialog">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.
 \nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
     <string name="allergen_tap_to_see_more">Premi qui per saperne di più…</string>
@@ -351,7 +351,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="uv_index_0_2">Basso</string>
-    <string name="alerts_to_follow">Avvisi da seguire, tocca qui per visualizzarli.</string>
+    <string name="alerts_to_follow">Prossime allerte, tocca qui per visualizzarli.</string>
     <string name="wind_direction_short_variable">Variabile</string>
     <string name="wind_direction_short_N">N</string>
     <string name="uv_index_3_5">Moderato</string>
@@ -385,9 +385,9 @@
     <string name="weather_source_accu_preference_hours_240">240 ore</string>
     <string name="weather_source_openweather_version_2_5">Versione 2.5</string>
     <string name="weather_source_openweather_version_3_0">Versione 3.0</string>
-    <string name="location_search_weather_source">Provider meteo</string>
+    <string name="location_search_weather_source">Fonte dati meteo</string>
     <string name="locations">Località</string>
-    <string name="location_search_change_weather_source">Cambia provider meteo</string>
+    <string name="location_search_change_weather_source">Cambia fonte meteo</string>
     <string name="settings_weather_source_open_weather_one_call_version">Versione OneCall</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_packs_title">Pacchetti icone</string>
@@ -405,7 +405,7 @@
     <string name="settings_notifications_forecast_today_title">Notifica per le previsioni odierne</string>
     <string name="air_quality_level_5">Molto malsana</string>
     <string name="weather_data_by">Dati da $</string>
-    <string name="action_choose_weather_source">Scegli il provider meteo</string>
+    <string name="action_choose_weather_source">Scegli la fonte meteo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="location_message_permission_missing">Autorizzazione di accesso alla posizione mancante</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -421,9 +421,9 @@
     <string name="wind_direction_short_NW">NO</string>
     <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili ed è sconsigliata ogni attività all’aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all’aperto.</string>
     <string name="weather_api_unauthorized_title">Accesso API non autorizzato</string>
-    <string name="weather_api_key_required_missing_content">Per utilizzare questo provider, devi fornire una chiave API.</string>
+    <string name="weather_api_key_required_missing_content">Per utilizzare questa fonte, devi fornire una chiave API.</string>
     <string name="weather_api_limit_reached_title">Limite di richieste API raggiunto</string>
-    <string name="weather_api_unauthorized_content">Per alcuni fornitori di servizi meteo, devi fornire la tua chiave API. Se ne hai già fornita una, ricontrolla la chiave API che hai fornito.</string>
+    <string name="weather_api_unauthorized_content">Per alcune fonti di dati meteo, devi fornire la tua chiave API. Se ne hai già fornita una, ricontrolla la chiave API che hai fornito.</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’ottimizzazione della batteria è già disabilitata.</string>
     <string name="settings_background_updates">Aggiornamenti in background</string>
     <string name="action_location_list">Elenco località</string>
@@ -436,7 +436,7 @@
     <string name="common_weather_text_mainly_clear">Prevalentemente sereno</string>
     <string name="about_source_code">Codice sorgente</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
-    <string name="settings_weather_sources_current_location">Provider meteo per la posizione corrente</string>
+    <string name="settings_weather_sources_current_location">Fonte meteo per la posizione corrente</string>
     <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni</string>
     <string name="settings_main_section_displayed_data">Dati visualizzati</string>
     <string name="settings_main_cards_title">Schede</string>
@@ -510,7 +510,7 @@
     <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
     <string name="settings_location_access_switch_title">Accesso alla posizione</string>
     <string name="settings_location_access_precise_title">Uso GPS del dispositivo</string>
-    <string name="settings_weather_sources">Fornitori meteo</string>
+    <string name="settings_weather_sources">Fonti meteo</string>
     <string name="air_quality_pm_info_title">Particolati (PM2.5 &amp; PM10)</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="weather_refresh_skipped_already_recently_updated">Già aggiornato di recente</string>
@@ -521,8 +521,8 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="location_message_reverse_geocoding_failed">Il fornitore meteo non ha trovato nessuna posizione corrispondente</string>
-    <string name="settings_location_summary">Impostazioni fornitori posizione</string>
+    <string name="location_message_reverse_geocoding_failed">La fonte meteo non ha trovato nessuna posizione corrispondente</string>
+    <string name="settings_location_summary">Impostazioni fonte di posizione</string>
     <string name="settings_location_access_switch_summaryOn">Concessa. Puoi aggiungere la posizione corrente come posizione.</string>
     <string name="settings_weather_sources_summary">Impostazioni fornitori meteo, default location search source</string>
     <string name="action_show_errors">Tocca per dettagli</string>
@@ -575,8 +575,23 @@
     <string name="weather_air_quality_data_by">Dati qualità aria forniti da $</string>
     <string name="weather_allergen_data_by">Dati allergeni forniti da $</string>
     <string name="weather_message_invalid_location">Località non valida, rimuoverla e aggiungerla nuovamente</string>
-    <string name="dialog_permissions_notification_content">Premere qui per abilitare le notifiche sulle allerte meteo, o decidere più tardi in Impostazioni.</string>
+    <string name="dialog_permissions_notification_content">Premere qui per abilitare le notifiche sulle allerte meteo, o decidi più tardi nelle Impostazioni.</string>
     <string name="air_quality_o3_info_title">Ozono (O₃) a livello del suolo</string>
     <string name="air_quality_so2_info_introduction">L’anidride solforosa (SO₂) è un gas tossico incolore, responsabile per l’odore dei fiammiferi spenti.</string>
     <string name="air_quality_so2_info_origin">È rilasciata naturalmente dall’attività vulcanica e deriva principalmente dalla combustione di fonti fossili per il riscaldamento domestico, l’industria e la generazione di energia.</string>
+    <string name="settings_weather_source_main">Fonte principale</string>
+    <string name="action_save">Salva</string>
+    <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo per questa posizione</string>
+    <string name="location_resident_location">Posizione di residenza</string>
+    <string name="location_resident_location_summaryOn">Attivo. Nascondi quando si trova entro $ dalla posizione corrente.</string>
+    <string name="action_delete">Cancella</string>
+    <string name="air_quality_co_info_origin">È prodotto dalla combustione incompleta di combustibili carboniosi come legno, benzina, carbone, gas naturale e cherosene in fornelli semplici, fuochi aperti, lampade a stoppino, fornaci e caminetti. La fonte predominante di monossido di carbonio (CO) nell\'aria è rappresentata dai veicoli a motore.</string>
+    <string name="air_quality_co_info_consequences">Il monossido di carbonio si diffonde attraverso i tessuti polmonari e nel flusso sanguigno, rendendo difficile per le cellule dell\'organismo legarsi all\'ossigeno. Questa mancanza di ossigeno danneggia i tessuti e le cellule. L\'esposizione al monossido di carbonio può causare difficoltà respiratorie, spossatezza, vertigini e altri sintomi influenzali. L\'esposizione a livelli elevati di monossido di carbonio può essere letale.</string>
+    <string name="air_quality_no2_info_introduction">Il biossido di azoto (NO₂) è un gas soffocante e tossico di colore marrone-rossastro con un caratteristico odore acre e pungente..</string>
+    <string name="air_quality_no2_info_origin">Le fonti ambientali di NO₂ derivano dalla combustione ad alta temperatura di combustibili in processi come quelli in uso per riscaldamento, trasporti, industria e produzione di energia. Le fonti domestiche di ossidi di azoto (NOₓ) comprendono apparecchiature che bruciano combustibili come forni, caminetti, stufe e forni a gas.</string>
+    <string name="air_quality_no2_info_consequences">L\'esposizione al biossido di azoto può irritare le vie respiratorie e aggravare le malattie respiratorie. Inoltre, l\'NO₂ è un importante precursore dell\'ozono, un inquinante strettamente legato all\'asma e ad altre patologie respiratorie.</string>
+    <string name="weather_minutely_data_by">Dati precipitazioni minuto per minuto per $</string>
+    <string name="weather_alert_data_by">Dati allerte per $</string>
+    <string name="minutely_precipitations">Precipitazioni minuto per minuto</string>
+    <string name="settings_weather_sources_default_location_search">Fonte predefinita per la ricerca di posizione</string>
 </resources>
