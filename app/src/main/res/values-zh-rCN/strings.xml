@@ -617,4 +617,26 @@
     <string name="common_weather_text_rain_heavy">大雨</string>
     <string name="common_weather_text_rain_freezing">冻雨</string>
     <string name="common_weather_text_rain_snow_mixed">雨夹雪</string>
+    <string name="common_weather_text_rain_showers_light">小阵雨</string>
+    <string name="common_weather_text_rain_showers_heavy">大阵雨</string>
+    <string name="common_weather_text_rain_freezing_heavy">大冻雨</string>
+    <string name="common_weather_text_rain_snow_mixed_light">小雨夹雪</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">大雨夹雪</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">雨夹雪阵雨</string>
+    <string name="common_weather_text_snow_showers_heavy">大阵雪</string>
+    <string name="common_weather_text_drizzle_heavy">大毛毛雨</string>
+    <string name="common_weather_text_drizzle_freezing">冻毛雨</string>
+    <string name="common_weather_text_drizzle_freezing_light">小冻毛雨</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">大冻毛雨</string>
+    <string name="common_weather_text_rain_showers">阵雨</string>
+    <string name="common_weather_text_drizzle_moderate">中毛毛雨</string>
+    <string name="common_weather_text_rain_showers_moderate">中阵雨</string>
+    <string name="common_weather_text_rain_freezing_light">小冻雨</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">小雨夹雪阵雨</string>
+    <string name="common_weather_text_snow_showers">阵雪</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">大雨夹雪阵雨</string>
+    <string name="common_weather_text_snow_showers_light">小阵雪</string>
+    <string name="common_weather_text_drizzle">毛毛雨</string>
+    <string name="common_weather_text_drizzle_light">小毛毛雨</string>
+    <string name="metno_weather_text_andthunder">$ 并伴有雷电</string>
 </resources>
