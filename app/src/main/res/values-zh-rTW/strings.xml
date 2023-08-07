@@ -191,7 +191,7 @@
     <string name="allergen_tap_to_see_more">點擊查看更多…</string>
     <!-- content description -->
     <string name="action_back">回退</string>
-    <string name="settings_icon_packs_check_details">視檢詳情</string>
+    <string name="settings_icon_packs_check_details">檢查詳情</string>
     <string name="alerts_count">$條天氣預警</string>
     <string name="air_quality_pm25_voice">PM二點五</string>
     <string name="air_quality_pm10_voice">PM十</string>
@@ -372,7 +372,7 @@
     <string name="locations">位置</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_update_error">%1$d 更新失敗</string>
-    <string name="common_weather_text_snow_grains">霰</string>
+    <string name="common_weather_text_snow_grains">霰雪</string>
     <string name="settings_widgets_notification_style_title">風格</string>
     <string name="message_network_unavailable">網絡不可用</string>
     <string name="settings_background_updates">後台更新</string>
@@ -489,7 +489,7 @@
     <string name="uv_alert_level">警報級別</string>
     <string name="message_tap_again_to_exit">再次點擊即可退出</string>
     <string name="common_weather_text_mainly_clear">大致天晴</string>
-    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷陣雨伴有小冰雹</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷暴伴有小冰雹</string>
     <string name="air_quality_level_6">危險</string>
     <string name="wind_direction_short_variable">風向不定</string>
     <string name="air_quality_level_2_description">空氣品質對大多數人來說一般是可接受的。但敏感人群長期暴露在戶外可能會出現輕度至中度症狀。</string>
@@ -508,7 +508,7 @@
     <string name="weather_minutely_data_by">分鐘降水量數據來源 $</string>
     <string name="weather_message_secondary_data_refresh_failed">輔助天氣源的天氣數據刷新失敗</string>
     <string name="weather_alert_data_by">預警數據來源 $</string>
-    <string name="weather_air_quality_and_allergen_data_by">空氣質量和大氣污染物數據來源 $</string>
+    <string name="weather_air_quality_and_allergen_data_by">空氣質量和過敏原數據來源 $</string>
     <string name="wind_direction_short_SW">西南風</string>
     <string name="wind_direction_short_W">西風</string>
     <string name="wind_strength">風力強度</string>
@@ -632,7 +632,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">大凍毛雨</string>
     <string name="common_weather_text_rain_showers_heavy">大陣雨</string>
     <string name="common_weather_text_rain_freezing_heavy">大凍雨</string>
-    <string name="metno_weather_text_andthunder">$ 並伴有閃電</string>
+    <string name="metno_weather_text_andthunder">$ 伴有閃電</string>
     <string name="common_weather_text_rain_light">小雨</string>
     <string name="common_weather_text_rain_moderate">中雨</string>
     <string name="common_weather_text_rain_heavy">大雨</string>
