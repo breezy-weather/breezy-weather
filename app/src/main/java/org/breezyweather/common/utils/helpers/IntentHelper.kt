@@ -100,12 +100,6 @@ object IntentHelper {
         }
     }
 
-    fun buildAwakeUpdateActivityIntent(): Intent {
-        return Intent("org.breezyweather.UPDATE").apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-    }
-
     fun startDailyWeatherActivity(
         activity: Activity,
         formattedId: String?, index: Int

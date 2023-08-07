@@ -50,32 +50,11 @@ object ShortcutsHelper {
             val provider = ResourcesProviderFactory.newInstance
             val shortcutList: MutableList<ShortcutInfo> = ArrayList()
 
-            // refresh button.
-            var icon: Icon
-            var title = context.getString(R.string.action_refresh)
-            icon = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                Icon.createWithAdaptiveBitmap(
-                    drawableToBitmap(
-                        AppCompatResources.getDrawable(context, R.drawable.shortcuts_refresh_foreground)!!
-                    )
-                )
-            } else {
-                Icon.createWithResource(context, R.drawable.shortcuts_refresh)
-            }
-            shortcutList.add(
-                ShortcutInfo.Builder(context, "refresh_data")
-                    .setIcon(icon)
-                    .setShortLabel(title)
-                    .setLongLabel(title)
-                    .setIntent(IntentHelper.buildAwakeUpdateActivityIntent())
-                    .build()
-            )
-
             // location list.
             val count = min(shortcutManager.maxShortcutCountPerActivity - 1, list.size)
             for (i in 0 until count) {
                 val weather = WeatherEntityRepository.readWeather(list[i])
-                icon =
+                val icon =
                     if (weather?.current?.weatherCode != null) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             getAdaptiveIcon(
@@ -93,7 +72,7 @@ object ShortcutsHelper {
                     } else {
                         getIcon(provider, WeatherCode.CLEAR, true)
                     }
-                title = list[i].getPlace(context, true)
+                val title = list[i].getPlace(context, true)
                 shortcutList.add(
                     ShortcutInfo.Builder(context, list[i].formattedId)
                         .setIcon(icon)
