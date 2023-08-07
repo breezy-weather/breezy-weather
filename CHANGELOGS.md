@@ -1,5 +1,8 @@
 # Next version
 
+**Weather sources**
+- [HERE] Fix description of weather condition
+
 **Other fixes**
 - Fix live wallpaper being black after reboot
 - Fix weather sources changes cancelled being remembered on reopening preferences dialog

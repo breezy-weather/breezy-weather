@@ -26,6 +26,7 @@ import java.util.Date
 data class HereWeatherData(
     @Serializable(DateSerializer::class) val time: Date,
     val weekday: String?,
+    val description: String?,
     val daySegment: String?,
     val skyDesc: String?,
     val temperature: Float?,

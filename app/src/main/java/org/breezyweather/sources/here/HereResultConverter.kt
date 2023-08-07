@@ -117,7 +117,7 @@ fun convert(
 private fun getCurrentForecast(result: HereWeatherData?): Current? {
     if (result == null) return null
     return Current(
-        weatherText = result.skyDesc,
+        weatherText = result.description,
         weatherCode = getWeatherCode(result.iconId),
         temperature = Temperature(
             temperature = result.temperature,
@@ -151,7 +151,7 @@ private fun getDailyForecast(
             Daily(
                 date = dailyForecast.time,
                 day = HalfDay(
-                    weatherText = dailyForecast.skyDesc,
+                    weatherText = dailyForecast.description,
                     weatherCode = getWeatherCode(dailyForecast.iconId),
                     temperature = Temperature(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
@@ -160,7 +160,7 @@ private fun getDailyForecast(
                     )
                 ),
                 night = HalfDay(
-                    weatherText = dailyForecast.skyDesc,
+                    weatherText = dailyForecast.description,
                     weatherCode = getWeatherCode(dailyForecast.iconId),
                     // low temperature is actually from previous night,
                     // so we try to get low temp from next day if available
@@ -187,7 +187,7 @@ private fun getHourlyForecast(
     return hourlyResult.map { result ->
         HourlyWrapper(
             date = result.time,
-            weatherText = result.skyDesc,
+            weatherText = result.description,
             weatherCode = getWeatherCode(result.iconId),
             temperature = Temperature(
                 temperature = result.temperature,
