@@ -67,7 +67,7 @@
     <string name="wind_strength_12">Ураган</string>
     <string name="precipitation_intensity_light">Изморось</string>
     <string name="precipitation_intensity_middle">Дождь</string>
-    <string name="precipitation_intensity_heavy">Ливень</string>
+    <string name="precipitation_intensity_heavy">Проливной дождь</string>
     <string name="precipitation_intensity_rainstorm">Штормовой дождь</string>
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Молодая луна</string>
@@ -636,4 +636,9 @@
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая морозящая изморось</string>
     <string name="metno_weather_text_andthunder">$ с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
+    <string name="message_already_up_to_date">Последняя версия установлена</string>
+    <string name="message_update_not_yet_available_title">Обновление ещё не доступно</string>
+    <string name="unit_bf_voice">на шкале Бофорта</string>
+    <string name="message_update_not_yet_available_content">Breezy Weather — это бесплатное приложение, которое может предоставить доступ только к бесплатному уровню для выбранного источника погоды. Чтобы позволить как можно большему количеству пользователей воспользоваться этим доступом и избежать ограничений скорости, мы просим вас добросовестно использовать этот источник — то есть не обновлять, если источник был обновлен менее $ минут назад. Вы можете снять это ограничение, зарегистрировав собственный API-ключ и добавив его в настройках.</string>
+    <string name="unit_bf">Бф</string>
 </resources>
