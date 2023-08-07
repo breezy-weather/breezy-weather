@@ -26,14 +26,14 @@ import org.breezyweather.common.extensions.isRtl
 // actual speed = speed(km/h) * factor.
 enum class SpeedUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    MPS("mps", 1f),
-    KPH("kph", 3.6f),
-    KN("kn", 1.94385f),
-    MPH("mph", 2.23694f),
-    FTPS("ftps", 3.28084f);
+    MPS("mps", { valueInDefaultUnit -> valueInDefaultUnit }),
+    KPH("kph", { valueInDefaultUnit -> valueInDefaultUnit.times(3.6f) }),
+    KN("kn", { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385f) }),
+    MPH("mph", { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694f) }),
+    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) });
 
     companion object {
 
@@ -56,9 +56,7 @@ enum class SpeedUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float

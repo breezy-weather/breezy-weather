@@ -32,9 +32,8 @@ interface VoiceEnum: BaseEnum {
 }
 
 interface UnitEnum<T: Number>: VoiceEnum {
-    val unitFactor: Float
+    val convertUnit: (T) -> Float
     fun getValueWithoutUnit(valueInDefaultUnit: T): T
-    fun getValueInDefaultUnit(valueInCurrentUnit: T): T
     fun getValueTextWithoutUnit(valueInDefaultUnit: T): String
     fun getValueText(context: Context, valueInDefaultUnit: T): String
     fun getValueText(context: Context, valueInDefaultUnit: T, rtl: Boolean): String

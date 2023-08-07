@@ -26,13 +26,13 @@ import org.breezyweather.common.extensions.isRtl
 // actual precipitation = precipitation(mm) * factor.
 enum class PrecipitationUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    MM("mm", 1f),
-    CM("cm", 0.1f),
-    IN("in", 0.0394f),
-    LPSQM("lpsqm", 1f);
+    MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }),
+    CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
+    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }),
+    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
 
@@ -54,9 +54,7 @@ enum class PrecipitationUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float
@@ -100,13 +98,13 @@ enum class PrecipitationUnit(
 // actual precipitation intensity = precipitation intensity(mm/h) * factor.
 enum class PrecipitationIntensityUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    MMPH("mmph", 1f),
-    CMPH("cmph", 0.1f),
-    INPH("inph", 0.0394f),
-    LPSQMPH("lpsqmph", 1f);
+    MMPH("mmph", { valueInDefaultUnit -> valueInDefaultUnit }),
+    CMPH("cmph", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
+    INPH("inph", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }),
+    LPSQMPH("lpsqmph", { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
 
@@ -128,9 +126,7 @@ enum class PrecipitationIntensityUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float

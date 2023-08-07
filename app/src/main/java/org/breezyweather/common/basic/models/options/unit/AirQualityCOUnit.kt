@@ -26,10 +26,10 @@ import org.breezyweather.common.extensions.isRtl
 // actual air quality CO = quality(mg/m³) * factor.
 enum class AirQualityCOUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    MGPCUM("mgpcum", 1f);
+    MGPCUM("mgpcum", { valueInDefaultUnit -> valueInDefaultUnit });
 
     override val valueArrayId = R.array.air_quality_co_unit_values
     override val nameArrayId = R.array.air_quality_co_units
@@ -39,9 +39,7 @@ enum class AirQualityCOUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float

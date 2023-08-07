@@ -26,14 +26,14 @@ import org.breezyweather.common.extensions.isRtl
 // actual distance = distance(km) * factor.
 enum class DistanceUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    M("m", 1f),
-    KM("km", 1f / 1000f),
-    MI("mi", 1f / 1609.344f),
-    NMI("nmi", 1f / 1852f),
-    FT("ft", 3.28084f);
+    M("m", { valueInDefaultUnit -> valueInDefaultUnit }),
+    KM("km", { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) }),
+    MI("mi", { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344f) }),
+    NMI("nmi", { valueInDefaultUnit -> valueInDefaultUnit.div(1852f) }),
+    FT("ft", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) });
 
     companion object {
 
@@ -56,9 +56,7 @@ enum class DistanceUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float

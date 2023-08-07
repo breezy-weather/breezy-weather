@@ -195,7 +195,6 @@ class AccuService @Inject constructor(
             accuAirQualityResult: AccuAirQualityResult
             ->
             convert(
-                context,
                 location,
                 accuRealtimeResults[0],
                 accuDailyResult,

@@ -21,13 +21,14 @@ import android.content.Context
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl
+import kotlin.math.roundToInt
 
 enum class CloudCoverUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Int) -> Float
 ): UnitEnum<Int> {
 
-    PERCENT("%", 1f);
+    PERCENT("%", { valueInDefaultUnit -> valueInDefaultUnit * 1f });
 
     override val valueArrayId = 0
     override val nameArrayId = 0
@@ -39,11 +40,7 @@ enum class CloudCoverUnit(
 
     override fun getValueWithoutUnit(
         valueInDefaultUnit: Int
-    ) = (valueInDefaultUnit * unitFactor).toInt()
-
-    override fun getValueInDefaultUnit(
-        valueInCurrentUnit: Int
-    ) = (valueInCurrentUnit / unitFactor).toInt()
+    ) = convertUnit(valueInDefaultUnit).roundToInt()
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Int

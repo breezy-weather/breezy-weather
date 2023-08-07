@@ -26,31 +26,12 @@ import org.breezyweather.common.extensions.isRtl
 
 enum class TemperatureUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    C("c", 1f) {
-        override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit
-        override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit
-    },
-    F("f", 1f) {
-        override fun getValueWithoutUnit(
-            valueInDefaultUnit: Float
-        ) = (32 + valueInDefaultUnit * 1.8).toFloat()
-
-        override fun getValueInDefaultUnit(
-            valueInCurrentUnit: Float
-        ) = ((valueInCurrentUnit - 32) / 1.8).toFloat()
-    },
-    K("k", 1f) {
-        override fun getValueWithoutUnit(
-            valueInDefaultUnit: Float
-        ) = (273.15 + valueInDefaultUnit).toFloat()
-
-        override fun getValueInDefaultUnit(
-            valueInCurrentUnit: Float
-        ) = (valueInCurrentUnit - 273.15).toFloat()
-    };
+    C("c", { valueInDefaultUnit -> valueInDefaultUnit }),
+    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8f) }),
+    K("k", { valueInDefaultUnit -> 273.15f + valueInDefaultUnit });
 
     companion object {
         fun getInstance(
@@ -83,6 +64,8 @@ enum class TemperatureUnit(
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 0)!!
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
+
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueText(
         context: Context,

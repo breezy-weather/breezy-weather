@@ -17,10 +17,8 @@
 
 package org.breezyweather.sources.accu
 
-import android.content.Context
 import android.graphics.Color
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Allergen
@@ -40,14 +38,12 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.accu.json.AccuAirQualityData
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
 import org.breezyweather.sources.accu.json.AccuAlertResult
@@ -60,7 +56,6 @@ import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import java.util.Date
 import java.util.TimeZone
-import java.util.regex.Pattern
 import kotlin.math.roundToInt
 
 fun convert(
@@ -84,7 +79,6 @@ fun convert(
 }
 
 fun convert(
-    context: Context,
     location: Location,
     currentResult: AccuCurrentResult,
     dailyResult: AccuForecastDailyResult,
@@ -125,15 +119,15 @@ fun convert(
             cloudCover = currentResult.CloudCover,
             visibility = currentResult.Visibility?.Metric?.Value?.times(1000)?.toFloat(),
             ceiling = currentResult.Ceiling?.Metric?.Value?.toFloat(),
-            dailyForecast = convertUnit(context, dailyResult.Headline?.Text),
-            hourlyForecast = convertUnit(context, minuteResult?.Summary?.LongPhrase)
+            dailyForecast = dailyResult.Headline?.Text,
+            hourlyForecast = minuteResult?.Summary?.LongPhrase
         ),
         yesterday = History(
             date = Date((currentResult.EpochTime - 24 * 60 * 60).times(1000)),
             daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
             nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
         ),
-        dailyForecast = getDailyList(context, dailyResult.DailyForecasts, location.timeZone),
+        dailyForecast = getDailyList(dailyResult.DailyForecasts, location.timeZone),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)
@@ -141,7 +135,6 @@ fun convert(
 }
 
 private fun getDailyList(
-    context: Context,
     dailyForecasts: List<AccuForecastDailyForecast>,
     timeZone: TimeZone
 ): List<Daily> {
@@ -151,7 +144,7 @@ private fun getDailyList(
         Daily(
             date = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!,
             day = HalfDay(
-                weatherText = convertUnit(context, forecasts.Day?.LongPhrase),
+                weatherText = forecasts.Day?.LongPhrase,
                 weatherPhase = forecasts.Day?.ShortPhrase,
                 weatherCode = getWeatherCode(forecasts.Day?.Icon),
                 temperature = Temperature(
@@ -186,7 +179,7 @@ private fun getDailyList(
                 cloudCover = forecasts.Day?.CloudCover
             ),
             night = HalfDay(
-                weatherText = convertUnit(context, forecasts.Night?.LongPhrase),
+                weatherText = forecasts.Night?.LongPhrase,
                 weatherPhase = forecasts.Night?.ShortPhrase,
                 weatherCode = getWeatherCode(forecasts.Night?.Icon),
                 temperature = Temperature(
@@ -409,63 +402,6 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
         32 -> WeatherCode.WIND
         else -> null
     }
-}
-
-private fun convertUnit(context: Context, text: String?): String? {
-    if (text.isNullOrEmpty()) return text
-    val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
-    val newText = convertUnit(context, text, PrecipitationUnit.CM, precipitationUnit)
-    return convertUnit(context, newText, PrecipitationUnit.MM, precipitationUnit)
-}
-
-// FIXME: issue #441, #463
-// TODO: Replace with per-location setting for "metric" parameter
-private fun convertUnit(
-    context: Context,
-    text: String,
-    targetUnit: PrecipitationUnit,
-    resultUnit: PrecipitationUnit
-): String {
-    var newText = text
-    return try {
-        val numberPattern = "\\d+-\\d+(\\s+)?"
-        val matcher = Pattern.compile(numberPattern + targetUnit).matcher(newText)
-        val targetList: MutableList<String> = ArrayList()
-        val resultList: MutableList<String> = ArrayList()
-        while (matcher.find()) {
-            val target = newText.substring(matcher.start(), matcher.end())
-            targetList.add(target)
-            val targetSplitResults = target.replace(" ".toRegex(), "").split(
-                targetUnit.getName(context).toRegex()
-            ).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val numberTexts =
-                targetSplitResults[0].split("-".toRegex()).dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
-            for (i in numberTexts.indices) {
-                var number = numberTexts[i].toFloat()
-                number = targetUnit.getValueInDefaultUnit(number)
-                numberTexts[i] = resultUnit.getValueWithoutUnit(number).toString()
-            }
-            resultList.add(arrayToString(numberTexts) + " " + resultUnit.getName(context))
-        }
-        for (i in targetList.indices) {
-            newText = newText.replace(targetList[i], resultList[i])
-        }
-        newText
-    } catch (ignore: Exception) {
-        newText
-    }
-}
-
-private fun arrayToString(array: Array<String>): String {
-    val builder = StringBuilder()
-    for (i in array.indices) {
-        builder.append(array[i])
-        if (i < array.size - 1) {
-            builder.append("-")
-        }
-    }
-    return builder.toString()
 }
 
 /**

@@ -26,16 +26,16 @@ import org.breezyweather.common.extensions.isRtl
 // actual pressure = pressure(mb) * factor.
 enum class PressureUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    MB("mb", 1f),
-    KPA("kpa", 0.1f),
-    HPA("hpa", 1f),
-    ATM("atm", 0.0009869f),
-    MMHG("mmhg", 0.75006f),
-    INHG("inhg", 0.02953f),
-    KGFPSQCM("kgfpsqcm", 0.00102f);
+    MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }),
+    KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
+    HPA("hpa", { valueInDefaultUnit -> valueInDefaultUnit }),
+    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013f) }),
+    MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333f) }),
+    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864f) }),
+    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7f) });
 
     companion object {
 
@@ -60,9 +60,7 @@ enum class PressureUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float

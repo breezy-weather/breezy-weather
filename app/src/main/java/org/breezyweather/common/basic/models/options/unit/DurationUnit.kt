@@ -26,9 +26,9 @@ import org.breezyweather.common.extensions.isRtl
 // actual duration = duration(h) * factor.
 enum class DurationUnit(
     override val id: String,
-    override val unitFactor: Float
+    override val convertUnit: (Float) -> Float
 ): UnitEnum<Float> {
-    H("h", 1f);
+    H("h", { valueInDefaultUnit -> valueInDefaultUnit });
 
     override val valueArrayId = R.array.duration_unit_values
     override val nameArrayId = R.array.duration_units
@@ -38,9 +38,7 @@ enum class DurationUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit * unitFactor
-
-    override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit / unitFactor
+    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float
