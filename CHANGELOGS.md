@@ -1,5 +1,8 @@
 # Next version
 
+**New features**
+- Add Beaufort scale as an option for wind speed “unit”
+
 **Weather sources**
 - [HERE] Fix description of weather condition
 

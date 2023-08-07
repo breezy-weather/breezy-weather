@@ -399,22 +399,25 @@
 
     <!-- speed unit. -->
     <string-array name="speed_units">
-        <item>@string/unit_kph</item>
+        <item>@string/unit_bf</item>
         <item>@string/unit_mps</item>
+        <item>@string/unit_kph</item>
         <item>@string/unit_kn</item>
         <item>@string/unit_mph</item>
         <item>@string/unit_ftps</item>
     </string-array>
     <string-array name="speed_unit_voices">
-        <item>@string/unit_kph_voice</item>
+        <item>@string/unit_bf_voice</item>
         <item>@string/unit_mps_voice</item>
+        <item>@string/unit_kph_voice</item>
         <item>@string/unit_kn_voice</item>
         <item>@string/unit_mph_voice</item>
         <item>@string/unit_ftps_voice</item>
     </string-array>
     <string-array name="speed_unit_values">
-        <item>kph</item>
+        <item>bf</item>
         <item>mps</item>
+        <item>kph</item>
         <item>kn</item>
         <item>mph</item>
         <item>ftps</item>

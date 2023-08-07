@@ -570,10 +570,12 @@
     <string name="settings_color_dark">Dark</string>
     <string name="settings_color_dark_always">Always dark</string>
     <!-- Units -->
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Kilometers per hour</string>
+    <string name="unit_bf">Bf</string>
+    <string name="unit_bf_voice">on Beaufort scale</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Meters per second</string>
+    <string name="unit_kph">km/h</string>
+    <string name="unit_kph_voice">Kilometers per hour</string>
     <string name="unit_kn">kn</string>
     <string name="unit_kn_voice">Knots</string>
     <string name="unit_mph">mph</string>

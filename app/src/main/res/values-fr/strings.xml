@@ -594,10 +594,12 @@
     <string name="action_add_new_location">Ajouter un nouvel emplacement</string>
     <string name="widget_material_you_forecast">Material You - Prévisions</string>
     <string name="widget_material_you_current">Material You - En ce moment</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Kilomètres par heure</string>
+    <string name="unit_bf">Bf</string>
+    <string name="unit_bf_voice">sur l’échelle de Beaufort</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Mètres par seconde</string>
+    <string name="unit_kph">km/h</string>
+    <string name="unit_kph_voice">Kilomètres par heure</string>
     <string name="unit_kn">kn</string>
     <string name="unit_kn_voice">Nœuds</string>
     <string name="unit_mph">mph</string>

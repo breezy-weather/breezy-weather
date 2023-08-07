@@ -215,33 +215,6 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
     return minutelyList
 }
 
-private fun getAirQuality(
-    requestedTime: Long,
-    ownAirPollutionResult: OpenWeatherAirPollutionResult?
-): AirQuality? {
-    if (ownAirPollutionResult == null) return null
-
-    val matchingAirQualityForecast =
-        ownAirPollutionResult.list?.firstOrNull { it.dt == requestedTime } ?: return null
-
-    val pm25: Float? = matchingAirQualityForecast.components?.pm2_5
-    val pm10: Float? = matchingAirQualityForecast.components?.pm10
-    val so2: Float? = matchingAirQualityForecast.components?.so2
-    val no2: Float? = matchingAirQualityForecast.components?.no2
-    val o3: Float? = matchingAirQualityForecast.components?.o3
-    val co: Float? = matchingAirQualityForecast.components?.co?.div(1000.0)?.toFloat()
-
-    // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
-    return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null || co != null) AirQuality(
-        pM25 = pm25,
-        pM10 = pm10,
-        sO2 = so2,
-        nO2 = no2,
-        o3 = o3,
-        cO = co
-    ) else null
-}
-
 private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert> {
     return if (resultList != null) {
         return resultList.map { result ->

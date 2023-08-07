@@ -19,6 +19,7 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl
@@ -33,7 +34,23 @@ enum class SpeedUnit(
     KPH("kph", { valueInDefaultUnit -> valueInDefaultUnit.times(3.6f) }),
     KN("kn", { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385f) }),
     MPH("mph", { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694f) }),
-    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) });
+    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) }),
+    BF("bf", { valueInDefaultUnit -> when (valueInDefaultUnit) {
+        in 0f..Wind.WIND_SPEED_0 -> 0f
+        in Wind.WIND_SPEED_0..Wind.WIND_SPEED_1 -> 1f
+        in Wind.WIND_SPEED_1..Wind.WIND_SPEED_2 -> 2f
+        in Wind.WIND_SPEED_2..Wind.WIND_SPEED_3 -> 3f
+        in Wind.WIND_SPEED_3..Wind.WIND_SPEED_4 -> 4f
+        in Wind.WIND_SPEED_4..Wind.WIND_SPEED_5 -> 5f
+        in Wind.WIND_SPEED_5..Wind.WIND_SPEED_6 -> 6f
+        in Wind.WIND_SPEED_6..Wind.WIND_SPEED_7 -> 7f
+        in Wind.WIND_SPEED_7..Wind.WIND_SPEED_8 -> 8f
+        in Wind.WIND_SPEED_8..Wind.WIND_SPEED_9 -> 9f
+        in Wind.WIND_SPEED_9..Wind.WIND_SPEED_10 -> 10f
+        in Wind.WIND_SPEED_10..Wind.WIND_SPEED_11 -> 11f
+        in Wind.WIND_SPEED_11..Float.MAX_VALUE -> 12f
+        else -> 0f
+    } });
 
     companion object {
 
@@ -44,6 +61,7 @@ enum class SpeedUnit(
             "kn" -> KN
             "mph" -> MPH
             "ftps" -> FTPS
+            "bf" -> BF
             else -> MPS
         }
     }
