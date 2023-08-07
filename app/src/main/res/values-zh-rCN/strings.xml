@@ -328,7 +328,7 @@
     <string name="common_weather_text_fog">雾</string>
     <string name="weather_kind_haze">霾</string>
     <string name="weather_kind_thunder">雷暴</string>
-    <string name="weather_kind_thunderstorm">雷雨</string>
+    <string name="weather_kind_thunderstorm">雷暴</string>
     <string name="weather_kind_wind">风</string>
     <!-- Air quality -->
     <string name="air_quality_level_1">极好</string>
@@ -566,7 +566,7 @@
     <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
     <string name="notification_update_error">%1$d 更新失败</string>
     <string name="message_parsing_error_content">请确保您已更新到最新版本。 服务器可能暂时不可用，请稍后重试。 如果问题仍然存在，请按以下操作：设置 - 调试功能 - 分享崩溃日志，并在 GitHub - Issues中 报告问题。</string>
-    <string name="wind_strength">风力强度</string>
+    <string name="wind_strength">风力</string>
     <string name="message_server_timeout">请求超时</string>
     <string name="message_parsing_error_title">天气数据解析失败</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">电池电量低时停用后台刷新</string>
