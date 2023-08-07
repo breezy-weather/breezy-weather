@@ -119,13 +119,6 @@ private fun SecondarySourcesPreference(
     onClose: (() -> Unit)
 ) {
     val dialogOpenState = remember { mutableStateOf(false) }
-    val hasChangedMainSource = remember { mutableStateOf(false) }
-    val hasChangedASecondarySource = remember { mutableStateOf(false) }
-    val weatherSource = remember { mutableStateOf(location.weatherSource) }
-    val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
-    val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
-    val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
-    val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
 
     PreferenceView(
         titleId = R.string.settings_weather_sources,
@@ -137,6 +130,13 @@ private fun SecondarySourcesPreference(
     }
 
     if (dialogOpenState.value) {
+        val hasChangedMainSource = remember { mutableStateOf(false) }
+        val hasChangedASecondarySource = remember { mutableStateOf(false) }
+        val weatherSource = remember { mutableStateOf(location.weatherSource) }
+        val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
+        val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
+        val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
+        val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
         val weatherSources = sourceManager.getConfiguredMainWeatherSources()
         val secondarySources = sourceManager.getSecondaryWeatherSources()
         val compatibleAirQualitySources = secondarySources.filter {
