@@ -414,12 +414,12 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷暴伴有大冰雹</string>
     <string name="weather_api_key_required_missing_title">缺少所需的 API 密鑰</string>
     <string name="weather_api_unauthorized_title">API訪問未授權</string>
-    <string name="weather_api_unauthorized_content">在某些天氣數據源上，您需要提供自己的 API 密鑰。 如果您已經提供了 API 密鑰，請仔細檢查您提供的 API 密鑰。</string>
+    <string name="weather_api_unauthorized_content">在某些天氣數據源上，您需要提供自己的 API 密鑰。 如果您已提供 API 密鑰，請仔細檢查您提供的 API 密鑰。</string>
     <string name="weather_api_key_required_missing_content">要使用此數據源，您需要提供 API 密鑰。</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
     <string name="settings_background_updates_summary">刷新頻率、故障排除</string>
     <string name="common_weather_text_overcast">天陰</string>
-    <string name="weather_refresh_skipped_already_recently_updated">最近已經更新</string>
+    <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
     <string name="weather_source_accu_preference_hours_1">1小時</string>
     <string name="weather_source_accu_preference_hours_24">24小時</string>
     <string name="location_none_added_yet_instructions">尚未添加位置。請點擊搜尋圖標手動添加位置，或通過浮動按鈕添加您當前的位置。</string>
@@ -505,7 +505,7 @@
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="weather_message_invalid_location">位置無效，請刪除並重新添加</string>
     <string name="weather_allergen_data_by">過敏原數據來源 $</string>
-    <string name="weather_minutely_data_by">分鐘降水量數據來源 $</string>
+    <string name="weather_minutely_data_by">每分鐘降水量數據來源 $</string>
     <string name="weather_message_secondary_data_refresh_failed">輔助天氣源的天氣數據刷新失敗</string>
     <string name="weather_alert_data_by">預警數據來源 $</string>
     <string name="weather_air_quality_and_allergen_data_by">空氣質量和過敏原數據來源 $</string>
@@ -638,4 +638,9 @@
     <string name="common_weather_text_drizzle_heavy">大毛雨</string>
     <string name="common_weather_text_drizzle_freezing_light">小凍毛雨</string>
     <string name="metno_weather_text_andthunder">$伴有閃電</string>
+    <string name="message_already_up_to_date">已是最新</string>
+    <string name="message_update_not_yet_available_title">更新尚不可用</string>
+    <string name="unit_bf">蒲福風級</string>
+    <string name="unit_bf_voice">蒲福風級</string>
+    <string name="message_update_not_yet_available_content">Breezy Weather 是一款免費應用程序，只能提供對所選天氣源免費套餐的訪問。為了讓盡可能多的用戶受益於此訪問並避免速率限制，我們要求您公平使用此數據源 — 即，如果數據源的更新時間低於 $ 分鐘則不進行刷新。您可以通過註冊自己的 API 密鑰並將其添加到設定中來解除此限制。</string>
 </resources>
