@@ -1,3 +1,8 @@
+# Version 4.5.3-beta
+
+Emergency fix for current location not working on sources with reverse geocoding feature.
+
+
 # Version 4.5.2-beta
 
 **New features**

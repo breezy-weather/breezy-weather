@@ -57,7 +57,7 @@ class LocationHelper @Inject constructor(
                 weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
                     if (locationList.isNotEmpty()) {
                         val result = locationList[0]
-                        val locationWithGeocodeInfo = location.copy(
+                        val locationWithGeocodeInfo = currentLocation.copy(
                             cityId = result.cityId,
                             timeZone = result.timeZone,
                             country = result.country,
