@@ -185,7 +185,7 @@
     <string name="settings_changes_apply_after_restart">Els canvis es faran efectius després de reiniciar</string>
     <string name="notification_running_in_background">l’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">Actualitzat en segon pla</string>
+    <string name="weather_updated_in_background">Actualitzat en segon pla</string>
     <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
     <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>
     <string name="location_resident_message">Estableix com a ciutat on residiu</string>

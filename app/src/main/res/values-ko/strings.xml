@@ -173,7 +173,7 @@
     <string name="settings_changes_apply_after_restart">변경 사항은 재시작 후에 적용됩니다</string>
     <string name="notification_running_in_background">날씨를 계속 업데이트하기 위해 백그라운드에서 실행 중</string>
     <string name="notification_updating_weather_data">날씨 데이터 업데이트 중 (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">백그라운드에서 업데이트했습니다</string>
+    <string name="weather_updated_in_background">백그라운드에서 업데이트했습니다</string>
     <string name="notification_precipitation_today">오늘 비나 눈이 올 수 있어요.</string>
     <string name="notification_precipitation_short_term">몇 시간 뒤에 비나 눈이 올 수 있어요.</string>
     <string name="location_resident_message">거주지로 지정</string>

@@ -246,7 +246,7 @@
     <string name="message_server_timeout">Užklausos laikas baigėsi</string>
     <string name="message_tap_again_to_exit">Bakstelėkite dar kartą, kad išeitumėte</string>
     <string name="widget_day">Dienos</string>
-    <string name="message_updated_in_background">Atnaujinta fone</string>
+    <string name="weather_updated_in_background">Atnaujinta fone</string>
     <string name="widget_day_week">Dienos + Savaitės</string>
     <string name="widget_week">Savaitės</string>
     <string name="widget_clock_day_horizontal">Laikrodis + Dienos (Horizontalus stilius)</string>

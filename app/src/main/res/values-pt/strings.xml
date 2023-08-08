@@ -207,7 +207,7 @@
     <string name="action_preview">Visualização</string>
     <string name="action_see_more">Ver mais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
-    <string name="message_updated_in_background">Atualizado em segundo plano</string>
+    <string name="weather_updated_in_background">Atualizado em segundo plano</string>
     <string name="message_tap_again_to_exit">Clique novamente para sair</string>
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>

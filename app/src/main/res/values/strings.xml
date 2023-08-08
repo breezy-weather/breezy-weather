@@ -315,11 +315,14 @@
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
     <string name="message_source_not_installed_error_content">This source is no longer available, please delete the location and recreate it from another source.</string>
-    <string name="message_updated_in_background">Updated in background</string>
-    <string name="message_already_up_to_date">Already up-to-date</string>
-    <string name="message_update_not_yet_available_title">Update not yet available</string>
+    <!-- Update refers to weather update -->
+    <string name="weather_updated_in_background">Updated in background</string>
+    <!-- Update refers to weather data update -->
+    <string name="weather_data_already_up_to_date">Already up-to-date</string>
+    <!-- Update refers to weather update/refresh -->
+    <string name="weather_update_not_yet_available_title">Update not yet available</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
-    <string name="message_update_not_yet_available_content">Breezy Weather is a free app and can only provide access to the free tier for the selected weather source. To allow as many users as possible to benefit from this access and to avoid rate limits, we ask you to make fair use of this source — i.e. not refreshing if the source was updated less than $ minutes ago. You can lift this limit by registering your own API key and adding it in settings.</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather is a free app and can only provide access to the free tier for the selected weather source. To allow as many users as possible to benefit from this access and to avoid rate limits, we ask you to make fair use of this source — i.e. not refreshing if the source was updated less than $ minutes ago. You can lift this limit by registering your own API key and adding it in settings.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
     <string name="widget_day">Daily</string>

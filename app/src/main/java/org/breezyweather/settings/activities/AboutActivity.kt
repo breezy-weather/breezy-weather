@@ -215,6 +215,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "thaumiel9", "https://github.com/thaumiel9"),
         TranslatorItem(arrayOf("zh_rCN"), "tomac4t", "https://github.com/tomac4t"),
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", "https://github.com/abc0922001"),
+        TranslatorItem(arrayOf("zh_rCN"), "Eric", "https://hosted.weblate.org/user/hamburger2048/"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

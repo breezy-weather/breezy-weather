@@ -133,7 +133,7 @@
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
-    <string name="message_updated_in_background">تم التحديث في الخلفية</string>
+    <string name="weather_updated_in_background">تم التحديث في الخلفية</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم.</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
     <string name="location_resident_message">تعيين كمدينة الإقامة</string>
@@ -618,9 +618,9 @@
     <string name="common_weather_text_rain_showers_heavy">رشات مطر غزيرة</string>
     <string name="common_weather_text_rain_freezing_heavy">مطر متجمد غزير</string>
     <string name="common_weather_text_rain_snow_mixed">مطر وثلج مجتمعان</string>
-    <string name="message_update_not_yet_available_title">التحديث غير متوفر بعد</string>
+    <string name="weather_update_not_yet_available_title">التحديث غير متوفر بعد</string>
     <string name="common_weather_text_snow_showers">رشات ثلج</string>
-    <string name="message_already_up_to_date">محدث حتى الان</string>
+    <string name="weather_data_already_up_to_date">محدث حتى الان</string>
     <string name="common_weather_text_snow_heavy">ثلج غزير</string>
     <string name="common_weather_text_drizzle_light">رذاذ خفيف</string>
     <string name="common_weather_text_drizzle_moderate">رذاذ متوسط</string>
@@ -630,7 +630,7 @@
     <string name="common_weather_text_snow_showers_heavy">رشات ثلج غزيرة</string>
     <string name="unit_bf_voice">على مقياس بوفورت</string>
     <string name="common_weather_text_drizzle">رذاذ</string>
-    <string name="message_update_not_yet_available_content">Breezy Weather هو تطبيق مجاني ويمكنه فقط توفير الوصول إلى الطبقة المجانية لمصدر الطقس المحدد. للسماح لأكبر عدد ممكن من المستخدمين بالاستفادة من هذا الوصول ولتجنب حدود الأسعار ، نطلب منك الاستخدام العادل لهذا المصدر - أي عدم التحديث إذا تم تحديث المصدر قبل أقل من $ دقيقة. يمكنك رفع هذا الحد بتسجيل مفتاح API الخاص بك وإضافته في الإعدادات.</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather هو تطبيق مجاني ويمكنه فقط توفير الوصول إلى الطبقة المجانية لمصدر الطقس المحدد. للسماح لأكبر عدد ممكن من المستخدمين بالاستفادة من هذا الوصول ولتجنب حدود الأسعار ، نطلب منك الاستخدام العادل لهذا المصدر - أي عدم التحديث إذا تم تحديث المصدر قبل أقل من $ دقيقة. يمكنك رفع هذا الحد بتسجيل مفتاح API الخاص بك وإضافته في الإعدادات.</string>
     <string name="unit_bf">Bf</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلج مختلط</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلط</string>

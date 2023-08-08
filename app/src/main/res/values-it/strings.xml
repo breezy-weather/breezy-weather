@@ -216,7 +216,7 @@
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura come icona della barra di stato</string>
     <string name="settings_source_default_value">Predefinito (invariato)</string>
     <string name="settings_widgets_notification_feels_like_switch">Usa temperatura percepita</string>
-    <string name="message_updated_in_background">Aggiornato in background</string>
+    <string name="weather_updated_in_background">Aggiornato in background</string>
     <string name="notification_precipitation_today">Oggi potrebbero verificarsi delle precipitazioni.</string>
     <string name="notification_precipitation_short_term">Nelle prossime ore potrebbero verificarsi precipitazioni.</string>
     <string name="location_resident_message">Imposta una città di residenza</string>

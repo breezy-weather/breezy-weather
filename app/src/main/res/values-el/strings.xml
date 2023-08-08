@@ -173,7 +173,7 @@
     <string name="settings_changes_apply_after_restart">Οι αλλαγές θα τεθούν σε ισχύ μετά την επανεκκίνηση</string>
     <string name="notification_running_in_background">Λειτουργία ενημέρωσης στο παρασκήνιο</string>
     <string name="notification_updating_weather_data">Ενημέρωση δεδομένων καιρού (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">Ενημερώθηκε στο παρασκήνιο</string>
+    <string name="weather_updated_in_background">Ενημερώθηκε στο παρασκήνιο</string>
     <string name="notification_precipitation_today">Μπορεί να υπάρχει βροχόπτωση σήμερα.</string>
     <string name="notification_precipitation_short_term">Μπορεί να υπάρξει βροχόπτωση τις επόμενες ώρες.</string>
     <string name="location_resident_message">Ορισμός ως τόπος μόνιμης διαμονής</string>

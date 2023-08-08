@@ -175,7 +175,7 @@
     <string name="settings_changes_apply_after_restart">Zmiany zaczną obowiązywać po ponownym uruchomieniu</string>
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">Zaktualizowano w tle</string>
+    <string name="weather_updated_in_background">Zaktualizowano w tle</string>
     <string name="notification_precipitation_today">Dzisiaj mogą być opady.</string>
     <string name="notification_precipitation_short_term">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
     <string name="location_resident_message">Ustaw jako miasto zamieszkania</string>

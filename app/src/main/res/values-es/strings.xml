@@ -185,7 +185,7 @@
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">Actualizado en segundo plano</string>
+    <string name="weather_updated_in_background">Actualizado en segundo plano</string>
     <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
     <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
     <string name="location_resident_message">Establecer como la ciudad residente</string>

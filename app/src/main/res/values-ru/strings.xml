@@ -166,7 +166,7 @@
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="notification_updating_weather_data">Обновление погодных данных (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">Обновлено в фоне</string>
+    <string name="weather_updated_in_background">Обновлено в фоне</string>
     <string name="notification_precipitation_today">Сегодня возможны осадки.</string>
     <string name="notification_precipitation_short_term">В ближайшее время возможны осадки.</string>
     <string name="location_resident_message">Установить как место жительства</string>
@@ -636,9 +636,9 @@
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая морозящая изморось</string>
     <string name="metno_weather_text_andthunder">$ с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
-    <string name="message_already_up_to_date">Последняя версия установлена</string>
-    <string name="message_update_not_yet_available_title">Обновление ещё не доступно</string>
+    <string name="weather_data_already_up_to_date">Последняя версия установлена</string>
+    <string name="weather_update_not_yet_available_title">Обновление ещё не доступно</string>
     <string name="unit_bf_voice">на шкале Бофорта</string>
-    <string name="message_update_not_yet_available_content">Breezy Weather — это бесплатное приложение, которое может предоставить доступ только к бесплатному уровню для выбранного источника погоды. Чтобы позволить как можно большему количеству пользователей воспользоваться этим доступом и избежать ограничений скорости, мы просим вас добросовестно использовать этот источник — то есть не обновлять, если источник был обновлен менее $ минут назад. Вы можете снять это ограничение, зарегистрировав собственный API-ключ и добавив его в настройках.</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather — это бесплатное приложение, которое может предоставить доступ только к бесплатному уровню для выбранного источника погоды. Чтобы позволить как можно большему количеству пользователей воспользоваться этим доступом и избежать ограничений скорости, мы просим вас добросовестно использовать этот источник — то есть не обновлять, если источник был обновлен менее $ минут назад. Вы можете снять это ограничение, зарегистрировав собственный API-ключ и добавив его в настройках.</string>
     <string name="unit_bf">Бф</string>
 </resources>

@@ -114,7 +114,7 @@
     <string name="dialog_permissions_notification_title">Будьте в курсі</string>
     <string name="dialog_permissions_location_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="message_server_timeout">Час запиту вичерпано</string>
-    <string name="message_updated_in_background">Оновлено у фоновому режимі</string>
+    <string name="weather_updated_in_background">Оновлено у фоновому режимі</string>
     <string name="message_tap_again_to_exit">Натисніть знову, щоб вийти</string>
     <string name="widget_day">Щоденний</string>
     <string name="widget_week">Тижневий</string>

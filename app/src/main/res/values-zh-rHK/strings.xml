@@ -182,7 +182,7 @@
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
     <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
     <string name="notification_updating_weather_data">正在更新天氣數據 (%1$d/%2$d)</string>
-    <string name="message_updated_in_background">已在後台完成更新</string>
+    <string name="weather_updated_in_background">已在後台完成更新</string>
     <string name="notification_precipitation_today">今日可能出現降水。</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水。</string>
     <string name="location_resident_message">設定為常駐城市</string>
@@ -638,9 +638,9 @@
     <string name="common_weather_text_drizzle_heavy">大毛雨</string>
     <string name="common_weather_text_drizzle_freezing_light">小凍毛雨</string>
     <string name="metno_weather_text_andthunder">$伴有閃電</string>
-    <string name="message_already_up_to_date">已是最新</string>
-    <string name="message_update_not_yet_available_title">更新尚不可用</string>
+    <string name="weather_data_already_up_to_date">已是最新</string>
+    <string name="weather_update_not_yet_available_title">更新尚不可用</string>
     <string name="unit_bf">蒲福風級</string>
     <string name="unit_bf_voice">蒲福風級</string>
-    <string name="message_update_not_yet_available_content">Breezy Weather 是一款免費應用程序，只能提供對所選天氣源免費套餐的訪問。為了讓盡可能多的用戶受益於此訪問並避免速率限制，我們要求您公平使用此數據源 — 即，如果數據源的更新時間低於 $ 分鐘則不進行刷新。您可以通過註冊自己的 API 密鑰並將其添加到設定中來解除此限制。</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather 是一款免費應用程序，只能提供對所選天氣源免費套餐的訪問。為了讓盡可能多的用戶受益於此訪問並避免速率限制，我們要求您公平使用此數據源 — 即，如果數據源的更新時間低於 $ 分鐘則不進行刷新。您可以通過註冊自己的 API 密鑰並將其添加到設定中來解除此限制。</string>
 </resources>

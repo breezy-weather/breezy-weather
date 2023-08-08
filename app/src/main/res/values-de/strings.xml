@@ -56,7 +56,7 @@
     <string name="widget_label_subtitle_data">Untertiteldaten</string>
     <string name="widget_label_text_size">Schriftgröße</string>
     <string name="notification_precipitation_today">Es kann Niederschlag auftreten.</string>
-    <string name="message_updated_in_background">Im Hintergrund aktualisiert</string>
+    <string name="weather_updated_in_background">Im Hintergrund aktualisiert</string>
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
