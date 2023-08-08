@@ -631,4 +631,9 @@
     <string name="common_weather_text_rain_snow_mixed_light">Leichter Regen und Schnee gemischt</string>
     <string name="common_weather_text_rain_snow_mixed">Regen und Schnee gemischt</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Starker Regen und Schnee gemischt</string>
+    <string name="unit_bf">Bft</string>
+    <string name="unit_bf_voice">Auf der Beaufortskala</string>
+    <string name="weather_data_already_up_to_date">Bereits aktuell</string>
+    <string name="weather_update_not_yet_available_title">Aktualisierung noch nicht verfügbar</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather ist eine kostenlose App und kann nur den Zugriff auf den kostenlose Plan für die ausgewählte Wetterquelle bieten. Damit so viele Nutzer wie möglich von diesem Zugang profitieren können und um Tarifbeschränkungen zu vermeiden, bitten wir Sie, diese Quelle fair zu nutzen - d.h. die Quelle nicht zu aktualisieren, wenn sie vor weniger als $ Minuten aktualisiert wurde. Sie können diese Beschränkung aufheben, indem Sie Ihren eigenen API-Schlüssel registrieren und ihn in den Einstellungen hinzufügen.</string>
 </resources>
