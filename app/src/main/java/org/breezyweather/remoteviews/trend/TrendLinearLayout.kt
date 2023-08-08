@@ -48,6 +48,8 @@ class TrendLinearLayout @JvmOverloads constructor(
     private var mLowestTemp: Float? = null
     private var mTemperatureUnit: TemperatureUnit
 
+    private var mKeyLineVisibility: Boolean = false
+
     @ColorInt
     private var mLineColor = 0
 
@@ -79,19 +81,22 @@ class TrendLinearLayout @JvmOverloads constructor(
         if (mHistoryTemps.isEmpty()) return
         computeCoordinates()
         if (mHistoryTempYs.isEmpty()) return
-        mPaint.style = Paint.Style.STROKE
-        mPaint.strokeWidth = CHART_LINE_SIZE
-        mPaint.color = mLineColor
-        canvas.drawLine(
-            0f, mHistoryTempYs[0],
-            measuredWidth.toFloat(), mHistoryTempYs[0],
-            mPaint
-        )
-        canvas.drawLine(
-            0f, mHistoryTempYs[1],
-            measuredWidth.toFloat(), mHistoryTempYs[1],
-            mPaint
-        )
+
+        if (mKeyLineVisibility) {
+            mPaint.style = Paint.Style.STROKE
+            mPaint.strokeWidth = CHART_LINE_SIZE
+            mPaint.color = mLineColor
+            canvas.drawLine(
+                0f, mHistoryTempYs[0],
+                measuredWidth.toFloat(), mHistoryTempYs[0],
+                mPaint
+            )
+            canvas.drawLine(
+                0f, mHistoryTempYs[1],
+                measuredWidth.toFloat(), mHistoryTempYs[1],
+                mPaint
+            )
+        }
         mPaint.style = Paint.Style.FILL
         mPaint.textSize = TEXT_SIZE
         mPaint.textAlign = Paint.Align.LEFT
@@ -167,5 +172,10 @@ class TrendLinearLayout @JvmOverloads constructor(
     private fun computeSingleCoordinate(value: Float, max: Float, min: Float): Float {
         val canvasHeight = TREND_ITEM_HEIGHT - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM
         return (measuredHeight - BOTTOM_MARGIN - TREND_MARGIN_BOTTOM - canvasHeight * (value - min) / (max - min))
+    }
+
+    fun setKeyLineVisibility(visibility: Boolean) {
+        mKeyLineVisibility = visibility
+        invalidate()
     }
 }

@@ -140,6 +140,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 false
             )
             trendParent.setColor(lightTheme)
+            trendParent.setKeyLineVisibility(
+                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
+            )
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
