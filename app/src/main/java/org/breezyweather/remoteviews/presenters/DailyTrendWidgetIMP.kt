@@ -93,6 +93,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             else -> location.isDaylight
         }
 
+
+
         // TODO: Redundant with DailyTemperatureAdapter
         val daytimeTemperatures: Array<Float?> = arrayOfNulls(max(0, itemCount * 2 - 1))
         run {
@@ -165,6 +167,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 true
             )
             trendParent.setColor(lightTheme)
+            trendParent.setKeyLineVisibility(
+                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
+            )
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
