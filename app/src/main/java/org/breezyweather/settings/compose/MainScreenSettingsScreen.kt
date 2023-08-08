@@ -31,6 +31,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.ListPreferenceView
@@ -112,6 +113,7 @@ fun MainScreenSettingsScreen(
                 checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
+                    Widgets.updateWidgetIfNecessary(context) // Has some widgets with it
                 },
             )
         }

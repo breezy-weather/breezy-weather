@@ -19,10 +19,9 @@ package org.breezyweather.common.basic.models.weather
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.BidiFormatter
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import java.io.Serializable
 import java.util.Calendar
@@ -56,26 +55,12 @@ data class Hourly(
     }
 
     fun getHour(context: Context, timeZone: TimeZone): String {
-        return getHour(context, timeZone, context.is12Hour, context.isRtl)
+        return getHour(context, timeZone, context.is12Hour)
     }
 
     @SuppressLint("DefaultLocale")
-    private fun getHour(context: Context, timeZone: TimeZone, twelveHour: Boolean, rtl: Boolean): String {
-        val calendar = date.toCalendarWithTimeZone(timeZone)
-        var hour: Int
-        if (twelveHour) {
-            hour = calendar[Calendar.HOUR]
-            if (hour == 0) {
-                hour = 12
-            }
-        } else {
-            hour = calendar[Calendar.HOUR_OF_DAY]
-        }
-        return if (rtl) {
-            (BidiFormatter.getInstance().unicodeWrap(String.format("%d", hour))
-                    + context.getString(R.string.of_clock))
-        } else {
-            hour.toString() + context.getString(R.string.of_clock)
-        }
+    private fun getHour(context: Context, timeZone: TimeZone, twelveHour: Boolean): String {
+        return date.getFormattedDate(timeZone, if (twelveHour) "h aa" else "H") +
+                if (!twelveHour) context.getString(R.string.of_clock) else ""
     }
 }

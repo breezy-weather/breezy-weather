@@ -112,6 +112,7 @@ fun WidgetsSettingsScreen(
             checked = SettingsManager.getInstance(context).isDayNightTempOrderReversed,
             onValueChanged = {
                 SettingsManager.getInstance(context).isDayNightTempOrderReversed = it
+                Widgets.updateWidgetIfNecessary(context)
             },
         )
     }

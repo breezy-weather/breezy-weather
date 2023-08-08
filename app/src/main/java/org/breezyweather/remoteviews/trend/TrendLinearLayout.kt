@@ -81,22 +81,22 @@ class TrendLinearLayout @JvmOverloads constructor(
         if (mHistoryTemps.isEmpty()) return
         computeCoordinates()
         if (mHistoryTempYs.isEmpty()) return
+        if (!mKeyLineVisibility) return
 
-        if (mKeyLineVisibility) {
-            mPaint.style = Paint.Style.STROKE
-            mPaint.strokeWidth = CHART_LINE_SIZE
-            mPaint.color = mLineColor
-            canvas.drawLine(
-                0f, mHistoryTempYs[0],
-                measuredWidth.toFloat(), mHistoryTempYs[0],
-                mPaint
-            )
-            canvas.drawLine(
-                0f, mHistoryTempYs[1],
-                measuredWidth.toFloat(), mHistoryTempYs[1],
-                mPaint
-            )
-        }
+        mPaint.style = Paint.Style.STROKE
+        mPaint.strokeWidth = CHART_LINE_SIZE
+        mPaint.color = mLineColor
+        canvas.drawLine(
+            0f, mHistoryTempYs[0],
+            measuredWidth.toFloat(), mHistoryTempYs[0],
+            mPaint
+        )
+        canvas.drawLine(
+            0f, mHistoryTempYs[1],
+            measuredWidth.toFloat(), mHistoryTempYs[1],
+            mPaint
+        )
+
         mPaint.style = Paint.Style.FILL
         mPaint.textSize = TEXT_SIZE
         mPaint.textAlign = Paint.Align.LEFT

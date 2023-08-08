@@ -1,4 +1,4 @@
-# Next version
+# Version 4.5.2-beta
 
 **New features**
 - Add Beaufort scale as an option for wind speed “unit”
@@ -8,9 +8,14 @@
 
 **Other fixes**
 - Fix live wallpaper being black after reboot
-- Fix weather sources changes cancelled being remembered on reopening preferences dialog
-- Remove "Refresh" shortcut for removed feature
+- Also apply "Yesterday line" option on widgets (@Cod3dDOT + @papjul)
+- Fix cancelled weather sources changes being remembered (but not applied) on reopening preferences dialog
+- Remove "Refresh" shortcut (feature no longer existed)
 - Add abuse prevention mechanism
+
+**Translations**
+- Put AM/PM instead of :00 on hourly trends for devices configured to not use 24 hours system
+- Translations updated
 
 
 # Version 4.5.1-beta
