@@ -6,7 +6,7 @@ body:
     id: feature-description
     attributes:
       label: Describe your idea
-      description: How can Breezy Weather be improved for the community?
+      description: How can Breezy Weather be improved for the community? Suggest only one idea at a time (open a new issue for a different idea).
       placeholder: |
         Example:
           "Here is how it should work: …"
