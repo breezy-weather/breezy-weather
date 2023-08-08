@@ -101,6 +101,7 @@ class WeatherHelper @Inject constructor(
             }
             mainFeaturesIgnored.add(SecondaryWeatherSourceFeature.FEATURE_ALERT)
         }
+        // TODO: Only call this AFTER main source
         val secondaryWeatherWrapper = requestSecondaryWeather(
             context, location, secondarySources
         )

@@ -1,3 +1,9 @@
+# Next version
+
+**Other fixes**
+- Fix air quality data disappearing when allergen set as secondary source (but not air quality), and allergen data disappearing when air quality set as secondary source (but not allergen)
+
+
 # Version 4.5.3-beta
 
 Emergency fix for current location not working on sources with reverse geocoding feature.

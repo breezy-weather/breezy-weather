@@ -95,15 +95,17 @@ fun completeMissingSecondaryWeatherDailyData(
         && initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty())
         || (!initialSecondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty()
                 && initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
-        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) {
+        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null
+            && initialSecondaryWeatherWrapper.airQuality.dailyForecast.isNullOrEmpty()) {
             getDailyAirQualityFromHourly(
-                initialSecondaryWeatherWrapper.airQuality?.hourlyForecast, timeZone
+                initialSecondaryWeatherWrapper.airQuality.hourlyForecast, timeZone
             )
-        } else initialSecondaryWeatherWrapper.airQuality!!.dailyForecast
+        } else initialSecondaryWeatherWrapper.airQuality?.dailyForecast
 
-        val dailyAllergen: Map<Date, Allergen>? = if (initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty()) {
+        val dailyAllergen: Map<Date, Allergen>? = if (initialSecondaryWeatherWrapper.allergen != null
+            && initialSecondaryWeatherWrapper.allergen.dailyForecast.isNullOrEmpty()) {
             val dailyAllergenMap: MutableMap<Date, Allergen> = mutableMapOf()
-            initialSecondaryWeatherWrapper.allergen?.hourlyForecast?.entries?.groupBy {
+            initialSecondaryWeatherWrapper.allergen.hourlyForecast?.entries?.groupBy {
                 it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
             }?.forEach { entry ->
                 val allergen = getDailyAllergenFromSecondaryHourlyList(entry.value)
@@ -112,7 +114,7 @@ fun completeMissingSecondaryWeatherDailyData(
                 }
             }
             dailyAllergenMap
-        } else initialSecondaryWeatherWrapper.allergen!!.dailyForecast
+        } else initialSecondaryWeatherWrapper.allergen?.dailyForecast
 
         initialSecondaryWeatherWrapper.copy(
             airQuality = initialSecondaryWeatherWrapper.airQuality?.copy(
@@ -187,12 +189,18 @@ fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
         val airQuality = secondaryWeatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
         val allergen = secondaryWeatherWrapper.allergen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
 
-        if (airQuality != null || allergen != null) {
+        if (airQuality != null && allergen != null) {
             mainHourly.copy(
                 airQuality = airQuality,
                 allergen = allergen
             )
-        } else mainHourly
+        } else if (airQuality != null) {
+            mainHourly.copy(airQuality = airQuality)
+        } else if (allergen != null) {
+            mainHourly.copy(allergen = allergen)
+        } else {
+            mainHourly
+        }
     }
 }
 
@@ -218,12 +226,18 @@ fun mergeSecondaryWeatherDataIntoDailyList(
         val airQuality = secondaryWeatherWrapper.airQuality?.dailyForecast?.getOrElse(mainDaily.date) { null }
         val allergen = secondaryWeatherWrapper.allergen?.dailyForecast?.getOrElse(mainDaily.date) { null }
 
-        if (airQuality != null || allergen != null) {
+        if (airQuality != null && allergen != null) {
             mainDaily.copy(
                 airQuality = airQuality,
                 allergen = allergen
             )
-        } else mainDaily
+        } else if (airQuality != null) {
+            mainDaily.copy(airQuality = airQuality)
+        } else if (allergen != null) {
+            mainDaily.copy(allergen = allergen)
+        } else {
+            mainDaily
+        }
     }
 }
 
