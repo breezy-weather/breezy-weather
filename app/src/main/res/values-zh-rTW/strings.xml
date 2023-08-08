@@ -99,7 +99,7 @@
     <string name="action_set">設定</string>
     <string name="action_help">幫助</string>
     <string name="action_learn_more">瞭解更多</string>
-    <string name="about_app">關於應用程序</string>
+    <string name="about_app">關於</string>
     <string name="about_contributors">貢獻者</string>
     <string name="about_translators">譯者</string>
     <string name="date_format_short">M-d</string>
@@ -599,12 +599,12 @@
     <string name="settings_location">定位</string>
     <string name="settings_location_summary">定位服務設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
-    <string name="about_dependencies">依賴</string>
+    <string name="about_dependencies">依賴項</string>
     <string name="minutely_precipitations">每分鐘降水量</string>
     <string name="action_save">保存</string>
     <string name="settings_weather_sources_per_location_summary">自定義該位置的天氣數據源</string>
     <string name="settings_weather_source_main">主要數據源</string>
-    <string name="about_privacy_policy">隱私權政策</string>
+    <string name="about_privacy_policy">隱私政策</string>
     <string name="about_contact">聯絡</string>
     <string name="settings_weather_sources_default_location_search">默認位置搜寻源</string>
     <string name="location_resident_location_summaryOn">已啟用。 在當前位置$範圍內隱藏。</string>
