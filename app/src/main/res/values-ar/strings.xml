@@ -33,7 +33,7 @@
     <string name="action_refresh">تحديث</string>
     <string name="action_restart">إعادة التشغيل</string>
     <string name="action_edit">تحرير</string>
-    <string name="of_clock">:٠٠</string>
+    <string name="of_clock">‌</string>
     <string name="short_yesterday">أمس</string>
     <string name="short_tomorrow">غداً</string>
     <string name="short_monday">الإثنين</string>
@@ -101,7 +101,7 @@
     <string name="action_learn_more">التعرف على المزيد</string>
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
-    <string name="date_format_short">M-d</string>
+    <string name="date_format_short">d - M</string>
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
