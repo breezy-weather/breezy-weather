@@ -127,8 +127,15 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = DarkMode.getInstance(
-            config.getString("dark_mode", "auto") ?: ""
+            config.getString("dark_mode", null) ?: "system"
         )
+
+    var dayNightModeForLocations: Boolean
+        set(value) {
+            config.edit().putBoolean("day_night_mode_locations", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("day_night_mode_locations", true)
 
     // service providers.
     var locationSource: String

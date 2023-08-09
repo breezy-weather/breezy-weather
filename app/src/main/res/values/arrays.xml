@@ -7,13 +7,11 @@
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
-        <item>@string/settings_color_day_night</item>
         <item>@string/settings_follow_system</item>
-        <item>@string/settings_color_light_always</item>
-        <item>@string/settings_color_dark_always</item>
+        <item>@string/settings_color_light</item>
+        <item>@string/settings_color_dark</item>
     </string-array>
     <string-array name="dark_mode_values">
-        <item>auto</item>
         <item>system</item>
         <item>light</item>
         <item>dark</item>

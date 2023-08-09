@@ -139,7 +139,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 max = PollutantIndex.indexExcessivePollution.toFloat()
             }
             mDialog.setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                     AirQualityDialogView(airQuality)
                 }
             }

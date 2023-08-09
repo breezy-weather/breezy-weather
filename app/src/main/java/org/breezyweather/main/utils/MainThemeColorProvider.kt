@@ -121,11 +121,15 @@ class MainThemeColorProvider(
         private fun isLightTheme(
             context: Context,
             daylight: Boolean?,
-        ): Boolean = when (SettingsManager.getInstance(context).darkMode) {
-            DarkMode.AUTO -> instance?.host?.isDaylight ?: daylight ?: false
-            DarkMode.SYSTEM -> !context.isDarkMode
-            DarkMode.LIGHT -> true
-            DarkMode.DARK -> false
+        ): Boolean = if (SettingsManager.getInstance(context).dayNightModeForLocations
+            && instance?.host?.isDaylight != null && daylight != null) {
+            daylight
+        } else {
+            when (SettingsManager.getInstance(context).darkMode) {
+                DarkMode.LIGHT -> true
+                DarkMode.DARK -> false
+                else -> !context.isDarkMode
+            }
         }
 
         fun getContext(

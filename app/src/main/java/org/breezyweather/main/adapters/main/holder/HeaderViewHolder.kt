@@ -45,6 +45,7 @@ import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.ui.widgets.NumberAnimTextView
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -103,7 +104,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
             }
 
             itemView.findViewById<ComposeView>(R.id.container_main_header_details).setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                     HeaderDetails(
                         SettingsManager.getInstance(context).detailDisplayList,
                         current,

@@ -31,7 +31,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -41,7 +43,9 @@ import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.settings.preference.switchPreferenceItem
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 
@@ -91,6 +95,17 @@ fun AppearanceSettingsScreen(
                             .getInstance(context)
                             .update(darkMode = SettingsManager.getInstance(context).darkMode)
                     },300)
+                },
+            )
+        }
+        switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
+            SwitchPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
+                checked = SettingsManager.getInstance(context).dayNightModeForLocations,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).dayNightModeForLocations = it
                 },
             )
         }

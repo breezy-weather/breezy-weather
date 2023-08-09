@@ -57,6 +57,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.main.utils.MainThemeColorProvider
 import java.util.Date
 import java.util.TimeZone
 
@@ -71,9 +72,7 @@ class AlertActivity : GeoActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                ContentView()
-            }
+            ContentView()
         }
     }
 
@@ -109,19 +108,24 @@ class AlertActivity : GeoActivity() {
         val context = LocalContext.current
 
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
+        var location: Location? = null
+        if (!formattedId.isNullOrEmpty()) {
+            location = LocationEntityRepository.readLocation(formattedId)
+        }
+        if (location == null) {
+            location = LocationEntityRepository.readLocationList()[0]
+        }
+        val weather = WeatherEntityRepository.readWeather(location)
         AsyncHelper.runOnIO({ emitter ->
-            var location: Location? = null
-            if (!formattedId.isNullOrEmpty()) {
-                location = LocationEntityRepository.readLocation(formattedId)
-            }
-            if (location == null) {
-                // FIXME: doesn’t display alerts for current position for China provider if not in first position
-                location = LocationEntityRepository.readLocationList()[0]
-            }
-            val weather = WeatherEntityRepository.readWeather(location)
-
             // Don’t emit alerts from the past
-            emitter.send(Pair(location.timeZone, weather?.alertList?.filter { it.endDate == null || it.endDate.time > Date().time } ?: emptyList()), true)
+            emitter.send(
+                Pair(
+                    location.timeZone,
+                    weather?.alertList?.filter {
+                        it.endDate == null || it.endDate.time > Date().time
+                    } ?: emptyList()),
+                true
+            )
         }) { result: Pair<TimeZone, List<Alert>>?, _ ->
             result?.let {
                 timeZone.value = it.first
@@ -148,50 +152,52 @@ class AlertActivity : GeoActivity() {
 
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            topBar = {
-                FitStatusBarTopAppBar(
-                    title = stringResource(R.string.alerts),
-                    onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
-                )
-            },
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
-                state = listState
+        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+            Material3Scaffold(
+                modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+                topBar = {
+                    FitStatusBarTopAppBar(
+                        title = stringResource(R.string.alerts),
+                        onBackPressed = { finish() },
+                        scrollBehavior = scrollBehavior,
+                    )
+                },
             ) {
-                items(alertList.value) { alert ->
-                    Material3CardListItem {
-                        Column(
-                            modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                        ) {
-                            Text(
-                                text = alert.description,
-                                color = DayNightTheme.colors.titleColor,
-                                fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.titleMedium,
-                            )
-                            Text(
-                                text = getAlertDate(context, alert, timeZone.value),
-                                color = DayNightTheme.colors.captionColor,
-                                style = MaterialTheme.typography.labelMedium,
-                            )
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                            if (alert.content != null) Text(
-                                text = alert.content,
-                                color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
+                LazyColumn(
+                    modifier = Modifier.fillMaxHeight(),
+                    contentPadding = it,
+                    state = listState
+                ) {
+                    items(alertList.value) { alert ->
+                        Material3CardListItem {
+                            Column(
+                                modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
+                            ) {
+                                Text(
+                                    text = alert.description,
+                                    color = DayNightTheme.colors.titleColor,
+                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.titleMedium,
+                                )
+                                Text(
+                                    text = getAlertDate(context, alert, timeZone.value),
+                                    color = DayNightTheme.colors.captionColor,
+                                    style = MaterialTheme.typography.labelMedium,
+                                )
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                if (alert.content != null) Text(
+                                    text = alert.content,
+                                    color = DayNightTheme.colors.bodyColor,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                )
+                            }
                         }
                     }
-                }
 
-                bottomInsetItem(
-                    extraHeight = getCardListItemMarginDp(this@AlertActivity).dp
-                )
+                    bottomInsetItem(
+                        extraHeight = getCardListItemMarginDp(this@AlertActivity).dp
+                    )
+                }
             }
         }
     }

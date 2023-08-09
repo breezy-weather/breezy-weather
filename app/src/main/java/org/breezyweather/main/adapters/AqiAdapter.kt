@@ -108,7 +108,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             mContent.text = item.content
             mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
             mDialog.setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme(lightTheme = lightTheme) {
                     PollutantInfoDialogView(item.pollutantType)
                 }
             }

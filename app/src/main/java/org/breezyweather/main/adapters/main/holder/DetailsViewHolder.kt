@@ -77,7 +77,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
             mTime.text = location.weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour)
             mDetailsList.setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                     ContentView(SettingsManager.getInstance(context).detailDisplayUnlisted, location.weather.current, location)
                 }
             }
@@ -97,7 +97,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         Text(
                             detailDisplay.getName(LocalContext.current),
                             fontWeight = FontWeight.Bold,
-                            color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                            color = DayNightTheme.colors.titleColor
                         )
                     },
                     supportingContent = {
@@ -110,7 +110,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         Icon(
                             painterResource(detailDisplay.iconId),
                             contentDescription = detailDisplay.getName(LocalContext.current),
-                            tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                            tint = DayNightTheme.colors.titleColor
                         )
                     }
                 )

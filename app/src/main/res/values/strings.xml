@@ -485,6 +485,7 @@
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>
     <string name="settings_appearance_dark_mode_title">Dark mode</string>
+    <string name="settings_appearance_dark_mode_locations_title">Day / Night mode for locations</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>

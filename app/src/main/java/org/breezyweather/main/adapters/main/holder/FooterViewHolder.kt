@@ -51,6 +51,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.main.MainActivity
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -166,7 +167,7 @@ class FooterViewHolder(
 
 
         composeView.setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                 ComposeView((context as MainActivity), location, creditsText.toString(), cardMarginsVertical.toInt())
             }
         }

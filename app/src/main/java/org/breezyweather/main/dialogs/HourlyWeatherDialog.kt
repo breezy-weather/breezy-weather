@@ -28,6 +28,7 @@ import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.weather.Hourly
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.AnimatableIconView
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory

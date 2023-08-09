@@ -61,13 +61,15 @@ class FirstCardHeaderController(
 
     init {
         // Don’t show if alertList only contains alerts in the past
-        if (location.weather != null && location.weather.alertList.any { it.endDate == null || it.endDate.time > Date().time }) {
+        if (location.weather != null && location.weather.alertList.any {
+            it.endDate == null || it.endDate.time > Date().time }
+        ) {
             mView.visibility = View.VISIBLE
             mView.setOnClickListener {
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
             }
             mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(mActivity, location)) {
                     ContentView(location)
                 }
             }
@@ -94,7 +96,7 @@ class FirstCardHeaderController(
                 headlineContent = {
                     Text(
                         stringResource(R.string.alerts_to_follow),
-                        color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText)),
+                        color = DayNightTheme.colors.titleColor,
                         style = MaterialTheme.typography.titleMedium
                     )
                 },
@@ -102,7 +104,7 @@ class FirstCardHeaderController(
                     Icon(
                         painterResource(R.drawable.ic_alert),
                         contentDescription = stringResource(R.string.alerts_to_follow),
-                        tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                        tint = DayNightTheme.colors.titleColor
                     )
                 }
             )
@@ -125,7 +127,7 @@ class FirstCardHeaderController(
                         headlineContent = {
                             Text(
                                 currentAlert.description,
-                                color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText)),
+                                color = DayNightTheme.colors.titleColor,
                                 style = MaterialTheme.typography.titleMedium
                             )
                         },

@@ -86,7 +86,6 @@ class DailyWeatherActivity : GeoActivity() {
         }
         mIndicator = findViewById(R.id.activity_weather_daily_indicator)
         val formattedId = mFormattedId
-        val context: Context = this
         AsyncHelper.runOnIO({ emitter: AsyncHelper.Emitter<Location> ->
             var location: Location? = null
             if (!formattedId.isNullOrEmpty()) {

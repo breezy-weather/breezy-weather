@@ -47,6 +47,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
@@ -61,9 +62,7 @@ class AllergenActivity : GeoActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                ContentView()
-            }
+            ContentView()
         }
     }
 
@@ -80,45 +79,49 @@ class AllergenActivity : GeoActivity() {
             return
         }
 
-
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            topBar = {
-                FitStatusBarTopAppBar(
-                    title = stringResource(R.string.allergen),
-                    onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
-                )
-            },
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
+        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, location)) {
+            Material3Scaffold(
+                modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+                topBar = {
+                    FitStatusBarTopAppBar(
+                        title = stringResource(R.string.allergen),
+                        onBackPressed = { finish() },
+                        scrollBehavior = scrollBehavior,
+                    )
+                },
             ) {
-                items(weather.dailyForecast.filter { d -> d.allergen?.isValid == true }) { daily ->
-                    daily.allergen?.let { allergen ->
-                        Material3CardListItem(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Column {
-                                Text(
-                                    modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                                    text = daily.date.getFormattedDate(location.timeZone, stringResource(R.string.date_format_widget_long)),
-                                    color = DayNightTheme.colors.titleColor,
-                                    fontWeight = FontWeight.Bold,
-                                    style = MaterialTheme.typography.titleMedium,
-                                )
-                                AllergenGrid(allergen = allergen)
+                LazyColumn(
+                    modifier = Modifier.fillMaxHeight(),
+                    contentPadding = it,
+                ) {
+                    items(weather.dailyForecast.filter { d -> d.allergen?.isValid == true }) { daily ->
+                        daily.allergen?.let { allergen ->
+                            Material3CardListItem(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Column {
+                                    Text(
+                                        modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
+                                        text = daily.date.getFormattedDate(
+                                            location.timeZone,
+                                            stringResource(R.string.date_format_widget_long)
+                                        ),
+                                        color = DayNightTheme.colors.titleColor,
+                                        fontWeight = FontWeight.Bold,
+                                        style = MaterialTheme.typography.titleMedium,
+                                    )
+                                    AllergenGrid(allergen = allergen)
+                                }
                             }
                         }
                     }
-                }
 
-                bottomInsetItem(
-                    extraHeight = getCardListItemMarginDp(this@AllergenActivity).dp
-                )
+                    bottomInsetItem(
+                        extraHeight = getCardListItemMarginDp(this@AllergenActivity).dp
+                    )
+                }
             }
         }
     }

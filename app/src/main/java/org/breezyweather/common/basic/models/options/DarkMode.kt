@@ -26,7 +26,6 @@ enum class DarkMode(
     override val id: String
 ): BaseEnum {
 
-    AUTO("auto"),
     SYSTEM("system"),
     LIGHT("light"),
     DARK("dark");
@@ -36,10 +35,9 @@ enum class DarkMode(
         fun getInstance(
             value: String
         ) = when (value) {
-            "system" -> SYSTEM
             "light" -> LIGHT
             "dark" -> DARK
-            else -> AUTO
+            else -> SYSTEM
         }
     }
 

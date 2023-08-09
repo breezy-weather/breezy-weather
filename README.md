@@ -103,7 +103,6 @@ alt="Get it on GitHub" align="center" height="80" />
 * [Homepage explanations](docs/HOMEPAGE.md)
 * [Weather sources comparison](docs/SOURCES.md)
 
-
 # Contribute
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -441,6 +441,7 @@
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_dark_mode_title">Mode sombre</string>
+    <string name="settings_appearance_dark_mode_locations_title">Mode Jour / Nuit pour les emplacements</string>
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
     <string name="settings_icon_packs_title">Packs d’icônes</string>
     <string name="settings_main">Écran principal</string>
