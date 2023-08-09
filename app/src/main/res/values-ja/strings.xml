@@ -341,4 +341,5 @@
     <string name="settings_background_updates_dont_kill_my_app_title">メーカーごとの改善方法</string>
     <string name="minutely_precipitations">毎分降水量</string>
     <string name="settings_location">位置情報</string>
+    <string name="settings_widgets_live_wallpaper_summary">トップ画面の背景アニメーションをライブ壁紙に設定する</string>
 </resources>
