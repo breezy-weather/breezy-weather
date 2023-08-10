@@ -12,6 +12,10 @@ Improvements to the error handling will be worked on for next major version.
 - Change location list icon to use multiple place points instead of a bookmark (for "saved" locations)
 - Fix clock icon tint on Android versions < 7.0
 
+**Translations**
+- Latvian translation added (thanks Eduards Lusts!), only app name translated for the moment
+- Translations updated
+
 
 # Version 4.5.3-beta
 

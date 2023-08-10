@@ -48,6 +48,7 @@ enum class Language(
     FRENCH("french", Locale("fr")),
     INDONESIAN("indonesian", Locale("in")),
     ITALIAN("italian", Locale("it")),
+    LATVIAN("latvian", Locale("lv")),
     LITHUANIAN("lithuanian", Locale("lt")),
     HUNGARIAN("hungarian", Locale("hu")),
     DUTCH("dutch", Locale("nl")),
@@ -131,6 +132,7 @@ enum class Language(
             "french" -> FRENCH
             "indonesian" -> INDONESIAN
             "italian" -> ITALIAN
+            "latvian" -> LATVIAN
             "lithuanian" -> LITHUANIAN
             "hungarian" -> HUNGARIAN
             "dutch" -> DUTCH
