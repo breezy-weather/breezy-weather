@@ -67,7 +67,7 @@
     <string name="wind_strength_10">狂风</string>
     <string name="wind_strength_11">暴风</string>
     <string name="wind_strength_12">台风/飓风</string>
-    <string name="wind_direction_short_variable">无风向</string>
+    <string name="wind_direction_short_variable">风向不定</string>
     <string name="wind_direction_short_N">北风</string>
     <string name="wind_direction_short_NE">东北风</string>
     <string name="wind_direction_short_E">东风</string>
@@ -103,7 +103,7 @@
     <string name="precipitation_forecast">降水预报</string>
     <string name="air_quality">空气质量</string>
     <string name="allergen">过敏原</string>
-    <string name="details">详情数据</string>
+    <string name="details">详细数据</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
     <string name="common_weather_text_mainly_clear">基本晴朗</string>
@@ -425,7 +425,7 @@
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
-    <string name="alerts_to_follow">有新的警报，点击此处查看。</string>
+    <string name="alerts_to_follow">有新的预警，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_source">选择天气数据源</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
