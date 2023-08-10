@@ -9,6 +9,7 @@ Improvements to the error handling will be worked on for next major version.
 **Other fixes**
 - Fix air quality data disappearing when allergen set as secondary source (but not air quality), and allergen data disappearing when air quality set as secondary source (but not allergen)
 - Day / Night mode for locations has been moved to a new preference. It will also apply to some dialogs of the location now (others are still WIP).
+- Change location list icon to use multiple place points instead of a bookmark (for "saved" locations)
 
 
 # Version 4.5.3-beta
