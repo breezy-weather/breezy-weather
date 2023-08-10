@@ -36,7 +36,6 @@ jobs:
           echo "breezy.mf.jwtKey=$MF_WSFT_JWT_KEY" >> local.properties
           echo "breezy.mf.key=$MF_WSFT_KEY" >> local.properties
           echo "breezy.openweather.key=$OPEN_WEATHER_KEY" >> local.properties
-          echo "breezy.pirateweather.key=$PIRATE_WEATHER_KEY" >> local.properties
         env:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
           ATMO_AURA_KEY: ${{ secrets.ATMO_AURA_KEY }}
@@ -45,7 +44,6 @@ jobs:
           MF_WSFT_JWT_KEY: ${{ secrets.MF_WSFT_JWT_KEY }}
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
-          PIRATE_WEATHER_KEY: ${{ secrets.PIRATE_WEATHER_KEY }}
 
       - uses: gradle/gradle-command-action@v2
         with:

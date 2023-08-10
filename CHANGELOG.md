@@ -1,4 +1,10 @@
-# Next version
+# Version 4.5.4-beta
+
+Some users reported issues with API limit reached, please check if you use OpenWeather or Pirate Weather as your main or secondary weather source!
+Improvements to the error handling will be worked on for next major version.
+
+**Weather sources**
+- [PirateWeather] Bundled API key removed as monthly limit was reached on the 10th of the month (meaning it can’t be used again before Sep 1st) and we don’t want make false hopes to users by showing it in the list of available sources.
 
 **Other fixes**
 - Fix air quality data disappearing when allergen set as secondary source (but not air quality), and allergen data disappearing when air quality set as secondary source (but not allergen)
