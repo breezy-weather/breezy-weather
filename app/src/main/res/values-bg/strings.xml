@@ -3,7 +3,7 @@
     <string name="precipitation_forecast">Прогноза за валежи</string>
     <string name="air_quality">Качество на въздуха</string>
     <string name="allergen">Алергени</string>
-    <string name="alerts_to_follow">Сигнали, които да следвате, докоснете тук, за да ги видите.</string>
+    <string name="alerts_to_follow">Предстоящи сигнали, докоснете тук, за да ги видите.</string>
     <string name="short_yesterday">Вчера</string>
     <string name="short_monday">Пн</string>
     <string name="short_tuesday">Вт</string>
@@ -590,4 +590,5 @@
     <string name="weather_minutely_data_by">Поминутни данни за валежите от $</string>
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от $</string>
     <string name="wind_gusts">Пориви вятър</string>
+    <string name="minutely_precipitations">Валежи по минутно</string>
 </resources>
