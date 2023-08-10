@@ -136,7 +136,7 @@
     <string name="location_message_permission_background_missing">Липсва разрешение за достъп до местоположение във фонов режим</string>
     <string name="location_dialog_failed_to_locate_title">Не можете да получите правилно местоположението\?</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Активиране на информация за местоположение</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Изберете доставчик на местоположение</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Изберете източник на местоположение</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “$”</string>
     <string name="location_search_placeholder">Търсене на местоположение…</string>
     <string name="location_current_not_found_yet">Текущото местоположение все още не е намерено…</string>
@@ -197,20 +197,20 @@
     <string name="air_quality_so2_info_consequences">Излагането на SO₂ е свързано с приемането в болница за астма и посещенията в спешното отделение.</string>
     <string name="weather_refresh_skipped_already_recently_updated">Вече наскоро актуализиран</string>
     <string name="weather_api_limit_reached_content">За да заобиколите ограничението, добавете свой собствен API ключ.</string>
-    <string name="weather_api_unauthorized_content">При някои доставчици на времето трябва да предоставите свой собствен API ключ. Ако вече сте предоставили такъв, моля, проверете повторно API ключа, който сте предоставили.</string>
+    <string name="weather_api_unauthorized_content">При някои източници на данни за времето трябва да предоставите свой собствен API ключ. Ако вече сте предоставили такъв, моля, проверете повторно API ключа, който сте предоставили.</string>
     <string name="weather_api_key_required_missing_title">Липсва необходимият API ключ</string>
-    <string name="weather_api_key_required_missing_content">За да използвате този доставчик, трябва да предоставите API ключ.</string>
+    <string name="weather_api_key_required_missing_content">За да използвате този източник, трябва да предоставите API ключ.</string>
     <string name="weather_source_accu_preference_days_5">5 дена</string>
     <string name="weather_source_accu_preference_days_10">10 дена</string>
     <string name="weather_source_accu_preference_hours_12">12 часа</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="location_none_added_yet_instructions">Все още няма добавено местоположение. Моля, докоснете иконата за търсене, за да добавите ръчно местоположение, или добавете текущото си местоположение от плаващия бутон.</string>
-    <string name="location_search_weather_source">Доставчик на времето</string>
-    <string name="location_search_change_weather_source">Промяна на доставчика на времето</string>
+    <string name="location_search_weather_source">Източник на времето</string>
+    <string name="location_search_change_weather_source">Промяна на източника на времето</string>
     <string name="location_message_added">Местоположението е добавено</string>
     <string name="location_swipe_to_delete">Можете да плъзнете наляво, за да изтриете този елемент</string>
     <string name="location_message_failed_to_locate">Неуспешно намиране на текущото местоположение</string>
-    <string name="location_message_reverse_geocoding_failed">Доставчикът на прогнозата за времето не успя да намери съответстващо местоположение</string>
+    <string name="location_message_reverse_geocoding_failed">Източникът на прогнозата за времето не успя да намери съответстващо местоположение</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
     <string name="location_search_no_results">$1 не може да намери $2</string>
     <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг доставчик на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
@@ -590,5 +590,5 @@
     <string name="weather_minutely_data_by">Поминутни данни за валежите от $</string>
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от $</string>
     <string name="wind_gusts">Пориви вятър</string>
-    <string name="minutely_precipitations">Валежи по минутно</string>
+    <string name="minutely_precipitations">Валежи поминутно</string>
 </resources>
