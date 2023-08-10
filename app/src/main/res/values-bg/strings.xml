@@ -183,7 +183,7 @@
     <string name="location_resident_dialog">Breezy Weather автоматично ще показва и скрива местните градове въз основа на вашето текущо местоположение.
 \nНапример, можете да зададете родния си град като град на пребиваване. Можете да проверите времето в родния си град, докато пътувате. Когато се приберете у дома, времето в родния ви град ще бъде скрито и заменено от времето за текущото ви местоположение.</string>
     <string name="location_service_native">Вградено API</string>
-    <string name="action_choose_weather_source">Изберете доставчик на времето</string>
+    <string name="action_choose_weather_source">Изберете източник на времето</string>
     <string name="action_add_new_location">Добавете ново местоположение</string>
     <string name="action_preview">Преглед</string>
     <string name="action_app_store">Магазин за приложения</string>
@@ -213,7 +213,7 @@
     <string name="location_message_reverse_geocoding_failed">Източникът на прогнозата за времето не успя да намери съответстващо местоположение</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
     <string name="location_search_no_results">$1 не може да намери $2</string>
-    <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг доставчик на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
+    <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг източник на данните на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
     <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
     <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
     <string name="weather_updated_in_background">Актуализиран във фонов режим</string>
@@ -351,7 +351,7 @@
     <string name="settings_background_updates_refresh_30min">Половин час</string>
     <string name="settings_background_updates_refresh_6h">6 часа</string>
     <string name="settings_location_access_background_summaryOn">Активирано. Приложението ще може да опреснява данните за времето за текущото ви местоположение във фонов режим.</string>
-    <string name="settings_weather_sources">Доставчици на прогноза за времето</string>
+    <string name="settings_weather_sources">Източници на прогноза за времето</string>
     <string name="widget_live_wallpaper_day_night_type">Часово време</string>
     <string name="settings_background_updates">Актуализации на заден план</string>
     <string name="settings_background_updates_refresh_title">Честота на обновяване</string>
@@ -363,7 +363,7 @@
     <string name="settings_background_updates_section_troubleshoot">Отстраняване на неизправности</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Настройките на устройството не можаха да бъдат отворени.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Специфични инструкции от производителя</string>
-    <string name="settings_location_summary">Настройки на доставчиците на местоположение</string>
+    <string name="settings_location_summary">Настройки на услугите за местоположение</string>
     <string name="settings_location_access_permission_already_granted">Разрешението вече е дадено</string>
     <string name="settings_section_general">Основни</string>
     <string name="settings_background_updates_summary">Честота на опресняване, отстраняване на неизправности</string>
@@ -386,7 +386,7 @@
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
     <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето, default location search source</string>
-    <string name="settings_weather_sources_current_location">Доставчик на прогноза за текущото местоположение</string>
+    <string name="settings_weather_sources_current_location">Източник на прогноза за текущото местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
     <string name="settings_appearance">Изглед</string>
@@ -580,7 +580,7 @@
     <string name="allergen_level_5">Много високо</string>
     <string name="location_resident_location">Местоположение на пребиваване</string>
     <string name="location_resident_location_summaryOff">Деактивирано. Местоположението е винаги налично.</string>
-    <string name="settings_weather_source">Доставчик на времето</string>
+    <string name="settings_weather_source">Източник на прогноза за времето</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
     <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
@@ -591,4 +591,18 @@
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от $</string>
     <string name="wind_gusts">Пориви вятър</string>
     <string name="minutely_precipitations">Валежи поминутно</string>
+    <string name="settings_weather_sources_default_location_search">Източник за търсене на местоположение по подразбиране</string>
+    <string name="about_privacy_policy">Политика за поверителност</string>
+    <string name="weather_update_not_yet_available_title">Актуализацията все още не е налична</string>
+    <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
+    <string name="unit_bf">Bf</string>
+    <string name="unit_bf_voice">по скалата на Бофорт</string>
+    <string name="about_contact">Контакт</string>
+    <string name="weather_data_already_up_to_date">Вече е актуално</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather е безплатно приложение и може да предостави достъп само до безплатното ниво за избрания източник за времето. За да позволим на възможно най-много потребители да се възползват от този достъп и да избегнем ограниченията на заявките, ви молим да използвате правомерно този източник — т.е. да не опреснявате, ако източникът е бил актуализиран преди по-малко от $ минути. Можете да премахнете това ограничение, като регистрирате свой собствен API ключ и го добавите в настройките.</string>
+    <string name="location_resident_location_summaryOn">Активирано. Скрит, когато в рамките на $ от текущото местоположение.</string>
+    <string name="about_dependencies">Зависимости</string>
+    <string name="action_save">Запази</string>
+    <string name="settings_weather_source_main">Основен източник</string>
+    <string name="settings_weather_sources_per_location_summary">Персонализирайте източниците на данни за времето за това местоположение</string>
 </resources>
