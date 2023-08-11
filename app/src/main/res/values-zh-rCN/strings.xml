@@ -408,7 +408,7 @@
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
-    <string name="unit_celsius">℃</string>
+    <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
     <string name="about_matrix">Matrix 服务器</string>
@@ -429,7 +429,7 @@
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_source">选择天气数据源</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="unit_fahrenheit">℉</string>
+    <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
     <string name="settings_weather_sources_current_location">当前位置的天气数据源</string>
