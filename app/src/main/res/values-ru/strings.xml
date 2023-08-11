@@ -28,7 +28,7 @@
     <string name="cloud_cover">Облачность</string>
     <string name="ceiling">Высота облачного покрова</string>
     <string name="settings_icon_packs_get_more">Ещё</string>
-    <string name="settings_icon_packs_get_more_store">Получите больше в маркете</string>
+    <string name="settings_icon_packs_get_more_store">Получите больше в магазине приложений</string>
     <string name="settings_icon_packs_get_more_github">Получите больше на GitHub</string>
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
@@ -201,7 +201,7 @@
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
     <string name="settings_location_service">Источник местоположения</string>
     <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
-    <string name="settings_appearance_icon_pack_title">Иконки</string>
+    <string name="settings_appearance_icon_pack_title">Набор иконок</string>
     <string name="settings_appearance">Вид</string>
     <string name="settings_main_gravity_sensor_switch">Датчик гравитации</string>
     <string name="settings_appearance_language_title">Язык</string>
@@ -641,5 +641,5 @@
     <string name="unit_bf_voice">на шкале Бофорта</string>
     <string name="weather_update_not_yet_available_content">Breezy Weather — это бесплатное приложение, которое может предоставить доступ только к бесплатному уровню для выбранного источника погоды. Чтобы позволить как можно большему количеству пользователей воспользоваться этим доступом и избежать ограничений скорости, мы просим вас добросовестно использовать этот источник — то есть не обновлять, если источник был обновлен менее $ минут назад. Вы можете снять это ограничение, зарегистрировав собственный API-ключ и добавив его в настройках.</string>
     <string name="unit_bf">Бф</string>
-    <string name="settings_appearance_dark_mode_locations_title">Дневная / Ночная тема для местоположения</string>
+    <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
 </resources>
