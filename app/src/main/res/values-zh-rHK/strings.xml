@@ -239,7 +239,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">動態壁紙</string>
     <string name="settings_location_service">位置服務</string>
-    <string name="settings_appearance_dark_mode_title">暗色模式</string>
+    <string name="settings_appearance_dark_mode_title">深色模式</string>
     <string name="settings_appearance">外觀</string>
     <string name="settings_appearance_icon_pack_title">圖示套件</string>
     <string name="settings_main_gravity_sensor_switch">重力感應</string>
@@ -256,14 +256,14 @@
     <string name="location_service_native">原生接口</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無卡片</string>
-    <string name="settings_color_day_night">白天/夜晚 自動切換</string>
+    <string name="settings_color_day_night">自動</string>
     <string name="settings_color_day_always">總是白天</string>
     <string name="settings_color_night_always">總是夜晚</string>
-    <string name="settings_color_light">亮色</string>
-    <string name="settings_color_light_always">總是亮色</string>
+    <string name="settings_color_light">淺色</string>
+    <string name="settings_color_light_always">總是淺色</string>
     <string name="settings_color_grey">灰色</string>
-    <string name="settings_color_dark">暗色</string>
-    <string name="settings_color_dark_always">總是暗色</string>
+    <string name="settings_color_dark">深色</string>
+    <string name="settings_color_dark_always">總是深色</string>
     <string name="settings_background_updates_refresh_30min">0.5小時</string>
     <string name="settings_background_updates_refresh_1h">1小時</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5小時</string>
@@ -504,10 +504,10 @@
     <string name="notification_channel_alerts">預警</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="weather_message_invalid_location">位置無效，請刪除並重新添加</string>
-    <string name="weather_allergen_data_by">過敏原數據來源 $</string>
-    <string name="weather_minutely_data_by">每分鐘降水量數據來源 $</string>
+    <string name="weather_allergen_data_by">過敏原資料由 $</string>
+    <string name="weather_minutely_data_by">每分鐘降水量資料由 $</string>
     <string name="weather_message_secondary_data_refresh_failed">輔助天氣源的天氣數據刷新失敗</string>
-    <string name="weather_alert_data_by">預警數據來源 $</string>
+    <string name="weather_alert_data_by">預警資料由 $</string>
     <string name="weather_air_quality_and_allergen_data_by">空氣品質和過敏原資料由 $</string>
     <string name="wind_direction_short_SW">西南風</string>
     <string name="wind_direction_short_W">西風</string>
@@ -521,7 +521,7 @@
     <string name="allergen_level_3">中</string>
     <string name="allergen_level_4">高</string>
     <string name="allergen_level_5">甚高</string>
-    <string name="weather_data_by">數據來源 $</string>
+    <string name="weather_data_by">資料由 $</string>
     <string name="weather_air_quality_data_by">空氣品質資料由 $</string>
     <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 定位均被使用。</string>
@@ -643,5 +643,5 @@
     <string name="unit_bf">蒲福風級</string>
     <string name="unit_bf_voice">蒲福風級</string>
     <string name="weather_update_not_yet_available_content">Breezy Weather 是一款免費應用程序，只能提供對所選天氣源免費套餐的訪問。為了讓盡可能多的用戶受益於此訪問並避免速率限制，我們要求您公平使用此數據源 — 即，如果數據源的更新時間低於 $ 分鐘則不進行刷新。您可以通過註冊自己的 API 密鑰並將其添加到設定中來解除此限制。</string>
-    <string name="settings_appearance_dark_mode_locations_title">跟隨定位的 白天/夜晚 模式</string>
+    <string name="settings_appearance_dark_mode_locations_title">跟隨日出日落的深色模式</string>
 </resources>
