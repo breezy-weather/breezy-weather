@@ -30,7 +30,7 @@
     <string name="settings_icon_packs_get_more">獲取更多</string>
     <string name="settings_icon_packs_get_more_store">從應用商店獲取更多</string>
     <string name="settings_icon_packs_get_more_github">從GitHub獲取更多</string>
-    <string name="action_refresh">刷新數據</string>
+    <string name="action_refresh">刷新</string>
     <string name="action_restart">重啟</string>
     <string name="action_edit">編輯</string>
     <string name="of_clock">時</string>
@@ -89,7 +89,7 @@
     <string name="precipitation_forecast">降水預報</string>
     <string name="air_quality">空氣品質</string>
     <string name="allergen">過敏原</string>
-    <string name="details">詳情數據</string>
+    <string name="details">詳情資料</string>
     <string name="ephemeris">日月升落</string>
     <string name="action_next">下一步</string>
     <string name="action_done">完成</string>
@@ -110,27 +110,27 @@
     <!-- feedback. -->
     <string name="notification_location_in_background">在背景中定位</string>
     <string name="dialog_permissions_location_title">取得位置資訊</string>
-    <string name="dialog_permissions_location_content">Breezy Weather 需要在前景或背景中收集您的位置資訊，以提供您當前位置的天氣數據。為此，我們將請求一些權限。您的位置資訊將僅用於獲取您當前位置的天氣數據。如果您不想分享您的位置資訊，您可以拒絕這些要求，並在管理頁面中手動設定您的位置。</string>
+    <string name="dialog_permissions_location_content">Breezy Weather 需要在前景或背景中收集您的位置資訊，以提供您當前位置的天氣資料。為此，我們將請求一些權限。您的位置資訊將僅用於獲取您當前位置的天氣資料。如果您不想分享您的位置資訊，您可以拒絕這些要求，並在管理頁面中手動設定您的位置。</string>
     <string name="dialog_permissions_location_background_title">在背景中存取位置</string>
-    <string name="dialog_permissions_location_background_content">為了允許應用在背景中存取位置資訊，以便我們能夠感知位置變化並為您提供有效的天氣數據，請將位置存取設定為「始終允許」。</string>
+    <string name="dialog_permissions_location_background_content">為了允許應用在背景中存取位置資訊，以便我們能夠感知位置變化並為您提供有效的天氣資料，請將位置存取設定為「始終允許」。</string>
     <string name="location_message_failed_to_locate">無法找到當前位置</string>
-    <string name="weather_message_data_refresh_failed">天氣數據刷新失敗</string>
+    <string name="weather_message_data_refresh_failed">天氣資料刷新失敗</string>
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">檢查位置權限</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">啟用位置信息</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">啟用位置資訊</string>
     <string name="location_dialog_failed_to_locate_action_select_source">選擇定位服務</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動添加位置並刪除“$”</string>
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
     <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
     <string name="widget_label_hide_subtitle">隱藏副標題</string>
-    <string name="widget_label_subtitle_data">副標題數據</string>
+    <string name="widget_label_subtitle_data">副標題資料</string>
     <string name="widget_label_black_text">文字顔色</string>
     <string name="widget_label_text_size">文字尺寸</string>
     <string name="widget_label_clock_font">時鐘字體</string>
     <string name="widget_label_hide_lunar">隱藏陰曆</string>
     <string name="widget_label_align_end">右對齊</string>
-    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。
+    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣資料，可以通過使用$來引用相應關鍵字來實現。
 \n
 \n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為天晴”。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
@@ -181,7 +181,7 @@
     <string name="location_current_not_found_yet">尚未找到當前位置…</string>
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
     <string name="notification_running_in_background">正在背景執行，以保持更新</string>
-    <string name="notification_updating_weather_data">正在更新天氣數據 (%1$d/%2$d)</string>
+    <string name="notification_updating_weather_data">正在更新天氣資料 (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">在背景中進行更新</string>
     <string name="notification_precipitation_today">今日可能出現降水。</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水。</string>
@@ -376,8 +376,8 @@
     <string name="settings_widgets_notification_style_title">風格</string>
     <string name="message_network_unavailable">網絡不可用</string>
     <string name="settings_background_updates">背景更新</string>
-    <string name="settings_main_section_displayed_data">顯示數據</string>
-    <string name="settings_main_header_details_title">顯示在頂部的詳情數據</string>
+    <string name="settings_main_section_displayed_data">顯示的資料</string>
+    <string name="settings_main_header_details_title">顯示在頂部的詳情資料</string>
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_yesterday_alert_lines_in_trends">概覽中的 昨日/預警 橫線</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
@@ -394,7 +394,7 @@
     <string name="settings_location_access_permission_already_granted">已授予權限</string>
     <string name="settings_location_access_switch_title">位置存取</string>
     <string name="settings_location_access_background_summaryOff">請啟用「始終允許」，以便在背景中更新您的當前位置。</string>
-    <string name="settings_location_access_background_summaryOn">已啟用。應用程式將能夠在背景中更新您當前位置的天氣數據。</string>
+    <string name="settings_location_access_background_summaryOn">已啟用。應用程式將能夠在背景中更新您當前位置的天氣資料。</string>
     <string name="settings_widgets_section_notification_widget">通知欄部件</string>
     <string name="settings_widgets_notification_widget_title">通知欄部件</string>
     <string name="settings_widgets_notification_persistent_switch">固定</string>
@@ -446,7 +446,7 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">次日天氣預報通知時間</string>
     <string name="settings_widgets">小部件 &amp; 動態壁紙</string>
     <string name="message_server_timeout">請求超時</string>
-    <string name="message_parsing_error_title">無法解析天氣數據</string>
+    <string name="message_parsing_error_title">無法解析天氣資料</string>
     <string name="settings_location_access_switch_summaryOff">如果您希望能夠將當前位置添加為位置，請允許該權限。</string>
     <string name="settings_location_access_background_title">在背景中的位置存取</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">電池電量低時停用刷新</string>
@@ -504,11 +504,11 @@
     <string name="notification_channel_alerts">預警</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="weather_message_invalid_location">位置無效，請刪除並重新添加</string>
-    <string name="weather_allergen_data_by">過敏原數據來源 $</string>
-    <string name="weather_minutely_data_by">每分鐘降水量數據來源 $</string>
-    <string name="weather_message_secondary_data_refresh_failed">輔助天氣來源的天氣數據刷新失敗</string>
-    <string name="weather_alert_data_by">預警數據來源 $</string>
-    <string name="weather_air_quality_and_allergen_data_by">空氣品質和過敏原數據來源 $</string>
+    <string name="weather_allergen_data_by">過敏原資料來源 $</string>
+    <string name="weather_minutely_data_by">每分鐘降水量資料來源 $</string>
+    <string name="weather_message_secondary_data_refresh_failed">輔助天氣來源的天氣資料刷新失敗</string>
+    <string name="weather_alert_data_by">預警資料來源 $</string>
+    <string name="weather_air_quality_and_allergen_data_by">空氣品質和過敏原資料來源 $</string>
     <string name="wind_direction_short_SW">西南風</string>
     <string name="wind_direction_short_W">西風</string>
     <string name="wind_strength">風力強度</string>
@@ -521,8 +521,8 @@
     <string name="allergen_level_3">中</string>
     <string name="allergen_level_4">高</string>
     <string name="allergen_level_5">甚高</string>
-    <string name="weather_data_by">數據來源 $</string>
-    <string name="weather_air_quality_data_by">空氣品質數據來源 $</string>
+    <string name="weather_data_by">資料來源 $</string>
+    <string name="weather_air_quality_data_by">空氣品質資料來源 $</string>
     <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 定位均被使用。</string>
     <string name="settings_weather_source">天氣資料來源</string>
