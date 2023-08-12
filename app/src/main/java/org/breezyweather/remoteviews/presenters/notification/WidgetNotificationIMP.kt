@@ -184,7 +184,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     )
                 )
             }
-            if (current.airQuality != null && current.airQuality.isValid) {
+            if (current.airQuality != null && current.airQuality.isIndexValid) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
                     context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context)

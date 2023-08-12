@@ -1,9 +1,10 @@
 # Version 4.6.0-beta (next version)
 
 **Improvements**
-- App will now tell you which source is failing
-- App is now able to show multiple errors at the same time (for example, if two secondary sources are failing)
-- Logo got a refresh
+- When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform in case you need to take action.
+- App will now tell you which source is failing.
+- App is now able to show multiple errors at the same time (for example, if two secondary sources are failing).
+- Logo got a refresh.
 
 **Other fixes**
 - Add a third place to the location list icon to not make it confusing with “itinerary” icon

@@ -75,11 +75,11 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.addAll(getHalfDayOptionalModelList(context, daily.night))
         }
         mModelList.add(Line())
-        if (daily.airQuality != null && daily.airQuality.isValid) {
+        if (daily.airQuality != null && daily.airQuality.isIndexValid) {
             mModelList.add(Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)))
             mModelList.add(DailyAirQuality(daily.airQuality))
         }
-        if (daily.allergen?.isValid == true) {
+        if (daily.allergen?.isIndexValid == true) {
             mModelList.add(Title(R.drawable.ic_allergy, context.getString(R.string.allergen)))
             mModelList.add(DailyPollen(daily.allergen))
         }

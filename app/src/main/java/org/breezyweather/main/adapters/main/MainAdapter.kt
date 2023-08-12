@@ -75,7 +75,7 @@ class MainAdapter(
                     continue
                 }
                 if (c === CardDisplay.CARD_ALLERGEN
-                    && (weather.dailyForecast.isEmpty() || weather.dailyForecast[0].allergen == null || !weather.dailyForecast[0].allergen!!.isValid)
+                    && (weather.dailyForecast.isEmpty() || weather.dailyForecast[0].allergen == null || !weather.dailyForecast[0].allergen!!.isIndexValid)
                 ) {
                     continue
                 }

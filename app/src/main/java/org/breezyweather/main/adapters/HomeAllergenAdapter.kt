@@ -46,7 +46,7 @@ open class HomeAllergenAdapter(
         holder.onBindView(location, location.weather!!.dailyForecast[position])
     }
 
-    override fun getItemCount() = location.weather?.dailyForecast?.filter { it.allergen?.isValid == true }?.size ?: 0
+    override fun getItemCount() = location.weather?.dailyForecast?.filter { it.allergen?.isIndexValid == true }?.size ?: 0
 }
 
 class HomePollenViewHolder internal constructor(

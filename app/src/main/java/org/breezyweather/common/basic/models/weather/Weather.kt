@@ -47,10 +47,10 @@ data class Weather(
         }
 
     val validAirQuality: AirQuality?
-        get() = if (current?.airQuality != null && current.airQuality.isValid) {
+        get() = if (current?.airQuality != null && current.airQuality.isIndexValid) {
             current.airQuality
         } else if (dailyForecast.getOrNull(0)?.airQuality != null &&
-            dailyForecast[0].airQuality!!.isValid) {
+            dailyForecast[0].airQuality!!.isIndexValid) {
             dailyForecast[0].airQuality
         } else null
 }

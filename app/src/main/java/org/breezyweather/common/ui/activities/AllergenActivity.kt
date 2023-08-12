@@ -95,7 +95,7 @@ class AllergenActivity : GeoActivity() {
                     modifier = Modifier.fillMaxHeight(),
                     contentPadding = it,
                 ) {
-                    items(weather.dailyForecast.filter { d -> d.allergen?.isValid == true }) { daily ->
+                    items(weather.dailyForecast.filter { d -> d.allergen?.isIndexValid == true }) { daily ->
                         daily.allergen?.let { allergen ->
                             Material3CardListItem(
                                 modifier = Modifier.fillMaxWidth()

@@ -87,7 +87,11 @@ class AirQuality(
         }
     }
 
-    val isValid: Boolean
+    val isIndexValid: Boolean
         get() = getIndex() != null
+
+    val isValid: Boolean
+        get() = pM25 != null || pM10 != null || sO2 != null
+                || nO2 != null || o3 != null || cO != null
 
 }

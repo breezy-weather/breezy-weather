@@ -42,8 +42,10 @@ import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
+import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.LocationSearchSource
@@ -311,6 +313,9 @@ class RefreshHelper @Inject constructor(
             }
 
             // SECONDARY SOURCES
+            val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
+                .getFormattedDate(location.timeZone, "yyyy-MM-dd")
+                .toDateNoHour(location.timeZone)!!
             val errors = mutableListOf<RefreshError>()
             val secondaryWeatherWrapper = if (secondarySources.isNotEmpty()) {
                 val secondarySourceCalls = mutableMapOf<String, SecondaryWeatherWrapper?>()
@@ -349,16 +354,16 @@ class RefreshHelper @Inject constructor(
                  */
                 SecondaryWeatherWrapper(
                     airQuality = if (!location.airQualitySource.isNullOrEmpty() && location.airQualitySource != location.weatherSource) {
-                        secondarySourceCalls[location.airQualitySource]?.airQuality
+                        secondarySourceCalls[location.airQualitySource]?.airQuality ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
                     allergen = if (!location.allergenSource.isNullOrEmpty() && location.allergenSource != location.weatherSource) {
-                        secondarySourceCalls[location.allergenSource]?.allergen
+                        secondarySourceCalls[location.allergenSource]?.allergen ?: getAllergenWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
                     minutelyForecast = if (!location.minutelySource.isNullOrEmpty() && location.minutelySource != location.weatherSource) {
-                        secondarySourceCalls[location.minutelySource]?.minutelyForecast
+                        secondarySourceCalls[location.minutelySource]?.minutelyForecast ?: getMinutelyFromWeather(location.weather)
                     } else null,
                     alertList = if (!location.alertSource.isNullOrEmpty() && location.alertSource != location.weatherSource) {
-                        secondarySourceCalls[location.alertSource]?.alertList
+                        secondarySourceCalls[location.alertSource]?.alertList ?: getAlertsFromWeather(location.weather)
                     } else null
                 )
             } else null

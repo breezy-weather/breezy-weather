@@ -103,6 +103,10 @@ class Allergen(
         }
     }
 
-    val isValid: Boolean
+    val isIndexValid: Boolean
         get() = getIndex() != null
+
+    val isValid: Boolean
+        get() = tree != null || alder != null || birch != null || grass != null
+            || olive != null || ragweed != null || mugwort != null || mold != null
 }

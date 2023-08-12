@@ -93,7 +93,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             )
             setSubText(subtitle.toString())
             setContentTitle(contentTitle.toString())
-            if (current.airQuality != null && current.airQuality.isValid) {
+            if (current.airQuality != null && current.airQuality.isIndexValid) {
                 setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context))
             } else if (current.wind?.getStrength(context) != null) {
                 setContentText(context.getString(R.string.wind) + " - " + current.wind.getStrength(context))

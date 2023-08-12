@@ -19,6 +19,7 @@ package org.breezyweather.sources
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
@@ -26,12 +27,16 @@ import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.Hourly
+import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.MoonPhase
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
+import org.breezyweather.common.basic.wrappers.AllergenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
@@ -61,6 +66,75 @@ import kotlin.math.sin
  * for file X. Basically, your app can become proprietary, however this file will have to
  * always stay free and open source if you add any modification to it.
  */
+
+/**
+ * MERGE DATABASE DATA WITH REFRESHED WEATHER DATA
+ * Useful to keep forecast history
+ */
+
+/**
+ * Get an air quality wrapper object to use from an old weather object
+ * @param weather Old weather data
+ * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
+ */
+fun getAirQualityWrapperFromWeather(
+    weather: Weather?,
+    startDate: Date
+): AirQualityWrapper? {
+    if (weather == null) return null
+    val hourlyAirQuality = weather.hourlyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
+    val dailyAirQuality = weather.dailyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
+    if (hourlyAirQuality.isEmpty() && dailyAirQuality.isEmpty()) return null
+
+    return AirQualityWrapper(
+        dailyForecast = dailyAirQuality.associate { it.date to it.airQuality!! },
+        hourlyForecast = hourlyAirQuality.associate { it.date to it.airQuality!! }
+    )
+}
+
+/**
+ * Get an allergen wrapper object to use from an old weather object
+ * @param weather Old weather data
+ * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
+ */
+fun getAllergenWrapperFromWeather(
+    weather: Weather?,
+    startDate: Date
+): AllergenWrapper? {
+    if (weather == null) return null
+    val dailyAllergen = weather.dailyForecast.filter { it.date >= startDate && it.allergen?.isValid == true }
+    if (dailyAllergen.isEmpty()) return null
+
+    return AllergenWrapper(
+        dailyForecast = dailyAllergen.associate { it.date to it.allergen!! }
+    )
+}
+
+/**
+ * Get a minutely list to use from an old weather object.
+ * Only forecast data is kept (no minutely from the past)
+ * @param weather Old weather data
+ */
+fun getMinutelyFromWeather(
+    weather: Weather?
+): List<Minutely>? {
+    if (weather == null) return null
+    val now = Date()
+    return weather.minutelyForecast.filter { it.date >= now }
+}
+
+/**
+ * Get an alert list to use from an old weather object.
+ * Only alerts still valid (= not in the past) is kept
+ * @param weather Old weather data
+ */
+fun getAlertsFromWeather(
+    weather: Weather?
+): List<Alert>? {
+    if (weather == null) return null
+    val now = Date()
+    return weather.alertList.filter { it.endDate == null || it.endDate >= now }
+}
 
 /**
  * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA

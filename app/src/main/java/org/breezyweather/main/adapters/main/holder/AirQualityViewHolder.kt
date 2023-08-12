@@ -96,7 +96,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
 
-        val isDaily = (location.weather?.current?.airQuality == null || !location.weather.current.airQuality.isValid)
+        val isDaily = (location.weather?.current?.airQuality == null || !location.weather.current.airQuality.isIndexValid)
         location.weather!!.validAirQuality?.let { airQuality ->
             mAqiIndex = airQuality.getIndex() ?: 0
             mEnable = true
