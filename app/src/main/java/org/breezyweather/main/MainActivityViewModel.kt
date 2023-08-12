@@ -31,7 +31,7 @@ import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.hasPermission
-import org.breezyweather.main.utils.RequestErrorType
+import org.breezyweather.common.source.RefreshError
 import org.breezyweather.main.utils.StatementManager
 import org.breezyweather.settings.SettingsManager
 import javax.inject.Inject
@@ -62,7 +62,7 @@ class MainActivityViewModel @Inject constructor(
     val indicator = _indicator.asStateFlow()
 
     val locationPermissionsRequest: MutableStateFlow<PermissionsRequest?> = MutableStateFlow(null)
-    val requestErrorType = BusLiveData<RequestErrorType?>(Handler(Looper.getMainLooper()))
+    val snackbarErrors = BusLiveData<List<RefreshError>>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
@@ -106,7 +106,7 @@ class MainActivityViewModel @Inject constructor(
         )
 
         locationPermissionsRequest.value = null
-        requestErrorType.setValue(null)
+        snackbarErrors.setValue(emptyList())
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
@@ -190,11 +190,9 @@ class MainActivityViewModel @Inject constructor(
      */
     private fun onUpdateResult(
         location: Location,
-        requestErrorTypeResult: RequestErrorType?
+        errors: List<RefreshError> = emptyList()
     ) {
-        if (requestErrorTypeResult != null) {
-            requestErrorType.postValue(requestErrorTypeResult)
-        }
+        snackbarErrors.postValue(errors)
 
         updateInnerData(location)
 
@@ -454,7 +452,7 @@ class MainActivityViewModel @Inject constructor(
 
     // impl.
 
-    override fun onCompleted(location: Location, requestErrorType: RequestErrorType?) {
-        onUpdateResult(location, requestErrorType)
+    override fun onCompleted(location: Location, errors: List<RefreshError>) {
+        onUpdateResult(location, errors)
     }
 }

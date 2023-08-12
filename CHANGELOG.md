@@ -1,3 +1,13 @@
+# Next version
+
+**New features**
+- App will now tell you which source is failing
+- App is now able to show multiple errors at the same time (for example, if two secondary sources are failing)
+
+**Other fixes**
+- Add a third place in the location list icon to not make it confusing with “itinerary” icon
+
+
 # Version 4.5.4-beta
 
 Some users reported issues with API limit reached, please check if you use OpenWeather or Pirate Weather as your main or secondary weather source!

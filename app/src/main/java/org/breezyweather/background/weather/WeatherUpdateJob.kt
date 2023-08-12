@@ -46,39 +46,23 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
-import kotlinx.serialization.MissingFieldException
-import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.bus.EventBus
-import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.ApiLimitReachedException
-import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.LocationException
-import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
-import org.breezyweather.common.exceptions.MissingPermissionLocationException
-import org.breezyweather.common.exceptions.NoNetworkException
-import org.breezyweather.common.exceptions.ParsingException
-import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
-import org.breezyweather.common.exceptions.SourceNotInstalledException
-import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.extensions.withIOContext
+import org.breezyweather.common.source.LocationResult
+import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.sources.LocationHelper
-import org.breezyweather.main.utils.RequestErrorType
+import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.sources.WeatherHelper
-import retrofit2.HttpException
+import org.breezyweather.sources.RefreshHelper
 import java.io.File
-import java.net.SocketTimeoutException
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
@@ -93,8 +77,7 @@ import java.util.concurrent.atomic.AtomicInteger
 class WeatherUpdateJob @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
-    private val locationHelper: LocationHelper,
-    private val weatherHelper: WeatherHelper
+    private val refreshHelper: RefreshHelper
 ) : CoroutineWorker(context, workerParams) {
 
 
@@ -209,56 +192,35 @@ class WeatherUpdateJob @AssistedInject constructor(
                                         skippedUpdates.add(location to context.getString(R.string.weather_refresh_skipped_already_recently_updated))
                                     } else {
                                         try {
-                                            val locationToProceed = try {
-                                                updateLocation(location)
-                                            } catch (e: Throwable) {
-                                                // If we failed to locate, let this silently fail
-                                                // and refresh weather with latest known position
-                                                if (location.isUsable) location else throw e
-                                            }
+                                            val locationResult = updateLocation(location)
 
-                                            val weather = updateWeather(locationToProceed)
-                                            newUpdates.add(location to locationToProceed.copy(weather = weather))
+                                            locationResult.errors.forEach {
+                                                val shortMessage = if (!it.source.isNullOrEmpty()) {
+                                                    "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
+                                                } else context.getString(it.error.shortMessage)
+                                                if (it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                                                    && it.error != RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING) {
+                                                    failedUpdates.add(location to shortMessage)
+                                                } else {
+                                                    skippedUpdates.add(location to shortMessage)
+                                                }
+                                            }
+                                            if (locationResult.location.isUsable
+                                                && !locationResult.location.needsGeocodeRefresh) {
+                                                val weatherResult = updateWeather(locationResult.location)
+                                                newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
+                                                weatherResult.errors.forEach {
+                                                    val shortMessage = if (!it.source.isNullOrEmpty()) {
+                                                        "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
+                                                    } else context.getString(it.error.shortMessage)
+                                                    failedUpdates.add(location to shortMessage)
+                                                }
+                                            }
                                         } catch (e: Throwable) {
-                                            val errorMessage = when (e) {
-                                                is NoNetworkException -> context.getString(RequestErrorType.NETWORK_UNAVAILABLE.shortMessage)
-                                                is HttpException -> {
-                                                    when (e.code()) {
-                                                        401, 403 -> context.getString(RequestErrorType.API_UNAUTHORIZED.shortMessage)
-                                                        409, 429 -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
-                                                        else -> {
-                                                            e.printStackTrace()
-                                                            if (e.message.isNullOrEmpty()) {
-                                                                context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                                            } else e.message
-                                                        }
-                                                    }
-                                                }
-                                                is ApiLimitReachedException -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
-                                                is SocketTimeoutException -> context.getString(RequestErrorType.SERVER_TIMEOUT.shortMessage)
-                                                is ApiKeyMissingException -> context.getString(RequestErrorType.API_KEY_REQUIRED_MISSING.shortMessage)
-                                                is UpdateNotAvailableYetException -> context.getString(RequestErrorType.UPDATE_NOT_YET_AVAILABLE.shortMessage)
-                                                is InvalidLocationException -> context.getString(RequestErrorType.INVALID_LOCATION.shortMessage)
-                                                is LocationException -> context.getString(RequestErrorType.LOCATION_FAILED.shortMessage)
-                                                is MissingPermissionLocationException -> context.getString(RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING.shortMessage)
-                                                is MissingPermissionLocationBackgroundException -> context.getString(RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING.shortMessage)
-                                                is ReverseGeocodingException -> context.getString(RequestErrorType.REVERSE_GEOCODING_FAILED.shortMessage)
-                                                is SecondaryWeatherException -> context.getString(RequestErrorType.SECONDARY_WEATHER_FAILED.shortMessage)
-                                                is MissingFieldException, is SerializationException, is ParsingException -> {
-                                                    e.printStackTrace()
-                                                    if (e.message.isNullOrEmpty()) {
-                                                        context.getString(RequestErrorType.PARSING_ERROR.shortMessage)
-                                                    } else e.message
-                                                }
-                                                is SourceNotInstalledException -> context.getString(RequestErrorType.SOURCE_NOT_INSTALLED.shortMessage)
-                                                else -> {
-                                                    e.printStackTrace()
-                                                    if (e.message.isNullOrEmpty()) {
-                                                        context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                                    } else e.message
-                                                }
-                                            }
-
+                                            e.printStackTrace()
+                                            val errorMessage = if (e.message.isNullOrEmpty()) {
+                                                context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                            } else e.message
                                             failedUpdates.add(location to errorMessage)
                                         }
                                     }
@@ -329,8 +291,8 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @param location the location to update.
      * @return location updated.
      */
-    private suspend fun updateLocation(location: Location): Location {
-        return locationHelper.getLocation(
+    private suspend fun updateLocation(location: Location): LocationResult {
+        return refreshHelper.getLocation(
             context,
             location,
             true
@@ -343,8 +305,8 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @param location the location to update.
      * @return weather.
      */
-    private suspend fun updateWeather(location: Location): Weather {
-        return weatherHelper.getWeather(
+    private suspend fun updateWeather(location: Location): WeatherResult {
+        return refreshHelper.getWeather(
             context,
             location
         )

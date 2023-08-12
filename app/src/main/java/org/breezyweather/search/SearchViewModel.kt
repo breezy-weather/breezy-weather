@@ -25,7 +25,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.main.utils.RequestErrorType
+import org.breezyweather.main.utils.RefreshErrorType
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,7 +45,7 @@ class SearchViewModel @Inject constructor(
             getApplication(),
             str,
             enabledSource.value
-        ) { result: Pair<List<Location>?, RequestErrorType?>?, _: Boolean ->
+        ) { result: Pair<List<Location>?, RefreshErrorType?>?, _: Boolean ->
             result?.second?.let { msg ->
                 msg.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(

@@ -33,61 +33,61 @@ import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.main.utils.RequestErrorType
+import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.settings.ConfigStore
-import org.breezyweather.sources.WeatherHelper
+import org.breezyweather.sources.RefreshHelper
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class SearchActivityRepository @Inject internal constructor(
     @ApplicationContext context: Context,
-    private val mWeatherHelper: WeatherHelper,
+    private val mRefreshHelper: RefreshHelper,
     private val mCompositeDisposable: CompositeDisposable
 ) {
     private val mConfig: ConfigStore = ConfigStore(context, PREFERENCE_SEARCH_CONFIG)
 
     fun searchLocationList(
         context: Context, query: String, enabledSource: String,
-        callback: (t: Pair<List<Location>?, RequestErrorType?>?, done: Boolean) -> Unit
+        callback: (t: Pair<List<Location>?, RefreshErrorType?>?, done: Boolean) -> Unit
     ) {
-        mWeatherHelper
+        mRefreshHelper
             .requestSearchLocations(context, query, enabledSource)
             .compose(SchedulerTransformer.create())
             .subscribe(ObserverContainer(mCompositeDisposable, object : DisposableObserver<List<Location>>() {
                 override fun onNext(t: List<Location>) {
-                    callback(Pair<List<Location>, RequestErrorType?>(t, null), true)
+                    callback(Pair<List<Location>, RefreshErrorType?>(t, null), true)
                 }
 
                 override fun onError(e: Throwable) {
-                    val requestErrorType = when (e) {
-                        is NoNetworkException -> RequestErrorType.NETWORK_UNAVAILABLE
+                    val refreshErrorType = when (e) {
+                        is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
                         is HttpException -> {
                             when (e.code()) {
-                                401, 403 -> RequestErrorType.API_UNAUTHORIZED
-                                409, 429 -> RequestErrorType.API_LIMIT_REACHED
+                                401, 403 -> RefreshErrorType.API_UNAUTHORIZED
+                                409, 429 -> RefreshErrorType.API_LIMIT_REACHED
                                 else -> {
                                     e.printStackTrace()
-                                    RequestErrorType.LOCATION_SEARCH_FAILED
+                                    RefreshErrorType.LOCATION_SEARCH_FAILED
                                 }
                             }
                         }
-                        is ApiLimitReachedException -> RequestErrorType.API_LIMIT_REACHED
-                        is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
-                        is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
-                        is UpdateNotAvailableYetException -> RequestErrorType.UPDATE_NOT_YET_AVAILABLE
+                        is ApiLimitReachedException -> RefreshErrorType.API_LIMIT_REACHED
+                        is SocketTimeoutException -> RefreshErrorType.SERVER_TIMEOUT
+                        is ApiKeyMissingException -> RefreshErrorType.API_KEY_REQUIRED_MISSING
+                        is UpdateNotAvailableYetException -> RefreshErrorType.UPDATE_NOT_YET_AVAILABLE
                         is MissingFieldException, is SerializationException, is ParsingException -> {
                             e.printStackTrace()
-                            RequestErrorType.PARSING_ERROR
+                            RefreshErrorType.PARSING_ERROR
                         }
-                        is LocationSearchException -> RequestErrorType.LOCATION_SEARCH_FAILED
+                        is LocationSearchException -> RefreshErrorType.LOCATION_SEARCH_FAILED
                         else -> {
                             e.printStackTrace()
-                            RequestErrorType.LOCATION_SEARCH_FAILED
+                            RefreshErrorType.LOCATION_SEARCH_FAILED
                         }
                     }
                     callback(
-                        Pair<List<Location>, RequestErrorType?>(emptyList(), requestErrorType),
+                        Pair<List<Location>, RefreshErrorType?>(emptyList(), refreshErrorType),
                         true
                     )
                 }

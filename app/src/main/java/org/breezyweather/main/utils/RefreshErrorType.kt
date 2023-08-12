@@ -23,7 +23,7 @@ import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
 import org.breezyweather.R
 
-enum class RequestErrorType(
+enum class RefreshErrorType(
     @StringRes val shortMessage: Int,
     val showDialogAction: ((activity: Activity) -> Unit)? = null,
     @StringRes val actionButtonMessage: Int = R.string.action_help
@@ -125,6 +125,9 @@ enum class RequestErrorType(
     // Weather-specific
     INVALID_LOCATION(
         shortMessage = R.string.weather_message_invalid_location
+    ),
+    UNSUPPORTED_FEATURE(
+        shortMessage = R.string.weather_message_unsupported_feature
     ),
     SECONDARY_WEATHER_FAILED(
         shortMessage = R.string.weather_message_secondary_data_refresh_failed

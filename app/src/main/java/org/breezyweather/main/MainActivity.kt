@@ -27,7 +27,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -144,7 +148,10 @@ class MainActivity : GeoActivity(),
 
             // update notification immediately.
             AsyncHelper.runOnIO {
-                Notifications.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
+                Notifications.updateNotificationIfNecessary(
+                    this,
+                    viewModel.validLocationList.value.first
+                )
             }
             refreshBackgroundViews(viewModel.validLocationList.value.first)
         }
@@ -271,7 +278,8 @@ class MainActivity : GeoActivity(),
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                         && it != null
                         && it.permissionList.isNotEmpty()
-                        && it.consume()) {
+                        && it.consume()
+                    ) {
                         // only show dialog if we need request basic location permissions.
                         var showLocationPermissionDialog = false
                         for (permission in it.permissionList) {
@@ -310,16 +318,19 @@ class MainActivity : GeoActivity(),
                 }
             }
         }
-        viewModel.requestErrorType.observe(this) {
-            it?.let { msg ->
-                msg.showDialogAction?.let { showDialogAction ->
+        viewModel.snackbarErrors.observe(this) {
+            it.forEach { error ->
+                val shortMessage = if (!error.source.isNullOrEmpty()) {
+                    "${error.source}${getString(R.string.colon_separator)}${getString(error.error.shortMessage)}"
+                } else getString(error.error.shortMessage)
+                error.error.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
-                        content = getString(msg.shortMessage),
-                        action = getString(msg.actionButtonMessage)
+                        content = shortMessage,
+                        action = getString(error.error.actionButtonMessage)
                     ) {
                         showDialogAction(this)
                     }
-                } ?: SnackbarHelper.showSnackbar(getString(msg.shortMessage))
+                } ?: SnackbarHelper.showSnackbar(shortMessage)
             }
         }
     }
@@ -334,7 +345,8 @@ class MainActivity : GeoActivity(),
         val request = viewModel.locationPermissionsRequest.value
         if (request == null
             || request.permissionList.isEmpty()
-            || request.target == null) {
+            || request.target == null
+        ) {
             return
         }
 
@@ -397,7 +409,7 @@ class MainActivity : GeoActivity(),
 
     private val isLocationPermissionsGranted: Boolean
         get() = this.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                    || this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                || this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 
     val isDaylight: Boolean
         get() = viewModel.currentLocation.value?.daylight ?: true
