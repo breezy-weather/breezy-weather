@@ -636,4 +636,5 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Сильна морозяща мряка</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Іній з туманом</string>
     <string name="metno_weather_text_andthunder">$ з грозою</string>
+    <string name="about_contribution_designer">Дизайнер логотипу</string>
 </resources>
