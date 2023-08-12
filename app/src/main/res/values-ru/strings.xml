@@ -643,4 +643,5 @@
     <string name="unit_bf">Бф</string>
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
+    <string name="about_contribution_designer">Дизайнер логотипа</string>
 </resources>
