@@ -1,11 +1,12 @@
-# Next version
+# Version 4.6.0-beta (next version)
 
-**New features**
+**Improvements**
 - App will now tell you which source is failing
 - App is now able to show multiple errors at the same time (for example, if two secondary sources are failing)
+- Logo got a refresh
 
 **Other fixes**
-- Add a third place in the location list icon to not make it confusing with “itinerary” icon
+- Add a third place to the location list icon to not make it confusing with “itinerary” icon
 
 
 # Version 4.5.4-beta

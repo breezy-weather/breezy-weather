@@ -1,6 +1,6 @@
 <div align="center">
 <br />
-<img src="fastlane/metadata/android/en-US/images/icon.png" width="200" />
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" />
 </div>
 
 <h1 align="center">Breezy Weather</h1>
@@ -135,5 +135,36 @@ It enables Instant App and bundles Google Network Location Provider (proprietary
 
 # License
 
-* [GNU Lesser General Public License v3.0](/LICENSE)
-* [Forked from Geometric Weather](https://github.com/WangDaYeeeeee/GeometricWeather)
+* [GNU Lesser General Public License v3.0+](/LICENSE)
+* [Built on Geometric Weather Android app (GNU Lesser General Public License v3.0+)](https://github.com/WangDaYeeeeee/GeometricWeather). Breezy Weather is not officially associated with Geometric Weather or its products.
+
+## Logo
+
+Logo was designed by [Anthony Dégrange](https://anthony-degrange-design.fr/).
+
+As per French laws, “L’auteur jouit du droit au respect de son nom, de sa qualité et de son œuvre. Ce droit est attaché à sa personne. Il est perpétuel, inaliénable et imprescriptible. Il est transmissible à cause de mort aux héritiers de l’auteur. L’exercice peut être conféré à un tiers en vertu de dispositions testamentaires.” which can be translated as “The author shall enjoy the right to respect for his name, his authorship, and his work. This right shall be attached to his person. It shall be perpetual, inalienable and imprescriptible. It may be transmitted *mortis causa* to the heirs of the author. The exercise of this right may be conferred on a third person by testamentary provisions.”.
+
+## Allowed usages of Breezy Weather identity
+
+To present Breezy Weather app, you can do the following *without* receiving specific permission from Breezy Weather organization or Anthony Dégrange:
+- Use Breezy Weather wordmarks in text to truthfully refer to and/or link to unmodified Breezy Weather programs, products, services and technologies.
+- Use Breezy Weather logos in visuals to truthfully refer to and/or to link to the applicable programs, products, services and technologies hosted on GitHub or IzzyOnDroid.
+- Use Breezy Weather wordmarks to explain that your software is based on Breezy Weather’s open source code, or is compatible with Breezy Weather’s software, in accordance with the Open Source Project Guidelines below.
+
+## Open source guidelines
+
+If you choose to build on or modify Breezy Weather’s open source code for your own project:
+- You must choose branding, logos, and trademarks that denotes your own unique identity so as to clearly signal to users that there is no affiliation with or endorsement by Breezy Weather.
+- You must NOT use any part of Breezy Weather identity to incorrectly suggest or give the impression your software is actually published by, affiliated with, or endorsed by Breezy Weather.
+- You may:
+    - State in words (not using logos or images) that your product “works with” or “is compatible” with certain Breezy Weather software products, if that is true.
+    - State in words (not using logos or images) that your project is based on Breezy Weather open source technology, if that is true, as long as you also include a statement that your project is not officially associated with Breezy Weather or its products.
+      
+      For instance, you may state that your project:
+
+          “is proudly built from Breezy Weather’s open source Android app”
+          “adapted from Breezy Weather’s open source Android app”
+
+        as long as you also include the statement equally prominently:
+
+          “[Brand Name] and [Product Name] are not officially associated with Breezy Weather or its products.”

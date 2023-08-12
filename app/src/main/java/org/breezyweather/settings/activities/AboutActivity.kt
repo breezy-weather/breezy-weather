@@ -125,7 +125,8 @@ class AboutActivity : GeoActivity() {
         ContributorItem("Cod3d.", "https://github.com/Cod3dDOT", R.string.about_contribution_weather_source),
         ContributorItem("Romain Théry", "https://github.com/rthery"),
         ContributorItem("majjejjam", "https://github.com/majjejjam"),
-        ContributorItem("Mark Bestavros", "https://github.com/mbestavros")
+        ContributorItem("Mark Bestavros", "https://github.com/mbestavros"),
+        ContributorItem("Anthony Dégrange", "https://anthony-degrange-design.fr/", R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
     // Here, we want to sort by language code, which is a different order than in Language.kt

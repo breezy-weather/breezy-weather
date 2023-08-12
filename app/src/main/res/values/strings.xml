@@ -665,6 +665,7 @@
     <string name="about_translators">Translators</string>
     <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
     <string name="about_contribution_weather_source">Added support for new weather source(s)</string>
+    <string name="about_contribution_designer">Logo designer</string>
     <!-- Weather condition text -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
     <!-- We don’t use all of them currently, but they might come useful some day -->
