@@ -643,4 +643,5 @@
     <string name="metno_weather_text_andthunder">$ و رعد</string>
     <string name="settings_appearance_dark_mode_locations_title">وضع النهار / الليل للمواقع</string>
     <string name="weather_message_unsupported_feature">المصدر لا يدعم إحدى الميزات المطلوبة</string>
+    <string name="about_contribution_designer">مصمم الشعار</string>
 </resources>
