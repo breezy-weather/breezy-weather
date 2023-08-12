@@ -29,7 +29,7 @@
     <string name="precipitation_total">Всього</string>
     <string name="precipitation_thunderstorm">Гроза</string>
     <string name="precipitation_rain">Дощ</string>
-    <string name="precipitation_intensity_light">Легкий дощ</string>
+    <string name="precipitation_intensity_light">Зморось</string>
     <string name="precipitation_intensity_middle">Дощ</string>
     <string name="precipitation_none">Немає опадів</string>
     <string name="wind_speed">Швидкість вітру</string>
@@ -260,7 +260,7 @@
     <string name="message_network_unavailable">Мережа недоступна</string>
     <string name="action_show_errors">Торкніться, щоб переглянути деталі</string>
     <string name="dialog_permissions_notification_content">Торкніться тут, щоб увімкнути сповіщення, або виришіть пізніше в налаштуваннях.</string>
-    <string name="message_source_not_installed_error_content">Це джерело більше не доступне, будь ласка, видаліть місцезнаходження та відтворіть його з іншого джерела.</string>
+    <string name="message_source_not_installed_error_content">Це джерело більше не доступне; будь ласка, видаліть місцезнаходження та відтворіть його з іншого джерела.</string>
     <string name="dialog_permissions_location_title">Доступ до інформації про місцезнаходження</string>
     <string name="action_app_store">Магазин додатків</string>
     <string name="location_resident_location_summaryOn">Увімкнено. Приховано, якщо в $ від поточного місцезнаходження.</string>
