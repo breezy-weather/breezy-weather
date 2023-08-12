@@ -49,7 +49,7 @@ data class HourlyWrapper(
     val cloudCover: Int? = null,
     val visibility: Float? = null
 ) {
-    fun copyToHourly(
+    fun toHourly(
         isDaylight: Boolean? = null,
         uV: UV? = null
     ) = Hourly(

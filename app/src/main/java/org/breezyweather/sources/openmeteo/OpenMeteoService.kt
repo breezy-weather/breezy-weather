@@ -140,7 +140,8 @@ class OpenMeteoService @Inject constructor(
             mAirQualityApi.getAirQuality(
                 location.latitude.toDouble(),
                 location.longitude.toDouble(),
-                airQualityAllergenHourly.joinToString(",")
+                airQualityAllergenHourly.joinToString(","),
+                pastDays = 1,
             )
         } else {
             Observable.create { emitter ->
@@ -179,7 +180,8 @@ class OpenMeteoService @Inject constructor(
         return mAirQualityApi.getAirQuality(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
-            airQualityAllergenHourly.joinToString(",")
+            airQualityAllergenHourly.joinToString(","),
+            pastDays = 1,
         ).map {
             convertSecondary(it, requestedFeatures)
         }

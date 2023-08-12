@@ -81,7 +81,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     private fun getDrawableView(context: Context, location: Location?, cardStyle: String?): View? {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
-        val itemCount = min(5, weather.hourlyForecast.size)
+        val itemCount = min(5, weather.next24HourlyForecast.size)
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
@@ -97,7 +97,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < temperatures.size) {
-                temperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature
+                temperatures[i] = weather.next24HourlyForecast.getOrNull(i / 2)?.temperature?.temperature
                 i += 2
             }
         }
@@ -117,7 +117,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             lowestTemperature = yesterday.nighttimeTemperature
         }
         for (i in 0 until itemCount) {
-            weather.hourlyForecast[i].temperature?.temperature?.let {
+            weather.next24HourlyForecast[i].temperature?.temperature?.let {
                 if (highestTemperature == null || it > highestTemperature!!) {
                     highestTemperature = it
                 }
@@ -156,7 +156,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             drawableView.findViewById(R.id.widget_trend_hourly_item_5)
         )
         widgetItemViews.forEachIndexed { i, widgetItemView ->
-            weather.hourlyForecast.getOrNull(i)?.let { hourly ->
+            weather.next24HourlyForecast.getOrNull(i)?.let { hourly ->
                 widgetItemView.setTitleText(hourly.getHour(context, location.timeZone))
                 widgetItemView.setSubtitleText(null)
                 hourly.weatherCode?.let {

@@ -30,6 +30,7 @@ import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.DailyTrendItemView
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
+import java.util.Date
 
 abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Location) :
     TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>(location) {
@@ -55,9 +56,16 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
             }
             talkBackBuilder.append(", ").append(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
             dailyItem.setDateText(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
+            val useAccentColorForDate = daily.isToday(timeZone) || daily.date > Date()
             dailyItem.setTextColor(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                MainThemeColorProvider.getColor(
+                    location,
+                    if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
+                ),
+                MainThemeColorProvider.getColor(
+                    location,
+                    if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
+                )
             )
             dailyItem.setOnClickListener { onItemClicked(activity, location, bindingAdapterPosition) }
         }

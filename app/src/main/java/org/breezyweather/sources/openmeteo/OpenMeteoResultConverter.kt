@@ -112,8 +112,8 @@ fun convert(
 private fun getDailyList(
     dailyResult: OpenMeteoWeatherDaily
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 2)
-    for (i in 1 until dailyResult.time.size - 1) {
+    val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
+    for (i in 0 until dailyResult.time.size - 1) {
         val theDay = dailyResult.time[i].times(1000).toDate()
         val daily = Daily(
             date = theDay,

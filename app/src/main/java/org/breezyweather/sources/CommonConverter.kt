@@ -39,6 +39,7 @@ import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.AllergenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
@@ -71,6 +72,36 @@ import kotlin.math.sin
  * MERGE DATABASE DATA WITH REFRESHED WEATHER DATA
  * Useful to keep forecast history
  */
+
+/**
+ * Complete previous hours/days with weather data from database
+ */
+fun completeMainWeatherWithPreviousData(
+    newWeather: WeatherWrapper,
+    oldWeather: Weather?,
+    startDate: Date
+): WeatherWrapper {
+    if (oldWeather == null
+        || (oldWeather.dailyForecast.isEmpty() && oldWeather.hourlyForecast.isEmpty())) {
+        return newWeather
+    }
+
+    val missingDailyList = oldWeather.dailyForecast.filter {
+        it.date >= startDate && (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast[0].date)
+    }
+    val missingHourlyList = oldWeather.hourlyForecast.filter {
+        it.date >= startDate && (newWeather.hourlyForecast?.getOrNull(0) == null || it.date < newWeather.hourlyForecast[0].date)
+    }.map { it.toHourlyWrapper() }
+
+    return if (missingDailyList.isEmpty() && missingHourlyList.isEmpty()) {
+        newWeather
+    } else {
+        newWeather.copy(
+            dailyForecast = missingDailyList + (newWeather.dailyForecast ?: emptyList()),
+            hourlyForecast = missingHourlyList + (newWeather.hourlyForecast ?: emptyList())
+        )
+    }
+}
 
 /**
  * Get an air quality wrapper object to use from an old weather object
@@ -924,33 +955,29 @@ fun completeHourlyListFromDailyList(
     val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
-        // Only keep hours in the future except for the forecast of the current hour
-        // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
-        if (hourly.date.time >= System.currentTimeMillis() - (3600 * 1000)) {
-            val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
-            dailyListByDate.getOrElse(dateForHourFormatted) { null }
-                ?.first()?.let { daily ->
-                    val isDaylight = hourly.isDaylight ?: isDaylight(
-                        daily.sun?.riseDate,
-                        daily.sun?.setDate,
-                        hourly.date
-                    )
-                    newHourlyList.add(
-                        hourly.copyToHourly(
-                            isDaylight = isDaylight,
-                            uV = if (hourly.uV?.index != null) hourly.uV else getCurrentUVFromDayMax(
-                                daily.uV?.index,
-                                hourly.date,
-                                daily.sun?.riseDate,
-                                daily.sun?.setDate,
-                                timeZone
-                            )
+        val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
+        dailyListByDate.getOrElse(dateForHourFormatted) { null }
+            ?.first()?.let { daily ->
+                val isDaylight = hourly.isDaylight ?: isDaylight(
+                    daily.sun?.riseDate,
+                    daily.sun?.setDate,
+                    hourly.date
+                )
+                newHourlyList.add(
+                    hourly.toHourly(
+                        isDaylight = isDaylight,
+                        uV = if (hourly.uV?.index != null) hourly.uV else getCurrentUVFromDayMax(
+                            daily.uV?.index,
+                            hourly.date,
+                            daily.sun?.riseDate,
+                            daily.sun?.setDate,
+                            timeZone
                         )
                     )
-                    return@forEach // continue to next item
-                }
-            newHourlyList.add(hourly.copyToHourly())
-        }
+                )
+                return@forEach // continue to next item
+            }
+        newHourlyList.add(hourly.toHourly())
     }
 
     return newHourlyList

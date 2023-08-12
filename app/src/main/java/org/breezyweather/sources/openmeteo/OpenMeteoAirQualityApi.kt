@@ -30,6 +30,7 @@ interface OpenMeteoAirQualityApi {
     fun getAirQuality(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("hourly") hourly: String
+        @Query("hourly") hourly: String,
+        @Query("past_days") pastDays: Int
     ): Observable<OpenMeteoAirQualityResult>
 }

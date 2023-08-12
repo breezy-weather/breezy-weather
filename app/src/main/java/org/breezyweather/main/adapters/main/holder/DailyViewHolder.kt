@@ -148,6 +148,9 @@ class DailyViewHolder(
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         )
+        if (location.weather.todayIndex >= 0) {
+            trendRecyclerView.scrollToPosition(location.weather.todayIndex)
+        }
         scrollBar.resetColor(location)
     }
 }

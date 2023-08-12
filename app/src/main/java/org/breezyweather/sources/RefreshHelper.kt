@@ -132,12 +132,14 @@ class RefreshHelper @Inject constructor(
                 // but write in case the location service has provided us information for current
                 if (location.isCurrentPosition) {
                     LocationEntityRepository.writeLocation(currentLocation)
+                    currentLocation
                 } else if (location.needsGeocodeRefresh) {
-                    LocationEntityRepository.writeLocation(
-                        currentLocation.copy(needsGeocodeRefresh = false)
-                    )
+                    val currentLocationNoGeocodeRefresh = currentLocation.copy(needsGeocodeRefresh = false)
+                    LocationEntityRepository.writeLocation(currentLocationNoGeocodeRefresh)
+                    currentLocationNoGeocodeRefresh
+                } else {
+                    currentLocation
                 }
-                currentLocation
             }
             return LocationResult(locationGeocoded, currentErrors)
         } else {
@@ -312,10 +314,17 @@ class RefreshHelper @Inject constructor(
                 )
             }
 
-            // SECONDARY SOURCES
+            // COMPLETE BACK TO YESTERDAY 00:00 MAX
             val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
                 .getFormattedDate(location.timeZone, "yyyy-MM-dd")
                 .toDateNoHour(location.timeZone)!!
+            val mainWeatherCompleted = completeMainWeatherWithPreviousData(
+                mainWeather,
+                location.weather,
+                yesterdayMidnight
+            )
+
+            // SECONDARY SOURCES
             val errors = mutableListOf<RefreshError>()
             val secondaryWeatherWrapper = if (secondarySources.isNotEmpty()) {
                 val secondarySourceCalls = mutableMapOf<String, SecondaryWeatherWrapper?>()
@@ -368,8 +377,6 @@ class RefreshHelper @Inject constructor(
                 )
             } else null
 
-            // TODO: Merge with existing weather data back to yesterday 00:00
-
             /**
              * Most sources starts hourly forecast at current time (13:00 for example)
              * while some complementary sources starts at 00:00.
@@ -384,12 +391,12 @@ class RefreshHelper @Inject constructor(
 
             val hourlyMissingComputed = computeMissingHourlyData(
                 mergeSecondaryWeatherDataIntoHourlyWrapperList(
-                    mainWeather.hourlyForecast, secondaryWeatherWrapperCompleted
+                    mainWeatherCompleted.hourlyForecast, secondaryWeatherWrapperCompleted
                 )
             )
             val dailyForecast = completeDailyListFromHourlyList(
                 mergeSecondaryWeatherDataIntoDailyList(
-                    mainWeather.dailyForecast, secondaryWeatherWrapperCompleted
+                    mainWeatherCompleted.dailyForecast, secondaryWeatherWrapperCompleted
                 ),
                 hourlyMissingComputed,
                 location
@@ -400,20 +407,29 @@ class RefreshHelper @Inject constructor(
                 location.timeZone
             )
 
+            // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
+            val currentHour = hourlyForecast.firstOrNull {
+                it.date.time >= System.currentTimeMillis() - (3600 * 1000)
+            }
+            val currentDay = dailyForecast.firstOrNull {
+                // Adding 23 hours just to be safe in case of DST
+                it.date.time >= yesterdayMidnight.time + (23 * 3600 * 1000)
+            }
+
             val weather = Weather(
-                base = mainWeather.base ?: Base(),
+                base = mainWeatherCompleted.base ?: Base(),
                 current = completeCurrentFromTodayDailyAndHourly(
-                    mainWeather.current,
-                    hourlyForecast.getOrNull(0),
-                    dailyForecast.getOrNull(0),
+                    mainWeatherCompleted.current,
+                    currentHour,
+                    currentDay,
                     location.timeZone
                 ),
-                yesterday = mainWeather.yesterday,
+                yesterday = mainWeatherCompleted.yesterday,
                 dailyForecast = dailyForecast,
                 hourlyForecast = hourlyForecast,
                 minutelyForecast = secondaryWeatherWrapper?.minutelyForecast
-                    ?: mainWeather.minutelyForecast ?: emptyList(),
-                alertList = (secondaryWeatherWrapper?.alertList ?: mainWeather.alertList)?.filter {
+                    ?: mainWeatherCompleted.minutelyForecast ?: emptyList(),
+                alertList = (secondaryWeatherWrapper?.alertList ?: mainWeatherCompleted.alertList)?.filter {
                     // Don’t save past alerts in database
                     it.endDate == null || it.endDate.time > Date().time
                 } ?: emptyList()
@@ -424,7 +440,7 @@ class RefreshHelper @Inject constructor(
                     weather.copy(
                         yesterday = HistoryEntityRepository.readHistory(
                             location,
-                            mainWeather.base?.publishDate ?: Date()
+                            mainWeatherCompleted.base?.publishDate ?: Date()
                         )
                     )
                 } else weather,

@@ -30,6 +30,15 @@ data class Weather(
     val alertList: List<Alert> = emptyList()
 ) : Serializable {
 
+    val next24HourlyForecast = hourlyForecast.filter {
+        // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
+        it.date.time >= System.currentTimeMillis() - (3600 * 1000)
+    }.take(24)
+
+    val todayIndex = dailyForecast.indexOfFirst {
+        it.date.time > Date().time - (24 * 3600 * 1000)
+    }
+
     fun isValid(pollingIntervalHours: Float?): Boolean {
         val updateTime = base.updateDate.time
         val currentTime = System.currentTimeMillis()

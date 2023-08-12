@@ -66,7 +66,7 @@ class HourlyTemperatureAdapter(
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_temperature))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
-            val hourly = weather.hourlyForecast[position]
+            val hourly = weather.next24HourlyForecast[position]
             if (hourly.weatherText.isNullOrEmpty()) {
                 talkBackBuilder.append(", ").append(hourly.weatherText)
             }
@@ -144,11 +144,11 @@ class HourlyTemperatureAdapter(
 
     init {
         val weather = location.weather!!
-        mTemperatures = arrayOfNulls(max(0, weather.hourlyForecast.size * 2 - 1))
+        mTemperatures = arrayOfNulls(max(0, weather.next24HourlyForecast.size * 2 - 1))
         run {
             var i = 0
             while (i < mTemperatures.size) {
-                mTemperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature
+                mTemperatures[i] = weather.next24HourlyForecast.getOrNull(i / 2)?.temperature?.temperature
                 i += 2
             }
         }
@@ -167,7 +167,7 @@ class HourlyTemperatureAdapter(
             mHighestTemperature = yesterday.daytimeTemperature
             mLowestTemperature = yesterday.nighttimeTemperature
         }
-        weather.hourlyForecast
+        weather.next24HourlyForecast
             .forEach { hourly ->
                 hourly.temperature?.temperature?.let {
                     if (mHighestTemperature == null || it > mHighestTemperature!!) {
@@ -191,7 +191,7 @@ class HourlyTemperatureAdapter(
         (holder as ViewHolder).onBindView(activity, location, position)
     }
 
-    override fun getItemCount() = location.weather!!.hourlyForecast.size
+    override fun getItemCount() = location.weather!!.next24HourlyForecast.size
 
     // FIXME
     override fun isValid(location: Location) = true

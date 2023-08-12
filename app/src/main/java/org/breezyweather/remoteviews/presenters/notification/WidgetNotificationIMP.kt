@@ -263,7 +263,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         } else {
             // Loop through 5 next hours
             viewIds.forEachIndexed { i, viewId ->
-                weather.hourlyForecast.getOrNull(i)?.let { hourly ->
+                weather.next24HourlyForecast.getOrNull(i)?.let { hourly ->
                     views.apply {
                         setTextViewText(viewId.first, hourly.getHour(context, location.timeZone))
                         if (hourly.temperature?.temperature != null) {

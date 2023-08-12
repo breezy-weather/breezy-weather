@@ -20,6 +20,7 @@ package org.breezyweather.common.basic.models.weather
 import android.annotation.SuppressLint
 import android.content.Context
 import org.breezyweather.R
+import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -63,4 +64,22 @@ data class Hourly(
         return date.getFormattedDate(timeZone, if (twelveHour) "h aa" else "H") +
                 if (!twelveHour) context.getString(R.string.of_clock) else ""
     }
+
+    fun toHourlyWrapper() = HourlyWrapper(
+        date = this.date,
+        isDaylight = this.isDaylight,
+        weatherText = this.weatherText,
+        weatherCode = this.weatherCode,
+        temperature = this.temperature,
+        precipitation = this.precipitation,
+        precipitationProbability = this.precipitationProbability,
+        wind = this.wind,
+        airQuality = this.airQuality,
+        uV = this.uV,
+        relativeHumidity = this.relativeHumidity,
+        dewPoint = this.dewPoint,
+        pressure = this.pressure,
+        cloudCover = this.cloudCover,
+        visibility = this.visibility
+    )
 }
