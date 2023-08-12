@@ -71,7 +71,7 @@
     <string name="precipitation_intensity_light">Pioggerella</string>
     <string name="precipitation_intensity_middle">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
-    <string name="precipitation_intensity_rainstorm">Tempesta di pioggia</string>
+    <string name="precipitation_intensity_rainstorm">Acquazzone</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Primo quarto</string>
@@ -83,7 +83,7 @@
     <string name="allergen_grass">Erba</string>
     <string name="allergen_mold">Muffa</string>
     <string name="allergen_ragweed">Ambrosia</string>
-    <string name="allergen_tree">Albero</string>
+    <string name="allergen_tree">Alberi</string>
     <string name="daily_forecast">Meteo giornaliero</string>
     <string name="hourly_forecast">Previsioni ad ore</string>
     <string name="minutely_forecast">Previsioni al minuto</string>
@@ -119,7 +119,7 @@
     <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Controlla i permessi di Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Abilita la Localizzazione</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Seleziona servizio di posizione</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Seleziona il servizio di localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “$”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
     <string name="widget_label_hide_lunar">Nascondi il calendario lunare</string>
@@ -341,7 +341,7 @@
     <string name="action_share">Condividi</string>
     <string name="action_continue">Continua</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
+    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="weather_air_quality_and_allergen_data_by">Dati su qualità dell’aria e polline da $</string>
     <string name="location_results_by">Risultati localizzazione di $</string>
     <string name="location_message_search_failed">Ricerca posizione fallita</string>
@@ -351,7 +351,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="uv_index_0_2">Basso</string>
-    <string name="alerts_to_follow">Prossime allerte, tocca qui per visualizzarli.</string>
+    <string name="alerts_to_follow">Ci sono allerte da seguire, visualizzale toccando qui.</string>
     <string name="wind_direction_short_variable">Variabile</string>
     <string name="wind_direction_short_N">N</string>
     <string name="uv_index_3_5">Moderato</string>
@@ -521,8 +521,8 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="location_message_reverse_geocoding_failed">La fonte meteo non ha trovato nessuna posizione corrispondente</string>
-    <string name="settings_location_summary">Impostazioni fonte di posizione</string>
+    <string name="location_message_reverse_geocoding_failed">La fonte di dati meteo non è riuscita a trovare una località corrispondente</string>
+    <string name="settings_location_summary">Impostazioni servizi di posizione</string>
     <string name="settings_location_access_switch_summaryOn">Concessa. Puoi aggiungere la posizione corrente come posizione.</string>
     <string name="settings_weather_sources_summary">Impostazioni fornitori meteo, default location search source</string>
     <string name="action_show_errors">Tocca per dettagli</string>
@@ -575,7 +575,7 @@
     <string name="weather_air_quality_data_by">Dati qualità aria forniti da $</string>
     <string name="weather_allergen_data_by">Dati allergeni forniti da $</string>
     <string name="weather_message_invalid_location">Località non valida, rimuoverla e aggiungerla nuovamente</string>
-    <string name="dialog_permissions_notification_content">Premere qui per abilitare le notifiche sulle allerte meteo, o decidi più tardi nelle Impostazioni.</string>
+    <string name="dialog_permissions_notification_content">Premere qui per abilitare le notifiche sulle allerte meteo, o decidere più tardi in Impostazioni.</string>
     <string name="air_quality_o3_info_title">Ozono (O₃) a livello del suolo</string>
     <string name="air_quality_so2_info_introduction">L’anidride solforosa (SO₂) è un gas tossico incolore, responsabile per l’odore dei fiammiferi spenti.</string>
     <string name="air_quality_so2_info_origin">È rilasciata naturalmente dall’attività vulcanica e deriva principalmente dalla combustione di fonti fossili per il riscaldamento domestico, l’industria e la generazione di energia.</string>
@@ -583,14 +583,14 @@
     <string name="action_save">Salva</string>
     <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo per questa posizione</string>
     <string name="location_resident_location">Posizione di residenza</string>
-    <string name="location_resident_location_summaryOn">Attivo. Nascondi quando si trova entro $ dalla posizione corrente.</string>
-    <string name="action_delete">Cancella</string>
-    <string name="air_quality_co_info_origin">È prodotto dalla combustione incompleta di combustibili carboniosi come legno, benzina, carbone, gas naturale e cherosene in fornelli semplici, fuochi aperti, lampade a stoppino, fornaci e caminetti. La fonte predominante di monossido di carbonio (CO) nell’aria è rappresentata dai veicoli a motore.</string>
+    <string name="location_resident_location_summaryOn">Abilitata. Non viene mostrata quando entro $ dalla posizione corrente.</string>
+    <string name="action_delete">Elimina</string>
+    <string name="air_quality_co_info_origin">È prodotto dalla combustione incompleta di combustibili carboniosi come legna, benzina, carbone, gas naturale e cherosene in semplici stufe, caminetti, lampade a stoppino, fornaci, caminetti. La fonte predominante di monossido di carbonio (CO) nell’aria aperta proviene dai veicoli a motore.</string>
     <string name="air_quality_co_info_consequences">Il monossido di carbonio si diffonde attraverso i tessuti polmonari e nel flusso sanguigno, rendendo difficile per le cellule dell’organismo legarsi all’ossigeno. Questa mancanza di ossigeno danneggia i tessuti e le cellule. L’esposizione al monossido di carbonio può causare difficoltà respiratorie, spossatezza, vertigini e altri sintomi influenzali. L’esposizione a livelli elevati di monossido di carbonio può essere letale.</string>
-    <string name="air_quality_no2_info_introduction">Il biossido di azoto (NO₂) è un gas soffocante e tossico di colore marrone-rossastro con un caratteristico odore acre e pungente..</string>
-    <string name="air_quality_no2_info_origin">Le fonti ambientali di NO₂ derivano dalla combustione ad alta temperatura di combustibili in processi come quelli in uso per riscaldamento, trasporti, industria e produzione di energia. Le fonti domestiche di ossidi di azoto (NOₓ) comprendono apparecchiature che bruciano combustibili come forni, caminetti, stufe e forni a gas.</string>
-    <string name="air_quality_no2_info_consequences">L’esposizione al biossido di azoto può irritare le vie respiratorie e aggravare le malattie respiratorie. Inoltre, l’NO₂ è un importante precursore dell’ozono, un inquinante strettamente legato all’asma e ad altre patologie respiratorie.</string>
-    <string name="weather_minutely_data_by">Dati precipitazioni minuto per minuto per $</string>
+    <string name="air_quality_no2_info_introduction">Il diossido di azoto (NO₂) è un gas rosso-marrone tossico, soffocante e con un caratteristico odore pungente ed acre..</string>
+    <string name="air_quality_no2_info_origin">Le fonti ambientali di NO₂ derivano dalla combustione ad alta temperatura di combustibili in processi come quelli utilizzati per riscaldamento, trasporti, industria e produzione di energia. Le fonti domestiche di ossidi di azoto (NOₓ) comprendono apparecchiature che bruciano combustibili come fornaci, caminetti e stufe e forni a gas.</string>
+    <string name="air_quality_no2_info_consequences">L’esposizione al diossido di azoto può irritare le vie respiratorie e aggravare le malattie respiratorie. Inoltre, l’NO₂ è un importante precursore dell’ozono, un inquinante strettamente correlato all’asma e ad altre patologie respiratorie.</string>
+    <string name="weather_minutely_data_by">Dati precipitazioni minuto per minuto forniti da $</string>
     <string name="weather_alert_data_by">Dati allerte per $</string>
     <string name="minutely_precipitations">Precipitazioni minuto per minuto</string>
     <string name="settings_weather_sources_default_location_search">Fonte predefinita per la ricerca di posizione</string>
@@ -607,7 +607,7 @@
     <string name="common_weather_text_drizzle_freezing">Pioggerella ghiacciata</string>
     <string name="common_weather_text_drizzle_freezing_light">Pioggerella ghiacciata leggera</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Pioggerella ghiacciata intensa</string>
-    <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi ancora attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
+    <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatti</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
     <string name="location_none_added_yet_instructions">Non hai ancora aggiunto nessuna posizione. Tocca l’icona di ricerca per aggiungere manualmente una posizione o aggiungi la posizione attuale dal pulsante fluttuante.</string>
@@ -623,7 +623,7 @@
     <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile, elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%1$d aggiornamenti non riusciti</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale leggero o moderato</string>
-    <string name="message_parsing_error_content">Assicurarti di aver aggiornato all’ultima versione dell’applicazione. Il server potrebbe essere temporaneamente non disponibile; in tal caso, riprova più tardi. Se il problema persiste, crea un log degli arresti anomali dalle impostazioni di debug e segnala un problema su GitHub.</string>
+    <string name="message_parsing_error_content">Assicurarti di aver aggiornato all’ultima versione dell’applicazione. Il server potrebbe essere temporaneamente non disponibile; in tal caso, riprova più tardi. Se il problema persiste, crea un log degli arresti anomali dalle impostazioni di debug e segnala il problema su GitHub.</string>
     <string name="about_dependencies">Dipendenze</string>
     <string name="common_weather_text_rain_showers">Rovesci di pioggia</string>
     <string name="common_weather_text_rain_showers_heavy">Rovesci intensi</string>
@@ -636,4 +636,11 @@
     <string name="common_weather_text_snow_showers_light">Rovesci leggeri di neve</string>
     <string name="common_weather_text_snow_showers_heavy">Rovesci intensi di neve</string>
     <string name="common_weather_text_snow_grains">Neve a granelli</string>
+    <string name="weather_message_unsupported_feature">La fonte non supporta una delle funzionalità richieste</string>
+    <string name="settings_appearance_dark_mode_locations_title">Modalità giorno / notte per le varie località</string>
+    <string name="unit_bf">Bft</string>
+    <string name="unit_bf_voice">sulla scala di Beaufort</string>
+    <string name="weather_data_already_up_to_date">Dati già aggiornati</string>
+    <string name="weather_update_not_yet_available_title">Aggiornamento non ancora disponibile</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather è unʼapplicazione gratuita ed è solo in grado di fornire l’accesso alla versione gratuita della fonte meteo selezionata. Per permettere a quanti più utenti possibili di beneficiare di tale accesso e per evitare restrizioni di utilizzo, chiediamo di fare un uso equo di questa fonte, cioè di non aggiornarla più frequentemente di 15 minuti. È possibile evitare questo limite registrando una propria chiave per le API e inserendola nelle impostazioni.</string>
 </resources>
