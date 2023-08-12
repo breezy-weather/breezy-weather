@@ -644,5 +644,6 @@
     <string name="unit_bf_voice">蒲福風級</string>
     <string name="weather_update_not_yet_available_content">Breezy Weather 是一款免費應用程序，只能提供對所選天氣來源免費套餐的訪問。為了讓盡可能多的用戶受益於此訪問並避免速率限制，我們要求您公平使用此資料來源 — 即，如果資料來源的更新時間低於 $ 分鐘則不進行刷新。您可以通過註冊自己的 API 密鑰並將其添加到設定中來解除此限制。</string>
     <string name="settings_appearance_dark_mode_locations_title">跟隨日出日落的深色模式</string>
-    <string name="weather_message_unsupported_feature">資料來源不支持所請求功能中的一個</string>
+    <string name="weather_message_unsupported_feature">資料來源不支持請求中的某個功能</string>
+    <string name="about_contribution_designer">Logo設計</string>
 </resources>
