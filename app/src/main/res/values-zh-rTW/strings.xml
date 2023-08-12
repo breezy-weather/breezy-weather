@@ -644,4 +644,5 @@
     <string name="unit_bf">蒲福風級</string>
     <string name="unit_bf_voice">蒲福風級</string>
     <string name="settings_appearance_dark_mode_locations_title">跟隨日出日落的深色模式</string>
+    <string name="weather_message_unsupported_feature">資料來源不支持所請求功能中的一個</string>
 </resources>
