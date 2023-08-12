@@ -388,7 +388,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не вдалося відкрити налаштування пристрою.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимізацію батареї вже вимкнено.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Інструкції для певного виробника</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники мають додаткові обмеження додатків, які відключають фонові служби. На сайті Don\'t kill my app! є інформація, як це виправити.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники мають додаткові обмеження додатків, які відключають фонові служби. На сайті Don’t kill my app! є інформація, як це виправити.</string>
     <string name="settings_background_updates_worker_info_title">Інформація про процес</string>
     <string name="settings_background_updates_worker_info_summary">Останній запуск: $</string>
     <string name="settings_location_access_permission_already_granted">Дозвіл вже надано</string>
@@ -473,7 +473,7 @@
     <string name="settings_main">Головний екран</string>
     <string name="settings_notifications_section_forecast">Прогноз погоди</string>
     <string name="settings_main_background_animation_disabled">Вимкнено</string>
-    <string name="settings_location_access_background_summaryOff">Будь ласка, увімкніть \"Дозволити у фоні\", щоб мати фонове оновлення для вашого поточного місцезнаходження.</string>
+    <string name="settings_location_access_background_summaryOff">Будь ласка, увімкніть “Дозволити у фоні”, щоб мати фонове оновлення для вашого поточного місцезнаходження.</string>
     <string name="settings_location_access_precise_summaryOff">Увімкніть «Використовувати точне місцезнаходження», якщо у вас виникли проблеми з визначенням місцезнаходження.</string>
     <string name="settings_notifications_alerts_title">Повідомлення про погоду</string>
     <string name="settings_notifications_precipitations_title">Повідомлення про опади</string>
