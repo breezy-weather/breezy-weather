@@ -535,7 +535,7 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_nmi_voice">Морские мили</string>
     <string name="unit_kpa_voice">Килопаскали</string>
-    <string name="unit_mb_voice">Милибары</string>
+    <string name="unit_mb_voice">Миллибары</string>
     <string name="unit_hpa_voice">Гектопаскали</string>
     <string name="about_matrix">Сервер Matrix</string>
     <string name="about_source_code">Исходный код</string>
@@ -612,7 +612,7 @@
     <string name="common_weather_text_rain_showers_heavy">Сильный ливень</string>
     <string name="common_weather_text_rain_freezing">Обледенение</string>
     <string name="common_weather_text_rain_freezing_light">Лёгкое обледенение</string>
-    <string name="common_weather_text_rain_freezing_heavy">Сильное обоеденение</string>
+    <string name="common_weather_text_rain_freezing_heavy">Сильное обледенение</string>
     <string name="common_weather_text_rain_snow_mixed">Дождь со снегом</string>
     <string name="common_weather_text_rain_snow_mixed_light">Лёгкий дождь со снегом</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Сильный дождь со снегом</string>
@@ -642,4 +642,5 @@
     <string name="weather_update_not_yet_available_content">Breezy Weather — это бесплатное приложение, которое может предоставить доступ только к бесплатному уровню для выбранного источника погоды. Чтобы позволить как можно большему количеству пользователей воспользоваться этим доступом и избежать ограничений скорости, мы просим вас добросовестно использовать этот источник — то есть не обновлять, если источник был обновлен менее $ минут назад. Вы можете снять это ограничение, зарегистрировав собственный API-ключ и добавив его в настройках.</string>
     <string name="unit_bf">Бф</string>
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
+    <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
 </resources>
