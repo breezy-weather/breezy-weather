@@ -567,7 +567,7 @@
     <string name="settings_source_api_key">API-Schlüssel</string>
     <string name="temperature_degree_day_heating">Heizgradtag</string>
     <string name="notification_update_error">%1$d Aktualisierung(en) fehlgeschlagen</string>
-    <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar, bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
+    <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar. Bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
     <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
     <string name="allergen_mugwort">Beifuß</string>
@@ -635,5 +635,8 @@
     <string name="unit_bf_voice">Auf der Beaufortskala</string>
     <string name="weather_data_already_up_to_date">Bereits aktuell</string>
     <string name="weather_update_not_yet_available_title">Aktualisierung noch nicht verfügbar</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather ist eine kostenlose App und kann nur den Zugriff auf den kostenlose Plan für die ausgewählte Wetterquelle bieten. Damit so viele Nutzer wie möglich von diesem Zugang profitieren können und um Tarifbeschränkungen zu vermeiden, bitten wir Sie, diese Quelle fair zu nutzen - d.h. die Quelle nicht zu aktualisieren, wenn sie vor weniger als $ Minuten aktualisiert wurde. Sie können diese Beschränkung aufheben, indem Sie Ihren eigenen API-Schlüssel registrieren und ihn in den Einstellungen hinzufügen.</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather ist eine kostenlose App und kann nur den Zugriff auf den kostenlosen Plan für die ausgewählte Wetterquelle bieten. Damit so viele Nutzer wie möglich von diesem Zugang profitieren können und um Tarifbeschränkungen zu vermeiden, bitten wir Sie, diese Quelle fair zu nutzen - d.h. die Quelle nicht zu aktualisieren, wenn sie vor weniger als $ Minuten aktualisiert wurde. Sie können diese Beschränkung aufheben, indem Sie Ihren eigenen API-Schlüssel registrieren und ihn in den Einstellungen hinzufügen.</string>
+    <string name="settings_appearance_dark_mode_locations_title">Tag- / Nachtmodus für Orte</string>
+    <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
+    <string name="about_contribution_designer">Logo-Designer</string>
 </resources>
