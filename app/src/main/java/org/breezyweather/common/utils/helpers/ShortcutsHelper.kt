@@ -26,8 +26,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.appcompat.content.res.AppCompatResources
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.db.repositories.WeatherEntityRepository

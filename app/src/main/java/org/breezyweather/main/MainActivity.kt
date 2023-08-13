@@ -318,8 +318,8 @@ class MainActivity : GeoActivity(),
                 }
             }
         }
-        viewModel.snackbarErrors.observe(this) {
-            it.forEach { error ->
+        viewModel.snackbarError.observe(this) { error ->
+            if (error != null) {
                 val shortMessage = if (!error.source.isNullOrEmpty()) {
                     "${error.source}${getString(R.string.colon_separator)}${getString(error.error.shortMessage)}"
                 } else getString(error.error.shortMessage)

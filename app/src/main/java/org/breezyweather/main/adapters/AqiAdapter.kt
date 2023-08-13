@@ -28,7 +28,6 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.annotation.ColorInt
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

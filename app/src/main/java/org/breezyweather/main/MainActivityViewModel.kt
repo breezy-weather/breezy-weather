@@ -62,7 +62,7 @@ class MainActivityViewModel @Inject constructor(
     val indicator = _indicator.asStateFlow()
 
     val locationPermissionsRequest: MutableStateFlow<PermissionsRequest?> = MutableStateFlow(null)
-    val snackbarErrors = BusLiveData<List<RefreshError>>(Handler(Looper.getMainLooper()))
+    val snackbarError = BusLiveData<RefreshError?>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
@@ -106,7 +106,7 @@ class MainActivityViewModel @Inject constructor(
         )
 
         locationPermissionsRequest.value = null
-        snackbarErrors.setValue(emptyList())
+        snackbarError.setValue(null)
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
@@ -192,7 +192,8 @@ class MainActivityViewModel @Inject constructor(
         location: Location,
         errors: List<RefreshError> = emptyList()
     ) {
-        snackbarErrors.postValue(errors)
+        // Arbitrarily post only the first error, as we can only show one snackbar at a time
+        snackbarError.postValue(errors.getOrNull(0))
 
         updateInnerData(location)
 

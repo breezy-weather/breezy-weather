@@ -208,11 +208,7 @@ class MfService @Inject constructor(
                 languageCode,
                 "iso",
                 token
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfRainResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(MfRainResult())
@@ -229,11 +225,7 @@ class MfService @Inject constructor(
                 location.provinceCode,
                 "iso",
                 token
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfWarningsResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(MfWarningsResult())

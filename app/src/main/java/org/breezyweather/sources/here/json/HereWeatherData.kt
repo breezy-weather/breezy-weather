@@ -17,7 +17,6 @@
 
 package org.breezyweather.sources.here.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date

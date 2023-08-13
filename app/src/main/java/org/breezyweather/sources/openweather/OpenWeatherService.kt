@@ -154,11 +154,7 @@ class OpenWeatherService @Inject constructor(
                 apiKey,
                 location.latitude.toDouble(),
                 location.longitude.toDouble()
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(OpenWeatherAirPollutionResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(OpenWeatherAirPollutionResult())

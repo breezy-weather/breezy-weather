@@ -35,7 +35,6 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 import retrofit2.Retrofit
 import java.util.*
 import javax.inject.Inject
@@ -98,11 +97,7 @@ class AtmoAuraService @Inject constructor(
             location.longitude.toDouble(),
             location.latitude.toDouble(),  // Tomorrow because it gives access to D-1 and D+1
             calendar.time.getFormattedDate(location.timeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(AtmoAuraPointResult())
-            }
-        }.map {
+        ).map {
             convert(it)
         }
     }

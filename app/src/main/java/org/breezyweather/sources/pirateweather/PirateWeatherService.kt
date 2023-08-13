@@ -38,9 +38,6 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.openweather.convertSecondary
-import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
-import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 

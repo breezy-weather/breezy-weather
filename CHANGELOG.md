@@ -4,7 +4,7 @@
 - If weather source doesn’t already provide it, app will now keep history up to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
 - App will now tell you which source is failing.
-- App is now able to show multiple errors at the same time (for example, if two secondary sources are failing).
+- Secondary weather sources will no longer silently fail.
 
 **Other improvements and fixes**
 - Logo got a refresh.

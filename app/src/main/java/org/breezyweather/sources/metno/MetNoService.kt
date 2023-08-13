@@ -34,7 +34,6 @@ import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
-import org.breezyweather.sources.pirateweather.convertSecondary
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -185,11 +184,7 @@ class MetNoService @Inject constructor(
                     userAgent,
                     location.latitude.toDouble(),
                     location.longitude.toDouble()
-                ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(MetNoNowcastResult())
-                    }
-                }
+                )
             } else {
                 Observable.create { emitter ->
                     emitter.onNext(MetNoNowcastResult())
@@ -202,11 +197,7 @@ class MetNoService @Inject constructor(
                     userAgent,
                     location.latitude.toDouble(),
                     location.longitude.toDouble()
-                ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(MetNoAirQualityResult())
-                    }
-                }
+                )
             } else {
                 Observable.create { emitter ->
                     emitter.onNext(MetNoAirQualityResult())

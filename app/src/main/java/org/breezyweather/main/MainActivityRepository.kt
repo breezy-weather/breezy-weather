@@ -18,28 +18,14 @@
 package org.breezyweather.main
 
 import android.content.Context
-import kotlinx.serialization.MissingFieldException
-import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.ApiLimitReachedException
-import org.breezyweather.common.exceptions.LocationException
-import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
-import org.breezyweather.common.exceptions.MissingPermissionLocationException
-import org.breezyweather.common.exceptions.NoNetworkException
-import org.breezyweather.common.exceptions.ParsingException
-import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.exceptions.SourceNotInstalledException
-import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.sources.RefreshHelper
-import retrofit2.HttpException
-import java.net.SocketTimeoutException
 import java.util.concurrent.Executors
 import javax.inject.Inject
 

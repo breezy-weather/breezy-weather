@@ -24,7 +24,6 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
@@ -242,11 +241,7 @@ class AccuService @Inject constructor(
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,
                 details = true
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(AccuMinutelyResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(AccuMinutelyResult())
@@ -258,11 +253,7 @@ class AccuService @Inject constructor(
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,
                 details = true
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(ArrayList())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(ArrayList())

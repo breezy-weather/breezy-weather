@@ -352,7 +352,13 @@ class RefreshHelper @Inject constructor(
                                     throw SecondaryWeatherException()
                                 }
                         } catch (e: Throwable) {
-                            errors.add(RefreshError(getRequestErrorType(e, RefreshErrorType.SECONDARY_WEATHER_FAILED), secondaryService.name))
+                            e.printStackTrace()
+                            errors.add(
+                                RefreshError(
+                                    getRequestErrorType(e, RefreshErrorType.SECONDARY_WEATHER_FAILED),
+                                    secondaryService.name
+                                )
+                            )
                             null
                         }
                     }
