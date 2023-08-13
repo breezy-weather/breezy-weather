@@ -36,6 +36,7 @@ import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 class SwipeSwitchLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -76,7 +77,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     // layout.
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        mSwipeTrigger = measuredWidth / 5
+        mSwipeTrigger = (measuredWidth * SWIPE_DISTANCE_RATIO).roundToInt()
         mNestedScrollingTrigger = mSwipeTrigger.toFloat()
     }
 
@@ -179,18 +180,16 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     }
 
     private fun setTranslation(triggerDistance: Int, translateRatio: Float) {
-        var realDistance = mSwipeDistance.toFloat()
-        realDistance = min(realDistance, triggerDistance.toFloat())
-        realDistance = max(realDistance, -triggerDistance.toFloat())
+        val realDistance = mSwipeDistance
+            .coerceAtMost(triggerDistance)
+            .coerceAtLeast(-triggerDistance)
+            .toFloat()
         val swipeDirection = if (mSwipeDistance < 0) SWIPE_DIRECTION_LEFT else SWIPE_DIRECTION_RIGHT
         val progress = abs(realDistance) / triggerDistance
-        if (mTarget != null) {
-            mTarget!!.alpha = 1 - progress
-            mTarget!!.translationX =
-                (swipeDirection * translateRatio * triggerDistance * log10(
-                    1 + 9.0 * abs(mSwipeDistance) / triggerDistance
-                )).toFloat()
-        }
+        mTarget?.alpha = 1 - progress
+        mTarget?.translationX = (swipeDirection * translateRatio * triggerDistance
+                * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
+                ).toFloat()
         mSwitchListener?.onSwiped(swipeDirection, progress)
         mPageSwipeListener?.let {
             if (mSwipeDistance > 0) {
@@ -347,6 +346,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     }
 
     companion object {
+        private const val SWIPE_DISTANCE_RATIO = 0.5
         private const val SWIPE_RATIO = 0.4f
         private const val NESTED_SCROLLING_RATIO = SWIPE_RATIO // 0.075f
         const val SWIPE_DIRECTION_LEFT = -1

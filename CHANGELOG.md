@@ -9,6 +9,7 @@
 **Other improvements and fixes**
 - Logo got a refresh.
 - Add a third place to the location list icon to not make it confusing with “itinerary” icon
+- Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors
 - Wind direction is fixed in hourly trends
 
 
