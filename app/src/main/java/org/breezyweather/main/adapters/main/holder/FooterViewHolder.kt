@@ -120,7 +120,7 @@ class FooterViewHolder(
                 )
             }
             if (location.weather.alertList.isNotEmpty()
-                && !credits["minutely"].isNullOrEmpty()) {
+                && !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
                     context.getString(R.string.weather_alert_data_by)
