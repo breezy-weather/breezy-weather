@@ -70,7 +70,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(hourly.wind.degree)
+                    rotate(hourly.wind.degree + 180)
                 }
             } else null
             hourlyIcon?.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)

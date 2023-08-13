@@ -9,6 +9,7 @@
 **Other improvements and fixes**
 - Logo got a refresh.
 - Add a third place to the location list icon to not make it confusing with “itinerary” icon
+- Wind direction is fixed in hourly trends
 
 
 # Version 4.5.4-beta
