@@ -84,7 +84,7 @@
     <string name="allergen_mold">Muffa</string>
     <string name="allergen_ragweed">Ambrosia</string>
     <string name="allergen_tree">Alberi</string>
-    <string name="daily_forecast">Meteo giornaliero</string>
+    <string name="daily_forecast">Previsioni giornaliere</string>
     <string name="hourly_forecast">Previsioni ad ore</string>
     <string name="minutely_forecast">Previsioni al minuto</string>
     <string name="precipitation_forecast">Previsioni di precipitazioni</string>
@@ -495,7 +495,7 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="notification_channel_alerts">Avvisi</string>
+    <string name="notification_channel_alerts">Allerte</string>
     <string name="about_contribution_WangDaYeeeeee">Sviluppatore del progetto originario Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Cielo sereno</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
@@ -558,7 +558,7 @@
     <string name="location_resident_location_summaryOff">Disabilitata. Questa località sarà sempre disponibile.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
     <string name="settings_weather_source">Fonte meteo</string>
-    <string name="about_contribution_weather_source">Aggiunto il supporto per una o più nuove fonti meteo</string>
+    <string name="about_contribution_weather_source">Ha aggiunto il supporto per una o più nuove fonti meteo</string>
     <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Temporale con grandine leggera</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Temporale con grandine pesante</string>
@@ -610,7 +610,7 @@
     <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatti</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
-    <string name="location_none_added_yet_instructions">Non hai ancora aggiunto nessuna posizione. Tocca l’icona di ricerca per aggiungere manualmente una posizione o aggiungi la posizione attuale dal pulsante fluttuante.</string>
+    <string name="location_none_added_yet_instructions">Nessuna posizione ancora aggiunta. Tocca l\'icona di ricerca per aggiungere manualmente una posizione o aggiungi la tua posizione corrente dal pulsante mobile.</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>
     <string name="common_weather_text_rain_snow_mixed">Pioggia mista a neve</string>
     <string name="common_weather_text_snow_heavy">Neve intensa</string>
@@ -618,9 +618,9 @@
     <string name="common_weather_text_drizzle">Pioggerella</string>
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
     <string name="metno_weather_text_andthunder">$ e tuoni</string>
-    <string name="location_search_no_results_advice">Assicurati di aver scritto correttamente la ricerca e che non sia troppo specifica. In alternativa, puoi provare un’altra fonte di dati meteo che potrebbe produrre risultati di ricerca diversi.</string>
+    <string name="location_search_no_results_advice">Assicurati che la tua ricerca sia scritta correttamente e non troppo specifica. In alternativa, puoi provare un\'altra fonte di dati meteorologici che potrebbe produrre risultati di ricerca della posizione diversi.</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: $</string>
-    <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile, elimina la posizione e ricreala da un’altra fonte.</string>
+    <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%1$d aggiornamenti non riusciti</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale leggero o moderato</string>
     <string name="message_parsing_error_content">Assicurarti di aver aggiornato all’ultima versione dell’applicazione. Il server potrebbe essere temporaneamente non disponibile; in tal caso, riprova più tardi. Se il problema persiste, crea un log degli arresti anomali dalle impostazioni di debug e segnala il problema su GitHub.</string>
@@ -642,5 +642,5 @@
     <string name="unit_bf_voice">sulla scala di Beaufort</string>
     <string name="weather_data_already_up_to_date">Dati già aggiornati</string>
     <string name="weather_update_not_yet_available_title">Aggiornamento non ancora disponibile</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather è unʼapplicazione gratuita ed è solo in grado di fornire l’accesso alla versione gratuita della fonte meteo selezionata. Per permettere a quanti più utenti possibili di beneficiare di tale accesso e per evitare restrizioni di utilizzo, chiediamo di fare un uso equo di questa fonte, cioè di non aggiornarla più frequentemente di 15 minuti. È possibile evitare questo limite registrando una propria chiave per le API e inserendola nelle impostazioni.</string>
+    <string name="weather_update_not_yet_available_content">Breezy Weather è un’applicazione gratuita ed è solo in grado di fornire l’accesso alla versione gratuita della fonte meteo selezionata. Per permettere a quanti più utenti possibili di beneficiare di tale accesso e per evitare restrizioni di utilizzo, chiediamo di fare un uso equo di questa fonte, cioè di non aggiornarla più frequentemente di 15 minuti. È possibile evitare questo limite registrando una propria chiave per le API e inserendola nelle impostazioni.</string>
 </resources>
