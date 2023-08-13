@@ -1,5 +1,8 @@
 # Version 4.6.0-beta (next version)
 
+**Behavior change**
+- Restore Geometric Weather behavior that only displayed next 24 hours in hourly trends. Most weather apps work that way as otherwise, it makes the hourly trends infinitely long. Hourly details for following days will be added on daily details view in a future version.
+
 **Weather refresh**
 - If weather source doesn’t already provide it, app will now keep history up to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
@@ -8,10 +11,10 @@
 
 **Other improvements and fixes**
 - Logo got a refresh.
-- Add a third place to the location list icon to not make it confusing with “itinerary” icon
-- Fix incorrect alert source leading to crash in some cases
-- Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors
-- Wind direction is fixed in hourly trends
+- Add a third place to the location list icon to not make it confusing with “itinerary” icon.
+- Fix incorrect alert source leading to crash in some cases.
+- Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
+- Wind direction is fixed in hourly trends.
 
 
 # Version 4.5.4-beta
