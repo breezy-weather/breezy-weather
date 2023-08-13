@@ -8,6 +8,8 @@
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
 - App will now tell you which source is failing.
 - Secondary weather sources will no longer silently fail.
+- Background update will now silently fail in the following cases to avoid unnecessary notification spam: network unavailable, server timeout. No weather update will happen.
+- Background update will now silently fail in the following cases to avoid unnecessary notification spam: location permission missing (background location permission missing will still be reported), Android location not enabled, current location could not be found. Weather update will happen with previously found position. If current location was never found at least once, it will be reported as an error (will NOT silently fail).
 
 **Other improvements and fixes**
 - Logo got a refresh.

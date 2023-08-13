@@ -198,11 +198,18 @@ class WeatherUpdateJob @AssistedInject constructor(
                                                 val shortMessage = if (!it.source.isNullOrEmpty()) {
                                                     "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
                                                 } else context.getString(it.error.shortMessage)
-                                                if (it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-                                                    && it.error != RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING) {
-                                                    failedUpdates.add(location to shortMessage)
+                                                if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE
+                                                    && it.error != RefreshErrorType.SERVER_TIMEOUT
+                                                    && it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
+                                                    failedUpdates.add(locationResult.location to shortMessage)
                                                 } else {
-                                                    skippedUpdates.add(location to shortMessage)
+                                                    // Report this error only if we can’t refresh weather data
+                                                    if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                                                        && !locationResult.location.isUsable) {
+                                                        failedUpdates.add(locationResult.location to shortMessage)
+                                                    } else {
+                                                        skippedUpdates.add(locationResult.location to shortMessage)
+                                                    }
                                                 }
                                             }
                                             if (locationResult.location.isUsable
@@ -357,7 +364,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                     errors.groupBy({ it.second }, { it.first }).forEach { (error, locations) ->
                         out.write("\n! ${error}\n")
                         locations.forEach {
-                            out.write("  - ${it.city}\n")
+                            out.write("  - ${it.getPlace(context, showCurrentPositionInPriority = true)}\n")
                         }
                     }
                 }

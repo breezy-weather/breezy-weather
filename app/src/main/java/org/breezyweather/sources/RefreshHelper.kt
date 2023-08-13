@@ -235,16 +235,16 @@ class RefreshHelper @Inject constructor(
             if (!location.isUsable
                 || location.needsGeocodeRefresh) {
                 return WeatherResult(
-                    errors = listOf(
-                        RefreshError(RefreshErrorType.INVALID_LOCATION)
-                    )
+                    location.weather,
+                    listOf(RefreshError(RefreshErrorType.INVALID_LOCATION))
                 )
             }
 
             val service = sourceManager.getMainWeatherSource(location.weatherSource)
             if (service == null) {
                 return WeatherResult(
-                    errors = listOf(
+                    location.weather,
+                    listOf(
                         RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, location.weatherSource)
                     )
                 )
@@ -253,7 +253,8 @@ class RefreshHelper @Inject constructor(
             // Debug source is not online
             if (service is HttpSource && !context.isOnline()) {
                 return WeatherResult(
-                    errors = listOf(
+                    location.weather,
+                    listOf(
                         RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
                     )
                 )
@@ -308,7 +309,8 @@ class RefreshHelper @Inject constructor(
                     }
             } catch (e: Throwable) {
                 return WeatherResult(
-                    errors = listOf(
+                    location.weather,
+                    listOf(
                         RefreshError(getRequestErrorType(e, RefreshErrorType.WEATHER_REQ_FAILED), service.name)
                     )
                 )
@@ -455,9 +457,8 @@ class RefreshHelper @Inject constructor(
         } catch (e: Throwable) {
             e.printStackTrace()
             return WeatherResult(
-                errors = listOf(
-                    RefreshError(RefreshErrorType.WEATHER_REQ_FAILED)
-                )
+                location.weather,
+                listOf(RefreshError(RefreshErrorType.WEATHER_REQ_FAILED))
             )
         }
     }
