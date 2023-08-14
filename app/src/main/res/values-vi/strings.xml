@@ -105,7 +105,6 @@
     <string name="settings_icon_packs_get_more_store">Lấy thêm từ cửa hàng ứng dụng</string>
     <string name="settings_main_section_options">Tùy chọn</string>
     <string name="settings_main_background_animation_enabled">Bật</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Hôm qua/Dòng cảnh báo trên xu hướng</string>
     <string name="settings_main_background_animation_disabled">Tắt</string>
     <string name="settings_main_section_animations">Hình động</string>
     <string name="minutely_forecast">Dự báo từng phút</string>

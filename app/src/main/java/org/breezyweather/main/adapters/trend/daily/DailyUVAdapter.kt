@@ -94,10 +94,9 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
     }
 
     init {
-        val dailyWithUVIndex = location.weather!!.dailyForecast.filter { it.uV?.index != null }
-        if (dailyWithUVIndex.isNotEmpty()) {
-            mHighestIndex = dailyWithUVIndex.maxOf { it.uV!!.index!! }
-        }
+        mHighestIndex = location.weather!!.dailyForecast
+            .mapNotNull { it.uV?.index }
+            .maxOrNull() ?: 0f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

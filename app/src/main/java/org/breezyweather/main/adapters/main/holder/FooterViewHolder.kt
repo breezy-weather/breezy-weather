@@ -79,7 +79,8 @@ class FooterViewHolder(
             location.airQualitySourceNotNull,
             location.allergenSourceNotNull,
             location.minutelySourceNotNull,
-            location.alertSourceNotNull
+            location.alertSourceNotNull,
+            location.normalsSourceNotNull
         ).distinct().forEach {
             distinctSources[it] = sourceManager.getSource(it)
         }
@@ -88,21 +89,25 @@ class FooterViewHolder(
         credits["weather"] = if (distinctSources[location.weatherSource] is MainWeatherSource) {
             (distinctSources[location.weatherSource] as MainWeatherSource).weatherAttribution
         } else null
-        credits["minutely"] = if (distinctSources[location.minutelySource] is SecondaryWeatherSource
-            && (distinctSources[location.minutelySource] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
-            (distinctSources[location.minutelySource] as SecondaryWeatherSource).minutelyAttribution
+        credits["minutely"] = if (distinctSources[location.minutelySourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
+            (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution
         } else null
-        credits["alert"] = if (distinctSources[location.alertSource] is SecondaryWeatherSource
-            && (distinctSources[location.alertSource] as SecondaryWeatherSource).alertAttribution != credits["weather"]) {
-            (distinctSources[location.alertSource] as SecondaryWeatherSource).alertAttribution
+        credits["alert"] = if (distinctSources[location.alertSourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution != credits["weather"]) {
+            (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution
         } else null
-        credits["airQuality"] = if (distinctSources[location.airQualitySource] is SecondaryWeatherSource
-            && (distinctSources[location.airQualitySource] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
-            (distinctSources[location.airQualitySource] as SecondaryWeatherSource).airQualityAttribution
+        credits["airQuality"] = if (distinctSources[location.airQualitySourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
+            (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution
         } else null
-        credits["allergen"] = if (distinctSources[location.allergenSource] is SecondaryWeatherSource
-            && (distinctSources[location.allergenSource] as SecondaryWeatherSource).allergenAttribution != credits["weather"]) {
-            (distinctSources[location.allergenSource] as SecondaryWeatherSource).allergenAttribution
+        credits["allergen"] = if (distinctSources[location.allergenSourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.allergenSourceNotNull] as SecondaryWeatherSource).allergenAttribution != credits["weather"]) {
+            (distinctSources[location.allergenSourceNotNull] as SecondaryWeatherSource).allergenAttribution
+        } else null
+        credits["normals"] = if (distinctSources[location.normalsSourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution != credits["weather"]) {
+            (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution
         } else null
 
         val creditsText = StringBuilder()
@@ -123,8 +128,8 @@ class FooterViewHolder(
                 && !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
-                    context.getString(R.string.weather_alert_data_by)
-                        .replace("$", credits["alert"]!!)
+                            context.getString(R.string.weather_alert_data_by)
+                                .replace("$", credits["alert"]!!)
                 )
             }
             // Open-Meteo has a lengthy credits so we merge air quality and allergen identical credit in that case
@@ -161,6 +166,14 @@ class FooterViewHolder(
                             .replace("$", credits["allergen"]!!)
                     )
                 }
+            }
+            if (location.weather.normals?.month != null
+                && !credits["normals"].isNullOrEmpty()) {
+                creditsText.append(
+                    "\n" +
+                            context.getString(R.string.weather_normals_data_by)
+                                .replace("$", credits["normals"]!!)
+                )
             }
         }
 

@@ -453,7 +453,6 @@
     <string name="notification_channel_alerts">Оповещения</string>
     <string name="alerts_count">Оповещения о погоде</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Оповещения в прогнозе</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_notifications_summary">Оповещения о погоде, осадки, прогноз</string>

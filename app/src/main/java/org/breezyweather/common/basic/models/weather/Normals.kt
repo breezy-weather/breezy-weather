@@ -15,19 +15,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.wrappers
+package org.breezyweather.common.basic.models.weather
 
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.Normals
+import java.io.Serializable
 
 /**
- * Wrapper to help with secondary data.
+ * Normals
  */
-data class SecondaryWeatherWrapper(
-    val airQuality: AirQualityWrapper? = null,
-    val allergen: AllergenWrapper? = null,
-    val minutelyForecast: List<Minutely>? = null,
-    val alertList: List<Alert>? = null,
-    val normals: Normals? = null
-)
+class Normals(
+    /**
+     * Between 1 and 12
+     */
+    val month: Int? = null,
+    val daytimeTemperature: Float? = null,
+    val nighttimeTemperature: Float? = null
+) : Serializable {
+
+    val isValid: Boolean
+        get() = daytimeTemperature != null && nighttimeTemperature != null
+}

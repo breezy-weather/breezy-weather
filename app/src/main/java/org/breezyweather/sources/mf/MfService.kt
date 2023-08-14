@@ -143,17 +143,37 @@ class MfService @Inject constructor(
             }
         }
 
+        // TODO: Only call once a month, unless it’s current position
+        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            mApi.getNormals(
+                userAgent,
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                token
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MfNormalsResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MfNormalsResult())
+            }
+        }
+
         return Observable.zip(
             current,
             forecast,
             ephemeris,
             rain,
-            warnings
+            warnings,
+            normals
         ) { mfCurrentResult: MfCurrentResult,
             mfForecastResult: MfForecastResult,
             mfEphemerisResult: MfEphemerisResult,
             mfRainResult: MfRainResult,
-            mfWarningResults: MfWarningsResult
+            mfWarningResults: MfWarningsResult,
+            mfNormalsResult: MfNormalsResult
             ->
             convert(
                 location,
@@ -161,7 +181,8 @@ class MfService @Inject constructor(
                 mfForecastResult,
                 mfEphemerisResult,
                 mfRainResult,
-                mfWarningResults
+                mfWarningResults,
+                mfNormalsResult
             )
         }
     }
@@ -183,12 +204,13 @@ class MfService @Inject constructor(
                         && !location.countryCode.isNullOrEmpty()
                         && location.countryCode.equals("FR", ignoreCase = true)
                         && !location.provinceCode.isNullOrEmpty()
-                )
+                ) || feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS
     }
     override val airQualityAttribution = null
     override val allergenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
+    override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,
@@ -232,15 +254,32 @@ class MfService @Inject constructor(
             }
         }
 
+        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            mApi.getNormals(
+                userAgent,
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                token
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MfNormalsResult())
+            }
+        }
+
         return Observable.zip(
             rain,
-            warnings
+            warnings,
+            normals
         ) { mfRainResult: MfRainResult,
-            mfWarningResults: MfWarningsResult
+            mfWarningResults: MfWarningsResult,
+            mfNormalsResult: MfNormalsResult
             ->
             convertSecondary(
+                location,
                 mfRainResult,
-                mfWarningResults
+                mfWarningResults,
+                mfNormalsResult
             )
         }
     }

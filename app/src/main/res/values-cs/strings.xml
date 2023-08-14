@@ -515,7 +515,6 @@
     <string name="settings_main_daily_trends_title">Denní trendy</string>
     <string name="settings_main_header_details_title">Podrobnosti v hlavičce</string>
     <string name="settings_main_section_options">Možnosti</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Včerejší den/výstražné čáry v trendech</string>
     <string name="settings_notifications_precipitations_title">Oznámení o srážkách</string>
     <string name="settings_widgets_live_wallpaper_summary">Nastavit animaci počasí jako tapetu</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona pro zobrazení v týdenním zobrazení</string>

@@ -56,12 +56,12 @@ Note that no forecast above 7 days is reliable, so you should not decide based o
 
 The following features, if not available from your selected source, can be added from another source, starting from v4.5.0.
 
-| Sources                         | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
-|---------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
-| **Air quality**                 | ✅          | ✅             | Norway             | ✅           | ❌              | France (AURA) | Current |
-| **Allergens**                   | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
-| **Precipitations in next hour** | ❌          | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
-| **Alerts**                      | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
+| Sources                            | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
+|------------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
+| **Air quality**                    | ✅          | ✅             | Norway             | ✅           | ❌              | France (AURA) | Current |
+| **Allergens**                      | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
+| **Precipitation in the next hour** | ❌          | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
+| **Alerts**                         | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 
@@ -87,7 +87,9 @@ Legend:
 | **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌              | ❌            | ❌       |
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌              | ❌            | ❌       |
 | **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅              | ✅            | ✅       |
-| **Yesterday temperature**  | ✅          | ✅           | ❌          | ❌           | ❌              | ❌            | ✅       |
+| **Normals**                | Average¹   | ✅           | Average¹   | Average¹    | Average¹        | ✅            | Average¹ |
+
+¹ Median from daily forecast
 
 
 ## Location
@@ -120,12 +122,12 @@ Legend:
 
 ## Features that can be added from other sources
 
-| Sources                         | HERE     |
-|---------------------------------|----------|
-| **Air quality**                 | ❌        |
-| **Allergens**                   | ❌        |
-| **Precipitations in next hour** | ❌        |
-| **Alerts**                      | US (NWS) |
+| Sources                            | HERE     |
+|------------------------------------|----------|
+| **Air quality**                    | ❌        |
+| **Allergens**                      | ❌        |
+| **Precipitation in the next hour** | ❌        |
+| **Alerts**                         | US (NWS) |
 
 ## Other weather data
 
@@ -148,14 +150,16 @@ Legend:
 
 From v4.5.0, you can combine your main weather source with other sources:
 
-| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA      |
-|-----------------|------------|-------------|-------------|-------------|----------------|--------------|----------------|
-| **Air quality** | ✅          | ❌           | Norway      | ✅          | ❌              | ❌           | France (AURA) |
-| **Allergens**   | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌            | ❌            |
-| **Alerts**      | ❌          | ✅           | ❌           | ✅          | ✅              | France       | ❌             |
-| **Minutely**    | ❌          | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
+| Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA      |
+|------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|----------------|
+| **Air quality**                    | ✅          | ❌           | Norway      | ✅          | ❌              | ❌           | France (AURA) |
+| **Allergens**                      | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌            | ❌            |
+| **Precipitation in the next hour** | ❌          | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
+| **Alerts**                         | ❌          | ✅           | ❌           | ✅          | ✅              | France       | ❌             |
+| **Normals**                        | ❌          | ❌           | ❌           | ❌          | ❌              | ✅³           | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe
+* ³ Implemented but it is not yet possible to change secondary normals source for a location from UI

@@ -136,9 +136,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
 
-        weather.yesterday?.let { yesterday ->
-            highestTemperature = yesterday.daytimeTemperature
-            lowestTemperature = yesterday.nighttimeTemperature
+        weather.normals?.let { normals ->
+            highestTemperature = normals.daytimeTemperature
+            lowestTemperature = normals.nighttimeTemperature
         }
 
         for (i in 0 until itemCount) {
@@ -156,11 +156,11 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_daily, null, false)
-        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday.nighttimeTemperature != null
+        if (weather.normals?.daytimeTemperature != null && weather.normals.nighttimeTemperature != null
             && highestTemperature != null && lowestTemperature != null) {
             val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
             trendParent.setData(
-                arrayOf(weather.yesterday.daytimeTemperature, weather.yesterday.nighttimeTemperature),
+                arrayOf(weather.normals.daytimeTemperature, weather.normals.nighttimeTemperature),
                 highestTemperature!!,
                 lowestTemperature!!,
                 temperatureUnit,

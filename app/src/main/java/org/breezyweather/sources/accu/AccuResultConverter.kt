@@ -28,7 +28,7 @@ import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.History
+import org.breezyweather.common.basic.models.weather.Normals
 import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.MoonPhase
 import org.breezyweather.common.basic.models.weather.Precipitation
@@ -47,6 +47,7 @@ import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.accu.json.AccuAirQualityData
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
 import org.breezyweather.sources.accu.json.AccuAlertResult
+import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
 import org.breezyweather.sources.accu.json.AccuCurrentResult
 import org.breezyweather.sources.accu.json.AccuForecastAirAndPollen
 import org.breezyweather.sources.accu.json.AccuForecastDailyForecast
@@ -74,7 +75,8 @@ fun convert(
         airQualitySource = location?.airQualitySource,
         allergenSource = location?.allergenSource,
         minutelySource = location?.minutelySource,
-        alertSource = location?.alertSource
+        alertSource = location?.alertSource,
+        normalsSource = location?.normalsSource
     )
 }
 
@@ -85,7 +87,9 @@ fun convert(
     hourlyResultList: List<AccuForecastHourlyResult>,
     minuteResult: AccuMinutelyResult?,
     alertResultList: List<AccuAlertResult>,
-    airQualityHourlyResult: AccuAirQualityResult
+    airQualityHourlyResult: AccuAirQualityResult,
+    climoSummaryResult: AccuClimoSummaryResult,
+    currentMonth: Int
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (dailyResult.DailyForecasts == null || dailyResult.DailyForecasts.isEmpty() || hourlyResultList.isEmpty()) {
@@ -122,11 +126,13 @@ fun convert(
             dailyForecast = dailyResult.Headline?.Text,
             hourlyForecast = minuteResult?.Summary?.LongPhrase
         ),
-        yesterday = History(
-            date = Date((currentResult.EpochTime - 24 * 60 * 60).times(1000)),
-            daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
-            nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
-        ),
+        normals = if (climoSummaryResult.Normals?.Temperatures != null) {
+            Normals(
+                month = currentMonth,
+                daytimeTemperature = climoSummaryResult.Normals.Temperatures.Maximum.Metric?.Value?.toFloat(),
+                nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value?.toFloat()
+            )
+        } else null,
         dailyForecast = getDailyList(dailyResult.DailyForecasts, location.timeZone),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),

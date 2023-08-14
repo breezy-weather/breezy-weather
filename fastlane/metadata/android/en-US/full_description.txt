@@ -3,7 +3,7 @@ Breezy Weather is a free and open-source Android weather app, forked from Geomet
 In the app, you'll find:<ul>
 <li>Real-time weather conditions (Temperature, Feels like, Wind, UV index, Humidity, Dew point, Atmospheric pressure, Visibility, Cloud cover, Ceiling)</li>
 <li>Daily and hourly forecasts up to 16 days (Temperature, Air quality, Wind, UV index, Precipitation)</li>
-<li>Precipitations in the next hour</li>
+<li>Precipitation in the next hour</li>
 <li>Air quality, allergen and ephemeris information</li>
 <li>Severe weather and precipitation alerts</li></ul>
 

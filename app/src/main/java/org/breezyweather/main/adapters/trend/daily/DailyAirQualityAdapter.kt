@@ -96,10 +96,9 @@ class DailyAirQualityAdapter(
     }
 
     init {
-        val dailyWithAirQualityIndex = location.weather!!.dailyForecast.filter { it.airQuality?.getIndex() != null }
-        if (dailyWithAirQualityIndex.isNotEmpty()) {
-            mHighestIndex = dailyWithAirQualityIndex.maxOf { it.airQuality!!.getIndex()!! }
-        }
+        mHighestIndex = location.weather!!.dailyForecast
+            .mapNotNull { it.airQuality?.getIndex() }
+            .maxOrNull() ?: 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

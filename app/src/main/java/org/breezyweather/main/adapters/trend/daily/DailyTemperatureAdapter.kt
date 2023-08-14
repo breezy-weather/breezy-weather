@@ -199,9 +199,9 @@ class DailyTemperatureAdapter(
                 i += 2
             }
         }
-        weather.yesterday?.let { yesterday ->
-            mHighestTemperature = yesterday.daytimeTemperature
-            mLowestTemperature = yesterday.nighttimeTemperature
+        weather.normals?.let { normals ->
+            mHighestTemperature = normals.daytimeTemperature
+            mLowestTemperature = normals.nighttimeTemperature
         }
         weather.dailyForecast.forEach { daily ->
             daily.day?.temperature?.temperature?.let {
@@ -237,31 +237,31 @@ class DailyTemperatureAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val weather = location.weather ?: return
-        if (weather.yesterday?.daytimeTemperature == null || weather.yesterday.nighttimeTemperature == null) {
+        if (weather.normals?.daytimeTemperature == null || weather.normals.nighttimeTemperature == null) {
             host.setData(null, 0f, 0f)
         } else {
             val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday.daytimeTemperature,
+                    weather.normals.daytimeTemperature,
                     Temperature.getShortTemperature(
                         activity,
-                        weather.yesterday.daytimeTemperature,
+                        weather.normals.daytimeTemperature,
                         SettingsManager.getInstance(activity).temperatureUnit
                     ),
-                    activity.getString(R.string.short_yesterday),
+                    activity.getString(if (weather.normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday.nighttimeTemperature,
+                    weather.normals.nighttimeTemperature,
                     Temperature.getShortTemperature(
                         activity,
-                        weather.yesterday.nighttimeTemperature,
+                        weather.normals.nighttimeTemperature,
                         SettingsManager.getInstance(activity).temperatureUnit
                     ),
-                    activity.getString(R.string.short_yesterday),
+                    activity.getString(if (weather.normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )

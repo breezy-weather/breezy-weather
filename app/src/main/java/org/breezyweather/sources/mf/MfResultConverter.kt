@@ -28,6 +28,7 @@ import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.MoonPhase
+import org.breezyweather.common.basic.models.weather.Normals
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -47,6 +48,7 @@ import org.breezyweather.sources.mf.json.MfForecastDaily
 import org.breezyweather.sources.mf.json.MfForecastHourly
 import org.breezyweather.sources.mf.json.MfForecastProbability
 import org.breezyweather.sources.mf.json.MfForecastResult
+import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
@@ -74,7 +76,8 @@ fun convert(location: Location, result: MfForecastResult): Location {
             airQualitySource = location.airQualitySource,
             allergenSource = location.allergenSource,
             minutelySource = location.minutelySource,
-            alertSource = location.alertSource
+            alertSource = location.alertSource,
+            normalsSource = location?.normalsSource
         )
     }
 }
@@ -85,14 +88,14 @@ fun convert(
     forecastResult: MfForecastResult,
     ephemerisResult: MfEphemerisResult,
     rainResult: MfRainResult?,
-    warningsResult: MfWarningsResult
+    warningsResult: MfWarningsResult,
+    normalsResult: MfNormalsResult
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
         || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
         throw WeatherException()
     }
-
     return WeatherWrapper(
         base = Base(
             publishDate = forecastResult.updateTime ?: Date()
@@ -108,6 +111,7 @@ fun convert(
                 speed = currentResult.properties.gridded.windSpeed
             ) else null
         ),
+        normals = getNormals(location.timeZone, normalsResult),
         dailyForecast = getDailyList(
             location.timeZone,
             forecastResult.properties.dailyForecast,
@@ -326,6 +330,18 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     return alertList.sortedWith(compareBy({ it.priority }, { it.startDate }))
 }
 
+fun getNormals(timeZone: TimeZone, normalsResult: MfNormalsResult): Normals? {
+    val currentMonth = Date().toCalendarWithTimeZone(timeZone)[Calendar.MONTH]
+    val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth - 1)
+    return if (normalsStats != null) {
+        Normals(
+            month = currentMonth,
+            daytimeTemperature = normalsStats.tMax,
+            nighttimeTemperature = normalsStats.tMin
+        )
+    } else null
+}
+
 private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
     4 -> 10.0
     3 -> 5.5
@@ -423,12 +439,15 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
  * Secondary convert
  */
 fun convertSecondary(
+    location: Location,
     minuteResult: MfRainResult,
-    alertResultList: MfWarningsResult
+    alertResultList: MfWarningsResult,
+    normalsResult: MfNormalsResult
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getWarningsList(alertResultList)
+        alertList = getWarningsList(alertResultList),
+        normals = getNormals(location.timeZone, normalsResult)
     )
 }
 

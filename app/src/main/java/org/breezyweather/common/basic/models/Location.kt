@@ -52,6 +52,7 @@ data class Location(
     val allergenSource: String? = null,
     val minutelySource: String? = null,
     val alertSource: String? = null,
+    val normalsSource: String? = null,
 
     val isCurrentPosition: Boolean = false,
     val isResidentPosition: Boolean = false,
@@ -91,6 +92,7 @@ data class Location(
         parcel.writeString(allergenSource)
         parcel.writeString(minutelySource)
         parcel.writeString(alertSource)
+        parcel.writeString(normalsSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (isResidentPosition) 1 else 0)
         parcel.writeByte(if (needsGeocodeRefresh) 1 else 0)
@@ -114,6 +116,7 @@ data class Location(
         allergenSource = parcel.readString(),
         minutelySource = parcel.readString(),
         alertSource = parcel.readString(),
+        normalsSource = parcel.readString(),
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         isResidentPosition = parcel.readByte() != 0.toByte(),
         needsGeocodeRefresh = parcel.readByte() != 0.toByte()
@@ -152,6 +155,10 @@ data class Location(
         }
 
         if (alertSource != other.alertSource) {
+            return false
+        }
+
+        if (normalsSource != other.normalsSource) {
             return false
         }
 
@@ -250,6 +257,8 @@ data class Location(
         get() = if (minutelySource.isNullOrEmpty()) weatherSource else minutelySource
     val alertSourceNotNull: String
         get() = if (alertSource.isNullOrEmpty()) weatherSource else alertSource
+    val normalsSourceNotNull: String
+        get() = if (normalsSource.isNullOrEmpty()) weatherSource else normalsSource
 
     companion object {
 

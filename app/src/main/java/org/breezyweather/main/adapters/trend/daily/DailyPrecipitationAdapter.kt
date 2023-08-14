@@ -111,14 +111,14 @@ class DailyPrecipitationAdapter(
     }
 
     init {
-        val daytimeWithPrecipitation = location.weather!!.dailyForecast.filter { it.day?.precipitation?.total != null }
-        if (daytimeWithPrecipitation.isNotEmpty()) {
-            mHighestPrecipitation = daytimeWithPrecipitation.maxOf { it.day!!.precipitation!!.total!! }
-        }
-        val nighttimeWithPrecipitation = location.weather.dailyForecast.filter { it.night?.precipitation?.total != null }
-        if (nighttimeWithPrecipitation.isNotEmpty()) {
-            mHighestPrecipitation = maxOf(mHighestPrecipitation, nighttimeWithPrecipitation.maxOf { it.night!!.precipitation!!.total!! })
-        }
+        mHighestPrecipitation = maxOf(
+            location.weather!!.dailyForecast
+                .mapNotNull { it.day?.precipitation?.total }
+                .maxOrNull() ?: 0f,
+            location.weather.dailyForecast
+                .mapNotNull { it.night?.precipitation?.total }
+                .maxOrNull() ?: 0f
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

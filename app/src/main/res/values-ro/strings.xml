@@ -499,7 +499,6 @@
     <string name="settings_main_hourly_trends_title">Tendințe la fiecare oră</string>
     <string name="settings_main_header_details_title">Detalii în antet</string>
     <string name="settings_main_section_options">Opțiuni</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Ieri/Linii de alertă în tendințe</string>
     <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
     <string name="settings_notifications_summary">Alerte meteo, precipitații, prognoză</string>

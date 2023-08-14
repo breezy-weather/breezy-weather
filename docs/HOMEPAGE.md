@@ -56,7 +56,7 @@ From top to bottom:
 - Weather condition of nighttime (icon)
 - Maximum precipitation probability for the whole day (bar + text)
 
-If weather source has yesterday data, it will show two lines with maximum daytime temperature and minimum nighttime temperature of yesterday. It can be disabled in the settings (Appearance).
+If weather source has yesterday data, it will show two lines with maximum daytime temperature and minimum nighttime temperature of yesterday. From v4.6.0, it will show temperature normals (for the month) instead or median for the daily forecast period if feature not available from source, and yesterday data is moved to a dedicate day. It can be disabled in the settings (Appearance).
 
 
 #### Air quality trends

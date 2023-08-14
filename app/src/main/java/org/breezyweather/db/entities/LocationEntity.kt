@@ -53,6 +53,7 @@ data class LocationEntity(
     var allergenSource: String? = null,
     var minutelySource: String? = null,
     var alertSource: String? = null,
+    var normalsSource: String? = null,
 
     var currentPosition: Boolean = false,
     var residentPosition: Boolean = false,

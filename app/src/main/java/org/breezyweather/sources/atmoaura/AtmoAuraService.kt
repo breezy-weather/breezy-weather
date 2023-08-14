@@ -71,6 +71,7 @@ class AtmoAuraService @Inject constructor(
     override val allergenAttribution = null
     override val minutelyAttribution = null
     override val alertAttribution = null
+    override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,

@@ -23,7 +23,8 @@ enum class SecondaryWeatherSourceFeature(
     FEATURE_AIR_QUALITY("airQuality"),
     FEATURE_ALLERGEN("allergen"),
     FEATURE_MINUTELY("minutely"),
-    FEATURE_ALERT("alert");
+    FEATURE_ALERT("alert"),
+    FEATURE_NORMALS("normals");
 
     companion object {
 
@@ -34,6 +35,7 @@ enum class SecondaryWeatherSourceFeature(
             "allergen" -> FEATURE_ALLERGEN
             "minutely" -> FEATURE_MINUTELY
             "alert" -> FEATURE_ALERT
+            "normals" -> FEATURE_NORMALS
             else -> null
         }
     }

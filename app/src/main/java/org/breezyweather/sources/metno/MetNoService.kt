@@ -173,6 +173,7 @@ class MetNoService @Inject constructor(
     override val allergenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = null
+    override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,

@@ -21,7 +21,7 @@ import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.History
+import org.breezyweather.common.basic.models.weather.Normals
 import org.breezyweather.common.basic.models.weather.Minutely
 
 /**
@@ -31,7 +31,7 @@ import org.breezyweather.common.basic.models.weather.Minutely
 data class WeatherWrapper(
     val base: Base? = null,
     val current: Current? = null,
-    val yesterday: History? = null,
+    val normals: Normals? = null,
     val dailyForecast: List<Daily>? = null,
     val hourlyForecast: List<HourlyWrapper>? = null,
     val minutelyForecast: List<Minutely>? = null,

@@ -97,10 +97,9 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
     }
 
     init {
-        val hourlyWithUVIndex = location.weather!!.next24HourlyForecast.filter { it.uV?.index != null }
-        if (hourlyWithUVIndex.isNotEmpty()) {
-            mHighestIndex = hourlyWithUVIndex.maxOf { it.uV!!.index!! }
-        }
+        mHighestIndex = location.weather!!.next24HourlyForecast
+            .mapNotNull { it.uV?.index }
+            .maxOrNull() ?: 0f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

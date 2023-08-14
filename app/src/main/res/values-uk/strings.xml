@@ -427,7 +427,6 @@
     <string name="settings_main_daily_trends_title">Щоденний прогноз</string>
     <string name="settings_main_header_details_title">Деталі у заголовку</string>
     <string name="settings_main_section_options">Опції</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Вчора/Оповідання у прогнозі</string>
     <string name="settings_main_section_animations">Анімації</string>
     <string name="settings_notifications">Повідомлення</string>
     <string name="settings_notifications_forecast_tomorrow_title">Повідомлення про прогноз наступного дня</string>

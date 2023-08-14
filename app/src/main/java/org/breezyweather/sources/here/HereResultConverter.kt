@@ -66,7 +66,8 @@ fun convert(
             airQualitySource = location?.airQualitySource,
             allergenSource = location?.allergenSource,
             minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource
+            alertSource = location?.alertSource,
+            normalsSource = location?.normalsSource
         )
     }
 }

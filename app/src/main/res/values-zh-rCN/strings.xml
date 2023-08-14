@@ -488,7 +488,6 @@
     <string name="settings_location_access_permission_already_granted">已获得权限</string>
     <string name="settings_main_header_details_title">显示在顶部的细节</string>
     <string name="settings_main_section_options">选项</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">趋势里的昨天/警报行</string>
     <string name="settings_widgets_notification_widget_title">通知微件</string>
     <string name="settings_main_section_animations">动画</string>
     <string name="settings_widgets_section_widgets_in_use">使用中的微件</string>

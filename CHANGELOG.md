@@ -1,5 +1,10 @@
 # Version 4.6.0-beta (next version)
 
+**New data**
+- Yesterday is now shown as a day in daily forecast (on supported sources).
+- Temperature normals added (with a fallback to average temperature when not supported by source).
+- As a consequence “yesterday temperature lines” have been replaced by “temperature normals lines”.
+
 **Weather refresh**
 - If weather source doesn’t already provide it, app will now keep history up to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
@@ -8,12 +13,20 @@
 - Background update will now silently fail in the following cases to avoid unnecessary notification spam: network unavailable, server timeout. No weather update will happen.
 - Background update will now silently fail in the following cases to avoid unnecessary notification spam: location permission missing (background location permission missing will still be reported), Android location not enabled, current location could not be found. Weather update will happen with previously found position. If current location was never found at least once, it will be reported as an error (will NOT silently fail).
 
-**Other improvements and fixes**
+**Weather sources**
+- [AccuWeather] Add support for temperature normals
+- [Météo-France] Add support for temperature normals
+
+**Design**
 - Logo got a refresh.
 - Add a third place to the location list icon to not make it confusing with “itinerary” icon.
+- A circled dot symbol is now shown next to location name on main screen if using current location.
+
+**Other improvements and fixes**
 - Fix incorrect alert source leading to crash in some cases.
 - Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
 - Wind direction is fixed in hourly trends.
+- Fix missing credits for secondary features when same as main source
 
 
 # Version 4.5.4-beta

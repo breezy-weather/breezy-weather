@@ -40,6 +40,7 @@ import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
+import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivity
@@ -359,7 +360,10 @@ class HomeFragment : MainModuleFragment() {
         val daylight = location?.isDaylight ?: true
         val weatherKind = WeatherViewController.getWeatherKind(location?.weather)
 
-        binding.toolbar.title = location?.getPlace(requireContext())
+        // Show "current position" icon:
+        // - On the left on mobile because it might not be visible on small displays otherwise
+        // - On the right on tablet because on the left it would be confused with the action icon
+        binding.toolbar.title = (if (location?.isCurrentPosition == true && !requireContext().isTabletDevice) "⊙ " else "") + (location?.getPlace(requireContext()) ?: "") + (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
         val textColor = ThemeManager.getInstance(requireContext())
             .weatherThemeDelegate

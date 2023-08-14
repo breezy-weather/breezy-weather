@@ -67,6 +67,14 @@ interface MfApi {
         @Query("token") token: String
     ): Observable<MfEphemerisResult>
 
+    @GET("v2/normals")
+    fun getNormals(
+        @Header("User-Agent") userAgent: String,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("token") token: String
+    ): Observable<MfNormalsResult>
+
     @GET("v3/warning/full")
     fun getWarnings(
         @Header("User-Agent") userAgent: String,

@@ -379,7 +379,6 @@
     <string name="settings_main_section_displayed_data">顯示的資料</string>
     <string name="settings_main_header_details_title">標題中的詳細資訊</string>
     <string name="settings_main_section_options">選項</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">趨勢中的 昨日/預警 標記</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
     <string name="settings_widgets_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以通過在主屏幕桌布選擇器中選擇“動態桌布”來啟用 Breezy Weather 桌布。</string>
     <string name="unit_fahrenheit">°F</string>

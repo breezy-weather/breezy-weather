@@ -24,7 +24,8 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 
 /**
  * Initial implementation of secondary weather source
- * Interface may change any time
+ *
+ * TODO: Normals feature is not yet supported
  */
 interface SecondaryWeatherSource : Source {
 
@@ -37,6 +38,7 @@ interface SecondaryWeatherSource : Source {
     val allergenAttribution: String?
     val minutelyAttribution: String?
     val alertAttribution: String?
+    val normalsAttribution: String?
 
     /**
      * Returns secondary weather converted to Breezy Weather Weather object
