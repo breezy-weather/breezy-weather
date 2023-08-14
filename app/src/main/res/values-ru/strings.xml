@@ -643,4 +643,9 @@
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>
+    <string name="temperature_average_short">Середина</string>
+    <string name="temperature_normals">Температурные нормы</string>
+    <string name="temperature_normal_short">Норма</string>
+    <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
+    <string name="weather_normals_data_by">Данные о температурных нормах предоставлены $</string>
 </resources>
