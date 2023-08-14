@@ -94,6 +94,7 @@ class PirateWeatherService @Inject constructor(
     override val allergenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
+    override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,

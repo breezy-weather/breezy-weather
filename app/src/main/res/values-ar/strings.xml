@@ -294,7 +294,6 @@
     <string name="settings_main_hourly_trends_title">الاتجاهات بالساعة</string>
     <string name="settings_main_section_displayed_data">البيانات المعروضة</string>
     <string name="settings_main_daily_trends_title">الاتجاهات اليومية</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">أمس/خطوط التنبيه في الاتجاهات</string>
     <string name="widget_custom_subtitle_keyword_hd_description">وصف كل ساعة</string>
     <string name="locations">المواقع</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>

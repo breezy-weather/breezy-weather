@@ -61,6 +61,9 @@
     <string name="temperature_degree_day">Degré jour unifié</string>
     <string name="temperature_degree_day_heating">Degré-jour de chauffe</string>
     <string name="temperature_degree_day_cooling">Degré-jour froid</string>
+    <string name="temperature_average_short">Moy.</string>
+    <string name="temperature_normal_short">Normale</string>
+    <string name="temperature_normals">Normales de température</string>
 
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Orage</string>
@@ -376,6 +379,7 @@
     <string name="weather_air_quality_and_allergen_data_by">Données de qualité de l’air et d’allergènes par $</string>
     <string name="weather_minutely_data_by">Données de précipitations détaillées par $</string>
     <string name="weather_alert_data_by">Données d’alertes par $</string>
+    <string name="weather_normals_data_by">Données des normales de température par $</string>
     <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>
@@ -453,7 +457,7 @@
     <string name="settings_main_hourly_trends_title">Tendances heure par heure</string>
     <string name="settings_main_header_details_title">Détails en entête</string>
     <string name="settings_main_section_options">Options</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Lignes d’alerte/de la veille dans les tendances</string>
+    <string name="settings_main_threshold_lines_on_charts">Lignes de seuil sur les graphiques</string>
     <string name="settings_main_section_animations">Animations</string>
     <string name="settings_main_background_animation_title">Animation de l’arrière-plan</string>
     <string name="settings_main_background_animation_enabled">Activée</string>

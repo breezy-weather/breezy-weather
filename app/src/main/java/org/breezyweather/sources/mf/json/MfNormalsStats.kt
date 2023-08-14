@@ -15,16 +15,14 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.weather
+package org.breezyweather.sources.mf.json
 
-import java.io.Serializable
-import java.util.Date
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-/**
- * History.
- */
-class History(
-    val date: Date,
-    val daytimeTemperature: Float? = null,
-    val nighttimeTemperature: Float? = null
-) : Serializable
+@Serializable
+data class MfNormalsStats(
+    val period: String?,
+    @SerialName("T_min") val tMin: Float?,
+    @SerialName("T_max") val tMax: Float?
+)

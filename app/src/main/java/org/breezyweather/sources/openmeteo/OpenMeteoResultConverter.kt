@@ -26,7 +26,6 @@ import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -98,11 +97,6 @@ fun convert(
                 degree = weatherResult.currentWeather?.windDirection,
                 speed = weatherResult.currentWeather?.windSpeed
             )
-        ),
-        yesterday = History(
-            date = Date(weatherResult.daily.time[0].times(1000)),
-            daytimeTemperature = weatherResult.daily.temperatureMax?.getOrNull(0),
-            nighttimeTemperature = weatherResult.daily.temperatureMin?.getOrNull(0),
         ),
         dailyForecast = getDailyList(weatherResult.daily),
         hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult)

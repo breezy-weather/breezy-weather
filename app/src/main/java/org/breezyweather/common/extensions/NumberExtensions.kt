@@ -46,13 +46,21 @@ fun Float.format(decimals: Int): String {
     return df.format(this)
 }
 
+val Array<Float>.median: Float
+    get() {
+        this.sort()
+
+        return if (this.size % 2 != 0) {
+            this[this.size / 2]
+        } else (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0f
+    }
+
 /**
  * Taken from Tachiyomi
  * Apache License, Version 2.0
  *
  * https://github.com/tachiyomiorg/tachiyomi/blob/58a0add4f6bd8a5ab1006755035ff1b102355d4a/presentation-core/src/main/java/tachiyomi/presentation/core/util/PaddingValues.kt
  */
-
 @Composable
 @ReadOnlyComposable
 operator fun PaddingValues.plus(other: PaddingValues): PaddingValues {

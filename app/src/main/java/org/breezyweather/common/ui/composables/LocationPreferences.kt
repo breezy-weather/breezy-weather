@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
@@ -137,6 +138,7 @@ private fun SecondarySourcesPreference(
         val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
         val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
         val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
+        val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
         val weatherSources = sourceManager.getConfiguredMainWeatherSources()
         val secondarySources = sourceManager.getSecondaryWeatherSources()
         val compatibleAirQualitySources = secondarySources.filter {
@@ -165,6 +167,13 @@ private fun SecondarySourcesPreference(
                     it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
                     && it.isFeatureSupportedForLocation(
                 SecondaryWeatherSourceFeature.FEATURE_ALERT, location
+            )
+        }
+        val compatibleNormalsSources = secondarySources.filter {
+            it.id != location.weatherSource &&
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                    && it.isFeatureSupportedForLocation(
+                SecondaryWeatherSourceFeature.FEATURE_NORMALS, location
             )
         }
 
@@ -226,6 +235,18 @@ private fun SecondarySourcesPreference(
                         alertSource.value = sourceId
                         hasChangedASecondarySource.value = true
                     }
+                    // TODO: Do NOT enable on releases until #358 is implemented
+                    if (BreezyWeather.instance.debugMode) {
+                        SourceView(
+                            title = stringResource(R.string.temperature_normals),
+                            selectedKey = alertSource.value,
+                            sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                    compatibleNormalsSources.associate { it.id to it.name },
+                        ) { sourceId ->
+                            normalsSource.value = sourceId
+                            hasChangedASecondarySource.value = true
+                        }
+                    }
                 }
             },
             confirmButton = {
@@ -235,12 +256,14 @@ private fun SecondarySourcesPreference(
                         if (hasChangedMainSource.value || hasChangedASecondarySource.value) {
                             val newLocation = location.copy(
                                 // Reset cityId when changing source as they are linked to source
+                                // Also reset secondary weather sources which are the new main source
                                 cityId = if (hasChangedMainSource.value) "" else location.cityId,
                                 weatherSource = weatherSource.value,
-                                airQualitySource = airQualitySource.value,
-                                allergenSource = allergenSource.value,
-                                minutelySource = minutelySource.value,
-                                alertSource = alertSource.value,
+                                airQualitySource = if (hasChangedMainSource.value && airQualitySource.value == weatherSource.value) "" else airQualitySource.value,
+                                allergenSource = if (hasChangedMainSource.value && allergenSource.value == weatherSource.value) "" else allergenSource.value,
+                                minutelySource = if (hasChangedMainSource.value && minutelySource.value == weatherSource.value) "" else minutelySource.value,
+                                alertSource = if (hasChangedMainSource.value && alertSource.value == weatherSource.value) "" else alertSource.value,
+                                normalsSource = if (hasChangedMainSource.value && normalsSource.value == weatherSource.value) "" else normalsSource.value,
                                 needsGeocodeRefresh = hasChangedMainSource.value
                             )
                             LocationEntityRepository.writeLocation(newLocation, location.formattedId)

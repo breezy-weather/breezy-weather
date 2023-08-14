@@ -94,10 +94,9 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
     }
 
     init {
-        val hourlyWithAirQualityIndex = location.weather!!.next24HourlyForecast.filter { it.airQuality?.getIndex() != null }
-        if (hourlyWithAirQualityIndex.isNotEmpty()) {
-            mHighestIndex = hourlyWithAirQualityIndex.maxOf { it.airQuality!!.getIndex()!! }
-        }
+        mHighestIndex = location.weather!!.next24HourlyForecast
+            .mapNotNull { it.airQuality?.getIndex() }
+            .maxOrNull() ?: 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

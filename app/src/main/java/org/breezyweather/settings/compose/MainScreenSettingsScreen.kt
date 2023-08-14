@@ -105,7 +105,7 @@ fun MainScreenSettingsScreen(
         sectionFooterItem(R.string.settings_main_section_displayed_data)
 
         sectionHeaderItem(R.string.settings_main_section_options)
-        switchPreferenceItem(R.string.settings_main_yesterday_alert_lines_in_trends) { id ->
+        switchPreferenceItem(R.string.settings_main_threshold_lines_on_charts) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.settings_enabled,

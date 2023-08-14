@@ -101,10 +101,9 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     }
 
     init {
-        val hourlyWithWindSpeed = location.weather!!.next24HourlyForecast.filter { it.wind?.speed != null }
-        if (hourlyWithWindSpeed.isNotEmpty()) {
-            mHighestWindSpeed = hourlyWithWindSpeed.maxOf { it.wind!!.speed!! }
-        }
+        mHighestWindSpeed = location.weather!!.next24HourlyForecast
+            .mapNotNull { it.wind?.speed }
+            .maxOrNull() ?: 0f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

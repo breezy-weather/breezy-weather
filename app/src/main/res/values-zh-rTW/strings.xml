@@ -379,7 +379,6 @@
     <string name="settings_main_section_displayed_data">顯示的資料</string>
     <string name="settings_main_header_details_title">顯示在頂部的詳情資料</string>
     <string name="settings_main_section_options">選項</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">概覽中的 昨日/預警 橫線</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
     <string name="settings_widgets_live_wallpaper_error">無法啟動壁紙選擇器。您仍然可以通過在主屏幕壁紙選擇器中選擇“動態壁紙”來啟用 Breezy Weather 壁紙。</string>
     <string name="unit_fahrenheit">°F</string>

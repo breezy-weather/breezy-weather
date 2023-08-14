@@ -22,11 +22,11 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.common.basic.models.weather.Normals
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.db.entities.HistoryEntity
 import org.breezyweather.db.entities.WeatherEntity
 
 object WeatherEntityGenerator {
@@ -69,13 +69,17 @@ object WeatherEntityGenerator {
             visibility = weather.current?.visibility,
             ceiling = weather.current?.ceiling,
             dailyForecast = weather.current?.dailyForecast,
-            hourlyForecast = weather.current?.hourlyForecast
+            hourlyForecast = weather.current?.hourlyForecast,
+
+            // normals
+            normalsMonth = weather.normals?.month,
+            normalsDaytimeTemperature = weather.normals?.daytimeTemperature,
+            normalsNighttimeTemperature = weather.normals?.nighttimeTemperature
         )
     }
 
     fun generate(
         weatherEntity: WeatherEntity?,
-        historyEntity: HistoryEntity?,
         boxStore: BoxStore
     ): Weather? {
         return if (weatherEntity == null) {
@@ -119,7 +123,11 @@ object WeatherEntityGenerator {
                 weatherEntity.dailyForecast,
                 weatherEntity.hourlyForecast
             ),
-            HistoryEntityGenerator.generate(historyEntity),
+            Normals(
+                weatherEntity.normalsMonth,
+                weatherEntity.normalsDaytimeTemperature,
+                weatherEntity.normalsNighttimeTemperature
+            ),
             DailyEntityGenerator.generate(weatherEntity.getDailyEntityList(boxStore)),
             HourlyEntityGenerator.generateModuleList(weatherEntity.getHourlyEntityList(boxStore)),
             MinutelyEntityGenerator.generate(weatherEntity.getMinutelyEntityList(boxStore)),

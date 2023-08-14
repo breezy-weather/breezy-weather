@@ -52,7 +52,6 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
-import org.breezyweather.db.repositories.HistoryEntityRepository
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RefreshErrorType
@@ -298,6 +297,15 @@ class RefreshHelper @Inject constructor(
                     }
                     mainFeaturesIgnored.add(SecondaryWeatherSourceFeature.FEATURE_ALERT)
                 }
+                if (!normalsSource.isNullOrEmpty() && normalsSource != weatherSource) {
+                    if (secondarySources.containsKey(normalsSource)) {
+                        secondarySources[normalsSource]!!.add(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                    } else {
+                        secondarySources[normalsSource] =
+                            mutableListOf(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                    }
+                    mainFeaturesIgnored.add(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                }
             }
 
             // MAIN SOURCE
@@ -381,6 +389,9 @@ class RefreshHelper @Inject constructor(
                     } else null,
                     alertList = if (!location.alertSource.isNullOrEmpty() && location.alertSource != location.weatherSource) {
                         secondarySourceCalls[location.alertSource]?.alertList ?: getAlertsFromWeather(location.weather)
+                    } else null,
+                    normals = if (!location.normalsSource.isNullOrEmpty() && location.normalsSource != location.weatherSource) {
+                        secondarySourceCalls[location.normalsSource]?.normals ?: getNormalsFromWeather(location)
                     } else null
                 )
             } else null
@@ -432,7 +443,8 @@ class RefreshHelper @Inject constructor(
                     currentDay,
                     location.timeZone
                 ),
-                yesterday = mainWeatherCompleted.yesterday,
+                normals = secondaryWeatherWrapper?.normals
+                    ?: completeNormalsFromDaily(mainWeatherCompleted.normals, dailyForecast),
                 dailyForecast = dailyForecast,
                 hourlyForecast = hourlyForecast,
                 minutelyForecast = secondaryWeatherWrapper?.minutelyForecast
@@ -443,17 +455,7 @@ class RefreshHelper @Inject constructor(
                 } ?: emptyList()
             )
             WeatherEntityRepository.writeWeather(location, weather)
-            return WeatherResult(
-                if (weather.yesterday == null) {
-                    weather.copy(
-                        yesterday = HistoryEntityRepository.readHistory(
-                            location,
-                            mainWeatherCompleted.base?.publishDate ?: Date()
-                        )
-                    )
-                } else weather,
-                errors
-            )
+            return WeatherResult(weather, errors)
         } catch (e: Throwable) {
             e.printStackTrace()
             return WeatherResult(

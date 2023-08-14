@@ -112,9 +112,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 i += 2
             }
         }
-        weather.yesterday?.let { yesterday ->
-            highestTemperature = yesterday.daytimeTemperature
-            lowestTemperature = yesterday.nighttimeTemperature
+        weather.normals?.let { normals ->
+            highestTemperature = normals.daytimeTemperature
+            lowestTemperature = normals.nighttimeTemperature
         }
         for (i in 0 until itemCount) {
             weather.next24HourlyForecast[i].temperature?.temperature?.let {
@@ -129,11 +129,11 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_hourly, null, false)
-        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday.nighttimeTemperature != null
+        if (weather.normals?.daytimeTemperature != null && weather.normals.nighttimeTemperature != null
             && highestTemperature != null && lowestTemperature != null) {
             val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
             trendParent.setData(
-                arrayOf(weather.yesterday.daytimeTemperature, weather.yesterday.nighttimeTemperature),
+                arrayOf(weather.normals.daytimeTemperature, weather.normals.nighttimeTemperature),
                 highestTemperature!!,
                 lowestTemperature!!,
                 temperatureUnit,

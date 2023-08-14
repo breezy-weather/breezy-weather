@@ -15,19 +15,15 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.wrappers
+package org.breezyweather.sources.mf.json
 
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.Normals
+import kotlinx.serialization.Serializable
 
 /**
- * Wrapper to help with secondary data.
+ * Mf normals
  */
-data class SecondaryWeatherWrapper(
-    val airQuality: AirQualityWrapper? = null,
-    val allergen: AllergenWrapper? = null,
-    val minutelyForecast: List<Minutely>? = null,
-    val alertList: List<Alert>? = null,
-    val normals: Normals? = null
+@Serializable
+data class MfNormalsResult(
+    val geometry: MfGeometry? = null,
+    val properties: MfNormalsProperties? = null
 )

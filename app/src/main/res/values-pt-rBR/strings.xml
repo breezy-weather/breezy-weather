@@ -409,7 +409,6 @@
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Ontem/Linhas de alerta em tendências</string>
     <string name="settings_notifications_summary">Alertas metereológicos, precipitações, previsões</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>

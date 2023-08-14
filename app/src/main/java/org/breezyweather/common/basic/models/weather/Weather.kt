@@ -23,7 +23,7 @@ import java.util.*
 data class Weather(
     val base: Base = Base(),
     val current: Current? = null,
-    val yesterday: History? = null,
+    val normals: Normals? = null,
     val dailyForecast: List<Daily> = emptyList(),
     val hourlyForecast: List<Hourly> = emptyList(),
     val minutelyForecast: List<Minutely> = emptyList(),

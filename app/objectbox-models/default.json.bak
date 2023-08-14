@@ -477,40 +477,6 @@
       "relations": []
     },
     {
-      "id": "4:4342122775390421792",
-      "lastPropertyId": "9:8407995916617737817",
-      "name": "HistoryEntity",
-      "properties": [
-        {
-          "id": "1:1620866321445216229",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "4:3569533117754383073",
-          "name": "date",
-          "type": 10
-        },
-        {
-          "id": "7:2988639636259684429",
-          "name": "daytimeTemperature",
-          "type": 7
-        },
-        {
-          "id": "8:6543083704360104061",
-          "name": "nighttimeTemperature",
-          "type": 7
-        },
-        {
-          "id": "9:8407995916617737817",
-          "name": "formattedId",
-          "type": 9
-        }
-      ],
-      "relations": []
-    },
-    {
       "id": "5:3341053428256525637",
       "lastPropertyId": "68:1836299625609765158",
       "name": "HourlyEntity",
@@ -706,7 +672,7 @@
     },
     {
       "id": "6:4252433662761383759",
-      "lastPropertyId": "20:679004505855096220",
+      "lastPropertyId": "21:3557173066653448748",
       "name": "LocationEntity",
       "properties": [
         {
@@ -804,6 +770,11 @@
           "id": "20:679004505855096220",
           "name": "alertSource",
           "type": 9
+        },
+        {
+          "id": "21:3557173066653448748",
+          "name": "needsGeocodeRefresh",
+          "type": 1
         }
       ],
       "relations": []
@@ -844,7 +815,7 @@
     },
     {
       "id": "8:2083452952355791661",
-      "lastPropertyId": "55:524989558090468092",
+      "lastPropertyId": "58:5390129169736894239",
       "name": "WeatherEntity",
       "properties": [
         {
@@ -997,19 +968,36 @@
           "id": "55:524989558090468092",
           "name": "windGusts",
           "type": 7
+        },
+        {
+          "id": "56:1884637603614804537",
+          "name": "normalsMonth",
+          "type": 5
+        },
+        {
+          "id": "57:5725970924057737618",
+          "name": "normalsDaytimeTemperature",
+          "type": 7
+        },
+        {
+          "id": "58:5390129169736894239",
+          "name": "normalsNighttimeTemperature",
+          "type": 7
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "8:2083452952355791661",
+  "lastEntityId": "9:5334727395462091579",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
-    6023285354651609399
+    6023285354651609399,
+    4342122775390421792,
+    5334727395462091579
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
@@ -1137,7 +1125,17 @@
     593197090510761832,
     8197685412093624841,
     8188490826293395683,
-    3363641075856725520
+    3363641075856725520,
+    1620866321445216229,
+    3569533117754383073,
+    2988639636259684429,
+    6543083704360104061,
+    8407995916617737817,
+    8883102759076387809,
+    3080251397221196491,
+    1260468332745920214,
+    5544322218415445049,
+    630871502229835689
   ],
   "retiredRelationUids": [],
   "version": 1

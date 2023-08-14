@@ -117,10 +117,9 @@ class HourlyPrecipitationAdapter(
     }
 
     init {
-        val hourlyWithPrecipitation = location.weather!!.next24HourlyForecast.filter { it.precipitation?.total != null }
-        if (hourlyWithPrecipitation.isNotEmpty()) {
-            mHighestPrecipitation = hourlyWithPrecipitation.maxOf { it.precipitation!!.total!! }
-        }
+        mHighestPrecipitation = location.weather!!.next24HourlyForecast
+            .mapNotNull { it.precipitation?.total }
+            .maxOrNull() ?: 0f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

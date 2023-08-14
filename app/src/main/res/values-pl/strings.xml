@@ -528,7 +528,6 @@
     <string name="settings_widgets_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę Breezy Weather, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
     <string name="unit_inph_voice">Cali na godzinę</string>
     <string name="settings_item_delete">Usuń ten element</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Linie „wczoraj”/„alert” w trendach</string>
     <string name="settings_location_access_precise_summaryOff">Włącz opcję „Używaj dokładnej lokalizacji”, jeśli masz problem z uzyskaniem lokalizacji.</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_appearance_summary">Język, tryb ciemny, pakiet ikon, jednostki</string>

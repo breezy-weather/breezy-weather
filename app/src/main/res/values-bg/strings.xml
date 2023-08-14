@@ -417,7 +417,6 @@
     <string name="settings_main_hourly_trends_title">Почасови тенденции</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_daily_trends_title">Дневни тенденции</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Предупредителни линии в тенденции</string>
     <string name="settings_main_header_details_title">Подробности в заглавието</string>
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_main_background_animation_title">Фонова анимация</string>

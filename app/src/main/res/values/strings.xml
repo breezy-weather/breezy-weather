@@ -42,6 +42,10 @@
     <string name="temperature_degree_day">Degree day</string>
     <string name="temperature_degree_day_heating">Heating degree day</string>
     <string name="temperature_degree_day_cooling">Cooling degree day</string>
+    <!-- It’s actually a median, but the word “Average” is probably easier to understand -->
+    <string name="temperature_average_short">Avg</string>
+    <string name="temperature_normal_short">Normal</string>
+    <string name="temperature_normals">Temperature normals</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
@@ -204,6 +208,7 @@
     <string name="weather_air_quality_and_allergen_data_by">Air quality and allergen data by $</string>
     <string name="weather_minutely_data_by">Precipitation minute by minute data by $</string>
     <string name="weather_alert_data_by">Alert data by $</string>
+    <string name="weather_normals_data_by">Temperature normals data by $</string>
     <!-- $ = weather data source -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
@@ -514,7 +519,7 @@
     <string name="settings_main_hourly_trends_title">Hourly trends</string>
     <string name="settings_main_header_details_title">Details in header</string>
     <string name="settings_main_section_options">Options</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Yesterday/Alert lines in trends</string>
+    <string name="settings_main_threshold_lines_on_charts">Threshold lines on charts</string>
     <string name="settings_main_section_animations">Animations</string>
     <string name="settings_main_background_animation_title">Background animation</string>
     <string name="settings_main_background_animation_enabled">Enabled</string>

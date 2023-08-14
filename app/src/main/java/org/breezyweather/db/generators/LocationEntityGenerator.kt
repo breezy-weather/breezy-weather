@@ -39,6 +39,7 @@ object LocationEntityGenerator {
             allergenSource = location.allergenSource,
             minutelySource = location.minutelySource,
             alertSource = location.alertSource,
+            normalsSource = location.normalsSource,
             currentPosition = location.isCurrentPosition,
             residentPosition = location.isResidentPosition,
             needsGeocodeRefresh = location.needsGeocodeRefresh
@@ -71,6 +72,7 @@ object LocationEntityGenerator {
             entity.allergenSource,
             entity.minutelySource,
             entity.alertSource,
+            entity.normalsSource,
             entity.currentPosition,
             entity.residentPosition,
             entity.needsGeocodeRefresh

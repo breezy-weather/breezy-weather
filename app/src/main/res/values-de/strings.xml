@@ -516,7 +516,6 @@
     <string name="settings_icon_packs_check_details">Details prüfen</string>
     <string name="settings_main_daily_trends_title">Tägliche Trends</string>
     <string name="settings_main_hourly_trends_title">Stündliche Trends</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Gestern/Warnlinien in Trends</string>
     <string name="settings_items_drag_to_sort">Tippen und ziehen, um die Listenelemente zu sortieren</string>
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>

@@ -29,6 +29,7 @@ import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -43,6 +44,7 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
 import org.breezyweather.sources.accu.json.AccuAlertResult
+import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
 import org.breezyweather.sources.accu.json.AccuCurrentResult
 import org.breezyweather.sources.accu.json.AccuForecastDailyResult
 import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
@@ -51,6 +53,8 @@ import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 import retrofit2.Retrofit
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 
 class AccuService @Inject constructor(
@@ -168,7 +172,8 @@ class AccuService @Inject constructor(
         val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
             && mApi is AccuEnterpriseApi) {
             mApi.getAirQuality(
-                location.cityId, apiKey,
+                location.cityId,
+                apiKey,
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
@@ -181,19 +186,42 @@ class AccuService @Inject constructor(
                 emitter.onNext(AccuAirQualityResult())
             }
         }
+        // TODO: Only call once a month, unless it’s current position
+        val cal = Date().toCalendarWithTimeZone(location.timeZone)
+        val climoSummary = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+            && mApi is AccuEnterpriseApi) {
+            mApi.getClimoSummary(
+                cal[Calendar.YEAR],
+                cal[Calendar.MONTH],
+                location.cityId,
+                apiKey,
+                languageCode,
+                details = false
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(AccuClimoSummaryResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(AccuClimoSummaryResult())
+            }
+        }
         return Observable.zip(
             current,
             daily,
             hourly,
             minute,
             alert,
-            airQuality
+            airQuality,
+            climoSummary
         ) { accuRealtimeResults: List<AccuCurrentResult>,
             accuDailyResult: AccuForecastDailyResult,
             accuHourlyResults: List<AccuForecastHourlyResult>,
             accuMinutelyResult: AccuMinutelyResult,
             accuAlertResults: List<AccuAlertResult>,
-            accuAirQualityResult: AccuAirQualityResult
+            accuAirQualityResult: AccuAirQualityResult,
+            accuClimoResult: AccuClimoSummaryResult
             ->
             convert(
                 location,
@@ -202,7 +230,9 @@ class AccuService @Inject constructor(
                 accuHourlyResults,
                 accuMinutelyResult,
                 accuAlertResults,
-                accuAirQualityResult
+                accuAirQualityResult,
+                accuClimoResult,
+                cal[Calendar.MONTH]
             )
         }
     }
@@ -221,6 +251,7 @@ class AccuService @Inject constructor(
     override val allergenAttribution = null // Only supported by city key
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
+    override val normalsAttribution = null // Only supported by city key
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,

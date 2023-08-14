@@ -52,14 +52,13 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Query("language") language: String
     ): Observable<AccuAirQualityResult>
 
-    // https://apidev.accuweather.com/developers/climoAPIguide
-    /*@GET("climo/v1/summary/{year}/{month}/{city_key}")
-    fun getClimo(
+    @GET("climo/v1/summary/{year}/{month}/{city_key}")
+    fun getClimoSummary(
         @Path("year") year: Int,
         @Path("month") month: Int,
         @Path("city_key") city_key: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean
-    ): Observable<List<AccuClimoResult>>*/
+    ): Observable<AccuClimoSummaryResult>
 }

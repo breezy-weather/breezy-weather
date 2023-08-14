@@ -116,14 +116,14 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
     }
 
     init {
-        val daytimeWithWindSpeed = location.weather!!.dailyForecast.filter { it.day?.wind?.speed != null }
-        if (daytimeWithWindSpeed.isNotEmpty()) {
-            mHighestWindSpeed = daytimeWithWindSpeed.maxOf { it.day!!.wind!!.speed!! }
-        }
-        val nighttimeWithWindSpeed = location.weather.dailyForecast.filter { it.night?.wind?.speed != null }
-        if (nighttimeWithWindSpeed.isNotEmpty()) {
-            mHighestWindSpeed = maxOf(mHighestWindSpeed, nighttimeWithWindSpeed.maxOf { it.night!!.wind!!.speed!! })
-        }
+        mHighestWindSpeed = maxOf(
+            location.weather!!.dailyForecast
+                .mapNotNull { it.day?.wind?.speed }
+                .maxOrNull() ?: 0f,
+            location.weather.dailyForecast
+                .mapNotNull { it.night?.wind?.speed }
+                .maxOrNull() ?: 0f
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

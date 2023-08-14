@@ -73,7 +73,12 @@ class WeatherEntity(
     var cloudCover: Int? = null,
     var ceiling: Float? = null,
     var dailyForecast: String? = null,
-    var hourlyForecast: String? = null
+    var hourlyForecast: String? = null,
+
+    // Normals
+    var normalsMonth: Int? = null,
+    var normalsDaytimeTemperature: Float? = null,
+    var normalsNighttimeTemperature: Float? = null
 ) {
 
     @Transient

@@ -27,7 +27,6 @@ import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -63,7 +62,8 @@ fun convert(
         airQualitySource = location?.airQualitySource,
         allergenSource = location?.allergenSource,
         minutelySource = location?.minutelySource,
-        alertSource = location?.alertSource
+        alertSource = location?.alertSource,
+        normalsSource = location?.normalsSource
     )
 }
 fun convert(
@@ -117,7 +117,6 @@ fun convert(
                 minutelyResult.precipitation.description
             } else null
         ),
-        yesterday = getYesterday(forecastResult),
         dailyForecast = getDailyList(
             forecastResult.current.pubTime,
             location.timeZone,
@@ -134,20 +133,6 @@ fun convert(
         ),
         alertList = getAlertList(forecastResult)
     )
-}
-
-private fun getYesterday(result: ChinaForecastResult): History? {
-    if (result.yesterday == null) return null
-
-    return try {
-        History(
-            date = Date(result.updateTime - 24 * 60 * 60 * 1000),
-            daytimeTemperature = result.yesterday.tempMax?.toFloatOrNull(),
-            nighttimeTemperature = result.yesterday.tempMin?.toFloatOrNull(),
-        )
-    } catch (ignore: Exception) {
-        null
-    }
 }
 
 private fun getDailyList(

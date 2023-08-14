@@ -22,7 +22,6 @@ import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.AlertEntity
 import org.breezyweather.db.entities.DailyEntity
-import org.breezyweather.db.entities.HistoryEntity
 import org.breezyweather.db.entities.HourlyEntity
 import org.breezyweather.db.entities.MinutelyEntity
 import org.breezyweather.db.entities.WeatherEntity
@@ -55,20 +54,6 @@ object WeatherEntityRepository {
                     location.formattedId, weather.alertList
                 )
             )
-            if (weather.dailyForecast.isNotEmpty() && weather.dailyForecast[0].day?.temperature != null && weather.dailyForecast[0].night?.temperature != null) {
-                HistoryEntityRepository.insertHistoryEntity(
-                    HistoryEntityGenerator.generate(
-                        location.formattedId, weather
-                    )
-                )
-            }
-            if (weather.yesterday != null) {
-                HistoryEntityRepository.insertHistoryEntity(
-                    HistoryEntityGenerator.generate(
-                        location.formattedId, weather.yesterday
-                    )
-                )
-            }
             true
         }
     }
@@ -82,9 +67,6 @@ object WeatherEntityRepository {
         boxStore.callInTxNoException {
             deleteWeather(
                 selectWeatherEntityList(location.formattedId)
-            )
-            HistoryEntityRepository.deleteLocationHistoryEntity(
-                HistoryEntityRepository.selectHistoryEntityList(location.formattedId)
             )
             DailyEntityRepository.deleteDailyEntityList(
                 DailyEntityRepository.selectDailyEntityList(location.formattedId)
@@ -106,9 +88,6 @@ object WeatherEntityRepository {
         boxStore.callInTxNoException {
             deleteWeather(
                 selectWeatherEntityList(formattedId)
-            )
-            HistoryEntityRepository.deleteLocationHistoryEntity(
-                HistoryEntityRepository.selectHistoryEntityList(formattedId)
             )
             DailyEntityRepository.deleteDailyEntityList(
                 DailyEntityRepository.selectDailyEntityList(formattedId)
@@ -138,7 +117,6 @@ object WeatherEntityRepository {
         boxStore.boxFor(WeatherEntity::class.java).removeAll()
         boxStore.boxFor(AlertEntity::class.java).removeAll()
         boxStore.boxFor(DailyEntity::class.java).removeAll()
-        boxStore.boxFor(HistoryEntity::class.java).removeAll()
         boxStore.boxFor(HourlyEntity::class.java).removeAll()
         boxStore.boxFor(MinutelyEntity::class.java).removeAll()
     }
@@ -146,10 +124,7 @@ object WeatherEntityRepository {
     // select.
     fun readWeather(location: Location): Weather? {
         val weatherEntity = selectWeatherEntity(location.formattedId) ?: return null
-        val historyEntity = HistoryEntityRepository.selectYesterdayHistoryEntity(
-            location.formattedId, weatherEntity.publishDate, location.timeZone
-        )
-        return WeatherEntityGenerator.generate(weatherEntity, historyEntity, boxStore)
+        return WeatherEntityGenerator.generate(weatherEntity, boxStore)
     }
 
     fun selectWeatherEntity(formattedId: String): WeatherEntity? {
