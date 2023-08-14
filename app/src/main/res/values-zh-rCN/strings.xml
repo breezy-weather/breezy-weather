@@ -645,4 +645,5 @@
     <string name="unit_bf">Bf</string>
     <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
+    <string name="about_contribution_designer">Logo 设计者</string>
 </resources>
