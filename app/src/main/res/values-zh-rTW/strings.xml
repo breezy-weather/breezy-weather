@@ -83,7 +83,7 @@
     <string name="allergen_mold">黴菌</string>
     <string name="allergen_ragweed">豚草花粉</string>
     <string name="allergen_tree">樹木花粉</string>
-    <string name="daily_forecast">每日天氣預報</string>
+    <string name="daily_forecast">每日預報</string>
     <string name="hourly_forecast">每小時預報</string>
     <string name="minutely_forecast">每分鐘預報</string>
     <string name="precipitation_forecast">降水預報</string>
@@ -132,7 +132,7 @@
     <string name="widget_label_align_end">右對齊</string>
     <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣資料，可以通過使用$來引用相應關鍵字來實現。
 \n
-\n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為天晴”。</string>
+\n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為晴”。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（℃/℉）</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度（°）</string>
@@ -188,7 +188,7 @@
     <string name="location_resident_message">設定為常駐城市</string>
     <string name="location_resident_dialog">常駐城市將根據您當前的位置自動顯示和隱藏。
 \n例如可以將家鄉設置為常駐城市。在旅行時可以查看家鄉的天氣。當回到家時，家鄉的天氣將被隱藏並替換為當前位置的天氣。</string>
-    <string name="allergen_tap_to_see_more">點擊查看更多…</string>
+    <string name="allergen_tap_to_see_more">點擊以查看更多…</string>
     <!-- content description -->
     <string name="action_back">回退</string>
     <string name="settings_icon_packs_check_details">檢查詳細資訊</string>
@@ -207,8 +207,8 @@
     <string name="precipitation_between_time">$1至$2間存在降水</string>
     <string name="action_add_current_location">添加當前位置</string>
     <string name="settings_items_drag_to_sort">輕觸以對列表進行拖拽排序</string>
-    <string name="settings_item_delete">刪除此項</string>
-    <string name="location_swipe_to_delete">你可以向左滑動以刪除該項</string>
+    <string name="settings_item_delete">刪除這個項目</string>
+    <string name="location_swipe_to_delete">你可以向左滑動以刪除這個項目</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天氣圖示</string>
     <string name="settings_icon_packs_weather_icon_light">亮色圖示</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色圖示</string>
@@ -225,7 +225,7 @@
     <string name="widget_week">一週</string>
     <string name="widget_day_week">今日 + 一週</string>
     <string name="widget_clock_day_horizontal">時鐘 + 今日（水平排列）</string>
-    <string name="widget_clock_day_details">時鐘 + 每日（詳細資訊）</string>
+    <string name="widget_clock_day_details">時鐘 + 今日（詳細資訊）</string>
     <string name="widget_clock_day_vertical">時鐘 + 今日（垂直排列）</string>
     <string name="widget_clock_day_week">時鐘 + 今日 + 一週</string>
     <string name="widget_text">純文字</string>
@@ -237,7 +237,7 @@
     <string name="widget_refreshing">等待更新</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">動態壁紙</string>
+    <string name="settings_widgets_live_wallpaper_title">動態桌布</string>
     <string name="settings_location_service">位置服務</string>
     <string name="settings_appearance_dark_mode_title">深色模式</string>
     <string name="settings_appearance">外觀</string>
@@ -258,7 +258,7 @@
     <string name="settings_none">無卡片</string>
     <string name="settings_color_day_night">自動</string>
     <string name="settings_color_day_always">總是白天</string>
-    <string name="settings_color_night_always">總是夜晚</string>
+    <string name="settings_color_night_always">總是夜間</string>
     <string name="settings_color_light">淺色</string>
     <string name="settings_color_light_always">總是淺色</string>
     <string name="settings_color_grey">灰色</string>
@@ -379,14 +379,14 @@
     <string name="settings_main_section_displayed_data">顯示的資料</string>
     <string name="settings_main_header_details_title">標題中的詳細資訊</string>
     <string name="settings_main_section_options">選項</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">昨天 / 警報趨勢線</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">趨勢中的 昨日/預警 標記</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
-    <string name="settings_widgets_live_wallpaper_error">無法啟動壁紙選擇器。您仍然可以通過在主屏幕壁紙選擇器中選擇“動態壁紙”來啟用 Breezy Weather 壁紙。</string>
+    <string name="settings_widgets_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以通過在主屏幕桌布選擇器中選擇“動態桌布”來啟用 Breezy Weather 桌布。</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣資料來源無法找到匹配的位置</string>
     <string name="action_undo">撤消</string>
     <string name="widget_clock_font_analog">模擬時鐘</string>
-    <string name="settings_background_updates_refresh_title">更新頻率</string>
+    <string name="settings_background_updates_refresh_title">更新率</string>
     <string name="settings_background_updates_refresh_never">手動</string>
     <string name="settings_background_updates_section_troubleshoot">故障排除</string>
     <string name="settings_background_updates_battery_optimization">停用電池最佳化</string>
@@ -395,19 +395,19 @@
     <string name="settings_location_access_switch_title">位置存取</string>
     <string name="settings_location_access_background_summaryOff">請啟用「始終允許」，以便在背景中更新您的當前位置。</string>
     <string name="settings_location_access_background_summaryOn">已啟用。應用程式將能夠在背景中更新您當前位置的天氣資料。</string>
-    <string name="settings_widgets_section_notification_widget">通知欄部件</string>
-    <string name="settings_widgets_notification_widget_title">通知欄部件</string>
+    <string name="settings_widgets_section_notification_widget">通知微件</string>
+    <string name="settings_widgets_notification_widget_title">通知微件</string>
     <string name="settings_widgets_notification_persistent_switch">固定</string>
     <string name="settings_debug_dump_crash_logs_summary">將錯誤日誌保存到文件中以便與開發人員共享</string>
     <string name="settings_debug">偵錯</string>
     <string name="settings_debug_summary">崩潰日誌</string>
     <string name="settings_debug_dump_crash_logs_title">分享崩潰日誌</string>
-    <string name="notification_channel_widget">小工具</string>
+    <string name="notification_channel_widget">微件</string>
     <string name="action_help_me_choose">幫我選擇</string>
     <string name="message_source_not_installed_error_title">來源不再可用</string>
     <string name="message_source_not_installed_error_content">此來源不再可用，請刪除該位置並從其他來源重新創建。</string>
     <string name="widget_style_pixel">Pixel 風格</string>
-    <string name="settings_main_summary">卡片順序、顯示項目、動畫</string>
+    <string name="settings_main_summary">卡片順序、顯示的項目、動畫</string>
     <string name="unit_kelvin">K</string>
     <string name="about_source_code">源代碼</string>
     <string name="common_weather_text_clear_sky">天晴</string>
@@ -417,7 +417,7 @@
     <string name="weather_api_unauthorized_content">在某些天氣資料來源上，您需要提供自己的 API 密鑰。 如果您已提供 API 密鑰，請仔細檢查您提供的 API 密鑰。</string>
     <string name="weather_api_key_required_missing_content">要使用此資料來源，您需要提供 API 密鑰。</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
-    <string name="settings_background_updates_summary">更新率，疑難排解</string>
+    <string name="settings_background_updates_summary">更新率、疑難排解</string>
     <string name="common_weather_text_overcast">天陰</string>
     <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
     <string name="weather_source_accu_preference_hours_1">1小時</string>
@@ -449,14 +449,14 @@
     <string name="message_parsing_error_title">無法解析天氣資料</string>
     <string name="settings_location_access_switch_summaryOff">如果您希望能夠將當前位置添加為位置，請允許該權限。</string>
     <string name="settings_location_access_background_title">在背景中的位置存取</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">忽略電池電量低時</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池電量低時忽略更新</string>
     <string name="settings_main_hourly_trends_title">每小時趨勢</string>
     <string name="settings_notifications_forecast_time_today_title">當日天氣預報通知時間</string>
     <string name="settings_widgets_monochrome_icons_title">單色圖示</string>
     <string name="settings_widgets_day_night_temp_reversed_title">顛倒晝/夜溫度順序</string>
     <string name="notification_channel_background_services">背景服務</string>
     <string name="about_matrix">Matrix 伺服器</string>
-    <string name="message_parsing_error_content">請確保已經更新至應用程式的最新版本。伺服器可能暫時無法使用，在這種情況下，請稍後再試。如果問題持續存在，請從偵錯設定中傾倒出崩潰日誌，並在 GitHub 上報告問題。</string>
+    <string name="message_parsing_error_content">請確保已經更新至應用程式的最新版本。伺服器可能暫時無法使用，在這種狀況下，請稍後再試。如果問題持續存在，請從偵錯設定中傾倒出崩潰日誌，並在 GitHub 上報告問題。</string>
     <string name="air_quality_level_1">極佳</string>
     <string name="widget_style_mini">Mini 風格</string>
     <string name="action_continue">繼續</string>
@@ -487,7 +487,7 @@
     <string name="air_quality_level_3">不佳</string>
     <string name="air_quality_level_3_description">空氣污染達到了很高的水準，這對敏感人群是不健康的。如果您出現呼吸困難或喉嚨刺激等症狀，請減少在戶外的時間。</string>
     <string name="uv_alert_level">預警級別</string>
-    <string name="message_tap_again_to_exit">再次點擊即可退出</string>
+    <string name="message_tap_again_to_exit">再次點擊以退出</string>
     <string name="common_weather_text_mainly_clear">大致天晴</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷暴伴有小冰雹</string>
     <string name="air_quality_level_6">危險</string>
@@ -499,7 +499,7 @@
     <string name="action_delete">刪除</string>
     <string name="about_contribution_weather_source">添加了新的天氣來源</string>
     <string name="action_share">分享</string>
-    <string name="settings_widgets_summary">設定桌布，配置使用的小工具，通知小工具</string>
+    <string name="settings_widgets_summary">設定桌布、配置使用中的小工具、通知微件</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_alerts">預警</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
@@ -533,7 +533,7 @@
     <string name="weather_source_accu_preference_days_15">15 天</string>
     <string name="weather_source_openweather_version_2_5">2.5 版本</string>
     <string name="weather_source_openweather_version_3_0">3.0 版本</string>
-    <string name="settings_widgets_live_wallpaper_summary">將天氣動畫設定為壁紙</string>
+    <string name="settings_widgets_live_wallpaper_summary">將天氣動畫設定為桌布</string>
     <string name="settings_widgets_week_icon_mode_title">在週視圖中顯示的圖示</string>
     <string name="settings_widgets_configure_widget_summary">設定這個小工具</string>
     <string name="wind_gusts">陣風</string>
@@ -545,7 +545,7 @@
     <string name="air_quality_pm_explanations_origin">有些顆粒物是自然產生的，源自火山、沙塵暴、森林和草原火災、活植被和海浪。 人類活動也會產生大量顆粒物，例如交通和運輸、工業活動、發電廠、建築工地、廢物燃燒或田野。</string>
     <string name="air_quality_o3_info_introduction">地面臭氧（O₃）是煙霧的主要成分。 儘管分子相同，但地面臭氧可能對人類健康有害，而平流層臭氧可以保護地球免受過量紫外線輻射。</string>
     <string name="location_message_search_failed">位置搜尋失敗</string>
-    <string name="settings_weather_sources_summary">天氣資料來源設定，預設位置搜尋來源</string>
+    <string name="settings_weather_sources_summary">天氣資料來源設定、預設位置搜尋來源</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
@@ -568,7 +568,7 @@
     <string name="location_message_permission_background_missing">在背景中存取位置的權限遺失</string>
     <string name="action_add_new_location">添加新位置</string>
     <string name="action_close">關閉</string>
-    <string name="dialog_permissions_notification_title">隨時了解情況</string>
+    <string name="dialog_permissions_notification_title">隨時了解狀況</string>
     <string name="unit_celsius">°C</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_notifications">通知</string>
@@ -597,8 +597,8 @@
     <string name="settings_units_summary">溫度、降水、距離、速度、壓力</string>
     <string name="about_contribution_WangDaYeeeeee">原始項目 幾何天氣 開發者</string>
     <string name="settings_location">定位</string>
-    <string name="settings_location_summary">定位服務設定</string>
-    <string name="settings_location_access_precise_title">設備的 GPS 使用情況</string>
+    <string name="settings_location_summary">位置服務設定</string>
+    <string name="settings_location_access_precise_title">設備的 GPS 使用狀況</string>
     <string name="about_dependencies">依賴項</string>
     <string name="minutely_precipitations">每分鐘降水量</string>
     <string name="action_save">保存</string>
@@ -643,7 +643,7 @@
     <string name="weather_data_already_up_to_date">已是最新</string>
     <string name="unit_bf">蒲福風級</string>
     <string name="unit_bf_voice">蒲福風級</string>
-    <string name="settings_appearance_dark_mode_locations_title">跟隨日出日落的深色模式</string>
+    <string name="settings_appearance_dark_mode_locations_title">跟隨日升日落的深色模式</string>
     <string name="weather_message_unsupported_feature">資料來源不支持請求中的某個功能</string>
     <string name="about_contribution_designer">Logo設計</string>
 </resources>
