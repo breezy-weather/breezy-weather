@@ -25,7 +25,6 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
-import android.os.Bundle
 import android.os.Looper
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -34,6 +33,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx3.rxObservable
@@ -114,29 +114,29 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
     private var fusedLocationClient: FusedLocationProviderClient? = null
 
     private var currentProvider = ""
-    private var lastKnownLocation: Location? = null
-    private var gmsLastKnownLocation: Location? = null
+
+    private var gpsLocation: Location? = null
+    private var gmsLocation: Location? = null
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
         return rxObservable {
-            cancel()
+            gpsLocation = null
+            gmsLocation = null
+            clearLocationUpdates()
 
             locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-            fusedLocationClient = if (isGMSEnabled(context)) {
-                LocationServices.getFusedLocationProviderClient(context)
-            } else null
+            currentProvider = locationManager?.let { getBestProvider(it) } ?: currentProvider
+
             if (locationManager == null
                 || !hasPermissions(context)
                 || !isLocationEnabled(locationManager!!)
-                || getBestProvider(locationManager!!).also { currentProvider = it }
-                    .isEmpty()
+                || currentProvider.isEmpty()
             ) {
                 LogHelper.log(msg = "Location manager not ready, no permissions, no location enabled or no provider available")
                 throw LocationException()
             }
 
-            lastKnownLocation = getLastKnownLocation(locationManager!!)
-
+            // request constant gps updates
             locationManager!!.requestLocationUpdates(
                 currentProvider,
                 0L,
@@ -144,37 +144,50 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
                 this@AndroidLocationSource,
                 Looper.getMainLooper()
             )
-            fusedLocationClient?.let { client ->
-                client.requestLocationUpdates(
-                    LocationRequest
-                        .create()
-                        .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
-                        .setNumUpdates(1),
-                    gmsLocationCallback,
-                    Looper.getMainLooper()
-                )
-                client.lastLocation.addOnSuccessListener {
-                    gmsLastKnownLocation = it
+
+            // if GMS is enabled, try and get one location update from gms
+            if (isGMSEnabled(context)) {
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+                fusedLocationClient?.let { client ->
+                    val locationRequest = LocationRequest.Builder(
+                        Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+                        1
+                    ).setMaxUpdates(1).build()
+
+                    client.requestLocationUpdates(
+                        locationRequest,
+                        gmsLocationCallback,
+                        Looper.getMainLooper()
+                    )
+
+                    client.lastLocation.addOnSuccessListener {
+                        gmsLocation = it
+                    }
                 }
             }
 
-            delay(TIMEOUT_MILLIS)
+            // wait X seconds for callbacks to set locations
+            for (i in 1..TIMEOUT_MILLIS / 1000) {
+                delay(1000)
 
-            gmsLastKnownLocation?.let {
-                send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
-            } ?: run {
-                getLastKnownLocation(locationManager!!)?.let {
+                gmsLocation?.let {
                     send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
-                } ?: run {
-                    throw LocationException()
+                }
+
+                gpsLocation?.let {
+                    send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
                 }
             }
-        }.doOnDispose {
-            cancel()
+
+            // if we are unlucky enough to get a fix, get the last known location
+            getLastKnownLocation(locationManager!!)?.let {
+                send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+            } ?: throw LocationException()
         }
     }
 
-    fun cancel() {
+    private fun clearLocationUpdates() {
         locationManager?.removeUpdates(this)
         fusedLocationClient?.removeLocationUpdates(gmsLocationCallback)
     }
@@ -187,12 +200,9 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
     // location listener.
     override fun onLocationChanged(location: Location) {
-        cancel()
-        // do nothing.
-    }
-
-    override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
-        // do nothing.
+        clearLocationUpdates()
+        gpsLocation = location
+        LogHelper.log(msg = "Got GPS location")
     }
 
     override fun onProviderEnabled(provider: String) {
@@ -204,11 +214,12 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
     }
 
     // location callback.
-    private val gmsLocationCallback = object: LocationCallback() {
+    private val gmsLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             if (locationResult.locations.isNotEmpty()) {
-                cancel()
-                // do nothing.
+                clearLocationUpdates()
+                gmsLocation = locationResult.locations[0]
+                LogHelper.log(msg = "Got GMS location")
             }
         }
     }
