@@ -32,6 +32,14 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 10) Update GitHub release notes draft and publish.
 
 
+# Decode crash logs from users
+
+1) Save crash log in a text file `stacktrace.txt` and remove things like `2023-08-14 21:28:58.229 12804-12804 View org.breezyweather.debug` if they are present.
+2) Download mapping-vX.X.X-beta.tar.gz from release page.
+3) Unzip `mapping.txt`.
+4) `~/Android/Sdk/tools/proguard/bin/retrace.sh mapping.txt stacktrace.txt`
+
+
 # Translations
 
 ## Updated translations
