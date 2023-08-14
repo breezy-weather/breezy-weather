@@ -558,7 +558,7 @@
     <string name="about_contributors">Учасники</string>
     <string name="about_translators">Перекладачі</string>
     <string name="common_weather_text_snow_heavy">Сильний сніг</string>
-    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру \"За відчуттями\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру ”За відчуттями”</string>
     <string name="notification_precipitation_short_term">Найближчим часом можливі опади.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза із сильним градом</string>
     <string name="weather_message_unsupported_feature">Джерело не підтримує одну із запитаних функцій</string>

@@ -28,6 +28,9 @@
 - Wind direction is fixed in hourly trends.
 - Fix missing credits for secondary features when same as main source
 
+**Translations**
+- Translations updated
+
 
 # Version 4.5.4-beta
 
