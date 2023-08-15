@@ -167,15 +167,18 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
                 }
             }
 
+            // TODO: Dirty, should be improved
             // wait X seconds for callbacks to set locations
             for (i in 1..TIMEOUT_MILLIS / 1000) {
                 delay(1000)
 
                 gmsLocation?.let {
+                    clearLocationUpdates()
                     send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
                 }
 
                 gpsLocation?.let {
+                    clearLocationUpdates()
                     send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
                 }
             }
@@ -184,6 +187,8 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
             getLastKnownLocation(locationManager!!)?.let {
                 send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
             } ?: throw LocationException()
+        }.doOnDispose {
+            clearLocationUpdates()
         }
     }
 

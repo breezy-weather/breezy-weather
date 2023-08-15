@@ -73,21 +73,23 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
     private var currentProvider = ""
 
+    private var gpsLocation: Location? = null
+
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
         return rxObservable {
-            cancel()
+            gpsLocation = null
+            clearLocationUpdates()
 
             locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+            currentProvider = locationManager?.let { getBestProvider(it) } ?: currentProvider
             if (locationManager == null
                 || !hasPermissions(context)
                 || !isLocationEnabled(locationManager!!)
-                || getBestProvider(locationManager!!).also { currentProvider = it }.isEmpty()
+                || currentProvider.isEmpty()
             ) {
                 LogHelper.log(msg = "Location manager not ready, no permissions, no location enabled or no provider available")
                 throw LocationException()
             }
-
-            getLastKnownLocation(locationManager!!)
 
             locationManager!!.requestLocationUpdates(
                 currentProvider,
@@ -97,8 +99,18 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
                 Looper.getMainLooper()
             )
 
-            delay(TIMEOUT_MILLIS)
-            cancel()
+            // TODO: Dirty, should be improved
+            // wait X seconds for callbacks to set locations
+            for (i in 1..TIMEOUT_MILLIS / 1000) {
+                delay(1000)
+
+                gpsLocation?.let {
+                    clearLocationUpdates()
+                    send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                }
+            }
+
+            clearLocationUpdates()
             getLastKnownLocation(locationManager!!)?.let {
                 send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
             } ?: run {
@@ -106,11 +118,11 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
                 throw LocationException()
             }
         }.doOnDispose {
-            cancel()
+            clearLocationUpdates()
         }
     }
 
-    fun cancel() {
+    fun clearLocationUpdates() {
         locationManager?.removeUpdates(this)
     }
 
@@ -123,7 +135,9 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
     // location listener.
     override fun onLocationChanged(location: Location) {
-        // do nothing.
+        clearLocationUpdates()
+        gpsLocation = location
+        LogHelper.log(msg = "Got GPS location")
     }
 
     @Deprecated("Deprecated in Java")

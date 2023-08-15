@@ -28,6 +28,7 @@
 **Other improvements and fixes**
 - Fix incorrect alert source leading to crash in some cases.
 - Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
+- Current location will no longer wait 10 seconds to get a GPS fix if the info is available sooner
 - Wind direction is fixed in hourly trends.
 - Fix missing credits for secondary features when same as main source.
 - Make alerts always take full width on alerts full page
