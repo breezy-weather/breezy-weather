@@ -170,7 +170,9 @@ class AlertActivity : GeoActivity() {
                     items(alertList.value) { alert ->
                         Material3CardListItem {
                             Column(
-                                modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
+                                modifier = Modifier
+                                    .padding(dimensionResource(R.dimen.normal_margin))
+                                    .fillMaxWidth(),
                             ) {
                                 Text(
                                     text = alert.description,

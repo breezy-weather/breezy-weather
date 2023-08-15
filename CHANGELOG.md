@@ -30,6 +30,7 @@
 - Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
 - Wind direction is fixed in hourly trends.
 - Fix missing credits for secondary features when same as main source.
+- Make alerts always take full width on alerts full page
 
 **Translations**
 - Translations updated
