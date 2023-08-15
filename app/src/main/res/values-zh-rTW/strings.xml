@@ -645,4 +645,9 @@
     <string name="settings_appearance_dark_mode_locations_title">跟隨日升日落的深色模式</string>
     <string name="weather_message_unsupported_feature">資料來源不支持請求中的某個功能</string>
     <string name="about_contribution_designer">Logo設計</string>
+    <string name="temperature_average_short">平均氣溫</string>
+    <string name="temperature_normal_short">正常值</string>
+    <string name="temperature_normals">氣溫正常值</string>
+    <string name="weather_normals_data_by">氣溫正常值資料來源 $</string>
+    <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
 </resources>
