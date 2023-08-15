@@ -63,11 +63,11 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         @SuppressLint("SetTextI18n")
         override fun onPageSelected(position: Int) {
             val timeZone = mLocation.timeZone
-            val daily = mLocation.weather!!.dailyForecast[position]
+            val daily = mLocation.weather!!.dailyForecastStartingToday[position]
             if (daily.isToday(timeZone)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
-                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecast.filter { it.allergen?.isIndexValid == true }.size
+                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecastStartingToday.filter { it.allergen?.isIndexValid == true }.size
             }
         }
     }
