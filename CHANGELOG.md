@@ -30,6 +30,7 @@
 - Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
 - Current location will no longer wait 10 seconds to get a GPS fix if the info is available sooner
 - Wind direction is fixed in hourly trends.
+- Revert hourly trends to display next 24 hours.
 - Fix missing credits for secondary features when same as main source.
 - Make alerts always take full width on alerts full page
 
