@@ -635,4 +635,8 @@
     <string name="settings_appearance_dark_mode_locations_title">Tag- / Nachtmodus für Orte</string>
     <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
     <string name="about_contribution_designer">Logo-Designer</string>
+    <string name="temperature_normals">Temperaturnormalwerte</string>
+    <string name="temperature_normal_short">Normalwert</string>
+    <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
+    <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von $</string>
 </resources>
