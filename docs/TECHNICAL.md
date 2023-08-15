@@ -30,6 +30,7 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
+11) Update GitHub templates in `.github/` to show the new latest version.
 
 
 # Decode crash logs from users

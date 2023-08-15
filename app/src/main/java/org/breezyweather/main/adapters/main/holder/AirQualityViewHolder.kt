@@ -113,7 +113,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 if (location.weather.dailyForecast[0].isToday(location.timeZone)) {
                     context.getString(R.string.short_today)
                 } else location.weather.dailyForecast[0].getWeek(context, location.timeZone)
-            } else location.weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour)
+            } else location.weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
             if (itemAnimationEnabled) {
                 mProgress.apply {
                     progress = 0f

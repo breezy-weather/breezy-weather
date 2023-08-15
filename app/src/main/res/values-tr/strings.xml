@@ -245,8 +245,6 @@
     <string name="settings_appearance_icon_pack_title">Simge paketi</string>
     <string name="weather_source_accu_preference_hours_72">72 saatlik</string>
     <string name="message_source_not_installed_error_title">Kaynak artık mevcut değil</string>
-    <string name="weather_data_already_up_to_date">Zaten güncel</string>
-    <string name="weather_update_not_yet_available_title">Güncelleme henüz mevcut değil</string>
     <string name="widget_subtitle_data_wind">Rüzgar</string>
     <string name="settings_background_updates_section_troubleshoot">Sorun giderme</string>
     <string name="settings_background_updates_battery_optimization">Pil optimizasyonunu devre dışı bırak</string>

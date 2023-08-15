@@ -28,7 +28,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -60,6 +59,11 @@ class PirateWeatherService @Inject constructor(
             .create(PirateWeatherApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -68,11 +72,6 @@ class PirateWeatherService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        if (apiKey == BuildConfig.PIRATE_WEATHER_KEY && location.weather != null
-            && location.weather.isValid(0.25f)
-            && !BreezyWeather.instance.debugMode) {
-            return Observable.error(UpdateNotAvailableYetException())
-        }
         val languageCode = SettingsManager.getInstance(context).language.code
         val pirateWeatherResult = mApi.getForecast(
             apiKey,
@@ -129,6 +128,9 @@ class PirateWeatherService @Inject constructor(
     }
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
+
+    override val isRestricted
+        get() = apikey.isEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

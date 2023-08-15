@@ -42,6 +42,12 @@ interface MainWeatherSource : Source {
     val weatherAttribution: String
 
     /**
+     * List the supported secondary features directly from main weather refresh
+     * Can be a different list from "supportedFeatures" if you also implement SecondaryWeatherSource
+     */
+    val supportedFeaturesInMain: List<SecondaryWeatherSourceFeature>
+
+    /**
      * Returns weather converted to Breezy Weather Weather object
      * @param ignoreFeatures List of features we request later to a secondary source. If your
      * weather source support them, you should ignore them (for example, not call an

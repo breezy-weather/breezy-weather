@@ -56,6 +56,11 @@ class MetNoService @Inject constructor(
             .create(MetNoApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+    )
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -209,8 +214,12 @@ class MetNoService @Inject constructor(
                                                      metNoAirQuality: MetNoAirQualityResult
             ->
             convertSecondary(
-                metNoNowcast,
-                metNoAirQuality
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    metNoNowcast
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                    metNoAirQuality
+                } else null
             )
         }
     }

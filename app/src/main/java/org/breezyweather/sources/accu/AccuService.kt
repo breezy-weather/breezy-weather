@@ -84,6 +84,14 @@ class AccuService @Inject constructor(
             .create(AccuEnterpriseApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT,
+        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+    )
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -287,7 +295,7 @@ class AccuService @Inject constructor(
             )
         } else {
             Observable.create { emitter ->
-                emitter.onNext(ArrayList())
+                emitter.onNext(emptyList())
             }
         }
         return Observable.zip(
@@ -297,8 +305,12 @@ class AccuService @Inject constructor(
             accuAlertResults: List<AccuAlertResult>
             ->
             convertSecondary(
-                accuMinutelyResult,
-                accuAlertResults
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    accuMinutelyResult
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                    accuAlertResults
+                } else null
             )
         }
     }
@@ -390,6 +402,8 @@ class AccuService @Inject constructor(
 
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
+
+    override val isRestricted = false
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

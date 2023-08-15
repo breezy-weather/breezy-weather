@@ -19,7 +19,6 @@ package org.breezyweather.sources.here
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -39,7 +38,6 @@ import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
 import org.breezyweather.sources.here.json.HereWeatherNWSAlerts
-import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -102,9 +100,9 @@ fun convert(
     val nwsAlerts = hereWeatherForecastResult.places.firstNotNullOfOrNull { it.nwsAlerts }
 
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = currentForecast?.time ?: Date()
-        ),
+        ),*/
         current = getCurrentForecast(currentForecast),
         dailyForecast = getDailyForecast(dailySimpleForecasts, astronomyForecasts),
         hourlyForecast = getHourlyForecast(hourlyForecasts),

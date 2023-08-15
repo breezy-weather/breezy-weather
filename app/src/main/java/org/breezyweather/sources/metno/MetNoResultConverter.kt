@@ -22,7 +22,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.Minutely
@@ -69,10 +68,10 @@ fun convert(
 
     val currentTimeseries = nowcastResult.properties?.timeseries?.getOrNull(0)?.data
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             // TODO: Use nowcast updatedAt if available
             publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
-        ),
+        ),*/
         current = if (currentTimeseries != null) Current(
             weatherText = getWeatherText(context, currentTimeseries.symbolCode),
             weatherCode = getWeatherCode(currentTimeseries.symbolCode),
@@ -262,12 +261,12 @@ private fun getWeatherText(context: Context, icon: String?): String? {
 }
 
 fun convertSecondary(
-    nowcastResult: MetNoNowcastResult,
-    airQualityResult: MetNoAirQualityResult
+    nowcastResult: MetNoNowcastResult?,
+    airQualityResult: MetNoAirQualityResult?
 ): SecondaryWeatherWrapper {
     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
 
-    airQualityResult.data?.time?.forEach {
+    airQualityResult?.data?.time?.forEach {
         airQualityHourly[it.from] = AirQuality(
             pM25 = it.variables?.pm25Concentration?.value,
             pM10 = it.variables?.pm10Concentration?.value,
@@ -278,7 +277,11 @@ fun convertSecondary(
     }
 
     return SecondaryWeatherWrapper(
-        airQuality = AirQualityWrapper(hourlyForecast = airQualityHourly),
-        minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries)
+        airQuality = if (airQualityResult != null) {
+            AirQualityWrapper(hourlyForecast = airQualityHourly)
+        } else null,
+        minutelyForecast = if (nowcastResult != null) {
+            getMinutelyList(nowcastResult.properties?.timeseries)
+        } else null
     )
 }

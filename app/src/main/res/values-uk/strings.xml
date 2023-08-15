@@ -294,8 +294,6 @@
     <string name="air_quality_no2_info_origin">Джерела NO₂ у навколишньому середовищі є результатом високотемпературного згоряння палива в таких процесах, як опалення, транспорт, промисловість та виробництво електроенергії. Побутові джерела оксидів азоту (NOₓ) включають обладнання, яке спалює паливо, таке як печі, каміни, газові плити та печі.</string>
     <string name="message_parsing_error_title">Не вдалося проаналізувати погодні дані</string>
     <string name="temperature_apparent">Відчувається як</string>
-    <string name="weather_data_already_up_to_date">Актуальні дані</string>
-    <string name="weather_update_not_yet_available_title">Оновлення поки не доступне</string>
     <string name="wind_direction_short_N">Пн.</string>
     <string name="wind_strength_3">Легкий бриз</string>
     <string name="allergen_olive">Олива</string>
@@ -392,7 +390,6 @@
     <string name="settings_background_updates_worker_info_title">Інформація про процес</string>
     <string name="settings_background_updates_worker_info_summary">Останній запуск: $</string>
     <string name="settings_location_access_permission_already_granted">Дозвіл вже надано</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather — це безкоштовна програма, яка може надати доступ тільки до безкоштовного рівня для обраного джерела погоди. Щоб дозволити якомога більшій кількості користувачів скористатися цим доступом і уникнути обмежень швидкості, ми просимо вас сумлінно використовувати це джерело — тобто не оновлювати, якщо джерело було оновлено менше ніж $ хвилин тому. Ви можете зняти це обмеження, зареєструвавши власний ключ API і додавши його в налаштуваннях.</string>
     <string name="widget_label_subtitle_data">Зміст підпису</string>
     <string name="widget_label_clock_font">Шрифт годиннику</string>
     <string name="widget_subtitle_data_custom">Користувальницький</string>

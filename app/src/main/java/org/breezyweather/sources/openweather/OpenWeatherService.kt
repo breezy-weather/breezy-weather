@@ -21,7 +21,6 @@ import android.content.Context
 import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
@@ -29,7 +28,6 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -64,6 +62,12 @@ class OpenWeatherService @Inject constructor(
             .create(OpenWeatherApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -72,11 +76,6 @@ class OpenWeatherService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        if (apiKey == BuildConfig.OPEN_WEATHER_KEY && location.weather != null
-            && location.weather.isValid(0.25f)
-            && !BreezyWeather.instance.debugMode) {
-            return Observable.error(UpdateNotAvailableYetException())
-        }
         val languageCode = SettingsManager.getInstance(context).language.code
         val oneCall = mApi.getOneCall(
             oneCallVersion.id,
@@ -166,8 +165,13 @@ class OpenWeatherService @Inject constructor(
                 openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
             ->
             convertSecondary(
-                openWeatherOneCallResult,
-                openWeatherAirPollutionResult
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+                    || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    openWeatherOneCallResult
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                    openWeatherAirPollutionResult
+                } else null
             )
         }
     }
@@ -193,6 +197,9 @@ class OpenWeatherService @Inject constructor(
     }
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
+
+    override val isRestricted
+        get() = apikey.isEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

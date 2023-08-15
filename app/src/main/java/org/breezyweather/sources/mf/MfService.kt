@@ -72,6 +72,12 @@ class MfService @Inject constructor(
             .create(MfApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT,
+        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+    )
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -277,9 +283,15 @@ class MfService @Inject constructor(
             ->
             convertSecondary(
                 location,
-                mfRainResult,
-                mfWarningResults,
-                mfNormalsResult
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    mfRainResult
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                    mfWarningResults
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                    mfNormalsResult
+                } else null
             )
         }
     }
@@ -318,6 +330,8 @@ class MfService @Inject constructor(
 
     override val isConfigured
         get() = getToken().isNotEmpty()
+
+    override val isRestricted = false
 
     private fun getToken(): String {
         return if (getWsftKeyOrDefault() != BuildConfig.MF_WSFT_KEY) {

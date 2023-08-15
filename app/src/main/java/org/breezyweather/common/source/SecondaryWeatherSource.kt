@@ -24,8 +24,6 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 
 /**
  * Initial implementation of secondary weather source
- *
- * TODO: Normals feature is not yet supported
  */
 interface SecondaryWeatherSource : Source {
 
@@ -44,7 +42,11 @@ interface SecondaryWeatherSource : Source {
      * Returns secondary weather converted to Breezy Weather Weather object
      * For efficiency reasons, we have one single functions, but don’t worry, you will never
      * be asked to provide allergen if you don’t support allergen
-     * Only process things you are asked to process and that you support
+     * Only process things you are asked to process and that you support, otherwise return null
+     * for that element.
+     * Exception: if you are requested two features that are part of the same endpoint, you
+     * can return both. App will not take it into account if the user did not set up this
+     * source as its secondary weather source, but will if the data was still considered valid
      * @return an Observable of the Secondary Weather wrapper containing elements asked
      */
     fun requestSecondaryWeather(

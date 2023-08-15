@@ -46,7 +46,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
@@ -186,50 +185,44 @@ class WeatherUpdateJob @AssistedInject constructor(
                                     /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
                                         skippedUpdates.add(location to context.getString(R.string.skipped_reason_not_always_update))
                                     } else {*/
-                                    // Don’t refresh if we still have data from less than 15 minutes
-                                    // Allow a by-pass when in debug mode to be able to debug test
-                                    if (location.weather?.isValid(0.25f) == true && !BreezyWeather.instance.debugMode) {
-                                        skippedUpdates.add(location to context.getString(R.string.weather_refresh_skipped_already_recently_updated))
-                                    } else {
-                                        try {
-                                            val locationResult = updateLocation(location)
+                                    try {
+                                        val locationResult = updateLocation(location)
 
-                                            locationResult.errors.forEach {
+                                        locationResult.errors.forEach {
+                                            val shortMessage = if (!it.source.isNullOrEmpty()) {
+                                                "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
+                                            } else context.getString(it.error.shortMessage)
+                                            if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE
+                                                && it.error != RefreshErrorType.SERVER_TIMEOUT
+                                                && it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
+                                                failedUpdates.add(locationResult.location to shortMessage)
+                                            } else {
+                                                // Report this error only if we can’t refresh weather data
+                                                if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                                                    && !locationResult.location.isUsable) {
+                                                    failedUpdates.add(locationResult.location to shortMessage)
+                                                } else {
+                                                    skippedUpdates.add(locationResult.location to shortMessage)
+                                                }
+                                            }
+                                        }
+                                        if (locationResult.location.isUsable
+                                            && !locationResult.location.needsGeocodeRefresh) {
+                                            val weatherResult = updateWeather(locationResult.location)
+                                            newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
+                                            weatherResult.errors.forEach {
                                                 val shortMessage = if (!it.source.isNullOrEmpty()) {
                                                     "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
                                                 } else context.getString(it.error.shortMessage)
-                                                if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE
-                                                    && it.error != RefreshErrorType.SERVER_TIMEOUT
-                                                    && it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
-                                                    failedUpdates.add(locationResult.location to shortMessage)
-                                                } else {
-                                                    // Report this error only if we can’t refresh weather data
-                                                    if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-                                                        && !locationResult.location.isUsable) {
-                                                        failedUpdates.add(locationResult.location to shortMessage)
-                                                    } else {
-                                                        skippedUpdates.add(locationResult.location to shortMessage)
-                                                    }
-                                                }
+                                                failedUpdates.add(location to shortMessage)
                                             }
-                                            if (locationResult.location.isUsable
-                                                && !locationResult.location.needsGeocodeRefresh) {
-                                                val weatherResult = updateWeather(locationResult.location)
-                                                newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
-                                                weatherResult.errors.forEach {
-                                                    val shortMessage = if (!it.source.isNullOrEmpty()) {
-                                                        "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
-                                                    } else context.getString(it.error.shortMessage)
-                                                    failedUpdates.add(location to shortMessage)
-                                                }
-                                            }
-                                        } catch (e: Throwable) {
-                                            e.printStackTrace()
-                                            val errorMessage = if (e.message.isNullOrEmpty()) {
-                                                context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                            } else e.message
-                                            failedUpdates.add(location to errorMessage)
                                         }
+                                    } catch (e: Throwable) {
+                                        e.printStackTrace()
+                                        val errorMessage = if (e.message.isNullOrEmpty()) {
+                                            context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                        } else e.message
+                                        failedUpdates.add(location to errorMessage)
                                     }
                                     //}
                                 }

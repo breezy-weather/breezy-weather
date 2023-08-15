@@ -116,6 +116,8 @@ class AtmoAuraService @Inject constructor(
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
 
+    override val isRestricted = false
+
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             EditTextPreference(

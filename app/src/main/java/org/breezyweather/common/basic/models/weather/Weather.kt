@@ -17,6 +17,8 @@
 
 package org.breezyweather.common.basic.models.weather
 
+import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import java.io.Serializable
 import java.util.*
 
@@ -42,7 +44,7 @@ data class Weather(
     }
 
     fun isValid(pollingIntervalHours: Float?): Boolean {
-        val updateTime = base.updateDate.time
+        val updateTime = base.refreshTime?.time ?: 0
         val currentTime = System.currentTimeMillis()
         return (pollingIntervalHours == null
                 || (currentTime >= updateTime
@@ -64,4 +66,13 @@ data class Weather(
             dailyForecast[0].airQuality!!.isIndexValid) {
             dailyForecast[0].airQuality
         } else null
+
+    fun toWeatherWrapper() = WeatherWrapper(
+        current = this.current,
+        normals = this.normals,
+        dailyForecast = this.dailyForecast,
+        hourlyForecast = this.hourlyForecast.map { it.toHourlyWrapper() },
+        minutelyForecast = this.minutelyForecast,
+        alertList = this.alertList
+    )
 }

@@ -172,7 +172,7 @@ data class Location(
             return true
         }
         return if (thisWeather != null && otherWeather != null) {
-            thisWeather.base.updateDate.time == otherWeather.base.updateDate.time
+            thisWeather.base.refreshTime?.time == otherWeather.base.refreshTime?.time
         } else {
             false
         }

@@ -19,7 +19,6 @@ package org.breezyweather.sources.pirateweather
 
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -58,9 +57,9 @@ fun convert(
     }
 
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = forecastResult.currently?.time?.times(1000)?.toDate() ?: Date()
-        ),
+        ),*/
         current = getCurrentForecast(forecastResult.currently),
         dailyForecast = getDailyForecast(forecastResult.daily!!.data!!),
         hourlyForecast = getHourlyForecast(forecastResult.hourly!!.data!!),

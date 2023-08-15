@@ -640,7 +640,4 @@
     <string name="settings_appearance_dark_mode_locations_title">Modalità giorno / notte per le varie località</string>
     <string name="unit_bf">Bft</string>
     <string name="unit_bf_voice">sulla scala di Beaufort</string>
-    <string name="weather_data_already_up_to_date">Dati già aggiornati</string>
-    <string name="weather_update_not_yet_available_title">Aggiornamento non ancora disponibile</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather è un’applicazione gratuita ed è solo in grado di fornire l’accesso alla versione gratuita della fonte meteo selezionata. Per permettere a quanti più utenti possibili di beneficiare di tale accesso e per evitare restrizioni di utilizzo, chiediamo di fare un uso equo di questa fonte, cioè di non aggiornarla più frequentemente di 15 minuti. È possibile evitare questo limite registrando una propria chiave per le API e inserendola nelle impostazioni.</string>
 </resources>

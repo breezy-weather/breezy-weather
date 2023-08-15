@@ -31,7 +31,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
@@ -84,7 +83,6 @@ fun LocationPreference(
                 title = stringResource(R.string.location_resident_location),
                 iconId = R.drawable.ic_tag_plus,
                 summary = { context, it ->
-
                     context.getString(if (it) {
                         R.string.location_resident_location_summaryOn
                     } else R.string.location_resident_location_summaryOff)
@@ -95,10 +93,8 @@ fun LocationPreference(
                 onValueChanged = {
                     val newLocation = location.copy(
                         isResidentPosition = it
-                        // Should we clean old weather data?
                     )
                     LocationEntityRepository.writeLocation(newLocation)
-                    // TODO: Leads to "Updated in background" message
                     EventBus.instance
                         .with(Location::class.java)
                         .postValue(newLocation)
@@ -235,17 +231,14 @@ private fun SecondarySourcesPreference(
                         alertSource.value = sourceId
                         hasChangedASecondarySource.value = true
                     }
-                    // TODO: Do NOT enable on releases until #358 is implemented
-                    if (BreezyWeather.instance.debugMode) {
-                        SourceView(
-                            title = stringResource(R.string.temperature_normals),
-                            selectedKey = alertSource.value,
-                            sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                    compatibleNormalsSources.associate { it.id to it.name },
-                        ) { sourceId ->
-                            normalsSource.value = sourceId
-                            hasChangedASecondarySource.value = true
-                        }
+                    SourceView(
+                        title = stringResource(R.string.temperature_normals),
+                        selectedKey = alertSource.value,
+                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
+                                compatibleNormalsSources.associate { it.id to it.name },
+                    ) { sourceId ->
+                        normalsSource.value = sourceId
+                        hasChangedASecondarySource.value = true
                     }
                 }
             },
@@ -264,9 +257,12 @@ private fun SecondarySourcesPreference(
                                 minutelySource = if (hasChangedMainSource.value && minutelySource.value == weatherSource.value) "" else minutelySource.value,
                                 alertSource = if (hasChangedMainSource.value && alertSource.value == weatherSource.value) "" else alertSource.value,
                                 normalsSource = if (hasChangedMainSource.value && normalsSource.value == weatherSource.value) "" else normalsSource.value,
-                                needsGeocodeRefresh = hasChangedMainSource.value
+                                needsGeocodeRefresh = hasChangedMainSource.value,
+                                // TODO: Will trigger a full refresh which we should avoid
+                                // if we only change a secondary weather source
+                                weather = null
                             )
-                            LocationEntityRepository.writeLocation(newLocation, location.formattedId)
+                            LocationEntityRepository.writeLocation(newLocation, location)
                             EventBus.instance
                                 .with(Location::class.java)
                                 .postValue(newLocation)

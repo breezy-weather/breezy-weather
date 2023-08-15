@@ -23,7 +23,6 @@ import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.DegreeDay
@@ -97,9 +96,9 @@ fun convert(
     }
 
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = Date(currentResult.EpochTime.times(1000)),
-        ),
+        ),*/
         current = Current(
             weatherText = currentResult.WeatherText,
             weatherCode = getWeatherCode(currentResult.WeatherIcon),
@@ -365,8 +364,9 @@ fun getAirQualityForHour(
 
 private fun getMinutelyList(
     minuteResult: AccuMinutelyResult?
-): List<Minutely> {
-    if (minuteResult == null || minuteResult.Intervals.isNullOrEmpty()) return emptyList()
+): List<Minutely>? {
+    if (minuteResult == null) return null
+    if (minuteResult.Intervals.isNullOrEmpty()) return emptyList()
     return minuteResult.Intervals.map { interval ->
         Minutely(
             date = Date(interval.StartEpochDateTime),
@@ -377,8 +377,9 @@ private fun getMinutelyList(
 }
 
 private fun getAlertList(
-    resultList: List<AccuAlertResult>
-): List<Alert> {
+    resultList: List<AccuAlertResult>?
+): List<Alert>? {
+    if (resultList == null) return null
     return resultList.map { result ->
         Alert(
             alertId = result.AlertID.toLong(),
@@ -415,7 +416,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  */
 fun convertSecondary(
     minuteResult: AccuMinutelyResult?,
-    alertResultList: List<AccuAlertResult>
+    alertResultList: List<AccuAlertResult>?
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         minutelyForecast = getMinutelyList(minuteResult),

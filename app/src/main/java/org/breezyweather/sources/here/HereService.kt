@@ -76,6 +76,10 @@ class HereService @Inject constructor(
             .create(HereRevGeocodingApi::class.java)
     }
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+
     /**
      * Returns weather
      */
@@ -190,6 +194,9 @@ class HereService @Inject constructor(
 
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
+
+    override val isRestricted
+        get() = apikey.isEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

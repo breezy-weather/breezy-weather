@@ -289,8 +289,12 @@ fun convertSecondary(
     }
 
     return SecondaryWeatherWrapper(
-        airQuality = AirQualityWrapper(hourlyForecast = airQualityHourly),
-        allergen = AllergenWrapper(hourlyForecast = allergenHourly)
+        airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            AirQualityWrapper(hourlyForecast = airQualityHourly)
+        } else null,
+        allergen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            AllergenWrapper(hourlyForecast = allergenHourly)
+        } else null
     )
 }
 

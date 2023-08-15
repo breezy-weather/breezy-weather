@@ -22,6 +22,7 @@ import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Transient
+import io.objectbox.annotation.Uid
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.db.converters.WeatherCodeConverter
 import java.util.*
@@ -36,8 +37,14 @@ class WeatherEntity(
 
     // base.
     var formattedId: String,
-    var publishDate: Date,
-    var updateDate: Date,
+    @Uid(4434518373706987614L)
+    var refreshTime: Date? = null,
+    var mainUpdateTime: Date? = null,
+    var airQualityUpdateTime: Date? = null,
+    var allergenUpdateTime: Date? = null,
+    var minutelyUpdateTime: Date? = null,
+    var alertsUpdateTime: Date? = null,
+    var normalsUpdateTime: Date? = null,
 
     // current.
     var weatherText: String? = null,

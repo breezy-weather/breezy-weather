@@ -22,7 +22,6 @@ import androidx.annotation.ColorInt
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -77,7 +76,7 @@ fun convert(location: Location, result: MfForecastResult): Location {
             allergenSource = location.allergenSource,
             minutelySource = location.minutelySource,
             alertSource = location.alertSource,
-            normalsSource = location?.normalsSource
+            normalsSource = location.normalsSource
         )
     }
 }
@@ -97,9 +96,9 @@ fun convert(
         throw WeatherException()
     }
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = forecastResult.updateTime ?: Date()
-        ),
+        ),*/
         current = Current(
             weatherText = currentResult.properties?.gridded?.weatherDescription,
             weatherCode = getWeatherCode(currentResult.properties?.gridded?.weatherIcon),
@@ -440,14 +439,20 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
  */
 fun convertSecondary(
     location: Location,
-    minuteResult: MfRainResult,
-    alertResultList: MfWarningsResult,
-    normalsResult: MfNormalsResult
+    minuteResult: MfRainResult?,
+    alertResultList: MfWarningsResult?,
+    normalsResult: MfNormalsResult?
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getWarningsList(alertResultList),
-        normals = getNormals(location.timeZone, normalsResult)
+        minutelyForecast = if (minuteResult != null) {
+            getMinutelyList(minuteResult)
+        } else null,
+        alertList = if (alertResultList != null) {
+            getWarningsList(alertResultList)
+        } else null,
+        normals = if (normalsResult != null) {
+            getNormals(location.timeZone, normalsResult)
+        } else null
     )
 }
 

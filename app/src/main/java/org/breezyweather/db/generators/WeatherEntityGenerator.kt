@@ -35,8 +35,13 @@ object WeatherEntityGenerator {
 
             // base.
             formattedId = location.formattedId,
-            publishDate = weather.base.publishDate,
-            updateDate = weather.base.updateDate,
+            refreshTime = weather.base.refreshTime,
+            mainUpdateTime = weather.base.mainUpdateTime,
+            airQualityUpdateTime = weather.base.airQualityUpdateTime,
+            allergenUpdateTime = weather.base.allergenUpdateTime,
+            minutelyUpdateTime = weather.base.minutelyUpdateTime,
+            alertsUpdateTime = weather.base.alertsUpdateTime,
+            normalsUpdateTime = weather.base.normalsUpdateTime,
 
             // current
             weatherText = weather.current?.weatherText,
@@ -86,8 +91,13 @@ object WeatherEntityGenerator {
             null
         } else Weather(
             Base(
-                weatherEntity.publishDate,
-                weatherEntity.updateDate
+                weatherEntity.refreshTime,
+                weatherEntity.mainUpdateTime,
+                weatherEntity.airQualityUpdateTime,
+                weatherEntity.allergenUpdateTime,
+                weatherEntity.minutelyUpdateTime,
+                weatherEntity.alertsUpdateTime,
+                weatherEntity.normalsUpdateTime
             ),
             Current(
                 weatherEntity.weatherText,

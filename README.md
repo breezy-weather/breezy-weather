@@ -157,8 +157,6 @@ It enables Instant App and bundles Google Network Location Provider (proprietary
 
 Logo was designed by [Anthony Dégrange](https://anthony-degrange-design.fr/).
 
-As per French laws, “L’auteur jouit du droit au respect de son nom, de sa qualité et de son œuvre. Ce droit est attaché à sa personne. Il est perpétuel, inaliénable et imprescriptible. Il est transmissible à cause de mort aux héritiers de l’auteur. L’exercice peut être conféré à un tiers en vertu de dispositions testamentaires.” which can be translated as “The author shall enjoy the right to respect for his name, his authorship, and his work. This right shall be attached to his person. It shall be perpetual, inalienable and imprescriptible. It may be transmitted *mortis causa* to the heirs of the author. The exercise of this right may be conferred on a third person by testamentary provisions.”.
-
 ## Allowed usages of Breezy Weather identity
 
 To present Breezy Weather app, you can do the following *without* receiving specific permission from Breezy Weather organization or Anthony Dégrange:

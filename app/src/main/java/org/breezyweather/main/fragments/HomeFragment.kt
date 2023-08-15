@@ -369,7 +369,7 @@ class HomeFragment : MainModuleFragment() {
             .weatherThemeDelegate
             .getHeaderTextColor(requireContext())
         binding.refreshTimeText.setTextColor(textColor)
-        location?.weather?.base?.updateDate?.let {
+        location?.weather?.base?.refreshTime?.let {
             binding.refreshTimeText.visibility = View.VISIBLE
             binding.refreshTimeText.setDate(it)
         } ?: run {

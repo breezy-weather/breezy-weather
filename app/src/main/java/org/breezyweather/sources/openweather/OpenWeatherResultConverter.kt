@@ -21,7 +21,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -65,9 +64,9 @@ fun convert(
     val hourlyAirQuality = getHourlyAirQuality(airPollutionResult?.list)
 
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
-        ),
+        ),*/
         current = if (oneCallResult.current != null) Current(
             weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
@@ -274,12 +273,18 @@ private fun getHourlyAirQuality(
 }
 
 fun convertSecondary(
-    oneCallResult: OpenWeatherOneCallResult,
-    airPollutionResult: OpenWeatherAirPollutionResult
+    oneCallResult: OpenWeatherOneCallResult?,
+    airPollutionResult: OpenWeatherAirPollutionResult?
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        airQuality = AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list)),
-        minutelyForecast = getMinutelyList(oneCallResult.minutely),
-        alertList = getAlertList(oneCallResult.alerts)
+        airQuality = if (airPollutionResult != null) {
+            AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list))
+        } else null,
+        minutelyForecast = if (oneCallResult != null) {
+            getMinutelyList(oneCallResult.minutely)
+        } else null,
+        alertList = if (oneCallResult != null) {
+            getAlertList(oneCallResult.alerts)
+        } else null
     )
 }

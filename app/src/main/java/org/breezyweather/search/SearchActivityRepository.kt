@@ -30,7 +30,6 @@ import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
-import org.breezyweather.common.exceptions.UpdateNotAvailableYetException
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.main.utils.RefreshErrorType
@@ -75,7 +74,6 @@ class SearchActivityRepository @Inject internal constructor(
                         is ApiLimitReachedException -> RefreshErrorType.API_LIMIT_REACHED
                         is SocketTimeoutException -> RefreshErrorType.SERVER_TIMEOUT
                         is ApiKeyMissingException -> RefreshErrorType.API_KEY_REQUIRED_MISSING
-                        is UpdateNotAvailableYetException -> RefreshErrorType.UPDATE_NOT_YET_AVAILABLE
                         is MissingFieldException, is SerializationException, is ParsingException -> {
                             e.printStackTrace()
                             RefreshErrorType.PARSING_ERROR

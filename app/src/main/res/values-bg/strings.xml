@@ -592,13 +592,10 @@
     <string name="minutely_precipitations">Валежи поминутно</string>
     <string name="settings_weather_sources_default_location_search">Източник за търсене на местоположение по подразбиране</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
-    <string name="weather_update_not_yet_available_title">Актуализацията все още не е налична</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
-    <string name="weather_data_already_up_to_date">Вече е актуално</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather е безплатно приложение и може да предостави достъп само до безплатното ниво за избрания източник за времето. За да позволим на възможно най-много потребители да се възползват от този достъп и да избегнем ограниченията на заявките, ви молим да използвате правомерно този източник — т.е. да не опреснявате, ако източникът е бил актуализиран преди по-малко от $ минути. Можете да премахнете това ограничение, като регистрирате свой собствен API ключ и го добавите в настройките.</string>
     <string name="location_resident_location_summaryOn">Активирано. Скрит, когато в рамките на $ от текущото местоположение.</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>

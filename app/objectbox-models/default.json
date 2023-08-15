@@ -820,7 +820,7 @@
     },
     {
       "id": "8:2083452952355791661",
-      "lastPropertyId": "58:5390129169736894239",
+      "lastPropertyId": "64:3570420466118092403",
       "name": "WeatherEntity",
       "properties": [
         {
@@ -830,13 +830,8 @@
           "flags": 1
         },
         {
-          "id": "4:1124681789513483161",
-          "name": "publishDate",
-          "type": 10
-        },
-        {
           "id": "5:4434518373706987614",
-          "name": "updateDate",
+          "name": "refreshTime",
           "type": 10
         },
         {
@@ -988,6 +983,36 @@
           "id": "58:5390129169736894239",
           "name": "normalsNighttimeTemperature",
           "type": 7
+        },
+        {
+          "id": "59:1035545520771230840",
+          "name": "mainUpdateTime",
+          "type": 10
+        },
+        {
+          "id": "60:7345878590331688185",
+          "name": "airQualityUpdateTime",
+          "type": 10
+        },
+        {
+          "id": "61:6064010166756780178",
+          "name": "allergenUpdateTime",
+          "type": 10
+        },
+        {
+          "id": "62:8824297277245477537",
+          "name": "minutelyUpdateTime",
+          "type": 10
+        },
+        {
+          "id": "63:625870653864533434",
+          "name": "alertsUpdateTime",
+          "type": 10
+        },
+        {
+          "id": "64:3570420466118092403",
+          "name": "normalsUpdateTime",
+          "type": 10
         }
       ],
       "relations": []
@@ -1140,7 +1165,8 @@
     3080251397221196491,
     1260468332745920214,
     5544322218415445049,
-    630871502229835689
+    630871502229835689,
+    1124681789513483161
   ],
   "retiredRelationUids": [],
   "version": 1

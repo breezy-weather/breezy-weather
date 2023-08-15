@@ -104,6 +104,8 @@ class GeoNamesService @Inject constructor(
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
 
+    override val isRestricted
+        get() = apikey.isEmpty()
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             EditTextPreference(

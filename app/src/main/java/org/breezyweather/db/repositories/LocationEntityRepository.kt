@@ -38,16 +38,16 @@ object LocationEntityRepository {
         }
     }
 
-    fun writeLocation(location: Location, oldFormattedId: String? = null) {
+    fun writeLocation(location: Location, oldLocation: Location? = null) {
         val entity = LocationEntityGenerator.generate(location)
         boxStore.callInTxNoException {
-            val dbEntity = selectLocationEntity(oldFormattedId ?: location.formattedId)
+            val dbEntity = selectLocationEntity(oldLocation?.formattedId ?: location.formattedId)
             if (dbEntity == null) {
                 insertLocationEntity(entity)
             } else {
-                if (oldFormattedId != null && location.formattedId != oldFormattedId) {
+                if (oldLocation?.formattedId != null && location.formattedId != oldLocation.formattedId) {
                     // Clean up weather data from oldFormattedId if we changed formattedId
-                    WeatherEntityRepository.deleteWeather(oldFormattedId)
+                    WeatherEntityRepository.deleteWeather(oldLocation.formattedId)
                 }
 
                 entity.id = dbEntity.id

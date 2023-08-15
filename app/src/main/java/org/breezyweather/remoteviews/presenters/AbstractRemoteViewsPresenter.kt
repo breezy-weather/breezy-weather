@@ -308,13 +308,13 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
-                .replace("\$ut$", weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+                .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text))
                 .replace(
                     "\$d$",
                     Date().getFormattedDate(location.timeZone, context.getString(R.string.date_format_long))
                 ).replace(
                     "\$lc$",
-                    LunarHelper.getLunarDate(Date()) ?: "N/A"
+                    LunarHelper.getLunarDate(Date()) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
                     Date().getFormattedDate(location.timeZone, "EEEE")

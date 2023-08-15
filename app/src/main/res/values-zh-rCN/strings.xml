@@ -638,10 +638,7 @@
     <string name="common_weather_text_drizzle">毛毛雨</string>
     <string name="common_weather_text_drizzle_light">小毛毛雨</string>
     <string name="metno_weather_text_andthunder">$ 并伴有雷电</string>
-    <string name="weather_data_already_up_to_date">已是最新</string>
-    <string name="weather_update_not_yet_available_title">更新尚不可用</string>
     <string name="unit_bf_voice">蒲福风级</string>
-    <string name="weather_update_not_yet_available_content">Breezy Weather 是免费应用，只能提供对所选气象数据源免费级别的访问。为了让尽可能多的用户受益于此类数据访问并避免速率限制，我们请求你合理使用这个数据源，也就是说不要将刷新间隔设为小于 $ 分钟。要解除此限制，你可以注册自己的 API 密钥并将其添加到设置中。</string>
     <string name="unit_bf">Bf</string>
     <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>

@@ -311,17 +311,15 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                         + " "
-                        + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+                        + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
                 "symmetry" -> (Widgets.getWeek(context, location.timeZone)
                         + " "
-                        + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+                        + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
-                "tile" -> (location.getPlace(context)
-                        + " "
-                        + Widgets.getWeek(context, location.timeZone)
-                        + " "
-                        + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+                "tile", "vertical" -> (location.getPlace(context)
+                        + " " + Widgets.getWeek(context, location.timeZone)
+                        + " " + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
                 else -> null
             }

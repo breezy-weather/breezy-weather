@@ -9,13 +9,16 @@
 - If weather source doesn’t already provide it, app will now keep history up to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
 - App will now tell you which source is failing.
+- When changing a source, app will now automatically refresh data instead of expecting the user to force refresh manually.
 - Secondary weather sources will no longer silently fail.
 - Background update will now silently fail in the following cases to avoid unnecessary notification spam: network unavailable, server timeout. No weather update will happen.
 - Background update will now silently fail in the following cases to avoid unnecessary notification spam: location permission missing (background location permission missing will still be reported), Android location not enabled, current location could not be found. Weather update will happen with previously found position. If current location was never found at least once, it will be reported as an error (will NOT silently fail).
+- App will no longer show any message about data still being valid or refresh restrictions, it will automatically handle it, including merging still valid data with invalid data that just got refreshed (can happen when using multiple sources).
 
 **Weather sources**
-- [AccuWeather] Add support for temperature normals
-- [Météo-France] Add support for temperature normals
+- [AccuWeather] Add support for temperature normals.
+- [Météo-France] Add support for temperature normals.
+- [Météo-France] Add support for temperature normals as a secondary source.
 
 **Design**
 - Logo got a refresh.
@@ -26,7 +29,7 @@
 - Fix incorrect alert source leading to crash in some cases.
 - Required swipe distance to go to next location is now 50 % screen width (instead of 20 %) to make it less prone to errors.
 - Wind direction is fixed in hourly trends.
-- Fix missing credits for secondary features when same as main source
+- Fix missing credits for secondary features when same as main source.
 
 **Translations**
 - Translations updated

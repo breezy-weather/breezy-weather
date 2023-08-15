@@ -26,6 +26,7 @@ import org.breezyweather.common.preference.Preference
 interface ConfigurableSource : Source {
 
     val isConfigured: Boolean
+    val isRestricted: Boolean
 
     fun getPreferences(context: Context): List<Preference>
 }

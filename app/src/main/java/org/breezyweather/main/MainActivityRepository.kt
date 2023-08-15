@@ -18,7 +18,6 @@
 package org.breezyweather.main
 
 import android.content.Context
-import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -97,16 +96,6 @@ class MainActivityRepository @Inject constructor(
         callback: WeatherRequestCallback,
     ) {
         try {
-            if (location.weather != null
-                && location.weather.isValid(0.02f)
-                && !BreezyWeather.instance.debugMode) { // 72 seconds
-                callback.onCompleted(
-                    location,
-                    listOf(RefreshError(RefreshErrorType.ALREADY_UP_TO_DATE))
-                )
-                return
-            }
-
             val locationResult = refreshHelper.getLocation(
                 context, location, false
             )

@@ -23,7 +23,13 @@ import java.util.Date
 /**
  * Base.
  */
-class Base(
-    val publishDate: Date = Date(),
-    val updateDate: Date = Date()
+data class Base(
+    //val publishDate: Date = Date(),
+    val refreshTime: Date? = null,
+    val mainUpdateTime: Date? = null,
+    val airQualityUpdateTime: Date? = null,
+    val allergenUpdateTime: Date? = null,
+    val minutelyUpdateTime: Date? = null,
+    val alertsUpdateTime: Date? = null,
+    val normalsUpdateTime: Date? = null
 ) : Serializable

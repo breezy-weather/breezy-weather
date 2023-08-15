@@ -23,7 +23,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -77,9 +76,9 @@ fun convert(
     }
 
     return WeatherWrapper(
-        base = Base(
+        /*base = Base(
             publishDate = forecastResult.current.pubTime
-        ),
+        ),*/
         current = Current(
             weatherText = getWeatherText(forecastResult.current.weather),
             weatherCode = getWeatherCode(forecastResult.current.weather),

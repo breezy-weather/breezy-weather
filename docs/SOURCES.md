@@ -58,10 +58,11 @@ The following features, if not available from your selected source, can be added
 
 | Sources                            | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
 |------------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
-| **Air quality**                    | ✅          | ✅             | Norway             | ✅           | ❌              | France (AURA) | Current |
+| **Air quality**                    | ✅          | ✅             | Norway             | ✅           | ❌              | ❌            | Current |
 | **Allergens**                      | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
 | **Precipitation in the next hour** | ❌          | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
 | **Alerts**                         | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
+| **Normals**                        | Average¹   | ✅             | Average¹           | Average¹    | Average¹        | ✅            | Average¹ |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 
@@ -87,7 +88,6 @@ Legend:
 | **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌              | ❌            | ❌       |
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌              | ❌            | ❌       |
 | **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅              | ✅            | ✅       |
-| **Normals**                | Average¹   | ✅           | Average¹   | Average¹    | Average¹        | ✅            | Average¹ |
 
 ¹ Median from daily forecast
 
@@ -128,6 +128,7 @@ Legend:
 | **Allergens**                      | ❌        |
 | **Precipitation in the next hour** | ❌        |
 | **Alerts**                         | US (NWS) |
+| **Normals**                        | ❌        |
 
 ## Other weather data
 

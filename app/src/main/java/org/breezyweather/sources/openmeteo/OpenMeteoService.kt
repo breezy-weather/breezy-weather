@@ -83,6 +83,10 @@ class OpenMeteoService @Inject constructor(
         "ragweed_pollen"
     )
 
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN
+    )
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
