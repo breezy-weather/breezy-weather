@@ -640,4 +640,9 @@
     <string name="settings_appearance_dark_mode_locations_title">وضع النهار / الليل للمواقع</string>
     <string name="weather_message_unsupported_feature">المصدر لا يدعم إحدى الميزات المطلوبة</string>
     <string name="about_contribution_designer">مصمم الشعار</string>
+    <string name="temperature_average_short">المتوسط</string>
+    <string name="temperature_normal_short">عادي</string>
+    <string name="temperature_normals">معايير درجة الحرارة</string>
+    <string name="weather_normals_data_by">بيانات درجة الحرارة العادية بواسطة $</string>
+    <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
 </resources>
