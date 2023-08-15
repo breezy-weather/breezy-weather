@@ -230,7 +230,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
             // Loop through 5 first days
             viewIds.forEachIndexed { i, viewId ->
-                weather.dailyForecast.getOrNull(i)?.let { daily ->
+                weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                     val weatherCode = if (weekIconDaytime) daily.day?.weatherCode else daily.night?.weatherCode
                     views.apply {
                         setTextViewText(viewId.first, if (daily.isToday(location.timeZone)) {

@@ -35,6 +35,7 @@ import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
+import java.util.Date
 
 class ForecastNotificationNotifier(private val context: Context) {
 
@@ -69,8 +70,7 @@ class ForecastNotificationNotifier(private val context: Context) {
         context.cancelNotification(if (today) Notifications.ID_UPDATING_TODAY_FORECAST else Notifications.ID_UPDATING_TOMORROW_FORECAST)
 
         val weather = location.weather ?: return
-        // TODO: Probably not safe if requested at 00:00 or 23:59, we should filter on date instead
-        val daily = weather.dailyForecast.getOrNull(if (today) 0 else 1) ?: return
+        val daily = (if (today) weather.today else weather.tomorrow) ?: return
 
         val provider = ResourcesProviderFactory.newInstance
         context.setLanguage(SettingsManager.getInstance(context).language.locale)

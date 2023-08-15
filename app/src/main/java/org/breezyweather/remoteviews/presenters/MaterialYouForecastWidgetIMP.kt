@@ -138,11 +138,11 @@ private fun buildRemoteViews(
         )
         setTextViewText(
             R.id.widget_material_you_forecast_daytimeTemperature,
-            weather.dailyForecast.getOrNull(0)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.today?.day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
         setTextViewText(
             R.id.widget_material_you_forecast_nighttimeTemperature,
-            weather.dailyForecast.getOrNull(0)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.today?.night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
         setTextViewText(
             R.id.widget_material_you_forecast_weatherText,
@@ -233,7 +233,7 @@ private fun buildRemoteViews(
     )
     // Loop through 6 first days
     dailyIds.forEachIndexed { i, dailyId ->
-        weather.dailyForecast.getOrNull(i)?.let {
+        weather.dailyForecastStartingToday.getOrNull(i)?.let {
             views.setTextViewText(
                 dailyId[0],
                 if (it.isToday(location.timeZone)) {
@@ -241,7 +241,7 @@ private fun buildRemoteViews(
                 } else it.getWeek(context, location.timeZone)
             )
         } ?: views.setTextViewText(dailyId[0], null)
-        weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+        weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {
             views.setViewVisibility(dailyId[1], View.VISIBLE)
             views.setImageViewUri(
                 dailyId[1],
@@ -252,13 +252,13 @@ private fun buildRemoteViews(
         } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
         views.setTextViewText(
             dailyId[2],
-            weather.dailyForecast.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
         views.setTextViewText(
             dailyId[3],
-            weather.dailyForecast.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-        weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+        weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {
             views.setViewVisibility(dailyId[4], View.VISIBLE)
             views.setImageViewUri(
                 dailyId[4],

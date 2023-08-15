@@ -168,8 +168,8 @@ object Widgets {
         val texts = arrayOf(
             weather.current?.weatherText ?: "",
             weather.current?.temperature?.getTemperature(context, unit, 0) ?: "",
-            weather.dailyForecast.getOrNull(0)?.day?.temperature?.getShortTemperature(context, unit) ?: "",
-            weather.dailyForecast.getOrNull(0)?.night?.temperature?.getShortTemperature(context, unit) ?: "",
+            weather.today?.day?.temperature?.getShortTemperature(context, unit) ?: "",
+            weather.today?.night?.temperature?.getShortTemperature(context, unit) ?: "",
         )
         val paint = TextPaint()
         val widths = FloatArray(4)

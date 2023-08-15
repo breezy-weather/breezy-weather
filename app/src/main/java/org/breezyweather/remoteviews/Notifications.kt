@@ -47,6 +47,7 @@ import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationI
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import java.text.DateFormat
+import java.util.Date
 import kotlin.math.min
 
 object Notifications {
@@ -290,7 +291,7 @@ object Notifications {
                     context,
                     R.drawable.ic_precipitation,
                     context.getString(R.string.precipitation_forecast),
-                    weather.dailyForecast[0].date.getFormattedDate(
+                    Date().getFormattedDate(
                         location.timeZone,
                         context.getString(R.string.date_format_widget_long)
                     ),
@@ -313,10 +314,10 @@ object Notifications {
     }
 
     private fun isLiquidDay(weather: Weather): Boolean {
-        return (weather.dailyForecast.getOrNull(0)?.day?.weatherCode != null
-                && weather.dailyForecast[0].day!!.weatherCode!!.isPrecipitation)
-                || (weather.dailyForecast.getOrNull(0)?.night?.weatherCode != null
-                && weather.dailyForecast[0].night!!.weatherCode!!.isPrecipitation)
+        return (weather.today?.day?.weatherCode != null
+                && weather.today!!.day!!.weatherCode!!.isPrecipitation)
+                || (weather.today?.night?.weatherCode != null
+                && weather.today!!.night!!.weatherCode!!.isPrecipitation)
     }
 
     private fun isShortTermLiquid(weather: Weather): Boolean {

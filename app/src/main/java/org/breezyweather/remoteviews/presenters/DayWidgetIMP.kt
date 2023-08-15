@@ -219,8 +219,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
             "tile" -> Temperature.getTrendTemperature(
                 context,
-                weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature,
-                weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature,
+                weather.today?.night?.temperature?.temperature,
+                weather.today?.day?.temperature?.temperature,
                 unit
             )
             "symmetry", "vertical" -> if (weather.current != null) {
@@ -229,16 +229,16 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     stringBuilder.append(weather.current.weatherText)
                 }
                 if (weather.dailyForecast.isNotEmpty()
-                    && weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature != null
-                    && weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature != null) {
+                    && weather.today?.day?.temperature?.temperature != null
+                    && weather.today?.night?.temperature?.temperature != null) {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
                     stringBuilder.append(
                         Temperature.getTrendTemperature(
                             context,
-                            weather.dailyForecast[0].night!!.temperature!!.temperature,
-                            weather.dailyForecast[0].day!!.temperature!!.temperature,
+                            weather.today!!.night!!.temperature!!.temperature,
+                            weather.today!!.day!!.temperature!!.temperature,
                             unit
                         )
                     )

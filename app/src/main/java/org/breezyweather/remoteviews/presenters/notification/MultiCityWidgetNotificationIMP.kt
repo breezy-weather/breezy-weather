@@ -196,8 +196,8 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 val location = locationList[i + 1]
                 val cityDayTime = location.isDaylight
                 val weatherCode = if (cityDayTime) {
-                    weather.dailyForecast.getOrNull(0)?.day?.weatherCode
-                } else weather.dailyForecast.getOrNull(0)?.night?.weatherCode
+                    weather.today?.day?.weatherCode
+                } else weather.today?.night?.weatherCode
                 views.apply {
                     setViewVisibility(viewId.first, View.VISIBLE)
                     if (weatherCode != null) {
@@ -220,7 +220,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val builder = StringBuilder(
             location.getPlace(context, true)
         )
-        location.weather?.dailyForecast?.getOrNull(0)?.let {
+        location.weather?.today?.let {
             builder.append(", ").append(
                 Temperature.getTrendTemperature(
                     context,

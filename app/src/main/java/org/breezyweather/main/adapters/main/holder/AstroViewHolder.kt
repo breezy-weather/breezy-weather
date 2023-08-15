@@ -114,7 +114,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val talkBackBuilder = StringBuilder(mTitle.text)
         ensureTime(mWeather!!, location.timeZone)
         ensurePhaseAngle(mWeather!!)
-        mWeather?.dailyForecast?.getOrNull(0)?.moonPhase?.let { moonPhase ->
+        mWeather?.today?.moonPhase?.let { moonPhase ->
             if (moonPhase.isValid) {
                 mPhaseText.visibility = View.VISIBLE
                 mPhaseView.visibility = View.VISIBLE
@@ -166,7 +166,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mPhaseView.setSurfaceAngle(mPhaseAngle.toFloat())
         }
 
-        mWeather?.dailyForecast?.getOrNull(0)?.sun?.let { sun ->
+        mWeather?.today?.sun?.let { sun ->
             if (sun.isValid) {
                 val sunriseTime = sun.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 val sunsetTime = sun.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
@@ -184,7 +184,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mSunContainer.visibility = View.GONE
         }
 
-        mWeather?.dailyForecast?.getOrNull(0)?.moon?.let { moon ->
+        mWeather?.today?.moon?.let { moon ->
             if (moon.isValid) {
                 val moonriseTime = moon.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 val moonsetTime = moon.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
@@ -268,7 +268,6 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     }
 
     private fun ensureTime(weather: Weather, timeZone: TimeZone) {
-        val today = weather.dailyForecast.getOrNull(0)
         val calendar = Calendar.getInstance(timeZone)
         val currentTime = calendar.time.time
         mStartTimes = LongArray(2)
@@ -276,18 +275,18 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         mCurrentTimes = longArrayOf(currentTime, currentTime)
 
         // sun.
-        if (today?.sun?.riseDate != null && today.sun.setDate != null) {
-            mStartTimes[0] = today.sun.riseDate.time
-            mEndTimes[0] = today.sun.setDate.time
+        if (weather.today?.sun?.riseDate != null && weather.today!!.sun!!.setDate != null) {
+            mStartTimes[0] = weather.today!!.sun!!.riseDate!!.time
+            mEndTimes[0] = weather.today!!.sun!!.setDate!!.time
         } else {
             mStartTimes[0] = currentTime + 1
             mEndTimes[0] = currentTime + 1
         }
 
         // moon.
-        if (today?.moon?.riseDate != null && today.moon.setDate != null) {
-            mStartTimes[1] = today.moon.riseDate.time
-            mEndTimes[1] = today.moon.setDate.time
+        if (weather.today?.moon?.riseDate != null && weather.today!!.moon!!.setDate != null) {
+            mStartTimes[1] = weather.today!!.moon!!.riseDate!!.time
+            mEndTimes[1] = weather.today!!.moon!!.setDate!!.time
         } else {
             mStartTimes[1] = currentTime + 1
             mEndTimes[1] = currentTime + 1
@@ -296,7 +295,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     }
 
     private fun ensurePhaseAngle(weather: Weather) {
-        mPhaseAngle = weather.dailyForecast.getOrNull(0)?.moonPhase?.angle ?: 0
+        mPhaseAngle = weather.today?.moonPhase?.angle ?: 0
     }
 
     private fun getPathAnimatorDuration(index: Int): Long {

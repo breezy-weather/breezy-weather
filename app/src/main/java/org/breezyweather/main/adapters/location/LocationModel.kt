@@ -44,16 +44,8 @@ class LocationModel(
 
     init {
         if (location.weather != null) {
-            if (location.weather.dailyForecast.isNotEmpty()) {
-                if (location.isDaylight && location.weather.dailyForecast[0].day?.weatherCode != null) {
-                    weatherCode = location.weather.dailyForecast[0].day!!.weatherCode
-                    weatherText = location.weather.dailyForecast[0].day!!.weatherText
-                }
-                if (!location.isDaylight && location.weather.dailyForecast[0].night?.weatherCode != null) {
-                    weatherCode = location.weather.dailyForecast[0].night!!.weatherCode
-                    weatherText = location.weather.dailyForecast[0].night!!.weatherText
-                }
-            }
+            weatherCode = location.weather.current?.weatherCode
+            weatherText = location.weather.current?.weatherText
             if (location.weather.currentAlertList.size > 0) {
                 val builder = StringBuilder()
                 location.weather.currentAlertList.forEach { alert ->

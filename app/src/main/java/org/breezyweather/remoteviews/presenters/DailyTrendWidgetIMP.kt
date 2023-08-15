@@ -82,7 +82,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     ): View? {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
-        val itemCount = min(5, weather.dailyForecast.size)
+        val itemCount = min(5, weather.dailyForecastStartingToday.size)
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
@@ -100,7 +100,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < daytimeTemperatures.size) {
-                daytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature
+                daytimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature
                 i += 2
             }
         }
@@ -120,7 +120,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < nighttimeTemperatures.size) {
-                nighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature
+                nighttimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature
                 i += 2
             }
         }
@@ -183,7 +183,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             drawableView.findViewById(R.id.widget_trend_daily_item_5)
         )
         widgetItemViews.forEachIndexed { i, widgetItemView ->
-            weather.dailyForecast.getOrNull(i)?.let { daily ->
+            weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                 widgetItemView.setTitleText(
                     if (daily.isToday(location.timeZone)) {
                         context.getString(R.string.short_today)

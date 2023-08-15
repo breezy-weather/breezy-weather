@@ -384,65 +384,65 @@ abstract class AbstractRemoteViewsPresenter {
             for (i in 0 until SUBTITLE_DAILY_ITEM_LENGTH) {
                 subtitle = subtitle.replace(
                     "$" + i + "dw$",
-                    weather.dailyForecast.getOrNull(i)?.day?.weatherText
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherText
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nw$",
-                    weather.dailyForecast.getOrNull(i)?.night?.weatherText
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherText
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dt$",
-                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.getTemperature(context, temperatureUnit, 0)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nt$",
-                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.getTemperature(context, temperatureUnit, 0)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dtd$",
-                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ntd$",
-                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dp$",
-                    weather.dailyForecast.getOrNull(i)?.day?.precipitationProbability?.total?.let {
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {
                         ProbabilityUnit.PERCENT.getValueText(context, it.toInt())
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "np$",
-                    weather.dailyForecast.getOrNull(i)?.night?.precipitationProbability?.total?.let {
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.precipitationProbability?.total?.let {
                         ProbabilityUnit.PERCENT.getValueText(context, it.toInt())
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",
-                    weather.dailyForecast.getOrNull(i)?.day?.wind?.getShortDescription(context, speedUnit)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nwd$",
-                    weather.dailyForecast.getOrNull(i)?.night?.wind?.getShortDescription(context, speedUnit)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",
-                    weather.dailyForecast.getOrNull(i)?.sun?.riseDate?.getFormattedTime(timeZone, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(timeZone, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ss$",
-                    weather.dailyForecast.getOrNull(i)?.sun?.setDate?.getFormattedTime(timeZone, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.setDate?.getFormattedTime(timeZone, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mr$",
-                    weather.dailyForecast.getOrNull(i)?.moon?.riseDate?.getFormattedTime(timeZone, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.riseDate?.getFormattedTime(timeZone, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ms$",
-                    weather.dailyForecast.getOrNull(i)?.moon?.setDate?.getFormattedTime(timeZone, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.setDate?.getFormattedTime(timeZone, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mp$",
-                    weather.dailyForecast.getOrNull(i)?.moonPhase?.getDescription(context)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moonPhase?.getDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 )
             }

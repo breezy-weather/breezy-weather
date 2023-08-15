@@ -84,7 +84,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             arrayOf(R.id.widget_day_week_week_5, R.id.widget_day_week_temp_5, R.id.widget_day_week_icon_5),
         )
         dailyIds.forEachIndexed { i, dailyId ->
-            weather.dailyForecast.getOrNull(i)?.let {
+            weather.dailyForecastStartingToday.getOrNull(i)?.let {
                 views.setTextViewText(
                     dailyId[0],
                     if (it.isToday(location.timeZone)) {
@@ -96,13 +96,13 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 dailyId[1],
                 Temperature.getTrendTemperature(
                     context,
-                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.temperature,
-                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.temperature,
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature,
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature,
                     temperatureUnit
                 )
             )
             if (weekIconDaytime) {
-                weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+                weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {
                     views.setViewVisibility(dailyId[2], View.VISIBLE)
                     views.setImageViewUri(
                         dailyId[2],
@@ -112,7 +112,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
             } else {
-                weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+                weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {
                     views.setViewVisibility(dailyId[2], View.VISIBLE)
                     views.setImageViewUri(
                         dailyId[2],
@@ -274,8 +274,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
             "tile" -> Temperature.getTrendTemperature(
                 context,
-                weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature,
-                weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature,
+                weather.today?.night?.temperature?.temperature,
+                weather.today?.day?.temperature?.temperature,
                 unit
             )
             "symmetry" -> if (weather.current != null) {
@@ -284,15 +284,15 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     stringBuilder.append(weather.current.weatherText)
                 }
                 if (weather.dailyForecast.isNotEmpty()
-                    && weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature != null
-                    && weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature != null) {
+                    && weather.today?.day?.temperature?.temperature != null
+                    && weather.today?.night?.temperature?.temperature != null) {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
                     return Temperature.getTrendTemperature(
                         context,
-                        weather.dailyForecast[0].night!!.temperature!!.temperature,
-                        weather.dailyForecast[0].day!!.temperature!!.temperature,
+                        weather.today!!.night!!.temperature!!.temperature,
+                        weather.today!!.day!!.temperature!!.temperature,
                         unit
                     )
                 }

@@ -266,7 +266,7 @@ data class Location(
 
         fun isDayLight(location: Location? = null): Boolean {
             val sunRiseProgress = Astro.getRiseProgress(
-                astro = location?.weather?.dailyForecast?.getOrNull(0)?.sun,
+                astro = location?.weather?.today?.sun,
                 timeZone = location?.timeZone ?: TimeZone.getDefault()
             )
             return 0 < sunRiseProgress && sunRiseProgress < 1

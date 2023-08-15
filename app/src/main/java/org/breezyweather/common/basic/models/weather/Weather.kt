@@ -42,6 +42,16 @@ data class Weather(
     val todayIndex = dailyForecast.indexOfFirst {
         it.date.time > Date().time - (24 * 3600 * 1000)
     }
+    val today
+        get() = dailyForecast.getOrNull(todayIndex)
+    val tomorrow
+        get() = dailyForecast.firstOrNull {
+            it.date.time > Date().time
+        }
+
+    val dailyForecastStartingToday = if (todayIndex >= 0) {
+        dailyForecast.subList(todayIndex, dailyForecast.size - todayIndex)
+    } else emptyList()
 
     fun isValid(pollingIntervalHours: Float?): Boolean {
         val updateTime = base.refreshTime?.time ?: 0
@@ -62,9 +72,8 @@ data class Weather(
     val validAirQuality: AirQuality?
         get() = if (current?.airQuality != null && current.airQuality.isIndexValid) {
             current.airQuality
-        } else if (dailyForecast.getOrNull(0)?.airQuality != null &&
-            dailyForecast[0].airQuality!!.isIndexValid) {
-            dailyForecast[0].airQuality
+        } else if (today?.airQuality != null && today!!.airQuality!!.isIndexValid) {
+            today!!.airQuality
         } else null
 
     fun toWeatherWrapper() = WeatherWrapper(

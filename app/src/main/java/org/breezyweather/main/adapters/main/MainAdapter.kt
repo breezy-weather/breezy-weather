@@ -75,12 +75,12 @@ class MainAdapter(
                     continue
                 }
                 if (c === CardDisplay.CARD_ALLERGEN
-                    && (weather.dailyForecast.isEmpty() || weather.dailyForecast[0].allergen == null || !weather.dailyForecast[0].allergen!!.isIndexValid)
+                    && (weather.dailyForecast.isEmpty() || weather.today?.allergen == null || !weather.today?.allergen!!.isIndexValid)
                 ) {
                     continue
                 }
                 if (c === CardDisplay.CARD_SUNRISE_SUNSET
-                    && (weather.dailyForecast.isEmpty() || weather.dailyForecast[0].sun == null || !weather.dailyForecast[0].sun!!.isValid)
+                    && (weather.dailyForecast.isEmpty() || weather.today?.sun == null || !weather.today?.sun!!.isValid)
                 ) {
                     continue
                 }

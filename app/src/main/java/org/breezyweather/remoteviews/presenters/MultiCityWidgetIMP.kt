@@ -88,7 +88,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                 views.setViewVisibility(cityId[0], View.VISIBLE)
                 views.setTextViewText(cityId[1], location.getPlace(context))
                 if (location.isDaylight) {
-                    location.weather?.dailyForecast?.getOrNull(i)?.day?.weatherCode?.let {
+                    location.weather?.dailyForecastStartingToday?.getOrNull(i)?.day?.weatherCode?.let {
                         views.setViewVisibility(cityId[2], View.VISIBLE)
                         views.setImageViewUri(
                             cityId[2],
@@ -98,7 +98,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                         )
                     } ?: views.setViewVisibility(cityId[2], View.INVISIBLE)
                 } else {
-                    location.weather?.dailyForecast?.getOrNull(i)?.night?.weatherCode?.let {
+                    location.weather?.dailyForecastStartingToday?.getOrNull(i)?.night?.weatherCode?.let {
                         views.setViewVisibility(cityId[2], View.VISIBLE)
                         views.setImageViewUri(
                             cityId[2],
@@ -112,8 +112,8 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                     cityId[3],
                     Temperature.getTrendTemperature(
                         context,
-                        location.weather?.dailyForecast?.getOrNull(0)?.night?.temperature?.temperature,
-                        location.weather?.dailyForecast?.getOrNull(0)?.day?.temperature?.temperature,
+                        location.weather?.today?.night?.temperature?.temperature,
+                        location.weather?.today?.day?.temperature?.temperature,
                         temperatureUnit
                     )
                 )

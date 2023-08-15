@@ -87,8 +87,8 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
         Temperature.getTrendTemperature(
             context,
-            weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature,
-            weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature,
+            weather.today?.night?.temperature?.temperature,
+            weather.today?.day?.temperature?.temperature,
             temperatureUnit
         )?.let {
             views.setTextViewText(R.id.widget_clock_day_todayTemp, context.getString(R.string.short_today) + " " + it)

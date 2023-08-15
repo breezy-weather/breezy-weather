@@ -94,7 +94,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             arrayOf(R.id.widget_clock_day_week_week_5, R.id.widget_clock_day_week_temp_5, R.id.widget_clock_day_week_icon_5),
         )
         dailyIds.forEachIndexed { i, dailyId ->
-            weather.dailyForecast.getOrNull(i)?.let {
+            weather.dailyForecastStartingToday.getOrNull(i)?.let {
                 views.setTextViewText(
                     dailyId[0],
                     if (it.isToday(location.timeZone)) {
@@ -106,13 +106,13 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 dailyId[1],
                 Temperature.getTrendTemperature(
                     context,
-                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.temperature,
-                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.temperature,
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature,
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature,
                     temperatureUnit
                 )
             )
             if (weekIconDaytime) {
-                weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+                weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {
                     views.setViewVisibility(dailyId[2], View.VISIBLE)
                     views.setImageViewUri(
                         dailyId[2],
@@ -122,7 +122,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
             } else {
-                weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+                weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {
                     views.setViewVisibility(dailyId[2], View.VISIBLE)
                     views.setImageViewUri(
                         dailyId[2],
