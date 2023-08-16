@@ -631,4 +631,11 @@
     <string name="common_weather_text_rain_snow_mixed">Валежи от сняг и дъжд</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Леки превалявания от сняг и дъжд</string>
     <string name="common_weather_text_snow_heavy">Обилен снеговалеж</string>
+    <string name="weather_message_unsupported_feature">Източникът не поддържа една от заявените функции</string>
+    <string name="about_contribution_designer">Дизайнер на логото</string>
+    <string name="weather_normals_data_by">Данни за температурни норми от $</string>
+    <string name="temperature_average_short">Средно</string>
+    <string name="temperature_normal_short">Нормална</string>
+    <string name="settings_main_threshold_lines_on_charts">Прагови линии на диаграмите</string>
+    <string name="temperature_normals">Температурни норми</string>
 </resources>
