@@ -51,6 +51,7 @@ import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -305,6 +306,38 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
 
 private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     val alertList: MutableList<Alert> = arrayListOf()
+    warningsResult.text?.let {
+        if (warningsResult.updateTime != null) {
+            val textBlocs = it.textBlocItems?.filter {
+                textBlocItem -> textBlocItem.textItems?.any { textItem -> textItem.hazardCode == null } == true
+            }
+            if (!textBlocs.isNullOrEmpty()) {
+                val colors = mutableListOf<String>()
+                textBlocs.forEach { textBlocItem ->
+                    textBlocItem.textItems?.forEach { textItem ->
+                        if (textItem.hazardCode == null) {
+                            textItem.termItems?.forEach { termItem ->
+                                if (!termItem.riskName.isNullOrEmpty()) {
+                                    colors.add(termItem.riskName)
+                                }
+                            }
+                        }
+                    }
+                }
+                alertList.add(
+                    Alert(
+                        alertId = (warningsResult.updateTime.time.toString()).toLong(),
+                        startDate = warningsResult.updateTime,
+                        endDate = warningsResult.endValidityTime,
+                        description = it.blocTitle ?: "Bulletin de Vigilance météo",
+                        content = getWarningContent(null, warningsResult),
+                        priority = -5, // Let’s put it on top
+                        color = getWarningColor(colors)
+                    )
+                )
+            }
+        }
+    }
     warningsResult.timelaps?.forEach { timelaps ->
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
@@ -368,6 +401,15 @@ private fun getWarningText(colorId: Int): String = when (colorId) {
 }
 
 @ColorInt
+private fun getWarningColor(colors: List<String>): Int? = when {
+    colors.contains("Rouge") -> Color.rgb(204, 0, 0)
+    colors.contains("Orange") -> Color.rgb(255, 184, 43)
+    colors.contains("Jaune") -> Color.rgb(255, 246, 0)
+    colors.contains("Vert") -> Color.rgb(49, 170, 53)
+    else -> null
+}
+
+@ColorInt
 private fun getWarningColor(colorId: Int): Int? = when (colorId) {
     4 -> Color.rgb(204, 0, 0)
     3 -> Color.rgb(255, 184, 43)
@@ -376,12 +418,39 @@ private fun getWarningColor(colorId: Int): Int? = when (colorId) {
     else -> null
 }
 
-private fun getWarningContent(phenomenonId: String, warningsResult: MfWarningsResult): String? {
+private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsResult): String? {
+    val textBlocs = warningsResult.text?.textBlocItems?.filter {
+        textBlocItem -> textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
+    }
     val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }?.textConsequence?.replace("<br>", "\n")
     val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }?.textAdvice?.replace("<br>", "\n")
 
     val content = StringBuilder()
+    if (!textBlocs.isNullOrEmpty()) {
+        textBlocs.forEach { textBlocItem ->
+            if (content.toString().isNotEmpty()) {
+                content.append("\n\n")
+            }
+            if (!textBlocItem.typeName.isNullOrEmpty()) {
+                content
+                    .append(textBlocItem.typeName.uppercase(Locale.FRENCH))
+                    .append("\n")
+            }
+            textBlocItem.textItems?.filter { it.hazardCode == phenomenonId }?.forEach { textItem ->
+                textItem.termItems?.forEach { termItem ->
+                    termItem.subdivisionTexts?.forEach { subdivisionText ->
+                        subdivisionText.text?.let {
+                            content.append(it.joinToString("\n"))
+                        }
+                    }
+                }
+            }
+        }
+    }
     if (!consequences.isNullOrEmpty()) {
+        if (content.toString().isNotEmpty()) {
+            content.append("\n\n")
+        }
         content
             .append("CONSÉQUENCES POSSIBLES\n")
             .append(consequences)
@@ -394,8 +463,6 @@ private fun getWarningContent(phenomenonId: String, warningsResult: MfWarningsRe
             .append("CONSEILS DE COMPORTEMENT\n")
             .append(advices)
     }
-
-    // There are also text blocks with hour by hour evaluation, but it’s way too detailed
 
     return content.toString().ifEmpty { null }
 }

@@ -20,7 +20,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MfWarningTextBlocItem(
-    @SerialName("type_name") val typeName: String?,
-    @SerialName("text_items") val textItems: List<MfWarningTextItem>?
+data class MfWarningTermItem(
+    @SerialName("risk_name") val riskName: String?,
+    @SerialName("subdivision_text") val subdivisionTexts: List<MfWarningSubdivisionText>?
 )

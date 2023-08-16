@@ -1,5 +1,9 @@
 # Version 4.6.1-beta (next version)
 
+**Weather sources**
+- [Météo France] Alerts: add "Bulletin de Vigilance météo" support
+- [Météo France] Alerts: add "Situation actuelle", "Prévisibilité et incertitudes" and other stuff like that to existing alerts
+
 **Other fixes**
 - Fix missing monochrome icon
 
