@@ -1,4 +1,4 @@
-# Version 4.6.1-beta (next version)
+# Version 4.6.1-beta
 
 **Weather sources**
 - [Météo France] Alerts: add "Bulletin de Vigilance météo" support
