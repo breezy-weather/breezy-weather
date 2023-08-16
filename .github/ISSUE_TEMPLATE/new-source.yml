@@ -60,5 +60,5 @@ body:
           required: true
         - label: I have written the name of the source as the title of this issue.
           required: true
-        - label: I have updated the app to **[version 4.5.4](https://github.com/breezy-weather/breezy-weather/releases/latest)** and this source is not part of it.
+        - label: I have updated the app to **[version 4.5.4 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)** and this source is not part of it.
           required: true

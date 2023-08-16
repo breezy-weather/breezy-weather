@@ -1,3 +1,9 @@
+# Version 4.6.1-beta (next version)
+
+**Other fixes**
+- Fix missing monochrome icon
+
+
 # Version 4.6.0-beta
 
 This new version introduces major changes in the way weather refreshes. While it brings nice new features with it, as there are now many different combination for weather sources that we can’t fully test, we welcome your bug reports about any regression introduced in this version, so we can fix them before new release becomes stable.
