@@ -35,7 +35,6 @@ import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import java.util.Date
 
 class ForecastNotificationNotifier(private val context: Context) {
 

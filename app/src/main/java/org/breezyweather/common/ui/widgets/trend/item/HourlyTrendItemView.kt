@@ -45,8 +45,13 @@ class HourlyTrendItemView @JvmOverloads constructor(
         isAntiAlias = true
         textAlign = Paint.Align.CENTER
     }
+    private val mDateTextPaint = Paint().apply {
+        isAntiAlias = true
+        textAlign = Paint.Align.CENTER
+    }
     private var mClickListener: OnClickListener? = null
     private var mHourText: String? = null
+    private var mDayText: String? = null
 
     @IntDef(View.INVISIBLE, View.GONE)
     internal annotation class IconVisibility
@@ -58,6 +63,8 @@ class HourlyTrendItemView @JvmOverloads constructor(
     @ColorInt
     private var mContentColor = 0
 
+    @ColorInt
+    private var mSubTitleColor = 0
     private var mDayTextBaseLine = 0f
     private var mHourTextBaseLine = 0f
     private var mIconLeft = 0f
@@ -76,7 +83,12 @@ class HourlyTrendItemView @JvmOverloads constructor(
             textSize =
                 getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
         }
-        setTextColor(Color.BLACK)
+        mDateTextPaint.apply {
+            typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
+            textSize =
+                getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
+        }
+        setTextColor(Color.BLACK, Color.GRAY)
         mIconSize = getContext().dpToPx(ICON_SIZE_DIP.toFloat()).toInt()
     }
 
@@ -88,9 +100,16 @@ class HourlyTrendItemView @JvmOverloads constructor(
         val iconMargin = context.dpToPx(ICON_MARGIN_DIP.toFloat())
 
         // hour text.
-        val fontMetrics = mHourTextPaint.fontMetrics
+        var fontMetrics = mHourTextPaint.fontMetrics
         y += textMargin
         mHourTextBaseLine = y - fontMetrics.top
+        y += fontMetrics.bottom - fontMetrics.top
+        y += textMargin
+
+        // day text.
+        fontMetrics = mDateTextPaint.fontMetrics
+        y += textMargin
+        mDayTextBaseLine = y - fontMetrics.top
         y += fontMetrics.bottom - fontMetrics.top
         y += textMargin
 
@@ -139,6 +158,12 @@ class HourlyTrendItemView @JvmOverloads constructor(
             canvas.drawText(it, measuredWidth / 2f, mHourTextBaseLine, mHourTextPaint)
         }
 
+        // day text.
+        mDayText?.let {
+            mDateTextPaint.color = mSubTitleColor
+            canvas.drawText(it, measuredWidth / 2f, mDayTextBaseLine, mDateTextPaint)
+        }
+
         // day icon.
         mIconDrawable?.let {
             val restoreCount = canvas.save()
@@ -156,13 +181,19 @@ class HourlyTrendItemView @JvmOverloads constructor(
         return super.onTouchEvent(event)
     }
 
+    fun setDayText(dayText: String?) {
+        mDayText = dayText
+        invalidate()
+    }
+
     fun setHourText(hourText: String?) {
         mHourText = hourText
         invalidate()
     }
 
-    fun setTextColor(@ColorInt contentColor: Int) {
+    fun setTextColor(@ColorInt contentColor: Int, @ColorInt subTitleColor: Int) {
         mContentColor = contentColor
+        mSubTitleColor = subTitleColor
         invalidate()
     }
 
