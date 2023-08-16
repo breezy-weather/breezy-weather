@@ -13,7 +13,7 @@
   <img alt="Jetpack Compose" src="https://img.shields.io/static/v1?style=for-the-badge&message=Jetpack+Compose&color=4285F4&logo=Jetpack+Compose&logoColor=FFFFFF&label="/>
   <img alt="Material You" src="https://custom-icon-badges.demolab.com/badge/material%20you-lightblue?style=for-the-badge&logoColor=333&logo=material-you"/>
   <br />
-  <img src="https://img.shields.io/github/license/breezy-weather/breezy-weather?style=for-the-badge" alt="License LGPL-3.0+" />
+  <img src="https://img.shields.io/github/license/breezy-weather/breezy-weather?style=for-the-badge" alt="License LGPL-3.0" />
   <img src="https://img.shields.io/github/languages/code-size/breezy-weather/breezy-weather?style=for-the-badge" alt="GitHub code size in bytes" />
   <br /><br />
   <a href="https://github.com/breezy-weather/breezy-weather/releases/latest">
@@ -150,7 +150,7 @@ It enables Instant App and bundles Google Network Location Provider (proprietary
 
 # License
 
-* [GNU Lesser General Public License v3.0+](/LICENSE)
+* [GNU Lesser General Public License v3.0](/LICENSE)
 * [Additional terms regarding Breezy Weather identity and forks](/IDENTITY.md)
-* [Built on Geometric Weather Android app (GNU Lesser General Public License v3.0+)](https://github.com/WangDaYeeeeee/GeometricWeather). Breezy Weather is not officially associated with Geometric Weather or its products.
+* [Built on Geometric Weather Android app (GNU Lesser General Public License v3.0)](https://github.com/WangDaYeeeeee/GeometricWeather). Breezy Weather is not officially associated with Geometric Weather or its products.
 
