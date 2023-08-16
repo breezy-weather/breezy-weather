@@ -178,6 +178,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("lt"), "D221", "https://github.com/D221"),
         TranslatorItem(arrayOf("lv"), "Niks Rodžers", "https://hosted.weblate.org/user/niks.rodzers.auzins/"),
         TranslatorItem(arrayOf("lv"), "Eduards Lusts", "https://hosted.weblate.org/user/eduardslu/"),
+        TranslatorItem(arrayOf("nb_rNO"), "Visnes", "https://github.com/Visnes"),
         TranslatorItem(arrayOf("nl"), "Jurre Tas", "mailto:jurretas@gmail.com"),
         TranslatorItem(arrayOf("nl"), "trend", "https://github.com/trend-1"),
         TranslatorItem(arrayOf("pl"), "Kamil", "mailto:invisiblehype@gmail.com"),

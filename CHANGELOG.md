@@ -1,12 +1,14 @@
 # Version 4.6.0-beta (next version)
 
+This new version introduces major changes in the way weather refreshes. While it brings nice new features with it, as there are now many different combination for weather sources that we can’t fully test, we welcome your bug reports about any regression introduced in this version, so we can fix them before new release becomes stable.
+
 **New data**
 - Yesterday is now shown as a day in daily forecast (on supported sources).
 - Temperature normals added (with a fallback to average temperature when not supported by source).
 - As a consequence “yesterday temperature lines” have been replaced by “temperature normals lines”.
 
 **Weather refresh**
-- If weather source doesn’t already provide it, app will now keep history up to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
+- If weather source doesn’t already provide it, app will now keep history back to yesterday 00:00. This will allow you to see details of the previous day, and will ensure a day is always full (daytime was notably missing on MET Norway source after 18:00). Works best 48 hours after a location has been added.
 - When one or more secondary weather sources fail, app will refresh other sources that succeeded and restore cached data for failing sources. An error will still be displayed to inform you in case you need to take action.
 - App will now tell you which source is failing.
 - When changing a source, app will now automatically refresh data instead of expecting the user to force refresh manually.
@@ -34,6 +36,7 @@
 - Make alerts always take full width on alerts full page
 
 **Translations**
+- Initial support for Norwegian Bokmål added (thank you @Visnes!)
 - Translations updated
 
 

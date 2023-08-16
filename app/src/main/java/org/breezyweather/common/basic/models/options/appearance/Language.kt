@@ -52,6 +52,7 @@ enum class Language(
     LITHUANIAN("lithuanian", Locale("lt")),
     HUNGARIAN("hungarian", Locale("hu")),
     DUTCH("dutch", Locale("nl")),
+    NORWEGIAN_BOKMAL("norwegian_bokmal", Locale("nb", "NO")),
     POLISH("polish", Locale("pl")),
     PORTUGUESE("portuguese", Locale("pt")),
     PORTUGUESE_BR("portuguese_brazilian", Locale("pt", "BR")),
@@ -136,6 +137,7 @@ enum class Language(
             "lithuanian" -> LITHUANIAN
             "hungarian" -> HUNGARIAN
             "dutch" -> DUTCH
+            "norwegian_bokmal" -> NORWEGIAN_BOKMAL
             "polish" -> POLISH
             "portuguese" -> PORTUGUESE
             "portuguese_brazilian" -> PORTUGUESE_BR
