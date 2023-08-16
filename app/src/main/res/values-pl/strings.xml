@@ -453,7 +453,7 @@
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
     <string name="dialog_permissions_location_title">Dostęp do informacji o lokalizacji</string>
     <string name="message_parsing_error_title">Nie udało się przeanalizować danych pogodowych</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
+    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_battery_optimization">Wyłącz optymalizację baterii</string>
     <string name="settings_background_updates_battery_optimization_summary">Jest to pierwsza rzecz, którą należy wypróbować, gdy nie otrzymujesz powiadomień lub widżety nie odświeżają się.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nie udało się otworzyć ustawień urządzenia.</string>
@@ -505,7 +505,7 @@
     <string name="weather_air_quality_data_by">Dane dotyczące jakości powietrza według $</string>
     <string name="weather_allergen_data_by">Dane dotyczące alergenów według $</string>
     <string name="weather_air_quality_and_allergen_data_by">Dane dotyczące jakości powietrza i alergenów według $</string>
-    <string name="weather_minutely_data_by">Dane dotyczące opadów minuta po minucie według $</string>
+    <string name="weather_minutely_data_by">Dane dotyczące opadów na minutę dostarczone przez $</string>
     <string name="weather_alert_data_by">Dane alertów według $</string>
     <string name="weather_message_secondary_data_refresh_failed">Odświeżanie danych pogodowych dla dodatkowego źródła pogody nie powiodło się</string>
     <string name="weather_api_limit_reached_content">Aby obejść ten limit, dodaj własny klucz API.</string>
@@ -594,7 +594,7 @@
     <string name="air_quality_co_info_origin">Powstaje w wyniku niecałkowitego spalania paliw zawierających węgiel, takich jak drewno, benzyna, węgiel, gaz ziemny i nafta w prostych piecach, kominkach, lampach knotowych, piecach, kominkach. Głównym źródłem tlenku węgla (CO) w otaczającym powietrzu są pojazdy silnikowe.</string>
     <string name="air_quality_co_info_introduction">Tlenek węgla (CO) to trujący, łatwopalny gaz, który jest bezbarwny, bezwonny, niedrażniący i nie ma smaku.</string>
     <string name="settings_widgets">Widżety i animowana tapeta</string>
-    <string name="minutely_precipitations">Opady minuta po minucie</string>
+    <string name="minutely_precipitations">Minutowe opady</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć alerty, które nadejdą.</string>
     <string name="air_quality_o3_info_title">Ozon na poziomie gruntu (O₃)</string>
     <string name="settings_widgets_section_widgets_in_use">Widżety w użyciu</string>
@@ -608,4 +608,22 @@
     <string name="settings_weather_sources_default_location_search">Domyślne źródło wyszukiwania lokalizacji</string>
     <string name="about_privacy_policy">Polityka prywatności</string>
     <string name="about_contact">Kontakt</string>
+    <string name="unit_bf">Bf</string>
+    <string name="unit_bf_voice">w skali Beauforta</string>
+    <string name="common_weather_text_rain_showers_light">Lekki prysznic</string>
+    <string name="common_weather_text_rain_showers_moderate">Średnia ulewa</string>
+    <string name="common_weather_text_rain_showers_heavy">Ulewa</string>
+    <string name="weather_message_unsupported_feature">Źródło nie obsługuje jednej z żądanych funkcji</string>
+    <string name="common_weather_text_rain_heavy">Ulewa</string>
+    <string name="temperature_average_short">środek</string>
+    <string name="temperature_normal_short">Norma</string>
+    <string name="temperature_normals">Normy temperaturowe</string>
+    <string name="weather_normals_data_by">Dane dotyczące norm temperaturowych podane przez $</string>
+    <string name="settings_appearance_dark_mode_locations_title">Jasny / ciemny motyw dla lokalizacji</string>
+    <string name="settings_main_threshold_lines_on_charts">Linie progów na wykresach</string>
+    <string name="about_contribution_designer">Projektant logo</string>
+    <string name="common_weather_text_rain_light">Lekki deszcz</string>
+    <string name="location_resident_location_summaryOn">Dołączony. Ukryty, gdy odległość od bieżącej lokalizacji jest większa niż $.</string>
+    <string name="common_weather_text_rain_moderate">Średni deszcz</string>
+    <string name="common_weather_text_rain_showers">Prysznic</string>
 </resources>
