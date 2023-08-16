@@ -1,4 +1,4 @@
-# Version 4.6.0-beta (next version)
+# Version 4.6.0-beta
 
 This new version introduces major changes in the way weather refreshes. While it brings nice new features with it, as there are now many different combination for weather sources that we can’t fully test, we welcome your bug reports about any regression introduced in this version, so we can fix them before new release becomes stable.
 
@@ -37,6 +37,7 @@ This new version introduces major changes in the way weather refreshes. While it
 
 **Translations**
 - Initial support for Norwegian Bokmål added (thank you @Visnes!)
+- Latvian translation is now complete (thank you Niks Rodžers!)
 - Translations updated
 
 
