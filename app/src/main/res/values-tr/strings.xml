@@ -217,7 +217,7 @@
     <string name="settings_widgets_live_wallpaper_summary">Bir hava durumu animasyonunu duvar kağıdı olarak ayarla</string>
     <string name="settings_widgets_live_wallpaper_title">Canlı duvar kağıdı</string>
     <string name="location_message_search_failed">Konum arama yapılamadı</string>
-    <string name="location_dialog_failed_to_locate_title">Konumu doğru bir şekilde alamıyor musunuz\?</string>
+    <string name="location_dialog_failed_to_locate_title">Konum doğru bir şekilde bulunamadı mı\?</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Konum bilgilerini etkinleştir</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Şu Anki Çiy Noktası</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
@@ -412,4 +412,5 @@
     <string name="settings_appearance">Görünüm</string>
     <string name="settings_units">Birimler</string>
     <string name="settings_units_temperature">Sıcaklık birimi</string>
+    <string name="hours_of_sun">Güneşli saatler</string>
 </resources>
