@@ -48,7 +48,7 @@ data class Weather(
         }
 
     val dailyForecastStartingToday = if (todayIndex >= 0) {
-        dailyForecast.subList(todayIndex, dailyForecast.size - todayIndex)
+        dailyForecast.subList(todayIndex, dailyForecast.size)
     } else emptyList()
 
     fun isValid(pollingIntervalHours: Float?): Boolean {

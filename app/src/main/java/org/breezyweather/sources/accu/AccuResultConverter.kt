@@ -382,8 +382,12 @@ private fun getAlertList(
     return resultList.map { result ->
         Alert(
             alertId = result.AlertID.toLong(),
-            startDate = result.Area?.getOrNull(0)?.let { Date(it.EpochStartTime.times(1000)) },
-            endDate = result.Area?.getOrNull(0)?.let { Date(it.EpochEndTime.times(1000)) },
+            startDate = result.Area?.getOrNull(0)?.let { area ->
+                area.EpochStartTime?.times(1000)?.let { Date(it) }
+            },
+            endDate = result.Area?.getOrNull(0)?.let { area ->
+                area.EpochEndTime?.times(1000)?.let { Date(it) }
+            },
             description = result.Description?.Localized ?: "",
             content = result.Area?.getOrNull(0)?.Text,
             priority = result.Priority,

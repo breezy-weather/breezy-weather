@@ -1,3 +1,13 @@
+# Version 4.6.2-beta (next version)
+
+**Weather sources**
+- [AccuWeather] Fix would report no alerts if at least one alert didn’t contain a start or end time (can happen with flood alerts for example)
+
+**Other fixes**
+- Fix missing a day or two at the end of the daily forecast
+- Fix crash when a location was not updated for more than "half the length of daily forecast" days
+
+
 # Version 4.6.1-beta
 
 **Weather sources**
