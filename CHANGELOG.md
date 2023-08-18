@@ -1,4 +1,10 @@
-# Version 4.6.2-beta (next version)
+# Version 4.6.3-beta (next version)
+
+**Translations**
+- Translations updated
+
+
+# Version 4.6.2-beta
 
 **Weather sources**
 - [AccuWeather] Fix would report no alerts if at least one alert didn’t contain a start or end time (can happen with flood alerts for example)
