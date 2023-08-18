@@ -180,6 +180,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("nb_rNO"), "Visnes", "https://github.com/Visnes"),
         TranslatorItem(arrayOf("nl"), "Jurre Tas", "mailto:jurretas@gmail.com"),
         TranslatorItem(arrayOf("nl"), "trend", "https://github.com/trend-1"),
+        TranslatorItem(arrayOf("nl"), "BabyBenefactor", "https://github.com/BabyBenefactor"),
         TranslatorItem(arrayOf("pl"), "Kamil", "mailto:invisiblehype@gmail.com"),
         TranslatorItem(arrayOf("pl"), "nid", "https://github.com/nidmb"),
         TranslatorItem(arrayOf("pl"), "Eryk Michalak", "https://github.com/gnu-ewm"),
