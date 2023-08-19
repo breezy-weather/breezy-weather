@@ -158,6 +158,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         if (weather.normals?.daytimeTemperature != null && weather.normals.nighttimeTemperature != null
             && highestTemperature != null && lowestTemperature != null) {
             val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
+            trendParent.normals = weather.normals.month != null
             trendParent.setData(
                 arrayOf(weather.normals.daytimeTemperature, weather.normals.nighttimeTemperature),
                 highestTemperature!!,

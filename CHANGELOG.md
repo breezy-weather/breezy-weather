@@ -1,5 +1,8 @@
 # Version 4.6.3-beta (next version)
 
+**Other fixes**
+- Fix wrong threshold lines name on daily and hourly trends widgets
+
 **Translations**
 - Translations updated
 
