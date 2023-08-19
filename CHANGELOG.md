@@ -4,6 +4,7 @@
 - Fix wrong threshold lines name on daily and hourly trends widgets
 
 **Translations**
+- Serbian translation completed (thank you @nexiRS!)
 - Translations updated
 
 

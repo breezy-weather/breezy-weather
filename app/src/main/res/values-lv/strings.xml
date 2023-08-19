@@ -202,7 +202,7 @@
     <string name="widget_trend_hourly">Stundu tendence</string>
     <string name="settings_background_updates_summary">Atsvaidzes intensitāte, problēmu novēršana</string>
     <string name="settings_location_summary">Atrašanās vietas pakalpojumu iestatījumi</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Dažiem ražotājiem ir papildu lietotņu ierobežojumi, kas iznīcina fona pakalpojumus. Don\'t kill my app! vietnē ir informācija par to, kā to labot.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Dažiem ražotājiem ir papildu lietotņu ierobežojumi, kas iznīcina fona pakalpojumus. Don’t kill my app! vietnē ir informācija par to, kā to labot.</string>
     <string name="settings_location_access_background_title">Piekļuve atrašanās vietai fonā</string>
     <string name="settings_location_access_background_summaryOn">Iespējots. Lietotne fonā varēs atsvaidzināt laikapstākļu datus par jūsu pašreizējo atrašanās vietu.</string>
     <string name="settings_location_access_background_summaryOff">Lūdzu, iespējojiet opciju “Atļaut visu laiku”, lai jūsu pašreizējai atrašanās vietai būtu fona atsvaidzināšana.</string>
@@ -249,7 +249,7 @@
     <string name="widget_subtitle_data_wind">Vējš</string>
     <string name="widget_custom_subtitle_explanation">Varat ievadīt jebko, taču, lūdzu, pievērsiet uzmanību teksta garumam. Ja vēlaties citēt laikapstākļu datus, lūdzu, izmantojiet $, lai atsauktos uz atbilstošo atslēgvārdu.
 \n
-\nPiemēram, “Pašreizējie laikapstākļi ir: $cw$”. tiks parādīts kā \"Pašreizējie laikapstākļi: Skaidra diena\".</string>
+\nPiemēram, “Pašreizējie laikapstākļi ir: $cw$”. tiks parādīts kā “Pašreizējie laikapstākļi: Skaidra diena”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Pašreizējie laikapstākļi</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Pašreizējā temperatūra (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Pašreizējā temperatūra (°)</string>

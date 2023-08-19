@@ -129,6 +129,8 @@ class AboutActivity : GeoActivity() {
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
     // Here, we want to sort by language code, which is a different order than in Language.kt
+    // If you significantly contributed more than other translators, and you would like to appear
+    // first in the list, please open a GitHub issue
     private val translators = arrayOf(
         TranslatorItem(arrayOf("ar"), "sodqe muhammad", "mailto:sodqe.younes@gmail.com"),
         TranslatorItem(arrayOf("ar"), "Rex_sa", "https://github.com/rex07"),
@@ -138,6 +140,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ckb", "ar"), "anyone00", "https://hosted.weblate.org/user/anyone00/"),
         TranslatorItem(arrayOf("cs"), "Jiří Král", "mailto:jirkakral978@gmail.com"),
         TranslatorItem(arrayOf("cs"), "ikanakova", "https://github.com/ikanakova"),
+        TranslatorItem(arrayOf("cs"), "esszed", "https://github.com/esszed"),
         TranslatorItem(arrayOf("de"), "Ken Berns", "mailto:ken.berns@yahoo.de"),
         TranslatorItem(arrayOf("de"), "Jörg Meinhardt", "mailto:jorime@web.de"),
         TranslatorItem(arrayOf("de"), "Thorsten Eckerlein", "mailto:thorsten.eckerlein@gmx.de"),
@@ -202,6 +205,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ru", "uk"), "kilimov25", "https://github.com/kilimov25"),
         TranslatorItem(arrayOf("sk"), "Kuko", "https://hosted.weblate.org/user/kuko7/"),
         TranslatorItem(arrayOf("sl_rSI"), "Gregor", "mailto:glakner@gmail.com"),
+        TranslatorItem(arrayOf("sr"), "NEXI", "https://github.com/nexiRS"),
         TranslatorItem(arrayOf("sr"), "Milan Andrejić", "mailto:amikia@hotmail.com"),
         TranslatorItem(arrayOf("tr"), "Mehmet Saygin Yilmaz", "mailto:memcos@gmail.com"),
         TranslatorItem(arrayOf("tr"), "Ali D.", "mailto:siyaha@gmail.com"),

@@ -610,7 +610,7 @@
     <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatti</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
-    <string name="location_none_added_yet_instructions">Nessuna posizione ancora aggiunta. Tocca l\'icona di ricerca per aggiungere manualmente una posizione o aggiungi la tua posizione corrente dal pulsante mobile.</string>
+    <string name="location_none_added_yet_instructions">Nessuna posizione ancora aggiunta. Tocca l’icona di ricerca per aggiungere manualmente una posizione o aggiungi la tua posizione corrente dal pulsante mobile.</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>
     <string name="common_weather_text_rain_snow_mixed">Pioggia mista a neve</string>
     <string name="common_weather_text_snow_heavy">Neve intensa</string>
@@ -618,7 +618,7 @@
     <string name="common_weather_text_drizzle">Pioggerella</string>
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
     <string name="metno_weather_text_andthunder">$ e tuoni</string>
-    <string name="location_search_no_results_advice">Assicurati che la tua ricerca sia scritta correttamente e non troppo specifica. In alternativa, puoi provare un\'altra fonte di dati meteorologici che potrebbe produrre risultati di ricerca della posizione diversi.</string>
+    <string name="location_search_no_results_advice">Assicurati che la tua ricerca sia scritta correttamente e non troppo specifica. In alternativa, puoi provare un’altra fonte di dati meteorologici che potrebbe produrre risultati di ricerca della posizione diversi.</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: $</string>
     <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%1$d aggiornamenti non riusciti</string>

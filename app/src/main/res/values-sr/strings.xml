@@ -478,7 +478,7 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates">Ажурирања у позадини</string>
     <string name="settings_widgets_monochrome_icons_title">Монохром иконице</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Неки произвођачи имају додатна ограничења апликација која убијају позадинске услуге. Веб-сајт „Don\'t kill my app!“ садржи информације како то можете поправити.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Неки произвођачи имају додатна ограничења апликација која убијају позадинске услуге. Веб-сајт „Don’t kill my app!“ садржи информације како то можете поправити.</string>
     <string name="settings_location_access_switch_title">Приступ локацији</string>
     <string name="settings_icon_packs_title">Пакети иконица</string>
     <string name="wind_gusts">Удари ветра</string>

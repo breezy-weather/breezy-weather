@@ -168,9 +168,9 @@
     <string name="air_quality_co_voice">Karbon monoksit</string>
     <string name="air_quality_pm_explanations_origin">Bazı partiküller volkanlar, toz fırtınaları, orman ve otlak yangınları, canlı bitki örtüsü ya da deniz serpintilerinden dolayı doğal olarak oluşur. Trafik ve ulaşım, endüstriyel faaliyetler, enerji santralleri, şantiyeler, atık yakma veya tarlalar gibi insan etkinlikleri de önemli miktarda partikül üretir.</string>
     <string name="dialog_permissions_location_title">Konum bilgilerine erişim</string>
-    <string name="message_parsing_error_content">Uygulamanın en son sürümüne güncellediğinizden emin olun. Sunucu geçici olarak kullanılamıyor olabilir, bu durumda lütfen daha sonra tekrar deneyin. Sorun devam ederse lütfen hata ayıklama ayarlarından bir kilitlenme günlüğü dökümü yapın ve GitHub\'da bir sorun bildirin.</string>
+    <string name="message_parsing_error_content">Uygulamanın en son sürümüne güncellediğinizden emin olun. Sunucu geçici olarak kullanılamıyor olabilir, bu durumda lütfen daha sonra tekrar deneyin. Sorun devam ederse lütfen hata ayıklama ayarlarından bir kilitlenme günlüğü dökümü yapın ve GitHub’da bir sorun bildirin.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Şu Anki Nem</string>
-    <string name="settings_background_updates_battery_optimization_summary">Bildirim almadığınızda veya widget\'lar yenilenmediğinde denenecek ilk şey budur.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Bildirim almadığınızda veya widget’lar yenilenmediğinde denenecek ilk şey budur.</string>
     <string name="common_weather_text_mainly_clear">Çoğunlukla açık</string>
     <string name="common_weather_text_fog">Sis</string>
     <string name="common_weather_text_snow">Kar</string>
@@ -264,7 +264,7 @@
     <string name="action_continue">Devam et</string>
     <string name="action_share">Paylaş</string>
     <string name="settings_background_updates_refresh_1h">1 saat</string>
-    <string name="settings_widgets">Widget\'lar &amp; Canlı duvar kağıdı</string>
+    <string name="settings_widgets">Widget’lar &amp; Canlı duvar kağıdı</string>
     <string name="air_quality_co_info_introduction">Karbon monoksit (CO), renksiz, kokusuz, tatsız ve tahriş edici olmayan zehirli, yanıcı bir gazdır.</string>
     <string name="air_quality_co_info_origin">Odun, petrol, kömür, doğal gaz ve kerosen gibi karbonlu yakıtların basit sobalarda, açık ateşlerde, fitilli kandillerde, fırınlarda, şöminelerde tam yanmamasıyla üretilir. Ortam havasındaki baskın karbon monoksit (CO) kaynağı motorlu araçlardır.</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Konum hizmetini seçin</string>
@@ -311,7 +311,7 @@
     <string name="settings_icon_packs_weather_icon_light">Açık renk simge</string>
     <string name="settings_icon_packs_weather_icon_grey">Gri simge</string>
     <string name="settings_main_cards_fade_in_switch">Kartlar belirsin</string>
-    <string name="settings_icon_packs_get_more_github">GitHub\'dan daha fazla al</string>
+    <string name="settings_icon_packs_get_more_github">GitHub’dan daha fazla al</string>
     <string name="action_add_current_location">Geçerli konumu ekle</string>
     <string name="widget_subtitle_data_aqi">Hava kalitesi</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Ay Takvimi</string>
@@ -365,7 +365,7 @@
     <string name="allergen_olive">Zeytin</string>
     <string name="ephemeris_sunset_at">Gün batımı saati $</string>
     <string name="location_message_permission_missing">Konum erişimi izni verilmemiş</string>
-    <string name="dialog_permissions_location_background_content">Uygulamanın arka planda konum bilgilerine erişmesine izin vermek, böylece konumdaki değişiklikleri algılayabilmemiz ve size geçerli hava durumu verileri sunabilmemiz için lütfen konum erişimini \"Her zaman izin ver\" olarak ayarlayın.</string>
+    <string name="dialog_permissions_location_background_content">Uygulamanın arka planda konum bilgilerine erişmesine izin vermek, böylece konumdaki değişiklikleri algılayabilmemiz ve size geçerli hava durumu verileri sunabilmemiz için lütfen konum erişimini “Her zaman izin ver” olarak ayarlayın.</string>
     <string name="message_parsing_error_title">Hava durumu verileri ayrıştırılamadı</string>
     <string name="location_resident_location_summaryOff">Devre dışı. Konum her zaman etkin.</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Konumu manuel olarak ekle ve “$” öğesini sil</string>
@@ -377,12 +377,12 @@
     <string name="weather_data_by">Hava durumu bilgisi $ tarafından sağlanıyor</string>
     <string name="date_format_short">d M</string>
     <string name="date_format_long">d MMM</string>
-    <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar\'da karar verin.</string>
+    <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
     <string name="dialog_permissions_location_content">Breezy Weather, geçerli konumunuzun hava durumu verilerini sağlamak için konum bilgilerinizi ön planda veya arka planda toplamalıdır. Bunun için bazı izinler isteyeceğiz. Konum bilgileriniz yalnızca geçerli konumunuzdaki hava durumu verilerini elde etmek için kullanılacaktır. Konum bilgilerinizi paylaşmak istemiyorsanız, bu gereksinimleri reddedebilir ve yönetim sayfasında konumunuzu manuel olarak ayarlayabilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (Kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
-    <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde \"Canlı Duvar Kağıdı\"nı seçerek Breezy Weather duvar kağıdını etkinleştirebilirsiniz.</string>
+    <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek Breezy Weather duvar kağıdını etkinleştirebilirsiniz.</string>
     <string name="weather_air_quality_and_allergen_data_by">Hava kalitesi ve alerjen bilgisi $ tarafından sağlanıyor</string>
     <string name="allergen_level_4">Yüksek</string>
     <string name="allergen_level_5">Çok yüksek</string>
