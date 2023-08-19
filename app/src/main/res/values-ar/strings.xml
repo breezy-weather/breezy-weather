@@ -418,7 +418,7 @@
     <string name="air_quality_o3_info_origin">يتكون من تفاعلات كيميائية ضوئية مع الملوثات مثل المركبات العضوية المتطايرة وأول أكسيد الكربون وأكاسيد النيتروجين (NOₓ) المنبعثة من المركبات والصناعة. بسبب الطبيعة الكيميائية الضوئية ، تظهر أعلى مستويات الأوزون خلال فترات الطقس المشمس.</string>
     <string name="air_quality_o3_info_consequences">يمكن أن يسبب التعرض للأوزون المفرط مشاكل في التنفس ، ويؤدي إلى الربو ، ويقلل من وظائف الرئة ويؤدي إلى أمراض الرئة.</string>
     <string name="air_quality_no2_info_title">ثاني أكسيد النيتروجين (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">ثاني أكسيد النيتروجين (NO₂) هو غاز خانق وسام بني محمر ذو رائحة نفاذة مميزة لاذعة.</string>
+    <string name="air_quality_no2_info_introduction">ثاني أكسيد النيتروجين (NO₂) هو غاز خانق وسام بني محمر ذو رائحة نفاذة مميزة.</string>
     <string name="air_quality_so2_info_title">ثاني أكسيد الكبريت (SO₂)</string>
     <string name="air_quality_so2_info_consequences">يرتبط التعرض لـ SO₂ بدخول اصحاب الربو للمستشفى وزيارات غرفة الطوارئ.</string>
     <string name="air_quality_co_info_title">أول أكسيد الكربون (CO)</string>
