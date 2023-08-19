@@ -135,7 +135,7 @@
     <string name="air_quality_o3_info_consequences">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
     <!-- Please keep the 2 in NO₂ written this way -->
     <string name="air_quality_no2_info_title">Nitrogen dioxide (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor..</string>
+    <string name="air_quality_no2_info_introduction">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor.</string>
     <string name="air_quality_no2_info_origin">Ambient sources of NO₂ results from high temperature combustion of fuels in processes such as those used for heating, transportation, industry and power generation. Household sources of nitrogen oxides (NOₓ) include equipment that burn fuels such as furnaces, fireplaces and gas stoves and ovens.</string>
     <string name="air_quality_no2_info_consequences">Exposure to nitrogen dioxide can irritate airways and aggravate respiratory diseases. Additionally, NO₂ is an important ozone precursor, a pollutant closely linked to asthma and other respiratory conditions.</string>
     <!-- Please keep the 2 in SO₂ written this way -->
