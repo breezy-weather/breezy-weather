@@ -562,7 +562,7 @@
     <string name="settings_appearance_dark_mode_locations_title">Дневни / Ноћни режим за локације</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Икона за време</string>
     <string name="settings_icon_packs_weather_icon_light">Светла иконица</string>
-    <string name="settings_units_summary">Температура, падавине, растојање, брзина, притисак</string>
+    <string name="settings_units_summary">Температура, падавине, удаљеност, брзина, притисак</string>
     <string name="settings_icon_packs_check_details">Провери детаље</string>
     <string name="settings_notifications_precipitations_title">Обавештења о падавинама</string>
     <string name="settings_widgets_section_widgets_in_use">Виџети у употреби</string>
