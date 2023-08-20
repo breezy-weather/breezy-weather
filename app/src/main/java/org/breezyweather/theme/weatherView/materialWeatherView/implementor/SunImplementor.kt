@@ -40,8 +40,8 @@ class SunImplementor(
     private val mAngles = FloatArray(3)
     private val mUnitSizes: FloatArray = floatArrayOf(
         (0.5 * 0.47 * canvasSizes[0]).toFloat(),
-        (0.5 * 0.47 * canvasSizes[0]).toFloat(),
-        (3.0594 * (0.5 * 0.47 * canvasSizes[0])).toFloat()
+        (1.7794 * 0.5 * 0.47 * canvasSizes[0]).toFloat(),
+        (3.0594 * 0.5 * 0.47 * canvasSizes[0]).toFloat()
     )
 
     override fun updateData(
@@ -64,21 +64,39 @@ class SunImplementor(
             mPaint.alpha = ((1 - scrollRate) * 255 * 0.40).toInt()
             canvas.rotate(mAngles[0])
             for (i in 0..3) {
-                canvas.drawRect(-mUnitSizes[0], -mUnitSizes[0], mUnitSizes[0], mUnitSizes[0], mPaint)
+                canvas.drawRect(
+                    -mUnitSizes[0],
+                    -mUnitSizes[0],
+                    mUnitSizes[0],
+                    mUnitSizes[0],
+                    mPaint
+                )
                 canvas.rotate(22.5f)
             }
             canvas.rotate(-90 - mAngles[0])
             mPaint.alpha = ((1 - scrollRate) * 255 * 0.16).toInt()
             canvas.rotate(mAngles[1])
             for (i in 0..3) {
-                canvas.drawRect(-mUnitSizes[1], -mUnitSizes[1], mUnitSizes[1], mUnitSizes[1], mPaint)
+                canvas.drawRect(
+                    -mUnitSizes[1],
+                    -mUnitSizes[1],
+                    mUnitSizes[1],
+                    mUnitSizes[1],
+                    mPaint
+                )
                 canvas.rotate(22.5f)
             }
             canvas.rotate(-90 - mAngles[1])
             mPaint.alpha = ((1 - scrollRate) * 255 * 0.08).toInt()
             canvas.rotate(mAngles[2])
             for (i in 0..3) {
-                canvas.drawRect(-mUnitSizes[2], -mUnitSizes[2], mUnitSizes[2], mUnitSizes[2], mPaint)
+                canvas.drawRect(
+                    -mUnitSizes[2],
+                    -mUnitSizes[2],
+                    mUnitSizes[2],
+                    mUnitSizes[2],
+                    mPaint
+                )
                 canvas.rotate(22.5f)
             }
             canvas.rotate(-90 - mAngles[2])
