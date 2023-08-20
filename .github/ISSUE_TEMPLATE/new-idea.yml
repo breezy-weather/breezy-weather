@@ -32,5 +32,5 @@ body:
           required: true
         - label: My idea is not related to an existing feature described in the [Homepage](https://github.com/breezy-weather/breezy-weather/blob/main/docs/HOMEPAGE.md) document.
           required: true
-        - label: I have updated the app to **[version 4.5.4 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
+        - label: I have updated the app to **[version 4.6.3 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
           required: true
