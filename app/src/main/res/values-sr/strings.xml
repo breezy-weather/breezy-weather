@@ -66,7 +66,7 @@
     <string name="alerts">Упозорења</string>
     <string name="action_search">Претрага</string>
     <string name="action_settings">Подешавања</string>
-    <string name="action_about">О</string>
+    <string name="action_about">О нама</string>
     <!-- widget -->
     <string name="widget_day">Дневно</string>
     <string name="widget_week">Недељно</string>
@@ -93,7 +93,7 @@
     <string name="widget_trend_daily">Дневни тренд</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Дневни опис</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="common_weather_text_partly_cloudy">Претежно облачно</string>
+    <string name="common_weather_text_partly_cloudy">Делимично облачно</string>
     <string name="common_weather_text_overcast">Наоблачено</string>
     <string name="common_weather_text_cloudy">Облачно</string>
     <string name="common_weather_text_fog">Магла</string>
@@ -126,7 +126,7 @@
     <string name="air_quality_co_info_origin">Настаје непотпуним сагоревањем угљеничних горива као што су дрво, бензин, угаљ, природни гас и керозин у једноставним пећима, отвореним ватрама, фитиљ лампама, пећима, каминима. Преовлађујући извор угљен-моноксида (CO) у амбијенталном ваздуху је из моторних возила.</string>
     <string name="ephemeris_moonrise_at">Излазак месеца у $</string>
     <string name="ephemeris_moonset_at">Залазак месеца у $</string>
-    <string name="hours_of_sun">Сунчеви сати</string>
+    <string name="hours_of_sun">Сунчани сати</string>
     <string name="visibility">Видљивост</string>
     <string name="dew_point">Тачка росе</string>
     <string name="ceiling">Облачни плафон</string>
@@ -177,14 +177,14 @@
     <string name="settings_background_updates_refresh_3h">3 сата</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 сат</string>
     <string name="settings_background_updates_refresh_2h">2 сата</string>
-    <string name="settings_background_updates_battery_optimization_summary">Ово је прва ствар коју треба да покушате када не добијате обавештења или се виџети не освежавају.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Ово је прва ствар коју треба да покушате, када не добијате обавештења или се виџети не освежавају.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Специфична упутства произвођача</string>
     <string name="settings_background_updates_worker_info_title">Информације о процесу</string>
     <string name="settings_location_access_permission_already_granted">Дозвола је већ дата</string>
     <string name="settings_location_access_switch_summaryOn">Дозвољено. Можете додати своју тренутну локацију као локацију.</string>
     <string name="settings_location_access_background_summaryOff">Омогућите „Дозволи све време“ да бисте имали позадинско освежавање за Вашу тренутну локацију.</string>
     <string name="settings_location_access_precise_summaryOn">Омогућено. Користе се и мрежа и GPS провајдери уређаја.</string>
-    <string name="settings_location_access_precise_summaryOff">Омогућите „Користи прецизну локацију“ ако имате проблема са проналажењем локације.</string>
+    <string name="settings_location_access_precise_summaryOff">Омогућите „Користи прецизну локацију“, ако имате проблема са проналажењем локације.</string>
     <string name="settings_units_temperature">Јединица за температуру</string>
     <string name="settings_units_precipitation">Јединица за падавине</string>
     <string name="settings_units_distance">Јединица за удаљеност</string>
@@ -281,7 +281,7 @@
     <string name="message_server_timeout">Захтев је истекао</string>
     <string name="widget_label_subtitle_data">Подаци о титловима</string>
     <string name="widget_clock_font_analog">Аналогно</string>
-    <string name="settings_location_access_switch_summaryOff">Дозволите ако желите да можете да додате своју тренутну локацију као локацију.</string>
+    <string name="settings_location_access_switch_summaryOff">Дозволите, ако желите да можете да додате своју тренутну локацију као локацију.</string>
     <string name="settings_notifications_forecast_time_today_title">Време обавештења за дневну прогнозу</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Време обавештења за прогнозу за следећи дан</string>
     <string name="settings_widgets_week_icon_mode_title">Иконица за приказ у недељним приказима</string>
@@ -311,7 +311,7 @@
     <string name="metno_weather_text_andthunder">$ и грмљавина</string>
     <string name="allergen_alder">Јова</string>
     <string name="allergen_birch">Бреза</string>
-    <string name="allergen_mugwort">Дивљи (црни) пелин</string>
+    <string name="allergen_mugwort">Црни пелен</string>
     <string name="allergen_level_4">Високо</string>
     <string name="allergen_level_5">Веома високо</string>
     <string name="ephemeris_moon_phase_new_moon">Млад месец</string>
@@ -364,7 +364,7 @@
     <string name="dialog_permissions_notification_content">Додирни овде да омогућиш обавештења о временским упозорењима или одлучи касније у подешавањима.</string>
     <string name="settings_widgets_live_wallpaper_title">Жива позадина</string>
     <string name="settings_color_day_night">Дан / Ноћ</string>
-    <string name="settings_widgets_notification_feels_like_switch">Користи Осећа се као температура</string>
+    <string name="settings_widgets_notification_feels_like_switch">Користи температуру „Осећа се као“</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="widget_label_clock_font">Фонт сата</string>
     <string name="widget_subtitle_data_custom">Прилагођено</string>
@@ -447,7 +447,7 @@
     <string name="settings_weather_source">Извор времена</string>
     <string name="settings_weather_sources">Извори времена</string>
     <string name="settings_weather_sources_summary">Подешавања извора података о времену, подразумевани извор претраге локације</string>
-    <string name="about_contribution_weather_source">Додата подршка за нове изворе времена</string>
+    <string name="about_contribution_weather_source">Додао подршку за нове изворе времена</string>
     <string name="action_location_list">Листа локација</string>
     <string name="settings_main_background_animation_enabled">Омогућено</string>
     <string name="settings_main_gravity_sensor_switch">Гравитациони сензор</string>
@@ -469,7 +469,7 @@
     <string name="unit_lpsqmph_voice">Литри по квадратном метру по сату</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="location_resident_location_summaryOn">Омогућено. Сакривено када је унутар $ од тренутне локације.</string>
+    <string name="location_resident_location_summaryOn">Омогућено. Сакривено, када је унутар $ од тренутне локације.</string>
     <string name="action_refresh">Освежи</string>
     <string name="action_restart">Рестартуј</string>
     <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о паду апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>
@@ -477,7 +477,7 @@
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates">Ажурирања у позадини</string>
-    <string name="settings_widgets_monochrome_icons_title">Монохром иконице</string>
+    <string name="settings_widgets_monochrome_icons_title">Монохроматске иконице</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Неки произвођачи имају додатна ограничења апликација која убијају позадинске услуге. Веб-сајт „Don’t kill my app!“ садржи информације како то можете поправити.</string>
     <string name="settings_location_access_switch_title">Приступ локацији</string>
     <string name="settings_icon_packs_title">Пакети иконица</string>
@@ -508,7 +508,7 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорисати када је батерија празна</string>
     <string name="about_dependencies">Зависности</string>
     <string name="air_quality_index">Индекс квалитета ваздуха</string>
-    <string name="air_quality_level_3_description">Ваздух је достигао висок ниво загађења и нездрав је за осетљиве групе. Смањите време проведено напољу ако осећате симптоме као што су отежано дисање или иритација грла.</string>
+    <string name="air_quality_level_3_description">Ваздух је достигао висок ниво загађења и нездрав је за осетљиве групе особа. Смањите време проведено на отвореном простору, ако осећате симптоме као што су отежано дисање или иритација грла.</string>
     <string name="air_quality_level_4">Нездраво</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
@@ -529,9 +529,9 @@
     <string name="action_help_me_choose">Помози ми да изаберем</string>
     <string name="alerts_count">$ временска упозорења</string>
     <string name="temperature_normals">Температурне норме</string>
-    <string name="air_quality_level_1_description">Квалитет ваздуха је идеалан за већину особа; уживајте у својим нормалним активностима на отвореном.</string>
-    <string name="air_quality_level_5_description">Осетљиве групе особа ће одмах осетити ефекте на здравље и требало би да избегавају активности на отвореном. Здраве особе ће вероватно имати потешкоће са дисањем и иритацију грла; размислите о томе да останете у затвореном простору и промените распоред активности на отвореном.</string>
-    <string name="air_quality_level_6_description">Свако излагање ваздуху, чак и на неколико минута, може довести до озбиљних здравствених последица. Избегавајте активности на отвореном.</string>
+    <string name="air_quality_level_1_description">Квалитет ваздуха је идеалан за већину особа; уживајте у својим нормалним активностима на отвореном простору.</string>
+    <string name="air_quality_level_5_description">Осетљиве групе особа ће одмах осетити ефекте на здравље и требало би да избегавају активности на отвореном простору. Здраве особе ће вероватно имати потешкоће са дисањем и иритацију грла; размислите о томе да останете у затвореном простору и промените распоред активности на отвореном простору.</string>
+    <string name="air_quality_level_6_description">Свако излагање ваздуху, чак и на неколико минута, може довести до озбиљних здравствених последица. Избегавајте активности на отвореном простору.</string>
     <string name="air_quality_pm_explanations_origin">Неке честице се јављају природно, потичу од вулкана, прашних олуја, шумских и травних пожара, живе вегетације и морског прскања. Људске активности такође стварају значајне количине честица, као што су саобраћај и транспорт, индустријске активности, електране, градилишта, спаљивање отпада или поља.</string>
     <string name="air_quality_pm_explanations_consequences">Честице су најштетнији облик загађења ваздуха због своје способности да из крвотока продру дубоко у плућа и мозак, узрокујући здравствене проблеме као што су болести срца, плућне болести и превремена смрт.</string>
     <string name="air_quality_o3_info_title">Приземни озон (O₃)</string>
@@ -578,7 +578,7 @@
     <string name="unit_cm">cm</string>
     <string name="notification_updating_weather_data">Ажурирање података о времену (%1$d/%2$d)</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Помешани пљускови са кишом и снегом</string>
-    <string name="air_quality_level_4_description">Осетљиве групе особа могу одмах осетити последице по здравље. Здраве особе могу имати отежано дисање и иритацију грла при продуженом излагању. Ограничите активности на отвореном.</string>
+    <string name="air_quality_level_4_description">Осетљиве групе особа могу одмах осетити последице по здравље. Здраве особе могу имати отежано дисање и иритацију грла при продуженом излагању. Ограничите активности на отвореном простору.</string>
     <string name="air_quality_level_2_description">Квалитет ваздуха је генерално прихватљив за већину особа. Међутим, осетљиве групе особа могу имати мање до умерених симптома од дуготрајне изложености.</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Привидно</string>
