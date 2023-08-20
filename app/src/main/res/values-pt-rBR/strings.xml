@@ -578,13 +578,13 @@
     <string name="wind_strength">Força do vento</string>
     <string name="message_server_timeout">Solicitação expirou</string>
     <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do aplicativo. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
-    <string name="temperature_degree_day_heating">Dia de grau de aquecimento</string>
+    <string name="temperature_degree_day_heating">Grau de aquecimento do dia</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="settings_source_api_key">Chave de API</string>
     <string name="setting_weather_source_accu_days">Dias</string>
     <string name="message_source_not_installed_error_title">Fonte não disponível</string>
     <string name="settings_background_updates_worker_info_summary">Última execução: $</string>
-    <string name="temperature_degree_day_cooling">Dia de grau de resfriamento</string>
+    <string name="temperature_degree_day_cooling">Grau de resfriamento do dia</string>
     <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="message_source_not_installed_error_content">Esta fonte não está mais disponível, apague a localização e a recrie de outra fonte.</string>
     <string name="settings_weather_source_portal">Canal</string>
@@ -624,4 +624,9 @@
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos para este local</string>
     <string name="minutely_precipitations">Precipitação minuto a minuto</string>
     <string name="about_privacy_policy">Política de privacidade</string>
+    <string name="temperature_normals">Normais de temperatura</string>
+    <string name="temperature_normal_short">Normal</string>
+    <string name="temperature_average_short">Média</string>
+    <string name="weather_normals_data_by">Normais de temperatura por $</string>
+    <string name="settings_main_threshold_lines_on_charts">Linhas de limite em gráficos</string>
 </resources>
