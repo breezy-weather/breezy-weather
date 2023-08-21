@@ -77,7 +77,7 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Убывающая луна</string>
     <string name="ephemeris_moon_phase_last_quarter">Последняя четверть</string>
     <string name="ephemeris_moon_phase_waning_crescent">Старая луна</string>
-    <string name="daily_forecast">Ежедневный</string>
+    <string name="daily_forecast">Ежедневный прогноз</string>
     <string name="hourly_forecast">Почасовой</string>
     <string name="minutely_forecast">Поминутный прогноз</string>
     <string name="precipitation_forecast">Прогноз осадков</string>
