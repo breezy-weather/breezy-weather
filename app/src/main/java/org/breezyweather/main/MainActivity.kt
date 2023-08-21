@@ -52,6 +52,7 @@ import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.search.SearchActivity
@@ -527,6 +528,7 @@ class MainActivity : GeoActivity(),
                     Widgets.updateWidgetIfNecessary(this, it[0])
                     Notifications.updateNotificationIfNecessary(this, it)
                     Widgets.updateWidgetIfNecessary(this, it)
+                    Gadgets.updateGadgetIfNecessary(this, it[0])
                 }, 1000)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

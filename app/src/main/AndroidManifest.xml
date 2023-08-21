@@ -49,8 +49,11 @@
         </intent>
 
         <!-- Gadgetbridge -->
-        <package android:name="nodomain.freeyourgadget.gadgetbridge"/>
-        <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly"/>
+        <package android:name="nodomain.freeyourgadget.gadgetbridge" />
+        <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly" />
+        <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly_nopebble" />
+        <package android:name="com.espruino.gadgetbridge.banglejs" />
+        <package android:name="com.espruino.gadgetbridge.banglejs.nightly" />
     </queries>
 
     <application

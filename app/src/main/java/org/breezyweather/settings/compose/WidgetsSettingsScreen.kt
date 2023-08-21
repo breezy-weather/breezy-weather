@@ -29,7 +29,8 @@ import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.gadgetbridge.GadgetBridgeApi
+import org.breezyweather.remoteviews.Gadgets
+import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.config.*
@@ -325,8 +326,8 @@ fun WidgetsSettingsScreen(
     }
     sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 
-    if (GadgetBridgeApi.isAvailable(context)) {
-        sectionHeaderItem(R.string.settings_widgets_gadgetbridge_title)
+    if (GadgetBridgeService.isAvailable(context)) {
+        sectionHeaderItem(R.string.settings_widgets_gadgets_title)
         switchPreferenceItem(R.string.settings_widgets_gadgetbridge_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
@@ -339,11 +340,13 @@ fun WidgetsSettingsScreen(
                     SettingsManager
                         .getInstance(context)
                         .isGadgetBridgeSupportEnabled = it
-                    Widgets.updateWidgetIfNecessary(context)
+                    if (it) {
+                        Gadgets.updateGadgetIfNecessary(context)
+                    }
                 }
             )
         }
-        sectionFooterItem(R.string.settings_widgets_gadgetbridge_title)
+        sectionFooterItem(R.string.settings_widgets_gadgets_title)
     }
 
     bottomInsetItem()

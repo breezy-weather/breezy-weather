@@ -1,7 +1,10 @@
 # Version 4.6.4-beta (next version)
 
+**New features**
+- Experimental support for Gadgetbridge addedit di (@Cod3dDOT)
+
 **Other fixes**
-- Fix wrong radius for sun animation (@cod3d)
+- Fix wrong radius for sun animation (@Cod3dDOT)
 
 
 # Version 4.6.3-beta

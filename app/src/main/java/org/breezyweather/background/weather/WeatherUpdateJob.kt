@@ -56,6 +56,7 @@ import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RefreshErrorType
+import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
@@ -262,6 +263,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                 // TODO: We only send alert and precipitation forecast for first location for historical reason, but this should be reworked
                 Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
                 Notifications.checkAndSendPrecipitationForecast(applicationContext, location)
+                Gadgets.updateGadgetIfNecessary(context, location)
             }
 
             // Inform main activity that we updated location

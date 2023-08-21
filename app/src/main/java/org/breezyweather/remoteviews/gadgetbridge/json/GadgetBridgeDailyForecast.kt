@@ -1,4 +1,4 @@
-package org.breezyweather.gadgetbridge.json
+package org.breezyweather.remoteviews.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 

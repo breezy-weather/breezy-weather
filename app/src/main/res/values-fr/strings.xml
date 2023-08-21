@@ -492,6 +492,8 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre de statut</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
+    <string name="settings_widgets_gadgets_title">Gadgets</string>
+    <string name="settings_widgets_gadgetbridge_switch">Envoyer les données météo à Gadgetbridge</string>
     <string name="about_privacy_policy">Politique de confidentialité</string>
     <string name="settings_debug">Débogage</string>
     <string name="settings_debug_summary">Journaux d’incident</string>
