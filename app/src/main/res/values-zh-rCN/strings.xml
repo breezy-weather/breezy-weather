@@ -411,7 +411,7 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
-    <string name="about_matrix">Matrix 服务器</string>
+    <string name="about_matrix">Matrix 聊天室</string>
     <string name="unit_kelvin_short">K</string>
     <string name="weather_data_by">数据来自 $</string>
     <string name="weather_source_openweather_version_2_5">2.5 版本</string>
@@ -648,4 +648,6 @@
     <string name="temperature_average_short">平均气温</string>
     <string name="temperature_normals">气温正常值</string>
     <string name="temperature_normal_short">正常气温</string>
+    <string name="settings_widgets_gadgets_title">小部件</string>
+    <string name="settings_widgets_gadgetbridge_switch">发送天气数据到 Gadgetbridge</string>
 </resources>
