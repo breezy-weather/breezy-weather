@@ -259,7 +259,17 @@ private fun SecondarySourcesPreference(
                                 needsGeocodeRefresh = hasChangedMainSource.value,
                                 // TODO: Will trigger a full refresh which we should avoid
                                 // if we only change a secondary weather source
-                                weather = null
+                                weather = location.weather?.copy(
+                                    base = location.weather.base.copy(
+                                        refreshTime = null,
+                                        mainUpdateTime = null,
+                                        airQualityUpdateTime = null,
+                                        allergenUpdateTime = null,
+                                        minutelyUpdateTime = null,
+                                        alertsUpdateTime = null,
+                                        normalsUpdateTime = null
+                                    )
+                                )
                             )
                             LocationEntityRepository.writeLocation(newLocation, location)
                             EventBus.instance
