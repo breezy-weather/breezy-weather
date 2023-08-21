@@ -530,7 +530,7 @@
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
     <string name="about_app">Про програму</string>
     <string name="about_contact">Контакти</string>
-    <string name="about_matrix">Простір Matrix</string>
+    <string name="about_matrix">Кімната Matrix</string>
     <string name="about_dependencies">Залежно</string>
     <string name="common_weather_text_overcast">Хмарно</string>
     <string name="common_weather_text_rain_heavy">Сильний дощ</string>
