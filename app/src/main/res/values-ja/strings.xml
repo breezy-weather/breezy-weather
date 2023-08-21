@@ -311,7 +311,7 @@
     <string name="settings_main_header_details_title">ヘッダーに表示するデータ</string>
     <string name="settings_main_section_displayed_data">表示するデータ</string>
     <string name="settings_background_updates_summary">更新間隔･自動更新の問題対処</string>
-    <string name="settings_background_updates">バックグラウンドの自動更新</string>
+    <string name="settings_background_updates">バックグラウンドでの自動更新</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。
 \nDon’t kill my app! にその対処方法が掲載されています。</string>
     <string name="settings_notifications">通知</string>
