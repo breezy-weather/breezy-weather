@@ -257,7 +257,7 @@
     <string name="weather_kind_hail">Град</string>
     <string name="common_weather_text_fog">Туман</string>
     <string name="weather_kind_haze">Дымка</string>
-    <string name="weather_kind_thunder">Гроза</string>
+    <string name="weather_kind_thunder">Гром</string>
     <string name="weather_kind_thunderstorm">Буря</string>
     <string name="weather_kind_wind">Ветер</string>
     <string name="unit_kph">км/ч</string>
@@ -536,7 +536,7 @@
     <string name="unit_kpa_voice">Килопаскали</string>
     <string name="unit_mb_voice">Миллибары</string>
     <string name="unit_hpa_voice">Гектопаскали</string>
-    <string name="about_matrix">Пространство Matrix</string>
+    <string name="about_matrix">Комната Matrix</string>
     <string name="about_source_code">Исходный код</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
     <string name="settings_icon_packs_weather_icon_light">Светлая иконка</string>
