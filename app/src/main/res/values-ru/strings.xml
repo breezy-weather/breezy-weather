@@ -18,8 +18,8 @@
     <string name="uv_index">УФ-индекс</string>
     <string name="hours_of_sun">Солнечные часы</string>
     <string name="notification_channel_forecast">Прогноз</string>
-    <string name="daytime">Днём</string>
-    <string name="nighttime">Ночью</string>
+    <string name="daytime">День</string>
+    <string name="nighttime">Ночь</string>
     <string name="temperature_feels_like">Ощущается как</string>
     <string name="settings_follow_system">Как в системе</string>
     <string name="pressure">Атмосферное давление</string>
@@ -62,7 +62,7 @@
     <string name="wind_strength_7">Крепкий ветер</string>
     <string name="wind_strength_8">Очень крепкий ветер</string>
     <string name="wind_strength_9">Шторм</string>
-    <string name="wind_strength_10">Сильный шторм</string>
+    <string name="wind_strength_10">Шторм</string>
     <string name="wind_strength_11">Жестокий шторм</string>
     <string name="wind_strength_12">Ураган</string>
     <string name="precipitation_intensity_light">Изморось</string>
@@ -97,14 +97,14 @@
     <string name="about_translators">Переводчики</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">Запрос местоположения в фоне</string>
-    <string name="location_message_failed_to_locate">Ошибка определения местоположения</string>
-    <string name="weather_message_data_refresh_failed">Ошибка получения прогноза</string>
+    <string name="location_message_failed_to_locate">Не удалось найти текущее местоположение</string>
+    <string name="weather_message_data_refresh_failed">Не удалось обновить данные о погоде</string>
     <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Выбрать сервис определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
-    <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
+    <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоновом режиме</string>
     <string name="dialog_permissions_location_background_content">Чтобы разрешить приложению доступ к местоположению в фоне, чтобы мы могли следить за изменениями местоположения и предоставлять актуальный прогноз погоды, включите доступ к местоположению “Разрешить в любом режиме”.</string>
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
@@ -128,7 +128,7 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Влажность</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Давление</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Текущая видимость</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Точка росы</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Текущая точка росы</string>
     <string name="widget_custom_subtitle_keyword_al_description">Оповещение</string>
     <string name="widget_custom_subtitle_keyword_als_description">Оповещение (Кратко)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Местоположение</string>
@@ -158,9 +158,9 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны сегодня, завтра, …, на 4 дня</string>
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Время</string>
-    <string name="location_message_added">Место добавлено успешно</string>
-    <string name="location_message_deleted">Место удалено успешно</string>
-    <string name="location_message_list_cannot_be_empty">Список мест не может быть пустым</string>
+    <string name="location_message_added">Местоположение добавлено</string>
+    <string name="location_message_deleted">Местоположение удалено</string>
+    <string name="location_message_list_cannot_be_empty">Список местоположений не может быть пустым</string>
     <string name="location_search_placeholder">Поиск местоположения…</string>
     <string name="location_current_not_found_yet">Местоположение не задано…</string>
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
@@ -180,15 +180,15 @@
     <string name="action_settings">Настройки</string>
     <string name="action_preview">Предпросмотр</string>
     <string name="action_about">Информация</string>
-    <string name="action_app_store">Маркет</string>
+    <string name="action_app_store">Магазин приложений</string>
     <!-- widget -->
-    <string name="widget_day">День</string>
-    <string name="widget_week">Неделя</string>
-    <string name="widget_day_week">День + Неделя</string>
-    <string name="widget_clock_day_horizontal">Время + День (Горизонтальный)</string>
-    <string name="widget_clock_day_details">Время + День (Подробно)</string>
-    <string name="widget_clock_day_vertical">Время + День (Вертикальный)</string>
-    <string name="widget_clock_day_week">Время + День + Неделя</string>
+    <string name="widget_day">Подневной</string>
+    <string name="widget_week">Понедельный</string>
+    <string name="widget_day_week">Подневный + Понедельный</string>
+    <string name="widget_clock_day_horizontal">Время + Подневный (Горизонтальный)</string>
+    <string name="widget_clock_day_details">Время + Подневный (Подробно)</string>
+    <string name="widget_clock_day_vertical">Время + Подневный (Вертикальный)</string>
+    <string name="widget_clock_day_week">Время + Подневный + Понедельный</string>
     <string name="widget_text">Текст</string>
     <string name="widget_trend_daily">Ежедневный прогноз</string>
     <string name="widget_trend_hourly">Почасовой прогноз</string>
@@ -310,7 +310,7 @@
     <string name="uv_index_6_7">Высокий</string>
     <string name="uv_index_11">Чрезмерный</string>
     <string name="air_quality_level_1_description">Качество воздуха идеальное для большинства людей; можно проводить время на улице без ограничений.</string>
-    <string name="air_quality_level_2">Средне</string>
+    <string name="air_quality_level_2">Нормальный</string>
     <string name="air_quality_level_3">Плохо</string>
     <string name="air_quality_level_3_description">Загрязнение воздуха достигло высокого уровня, он является небезопасным для людей с повышенной чувствительностью. Если вы почувствуете затрудненное дыхание или раздражение горла, сократите время пребывания на улице.</string>
     <string name="air_quality_level_4">Вредно</string>
@@ -326,10 +326,10 @@
     <string name="ephemeris_moonrise_at">Восход луны в $</string>
     <string name="ephemeris_moonset_at">Заход луны в $</string>
     <string name="ephemeris_sunset_at">Закат солнца в $</string>
-    <string name="date_format_long">d MMM</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
+    <string name="date_format_long">МММ д</string>
+    <string name="date_format_widget_short">ГГГ, МММ д</string>
+    <string name="date_format_widget_long">ГГГГ, МММ д</string>
+    <string name="date_format_widget_oreo_style">ГГГГ, МММ д |</string>
     <string name="weather_data_by">Данные от $</string>
     <string name="uv_index_0_2">Низкий</string>
     <string name="allergen_ragweed">Амброзия</string>
