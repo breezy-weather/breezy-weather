@@ -24,6 +24,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.gadgetbridge.GadgetBridgeApi
 import org.breezyweather.remoteviews.presenters.*
 import java.util.*
 
@@ -119,6 +120,10 @@ object Widgets {
     }
 
     fun updateWidgetIfNecessary(context: Context, location: Location) {
+        if (GadgetBridgeApi.isEnabled(context)) {
+            GadgetBridgeApi.sendWeatherBroadcast(context, location);
+        }
+
         if (DayWidgetIMP.isInUse(context)) {
             DayWidgetIMP.updateWidgetView(context, location)
         }

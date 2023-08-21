@@ -28,7 +28,6 @@ import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
-import org.breezyweather.sources.SourceManager
 
 class SettingsChangedMessage
 
@@ -418,6 +417,13 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
+
+    var isGadgetBridgeSupportEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("gadgetbridge_support_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("gadgetbridge_support_switch", false)
 
     private fun notifySettingsChanged() {
         EventBus

@@ -549,6 +549,8 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
     <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
+    <string name="settings_widgets_gadgetbridge_title">Gadgetbridge</string>
+    <string name="settings_widgets_gadgetbridge_switch">Send data to Gadgetbridge</string>
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_debug_summary">Crash logs</string>
