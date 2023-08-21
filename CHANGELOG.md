@@ -1,7 +1,7 @@
-# Version 4.6.4-beta (next version)
+# Version 4.6.4-beta
 
 **New features**
-- Experimental support for Gadgetbridge addedit di (@Cod3dDOT)
+- Experimental support for Gadgetbridge added (@Cod3dDOT)
 
 **Other fixes**
 - Fix current location unable to refresh if choosing a main source that has no reverse geocoding support
