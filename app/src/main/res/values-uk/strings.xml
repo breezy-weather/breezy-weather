@@ -156,7 +156,7 @@
     <string name="short_saturday">Сб</string>
     <string name="short_tuesday">Вт</string>
     <string name="air_quality_co_info_consequences">Коли чадний газ потрапляє в кров, клітинам організму важко зв’язуватися з киснем. Цей недолік кисню пошкоджує тканини та клітини. Вплив чадного газу може спричинити утруднення дихання, виснаження, запаморочення та інші грипоподібні симптоми. Вплив високого рівня чадного газу може бути смертельним.</string>
-    <string name="allergen_tree">Древесина</string>
+    <string name="allergen_tree">Дерева</string>
     <string name="allergen_alder">Вільха</string>
     <string name="allergen_birch">Береза</string>
     <string name="allergen_ragweed">Амброзія</string>
@@ -530,7 +530,7 @@
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
     <string name="about_app">Про програму</string>
     <string name="about_contact">Контакти</string>
-    <string name="about_matrix">Сервер Matrix</string>
+    <string name="about_matrix">Простір Matrix</string>
     <string name="about_dependencies">Залежно</string>
     <string name="common_weather_text_overcast">Хмарно</string>
     <string name="common_weather_text_rain_heavy">Сильний дощ</string>
@@ -638,4 +638,6 @@
     <string name="settings_main_threshold_lines_on_charts">Порогові лінії на графіках</string>
     <string name="temperature_average_short">Середина</string>
     <string name="weather_normals_data_by">Дані про температурні норми надані $</string>
+    <string name="settings_widgets_gadgets_title">Гаджети</string>
+    <string name="settings_widgets_gadgetbridge_switch">Надіслати дані про погоду в Gadgetbridge</string>
 </resources>
