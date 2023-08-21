@@ -63,7 +63,7 @@
     <string name="air_quality_o3_info_title">Приземний озон (O₃)</string>
     <string name="air_quality_no2_info_title">Діоксид азоту (NO₂)</string>
     <string name="air_quality_so2_info_title">Сірчистий газ (SO₂)</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Спадаючий</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Спадаючий місяць</string>
     <string name="humidity">Вологість</string>
     <string name="weather_api_limit_reached_title">Досягнуто ліміт запитів API</string>
     <string name="setting_weather_source_accu_days">Кол-во днів</string>
@@ -82,7 +82,7 @@
     <string name="location_search_weather_source">Джерело погоди</string>
     <string name="location_search_change_weather_source">Змінити джерело погоди</string>
     <string name="location_message_deleted">Місцезнаходження видалено</string>
-    <string name="location_message_list_cannot_be_empty">Список місць не може бути порожнім</string>
+    <string name="location_message_list_cannot_be_empty">Список місцезнаходженнь не може бути порожнім</string>
     <string name="location_message_search_failed">Ми зустріли помилку, поки шукали це місцезнаходження</string>
     <string name="location_message_failed_to_locate">Не вдалося знайти поточне місцезнаходження</string>
     <string name="location_message_permission_missing">Немає дозволу на пошук місцезнаходження</string>
@@ -222,7 +222,7 @@
     <string name="weather_message_data_refresh_failed">Не вдалося оновити дані про погоду</string>
     <string name="weather_api_unauthorized_title">Доступ до API несанкціонований</string>
     <string name="weather_api_key_required_missing_content">Щоб використовувати це джерело, вам потрібно надати ключ API.</string>
-    <string name="settings_weather_source_portal">Портал</string>
+    <string name="settings_weather_source_portal">Канал</string>
     <string name="weather_api_key_required_missing_title">Відсутній ключ API</string>
     <string name="weather_source_accu_preference_days_15">15 днів</string>
     <string name="air_quality_no2">NO₂</string>
@@ -326,7 +326,7 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Вологість</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Тиск</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Поточна видимість</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Точка роси</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Поточна точка роси</string>
     <string name="widget_custom_subtitle_keyword_als_description">Оповіщення (Коротко)</string>
     <string name="widget_custom_subtitle_keyword_al_description">Оповіщення</string>
     <string name="widget_custom_subtitle_keyword_l_description">Розташування</string>
