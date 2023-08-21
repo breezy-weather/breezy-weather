@@ -7,6 +7,9 @@
 - Fix current location unable to refresh if choosing a main source that has no reverse geocoding support
 - Fix wrong radius for sun animation (@Cod3dDOT)
 
+**Translations**
+- Translations updated
+
 
 # Version 4.6.3-beta
 
