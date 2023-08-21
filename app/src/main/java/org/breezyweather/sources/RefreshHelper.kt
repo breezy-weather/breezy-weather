@@ -132,10 +132,7 @@ class RefreshHelper @Inject constructor(
             } else {
                 // Returned as-is if no reverse geocoding source
                 // but write in case the location service has provided us information for current
-                if (location.isCurrentPosition) {
-                    LocationEntityRepository.writeLocation(currentLocation)
-                    currentLocation
-                } else if (location.needsGeocodeRefresh) {
+                if (location.isCurrentPosition || location.needsGeocodeRefresh) {
                     val currentLocationNoGeocodeRefresh = currentLocation.copy(needsGeocodeRefresh = false)
                     LocationEntityRepository.writeLocation(currentLocationNoGeocodeRefresh)
                     currentLocationNoGeocodeRefresh

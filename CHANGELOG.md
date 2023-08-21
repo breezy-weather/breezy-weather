@@ -4,6 +4,7 @@
 - Experimental support for Gadgetbridge addedit di (@Cod3dDOT)
 
 **Other fixes**
+- Fix current location unable to refresh if choosing a main source that has no reverse geocoding support
 - Fix wrong radius for sun animation (@Cod3dDOT)
 
 
