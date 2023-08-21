@@ -1,6 +1,6 @@
 name: Idea
 description: Suggest something to improve app
-labels: [Idea], [Needs review]
+labels: Idea, Needs review
 body:
   - type: textarea
     id: feature-description

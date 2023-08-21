@@ -1,6 +1,6 @@
 name: New source
 description: Suggest a new source for the app (weather source, location search, IP location, etc).
-labels: [New source], [Needs review]
+labels: New source, Needs review
 body:
   - type: input
     id: api-documentation-link
