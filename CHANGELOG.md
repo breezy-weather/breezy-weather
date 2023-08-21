@@ -1,3 +1,9 @@
+# Version 4.6.4-beta (next version)
+
+**Other fixes**
+- Fix wrong radius for sun animation (@cod3d)
+
+
 # Version 4.6.3-beta
 
 **Other fixes**

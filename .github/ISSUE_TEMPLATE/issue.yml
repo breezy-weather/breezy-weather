@@ -1,6 +1,6 @@
 name: Issue
 description: Report a bug/issue with Breezy Weather
-labels: [Bug]
+labels: [Bug], [Needs review]
 body:
   - type: textarea
     id: steps-to-reproduce
