@@ -667,7 +667,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par mètre cube</string>
     <string name="notification_channel_alerts">Vigilances</string>
-    <string name="about_matrix">Serveur Matrix</string>
+    <string name="about_matrix">Salon Matrix</string>
     <string name="action_choose_weather_source">Choisir la source des données météo</string>
 
     <string name="null_data_text">N/A</string>
