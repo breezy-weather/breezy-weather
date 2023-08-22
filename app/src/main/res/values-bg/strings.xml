@@ -541,7 +541,7 @@
     <string name="about_source_code">Програмен код</string>
     <string name="notification_style_cities">Градове</string>
     <string name="about_app">Относно приложението</string>
-    <string name="about_matrix">Matrix сървър</string>
+    <string name="about_matrix">Стая Matrix</string>
     <string name="about_contributors">Сътрудници</string>
     <string name="notification_refreshed_at">Обновен на</string>
     <string name="notification_location_in_background">Намиране във фонов режим</string>
@@ -638,4 +638,6 @@
     <string name="temperature_normal_short">Нормална</string>
     <string name="settings_main_threshold_lines_on_charts">Прагови линии на диаграмите</string>
     <string name="temperature_normals">Температурни норми</string>
+    <string name="settings_widgets_gadgetbridge_switch">Изпращайте данни за времето до Gadgetbridge</string>
+    <string name="settings_widgets_gadgets_title">Джаджи</string>
 </resources>
