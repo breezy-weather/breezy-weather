@@ -454,7 +454,7 @@
     <string name="settings_widgets_monochrome_icons_title">單色圖示</string>
     <string name="settings_widgets_day_night_temp_reversed_title">顛倒晝/夜溫度順序</string>
     <string name="notification_channel_background_services">背景服務</string>
-    <string name="about_matrix">Matrix 伺服器</string>
+    <string name="about_matrix">Matrix 聊天室</string>
     <string name="message_parsing_error_content">請確保已經更新至應用程式的最新版本。伺服器可能暫時無法使用，在這種狀況下，請稍後再試。如果問題持續存在，請從偵錯設定中傾倒出崩潰日誌，並在 GitHub 上報告問題。</string>
     <string name="air_quality_level_1">極佳</string>
     <string name="widget_style_mini">Mini 風格</string>
@@ -647,4 +647,6 @@
     <string name="temperature_normals">氣溫正常值</string>
     <string name="weather_normals_data_by">氣溫正常值資料來源 $</string>
     <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
+    <string name="settings_widgets_gadgetbridge_switch">傳送天氣資料到 Gadgetbridge</string>
+    <string name="settings_widgets_gadgets_title">小工具</string>
 </resources>
