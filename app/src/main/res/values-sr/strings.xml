@@ -42,7 +42,7 @@
     <string name="hourly_forecast">Прогноза по сатима</string>
     <string name="air_quality">Квалитет ваздуха</string>
     <string name="details">Детаљи</string>
-    <string name="ephemeris">Сунце и месец</string>
+    <string name="ephemeris">Сунце и Месец</string>
     <string name="action_next">Следеће</string>
     <string name="action_done">Готово</string>
     <string name="action_cancel">Откажи</string>
@@ -321,7 +321,7 @@
     <string name="unit_kpa">kPa</string>
     <string name="unit_kgfpsqcm_voice">Килограм-сила по квадратном центиметру</string>
     <string name="temperature_average_short">Просек</string>
-    <string name="temperature_normal_short">Нормална</string>
+    <string name="temperature_normal_short">Нормала</string>
     <string name="precipitation_rain">Киша</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Лед</string>
@@ -505,7 +505,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Тренутна температура (℃/℉)</string>
     <string name="settings_background_updates_refresh_1h">1 сат</string>
     <string name="settings_background_updates_refresh_6h">6 сати</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорисати када је батерија празна</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорисати, када је батерија празна</string>
     <string name="about_dependencies">Зависности</string>
     <string name="air_quality_index">Индекс квалитета ваздуха</string>
     <string name="air_quality_level_3_description">Ваздух је достигао висок ниво загађења и нездрав је за осетљиве групе особа. Смањите време проведено на отвореном простору, ако осећате симптоме као што су отежано дисање или иритација грла.</string>
@@ -641,4 +641,9 @@
     <string name="settings_location_summary">Подешавања услуга за локацију</string>
     <string name="settings_location_access_background_title">Приступ локацији у позадини</string>
     <string name="settings_location_access_precise_title">Употреба GPS-а на уређају</string>
+    <string name="settings_widgets_gadgets_title">Гаџети</string>
+    <string name="settings_widgets_gadgetbridge_switch">Пошаљи податке о времену на Gadgetbridge</string>
+    <string name="about_matrix">Matrix соба</string>
+    <string name="allergen">Алергени</string>
+    <string name="allergen_tree">Дрво</string>
 </resources>
