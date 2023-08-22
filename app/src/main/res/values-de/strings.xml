@@ -398,7 +398,7 @@
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
     <string name="settings_source_default_value">Standard (unverändert)</string>
     <string name="unit_mb">mb</string>
-    <string name="about_matrix">Matrix-Server</string>
+    <string name="about_matrix">Matrix-Raum</string>
     <string name="about_source_code">Quellcode</string>
     <string name="about_contributors">Mitwirkende</string>
     <string name="notification_style_cities">Orte (max. 4)</string>
@@ -640,4 +640,6 @@
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von $</string>
     <string name="temperature_average_short">Mittel</string>
+    <string name="settings_widgets_gadgets_title">Gadgets</string>
+    <string name="settings_widgets_gadgetbridge_switch">Wetterdaten an Gadgetbridge senden</string>
 </resources>
