@@ -34,6 +34,7 @@ import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.PollenWrapper
@@ -44,6 +45,8 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes
@@ -673,49 +676,168 @@ private fun completeHalfDayFromHourlyList(
 
     val newHalfDay = initialHalfDay ?: HalfDay()
 
-    var halfDayWeatherText = newHalfDay.weatherText
-    var halfDayWeatherPhase = newHalfDay.weatherPhase
-    var halfDayWeatherCode = newHalfDay.weatherCode
+    val extremeTemperature = if (newHalfDay.temperature?.temperature == null
+        || newHalfDay.temperature.apparentTemperature == null
+        || newHalfDay.temperature.windChillTemperature == null
+        || newHalfDay.temperature.wetBulbTemperature == null) {
+        getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
+    } else newHalfDay.temperature
 
-    // Weather code + Weather text
-    if (halfDayWeatherCode == null || halfDayWeatherText == null) {
-        // Update at 12:00 on daytime and 00:00 on nighttime
-        val halfDayHourlyListWeather = halfDayHourlyList
-            .firstOrNull { it.date.time == dailyDate.time + (if (isDay) 12 else 24) * 3600 * 1000 }
-            ?: halfDayHourlyList.first() // Use first element in the list to avoid null
+    val totalPrecipitation = if (newHalfDay.precipitation?.total == null) {
+        getHalfDayPrecipitationFromHourlyList(halfDayHourlyList)
+    } else newHalfDay.precipitation
 
-        if (halfDayWeatherCode == null) {
-            halfDayWeatherCode = halfDayHourlyListWeather.weatherCode
-        }
-        if (halfDayWeatherPhase == null) {
-            halfDayWeatherPhase = halfDayHourlyListWeather.weatherText
-        }
-        if (halfDayWeatherText == null) {
-            halfDayWeatherText = halfDayHourlyListWeather.weatherText
-        }
-    }
+    val maxPrecipitationProbability = if (newHalfDay.precipitationProbability?.total == null) {
+        getHalfDayPrecipitationProbabilityFromHourlyList(halfDayHourlyList)
+    } else newHalfDay.precipitationProbability
+
+    val maxWind = if (newHalfDay.wind?.speed == null) {
+        getHalfDayWindFromHourlyList(halfDayHourlyList)
+    } else newHalfDay.wind
+
+    val avgCloudCover = newHalfDay.cloudCover ?: getHalfDayCloudCoverFromHourlyList(halfDayHourlyList)
+
+    val avgVisibility = getHalfDayVisibilityFromHourlyList(halfDayHourlyList)
+
+    val halfDayWeatherCode = newHalfDay.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
+        halfDayHourlyList,
+        totalPrecipitation,
+        maxPrecipitationProbability,
+        maxWind,
+        avgCloudCover,
+        avgVisibility
+    )
+    LogHelper.log(msg="code $halfDayWeatherCode when\n" +
+            "p: ${totalPrecipitation.total}, pp: ${maxPrecipitationProbability.total}, " +
+            "w: ${maxWind?.speed}, v: $avgVisibility, cc: $avgCloudCover")
+
+    val halfDayWeatherTextFromCode = WeatherViewController.getWeatherText(halfDayWeatherCode)
+    val halfDayWeatherText = newHalfDay.weatherText ?: halfDayWeatherTextFromCode
+    val halfDayWeatherPhase = newHalfDay.weatherPhase ?: halfDayWeatherTextFromCode
 
     return newHalfDay.copy(
         weatherText = halfDayWeatherText,
         weatherPhase = halfDayWeatherPhase,
         weatherCode = halfDayWeatherCode,
-        temperature = if (newHalfDay.temperature?.temperature == null
-            || newHalfDay.temperature.apparentTemperature == null
-            || newHalfDay.temperature.windChillTemperature == null
-            || newHalfDay.temperature.wetBulbTemperature == null) {
-            getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
-        } else newHalfDay.temperature,
-        precipitation = if (newHalfDay.precipitation?.total == null) {
-            getHalfDayPrecipitationFromHourlyList(halfDayHourlyList)
-        } else newHalfDay.precipitation,
-        precipitationProbability = if (newHalfDay.precipitationProbability?.total == null) {
-           getHalfDayPrecipitationProbabilityFromHourlyList(halfDayHourlyList)
-        } else newHalfDay.precipitationProbability,
-        wind = if (newHalfDay.wind?.speed == null) {
-           getHalfDayWindFromHourlyList(halfDayHourlyList)
-        } else newHalfDay.wind,
-        cloudCover = newHalfDay.cloudCover ?: getHalfDayCloudCoverFromHourlyList(halfDayHourlyList)
+        temperature = extremeTemperature,
+        precipitation = totalPrecipitation,
+        precipitationProbability = maxPrecipitationProbability,
+        wind = maxWind,
+        cloudCover = avgCloudCover
     )
+}
+
+/**
+ * Tries to identify a weather code based on reported data (based on NOAA)
+ *
+ * @param halfDayHourlyList a List<Hourly> for the half day
+ * @param totPrecipitation COMBINED (TOTAL) precipitation for the time period
+ * @param maxPrecipitationProbability MAX precipitation probability for the time period
+ * @param maxWind MAX wind speed for the time period
+ * @param avgCloudCover AVERAGE cloud cover for the time period
+ * @param avgVisibility AVERAGE visibility for the time period
+ * @return a WeatherCode?, if guessed
+ */
+private fun getHalfDayWeatherCodeFromHourlyList(
+    halfDayHourlyList: List<HourlyWrapper>,
+    totPrecipitation: Precipitation,
+    maxPrecipitationProbability: PrecipitationProbability,
+    maxWind: Wind?,
+    avgCloudCover: Int?,
+    avgVisibility: Double?
+) : WeatherCode? {
+    if (totPrecipitation.total != null && maxPrecipitationProbability.total == null) {
+        LogHelper.log(
+            msg="Guessing half-day icon for source that reports total precipitation " +
+                "without precipitation probability. This may yield incorrect results."
+        )
+    }
+
+    val minPrecipIntensity = 1.0 // in mm
+    val minPrecipProbability = 30.0 // in %
+    val maxVisibilityHaze = 5.0 // in km
+    val maxVisibilityFog = 1.0 // in km
+    val maxWindSpeedWindy = 10.0 // in m/s
+    val minCloudCoverPartlyCloudy = 37.5 // in %
+    val minCloudCoverCloudy = 75.0 // in %
+
+    // if total precipitation is greater than 1mm
+    // and max probability is greater than 30% (assume 100% if not reported)
+    if ((totPrecipitation.total ?: 0f) > minPrecipIntensity &&
+        (maxPrecipitationProbability.total ?: 100f) > minPrecipProbability
+    ) {
+        val isRain =
+            maxPrecipitationProbability.rain?.let { it > minPrecipProbability }
+                ?: totPrecipitation.rain?.let { it > 0 }
+                ?: false
+        val isSnow =
+            maxPrecipitationProbability.snow?.let { it > minPrecipProbability }
+                ?: totPrecipitation.snow?.let { it > 0 }
+                ?: false
+        val isIce =
+            maxPrecipitationProbability.ice?.let { it > minPrecipProbability }
+                ?: totPrecipitation.ice?.let { it > 0 }
+                ?: false
+        val isThunder =
+            maxPrecipitationProbability.thunderstorm?.let { it > minPrecipProbability }
+                ?: totPrecipitation.thunderstorm?.let { it > 0 }
+                ?: false
+
+        if (isRain || isSnow || isIce || isThunder) {
+            return if (isThunder) {
+                if (isRain || isSnow || isIce) WeatherCode.THUNDERSTORM
+                else WeatherCode.THUNDER
+            } else if (isIce) {
+                WeatherCode.HAIL
+            } else if (isSnow) {
+                if (isRain) WeatherCode.SLEET
+                else WeatherCode.SNOW
+            } else {
+                WeatherCode.RAIN
+            }
+        }
+
+        // find the most common precipitation type using weather codes
+        val counts = arrayOf(
+            halfDayHourlyList.count { it.weatherCode?.isRain ?: false },
+            halfDayHourlyList.count { it.weatherCode == WeatherCode.THUNDERSTORM },
+            halfDayHourlyList.count { it.weatherCode?.isIce ?: false },
+            halfDayHourlyList.count { it.weatherCode?.isSnow ?: false }
+        )
+        return when (counts.max()) {
+            // if the source doesn't provide probability, intensity, or weather codes
+            0 -> WeatherCode.RAIN
+            counts[0] -> WeatherCode.RAIN
+            counts[1] -> WeatherCode.THUNDERSTORM
+            counts[2] -> WeatherCode.HAIL
+            counts[3] -> WeatherCode.SNOW
+            else -> throw Exception(
+                "ERROR when calculating half-day icon: the max number of weather codes " +
+                        "is ${counts.max()} with possible values of $counts"
+            )
+        }
+    }
+
+    // if average visibility is below 5 km, conditions are either FOG or HAZY
+    if (avgVisibility != null && avgVisibility < maxVisibilityHaze) {
+        if (avgVisibility < maxVisibilityFog) return WeatherCode.FOG
+        return WeatherCode.HAZE
+    }
+
+    // Max winds > 10m/s, its windy
+    if (maxWind?.speed != null && maxWind.speed > maxWindSpeedWindy) {
+        return WeatherCode.WIND
+    }
+
+    // It's not raining, its not windy, and its not mysterious. Just cloudy
+    if (avgCloudCover != null) {
+        if (avgCloudCover > minCloudCoverCloudy) return WeatherCode.CLOUDY
+        if (avgCloudCover > minCloudCoverPartlyCloudy) return WeatherCode.PARTLY_CLOUDY
+        return WeatherCode.CLEAR
+    }
+
+    // no precipitation, visibility, wind, or cloud cover data
+    return halfDayHourlyList.firstOrNull()?.weatherCode
 }
 
 /**
@@ -847,6 +969,11 @@ private fun getHalfDayCloudCoverFromHourlyList(
     return if (halfDayHourlyListCloudCover.isNotEmpty()) {
         halfDayHourlyListCloudCover.average().roundToInt()
     } else null
+}
+
+private fun getHalfDayVisibilityFromHourlyList(halfDayHourlyList: List<HourlyWrapper>): Double? {
+    val withVisibility =  halfDayHourlyList.mapNotNull { it.visibility }
+    return if(withVisibility.isNotEmpty()) withVisibility.average() else null
 }
 
 /**
