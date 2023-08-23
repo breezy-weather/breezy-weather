@@ -16,6 +16,9 @@
 
 package org.breezyweather.theme.weatherView
 
+import androidx.compose.ui.res.stringArrayResource
+import org.breezyweather.BreezyWeather
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
@@ -57,5 +60,26 @@ object WeatherViewController {
         WeatherCode.THUNDER -> WeatherView.WEATHER_KIND_THUNDER
         WeatherCode.THUNDERSTORM -> WeatherView.WEATHER_KIND_THUNDERSTORM
         else -> WeatherView.WEATHER_KIND_CLEAR
+    }
+
+    fun getWeatherText(weatherCode: WeatherCode?): String {
+        val values = BreezyWeather.instance.resources.getStringArray(R.array.live_wallpaper_weather_kinds)
+        val index = when (weatherCode) {
+            WeatherCode.CLEAR -> 0
+            WeatherCode.PARTLY_CLOUDY -> 1
+            WeatherCode.CLOUDY -> 2
+            WeatherCode.RAIN -> 3
+            WeatherCode.SNOW -> 4
+            WeatherCode.SLEET -> 5
+            WeatherCode.HAIL -> 6
+            WeatherCode.FOG -> 7
+            WeatherCode.HAZE -> 8
+            WeatherCode.THUNDER -> 9
+            WeatherCode.THUNDERSTORM -> 10
+            WeatherCode.WIND -> 11
+            else -> 0
+        }
+        // ignore "automatic"
+        return values[index + 1]
     }
 }
