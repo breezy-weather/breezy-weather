@@ -463,7 +463,7 @@
     <string name="unit_mm">mm</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="notification_channel_background_services">Servizi in background</string>
-    <string name="about_matrix">Server Matrix</string>
+    <string name="about_matrix">Stanza Matrix</string>
     <string name="common_weather_text_overcast">Coperto</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps">m/s</string>
@@ -506,7 +506,7 @@
     <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
     <string name="settings_location">Geolocalizzazione</string>
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
-    <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>
+    <string name="settings_location_access_background_summaryOff">Seleziona “Consenti sempre” per ottenere aggiornamenti relativi alla tua posizione corrente.</string>
     <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
     <string name="settings_location_access_switch_title">Accesso alla posizione</string>
     <string name="settings_location_access_precise_title">Uso GPS del dispositivo</string>
@@ -644,4 +644,6 @@
     <string name="temperature_normals">Norme di temperatura</string>
     <string name="temperature_average_short">Mezzo</string>
     <string name="weather_normals_data_by">I dati sulle norme di temperatura forniti da $</string>
+    <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
+    <string name="settings_widgets_gadgetbridge_switch">Invia dati meteo a Gadgetbridge</string>
 </resources>
