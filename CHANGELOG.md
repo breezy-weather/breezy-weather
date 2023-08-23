@@ -1,3 +1,10 @@
+# Version 4.6.5-beta (next version)
+
+**Other fixes**
+- [Gadgetbridge] Fix probability of precipitation
+- [Gadgetbridge] Fix daily forecasts (will only start from tomorrow now)
+
+
 # Version 4.6.4-beta
 
 **New features**

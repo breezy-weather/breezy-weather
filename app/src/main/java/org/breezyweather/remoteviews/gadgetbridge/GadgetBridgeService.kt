@@ -26,6 +26,7 @@ import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -87,14 +88,6 @@ object GadgetBridgeService {
         context: Context,
         location: Location
     ): GadgetBridgeData {
-        val dailyForecasts = location.weather?.dailyForecast?.map { day ->
-            GadgetBridgeDailyForecast(
-                conditionCode = getWeatherCode(day.day?.weatherCode),
-                maxTemp = getTemp(day.day?.temperature),
-                minTemp = getTemp(day.night?.temperature)
-            )
-        }
-
         val current = location.weather?.current
         val today = location.weather?.today
 
@@ -115,8 +108,20 @@ object GadgetBridgeService {
             todayMinTemp = getTemp(today?.night?.temperature),
             precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
 
-            forecasts = dailyForecasts
+            forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday)
         )
+    }
+
+    private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetBridgeDailyForecast>? {
+        if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
+
+        return dailyForecast.slice(1 until dailyForecast.size).map { day ->
+            GadgetBridgeDailyForecast(
+                conditionCode = getWeatherCode(day.day?.weatherCode),
+                maxTemp = getTemp(day.day?.temperature),
+                minTemp = getTemp(day.night?.temperature)
+            )
+        }
     }
 
     private fun getTemp(temp: Temperature?): Int? {
