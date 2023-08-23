@@ -60,11 +60,12 @@ The following features, if not available from your selected source, can be added
 |------------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
 | **Air quality**                    | ✅          | ✅             | Norway             | ✅           | ❌              | ❌            | Current |
 | **Allergens**                      | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
-| **Precipitation in the next hour** | ❌          | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
+| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
 | **Alerts**                         | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
 | **Normals**                        | Average¹   | ✅             | Average¹           | Average¹    | Average¹        | ✅            | Average¹ |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
+* ² Works best in Europe at the moment
 
 Legend:
 
@@ -155,12 +156,13 @@ From v4.5.0, you can combine your main weather source with other sources:
 |------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|----------------|
 | **Air quality**                    | ✅          | ❌           | Norway      | ✅          | ❌              | ❌           | France (AURA) |
 | **Allergens**                      | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌            | ❌            |
-| **Precipitation in the next hour** | ❌          | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
+| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
 | **Alerts**                         | ❌          | ✅           | ❌           | ✅          | ✅              | France       | ❌             |
-| **Normals**                        | ❌          | ❌           | ❌           | ❌          | ❌              | ✅³           | ❌             |
+| **Normals**                        | ❌          | ❌           | ❌           | ❌          | ❌              | ✅⁴           | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe
-* ³ Implemented but it is not yet possible to change secondary normals source for a location from UI
+* ³ Works best in Europe at the moment
+* ⁴ Implemented but it is not yet possible to change secondary normals source for a location from UI

@@ -81,10 +81,15 @@ class OpenMeteoService @Inject constructor(
         "olive_pollen",
         "ragweed_pollen"
     )
+    val minutely = arrayOf(
+        //"precipitation_probability",
+        "precipitation"
+    )
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN
+        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
     override fun requestWeather(
         context: Context, location: Location,
@@ -124,6 +129,9 @@ class OpenMeteoService @Inject constructor(
             location.longitude.toDouble(),
             daily.joinToString(","),
             hourly.joinToString(","),
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                minutely.joinToString(",")
+            } else "",
             forecastDays = 16,
             pastDays = 1,
             currentWeather = true,
@@ -165,12 +173,13 @@ class OpenMeteoService @Inject constructor(
     // SECONDARY WEATHER SOURCE
     override val supportedFeatures = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN
+        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
     override val airQualityAttribution =
         "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
     override val allergenAttribution = airQualityAttribution
-    override val minutelyAttribution = null
+    override val minutelyAttribution = weatherAttribution
     override val alertAttribution = null
     override val normalsAttribution = null
 
@@ -178,16 +187,49 @@ class OpenMeteoService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val airQualityAllergenHourly =
-            (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
-                    (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
-        return mAirQualityApi.getAirQuality(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
-            airQualityAllergenHourly.joinToString(","),
-            pastDays = 1,
-        ).map {
-            convertSecondary(it, requestedFeatures)
+        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mWeatherApi.getWeather(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                "",
+                "",
+                minutely.joinToString(","),
+                forecastDays = 2, // In case current + 2 hours overlap two days
+                pastDays = 0,
+                currentWeather = false,
+                windspeedUnit = "ms"
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(OpenMeteoWeatherResult())
+            }
+        }
+
+        val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            val airQualityAllergenHourly =
+                (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
+                        (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
+            mAirQualityApi.getAirQuality(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                airQualityAllergenHourly.joinToString(","),
+                pastDays = 1,
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(OpenMeteoAirQualityResult())
+            }
+        }
+
+        return Observable.zip(weather, aqi) { openMeteoWeatherResult: OpenMeteoWeatherResult,
+                                              openMeteoAirQualityResult: OpenMeteoAirQualityResult
+            ->
+            convertSecondary(
+                openMeteoWeatherResult.minutelyFifteen,
+                openMeteoAirQualityResult.hourly,
+                requestedFeatures
+            )
         }
     }
 

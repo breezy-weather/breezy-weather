@@ -1,7 +1,11 @@
 # Version 4.6.5-beta (next version)
 
+**Weather sources**
+- [Open-Meteo] Add experimental support for precipitation in the next hour as a primary source (works best in Europe)
+- [Open-Meteo] Add experimental support for precipitation in the next hour as a secondary source (works best in Europe)
+
 **Other fixes**
-- [Gadgetbridge] Fix probability of precipitation
+- [Gadgetbridge] Fix probability of precipitation (@Cod3dDOT)
 - [Gadgetbridge] Fix daily forecasts (will only start from tomorrow now)
 
 

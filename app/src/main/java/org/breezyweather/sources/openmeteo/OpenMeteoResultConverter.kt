@@ -25,6 +25,7 @@ import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
+import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -41,11 +42,14 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
+import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoLocationResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherDaily
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherHourly
+import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherMinutely
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Date
 import java.util.TimeZone
@@ -98,7 +102,8 @@ fun convert(
             )
         ),
         dailyForecast = getDailyList(weatherResult.daily),
-        hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult)
+        hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult),
+        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
     )
 }
 
@@ -194,6 +199,28 @@ private fun getHourlyList(
     return hourlyList
 }
 
+fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>? {
+    if (minutelyFifteen?.time == null || minutelyFifteen.time.isEmpty()) return null
+    LogHelper.log(msg = "toto" + minutelyFifteen.time.size.toString())
+
+    val currentMinutelyIndex = minutelyFifteen.time.indexOfFirst { it.times(1000) >= (Date().time - 15 * 60 * 1000) }
+    val maxMinutelyIndex = minOf(currentMinutelyIndex + 8, minutelyFifteen.time.size - 1)
+    val precipitationMinutely = minutelyFifteen.precipitation?.slice(currentMinutelyIndex until maxMinutelyIndex)
+    //val precipitationProbabilityMinutely = minutelyFifteen.precipitationProbability?.slice(currentMinutelyIndex until maxMinutelyIndex)
+    return minutelyFifteen.time.slice(currentMinutelyIndex until maxMinutelyIndex)
+        // 2 hours
+        .mapIndexed { i, time ->
+            Minutely(
+                date = time.times(1000).toDate(),
+                minuteInterval = 15,
+                precipitationIntensity = /*if (precipitationProbabilityMinutely?.getOrNull(i) != null
+                    && precipitationProbabilityMinutely[i]!! > 30) {*/
+                    precipitationMinutely?.getOrNull(i)?.toDouble()
+                //} else null
+            )
+        }
+}
+
 private fun getWeatherText(context: Context, icon: Int?): String? {
     return when (icon) {
         null -> null
@@ -253,37 +280,35 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  * Secondary convert
  */
 fun convertSecondary(
-    airQualityResult: OpenMeteoAirQualityResult,
+    minutelyFifteen: OpenMeteoWeatherMinutely?,
+    hourlyAirQualityResult: OpenMeteoAirQualityHourly?,
     requestedFeatures: List<SecondaryWeatherSourceFeature>
 ): SecondaryWeatherWrapper {
-    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (airQualityResult.hourly == null) {
-        throw SecondaryWeatherException()
-    }
-
     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
     val allergenHourly: MutableMap<Date, Allergen> = mutableMapOf()
 
-    for (i in airQualityResult.hourly.time.indices) {
-        if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            airQualityHourly[airQualityResult.hourly.time[i].times(1000).toDate()] = AirQuality(
-                pM25 = airQualityResult.hourly.pm25?.getOrNull(i),
-                pM10 = airQualityResult.hourly.pm10?.getOrNull(i),
-                sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(i),
-                nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(i),
-                o3 = airQualityResult.hourly.ozone?.getOrNull(i),
-                cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
-            )
-        }
-        if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-            allergenHourly[airQualityResult.hourly.time[i].times(1000).toDate()] = Allergen(
-                alder = airQualityResult.hourly.alderPollen?.getOrNull(i)?.roundToInt(),
-                birch = airQualityResult.hourly.birchPollen?.getOrNull(i)?.roundToInt(),
-                grass = airQualityResult.hourly.grassPollen?.getOrNull(i)?.roundToInt(),
-                mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(i)?.roundToInt(),
-                olive = airQualityResult.hourly.olivePollen?.getOrNull(i)?.roundToInt(),
-                ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(i)?.roundToInt(),
-            )
+    if (hourlyAirQualityResult != null) {
+        for (i in hourlyAirQualityResult.time.indices) {
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                airQualityHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = AirQuality(
+                    pM25 = hourlyAirQualityResult.pm25?.getOrNull(i),
+                    pM10 = hourlyAirQualityResult.pm10?.getOrNull(i),
+                    sO2 = hourlyAirQualityResult.sulphurDioxide?.getOrNull(i),
+                    nO2 = hourlyAirQualityResult.nitrogenDioxide?.getOrNull(i),
+                    o3 = hourlyAirQualityResult.ozone?.getOrNull(i),
+                    cO = hourlyAirQualityResult.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
+                )
+            }
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+                allergenHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = Allergen(
+                    alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.roundToInt(),
+                    birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.roundToInt(),
+                    grass = hourlyAirQualityResult.grassPollen?.getOrNull(i)?.roundToInt(),
+                    mugwort = hourlyAirQualityResult.mugwortPollen?.getOrNull(i)?.roundToInt(),
+                    olive = hourlyAirQualityResult.olivePollen?.getOrNull(i)?.roundToInt(),
+                    ragweed = hourlyAirQualityResult.ragweedPollen?.getOrNull(i)?.roundToInt(),
+                )
+            }
         }
     }
 
@@ -293,7 +318,8 @@ fun convertSecondary(
         } else null,
         allergen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
             AllergenWrapper(hourlyForecast = allergenHourly)
-        } else null
+        } else null,
+        minutelyForecast = getMinutelyList(minutelyFifteen)
     )
 }
 
