@@ -70,14 +70,15 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             if (viewStyle == "pixel" || viewStyle == "nano" || viewStyle == "oreo" || viewStyle == "oreo_google_sans" || viewStyle == "temp") {
                 "none"
             } else cardStyle!!,
-            textColor!!
+            textColor!!,
+            location?.isDaylight ?: false
         )
         val views = buildWidgetView(
             context, location, temperatureUnit, speedUnit,
             color, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData
         )
         if (color.showCard) {
-            views.setImageViewResource(R.id.widget_day_card, getCardBackgroundId(color.cardColor))
+            views.setImageViewResource(R.id.widget_day_card, getCardBackgroundId(color))
             views.setInt(R.id.widget_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
         location?.let { setOnClickPendingIntent(context, views, it, viewStyle, subtitleData) }

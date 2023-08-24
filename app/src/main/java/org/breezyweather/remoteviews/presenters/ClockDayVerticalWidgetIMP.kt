@@ -26,6 +26,7 @@ import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -60,7 +61,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
         hideSubtitle: Boolean, subtitleData: String?, clockFont: String?
     ): RemoteViews {
-        val color = WidgetColor(context, cardStyle!!, textColor!!)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val speedUnit = settings.speedUnit
@@ -70,7 +71,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             color, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData
         )
         if (color.showCard) {
-            views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color.cardColor))
+            views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color))
             views.setInt(R.id.widget_clock_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
         location?.let { setOnClickPendingIntent(context, views, it, subtitleData) }
@@ -207,15 +208,24 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE)
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_auto,
-                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.VISIBLE else View.GONE
+                        if (color.backgroundType === WidgetColor.WidgetBackgroundType.APP ||
+                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                            View.VISIBLE
+                        } else View.GONE
                     )
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_light,
-                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.GONE else if (color.darkText) View.GONE else View.VISIBLE
+                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.APP ||
+                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                            View.GONE
+                        } else if (color.textType == NotificationTextColor.DARK) View.GONE else View.VISIBLE
                     )
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_dark,
-                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.GONE else if (color.darkText) View.VISIBLE else View.GONE
+                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.APP ||
+                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                            View.GONE
+                        } else if (color.textType == NotificationTextColor.DARK) View.VISIBLE else View.GONE
                     )
                 }
             }

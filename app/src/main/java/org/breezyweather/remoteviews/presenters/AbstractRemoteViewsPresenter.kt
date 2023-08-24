@@ -23,7 +23,6 @@ import android.app.WallpaperManager
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.provider.AlarmClock
 import android.provider.CalendarContract
@@ -46,6 +45,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import java.util.*
@@ -64,58 +64,61 @@ abstract class AbstractRemoteViewsPresenter {
         var alignEnd = false
     }
 
-    class WidgetColor(context: Context, cardStyle: String, textColor: String) {
+    class WidgetColor(val context: Context, cardStyle: String, textColor: String, dayTime: Boolean) {
+        val backgroundType: WidgetBackgroundType
+        val textType: NotificationTextColor
+
         val showCard: Boolean
-        val cardColor: ColorType
+        val isLightThemed: Boolean
 
         @ColorInt
         var textColor = 0
-        var darkText = false
+            private set
 
         init {
-            showCard = cardStyle != "none"
-            cardColor = if (cardStyle == "auto") ColorType.AUTO else if (cardStyle == "light") ColorType.LIGHT else ColorType.DARK
-            if (showCard) {
-                when (cardColor) {
-                    ColorType.AUTO -> {
-                        this.textColor = Color.TRANSPARENT
-                        darkText = false
-                    }
-                    ColorType.LIGHT -> {
-                        this.textColor = ContextCompat.getColor(context, R.color.colorTextDark)
-                        darkText = true
-                    }
-                    else -> {
-                        this.textColor = ContextCompat.getColor(context, R.color.colorTextLight)
-                        darkText = false
-                    }
-                }
-            } else if (textColor == "dark" || textColor == "auto" && isLightWallpaper(context)) {
-                this.textColor = ContextCompat.getColor(context, R.color.colorTextDark)
-                darkText = true
-            } else {
-                this.textColor = ContextCompat.getColor(context, R.color.colorTextLight)
-                darkText = false
+            backgroundType = WidgetBackgroundType.find(cardStyle)
+            showCard = backgroundType != WidgetBackgroundType.NONE
+            isLightThemed = when (backgroundType) {
+                WidgetBackgroundType.LIGHT -> true
+                WidgetBackgroundType.DARK -> false
+                WidgetBackgroundType.DAY_NIGHT -> dayTime
+                WidgetBackgroundType.APP -> MainThemeColorProvider.isLightTheme(context, dayTime)
+                WidgetBackgroundType.NONE -> isLightWallpaper(context)
             }
+            textType = when (backgroundType) {
+                WidgetBackgroundType.NONE -> {
+                    if(textColor == "dark" || textColor == "auto" && isLightWallpaper(context)) {
+                        NotificationTextColor.DARK
+                    } else NotificationTextColor.LIGHT
+                }
+                else -> {
+                    if (isLightThemed) NotificationTextColor.DARK else NotificationTextColor.LIGHT
+                }
+            }
+            this.textColor = ContextCompat.getColor(
+                context,
+                if (textType == NotificationTextColor.DARK) R.color.colorTextDark else R.color.colorTextLight
+            )
         }
 
         val minimalIconColor: NotificationTextColor
-            get() = if (showCard) {
-                when (cardColor) {
-                    ColorType.AUTO -> NotificationTextColor.GREY
-                    ColorType.LIGHT -> NotificationTextColor.DARK
-                    else -> NotificationTextColor.LIGHT
+            get() =
+                when (backgroundType) {
+                    WidgetBackgroundType.DAY_NIGHT, WidgetBackgroundType.APP -> NotificationTextColor.GREY
+                    else -> textType
                 }
-            } else if (darkText) {
-                NotificationTextColor.DARK
-            } else {
-                NotificationTextColor.LIGHT
-            }
 
-        enum class ColorType {
-            LIGHT,
-            DARK,
-            AUTO
+        enum class WidgetBackgroundType(val id: String) {
+            LIGHT("light"),
+            DARK("dark"),
+            DAY_NIGHT("auto"),
+            APP("app"),
+            NONE("none");
+
+            companion object {
+                fun find(id: String): WidgetBackgroundType = entries.find { it.id == id }
+                    ?: throw Exception("Invalid WidgetBackgroundType id: $id")
+            }
         }
     }
 
@@ -185,11 +188,15 @@ abstract class AbstractRemoteViewsPresenter {
         }
 
         @DrawableRes
-        fun getCardBackgroundId(cardColor: WidgetColor.ColorType?): Int {
-            return when (cardColor) {
-                WidgetColor.ColorType.AUTO -> R.drawable.widget_card_follow_system
-                WidgetColor.ColorType.LIGHT -> R.drawable.widget_card_light
-                else -> R.drawable.widget_card_dark
+        fun getCardBackgroundId(color: WidgetColor): Int {
+            return when (color.backgroundType) {
+                WidgetColor.WidgetBackgroundType.NONE -> {
+                    throw IllegalArgumentException("Trying to get widget background when background type is NONE")
+                }
+                else -> {
+                    if (color.isLightThemed) R.drawable.widget_card_light
+                    else R.drawable.widget_card_dark
+                }
             }
         }
 
