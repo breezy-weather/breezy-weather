@@ -31,5 +31,6 @@ data class MetNoForecastDataDetails(
     @SerialName("relative_humidity") val relativeHumidity: Float?,
     @SerialName("ultraviolet_index_clear_sky") val ultravioletIndexClearSky: Float?,
     @SerialName("wind_from_direction") val windFromDirection: Float?,
-    @SerialName("wind_speed") val windSpeed: Float?
+    @SerialName("wind_speed") val windSpeed: Float?,
+    @SerialName("cloud_area_fraction") val cloudCover: Float?
 )
