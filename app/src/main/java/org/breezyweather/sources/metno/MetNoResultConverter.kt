@@ -83,7 +83,8 @@ fun convert(
             ) else null,
             relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity,
             dewPoint = currentTimeseries.instant?.details?.dewPointTemperature,
-            pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel
+            pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel,
+            cloudCover = currentTimeseries.instant?.details?.cloudCover?.roundToInt()
         ) else null,
         dailyForecast = getDailyList(
             location.timeZone,
@@ -142,7 +143,8 @@ private fun getHourlyList(
             uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
             relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,
             dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature,
-            pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel
+            pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel,
+            cloudCover = hourlyForecast.data?.instant?.details?.cloudCover?.roundToInt()
         )
     }
 }
