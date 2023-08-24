@@ -66,7 +66,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val speedUnit = settings.speedUnit
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
-        val color = WidgetColor(context, cardStyle!!, textColor!!)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
         val views = buildWidgetViewDayPart(
             context, provider, location, temperatureUnit, speedUnit,
             color, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData
@@ -159,7 +159,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
         // set card.
         if (color.showCard) {
-            views.setImageViewResource(R.id.widget_day_week_card, getCardBackgroundId(color.cardColor))
+            views.setImageViewResource(R.id.widget_day_week_card, getCardBackgroundId(color))
             views.setInt(R.id.widget_day_week_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
 

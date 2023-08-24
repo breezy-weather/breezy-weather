@@ -52,7 +52,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, location: Location?,
         cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideLunar: Boolean
     ): RemoteViews {
-        val color = WidgetColor(context, cardStyle!!, textColor!!)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
         val views = RemoteViews(
             context.packageName,
             if (!color.showCard) R.layout.widget_clock_day_week else R.layout.widget_clock_day_week_card
@@ -187,7 +187,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         if (color.showCard) {
-            views.setImageViewResource(R.id.widget_clock_day_week_card, getCardBackgroundId(color.cardColor))
+            views.setImageViewResource(R.id.widget_clock_day_week_card, getCardBackgroundId(color))
             views.setInt(R.id.widget_clock_day_week_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
         when (clockFont) {

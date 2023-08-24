@@ -117,7 +117,7 @@ class MainThemeColorProvider(
             daylight = location?.isDaylight,
         )
 
-        private fun isLightTheme(
+        fun isLightTheme(
             context: Context,
             daylight: Boolean?,
         ): Boolean = if (SettingsManager.getInstance(context).dayNightModeForLocations

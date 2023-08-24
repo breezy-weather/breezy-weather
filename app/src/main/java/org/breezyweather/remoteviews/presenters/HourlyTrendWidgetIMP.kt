@@ -33,6 +33,7 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.remoteviews.Widgets
@@ -62,9 +63,6 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             context,
             context.getString(R.string.sp_widget_hourly_trend_setting)
         )
-        if (config.cardStyle == "none") {
-            config.cardStyle = "light"
-        }
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTrendHourlyProvider::class.java),
             getRemoteViews(
@@ -77,7 +75,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
     @WorkerThread
     @SuppressLint("InflateParams", "WrongThread")
-    private fun getDrawableView(context: Context, location: Location?, cardStyle: String?): View? {
+    private fun getDrawableView(context: Context, location: Location?, color: WidgetColor): View? {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.nextHourlyForecast.size)
@@ -85,11 +83,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-        val lightTheme: Boolean = when (cardStyle) {
-            "light" -> true
-            "dark" -> false
-            else -> location.isDaylight
-        }
+        val lightTheme = color.isLightThemed
 
         // TODO: Redundant with HourlyTemperatureAdapter
         val temperatures: Array<Float?> = arrayOfNulls(max(0, itemCount * 2 - 1))
@@ -201,7 +195,14 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, location: Location?, width: Int, cardStyle: String?, cardAlpha: Int
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_remote)
-        val drawableView = getDrawableView(context, location, cardStyle) ?: return views
+        val color = WidgetColor(
+            context,
+            cardStyle!!,
+            "auto",
+            location?.isDaylight ?: false
+        )
+        val drawableView = getDrawableView(context, location, color) ?: return views
+        if (location == null) return views
 
         val items: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_hourly_item_1),
@@ -232,16 +233,11 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         drawableView.draw(canvas)
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)
         views.setViewVisibility(R.id.widget_remote_progress, View.GONE)
-        val colorType = when (cardStyle) {
-            "light" -> WidgetColor.ColorType.LIGHT
-            "dark" -> WidgetColor.ColorType.DARK
-            else -> WidgetColor.ColorType.AUTO
-        }
-        views.setImageViewResource(R.id.widget_remote_card, getCardBackgroundId(colorType))
+        views.setImageViewResource(R.id.widget_remote_card, getCardBackgroundId(color))
         views.setInt(
             R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
         )
-        setOnClickPendingIntent(context, views, location!!)
+        setOnClickPendingIntent(context, views, location)
         return views
     }
 

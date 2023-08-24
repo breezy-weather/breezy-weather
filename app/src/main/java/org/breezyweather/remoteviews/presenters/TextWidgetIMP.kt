@@ -21,7 +21,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.util.TypedValue
 import android.widget.RemoteViews
-import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import org.breezyweather.common.basic.models.Location
@@ -50,10 +49,14 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         val weather = location?.weather ?: return views
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
-        val darkText = textColor == "dark" || textColor == "auto" && isLightWallpaper(context)
-        val textColorInt: Int = ContextCompat.getColor(
-            context, if (darkText) R.color.colorTextDark else R.color.colorTextLight
+
+        val color = WidgetColor(
+            context,
+            "none",
+            textColor!!,
+            location.isDaylight
         )
+
         views.apply {
             setTextViewText(
                 R.id.widget_text_weather,
@@ -64,9 +67,9 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 R.id.widget_text_temperature,
                 weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
             )
-            setTextColor(R.id.widget_text_date, textColorInt)
-            setTextColor(R.id.widget_text_weather, textColorInt)
-            setTextColor(R.id.widget_text_temperature, textColorInt)
+            setTextColor(R.id.widget_text_date, color.textColor)
+            setTextColor(R.id.widget_text_weather, color.textColor)
+            setTextColor(R.id.widget_text_temperature, color.textColor)
         }
         if (textSize != 100) {
             val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)

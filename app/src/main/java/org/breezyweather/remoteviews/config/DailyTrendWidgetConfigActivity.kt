@@ -29,9 +29,9 @@ class DailyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
         super.initData()
         val cardStyles = resources.getStringArray(R.array.widget_card_styles)
         val cardStyleValues = resources.getStringArray(R.array.widget_card_style_values)
-        cardStyleValueNow = "light"
-        this.cardStyles = arrayOf(cardStyles[2], cardStyles[3], cardStyles[1])
-        this.cardStyleValues = arrayOf(cardStyleValues[2], cardStyleValues[3], cardStyleValues[1])
+        cardStyleValueNow = "app"
+        this.cardStyles = arrayOf(cardStyles[1], cardStyles[2], cardStyles[3], cardStyles[4])
+        this.cardStyleValues = arrayOf(cardStyleValues[1], cardStyleValues[2], cardStyleValues[3], cardStyleValues[4])
     }
 
     override fun initView() {
