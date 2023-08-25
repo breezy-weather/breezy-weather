@@ -13,12 +13,12 @@ When deciding about which source you want to use, accuracy of data is probably t
 
 Here are some suggestions based on various criteria or testimonies (you can suggest others in GitHub discussions):
 
-| Country/Continent | Main source  | Air quality | Pollen      | Minutely     | Alerts       |
-| ----------------- | ------------ | ----------- | ----------- | ------------ | ------------ |
-| Europe            |              |             | Open-Meteo  |              |              |
-| United States     | [Forecast Advisor](https://forecastadvisor.com/) | | |  |              |
-| France            | Météo-France |             | Open-Meteo  | Météo-France | Météo-France |
-| Norway            | MET Norway   | MET Norway  | Open-Meteo  | MET Norway   |              |
+| Country/Continent | Main source                                      | Air quality | Pollen     | Minutely     | Alerts       |
+|-------------------|--------------------------------------------------|-------------|------------|--------------|--------------|
+| Europe            |                                                  |             | Open-Meteo |              |              |
+| United States     | [Forecast Advisor](https://forecastadvisor.com/) |             |            |              |              |
+| France            | Météo-France                                     |             | Open-Meteo | Météo-France | Météo-France |
+| Norway            | MET Norway                                       | MET Norway  | Open-Meteo | MET Norway   |              |
 
 
 ## Status
@@ -37,32 +37,32 @@ Additional sources are available to configure but requires an API key. You can f
 
 ## Main features
 
-| Sources                         | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
-|---------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
-| **Daily (days)**                | 15         | 15            | ~10                | 7 or 8      | 8              | 14            | 15      |
-| **Hourly (days)**               | 16         | 10            | ~10                | 2           | 2              | 15            | 1       |
-| **Weather**                     | ✅          | ✅             | ✅                 | ✅           | ✅              | ✅             | ✅       |
-| **Temperature**                 | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
-| **Precipitation**               | ✅          | ✅ (RSI)       | ✅                  | ✅ (RS)      | ✅ (RS)         | ✅ (RS)        | ❌       |
-| **Precipitation probability**   | ✅          | ✅ (TRSI)      | ✅ (T)              | ✅           | ✅              | ✅ (RSI)       | Daily   |
-| **Wind**                        | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
-| **UV**                          | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ❌       |
-| **Sun & Moon & Moon phase**     | ✅          | ✅             | ✅                  | ✅           | ✅              | ✅             | ✅       |
+| Sources                       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
+|-------------------------------|------------|-------------|------------|-------------|--------------|-------|
+| **Daily (days)**              | 15         | 15          | ~10        | 7 or 8      | 14           | 15    |
+| **Hourly (days)**             | 16         | 10          | ~10        | 2           | 15           | 1     |
+| **Weather**                   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
+| **Temperature**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
+| **Precipitation**             | ✅          | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ❌     |
+| **Precipitation probability** | ✅          | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | Daily |
+| **Wind**                      | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
+| **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌     |
+| **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
 
 Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
 
 ## Features that can be added from other sources
 
-The following features, if not available from your selected source, can be added from another source, starting from v4.5.0.
+The following features, if not available from your selected source, can be added from another source.
 
-| Sources                            | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Pirate Weather | Météo-France  | China   |
-|------------------------------------|------------|---------------|--------------------|-------------|----------------|---------------|---------|
-| **Air quality**                    | ✅          | ✅             | Norway             | ✅           | ❌              | ❌            | Current |
-| **Allergens**                      | Europe     | North America | ❌                  | ❌           | ❌              | ❌             | ❌       |
-| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area        | ✅           | ✅              | France        | ✅       |
-| **Alerts**                         | ❌          | ✅             | *In progress*      | ✅¹          | ✅              | ✅             | ✅       |
-| **Normals**                        | Average¹   | ✅             | Average¹           | Average¹    | Average¹        | ✅            | Average¹ |
+| Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China    |
+|------------------------------------|------------|---------------|---------------|-------------|--------------|----------|
+| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | Current  |
+| **Allergens**                      | Europe     | North America | ❌             | ❌           | ❌            | ❌        |
+| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ✅        |
+| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | ✅        |
+| **Normals**                        | Average¹   | ✅             | Average¹      | Average¹    | ✅            | Average¹ |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Works best in Europe at the moment
@@ -79,26 +79,26 @@ Legend:
 
 ## Other weather data
 
-| Sources                    | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Pirate Weather | Météo-France | China   |
-|----------------------------|------------|-------------|------------|-------------|----------------|--------------|---------|
-| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅              | ✅            | Current |
-| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅              | ✅            | Current |
-| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅              | ✅            | ❌       |
-| **Cloud cover**            | ✅          | ✅           | ❌          | ✅           | ✅              | ✅            | ❌       |
-| **Visibility**             | ✅          | ✅           | ❌          | ✅           | Current        | ❌            | Current |
-| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌              | ❌            | ❌       |
-| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌              | ❌            | ❌       |
-| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅              | ✅            | ✅       |
+| Sources                    | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China   |
+|----------------------------|------------|-------------|------------|-------------|--------------|---------|
+| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
+| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
+| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ❌       |
+| **Cloud cover**            | ✅          | ✅           | ✅          | ✅           | ✅            | ❌       |
+| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | Current |
+| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌       |
+| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌       |
+| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ✅       |
 
 ¹ Median from daily forecast
 
 
 ## Location
 
-| Sources               | Open-Meteo | AccuWeather | MET Norway     | OpenWeather    | Pirate Weather | Météo-France   | China |
-|-----------------------|------------|-------------|----------------|----------------|----------------|----------------|-------|
-| **Search**            | ✅          | ✅           | Default       | Default        | Default        | Default        | ✅³    |
-| **Reverse geocoding** | ❌²         | ✅           | ❌²             | ❌²             | ❌²             | ✅²             | ✅³    |
+| Sources               | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
+|-----------------------|------------|-------------|------------|-------------|--------------|-------|
+| **Search**            | ✅          | ✅           | Default    | Default     | Default      | ✅³    |
+| **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅³    |
 
 * ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
@@ -109,56 +109,53 @@ Legend:
 
 ## Main features
 
-| Sources                         | HERE     |
-|---------------------------------|----------|
-| **Daily (days)**                | 6        |
-| **Hourly (days)**               | 6        |
-| **Weather**                     | ✅        |
-| **Temperature**                 | ✅        |
-| **Precipitation**               | ✅        |
-| **Precipitation probability**   | ✅        |
-| **Wind**                        | ✅        |
-| **UV**                          | ✅        |
-| **Sun & Moon & Moon phase**     | ✅        |
+| Sources                         | Pirate Weather | HERE     |
+|---------------------------------|----------------|----------|
+| **Daily (days)**                | 8              | 6        |
+| **Hourly (days)**               | 2              | 6        |
+| **Weather**                     | ✅              | ✅        |
+| **Temperature**                 | ✅              | ✅        |
+| **Precipitation**               | ✅ (RS)         | ✅        |
+| **Precipitation probability**   | ✅              | ✅        |
+| **Wind**                        | ✅              | ✅        |
+| **UV**                          | ✅              | ✅        |
+| **Sun & Moon & Moon phase**     | ✅              | ✅        |
 
 ## Features that can be added from other sources
 
-| Sources                            | HERE     |
-|------------------------------------|----------|
-| **Air quality**                    | ❌        |
-| **Allergens**                      | ❌        |
-| **Precipitation in the next hour** | ❌        |
-| **Alerts**                         | US (NWS) |
-| **Normals**                        | ❌        |
+| Sources                            | Pirate Weather | HERE     |
+|------------------------------------|----------------|----------|
+| **Air quality**                    | ❌              | ❌        |
+| **Allergens**                      | ❌              | ❌        |
+| **Precipitation in the next hour** | ✅              | ❌        |
+| **Alerts**                         | ✅              | US (NWS) |
+| **Normals**                        | Average¹       | ❌        |
 
 ## Other weather data
 
-| Sources                         | HERE     |
-|---------------------------------|----------|
-| **Humidity**                    | ✅        |
-| **Dew point**                   | ✅        |
-| **Pressure**                    | ✅        |
-| **Cloud cover**                 | ❌        |
-| **Visibility**                  | ✅        |
-| **Ceiling**                     | ❌        |
-| **Precipitation duration**      | ❌        |
-| **Hours of sun**                | ✅        |
-| **Yesterday temperature**       | ❌        |
-| **Search**                      | ✅        |
-| **Reverse geocoding**           | ✅        |
+| Sources                         | Pirate Weather | HERE     |
+|---------------------------------|----------------|----------|
+| **Humidity**                    | ✅              | ✅        |
+| **Dew point**                   | ✅              | ✅        |
+| **Pressure**                    | ✅              | ✅        |
+| **Cloud cover**                 | ✅              | ❌        |
+| **Visibility**                  | Current        | ✅        |
+| **Ceiling**                     | ❌              | ❌        |
+| **Precipitation duration**      | ❌              | ❌        |
+| **Hours of sun**                | ✅              | ✅        |
+| **Search**                      | Default        | ✅        |
+| **Reverse geocoding**           | ❌²             | ✅        |
 
 
 # Combinable sources
 
-From v4.5.0, you can combine your main weather source with other sources:
-
-| Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA      |
-|------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|----------------|
-| **Air quality**                    | ✅          | ❌           | Norway      | ✅          | ❌              | ❌           | France (AURA) |
-| **Allergens**                      | ✅²         | ❌           | ❌           | ❌          | ❌              | ❌            | ❌            |
-| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅          | ✅              | France       | ❌             |
-| **Alerts**                         | ❌          | ✅           | ❌           | ✅          | ✅              | France       | ❌             |
-| **Normals**                        | ❌          | ❌           | ❌           | ❌          | ❌              | ✅⁴           | ❌             |
+| Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA     |
+|------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------------|
+| **Air quality**                    | ✅          | ❌           | Norway      | ✅           | ❌              | ❌            | France (AURA) |
+| **Allergens**                      | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌             |
+| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅           | ✅              | France       | ❌             |
+| **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | ❌             |
+| **Normals**                        | ❌          | ❌           | ❌           | ❌           | ❌              | ✅⁴           | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
