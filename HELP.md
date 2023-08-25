@@ -69,7 +69,7 @@ So we will not bring back/implement “persistent notification” for these reas
 But more generally, we recommend that you follow steps from “Background updates are not working” section to find a workaround.
 
 
-### Can you make weather refresh less than every 30 minutes/every time I open the app/every time I tap on widget/every time I unlock my phone/every second?
+### Can you make weather refresh less than every 30 minutes / every time I open the app / every time I tap on widget / every time I unlock my phone / every second?
 
 Short answer: no.
 

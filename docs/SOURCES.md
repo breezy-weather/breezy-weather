@@ -129,7 +129,9 @@ Legend:
 | **Allergens**                      | ❌              | ❌        |
 | **Precipitation in the next hour** | ✅              | ❌        |
 | **Alerts**                         | ✅              | US (NWS) |
-| **Normals**                        | Average¹       | ❌        |
+| **Normals**                        | Average¹       | Average¹ |
+
+¹ Median from daily forecast
 
 ## Other weather data
 
@@ -144,7 +146,9 @@ Legend:
 | **Precipitation duration**      | ❌              | ❌        |
 | **Hours of sun**                | ✅              | ✅        |
 | **Search**                      | Default        | ✅        |
-| **Reverse geocoding**           | ❌²             | ✅        |
+| **Reverse geocoding**           | ❌¹             | ✅        |
+
+* ¹ TimeZone is assumed to be the same as device
 
 
 # Combinable sources
