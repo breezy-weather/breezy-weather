@@ -156,8 +156,15 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = TemperatureUnit.getInstance(
-            config.getString("temperature_unit", "c") ?: ""
+            config.getString("temperature_unit", null) ?: defaultTemperatureUnit
         )
+
+    private val defaultTemperatureUnit: String
+        get() {
+            // TODO: Add when core v1.12.0 is released
+            //LocalePreferences.getTemperatureUnit(language.locale)
+            return "c"
+        }
 
     var distanceUnit: DistanceUnit
         set(value) {

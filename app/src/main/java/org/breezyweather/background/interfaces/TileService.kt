@@ -17,6 +17,7 @@
 package org.breezyweather.background.interfaces
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -52,13 +53,18 @@ class TileService : TileService() {
         refreshTile(this, qsTile)
     }
 
-    @SuppressLint("WrongConstant")
+    @SuppressLint("StartActivityAndCollapseDeprecated")
     override fun onClick() {
-        this.startActivityAndCollapse(
-            Intent(MainActivity.ACTION_MAIN)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        )
+        val intent = Intent(MainActivity.ACTION_MAIN)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            this.startActivityAndCollapse(
+                PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            )
+        } else {
+            this.startActivityAndCollapse(intent)
+        }
     }
 
     companion object {

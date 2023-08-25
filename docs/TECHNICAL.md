@@ -57,6 +57,17 @@ Then add it to `app/src/main/res/values/arrays.xml` in `languages` and a technic
 
 Add the new enum and language technical name in `app/src/main/java/org/breezyweather/common/basic/models/options/appearance/Language.kt`. You will need to find a matching Locale in Android. For example, if the new language is `pt_rBR`, it will translate as `Locale("pt", "BR")`. The second parameter is optional, as you can see with other languages.
 
+
+# Dependencies
+
+## Update Gradle
+
+Gradle must always be updated that way (replace with new version number):
+```
+./gradlew wrapper --gradle-version 8.3
+```
+
+
 ____
 
 # Weather sources API

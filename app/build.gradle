@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace "org.breezyweather"
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "org.breezyweather"

@@ -41,7 +41,7 @@ This error may happen when a source is no longer provided by Breezy Weather. In 
 For current location, you can do that with a swipe on the location list, or from the “Edit” button in the footer of the main screen. For manually added locations, you need to add the location again with the other source, and delete the old location.
 
 
-## Background updates
+## Updates
 
 ### Background updates are not working
 
@@ -67,3 +67,17 @@ So we will not bring back/implement “persistent notification” for these reas
 - it is not battery-friendly
 
 But more generally, we recommend that you follow steps from “Background updates are not working” section to find a workaround.
+
+
+### Can you make weather refresh less than every 30 minutes/every time I open the app/every time I tap on widget/every time I unlock my phone/every second?
+
+Short answer: no.
+
+Long answer:
+Breezy Weather should honor the “refresh rate” setting from Settings > Background updates. If it does not, have a look at troubleshooting above.
+If for any reason the background update failed, it will refresh if weather was updated more than “refresh rate time” ago.
+
+If you still want shorter refreshes:
+- models are refreshed at best once an hour. Although there might be some little exceptions for some particular data, it’s mostly useless to refresh at intervals less than 30 minutes. Additionally, some providers send header instructions to not contact server again before X (datetime) so you would be served the same cached data anyway.
+- we ask for fair usage of API and resources. This app and these API are provided for free and shared by all users of Breezy Weather. Due to noticed abuse, we even had to implement additional caching methods to prevent these abuses and ensure API can still be used by everyone.
+- you can still force refresh from main screen by “swiping to refresh”.

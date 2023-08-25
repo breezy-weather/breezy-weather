@@ -3,7 +3,6 @@ package org.breezyweather.sources.android
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -33,25 +32,9 @@ private fun isLocationEnabled(
 }
 
 private fun getBestProvider(locationManager: LocationManager): String {
-    var provider = locationManager.getBestProvider(
-        Criteria().apply {
-            isBearingRequired = false
-            isAltitudeRequired = false
-            isSpeedRequired = false
-            accuracy = Criteria.ACCURACY_FINE
-            horizontalAccuracy = Criteria.ACCURACY_HIGH
-            powerRequirement = Criteria.POWER_HIGH
-        },
-        true
-    ) ?: ""
-
-    if (provider.isEmpty()) {
-        provider = locationManager
-            .getProviders(true)
-            .getOrNull(0) ?: provider
-    }
-
-    return provider
+    return locationManager
+        .getProviders(true)
+        .getOrNull(0) ?: ""
 }
 
 @SuppressLint("MissingPermission")
