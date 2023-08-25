@@ -326,10 +326,10 @@
     <string name="ephemeris_moonrise_at">Восход луны в $</string>
     <string name="ephemeris_moonset_at">Заход луны в $</string>
     <string name="ephemeris_sunset_at">Закат солнца в $</string>
-    <string name="date_format_long">МММ d</string>
-    <string name="date_format_widget_short">EEE, МММ d</string>
-    <string name="date_format_widget_long">EEEE, МММ d</string>
-    <string name="date_format_widget_oreo_style">EEEE, МММ d |</string>
+    <string name="date_format_long">MMM d</string>
+    <string name="date_format_widget_short">EEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d |</string>
     <string name="weather_data_by">Данные от $</string>
     <string name="uv_index_0_2">Низкий</string>
     <string name="allergen_ragweed">Амброзия</string>
