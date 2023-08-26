@@ -640,4 +640,5 @@
     <string name="weather_normals_data_by">Дані про температурні норми надані $</string>
     <string name="settings_widgets_gadgets_title">Гаджети</string>
     <string name="settings_widgets_gadgetbridge_switch">Надіслати дані про погоду в Gadgetbridge</string>
+    <string name="pollen_and_mold">Пилок та пліснява</string>
 </resources>
