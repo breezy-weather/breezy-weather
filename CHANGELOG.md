@@ -11,7 +11,6 @@
 
 **Translations**
 - Dutch translation completed (thank you @BabyBenefactor!)
-- Hungarian translation completed (thank you @blaskoviktor!)
 - Translations updated
 
 
