@@ -640,4 +640,5 @@
     <string name="common_weather_text_rain_snow_mixed">Mưa và tuyết trộn lẫn</string>
     <string name="common_weather_text_rain_snow_mixed_light">Mưa nhẹ và tuyết xen kẽ</string>
     <string name="unit_bf">Bf</string>
+    <string name="pollen_and_mold">Chất gây dị ứng &amp; nấm mốc</string>
 </resources>
