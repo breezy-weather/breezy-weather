@@ -151,6 +151,7 @@ It enables Instant App and bundles Google Network Location Provider (proprietary
 # License
 
 * [GNU Lesser General Public License v3.0](/LICENSE)
-* [Additional terms regarding Breezy Weather identity and forks](/IDENTITY.md)
+* [Additional license terms](/LICENSE_ADDITIONAL)
+* [Guidelines regarding Breezy Weather identity and forks](/IDENTITY.md)
 * [Built on Geometric Weather Android app (GNU Lesser General Public License v3.0)](https://github.com/WangDaYeeeeee/GeometricWeather). Breezy Weather is not officially associated with Geometric Weather or its products.
 
