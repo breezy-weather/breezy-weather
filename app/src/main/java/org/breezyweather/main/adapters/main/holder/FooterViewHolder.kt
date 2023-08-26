@@ -76,7 +76,7 @@ class FooterViewHolder(
         listOf(
             location.weatherSource,
             location.airQualitySourceNotNull,
-            location.allergenSourceNotNull,
+            location.pollenSourceNotNull,
             location.minutelySourceNotNull,
             location.alertSourceNotNull,
             location.normalsSourceNotNull
@@ -100,9 +100,9 @@ class FooterViewHolder(
             && (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
             (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution
         } else null
-        credits["allergen"] = if (distinctSources[location.allergenSourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.allergenSourceNotNull] as SecondaryWeatherSource).allergenAttribution != credits["weather"]) {
-            (distinctSources[location.allergenSourceNotNull] as SecondaryWeatherSource).allergenAttribution
+        credits["pollen"] = if (distinctSources[location.pollenSourceNotNull] is SecondaryWeatherSource
+            && (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution != credits["weather"]) {
+            (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution
         } else null
         credits["normals"] = if (distinctSources[location.normalsSourceNotNull] is SecondaryWeatherSource
             && (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution != credits["weather"]) {
@@ -131,13 +131,13 @@ class FooterViewHolder(
                                 .replace("$", credits["alert"]!!)
                 )
             }
-            // Open-Meteo has a lengthy credits so we merge air quality and allergen identical credit in that case
+            // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case
             if (!credits["airQuality"].isNullOrEmpty()) {
-                if (!credits["allergen"].isNullOrEmpty()) {
-                    if (credits["airQuality"] == credits["allergen"]) {
+                if (!credits["pollen"].isNullOrEmpty()) {
+                    if (credits["airQuality"] == credits["pollen"]) {
                         creditsText.append(
                             "\n" +
-                            context.getString(R.string.weather_air_quality_and_allergen_data_by)
+                            context.getString(R.string.weather_air_quality_and_pollen_data_by)
                                 .replace("$", credits["airQuality"]!!)
                         )
                     } else {
@@ -146,8 +146,8 @@ class FooterViewHolder(
                             context.getString(R.string.weather_air_quality_data_by)
                                 .replace("$", credits["airQuality"]!!) +
                             "\n" +
-                            context.getString(R.string.weather_allergen_data_by)
-                                .replace("$", credits["allergen"]!!)
+                            context.getString(R.string.weather_pollen_data_by)
+                                .replace("$", credits["pollen"]!!)
                         )
                     }
                 } else {
@@ -158,11 +158,11 @@ class FooterViewHolder(
                     )
                 }
             } else {
-                if (!credits["allergen"].isNullOrEmpty()) {
+                if (!credits["pollen"].isNullOrEmpty()) {
                     creditsText.append(
                         "\n" +
-                        context.getString(R.string.weather_allergen_data_by)
-                            .replace("$", credits["allergen"]!!)
+                        context.getString(R.string.weather_pollen_data_by)
+                            .replace("$", credits["pollen"]!!)
                     )
                 }
             }

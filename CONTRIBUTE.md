@@ -137,7 +137,7 @@ As a starting point, we will only implement weather part, but here is the full l
 | `LocationSearchSource`   | Your source is able to return a list of `Location` object from a query, containing at least the TimeZone of the location. If your source doesn’t include TimeZone, don’t implement it, and this will default to Open-Meteo location search |
 | `ReverseGeocodingSource` | Your source is able to return one `Location` (you can pick the first one if you have many) from lon/lat. If you don’t have this feature available, don’t implement it and locations created with your source will only have lon/lat        |     
 | `ConfigurableSource`     | You want to allow your user to change preferences, for example API key.                                                                                                                                                                    |
-| `SecondaryWeatherSource` | Allows user to select your source to be used for air quality, allergens, precipitation minute by minute or alerts only. |
+| `SecondaryWeatherSource` | Allows user to select your source to be used for air quality, pollen, precipitation minute by minute or alerts only.                                                                                                                       |
 
 Let’s focus on the `requestWeather()` function now. You will need to adapt the existing converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.

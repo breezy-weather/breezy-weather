@@ -73,7 +73,7 @@ class OpenMeteoService @Inject constructor(
         "sulphur_dioxide",
         "ozone"
     )
-    val allergenHourly = arrayOf(
+    val pollenHourly = arrayOf(
         "alder_pollen",
         "birch_pollen",
         "grass_pollen",
@@ -88,7 +88,7 @@ class OpenMeteoService @Inject constructor(
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
     override fun requestWeather(
@@ -139,19 +139,19 @@ class OpenMeteoService @Inject constructor(
         )
 
         val aqi = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
+            || !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
         ) {
-            val airQualityAllergenHourly =
+            val airQualityPollenHourly =
                 (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     airQualityHourly
                 } else arrayOf()) +
-                (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-                    allergenHourly
+                (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+                    pollenHourly
                 } else arrayOf())
             mAirQualityApi.getAirQuality(
                 location.latitude.toDouble(),
                 location.longitude.toDouble(),
-                airQualityAllergenHourly.joinToString(","),
+                airQualityPollenHourly.joinToString(","),
                 pastDays = 1,
             )
         } else {
@@ -173,12 +173,12 @@ class OpenMeteoService @Inject constructor(
     // SECONDARY WEATHER SOURCE
     override val supportedFeatures = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
     override val airQualityAttribution =
         "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
-    override val allergenAttribution = airQualityAttribution
+    override val pollenAttribution = airQualityAttribution
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = null
     override val normalsAttribution = null
@@ -206,14 +206,14 @@ class OpenMeteoService @Inject constructor(
         }
 
         val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-            val airQualityAllergenHourly =
+            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            val airQualityPollenHourly =
                 (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
-                        (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
+                        (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) pollenHourly else emptyArray())
             mAirQualityApi.getAirQuality(
                 location.latitude.toDouble(),
                 location.longitude.toDouble(),
-                airQualityAllergenHourly.joinToString(","),
+                airQualityPollenHourly.joinToString(","),
                 pastDays = 1,
             )
         } else {

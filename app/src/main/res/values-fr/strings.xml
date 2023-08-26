@@ -110,21 +110,21 @@
     <string name="ephemeris_moon_phase_last_quarter">Dernier quartier</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
-    <string name="allergen_tree">Arbres</string>
-    <string name="allergen_alder">Aulne</string>
-    <string name="allergen_birch">Bouleau</string>
-    <string name="allergen_grass">Graminées</string>
-    <string name="allergen_mugwort">Armoises</string>
-    <string name="allergen_olive">Olivier</string>
-    <string name="allergen_ragweed">Ambroisie</string>
-    <string name="allergen_mold">Moisissure</string>
-    <!-- Allergen level means “Potential risk of allergy” -->
-    <string name="allergen_level_0">Aucun</string>
-    <string name="allergen_level_1">Négligeable</string>
-    <string name="allergen_level_2">Faible</string>
-    <string name="allergen_level_3">Modéré</string>
-    <string name="allergen_level_4">Fort</string>
-    <string name="allergen_level_5">Très fort</string>
+    <string name="pollen_tree">Arbres</string>
+    <string name="pollen_alder">Aulne</string>
+    <string name="pollen_birch">Bouleau</string>
+    <string name="pollen_grass">Graminées</string>
+    <string name="pollen_mugwort">Armoises</string>
+    <string name="pollen_olive">Olivier</string>
+    <string name="pollen_ragweed">Ambroisie</string>
+    <string name="pollen_mold">Moisissure</string>
+    <!-- Pollen level means “Potential risk of allergy” -->
+    <string name="pollen_level_0">Aucun</string>
+    <string name="pollen_level_1">Négligeable</string>
+    <string name="pollen_level_2">Faible</string>
+    <string name="pollen_level_3">Modéré</string>
+    <string name="pollen_level_4">Fort</string>
+    <string name="pollen_level_5">Très fort</string>
 
     <!-- UV levels -->
     <string name="uv_index_0_2">Faible</string>
@@ -139,7 +139,8 @@
     <string name="precipitation_forecast">Prévisions de précipitations</string>
     <string name="minutely_precipitations">Précipitations minute par minute</string>
     <string name="air_quality">"Qualité de l’air"</string>
-    <string name="allergen">Allergènes</string>
+    <string name="pollen">Pollen</string>
+    <string name="pollen_and_mold">Pollen &amp; moisissure</string>
     <string name="details">Détails</string>
     <string name="ephemeris">Soleil &amp; lune</string>
 
@@ -302,7 +303,7 @@
     <string name="location_resident_message">Défini en tant que ville de résidence</string>
     <string name="location_resident_dialog">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
 
-    <string name="allergen_tap_to_see_more">Appuyez pour en voir plus…</string>
+    <string name="pollen_tap_to_see_more">Appuyez pour en voir plus…</string>
     <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
 
     <!-- content description -->
@@ -372,8 +373,8 @@
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
     <string name="weather_air_quality_data_by">Données de qualité de l’air par $</string>
-    <string name="weather_allergen_data_by">Données d’allergènes par $</string>
-    <string name="weather_air_quality_and_allergen_data_by">Données de qualité de l’air et d’allergènes par $</string>
+    <string name="weather_pollen_data_by">Données de pollen par $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par $</string>
     <string name="weather_minutely_data_by">Données de précipitations détaillées par $</string>
     <string name="weather_alert_data_by">Données d’alertes par $</string>
     <string name="weather_normals_data_by">Données des normales de température par $</string>

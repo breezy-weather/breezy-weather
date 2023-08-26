@@ -23,7 +23,7 @@ import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl
 import kotlin.math.roundToInt
 
-enum class AllergenUnit(
+enum class PollenUnit(
     override val id: String,
     override val convertUnit: (Int) -> Float
 ): UnitEnum<Int> {

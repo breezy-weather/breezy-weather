@@ -20,7 +20,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -33,11 +33,10 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.AirQualityWrapper
-import org.breezyweather.common.basic.wrappers.AllergenWrapper
+import org.breezyweather.common.basic.wrappers.PollenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
@@ -179,7 +178,7 @@ private fun getHourlyList(
                     o3 = airQualityResult.hourly.ozone?.getOrNull(airQualityIndex),
                     cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0)?.toFloat(),
                 ) else null,
-                allergen = if (airQualityIndex != null && airQualityIndex != -1) Allergen(
+                pollen = if (airQualityIndex != null && airQualityIndex != -1) Pollen(
                     alder = airQualityResult.hourly.alderPollen?.getOrNull(airQualityIndex)?.roundToInt(),
                     birch = airQualityResult.hourly.birchPollen?.getOrNull(airQualityIndex)?.roundToInt(),
                     grass = airQualityResult.hourly.grassPollen?.getOrNull(airQualityIndex)?.roundToInt(),
@@ -285,7 +284,7 @@ fun convertSecondary(
     requestedFeatures: List<SecondaryWeatherSourceFeature>
 ): SecondaryWeatherWrapper {
     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
-    val allergenHourly: MutableMap<Date, Allergen> = mutableMapOf()
+    val pollenHourly: MutableMap<Date, Pollen> = mutableMapOf()
 
     if (hourlyAirQualityResult != null) {
         for (i in hourlyAirQualityResult.time.indices) {
@@ -299,8 +298,8 @@ fun convertSecondary(
                     cO = hourlyAirQualityResult.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
                 )
             }
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-                allergenHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = Allergen(
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+                pollenHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = Pollen(
                     alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.roundToInt(),
                     birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.roundToInt(),
                     grass = hourlyAirQualityResult.grassPollen?.getOrNull(i)?.roundToInt(),
@@ -316,8 +315,8 @@ fun convertSecondary(
         airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             AirQualityWrapper(hourlyForecast = airQualityHourly)
         } else null,
-        allergen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
-            AllergenWrapper(hourlyForecast = allergenHourly)
+        pollen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            PollenWrapper(hourlyForecast = pollenHourly)
         } else null,
         minutelyForecast = getMinutelyList(minutelyFifteen)
     )

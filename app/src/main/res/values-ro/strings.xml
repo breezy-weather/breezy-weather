@@ -80,16 +80,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Lună în descreștere</string>
     <string name="ephemeris_moon_phase_last_quarter">Ultimul pătrar</string>
     <string name="ephemeris_moon_phase_waning_crescent">Semilună în descreștere</string>
-    <string name="allergen_grass">Iarbă</string>
-    <string name="allergen_mold">Mucegai</string>
-    <string name="allergen_ragweed">Ambrozie</string>
-    <string name="allergen_tree">Copac</string>
+    <string name="pollen_grass">Iarbă</string>
+    <string name="pollen_mold">Mucegai</string>
+    <string name="pollen_ragweed">Ambrozie</string>
+    <string name="pollen_tree">Copac</string>
     <string name="daily_forecast">Prognoza zilnică</string>
     <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="minutely_forecast">Prognoza pe minut</string>
     <string name="precipitation_forecast">Prognoza precipitații</string>
     <string name="air_quality">Calitatea aerului</string>
-    <string name="allergen">Alergeni</string>
+    <string name="pollen">Alergeni</string>
     <string name="details">Detalii</string>
     <string name="ephemeris">Soare și Lună</string>
     <string name="action_next">Mai departe</string>
@@ -194,7 +194,7 @@
     <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>
     <string name="location_resident_dialog">Breezy Weather va afișa și ascunde automat orașele rezidente în funcție de locația dvs. curentă.
 \nDe exemplu, puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul natal în timp ce călătoriți. Când ajungi acasă, vremea din orașul tău natal va fi ascunsă și înlocuită cu vremea pentru locația ta actuală.</string>
-    <string name="allergen_tap_to_see_more">Atingeți pentru mai multe informatii…</string>
+    <string name="pollen_tap_to_see_more">Atingeți pentru mai multe informatii…</string>
     <string name="message_tap_again_to_exit">Repetați actiunea pentru a ieși</string>
     <!-- action -->
     <string name="alerts">Alertă</string>
@@ -308,7 +308,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="weather_air_quality_and_allergen_data_by">Calitatea aerului și datele polenului furnizate de $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Calitatea aerului și datele polenului furnizate de $</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
     <string name="action_see_more">Vezi mai mult</string>
     <string name="message_network_unavailable">Rețea indisponibilă</string>
@@ -556,9 +556,9 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorați când bateria este descărcată</string>
     <string name="settings_source_api_key">Cheie API</string>
     <string name="message_server_timeout">Cererea a expirat</string>
-    <string name="allergen_birch">Mesteacăn</string>
-    <string name="allergen_mugwort">Pelin</string>
-    <string name="allergen_alder">Arin</string>
+    <string name="pollen_birch">Mesteacăn</string>
+    <string name="pollen_mugwort">Pelin</string>
+    <string name="pollen_alder">Arin</string>
     <string name="message_parsing_error_title">Analizarea datelor meteo a eșuat</string>
     <string name="message_source_not_installed_error_title">Sursa nu mai este disponibilă</string>
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: $</string>
@@ -579,11 +579,11 @@
     <string name="air_quality_no2_info_introduction">Dioxidul de azot (NO₂) este un gaz roșu-maroniu, toxic și sufocant, cu un miros înțepător și acru caracteristic…</string>
     <string name="air_quality_co_info_introduction">Monoxidul de carbon (CO) este un gaz otrăvitor, inflamabil, incolor, inodor, insipid și neiritant.</string>
     <string name="air_quality_co_info_origin">Este produs prin arderea incompletă a combustibililor carbonici, cum ar fi lemnul, benzina, cărbunele, gazul natural și kerosenul, în sobe simple, focuri deschise, lămpi cu fitil, cuptoare, șeminee. Sursa predominantă de monoxid de carbon (CO) în aerul înconjurător este reprezentată de autovehicule.</string>
-    <string name="allergen_olive">Măsline</string>
-    <string name="allergen_level_0">Niciunul</string>
-    <string name="allergen_level_1">Foarte scăzut</string>
-    <string name="allergen_level_2">Scăzut</string>
-    <string name="weather_allergen_data_by">Date despre alergeni de $</string>
+    <string name="pollen_olive">Măsline</string>
+    <string name="pollen_level_0">Niciunul</string>
+    <string name="pollen_level_1">Foarte scăzut</string>
+    <string name="pollen_level_2">Scăzut</string>
+    <string name="weather_pollen_data_by">Date despre alergeni de $</string>
     <string name="weather_minutely_data_by">Date despre precipitațiile minut cu minut de $</string>
     <string name="weather_message_invalid_location">Locație invalidă, vă rugăm să-l ștergeți și re-adăugați</string>
     <string name="settings_weather_source">Furnizor meteo</string>
@@ -601,8 +601,8 @@
     <string name="weather_message_secondary_data_refresh_failed">Actualizarea datelor meteorologice pentru o sursă meteorologică secundară a eșuat</string>
     <string name="location_search_no_results_advice">Asigurați-vă că căutarea este scrisă corect și că nu este prea specifică. Alternativ, puteți încerca un alt furnizor de servicii meteorologice, care poate produce rezultate diferite în ceea ce privește căutarea locației.</string>
     <string name="dialog_permissions_notification_content">Atingeți aici pentru a activa notificările privind alertele meteo sau decideți mai târziu în Setări.</string>
-    <string name="allergen_level_3">Moderat</string>
-    <string name="allergen_level_4">Ridicat</string>
-    <string name="allergen_level_5">Foarte ridicat</string>
+    <string name="pollen_level_3">Moderat</string>
+    <string name="pollen_level_4">Ridicat</string>
+    <string name="pollen_level_5">Foarte ridicat</string>
     <string name="weather_air_quality_data_by">Date despre calitatea aerului de $</string>
 </resources>

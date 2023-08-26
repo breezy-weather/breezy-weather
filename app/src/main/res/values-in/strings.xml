@@ -81,16 +81,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_last_quarter">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-    <string name="allergen_grass">Rumput</string>
-    <string name="allergen_mold">Lubang</string>
-    <string name="allergen_ragweed">Ragweed</string>
-    <string name="allergen_tree">Pohon</string>
+    <string name="pollen_grass">Rumput</string>
+    <string name="pollen_mold">Lubang</string>
+    <string name="pollen_ragweed">Ragweed</string>
+    <string name="pollen_tree">Pohon</string>
     <string name="daily_forecast">Prakiraan harian</string>
     <string name="hourly_forecast">Prakiraan per jam</string>
     <string name="minutely_forecast">Prakiraan per menit</string>
     <string name="precipitation_forecast">Prakiraan presipitasi</string>
     <string name="air_quality">Kualitas udata</string>
-    <string name="allergen">Allergen</string>
+    <string name="pollen">Allergen</string>
     <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
     <string name="action_next">Berikutnya</string>
@@ -199,7 +199,7 @@
     <string name="location_resident_message">Tetapkan sebagai kota penduduk</string>
     <string name="location_resident_dialog">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.
 \nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
-    <string name="allergen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
+    <string name="pollen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
     <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
     <!-- content description -->
     <string name="action_back">Kembali</string>

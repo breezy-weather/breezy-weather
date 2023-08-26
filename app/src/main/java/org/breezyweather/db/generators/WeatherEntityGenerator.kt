@@ -37,7 +37,7 @@ object WeatherEntityGenerator {
             refreshTime = weather.base.refreshTime,
             mainUpdateTime = weather.base.mainUpdateTime,
             airQualityUpdateTime = weather.base.airQualityUpdateTime,
-            allergenUpdateTime = weather.base.allergenUpdateTime,
+            pollenUpdateTime = weather.base.pollenUpdateTime,
             minutelyUpdateTime = weather.base.minutelyUpdateTime,
             alertsUpdateTime = weather.base.alertsUpdateTime,
             normalsUpdateTime = weather.base.normalsUpdateTime,
@@ -93,7 +93,7 @@ object WeatherEntityGenerator {
                 weatherEntity.refreshTime,
                 weatherEntity.mainUpdateTime,
                 weatherEntity.airQualityUpdateTime,
-                weatherEntity.allergenUpdateTime,
+                weatherEntity.pollenUpdateTime,
                 weatherEntity.minutelyUpdateTime,
                 weatherEntity.alertsUpdateTime,
                 weatherEntity.normalsUpdateTime

@@ -79,16 +79,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Φθίνων ύβος</string>
     <string name="ephemeris_moon_phase_last_quarter">Τρίτο τέταρτο</string>
     <string name="ephemeris_moon_phase_waning_crescent">Φθίνων μηνίσκος</string>
-    <string name="allergen_grass">Γρασίδι</string>
-    <string name="allergen_mold">Μούχλα</string>
-    <string name="allergen_ragweed">Αγριόχορτο</string>
-    <string name="allergen_tree">Δέντρο</string>
+    <string name="pollen_grass">Γρασίδι</string>
+    <string name="pollen_mold">Μούχλα</string>
+    <string name="pollen_ragweed">Αγριόχορτο</string>
+    <string name="pollen_tree">Δέντρο</string>
     <string name="daily_forecast">Ημερήσια πρόγνωση</string>
     <string name="hourly_forecast">Ωριαία πρόγνωση</string>
     <string name="minutely_forecast">Πρόγνωση καταλεπτώς</string>
     <string name="precipitation_forecast">Πρόγνωση βροχοπτώσεων</string>
     <string name="air_quality">Ποιότητα αέρα</string>
-    <string name="allergen">Αλλεργίες</string>
+    <string name="pollen">Αλλεργίες</string>
     <string name="details">Λεπτομέρειες</string>
     <string name="ephemeris">Ανατολή και δύση ηλίου</string>
     <string name="action_next">Επόμενο</string>
@@ -179,7 +179,7 @@
     <string name="location_resident_message">Ορισμός ως τόπος μόνιμης διαμονής</string>
     <string name="location_resident_dialog">Το Breezy Weather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.
 \nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
-    <string name="allergen_tap_to_see_more">Περισσότερα…</string>
+    <string name="pollen_tap_to_see_more">Περισσότερα…</string>
     <!-- action -->
     <string name="alerts">Ειδοποίηση</string>
     <string name="action_search">Αναζήτηση</string>

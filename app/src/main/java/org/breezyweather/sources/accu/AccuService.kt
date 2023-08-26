@@ -85,7 +85,7 @@ class AccuService @Inject constructor(
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALLERGEN,
+        SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -255,7 +255,7 @@ class AccuService @Inject constructor(
         return (isConfigured && portal == AccuPortalPreference.ENTERPRISE)
     }
     override val airQualityAttribution = null // Only supported by city key
-    override val allergenAttribution = null // Only supported by city key
+    override val pollenAttribution = null // Only supported by city key
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
     override val normalsAttribution = null // Only supported by city key

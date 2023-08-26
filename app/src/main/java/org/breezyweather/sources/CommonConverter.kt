@@ -19,7 +19,7 @@ package org.breezyweather.sources
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -36,7 +36,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.AirQualityWrapper
-import org.breezyweather.common.basic.wrappers.AllergenWrapper
+import org.breezyweather.common.basic.wrappers.PollenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
@@ -125,20 +125,20 @@ fun getAirQualityWrapperFromWeather(
 }
 
 /**
- * Get an allergen wrapper object to use from an old weather object
+ * Get a pollen wrapper object to use from an old weather object
  * @param weather Old weather data
  * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
  */
-fun getAllergenWrapperFromWeather(
+fun getPollenWrapperFromWeather(
     weather: Weather?,
     startDate: Date
-): AllergenWrapper? {
+): PollenWrapper? {
     if (weather == null) return null
-    val dailyAllergen = weather.dailyForecast.filter { it.date >= startDate && it.allergen?.isValid == true }
-    if (dailyAllergen.isEmpty()) return null
+    val dailyPollen = weather.dailyForecast.filter { it.date >= startDate && it.pollen?.isValid == true }
+    if (dailyPollen.isEmpty()) return null
 
-    return AllergenWrapper(
-        dailyForecast = dailyAllergen.associate { it.date to it.allergen!! }
+    return PollenWrapper(
+        dailyForecast = dailyPollen.associate { it.date to it.pollen!! }
     )
 }
 
@@ -214,8 +214,8 @@ fun completeMissingSecondaryWeatherDailyData(
 
     return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
         && initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty())
-        || (!initialSecondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty()
-                && initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
+        || (!initialSecondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty()
+                && initialSecondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
         val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null
             && initialSecondaryWeatherWrapper.airQuality.dailyForecast.isNullOrEmpty()) {
             getDailyAirQualityFromHourly(
@@ -223,26 +223,26 @@ fun completeMissingSecondaryWeatherDailyData(
             )
         } else initialSecondaryWeatherWrapper.airQuality?.dailyForecast
 
-        val dailyAllergen: Map<Date, Allergen>? = if (initialSecondaryWeatherWrapper.allergen != null
-            && initialSecondaryWeatherWrapper.allergen.dailyForecast.isNullOrEmpty()) {
-            val dailyAllergenMap: MutableMap<Date, Allergen> = mutableMapOf()
-            initialSecondaryWeatherWrapper.allergen.hourlyForecast?.entries?.groupBy {
+        val dailyPollen: Map<Date, Pollen>? = if (initialSecondaryWeatherWrapper.pollen != null
+            && initialSecondaryWeatherWrapper.pollen.dailyForecast.isNullOrEmpty()) {
+            val dailyPollenMap: MutableMap<Date, Pollen> = mutableMapOf()
+            initialSecondaryWeatherWrapper.pollen.hourlyForecast?.entries?.groupBy {
                 it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
             }?.forEach { entry ->
-                val allergen = getDailyAllergenFromSecondaryHourlyList(entry.value)
-                if (allergen != null) {
-                    dailyAllergenMap[entry.key.toDateNoHour(timeZone)!!] = allergen
+                val pollen = getDailyPollenFromSecondaryHourlyList(entry.value)
+                if (pollen != null) {
+                    dailyPollenMap[entry.key.toDateNoHour(timeZone)!!] = pollen
                 }
             }
-            dailyAllergenMap
-        } else initialSecondaryWeatherWrapper.allergen?.dailyForecast
+            dailyPollenMap
+        } else initialSecondaryWeatherWrapper.pollen?.dailyForecast
 
         initialSecondaryWeatherWrapper.copy(
             airQuality = initialSecondaryWeatherWrapper.airQuality?.copy(
                 dailyForecast = dailyAirQuality
             ),
-            allergen = initialSecondaryWeatherWrapper.allergen?.copy(
-                dailyForecast = dailyAllergen
+            pollen = initialSecondaryWeatherWrapper.pollen?.copy(
+                dailyForecast = dailyPollen
             )
         )
     } else {
@@ -267,16 +267,16 @@ private fun getDailyAirQualityFromSecondaryHourlyList(
 }
 
 /**
- * Returns an Allergen object calculated from a List of Hourly for the day
- * (at least 18 non-null Hourly.Allergen required)
+ * Returns a Pollen object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.Pollen required)
  */
-private fun getDailyAllergenFromSecondaryHourlyList(
-    hourlyList: List<Map.Entry<Date, Allergen>>
-): Allergen? {
+private fun getDailyPollenFromSecondaryHourlyList(
+    hourlyList: List<Map.Entry<Date, Pollen>>
+): Pollen? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isEmpty() || hourlyList.size < 18) return null
 
-    return Allergen(
+    return Pollen(
         tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull(),
         alder = hourlyList.mapNotNull { it.value.alder }.maxOrNull(),
         birch = hourlyList.mapNotNull { it.value.birch }.maxOrNull(),
@@ -294,7 +294,7 @@ private fun getDailyAllergenFromSecondaryHourlyList(
  * data you don’t want to use in it!
  * Process:
  * - Hourly air quality
- * - Hourly allergen
+ * - Hourly pollen
  */
 fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
     mainHourlyList: List<HourlyWrapper>?,
@@ -302,23 +302,23 @@ fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
 ): List<HourlyWrapper> {
     if (mainHourlyList.isNullOrEmpty() || secondaryWeatherWrapper == null
         || (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
-        && secondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty())) {
+        && secondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
         return mainHourlyList ?: emptyList()
     }
 
     return mainHourlyList.map { mainHourly ->
         val airQuality = secondaryWeatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
-        val allergen = secondaryWeatherWrapper.allergen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
+        val pollen = secondaryWeatherWrapper.pollen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
 
-        if (airQuality != null && allergen != null) {
+        if (airQuality != null && pollen != null) {
             mainHourly.copy(
                 airQuality = airQuality,
-                allergen = allergen
+                pollen = pollen
             )
         } else if (airQuality != null) {
             mainHourly.copy(airQuality = airQuality)
-        } else if (allergen != null) {
-            mainHourly.copy(allergen = allergen)
+        } else if (pollen != null) {
+            mainHourly.copy(pollen = pollen)
         } else {
             mainHourly
         }
@@ -331,7 +331,7 @@ fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
  * data you don’t want to use in it!
  * Process:
  * - Hourly air quality
- * - Hourly allergen
+ * - Hourly pollen
  */
 fun mergeSecondaryWeatherDataIntoDailyList(
     mainDailyList: List<Daily>?,
@@ -339,23 +339,23 @@ fun mergeSecondaryWeatherDataIntoDailyList(
 ): List<Daily> {
     if (mainDailyList.isNullOrEmpty() || secondaryWeatherWrapper == null
         || (secondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()
-                && secondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
+                && secondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
         return mainDailyList ?: emptyList()
     }
 
     return mainDailyList.map { mainDaily ->
         val airQuality = secondaryWeatherWrapper.airQuality?.dailyForecast?.getOrElse(mainDaily.date) { null }
-        val allergen = secondaryWeatherWrapper.allergen?.dailyForecast?.getOrElse(mainDaily.date) { null }
+        val pollen = secondaryWeatherWrapper.pollen?.dailyForecast?.getOrElse(mainDaily.date) { null }
 
-        if (airQuality != null && allergen != null) {
+        if (airQuality != null && pollen != null) {
             mainDaily.copy(
                 airQuality = airQuality,
-                allergen = allergen
+                pollen = pollen
             )
         } else if (airQuality != null) {
             mainDaily.copy(airQuality = airQuality)
-        } else if (allergen != null) {
-            mainDaily.copy(allergen = allergen)
+        } else if (pollen != null) {
+            mainDaily.copy(pollen = pollen)
         } else {
             mainDaily
         }
@@ -438,7 +438,7 @@ private fun computeWindChillTemperature(temperature: Double?, windSpeed: Double?
  * - Degree day
  * - Sunrise/set
  * - Air quality
- * - Allergen
+ * - Pollen
  * - UV
  * - Hours of sun
  *
@@ -498,7 +498,7 @@ fun completeDailyListFromHourlyList(
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                 hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
-            allergen = daily.allergen ?: getDailyAllergenFromHourlyList(
+            pollen = daily.pollen ?: getDailyPollenFromHourlyList(
                 hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
             uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
@@ -870,24 +870,24 @@ private fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = 
 }
 
 /**
- * Returns an Allergen object calculated from a List of Hourly for the day
- * (at least 18 non-null Hourly.Allergen required)
+ * Returns a Pollen object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.Pollen required)
  */
-private fun getDailyAllergenFromHourlyList(hourlyList: List<HourlyWrapper>? = null): Allergen? {
+private fun getDailyPollenFromHourlyList(hourlyList: List<HourlyWrapper>? = null): Pollen? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
-    val hourlyListWithAllergen = hourlyList.mapNotNull { it.allergen }
-    if (hourlyListWithAllergen.size < 18) return null
+    val hourlyListWithPollen = hourlyList.mapNotNull { it.pollen }
+    if (hourlyListWithPollen.size < 18) return null
 
-    return Allergen(
-        tree = hourlyListWithAllergen.mapNotNull { it.tree }.maxOrNull(),
-        alder = hourlyListWithAllergen.mapNotNull { it.alder }.maxOrNull(),
-        birch = hourlyListWithAllergen.mapNotNull { it.birch }.maxOrNull(),
-        grass = hourlyListWithAllergen.mapNotNull { it.grass }.maxOrNull(),
-        olive = hourlyListWithAllergen.mapNotNull { it.olive }.maxOrNull(),
-        ragweed = hourlyListWithAllergen.mapNotNull { it.ragweed }.maxOrNull(),
-        mugwort = hourlyListWithAllergen.mapNotNull { it.mugwort }.maxOrNull(),
-        mold = hourlyListWithAllergen.mapNotNull { it.mold }.maxOrNull()
+    return Pollen(
+        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
+        alder = hourlyListWithPollen.mapNotNull { it.alder }.maxOrNull(),
+        birch = hourlyListWithPollen.mapNotNull { it.birch }.maxOrNull(),
+        grass = hourlyListWithPollen.mapNotNull { it.grass }.maxOrNull(),
+        olive = hourlyListWithPollen.mapNotNull { it.olive }.maxOrNull(),
+        ragweed = hourlyListWithPollen.mapNotNull { it.ragweed }.maxOrNull(),
+        mugwort = hourlyListWithPollen.mapNotNull { it.mugwort }.maxOrNull(),
+        mold = hourlyListWithPollen.mapNotNull { it.mold }.maxOrNull()
     )
 }
 

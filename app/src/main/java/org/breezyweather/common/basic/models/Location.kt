@@ -48,7 +48,7 @@ data class Location(
     val weather: Weather? = null,
     val weatherSource: String = BuildConfig.DEFAULT_WEATHER_SOURCE,
     val airQualitySource: String? = null,
-    val allergenSource: String? = null,
+    val pollenSource: String? = null,
     val minutelySource: String? = null,
     val alertSource: String? = null,
     val normalsSource: String? = null,
@@ -88,7 +88,7 @@ data class Location(
         parcel.writeString(district)
         parcel.writeString(weatherSource)
         parcel.writeString(airQualitySource)
-        parcel.writeString(allergenSource)
+        parcel.writeString(pollenSource)
         parcel.writeString(minutelySource)
         parcel.writeString(alertSource)
         parcel.writeString(normalsSource)
@@ -112,7 +112,7 @@ data class Location(
         district = parcel.readString(),
         weatherSource = parcel.readString()!!,
         airQualitySource = parcel.readString(),
-        allergenSource = parcel.readString(),
+        pollenSource = parcel.readString(),
         minutelySource = parcel.readString(),
         alertSource = parcel.readString(),
         normalsSource = parcel.readString(),
@@ -145,7 +145,7 @@ data class Location(
             return false
         }
 
-        if (allergenSource != other.allergenSource) {
+        if (pollenSource != other.pollenSource) {
             return false
         }
 
@@ -250,8 +250,8 @@ data class Location(
 
     val airQualitySourceNotNull: String
         get() = if (airQualitySource.isNullOrEmpty()) weatherSource else airQualitySource
-    val allergenSourceNotNull: String
-        get() = if (allergenSource.isNullOrEmpty()) weatherSource else allergenSource
+    val pollenSourceNotNull: String
+        get() = if (pollenSource.isNullOrEmpty()) weatherSource else pollenSource
     val minutelySourceNotNull: String
         get() = if (minutelySource.isNullOrEmpty()) weatherSource else minutelySource
     val alertSourceNotNull: String

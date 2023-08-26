@@ -29,7 +29,7 @@ enum class CardDisplay(
     CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
     CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_forecast),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
-    CARD_ALLERGEN("allergen", R.string.allergen),
+    CARD_POLLEN("pollen", R.string.pollen),
     CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
     CARD_LIVE("live", R.string.details);
 
@@ -47,7 +47,7 @@ enum class CardDisplay(
                     "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
                     "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
                     "air_quality" -> list.add(CARD_AIR_QUALITY)
-                    "allergen" -> list.add(CARD_ALLERGEN)
+                    "allergen", "pollen" -> list.add(CARD_POLLEN)
                     "sunrise_sunset" -> list.add(CARD_SUNRISE_SUNSET)
                     "live" -> list.add(CARD_LIVE)
                 }

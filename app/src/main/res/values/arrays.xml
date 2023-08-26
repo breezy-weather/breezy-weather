@@ -383,15 +383,15 @@
         <item>@color/aqiLevel_6</item>
     </integer-array>
 
-    <!-- allergen levels -->
-    <string-array name="allergen_levels">
-        <item>@string/allergen_level_1</item>
-        <item>@string/allergen_level_2</item>
-        <item>@string/allergen_level_3</item>
-        <item>@string/allergen_level_4</item>
-        <item>@string/allergen_level_5</item>
+    <!-- pollen levels -->
+    <string-array name="pollen_levels">
+        <item>@string/pollen_level_1</item>
+        <item>@string/pollen_level_2</item>
+        <item>@string/pollen_level_3</item>
+        <item>@string/pollen_level_4</item>
+        <item>@string/pollen_level_5</item>
     </string-array>
-    <integer-array name="allergen_level_colors">
+    <integer-array name="pollen_level_colors">
         <item>@color/aqiLevel_1</item>
         <item>@color/aqiLevel_2</item>
         <item>@color/aqiLevel_3</item>

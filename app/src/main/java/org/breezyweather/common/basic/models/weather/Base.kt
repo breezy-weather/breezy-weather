@@ -27,7 +27,7 @@ data class Base(
     val refreshTime: Date? = null,
     val mainUpdateTime: Date? = null,
     val airQualityUpdateTime: Date? = null,
-    val allergenUpdateTime: Date? = null,
+    val pollenUpdateTime: Date? = null,
     val minutelyUpdateTime: Date? = null,
     val alertsUpdateTime: Date? = null,
     val normalsUpdateTime: Date? = null

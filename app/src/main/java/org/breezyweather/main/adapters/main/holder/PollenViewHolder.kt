@@ -26,14 +26,14 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.main.adapters.HomeAllergenAdapter
+import org.breezyweather.main.adapters.HomePollenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
-class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
+class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater
         .from(parent.context)
         .inflate(R.layout.container_main_pollen, parent, false)
@@ -44,7 +44,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
     private var mCallback: DailyPollenPageChangeCallback? = null
 
-    private class DailyAllergenPagerAdapter(location: Location) : HomeAllergenAdapter(location) {
+    private class DailyPollenPagerAdapter(location: Location) : HomePollenAdapter(location) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
             holder.itemView.layoutParams = ViewGroup.LayoutParams(
@@ -66,7 +66,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (daily.isToday(timeZone)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
-                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecastStartingToday.filter { it.allergen?.isIndexValid == true }.size
+                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
             }
         }
     }
@@ -81,6 +81,13 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             activity, location, provider,
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
+        if (location.weather?.dailyForecast?.any {
+                it.pollen?.isMoldValid == true
+            } == true) {
+            mTitle.text = context.getString(R.string.pollen_and_mold)
+        } else {
+            mTitle.text = context.getString(R.string.pollen)
+        }
         mTitle.setTextColor(
             ThemeManager.getInstance(context)
                 .weatherThemeDelegate
@@ -91,12 +98,12 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )[0]
         )
         mSubtitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
-        mPager.adapter = DailyAllergenPagerAdapter(location)
+        mPager.adapter = DailyPollenPagerAdapter(location)
         mPager.currentItem = 0
         mCallback = DailyPollenPageChangeCallback(activity, location)
         mPager.registerOnPageChangeCallback(mCallback!!)
         itemView.contentDescription = mTitle.text
-        itemView.setOnClickListener { IntentHelper.startAllergenActivity(context as GeoActivity, location) }
+        itemView.setOnClickListener { IntentHelper.startPollenActivity(context as GeoActivity, location) }
     }
 
     override fun onRecycleView() {

@@ -32,7 +32,7 @@ interface SecondaryWeatherSource : Source {
 
     // TODO: Improve
     val airQualityAttribution: String?
-    val allergenAttribution: String?
+    val pollenAttribution: String?
     val minutelyAttribution: String?
     val alertAttribution: String?
     val normalsAttribution: String?
@@ -40,7 +40,7 @@ interface SecondaryWeatherSource : Source {
     /**
      * Returns secondary weather converted to Breezy Weather Weather object
      * For efficiency reasons, we have one single functions, but don’t worry, you will never
-     * be asked to provide allergen if you don’t support allergen
+     * be asked to provide pollen if you don’t support pollen
      * Only process things you are asked to process and that you support, otherwise return null
      * for that element.
      * Exception: if you are requested two features that are part of the same endpoint, you

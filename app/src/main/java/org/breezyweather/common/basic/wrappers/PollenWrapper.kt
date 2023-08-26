@@ -16,11 +16,11 @@
 
 package org.breezyweather.common.basic.wrappers
 
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Pollen
 import java.util.Date
 
-data class AllergenWrapper(
-    val current: Allergen? = null, // TODO: Not supported yet
-    val dailyForecast: Map<Date, Allergen>? = null,
-    val hourlyForecast: Map<Date, Allergen>? = null
+data class PollenWrapper(
+    val current: Pollen? = null, // TODO: Not supported yet
+    val dailyForecast: Map<Date, Pollen>? = null,
+    val hourlyForecast: Map<Date, Pollen>? = null
 )

@@ -32,12 +32,12 @@
     <color name="aqiLevel_5">#c72eaa</color>
     <color name="aqiLevel_6">#9930ff</color>
 
-    <color name="allergenLevel_0">#bfbfbf</color>
-    <color name="allergenLevel_1">#08c286</color>
-    <color name="allergenLevel_2">#6ad555</color>
-    <color name="allergenLevel_3">#ffd741</color>
-    <color name="allergenLevel_4">#ffab40</color>
-    <color name="allergenLevel_5">#ff3b30</color>
+    <color name="pollenLevel_0">#bfbfbf</color>
+    <color name="pollenLevel_1">#08c286</color>
+    <color name="pollenLevel_2">#6ad555</color>
+    <color name="pollenLevel_3">#ffd741</color>
+    <color name="pollenLevel_4">#ffab40</color>
+    <color name="pollenLevel_5">#ff3b30</color>
 
     <color name="weather_source_accu">#ef5823</color>
     <color name="weather_source_china">#5ebb8e</color>

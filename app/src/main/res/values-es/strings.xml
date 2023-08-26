@@ -80,16 +80,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Menguante convexa</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Menguante cóncava</string>
-    <string name="allergen_grass">Pasto</string>
-    <string name="allergen_mold">Moho</string>
-    <string name="allergen_ragweed">Ambrosía</string>
-    <string name="allergen_tree">Árbol</string>
+    <string name="pollen_grass">Pasto</string>
+    <string name="pollen_mold">Moho</string>
+    <string name="pollen_ragweed">Ambrosía</string>
+    <string name="pollen_tree">Árbol</string>
     <string name="daily_forecast">Pronóstico por día</string>
     <string name="hourly_forecast">Pronóstico por hora</string>
     <string name="minutely_forecast">Pronóstico por minuto</string>
     <string name="precipitation_forecast">Pronóstico por precipitación</string>
     <string name="air_quality">Calidad del aire</string>
-    <string name="allergen">Alérgeno</string>
+    <string name="pollen">Alérgeno</string>
     <string name="details">Detalles</string>
     <string name="ephemeris">Sol &amp; luna</string>
     <string name="action_next">Siguiente</string>
@@ -191,7 +191,7 @@
     <string name="location_resident_message">Establecer como la ciudad residente</string>
     <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.
 \nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
-    <string name="allergen_tap_to_see_more">Toca para obtener más…</string>
+    <string name="pollen_tap_to_see_more">Toca para obtener más…</string>
     <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
     <!-- action -->
     <string name="alerts">Alertas</string>
@@ -400,7 +400,7 @@
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
-    <string name="weather_air_quality_and_allergen_data_by">Calidad de aire y datos de polen por $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Calidad de aire y datos de polen por $</string>
     <string name="weather_source_openweather_version_2_5">Versión 2.5</string>
     <string name="location_results_by">Resultados de ubicación según $</string>
     <string name="action_add_from_map">Añadir desde mapa</string>

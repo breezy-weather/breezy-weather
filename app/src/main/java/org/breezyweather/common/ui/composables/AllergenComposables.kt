@@ -35,31 +35,31 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.AllergenUnit
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.options.unit.PollenUnit
+import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.theme.compose.DayNightTheme
 
 @Composable
-fun AllergenGrid(
-    allergen: Allergen
+fun PollenGrid(
+    pollen: Pollen
 ) {
     val context = LocalContext.current
-    val unit = AllergenUnit.PPCM
+    val unit = PollenUnit.PPCM
     FlowRow(
         maxItemsInEachRow = 2
     ) {
-        allergen.validAllergens
-            .sortedBy { va -> context.getString(va.allergenName) }
-            .forEach { validAllergen ->
+        pollen.validPollens
+            .sortedBy { va -> context.getString(va.pollenName) }
+            .forEach { validPollen ->
                 PollenItem(
                     modifier = Modifier.fillMaxWidth(0.5f),
-                    title = stringResource(validAllergen.allergenName),
+                    title = stringResource(validPollen.pollenName),
                     subtitle = unit.getValueText(
                         context,
-                        allergen.getConcentration(validAllergen) ?: 0
-                    ) + " - " + allergen.getIndexName(context, validAllergen),
+                        pollen.getConcentration(validPollen) ?: 0
+                    ) + " - " + pollen.getIndexName(context, validPollen),
                     tintColor = Color(
-                        allergen.getColor(context, validAllergen)
+                        pollen.getColor(context, validPollen)
                     )
                 )
             }

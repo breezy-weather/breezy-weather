@@ -77,16 +77,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">十八夜</string>
     <string name="ephemeris_moon_phase_last_quarter">下弦</string>
     <string name="ephemeris_moon_phase_waning_crescent">二十六夜</string>
-    <string name="allergen_grass">草</string>
-    <string name="allergen_mold">カビ</string>
-    <string name="allergen_ragweed">ブタクサ</string>
-    <string name="allergen_tree">木</string>
+    <string name="pollen_grass">草</string>
+    <string name="pollen_mold">カビ</string>
+    <string name="pollen_ragweed">ブタクサ</string>
+    <string name="pollen_tree">木</string>
     <string name="daily_forecast">日時予報</string>
     <string name="hourly_forecast">毎時予報</string>
     <string name="minutely_forecast">詳細予報</string>
     <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質指数</string>
-    <string name="allergen">アレルギー</string>
+    <string name="pollen">アレルギー</string>
     <string name="details">その他</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次</string>
@@ -183,7 +183,7 @@
     <string name="location_resident_message">居住地として設定</string>
     <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。
 \n例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
-    <string name="allergen_tap_to_see_more">Click to get more…</string>
+    <string name="pollen_tap_to_see_more">Click to get more…</string>
     <!-- action -->
     <string name="alerts">警告</string>
     <string name="action_search">検索</string>

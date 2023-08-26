@@ -20,7 +20,7 @@ import android.graphics.Color
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -71,7 +71,7 @@ fun convert(
         city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
         weatherSource = "accu",
         airQualitySource = location?.airQualitySource,
-        allergenSource = location?.allergenSource,
+        pollenSource = location?.pollenSource,
         minutelySource = location?.minutelySource,
         alertSource = location?.alertSource,
         normalsSource = location?.normalsSource
@@ -142,7 +142,7 @@ private fun getDailyList(
     dailyForecasts: List<AccuForecastDailyForecast>,
     timeZone: TimeZone
 ): List<Daily> {
-    val supportsAllergens = supportsAllergens(dailyForecasts)
+    val supportsPollen = supportsPollen(dailyForecasts)
 
     return dailyForecasts.map { forecasts ->
         Daily(
@@ -232,7 +232,7 @@ private fun getDailyList(
             moonPhase = MoonPhase(
                 angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
-            allergen = if (supportsAllergens) getDailyPollen(forecasts.AirAndPollen) else null,
+            pollen = if (supportsPollen) getDailyPollen(forecasts.AirAndPollen) else null,
             uV = getDailyUV(forecasts.AirAndPollen),
             hoursOfSun = forecasts.HoursOfSun?.toFloat()
         )
@@ -241,30 +241,30 @@ private fun getDailyList(
 
 /**
  * Accu returns 0 / m³ for all days if they don’t measure it, instead of null values
- * This function will tell us if they measured at least one allergen during the 15-day period
+ * This function will tell us if they measured at least one pollen or mold during the 15-day period
  * to make the difference between a 0 and a null
  */
-fun supportsAllergens(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
+fun supportsPollen(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
     dailyForecasts.forEach { daily ->
-        val allergens = listOf(
+        val pollens = listOf(
             daily.AirAndPollen?.firstOrNull { it.Name == "Tree" },
             daily.AirAndPollen?.firstOrNull { it.Name == "Grass" },
             daily.AirAndPollen?.firstOrNull { it.Name == "Ragweed" },
             daily.AirAndPollen?.firstOrNull { it.Name == "Mold" }
         ).filter { it?.Value != null && it.Value > 0 }
-        if (allergens.isNotEmpty()) return true
+        if (pollens.isNotEmpty()) return true
     }
     return false
 }
 
-private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Allergen? {
+private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Pollen? {
     if (list == null) return null
 
     val tree = list.firstOrNull { it.Name == "Tree" }
     val grass = list.firstOrNull { it.Name == "Grass" }
     val ragweed = list.firstOrNull { it.Name == "Ragweed" }
     val mold = list.firstOrNull { it.Name == "Mold" }
-    return Allergen(
+    return Pollen(
         tree = tree?.Value,
         grass = grass?.Value,
         ragweed = ragweed?.Value,

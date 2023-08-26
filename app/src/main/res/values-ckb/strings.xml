@@ -9,7 +9,7 @@
     <string name="minutely_forecast">پێشبینی بە خولەک</string>
     <string name="precipitation_forecast">پێشبینی بارانبارین</string>
     <string name="air_quality">کوالیتی هەوا</string>
-    <string name="allergen">مادەی هەستیاری</string>
+    <string name="pollen">مادەی هەستیاری</string>
     <string name="ephemeris">خۆر و مانگ</string>
     <string name="details">ووردەکاریەکان</string>
     <string name="alerts">ئاگادارکردنەوەکان</string>
@@ -56,10 +56,10 @@
     <string name="air_quality_o3_info_title">ئۆزۆنی ئاستی زەوی (O₃)</string>
     <string name="air_quality_so2_info_title">دوانە ئۆکسیدی گۆگرد (SO₂)</string>
     <string name="air_quality_so2_info_introduction">دوانەئۆکسیدی گۆگرد (SO₂) گازێکی ژەهراوی بێ ڕەنگە کە بەرپرسیارە لە بۆنی کبریتی سووتاو.</string>
-    <string name="allergen_grass">گیا</string>
-    <string name="allergen_mold">مۆڵد</string>
-    <string name="allergen_ragweed">گژوگیا</string>
-    <string name="allergen_tree">درەخت</string>
+    <string name="pollen_grass">گیا</string>
+    <string name="pollen_mold">مۆڵد</string>
+    <string name="pollen_ragweed">گژوگیا</string>
+    <string name="pollen_tree">درەخت</string>
     <string name="ephemeris_moon_phase_full_moon">مانگی تەواو</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">سێ چارەکی مانگ</string>
     <string name="ephemeris_moon_phase_last_quarter">چارەکی سێیەم</string>
@@ -154,7 +154,7 @@
     <string name="air_quality_co_info_consequences">یەکە ئۆکسیدی کاربۆن بڵاو دەبێتەوە بەناو شانەکانی سییەکان و ناو خوێندا، ئەمەش وا دەکات خانەکانی جەستە بە ئۆکسجین بەستنەوە قورس بێت. ئەم کەمی ئۆکسجینە زیان بە شانەکان و خانەکان دەگەیەنێت. بەرکەوتن بە یەکە ئۆکسیدی کاربۆن دەتوانێت ببێتە هۆی سەختی هەناسەدان، ماندووبوون، سەرگێژبوون و نیشانەکانی تری وەک ئەنفلۆنزا. بەرکەوتن بە ئاستی بەرزی یەکە ئۆکسیدی کاربۆن دەتوانێت کوشندە بێت.</string>
     <string name="air_quality_co_info_introduction">یەکە ئۆکسیدی کاربۆن (CO) گازێکی ژەهراوی و سووتێنەرە کە بێ ڕەنگ و بۆن و بێ تام و بێزارکەر نییە.</string>
     <string name="air_quality_co_info_origin">بەرهەم دەهێنرێت لەلایەن سووتانی ناتەواوی سووتەمەنییە کاربۆنییەکان وەک دار و بەنزین و خەڵوز و گازی سروشتی و نەوتی سپی لە سۆبەی سادە و ئاگری کراوە و چرای فتیڵ و کوورە و ئاگر و شووشەدا بەرهەم دێت. سەرچاوەی سەرەکی یەکە ئۆکسیدی کاربۆن (CO) لە هەوای دەوروبەر لە ئۆتۆمبێلی بزوێنەرەوەیە.</string>
-    <string name="allergen_tap_to_see_more">کلیک بکە بۆ بینینی زیاتر…</string>
+    <string name="pollen_tap_to_see_more">کلیک بکە بۆ بینینی زیاتر…</string>
     <string name="ephemeris_moon_phase_new_moon">مانگی نوێ</string>
     <string name="ephemeris_moon_phase_waxing_crescent">مانگی چەماوە</string>
     <string name="ephemeris_moon_phase_first_quarter">چارەکی یەکەم</string>

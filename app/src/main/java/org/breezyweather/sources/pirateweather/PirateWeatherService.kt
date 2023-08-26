@@ -89,7 +89,7 @@ class PirateWeatherService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override val airQualityAttribution = null
-    override val allergenAttribution = null
+    override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
     override val normalsAttribution = null

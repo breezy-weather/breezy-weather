@@ -19,6 +19,7 @@ package org.breezyweather.db.entities
 import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.annotation.Uid
 import org.breezyweather.db.converters.TimeZoneConverter
 import java.util.*
 
@@ -49,7 +50,7 @@ data class LocationEntity(
     // Sources
     var weatherSource: String,
     var airQualitySource: String? = null,
-    var allergenSource: String? = null,
+    var pollenSource: String? = null,
     var minutelySource: String? = null,
     var alertSource: String? = null,
     var normalsSource: String? = null,

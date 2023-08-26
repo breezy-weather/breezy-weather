@@ -88,10 +88,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">亏凸月</string>
     <string name="ephemeris_moon_phase_last_quarter">下弦月</string>
     <string name="ephemeris_moon_phase_waning_crescent">残月</string>
-    <string name="allergen_grass">草地花粉</string>
-    <string name="allergen_mold">霉菌</string>
-    <string name="allergen_ragweed">豚草花粉</string>
-    <string name="allergen_tree">树木花粉</string>
+    <string name="pollen_grass">草地花粉</string>
+    <string name="pollen_mold">霉菌</string>
+    <string name="pollen_ragweed">豚草花粉</string>
+    <string name="pollen_tree">树木花粉</string>
     <string name="uv_index_0_2">低</string>
     <string name="uv_index_3_5">中</string>
     <string name="uv_index_6_7">高</string>
@@ -102,7 +102,7 @@
     <string name="minutely_forecast">分钟预报</string>
     <string name="precipitation_forecast">降水预报</string>
     <string name="air_quality">空气质量</string>
-    <string name="allergen">过敏原</string>
+    <string name="pollen">过敏原</string>
     <string name="details">详细数据</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
@@ -214,7 +214,7 @@
     <string name="location_resident_message">设置为常驻城市</string>
     <string name="location_resident_dialog">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。
 \n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>
-    <string name="allergen_tap_to_see_more">点击查看更多…</string>
+    <string name="pollen_tap_to_see_more">点击查看更多…</string>
     <!-- content description -->
     <string name="message_tap_again_to_exit">再次点击以退出</string>
     <string name="action_back">返回</string>
@@ -451,7 +451,7 @@
     <string name="weather_source_accu_preference_hours_72">72小时</string>
     <string name="settings_background_updates">后台更新</string>
     <string name="settings_background_updates_dont_kill_my_app_title">OEM特定说明</string>
-    <string name="weather_air_quality_and_allergen_data_by">空气质量和大气污染数据来自 $</string>
+    <string name="weather_air_quality_and_pollen_data_by">空气质量和大气污染数据来自 $</string>
     <string name="location_message_search_failed">搜索位置失败</string>
     <string name="location_message_permission_background_missing">缺少在后台访问位置的权限</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些OEM有额外的限制，可以终止后台服务。Don’t kill my app! 网站有关于如何修复它的信息。</string>
@@ -577,23 +577,23 @@
     <string name="message_source_not_installed_error_title">来源不再可用</string>
     <string name="weather_source_accu_preference_hours_240">240小时</string>
     <string name="action_help_me_choose">帮助我选择</string>
-    <string name="allergen_alder">桤木</string>
-    <string name="allergen_birch">桦木</string>
-    <string name="allergen_mugwort">艾蒿</string>
-    <string name="allergen_olive">橄榄</string>
-    <string name="allergen_level_0">无</string>
-    <string name="allergen_level_1">非常低</string>
-    <string name="allergen_level_2">低</string>
-    <string name="allergen_level_4">高</string>
-    <string name="allergen_level_5">非常高</string>
-    <string name="allergen_level_3">中</string>
+    <string name="pollen_alder">桤木</string>
+    <string name="pollen_birch">桦木</string>
+    <string name="pollen_mugwort">艾蒿</string>
+    <string name="pollen_olive">橄榄</string>
+    <string name="pollen_level_0">无</string>
+    <string name="pollen_level_1">非常低</string>
+    <string name="pollen_level_2">低</string>
+    <string name="pollen_level_4">高</string>
+    <string name="pollen_level_5">非常高</string>
+    <string name="pollen_level_3">中</string>
     <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
     <string name="location_resident_location">常驻位置</string>
     <string name="settings_weather_source">天气数据源</string>
     <string name="action_delete">删除</string>
     <string name="weather_air_quality_data_by">空气质量数据来自 $</string>
     <string name="weather_minutely_data_by">每分钟降水量数据来自 $</string>
-    <string name="weather_allergen_data_by">过敏原数据来自 $</string>
+    <string name="weather_pollen_data_by">过敏原数据来自 $</string>
     <string name="weather_alert_data_by">警报数据来自 $</string>
     <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>

@@ -26,7 +26,7 @@ import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.ui.activities.AlertActivity
-import org.breezyweather.common.ui.activities.AllergenActivity
+import org.breezyweather.common.ui.activities.PollenActivity
 import org.breezyweather.daily.DailyWeatherActivity
 import org.breezyweather.main.MainActivity
 import org.breezyweather.search.SearchActivity
@@ -122,11 +122,11 @@ object IntentHelper {
         )
     }
 
-    fun startAllergenActivity(activity: Activity, location: Location) {
+    fun startPollenActivity(activity: Activity, location: Location) {
         activity.startActivity(
-            Intent(activity, AllergenActivity::class.java).apply {
+            Intent(activity, PollenActivity::class.java).apply {
                 putExtra(
-                    AllergenActivity.KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID,
+                    PollenActivity.KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID,
                     location.formattedId
                 )
             }

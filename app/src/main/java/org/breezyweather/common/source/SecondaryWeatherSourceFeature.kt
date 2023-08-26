@@ -20,7 +20,7 @@ enum class SecondaryWeatherSourceFeature(
     val id: String
 ) {
     FEATURE_AIR_QUALITY("airQuality"),
-    FEATURE_ALLERGEN("allergen"),
+    FEATURE_POLLEN("pollen"),
     FEATURE_MINUTELY("minutely"),
     FEATURE_ALERT("alert"),
     FEATURE_NORMALS("normals");
@@ -31,7 +31,7 @@ enum class SecondaryWeatherSourceFeature(
             value: String
         ) = when (value) {
             "airQuality" -> FEATURE_AIR_QUALITY
-            "allergen" -> FEATURE_ALLERGEN
+            "pollen" -> FEATURE_POLLEN
             "minutely" -> FEATURE_MINUTELY
             "alert" -> FEATURE_ALERT
             "normals" -> FEATURE_NORMALS

@@ -24,46 +24,46 @@ import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import kotlin.math.roundToInt
 
-enum class AllergenIndex(
+enum class PollenIndex(
     val id: String,
-    @StringRes val allergenName: Int,
+    @StringRes val pollenName: Int,
     val thresholds: List<Int>
 ) {
-    TREE("tree", R.string.allergen_tree, listOf(0, 10, 50, 100, 300)),
-    ALDER("alder", R.string.allergen_alder, listOf(0, 10, 50, 100, 300)),
-    BIRCH("birch", R.string.allergen_birch, listOf(0, 10, 50, 100, 300)),
-    GRASS("grass", R.string.allergen_grass, listOf(0, 5, 25, 50, 100)),
-    OLIVE("olive", R.string.allergen_olive, listOf(0, 10, 50, 200, 400)),
-    RAGWEED("ragweed", R.string.allergen_ragweed, listOf(0, 5, 11, 23, 50)),
-    MUGWORT("mugwort", R.string.allergen_mugwort, listOf(0, 5, 11, 23, 50)), // TODO: To be checked
-    MOLD("mold", R.string.allergen_mold, listOf(0, 6500, 13000, 50000, 65000, 1000000));
+    TREE("tree", R.string.pollen_tree, listOf(0, 10, 50, 100, 300)),
+    ALDER("alder", R.string.pollen_alder, listOf(0, 10, 50, 100, 300)),
+    BIRCH("birch", R.string.pollen_birch, listOf(0, 10, 50, 100, 300)),
+    GRASS("grass", R.string.pollen_grass, listOf(0, 5, 25, 50, 100)),
+    OLIVE("olive", R.string.pollen_olive, listOf(0, 10, 50, 200, 400)),
+    RAGWEED("ragweed", R.string.pollen_ragweed, listOf(0, 5, 11, 23, 50)),
+    MUGWORT("mugwort", R.string.pollen_mugwort, listOf(0, 5, 11, 23, 50)), // TODO: To be checked
+    MOLD("mold", R.string.pollen_mold, listOf(0, 6500, 13000, 50000, 65000, 1000000));
 
     companion object {
         // No index exists, but let’s make a fake one to help with graphics
-        val allergenIndexThresholds = listOf(0, 25, 50, 75, 100)
-        val namesArrayId = R.array.allergen_levels
-        val colorsArrayId = R.array.allergen_level_colors
+        val pollenIndexThresholds = listOf(0, 25, 50, 75, 100)
+        val namesArrayId = R.array.pollen_levels
+        val colorsArrayId = R.array.pollen_level_colors
 
-        fun getAllergenIndexToLevel(allergenIndex: Int?): Int? {
-            if (allergenIndex == null) return null
-            val level = allergenIndexThresholds.indexOfLast { allergenIndex >= it }
+        fun getPollenIndexToLevel(pollenIndex: Int?): Int? {
+            if (pollenIndex == null) return null
+            val level = pollenIndexThresholds.indexOfLast { pollenIndex >= it }
             return if (level >= 0) level else null
         }
 
         @ColorInt
-        fun getAllergenIndexToColor(context: Context, allergenIndex: Int?): Int {
-            if (allergenIndex == null) return Color.TRANSPARENT
-            if (allergenIndex == 0) return ContextCompat.getColor(context, R.color.allergenLevel_0)
-            val level = getAllergenIndexToLevel(allergenIndex)
+        fun getPollenIndexToColor(context: Context, pollenIndex: Int?): Int {
+            if (pollenIndex == null) return Color.TRANSPARENT
+            if (pollenIndex == 0) return ContextCompat.getColor(context, R.color.pollenLevel_0)
+            val level = getPollenIndexToLevel(pollenIndex)
             return if (level != null) context.resources.getIntArray(colorsArrayId)
                 .getOrNull(level) ?: Color.TRANSPARENT
             else Color.TRANSPARENT
         }
 
-        fun getAllergenIndexToName(context: Context, allergenIndex: Int?): String? {
-            if (allergenIndex == null) return null
-            if (allergenIndex == 0) return context.getString(R.string.allergen_level_0)
-            val level = getAllergenIndexToLevel(allergenIndex)
+        fun getPollenIndexToName(context: Context, pollenIndex: Int?): String? {
+            if (pollenIndex == null) return null
+            if (pollenIndex == 0) return context.getString(R.string.pollen_level_0)
+            val level = getPollenIndexToLevel(pollenIndex)
             return if (level != null) context.resources.getStringArray(namesArrayId).getOrNull(level) else null
         }
     }
@@ -79,12 +79,12 @@ enum class AllergenIndex(
                 cp,
                 thresholds[level],
                 thresholds[level + 1],
-                allergenIndexThresholds[level],
-                allergenIndexThresholds[level + 1]
+                pollenIndexThresholds[level],
+                pollenIndexThresholds[level + 1]
             )
         } else {
             // Continue producing a linear index above lastIndex
-            ((cp * allergenIndexThresholds.last()) / thresholds.last()).roundToInt()
+            ((cp * pollenIndexThresholds.last()) / thresholds.last()).roundToInt()
         }
     }
 
@@ -100,8 +100,8 @@ enum class AllergenIndex(
         return if (level >= 0) level else null
     }
 
-    fun getName(context: Context, cp: Double?): String? = getAllergenIndexToName(context, getIndex(cp))
+    fun getName(context: Context, cp: Double?): String? = getPollenIndexToName(context, getIndex(cp))
 
     @ColorInt
-    fun getColor(context: Context, cp: Double?): Int = getAllergenIndexToColor(context, getIndex(cp))
+    fun getColor(context: Context, cp: Double?): Int = getPollenIndexToColor(context, getIndex(cp))
 }

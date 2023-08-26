@@ -130,7 +130,7 @@ private fun SecondarySourcesPreference(
         val hasChangedASecondarySource = remember { mutableStateOf(false) }
         val weatherSource = remember { mutableStateOf(location.weatherSource) }
         val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
-        val allergenSource = remember { mutableStateOf(location.allergenSource ?: "") }
+        val pollenSource = remember { mutableStateOf(location.pollenSource ?: "") }
         val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
         val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
         val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
@@ -143,11 +143,11 @@ private fun SecondarySourcesPreference(
                         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, location
                     )
         }
-        val compatibleAllergenSources = secondarySources.filter {
+        val compatiblePollenSources = secondarySources.filter {
             it.id != location.weatherSource &&
-                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
+                    it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
                     && it.isFeatureSupportedForLocation(
-                SecondaryWeatherSourceFeature.FEATURE_ALLERGEN, location
+                SecondaryWeatherSourceFeature.FEATURE_POLLEN, location
             )
         }
         val compatibleMinutelySources = secondarySources.filter {
@@ -204,12 +204,12 @@ private fun SecondarySourcesPreference(
                         hasChangedASecondarySource.value = true
                     }
                     SourceView(
-                        title = stringResource(R.string.allergen),
-                        selectedKey = allergenSource.value,
+                        title = stringResource(R.string.pollen),
+                        selectedKey = pollenSource.value,
                         sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatibleAllergenSources.associate { it.id to it.name },
+                                compatiblePollenSources.associate { it.id to it.name },
                     ) { sourceId ->
-                        allergenSource.value = sourceId
+                        pollenSource.value = sourceId
                         hasChangedASecondarySource.value = true
                     }
                     SourceView(
@@ -252,7 +252,7 @@ private fun SecondarySourcesPreference(
                                 cityId = if (hasChangedMainSource.value) "" else location.cityId,
                                 weatherSource = weatherSource.value,
                                 airQualitySource = if (hasChangedMainSource.value && airQualitySource.value == weatherSource.value) "" else airQualitySource.value,
-                                allergenSource = if (hasChangedMainSource.value && allergenSource.value == weatherSource.value) "" else allergenSource.value,
+                                pollenSource = if (hasChangedMainSource.value && pollenSource.value == weatherSource.value) "" else pollenSource.value,
                                 minutelySource = if (hasChangedMainSource.value && minutelySource.value == weatherSource.value) "" else minutelySource.value,
                                 alertSource = if (hasChangedMainSource.value && alertSource.value == weatherSource.value) "" else alertSource.value,
                                 normalsSource = if (hasChangedMainSource.value && normalsSource.value == weatherSource.value) "" else normalsSource.value,
@@ -264,7 +264,7 @@ private fun SecondarySourcesPreference(
                                         refreshTime = null,
                                         mainUpdateTime = null,
                                         airQualityUpdateTime = null,
-                                        allergenUpdateTime = null,
+                                        pollenUpdateTime = null,
                                         minutelyUpdateTime = null,
                                         alertsUpdateTime = null,
                                         normalsUpdateTime = null

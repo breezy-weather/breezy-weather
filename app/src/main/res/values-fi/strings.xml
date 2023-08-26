@@ -80,16 +80,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Vähenevä puolikuu</string>
     <string name="ephemeris_moon_phase_last_quarter">Kolmas neljännes</string>
     <string name="ephemeris_moon_phase_waning_crescent">Vähenevä kuunsirppi</string>
-    <string name="allergen_grass">Heinä</string>
-    <string name="allergen_mold">Home</string>
-    <string name="allergen_ragweed">Pujo / Marunatuoksukki</string>
-    <string name="allergen_tree">Puu</string>
+    <string name="pollen_grass">Heinä</string>
+    <string name="pollen_mold">Home</string>
+    <string name="pollen_ragweed">Pujo / Marunatuoksukki</string>
+    <string name="pollen_tree">Puu</string>
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
     <string name="minutely_forecast">Minuuttikohtainen ennuste</string>
     <string name="precipitation_forecast">Sade-ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
-    <string name="allergen">Allergeenit</string>
+    <string name="pollen">Allergeenit</string>
     <string name="details">Lisätietoja</string>
     <string name="ephemeris">Aurinko &amp; kuu</string>
     <string name="action_next">Seuraava</string>
@@ -194,7 +194,7 @@
     <string name="location_resident_message">Aseta kotikaupungiksi</string>
     <string name="location_resident_dialog">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.
 \nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
-    <string name="allergen_tap_to_see_more">Klikkaa saadaksesi lisää…</string>
+    <string name="pollen_tap_to_see_more">Klikkaa saadaksesi lisää…</string>
     <string name="message_tap_again_to_exit">Klikkaa uudelleen poistuaksesi</string>
     <!-- content description -->
     <string name="action_back">takaisin</string>

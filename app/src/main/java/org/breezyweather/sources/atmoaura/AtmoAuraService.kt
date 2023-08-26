@@ -67,7 +67,7 @@ class AtmoAuraService @Inject constructor(
                 && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"))
     }
     override val airQualityAttribution = "Atmo Auvergne-Rhône-Alpes"
-    override val allergenAttribution = null
+    override val pollenAttribution = null
     override val minutelyAttribution = null
     override val alertAttribution = null
     override val normalsAttribution = null

@@ -10,7 +10,9 @@
     <string name="precipitation_forecast">Precipitation forecast</string>
     <string name="minutely_precipitations">Precipitation minute by minute</string>
     <string name="air_quality">Air quality</string>
-    <string name="allergen">Allergen</string>
+    <!-- We use it singular in English as in “Grass pollen” -->
+    <string name="pollen">Pollen</string>
+    <string name="pollen_and_mold">Pollen &amp; mold</string>
     <string name="ephemeris">Sun &amp; moon</string>
     <string name="details">Details</string>
     <!-- Alerts -->
@@ -147,24 +149,24 @@
     <string name="air_quality_co_info_introduction">Carbon monoxide (CO) is a poisonous, flammable gas that is colorless, odorless, tasteless, and non irritant.</string>
     <string name="air_quality_co_info_origin">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
     <string name="air_quality_co_info_consequences">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
-    <!-- Allergens -->
+    <!-- Pollen -->
     <!-- You can find some translations on the bottom of https://www.pollens.fr/le-reseau/les-pollens -->
-    <string name="allergen_tree">Tree</string>
-    <string name="allergen_alder">Alder</string>
-    <string name="allergen_birch">Birch</string>
-    <string name="allergen_grass">Grass</string>
-    <string name="allergen_mugwort">Mugwort</string>
-    <string name="allergen_olive">Olive</string>
-    <string name="allergen_ragweed">Ragweed</string>
-    <string name="allergen_mold">Mold</string>
-    <!-- Allergen level means “Potential risk of allergy” -->
-    <string name="allergen_level_0">None</string>
-    <string name="allergen_level_1">Very low</string>
-    <string name="allergen_level_2">Low</string>
-    <string name="allergen_level_3">Moderate</string>
-    <string name="allergen_level_4">High</string>
-    <string name="allergen_level_5">Very high</string>
-    <string name="allergen_tap_to_see_more">Tap to see more…</string>
+    <string name="pollen_tree">Tree</string>
+    <string name="pollen_alder">Alder</string>
+    <string name="pollen_birch">Birch</string>
+    <string name="pollen_grass">Grass</string>
+    <string name="pollen_mugwort">Mugwort</string>
+    <string name="pollen_olive">Olive</string>
+    <string name="pollen_ragweed">Ragweed</string>
+    <string name="pollen_mold">Mold</string>
+    <!-- Pollen level means “Potential risk of allergy” -->
+    <string name="pollen_level_0">None</string>
+    <string name="pollen_level_1">Very low</string>
+    <string name="pollen_level_2">Low</string>
+    <string name="pollen_level_3">Moderate</string>
+    <string name="pollen_level_4">High</string>
+    <string name="pollen_level_5">Very high</string>
+    <string name="pollen_tap_to_see_more">Tap to see more…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">New moon</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
@@ -204,8 +206,8 @@
     <!-- Weather sources -->
     <string name="weather_data_by">Data by $</string>
     <string name="weather_air_quality_data_by">Air quality data by $</string>
-    <string name="weather_allergen_data_by">Allergen data by $</string>
-    <string name="weather_air_quality_and_allergen_data_by">Air quality and allergen data by $</string>
+    <string name="weather_pollen_data_by">Pollen data by $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
     <string name="weather_minutely_data_by">Precipitation minute by minute data by $</string>
     <string name="weather_alert_data_by">Alert data by $</string>
     <string name="weather_normals_data_by">Temperature normals data by $</string>

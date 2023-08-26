@@ -114,8 +114,8 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".common.ui.activities.AllergenActivity"
-            android:label="@string/allergen"
+            android:name=".common.ui.activities.PollenActivity"
+            android:label="@string/pollen"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity

@@ -16,7 +16,7 @@
 
             <TextView
                 android:id="@+id/container_main_pollen_title"
-                android:text="@string/allergen"
+                android:text="@string/pollen"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginStart="@dimen/normal_margin"
@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/container_main_pollen_subtitle"
-                android:text="@string/allergen_tap_to_see_more"
+                android:text="@string/pollen_tap_to_see_more"
                 android:layout_below="@id/container_main_pollen_title"
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="@dimen/normal_margin"

@@ -36,11 +36,10 @@ class WeatherEntity(
 
     // base.
     var formattedId: String,
-    @Uid(4434518373706987614L)
     var refreshTime: Date? = null,
     var mainUpdateTime: Date? = null,
     var airQualityUpdateTime: Date? = null,
-    var allergenUpdateTime: Date? = null,
+    var pollenUpdateTime: Date? = null,
     var minutelyUpdateTime: Date? = null,
     var alertsUpdateTime: Date? = null,
     var normalsUpdateTime: Date? = null,

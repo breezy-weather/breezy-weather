@@ -59,7 +59,7 @@ The following features, if not available from your selected source, can be added
 | Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China    |
 |------------------------------------|------------|---------------|---------------|-------------|--------------|----------|
 | **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | Current  |
-| **Allergens**                      | Europe     | North America | ❌             | ❌           | ❌            | ❌        |
+| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌        |
 | **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ✅        |
 | **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | ✅        |
 | **Normals**                        | Average¹   | ✅             | Average¹      | Average¹    | ✅            | Average¹ |
@@ -126,7 +126,7 @@ Legend:
 | Sources                            | Pirate Weather | HERE     |
 |------------------------------------|----------------|----------|
 | **Air quality**                    | ❌              | ❌        |
-| **Allergens**                      | ❌              | ❌        |
+| **Pollen**                         | ❌              | ❌        |
 | **Precipitation in the next hour** | ✅              | ❌        |
 | **Alerts**                         | ✅              | US (NWS) |
 | **Normals**                        | Average¹       | Average¹ |
@@ -156,7 +156,7 @@ Legend:
 | Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA     |
 |------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------------|
 | **Air quality**                    | ✅          | ❌           | Norway      | ✅           | ❌              | ❌            | France (AURA) |
-| **Allergens**                      | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌             |
+| **Pollen**                         | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌             |
 | **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅           | ✅              | France       | ❌             |
 | **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | ❌             |
 | **Normals**                        | ❌          | ❌           | ❌           | ❌           | ❌              | ✅⁴           | ❌             |

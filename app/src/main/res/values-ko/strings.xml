@@ -79,16 +79,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">요월</string>
     <string name="ephemeris_moon_phase_last_quarter">하현달</string>
     <string name="ephemeris_moon_phase_waning_crescent">그믐달</string>
-    <string name="allergen_grass">풀</string>
-    <string name="allergen_mold">양토</string>
-    <string name="allergen_ragweed">돼지풀</string>
-    <string name="allergen_tree">나무</string>
+    <string name="pollen_grass">풀</string>
+    <string name="pollen_mold">양토</string>
+    <string name="pollen_ragweed">돼지풀</string>
+    <string name="pollen_tree">나무</string>
     <string name="daily_forecast">일간 예보</string>
     <string name="hourly_forecast">시간별 예보</string>
     <string name="minutely_forecast">분간 예보</string>
     <string name="precipitation_forecast">강수 예보</string>
     <string name="air_quality">대기질</string>
-    <string name="allergen">알레르기</string>
+    <string name="pollen">알레르기</string>
     <string name="details">세부 사항</string>
     <string name="ephemeris">해와 달</string>
     <string name="action_next">다음</string>
@@ -179,7 +179,7 @@
     <string name="location_resident_message">거주지로 지정</string>
     <string name="location_resident_dialog">Breezy Weather는 현재 위치에 따라 거주지를 자동으로 보여주거나 숨깁니다.
 \n예를 들어 고향을 거주지로 설정하면 여행하는 중에 고향을 날씨를 알 수 있습니다. 여행이 끝나고 집에 도착하면 고향의 날씨는 숨겨지고 현재 위치의 날씨로 바뀔 것입니다.</string>
-    <string name="allergen_tap_to_see_more">눌러서 더 알아보기…</string>
+    <string name="pollen_tap_to_see_more">눌러서 더 알아보기…</string>
     <!-- action -->
     <string name="alerts">경보</string>
     <string name="action_search">검색</string>
@@ -317,7 +317,7 @@
     <string name="unit_h_voice">시간</string>
     <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
-    <string name="weather_air_quality_and_allergen_data_by">대기질 및 꽃가루 정보 $ 제공</string>
+    <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 $ 제공</string>
     <string name="action_location_list">위치 목록</string>
     <string name="action_choose_weather_source">날씨 제공 업체 선택</string>
     <string name="action_add_from_map">지도에서 추가</string>

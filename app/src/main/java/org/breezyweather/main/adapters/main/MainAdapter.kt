@@ -73,8 +73,8 @@ class MainAdapter(
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }
-                if (c === CardDisplay.CARD_ALLERGEN
-                    && (weather.dailyForecast.isEmpty() || weather.today?.allergen == null || !weather.today?.allergen!!.isIndexValid)
+                if (c === CardDisplay.CARD_POLLEN
+                    && (weather.dailyForecast.isEmpty() || weather.today?.pollen == null || !weather.today?.pollen!!.isIndexValid)
                 ) {
                     continue
                 }
@@ -106,7 +106,7 @@ class MainAdapter(
         ViewType.DAILY -> DailyViewHolder(parent)
         ViewType.HOURLY -> HourlyViewHolder(parent)
         ViewType.AIR_QUALITY -> AirQualityViewHolder(parent)
-        ViewType.ALLERGEN -> AllergenViewHolder(parent)
+        ViewType.POLLEN -> PollenViewHolder(parent)
         ViewType.ASTRO -> AstroViewHolder(parent)
         ViewType.LIVE -> DetailsViewHolder(parent)
         ViewType.FOOTER -> FooterViewHolder(ComposeView(parent.context))
@@ -153,7 +153,7 @@ class MainAdapter(
         for (i in 0 until itemCount) {
             val type = getItemViewType(i)
             if (type == ViewType.DAILY || type == ViewType.HOURLY || type == ViewType.AIR_QUALITY
-                || type == ViewType.ALLERGEN || type == ViewType.ASTRO || type == ViewType.LIVE) {
+                || type == ViewType.POLLEN || type == ViewType.ASTRO || type == ViewType.LIVE) {
                 mFirstCardPosition = i
                 return
             }
@@ -184,7 +184,7 @@ class MainAdapter(
             CardDisplay.CARD_DAILY_OVERVIEW -> ViewType.DAILY
             CardDisplay.CARD_HOURLY_OVERVIEW -> ViewType.HOURLY
             CardDisplay.CARD_AIR_QUALITY -> ViewType.AIR_QUALITY
-            CardDisplay.CARD_ALLERGEN -> ViewType.ALLERGEN
+            CardDisplay.CARD_POLLEN -> ViewType.POLLEN
             CardDisplay.CARD_SUNRISE_SUNSET -> ViewType.ASTRO
             else -> ViewType.LIVE
         }

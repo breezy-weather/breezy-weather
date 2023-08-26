@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.ui.composables.AllergenGrid
+import org.breezyweather.common.ui.composables.PollenGrid
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -49,11 +49,11 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
-class AllergenActivity : GeoActivity() {
+class PollenActivity : GeoActivity() {
 
     companion object {
-        const val KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID =
-            "ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID"
+        const val KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID =
+            "POLLEN_ACTIVITY_LOCATION_FORMATTED_ID"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,7 @@ class AllergenActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val formattedId = intent.getStringExtra(KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID) ?: ""
+        val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID) ?: ""
         var location = LocationEntityRepository.readLocation(formattedId)
             ?: LocationEntityRepository.readLocationList()[0]
 
@@ -84,7 +84,7 @@ class AllergenActivity : GeoActivity() {
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                 topBar = {
                     FitStatusBarTopAppBar(
-                        title = stringResource(R.string.allergen),
+                        title = stringResource(R.string.pollen),
                         onBackPressed = { finish() },
                         scrollBehavior = scrollBehavior,
                     )
@@ -94,8 +94,8 @@ class AllergenActivity : GeoActivity() {
                     modifier = Modifier.fillMaxHeight(),
                     contentPadding = it,
                 ) {
-                    items(weather.dailyForecastStartingToday.filter { d -> d.allergen?.isIndexValid == true }) { daily ->
-                        daily.allergen?.let { allergen ->
+                    items(weather.dailyForecastStartingToday.filter { d -> d.pollen?.isIndexValid == true }) { daily ->
+                        daily.pollen?.let { pollen ->
                             Material3CardListItem(
                                 modifier = Modifier.fillMaxWidth()
                             ) {
@@ -110,14 +110,14 @@ class AllergenActivity : GeoActivity() {
                                         fontWeight = FontWeight.Bold,
                                         style = MaterialTheme.typography.titleMedium,
                                     )
-                                    AllergenGrid(allergen = allergen)
+                                    PollenGrid(pollen = pollen)
                                 }
                             }
                         }
                     }
 
                     bottomInsetItem(
-                        extraHeight = getCardListItemMarginDp(this@AllergenActivity).dp
+                        extraHeight = getCardListItemMarginDp(this@PollenActivity).dp
                     )
                 }
             }

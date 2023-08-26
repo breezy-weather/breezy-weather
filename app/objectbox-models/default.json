@@ -758,7 +758,7 @@
         },
         {
           "id": "18:1246219486439726178",
-          "name": "allergenSource",
+          "name": "pollenSource",
           "type": 9
         },
         {
@@ -996,7 +996,7 @@
         },
         {
           "id": "61:6064010166756780178",
-          "name": "allergenUpdateTime",
+          "name": "pollenUpdateTime",
           "type": 10
         },
         {

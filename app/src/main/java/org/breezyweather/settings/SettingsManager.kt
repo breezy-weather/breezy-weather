@@ -52,7 +52,7 @@ class SettingsManager private constructor(context: Context) {
         private const val DEFAULT_CARD_DISPLAY = ("daily_overview"
                 + "&hourly_overview"
                 + "&air_quality"
-                + "&allergen"
+                + "&pollen"
                 + "&sunrise_sunset"
                 + "&live")
         private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"

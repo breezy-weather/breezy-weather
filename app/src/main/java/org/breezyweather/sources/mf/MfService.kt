@@ -212,7 +212,7 @@ class MfService @Inject constructor(
                 ) || feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS
     }
     override val airQualityAttribution = null
-    override val allergenAttribution = null
+    override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = weatherAttribution
     override val normalsAttribution = weatherAttribution

@@ -24,12 +24,12 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.ui.composables.AllergenGrid
+import org.breezyweather.common.ui.composables.PollenGrid
 import org.breezyweather.databinding.ItemPollenDailyBinding
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
-open class HomeAllergenAdapter(
+open class HomePollenAdapter(
     private val location: Location
 ) : RecyclerView.Adapter<HomePollenViewHolder>() {
 
@@ -45,7 +45,7 @@ open class HomeAllergenAdapter(
         holder.onBindView(location, location.weather!!.dailyForecastStartingToday[position])
     }
 
-    override fun getItemCount() = location.weather?.dailyForecastStartingToday?.filter { it.allergen?.isIndexValid == true }?.size ?: 0
+    override fun getItemCount() = location.weather?.dailyForecastStartingToday?.filter { it.pollen?.isIndexValid == true }?.size ?: 0
 }
 
 class HomePollenViewHolder internal constructor(
@@ -60,10 +60,10 @@ class HomePollenViewHolder internal constructor(
         binding.title.text = daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_widget_long))
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
-        daily.allergen?.let {
+        daily.pollen?.let {
             binding.composeView.setContent {
                 BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
-                    AllergenGrid(allergen = it)
+                    PollenGrid(pollen = it)
                 }
             }
         }

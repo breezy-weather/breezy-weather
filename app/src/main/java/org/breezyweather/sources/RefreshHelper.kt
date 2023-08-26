@@ -266,7 +266,7 @@ class RefreshHelper @Inject constructor(
             with(location) {
                 listOf(
                     Pair(airQualitySource, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY),
-                    Pair(allergenSource, SecondaryWeatherSourceFeature.FEATURE_ALLERGEN),
+                    Pair(pollenSource, SecondaryWeatherSourceFeature.FEATURE_POLLEN),
                     Pair(minutelySource, SecondaryWeatherSourceFeature.FEATURE_MINUTELY),
                     Pair(alertSource, SecondaryWeatherSourceFeature.FEATURE_ALERT),
                     Pair(normalsSource, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
@@ -353,10 +353,10 @@ class RefreshHelper @Inject constructor(
                 && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                 Date()
             } else base.airQualityUpdateTime
-            var allergenUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            var pollenUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
                 Date()
-            } else base.allergenUpdateTime
+            } else base.pollenUpdateTime
             var minutelyUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
                 && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 Date()
@@ -448,11 +448,11 @@ class RefreshHelper @Inject constructor(
                             it
                         } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
-                    allergen = if (!location.allergenSource.isNullOrEmpty() && location.allergenSource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.allergenSource) { null }?.allergen?.let {
-                            allergenUpdateTime = Date()
+                    pollen = if (!location.pollenSource.isNullOrEmpty() && location.pollenSource != location.weatherSource) {
+                        secondarySourceCalls.getOrElse(location.pollenSource) { null }?.pollen?.let {
+                            pollenUpdateTime = Date()
                             it
-                        } ?: getAllergenWrapperFromWeather(location.weather, yesterdayMidnight)
+                        } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
                     minutelyForecast = if (!location.minutelySource.isNullOrEmpty() && location.minutelySource != location.weatherSource) {
                         secondarySourceCalls.getOrElse(location.minutelySource) { null }?.minutelyForecast?.let {
@@ -480,7 +480,7 @@ class RefreshHelper @Inject constructor(
              * while some complementary sources starts at 00:00.
              * Some others have a 3-hourly starting from day 3+
              * Only relying on the main source leads to missing hourly data that is used for daily
-             * computation (for example, daily air quality and allergen)
+             * computation (for example, daily air quality and pollen)
              * For this reason, we complete missing data earlier for the secondary data
              */
             val secondaryWeatherWrapperCompleted = completeMissingSecondaryWeatherDailyData(
@@ -518,7 +518,7 @@ class RefreshHelper @Inject constructor(
                 base = base.copy(
                     mainUpdateTime = if (isMainDataValid) base.mainUpdateTime else Date(),
                     airQualityUpdateTime = airQualityUpdateTime,
-                    allergenUpdateTime = allergenUpdateTime,
+                    pollenUpdateTime = pollenUpdateTime,
                     minutelyUpdateTime = minutelyUpdateTime,
                     alertsUpdateTime = alertsUpdateTime,
                     normalsUpdateTime = normalsUpdateTime
@@ -636,10 +636,10 @@ class RefreshHelper @Inject constructor(
                     if (isRestricted) WAIT_AIR_QUALITY_RESTRICTED else WAIT_AIR_QUALITY
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_ALLERGEN -> {
+            SecondaryWeatherSourceFeature.FEATURE_POLLEN -> {
                 return isUpdateStillValid(
-                    location.weather.base.allergenUpdateTime,
-                    if (isRestricted) WAIT_ALLERGEN_RESTRICTED else WAIT_ALLERGEN
+                    location.weather.base.pollenUpdateTime,
+                    if (isRestricted) WAIT_POLLEN_RESTRICTED else WAIT_POLLEN
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_MINUTELY -> {
@@ -707,8 +707,8 @@ class RefreshHelper @Inject constructor(
         const val WAIT_MAIN_RESTRICTED = WAIT_RESTRICTED // 15 min
         const val WAIT_AIR_QUALITY = WAIT_REGULAR // 5 min
         const val WAIT_AIR_QUALITY_RESTRICTED = WAIT_ONE_HOUR // 1 hour
-        const val WAIT_ALLERGEN = WAIT_REGULAR // 5 min
-        const val WAIT_ALLERGEN_RESTRICTED = WAIT_ONE_HOUR // 1 hour
+        const val WAIT_POLLEN = WAIT_REGULAR // 5 min
+        const val WAIT_POLLEN_RESTRICTED = WAIT_ONE_HOUR // 1 hour
         const val WAIT_MINUTELY = WAIT_REGULAR // 5 min
         const val WAIT_MINUTELY_ONGOING = WAIT_MINIMUM // 1 min
         const val WAIT_MINUTELY_RESTRICTED = WAIT_RESTRICTED // 15 min

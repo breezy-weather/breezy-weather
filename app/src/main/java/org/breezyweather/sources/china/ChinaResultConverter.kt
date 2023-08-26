@@ -58,7 +58,7 @@ fun convert(
         city = result.name!!,
         weatherSource = "china",
         airQualitySource = location?.airQualitySource,
-        allergenSource = location?.allergenSource,
+        pollenSource = location?.pollenSource,
         minutelySource = location?.minutelySource,
         alertSource = location?.alertSource,
         normalsSource = location?.normalsSource

@@ -174,7 +174,7 @@ class MetNoService @Inject constructor(
                 )
     }
     override val airQualityAttribution = weatherAttribution
-    override val allergenAttribution = null
+    override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
     override val alertAttribution = null
     override val normalsAttribution = null

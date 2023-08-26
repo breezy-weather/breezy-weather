@@ -73,7 +73,7 @@ fun convert(location: Location, result: MfForecastResult): Location {
             city = result.properties.name,
             weatherSource = "mf",
             airQualitySource = location.airQualitySource,
-            allergenSource = location.allergenSource,
+            pollenSource = location.pollenSource,
             minutelySource = location.minutelySource,
             alertSource = location.alertSource,
             normalsSource = location.normalsSource

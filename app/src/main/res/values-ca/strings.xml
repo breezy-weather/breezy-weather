@@ -80,16 +80,16 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa minvant</string>
     <string name="ephemeris_moon_phase_last_quarter">Quart minvant</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minvant</string>
-    <string name="allergen_grass">Gramínies</string>
-    <string name="allergen_mold">Floridura</string>
-    <string name="allergen_ragweed">Ambròsia</string>
-    <string name="allergen_tree">Arbre</string>
+    <string name="pollen_grass">Gramínies</string>
+    <string name="pollen_mold">Floridura</string>
+    <string name="pollen_ragweed">Ambròsia</string>
+    <string name="pollen_tree">Arbre</string>
     <string name="daily_forecast">Pronòstic diari</string>
     <string name="hourly_forecast">Pronòstic horari</string>
     <string name="minutely_forecast">Pronòstic del minut</string>
     <string name="precipitation_forecast">Pronòstic per precipitació</string>
     <string name="air_quality">Qualitat de l’aire</string>
-    <string name="allergen">Al·lergen</string>
+    <string name="pollen">Al·lergen</string>
     <string name="details">Detalls</string>
     <string name="ephemeris">Sol i lluna</string>
     <string name="action_next">Següent</string>
@@ -191,7 +191,7 @@
     <string name="location_resident_message">Estableix com a ciutat on residiu</string>
     <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.
 \nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l’oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l’oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
-    <string name="allergen_tap_to_see_more">Premeu per saber-ne més…</string>
+    <string name="pollen_tap_to_see_more">Premeu per saber-ne més…</string>
     <string name="message_tap_again_to_exit">Premeu de nou per a sortir</string>
     <!-- action -->
     <string name="alerts">Alerta</string>

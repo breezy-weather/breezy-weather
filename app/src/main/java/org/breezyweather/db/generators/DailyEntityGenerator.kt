@@ -22,7 +22,7 @@ import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Allergen
+import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationDuration
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -132,14 +132,14 @@ object DailyEntityGenerator {
             co = daily.airQuality?.cO,
 
             // pollen.
-            tree = daily.allergen?.tree,
-            alder = daily.allergen?.alder,
-            birch = daily.allergen?.birch,
-            grass = daily.allergen?.grass,
-            olive = daily.allergen?.olive,
-            ragweed = daily.allergen?.ragweed,
-            mugwort = daily.allergen?.mugwort,
-            mold = daily.allergen?.mold,
+            tree = daily.pollen?.tree,
+            alder = daily.pollen?.alder,
+            birch = daily.pollen?.birch,
+            grass = daily.pollen?.grass,
+            olive = daily.pollen?.olive,
+            ragweed = daily.pollen?.ragweed,
+            mugwort = daily.pollen?.mugwort,
+            mold = daily.pollen?.mold,
 
             // uv.
             uvIndex = daily.uV?.index,
@@ -249,7 +249,7 @@ object DailyEntityGenerator {
                 entity.o3,
                 entity.co
             ),
-            Allergen(
+            Pollen(
                 entity.tree,
                 entity.alder,
                 entity.birch,
