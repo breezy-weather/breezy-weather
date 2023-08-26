@@ -144,7 +144,7 @@
 \n
 \nНа пример, „Тренутно време је: $cw$.“ биће приказано као „Тренутно време је: Ведар дан.“.</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Ноћна температура - данас, сутра, …, 4 дана касније (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Залазак месеца - данас, сутра, ..., 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Залазак месеца - данас, сутра, …, 4 дана касније</string>
     <string name="settings_notifications_forecast_tomorrow_title">Обавештење за прогнозу за следећи дан</string>
     <string name="common_weather_text_rain">Киша</string>
     <string name="common_weather_text_rain_light">Слаба киша</string>
@@ -209,7 +209,7 @@
     <string name="widget_custom_subtitle_keyword_atd_description">Привидна температура (°)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Тренутна влажност</string>
     <string name="widget_custom_subtitle_keyword_al_description">Упозорења</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Месечеве фазе - данас, сутра, ..., 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Месечеве фазе - данас, сутра, …, 4 дана касније</string>
     <string name="settings_background_updates_summary">Брзина освежавања, решавање проблема</string>
     <string name="settings_background_updates_refresh_title">Брзина освежавања</string>
     <string name="settings_background_updates_refresh_never">Никада</string>
@@ -498,7 +498,7 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Географска дужина</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Недеља (кратко)</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Нова линија</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Залазак сунца - данас, сутра, ..., 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Залазак сунца - данас, сутра, …, 4 дана касније</string>
     <string name="weather_api_limit_reached_title">Достигнуто је ограничење API захтева</string>
     <string name="settings_units_pressure">Јединица за притисак</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Тренутно време</string>
@@ -551,7 +551,7 @@
     <string name="widget_custom_subtitle_keyword_cwd_description">Тренутни ветар</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Тренутни притисак</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дневна температура - данас, сутра, …, 4 дана касније (°)</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Излазак месеца - данас, сутра, ..., 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Излазак месеца - данас, сутра, …, 4 дана касније</string>
     <string name="settings_background_updates_refresh_30min">Пола сата</string>
     <string name="settings_background_updates_refresh_12h">12 сати</string>
     <string name="settings_background_updates_battery_optimization">Онемогући оптимизацију батерије</string>
@@ -632,9 +632,9 @@
     <string name="widget_custom_subtitle_keyword_xntd_description">Ноћна температура - данас, сутра, …, 4 дана касније (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Дневне падавине - данас, сутра, …, 4 дана касније (%)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Ноћне падавине - данас, сутра, …, 4 дана касније (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Дневни ветар - данас, сутра, ..., 4 дана касније</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Ноћни ветар - данас, сутра, ..., 4 дана касније</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Излазак сунца - данас, сутра, ..., 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Дневни ветар - данас, сутра, …, 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Ноћни ветар - данас, сутра, …, 4 дана касније</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Излазак сунца - данас, сутра, …, 4 дана касније</string>
     <string name="widget_style_vertical">Вертикално</string>
     <string name="settings_location">Лоцирање</string>
     <string name="settings_location_service">Услуга за локацију</string>

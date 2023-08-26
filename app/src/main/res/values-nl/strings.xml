@@ -130,7 +130,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Negeren als batterij bijna leeg is</string>
     <string name="settings_units_distance">Afstandseenheid</string>
-    <string name="settings_widgets_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de Breezy Weather wallpaper nog steeds inschakelen door \"Live Wallpaper\" te kiezen in de wallpaperkiezer op je startscherm.</string>
+    <string name="settings_widgets_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de Breezy Weather wallpaper nog steeds inschakelen door “Live Wallpaper” te kiezen in de wallpaperkiezer op je startscherm.</string>
     <string name="about_privacy_policy">Privacybeleid</string>
     <string name="unit_lpsqmph">L/m²/u</string>
     <string name="unit_lpsqmph_voice">Liter per vierkante meter per uur</string>
@@ -313,7 +313,7 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Huidig weer</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_als_description">Waarschuwingen (Kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagtemperatuur van vandaag, morgen, ..., 4 dagen later (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Zwart</string>
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="settings_automatic">Automatisch</string>
@@ -322,8 +322,8 @@
     <string name="unit_cmph">cm/u</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Huidige temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beschrijving per uur</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, ..., 4 dagen later</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Zonsondergang van vandaag, morgen, ..., 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Zonsondergang van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_week_style_5_days">5 dagen</string>
     <string name="settings_main_threshold_lines_on_charts">Drempellijnen op grafieken</string>
@@ -362,7 +362,7 @@
     <string name="action_undo">Ongedaan maken</string>
     <string name="action_close">Sluiten</string>
     <string name="action_show_errors">Tik om details te zien</string>
-    <string name="dialog_permissions_location_background_content">Om de app toegang te geven tot locatie-informatie op de achtergrond, zodat we veranderingen in de locatie kunnen waarnemen en je kunnen voorzien van geldige weergegevens, stel je locatietoegang in op \"Altijd toestaan\".</string>
+    <string name="dialog_permissions_location_background_content">Om de app toegang te geven tot locatie-informatie op de achtergrond, zodat we veranderingen in de locatie kunnen waarnemen en je kunnen voorzien van geldige weergegevens, stel je locatietoegang in op “Altijd toestaan”.</string>
     <string name="settings_icon_packs_weather_icon_light">Pictogram licht</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogram grijs</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogram donker</string>
@@ -390,14 +390,14 @@
     <string name="widget_subtitle_data_custom">Aangepast</string>
     <string name="widget_custom_subtitle_explanation">U kunt alles invoeren, maar let wel op de lengte van de tekst. Als je weergegevens wilt citeren, gebruik dan $ om naar het overeenkomstige sleutelwoord te verwijzen.
 \n
-\nBijvoorbeeld, \"Het huidige weer is: $cw$.\" zal worden weergegeven als \"Het huidige weer is: Helder weer.\".</string>
+\nBijvoorbeeld, “Het huidige weer is: $cw$.” zal worden weergegeven als “Het huidige weer is: Helder weer.”.</string>
     <string name="widget_custom_subtitle_keyword_at_description">Gevoelstemperatuur (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Gevoelstemperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_al_description">Waarschuwingen</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nieuwe regel</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Maanopkomst van vandaag, morgen, ..., 4 dagen later</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Manen van vandaag, morgen, ..., 4 dagen later</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Maanfase van vandaag, morgen, ..., 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Maanopkomst van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Manen van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Maanfase van vandaag, morgen, …, 4 dagen later</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Kan apparaatinstellingen niet openen.</string>
     <string name="settings_notifications_forecast_time_today_title">Meldtijd voor de dagvoorspelling</string>
     <string name="settings_notifications_forecast_tomorrow_title">Melding voor voorspelling van de volgende dag</string>
@@ -459,8 +459,8 @@
     <string name="widget_custom_subtitle_keyword_lc_description">Maankalender</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Week (Kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, ..., 4 dagen later (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, ..., 4 dagen later (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
@@ -535,11 +535,11 @@
     <string name="message_parsing_error_content">Zorg ervoor dat je de laatste versie van de app hebt geïnstalleerd. De server kan tijdelijk niet beschikbaar zijn, probeer het in dat geval later nog eens. Als het probleem aanhoudt, dump dan een crash log van debug instellingen, en rapporteer een probleem op GitHub.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Huidige UV</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Huidige druk</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nachttemperatuur van vandaag, morgen, ..., 4 dagen later (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag overdag van vandaag, morgen, ..., 4 dagen later (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Nachtelijke neerslag van vandaag, morgen, ..., 4 dagen later (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Wind overdag van vandaag, morgen, ..., 4 dagen later</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Nachtelijke wind van vandaag, morgen, ..., 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag overdag van vandaag, morgen, …, 4 dagen later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Nachtelijke neerslag van vandaag, morgen, …, 4 dagen later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Wind overdag van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Nachtelijke wind van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_live_wallpaper_day_night_type">Tijd</string>
     <string name="widget_live_wallpaper_weather_kind">Weer</string>
     <string name="common_weather_text_drizzle_moderate">Matige motregen</string>
@@ -550,9 +550,9 @@
     <string name="settings_location_access_permission_already_granted">Reeds verleende toestemming</string>
     <string name="settings_location_access_switch_summaryOff">Geef toestemming als je je huidige locatie wilt kunnen toevoegen als locatie.</string>
     <string name="settings_location_access_background_summaryOn">Ingeschakeld. De app kan de weergegevens voor je huidige locatie op de achtergrond verversen.</string>
-    <string name="settings_location_access_background_summaryOff">Schakel \"Altijd toestaan\" in als je op de achtergrond ververst wilt worden voor je huidige locatie.</string>
+    <string name="settings_location_access_background_summaryOff">Schakel “Altijd toestaan” in als je op de achtergrond ververst wilt worden voor je huidige locatie.</string>
     <string name="settings_location_access_precise_summaryOn">Ingeschakeld. Het netwerk van het apparaat en de GPS-providers worden beide gebruikt.</string>
-    <string name="settings_location_access_precise_summaryOff">Schakel \"Precieze locatie gebruiken\" in als je problemen hebt met het vinden van een locatie.</string>
+    <string name="settings_location_access_precise_summaryOff">Schakel “Precieze locatie gebruiken” in als je problemen hebt met het vinden van een locatie.</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall-versie</string>
     <string name="settings_weather_sources_default_location_search">Standaardlocatie zoekbron</string>
     <string name="settings_source_default_value">Standaard (ongewijzigd)</string>
@@ -583,7 +583,7 @@
     <string name="location_results_by">Locatie resultaten door $</string>
     <string name="weather_kind_thunderstorm">Onweersbui</string>
     <string name="weather_kind_wind">Wind</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Zonsopgang van vandaag, morgen, ..., 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Zonsopgang van vandaag, morgen, …, 4 dagen later</string>
     <string name="unit_atm_voice">Atmosferen</string>
     <string name="notification_channel_alerts">Waarschuwingen</string>
     <string name="unit_mugpcum_voice">Microgram per kubieke meter</string>
@@ -616,7 +616,7 @@
     <string name="weather_message_invalid_location">Ongeldige locatie, verwijderen en opnieuw toevoegen</string>
     <string name="action_save">Opslaan</string>
     <string name="dialog_permissions_location_title">Locatie-informatie openen</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, ..., 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_tile">Tegel</string>
     <string name="widget_style_mini">Mini</string>
     <string name="settings_weather_source_main">Hoofdbron</string>
@@ -626,7 +626,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Dit is het eerste wat je moet proberen als je geen meldingen ontvangt of als widgets niet worden vernieuwd.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterijoptimalisatie is al uitgeschakeld.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Specifieke instructies van de fabrikant</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Sommige fabrikanten hebben extra app-beperkingen die achtergronddiensten uitschakelen. De website Don\'t kill my app! heeft informatie over hoe je dit kunt oplossen.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Sommige fabrikanten hebben extra app-beperkingen die achtergronddiensten uitschakelen. De website Don’t kill my app! heeft informatie over hoe je dit kunt oplossen.</string>
     <string name="settings_background_updates_worker_info_title">Werkersinfo</string>
     <string name="settings_location">Locatie</string>
     <string name="settings_location_summary">Instellingen voor locatieservices</string>

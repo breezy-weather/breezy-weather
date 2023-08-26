@@ -3,10 +3,16 @@
 **Weather sources**
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a primary source (works best in Europe)
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a secondary source (works best in Europe)
+- [MET Norway] Add cloud cover (@Cod3dDOT)
 
 **Other fixes**
 - [Gadgetbridge] Fix probability of precipitation (@Cod3dDOT)
 - [Gadgetbridge] Fix daily forecasts (will only start from tomorrow now)
+
+**Translations**
+- Dutch translation completed (thank you @BabyBenefactor!)
+- Hungarian translation completed (thank you @blaskoviktor!)
+- Translations updated
 
 
 # Version 4.6.4-beta
