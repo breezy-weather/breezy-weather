@@ -646,4 +646,5 @@
     <string name="weather_normals_data_by">I dati sulle norme di temperatura forniti da $</string>
     <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
     <string name="settings_widgets_gadgetbridge_switch">Invia dati meteo a Gadgetbridge</string>
+    <string name="pollen_and_mold">Polline e muffa</string>
 </resources>
