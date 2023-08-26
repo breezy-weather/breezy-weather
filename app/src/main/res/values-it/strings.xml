@@ -508,7 +508,7 @@
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
     <string name="settings_location_access_background_summaryOff">Seleziona “Consenti sempre” per ottenere aggiornamenti relativi alla tua posizione corrente.</string>
     <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
-    <string name="settings_location_access_switch_title">Accesso alla posizione</string>
+    <string name="settings_location_access_switch_title">Accesso alla propria posizione</string>
     <string name="settings_location_access_precise_title">Uso GPS del dispositivo</string>
     <string name="settings_weather_sources">Fonti meteo</string>
     <string name="air_quality_pm_info_title">Particolati (PM2.5 &amp; PM10)</string>
