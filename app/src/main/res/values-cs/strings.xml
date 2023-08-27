@@ -47,7 +47,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Pocitová</string>
-    <string name="temperature_wind_chill">Chladný vítr</string>
+    <string name="temperature_wind_chill">Chladivý vítr</string>
     <string name="temperature_wet_bulb">Teplota mokrého teploměru</string>
     <string name="temperature_degree_day">Denostupeň</string>
     <string name="precipitation_total">Celkově</string>
@@ -400,7 +400,7 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_km">km</string>
     <string name="notification_update_error">%1$d aktualizace se nezdařila/y</string>
-    <string name="about_matrix">Server Matrix</string>
+    <string name="about_matrix">Matrix místnost</string>
     <string name="common_weather_text_overcast">Zataženo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas oznámení předpovědi na další den</string>
     <string name="wind_strength">Síla větru</string>
@@ -410,7 +410,7 @@
     <string name="uv_index_8_10">Velmi vysoký</string>
     <string name="location_results_by">Výsledky polohy podle $</string>
     <string name="air_quality_level_1">Vynikající</string>
-    <string name="air_quality_level_2_description">Kvalita vzduchu je obecně přijatelná pro většinu osob. Citlivé skupiny však mohou pociťovat malé až mírné příznaky při dlouhodobém působení.</string>
+    <string name="air_quality_level_2_description">Kvalita vzduchu je převážně vhodná pro většinu jedinců. Ovšem, citlivé skupiny lidí mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
     <string name="air_quality_no2_info_introduction">Oxid dusičitý (NO₂) je dusivý, jedovatý červenohnědý plyn s charakteristickým štiplavým, ostrým zápachem.</string>
     <string name="action_share">Sdílet</string>
     <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
@@ -449,10 +449,10 @@
     <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Bouřka slabá nebo středně silná</string>
     <string name="action_add_from_map">Přidat z mapy</string>
-    <string name="air_quality_level_6">Nebezpečný</string>
+    <string name="air_quality_level_6">Nebezpečná</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
-    <string name="air_quality_level_2">Slušný</string>
+    <string name="air_quality_level_2">Slušná</string>
     <string name="unit_mm">mm</string>
     <string name="unit_mph">mph</string>
     <string name="unit_kn">kn</string>
@@ -476,7 +476,7 @@
     <string name="wind_direction_short_W">Z</string>
     <string name="uv_alert_level">Upozornění</string>
     <string name="air_quality_level_3">Špatná</string>
-    <string name="air_quality_level_3_description">Ovzduší dosáhlo vysoké úrovně znečištění a je pro citlivé skupiny obyvatel nezdravé. Pokud pociťujete příznaky, jako jsou potíže s dýcháním nebo podráždění hrdla, zkraťte čas strávený venku.</string>
+    <string name="air_quality_level_3_description">Vzduch je vysoce znečištěný a je nezdravý pro citlivé skupiny lidí. Snižte čas strávený venku, pokud cítíte symptomy jako obtížné dýchání nebo podrážděný krk.</string>
     <string name="air_quality_level_4">Nezdravá</string>
     <string name="air_quality_level_5">Velmi nezdravá</string>
     <string name="air_quality_level_5_description">Zdravotní účinky pocítí citlivé skupiny okamžitě a měly by se vyhnout venkovním aktivitám. Zdraví jedinci pravděpodobně pocítí potíže s dýcháním a podráždění hrdla; zvažte pobyt v uzavřených prostorách a přeložte venkovní aktivity.</string>
@@ -528,7 +528,7 @@
     <string name="unit_kpa">kPa</string>
     <string name="unit_hpa">hPa</string>
     <string name="air_quality_level_1_description">Kvalita vzduchu je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
-    <string name="weather_api_limit_reached_content">Chcete-li tento limit obejít, přidejte svůj vlastní klíč API.</string>
+    <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
     <string name="weather_api_unauthorized_title">Neautorizovaný přístup k API</string>
     <string name="widget_material_you_current">Material You - Aktuální</string>
     <string name="air_quality_pm_explanations_origin">Některé částice se vyskytují přirozeně, pocházejí ze sopek, prachových bouří, lesních a travnatých požárů, živé vegetace a mořské mlhy. Významné množství částic vytváří také lidská činnost, například doprava a přeprava, průmyslová činnost, elektrárny, staveniště, spalování odpadů nebo pole.</string>
@@ -552,7 +552,7 @@
     <string name="air_quality_co_info_introduction">Oxid uhelnatý (CO) je jedovatý hořlavý plyn, který je bezbarvý, bez zápachu a chuti a není dráždivý.</string>
     <string name="weather_air_quality_and_pollen_data_by">Údaje o kvalitě ovzduší a pylu od $</string>
     <string name="weather_api_limit_reached_title">Dosažen limit požadavků API</string>
-    <string name="weather_api_key_required_missing_title">Chybí požadovaný klíč API</string>
+    <string name="weather_api_key_required_missing_title">Chybí potřebný klíč API</string>
     <string name="dialog_permissions_notification_title">Zůstaňte informováni</string>
     <string name="dialog_permissions_notification_content">Klepnutím sem povolíte upozornění na počasí nebo můžete povolit upozornění později v Nastavení.</string>
     <string name="settings_notifications_forecast_today_title">Oznámení o předpovědi na daný den</string>
@@ -651,7 +651,7 @@
     <string name="about_contribution_weather_source">Přidána podpora pro nové zdroje počasí</string>
     <string name="weather_message_secondary_data_refresh_failed">Obnovení dat o počasí pro sekundární zdroj počasí se nezdařilo</string>
     <string name="weather_message_invalid_location">Neplatné umístění, odstraňte jej a znovu přidejte</string>
-    <string name="temperature_average_short">Průměr</string>
+    <string name="temperature_average_short">Prům</string>
     <string name="common_weather_text_rain_showers_light">Lehké dešťové přeháňky</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý déšť se sněhem</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Silný déšť a smíšené sněhové přeháňky</string>
@@ -659,4 +659,7 @@
     <string name="common_weather_text_rain_showers_moderate">Mírné dešťové přeháňky</string>
     <string name="metno_weather_text_andthunder">$ a hrom</string>
     <string name="action_save">Uložit</string>
+    <string name="pollen_and_mold">Alergeny a plísně</string>
+    <string name="settings_widgets_gadgets_title">Příslušenství</string>
+    <string name="settings_widgets_gadgetbridge_switch">Posílat data o počasí do Gadgetbridge</string>
 </resources>
