@@ -102,7 +102,7 @@
     <string name="minutely_forecast">分钟预报</string>
     <string name="precipitation_forecast">降水预报</string>
     <string name="air_quality">空气质量</string>
-    <string name="pollen">过敏原</string>
+    <string name="pollen">花粉</string>
     <string name="details">详细数据</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
@@ -650,4 +650,5 @@
     <string name="temperature_normal_short">正常气温</string>
     <string name="settings_widgets_gadgets_title">小部件</string>
     <string name="settings_widgets_gadgetbridge_switch">发送天气数据到 Gadgetbridge</string>
+    <string name="pollen_and_mold">花粉和霉菌</string>
 </resources>
