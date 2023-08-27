@@ -649,4 +649,5 @@
     <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
     <string name="settings_widgets_gadgetbridge_switch">傳送天氣資料到 Gadgetbridge</string>
     <string name="settings_widgets_gadgets_title">小工具</string>
+    <string name="pollen_and_mold">花粉與黴菌</string>
 </resources>
