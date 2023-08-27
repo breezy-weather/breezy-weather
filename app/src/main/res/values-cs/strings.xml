@@ -498,7 +498,7 @@
     <string name="weather_source_accu_preference_days_5">5 dní</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>
     <string name="weather_source_accu_preference_days_15">15 dní</string>
-    <string name="weather_source_accu_preference_hours_1">1 hodina</string>
+    <string name="weather_source_accu_preference_hours_1">1 hodina</string>
     <string name="weather_source_accu_preference_hours_12">12 hodin</string>
     <string name="weather_source_accu_preference_hours_24">24 hodin</string>
     <string name="weather_source_accu_preference_hours_72">72 hodin</string>
