@@ -636,4 +636,9 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Pērkona negaiss ar stipru krusu</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Pērkona negaiss ar nelielu krusu</string>
     <string name="null_data_text">N/A</string>
+    <string name="pollen_and_mold">Ziedputekšņi un pelējums</string>
+    <string name="pollen_tree">Koks</string>
+    <string name="about_matrix">Matricas istaba</string>
+    <string name="settings_widgets_gadgets_title">Sīkrīki</string>
+    <string name="settings_widgets_gadgetbridge_switch">Nosūtiet laikapstākļu datus uz Gadgetbridge</string>
 </resources>
