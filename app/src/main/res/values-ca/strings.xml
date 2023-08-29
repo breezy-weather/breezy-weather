@@ -327,11 +327,11 @@
     <string name="precipitation_none">Sense precipitació</string>
     <string name="wind_direction_short_SW">SO</string>
     <string name="uv_alert_level">Alerta</string>
-    <string name="air_quality_index">Índex de Qualitat de l\'aire</string>
+    <string name="air_quality_index">Índex de Qualitat de l’aire</string>
     <string name="air_quality_level_1">Excel·lent</string>
-    <string name="air_quality_level_1_description">La qualitat de l\'aire és ideal per a la majoria d\'individus; disfruta de les teves activitats a l\'aire lliure com faries normalment.</string>
+    <string name="air_quality_level_1_description">La qualitat de l’aire és ideal per a la majoria d’individus; disfruta de les teves activitats a l’aire lliure com faries normalment.</string>
     <string name="air_quality_level_2">Moderat</string>
-    <string name="air_quality_level_2_description">La qualitat de l\'aire és generalment acceptable per a la majoria d\'individus. No obstant, els grups més sensibles poden sentir símptomes moderats en cas d\'estar exposats durant molta estona.</string>
+    <string name="air_quality_level_2_description">La qualitat de l’aire és generalment acceptable per a la majoria d’individus. No obstant, els grups més sensibles poden sentir símptomes moderats en cas d’estar exposats durant molta estona.</string>
     <string name="air_quality_level_3">Baix</string>
     <string name="minutely_precipitations">Precipitació minut a minut</string>
 </resources>
