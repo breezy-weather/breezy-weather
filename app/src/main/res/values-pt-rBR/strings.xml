@@ -629,4 +629,7 @@
     <string name="temperature_average_short">Média</string>
     <string name="weather_normals_data_by">Normais de temperatura por $</string>
     <string name="settings_main_threshold_lines_on_charts">Linhas de limite em gráficos</string>
+    <string name="pollen_and_mold">Pólen e mofo</string>
+    <string name="settings_widgets_gadgets_title">Gadgets</string>
+    <string name="settings_widgets_gadgetbridge_switch">Enviar dados meteorológicos para Gadgetbridge</string>
 </resources>
