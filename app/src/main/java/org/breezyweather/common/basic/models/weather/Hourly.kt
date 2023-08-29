@@ -44,6 +44,9 @@ data class Hourly(
     val uV: UV? = null,
     val relativeHumidity: Float? = null,
     val dewPoint: Float? = null,
+    /**
+     * Pressure at sea level
+     */
     val pressure: Float? = null,
     val cloudCover: Int? = null,
     val visibility: Float? = null

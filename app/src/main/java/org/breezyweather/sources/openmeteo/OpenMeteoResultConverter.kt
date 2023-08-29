@@ -189,7 +189,7 @@ private fun getHourlyList(
                 uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                 relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toFloat(),
                 dewPoint = hourlyResult.dewPoint?.getOrNull(i),
-                pressure = hourlyResult.surfacePressure?.getOrNull(i),
+                pressure = hourlyResult.pressureMsl?.getOrNull(i),
                 cloudCover = hourlyResult.cloudCover?.getOrNull(i),
                 visibility = hourlyResult.visibility?.getOrNull(i)?.toFloat()
             )

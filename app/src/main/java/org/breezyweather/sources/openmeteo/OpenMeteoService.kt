@@ -120,7 +120,7 @@ class OpenMeteoService @Inject constructor(
             "is_day", // Used by current only
             "relativehumidity_2m",
             "dewpoint_2m",
-            "surface_pressure",
+            "pressure_msl",
             "cloudcover",
             "visibility"
         )

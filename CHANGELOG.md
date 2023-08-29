@@ -3,6 +3,7 @@
 **Weather sources**
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a primary source (works best in Europe)
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a secondary source (works best in Europe)
+- [Open-Meteo] Show pressure at sea level instead of surface pressure to make it consistent with other sources
 - [MET Norway] Add cloud cover (@Cod3dDOT)
 
 **Other fixes**

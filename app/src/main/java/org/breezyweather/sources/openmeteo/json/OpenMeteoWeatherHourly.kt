@@ -38,7 +38,7 @@ data class OpenMeteoWeatherHourly(
     // Below are used in current only
     @SerialName("relativehumidity_2m") val relativeHumidity: Array<Int?>?,
     @SerialName("dewpoint_2m") val dewPoint: Array<Float?>?,
-    @SerialName("surface_pressure") val surfacePressure: Array<Float?>?,
+    @SerialName("pressure_msl") val pressureMsl: Array<Float?>?,
     @SerialName("cloudcover") val cloudCover: Array<Int?>?,
     val visibility: Array<Float?>?
 )
