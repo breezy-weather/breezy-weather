@@ -40,6 +40,8 @@ Examples of weather sources that don’t fit:
 - Microsoft Azure (free-tier requires credit card info)
 - Weatherbit (free-tier doesn’t have hourly)
 
+Note that some national sources don’t have endpoints by coordinates, or reverse geocoding (find nearest city/station), we can’t support them.
+
 
 ## Git setup for pull requests
 
