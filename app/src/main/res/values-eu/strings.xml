@@ -103,7 +103,6 @@
     <string name="pollen_tap_to_see_more">Ukitu gehiago ikusteko…</string>
     <string name="ephemeris_moon_phase_new_moon">Ilberri</string>
     <string name="ephemeris_moon_phase_full_moon">Ilbete</string>
-    <string name="ephemeris_moon_phase_first_quarter"></string>
     <string name="ephemeris_sunrise_at">Egunsentia $(e)tan</string>
     <string name="short_saturday">Lr.</string>
     <string name="short_sunday">Ig.</string>
