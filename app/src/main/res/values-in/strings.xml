@@ -89,7 +89,7 @@
     <string name="hourly_forecast">Prakiraan per jam</string>
     <string name="minutely_forecast">Prakiraan per menit</string>
     <string name="precipitation_forecast">Prakiraan presipitasi</string>
-    <string name="air_quality">Kualitas udata</string>
+    <string name="air_quality">Kualitas udara</string>
     <string name="pollen">Allergen</string>
     <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
@@ -311,4 +311,9 @@
     <string name="wind_direction_short_S">U</string>
     <string name="air_quality_index">Indeks Kualitas Udara</string>
     <string name="air_quality_level_3_description">Udara telah mencapai tingkat polusi yang tinggi dan tidak sehat untuk kelompok sensitif. Kurangi waktu yang dihabiskan di luar ruangan jika Anda merasakan gejala seperti kesulitan bernapas atau iritasi tenggorokan.</string>
+    <string name="wind_direction_short_NE">TL</string>
+    <string name="wind_direction_short_SE">TG</string>
+    <string name="wind_direction_short_NW">BL</string>
+    <string name="air_quality_level_5">Sangat tidak sehat</string>
+    <string name="wind_direction_short_SW">BD</string>
 </resources>
