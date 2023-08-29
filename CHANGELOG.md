@@ -11,6 +11,7 @@
 
 **Translations**
 - Dutch translation completed (thank you @BabyBenefactor!)
+- Initial support for Basque (thank you @desertorea!)
 - Translations updated
 
 
