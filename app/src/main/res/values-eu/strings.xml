@@ -163,9 +163,6 @@
     <string name="message_source_not_installed_error_content">Iturri hau ez dago erabilgarri. Mesedez, ezabatu kokalekua eta sortu berriro beste iturri batetik abiatuta.</string>
     <string name="weather_updated_in_background">Atzeko planoan eguneratuta</string>
     <string name="message_tap_again_to_exit">Irteteko ukitu berriro</string>
-    <string name="widget_day_week"></string>
-    <string name="widget_week"></string>
-    <string name="widget_day"></string>
     <string name="widget_trend_daily">Eguneko joera</string>
     <string name="widget_trend_hourly">Orduko joera</string>
     <string name="widget_multi_city">Hiri aunitz</string>
@@ -180,7 +177,6 @@
     <string name="widget_subtitle_data_aqi">Airearen kalitatea</string>
     <string name="widget_label_clock_font">Erlojuaren iturria</string>
     <string name="widget_label_hide_lunar">Ezkutatu ilargi-egutegia</string>
-    <string name="widget_custom_subtitle_keyword_cw_description"></string>
     <string name="widget_custom_subtitle_keyword_ct_description">Egungo tenperatura (℃/℉)</string>
     <string name="pollen_and_mold">Polena eta lizuna</string>
     <string name="alerts_to_follow">Hurrengo alertak, ukitu hemen ikusteko.</string>
