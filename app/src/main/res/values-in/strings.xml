@@ -22,7 +22,7 @@
     <string name="nighttime">Malam hari</string>
     <string name="temperature_feels_like">Terasa seperti</string>
     <string name="settings_follow_system">Ikuti sistem</string>
-    <string name="pressure">Tekanan atmosfer</string>
+    <string name="pressure">Tekanan</string>
     <string name="visibility">Visibilitas</string>
     <string name="dew_point">Titik embun</string>
     <string name="cloud_cover">Cover awan</string>

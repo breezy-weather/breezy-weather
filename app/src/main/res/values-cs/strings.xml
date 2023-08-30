@@ -22,7 +22,7 @@
     <string name="nighttime">Noc</string>
     <string name="temperature_feels_like">Pocitová teplota</string>
     <string name="settings_follow_system">Podle systému</string>
-    <string name="pressure">Atmosférický tlak</string>
+    <string name="pressure">Tlak</string>
     <string name="visibility">Viditelnost</string>
     <string name="dew_point">Rosný bod</string>
     <string name="cloud_cover">Oblačnost</string>

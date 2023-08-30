@@ -253,7 +253,7 @@
     <string name="nighttime">Нощно</string>
     <string name="hours_of_sun">Слънчеви часове</string>
     <string name="humidity">Влажност</string>
-    <string name="pressure">Атмосферно налягане</string>
+    <string name="pressure">налягане</string>
     <string name="visibility">Видимост</string>
     <string name="dew_point">Точка на оросяване</string>
     <string name="cloud_cover">Облачно покритие</string>

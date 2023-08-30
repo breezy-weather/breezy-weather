@@ -103,7 +103,7 @@
     <string name="nighttime">Naktis</string>
     <string name="hours_of_sun">Saulė keliaus dangumi</string>
     <string name="humidity">Drėgmė</string>
-    <string name="pressure">Atmosferos slėgis</string>
+    <string name="pressure">Slėgis</string>
     <string name="visibility">Matomumas</string>
     <string name="dew_point">Rasos taškas</string>
     <string name="cloud_cover">Debesuotumas</string>

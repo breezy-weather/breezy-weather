@@ -189,7 +189,7 @@
     <string name="nighttime">Nighttime</string>
     <string name="hours_of_sun">Hours of sun</string>
     <string name="humidity">Humidity</string>
-    <string name="pressure">Atmospheric pressure</string>
+    <string name="pressure">Pressure</string>
     <string name="visibility">Visibility</string>
     <string name="dew_point">Dew point</string>
     <string name="cloud_cover">Cloud cover</string>

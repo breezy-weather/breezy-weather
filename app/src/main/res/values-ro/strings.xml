@@ -22,7 +22,7 @@
     <string name="nighttime">Noapte</string>
     <string name="temperature_feels_like">Se simt</string>
     <string name="settings_follow_system">La fel ca sistemul</string>
-    <string name="pressure">Presiune atmosferică</string>
+    <string name="pressure">Presiune</string>
     <string name="visibility">Vizibilitate</string>
     <string name="dew_point">Punct de rouă</string>
     <string name="cloud_cover">Acoperire nori</string>

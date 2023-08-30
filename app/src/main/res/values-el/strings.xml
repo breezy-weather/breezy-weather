@@ -22,7 +22,7 @@
     <string name="nighttime">Νύχτα</string>
     <string name="temperature_feels_like">Αίσθηση</string>
     <string name="settings_follow_system">Βάσει συστήματος</string>
-    <string name="pressure">Ατμοσφαιρική πίεση</string>
+    <string name="pressure">πίεση</string>
     <string name="visibility">Ορατότητα</string>
     <string name="dew_point">Σημείο δρόσου</string>
     <string name="cloud_cover">Συννεφιά</string>

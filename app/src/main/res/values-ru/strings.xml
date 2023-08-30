@@ -22,7 +22,7 @@
     <string name="nighttime">Ночь</string>
     <string name="temperature_feels_like">Ощущается как</string>
     <string name="settings_follow_system">Как в системе</string>
-    <string name="pressure">Атмосферное давление</string>
+    <string name="pressure">давление</string>
     <string name="visibility">Видимость</string>
     <string name="dew_point">Точка росы</string>
     <string name="cloud_cover">Облачность</string>

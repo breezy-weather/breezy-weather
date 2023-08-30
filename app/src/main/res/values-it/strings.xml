@@ -22,7 +22,7 @@
     <string name="nighttime">Notte</string>
     <string name="temperature_feels_like">Si percepiscono</string>
     <string name="settings_follow_system">Segui il sistema</string>
-    <string name="pressure">Pressione atmosferica</string>
+    <string name="pressure">Pressione</string>
     <string name="visibility">Visibilità</string>
     <string name="dew_point">Punto di rugiada</string>
     <string name="cloud_cover">Copertura nuvolosa</string>

@@ -28,7 +28,7 @@
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
-    <string name="pressure">Pression atmosphérique</string>
+    <string name="pressure">Pression</string>
     <string name="visibility">Visibilité</string>
     <string name="dew_point">Point de rosée</string>
     <string name="cloud_cover">Couverture nuageuse</string>

@@ -544,7 +544,7 @@
     <string name="air_quality_co_info_consequences">Угљен-моноксид шири се кроз плућна ткива и у крвоток, што отежава ћелијама тела да се вежу за кисеоник. Овај недостатак кисеоника оштећује ткива и ћелије. Изложеност угљен-моноксиду може изазвати потешкоће са дисањем, исцрпљеност, вртоглавицу и друге симптоме сличне грипу. Изложеност високим нивоима угљен-моноксида може бити смртоносна.</string>
     <string name="pollen_level_1">Веома ниско</string>
     <string name="pollen_tap_to_see_more">Додирни да видиш више…</string>
-    <string name="pressure">Атмосферски притисак</string>
+    <string name="pressure">притисак</string>
     <string name="weather_api_unauthorized_title">Приступ API-ју неовлашћен</string>
     <string name="dialog_permissions_location_background_content">Да бисте дозволили апликацији да приступа информацијама о локацији у позадини, како бисмо могли да уочимо промене на локацији и да Вам пружимо важеће податке о времену, поставите приступ локацији на „Дозволи све време“.</string>
     <string name="widget_subtitle_data_time">Време освежавања</string>

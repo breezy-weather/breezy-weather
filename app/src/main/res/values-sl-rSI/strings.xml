@@ -15,7 +15,7 @@
     <string name="nighttime">Ponoči</string>
     <string name="temperature_feels_like">Občuti se</string>
     <string name="settings_follow_system">Sledi sistemu</string>
-    <string name="pressure">Atmosferski tlak</string>
+    <string name="pressure">Tlak</string>
     <string name="visibility">Vidnost</string>
     <string name="dew_point">Točka rose</string>
     <string name="settings_icon_packs_get_more">Več</string>

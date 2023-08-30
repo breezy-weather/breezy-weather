@@ -2,7 +2,7 @@
 <resources>
     <string name="hours_of_sun">Eguzki orduak</string>
     <string name="humidity">Hezetasuna</string>
-    <string name="pressure">Presio atmosferikoa</string>
+    <string name="pressure">Presio</string>
     <string name="nighttime">Gaua</string>
     <string name="app_name">Eguraldia</string>
     <string name="short_wednesday">Az.</string>
@@ -53,17 +53,20 @@
     <string name="wind_direction_short_W">M</string>
     <string name="wind_direction_short_NW">IM</string>
     <string name="wind_strength">Haizearen indarra</string>
-    <string name="wind_strength_0">Bare</string>
-    <string name="wind_direction_short_variable">Aldakorra</string>
-    <string name="wind_strength_2">Haize ahula</string>
-    <string name="wind_strength_3">Haize arina</string>
+    <string name="wind_strength_0">Barealdia</string>
+    <string name="wind_strength_1">Haize bereziki ahula</string>
+    <string name="wind_strength_2">Haize oso ahula</string>
+    <string name="wind_strength_3">Haize ahula</string>
     <string name="wind_strength_4">Haize alaia</string>
     <string name="wind_strength_5">Haize hozkirria</string>
     <string name="wind_strength_6">Haize gogorra</string>
     <string name="wind_strength_7">Haize oso gogorra</string>
-    <string name="wind_strength_9">Haizete gogorra</string>
-    <string name="wind_strength_8">Haizetea</string>
-    <string name="wind_strength_10">Ekaitza</string>
+    <string name="wind_strength_8">Ekaitza</string>
+    <string name="wind_strength_9">Ekaitz indartsua</string>
+    <string name="wind_strength_10">Ekaitz gogorra</string>
+    <string name="wind_strength_11">Ekaitz oso gogorra</string>
+    <string name="wind_strength_12">Urakan-ekaitz</string>
+    <string name="wind_direction_short_variable">Aldakorra</string>
     <string name="uv_alert_level">Alerta</string>
     <string name="air_quality_index">Airearen Kalitate indizea</string>
     <string name="air_quality_level_1">Bikaina</string>
@@ -115,9 +118,6 @@
     <string name="precipitation_intensity_light">Zirimiria</string>
     <string name="precipitation_ice">Izotza</string>
     <string name="precipitation_intensity_middle">Euria</string>
-    <string name="wind_strength_1">Haize oso ahula</string>
-    <string name="wind_strength_11">Ekaitz gogorra</string>
-    <string name="wind_strength_12">Urakana</string>
     <string name="uv_index">UV indizea</string>
     <string name="air_quality_pm25_voice">PM bi puntu bost</string>
     <string name="air_quality_pm_explanations_consequences">Partikulak kutsadura atmosferikoaren modurik kaltegarriena dira, birikak eta garuna odol-uholdeetatik sakon sartzeko duten gaitasunagatik, eta osasun-arazoak eragiten dituzte, hala nola kardiopatiak, biriketako gaixotasunak eta heriotza goiztiarra.</string>
@@ -222,7 +222,7 @@
     <string name="location_message_deleted">Kokapena ezabatu da</string>
     <string name="location_message_list_cannot_be_empty">Kokapen zerrenda ezin da hutsik egon</string>
     <string name="location_message_search_failed">Kokapen bilaketak huts egin dut</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Gehitu kokapena eskuz eta ezabatu \"$\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Gehitu kokapena eskuz eta ezabatu “$”</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Egiaztatu kokapen baimenak</string>
     <string name="location_message_reverse_geocoding_failed">Eguraldi iturriak ez du kokaleku egokirik aurkitu</string>
     <string name="location_dialog_failed_to_locate_title">Ezin da kokapena behar bezala lortu\?</string>

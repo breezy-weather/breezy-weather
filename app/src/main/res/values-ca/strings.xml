@@ -22,7 +22,7 @@
     <string name="nighttime">Nit</string>
     <string name="temperature_feels_like">Sensació de</string>
     <string name="settings_follow_system">Igual que el sistema</string>
-    <string name="pressure">Pressió atmosfèrica</string>
+    <string name="pressure">Pressió</string>
     <string name="visibility">Visibilitat</string>
     <string name="dew_point">Punt de rosada</string>
     <string name="cloud_cover">Nuvolositat</string>

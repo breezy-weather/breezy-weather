@@ -93,7 +93,7 @@
     <string name="ephemeris_moonset_at">Mēness riets $</string>
     <string name="nighttime">Nakts</string>
     <string name="hours_of_sun">Saules stundas</string>
-    <string name="pressure">Atmosfēras spiediens</string>
+    <string name="pressure">Spiediens</string>
     <string name="visibility">Redzamība</string>
     <string name="dew_point">Kušanas temperatūra</string>
     <string name="weather_message_data_refresh_failed">Laikapstākļu datu atsvaidzināšana neizdevās</string>

@@ -26,7 +26,7 @@
     <string name="nighttime">Noc</string>
     <string name="temperature_feels_like">Odczuwalnie</string>
     <string name="settings_follow_system">Jak w systemie</string>
-    <string name="pressure">Ciśnienie atmosferyczne</string>
+    <string name="pressure">Ciśnienie</string>
     <string name="visibility">Widoczność</string>
     <string name="dew_point">Punkt rosy</string>
     <string name="cloud_cover">Zachmurzenie</string>

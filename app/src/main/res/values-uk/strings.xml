@@ -182,7 +182,7 @@
     <string name="nighttime">Ніч</string>
     <string name="daytime">День</string>
     <string name="hours_of_sun">Годин сонця</string>
-    <string name="pressure">Атмосферний тиск</string>
+    <string name="pressure">тиск</string>
     <string name="visibility">Видимість</string>
     <string name="short_wednesday">Ср</string>
     <string name="short_monday">Пн</string>
