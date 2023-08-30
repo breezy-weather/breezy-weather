@@ -258,7 +258,7 @@
     <string name="common_weather_text_fog">Туман</string>
     <string name="weather_kind_haze">Дымка</string>
     <string name="weather_kind_thunder">Гром</string>
-    <string name="weather_kind_thunderstorm">Буря</string>
+    <string name="weather_kind_thunderstorm">Штормовая гроза</string>
     <string name="weather_kind_wind">Ветер</string>
     <string name="unit_kph">км/ч</string>
     <string name="unit_mps">м/с</string>
@@ -361,7 +361,7 @@
     <string name="air_quality_level_6_description">Любое пребывание на улице, даже в течение нескольких минут, может привести к серьезным осложнениям у всех. Старайтесь не выходить на улицу.</string>
     <string name="weather_api_limit_reached_title">Превышен лимит API-вызовов</string>
     <string name="weather_api_unauthorized_content">Для некоторых источниках погоды необходимо использовать свой собственный API-ключ. Если вы уже добавили его, пожалуйста, перепроверьте правильность API-ключ.</string>
-    <string name="weather_source_accu_preference_hours_12">12 часов</string>
+    <string name="weather_source_accu_preference_hours_12">12 часов</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="uv_alert_level">Внимание</string>
     <string name="settings_background_updates_battery_optimization">Отключить оптимизацию батареи</string>
