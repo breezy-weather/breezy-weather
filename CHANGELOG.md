@@ -1,4 +1,4 @@
-# Version 4.6.5-beta (next version)
+# Version 4.6.5-beta
 
 **Weather sources**
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a primary source (works best in Europe)
@@ -13,7 +13,7 @@
 
 **Translations**
 - Dutch translation completed (thank you @BabyBenefactor!)
-- Hungarian translation completed (thank you Viktor Blaskó)
+- Hungarian translation completed (thank you Viktor Blaskó!)
 - Initial support for Basque (thank you @desertorea!)
 - Translations updated
 
