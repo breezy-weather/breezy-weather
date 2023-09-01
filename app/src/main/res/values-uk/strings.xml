@@ -124,8 +124,8 @@
     <string name="widget_multi_city">Декілька міст</string>
     <string name="app_name">Погода</string>
     <string name="daily_forecast">Щоденний прогноз</string>
-    <string name="hourly_forecast">Погодинний прогноз</string>
-    <string name="minutely_forecast">Похвилинний прогноз</string>
+    <string name="hourly_forecast">Щогодинний прогноз</string>
+    <string name="minutely_forecast">Щохвилинний прогноз</string>
     <string name="precipitation_forecast">Прогноз опадів</string>
     <string name="minutely_precipitations">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
@@ -528,7 +528,7 @@
     <string name="notification_style_native">Системне</string>
     <string name="notification_precipitation_today">Сьогодні можливі опади.</string>
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
-    <string name="about_app">Про програму</string>
+    <string name="about_app">Про застосунок</string>
     <string name="about_contact">Контакти</string>
     <string name="about_matrix">Кімната Matrix</string>
     <string name="about_dependencies">Залежно</string>
