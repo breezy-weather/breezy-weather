@@ -324,7 +324,7 @@
     <string name="widget_subtitle_data_wind">Вітер</string>
     <string name="settings_location_summary">Налаштування сервісів місцезнаходження</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Поточна вологість</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Тиск</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Поточний тиск</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Поточна видимість</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Поточна точка роси</string>
     <string name="widget_custom_subtitle_keyword_als_description">Попередження (коротко)</string>
