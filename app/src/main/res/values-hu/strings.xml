@@ -87,7 +87,7 @@
     <string name="minutely_forecast">Percenkénti előrejelzés</string>
     <string name="precipitation_forecast">Csapadék-előrejelzés</string>
     <string name="air_quality">Levegőminőség</string>
-    <string name="pollen">Virágpor</string>
+    <string name="pollen">Pollen</string>
     <string name="details">Részletek</string>
     <string name="ephemeris">Nap &amp; Hold</string>
     <string name="action_next">Következő</string>
@@ -174,7 +174,7 @@
     <string name="weather_updated_in_background">Frissítve a háttérben</string>
     <string name="notification_precipitation_today">Ma csapadékra lehet számítani.</string>
     <string name="notification_precipitation_short_term">Előfordulhat csapadék a következő pár órában.</string>
-    <string name="location_resident_message">Beállítás lakóhelyként</string>
+    <string name="location_resident_message">Beállítva lakóhelyként</string>
     <string name="location_resident_dialog">Az alkalmazás automatikusan megjeleníti és elrejti a lakóhelyét a jelenlegi tartózkodási helye alapján.
 \nPéldául beállíthatja szülővárosát lakóhelyként, így ellenőrizheti annak időjárását, amikor éppen úton van. Amint hazaér, a szülővárosa átmenetileg eltűnik a listából, és a jelenlegi tartózkodási hely időjárásaként fog megjelenni mindaddig, míg el nem hagyja azt.</string>
     <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
@@ -421,8 +421,8 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Jelenlegi légnyomás</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="weather_air_quality_data_by">Levegőminőség-adatok: $</string>
-    <string name="weather_pollen_data_by">Virágporadatok: $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Levegőminőség- és virágporadatok: $</string>
+    <string name="weather_pollen_data_by">Pollenadatok: $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Levegőminőség- és pollenadatok: $</string>
     <string name="weather_minutely_data_by">Csapadék percről percre adatok: $</string>
     <string name="settings_background_updates_section_troubleshoot">Hibaelhárítás</string>
     <string name="widget_subtitle_data_lunar">Holdnaptár</string>
@@ -460,7 +460,7 @@
     <string name="settings_location_summary">Helyszolgáltatások beállításai</string>
     <string name="common_weather_text_rain_freezing_heavy">Heves ónos eső</string>
     <string name="metno_weather_text_andthunder">$ és mennydörgés</string>
-    <string name="weather_kind_haze">Köd</string>
+    <string name="weather_kind_haze">Ködös</string>
     <string name="weather_kind_thunder">Mennydörgés</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps_voice">Méter per másodperc</string>
@@ -470,7 +470,7 @@
     <string name="settings_widgets_notification_feels_like_switch">Hőérzet használata</string>
     <string name="unit_m">m</string>
     <string name="weather_kind_wind">Szél</string>
-    <string name="pollen_and_mold">Virágpor &amp; penész</string>
+    <string name="pollen_and_mold">Pollen &amp; penész</string>
     <string name="settings_main_threshold_lines_on_charts">Küszöbértékvonalak a diagramon</string>
     <string name="settings_main_background_animation_disabled">Letiltva</string>
     <string name="settings_main_background_animation_enabled">Engedélyezve</string>
@@ -497,7 +497,7 @@
     <string name="notification_channel_alerts">Riasztások</string>
     <string name="notification_update_error">%1$d frissítés sikertelen</string>
     <string name="about_dependencies">Függőségek</string>
-    <string name="common_weather_text_clear_sky">Tiszta égbolt</string>
+    <string name="common_weather_text_clear_sky">Tiszta</string>
     <string name="common_weather_text_rain_moderate">Mérsékelt eső</string>
     <string name="common_weather_text_rain_showers_light">Enyhe zápor</string>
     <string name="common_weather_text_rain_snow_mixed_light">Enyhe havas eső</string>
@@ -542,7 +542,7 @@
     <string name="common_weather_text_snow">Havazás</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Záporos havas eső</string>
     <string name="common_weather_text_drizzle_heavy">Heves szemerkélő eső</string>
-    <string name="common_weather_text_fog">Köd</string>
+    <string name="common_weather_text_fog">Ködös</string>
     <string name="about_contribution_designer">Logótervező</string>
     <string name="weather_kind_hail">Jégeső</string>
     <string name="weather_kind_thunderstorm">Zivatar</string>
@@ -573,9 +573,9 @@
     <string name="unit_ppcm_voice">Per köbméter</string>
     <string name="common_weather_text_rain">Eső</string>
     <string name="common_weather_text_rain_light">Enyhe eső</string>
-    <string name="common_weather_text_overcast">Borult égbolt</string>
+    <string name="common_weather_text_overcast">Borús</string>
     <string name="common_weather_text_rain_showers_moderate">Mérsékelt zápor</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_light">Záporos, intenzív havas eső</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Záporos, enyhe havas eső</string>
     <string name="common_weather_text_snow_showers">Hózápor</string>
     <string name="common_weather_text_snow_heavy">Intenzív havazás</string>
     <string name="common_weather_text_drizzle">Szemerkélő eső</string>
