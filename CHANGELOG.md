@@ -13,6 +13,7 @@
 
 **Translations**
 - Dutch translation completed (thank you @BabyBenefactor!)
+- Hungarian translation completed (thank you Viktor Blaskó)
 - Initial support for Basque (thank you @desertorea!)
 - Translations updated
 
