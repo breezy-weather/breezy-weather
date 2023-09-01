@@ -22,6 +22,7 @@ import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import notificationBuilder
 import notify
 import org.breezyweather.R
@@ -41,7 +42,6 @@ import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.*
-import kotlin.math.roundToInt
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
@@ -91,11 +91,17 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val notification = context.notificationBuilder(Notifications.CHANNEL_WIDGET).apply {
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            setSmallIcon(
-                if (temperature != null) {
-                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature).roundToInt())
-                } else ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, dayTime)
-            )
+            if (temperature != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                setSmallIcon(
+                    IconCompat.createWithBitmap(
+                        ResourceHelper.createTempBitmap(context, temperature)
+                    )
+                )
+            } else {
+                setSmallIcon(
+                    ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, dayTime)
+                )
+            }
             setContent(
                 buildBaseView(
                     context,
@@ -262,7 +268,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         } else {
             // Loop through 5 next hours
             viewIds.forEachIndexed { i, viewId ->
-                weather.next24HourlyForecast.getOrNull(i)?.let { hourly ->
+                weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
                     views.apply {
                         setTextViewText(viewId.first, hourly.getHour(context, location.timeZone))
                         if (hourly.temperature?.temperature != null) {

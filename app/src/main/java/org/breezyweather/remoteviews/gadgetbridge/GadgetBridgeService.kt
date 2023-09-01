@@ -20,6 +20,7 @@ package org.breezyweather.remoteviews.gadgetbridge
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PackageInfoFlags
 import android.os.Build
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -39,6 +40,10 @@ import kotlin.math.roundToInt
 object GadgetBridgeService {
     private const val GB_INTENT_EXTRA = "WeatherJson"
     private const val GB_INTENT_PACKAGE = "nodomain.freeyourgadget.gadgetbridge"
+    private const val GB_INTENT_PACKAGE_NIGHTLY = "$GB_INTENT_PACKAGE.nightly"
+    private const val GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE = "$GB_INTENT_PACKAGE.nightly_nopebble"
+    private const val GB_INTENT_PACKAGE_BANGLEJS = "com.espruino.gadgetbridge.banglejs"
+    private const val GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY = "$GB_INTENT_PACKAGE_BANGLEJS.nightly"
     private const val GB_INTENT_ACTION = "$GB_INTENT_PACKAGE.ACTION_GENERIC_WEATHER"
 
     fun sendWeatherBroadcast(context: Context, location: Location) {
@@ -63,20 +68,20 @@ object GadgetBridgeService {
     }
 
     fun isAvailable(context: Context): Boolean {
-        return try {
-            val flag = PackageManager.MATCH_DEFAULT_ONLY
-            val intent = Intent(GB_INTENT_ACTION).setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        val pm = context.packageManager
+        return isPackageAvailable(pm, GB_INTENT_PACKAGE) ||
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY) ||
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE) ||
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS) ||
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY)
+    }
 
+    private fun isPackageAvailable(pm: PackageManager, name: String): Boolean {
+        return try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                context.packageManager.queryIntentActivities(
-                    intent,
-                    PackageManager.ResolveInfoFlags.of(flag.toLong())
-                )
+                pm.getPackageInfo(name, PackageInfoFlags.of(PackageManager.GET_META_DATA.toLong()))
             } else {
-                context.packageManager.queryIntentActivities(
-                    intent,
-                    flag
-                )
+                pm.getPackageInfo(name, PackageManager.GET_META_DATA)
             }
             true
         } catch (exc: PackageManager.NameNotFoundException) {

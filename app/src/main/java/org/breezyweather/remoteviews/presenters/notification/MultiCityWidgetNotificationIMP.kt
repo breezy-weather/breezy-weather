@@ -22,6 +22,7 @@ import android.os.Build
 import android.view.View
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import androidx.core.graphics.drawable.IconCompat
 import notificationBuilder
 import notify
 import org.breezyweather.R
@@ -61,11 +62,17 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val notification = context.notificationBuilder(Notifications.CHANNEL_WIDGET).apply {
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            setSmallIcon(
-                if (temperature != null) {
-                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature).roundToInt())
-                } else ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, dayTime)
-            )
+            if (temperature != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                setSmallIcon(
+                    IconCompat.createWithBitmap(
+                        ResourceHelper.createTempBitmap(context, temperature)
+                    )
+                )
+            } else {
+                setSmallIcon(
+                    ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, dayTime)
+                )
+            }
             setContent(
                 buildBaseView(
                     context,

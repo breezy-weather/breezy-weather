@@ -320,9 +320,9 @@ object Notifications {
     }
 
     private fun isShortTermLiquid(weather: Weather): Boolean {
-        for (i in 0 until min(4, weather.next24HourlyForecast.size)) {
-            if (weather.next24HourlyForecast.getOrNull(i)?.weatherCode != null
-                && weather.next24HourlyForecast[i].weatherCode!!.isPrecipitation) {
+        for (i in 0 until min(4, weather.nextHourlyForecast.size)) {
+            if (weather.nextHourlyForecast.getOrNull(i)?.weatherCode != null
+                && weather.nextHourlyForecast[i].weatherCode!!.isPrecipitation) {
                 return true
             }
         }

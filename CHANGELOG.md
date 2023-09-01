@@ -9,6 +9,7 @@
 **Other fixes**
 - [Gadgetbridge] Fix probability of precipitation (@Cod3dDOT)
 - [Gadgetbridge] Fix daily forecasts (will only start from tomorrow now)
+- [Notification-widget] Fix temperature icon in status bar not displaying if unit is set to Kelvin. Temperature icon in status bar is no longer supported on Android 5.0 and 5.1 due to technical constraints.
 
 **Translations**
 - Dutch translation completed (thank you @BabyBenefactor!)

@@ -30,12 +30,11 @@ data class Weather(
     val alertList: List<Alert> = emptyList()
 ) : Serializable {
 
-    // Currently does not behave as next 24 hours; contains all hourly starting from current hour
-    // Will be restricted once we show hourly for next days in the daily view details
-    val next24HourlyForecast = hourlyForecast.filter {
+    // Only hourly in the future, starting from current hour
+    val nextHourlyForecast = hourlyForecast.filter {
         // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
         it.date.time >= System.currentTimeMillis() - (3600 * 1000)
-    }//.take(25)
+    }
 
     val todayIndex = dailyForecast.indexOfFirst {
         it.date.time > Date().time - (24 * 3600 * 1000)

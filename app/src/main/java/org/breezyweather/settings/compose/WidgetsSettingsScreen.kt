@@ -21,6 +21,7 @@ import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -290,39 +291,41 @@ fun WidgetsSettingsScreen(
             },
         )
     }
-    switchPreferenceItem(R.string.settings_widgets_notification_temp_icon_switch) { id ->
-        SwitchPreferenceView(
-            titleId = id,
-            summaryOnId = R.string.settings_enabled,
-            summaryOffId = R.string.settings_disabled,
-            checked = SettingsManager
-                .getInstance(context)
-                .isWidgetNotificationTemperatureIconEnabled,
-            enabled = notificationEnabled,
-            onValueChanged = {
-                SettingsManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        switchPreferenceItem(R.string.settings_widgets_notification_temp_icon_switch) { id ->
+            SwitchPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
+                checked = SettingsManager
                     .getInstance(context)
-                    .isWidgetNotificationTemperatureIconEnabled = it
-                Notifications.updateNotificationIfNecessary(context)
-            }
-        )
-    }
-    switchPreferenceItem(R.string.settings_widgets_notification_feels_like_switch) { id ->
-        SwitchPreferenceView(
-            titleId = id,
-            summaryOnId = R.string.settings_enabled,
-            summaryOffId = R.string.settings_disabled,
-            checked = SettingsManager
-                .getInstance(context)
-                .isWidgetNotificationUsingFeelsLike,
-            enabled = notificationEnabled && notificationTemperatureIconEnabled,
-            onValueChanged = {
-                SettingsManager
+                    .isWidgetNotificationTemperatureIconEnabled,
+                enabled = notificationEnabled,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .isWidgetNotificationTemperatureIconEnabled = it
+                    Notifications.updateNotificationIfNecessary(context)
+                }
+            )
+        }
+        switchPreferenceItem(R.string.settings_widgets_notification_feels_like_switch) { id ->
+            SwitchPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
+                checked = SettingsManager
                     .getInstance(context)
-                    .isWidgetNotificationUsingFeelsLike = it
-                Notifications.updateNotificationIfNecessary(context)
-            }
-        )
+                    .isWidgetNotificationUsingFeelsLike,
+                enabled = notificationEnabled && notificationTemperatureIconEnabled,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .isWidgetNotificationUsingFeelsLike = it
+                    Notifications.updateNotificationIfNecessary(context)
+                }
+            )
+        }
     }
     sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 

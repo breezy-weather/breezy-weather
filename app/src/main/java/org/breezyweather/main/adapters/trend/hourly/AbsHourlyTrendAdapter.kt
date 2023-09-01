@@ -41,7 +41,7 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
         ) {
             val context = itemView.context
             val weather = location.weather!!
-            val hourly = weather.next24HourlyForecast[position]
+            val hourly = weather.nextHourlyForecast[position]
             hourlyItem.setDayText(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
             talkBackBuilder
                 .append(", ").append(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
@@ -77,7 +77,7 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
                 HourlyWeatherDialog.show(
                     activity,
                     location,
-                    location.weather!!.next24HourlyForecast[adapterPosition]
+                    location.weather!!.nextHourlyForecast[adapterPosition]
                 )
             }
         }

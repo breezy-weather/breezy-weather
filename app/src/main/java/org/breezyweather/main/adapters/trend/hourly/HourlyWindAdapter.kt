@@ -55,7 +55,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
         fun onBindView(activity: GeoActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_wind))
             super.onBindView(activity, location, talkBackBuilder, position)
-            val hourly = location.weather!!.next24HourlyForecast[position]
+            val hourly = location.weather!!.nextHourlyForecast[position]
 
             if (hourly.wind != null && hourly.wind.isValid) {
                 talkBackBuilder
@@ -100,7 +100,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     }
 
     init {
-        mHighestWindSpeed = location.weather!!.next24HourlyForecast
+        mHighestWindSpeed = location.weather!!.nextHourlyForecast
             .mapNotNull { it.wind?.speed }
             .maxOrNull() ?: 0f
     }
@@ -116,7 +116,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     }
 
     override fun getItemCount(): Int {
-        return location.weather!!.next24HourlyForecast.size
+        return location.weather!!.nextHourlyForecast.size
     }
 
     override fun isValid(location: Location): Boolean {

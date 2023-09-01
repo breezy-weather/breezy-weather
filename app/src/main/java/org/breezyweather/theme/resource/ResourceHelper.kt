@@ -18,6 +18,12 @@ package org.breezyweather.theme.resource
 
 import android.animation.Animator
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
@@ -28,10 +34,12 @@ import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.resource.utils.ResourceUtils
 import kotlin.math.abs
+
 
 object ResourceHelper {
     fun getWeatherIcon(
@@ -145,16 +153,29 @@ object ResourceHelper {
         return provider.moonDrawable
     }
 
-    @DrawableRes
-    fun getTempIconId(context: Context, temp: Int): Int {
-        val builder = StringBuilder("notif_temp_")
-        if (temp < 0) {
-            builder.append("neg_")
+    fun createTempBitmap(context: Context, temp: Float): Bitmap {
+        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureFormatted = temperatureUnit.getShortValueText(context, temp)
+
+        val iconSize = 72
+        val bounds = Rect()
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            setColor(Color.WHITE)
+            textSize = iconSize.toFloat()
+            setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            getTextBounds(temperatureFormatted, 0, temperatureFormatted.length, bounds)
         }
-        builder.append(abs(temp))
-        val id = ResourceUtils.getResId(context, builder.toString(), "drawable")
-        return if (id == 0) {
-            R.drawable.notif_temp_0
-        } else id
+
+        val conf = Bitmap.Config.ARGB_8888
+        val bitmap = Bitmap.createBitmap(bounds.width(), iconSize, conf)
+        val canvas = Canvas(bitmap)
+        canvas.drawText(
+            temperatureFormatted,
+            (bitmap.getWidth() - bounds.width()) / 2f,
+            (bitmap.getHeight() + bounds.height()) / 2f,
+            paint
+        )
+
+        return bitmap
     }
 }

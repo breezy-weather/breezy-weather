@@ -53,7 +53,7 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
         fun onBindView(activity: GeoActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_uv))
             super.onBindView(activity, location, talkBackBuilder, position)
-            val hourly = location.weather!!.next24HourlyForecast[position]
+            val hourly = location.weather!!.nextHourlyForecast[position]
 
             val index = hourly.uV?.index
             if (index != null) {
@@ -96,7 +96,7 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
     }
 
     init {
-        mHighestIndex = location.weather!!.next24HourlyForecast
+        mHighestIndex = location.weather!!.nextHourlyForecast
             .mapNotNull { it.uV?.index }
             .maxOrNull() ?: 0f
     }
@@ -111,7 +111,7 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
         (holder as ViewHolder).onBindView(activity, location, position)
     }
 
-    override fun getItemCount() = location.weather!!.next24HourlyForecast.size
+    override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
     override fun isValid(location: Location) = mHighestIndex > 0
 
