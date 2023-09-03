@@ -89,7 +89,7 @@
     <string name="minutely_forecast">Pronòstic del minut</string>
     <string name="precipitation_forecast">Pronòstic per precipitació</string>
     <string name="air_quality">Qualitat de l’aire</string>
-    <string name="pollen">Al·lergen</string>
+    <string name="pollen">Pol·len</string>
     <string name="details">Detalls</string>
     <string name="ephemeris">Sol i lluna</string>
     <string name="action_next">Següent</string>

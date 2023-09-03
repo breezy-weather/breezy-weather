@@ -89,7 +89,7 @@
     <string name="minutely_forecast">Previsioni al minuto</string>
     <string name="precipitation_forecast">Previsioni di precipitazioni</string>
     <string name="air_quality">Qualità dell’aria</string>
-    <string name="pollen">Allergene</string>
+    <string name="pollen">Polline</string>
     <string name="details">Dettagli</string>
     <string name="ephemeris">Sole e Luna</string>
     <string name="action_next">Avanti</string>

@@ -1,3 +1,9 @@
+# Version 4.6.6-beta (next version)
+
+**Translations**
+- Translations updated
+
+
 # Version 4.6.5-beta
 
 **Weather sources**

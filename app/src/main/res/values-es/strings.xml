@@ -89,7 +89,7 @@
     <string name="minutely_forecast">Pronóstico por minuto</string>
     <string name="precipitation_forecast">Pronóstico por precipitación</string>
     <string name="air_quality">Calidad del aire</string>
-    <string name="pollen">Alérgeno</string>
+    <string name="pollen">Polen</string>
     <string name="details">Detalles</string>
     <string name="ephemeris">Sol &amp; luna</string>
     <string name="action_next">Siguiente</string>
@@ -530,9 +530,9 @@
     <string name="location_resident_location">Residencia</string>
     <string name="location_resident_location_summaryOn">Activado. Oculto cuando está a menos de $ de la ubicación actual.</string>
     <string name="location_resident_location_summaryOff">Desactivado. Ubicación siempre disponible.</string>
-    <string name="settings_location_access_precise_summaryOff">Activa \"Usar la ubicación precisa\" si tienes problemas para obtener una ubicación.</string>
+    <string name="settings_location_access_precise_summaryOff">Activa “Usar la ubicación precisa” si tienes problemas para obtener una ubicación.</string>
     <string name="settings_weather_source">Fuente meteorológica</string>
-    <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de Breezy Weather seleccionando \"Fondo de pantalla animado\" en el selector de fondos de la pantalla de inicio.</string>
+    <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de Breezy Weather seleccionando “Fondo de pantalla animado” en el selector de fondos de la pantalla de inicio.</string>
     <string name="settings_widgets_week_icon_mode_title">Icono para mostrar en las vistas semanales</string>
     <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, previsiones</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora de notificación de la previsión para el día siguiente</string>
@@ -544,7 +544,7 @@
     <string name="settings_widgets_day_night_temp_reversed_title">Invertir el orden para las temperaturas diurnas/nocturnas</string>
     <string name="settings_widgets_monochrome_icons_title">Iconos monocromáticos</string>
     <string name="settings_main_background_animation_disabled">Desactivado</string>
-    <string name="settings_location_access_background_summaryOff">Por favor, activa \"Permitir todo el tiempo\" para tener las actualizaciones en segundo plano de tu ubicación actual.</string>
+    <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu ubicación actual.</string>
     <string name="settings_widgets_summary">Establecer el fondo de pantalla, configurar los complementos utilizados, complementos de notificaciones</string>
     <string name="dialog_permissions_location_content">Breezy Weather necesita recopilar la información de tu ubicación en primer o segundo plano para proporcionar los datos meteorológicos de tu ubicación actual. Para ello, te solicitaremos algunos permisos. Tu ubicación sólo se utilizará para obtener los datos meteorológicos de tu ubicación actual. Si no deseas compartir tu ubicación, puedes denegar estos requisitos y establecer manualmente una ubicación en la página de gestión.</string>
     <string name="settings_location_access_switch_summaryOff">Por favor, permite si quieres añadir tu ubicación actual como una ubicación.</string>

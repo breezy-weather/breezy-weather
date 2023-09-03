@@ -275,7 +275,7 @@
     <string name="action_restart">Перезапустити</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
     <string name="dialog_permissions_location_content">Breezy Weather має збирати інформацію про ваше місцезнаходження, щоб надавати погодні дані згідно поточному місцеположенню. Для цього ми запрошуємо деякі дозволи. Інформація про ваше місцезнаходження буде використана лише для отримання погодних даних у вашому поточному місціположенні. Якщо ви не хочете ділитися цією інформацією, ви можете відхилити ці вимоги та вручну встановити своє місцезнаходження на сторінці керування.</string>
-    <string name="dialog_permissions_location_background_content">Дозвольте застосунку отримувати доступ до інформації про місцезнаходження у фоновому режимі, щоб ми могли сприймати зміни місцезнаходження і надавати вам достовірні погодні дані. Для цього встановіть доступ до місцезнаходження як \"Дозволяти завжди\".</string>
+    <string name="dialog_permissions_location_background_content">Дозвольте застосунку отримувати доступ до інформації про місцезнаходження у фоновому режимі, щоб ми могли сприймати зміни місцезнаходження і надавати вам достовірні погодні дані. Для цього встановіть доступ до місцезнаходження як “Дозволяти завжди”.</string>
     <string name="message_parsing_error_content">Переконайтеся, що ви оновили застосунок до останньої версії. Сервер може бути тимчасово недоступний, в такому випадку, повторіть спробу пізніше. Якщо проблема не зникне, будь ласка, створіть журнал збоїв у налаштуваннях та повідомте про проблему на GitHub.</string>
     <string name="message_source_not_installed_error_title">Джерело більше недоступне</string>
     <string name="widget_material_you_current">Material You - Зараз</string>
@@ -386,7 +386,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не вдалося відкрити налаштування пристрою.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимізація батареї вже вимкнена.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Спеціальні інструкції виробника</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники встановлюють додаткові обмеження для застосунків, які відключають фонові служби. На сайті \"Don’t kill my app!\" є інформація про те, як це виправити.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники встановлюють додаткові обмеження для застосунків, які відключають фонові служби. На сайті “Don’t kill my app!” є інформація про те, як це виправити.</string>
     <string name="settings_background_updates_worker_info_title">Інформація про процес</string>
     <string name="settings_background_updates_worker_info_summary">Останній запуск: $</string>
     <string name="settings_location_access_permission_already_granted">Дозвіл вже надано</string>

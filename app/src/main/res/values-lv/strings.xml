@@ -6,7 +6,7 @@
     <string name="minutely_forecast">Minūtes prognoze</string>
     <string name="precipitation_forecast">Nokrišņu prognoze</string>
     <string name="air_quality">Gaisa kvalitāte</string>
-    <string name="pollen">Alergēns</string>
+    <string name="pollen">Ziedputekšņi</string>
     <string name="ephemeris">Saule un Mēness</string>
     <string name="details">Sīkāka informācija</string>
     <string name="alerts">Brīdinājumi</string>
@@ -366,7 +366,7 @@
     <string name="weather_alert_data_by">Brīdinājuma dati no $</string>
     <string name="weather_normals_data_by">Temperatūras normas dati no $</string>
     <string name="weather_pollen_data_by">Alergēnu dati no $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Gaisa kvalitātes un alergēnu dati no $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Gaisa kvalitātes un ziedputekšņi dati no $</string>
     <string name="weather_minutely_data_by">Dati par nokrišņiem minūtē pēc minūtes no $</string>
     <string name="weather_source_accu_preference_hours_240">240 stundas</string>
     <string name="location_swipe_to_delete">Varat vilkt pa kreisi, lai dzēstu šo vienumu</string>

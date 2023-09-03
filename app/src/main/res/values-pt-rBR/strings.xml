@@ -89,7 +89,7 @@
     <string name="minutely_forecast">Previsão por minuto</string>
     <string name="precipitation_forecast">Previsão de precipitação</string>
     <string name="air_quality">Qualidade do ar</string>
-    <string name="pollen">Alergias</string>
+    <string name="pollen">Pólen</string>
     <string name="details">Detalhes</string>
     <string name="ephemeris">Sol e lua</string>
     <string name="action_next">Próximo</string>
