@@ -552,4 +552,15 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notificaciones para la previsión del día siguiente</string>
     <string name="settings_notifications_forecast_time_today_title">Hora para las notificaciones para la previsión del día</string>
     <string name="action_save">Guardar</string>
+    <string name="about_privacy_policy">Política de privacidad</string>
+    <string name="settings_debug_dump_crash_logs_summary">Guarda los registros de errores en un archivo para compartirlos con los desarrolladores</string>
+    <string name="settings_item_delete">Eliminar este elemento</string>
+    <string name="settings_debug_dump_crash_logs_title">Compartir registros de fallos</string>
+    <string name="settings_widgets_notification_persistent_switch">Persistente</string>
+    <string name="settings_main_cards_fade_in_switch">Las cartas se difuminan</string>
+    <string name="settings_debug_summary">Regristro de fallos</string>
+    <string name="settings_widgets_notification_widget_title">Widget de notificaciones</string>
+    <string name="settings_widgets_section_notification_widget">Widget de notificaciones</string>
+    <string name="settings_widgets_notification_style_title">Estilo</string>
+    <string name="settings_debug">Depurar</string>
 </resources>
