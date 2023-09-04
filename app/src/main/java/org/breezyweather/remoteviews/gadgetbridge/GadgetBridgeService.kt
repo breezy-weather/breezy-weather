@@ -25,14 +25,18 @@ import android.os.Build
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.index.PollutantIndex
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.Hourly
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeAirQuality
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeDailyForecast
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeData
+import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeHourlyForecast
 import org.breezyweather.settings.SettingsManager
 import kotlin.math.roundToInt
 
@@ -111,23 +115,94 @@ object GadgetBridgeService {
 
             todayMaxTemp = getTemp(today?.day?.temperature),
             todayMinTemp = getTemp(today?.night?.temperature),
+            feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.let { TemperatureUnit.K.convertUnit(it).roundToInt() },
             precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
 
-            forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday)
+            dewPoint = (current?.dewPoint?.plus(273.15))?.roundToInt(),
+            pressure = current?.pressure,
+            cloudCover = current?.cloudCover,
+            visibility = current?.visibility,
+
+            sunRise = today?.sun?.riseDate?.time?.div(1000)?.toInt(),
+            sunSet = today?.sun?.setDate?.time?.div(1000)?.toInt(),
+            moonRise = today?.moon?.riseDate?.time?.div(1000)?.toInt(),
+            moonSet = today?.moon?.setDate?.time?.div(1000)?.toInt(),
+            moonPhase = today?.moonPhase?.angle,
+
+            latitude = location.latitude,
+            longitude = location.longitude,
+            isCurrentLocation = if (location.isCurrentPosition) 1 else 0,
+
+            airQuality = GadgetBridgeAirQuality(
+                aqi = current?.airQuality?.getIndex(null),
+                co = current?.airQuality?.cO,
+                no2 = current?.airQuality?.nO2,
+                o3 = current?.airQuality?.o3,
+                pm10 = current?.airQuality?.pM10,
+                pm25 = current?.airQuality?.pM25,
+                so2 = current?.airQuality?.sO2,
+                coAqi = current?.airQuality?.getIndex(PollutantIndex.CO),
+                no2Aqi = current?.airQuality?.getIndex(PollutantIndex.NO2),
+                o3Aqi = current?.airQuality?.getIndex(PollutantIndex.O3),
+                pm10Aqi = current?.airQuality?.getIndex(PollutantIndex.PM10),
+                pm25Aqi = current?.airQuality?.getIndex(PollutantIndex.PM25),
+                so2Aqi = current?.airQuality?.getIndex(PollutantIndex.SO2),
+            ),
+
+            forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday),
+            hourly = getHourlyForecasts(location.weather?.nextHourlyForecast),
         )
     }
 
     private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetBridgeDailyForecast>? {
-        if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
+        if (dailyForecast.isNullOrEmpty()) return null
 
         return dailyForecast.slice(1 until dailyForecast.size).map { day ->
             GadgetBridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = getTemp(day.day?.temperature),
-                minTemp = getTemp(day.night?.temperature)
+                minTemp = getTemp(day.night?.temperature),
+
+                sunRise = day.sun?.riseDate?.time?.div(1000)?.toInt(),
+                sunSet = day.sun?.setDate?.time?.div(1000)?.toInt(),
+                moonRise = day.moon?.riseDate?.time?.div(1000)?.toInt(),
+                moonSet = day.moon?.setDate?.time?.div(1000)?.toInt(),
+                moonPhase = day.moonPhase?.angle,
+
+                airQuality = GadgetBridgeAirQuality(
+                    aqi = day.airQuality?.getIndex(null),
+                    co = day.airQuality?.cO,
+                    no2 = day.airQuality?.nO2,
+                    o3 = day.airQuality?.o3,
+                    pm10 = day.airQuality?.pM10,
+                    pm25 = day.airQuality?.pM25,
+                    so2 = day.airQuality?.sO2,
+                    coAqi = day.airQuality?.getIndex(PollutantIndex.CO),
+                    no2Aqi = day.airQuality?.getIndex(PollutantIndex.NO2),
+                    o3Aqi = day.airQuality?.getIndex(PollutantIndex.O3),
+                    pm10Aqi = day.airQuality?.getIndex(PollutantIndex.PM10),
+                    pm25Aqi = day.airQuality?.getIndex(PollutantIndex.PM25),
+                    so2Aqi = day.airQuality?.getIndex(PollutantIndex.SO2),
+                ),
             )
         }
     }
+
+    private fun getHourlyForecasts(dailyForecast: List<Hourly>?): List<GadgetBridgeHourlyForecast>? {
+        if (dailyForecast.isNullOrEmpty()) return null
+
+        return dailyForecast.map { hour ->
+            GadgetBridgeHourlyForecast(
+                timestamp = hour.date.time.div(1000).toInt(),
+                temp = getTemp(hour.temperature),
+                conditionCode = getWeatherCode(hour.weatherCode),
+                humidity = hour.relativeHumidity?.roundToInt(),
+                windSpeed = hour.wind?.speed,
+                windDirection = hour.wind?.degree?.roundToInt(),
+            )
+        }
+    }
+
 
     private fun getTemp(temp: Temperature?): Int? {
         return temp?.temperature?.let { TemperatureUnit.K.convertUnit(it).roundToInt() }

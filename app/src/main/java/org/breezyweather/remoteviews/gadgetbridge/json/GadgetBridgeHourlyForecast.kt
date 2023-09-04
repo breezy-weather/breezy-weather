@@ -3,19 +3,13 @@ package org.breezyweather.remoteviews.gadgetbridge.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GadgetBridgeDailyForecast(
-    val minTemp: Int? = null,
-    val maxTemp: Int? = null,
+data class GadgetBridgeHourlyForecast(
+    val timestamp: Int? = null,
+    val temp: Int? = null,
     val conditionCode: Int? = null,
     val humidity: Int? = null,
     val windSpeed: Float? = null,
     val windDirection: Int? = null,
     val uvIndex: Float? = null,
     val precipProbability: Int? = null,
-    val sunRise: Int? = null,
-    val sunSet: Int? = null,
-    val moonRise: Int? = null,
-    val moonSet: Int? = null,
-    val moonPhase: Int? = null,
-    val airQuality: GadgetBridgeAirQuality? = null,
 )
