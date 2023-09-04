@@ -293,7 +293,7 @@
     <string name="settings_background_updates_section_troubleshoot">Arazoak konpontzea</string>
     <string name="settings_background_updates_battery_optimization">Desaktibatu bateria optimizatzailea</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Ezin izan da gailuaren konfigurazioa ireki.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Fabrikatzaile batzuek bigarren planoko zerbitzuak hiltzen dituzten murrizketa gehigarriak dituzte. Don \'t kill my app! webguneak hori nola konpondu daitekeen azaltzen du.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Fabrikatzaile batzuek bigarren planoko zerbitzuak hiltzen dituzten murrizketa gehigarriak dituzte. Don’t kill my app! webguneak hori nola konpondu daitekeen azaltzen du.</string>
     <string name="settings_location">Kokapena</string>
     <string name="settings_location_summary">Kokapen zerbitzuen ezarpenak</string>
     <string name="settings_location_service">Kokapen zerbitzua</string>
@@ -304,7 +304,7 @@
     <string name="settings_location_access_background_title">Kokapen sarbidea bigarren planoan</string>
     <string name="settings_location_access_background_summaryOn">Gaitua. Orain duzun kokalekuko datu meteorologikoak eguneratu ahal izango dituzu bigarren planoan.</string>
     <string name="settings_background_updates_worker_info_summary">Azken exekuzioa: $</string>
-    <string name="settings_location_access_precise_summaryOff">Gaitu \"Kokapen zehatza erabili\" kokapen bat lortzeko arazoak izanez gero.</string>
+    <string name="settings_location_access_precise_summaryOff">Gaitu “Kokapen zehatza erabili” kokapen bat lortzeko arazoak izanez gero.</string>
     <string name="settings_weather_source">Eguraldiaren iturria</string>
     <string name="settings_weather_sources">Eguraldiaren iturriak</string>
     <string name="settings_weather_source_main">Iturri nagusia</string>

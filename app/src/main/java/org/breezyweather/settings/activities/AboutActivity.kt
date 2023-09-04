@@ -161,6 +161,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("es"), "Julio Martínez Ródenas", "https://github.com/juliomartinezrodenas"),
         TranslatorItem(arrayOf("es"), "Hin Weisner", "https://hosted.weblate.org/user/Hinweis/"),
         TranslatorItem(arrayOf("es"), "gallegonovato", "https://hosted.weblate.org/user/gallegonovato/"),
+        TranslatorItem(arrayOf("es"), "Jose", "https://github.com/AzagraMac"),
         TranslatorItem(arrayOf("eu"), "Dabid", "https://github.com/desertorea"),
         TranslatorItem(arrayOf("fr", "en"), "Julien Papasian", "https://github.com/papjul"),
         TranslatorItem(arrayOf("fr"), "Benjamin Tourrel", "mailto:polo_naref@hotmail.fr"),
