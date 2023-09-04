@@ -437,7 +437,6 @@
     <string name="settings_notifications_alerts_title">Eguraldiaren alerten jakinarazpenak</string>
     <string name="settings_notifications_section_forecast">Iragarpena</string>
     <string name="settings_notifications_forecast_time_today_title">Eguneko iragarpenaren jakinarazpen ordua</string>
-    <string name="ephemeris_moonrise_at"></string>
     <string name="settings_appearance_summary">Hizkuntza, gai iluna, ikono paketea, unitateak</string>
     <string name="settings_appearance_icon_pack_title">Ikono paketea</string>
     <string name="settings_units">Unitateak</string>
