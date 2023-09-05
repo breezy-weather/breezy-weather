@@ -135,7 +135,7 @@
     <string name="weather_source_accu_preference_hours_12">12 сати</string>
     <string name="action_undo">Поништи</string>
     <string name="message_source_not_installed_error_title">Извор више није доступан</string>
-    <string name="action_show_errors">Додирните овде да видите детаље</string>
+    <string name="action_show_errors">Додирните да видите детаље</string>
     <string name="settings_appearance_dark_mode_title">Тамни режим</string>
     <string name="settings_item_delete">Избрисати ову ставку</string>
     <string name="unit_mugpcum">μg/m³</string>
