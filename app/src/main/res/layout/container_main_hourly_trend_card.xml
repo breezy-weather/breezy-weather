@@ -57,6 +57,11 @@
                 style="@style/title_text"
                 tools:ignore="RtlHardcoded" />
 
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
+
             <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
                 android:id="@+id/container_main_hourly_trend_card_minutelyBar"
                 android:layout_width="match_parent"

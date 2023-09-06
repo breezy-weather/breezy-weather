@@ -27,7 +27,7 @@ import org.breezyweather.sources.accu.json.*
  */
 interface AccuEnterpriseApi : AccuDeveloperApi {
 
-    @GET("forecasts/v1/minute/1minute")
+    @GET("forecasts/v1/minute/5minute")
     fun getMinutely(
         @Query("apikey") apikey: String,
         @Query("q") q: String,

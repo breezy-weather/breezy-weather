@@ -366,10 +366,14 @@ private fun getMinutelyList(
 ): List<Minutely>? {
     if (minuteResult == null) return null
     if (minuteResult.Intervals.isNullOrEmpty()) return emptyList()
-    return minuteResult.Intervals.map { interval ->
+    return minuteResult.Intervals.mapIndexed { i, interval ->
         Minutely(
             date = Date(interval.StartEpochDateTime),
-            minuteInterval = interval.Minute,
+            minuteInterval = if (i < minuteResult.Intervals.size - 1) {
+                ((minuteResult.Intervals[i + 1].Minute - interval.Minute) / (60 * 1000)).toDouble()
+                    .roundToInt()
+            } else ((interval.Minute - minuteResult.Intervals[i - 1].Minute) / (60 * 1000)).toDouble()
+                .roundToInt(),
             dbz = interval.Dbz.roundToInt()
         )
     }

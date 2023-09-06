@@ -37,6 +37,7 @@ class Precipitation(
 ) : Serializable {
 
     companion object {
+        // TODO: Seems a bit high, should probably lower that
         const val PRECIPITATION_LIGHT = 10f
         const val PRECIPITATION_MIDDLE = 25f
         const val PRECIPITATION_HEAVY = 50f
