@@ -16,17 +16,27 @@
 
 package org.breezyweather.main.adapters.main.holder
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import breezyweather.domain.location.model.Location
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
+import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationMarker
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
@@ -35,6 +45,8 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
+import kotlin.math.max
+import kotlin.math.roundToLong
 
 class PrecipitationNowcastViewHolder(
     parent: ViewGroup
@@ -43,6 +55,7 @@ class PrecipitationNowcastViewHolder(
         .from(parent.context)
         .inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
+    private val chart: LineChart = itemView.findViewById(R.id.chart1)
     private val minutelyContainer: LinearLayout = itemView.findViewById(R.id.container_main_minutely_card_minutely)
     private val minutelyTitle: TextView = itemView.findViewById(R.id.container_main_minutely_card_title)
     private val minutelySubtitle: TextView = itemView.findViewById(R.id.container_main_minutely_card_subtitle)
@@ -52,9 +65,53 @@ class PrecipitationNowcastViewHolder(
     private val minutelyEndText: TextView = itemView.findViewById(R.id.container_main_minutely_card_minutelyEndText)
     private val minutelyStartLine: View = itemView.findViewById(R.id.container_main_minutely_card_minutelyStartLine)
     private val minutelyEndLine: View = itemView.findViewById(R.id.container_main_minutely_card_minutelyEndLine)
+    private var mEnable = false
 
     init {
         minutelyContainer.setOnClickListener { /* do nothing. */ }
+
+        // no description text
+        chart.description.isEnabled = false
+
+        // enable touch gestures
+        chart.setTouchEnabled(true)
+
+        chart.setDrawBorders(false)
+        chart.setDrawGridBackground(false)
+
+        chart.description.isEnabled = false
+        chart.legend.isEnabled = false
+
+        chart.axisLeft.setDrawAxisLine(false)
+        chart.axisLeft.isShowSpecificPositions = true
+        chart.axisLeft.specificPositions = floatArrayOf(2.6f, 7.6f)
+        chart.axisLeft.valueFormatter = IAxisValueFormatter { value, _ ->
+            if (value == 2.6f) "Low" else "Moderate"
+        }
+
+        chart.axisRight.isEnabled = false
+        chart.axisRight.setDrawGridLines(false)
+        chart.axisRight.setDrawLabels(false)
+        chart.axisRight.setDrawAxisLine(false)
+
+        chart.xAxis.setDrawGridLines(false)
+        chart.xAxis.setDrawLabels(true)
+        chart.xAxis.setDrawAxisLine(false)
+        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM;
+
+        // enable scaling and dragging
+        chart.isDragEnabled = false
+        chart.setScaleEnabled(false)
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        chart.setPinchZoom(false)
+
+        chart.maxHighlightDistance = 300f
+
+        chart.animateXY(1500, 0)
+
+        // don't forget to refresh the drawing
+        chart.invalidate()
     }
 
     override fun onBindView(
@@ -87,6 +144,101 @@ class PrecipitationNowcastViewHolder(
         val minutelyList = weather.minutelyForecast
         if (minutelyList.size >= 3 && weather.hasMinutelyPrecipitation) {
             minutelyContainer.visibility = View.VISIBLE
+
+            if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
+                chart.axisLeft.setDrawGridLines(true)
+                chart.axisLeft.setDrawLabels(true)
+            } else {
+                chart.axisLeft.setDrawGridLines(false)
+                chart.axisLeft.setDrawLabels(false)
+            }
+
+            val entries = listOf(
+                Entry(
+                    (minutelyList.first().date.time.div(60).div(1000)).toFloat(),
+                    minutelyList.first().precipitationIntensity?.toFloat() ?: 0.0f
+                )
+            ) + minutelyList.map {
+                Entry(
+                    (it.date.time.div(60).div(1000)).toFloat() + it.minuteInterval,
+                    it.precipitationIntensity?.toFloat() ?: 0.0f
+                )
+            }
+
+            val xAxis = chart.xAxis
+            xAxis.valueFormatter = IAxisValueFormatter { value, _ ->
+                value.roundToLong().times(60).times(1000).toDate().getFormattedTime(location.timeZone, context.is12Hour)
+            }
+            xAxis.isShowSpecificPositions = true
+            val firstTime = (minutelyList.first().date.time.div(60).div(1000))
+            // Doesn’t show up if we put max date, so removing one minute instead:
+            val lastTime = (minutelyList.last().date.time.div(60).div(1000)) + (minutelyList.last().minuteInterval - 1)
+            xAxis.specificPositions = floatArrayOf(
+                firstTime.toFloat(),
+                // In-between, add back the missing minute from lastTime:
+                (firstTime + (lastTime + 1 - firstTime) / 2).toFloat(),
+                lastTime.toFloat()
+            )
+            xAxis.mAxisMaximum = (minutelyList.last().date.time.div(60).div(1000)).toFloat() + minutelyList.last().minuteInterval
+
+            val yAxis = chart.axisLeft
+            yAxis.axisMaximum = max(
+                8f,
+                minutelyList
+                    .maxOf { it.precipitationIntensity ?: 0.0 }
+                    .toFloat()
+            )
+
+            // create marker to display box when values are selected
+            val mv = PrecipitationMarker(context, xAxis.valueFormatter) { value, _ ->
+                SettingsManager
+                    .getInstance(activity)
+                    .precipitationIntensityUnit
+                    .getValueText(activity, value)
+            }
+            // Set the marker to the chart
+            mv.chartView = chart
+            chart.marker = mv
+
+            chart.axisLeft.textColor = MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+            chart.xAxis.textColor = MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+
+            // create a dataset and give it a type
+            val set1 = LineDataSet(entries, "Precipitation quantity").apply {
+                mode = LineDataSet.Mode.CUBIC_BEZIER
+                cubicIntensity = 0.1f
+                setDrawFilled(true)
+                setDrawCircles(false)
+                //setDrawCircles(true);
+                //setDrawCircleHole(false);
+                //circleRadius = 1.5f;
+                setCircleColor(colors[0])
+                lineWidth = POLYLINE_SIZE_DIP
+                highLightColor = colors[0]
+                color = colors[0]
+                fillDrawable = GradientDrawable(
+                    GradientDrawable.Orientation.TOP_BOTTOM,
+                    arrayOf(
+                        Color.argb(128, Color.red(colors[1]), Color.green(colors[1]), Color.blue(colors[1])),
+                        Color.TRANSPARENT
+                    ).toIntArray()
+                )
+                setDrawHorizontalHighlightIndicator(false)
+                /*fillFormatter = IFillFormatter { dataSet, dataProvider ->
+                    chart.getAxisLeft().getAxisMinimum()
+                }*/
+            }
+
+            // create a data object with the data sets
+            val data = LineData(set1).apply {
+                setValueTextSize(9f)
+                setDrawValues(false)
+            }
+
+            // set data
+            chart.data = data
+            mEnable = true
+
             precipitationBar.precipitationIntensities = minutelyList.map {
                 it.precipitationIntensity ?: 0.0
             }.toTypedArray()
@@ -135,5 +287,15 @@ class PrecipitationNowcastViewHolder(
 
         minutelyStartLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
         minutelyEndLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+    }
+
+    override fun onEnterScreen() {
+        if (itemAnimationEnabled && mEnable) {
+            chart.animateXY(1500, 0)
+        }
+    }
+
+    companion object {
+        private const val POLYLINE_SIZE_DIP = 3.5f
     }
 }

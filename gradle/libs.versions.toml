@@ -4,6 +4,7 @@ accompanist = "0.34.0"
 activity = "1.8.2"
 adaptiveiconview = "v0.0.3"
 agp = "8.3.2"
+androidchart = "3.1.0.21"
 appcompat = "1.6.1"
 cardview = "1.0.0"
 compose = "1.6.5"
@@ -52,6 +53,7 @@ activity-compose = { group = "androidx.activity", name = "activity-compose", ver
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 adaptiveiconview = { group = "com.github.breezy-weather", name = "AdaptiveIconView", version.ref = "adaptiveiconview" }
+androidchart = { group = "com.github.AppDevNext", name = "AndroidChart", version.ref = "androidchart" }
 android-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }

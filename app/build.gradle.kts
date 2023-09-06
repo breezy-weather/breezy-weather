@@ -243,6 +243,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.rx3)
 
     // ui.
+    implementation(libs.androidchart)
     implementation(libs.adaptiveiconview)
     implementation(libs.activity.ktx)
     implementation(libs.expandabletextcompose)
