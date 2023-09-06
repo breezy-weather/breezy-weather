@@ -1,5 +1,8 @@
 # Version 4.6.6-beta (next version)
 
+**Other fixes**
+- GPS and live wallpaper are no longer marked as required Android features to avoid some issues installing the app on some devices
+
 **Translations**
 - Translations updated
 
