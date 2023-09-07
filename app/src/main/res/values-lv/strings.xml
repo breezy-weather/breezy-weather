@@ -168,9 +168,9 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_week_style_5_days">5 dienas</string>
     <string name="widget_week_style_3_days">3 dienas</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Viegls</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Melns</string>
     <string name="widget_clock_font_analog">Analogs</string>
     <string name="widget_live_wallpaper_weather_kind">Laikapstākļi</string>
     <string name="widget_live_wallpaper_day_night_type">Laiks</string>
@@ -430,7 +430,7 @@
     <string name="widget_custom_subtitle_keyword_d_description">Datums</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Garuma grāds</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Atjaunināšanas laiks</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Mēness kalendārs</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Mēness Kalendārs</string>
     <string name="widget_custom_subtitle_keyword_w_description">Nedēļa</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dienas temperatūra šodien, rīt, …, 4 dienas vēlāk (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dienas laikapstākļi šodien, rīt, …, 4 dienas vēlāk</string>
