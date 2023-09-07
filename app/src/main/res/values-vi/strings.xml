@@ -143,7 +143,7 @@
     <string name="details">Chi tiết</string>
     <string name="hours_of_sun">Số giờ nắng</string>
     <string name="humidity">Độ ẩm</string>
-    <string name="pressure">Áp suất khí quyển</string>
+    <string name="pressure">Áp suất</string>
     <string name="visibility">Tính rõ ràng</string>
     <string name="dew_point">Điểm sương</string>
     <string name="cloud_cover">Mây che phủ</string>
@@ -503,7 +503,7 @@
     <string name="notification_update_error">%1$d cập nhật thất bại</string>
     <string name="temperature_real_feel">Cảm giác thật</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
+    <string name="widget_style_oreo_google_sans">Oreo (Google Không chân)</string>
     <string name="weather_refresh_skipped_already_recently_updated">Đã được cập nhật gần đây</string>
     <string name="message_server_timeout">Đã hết thời gian chờ yêu cầu</string>
     <string name="message_parsing_error_content">Hãy đảm bảo bạn đã cập nhật lên phiên bản mới nhất của ứng dụng. Máy chủ có thể tạm thời không khả dụng, trong trường hợp đó, vui lòng thử lại sau. Nếu sự cố vẫn tiếp diễn, hãy xuất nhật ký sự cố từ cài đặt gỡ lỗi, và báo cáo sự cố trên GitHub.</string>
@@ -537,7 +537,7 @@
     <string name="unit_in">inch</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">inch/h</string>
+    <string name="unit_inph">inch/giờ</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_mi">mi</string>
     <string name="unit_nmi">nmi</string>
@@ -563,7 +563,7 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_km">km</string>
     <string name="unit_kpa">kPa</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">Không chân</string>
     <string name="pollen_alder">Xích dương</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="action_delete">Xoá</string>
