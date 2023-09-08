@@ -386,7 +386,7 @@
     <string name="weather_air_quality_and_pollen_data_by">Hava kalitesi ve alerjen bilgisi $ tarafından sağlanıyor</string>
     <string name="pollen_level_4">Yüksek</string>
     <string name="pollen_level_5">Çok yüksek</string>
-    <string name="pressure">Basıncı</string>
+    <string name="pressure">Basınç</string>
     <string name="dew_point">Çiy noktası</string>
     <string name="ephemeris_moon_phase_first_quarter">İlk dördün</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Büyüyen şişkin ay</string>
