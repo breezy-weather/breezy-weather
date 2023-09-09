@@ -17,6 +17,7 @@
 package org.breezyweather.settings
 
 import android.content.Context
+import androidx.core.text.util.LocalePreferences
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.*
@@ -161,9 +162,11 @@ class SettingsManager private constructor(context: Context) {
 
     private val defaultTemperatureUnit: String
         get() {
-            // TODO: Add when core v1.12.0 is released
-            //LocalePreferences.getTemperatureUnit(language.locale)
-            return "c"
+            return when (LocalePreferences.getTemperatureUnit(language.locale)) {
+                LocalePreferences.TemperatureUnit.FAHRENHEIT -> "f"
+                LocalePreferences.TemperatureUnit.KELVIN -> "k"
+                else -> "c"
+            }
         }
 
     var distanceUnit: DistanceUnit
