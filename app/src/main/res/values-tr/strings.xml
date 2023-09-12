@@ -178,7 +178,7 @@
     <string name="pollen_ragweed">Kanarya otu</string>
     <string name="weather_source_accu_preference_days_15">15 günlük</string>
     <string name="weather_source_accu_preference_hours_1">1 saatlik</string>
-    <string name="weather_source_accu_preference_hours_12">12 saatlik</string>
+    <string name="weather_source_accu_preference_hours_12">12 saatlik</string>
     <string name="locations">Konumlar</string>
     <string name="action_show_errors">Detayları görmek için dokunun</string>
     <string name="dialog_permissions_notification_title">Haberdar ol</string>
@@ -483,7 +483,7 @@
     <string name="notification_precipitation_today">Bugün yağış olabilir.</string>
     <string name="notification_precipitation_short_term">Takip eden birkaç saat içerisinde yağış olabilir.</string>
     <string name="notification_style_native">Yerel</string>
-    <string name="common_weather_text_overcast">Bulutlu</string>
+    <string name="common_weather_text_overcast">Kapalı</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Karla karışık hafif yağmurlar</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Karla karışık şiddetli sağanaklar</string>
     <string name="common_weather_text_snow_showers_light">Hafif kar yağışı</string>
