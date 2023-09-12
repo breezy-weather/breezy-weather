@@ -99,25 +99,6 @@ fun WidgetsSettingsScreen(
             },
         )
     }
-    switchPreferenceItem(R.string.settings_widgets_day_night_temp_reversed_title) { id ->
-        SwitchPreferenceView(
-            title = stringResource(id),
-            summary = { context, it ->
-                Temperature.getTrendTemperature(
-                    context,
-                    3f,
-                    7f,
-                    SettingsManager.getInstance(context).temperatureUnit,
-                    it
-                )
-            },
-            checked = SettingsManager.getInstance(context).isDayNightTempOrderReversed,
-            onValueChanged = {
-                SettingsManager.getInstance(context).isDayNightTempOrderReversed = it
-                Widgets.updateWidgetIfNecessary(context)
-            },
-        )
-    }
     sectionFooterItem(R.string.settings_widgets_section_general)
 
     if (DayWidgetIMP.isInUse(context) || WeekWidgetIMP.isInUse(context) || DayWeekWidgetIMP.isInUse(context) ||

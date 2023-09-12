@@ -44,21 +44,10 @@ data class Temperature(
         }
 
         fun getTrendTemperature(context: Context, night: Float?, day: Float?, unit: TemperatureUnit): String? {
-            return getTrendTemperature(
-                context, night, day, unit,
-                SettingsManager.getInstance(context).isDayNightTempOrderReversed
-            )
-        }
-
-        fun getTrendTemperature(context: Context, night: Float?, day: Float?, unit: TemperatureUnit, switchDayNight: Boolean): String? {
             if (night == null || day == null) {
                 return null
             }
-            return if (switchDayNight) {
-                getShortTemperature(context, day, unit) + "/" + getShortTemperature(context, night, unit)
-            } else {
-                getShortTemperature(context, night, unit) + "/" + getShortTemperature(context, day, unit)
-            }
+            return getShortTemperature(context, day, unit) + "/" + getShortTemperature(context, night, unit)
         }
     }
 

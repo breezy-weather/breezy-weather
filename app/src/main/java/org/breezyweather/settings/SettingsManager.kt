@@ -292,13 +292,6 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("trend_horizontal_line_switch", true)
 
-    var isDayNightTempOrderReversed: Boolean
-        set(value) {
-            config.edit().putBoolean("exchange_day_night_temp_switch", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getBoolean("exchange_day_night_temp_switch", false)
-
     var backgroundAnimationMode: BackgroundAnimationMode
         set(value) {
             config.edit().putString("background_animation_mode", value.id).apply()
