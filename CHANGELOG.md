@@ -1,11 +1,9 @@
 # Version 4.6.6-beta (next version)
 
-**Other improvements and fixes**
 - Temperature unit will now follow locale preference if it was never defined. Example: you were using the app with the temperature unit set as Celsius (the previous default) in English (US). It will now switch to Fahrenheit (but you can still of course redefine it to something else). This change is mostly to help first-time users having directly their temperature in the unit that makes the most sense to them.
 - No longer allow to switch day/night temperature order in widgets to remove a confusion about which night it is about
+- [Gadgetbridge] Send additional data for versions 0.76+ (@joserebelo)
 - GPS and live wallpaper are no longer marked as required Android features to avoid some issues installing the app on some devices
-
-**Translations**
 - Translations updated
 
 

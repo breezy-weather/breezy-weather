@@ -3,8 +3,7 @@
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version.
+ * Free Software Foundation, either version 3 of the License.
  *
  * Breezy Weather is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
@@ -28,10 +27,11 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.index.PollutantIndex
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeAirQuality
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeDailyForecast
@@ -103,25 +103,25 @@ object GadgetBridgeService {
         return GadgetBridgeData(
             timestamp = location.weather?.base?.mainUpdateTime?.time?.div(1000)?.toInt(),
             location = location.getPlace(context),
-            currentTemp = getTemp(current?.temperature),
+            currentTemp = current?.temperature?.temperature?.roundCelsiusToKelvin(),
             currentConditionCode = getWeatherCode(current?.weatherCode),
             currentCondition = current?.weatherText,
             currentHumidity = current?.relativeHumidity?.roundToInt(),
             windSpeed = current?.wind?.speed?.let {
                 SpeedUnit.KPH.convertUnit(it)
-            },
+            }?.roundDecimals(1),
             windDirection = current?.wind?.degree?.roundToInt(),
-            uvIndex = current?.uV?.index,
+            uvIndex = current?.uV?.index?.roundDecimals(1),
 
-            todayMaxTemp = getTemp(today?.day?.temperature),
-            todayMinTemp = getTemp(today?.night?.temperature),
-            feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.let { TemperatureUnit.K.convertUnit(it).roundToInt() },
+            todayMaxTemp = today?.day?.temperature?.temperature?.roundCelsiusToKelvin(),
+            todayMinTemp = today?.night?.temperature?.temperature?.roundCelsiusToKelvin(),
+            feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.roundCelsiusToKelvin(),
             precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
 
-            dewPoint = (current?.dewPoint?.plus(273.15))?.roundToInt(),
-            pressure = current?.pressure,
+            dewPoint = current?.dewPoint?.roundCelsiusToKelvin(),
+            pressure = current?.pressure?.roundDecimals(1),
             cloudCover = current?.cloudCover,
-            visibility = current?.visibility,
+            visibility = current?.visibility?.roundDecimals(1),
 
             sunRise = today?.sun?.riseDate?.time?.div(1000)?.toInt(),
             sunSet = today?.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -133,21 +133,7 @@ object GadgetBridgeService {
             longitude = location.longitude,
             isCurrentLocation = if (location.isCurrentPosition) 1 else 0,
 
-            airQuality = GadgetBridgeAirQuality(
-                aqi = current?.airQuality?.getIndex(null),
-                co = current?.airQuality?.cO,
-                no2 = current?.airQuality?.nO2,
-                o3 = current?.airQuality?.o3,
-                pm10 = current?.airQuality?.pM10,
-                pm25 = current?.airQuality?.pM25,
-                so2 = current?.airQuality?.sO2,
-                coAqi = current?.airQuality?.getIndex(PollutantIndex.CO),
-                no2Aqi = current?.airQuality?.getIndex(PollutantIndex.NO2),
-                o3Aqi = current?.airQuality?.getIndex(PollutantIndex.O3),
-                pm10Aqi = current?.airQuality?.getIndex(PollutantIndex.PM10),
-                pm25Aqi = current?.airQuality?.getIndex(PollutantIndex.PM25),
-                so2Aqi = current?.airQuality?.getIndex(PollutantIndex.SO2),
-            ),
+            airQuality = getAirQuality(current?.airQuality),
 
             forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday),
             hourly = getHourlyForecasts(location.weather?.nextHourlyForecast),
@@ -155,13 +141,13 @@ object GadgetBridgeService {
     }
 
     private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetBridgeDailyForecast>? {
-        if (dailyForecast.isNullOrEmpty()) return null
+        if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
 
         return dailyForecast.slice(1 until dailyForecast.size).map { day ->
             GadgetBridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
-                maxTemp = getTemp(day.day?.temperature),
-                minTemp = getTemp(day.night?.temperature),
+                maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
+                minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
 
                 sunRise = day.sun?.riseDate?.time?.div(1000)?.toInt(),
                 sunSet = day.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -169,23 +155,30 @@ object GadgetBridgeService {
                 moonSet = day.moon?.setDate?.time?.div(1000)?.toInt(),
                 moonPhase = day.moonPhase?.angle,
 
-                airQuality = GadgetBridgeAirQuality(
-                    aqi = day.airQuality?.getIndex(null),
-                    co = day.airQuality?.cO,
-                    no2 = day.airQuality?.nO2,
-                    o3 = day.airQuality?.o3,
-                    pm10 = day.airQuality?.pM10,
-                    pm25 = day.airQuality?.pM25,
-                    so2 = day.airQuality?.sO2,
-                    coAqi = day.airQuality?.getIndex(PollutantIndex.CO),
-                    no2Aqi = day.airQuality?.getIndex(PollutantIndex.NO2),
-                    o3Aqi = day.airQuality?.getIndex(PollutantIndex.O3),
-                    pm10Aqi = day.airQuality?.getIndex(PollutantIndex.PM10),
-                    pm25Aqi = day.airQuality?.getIndex(PollutantIndex.PM25),
-                    so2Aqi = day.airQuality?.getIndex(PollutantIndex.SO2),
-                ),
+                airQuality = getAirQuality(day.airQuality)
             )
         }
+    }
+
+    private fun getAirQuality(airQuality: AirQuality?): GadgetBridgeAirQuality? {
+        if (airQuality == null) return null
+        val aqi = airQuality.getIndex() ?: return null
+
+        return GadgetBridgeAirQuality(
+            aqi = aqi,
+            co = airQuality.cO?.roundDecimals(2),
+            no2 = airQuality.nO2?.roundDecimals(2),
+            o3 = airQuality.o3?.roundDecimals(2),
+            pm10 = airQuality.pM10?.roundDecimals(2),
+            pm25 = airQuality.pM25?.roundDecimals(2),
+            so2 = airQuality.sO2?.roundDecimals(2),
+            coAqi = airQuality.getIndex(PollutantIndex.CO),
+            no2Aqi = airQuality.getIndex(PollutantIndex.NO2),
+            o3Aqi = airQuality.getIndex(PollutantIndex.O3),
+            pm10Aqi = airQuality.getIndex(PollutantIndex.PM10),
+            pm25Aqi = airQuality.getIndex(PollutantIndex.PM25),
+            so2Aqi = airQuality.getIndex(PollutantIndex.SO2),
+        )
     }
 
     private fun getHourlyForecasts(dailyForecast: List<Hourly>?): List<GadgetBridgeHourlyForecast>? {
@@ -194,18 +187,15 @@ object GadgetBridgeService {
         return dailyForecast.map { hour ->
             GadgetBridgeHourlyForecast(
                 timestamp = hour.date.time.div(1000).toInt(),
-                temp = getTemp(hour.temperature),
+                temp = hour.temperature?.temperature?.roundCelsiusToKelvin(),
                 conditionCode = getWeatherCode(hour.weatherCode),
                 humidity = hour.relativeHumidity?.roundToInt(),
-                windSpeed = hour.wind?.speed,
+                windSpeed = hour.wind?.speed?.let {
+                    SpeedUnit.KPH.convertUnit(it)
+                }?.roundDecimals(1),
                 windDirection = hour.wind?.degree?.roundToInt(),
             )
         }
-    }
-
-
-    private fun getTemp(temp: Temperature?): Int? {
-        return temp?.temperature?.let { TemperatureUnit.K.convertUnit(it).roundToInt() }
     }
 
     private fun getWeatherCode(code: WeatherCode?): Int {
@@ -225,4 +215,8 @@ object GadgetBridgeService {
             else -> 3200
         }
     }
+}
+
+internal fun Float.roundCelsiusToKelvin(): Int {
+    return TemperatureUnit.K.convertUnit(this).roundToInt()
 }
