@@ -3,7 +3,7 @@
 **Behavior changes**
 - Temperature unit will now follow locale preference if it was never defined. Example: you were using the app with the temperature unit set as Celsius (the previous default) in English (US). It will now switch to Fahrenheit (but you can still of course redefine it to something else). This change is mostly to help first-time users having directly their temperature in the unit that makes the most sense to them.
 - No longer allow to switch day/night temperature order in widgets to remove a confusion about which night it is about
-- “Day / Night” option for widget backgrounds was replaced by “Follow app preference” to improve consistency
+- “Day / Night” option for widget backgrounds was replaced by “Follow app preference” to improve consistency (@Cod3dDOT)
 
 **Other improvements and fixes**
 - [Gadgetbridge] Send additional data for versions 0.76+ (@joserebelo)
