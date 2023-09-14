@@ -51,7 +51,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, location: Location?,
         cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideLunar: Boolean
     ): RemoteViews {
-        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
             context.packageName,
             if (!color.showCard) R.layout.widget_clock_day_horizontal else R.layout.widget_clock_day_horizontal_card

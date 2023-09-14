@@ -247,7 +247,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             context,
             cardStyle!!,
             "auto",
-            location?.isDaylight ?: false
+            location?.isDaylight ?: true
         )
         val drawableView = getDrawableView(context, location, color) ?: return views
 

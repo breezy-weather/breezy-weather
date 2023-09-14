@@ -49,7 +49,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, location: Location?, viewStyle: String?,
         cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int
     ): RemoteViews {
-        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
             context.packageName,
             if ("3_days" == viewStyle) {

@@ -55,7 +55,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
-        val color = WidgetColor(context, cardStyle!!, textColor!!, locationList.first().isDaylight)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, locationList.firstOrNull()?.isDaylight ?: true)
         val views = RemoteViews(
             context.packageName,
             if (!color.showCard) R.layout.widget_multi_city_horizontal else R.layout.widget_multi_city_horizontal_card

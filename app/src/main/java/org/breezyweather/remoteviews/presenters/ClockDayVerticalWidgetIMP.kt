@@ -61,7 +61,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
         hideSubtitle: Boolean, subtitleData: String?, clockFont: String?
     ): RemoteViews {
-        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val speedUnit = settings.speedUnit
@@ -208,22 +208,19 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE)
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_auto,
-                        if (color.backgroundType === WidgetColor.WidgetBackgroundType.APP ||
-                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.AUTO) {
                             View.VISIBLE
                         } else View.GONE
                     )
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_light,
-                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.APP ||
-                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.AUTO) {
                             View.GONE
                         } else if (color.textType == NotificationTextColor.DARK) View.GONE else View.VISIBLE
                     )
                     setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_dark,
-                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.APP ||
-                            color.backgroundType == WidgetColor.WidgetBackgroundType.DAY_NIGHT) {
+                        if (color.backgroundType == WidgetColor.WidgetBackgroundType.AUTO) {
                             View.GONE
                         } else if (color.textType == NotificationTextColor.DARK) View.VISIBLE else View.GONE
                     )

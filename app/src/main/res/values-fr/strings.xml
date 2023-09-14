@@ -541,6 +541,7 @@
 
     <string name="settings_none">Aucun</string>
     <string name="settings_color_day_night">Jour / Nuit</string>
+    <string name="settings_color_app">Automatique</string>
     <string name="settings_color_day_always">Toujours de jour</string>
     <string name="settings_color_night_always">Toujours de nuit</string>
     <string name="settings_color_light">Clair</string>

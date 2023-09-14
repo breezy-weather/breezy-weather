@@ -71,7 +71,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 "none"
             } else cardStyle!!,
             textColor!!,
-            location?.isDaylight ?: false
+            location?.isDaylight ?: true
         )
         val views = buildWidgetView(
             context, location, temperatureUnit, speedUnit,

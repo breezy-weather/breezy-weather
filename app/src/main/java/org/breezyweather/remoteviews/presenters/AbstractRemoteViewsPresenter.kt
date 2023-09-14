@@ -81,8 +81,7 @@ abstract class AbstractRemoteViewsPresenter {
             isLightThemed = when (backgroundType) {
                 WidgetBackgroundType.LIGHT -> true
                 WidgetBackgroundType.DARK -> false
-                WidgetBackgroundType.DAY_NIGHT -> dayTime
-                WidgetBackgroundType.APP -> MainThemeColorProvider.isLightTheme(context, dayTime)
+                WidgetBackgroundType.AUTO -> MainThemeColorProvider.isLightTheme(context, dayTime)
                 WidgetBackgroundType.NONE -> isLightWallpaper(context)
             }
             textType = when (backgroundType) {
@@ -104,15 +103,14 @@ abstract class AbstractRemoteViewsPresenter {
         val minimalIconColor: NotificationTextColor
             get() =
                 when (backgroundType) {
-                    WidgetBackgroundType.DAY_NIGHT, WidgetBackgroundType.APP -> NotificationTextColor.GREY
+                    WidgetBackgroundType.AUTO -> NotificationTextColor.GREY
                     else -> textType
                 }
 
         enum class WidgetBackgroundType(val id: String) {
             LIGHT("light"),
             DARK("dark"),
-            DAY_NIGHT("auto"),
-            APP("app"),
+            AUTO("auto"),
             NONE("none");
 
             companion object {

@@ -66,7 +66,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val speedUnit = settings.speedUnit
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
-        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: false)
+        val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = buildWidgetViewDayPart(
             context, provider, location, temperatureUnit, speedUnit,
             color, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData
