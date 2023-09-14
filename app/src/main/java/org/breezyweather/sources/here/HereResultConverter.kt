@@ -149,8 +149,6 @@ private fun getDailyForecast(
             Daily(
                 date = dailyForecast.time,
                 day = HalfDay(
-                    weatherText = dailyForecast.description,
-                    weatherCode = getWeatherCode(dailyForecast.iconId),
                     temperature = Temperature(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
                             dailyForecast.highTemperature.toFloat()
@@ -158,8 +156,6 @@ private fun getDailyForecast(
                     )
                 ),
                 night = HalfDay(
-                    weatherText = dailyForecast.description,
-                    weatherCode = getWeatherCode(dailyForecast.iconId),
                     // low temperature is actually from previous night,
                     // so we try to get low temp from next day if available
                     temperature = Temperature(

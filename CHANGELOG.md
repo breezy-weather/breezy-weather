@@ -6,6 +6,7 @@
 - “Day / Night” option for widget backgrounds was replaced by “Follow app preference” to improve consistency (@Cod3dDOT)
 
 **Other improvements and fixes**
+- Add an algorithm for weather icon computing for sources without weather icon by half days (@Cod3dDOT). MET Norway and Open-Meteo will benefit the most from it.
 - [Gadgetbridge] Send additional data for versions 0.76+ (@joserebelo)
 - GPS and live wallpaper are no longer marked as required Android features to avoid some issues installing the app on some devices
 - Translations updated
