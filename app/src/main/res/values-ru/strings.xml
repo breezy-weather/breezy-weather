@@ -648,4 +648,5 @@
     <string name="settings_widgets_gadgets_title">Гаджеты</string>
     <string name="settings_widgets_gadgetbridge_switch">Отправить данные о погоде в Gadgetbridge</string>
     <string name="pollen_and_mold">Пыльца и плесень</string>
+    <string name="settings_color_app">Подпишись на нас</string>
 </resources>
