@@ -628,7 +628,7 @@
     <string name="weather_api_unauthorized_content">На неким изворима података о времену, потребно је да обезбедите свој API кључ. Ако сте га већ обезбедили, поново проверите API кључ који сте обезбедили.</string>
     <string name="settings_weather_sources_default_location_search">Подразумевани извор претраге локације</string>
     <string name="about_contact">Контакт</string>
-    <string name="about_privacy_policy">Правила о приватности</string>
+    <string name="about_privacy_policy">Политика приватности</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Ноћна температура - данас, сутра, …, 4 дана касније (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Дневне падавине - данас, сутра, …, 4 дана касније (%)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Ноћне падавине - данас, сутра, …, 4 дана касније (%)</string>
@@ -647,4 +647,5 @@
     <string name="pollen">Алергени</string>
     <string name="pollen_tree">Дрво</string>
     <string name="pollen_and_mold">Полен и буђ</string>
+    <string name="settings_color_app">Прати апликацију</string>
 </resources>
