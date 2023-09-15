@@ -36,6 +36,7 @@ import org.breezyweather.settings.ConfigStore
 import org.breezyweather.sources.RefreshHelper
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class SearchActivityRepository @Inject internal constructor(
@@ -60,6 +61,8 @@ class SearchActivityRepository @Inject internal constructor(
                 override fun onError(e: Throwable) {
                     val refreshErrorType = when (e) {
                         is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
+                        // Can mean different things but most of the time, it’s a network issue:
+                        is UnknownHostException -> RefreshErrorType.NETWORK_UNAVAILABLE
                         is HttpException -> {
                             when (e.code()) {
                                 401, 403 -> RefreshErrorType.API_UNAUTHORIZED

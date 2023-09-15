@@ -48,6 +48,7 @@ import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
@@ -90,6 +91,11 @@ class WeatherUpdateJob @AssistedInject constructor(
             if (context.workManager.isRunning(WORK_NAME_MANUAL)) {
                 return Result.retry()
             }
+        }
+
+        // Exit early in case there is no network and Android still executes the job
+        if (!context.isOnline()) {
+            return Result.retry()
         }
 
         try {
