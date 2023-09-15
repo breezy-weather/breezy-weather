@@ -651,4 +651,5 @@
     <string name="settings_widgets_gadgets_title">小部件</string>
     <string name="settings_widgets_gadgetbridge_switch">发送天气数据到 Gadgetbridge</string>
     <string name="pollen_and_mold">花粉和霉菌</string>
+    <string name="settings_color_app">跟随应用设置</string>
 </resources>
