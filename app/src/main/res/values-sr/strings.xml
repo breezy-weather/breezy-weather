@@ -182,8 +182,8 @@
     <string name="settings_background_updates_worker_info_title">Информације о процесу</string>
     <string name="settings_location_access_permission_already_granted">Дозвола је већ дата</string>
     <string name="settings_location_access_switch_summaryOn">Дозвољено. Можете додати своју тренутну локацију као локацију.</string>
-    <string name="settings_location_access_background_summaryOff">Омогућите „Дозволи све време“ да бисте имали позадинско освежавање за Вашу тренутну локацију.</string>
-    <string name="settings_location_access_precise_summaryOn">Омогућено. Користе се и мрежа и GPS провајдери уређаја.</string>
+    <string name="settings_location_access_background_summaryOff">Омогућите „Дозволи све време“ да бисте имали позадинско освежавање за вашу тренутну локацију.</string>
+    <string name="settings_location_access_precise_summaryOn">Омогућено. Користе се и интернет и GPS провајдери уређаја.</string>
     <string name="settings_location_access_precise_summaryOff">Омогућите „Користи прецизну локацију“, ако имате проблема са проналажењем локације.</string>
     <string name="settings_units_temperature">Јединица за температуру</string>
     <string name="settings_units_precipitation">Јединица за падавине</string>
@@ -193,7 +193,7 @@
     <string name="settings_widgets_notification_widget_title">Виџет за обавештења</string>
     <string name="settings_widgets_notification_persistent_switch">Константан</string>
     <string name="settings_widgets_notification_style_title">Стил</string>
-    <string name="settings_debug_summary">Евиденције падова</string>
+    <string name="settings_debug_summary">Евиденције отказивања</string>
     <string name="settings_widgets_section_notification_widget">Виџет за обавештења</string>
     <string name="unit_atm">atm</string>
     <string name="notification_update_error">%1$d ажурирање(а) није успело</string>
@@ -273,7 +273,7 @@
     <string name="settings_main_background_animation_title">Позадинска анимација</string>
     <string name="settings_notifications_summary">Временска упозорења, падавине, прогноза</string>
     <string name="settings_widgets_live_wallpaper_summary">Поставите временску анимацију као позадину</string>
-    <string name="settings_widgets_live_wallpaper_error">Покретање бирача позадине није успело. Још увек можете да омогућите позадину Breezy Weather тако што ћете изабрати „Жива позадина“ у бирачу позадине на Вашем почетном екрану.</string>
+    <string name="settings_widgets_live_wallpaper_error">Покретање бирача позадине није успело. Још увек можете да омогућите позадину Breezy Weather тако што ћете изабрати „Жива позадина“ у бирачу позадине на вашем почетном екрану.</string>
     <string name="settings_icon_packs_weather_icon_grey">Сива иконица</string>
     <string name="settings_icon_packs_weather_icon_dark">Тамна иконица</string>
     <string name="notification_channel_background_services">Позадинске услуге</string>
@@ -372,7 +372,7 @@
     <string name="widget_custom_subtitle_keyword_d_description">Датум</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Лунарни календар</string>
     <string name="settings_main_threshold_lines_on_charts">Линије прага на графиконима</string>
-    <string name="settings_debug_dump_crash_logs_title">Дели евиденције падова</string>
+    <string name="settings_debug_dump_crash_logs_title">Дели евиденције отказивања</string>
     <string name="settings_color_day_always">Увек дан</string>
     <string name="settings_color_night_always">Увек ноћ</string>
     <string name="unit_bf">Bf</string>
@@ -421,7 +421,7 @@
     <string name="precipitation_intensity_heavy">Јака киша</string>
     <string name="widget_text">Текст</string>
     <string name="minutely_forecast">Минутна прогноза</string>
-    <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да их видите.</string>
+    <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да бисте их видели.</string>
     <string name="precipitation_total">Укупно</string>
     <string name="temperature_degree_day">Степен дан</string>
     <string name="precipitation_none">Без падавина</string>
@@ -472,7 +472,7 @@
     <string name="location_resident_location_summaryOn">Омогућено. Сакривено, када је унутар $ од тренутне локације.</string>
     <string name="action_refresh">Освежи</string>
     <string name="action_restart">Рестартуј</string>
-    <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о паду апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>
+    <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о отказивању апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Дневно време - данас, сутра, …, 4 дана касније</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -524,8 +524,8 @@
     <string name="settings_main_summary">Редослед картица, приказане ставке, анимације</string>
     <string name="settings_main_header_details_title">Детаљи у заглављу</string>
     <string name="dialog_permissions_location_content">Breezy Weather мора да прикупи информације о Вашој локацији у првом плану или у позадини, како би обезбедио податке о времену за Вашу тренутну локацију. Из овог разлога, затражићемо неке дозволе. Информације о Вашој локацији ће се користити само за добијање података о времену на Вашој тренутној локацији. Ако не желите да делите информације о својој локацији, можете да одбијете те захтеве и ручно подесите своју локацију на страници за управљање.</string>
-    <string name="location_resident_dialog">Breezy Weather ће аутоматски приказивати и сакривати градове с пребивалиштем на основу Ваше тренутне локације.
-\nНа пример, можете поставити свој родни град као град с пребивалиштем. Можете проверити временску прогнозу у свом родном граду док путујете. Када дођете кући, време у Вашем родном граду ће бити сакривено и замењено временом за Вашу тренутну локацију.</string>
+    <string name="location_resident_dialog">Breezy Weather ће аутоматски приказивати и сакривати градове с пребивалиштем на основу ваше тренутне локације.
+\nНа пример, можете поставити свој родни град као град с пребивалиштем. Можете проверити временску прогнозу у свом родном граду док путујете. Када дођете кући, време у вашем родном граду ће бити сакривено и замењено временом за вашу тренутну локацију.</string>
     <string name="action_help_me_choose">Помози ми да изаберем</string>
     <string name="alerts_count">$ временска упозорења</string>
     <string name="temperature_normals">Температурне норме</string>
@@ -546,7 +546,7 @@
     <string name="pollen_tap_to_see_more">Додирните да бисте видели више…</string>
     <string name="pressure">Притисак</string>
     <string name="weather_api_unauthorized_title">Приступ API-ју неовлашћен</string>
-    <string name="dialog_permissions_location_background_content">Да бисте дозволили апликацији да приступа информацијама о локацији у позадини, како бисмо могли да уочимо промене на локацији и да Вам пружимо важеће податке о времену, поставите приступ локацији на „Дозволи све време“.</string>
+    <string name="dialog_permissions_location_background_content">Да бисте дозволили апликацији да приступа информацијама о локацији у позадини, како бисмо могли да уочимо промене на локацији и да вам пружимо важеће податке о времену, поставите приступ локацији на „Дозволи све време“.</string>
     <string name="widget_subtitle_data_time">Време освежавања</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Тренутни ветар</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Тренутни притисак</string>
