@@ -1,4 +1,9 @@
-# Version 4.6.6-beta (next version)
+# Version 4.6.7-beta (next version)
+
+- Translations updated
+
+
+# Version 4.6.6-beta
 
 **Behavior changes**
 - Temperature unit will now follow locale preference if it was never defined. Example: you were using the app with the temperature unit set as Celsius (the previous default) in English (US). It will now switch to Fahrenheit (but you can still of course redefine it to something else). This change is mostly to help first-time users having directly their temperature in the unit that makes the most sense to them.
