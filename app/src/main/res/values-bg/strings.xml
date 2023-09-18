@@ -641,4 +641,5 @@
     <string name="settings_widgets_gadgetbridge_switch">Изпращайте данни за времето до Gadgetbridge</string>
     <string name="settings_widgets_gadgets_title">Джаджи</string>
     <string name="pollen_and_mold">Прашец и плесен</string>
+    <string name="settings_color_app">Следвай приложението</string>
 </resources>
