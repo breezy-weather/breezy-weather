@@ -607,7 +607,7 @@
     <string name="weather_alert_data_by">Dados de alerta por $</string>
     <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
     <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
-    <string name="about_contribution_weather_source">Adicionado suporte para novas fontes meteorológicas</string>
+    <string name="about_contribution_weather_source">Adicionou suporte para novas fontes meteorológicas</string>
     <string name="settings_weather_source">Provedor meteorológico</string>
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
@@ -636,7 +636,7 @@
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
-    <string name="metno_weather_text_andthunder">Chuva forte com trovoadas</string>
+    <string name="metno_weather_text_andthunder">$ com trovoadas</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>
     <string name="common_weather_text_drizzle">Garoa</string>
     <string name="common_weather_text_snow_heavy">Neve forte</string>
