@@ -60,6 +60,7 @@ import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.settings.SettingsManager
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -557,6 +558,8 @@ class RefreshHelper @Inject constructor(
     ): RefreshErrorType {
         return when (e) {
             is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
+            // Can mean different things but most of the time, it’s a network issue:
+            is UnknownHostException -> RefreshErrorType.NETWORK_UNAVAILABLE
             is HttpException -> {
                 when (e.code()) {
                     401, 403 -> RefreshErrorType.API_UNAUTHORIZED
