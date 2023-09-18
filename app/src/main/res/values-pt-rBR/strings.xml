@@ -662,4 +662,5 @@
     <string name="common_weather_text_rain_freezing_light">Chuva leve congelante</string>
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
     <string name="common_weather_text_snow_showers_light">Nevasca fraca</string>
+    <string name="settings_color_app">Siga o app</string>
 </resources>
