@@ -35,8 +35,8 @@ import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
-import org.breezyweather.remoteviews.presenters.notification.MultiCityWidgetNotificationIMP.buildNotificationAndSendIt
-import org.breezyweather.remoteviews.presenters.notification.NativeWidgetNotificationIMP.buildNotificationAndSendIt
+import org.breezyweather.remoteviews.presenters.notification.MultiCityWidgetNotificationIMP
+import org.breezyweather.remoteviews.presenters.notification.NativeWidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -61,17 +61,16 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val tempIcon = settings.isWidgetNotificationTemperatureIconEnabled
         val persistent = settings.isWidgetNotificationPersistent
         if (settings.widgetNotificationStyle === NotificationStyle.NATIVE) {
-            buildNotificationAndSendIt(
+            NativeWidgetNotificationIMP.buildNotificationAndSendIt(
                 context,
                 location,
-                temperatureUnit,
                 dayTime,
                 tempIcon,
                 persistent
             )
             return
         } else if (settings.widgetNotificationStyle === NotificationStyle.CITIES) {
-            buildNotificationAndSendIt(
+            MultiCityWidgetNotificationIMP.buildNotificationAndSendIt(
                 context,
                 locationList,
                 temperatureUnit,

@@ -25,7 +25,6 @@ import notificationBuilder
 import notify
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.setLanguage
@@ -37,13 +36,11 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import java.util.*
-import kotlin.math.roundToInt
 
 object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
         context: Context,
         location: Location,
-        temperatureUnit: TemperatureUnit,
         daytime: Boolean,
         tempIcon: Boolean,
         persistent: Boolean

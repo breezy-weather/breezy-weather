@@ -23,7 +23,6 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.main.adapters.trend.daily.*
 import org.breezyweather.main.adapters.trend.hourly.*
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory

@@ -24,7 +24,6 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.presenters.*
 import java.util.*
 

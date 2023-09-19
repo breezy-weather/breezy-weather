@@ -18,7 +18,6 @@ package org.breezyweather.common.basic.models.weather
 
 import android.content.Context
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.settings.SettingsManager
 import java.io.Serializable
 
 /**

@@ -16,7 +16,6 @@
 
 package org.breezyweather.theme.weatherView
 
-import androidx.compose.ui.res.stringArrayResource
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.Weather

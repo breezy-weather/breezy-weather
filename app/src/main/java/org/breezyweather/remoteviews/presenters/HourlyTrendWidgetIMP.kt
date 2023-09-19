@@ -33,10 +33,8 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.trend.TrendLinearLayout
 import org.breezyweather.remoteviews.trend.WidgetItemView

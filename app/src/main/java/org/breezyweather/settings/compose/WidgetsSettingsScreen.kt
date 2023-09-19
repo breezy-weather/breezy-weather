@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService

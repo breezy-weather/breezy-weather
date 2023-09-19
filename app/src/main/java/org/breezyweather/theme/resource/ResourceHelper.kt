@@ -37,9 +37,6 @@ import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.resource.utils.ResourceUtils
-import kotlin.math.abs
-
 
 object ResourceHelper {
     fun getWeatherIcon(

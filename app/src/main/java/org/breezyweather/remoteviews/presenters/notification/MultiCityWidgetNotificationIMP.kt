@@ -39,7 +39,6 @@ import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.*
-import kotlin.math.roundToInt
 
 object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(

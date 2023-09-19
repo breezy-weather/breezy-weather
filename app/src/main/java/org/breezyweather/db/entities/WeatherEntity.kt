@@ -21,7 +21,6 @@ import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Transient
-import io.objectbox.annotation.Uid
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.db.converters.WeatherCodeConverter
 import java.util.*
