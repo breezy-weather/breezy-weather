@@ -1,11 +1,11 @@
-# Version 4.6.7-beta (next version)
+# Version 4.6.7-beta (2023-09-19)
 
 - Fix issues with trend widgets (@Cod3dDOT)
 - Fix issues encountered when sharing crash logs
 - Translations updated
 
 
-# Version 4.6.6-beta
+# Version 4.6.6-beta (2023-09-16)
 
 **Behavior changes**
 - Temperature unit will now follow locale preference if it was never defined. Example: you were using the app with the temperature unit set as Celsius (the previous default) in English (US). It will now switch to Fahrenheit (but you can still of course redefine it to something else). This change is mostly to help first-time users having directly their temperature in the unit that makes the most sense to them.
@@ -19,7 +19,7 @@
 - Translations updated
 
 
-# Version 4.6.5-beta
+# Version 4.6.5-beta (2023-09-01)
 
 **Weather sources**
 - [Open-Meteo] Add experimental support for precipitation in the next hour as a primary source (works best in Europe)
@@ -39,7 +39,7 @@
 - Translations updated
 
 
-# Version 4.6.4-beta
+# Version 4.6.4-beta (2023-08-21)
 
 **New features**
 - Experimental support for Gadgetbridge added (@Cod3dDOT)
@@ -52,7 +52,7 @@
 - Translations updated
 
 
-# Version 4.6.3-beta
+# Version 4.6.3-beta (2023-08-20)
 
 **Other fixes**
 - Fix wrong threshold lines name on daily and hourly trends widgets
@@ -62,7 +62,7 @@
 - Translations updated
 
 
-# Version 4.6.2-beta
+# Version 4.6.2-beta (2023-08-18)
 
 **Weather sources**
 - [AccuWeather] Fix would report no alerts if at least one alert didn’t contain a start or end time (can happen with flood alerts for example)
@@ -72,7 +72,7 @@
 - Fix crash when a location was not updated for more than "half the length of daily forecast" days
 
 
-# Version 4.6.1-beta
+# Version 4.6.1-beta (2023-08-17)
 
 **Weather sources**
 - [Météo France] Alerts: add "Bulletin de Vigilance météo" support
@@ -82,7 +82,7 @@
 - Fix missing monochrome icon
 
 
-# Version 4.6.0-beta
+# Version 4.6.0-beta (2023-08-16)
 
 This new version introduces major changes in the way weather refreshes. While it brings nice new features with it, as there are now many different combination for weather sources that we can’t fully test, we welcome your bug reports about any regression introduced in this version, so we can fix them before new release becomes stable.
 
@@ -125,7 +125,7 @@ This new version introduces major changes in the way weather refreshes. While it
 - Translations updated
 
 
-# Version 4.5.4-beta
+# Version 4.5.4-beta (2023-08-10)
 
 Some users reported issues with API limit reached, please check if you use OpenWeather or Pirate Weather as your main or secondary weather source!
 Improvements to the error handling will be worked on for next major version.
@@ -144,12 +144,12 @@ Improvements to the error handling will be worked on for next major version.
 - Translations updated
 
 
-# Version 4.5.3-beta
+# Version 4.5.3-beta (2023-08-08)
 
 Emergency fix for current location not working on sources with reverse geocoding feature.
 
 
-# Version 4.5.2-beta
+# Version 4.5.2-beta (2023-08-08)
 
 **New features**
 - Add Beaufort scale as an option for wind speed “unit”
@@ -169,7 +169,7 @@ Emergency fix for current location not working on sources with reverse geocoding
 - Translations updated
 
 
-# Version 4.5.1-beta
+# Version 4.5.1-beta (2023-08-06)
 
 **New features**
 - Allow to change main source for a manually added location.
@@ -190,7 +190,7 @@ Emergency fix for current location not working on sources with reverse geocoding
 - Dutch and Russian updated
 
 
-# Version 4.5.0-beta
+# Version 4.5.0-beta (2023-08-04)
 
 Due to a technical change, cached weather data will be cleared on update.
 
@@ -240,7 +240,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - Others updated
 
 
-# Version 4.4.1-beta
+# Version 4.4.1-beta (2023-07-28)
 
 - Add Allergens support for Open-Meteo source (Europe only at the moment). Allergens are different than AccuWeather ones (North America only).
 - Uses universal scale for all allergens, regardless of weather sources
@@ -251,7 +251,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - Updated translations
 
 
-# Version 4.4.0-beta
+# Version 4.4.0-beta (2023-07-25)
 
 This version brings new logic that automatically completes missing data (for example, uses hourly data to extrapolate daily value for this data). This logic which was initially implemented per source is now transparently implemented for all sources. This means that even novice developers that want to add new sources will now be able to do it without having to care about that, making this task easier than ever.
 
@@ -282,7 +282,7 @@ If you notice any data that was available on v4.3.0-beta for a source and is now
 - Updated translations.
 
 
-# Version 4.3.0-beta
+# Version 4.3.0-beta (2023-07-20)
 
 /!\ Custom API keys were reset in this version, following a move to a separate config store from the main app /!\
 
@@ -298,7 +298,7 @@ If you notice any data that was available on v4.3.0-beta for a source and is now
 - Added Kurdish Sorani translation (thanks anyone00!)
 - Updated translations
 
-# Version 4.2.1-beta
+# Version 4.2.1-beta (2023-07-16)
 
 - Bring back detailed error (API key missing, API limit reached, no network, etc) on refresh failure instead of just “Weather failed”
 - Added more errors (server timeout, failed to find location within reasonable time, parsing error, etc)
@@ -308,7 +308,7 @@ If you notice any data that was available on v4.3.0-beta for a source and is now
 - Fix issue when adding widgets
 - Updated translations
 
-# Version 4.2.0-beta
+# Version 4.2.0-beta (2023-07-15)
 
 Background updates logic was entirely rewritten in this version.
 
@@ -323,7 +323,7 @@ Background updates logic was entirely rewritten in this version.
 - Updated translations
 
 
-# Version 4.1.3-beta
+# Version 4.1.3-beta (2023-07-14)
 
 - Add Nowcast for Nordic Area on MET No provider
 - Add Air Quality for Norway on MET No provider
@@ -344,7 +344,7 @@ Background updates logic was entirely rewritten in this version.
 - Added Bulgarian translation (thanks elgratea!)
 - Updated translations
 
-# Version 4.1.2-beta
+# Version 4.1.2-beta (2023-07-11)
 
 - The following data can now handle decimals: temperatures (including all feels like temperature), dew point, UV index. Due to the technical nature of the change, existing cached data will be deleted on update and will be available again on next refresh.
 - Alerts are now more visible and alert color is used when the weather provider supports it
@@ -358,14 +358,14 @@ Background updates logic was entirely rewritten in this version.
 - Revert let Android 13 users revoke their permissions
 - Translation updates
 
-# Version 4.1.1-beta
+# Version 4.1.1-beta (2023-07-09)
 
 - Location list is now empty on first install and app only requires location permissions if user wants to add its current location
 - Add a dialog box for notification permission request
 - Fix systematic crash on opening app on Android below R.
 - Update Vietnamese translation.
 
-# Version 4.1.0-beta
+# Version 4.1.0-beta (2023-07-08)
 
 - Most of the code has been rewritten in Kotlin, which will make the app more reliable in the future.
 - All notification channels are now declared on startup, so you can disable them before receiving at least one notification.
@@ -387,7 +387,7 @@ Background updates logic was entirely rewritten in this version.
 - Translation updates, Vietnamese added (thanks minb!).
 - Support for weather data on cLock on CyanogenMod 5.0 was removed (unmaintained dependency, I’m not even sure it still worked).
 
-# Version 4.0.5-alpha
+# Version 4.0.5-alpha (2023-06-29)
 
 - Add troubleshooting settings.
 - Add more AccuWeather settings.
@@ -404,7 +404,7 @@ Background updates logic was entirely rewritten in this version.
 - Replace direction with arrow in wind short descriptions to help a bit in tight spaces.
 - Various fixes and code improvements.
 
-# Version 4.0.4-alpha
+# Version 4.0.4-alpha (2023-06-26)
 
 - Add current, hourly and daily air quality for Open-Meteo with credits.
 - New settings organization and better wording. Some settings were reset to default.
@@ -412,14 +412,14 @@ Background updates logic was entirely rewritten in this version.
 - Fix icon packs link.
 - Fix some contrasts issues.
 
-# Version 4.0.3-alpha
+# Version 4.0.3-alpha (2023-06-25)
 
 - Add current, hourly and daily air quality for AccuWeather.
 - Add more detailed error messages.
 - Fix icon color in light mode.
 - Fix details not showing when all details were removed from header.
 
-# Version 4.0.2-alpha
+# Version 4.0.2-alpha (2023-06-25)
 
 - Current details shown on header can now be configured in settings. Details not shown on header will display in the Details card.
 - Fix refresh time not updating
@@ -427,7 +427,7 @@ Background updates logic was entirely rewritten in this version.
 - Make background immersive when app is loading
 - Translation updates: Chinese (simplified), German
 
-# Version 4.0.1-alpha
+# Version 4.0.1-alpha (2023-06-24)
 
 - Translation available from Weblate
 - Make dividers thinner on homepage
@@ -436,7 +436,7 @@ Background updates logic was entirely rewritten in this version.
 - Optimize new icons
 - Require a restart when changing "Background animation" or "Gravity sensor" settings
 
-# Version 4.0.0-alpha
+# Version 4.0.0-alpha (2023-06-21)
 
 Initial version of Breezy Weather fork
 

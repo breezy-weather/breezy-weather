@@ -26,7 +26,7 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOGS.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v4.6.7-beta -m "Version 4.6.7-beta"`).
+7) Tag version beginning with a `v` (example: `git tag v4.6.8-beta -m "Version 4.6.8-beta"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
