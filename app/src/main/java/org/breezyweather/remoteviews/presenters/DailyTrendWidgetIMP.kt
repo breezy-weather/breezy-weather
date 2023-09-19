@@ -61,6 +61,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     @WorkerThread
     private fun innerUpdateWidget(context: Context, location: Location) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_daily_trend_setting))
+        if (config.cardStyle == "none") {
+            config.cardStyle = "auto"
+        }
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTrendDailyProvider::class.java),
             getRemoteViews(
