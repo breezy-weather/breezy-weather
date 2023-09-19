@@ -36,6 +36,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.trend.TrendLinearLayout
 import org.breezyweather.remoteviews.trend.WidgetItemView
@@ -63,6 +64,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             context,
             context.getString(R.string.sp_widget_hourly_trend_setting)
         )
+        if (config.cardStyle == "none") {
+            config.cardStyle = "auto"
+        }
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTrendHourlyProvider::class.java),
             getRemoteViews(
