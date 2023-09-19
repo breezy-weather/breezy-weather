@@ -200,7 +200,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
     <string name="settings_location_service">Источник местоположения</string>
-    <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
+    <string name="settings_appearance_dark_mode_title">Тема</string>
     <string name="settings_appearance_icon_pack_title">Набор иконок</string>
     <string name="settings_appearance">Вид</string>
     <string name="settings_main_gravity_sensor_switch">Датчик гравитации</string>
@@ -649,4 +649,7 @@
     <string name="settings_widgets_gadgetbridge_switch">Отправить данные о погоде в Gadgetbridge</string>
     <string name="pollen_and_mold">Пыльца и плесень</string>
     <string name="settings_color_app">Подпишись на нас</string>
+    <string name="settings_debug_dump_crash_logs_saved">Журналы аварийных закрытий сохранены</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Нажмите, чтобы открыть</string>
+    <string name="notification_channel_crash_logs">Журналы аварийных закрытий</string>
 </resources>
