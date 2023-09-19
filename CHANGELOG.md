@@ -1,5 +1,6 @@
 # Version 4.6.7-beta (next version)
 
+- Fix issues encountered when sharing crash logs
 - Translations updated
 
 

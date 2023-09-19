@@ -558,6 +558,8 @@
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
+    <string name="settings_debug_dump_crash_logs_saved">Crash logs saved</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Tap to open</string>
     <!-- Only shown in debug builds, so we don’t need translations -->
     <string name="settings_debug_force_weather_update" translatable="false">Force weather update</string>
     <string name="settings_debug_start_objectbox_admin" translatable="false">Start ObjectBox Admin</string>
@@ -652,6 +654,7 @@
     <string name="notification_channel_forecast">Forecast</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Background services</string>
+    <string name="notification_channel_crash_logs">Crash logs</string>
     <string name="notification_location_in_background">Locating in background</string>
     <string name="notification_running_in_background">Running in background to keep updating</string>
     <string name="notification_updating_weather_data">Updating weather data (%1$d/%2$d)</string>

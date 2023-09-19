@@ -17,14 +17,19 @@
 package org.breezyweather.common.utils
 
 import android.content.Context
+import android.net.Uri
 import android.os.Build
+import cancelNotification
+import notify
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
+import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getUriCompat
-import org.breezyweather.common.extensions.toShareIntent
 import org.breezyweather.common.extensions.withNonCancellableContext
 import org.breezyweather.common.extensions.withUIContext
+import org.breezyweather.remoteviews.Notifications
 
 /**
  * Taken from Tachiyomi
@@ -41,8 +46,7 @@ class CrashLogUtils(private val context: Context) {
             Runtime.getRuntime().exec("logcat *:E -d -f ${file.absolutePath}").waitFor()
             file.appendText(getDebugInfo())
 
-            val uri = file.getUriCompat(context)
-            context.startActivity(uri.toShareIntent(context, "text/plain"))
+            showNotification(file.getUriCompat(context))
         } catch (e: Throwable) {
             e.printStackTrace()
             withUIContext { SnackbarHelper.showSnackbar("Failed to get logs") }
@@ -60,5 +64,20 @@ class CrashLogUtils(private val context: Context) {
             Device model: ${Build.MODEL}
             Device product name: ${Build.PRODUCT}
         """.trimIndent()
+    }
+
+    private fun showNotification(uri: Uri) {
+        context.cancelNotification(Notifications.ID_CRASH_LOGS)
+
+        context.notify(
+            Notifications.ID_CRASH_LOGS,
+            Notifications.CHANNEL_CRASH_LOGS,
+        ) {
+            setContentTitle(context.getString(R.string.settings_debug_dump_crash_logs_saved))
+            setContentText(context.getString(R.string.settings_debug_dump_crash_logs_tap_to_open))
+            setSmallIcon(R.drawable.ic_alert)
+
+            setContentIntent(NotificationReceiver.openErrorLogPendingActivity(context, uri))
+        }
     }
 }

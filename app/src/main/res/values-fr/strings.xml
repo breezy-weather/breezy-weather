@@ -28,6 +28,7 @@
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
+    <string name="notification_channel_crash_logs">Journaux d’incident</string>
     <string name="pressure">Pression</string>
     <string name="visibility">Visibilité</string>
     <string name="dew_point">Point de rosée</string>
@@ -500,6 +501,8 @@
     <string name="settings_debug_summary">Journaux d’incident</string>
     <string name="settings_debug_dump_crash_logs_title">Exporter les journaux d’incident</string>
     <string name="settings_debug_dump_crash_logs_summary">Enregistre les journaux d’incident dans un fichier pour les partager avec les développeurs</string>
+    <string name="settings_debug_dump_crash_logs_saved">Journaux d’incident exportés</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Appuyez pour ouvrir</string>
     <string name="settings_location_service">Service de localisation</string>
     <string name="settings_units_temperature">Unité de température</string>
     <string name="settings_units_distance">Unité de distance</string>

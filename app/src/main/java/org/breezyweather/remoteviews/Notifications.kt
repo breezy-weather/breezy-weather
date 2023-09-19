@@ -77,6 +77,12 @@ object Notifications {
     const val ID_WEATHER_PROGRESS = -101
     const val ID_WEATHER_ERROR = -102
 
+    /**
+     * Notification channel used for crash log file sharing.
+     */
+    const val CHANNEL_CRASH_LOGS = "crash_logs"
+    const val ID_CRASH_LOGS = -201
+
     private const val ALERT_GROUP_KEY = "breezy_weather_alert_notification_group"
     private const val PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE"
     private const val KEY_NOTIFICATION_ID = "NOTIFICATION_ID"
@@ -124,6 +130,9 @@ object Notifications {
                     setName(context.getString(R.string.notification_channel_background_services))
                     setGroup(GROUP_BREEZY_WEATHER)
                     setShowBadge(false)
+                },
+                buildNotificationChannel(CHANNEL_CRASH_LOGS, IMPORTANCE_HIGH) {
+                    setName(context.getString(R.string.notification_channel_crash_logs))
                 },
             )
         )
