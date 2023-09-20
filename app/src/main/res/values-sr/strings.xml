@@ -190,11 +190,11 @@
     <string name="settings_units_distance">Јединица за удаљеност</string>
     <string name="settings_units_speed">Јединица за брзину</string>
     <string name="settings_main_section_displayed_data">Приказани подаци</string>
-    <string name="settings_widgets_notification_widget_title">Виџет за обавештења</string>
+    <string name="settings_widgets_notification_widget_title">Виџет као обавештење</string>
     <string name="settings_widgets_notification_persistent_switch">Константан</string>
     <string name="settings_widgets_notification_style_title">Стил</string>
     <string name="settings_debug_summary">Евиденције отказивања</string>
-    <string name="settings_widgets_section_notification_widget">Виџет за обавештења</string>
+    <string name="settings_widgets_section_notification_widget">Виџет као обавештење</string>
     <string name="unit_atm">atm</string>
     <string name="notification_update_error">%1$d ажурирање(а) није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
@@ -279,7 +279,7 @@
     <string name="notification_channel_background_services">Позадинске услуге</string>
     <string name="notification_style_native">Изворни</string>
     <string name="message_server_timeout">Захтев је истекао</string>
-    <string name="widget_label_subtitle_data">Подаци о титловима</string>
+    <string name="widget_label_subtitle_data">Подаци у поднаслову</string>
     <string name="widget_clock_font_analog">Аналогно</string>
     <string name="settings_location_access_switch_summaryOff">Дозволите, ако желите да можете да додате своју тренутну локацију као локацију.</string>
     <string name="settings_notifications_forecast_time_today_title">Време обавештења за дневну прогнозу</string>
@@ -390,7 +390,7 @@
     <string name="common_weather_text_rain_showers_heavy">Јаки пљускови</string>
     <string name="common_weather_text_rain_snow_mixed_light">Помешана слаба киша и снег</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Помешани пљускови са слабом кишом и снегом</string>
-    <string name="settings_widgets_summary">Поставите позадину, конфигуришите коришћене виџете, виџет за обавештења</string>
+    <string name="settings_widgets_summary">Поставите позадину, конфигуришите коришћене виџете, виџет као обавештење</string>
     <string name="common_weather_text_snow_light">Слаб снег</string>
     <string name="common_weather_text_snow_moderate">Умерен снег</string>
     <string name="common_weather_text_snow_heavy">Јак снег</string>
@@ -399,7 +399,7 @@
     <string name="action_add_from_map">Додај са мапе</string>
     <string name="dialog_permissions_location_background_title">Приступ локацији у позадини</string>
     <string name="widget_label_show_widget_card_alpha">Провидност</string>
-    <string name="widget_label_hide_subtitle">Сакриј титл</string>
+    <string name="widget_label_hide_subtitle">Сакриј поднаслов</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Тренутна тачка росе</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Ноћно време - данас, сутра, …, 4 дана касније</string>
     <string name="widget_live_wallpaper_weather_kind">Временска прогноза</string>
@@ -439,7 +439,7 @@
     <string name="unit_mi_voice">Миље</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Опис по сатима</string>
     <string name="unit_ft_voice">Стопе</string>
-    <string name="action_edit">Уреди</string>
+    <string name="action_edit">Измени</string>
     <string name="location_resident_location">Локација становања</string>
     <string name="location_resident_location_summaryOff">Онемогућено. Локација увек доступна.</string>
     <string name="action_preview">Преглед</string>
@@ -648,4 +648,7 @@
     <string name="pollen_tree">Дрво</string>
     <string name="pollen_and_mold">Полен и буђ</string>
     <string name="settings_color_app">Прати апликацију</string>
+    <string name="settings_debug_dump_crash_logs_saved">Евиденције отказивања су сачуване</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Додирните да бисте отворили</string>
+    <string name="notification_channel_crash_logs">Евиденције отказивања</string>
 </resources>
