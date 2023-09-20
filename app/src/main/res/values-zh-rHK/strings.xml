@@ -651,4 +651,7 @@
     <string name="settings_widgets_gadgets_title">小工具</string>
     <string name="pollen_and_mold">花粉與黴菌</string>
     <string name="settings_color_app">自動</string>
+    <string name="settings_debug_dump_crash_logs_saved">崩潰日誌已保存</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">點擊以打開</string>
+    <string name="notification_channel_crash_logs">崩潰日誌</string>
 </resources>
