@@ -652,4 +652,7 @@
     <string name="settings_widgets_gadgetbridge_switch">发送天气数据到 Gadgetbridge</string>
     <string name="pollen_and_mold">花粉和霉菌</string>
     <string name="settings_color_app">跟随应用设置</string>
+    <string name="settings_debug_dump_crash_logs_saved">已保存崩溃日志</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">轻按打开</string>
+    <string name="notification_channel_crash_logs">崩溃日志</string>
 </resources>
