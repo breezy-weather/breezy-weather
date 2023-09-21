@@ -117,7 +117,21 @@ class OpenMeteoService @Inject constructor(
             "winddirection_10m",
             "windgusts_10m",
             "uv_index",
-            "is_day", // Used by current only
+            "is_day",
+            "relativehumidity_2m",
+            "dewpoint_2m",
+            "pressure_msl",
+            "cloudcover",
+            "visibility"
+        )
+        val current = arrayOf(
+            "temperature_2m",
+            "apparent_temperature",
+            "weathercode",
+            "windspeed_10m",
+            "winddirection_10m",
+            "windgusts_10m",
+            "uv_index",
             "relativehumidity_2m",
             "dewpoint_2m",
             "pressure_msl",
@@ -132,9 +146,9 @@ class OpenMeteoService @Inject constructor(
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 minutely.joinToString(",")
             } else "",
+            current.joinToString(","),
             forecastDays = 16,
             pastDays = 1,
-            currentWeather = true,
             windspeedUnit = "ms"
         )
 
@@ -193,10 +207,10 @@ class OpenMeteoService @Inject constructor(
                 location.longitude.toDouble(),
                 "",
                 "",
+                "",
                 minutely.joinToString(","),
                 forecastDays = 2, // In case current + 2 hours overlap two days
                 pastDays = 0,
-                currentWeather = false,
                 windspeedUnit = "ms"
             )
         } else {

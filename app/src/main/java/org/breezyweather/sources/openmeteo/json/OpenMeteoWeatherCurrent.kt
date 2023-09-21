@@ -21,10 +21,17 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OpenMeteoWeatherCurrent(
-    val temperature: Float?,
-    @SerialName("windspeed") val windSpeed: Float?,
-    @SerialName("winddirection") val windDirection: Float?,
+    @SerialName("temperature_2m") val temperature: Float?,
+    @SerialName("apparent_temperature") val apparentTemperature: Float?,
     @SerialName("weathercode") val weatherCode: Int?,
-    @SerialName("is_day") val isDay: Int?,
+    @SerialName("windspeed_10m") val windSpeed: Float?,
+    @SerialName("winddirection_10m") val windDirection: Float?,
+    @SerialName("windgusts_10m") val windGusts: Float?,
+    @SerialName("uv_index") val uvIndex: Float?,
+    @SerialName("relativehumidity_2m") val relativeHumidity: Int?,
+    @SerialName("dewpoint_2m") val dewPoint: Float?,
+    @SerialName("pressure_msl") val pressureMsl: Float?,
+    @SerialName("cloudcover") val cloudCover: Int?,
+    val visibility: Float?,
     val time: Long
 )

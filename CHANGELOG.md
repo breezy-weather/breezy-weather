@@ -1,3 +1,11 @@
+# Version 4.6.8-beta (next version)
+
+**Weather sources**
+- [Open-Meteo] Add support for new current, with better accuracy (15 min vs 1 hour when possible), and additional current variables (previously extrapolated from hourly forecast)
+
+**Translations**
+- Translations updated
+
 # Version 4.6.7-beta (2023-09-19)
 
 - Fix issues with trend widgets (@Cod3dDOT)
