@@ -92,13 +92,23 @@ fun convert(
 
     return WeatherWrapper(
         current = Current(
-            weatherText = getWeatherText(context, weatherResult.currentWeather?.weatherCode),
-            weatherCode = getWeatherCode(weatherResult.currentWeather?.weatherCode),
-            temperature = Temperature(temperature = weatherResult.currentWeather?.temperature),
+            weatherText = getWeatherText(context, weatherResult.current?.weatherCode),
+            weatherCode = getWeatherCode(weatherResult.current?.weatherCode),
+            temperature = Temperature(
+                temperature = weatherResult.current?.temperature,
+                apparentTemperature = weatherResult.current?.apparentTemperature
+            ),
             wind = Wind(
-                degree = weatherResult.currentWeather?.windDirection,
-                speed = weatherResult.currentWeather?.windSpeed
-            )
+                degree = weatherResult.current?.windDirection,
+                speed = weatherResult.current?.windSpeed,
+                gusts = weatherResult.current?.windGusts
+            ),
+            uV = UV(index = weatherResult.current?.uvIndex),
+            relativeHumidity = weatherResult.current?.relativeHumidity?.toFloat(),
+            dewPoint = weatherResult.current?.dewPoint,
+            pressure = weatherResult.current?.pressureMsl,
+            cloudCover = weatherResult.current?.cloudCover,
+            visibility = weatherResult.current?.visibility
         ),
         dailyForecast = getDailyList(weatherResult.daily),
         hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult),

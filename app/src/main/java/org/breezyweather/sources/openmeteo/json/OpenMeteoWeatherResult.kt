@@ -24,7 +24,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenMeteoWeatherResult(
-    @SerialName("current_weather") val currentWeather: OpenMeteoWeatherCurrent? = null,
+    @SerialName("current") val current: OpenMeteoWeatherCurrent? = null,
     val daily: OpenMeteoWeatherDaily? = null,
     val hourly: OpenMeteoWeatherHourly? = null,
     @SerialName("minutely_15") val minutelyFifteen: OpenMeteoWeatherMinutely? = null
