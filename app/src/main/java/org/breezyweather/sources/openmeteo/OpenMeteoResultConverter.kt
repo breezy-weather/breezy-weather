@@ -200,7 +200,6 @@ private fun getHourlyList(
 
 fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>? {
     if (minutelyFifteen?.time == null || minutelyFifteen.time.isEmpty()) return null
-    LogHelper.log(msg = "toto" + minutelyFifteen.time.size.toString())
 
     val currentMinutelyIndex = minutelyFifteen.time.indexOfFirst { it.times(1000) >= (Date().time - 15 * 60 * 1000) }
     val maxMinutelyIndex = minOf(currentMinutelyIndex + 8, minutelyFifteen.time.size - 1)
