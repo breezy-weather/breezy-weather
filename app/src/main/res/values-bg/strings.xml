@@ -642,4 +642,7 @@
     <string name="settings_widgets_gadgets_title">Джаджи</string>
     <string name="pollen_and_mold">Прашец и плесен</string>
     <string name="settings_color_app">Следвай приложението</string>
+    <string name="settings_debug_dump_crash_logs_saved">Журналите за сривове са запазени</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Докосни за отваряне</string>
+    <string name="notification_channel_crash_logs">Журнали за сривове</string>
 </resources>
