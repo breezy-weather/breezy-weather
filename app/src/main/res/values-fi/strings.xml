@@ -607,4 +607,5 @@
     <string name="dialog_permissions_notification_content">Ota säähälytyksiä koskevat ilmoitukset käyttöön napauttamalla tätä tai päätä siitä myöhemmin Asetuksissa.</string>
     <string name="location_resident_location_summaryOff">Ei käytössä. Sijainti aina saatavilla.</string>
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
+    <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
 </resources>
