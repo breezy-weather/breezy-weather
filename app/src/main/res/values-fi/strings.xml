@@ -570,4 +570,6 @@
     <string name="wind_direction_short_N">P</string>
     <string name="wind_direction_short_E">I</string>
     <string name="temperature_average_short">Keskim.</string>
+    <string name="common_weather_text_drizzle">Tihkusadetta</string>
+    <string name="common_weather_text_drizzle_light">Kevyttä tihkusadetta</string>
 </resources>
