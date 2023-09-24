@@ -114,7 +114,7 @@
     <!-- feedback. -->
     <string name="notification_location_in_background">Sijaintitiedot taustalla</string>
     <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
-    <string name="dialog_permissions_location_content">eometric Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
+    <string name="dialog_permissions_location_content">Breezy Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
     <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
     <string name="dialog_permissions_location_background_content">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi “Salli aina”.</string>
     <string name="location_message_failed_to_locate">Tämänhetkisen sijainnin haku epäonnistui</string>
@@ -595,4 +595,11 @@
     <string name="air_quality_o3_info_introduction">Maanpinnan otsoni (O₃) on savusumun pääkomponentti. Vaikka kyseessä on sama molekyyli, alailmakehän otsoni voi olla haitallista ihmisten terveydelle, toisin kuin stratosfäärin otsoni, joka suojaa maapalloa liialliselta UV-säteilyltä.</string>
     <string name="weather_alert_data_by">Hälytystiedot tarjoaa $</string>
     <string name="weather_api_unauthorized_title">API-käyttöoikeus luvaton</string>
+    <string name="dialog_permissions_notification_title">Pysy ajan tasalla</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_subtitle_data_aqi">Ilmanlaatu</string>
+    <string name="action_see_more">Katso lisää</string>
+    <string name="location_results_by">Sijaintitulokset tarjoaa $</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
 </resources>
