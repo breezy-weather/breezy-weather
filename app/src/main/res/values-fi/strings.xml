@@ -122,7 +122,7 @@
     <string name="location_dialog_failed_to_locate_title">Etkö saa oikeaa sijaintia\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ota sijaintitiedot käyttöön</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Valitse sijainnin tarjoaja</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Valitse sijaintipalvelu</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista “$”</string>
     <string name="widget_label_view_style">Näytä tyyli</string>
     <string name="widget_label_show_widget_card">Taustaväri</string>
@@ -191,7 +191,7 @@
     <string name="weather_updated_in_background">Päivitetty taustalla</string>
     <string name="notification_precipitation_today">Tänään saattaa sataa.</string>
     <string name="notification_precipitation_short_term">Seuraavien tuntien aikana saattaa sataa.</string>
-    <string name="location_resident_message">Aseta kotikaupungiksi</string>
+    <string name="location_resident_message">Aseta asuinkaupungiksi</string>
     <string name="location_resident_dialog">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.
 \nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
     <string name="pollen_tap_to_see_more">Napauta nähdäksesi lisää…</string>
@@ -560,7 +560,7 @@
     <string name="air_quality_level_5_description">Herkät ryhmät voivat tuntea terveyteen kohdistuvat vaikutukset välittömästi ja heidän tulisi välttää ulkoilua. Terveet henkilöt kokevat todennäköisesti hengitysvaikeuksia ja kurkun ärsytystä; harkitse sisätiloissa pysymistä ja ulkoilun siirtämistä.</string>
     <string name="wind_direction_short_S">E</string>
     <string name="wind_direction_short_W">L</string>
-    <string name="temperature_normals">Lämpötilan normaalit</string>
+    <string name="temperature_normals">Lämpötilanormaalit</string>
     <string name="temperature_normal_short">Norm.</string>
     <string name="wind_direction_short_SW">Lo</string>
     <string name="wind_direction_short_variable">Vaihtuva</string>
@@ -602,10 +602,19 @@
     <string name="location_results_by">Sijaintitulokset tarjoaa $</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="location_resident_location_summaryOn">Käytössä. Piilotettu, kun nykyisen sijainnin sisällä on $.</string>
+    <string name="location_resident_location_summaryOn">Käytössä. Piilotettu, kun $ :n sisällä nykyisestä sijainnista.</string>
     <string name="location_resident_location">Asuinpaikan sijainti</string>
     <string name="dialog_permissions_notification_content">Ota säähälytyksiä koskevat ilmoitukset käyttöön napauttamalla tätä tai päätä siitä myöhemmin Asetuksissa.</string>
     <string name="location_resident_location_summaryOff">Ei käytössä. Sijainti aina saatavilla.</string>
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
     <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
+    <string name="widget_style_mini">Mini</string>
+    <string name="unit_nmi">M</string>
+    <string name="settings_background_updates_worker_info_title">Prosessitiedot</string>
+    <string name="unit_ppcm">/m³</string>
+    <string name="unit_mb">mb</string>
+    <string name="unit_mugpcum">μg/m³</string>
+    <string name="unit_mgpcum">mg/m³</string>
+    <string name="null_data_text">N/A</string>
+    <string name="widget_style_nano">Nano</string>
 </resources>
