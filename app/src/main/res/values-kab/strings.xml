@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="short_yesterday">Idl</string>
+    <string name="wind_speed">Arured n waḍu</string>
+    <string name="setting_weather_source_accu_days">Ussan</string>
+    <string name="weather_source_accu_preference_days_5">5 n wussan</string>
+    <string name="weather_source_accu_preference_days_10">10 n wussan</string>
+    <string name="short_thursday">Amh</string>
+    <string name="short_wednesday">Aha</string>
+    <string name="short_monday">Ari</string>
+    <string name="short_tuesday">Ara</string>
+    <string name="weather_source_accu_preference_days_1">1 n wass</string>
+    <string name="wind_direction">Tanila n waḍu</string>
+    <string name="short_today">Ass-a</string>
+    <string name="app_name">Tignewt</string>
+    <string name="weather_source_accu_preference_days_15">15 n yum</string>
+    <string name="settings_appearance_language_title">Tutlayt</string>
+    <string name="short_sunday">Ace</string>
+    <string name="wind">Aḍu</string>
+</resources>
