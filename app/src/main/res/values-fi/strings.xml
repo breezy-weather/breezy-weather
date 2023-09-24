@@ -82,7 +82,7 @@
     <string name="ephemeris_moon_phase_waning_crescent">Vähenevä kuunsirppi</string>
     <string name="pollen_grass">Heinä</string>
     <string name="pollen_mold">Home</string>
-    <string name="pollen_ragweed">Pujo / Marunatuoksukki</string>
+    <string name="pollen_ragweed">Marunatuoksukki</string>
     <string name="pollen_tree">Puu</string>
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
@@ -136,7 +136,7 @@
     <string name="widget_label_align_end">Kohdista loppuun</string>
     <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.
 \n
-\nEsimerkiksi, “Tämänhetkinen sää = $cw$” näytetään seuraavasti “tämänhetkinen sää = Selkeä päivä”.</string>
+\nEsimerkiksi, “Tämänhetkinen sää = $cw$” näytetään seuraavasti “tämänhetkinen sää: Selkeä päivä.”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Tämänhetkinen sää</string>
@@ -162,9 +162,9 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Viikko (Lyhyt)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Päivittäinen kuvaus</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Tuntikohtainen kuvaus</string>
-    <string name="widget_custom_subtitle_keyword_enter_description">Kirjoita</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Uusi rivi</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Sää tänään päivällä, huomenna, …, 4:n päivän päästä</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Sää tänään yöllä, huomenna, Tmw, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Sää tänään yöllä, huomenna, …, 4:n päivän päästä</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
@@ -195,9 +195,9 @@
     <string name="location_resident_dialog">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.
 \nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
     <string name="pollen_tap_to_see_more">Napauta nähdäksesi lisää…</string>
-    <string name="message_tap_again_to_exit">Klikkaa uudelleen poistuaksesi</string>
+    <string name="message_tap_again_to_exit">Napauta uudelleen poistuaksesi</string>
     <!-- content description -->
-    <string name="action_back">takaisin</string>
+    <string name="action_back">Takaisin</string>
     <string name="settings_icon_packs_check_details">Tarkista tiedot</string>
     <string name="alerts_count">$ sää hälytykset</string>
     <!-- $ = alert count. -->
@@ -245,7 +245,7 @@
     <string name="widget_trend_daily">Päivittäinen trendi</string>
     <string name="widget_trend_hourly">Tuntikohtainen trendi</string>
     <string name="widget_multi_city">Monen kaupungin</string>
-    <string name="widget_refreshing">odotetaan</string>
+    <string name="widget_refreshing">Päivitetään</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Live taustakuva</string>
@@ -360,7 +360,7 @@
     <string name="settings_weather_source_portal">Portaali</string>
     <string name="settings_color_grey">Harmaa</string>
     <string name="unit_atm">atm</string>
-    <string name="weather_message_invalid_location">Virheellinen sijainti, poista se ja kokeile uudelleen</string>
+    <string name="weather_message_invalid_location">Virheellinen sijainti, poista se ja kokeile lisätä uudelleen</string>
     <string name="uv_index_11">Äärimmäisen voimakas</string>
     <string name="unit_h_voice">tuntia</string>
     <string name="unit_mm">mm</string>
@@ -401,7 +401,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="settings_background_updates_section_troubleshoot">Vianmääritys</string>
     <string name="settings_widgets_notification_persistent_switch">Pysyvä</string>
-    <string name="action_undo">Peruuta</string>
+    <string name="action_undo">Kumoa</string>
     <string name="settings_main_background_animation_title">Tausta-animaatio</string>
     <string name="unit_inhg">inHg</string>
     <string name="pollen_level_1">Erittäin vähän</string>
@@ -467,7 +467,7 @@
     <string name="weather_api_key_required_missing_content">Käyttääksesi tätä lähdettä, sinun on annettava API-avain.</string>
     <string name="unit_kgfpsqcm_voice">Kilogrammaa neliösenttimetrillä</string>
     <string name="pollen_level_0">Ei yhtään</string>
-    <string name="settings_location_access_permission_already_granted">Lupa jo myönnetty</string>
+    <string name="settings_location_access_permission_already_granted">Lupa myönnetty jo</string>
     <string name="notification_update_error">%1$d päivitys(tä) epäonnistui</string>
     <string name="settings_location_access_switch_title">Sijainnin käyttöoikeus</string>
     <string name="weather_source_openweather_version_3_0">Versio 3.0</string>
