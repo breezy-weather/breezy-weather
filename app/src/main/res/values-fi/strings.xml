@@ -560,7 +560,7 @@
     <string name="air_quality_level_5_description">Herkät ryhmät voivat tuntea terveyteen kohdistuvat vaikutukset välittömästi ja heidän tulisi välttää ulkoilua. Terveet henkilöt kokevat todennäköisesti hengitysvaikeuksia ja kurkun ärsytystä; harkitse sisätiloissa pysymistä ja ulkoilun siirtämistä.</string>
     <string name="wind_direction_short_S">E</string>
     <string name="wind_direction_short_W">L</string>
-    <string name="temperature_normals">Lämpötilanormaalit</string>
+    <string name="temperature_normals">Normaalilämpötila</string>
     <string name="temperature_normal_short">Norm.</string>
     <string name="wind_direction_short_SW">Lo</string>
     <string name="wind_direction_short_variable">Vaihtuva</string>
