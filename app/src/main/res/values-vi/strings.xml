@@ -107,7 +107,7 @@
     <string name="settings_main_background_animation_enabled">Bật</string>
     <string name="settings_main_background_animation_disabled">Tắt</string>
     <string name="settings_main_section_animations">Hình động</string>
-    <string name="minutely_forecast">Dự báo từng phút</string>
+    <string name="minutely_forecast">Dự báo theo phút</string>
     <string name="hourly_forecast">Dự báo hàng giờ</string>
     <string name="air_quality">Chất lượng không khí</string>
     <string name="alerts_count">$ cảnh báo thời tiết</string>
@@ -247,7 +247,7 @@
     <string name="widget_custom_subtitle_keyword_atd_description">Nhiệt độ rõ ràng (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Gió hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Độ ẩm hiện tại</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Độ rõ ràng hiện tại</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Tầm nhìn xa hiện tại</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Điểm sương hiện tại</string>
     <string name="widget_custom_subtitle_keyword_als_description">Cảnh báo (Ngắn)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Vị trí</string>
