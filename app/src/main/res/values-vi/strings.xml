@@ -641,4 +641,8 @@
     <string name="common_weather_text_rain_snow_mixed_light">Mưa nhẹ và tuyết xen kẽ</string>
     <string name="unit_bf">Bf</string>
     <string name="pollen_and_mold">Chất gây dị ứng &amp; nấm mốc</string>
+    <string name="settings_color_app">Tự động</string>
+    <string name="settings_debug_dump_crash_logs_saved">Nhật lí sự cố đã lưu</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Bấm để mở</string>
+    <string name="notification_channel_crash_logs">Nhật kí sự cố</string>
 </resources>
