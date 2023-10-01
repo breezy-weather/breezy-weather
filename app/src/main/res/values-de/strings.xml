@@ -643,4 +643,7 @@
     <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="settings_widgets_gadgetbridge_switch">Wetterdaten an Gadgetbridge senden</string>
     <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
+    <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
+    <string name="notification_channel_crash_logs">Absturzprotokolle</string>
 </resources>
