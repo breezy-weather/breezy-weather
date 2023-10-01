@@ -17,4 +17,6 @@
     <string name="settings_appearance_language_title">Tutlayt</string>
     <string name="short_sunday">Ace</string>
     <string name="wind">Aḍu</string>
+    <string name="weather_kind_thunder">Rrɛud</string>
+    <string name="weather_kind_wind">Aḍu</string>
 </resources>
