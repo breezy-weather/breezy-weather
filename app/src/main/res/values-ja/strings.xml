@@ -201,7 +201,7 @@
     <string name="widget_clock_day_week">時計 + 毎日 + 週間</string>
     <string name="widget_text">テキスト</string>
     <string name="widget_trend_daily">日中の動き</string>
-    <string name="widget_trend_hourly">時間ごと動き</string>
+    <string name="widget_trend_hourly">時間ごとの動き</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新を待っています</string>
     <string name="widget_ellipsis">…</string>
@@ -219,7 +219,7 @@
     <string name="settings_units_precipitation">降水量</string>
     <string name="settings_units_pressure">気圧</string>
     <string name="settings_units_speed">速度</string>
-    <string name="settings_notifications_section_forecast">予報の通知</string>
+    <string name="settings_notifications_section_forecast">予報通知</string>
     <string name="settings_widgets_notification_temp_icon_switch">気温を通知バーに表示する</string>
     <string name="location_resident">居住地</string>
     <string name="location_service_native">ネイティブAPI</string>
@@ -345,4 +345,13 @@
     <string name="about_privacy_policy">個人情報保護方針</string>
     <string name="about_dependencies">依存関係</string>
     <string name="about_contribution_designer">ロゴデザイナー</string>
+    <string name="settings_widgets_notification_widget_title">通知ウィジェット</string>
+    <string name="settings_widgets_notification_style_title">内容</string>
+    <string name="settings_notifications_forecast_today_title">当日の予報</string>
+    <string name="settings_widgets_section_widgets_in_use">使用中のウィジェット</string>
+    <string name="settings_notifications_forecast_time_today_title">当日の予報の時間</string>
+    <string name="settings_widgets_configure_widget_summary">設定を開く</string>
+    <string name="settings_notifications_forecast_tomorrow_title">翌日の予報</string>
+    <string name="settings_widgets_section_notification_widget">通知ウィジェット</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">翌日の予報の時間</string>
 </resources>
