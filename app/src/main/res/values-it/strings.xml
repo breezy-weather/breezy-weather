@@ -378,7 +378,7 @@
     <string name="setting_weather_source_accu_hours">Ore</string>
     <string name="weather_source_accu_preference_days_10">10 giorni</string>
     <string name="weather_source_accu_preference_hours_1">1 ora</string>
-    <string name="weather_source_accu_preference_hours_12">12 ore</string>
+    <string name="weather_source_accu_preference_hours_12">12 ore</string>
     <string name="weather_source_accu_preference_hours_24">24 ore</string>
     <string name="weather_source_accu_preference_hours_72">72 ore</string>
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
@@ -622,7 +622,7 @@
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: $</string>
     <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%1$d aggiornamenti non riusciti</string>
-    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale leggero o moderato</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale debole o moderato</string>
     <string name="message_parsing_error_content">Assicurati di aver aggiornato l’app alla versione più recente. Il server potrebbe essere temporaneamente non disponibile, in tal caso riprovare più tardi. Se il problema persiste, scarica il registro degli arresti anomali dalle impostazioni di debug e archivia il problema su GitHub.</string>
     <string name="about_dependencies">Dipendenze</string>
     <string name="common_weather_text_rain_showers">Rovesci di pioggia</string>
@@ -642,9 +642,14 @@
     <string name="unit_bf_voice">sulla scala di Beaufort</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Norme di temperatura</string>
-    <string name="temperature_average_short">Mezzo</string>
+    <string name="temperature_average_short">Media</string>
     <string name="weather_normals_data_by">I dati sulle norme di temperatura forniti da $</string>
     <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
     <string name="settings_widgets_gadgetbridge_switch">Invia dati meteo a Gadgetbridge</string>
     <string name="pollen_and_mold">Polline e muffa</string>
+    <string name="about_contribution_designer">Designer del logo</string>
+    <string name="settings_widgets_gadgets_title">Gadget</string>
+    <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
+    <string name="notification_channel_crash_logs">Crash log</string>
 </resources>
