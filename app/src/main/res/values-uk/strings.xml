@@ -129,7 +129,7 @@
     <string name="precipitation_forecast">Прогноз опадів</string>
     <string name="minutely_precipitations">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
-    <string name="ephemeris">Сонце та місяць</string>
+    <string name="ephemeris">Сонце та Місяць</string>
     <string name="temperature_feels_like">Відчувається як</string>
     <string name="details">Подробиці</string>
     <string name="alerts_to_follow">Щоб переглянути майбутні попередження, натисніть тут.</string>
