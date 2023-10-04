@@ -1,10 +1,19 @@
-# Version 4.6.8-beta (next version)
+# Version 4.6.9-beta (next version)
+
+**Translations**
+- Swedish added (thanks P.O!)
+- Kabyle added (thanks ButterflyOfFire!)
+- Translations updated
+
+
+# Version 4.6.8-beta (2023-09-23)
 
 **Weather sources**
 - [Open-Meteo] Add support for new current, with better accuracy (15 min vs 1 hour when possible), and additional current variables (previously extrapolated from hourly forecast)
 
 **Translations**
 - Translations updated
+
 
 # Version 4.6.7-beta (2023-09-19)
 
