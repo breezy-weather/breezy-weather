@@ -2,7 +2,6 @@
 <resources>
     <string name="unit_celsius_short">°</string>
     <string name="short_yesterday">Igår</string>
-    <string name="wind_strength_6">Frisk vind</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
     <string name="location_search_change_weather_source">Byt väderkälla</string>
@@ -13,7 +12,6 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="action_add_new_location">Lägg till ny plats</string>
-    <string name="wind_strength_3">Måttlig vind</string>
     <string name="action_add_current_location">Lägg till nuvarande plats</string>
     <string name="action_app_store">Appbutik</string>
     <string name="locations">Platser</string>
@@ -27,7 +25,6 @@
     <string name="common_weather_text_snow">Snö</string>
     <string name="settings_units_precipitation">Nederbördsenhet</string>
     <string name="pollen_and_mold">Pollen &amp; mögel</string>
-    <string name="wind_strength_9">Hård vind</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
     <string name="wind_speed">Vindhastighet</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorera när batterinivån är låg</string>
@@ -39,22 +36,18 @@
     <string name="air_quality_pm_explanations_consequences">Partiklar en den mest häslovådliga formen av luftförorening pga deras förmåga att fastna långt ner i lungorna och vidare ut i blodsystemet och hjärnan, som kan orsaka hjärt och lungsjukdomar och bidra till en för tidig död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="wind_strength_10">Storm</string>
     <string name="temperature">Temperatur</string>
     <string name="precipitation_ice">Is</string>
     <string name="unit_m_voice">Meter</string>
     <string name="setting_weather_source_accu_days">Dagar</string>
-    <string name="air_quality_level_4">Ohälsosam</string>
     <string name="metno_weather_text_andthunder">$ och åska</string>
     <string name="action_about">Om</string>
     <string name="weather_source_accu_preference_days_5">5 dagar</string>
     <string name="unit_mph">mph</string>
-    <string name="air_quality_level_1">Bra</string>
     <string name="notification_style_cities">Städer</string>
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
     <string name="unit_cm">cm</string>
     <string name="location_search_weather_source">Väderkälla</string>
-    <string name="wind_strength_12">Orkan</string>
     <string name="location_message_failed_to_locate">Misslyckades att hitta nuvarande plats</string>
     <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
@@ -71,7 +64,6 @@
     <string name="uv_alert_level">Varning</string>
     <string name="precipitation_intensity_rainstorm">Regnoväder</string>
     <string name="wind_direction_short_W">V</string>
-    <string name="air_quality_level_2">Okej</string>
     <string name="about_contact">Kontakt</string>
     <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -91,7 +83,6 @@
     <string name="widget_week_style_3_days">3 dagar</string>
     <string name="widget_subtitle_data_time">Uppdateringstid</string>
     <string name="air_quality_o3_info_title">Marknära ozon (O₃)</string>
-    <string name="air_quality_level_1_description">Vanligen liten risk även för känsliga.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Nuvarande Luftfuktighet</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Solnedgång vid $</string>
@@ -102,7 +93,6 @@
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
     <string name="pollen_level_2">Låg</string>
     <string name="common_weather_text_rain">Regn</string>
-    <string name="air_quality_level_5">Mycket ohälsosam</string>
     <string name="precipitation_none">Ingen nederbörd</string>
     <string name="settings_units_temperature">Temperaturenhet</string>
     <string name="air_quality_pm_explanations_introduction">Mikroskopiska partiklar av fast eller flytande materia som svävar i luften.</string>
@@ -119,8 +109,6 @@
     <string name="air_quality_co">CO</string>
     <string name="unit_ftps_voice">Fot per sekund</string>
     <string name="weather_refresh_skipped_already_recently_updated">Redan nyligen uppdaterad</string>
-    <string name="wind_strength_7">Hård vind</string>
-    <string name="air_quality_level_3_description">Känsliga personers risk att få försämrad hälsa på grund av föroreningarna är förhöjd, särskilt om nivå 3 består i mer än några timmar. Luftföroreningshalterna kan orsaka akuta problem med andningsorganen (luftvägarna och lungor) och cirkulationsorganen (hjärtat och blodkärlen). Personer med hjärt- eller lungsjukdomar bör vara uppmärksamma på eventuella symtom och anpassa sina utomhusaktiviteter.</string>
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="precipitation_probability">Nederbördsannolikhet</string>
     <string name="widget_subtitle_data_aqi">Luftkvalité</string>
@@ -136,7 +124,6 @@
     <string name="hourly_forecast">Timprognos</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
     <string name="air_quality_so2_voice">Svaveldioxid</string>
-    <string name="air_quality_level_6_description">Exponering mot luften, även bara för några minuter kan ge allvarliga hälsoeffekter. Undvik utomhusaktiviteter.</string>
     <string name="widget_custom_subtitle_keyword_al_description">Varningar</string>
     <string name="action_see_more">Se mer</string>
     <string name="action_add_from_map">Lägg till från karta</string>
@@ -145,9 +132,7 @@
     <string name="short_thursday">Tor</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="air_quality_no2_info_title">Kvävedioxid (NO₂)</string>
-    <string name="wind_strength_0">Lugnt</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
-    <string name="wind_strength_4">Måttlig vind</string>
     <string name="pollen">Pollen</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Välj platstjänst</string>
     <string name="pollen_level_4">Hög</string>
@@ -166,7 +151,6 @@
     <string name="widget_week_style_5_days">5 dagar</string>
     <string name="location_message_list_cannot_be_empty">Platslistan får inte vara tom</string>
     <string name="settings_background_updates_refresh_12h">12 timmar</string>
-    <string name="wind_strength_8">Hård vind</string>
     <string name="settings_background_updates">Bakgrundsuppdateringar</string>
     <string name="pollen_birch">Björk</string>
     <string name="settings_background_updates_refresh_24h">24 timmar</string>
@@ -179,16 +163,12 @@
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="widget_style_rectangle">Rektangel</string>
     <string name="action_restart">Omstart</string>
-    <string name="wind_strength_11">Storm</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande Daggpunkt</string>
     <string name="short_saturday">Lör</string>
     <string name="pollen_ragweed">Ambrosia</string>
     <string name="ephemeris">Sol &amp; måne</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_kind_thunder">Åska</string>
-    <string name="air_quality_level_3">Dålig</string>
-    <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
-    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från t.ex vulkaner, sandstromar, skogs och gräsbränder, vegetation och hav. Mänsklig aktivitet genererar en ansenlig mängd partiklar från aktiviterer som trafik, transporter, industrier, kraftverk, byggen, förbränning eller jordbruk.</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="unit_mmph_voice">Millimeter per timme</string>
     <string name="air_quality_so2">SO₂</string>
@@ -215,7 +195,8 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="action_undo">Ångra</string>
     <string name="pollen_level_1">Väldigt låg</string>
-    <string name="air_quality_level_6">Farlig</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
+    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från t.ex vulkaner, sandstromar, skogs och gräsbränder, vegetation och hav. Mänsklig aktivitet genererar en ansenlig mängd partiklar från aktiviterer som trafik, transporter, industrier, kraftverk, byggen, förbränning eller jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_short_SW">SV</string>
     <string name="wind_gusts">Byvindar</string>
@@ -258,7 +239,7 @@
     <string name="unit_hpa_voice">Hektopascal</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid $</string>
     <string name="temperature_wind_chill">Vindavskylning</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort \"$\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort “$”</string>
     <string name="widget_subtitle_data_wind">Vind</string>
     <string name="widget_style_symmetry">Symmetri</string>
     <string name="action_delete">Ta bort</string>
@@ -287,7 +268,6 @@
     <string name="precipitation_snow">Snö</string>
     <string name="unit_kph">km/h</string>
     <string name="ephemeris_moonset_at">Månnedgång vid $</string>
-    <string name="air_quality_level_4_description">Föroreningsnivån kan vara ohälsosam även för personer utan kända hjärt-/kärl- och lungsjukdomar, särskilt om den består i mer än några timmar. Ansträngande utomhusaktiviteter bör därför begränsas.</string>
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_info_title">Kolmonoxid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 timmar</string>
@@ -296,7 +276,6 @@
     <string name="settings_units_pressure">Tryckenhet</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="alerts_count">$ Vädervarningar</string>
-    <string name="wind_strength_2">Svag vind</string>
     <string name="action_done">Klar</string>
     <string name="pollen_level_0">Ingen</string>
     <string name="settings_units_distance">Längdenhet</string>
@@ -307,7 +286,6 @@
     <string name="dew_point">Daggpunkt</string>
     <string name="hours_of_sun">Soltimmar</string>
     <string name="daytime">Dagtid</string>
-    <string name="wind_strength_1">Svag vind</string>
     <string name="common_weather_text_drizzle_light">Lätt duggregn</string>
     <string name="weather_source_accu_preference_hours_12">12 timmar</string>
     <string name="weather_source_accu_preference_hours_1">1 timme</string>
@@ -320,7 +298,6 @@
     <string name="notification_channel_crash_logs">Krashloggar</string>
     <string name="location_search_no_results">$1 kan inte hitta $2</string>
     <string name="wind_direction_short_N">N</string>
-    <string name="air_quality_level_2_description">Känsliga personers risk att få en försämrad hälsa på grund av föroreningarna är något ökad, särskilt om nivå 2 består i mer än några timmar. Ansträngande utomhusaktiviteter kan öka risken för bl.a. luftvägssymtom hos känsliga personer.</string>
     <string name="pollen_grass">Gräs</string>
     <string name="wind_direction_short_E">O</string>
     <string name="about_source_code">Källkod</string>
@@ -331,10 +308,33 @@
     <string name="precipitation_between_time">Nederbörd mellan $1 och $2</string>
     <string name="short_sunday">Sön</string>
     <string name="wind">Vind</string>
-    <string name="wind_strength_5">Frisk vind</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="notification_channel_alerts">Varningar</string>
-    <string name="air_quality_level_5_description">Föroreningsnivån är ohälsosam även för personer utan kända hjärt-/kärl- och lungsjukdomar, särskilt om den består i mer än några timmar. Luftföroreningshalterna kan orsaka allvarliga, akuta tillstånd hos känsliga personer och vanliga luftvägsbesvär hos i övrigt friska personer. Ansträngande utomhusaktiviteter bör därför begränsas. Att vistas mer inomhus kan vara att föredra.</string>
     <string name="minutely_forecast">Minutprognos</string>
+    <string name="wind_strength_0">Lugnt</string>
+    <string name="wind_strength_1">Svag vind</string>
+    <string name="wind_strength_2">Svag vind</string>
+    <string name="wind_strength_3">Måttlig vind</string>
+    <string name="wind_strength_4">Måttlig vind</string>
+    <string name="wind_strength_5">Frisk vind</string>
+    <string name="wind_strength_6">Frisk vind</string>
+    <string name="wind_strength_7">Hård vind</string>
+    <string name="wind_strength_8">Hård vind</string>
+    <string name="wind_strength_9">Mycket hård vind</string>
+    <string name="wind_strength_10">Storm</string>
+    <string name="wind_strength_11">Svår storm</string>
+    <string name="wind_strength_12">Orkan</string>
+    <string name="air_quality_level_1">Utmärkt</string>
+    <string name="air_quality_level_1_description">Luftkvaliteten är idealisk för de flesta, så njut av dina utomhusaktiviteter.</string>
+    <string name="air_quality_level_2">Vackert</string>
+    <string name="air_quality_level_2_description">Luftkvaliteten är i stort sett godkänd för de flesta. Känsliga personer kan dock uppleva lätta till medelsvåra symptom efter längre tids exponering.</string>
+    <string name="air_quality_level_3">Dålig</string>
+    <string name="air_quality_level_3_description">Luften har uppnått en sådan grad av föroreningar att den är ohälsosam för känsliga personer. Minimera tiden utomhus om du känner av symptom som andningssvårigheter eller irritation i halsen.</string>
+    <string name="air_quality_level_4">Ohälsosam</string>
+    <string name="air_quality_level_4_description">Känsliga personer kan omedelbart uppleva hälsopåverkan. Friska personer kan uppleva andningssvårigheter eller irritation i halsen efter längre tids exponering. Begränsa utomhusaktiviteter.</string>
+    <string name="air_quality_level_5">Mycket ohälsosam</string>
+    <string name="air_quality_level_5_description">Känsliga personer kan omedelbart uppleva hälsopåverkan och bör undvika utomhusaktiviteter. Även friska personer kan uppleva andningssvårigheter och irritation i halsen och bör överväga att stanna inomhus och planera om utomhusaktiviteter.</string>
+    <string name="air_quality_level_6">Fara</string>
+    <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
 </resources>

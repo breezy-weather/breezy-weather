@@ -60,6 +60,8 @@ enum class Language(
     SLOVAK("slovak", Locale("sk")),
     SLOVENIAN("slovenian", Locale("sl", "SI")),
     FINNISH("finnish", Locale("fi")),
+    SWEDISH("swedish", Locale("sv")),
+    KABYLE("kabyle", Locale("kab")),
     VIETNAMESE("vietnamese", Locale("vi")),
     TURKISH("turkish", Locale("tr")),
     GREEK("greek", Locale("el")),
@@ -146,6 +148,8 @@ enum class Language(
             "slovak" -> SLOVAK
             "slovenian" -> SLOVENIAN
             "finnish" -> FINNISH
+            "swedish" -> SWEDISH
+            "kabyle" -> KABYLE
             "vietnamese" -> VIETNAMESE
             "turkish" -> TURKISH
             "greek" -> GREEK
