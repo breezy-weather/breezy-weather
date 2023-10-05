@@ -51,10 +51,10 @@
     <string name="location_message_failed_to_locate">Misslyckades att hitta nuvarande plats</string>
     <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
-    <string name="minutely_precipitations">Minutvis nederbörd</string>
+    <string name="minutely_precipitations">Nederbörd minut för minut</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
     <string name="short_tomorrow">Imorgon</string>
-    <string name="air_quality">Luftkvalité</string>
+    <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Månkalender</string>
     <string name="unit_cm_voice">Centimeter</string>
@@ -166,7 +166,7 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande Daggpunkt</string>
     <string name="short_saturday">Lör</string>
     <string name="pollen_ragweed">Ambrosia</string>
-    <string name="ephemeris">Sol &amp; måne</string>
+    <string name="ephemeris">Solen &amp; månen</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_kind_thunder">Åska</string>
     <string name="air_quality_pm25">PM2,5</string>
@@ -223,7 +223,7 @@
     <string name="short_tuesday">Tis</string>
     <string name="pollen_level_5">Mycket hög</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
-    <string name="alerts_to_follow">Kommande varningar, tryck för att visa dem.</string>
+    <string name="alerts_to_follow">Kommande varningar, tryck här för att visa dem.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Nuvarande Temperatur (°)</string>
     <string name="uv_index_0_2">Lågt</string>
     <string name="air_quality_pm25_voice">PM två komma fem</string>
@@ -275,7 +275,7 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="settings_units_pressure">Tryckenhet</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="alerts_count">$ Vädervarningar</string>
+    <string name="alerts_count">$ vädervarningar</string>
     <string name="action_done">Klar</string>
     <string name="pollen_level_0">Ingen</string>
     <string name="settings_units_distance">Längdenhet</string>
