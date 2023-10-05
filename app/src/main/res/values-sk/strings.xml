@@ -64,7 +64,7 @@
     <string name="wind_strength_10">Silná víchrica</string>
     <string name="wind_strength_11">Mohutná víchrica</string>
     <string name="wind_strength_12">Orkán</string>
-    <string name="uv_index">UV index</string>
+    <string name="uv_index">Intenzita UV žiarenia</string>
     <string name="uv_index_0_2">Nízky</string>
     <string name="uv_index_3_5">Mierny</string>
     <string name="uv_index_8_10">Veľmi vysoký</string>
