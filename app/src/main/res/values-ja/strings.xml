@@ -296,7 +296,7 @@
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>
     <string name="alerts_count">$ 天気予報</string>
-    <string name="alerts_to_follow">アラートが続きますので、こちらをタップしてご覧ください。</string>
+    <string name="alerts_to_follow">$個のアラートを確認</string>
     <string name="air_quality_level_1">素晴らしい</string>
     <string name="air_quality_level_3_description">大気が高濃度に汚染され、敏感な人々にとって不健康な状態になっている。呼吸困難や喉の炎症などの症状を感じている場合は、外で過ごす時間を減らしましょう。</string>
     <string name="air_quality_level_4">不健康</string>
