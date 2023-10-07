@@ -53,7 +53,7 @@
     <string name="settings_section_general">Allmänt</string>
     <string name="minutely_precipitations">Nederbörd minut för minut</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
-    <string name="short_tomorrow">Imorgon</string>
+    <string name="short_tomorrow">Imrn</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Månkalender</string>
@@ -238,7 +238,7 @@
     <string name="unit_mps">m/s</string>
     <string name="unit_hpa_voice">Hektopascal</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid $</string>
-    <string name="temperature_wind_chill">Vindavskylning</string>
+    <string name="temperature_wind_chill">Vindavkylning</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort “$”</string>
     <string name="widget_subtitle_data_wind">Vind</string>
     <string name="widget_style_symmetry">Symmetri</string>
@@ -302,7 +302,7 @@
     <string name="wind_direction_short_E">O</string>
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>
-    <string name="temperature_average_short">Median</string>
+    <string name="temperature_average_short">Medel</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
     <string name="precipitation_between_time">Nederbörd mellan $1 och $2</string>
@@ -337,4 +337,10 @@
     <string name="air_quality_level_5_description">Känsliga personer kan omedelbart uppleva hälsopåverkan och bör undvika utomhusaktiviteter. Även friska personer kan uppleva andningssvårigheter och irritation i halsen och bör överväga att stanna inomhus och planera om utomhusaktiviteter.</string>
     <string name="air_quality_level_6">Fara</string>
     <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
+    <string name="temperature_wet_bulb">Våttemp.</string>
+    <string name="temperature_normals">Temperaturnormaler</string>
+    <string name="temperature_degree_day_heating">Uppvärmningsgrad dag</string>
+    <string name="temperature_degree_day_cooling">Nedkylningsgrad dag</string>
+    <string name="temperature_apparent">Upplevd</string>
+    <string name="temperature_degree_day">Grad dag</string>
 </resources>
