@@ -64,7 +64,7 @@ Add the new enum and language technical name in `app/src/main/java/org/breezywea
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version 8.3
+./gradlew wrapper --gradle-version=8.4
 ```
 
 
