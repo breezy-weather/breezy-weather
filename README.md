@@ -38,7 +38,7 @@
 
 # Download
 
-<a href="https://github.com/breezy-weather/fdroid-repo">
+<a href="https://github.com/breezy-weather/fdroid-repo/blob/main/README.md">
 <img src="https://f-droid.org/badge/get-it-on.png"
 alt="Get it from Breezy Weather F-Droid repository" align="center" height="80" /></a>
 
