@@ -35,3 +35,7 @@ Permissions facultatives :<ul>
 <li>Ignorer l’optimisation de la batterie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) : empêche l’application d’être tuée en arrière-plan. Méthode potentiellement plus fiable pour récupérer les mises à jour de données météo sur certains appareils</li>
 <li>Téléphone (READ_PHONE_STATE) : requis par une dépendance de l’application, n’est pas réellement utilisée mais ne peut être enlevée. Elle peut rester désactivée sans problèmes.</li>
 </ul>
+
+Antifonction: <ul>
+<li>Éléments non libres : le logo fait partie de la marque Breezy Weather et vous n’êtes autorisé à le réutiliser que selon certains termes spécifiques (voir les termes additionnels de la licence pour plus d’infos).</li>
+</ul>

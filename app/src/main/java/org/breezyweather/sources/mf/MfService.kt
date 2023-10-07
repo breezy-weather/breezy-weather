@@ -19,10 +19,7 @@ package org.breezyweather.sources.mf
 import android.content.Context
 import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -340,20 +337,16 @@ class MfService @Inject constructor(
             // Otherwise, we try first a JWT key, otherwise fallback on regular API key
             try {
                 Jwts.builder().apply {
-                    setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-                    setClaims(
-                        mapOf(
-                            "class" to "mobile",
-                            Claims.ISSUED_AT to (Date().time / 1000).toString(),
-                            Claims.ID to UUID.randomUUID().toString()
-                        )
-                    )
+                    header().add("typ", "JWT")
+                    claims().empty().add("class", "mobile")
+                    issuedAt(Date())
+                    id(UUID.randomUUID().toString())
                     signWith(
                         Keys.hmacShaKeyFor(
                             BuildConfig.MF_WSFT_JWT_KEY.toByteArray(
                                 StandardCharsets.UTF_8
                             )
-                        ), SignatureAlgorithm.HS256
+                        ), Jwts.SIG.HS256
                     )
                 }.compact()
             } catch (ignored: Exception) {

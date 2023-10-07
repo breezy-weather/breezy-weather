@@ -38,10 +38,13 @@
 
 # Download
 
+<a href="https://github.com/breezy-weather/fdroid-repo">
+<img src="https://f-droid.org/badge/get-it-on.png"
+alt="Get it from Breezy Weather F-Droid repository" align="center" height="80" /></a>
+
 <a href="https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather/">
 <img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
-alt="Get it on IzzyOnDroid" align="center" height="80" />
-</a>
+alt="Get it on IzzyOnDroid" align="center" height="80" /></a>
 
 <a href="https://github.com/breezy-weather/breezy-weather/releases">
 <img src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png"

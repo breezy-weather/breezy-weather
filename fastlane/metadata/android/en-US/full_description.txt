@@ -35,3 +35,7 @@ Optional permissions: <ul>
 <li>Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): Prevents the app from being killed in the background. Potentially more reliable method for fetching background weather data on some devices</li>
 <li>Read phone state (READ_PHONE_STATE): Required by an app dependency: not actually used, but can't be removed. It's okay to never enable this.</li>
 </ul>
+
+Anti-feature: <ul>
+<li>Non-Free Assets: Logo is part of the branding of Breezy Weather and you are only allowed to re-use it under specific terms (see license additional terms for more info).</li>
+</ul>

@@ -54,7 +54,7 @@ body:
       label: Acknowledgements
       description: Your issue will be closed if you don’t read this carefully.
       options:
-        - label: This source has a free-tier available (no mandatory credit card info), and if it a main weather source, it includes free hourly forecast
+        - label: This source has a free-tier available (no mandatory credit card info and trials don’t count as “free”), and if it is a main weather source, it includes free hourly forecast
           required: true
         - label: If this is a weather source request, I checked that endpoints are by coordinates, or that there is a reverse geocoding endpoint.
           required: true
