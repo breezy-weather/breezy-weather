@@ -219,6 +219,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("sr"), "NEXI", "https://github.com/nexiRS"),
         TranslatorItem(arrayOf("sr"), "Milan Andrejić", "mailto:amikia@hotmail.com"),
         TranslatorItem(arrayOf("sv"), "P.O", "https://hosted.weblate.org/user/mxvWhxCebxjnmLQxcIr/"),
+        TranslatorItem(arrayOf("sv"), "Peter Ericson", "https://github.com/noscirep"),
         TranslatorItem(arrayOf("tr"), "Mehmet Saygin Yilmaz", "mailto:memcos@gmail.com"),
         TranslatorItem(arrayOf("tr"), "Ali D.", "mailto:siyaha@gmail.com"),
         TranslatorItem(arrayOf("tr"), "metezd", "https://hosted.weblate.org/user/metezd/"),
