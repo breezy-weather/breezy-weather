@@ -63,6 +63,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
 
@@ -374,7 +375,7 @@ class RefreshHelper @Inject constructor(
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
-                .getFormattedDate(location.timeZone, "yyyy-MM-dd")
+                .getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
                 .toDateNoHour(location.timeZone)!!
             val mainWeatherCompleted = completeMainWeatherWithPreviousData(
                 mainWeather,

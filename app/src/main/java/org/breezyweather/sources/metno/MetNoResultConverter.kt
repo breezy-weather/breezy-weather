@@ -47,6 +47,7 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunProperties
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -156,7 +157,7 @@ private fun getDailyList(
     forecastTimeseries: List<MetNoForecastTimeseries>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = forecastTimeseries.groupBy { it.time.getFormattedDate(timeZone, "yyyy-MM-dd") }
+    val hourlyListByDay = forecastTimeseries.groupBy { it.time.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
         if (dayDate != null) {

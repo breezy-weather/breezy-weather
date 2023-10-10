@@ -1,5 +1,8 @@
 # Version 4.6.9-beta (next version)
 
+**Weather sources**
+- Fix fail to refresh for some sources when locale uses a different numbering system than (Western) Arabic numbers.
+
 **Translations**
 - Swedish added (thanks P.O!)
 - Kabyle added (thanks ButterflyOfFire!)

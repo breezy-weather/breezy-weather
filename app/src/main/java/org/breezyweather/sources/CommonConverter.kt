@@ -51,6 +51,7 @@ import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.ln
 import kotlin.math.pow
@@ -194,7 +195,7 @@ fun getDailyAirQualityFromHourly(
 ): MutableMap<Date, AirQuality> {
     val dailyAirQualityMap = mutableMapOf<Date, AirQuality>()
     hourlyAirQuality?.entries?.groupBy {
-        it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
+        it.key.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH)
     }?.forEach { entry ->
         val airQuality = getDailyAirQualityFromSecondaryHourlyList(entry.value)
         if (airQuality != null) {
@@ -229,7 +230,7 @@ fun completeMissingSecondaryWeatherDailyData(
             && initialSecondaryWeatherWrapper.pollen.dailyForecast.isNullOrEmpty()) {
             val dailyPollenMap: MutableMap<Date, Pollen> = mutableMapOf()
             initialSecondaryWeatherWrapper.pollen.hourlyForecast?.entries?.groupBy {
-                it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
+                it.key.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH)
             }?.forEach { entry ->
                 val pollen = getDailyPollenFromSecondaryHourlyList(entry.value)
                 if (pollen != null) {
@@ -456,9 +457,9 @@ fun completeDailyListFromHourlyList(
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.timeZone)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd") }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
     return dailyList.map { daily ->
-        val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd")
+        val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
         val newDay = completeHalfDayFromHourlyList(
             initialHalfDay = daily.day,
             halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("day"),
@@ -625,7 +626,7 @@ private fun getHourlyListByHalfDay(
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
         val theDayShifted = Date(hourly.date.time - (6 * 3600 * 1000))
-        val theDayFormatted = theDayShifted.getFormattedDate(timeZone, "yyyy-MM-dd")
+        val theDayFormatted = theDayShifted.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH)
 
         if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
             hourlyByHalfDay[theDayFormatted] = hashMapOf(
@@ -1074,10 +1075,10 @@ fun completeHourlyListFromDailyList(
     dailyList: List<Daily>,
     timeZone: TimeZone
 ): List<Hourly> {
-    val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
+    val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd", Locale.ENGLISH) }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
-        val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
+        val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd", Locale.ENGLISH)
         dailyListByDate.getOrElse(dateForHourFormatted) { null }
             ?.first()?.let { daily ->
                 val isDaylight = hourly.isDaylight ?: isDaylight(
