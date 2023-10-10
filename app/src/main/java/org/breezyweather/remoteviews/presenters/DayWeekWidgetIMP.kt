@@ -368,34 +368,35 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         )
 
         // daily forecast.
+        val index = location.weather?.todayIndex ?: 0
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, 0, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context, location, index, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, 1, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context, location, index + 1, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, 2, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context, location, index + 2, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_4,
             getDailyForecastPendingIntent(
-                context, location, 3, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                context, location, index + 3, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_5,
             getDailyForecastPendingIntent(
-                context, location, 4, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                context, location, index + 4, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
             )
         )
 
