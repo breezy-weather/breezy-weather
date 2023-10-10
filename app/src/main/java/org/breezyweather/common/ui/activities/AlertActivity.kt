@@ -131,8 +131,8 @@ class AlertActivity : GeoActivity() {
 
                 if (it.second.isNotEmpty()) {
                     coroutineScope.launch {
-                        val alertId = intent.getLongExtra(KEY_ALERT_ID, -1)
-                        if (alertId != -1L) {
+                        val alertId = intent.getStringExtra(KEY_ALERT_ID)
+                        if (!alertId.isNullOrEmpty()) {
                             val alertIndex =
                                 it.second.indexOfFirst { alert -> alert.alertId == alertId }
                             if (alertIndex != -1) {

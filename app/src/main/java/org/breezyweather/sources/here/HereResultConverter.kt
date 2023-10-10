@@ -37,6 +37,7 @@ import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
 import org.breezyweather.sources.here.json.HereWeatherNWSAlerts
+import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -228,7 +229,8 @@ private fun getAlertList(
 
         converted.add(
             Alert(
-                alertId = (alert.validFromTimeLocal?.time ?: 0) + (alert.validUntilTimeLocal?.time ?: 0),
+                // Create unique ID from: description, severity, start time
+                alertId = Objects.hash(description, alert.severity, alert.validFromTimeLocal?.time).toString(),
                 startDate = alert.validFromTimeLocal,
                 endDate = alert.validUntilTimeLocal,
                 description = description,

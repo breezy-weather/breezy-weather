@@ -381,7 +381,7 @@ private fun getAlertList(
     if (resultList == null) return null
     return resultList.map { result ->
         Alert(
-            alertId = result.AlertID.toLong(),
+            alertId = result.AlertID.toString(),
             startDate = result.Area?.getOrNull(0)?.let { area ->
                 area.EpochStartTime?.times(1000)?.let { Date(it) }
             },

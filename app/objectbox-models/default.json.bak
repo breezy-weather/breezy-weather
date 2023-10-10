@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:1168116425419818798",
-      "lastPropertyId": "15:5852987493660950149",
+      "lastPropertyId": "16:2383215469034932921",
       "name": "AlertEntity",
       "properties": [
         {
@@ -16,7 +16,7 @@
         },
         {
           "id": "4:1988384189269993467",
-          "name": "alertId",
+          "name": "oldAlertId",
           "type": 6
         },
         {
@@ -52,6 +52,11 @@
         {
           "id": "15:5852987493660950149",
           "name": "formattedId",
+          "type": 9
+        },
+        {
+          "id": "16:2383215469034932921",
+          "name": "alertId",
           "type": 9
         }
       ],
@@ -996,7 +1001,7 @@
         },
         {
           "id": "61:6064010166756780178",
-          "name": "allergenUpdateTime",
+          "name": "pollenUpdateTime",
           "type": 10
         },
         {
@@ -1024,9 +1029,6 @@
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "newUidPool": [
-    2572692136138128324
-  ],
   "retiredEntityUids": [
     6023285354651609399,
     4342122775390421792,

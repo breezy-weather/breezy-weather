@@ -18,6 +18,7 @@ package org.breezyweather.db.entities
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.annotation.Uid
 import java.util.*
 
 /**
@@ -29,7 +30,7 @@ import java.util.*
 class AlertEntity(
     @field:Id var id: Long = 0,
     var formattedId: String,
-    var alertId: Long,
+    var alertId: String,
     var startDate: Date? = null,
     var endDate: Date? = null,
     var description: String,

@@ -42,6 +42,7 @@ import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import java.util.Calendar
 import java.util.Date
+import java.util.Objects
 import java.util.TimeZone
 
 fun convert(
@@ -263,8 +264,8 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
 
     return result.alerts.map { alert ->
         Alert(
-            // TODO: Avoid having the same ID for two different alerts happening at the same time
-            alertId = alert.pubTime?.time ?: System.currentTimeMillis(),
+            // Create unique ID from: title, level, start time
+            alertId = Objects.hash(alert.title, alert.level, alert.pubTime?.time ?: System.currentTimeMillis()).toString(),
             startDate = alert.pubTime,
             description = alert.title ?: "",
             content = alert.detail,

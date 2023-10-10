@@ -52,6 +52,7 @@ import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -324,15 +325,18 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         }
                     }
                 }
+                val color = getWarningColor(colors)
+                val title = it.blocTitle ?: "Bulletin de Vigilance météo"
                 alertList.add(
                     Alert(
-                        alertId = (warningsResult.updateTime.time.toString()).toLong(),
+                        // Create unique ID from: alert type ID, alert level, start time
+                        alertId = Objects.hash(title, color, warningsResult.updateTime).toString(),
                         startDate = warningsResult.updateTime,
                         endDate = warningsResult.endValidityTime,
-                        description = it.blocTitle ?: "Bulletin de Vigilance météo",
+                        description = title,
                         content = getWarningContent(null, warningsResult),
                         priority = -5, // Let’s put it on top
-                        color = getWarningColor(colors)
+                        color = color
                     )
                 )
             }
@@ -344,8 +348,8 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
             ?.forEach { timelapsItem ->
                 alertList.add(
                     Alert(
-                        // Create unique ID from alert type ID concatenated with start time
-                        alertId = (timelaps.phenomenonId + timelapsItem.beginTime.time.toString()).toLong(),
+                        // Create unique ID from: alert type ID, alert level, start time
+                        alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time).toString(),
                         startDate = timelapsItem.beginTime,
                         endDate = timelapsItem.endTime,
                         description = getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),

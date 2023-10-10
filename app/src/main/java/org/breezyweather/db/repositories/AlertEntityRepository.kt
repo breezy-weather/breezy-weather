@@ -31,6 +31,10 @@ object AlertEntityRepository {
         boxStore.boxFor(AlertEntity::class.java).remove(entityList)
     }
 
+    fun deleteAllAlerts() {
+        boxStore.boxFor(AlertEntity::class.java).removeAll()
+    }
+
     // search.
     fun selectLocationAlertEntity(formattedId: String): List<AlertEntity> {
         val query = boxStore.boxFor(AlertEntity::class.java)

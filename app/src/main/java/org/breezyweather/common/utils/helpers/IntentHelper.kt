@@ -68,7 +68,7 @@ object IntentHelper {
         }
     }
 
-    fun buildMainActivityShowAlertsIntent(location: Location?, alertId: Long? = null): Intent {
+    fun buildMainActivityShowAlertsIntent(location: Location?, alertId: String? = null): Intent {
         var formattedId: String? = null
         if (location != null) {
             formattedId = location.formattedId
@@ -111,7 +111,7 @@ object IntentHelper {
         )
     }
 
-    fun startAlertActivity(activity: Activity, formattedId: String?, alertId: Long? = null) {
+    fun startAlertActivity(activity: Activity, formattedId: String?, alertId: String? = null) {
         activity.startActivity(
             Intent(activity, AlertActivity::class.java).apply {
                 putExtra(AlertActivity.KEY_FORMATTED_ID, formattedId)

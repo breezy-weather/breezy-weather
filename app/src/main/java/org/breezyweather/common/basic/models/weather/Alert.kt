@@ -27,11 +27,26 @@ import java.util.*
  * All properties are [androidx.annotation.NonNull].
  */
 class Alert(
-    val alertId: Long, // TODO: Replace with a hash
+    /**
+     * If not provided by the source, can be created from Object.hash().toString()
+     * Usually, you will use three parameters: alert type or title, alert level, alert start time
+     */
+    val alertId: String,
     val startDate: Date? = null,
     val endDate: Date? = null,
     val description: String,
     val content: String? = null,
+    /**
+     * Priority.
+     * The higher the number, the lower it will be in the list.
+     * Number can be negative if necessary.
+     * Example:
+     * 1 => Very high priority
+     * 2 => High
+     * 3 => Medium
+     * 4 => Low
+     * 5 => Very low
+     */
     val priority: Int,
     @ColorInt color: Int? = null
 ) : Serializable {

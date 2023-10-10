@@ -421,8 +421,8 @@ class MainActivity : GeoActivity(),
         if (action.isNullOrEmpty()) return
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
         if (ACTION_SHOW_ALERTS == action) {
-            val alertId = intent.getLongExtra(KEY_MAIN_ACTIVITY_ALERT_ID, -1L)
-            if (alertId != -1L) {
+            val alertId = intent.getStringExtra(KEY_MAIN_ACTIVITY_ALERT_ID)
+            if (!alertId.isNullOrEmpty()) {
                 IntentHelper.startAlertActivity(this, formattedId, alertId)
             } else {
                 IntentHelper.startAlertActivity(this, formattedId)

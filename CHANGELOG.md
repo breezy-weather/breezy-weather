@@ -1,3 +1,17 @@
+# Version 4.6.10-beta (next version)
+
+Due to a technical change, any existing alerts will be cleared when updating to this version. They will be back on your next weather refresh.
+
+**Weather sources**
+- [PirateWeather] Order alerts by priority
+
+**Other improvements and fixes**
+- Technical changes to try to make notifications of alerts more reliable when they are duplicate (send a new notification if the priority changed, for example)
+
+**Translations**
+- Translations updated
+
+
 # Version 4.6.9-beta (2023-10-10)
 
 **Weather sources**

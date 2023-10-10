@@ -47,6 +47,7 @@ import org.breezyweather.sources.openweather.json.OpenWeatherOneCallMinutely
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import java.util.Date
 import java.util.Locale
+import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -217,8 +218,8 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
     return if (resultList != null) {
         return resultList.map { result ->
             Alert(
-                // TODO: Avoid having the same ID for two different alerts starting at the same time
-                alertId = result.start,
+                // Create unique ID from: alert event, start time
+                alertId = Objects.hash(result.event, result.start).toString(),
                 startDate = Date(result.start.times(1000)),
                 endDate = Date(result.end.times(1000)),
                 description = result.event ?: "",

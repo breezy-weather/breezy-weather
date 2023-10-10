@@ -181,7 +181,7 @@ object Notifications {
         if (oldResult == null) {
             alertList.addAll(weather.alertList)
         } else {
-            val idSet: MutableSet<Long> = HashSet()
+            val idSet: MutableSet<String> = HashSet()
             val desSet: MutableSet<String> = HashSet()
             for (alert in oldResult.alertList) {
                 idSet.add(alert.alertId)

@@ -41,6 +41,7 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import java.util.Date
+import java.util.Objects
 import kotlin.math.roundToInt
 
 
@@ -202,16 +203,18 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
         Alert(
-            // TODO: Avoid having the same ID for two different alerts starting at the same time
-            alertId = alert.start + alert.end,
+            // Create unique ID from: title, severity, start time
+            alertId = Objects.hash(alert.title, alert.severity, alert.start).toString(),
             startDate = Date(alert.start.times(1000)),
             endDate = Date(alert.end.times(1000)),
             description = alert.title ?: "",
             content = alert.description,
-            // TODO: Add more refined priority states (not evident from PirateWeather docs)
             priority = when (alert.severity) {
-                "Moderate" -> 1
-                else -> 1
+                "Extreme" -> 1
+                "Severe" -> 2
+                "Moderate" -> 3
+                "Minor" -> 4
+                else -> 5
             }
         )
     }
