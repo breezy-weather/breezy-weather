@@ -42,7 +42,7 @@ object AsyncHelper {
 
     fun runOnIO(runnable: Runnable): Controller {
         return Controller(
-            Observable.create { emitter: ObservableEmitter<Any>? -> runnable.run() }
+            Observable.create { _: ObservableEmitter<Any>? -> runnable.run() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
@@ -67,7 +67,7 @@ object AsyncHelper {
 
     fun runOnExecutor(runnable: Runnable, executor: Executor): Controller {
         return Controller(
-            Observable.create { emitter: ObservableEmitter<Any>? -> runnable.run() }
+            Observable.create { _: ObservableEmitter<Any>? -> runnable.run() }
                 .subscribeOn(Schedulers.from(executor))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()

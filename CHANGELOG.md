@@ -1,4 +1,4 @@
-# Version 4.6.9-beta (next version)
+# Version 4.6.9-beta (2023-10-10)
 
 **Weather sources**
 - Fix fail to refresh for some sources when locale uses a different numbering system than (Western) Arabic numbers.
