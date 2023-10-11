@@ -662,4 +662,7 @@
     <string name="pollen_and_mold">Alergeny a plísně</string>
     <string name="settings_widgets_gadgets_title">Příslušenství</string>
     <string name="settings_widgets_gadgetbridge_switch">Posílat data o počasí do Gadgetbridge</string>
+    <string name="settings_debug_dump_crash_logs_saved">Protokoly o chybách uloženy</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Klepnutím otevřete</string>
+    <string name="notification_channel_crash_logs">Protokoly o chybách</string>
 </resources>
