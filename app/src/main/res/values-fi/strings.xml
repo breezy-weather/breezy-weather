@@ -425,7 +425,7 @@
     <string name="weather_data_by">Tiedot tarjoaa $</string>
     <string name="pollen_level_5">Erittäin runsaasti</string>
     <string name="weather_source_accu_preference_days_1">1 päivä</string>
-    <string name="alerts_to_follow">Tulevat varoitukset, napauta tätä nähdäksesi ne.</string>
+    <string name="alerts_to_follow">Tulevia varoituksia, napauta tätä nähdäksesi ne.</string>
     <string name="uv_index_0_2">Heikko</string>
     <string name="settings_debug_summary">Kaatumislokit</string>
     <string name="weather_message_unsupported_feature">Lähde ei tue jotakin vaadittua ominaisuutta</string>
