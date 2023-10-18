@@ -8,6 +8,7 @@ Due to a technical change, any existing alerts will be cleared when updating to 
 **Other improvements and fixes**
 - Technical changes to try to make notifications of alerts more reliable when they are duplicate (send a new notification if the priority changed, for example)
 - Fix weekly widgets opening wrong days if yesterday is reported (@Cod3dDOT)
+- Fix missing unit and conversion on Notification-widget native style
 
 **Translations**
 - Translations updated

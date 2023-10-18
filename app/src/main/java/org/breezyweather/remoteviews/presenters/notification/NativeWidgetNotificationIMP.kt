@@ -66,11 +66,12 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         }
 
         val contentTitle = StringBuilder()
-        if (!tempIcon) {
-            contentTitle.append(tempFeelsLikeOrAir)
+        if (!tempIcon && tempFeelsLikeOrAir != null) {
+            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+            contentTitle.append(temperatureUnit.getValueText(context, tempFeelsLikeOrAir))
         }
         if (!current.weatherText.isNullOrEmpty()) {
-            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" ")
+            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" - ")
             contentTitle.append(current.weatherText)
         }
 
