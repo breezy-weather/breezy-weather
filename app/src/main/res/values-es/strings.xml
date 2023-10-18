@@ -84,10 +84,10 @@
     <string name="pollen_mold">Moho</string>
     <string name="pollen_ragweed">Ambrosía</string>
     <string name="pollen_tree">Árbol</string>
-    <string name="daily_forecast">Pronóstico por día</string>
+    <string name="daily_forecast">Pronóstico del día</string>
     <string name="hourly_forecast">Pronóstico por hora</string>
     <string name="minutely_forecast">Pronóstico por minuto</string>
-    <string name="precipitation_forecast">Pronóstico por precipitación</string>
+    <string name="precipitation_forecast">Pronóstico de precipitación</string>
     <string name="air_quality">Calidad del aire</string>
     <string name="pollen">Polen</string>
     <string name="details">Detalles</string>
@@ -116,9 +116,9 @@
     <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
     <string name="weather_message_data_refresh_failed">La solicitud de datos del clima falló</string>
     <string name="location_dialog_failed_to_locate_title">¿No pudo obtener la ubicación correctamente\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de acceso a la ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilite la información de la ubicación</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Seleccionar el servicio de ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “$”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>
@@ -181,16 +181,16 @@
     <string name="location_message_deleted">Se eliminó la ubicación exitosamente</string>
     <string name="location_message_list_cannot_be_empty">La lista de ubicaciones no puede estar vacía</string>
     <string name="location_search_placeholder">Busque una ubicación…</string>
-    <string name="location_current_not_found_yet">Aún sin ubicaciones…</string>
+    <string name="location_current_not_found_yet">Ubicación actual aún no encontrada…</string>
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Actualizado en segundo plano</string>
     <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
     <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
-    <string name="location_resident_message">Fijar como ciudad de residencia</string>
-    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.
-\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
+    <string name="location_resident_message">Establecer como ciudad de residencia</string>
+    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades de residencia en base a tu ubicación actual.
+\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad de residencia. Esto te dejaría revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
     <string name="pollen_tap_to_see_more">Toca para obtener más…</string>
     <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
     <!-- action -->
@@ -369,7 +369,7 @@
     <string name="setting_weather_source_accu_days">Días</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
-    <string name="location_search_weather_source">La fuente meteorológica</string>
+    <string name="location_search_weather_source">Fuente meteorológica</string>
     <string name="location_message_search_failed">Búsqueda de ubicación fallida</string>
     <string name="action_choose_weather_source">Elegir la fuente meteorológica</string>
     <string name="action_undo">Deshacer</string>
@@ -379,7 +379,7 @@
     <string name="widget_clock_font_analog">Análogo</string>
     <string name="settings_background_updates_refresh_title">Frecuencia de actualización</string>
     <string name="settings_weather_source_portal">Portal</string>
-    <string name="location_search_change_weather_source">Cambiar la fuente meteorológica</string>
+    <string name="location_search_change_weather_source">Cambiar fuente meteorológica</string>
     <string name="location_search_no_results_advice">Asegúrate de que tu búsqueda está bien escrita y no es demasiado específica. Como alternativa, puedes probar con otra fuente de datos meteorológicos que puede producir resultados diferentes.</string>
     <string name="air_quality_so2_info_title">Dióxido de azufre (SO₂)</string>
     <string name="air_quality_so2_info_introduction">El dióxido de azufre (SO₂) es un gas tóxico incoloro responsable del olor de los fósforos quemados.</string>
@@ -388,7 +388,7 @@
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">No está la clave API requerida</string>
-    <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debes proporcionar tu propia clave API. Si ya has proporcionado una, vuelve a comprobar la clave API que proporcionaste.</string>
+    <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
     <string name="message_source_not_installed_error_content">Esta fuente ya no está disponible; por favor, elimina la ubicación y vuelve a crearla a partir de otra fuente.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
@@ -452,13 +452,13 @@
     <string name="widget_material_you_current">Material You - Actual</string>
     <string name="settings_location">Ubicación</string>
     <string name="settings_location_summary">Configuración de los servicios de ubicación</string>
-    <string name="air_quality_so2_info_origin">En la naturaleza surge de la actividad volcánica, de la actividad humana al quemar combustibles fósiles para generar calor y electricidad, y en la industria.</string>
-    <string name="air_quality_co_info_consequences">El monóxido de carbono ingresa al torrente sanguíneo a través de los alvéolos de los pulmones y dificulta que las células se unan al oxígeno. Esta falta de oxígeno daña los tejidos y las células. La exposición al monóxido de carbono puede causar dificultades respiratorias, fatiga, mareos y síntomas similares a los de la gripe. Los altos niveles de monóxido de carbono pueden ser mortales.</string>
+    <string name="air_quality_so2_info_origin">Se libera naturalmente por la actividad volcánica y se deriva predominantemente de la combustión de combustibles fósiles para calefacción doméstica, industrias y generación de energía.</string>
+    <string name="air_quality_co_info_consequences">El monóxido de carbono se difunde a través de los tejidos pulmonares y hacia el torrente sanguíneo, lo que dificulta que el oxígeno entre en contacto con las células del cuerpo. Esta falta de oxígeno daña los tejidos y las células. La exposición al monóxido de carbono puede causar dificultades para respirar, agotamiento, mareos y otros síntomas similares a los de la gripe. La exposición a altos niveles de monóxido de carbono puede ser mortal.</string>
     <string name="temperature_degree_day_heating">Grados día de calefacción</string>
     <string name="temperature_degree_day_cooling">Grado día frío</string>
-    <string name="wind_gusts">Rachas de viento</string>
-    <string name="air_quality_no2_info_consequences">La exposición al dióxido de nitrógeno puede irritar el tracto respiratorio y empeorar las enfermedades respiratorias. Además, el NO₂ es un importante componente inicial del ozono, un contaminante asociado con el asma y los problemas respiratorios.</string>
-    <string name="air_quality_co_info_introduction">El monóxido de carbono (CO) es un gas tóxico, inflamable, incoloro, inodoro y no irritante.</string>
+    <string name="wind_gusts">Ráfagas de viento</string>
+    <string name="air_quality_no2_info_consequences">La exposición al dióxido de nitrógeno puede irritar las vías respiratorias y agravar las enfermedades respiratorias. Además, el NO₂ es un importante precursor del ozono, un contaminante estrechamente relacionado con el asma y otras afecciones respiratorias.</string>
+    <string name="air_quality_co_info_introduction">El monóxido de carbono (CO) es un gas venenoso, inflamable, incoloro, inoloro, insípido y no irritante.</string>
     <string name="pollen_birch">Abedul</string>
     <string name="pollen_mugwort">Artemisa</string>
     <string name="pollen_olive">Olivo</string>
@@ -467,7 +467,7 @@
     <string name="pollen_level_2">Bajo</string>
     <string name="pollen_level_3">Moderado</string>
     <string name="pollen_level_4">Alto</string>
-    <string name="ephemeris_sunrise_at">Amanecer en $</string>
+    <string name="ephemeris_sunrise_at">Amanecer a las $</string>
     <string name="weather_normals_data_by">Datos de la temperatura por $</string>
     <string name="temperature_average_short">Promedio</string>
     <string name="temperature_normal_short">Normal</string>
@@ -475,19 +475,19 @@
     <string name="weather_message_invalid_location">Ubicación no válida, elimínala y vuelve a añadirla</string>
     <string name="pollen_and_mold">Polen y moho</string>
     <string name="temperature_normals">Temperaturas normales</string>
-    <string name="air_quality_no2_info_origin">El NO₂ ingresa al medio ambiente a través de la combustión de combustibles a altas temperaturas, como ocurre en la generación de electricidad y calor, así como en los vehículos de motor y la industria. En el hogar, los óxidos de nitrógeno (NOₓ) se producen cuando se queman combustibles fósiles en estufas, chimeneas, cocinas de gas y hornos.</string>
-    <string name="air_quality_co_info_origin">Ocurre cuando las fuentes de energía que contienen carbono, como madera, gasolina, carbón, gas natural y queroseno, se queman de forma incompleta en estufas simples, fuegos abiertos, lámparas y chimeneas. La fuente predominante del monóxido de carbono (CO) en el aire son los vehículos a motor.</string>
+    <string name="air_quality_no2_info_origin">Las fuentes ambientales de NO₂ resultan de la combustión de combustibles a alta temperatura en procesos como los utilizados para calefacción, transporte, industria y generación de energía. Las fuentes domésticas de óxidos de nitrógeno (NOₓ) incluyen equipos que queman combustibles como hornos, chimeneas y estufas y hornos de gas.</string>
+    <string name="air_quality_co_info_origin">Se produce por la combustión incompleta de combustibles carbonosos como madera, gasolina, carbón, gas natural y queroseno en estufas simples, hogueras, lámparas de mecha, hornos y chimeneas. La fuente predominante de monóxido de carbono (CO) en el aire ambiente proviene de los vehículos de motor.</string>
     <string name="pollen_level_5">Muy alto</string>
-    <string name="ephemeris_moonset_at">Puesta de luna a $</string>
+    <string name="ephemeris_moonset_at">Puesta de la luna a las $</string>
     <string name="weather_pollen_data_by">Polen por $</string>
     <string name="weather_air_quality_data_by">Datos sobre la calidad del aire por $</string>
     <string name="weather_minutely_data_by">Precipitaciones minuto a minuto por $</string>
     <string name="weather_alert_data_by">Alerta por $</string>
     <string name="weather_message_secondary_data_refresh_failed">Fallo en la actualización de los datos meteorológicos desde una fuente meteorológica secundaria</string>
-    <string name="ephemeris_sunset_at">Puesta de sol en $</string>
-    <string name="ephemeris_moonrise_at">Salida de la luna en $</string>
-    <string name="air_quality_o3_info_origin">Se libera durante reacciones fotoquímicas de sustancias orgánicas, monóxido de carbono y óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido al proceso fotoquímico, las concentraciones más altas de ozono se producen en climas soleados.</string>
-    <string name="minutely_precipitations">Precipitaciones por minuto</string>
+    <string name="ephemeris_sunset_at">Atardecer a las $</string>
+    <string name="ephemeris_moonrise_at">Salida de la luna a las $</string>
+    <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como compuestos orgánicos volátiles, monóxido de carbono y óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a la naturaleza fotoquímica, los niveles más altos de ozono se observan durante los períodos de clima soleado.</string>
+    <string name="minutely_precipitations">Precipitaciones minuto a minuto</string>
     <string name="settings_main_section_animations">Animaciones</string>
     <string name="settings_notifications">Notificaciones</string>
     <string name="settings_notifications_forecast_today_title">Notificación de la previsión del día</string>
@@ -546,7 +546,7 @@
     <string name="settings_main_background_animation_disabled">Desactivado</string>
     <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu ubicación actual.</string>
     <string name="settings_widgets_summary">Establecer el fondo de pantalla, configurar los complementos utilizados, complementos de notificaciones</string>
-    <string name="dialog_permissions_location_content">Breezy Weather necesita recopilar la información de tu ubicación en primer o segundo plano para proporcionar los datos meteorológicos de tu ubicación actual. Para ello, te solicitaremos algunos permisos. Tu ubicación sólo se utilizará para obtener los datos meteorológicos de tu ubicación actual. Si no deseas compartir tu ubicación, puedes denegar estos requisitos y establecer manualmente una ubicación en la página de gestión.</string>
+    <string name="dialog_permissions_location_content">Breezy Weather necesita recopilar información de su ubicación en primer plano o en segundo plano para proporcionar los datos meteorológicos de su ubicación actual. Para ello solicitaremos algunos permisos. La información de su ubicación solo se utilizará para obtener datos meteorológicos en su ubicación actual. Si no desea compartir la información de su ubicación, puede rechazar esos requisitos y configurar manualmente su ubicación en la página de administración.</string>
     <string name="settings_location_access_switch_summaryOff">Por favor, permite si quieres añadir tu ubicación actual como una ubicación.</string>
     <string name="settings_source_default_value">Por defecto (sin modificar)</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificaciones para la previsión del día siguiente</string>
@@ -590,9 +590,9 @@
     <string name="unit_mb">mb</string>
     <string name="unit_in">pulgada</string>
     <string name="common_weather_text_snow_grains">Cinarra</string>
-    <string name="unit_atm">Atmósfera</string>
+    <string name="unit_atm">atm</string>
     <string name="unit_mm">mm</string>
-    <string name="unit_ftps">ft/s</string>
+    <string name="unit_ftps">pies/s</string>
     <string name="settings_widgets_notification_feels_like_switch">Utilizar la sensación térmica</string>
     <string name="common_weather_text_rain_freezing">Lluvia gélida</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lluvia ligera y nieve</string>
@@ -612,8 +612,8 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_mi">mi</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_inhg">inHg</string>
+    <string name="unit_ft">pie</string>
+    <string name="unit_inhg">pulgHg</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Sala en Matrix</string>
     <string name="unit_kpa">kPa</string>
@@ -650,4 +650,13 @@
     <string name="common_weather_text_snow_showers_light">Ligeros copos de nieve</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="about_contribution_WangDaYeeeeee">Desarrollador del proyecto original de Geometric Weather</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Niebla por depósito de escarcha</string>
+    <string name="common_weather_text_drizzle_freezing_light">Llovizna helada ligera</string>
+    <string name="metno_weather_text_andthunder">$ con truenos</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tormenta con granizo ligero</string>
+    <string name="common_weather_text_drizzle_freezing">Llovizna helada</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tormenta ligera o moderada</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tormenta con granizo fuerte</string>
+    <string name="null_data_text">N/A</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">Llovizna helada fuerte</string>
 </resources>
