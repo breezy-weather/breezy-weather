@@ -11,6 +11,7 @@ Due to a technical change, any existing alerts will be cleared when updating to 
 - Fix missing unit and conversion on Notification-widget native style
 
 **Translations**
+- Croatian added (thanks @Spajki001!)
 - Translations updated
 
 

@@ -412,7 +412,7 @@
     <string name="settings_source_api_key">API-nyckel</string>
     <string name="widget_label_black_text">Textfärg</string>
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för idag, imorgon, …, 4 dagar senare</string>
     <string name="air_quality_so2_info_consequences">Exponering mot SO₂ förknippas med astma, sjukhusvistelse och besök hos akutmottagning.</string>
     <string name="settings_color_light_always">Alltid ljust</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
@@ -423,7 +423,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Kraftigt snöblandat regn</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="widget_label_text_size">Textstorlek</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Dagsblåst för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Dagsblåst för idag, imorgon, …, 4 dagar senare</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="settings_enabled">Aktiverad</string>
     <string name="settings_background_updates_battery_optimization">Inaktivera batterioptimering</string>
@@ -432,7 +432,7 @@
     <string name="unit_mi_voice">Engelsk mil</string>
     <string name="widget_custom_subtitle_explanation">Du kan skriva in vad som helst men var uppmärksam på textlängden. Om du vill citera väderdata använd $ som referens till motsvarade nyckelord.
 \n
-\nExempelvis, \"Nuvarande väder är: $cw$\" kommer att visas som \"Nuvarande väder är \"Klart väder.\".</string>
+\nExempelvis, “Nuvarande väder är: $cw$” kommer att visas som “Nuvarande väder är: Klart väder”.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Varningar (Kort)</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Åskstorm med lätt hagel</string>
     <string name="settings_notifications_forecast_today_title">Aviseringar för dagens prognos</string>
@@ -441,7 +441,7 @@
     <string name="weather_api_key_required_missing_title">Krävd API-nyckel saknas</string>
     <string name="location_resident_dialog">Breezy Weather kommer automatiskt visa och dölja hemorter baserat på din nuvarande plats.
 \nExempelvis kan du ange din bostadsort som hemort. You kan kolla vädret i din bostadsord när du reser. När du kommer hem så kommer din hemord döljas och ersättas med vädret för din nuvarande plats.</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för idag, imorgon, …, 4 dagar senare</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen för dag och natt-temperaturer</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
@@ -451,21 +451,21 @@
     <string name="settings_main_gravity_sensor_switch">Gravitiationsensor</string>
     <string name="settings_location_access_switch_summaryOff">Tillåt om du vill lägga till din nuvarande plats som plats.</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Daglig Beskrivning</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Nattväder för idag, imorgon, ..., 4 dagar senare</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nattemperatur för idag, imorgon, ..., 4 dagar senare (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Nattväder för idag, imorgon, …, 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nattemperatur för idag, imorgon, …, 4 dagar senare (℃/℉)</string>
     <string name="common_weather_text_drizzle">Duggregn</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Dagsnederbörd för idag, imorgon, ..., 4 dagar senare (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Dagsnederbörd för idag, imorgon, …, 4 dagar senare (%)</string>
     <string name="widget_label_hide_lunar">Dölj månkalender</string>
     <string name="air_quality_no2_info_origin">Omgivande utsläpp till NO₂ kommer från förbränning vid hög temperatur från bränslen i verksamheter för uppvärmning, transport, industrier och kraftgeneration. Hushållens uppsläpp av kväveoxider (NOₓ) kommer från förbränningarpannor, eldstäder, kaminer och gasspisar och ugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för idag, imorgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Försäkra dig om att du har den senaste versionen av appen. Servern kan vara tillfälligt otillgänglig, i så fall för sök senare. Om problemet kvarstår så skapa en krashlogg i felsökninginställningarna och rapportera ett problem på GitHub.</string>
     <string name="common_weather_text_snow_heavy">Mycket snö</string>
     <string name="settings_weather_source_main">Huvudkälla</string>
     <string name="settings_debug_dump_crash_logs_summary">Sparar felloggar i en fil för att dela med utvecklarna</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dagstemperatur för idag, imorgon, ..., 4 dagar senare (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dagstemperatur för idag, imorgon, …, 4 dagar senare (℃/℉)</string>
     <string name="common_weather_text_rain_freezing_heavy">Kraftigt underkylt regn</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagstemperatur för idag, imorgon, ..., 4 dagar senare (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagstemperatur för idag, imorgon, …, 4 dagar senare (°)</string>
     <string name="weather_message_secondary_data_refresh_failed">Väderdatauppdatering från en sekundär väderkälla misslyckades</string>
     <string name="common_weather_text_snow_light">Lätt snö</string>
     <string name="common_weather_text_rain_showers_heavy">Kraftiga regnskurar</string>
@@ -486,7 +486,7 @@
     <string name="unit_atm">atm</string>
     <string name="settings_notifications_alerts_title">Aviseringar för vädervarningar</string>
     <string name="notification_running_in_background">Körs i bakgrunden för att uppdatera</string>
-    <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet \"Tillåt hela tiden\".</string>
+    <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet “Tillåt hela tiden”.</string>
     <string name="settings_main_background_animation_enabled">Aktiverad</string>
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
@@ -495,10 +495,10 @@
     <string name="dialog_permissions_location_content">Breezy Weather behöver samla din platsinformatin i förgrunden eller bakgrunden för att erbjuda väderdata för din nuvarande plats. För detta begär vi några behörigheter. Din platsinfromation kommer endast att användas för at hämta väderdata för din nuvarande plats. Om du inte vill dela din platsinformation så kan du neka behörigheterna och manuellt välja din plats i hanteringsmenyn.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
     <string name="location_dialog_failed_to_locate_title">Kan inte få platsen korrekt\?</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nattemperatur för idag, imorgon, ..., 4 dagar senare (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nattemperatur för idag, imorgon, …, 4 dagar senare (°)</string>
     <string name="common_weather_text_rain_freezing">Underkylt regn</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lätt snöblandat regn</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Dagsväder för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Dagsväder för idag, imorgon, …, 4 dagar senare</string>
     <string name="settings_notifications_precipitations_title">Aviseringar för nederbörd</string>
     <string name="location_resident">Hemort</string>
     <string name="settings_widgets_gadgets_title">Gadgets</string>
@@ -518,7 +518,7 @@
     <string name="settings_color_dark">Mörkt</string>
     <string name="notification_precipitation_today">Det kan bli nederbörd idag.</string>
     <string name="common_weather_text_overcast">Mulet</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Nattnederbörd för idag, imorgon, ..., 4 dagar senare (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Nattnederbörd för idag, imorgon, …, 4 dagar senare (%)</string>
     <string name="settings_main_section_options">Alternativ</string>
     <string name="weather_kind_haze">Dimma</string>
     <string name="settings_main_section_animations">Animeringar</string>
@@ -528,7 +528,7 @@
     <string name="date_format_long">MMM d</string>
     <string name="weather_kind_thunderstorm">Åskstorm</string>
     <string name="common_weather_text_rain_light">Lätt regn</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Solnedgång för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Solnedgång för idag, imorgon, …, 4 dagar senare</string>
     <string name="settings_weather_sources_per_location_summary">Anpassa väderkällan för denna plats</string>
     <string name="settings_widgets_gadgetbridge_switch">Skicka väderdata till Gadgetbridge</string>
     <string name="notification_refreshed_at">Uppdaterades vid</string>
@@ -566,7 +566,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_precipitation_short_term">Nederbörd kan komma inom de närmsta timmarna.</string>
     <string name="settings_location_service">Platstjänst</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Nattblåst för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Nattblåst för idag, imorgon, …, 4 dagar senare</string>
     <string name="unit_bf_voice">på Beauforts skala</string>
     <string name="settings_none">Ingen</string>
     <string name="settings_color_dark_always">Alltid mörkt</string>
@@ -610,7 +610,7 @@
     <string name="widget_label_subtitle_data">Undertextdata</string>
     <string name="settings_location_access_switch_summaryOn">Tillåten. Du kan lägga till din nuvarande plats som plats.</string>
     <string name="settings_appearance_language_title">Språk</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Soluppgång för idag, imorgon, ..., 4 dagar senare</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Soluppgång för idag, imorgon, …, 4 dagar senare</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_main_threshold_lines_on_charts">Tröskellinje på diagram</string>
     <string name="common_weather_text_rain_freezing_light">Lätt underkylt regn</string>
