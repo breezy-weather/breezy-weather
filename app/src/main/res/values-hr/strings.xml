@@ -5,7 +5,7 @@
     <string name="short_yesterday">Jučer</string>
     <string name="widget_refreshing">Osvježavanje</string>
     <string name="widget_label_black_text">Boja teksta</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
     <string name="wind_strength_6">Jak vjetar</string>
     <string name="air_quality_so2_info_consequences">Izloženost SO₂ je povezana sa bolničkim liječenjima i posjetima hitnom prijemu zbog astme.</string>
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
@@ -40,7 +40,7 @@
     <string name="settings_weather_sources_default_location_search">Glavni izvor za pretrage lokacija</string>
     <string name="widget_label_text_size">Veličina teksta</string>
     <string name="uv_index">UV indeks</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Dnevni vjetar danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Dnevni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_units_precipitation">Jedinica padalina</string>
     <string name="pollen_and_mold">Pelud i plijesan</string>
     <string name="wind_strength_9">Jaka bura</string>
@@ -68,7 +68,7 @@
     <string name="location_resident_location_summaryOn">Omogućeno. Skriveno dok ste unutar $ trenutne lokacije.</string>
     <string name="widget_custom_subtitle_explanation">Možete unijeti bilo što, ali molimo obratite pažnju na duljinu teksta. Ako želite citirati prognozu, molimo koristite $ da referencirate odgovarajuću ključnu riječ.
 \n
-\nNa primjer, \"Trenutna prognoza je: $cw$.\" biti će prikazano kao \"Trenutna prognoza je: Vedro.\".</string>
+\nNa primjer, “Trenutna prognoza je: $cw$.” biti će prikazano kao “Trenutna prognoza je: Vedro.”.</string>
     <string name="location_search_weather_source">Izvor prognoze</string>
     <string name="wind_strength_12">Uragan</string>
     <string name="widget_custom_subtitle_keyword_als_description">Upozorenja (Kratko)</string>
@@ -87,7 +87,7 @@
     <string name="location_resident_dialog">Breezy Vrijeme će automatski pokazati i sakriti mjesta stanovanja ovisno o vašoj trenutnoj lokaciji.
 \nNa primjer, možete postaviti svoj grad u kojem živite kao mjesto stanovanja. Možete provjeriti prognozu u vašem mjestu stanovanja dok putujete. Kada dođete kući, prognoza vašeg mjesta stanovanja će biti skrivena i zamijenjena prognozom vaše trenutne lokacije.</string>
     <string name="action_help_me_choose">Pomoć pri izboru</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Izlazak Mjeseca danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Izlazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Zamijeni redoslijed temperatura dan/noć</string>
     <string name="settings_icon_packs_title">Paketi ikona</string>
     <string name="widget_day">Dnevno</string>
@@ -101,11 +101,11 @@
     <string name="widget_custom_subtitle_keyword_dd_description">Dnevni opis</string>
     <string name="visibility">Vidljivost</string>
     <string name="air_quality_level_2">Dobro</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Noćna prognoza danas, sutra, ..., 4 dana kasnije</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Noćna temperatura danas, sutra, ..., 4 dana kasnije (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Noćna prognoza danas, sutra, …, 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="uv_index_8_10">Jako visoko</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Dnevne padaline danas, sutra, ..., 4 dana kasnije (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Dnevne padaline danas, sutra, …, 4 dana kasnije (%)</string>
     <string name="daily_forecast">Dnevna prognoza</string>
     <string name="action_share">Podijeli</string>
     <string name="widget_label_hide_lunar">Sakrij lunarni kalendar</string>
@@ -116,7 +116,7 @@
     <string name="air_quality_no2_info_origin">Okolni izvori NO₂ nastaju zbog visoko-temperaturnim izgaranjem goriva u procesima kao što su grijanje, transport, industrija i generiranje električne energije. Kućanski izvori dušikovih oksida (NOₓ) uključuju opremu za izgaranje goriva kao što su peći, kamini, plinski štednjaci i pećnice.</string>
     <string name="air_quality_co_voice">Ugljikov monoksid</string>
     <string name="settings_widgets_section_widgets_in_use">Widgeti u uporabi</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="message_parsing_error_content">Provjerite je li aplikacija ažurna. Serveri mogu biti privremeno nedostupni, u tom slučaju, molimo pokušajte kasnije. Ako problem nastavi, molimo ispustite zapisnik o padu aplikacije iz postavki za otklanjanje grešaka te prijavite problem na GitHub-u.</string>
     <string name="settings_weather_source_main">Glavni izvor</string>
     <string name="widget_week_style_3_days">3 dana</string>
@@ -124,13 +124,13 @@
     <string name="settings_main">Glavni ekran</string>
     <string name="settings_debug_dump_crash_logs_summary">Sprema zapisnike grešaka u datoteku za dijeljenje sa programerima</string>
     <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, ..., 4 dana kasnije (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="air_quality_level_1_description">Kakvoća zraka je idealna za većinu pojedinaca; Uživajte normalne vanjske aktivnosti.</string>
     <string name="message_source_not_installed_error_content">Izvor više nije dostupan; molimo uklonite lokaciju i postavite ju sa drugim izvorom.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
     <string name="settings_notifications_summary">Vremenska upozorenja, padaline, prognoza</string>
     <string name="widget_clock_font_analog">Analogni</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, ..., 4 dana kasnije (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="ephemeris_sunset_at">Zalazak u $</string>
     <string name="weather_message_secondary_data_refresh_failed">Osvježavanje prognoze za sekundarni izvor neuspješan</string>
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
@@ -184,7 +184,7 @@
     <string name="weather_air_quality_and_pollen_data_by">Kvaliteta zraka i podatci o peludi: $</string>
     <string name="hourly_forecast">Prognoza po satu</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme nadogradnje</string>
-    <string name="dialog_permissions_location_background_content">Kako biste dozvolili aplikaciji da pristupi lokaciji u pozadini, tako da može vidjeti promjene lokacije i pružiti vam ispravnu prognozu, molimo postavite pristup lokaciji na \"Dopusti uvijek\".</string>
+    <string name="dialog_permissions_location_background_content">Kako biste dozvolili aplikaciji da pristupi lokaciji u pozadini, tako da može vidjeti promjene lokacije i pružiti vam ispravnu prognozu, molimo postavite pristup lokaciji na “Dopusti uvijek”.</string>
     <string name="air_quality_so2_voice">Sumporov dioksid</string>
     <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona su vidljive kroz periode sunčanog vremena.</string>
     <string name="air_quality_level_6_description">Bilo kakva izloženost zraku, čak i na par minuta, može dovesti do ozbiljnih zdravstvenih problema kod svih. Izbjegavajte vanjske aktivnosti.</string>
@@ -202,14 +202,14 @@
     <string name="dialog_permissions_location_content">Breezy Vrijeme treba prikupiti vaše informacije o lokaciji u prvom planu ili pozadini kako bi vam dostavio podatke o prognozi za vašu trenutnu lokaciju. Za ovo, zatražit ćemo vas neka dopuštenja. Vaše informacije o lokaciji će biti korištene samo za dohvaćanje prognoze za vašu trenutnu lokaciju. Ako ne želite podijeliti vašu lokaciju, možete odbiti ta dopuštenja te ručno postaviti vašu lokaciju na stranici upravljanja.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja dnevne prognoze</string>
     <string name="location_dialog_failed_to_locate_title">Ne možete naći točnu lokaciju\?</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, ..., 4 dana kasnije (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="air_quality_no2_info_introduction">Dušikov dioksid (NO₂) je zagušljiv, toksični crveno-smeđi plin sa karakterističnim oporim, oštrim mirisom.</string>
     <string name="location_results_by">Rezultati lokacije: $</string>
     <string name="air_quality_no2_info_title">Dušikov dioksid (NO₂)</string>
     <string name="wind_strength_0">Mirno</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Geografska širina</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Dnevna prognoza danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Dnevna prognoza danas, sutra, …, 4 dana kasnije</string>
     <string name="wind_strength_4">Umjeren vjetar</string>
     <string name="settings_notifications_precipitations_title">Obavijesti padalina</string>
     <string name="temperature_normals">Normalne temperature</string>
@@ -218,7 +218,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
     <string name="widget_material_you_forecast">Material You - Prognoza</string>
     <string name="location_resident">Lokacija stanovanja</string>
-    <string name="settings_location_access_background_summaryOff">Molimo omogućite \"Uvijek dopusti\" da imate pozadinska osvježenja za vašu trenutnu lokaciju.</string>
+    <string name="settings_location_access_background_summaryOff">Molimo omogućite “Uvijek dopusti” da imate pozadinska osvježenja za vašu trenutnu lokaciju.</string>
     <string name="settings_widgets_gadgets_title">Programčići</string>
     <string name="pollen_level_4">Visoko</string>
     <string name="widget_style_temperature">Temperatura</string>
@@ -240,7 +240,7 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Ikona prognoze</string>
     <string name="settings_background_updates_refresh_12h">12 sati</string>
     <string name="wind_strength_8">Bura</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Neki proizvođači imaju dodatna ograničenja aplikacija koji ubiju pozadinske servise. Don\'t kill my app! web stranica ima upute za popravljanje toga.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Neki proizvođači imaju dodatna ograničenja aplikacija koji ubiju pozadinske servise. Don’t kill my app! web stranica ima upute za popravljanje toga.</string>
     <string name="settings_widgets_configure_widget_summary">Podesite ovaj widget</string>
     <string name="widget_label_view_style">Način prikaza</string>
     <string name="settings_main_cards_other_element_animations_switch">Druge animacije elemenata</string>
@@ -268,10 +268,10 @@
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="settings_main_summary">Redoslijed kartica, prikazane stavke, animacije</string>
     <string name="widget_week">Tjedno</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Noćne padaline danas, sutra, ..., 4 dana kasnije (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Noćne padaline danas, sutra, …, 4 dana kasnije (%)</string>
     <string name="air_quality_level_3">Loše</string>
     <string name="settings_main_section_options">Opcije</string>
-    <string name="settings_location_access_precise_summaryOff">Omogućite \"Koristi točnu lokaciju\" ako imate probleme sa lociranjem.</string>
+    <string name="settings_location_access_precise_summaryOff">Omogućite “Koristi točnu lokaciju” ako imate probleme sa lociranjem.</string>
     <string name="settings_main_section_animations">Animacije</string>
     <string name="air_quality_no2_info_consequences">Izloženost dušikovom dioksidu može iritirati dišne puteve i pogoršati respiratorne bolesti. Dodatno, NO₂ je ključan prethodnik ozona, zagađivač blisko povezan sa astmom i drugim respiratornim bolestima.</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
@@ -284,7 +284,7 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="air_quality_co_info_introduction">Ugljikov monoksid (CO) je otrovan, zapaljiv plin koji je bezbojan, nema mirisa, okusa i nije nadražljiv.</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="pollen_olive">Maslina</string>
     <string name="action_location_list">Lista lokacija</string>
     <string name="settings_weather_sources_per_location_summary">Uredite izvore prognoze za ovu lokaciju</string>
@@ -365,8 +365,8 @@
     <string name="settings_debug_dump_crash_logs_title">Podijeli zapisnike o padu aplikacije</string>
     <string name="cloud_cover">Pokrivenost oblaka</string>
     <string name="settings_location_service">Lokacijske usluge</string>
-    <string name="settings_widgets_live_wallpaper_error">Neuspješno pokretanje odabira pozadine. Još uvijek možete omogućiti pozadinu Breezy Prognoze tako da odaberete \"Žive pozadine\" na početnom zaslonu vašeg izbornika za pozadine.</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, ..., 4 dana kasnije</string>
+    <string name="settings_widgets_live_wallpaper_error">Neuspješno pokretanje odabira pozadine. Još uvijek možete omogućiti pozadinu Breezy Prognoze tako da odaberete “Žive pozadine” na početnom zaslonu vašeg izbornika za pozadine.</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_appearance">Izgled</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Trenutna temperatura (°C/°F)</string>
     <string name="action_help">Pomoć</string>
@@ -375,7 +375,7 @@
     <string name="settings_weather_source_open_weather_one_call_version">OneCall verzija</string>
     <string name="ephemeris_sunrise_at">Svitanje u $</string>
     <string name="temperature_wind_chill">Hladnoća vjetra</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši \"$\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “$”</string>
     <string name="action_set">Postavi</string>
     <string name="settings_weather_sources">Izvori prognoze</string>
     <string name="widget_subtitle_data_wind">Vjetar</string>
@@ -468,7 +468,7 @@
     <string name="settings_widgets">Widgeti i žive pozadine</string>
     <string name="location_current">Trenutna lokacija</string>
     <string name="settings_appearance_language_title">Jezik</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, ..., 4 dana kasnije</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="widget_live_wallpaper_weather_kind">Prognoza</string>

@@ -1,4 +1,4 @@
-# Version 4.6.10-beta (next version)
+# Version 4.6.10-beta (2023-10-20)
 
 Due to a technical change, any existing alerts will be cleared when updating to this version. They will be back on your next weather refresh.
 

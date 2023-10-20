@@ -34,10 +34,6 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import org.breezyweather.common.extensions.getUriCompat
-import org.breezyweather.common.extensions.createFileInCacheDir
-import org.breezyweather.common.extensions.isRunning
-import org.breezyweather.common.extensions.workManager
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -48,8 +44,12 @@ import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.createFileInCacheDir
+import org.breezyweather.common.extensions.getUriCompat
 import org.breezyweather.common.extensions.isOnline
+import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.withIOContext
+import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.LogHelper

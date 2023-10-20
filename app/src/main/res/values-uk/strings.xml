@@ -342,8 +342,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Новий рядок</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Погода вдень сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Погода вночі сьогодні, завтра, …, на 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Температура вдень сьогодні, завтра, ..., на 4 дні (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Температура вночі сьогодні, завтра, ..., на 4 дні (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Температура вдень сьогодні, завтра, …, на 4 дні (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Температура вночі сьогодні, завтра, …, на 4 дні (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Температура вдень сьогодні, завтра, …, на 4 дні (°)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Вітер вдень сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Опади вночі сьогодні, завтра, …, на 4 дні (%)</string>
