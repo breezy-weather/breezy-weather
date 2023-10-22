@@ -39,7 +39,7 @@
     <string name="action_edit">Edytuj</string>
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Wczoraj</string>
-    <string name="short_tomorrow">Dziś</string>
+    <string name="short_tomorrow">Jutro</string>
     <string name="short_monday">Pon</string>
     <string name="short_tuesday">Wt</string>
     <string name="short_wednesday">Śr</string>
@@ -55,7 +55,7 @@
     <string name="precipitation_thunderstorm">Burza</string>
     <string name="precipitation_rain">Deszcz</string>
     <string name="precipitation_snow">Śnieg</string>
-    <string name="precipitation_ice">Łód</string>
+    <string name="precipitation_ice">Lód</string>
     <string name="wind_strength_0">Cisza</string>
     <string name="wind_strength_1">Lekki wiatr</string>
     <string name="wind_strength_2">Leciutka bryza</string>
@@ -68,7 +68,7 @@
     <string name="wind_strength_9">Mocna wichura</string>
     <string name="wind_strength_10">Bardzo mocna wichura</string>
     <string name="wind_strength_11">Lekki tajfun</string>
-    <string name="wind_strength_12">Tajfun</string>
+    <string name="wind_strength_12">Huragan</string>
     <string name="precipitation_intensity_light">Mżawka</string>
     <string name="precipitation_intensity_middle">Deszcz</string>
     <string name="precipitation_intensity_heavy">Mocny deszcz</string>
@@ -183,7 +183,7 @@
 \nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
     <string name="pollen_tap_to_see_more">Kliknij, aby zobaczyć więcej…</string>
     <!-- action -->
-    <string name="alerts">Alert</string>
+    <string name="alerts">Alerty</string>
     <string name="action_search">Szukaj</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_preview">Podgląd</string>
@@ -493,7 +493,7 @@
     <string name="dialog_permissions_location_background_title">Dostęp do lokalizacji w tle</string>
     <string name="message_tap_again_to_exit">Dotknij ponownie, aby wyjść</string>
     <string name="air_quality_o3_info_consequences">Narażenie na nadmiar ozonu może powodować problemy z oddychaniem, wywoływać astmę, pogarszać funkcjonowanie płuc i prowadzić do chorób płuc.</string>
-    <string name="air_quality_no2_info_introduction">Dwutlenek azotu (NO₂) to duszący, toksyczny czerwono-brązowy gaz o charakterystycznym ostrym, gryzącym zapachu..</string>
+    <string name="air_quality_no2_info_introduction">Dwutlenek azotu (NO₂) to duszący, toksyczny czerwono-brązowy gaz o charakterystycznym ostrym, gryzącym zapachu.</string>
     <string name="air_quality_no2_info_consequences">Narażenie na dwutlenek azotu może podrażniać drogi oddechowe i nasilać choroby układu oddechowego. Ponadto NO₂ jest ważnym prekursorem ozonu, zanieczyszczeniem ściśle związanym z astmą i innymi chorobami układu oddechowego.</string>
     <string name="air_quality_so2_info_introduction">Dwutlenek siarki (SO₂) to bezbarwny, toksyczny gaz odpowiedzialny za zapach spalonych zapałek.</string>
     <string name="pollen_level_0">Brak</string>
@@ -595,7 +595,7 @@
     <string name="air_quality_co_info_introduction">Tlenek węgla (CO) to trujący, łatwopalny gaz, który jest bezbarwny, bezwonny, niedrażniący i nie ma smaku.</string>
     <string name="settings_widgets">Widżety i animowana tapeta</string>
     <string name="minutely_precipitations">Minutowe opady</string>
-    <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć alerty, które nadejdą.</string>
+    <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
     <string name="air_quality_o3_info_title">Ozon na poziomie gruntu (O₃)</string>
     <string name="settings_widgets_section_widgets_in_use">Widżety w użyciu</string>
     <string name="unit_lpsqmph_voice">Litrów na metr kwadratowy na godzinę</string>
@@ -625,5 +625,33 @@
     <string name="common_weather_text_rain_light">Lekki deszcz</string>
     <string name="location_resident_location_summaryOn">Dołączony. Ukryty, gdy odległość od bieżącej lokalizacji jest większa niż $.</string>
     <string name="common_weather_text_rain_moderate">Średni deszcz</string>
-    <string name="common_weather_text_rain_showers">Prysznic</string>
+    <string name="common_weather_text_rain_showers">Przelotne opady</string>
+    <string name="common_weather_text_drizzle_moderate">Umiarkowana mżawka</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">Silny śnieg z deszczem</string>
+    <string name="pollen_and_mold">Pyłki i pleśń</string>
+    <string name="common_weather_text_drizzle_freezing_light">Lekka marznąca mżawka</string>
+    <string name="metno_weather_text_andthunder">$ i grzmoty</string>
+    <string name="common_weather_text_drizzle">Mżawka</string>
+    <string name="common_weather_text_snow_heavy">Silny śnieg</string>
+    <string name="common_weather_text_rain_freezing_heavy">Silny marznący deszcz</string>
+    <string name="common_weather_text_snow_light">Lekki śnieg</string>
+    <string name="common_weather_text_rain_snow_mixed">Śnieg z deszczem</string>
+    <string name="common_weather_text_drizzle_freezing">Marznąca mżawka</string>
+    <string name="common_weather_text_rain_freezing">Marznący deszcz</string>
+    <string name="common_weather_text_rain_snow_mixed_light">Lekki śnieg z deszczem</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">Opady śniegu z deszczem</string>
+    <string name="settings_widgets_gadgetbridge_switch">Wyślij dane pogodowe do Gadgetbridge</string>
+    <string name="common_weather_text_snow_showers_heavy">Silne opady śniegu</string>
+    <string name="common_weather_text_snow_showers">Opady śniegu</string>
+    <string name="settings_debug_dump_crash_logs_saved">Crash log zapisany</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Lekkie opady śniegu z deszczem</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Dotknij, aby otworzyć</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">Silna marznąca mżawka</string>
+    <string name="common_weather_text_drizzle_heavy">Silna mżawka</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Silne opady śniegu z deszczem</string>
+    <string name="common_weather_text_drizzle_light">Lekka mżawka</string>
+    <string name="notification_channel_crash_logs">Crash log</string>
+    <string name="common_weather_text_rain_freezing_light">Lekki marznący deszcz</string>
+    <string name="common_weather_text_snow_moderate">Umiarkowany śnieg</string>
+    <string name="common_weather_text_snow_showers_light">Lekkie opady śniegu</string>
 </resources>
