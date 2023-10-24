@@ -624,4 +624,5 @@
     <string name="notification_style_native">Inbyggd</string>
     <string name="settings_main_header_details_title">Detaljer i översikten</string>
     <string name="settings_main_cards_fade_in_switch">Kortframtoning</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusikon</string>
 </resources>
