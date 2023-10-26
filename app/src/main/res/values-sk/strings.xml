@@ -227,7 +227,7 @@
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
     <string name="settings_widgets_gadgets_title">Pomôcky</string>
     <string name="settings_background_updates_refresh_12h">12 hodín</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Niektorí výrobcovia majú ďalšie obmedzenia aplikácií, ktoré vypínajú služby na pozadí. Na webovej stránke Don\'t kill my app! nájdete informácie o tom, ako to napraviť.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Niektorí výrobcovia majú ďalšie obmedzenia aplikácií, ktoré vypínajú služby na pozadí. Na webovej stránke Don’t kill my app! nájdete informácie o tom, ako to napraviť.</string>
     <string name="settings_widgets_configure_widget_summary">Nastavenie tohto widgetu</string>
     <string name="settings_widgets_monochrome_icons_title">Čiernobiele ikony</string>
     <string name="settings_background_updates">Aktualizácie na pozadí</string>
