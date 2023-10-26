@@ -643,15 +643,16 @@
     <string name="settings_widgets_gadgetbridge_switch">Wyślij dane pogodowe do Gadgetbridge</string>
     <string name="common_weather_text_snow_showers_heavy">Silne opady śniegu</string>
     <string name="common_weather_text_snow_showers">Opady śniegu</string>
-    <string name="settings_debug_dump_crash_logs_saved">Crash log zapisany</string>
+    <string name="settings_debug_dump_crash_logs_saved">Log błędu zapisany</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lekkie opady śniegu z deszczem</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dotknij, aby otworzyć</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Silna marznąca mżawka</string>
     <string name="common_weather_text_drizzle_heavy">Silna mżawka</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Silne opady śniegu z deszczem</string>
     <string name="common_weather_text_drizzle_light">Lekka mżawka</string>
-    <string name="notification_channel_crash_logs">Crash log</string>
+    <string name="notification_channel_crash_logs">Log błędu</string>
     <string name="common_weather_text_rain_freezing_light">Lekki marznący deszcz</string>
     <string name="common_weather_text_snow_moderate">Umiarkowany śnieg</string>
     <string name="common_weather_text_snow_showers_light">Lekkie opady śniegu</string>
+    <string name="settings_widgets_gadgets_title">Narzędzia</string>
 </resources>
