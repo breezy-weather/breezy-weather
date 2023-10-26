@@ -182,7 +182,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Teplota ako ikona v stavovom riadku</string>
     <string name="common_weather_text_drizzle_moderate">Mierne mrholenie</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona zobrazená v týždenných prehľadoch</string>
-    <string name="settings_background_updates_worker_info_title"></string>
     <string name="settings_widgets_notification_widget_title">Widget oznámenia</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Usádzanie riedkej hmly</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Silný dážď so snehom</string>
