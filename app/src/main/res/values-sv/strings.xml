@@ -349,7 +349,7 @@
     <string name="widget_clock_day_horizontal">Klocka + Daglig (Vågrätt stil)</string>
     <string name="weather_minutely_data_by">Nederbörd minut för minut-data från $</string>
     <string name="widget_day">Daglig</string>
-    <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar för vädervarningar. Du kan ändra senare i Inställningar.</string>
+    <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar om vädervarningar, eller bestäm dig senare i Inställningar.</string>
     <string name="ceiling">Tak</string>
     <string name="message_source_not_installed_error_content">Denna källa är inte längre tillgänglig; vänligen ta bort platsen och återskapa den från en annan källa.</string>
     <string name="widget_text">Text</string>
@@ -435,14 +435,14 @@
 \nExempelvis, “Nuvarande väder är: $cw$” kommer att visas som “Nuvarande väder är: Klart väder”.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Varningar (Kort)</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Åskstorm med lätt hagel</string>
-    <string name="settings_notifications_forecast_today_title">Aviseringar för dagens prognos</string>
+    <string name="settings_notifications_forecast_today_title">Avisering för dagens prognos</string>
     <string name="common_weather_text_rain_heavy">Kraftigt regn</string>
     <string name="settings_color_day_always">Alltid dag</string>
     <string name="weather_api_key_required_missing_title">Krävd API-nyckel saknas</string>
     <string name="location_resident_dialog">Breezy Weather kommer automatiskt visa och dölja hemorter baserat på din nuvarande plats.
 \nExempelvis kan du ange din hemort som en bostadsort. You kan kolla vädret på din hemort när du reser. När du kommer hem, kommer vädret på din hemort att döljas och ersättas med vädret på din nuvarande plats.</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen för dag och natt-temperaturer</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen på dags-/nattemperaturer</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
     <string name="settings_icon_packs_get_more_store">Hämta fler från appbutik</string>
@@ -475,9 +475,9 @@
     <string name="widget_subtitle_data_custom">Anpassad</string>
     <string name="air_quality_so2_info_origin">Naturliga utsläpp kommer från vulkaner men kommer övervägande ifrån förbränning av fossila bränslen för hushållsvärme, industrier och elkraftproduktion.</string>
     <string name="settings_follow_system">Följ systemet</string>
-    <string name="settings_color_day_night">Dag / Natt</string>
+    <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
-    <string name="settings_widgets_live_wallpaper_summary">Välj en väderanimation som bakgrundsbild</string>
+    <string name="settings_widgets_live_wallpaper_summary">Ange en väderanimation som bakgrund</string>
     <string name="message_parsing_error_title">Misslyckades att tolka väderdata</string>
     <string name="weather_api_limit_reached_title">Max antal API-förfrågningar begärda</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Vecka (Kort)</string>
@@ -491,7 +491,7 @@
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Timvis Beskrivning</string>
-    <string name="settings_widgets_notification_feels_like_switch">Använd Upplevd temperatur</string>
+    <string name="settings_widgets_notification_feels_like_switch">Använd upplevd temperatur</string>
     <string name="dialog_permissions_location_content">Breezy Weather behöver samla din platsinformatin i förgrunden eller bakgrunden för att erbjuda väderdata för din nuvarande plats. För detta begär vi några behörigheter. Din platsinfromation kommer endast att användas för at hämta väderdata för din nuvarande plats. Om du inte vill dela din platsinformation så kan du neka behörigheterna och manuellt välja din plats i hanteringsmenyn.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
     <string name="location_dialog_failed_to_locate_title">Kan inte få platsen korrekt\?</string>
@@ -540,7 +540,7 @@
     <string name="action_learn_more">Lär dig mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
     <string name="weather_normals_data_by">Temperaturnormaler från $</string>
-    <string name="settings_widgets_notification_persistent_switch">Kvarvarande</string>
+    <string name="settings_widgets_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="unit_inhg">inHg</string>
@@ -624,5 +624,5 @@
     <string name="notification_style_native">Inbyggd</string>
     <string name="settings_main_header_details_title">Detaljer i översikten</string>
     <string name="settings_main_cards_fade_in_switch">Kortframtoning</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusikon</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
 </resources>
