@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="short_today">Hôm nay</string>
-    <string name="short_sunday">Chủ nhật</string>
-    <string name="short_tuesday">Thứ ba</string>
+    <string name="short_today">Hnay</string>
+    <string name="short_sunday">CN</string>
+    <string name="short_tuesday">Th 3</string>
     <string name="ephemeris">Mặt trời &amp; mặt trăng</string>
     <string name="pollen">Dị ứng phấn hoa</string>
     <string name="alerts">Cảnh báo</string>
@@ -11,7 +11,7 @@
     <string name="wind_strength_2">Gió yếu</string>
     <string name="uv_index_11">Cực cao</string>
     <string name="wind_strength_3">Gió nhẹ</string>
-    <string name="wind_strength_7">Gió giật vừa phải</string>
+    <string name="wind_strength_7">Gió mạnh, gió gần lốc</string>
     <string name="wind_strength_8">Gió rất mạnh, gió lốc</string>
     <string name="uv_index_0_2">Thấp</string>
     <string name="uv_index_8_10">Rất cao</string>
@@ -21,7 +21,7 @@
     <string name="wind_strength_9">Gió lốc mạnh/Gió mạnh dữ dội</string>
     <string name="wind_strength_11">Bão rất mạnh</string>
     <string name="wind_strength_12">Bão cuồng phong</string>
-    <string name="uv_index_3_5">Vừa phải</string>
+    <string name="uv_index_3_5">Trung bình</string>
     <string name="uv_index_6_7">Cao</string>
     <string name="air_quality_level_3_description">Không khí đã đạt đến mức độ ô nhiễm cao và không lành mạnh cho các nhóm nhạy cảm. Giảm thời gian ở ngoài nếu bạn cảm thấy các triệu chứng như khó thở hay kích thích cổ họng.</string>
     <string name="air_quality_level_4">Có hại</string>
@@ -326,14 +326,14 @@
     <string name="settings_notifications">Thông báo</string>
     <string name="settings_notifications_summary">Cảnh báo thời tiết, lượng mưa, dự báo</string>
     <string name="settings_notifications_alerts_title">Thông báo về cảnh báo thời tiết</string>
-    <string name="short_yesterday">Hôm qua</string>
-    <string name="short_monday">Thứ hai</string>
+    <string name="short_yesterday">Hqua</string>
+    <string name="short_monday">Th 2</string>
     <string name="daily_forecast">Dự báo hàng ngày</string>
-    <string name="short_tomorrow">Ngày mai</string>
-    <string name="short_wednesday">Thứ tư</string>
-    <string name="short_thursday">Thứ năm</string>
-    <string name="short_friday">Thứ sáu</string>
-    <string name="short_saturday">Thứ bảy</string>
+    <string name="short_tomorrow">Nmai</string>
+    <string name="short_wednesday">Th 4</string>
+    <string name="short_thursday">Th 5</string>
+    <string name="short_friday">Th 6</string>
+    <string name="short_saturday">Th 7</string>
     <string name="temperature">Nhiệt độ</string>
     <string name="temperature_feels_like">Cảm giác như</string>
     <string name="temperature_wind_chill">Gió lạnh</string>
