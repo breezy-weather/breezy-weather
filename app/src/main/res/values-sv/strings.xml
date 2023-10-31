@@ -42,7 +42,7 @@
     <string name="setting_weather_source_accu_days">Dagar</string>
     <string name="metno_weather_text_andthunder">$ och åska</string>
     <string name="action_about">Om</string>
-    <string name="weather_source_accu_preference_days_5">5 dagar</string>
+    <string name="weather_source_accu_preference_days_5">5 dagar</string>
     <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Städer</string>
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
@@ -80,7 +80,7 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="air_quality_co_voice">Kolmonoxid</string>
     <string name="about_contribution_designer">Logotypdesigner</string>
-    <string name="widget_week_style_3_days">3 dagar</string>
+    <string name="widget_week_style_3_days">3 dagar</string>
     <string name="widget_subtitle_data_time">Uppdateringstid</string>
     <string name="air_quality_o3_info_title">Marknära ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Nuvarande Luftfuktighet</string>
@@ -90,7 +90,7 @@
     <string name="pollen_tap_to_see_more">Klicka för att se mer…</string>
     <string name="precipitation_intensity_heavy">Kraftigt regn</string>
     <string name="weather_pollen_data_by">Pollendata från $</string>
-    <string name="weather_source_accu_preference_days_10">10 dagar</string>
+    <string name="weather_source_accu_preference_days_10">10 dagar</string>
     <string name="pollen_level_2">Låg</string>
     <string name="common_weather_text_rain">Regn</string>
     <string name="precipitation_none">Ingen nederbörd</string>
@@ -105,7 +105,7 @@
     <string name="pollen_mold">Mögel</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Upplevd Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
-    <string name="weather_source_accu_preference_hours_72">72 timmar</string>
+    <string name="weather_source_accu_preference_hours_72">72 timmar</string>
     <string name="air_quality_co">CO</string>
     <string name="unit_ftps_voice">Fot per sekund</string>
     <string name="weather_refresh_skipped_already_recently_updated">Redan nyligen uppdaterad</string>
@@ -148,7 +148,7 @@
     <string name="location_message_permission_background_missing">Behörighet till platsåtkomst i bakgrunden saknas</string>
     <string name="air_quality_pm10_voice">PM tio</string>
     <string name="ephemeris_moon_phase_new_moon">Nymåne</string>
-    <string name="widget_week_style_5_days">5 dagar</string>
+    <string name="widget_week_style_5_days">5 dagar</string>
     <string name="location_message_list_cannot_be_empty">Platslistan får inte vara tom</string>
     <string name="settings_background_updates_refresh_12h">12 timmar</string>
     <string name="settings_background_updates">Bakgrundsuppdateringar</string>
@@ -185,7 +185,7 @@
     <string name="air_quality_so2_info_introduction">Svaveldioxid (SO₂) är en färglös giftig gas som luktar bränd tändsticka.</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="details">Detaljer</string>
-    <string name="location_resident_location_summaryOff">Inaktivera. Plats alltid tillgänglig.</string>
+    <string name="location_resident_location_summaryOff">Inaktiverad. Plats alltid tillgänglig.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
@@ -206,7 +206,7 @@
     <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Tum</string>
     <string name="location_message_search_failed">Platssök misslyckades</string>
-    <string name="weather_source_accu_preference_hours_120">120 timmar</string>
+    <string name="weather_source_accu_preference_hours_120">120 timmar</string>
     <string name="short_monday">Mån</string>
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_atm_voice">Atmosfärer</string>
@@ -216,7 +216,7 @@
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
     <string name="short_friday">Fre</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Undersök behörigheterna för platsåtkomst</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera behörigheterna för platsåtkomst</string>
     <string name="pollen_level_3">Medelhög</string>
     <string name="weather_data_by">Data från $</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande Lufttryck</string>
@@ -239,7 +239,7 @@
     <string name="unit_hpa_voice">Hektopascal</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid $</string>
     <string name="temperature_wind_chill">Vindavkylning</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort ”$”</string>
     <string name="widget_subtitle_data_wind">Vind</string>
     <string name="widget_style_symmetry">Symmetri</string>
     <string name="action_delete">Ta bort</string>
@@ -270,7 +270,7 @@
     <string name="ephemeris_moonset_at">Månnedgång vid $</string>
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_info_title">Kolmonoxid (CO)</string>
-    <string name="weather_source_accu_preference_hours_240">240 timmar</string>
+    <string name="weather_source_accu_preference_hours_240">240 timmar</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Aktivera platsinformation</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="settings_units_pressure">Tryckenhet</string>
@@ -287,10 +287,10 @@
     <string name="hours_of_sun">Soltimmar</string>
     <string name="daytime">Dagtid</string>
     <string name="common_weather_text_drizzle_light">Lätt duggregn</string>
-    <string name="weather_source_accu_preference_hours_12">12 timmar</string>
-    <string name="weather_source_accu_preference_hours_1">1 timme</string>
-    <string name="weather_source_accu_preference_days_15">15 dagar</string>
-    <string name="weather_source_accu_preference_hours_24">24 timmar</string>
+    <string name="weather_source_accu_preference_hours_12">12 timmar</string>
+    <string name="weather_source_accu_preference_hours_1">1 timme</string>
+    <string name="weather_source_accu_preference_days_15">15 dagar</string>
+    <string name="weather_source_accu_preference_hours_24">24 timmar</string>
     <string name="action_continue">Fortsätt</string>
     <string name="action_cancel">Avbryt</string>
     <string name="action_close">Stäng</string>
@@ -408,7 +408,7 @@
     <string name="settings_widgets">Widgetar &amp; levande bakgrund</string>
     <string name="about_contribution_weather_source">Lade till stöd för ny väderkälla/nya väderkällor</string>
     <string name="about_contribution_WangDaYeeeeee">Utvecklare av det ursprungliga projektet Geometric Weather</string>
-    <string name="settings_background_updates_battery_optimization_activity_not_found">Kunde inte öppna apparatens inställningar.</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">Kunde inte öppna enhetens inställningar.</string>
     <string name="settings_source_api_key">API-nyckel</string>
     <string name="widget_label_black_text">Textfärg</string>
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
@@ -428,11 +428,11 @@
     <string name="settings_enabled">Aktiverad</string>
     <string name="settings_background_updates_battery_optimization">Inaktivera batterioptimering</string>
     <string name="widget_label_show_widget_card_alpha">Transparens</string>
-    <string name="location_resident_location_summaryOn">Aktiverad. Dold när du befinner din inom $ från nuvarande plats.</string>
+    <string name="location_resident_location_summaryOn">Aktiverad. Dold när du befinner dig inom $ från nuvarande plats.</string>
     <string name="unit_mi_voice">Engelsk mil</string>
     <string name="widget_custom_subtitle_explanation">Du kan skriva in vad som helst men var uppmärksam på textlängden. Om du vill citera väderdata använd $ som referens till motsvarade nyckelord.
 \n
-\nExempelvis, “Nuvarande väder är: $cw$” kommer att visas som “Nuvarande väder är: Klart väder”.</string>
+\nExempelvis, ”Nuvarande väder är: $cw$” kommer att visas som ”Nuvarande väder är: Klart väder”.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Varningar (Kort)</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Åskstorm med lätt hagel</string>
     <string name="settings_notifications_forecast_today_title">Avisering för dagens prognos</string>
@@ -449,7 +449,7 @@
     <string name="unit_inhg_voice">Tum kvicksilver</string>
     <string name="settings_icon_packs_check_details">Visa detaljer</string>
     <string name="settings_main_gravity_sensor_switch">Gravitationssensor</string>
-    <string name="settings_location_access_switch_summaryOff">Tillåt om du vill lägga till din nuvarande plats som plats.</string>
+    <string name="settings_location_access_switch_summaryOff">Vänligen tillåt om du vill kunna lägga till din nuvarande plats som en plats.</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Daglig Beskrivning</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Väder nattetid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (℃/℉)</string>
@@ -486,7 +486,7 @@
     <string name="unit_atm">atm</string>
     <string name="settings_notifications_alerts_title">Aviseringar för vädervarningar</string>
     <string name="notification_running_in_background">Körs i bakgrunden för att uppdatera</string>
-    <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet “Tillåt hela tiden”.</string>
+    <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet ”Tillåt alltid”.</string>
     <string name="settings_main_background_animation_enabled">Aktiverad</string>
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
@@ -502,11 +502,11 @@
     <string name="settings_notifications_precipitations_title">Aviseringar för nederbörd</string>
     <string name="location_resident">Hemort</string>
     <string name="settings_widgets_gadgets_title">Gadgets</string>
-    <string name="settings_source_default_value">Standard (oändrad)</string>
+    <string name="settings_source_default_value">Förvald (oförändrad)</string>
     <string name="settings_automatic">Automatisk</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Väderikon</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Vissa tillverkare har ytterligare apprestriktioner som stänger av bakgrundstjänster. Webbplatsen Don’t kill my app! har information om hur man fixar det.</string>
-    <string name="settings_widgets_configure_widget_summary">Anpassa denna widgeten</string>
+    <string name="settings_widgets_configure_widget_summary">Konfigurera denna widget</string>
     <string name="widget_label_view_style">Vystil</string>
     <string name="settings_widgets_monochrome_icons_title">Enfärgade ikoner</string>
     <string name="widget_subtitle_data_feels_like">Upplevd temperatur</string>
@@ -529,7 +529,7 @@
     <string name="weather_kind_thunderstorm">Åskstorm</string>
     <string name="common_weather_text_rain_light">Lätt regn</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Solnedgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="settings_weather_sources_per_location_summary">Anpassa väderkällan för denna plats</string>
+    <string name="settings_weather_sources_per_location_summary">Anpassa väderdatakällorna för denna plats</string>
     <string name="settings_widgets_gadgetbridge_switch">Skicka väderdata till Gadgetbridge</string>
     <string name="notification_refreshed_at">Uppdaterades vid</string>
     <string name="common_weather_text_clear_sky">Klar himmel</string>
@@ -539,13 +539,13 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_learn_more">Lär dig mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
-    <string name="weather_normals_data_by">Temperaturnormaler från $</string>
+    <string name="weather_normals_data_by">Temperaturnormalerdata från $</string>
     <string name="settings_widgets_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstrom</string>
-    <string name="settings_location_access_precise_title">Enhetens GPS-användning</string>
+    <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodsystemet, och försvårar för kroppen celler att binda syre. Syrebristen skadar vävnad och celler. Exponering mot kolmonoxid kan orsaka andningsproble, utmattning, yrsel och influensaliknande symptom. Exponering mot höga halter av kolmonoxid kan vara dödligt.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering för nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
@@ -562,7 +562,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
     <string name="weather_message_unsupported_feature">Källan stödjer inte en av de begärda funktionerna</string>
-    <string name="settings_debug_dump_crash_logs_title">Dela krashloggar</string>
+    <string name="settings_debug_dump_crash_logs_title">Dela kraschloggar</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_precipitation_short_term">Nederbörd kan komma inom de närmaste timmarna.</string>
     <string name="settings_location_service">Platstjänst</string>
@@ -584,7 +584,7 @@
     <string name="null_data_text">Inget</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="settings_changes_apply_after_restart">Ändringarna kommer appliceras efter omstart</string>
-    <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
+    <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer att kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
     <string name="settings_units_summary">Temperatur, nederbörd, avstånd, hastighet, lufttryck</string>
     <string name="widget_style_tile">Ruta</string>
     <string name="settings_icon_packs_get_more">Hämta fler</string>
@@ -603,12 +603,12 @@
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_weather_sources_current_location">Väderkälla för nuvarande plats</string>
-    <string name="settings_location_access_precise_summaryOn">Aktiverad. Både enhetens nätverk och GPS används.</string>
+    <string name="settings_location_access_precise_summaryOn">Aktiverad. Både enhetens nätverks- och gps-operatörer används.</string>
     <string name="unit_mmhg_voice">Millimeter kvicksilver</string>
     <string name="common_weather_text_rain_showers_moderate">Måttliga regnskurar</string>
     <string name="settings_notifications_section_forecast">Prognos</string>
     <string name="widget_label_subtitle_data">Undertextdata</string>
-    <string name="settings_location_access_switch_summaryOn">Tillåten. Du kan lägga till din nuvarande plats som plats.</string>
+    <string name="settings_location_access_switch_summaryOn">Tillåten. Du kan lägga till din nuvarande plats som en plats.</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Soluppgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
@@ -627,4 +627,16 @@
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
     <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
     <string name="common_weather_text_mainly_clear">Mestadels klart</string>
+    <string name="common_weather_text_drizzle_moderate">Måttligt duggregn</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Avlagrande dimfrost</string>
+    <string name="common_weather_text_drizzle_freezing_light">Lätt underkylt duggregn</string>
+    <string name="common_weather_text_snow_grains">Snökorn</string>
+    <string name="common_weather_text_drizzle_freezing">Underkylt duggregn</string>
+    <string name="settings_location_access_background_summaryOff">Vänligen aktivera ”Tillåt alltid” för att få bakgrundsuppdateringar för din nuvarande plats.</string>
+    <string name="settings_location_access_precise_summaryOff">Aktivera ”Använd exakt plats” om du har problem med att hitta en plats.</string>
+    <string name="common_weather_text_snow_showers_heavy">Kraftiga snöbyar</string>
+    <string name="common_weather_text_snow_showers">Snöbyar</string>
+    <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt underkylt duggregn</string>
+    <string name="common_weather_text_drizzle_heavy">Kraftigt duggregn</string>
+    <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
 </resources>
