@@ -32,8 +32,8 @@
     <string name="action_preview">Xem trước</string>
     <string name="location_swipe_to_delete">Bạn có thể vuốt sang phải để xóa vị trí này</string>
     <string name="location_message_search_failed">Tìm kiếm vị trí thất bại</string>
-    <string name="location_resident_dialog">Breezy Weather sẽ tự động xuất hiện và ẩn náu các thành phố dựa trên vị trí hiện tại của anh.
-\nVí dụ, bạn có thể đặt quê hương làm thành phố cư trú. Bạn có thể kiểm tra thời tiết ở quê nhà trong khi bạn đi du lịch. Khi bạn về nhà, thời tiết ở quê nhà của bạn sẽ được giấu và thay thế bởi thời tiết cho vị trí hiện tại của bạn.</string>
+    <string name="location_resident_dialog">Breezy Weather sẽ tự động hiển thị và ẩn các thành phố cư trú dựa trên vị trí hiện tại của bạn.
+\nVí dụ: bạn có thể đặt quê hương của mình làm thành phố cư trú. Bạn có thể kiểm tra thời tiết ở quê nhà trong khi bạn đang đi du lịch. Khi bạn về nhà, thời tiết ở quê nhà của bạn sẽ bị ẩn và thay thế bằng thời tiết cho vị trí hiện tại của bạn.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Trăng khuyết đầu tháng</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Trăng khuyết cuối tháng</string>
     <string name="ephemeris_moon_phase_last_quarter">Trăng bán nguyệt cuối tháng</string>
@@ -377,7 +377,7 @@
     <string name="settings_widgets_configure_widget_summary">Thiết lập tiện ích này</string>
     <string name="settings_widgets_section_notification_widget">Tiện ích thông báo</string>
     <string name="settings_widgets_notification_persistent_switch">Khóa</string>
-    <string name="settings_widgets_notification_style_title">Kiểu mẫu</string>
+    <string name="settings_widgets_notification_style_title">Kiểu thông báo</string>
     <string name="settings_debug">Gỡ lỗi</string>
     <string name="settings_debug_summary">Nhật kí sự cố</string>
     <string name="settings_debug_dump_crash_logs_title">Chia sẻ nhật kí sự cố</string>
@@ -494,7 +494,7 @@
     <string name="location_search_no_results_advice">Hãy chắc rằng tìm kiếm của bạn được đánh vần đúng và không quá cụ thể. Thay vào đó, bạn có thể thử một nguồn thông tin khác mà có thể cho ra kết quả tìm kiếm địa điểm khác.</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>
     <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Cài đặt.</string>
-    <string name="notification_style_native">Thuần</string>
+    <string name="notification_style_native">Tự nhiên</string>
     <string name="notification_style_cities">Các thành phố</string>
     <string name="location_search_no_results">$1 không thể tìm $2</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Bỏ qua khi pin yếu</string>
