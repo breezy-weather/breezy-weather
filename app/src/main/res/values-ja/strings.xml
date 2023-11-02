@@ -300,7 +300,7 @@
     <string name="air_quality_level_1">素晴らしい</string>
     <string name="air_quality_level_3_description">大気が高濃度に汚染され、敏感な人々にとって不健康な状態になっている。呼吸困難や喉の炎症などの症状を感じている場合は、外で過ごす時間を減らしましょう。</string>
     <string name="air_quality_level_4">不健康</string>
-    <string name="air_quality_index">大気質指数</string>
+    <string name="air_quality_index">空気質指数</string>
     <string name="air_quality_level_1_description">空気の質はほとんどの人にとって理想的で、通常のアウトドア活動を楽しむことができます。</string>
     <string name="air_quality_level_2">公平</string>
     <string name="air_quality_level_4_description">健康への影響は、感受性の高いグループには直ちに感じられます。健康な人は、長時間の暴露により呼吸困難や喉の炎症に見舞われる可能性があります。屋外での活動を制限することです。</string>
@@ -355,4 +355,17 @@
     <string name="settings_widgets_section_notification_widget">通知ウィジェット</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">翌日の予報の時間</string>
     <string name="temperature_average_short">平均気温</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_no2_voice">二酸化窒素</string>
+    <string name="air_quality_co_voice">一酸化炭素</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_so2_voice">二酸化硫黄</string>
+    <string name="air_quality_pm10_voice">PM10</string>
+    <string name="air_quality_o3_voice">オゾン</string>
+    <string name="air_quality_pm25">PM2.5</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_level_6">危険</string>
+    <string name="air_quality_pm25_voice">PM2.5</string>
+    <string name="air_quality_pm10">PM10</string>
 </resources>
