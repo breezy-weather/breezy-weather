@@ -45,6 +45,7 @@ import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.switchPreferenceItem
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
+import java.util.Date
 
 @Composable
 fun AppearanceSettingsScreen(
@@ -66,6 +67,7 @@ fun AppearanceSettingsScreen(
                 selectedKey = SettingsManager.getInstance(context).language.id,
                 onValueChanged = {
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
+                    SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
 
                     SnackbarHelper.showSnackbar(
                         content = context.getString(R.string.settings_changes_apply_after_restart),

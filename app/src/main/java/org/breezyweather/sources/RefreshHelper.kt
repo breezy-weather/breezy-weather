@@ -291,12 +291,14 @@ class RefreshHelper @Inject constructor(
                 refreshTime = Date()
             )
             var isMainDataValid = false
+            val languageUpdateTime = SettingsManager.getInstance(context).languageUpdateLastTimestamp
             if (location.weather?.base != null) {
                 isMainDataValid = isWeatherDataStillValid(
                     location,
                     isRestricted = !BreezyWeather.instance.debugMode
                             && service is ConfigurableSource
-                            && service.isRestricted
+                            && service.isRestricted,
+                    minimumTime = languageUpdateTime
                 )
                 // If main data is still valid, let’s check if there are features inside main
                 // that requires a refresh
@@ -310,7 +312,8 @@ class RefreshHelper @Inject constructor(
                                     it,
                                     isRestricted = !BreezyWeather.instance.debugMode
                                             && service is ConfigurableSource
-                                            && service.isRestricted
+                                            && service.isRestricted,
+                                    minimumTime = languageUpdateTime
                                 )
                             ) {
                                 isMainDataValid = false
@@ -399,7 +402,8 @@ class RefreshHelper @Inject constructor(
                                     it,
                                     isRestricted = !BreezyWeather.instance.debugMode
                                             && secondaryService is ConfigurableSource
-                                            && secondaryService.isRestricted
+                                            && secondaryService.isRestricted,
+                                    minimumTime = languageUpdateTime
                                 )
                             }
                             if (featuresToUpdate.isEmpty()) {
@@ -625,11 +629,13 @@ class RefreshHelper @Inject constructor(
      * For a given location, will tell if data is still valid or needs a refresh
      * @param feature if null, will tell for main weather
      * @param isRestricted some sources will prefer a longer wait, make it true if that’s the case
+     * @param minimumTime if the last update was before this minimum time, it will be forced refreshed (except for normals)
      */
     private fun isWeatherDataStillValid(
         location: Location,
         feature: SecondaryWeatherSourceFeature? = null,
-        isRestricted: Boolean = false
+        isRestricted: Boolean = false,
+        minimumTime: Long = 0
     ): Boolean {
         if (location.weather?.base == null) return false
 
@@ -637,13 +643,15 @@ class RefreshHelper @Inject constructor(
             SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY -> {
                 return isUpdateStillValid(
                     location.weather.base.airQualityUpdateTime,
-                    if (isRestricted) WAIT_AIR_QUALITY_RESTRICTED else WAIT_AIR_QUALITY
+                    if (isRestricted) WAIT_AIR_QUALITY_RESTRICTED else WAIT_AIR_QUALITY,
+                    minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_POLLEN -> {
                 return isUpdateStillValid(
                     location.weather.base.pollenUpdateTime,
-                    if (isRestricted) WAIT_POLLEN_RESTRICTED else WAIT_POLLEN
+                    if (isRestricted) WAIT_POLLEN_RESTRICTED else WAIT_POLLEN,
+                    minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_MINUTELY -> {
@@ -653,7 +661,8 @@ class RefreshHelper @Inject constructor(
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED else WAIT_MINUTELY
                     } else {
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED_ONGOING else WAIT_MINUTELY_ONGOING
-                    }
+                    },
+                    minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_ALERT -> {
@@ -663,7 +672,8 @@ class RefreshHelper @Inject constructor(
                         if (isRestricted) WAIT_ALERTS_RESTRICTED else WAIT_ALERTS
                     } else {
                         if (isRestricted) WAIT_ALERTS_RESTRICTED_ONGOING else WAIT_ALERTS_ONGOING
-                    }
+                    },
+                    minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_NORMALS -> {
@@ -683,7 +693,8 @@ class RefreshHelper @Inject constructor(
             else -> {
                 return isUpdateStillValid(
                     location.weather.base.mainUpdateTime,
-                    if (isRestricted) WAIT_MAIN_RESTRICTED else WAIT_MAIN
+                    if (isRestricted) WAIT_MAIN_RESTRICTED else WAIT_MAIN,
+                    minimumTime
                 )
             }
         }
@@ -691,9 +702,10 @@ class RefreshHelper @Inject constructor(
 
     private fun isUpdateStillValid(
         updateTime: Date?,
-        wait: Int
+        wait: Int,
+        minimumTime: Long = 0
     ): Boolean {
-        if (updateTime == null) return false
+        if (updateTime == null || updateTime.time < minimumTime) return false
 
         val currentTime = System.currentTimeMillis()
 

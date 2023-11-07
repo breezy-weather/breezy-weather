@@ -331,6 +331,12 @@ class SettingsManager private constructor(context: Context) {
             config.getString("language", "follow_system") ?: ""
         )
 
+    var languageUpdateLastTimestamp: Long
+        set(value) {
+            config.edit().putLong("language_update_last_timestamp", value).apply()
+        }
+        get() = config.getLong("language_update_last_timestamp", 0)
+
     // forecast.
 
     var isTodayForecastEnabled: Boolean

@@ -148,6 +148,19 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
 * Mastodon account: [`@breezyweather@fosstodon.org`](https://fosstodon.org/@breezyweather)
 
 
+# Status of main requested features
+
+| ID                                                                                                                                     | Feature                            | Status                | Note                                                                                                                                     |
+|----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| [#336](https://github.com/breezy-weather/breezy-weather/issues/336)                                                                    | Better precipitation notifications | Work in progress      |                                                                                                                                          |
+| [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress      | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
+| [#15](https://github.com/breezy-weather/breezy-weather/issues/15)                                                                      | Humidity/Dew point chart           | Depends on new charts |                                                                                                                                          |
+| [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do         | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
+|                                                                                                                                        | Widgets redesign                   | Mockups in progress   | No widgets improvements will be done until completed                                                                                     |
+| [#23](https://github.com/breezy-weather/breezy-weather/issues/23)                                                                      | Radar                              | Survey to do          | To better understand expectations                                                                                                        |
+| [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on   | We already have a dark mode                                                                                                              |
+
+
 # Build variant
 
 A variant called `gplay` is available and may be distributed on Google Play Store in the future.
