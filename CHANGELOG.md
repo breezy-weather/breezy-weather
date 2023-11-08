@@ -1,4 +1,4 @@
-# Version 4.6.11-beta (not yet released)
+# Version 4.6.11-beta (2023-11-08)
 
 **Other improvements and fixes**
 - Fix some weather texts not being updated after a forced refresh after a language change
