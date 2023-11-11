@@ -31,7 +31,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 style="@style/widget_content_text"
-                tools:text="青岛市" />
+                tools:text="Qingdao City" />
 
             <ImageView
                 android:id="@+id/widget_week_icon_1"
@@ -78,7 +78,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 style="@style/widget_content_text"
-                tools:text="周三" />
+                tools:text="Wednesday" />
 
             <ImageView
                 android:id="@+id/widget_week_icon_2"
@@ -125,7 +125,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 style="@style/widget_content_text"
-                tools:text="周四" />
+                tools:text="Thursday" />
 
             <ImageView
                 android:id="@+id/widget_week_icon_3"
@@ -172,7 +172,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 style="@style/widget_content_text"
-                tools:text="周五" />
+                tools:text="Friday" />
 
             <ImageView
                 android:id="@+id/widget_week_icon_4"
@@ -219,7 +219,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 style="@style/widget_content_text"
-                tools:text="周六" />
+                tools:text="Saturday" />
 
             <ImageView
                 android:id="@+id/widget_week_icon_5"

@@ -41,7 +41,7 @@
             android:textSize="@dimen/content_text_size"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/notification_title_text"
-            tools:text="海淀区, 2°/16°" />
+            tools:text="Haidian District, 2°/16°" />
         
     </LinearLayout>
 
@@ -72,7 +72,7 @@
             android:textSize="@dimen/content_text_size"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/notification_title_text"
-            tools:text="青岛, 2°/16°" />
+            tools:text="Qingdao, 2°/16°" />
 
     </LinearLayout>
 
@@ -103,7 +103,7 @@
             android:textSize="@dimen/content_text_size"
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/notification_title_text"
-            tools:text="宣武区, 2°/16°" />
+            tools:text="Xuanwu District, 2°/16°" />
 
     </LinearLayout>
 

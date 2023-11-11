@@ -58,7 +58,7 @@
                             android:importantForAccessibility="no"
 
                             style="@style/title_text"
-                            tools:text="12-24 周五" />
+                            tools:text="12-24 Friday" />
 
                         <TextView
                             android:id="@+id/activity_weather_daily_subtitle"
@@ -67,7 +67,7 @@
                             android:importantForAccessibility="no"
                             android:textColor="?attr/colorOnSurface"
                             style="@style/subtitle_text"
-                            tools:text="十一月初七"
+                            tools:text="November 7th"
                             tools:ignore="RtlHardcoded" />
 
                     </LinearLayout>

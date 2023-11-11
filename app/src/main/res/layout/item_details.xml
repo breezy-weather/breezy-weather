@@ -24,7 +24,7 @@
         android:gravity="start"
         android:textAlignment="gravity"
         style="@style/title_text"
-        tools:text="北风(实时南风)"
+        tools:text="North wind (real-time South wind)"
         tools:ignore="RtlHardcoded" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:gravity="start"
         android:textAlignment="gravity"
         style="@style/content_text"
-        tools:text="3-4 级(实时3级)"
+        tools:text="Level 3-4 (real-time level 3)"
         tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>

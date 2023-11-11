@@ -70,7 +70,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/notification_subtitle_text"
-            tools:text="青岛, 更新于 周三 10:00 正月初二"
+            tools:text="Qingdao, updated on Wednesday 10:00, the second day of the first lunar month"
             tools:ignore="RtlHardcoded,SmallSp" />
 
     </LinearLayout>

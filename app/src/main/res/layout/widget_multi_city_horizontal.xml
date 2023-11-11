@@ -32,7 +32,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Qingdao" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_1"
@@ -74,7 +74,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Qingdao" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_2"
@@ -116,7 +116,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Qingdao" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_3"

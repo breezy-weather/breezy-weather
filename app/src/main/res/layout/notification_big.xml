@@ -32,7 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Tuesday" />
 
             <TextView
                 android:id="@+id/notification_big_temp_1"
@@ -68,7 +68,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Tuesday" />
 
             <TextView
                 android:id="@+id/notification_big_temp_2"
@@ -104,7 +104,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Tuesday" />
 
             <TextView
                 android:id="@+id/notification_big_temp_3"
@@ -140,7 +140,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Tuesday" />
 
             <TextView
                 android:id="@+id/notification_big_temp_4"
@@ -176,7 +176,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Tuesday" />
 
             <TextView
                 android:id="@+id/notification_big_temp_5"

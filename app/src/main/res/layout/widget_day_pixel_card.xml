@@ -60,7 +60,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/widget_day_weather"
             style="@style/widget_text_clock"
-            tools:text="12月29日 星期四"
+            tools:text="Thursday, December 29"
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>

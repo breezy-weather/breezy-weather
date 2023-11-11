@@ -205,7 +205,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="Partly Could\n17°/23°"
+                tools:text="Partly Cloudy\n17°/23°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

@@ -39,7 +39,7 @@
                 android:textStyle="bold"
                 android:importantForAccessibility="no"
                 style="@style/title_text"
-                tools:text="西南偏西" />
+                tools:text="West-Southwest" />
 
         </LinearLayout>
 

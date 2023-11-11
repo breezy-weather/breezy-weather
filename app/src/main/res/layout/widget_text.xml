@@ -27,7 +27,7 @@
             android:format24Hour="@string/date_format_widget_long"
             android:format12Hour="@string/date_format_widget_long"
             android:textColor="?android:attr/textColorPrimary"
-            tools:text="12月29日 星期四" />
+            tools:text="Thursday, December 29" />
 
         <TextView
             android:id="@+id/widget_text_weather"
@@ -43,7 +43,7 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             style="@style/widget_content_text"
-            tools:text="Partly Could"
+            tools:text="Partly Cloudy"
             tools:ignore="RtlHardcoded" />
 
         <TextView

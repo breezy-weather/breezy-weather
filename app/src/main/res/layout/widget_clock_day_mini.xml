@@ -196,7 +196,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/little_margin"
                     style="@style/widget_content_text"
-                    tools:text="Partly Cloud"
+                    tools:text="Partly Cloudy"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView

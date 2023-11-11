@@ -138,7 +138,7 @@
                 android:format24Hour="@string/date_format_widget_short"
                 android:format12Hour="@string/date_format_widget_short"
                 style="@style/widget_text_clock"
-                tools:text="11-04 周五"
+                tools:text="11-04 Friday"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -151,7 +151,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text=" - 九月十八"
+                tools:text="September 18"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -167,7 +167,7 @@
                 android:ellipsize="start"
                 android:singleLine="true"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Qingdao 8℃"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -223,7 +223,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="Breeze Wind"
+                tools:text="Breezy Wind"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

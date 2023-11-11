@@ -32,7 +32,7 @@
             android:layout_gravity="center_vertical"
             android:textAlignment="gravity"
             style="@style/content_text"
-            tools:text="Mostly sunny, 28.4 °C\nFeels like 31.3 °C\nPrecipitation: 0 mm"
+            tools:text="Mostly sunny, 28.4°C\nFeels like 31.3°C\nPrecipitation: 0 mm"
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>

@@ -25,7 +25,7 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             style="@style/widget_text_clock"
-            tools:text="11月14日星期六 │ "
+            tools:text="Saturday, November 14th"
             tools:ignore="RelativeOverlap,RtlHardcoded" />
 
         <ImageView

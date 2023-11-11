@@ -44,7 +44,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_1"
@@ -107,7 +107,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_2"
@@ -170,7 +170,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_3"
@@ -233,7 +233,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_4"
@@ -296,7 +296,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_5"
@@ -359,7 +359,7 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_material_you_forecast_dayIcon_6"
@@ -707,7 +707,7 @@
             android:textSize="@dimen/subtitle_text_size"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded"
-            tools:text="青岛市" />
+            tools:text="Qingdao City" />
 
         <ImageView
             android:id="@+id/widget_material_you_forecast_currentIcon"
@@ -802,7 +802,7 @@
                 android:ellipsize="end"
                 android:gravity="end"
                 style="@style/widget_content_text"
-                tools:text="多云转晴"
+                tools:text="Cloudy to clear"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -816,7 +816,7 @@
                 android:gravity="end"
                 android:alpha="0.66"
                 style="@style/widget_subtitle_text"
-                tools:text="体感 34°"
+                tools:text="Somatosensory 34°"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>

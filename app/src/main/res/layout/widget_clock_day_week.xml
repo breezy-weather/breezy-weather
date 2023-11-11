@@ -162,7 +162,7 @@
                 android:format24Hour="@string/date_format_widget_short"
                 android:format12Hour="@string/date_format_widget_short"
                 style="@style/widget_text_clock"
-                tools:text="11-04 周五"
+                tools:text="11-04 Friday"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -179,7 +179,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text=" - 九月十八"
+                tools:text="September 18"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -196,7 +196,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Qingdao 8℃"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -225,7 +225,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周二" />
+                    tools:text="Tuesday" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_1"
@@ -272,7 +272,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周三" />
+                    tools:text="Wednesday" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_2"
@@ -319,7 +319,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周四" />
+                    tools:text="Thursday" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_3"
@@ -366,7 +366,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周五" />
+                    tools:text="Friday" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_4"
@@ -413,7 +413,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周六" />
+                    tools:text="Saturday" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_5"

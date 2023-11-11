@@ -14,7 +14,7 @@
         android:id="@+id/item_weather_daily_value_title"
         android:importantForAccessibility="no"
         style="@style/subtitle_text"
-        tools:text="体感温度" />
+        tools:text="Body Temperature" />
 
     <TextView
         android:id="@+id/item_weather_daily_value_value"

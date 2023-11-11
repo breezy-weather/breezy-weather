@@ -31,7 +31,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 style="@style/widget_title_text"
-                tools:text="青岛市"
+                tools:text="Qingdao City"
                 tools:ignore="RtlHardcoded" />
 
             <LinearLayout
@@ -121,7 +121,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 style="@style/widget_content_text"
-                tools:text="空气 - 优"
+                tools:text="Air - Excellent"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:ellipsize="end"
                 android:alpha="0.66"
                 style="@style/widget_subtitle_text"
-                tools:text="体感 34°"
+                tools:text="Somatosensory 34°"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>

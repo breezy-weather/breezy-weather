@@ -166,7 +166,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
                 style="@style/widget_content_text"
-                tools:text="Partly Could\n21℃"
+                tools:text="Partly Cloudy\n21℃"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -178,7 +178,7 @@
                 android:maxLines="2"
                 android:textAlignment="viewEnd"
                 style="@style/widget_content_text"
-                tools:text="              17°\n              23°"
+                tools:text="17°\n23°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

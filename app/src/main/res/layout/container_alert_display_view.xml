@@ -26,6 +26,6 @@
         android:layout_toStartOf="@id/container_alert_display_view_indicator"
         android:maxLines="1"
         style="@style/subtitle_text"
-        tools:text="大雾黄色预警, 发布于2018-07-10 02:32" />
+        tools:text="Yellow warning for heavy fog, issued on 2018-07-10 02:32" />
 
 </RelativeLayout>

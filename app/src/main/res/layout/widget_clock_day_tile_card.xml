@@ -179,7 +179,7 @@
                         android:maxLines="1"
                         android:textSize="@dimen/widget_content_text_size"
                         style="@style/widget_content_text"
-                        tools:text="Partly Cloud 21℃"
+                        tools:text="Partly Cloudy 21℃"
                         tools:ignore="RtlHardcoded" />
 
                     <TextView
