@@ -145,7 +145,6 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
   * If you are not comfortable writing a GitHub discussion/issue in English, you can ask on the channel if someone can help you in your language.
     * We also have a dedicated help channel in French: [`#breezy-weather-francais:matrix.org`](https://matrix.to/#/#breezy-weather-francais:matrix.org)
   * If you’d prefer a direct channel link instead of a space link, here’s the main Breezy Weather Matrix channel: [`#breezy-weather:matrix.org`](https://matrix.to/#/#breezy-weather:matrix.org)
-* Mastodon account: [`@breezyweather@fosstodon.org`](https://fosstodon.org/@breezyweather)
 
 
 # Status of main requested features
