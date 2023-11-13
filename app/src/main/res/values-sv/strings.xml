@@ -162,7 +162,7 @@
     <string name="temperature_feels_like">Känns som</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="widget_style_rectangle">Rektangel</string>
-    <string name="action_restart">Omstart</string>
+    <string name="action_restart">Starta om</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande Daggpunkt</string>
     <string name="short_saturday">Lör</string>
     <string name="pollen_ragweed">Ambrosia</string>
@@ -302,7 +302,7 @@
     <string name="wind_direction_short_E">O</string>
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>
-    <string name="temperature_average_short">Median</string>
+    <string name="temperature_average_short">Med</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
     <string name="precipitation_between_time">Nederbörd mellan $1 och $2</string>
@@ -375,7 +375,7 @@
     <string name="air_quality_o3_info_consequences">Stor exponering mot ozon kan orsaka andningsproblem, utlösa astma, sänka lungkapaciteten och leda till lungsjukdomar.</string>
     <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en stor komponent i smog. Även om det är samma molekyl som skyddar jorden från UV-strålning i stratosfären så är den skadlig för människors hälsa i marknivå.</string>
     <string name="widget_material_you_current">Material You - Nuvarande</string>
-    <string name="widget_clock_day_details">Klocka + Daglig (Detyaljer)</string>
+    <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från $</string>
     <string name="weather_api_key_required_missing_content">För att använda denna källan behöver du bidra med en API-nyckel.</string>
     <string name="weather_message_data_refresh_failed">Väderdatauppdatering misslyckades</string>
@@ -414,7 +414,7 @@
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
     <string name="air_quality_so2_info_consequences">Exponering mot SO₂ förknippas med astma, sjukhusvistelse och besök hos akutmottagning.</string>
-    <string name="settings_color_light_always">Alltid ljust</string>
+    <string name="settings_color_light_always">Alltid ljus</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
     <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
@@ -469,7 +469,7 @@
     <string name="weather_message_secondary_data_refresh_failed">Väderdatauppdatering från en sekundär väderkälla misslyckades</string>
     <string name="common_weather_text_snow_light">Lätt snö</string>
     <string name="common_weather_text_rain_showers_heavy">Kraftiga regnskurar</string>
-    <string name="settings_color_light">Ljust</string>
+    <string name="settings_color_light">Ljus</string>
     <string name="common_weather_text_rain_snow_mixed">Snöblandat regn</string>
     <string name="settings_background_updates_battery_optimization_summary">Detta är den första åtgärden att vidta när du inte får aviseringar eller widgetar inte uppdateras.</string>
     <string name="widget_subtitle_data_custom">Anpassad</string>
@@ -515,7 +515,7 @@
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
     <string name="weather_api_unauthorized_content">För vissa väderkällor så behöver du ange din egen API-nyckel. Om du redan har angett en så dubbelkolla din API-nyckel.</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
-    <string name="settings_color_dark">Mörkt</string>
+    <string name="settings_color_dark">Mörk</string>
     <string name="notification_precipitation_today">Det kan komma nederbörd i dag.</string>
     <string name="common_weather_text_overcast">Mulet</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nederbörd nattetid för i dag, i morgon, …, 4 dagar senare (%)</string>
@@ -544,7 +544,7 @@
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="unit_inhg">inHg</string>
-    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstrom</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodsystemet, och försvårar för kroppen celler att binda syre. Syrebristen skadar vävnad och celler. Exponering mot kolmonoxid kan orsaka andningsproble, utmattning, yrsel och influensaliknande symptom. Exponering mot höga halter av kolmonoxid kan vara dödligt.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering för nästa dags prognos</string>
@@ -569,7 +569,7 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_bf_voice">på Beauforts skala</string>
     <string name="settings_none">Ingen</string>
-    <string name="settings_color_dark_always">Alltid mörkt</string>
+    <string name="settings_color_dark_always">Alltid mörk</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
     <string name="message_server_timeout">Begäran timade ut</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall-version</string>
@@ -583,7 +583,7 @@
     <string name="weather_api_limit_reached_content">För att kringgå begränsningen, används din egen API-nyckel.</string>
     <string name="null_data_text">Inget</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-    <string name="settings_changes_apply_after_restart">Ändringarna kommer appliceras efter omstart</string>
+    <string name="settings_changes_apply_after_restart">Ändringarna kommer att tillämpas efter omstart</string>
     <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer att kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
     <string name="settings_units_summary">Temperatur, nederbörd, avstånd, hastighet, lufttryck</string>
     <string name="widget_style_tile">Ruta</string>
@@ -639,4 +639,5 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt underkylt duggregn</string>
     <string name="common_weather_text_drizzle_heavy">Kraftigt duggregn</string>
     <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
+    <string name="widget_label_align_end">Högerjustera</string>
 </resources>
