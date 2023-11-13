@@ -550,4 +550,13 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Tipis</string>
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif dan harus menghindari aktivitas di luar ruangan. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan; pertimbangkan untuk menetap di dalam ruangan dan menjadwal ulang aktivitas di luar ruangan.</string>
+    <string name="air_quality_so2_info_consequences">Paparan SO2 dikaitkan dengan kunjungan rumah sakit dan kunjungan ruang darurat karena asma.</string>
+    <string name="weather_minutely_data_by">Data Curah hujan menit demi menit by $</string>
+    <string name="weather_pollen_data_by">Data serbuk sari oleh $</string>
+    <string name="air_quality_so2_info_origin">Dilepaskan secara alami oleh aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk pemanasan domestik, industri dan pembangkit listrik.</string>
+    <string name="weather_air_quality_and_pollen_data_by">Kualitas udara dan data serbuk sari oleh $</string>
+    <string name="air_quality_no2_info_consequences">Paparan nitrogen dioksida dapat mengiritasi dan memperburuk penyakit pernapasan. Selain itu, NO2 adalah prekursor ozon penting, polutan terkait erat dengan asma dan kondisi pernapasan lainnya.</string>
+    <string name="air_quality_co_info_introduction">Karbon monoksida (CO) adalah gas beracun, mudah terbakar yang tidak berwarna, tidak berbau, tidak berasa, dan tidak iritasi.</string>
+    <string name="air_quality_so2_info_introduction">Sulfur dioksida (SO2) adalah gas beracun tanpa warna yang bertanggung jawab atas bau kecokan terbakar.</string>
+    <string name="weather_alert_data_by">Data peringatan oleh $</string>
 </resources>
