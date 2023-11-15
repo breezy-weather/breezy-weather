@@ -423,7 +423,7 @@
     <string name="minutely_forecast">Минутна прогноза</string>
     <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да бисте их видели.</string>
     <string name="precipitation_total">Укупно</string>
-    <string name="temperature_degree_day">Степен дан</string>
+    <string name="temperature_degree_day">Степен дана</string>
     <string name="precipitation_none">Без падавина</string>
     <string name="precipitation_intensity_rainstorm">Кишна олуја</string>
     <string name="air_quality_level_1">Одлично</string>
