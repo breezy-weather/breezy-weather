@@ -648,7 +648,7 @@
     <string name="settings_widgets_gadgetbridge_switch">Invia dati meteo a Gadgetbridge</string>
     <string name="pollen_and_mold">Polline e muffa</string>
     <string name="about_contribution_designer">Designer del logo</string>
-    <string name="settings_widgets_gadgets_title">Gadget</string>
+    <string name="settings_widgets_gadgets_title">Accessori</string>
     <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
     <string name="notification_channel_crash_logs">Crash log</string>
