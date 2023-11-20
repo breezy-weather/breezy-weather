@@ -20,7 +20,7 @@
     <string name="notification_channel_forecast">Previsioni</string>
     <string name="daytime">Giorno</string>
     <string name="nighttime">Notte</string>
-    <string name="temperature_feels_like">Si percepiscono</string>
+    <string name="temperature_feels_like">Sembrano</string>
     <string name="settings_follow_system">Segui il sistema</string>
     <string name="pressure">Pressione</string>
     <string name="visibility">Visibilità</string>
@@ -621,7 +621,7 @@
     <string name="location_search_no_results_advice">Assicurati che la tua ricerca sia scritta correttamente e non troppo specifica. In alternativa, puoi provare un’altra fonte di dati meteorologici che potrebbe produrre risultati di ricerca della posizione diversi.</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: $</string>
     <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
-    <string name="notification_update_error">%1$d aggiornamenti non riusciti</string>
+    <string name="notification_update_error">%1$d aggiornamento/i fallito/i</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale debole o moderato</string>
     <string name="message_parsing_error_content">Assicurati di aver aggiornato l’app alla versione più recente. Il server potrebbe essere temporaneamente non disponibile, in tal caso riprovare più tardi. Se il problema persiste, scarica il registro degli arresti anomali dalle impostazioni di debug e archivia il problema su GitHub.</string>
     <string name="about_dependencies">Dipendenze</string>
