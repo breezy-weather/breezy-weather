@@ -166,6 +166,7 @@ class OpenMeteoService @Inject constructor(
                 location.latitude.toDouble(),
                 location.longitude.toDouble(),
                 airQualityPollenHourly.joinToString(","),
+                forecastDays = 7,
                 pastDays = 1,
             )
         } else {
@@ -228,6 +229,7 @@ class OpenMeteoService @Inject constructor(
                 location.latitude.toDouble(),
                 location.longitude.toDouble(),
                 airQualityPollenHourly.joinToString(","),
+                forecastDays = 7,
                 pastDays = 1,
             )
         } else {
