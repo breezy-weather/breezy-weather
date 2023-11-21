@@ -37,8 +37,10 @@ enum class Language(
             Resources.getSystem().configuration.locale
         }
     ),
+    BOSNIAN("bosnian", Locale("bs")),
     CATALAN("catalan", Locale("ca")),
     CZECH("czech", Locale("cs")),
+    DANISH("danish", Locale("da")),
     GERMAN("german", Locale("de")),
     ENGLISH_AU("english_australia", Locale("en", "AU")),
     ENGLISH_UK("english_britain", Locale("en", "GB")),
@@ -126,8 +128,10 @@ enum class Language(
         fun getInstance(
             value: String
         ) = when (value) {
+            "bosnian" -> BOSNIAN
             "catalan" -> CATALAN
             "czech" -> CZECH
+            "danish" -> DANISH
             "german" -> GERMAN
             "english_australia" -> ENGLISH_AU
             "english_britain" -> ENGLISH_UK

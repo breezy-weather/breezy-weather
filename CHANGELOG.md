@@ -3,6 +3,11 @@
 **Other improvements and fixes**
 - [Open-Meteo] Extend Air quality forecast to 7 days where available
 
+**Translations**
+- Bosanski added (thanks @SecularSteve!)
+- Dansk added (thanks @peetabix!)
+- Translations updated
+
 
 # Version 4.6.11-beta (2023-11-08)
 
