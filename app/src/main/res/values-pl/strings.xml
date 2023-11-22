@@ -363,7 +363,7 @@
     <string name="unit_kph">km/h</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="about_matrix">Serwer Matrix</string>
+    <string name="about_matrix">Pokój Matrix</string>
     <string name="settings_background_updates_refresh_never">Nigdy</string>
     <string name="settings_background_updates_refresh_title">Częstotliwość odświeżania</string>
     <string name="settings_notifications">Powiadomienia</string>
@@ -655,4 +655,5 @@
     <string name="common_weather_text_snow_moderate">Umiarkowany śnieg</string>
     <string name="common_weather_text_snow_showers_light">Lekkie opady śniegu</string>
     <string name="settings_widgets_gadgets_title">Narzędzia</string>
+    <string name="settings_color_app">Podążaj za nami</string>
 </resources>
