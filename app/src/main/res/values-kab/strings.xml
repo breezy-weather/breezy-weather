@@ -19,4 +19,26 @@
     <string name="wind">Aḍu</string>
     <string name="weather_kind_thunder">Rrɛud</string>
     <string name="weather_kind_wind">Aḍu</string>
+    <string name="precipitation_forecast">Ass mi ara d-yeɣli ugeffur</string>
+    <string name="action_about">Γef</string>
+    <string name="daily_forecast">Aswir n wass</string>
+    <string name="action_share">Bḍu</string>
+    <string name="action_see_more">sken-d ugar</string>
+    <string name="action_refresh">Smiren</string>
+    <string name="action_restart">Ales tanekra</string>
+    <string name="ephemeris">Iṭij d wayyur</string>
+    <string name="action_edit">Ẓreg</string>
+    <string name="action_back">Tuɣalin</string>
+    <string name="action_learn_more">Issin ugar</string>
+    <string name="action_undo">Sefsex</string>
+    <string name="action_help">Tallelt</string>
+    <string name="action_search">Nadi</string>
+    <string name="action_delete">Kkes</string>
+    <string name="action_save">Sekles</string>
+    <string name="action_next">Uḍfir</string>
+    <string name="action_settings">Iɣewwaren</string>
+    <string name="action_done">Immed</string>
+    <string name="action_continue">Kemmel</string>
+    <string name="action_cancel">Sesfex</string>
+    <string name="action_close">Mdel</string>
 </resources>
