@@ -648,7 +648,7 @@
     <string name="settings_widgets_gadgets_title">الأدوات</string>
     <string name="settings_widgets_gadgetbridge_switch">إرسال بيانات الطقس إلى GadgetBridge</string>
     <string name="pollen_and_mold">حبوب اللقاح والعفن</string>
-    <string name="settings_color_app">تلقائي</string>
+    <string name="settings_color_app">اتبع التطبيق</string>
     <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">اضغط للفتح</string>
     <string name="notification_channel_crash_logs">سجلات الأعطال</string>
