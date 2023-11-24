@@ -26,8 +26,8 @@
     <string name="short_saturday">Za</string>
     <string name="short_sunday">Zo</string>
     <string name="wind_strength_0">Stil</string>
-    <string name="wind_strength_1">Zwak</string>
-    <string name="wind_strength_2">Zwak</string>
+    <string name="wind_strength_1">Licht lucht</string>
+    <string name="wind_strength_2">Licht briesje</string>
     <string name="wind_strength_3">Matig</string>
     <string name="wind_strength_4">Matig</string>
     <string name="wind_strength_5">Vrij krachtig</string>
@@ -52,24 +52,24 @@
     <string name="about_translators">Vertalers</string>
     <string name="date_format_short">d-M</string>
     <string name="date_format_long">d MMM</string>
-    <string name="date_format_widget_short">EEEE, d MMM</string>
+    <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Lokaliseren op de achtergrond.</string>
-    <string name="location_message_failed_to_locate">Locatie gefaald.</string>
-    <string name="weather_message_data_refresh_failed">Weerdata ophalen mislukt.</string>
-    <string name="widget_label_view_style">Stijl.</string>
-    <string name="widget_label_show_widget_card">Kaartachtergrond.</string>
-    <string name="widget_label_hide_subtitle">Verberg ondertitel.</string>
-    <string name="widget_label_subtitle_data">Ondertiteldata.</string>
-    <string name="widget_label_black_text">Donkere tekst.</string>
-    <string name="location_message_added">Locatie toevoegen gelukt.</string>
-    <string name="location_message_deleted">Verwijderen locatie gelukt.</string>
-    <string name="location_message_list_cannot_be_empty">Er moet één locatie in de lijst staan.</string>
+    <string name="notification_location_in_background">Lokaliseren op achtergrond</string>
+    <string name="location_message_failed_to_locate">Huidige locatie niet gevonden</string>
+    <string name="weather_message_data_refresh_failed">Verversen van weergegevens mislukt</string>
+    <string name="widget_label_view_style">Weergavestijl</string>
+    <string name="widget_label_show_widget_card">Achtergrondkleur</string>
+    <string name="widget_label_hide_subtitle">Ondertitel verbergen</string>
+    <string name="widget_label_subtitle_data">Ondertiteldata</string>
+    <string name="widget_label_black_text">Kleur tekst</string>
+    <string name="location_message_added">Locatie toegevoegd</string>
+    <string name="location_message_deleted">Locatie verwijderd</string>
+    <string name="location_message_list_cannot_be_empty">Locatielijst kan niet leeg zijn</string>
     <string name="location_search_placeholder">Zoek een locatie…</string>
     <string name="location_current_not_found_yet">Nog geen locatie…</string>
-    <string name="settings_changes_apply_after_restart">Wordt van kracht na herstart.</string>
+    <string name="settings_changes_apply_after_restart">Wijzigingen worden van kracht na het opnieuw opstarten</string>
     <!-- action -->
     <string name="alerts">Alarm</string>
     <string name="action_search">Zoek</string>
@@ -87,11 +87,11 @@
     <string name="widget_refreshing">Wachten</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_main_gravity_sensor_switch">Gebruik sensoren.</string>
-    <string name="settings_appearance_language_title">Taal.</string>
-    <string name="settings_notifications_section_forecast">Voorspelling.</string>
-    <string name="settings_appearance_icon_pack_title">Icoonstijl.</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Laat temperatuur zien als klein icoon.</string>
+    <string name="settings_main_gravity_sensor_switch">Zwaartekrachtsensor</string>
+    <string name="settings_appearance_language_title">Taal</string>
+    <string name="settings_notifications_section_forecast">Voorspelling</string>
+    <string name="settings_appearance_icon_pack_title">Icoonstijl</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_light_always">Always licht</string>
     <string name="settings_color_grey">Grijs</string>
@@ -118,7 +118,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Schaduw™</string>
     <string name="temperature_apparent">Uiteraard</string>
-    <string name="temperature_wind_chill">Gevoelstemperatuur</string>
+    <string name="temperature_wind_chill">Windkou</string>
     <string name="temperature_wet_bulb">Natteboltemperatuur</string>
     <string name="temperature_degree_day">Daggraad dag</string>
     <string name="minutely_precipitations">Neerslag per minuut</string>
@@ -175,7 +175,7 @@
     <string name="widget_multi_city">Meerdere steden</string>
     <string name="widget_week_style_3_days">3 dagen</string>
     <string name="settings_location_access_switch_title">Locatietoegang</string>
-    <string name="common_weather_text_overcast">Bewolkt</string>
+    <string name="common_weather_text_overcast">Overbewolkt</string>
     <string name="common_weather_text_rain_freezing">Ijzel</string>
     <string name="common_weather_text_rain_freezing_light">Lichte ijzel</string>
     <string name="common_weather_text_drizzle_freezing">Ijzelende motregen</string>
@@ -288,7 +288,7 @@
     <string name="dialog_permissions_notification_title">Op de hoogte blijven</string>
     <string name="dialog_permissions_notification_content">Tik hier om meldingen over weerwaarschuwingen in te schakelen, of beslis later in Instellingen.</string>
     <string name="unit_mmhg">mmHg</string>
-    <string name="temperature_average_short">Gemiddeld</string>
+    <string name="temperature_average_short">Gem</string>
     <string name="temperature_normal_short">Normaal</string>
     <string name="temperature_normals">Temperatuurnormaal</string>
     <string name="uv_index_0_2">Laag</string>

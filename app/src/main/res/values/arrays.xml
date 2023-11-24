@@ -20,8 +20,10 @@
     <!-- language. -->
     <string-array name="languages">
         <item>@string/settings_follow_system</item>
+        <item>Bosanski</item>
         <item>Català</item>
         <item>Čeština</item>
+        <item>Dansk</item>
         <item>Deutsch</item>
         <item>English (Australia)</item>
         <item>English (United Kingdom)</item>
@@ -62,8 +64,10 @@
     </string-array>
     <string-array name="language_values">
         <item>follow_system</item>
+        <item>bosnian</item>
         <item>catalan</item>
         <item>czech</item>
+        <item>danish</item>
         <item>german</item>
         <item>english_australia</item>
         <item>english_britain</item>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Oratge</string>
+    <string name="app_name">El temps</string>
     <!-- keyword. -->
     <string name="location_current">Ubicació actual</string>
     <string name="location_resident">Ubicació residencial</string>
