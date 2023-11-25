@@ -172,7 +172,7 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Молодий Місяць</string>
     <string name="ephemeris_moonrise_at">Схід Місяця о $</string>
     <string name="ephemeris_moon_phase_new_moon">Новий Місяць</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Зростаючий місяць</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Зростаючий Місяць</string>
     <string name="ephemeris_moon_phase_full_moon">Повний Місяць</string>
     <string name="ephemeris_moon_phase_last_quarter">Остання чверть</string>
     <string name="ephemeris_moon_phase_first_quarter">Перша чверть</string>
@@ -181,7 +181,7 @@
     <string name="ephemeris_moonset_at">Захід Місяця о $</string>
     <string name="nighttime">Вночі</string>
     <string name="daytime">Вдень</string>
-    <string name="hours_of_sun">Годин сонця</string>
+    <string name="hours_of_sun">Годин Сонця</string>
     <string name="pressure">Тиск</string>
     <string name="visibility">Видимість</string>
     <string name="short_wednesday">Ср</string>
