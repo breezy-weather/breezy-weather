@@ -71,4 +71,18 @@
     <string name="wind_strength_4">Moderate brise</string>
     <string name="precipitation_intensity_light">Støvregn</string>
     <string name="wind_strength_5">Frisk brise</string>
+    <string name="uv_index_6_7">Høj</string>
+    <string name="uv_index">UV indeks</string>
+    <string name="wind_strength_9">Stærk kuling</string>
+    <string name="wind_strength_10">Storm</string>
+    <string name="wind_strength_12">Orkan</string>
+    <string name="uv_alert_level">Advarsel</string>
+    <string name="uv_index_8_10">Meget høj</string>
+    <string name="wind_strength_7">Moderat kuling</string>
+    <string name="uv_index_11">Ekstrem</string>
+    <string name="wind_strength_8">Kuling</string>
+    <string name="uv_index_3_5">Moderat</string>
+    <string name="wind_strength_11">Voldsom storm</string>
+    <string name="uv_index_0_2">Lav</string>
+    <string name="wind_strength_1">Let luft</string>
 </resources>
