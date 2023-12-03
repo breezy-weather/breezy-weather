@@ -345,7 +345,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     }
 
     companion object {
-        private const val SWIPE_DISTANCE_RATIO = 0.5
+        private const val SWIPE_DISTANCE_RATIO = 0.2
         private const val SWIPE_RATIO = 0.4f
         private const val NESTED_SCROLLING_RATIO = SWIPE_RATIO // 0.075f
         const val SWIPE_DIRECTION_LEFT = -1
