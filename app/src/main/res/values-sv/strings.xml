@@ -640,4 +640,9 @@
     <string name="common_weather_text_drizzle_heavy">Kraftigt duggregn</string>
     <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
     <string name="widget_label_align_end">Högerjustera</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
+    <string name="notification_location_in_background">Lokaliseras i bakgrunden</string>
+    <string name="settings_color_app">Följ app</string>
+    <string name="unit_mi">mi</string>
+    <string name="settings_widgets_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera Breezy Weather-bakgrundsbild genom att välja \"Live Wallpaper\" i bakgrundsväljaren på startskärmen.</string>
 </resources>
