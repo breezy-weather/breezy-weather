@@ -646,4 +646,5 @@
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
+    <string name="settings_color_app">Automatisch</string>
 </resources>
