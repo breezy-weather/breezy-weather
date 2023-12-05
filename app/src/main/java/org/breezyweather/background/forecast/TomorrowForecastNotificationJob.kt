@@ -24,6 +24,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import cancelNotification
 import org.breezyweather.common.extensions.isRunning
+import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -40,12 +41,7 @@ class TomorrowForecastNotificationJob(
     private val notifier = ForecastNotificationNotifier(context)
 
     override suspend fun doWork(): Result {
-        try {
-            setForeground(getForegroundInfo())
-        } catch (e: IllegalStateException) {
-            LogHelper.log(msg = "Not allowed to set foreground job")
-            e.message?.let { LogHelper.log(msg = it) }
-        }
+        setForegroundSafely()
 
         return try {
             val locationList = LocationEntityRepository.readLocationList()

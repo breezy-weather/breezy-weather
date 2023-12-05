@@ -1,7 +1,11 @@
 # Version 4.6.12-beta (not yet released)
 
-**Other improvements and fixes**
+**Weather sources**
 - [Open-Meteo] Extend Air quality forecast to 7 days where available
+
+**Other improvements and fixes**
+- By default, Breezy Weather will no longer refresh in background if your battery is low. It used to be opt-in. It can still be disabled in settings.
+- Possible improvements to the weather update in background for some devices
 
 **Translations**
 - Bosanski added (thanks @SecularSteve!)

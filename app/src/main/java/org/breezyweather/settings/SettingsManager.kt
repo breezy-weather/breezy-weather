@@ -118,7 +118,7 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putBoolean("refresh_ignore_battery_low", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("refresh_ignore_battery_low", false)
+        get() = config.getBoolean("refresh_ignore_battery_low", true)
 
     var darkMode: DarkMode
         set(value) {

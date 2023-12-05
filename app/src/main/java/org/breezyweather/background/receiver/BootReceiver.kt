@@ -38,7 +38,7 @@ class BootReceiver : BroadcastReceiver() {
                  * We don’t use the return value, but querying the work manager might help bringing back
                  * scheduled workers after the app has been killed/shutdown on some devices
                  */
-                context.workManager.getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
+                context.workManager.getWorkInfosFlow(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
             }
         }
     }

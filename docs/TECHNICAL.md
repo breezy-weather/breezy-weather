@@ -64,7 +64,7 @@ Add the new enum and language technical name in `app/src/main/java/org/breezywea
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=8.4
+./gradlew wrapper --gradle-version=8.5
 ```
 
 
@@ -78,7 +78,7 @@ This section keep track of endpoints and when they were last checked.
 
 ## Open-Meteo
 
-*Last checked: 2023-07-12*
+*Last checked: 2023-12-05*
 
 | Endpoint            | Version  | Notes                                                                                                                                                                                                                              |
 |---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -88,7 +88,6 @@ This section keep track of endpoints and when they were last checked.
 
 Future additional endpoints/improvements for existing endpoints:
 - Reverse geocoding, see [open-meteo/geocoding-api#6](https://github.com/open-meteo/geocoding-api/issues/6)
-- Additional current conditions, see [open-meteo/open-meteo#312](https://github.com/open-meteo/open-meteo/issues/312)
 - Alerts, see [open-meteo/open-meteo#351](https://github.com/open-meteo/open-meteo/issues/351)
 - Moon rise, set and phases, see [open-meteo/open-meteo#87](https://github.com/open-meteo/open-meteo/issues/87)
 - Normals, see [open-meteo/open-meteo#361](https://github.com/open-meteo/open-meteo/issues/361)
@@ -118,7 +117,7 @@ Not yet implemented in app:
 
 ## MET Norway
 
-*Last checked: 2023-07-12*
+*Last checked: 2023-12-05*
 
 | Endpoint          | Version | Notes                                                                                                     |
 |-------------------|---------|-----------------------------------------------------------------------------------------------------------|
@@ -139,7 +138,7 @@ No location search endpoint exists, it uses Open-Meteo instead.
 
 ## OpenWeather
 
-*Last checked: 2023-07-12*
+*Last checked: 2023-12-05*
 
 | Endpoint      | Version | Notes                 |
 |---------------|---------|-----------------------|
@@ -158,20 +157,15 @@ Uses Open-Meteo for location search.
 
 ## Pirate Weather
 
-*Last checked: 2023-07-30*
+*Last checked: 2023-12-05*
 
 See: https://github.com/alexander0042/pirateweather/
 
 | Endpoint    | Version |
 |-------------|---------|
-| Forecast    | v1.5.4  |
+| Forecast    | v1.5.5  |
 
 We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
-
-
-## Microsoft Azure
-
-*TODO*
 
 
 ## HERE
@@ -187,7 +181,7 @@ We should check regularly for additional fields we could use. Latest version che
 
 ## Météo-France
 
-*Last checked: 2023-07-12*
+*Last checked: 2023-12-05*
 
 | Endpoint    | Version |
 |-------------|---------|

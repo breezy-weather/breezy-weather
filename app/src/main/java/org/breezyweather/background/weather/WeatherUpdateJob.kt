@@ -17,6 +17,7 @@
 package org.breezyweather.background.weather
 
 import android.content.Context
+import android.content.pm.ServiceInfo
 import android.os.Build
 import androidx.hilt.work.HiltWorker
 import androidx.work.BackoffPolicy
@@ -48,11 +49,11 @@ import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getUriCompat
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.isRunning
+import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
@@ -98,11 +99,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             return Result.retry()
         }
 
-        try {
-            setForeground(getForegroundInfo())
-        } catch (e: IllegalStateException) {
-            LogHelper.log(msg = "Not allowed to set foreground job")
-        }
+        setForegroundSafely()
 
         // Set the last update time to now
         SettingsManager.getInstance(context).weatherUpdateLastTimestamp = Date().time
@@ -133,6 +130,11 @@ class WeatherUpdateJob @AssistedInject constructor(
         return ForegroundInfo(
             Notifications.ID_WEATHER_PROGRESS,
             notifier.progressNotificationBuilder.build(),
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+            } else {
+                0
+            },
         )
     }
 

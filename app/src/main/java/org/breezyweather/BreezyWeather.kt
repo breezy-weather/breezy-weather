@@ -139,8 +139,8 @@ class BreezyWeather : Application(),
         }
     }
 
-    override fun getWorkManagerConfiguration() =
-        Configuration.Builder()
+    override val workManagerConfiguration
+        get() = Configuration.Builder()
             .setWorkerFactory(workerFactory)
             .build()
 }

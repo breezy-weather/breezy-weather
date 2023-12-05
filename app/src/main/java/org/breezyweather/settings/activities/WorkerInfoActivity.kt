@@ -47,6 +47,8 @@ import kotlinx.coroutines.flow.stateIn
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.GeoViewModel
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
@@ -152,20 +154,17 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
     private val ioCoroutineScope = MainScope()
 
     val finished = workManager
-        .getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.SUCCEEDED, WorkInfo.State.FAILED, WorkInfo.State.CANCELLED))
-        .asFlow()
+        .getWorkInfosFlow(WorkQuery.fromStates(WorkInfo.State.SUCCEEDED, WorkInfo.State.FAILED, WorkInfo.State.CANCELLED))
         .map(::constructString)
         .stateIn(ioCoroutineScope, SharingStarted.WhileSubscribed(), "")
 
     val running = workManager
-        .getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.RUNNING))
-        .asFlow()
+        .getWorkInfosFlow(WorkQuery.fromStates(WorkInfo.State.RUNNING))
         .map(::constructString)
         .stateIn(ioCoroutineScope, SharingStarted.WhileSubscribed(), "")
 
     val enqueued = workManager
-        .getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
-        .asFlow()
+        .getWorkInfosFlow(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
         .map(::constructString)
         .stateIn(ioCoroutineScope, SharingStarted.WhileSubscribed(), "")
 
@@ -180,6 +179,18 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
                     appendLine(" - $it")
                 }
                 appendLine("State: ${workInfo.state}")
+                if (workInfo.state == WorkInfo.State.ENQUEUED) {
+                    appendLine(
+                        "Next scheduled run: ${workInfo.nextScheduleTimeMillis.toDate().getFormattedDate(pattern = "yyyy-MM-dd HH:mm")}",
+                    )
+                    appendLine("Attempt #${workInfo.runAttemptCount + 1}")
+                }
+                if (workInfo.state == WorkInfo.State.CANCELLED
+                    || workInfo.state == WorkInfo.State.FAILED) {
+                    appendLine(
+                        "Stop reason code: ${workInfo.stopReason}",
+                    )
+                }
                 appendLine()
             }
         }
