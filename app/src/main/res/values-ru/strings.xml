@@ -286,7 +286,7 @@
     <string name="unit_ppcm">/м³</string>
     <string name="location_search_weather_source">Источник погоды</string>
     <string name="location_search_change_weather_source">Изменить источник погоды</string>
-    <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха от $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха предоставлены $</string>
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
@@ -326,11 +326,11 @@
     <string name="ephemeris_moonrise_at">Восход луны в $</string>
     <string name="ephemeris_moonset_at">Заход луны в $</string>
     <string name="ephemeris_sunset_at">Закат солнца в $</string>
-    <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d |</string>
-    <string name="weather_data_by">Данные от $</string>
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_widget_short">EEE, d MMM</string>
+    <string name="date_format_widget_long">EEEE, d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE, d MMM|</string>
+    <string name="weather_data_by">Данные предоставлены $</string>
     <string name="uv_index_0_2">Низкий</string>
     <string name="pollen_ragweed">Амброзия</string>
     <string name="ephemeris_sunrise_at">Восход солнца в $</string>
@@ -648,7 +648,7 @@
     <string name="settings_widgets_gadgets_title">Гаджеты</string>
     <string name="settings_widgets_gadgetbridge_switch">Отправить данные о погоде в Gadgetbridge</string>
     <string name="pollen_and_mold">Пыльца и плесень</string>
-    <string name="settings_color_app">Подпишитесь на нас</string>
+    <string name="settings_color_app">Как в приложении</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналы аварийных закрытий сохранены</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Нажмите, чтобы открыть</string>
     <string name="notification_channel_crash_logs">Журналы аварийных закрытий</string>
