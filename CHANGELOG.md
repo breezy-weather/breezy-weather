@@ -1,4 +1,4 @@
-# Version 4.6.12-beta (not yet released)
+# Version 4.6.12-beta (2023-12-05)
 
 **Weather sources**
 - [Open-Meteo] Extend Air quality forecast to 7 days where available
