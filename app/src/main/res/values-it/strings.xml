@@ -652,4 +652,5 @@
     <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
     <string name="notification_channel_crash_logs">Crash log</string>
+    <string name="settings_color_app">Segui app</string>
 </resources>
