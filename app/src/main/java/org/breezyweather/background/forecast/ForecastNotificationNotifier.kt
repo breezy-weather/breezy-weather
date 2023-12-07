@@ -20,12 +20,15 @@ import android.app.Notification
 import android.content.Context
 import android.graphics.drawable.Icon
 import android.os.Build
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import cancelNotification
 import notificationBuilder
 import notify
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
@@ -98,16 +101,12 @@ class ForecastNotificationNotifier(private val context: Context) {
                     ).toBitmap()
                 )
             }
-            setContentTitle(
-                context.getString(R.string.daytime)
-                        + " " + daily.day?.weatherText
-                        + " " + daily.day?.temperature?.getTemperature(context, temperatureUnit, 0)
-            )
-            setContentText(
-                context.getString(R.string.nighttime)
-                        + " " + daily.night?.weatherText
-                        + " " + daily.night?.temperature?.getTemperature(context, temperatureUnit, 0)
-            )
+
+            val remoteViews = getBigView(daily, temperatureUnit)
+            setCustomBigContentView(remoteViews)
+
+            setContentTitle(getDayString(daily, temperatureUnit))
+            setContentText(getNightString(daily, temperatureUnit))
             setContentIntent(
                 AbstractRemoteViewsPresenter.getWeatherPendingIntent(
                     context,
@@ -137,4 +136,25 @@ class ForecastNotificationNotifier(private val context: Context) {
             notification
         )
     }
+
+    private fun getBigView(daily: Daily, temperatureUnit: TemperatureUnit): RemoteViews {
+        val view = RemoteViews(context.packageName, R.layout.notification_forecast)
+        view.setTextViewText(
+            R.id.notification_forecast_day, getDayString(daily, temperatureUnit)
+        )
+        view.setTextViewText(
+            R.id.notification_forecast_night, getNightString(daily, temperatureUnit)
+        )
+        return view
+    }
+
+    private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
+        context.getString(R.string.daytime) +
+                " " + daily.day?.weatherText +
+                " " + daily.day?.temperature?.getTemperature(context, temperatureUnit, 0)
+
+    private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
+        context.getString(R.string.nighttime) +
+                " " + daily.night?.weatherText +
+                " " + daily.night?.temperature?.getTemperature(context, temperatureUnit, 0)
 }
