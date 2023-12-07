@@ -9,6 +9,8 @@
 
     <color name="colorMainCardBackground">#1C1B1F</color>
 
+    <color name="colorNotificationSecondary">@color/secondary_text_default_material_dark</color>
+
     <!-- widget S. -->
 
     <color name="colorWidgetM3TextPrimary">@android:color/white</color>
