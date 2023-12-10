@@ -33,7 +33,7 @@
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades att hitta en matchande plats</string>
-    <string name="air_quality_pm_explanations_consequences">Partiklar en den mest häslovådliga formen av luftförorening pga deras förmåga att fastna långt ner i lungorna och vidare ut i blodsystemet och hjärnan, som kan orsaka hjärt och lungsjukdomar och bidra till en för tidig död.</string>
+    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftförorening p.g.a. deras förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
@@ -460,7 +460,7 @@
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Försäkra dig om att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt otillgänglig, i så fall vänligen försök igen senare. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
-    <string name="common_weather_text_snow_heavy">Mycket snö</string>
+    <string name="common_weather_text_snow_heavy">Kraftigt snöfall</string>
     <string name="settings_weather_source_main">Huvudkälla</string>
     <string name="settings_debug_dump_crash_logs_summary">Sparar felloggar i en fil för att dela med utvecklarna</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur dagtid för i dag, i morgon, …, 4 dagar senare (℃/℉)</string>
@@ -532,7 +532,7 @@
     <string name="settings_weather_sources_per_location_summary">Anpassa väderdatakällorna för denna plats</string>
     <string name="settings_widgets_gadgetbridge_switch">Skicka väderdata till Gadgetbridge</string>
     <string name="notification_refreshed_at">Uppdaterades vid</string>
-    <string name="common_weather_text_clear_sky">Klar himmel</string>
+    <string name="common_weather_text_clear_sky">Klart</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag-/nattläge för platser</string>
     <string name="settings_main_daily_trends_title">Dagstrender</string>
     <string name="settings_background_updates_worker_info_summary">Senast körd: $</string>
@@ -639,7 +639,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt underkylt duggregn</string>
     <string name="common_weather_text_drizzle_heavy">Kraftigt duggregn</string>
     <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
-    <string name="widget_label_align_end">Högerjustera</string>
+    <string name="widget_label_align_end">Justera mot slutet</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
     <string name="notification_location_in_background">Lokaliseras i bakgrunden</string>
     <string name="settings_color_app">Följ app</string>
