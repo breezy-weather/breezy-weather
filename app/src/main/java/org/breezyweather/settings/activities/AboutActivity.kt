@@ -123,6 +123,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("WangDaYeeeeee", "https://github.com/WangDaYeeeeee", R.string.about_contribution_WangDaYeeeeee),
         ContributorItem("Cod3d.", "https://github.com/Cod3dDOT", R.string.about_contribution_weather_source),
         ContributorItem("Romain Théry", "https://github.com/rthery"),
+        ContributorItem("danielzhang130", "https://github.com/danielzhang130"),
         ContributorItem("majjejjam", "https://github.com/majjejjam"),
         ContributorItem("Mark Bestavros", "https://github.com/mbestavros"),
         ContributorItem("Anthony Dégrange", "https://anthony-degrange-design.fr/", R.string.about_contribution_designer)
