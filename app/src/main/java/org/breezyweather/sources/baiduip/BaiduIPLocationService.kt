@@ -22,6 +22,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -54,10 +55,14 @@ class BaiduIPLocationService @Inject constructor(
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
-        return mApi.getLocation(apikey, "gcj02")
+        return mApi.getLocation(getApiKeyOrDefault(), "gcj02")
             .compose(SchedulerTransformer.create())
             .map { t ->
                 if (t.status != 0) {
+                    if (t.status == 302) {
+                        throw ApiLimitReachedException()
+                    }
+
                     // 0 = OK
                     // 1 = IP not supported (outside China)
                     // Don’t know about other cases, doing != 0 for safety

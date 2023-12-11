@@ -1,3 +1,10 @@
+# Version 4.6.13-beta (not yet released)
+
+**Other improvements and fixes**
+- [Baidu IP location] Fix not working with default API key
+- [Baidu IP location] Show a more specific error when API limit is reached
+
+
 # Version 4.6.12-beta (2023-12-05)
 
 **Weather sources**
