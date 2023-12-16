@@ -37,7 +37,7 @@ jobs:
         with:
           arguments: assembleStandardDebug
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: BreezyWeather_standardDebug.apk
           path: app/build/outputs/apk/standard/debug/app-standard-universal-debug.apk
