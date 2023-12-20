@@ -132,7 +132,7 @@
     <string name="uv_alert_level">Uyarı</string>
     <string name="air_quality_level_1">Harika</string>
     <string name="air_quality_level_1_description">Hava kalitesi çoğu kişi için idealdir; normal açık hava etkinliklerinizin tadını çıkarın.</string>
-    <string name="air_quality_level_2">Orta</string>
+    <string name="air_quality_level_2">Makul</string>
     <string name="air_quality_level_3">Kötü</string>
     <string name="air_quality_level_2_description">Hava kalitesi genellikle çoğu kişi için kabul edilebilir seviyededir. Ancak hassas kişiler uzun süre maruz kalma sebebiyle küçük ya da orta dereceli rahatsızlıklar yaşayabilirler.</string>
     <string name="air_quality_level_5">Çok sağlıksız</string>
@@ -440,7 +440,7 @@
     <string name="temperature_average_short">Ort</string>
     <string name="temperature_normals">Sıcaklık normalleri</string>
     <string name="air_quality_no2_info_consequences">Nitrojen dioksite maruz kalmak solunum yollarını tahriş edip solunum yolu hastalıklarını ağırlaştırabilir. Ayrıca NO₂ astım gibi solunum rahatsızlıklarıyla yakından ilişkili bir kirletici olan önemli bir ozon öncüsüdür.</string>
-    <string name="weather_minutely_data_by">$ tarafından dakika dakika yağış bilgisi</string>
+    <string name="weather_minutely_data_by">$ tarafından dakika dakika yağış verileri</string>
     <string name="weather_api_limit_reached_title">API istek limitine ulaşıldı</string>
     <string name="weather_api_unauthorized_title">API erişimi reddedildi</string>
     <string name="location_results_by">$ tarafından sağlanan konum bilgileri</string>
@@ -465,7 +465,7 @@
     <string name="settings_widgets_week_icon_mode_title">Haftalık görünümlerde gösterilecek simge</string>
     <string name="settings_widgets_section_notification_widget">Bildirim widget’ı</string>
     <string name="settings_widgets_notification_temp_icon_switch">Durum çubuğu simgesinde dereceyi göster</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
+    <string name="settings_widgets_gadgets_title">Araçlar</string>
     <string name="unit_kn">kn</string>
     <string name="settings_widgets_gadgetbridge_switch">Gadgetbridge’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
@@ -620,7 +620,7 @@
     <string name="weather_api_limit_reached_content">Bu limite takılmamak için kendi API anahtarınızı ekleyin.</string>
     <string name="weather_kind_haze">Pus</string>
     <string name="weather_kind_thunder">Gök gürültüsü</string>
-    <string name="weather_kind_thunderstorm">Fırtına</string>
+    <string name="weather_kind_thunderstorm">Gök gürültülü fırtına</string>
     <string name="settings_notifications_precipitations_title">Yağış bildirimleri</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Sonraki gün tahmin bildirimi zamanı</string>
     <string name="settings_color_dark_always">Sürekli karanlık</string>
@@ -647,4 +647,8 @@
     <string name="unit_cmph">cm/sa</string>
     <string name="settings_location_access_background_title">Arkaplanda konum erişimi</string>
     <string name="settings_location_access_precise_title">GPS sensörü kullanımı</string>
+    <string name="settings_color_app">Uygulama ayarını kullan</string>
+    <string name="settings_debug_dump_crash_logs_saved">Kilitlenme günlükleri kaydedildi</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Açmak için dokunun</string>
+    <string name="notification_channel_crash_logs">Kilitlenme günlükleri</string>
 </resources>
