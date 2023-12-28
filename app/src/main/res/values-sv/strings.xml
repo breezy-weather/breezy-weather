@@ -196,7 +196,7 @@
     <string name="action_undo">Ångra</string>
     <string name="pollen_level_1">Väldigt låg</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
-    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, vegetation och hav. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, t.ex. trafik och transporter, industrier, kraftverk, byggen, förbränning eller jordbruk.</string>
+    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, t.ex. trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_short_SW">SV</string>
     <string name="wind_gusts">Vindbyar</string>
