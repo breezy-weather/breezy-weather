@@ -1,5 +1,5 @@
 [versions]
-aboutlib_version = "10.9.2"
+aboutlib_version = "10.10.0"
 accompanist = "0.32.0"
 activity = "1.8.2"
 adaptiveiconview = "v0.0.3"
@@ -10,7 +10,7 @@ coil = "2.5.0"
 compose = "1.5.4"
 compose-material3 = "1.1.2"
 core-ktx = "1.12.0"
-dagger = "2.49"
+dagger = "2.50"
 expandabletextcompose = "2.0.0"
 gms-location = "21.0.1"
 hilt = "1.1.0"
@@ -39,7 +39,7 @@ swiperefreshlayout = "1.1.0"
 work-runtime = "2.9.0"
 
 [libraries]
-aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose", version.ref = "aboutlib_version" }
+aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutlib_version" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
