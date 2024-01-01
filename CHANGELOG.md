@@ -5,6 +5,9 @@
 - [Baidu IP location] Fix not working with default API key
 - [Baidu IP location] Show a more specific error when API limit is reached
 
+**Translations**
+- Translations updated
+
 
 # Version 4.6.12-beta (2023-12-05)
 
