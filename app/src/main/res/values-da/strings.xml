@@ -16,7 +16,7 @@
     <string name="short_friday">Fre</string>
     <string name="short_tuesday">Tir</string>
     <string name="temperature_wind_chill">Vindafkøling</string>
-    <string name="alerts">Advarsler</string>
+    <string name="alerts">Varsler</string>
     <string name="short_today">Idag</string>
     <string name="of_clock">:00</string>
     <string name="app_name">Vejr</string>
@@ -54,7 +54,7 @@
     <string name="wind_direction_short_NE">NØ</string>
     <string name="wind_direction">Vindretning</string>
     <string name="wind_direction_short_NW">NV</string>
-    <string name="temperature_degree_day">Grad day</string>
+    <string name="temperature_degree_day">Grad dag</string>
     <string name="precipitation_snow">Sne</string>
     <string name="alerts_count">$ vejr varsler</string>
     <string name="wind_strength_2">Let brise</string>
