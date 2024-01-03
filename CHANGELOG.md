@@ -1,4 +1,4 @@
-# Version 4.6.13-beta (not yet released)
+# Version 4.6.13-beta (2023-01-03)
 
 **Other improvements and fixes**
 - Compute wet bulb temperature from approximate formula when data is missing
