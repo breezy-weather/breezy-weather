@@ -1,6 +1,7 @@
 # Version 4.6.13-beta (not yet released)
 
 **Other improvements and fixes**
+- Compute wet bulb temperature from approximate formula when data is missing
 - Daily and tomorrow notifications: allow to expand to see full text (thanks @danielzhang130!)
 - [Baidu IP location] Fix not working with default API key
 - [Baidu IP location] Show a more specific error when API limit is reached

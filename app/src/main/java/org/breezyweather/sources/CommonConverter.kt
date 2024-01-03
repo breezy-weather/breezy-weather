@@ -53,6 +53,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.math.atan
 import kotlin.math.ln
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -381,7 +382,7 @@ fun computeMissingHourlyData(
         if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null) {
             hourly.copy(
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature?.toDouble(), hourly.relativeHumidity?.toDouble()),
-                temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed)
+                temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
             )
         } else hourly
     }
@@ -407,12 +408,14 @@ private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Fl
 
 fun completeTemperatureWithComputedData(
     temperature: Temperature?,
-    windSpeed: Float?
+    windSpeed: Float?,
+    relativeHumidity: Float?
 ): Temperature? {
-    if (temperature?.temperature == null || temperature.windChillTemperature != null || windSpeed == null) return temperature
+    if (temperature?.temperature == null || temperature.windChillTemperature != null && temperature.wetBulbTemperature != null) return temperature
 
     return temperature.copy(
-        windChillTemperature = computeWindChillTemperature(temperature.temperature.toDouble(), windSpeed.toDouble()),
+        windChillTemperature = temperature.windChillTemperature ?: computeWindChillTemperature(temperature.temperature.toDouble(), windSpeed?.toDouble()),
+        wetBulbTemperature = temperature.wetBulbTemperature ?: computeWetBulbTemperature(temperature.temperature.toDouble(), relativeHumidity?.toDouble()),
     )
 }
 
@@ -429,6 +432,24 @@ private fun computeWindChillTemperature(temperature: Double?, windSpeed: Double?
     if (temperature == null || windSpeed == null || temperature > 10 || windSpeed <= 4.8) return null
 
     return (13.12 + (0.6215 * temperature) - (11.37 * windSpeed.pow(0.16)) + (0.3965 * temperature * windSpeed.pow(0.16))).toFloat()
+}
+
+/**
+ * Compute wet bulb from temperature and humidity
+ * Based on formula from https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
+ * TODO: Unit test
+ *
+ * @param temperature in °C
+ * @param relativeHumidity in %
+ */
+private fun computeWetBulbTemperature(temperature: Double?, relativeHumidity: Double?): Float? {
+    if (temperature == null || relativeHumidity == null) return null
+
+    return (temperature * atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5))
+        + atan(temperature + relativeHumidity)
+        - atan(relativeHumidity - 1.676331)
+        + 0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity)
+        - 4.686035).toFloat()
 }
 
 /**
@@ -1203,7 +1224,8 @@ fun completeCurrentFromTodayDailyAndHourly(
     val newTemperature = completeCurrentTemperatureFromHourly(
         newCurrent.temperature,
         hourly.temperature,
-        newWind?.speed
+        newWind?.speed,
+        newRelativeHumidity
     )
     val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null
         || newCurrent.temperature?.temperature != null) {
@@ -1234,7 +1256,8 @@ fun completeCurrentFromTodayDailyAndHourly(
 private fun completeCurrentTemperatureFromHourly(
     initialTemperature: Temperature?,
     hourlyTemperature: Temperature?,
-    windSpeed: Float?
+    windSpeed: Float?,
+    relativeHumidity: Float?
 ): Temperature? {
     if (hourlyTemperature == null) return initialTemperature
     val newTemperature = initialTemperature ?: Temperature()
@@ -1243,13 +1266,17 @@ private fun completeCurrentTemperatureFromHourly(
         // If current data is available, we compute this over hourly windChill
         computeWindChillTemperature(newTemperature.temperature.toDouble(), windSpeed?.toDouble())
     } else hourlyTemperature.windChillTemperature
+    val newWetBulb = newTemperature.wetBulbTemperature ?: if (newTemperature.temperature != null) {
+        // If current data is available, we compute this over hourly wetBulb
+        computeWetBulbTemperature(newTemperature.temperature.toDouble(), relativeHumidity?.toDouble())
+    } else hourlyTemperature.wetBulbTemperature
     return newTemperature.copy(
         temperature = newTemperature.temperature ?: hourlyTemperature.temperature,
         realFeelTemperature = newTemperature.realFeelTemperature ?: hourlyTemperature.realFeelTemperature,
         realFeelShaderTemperature = newTemperature.realFeelShaderTemperature ?: hourlyTemperature.realFeelShaderTemperature,
         apparentTemperature = newTemperature.apparentTemperature ?: hourlyTemperature.apparentTemperature,
         windChillTemperature = newWindChill,
-        wetBulbTemperature = newTemperature.wetBulbTemperature ?: hourlyTemperature.wetBulbTemperature,
+        wetBulbTemperature = newWetBulb,
     )
 }
 
