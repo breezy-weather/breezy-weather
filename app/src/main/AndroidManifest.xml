@@ -25,6 +25,9 @@
 
     <!-- tiles. -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"
+        android:minSdkVersion="34" />
 
     <!-- notification. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
@@ -339,6 +342,7 @@
         <!-- service -->
         <service
             android:name=".background.interfaces.TileService"
+            android:foregroundServiceType="specialUse"
             android:label="@string/breezy_weather"
             android:icon="@drawable/weather_clear_day_mini_light"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
@@ -346,10 +350,14 @@
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="tile" />
         </service>
 
         <service
             android:name=".wallpaper.MaterialLiveWallpaperService"
+            android:foregroundServiceType="specialUse"
             android:permission="android.permission.BIND_WALLPAPER"
             android:exported="true">
             <intent-filter>
@@ -358,6 +366,9 @@
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/live_wallpaper" />
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="wallpaper" />
         </service>
 
         <receiver

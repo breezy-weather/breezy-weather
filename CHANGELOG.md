@@ -9,6 +9,9 @@
 **Translations**
 - Translations updated
 
+**Technical**
+- Targets SDK 34 (Android 14)
+
 
 # Version 4.6.12-beta (2023-12-05)
 
