@@ -367,7 +367,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
 
 fun getNormals(timeZone: TimeZone, normalsResult: MfNormalsResult): Normals? {
     val currentMonth = Date().toCalendarWithTimeZone(timeZone)[Calendar.MONTH]
-    val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth - 1)
+    val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
     return if (normalsStats != null) {
         Normals(
             month = currentMonth,

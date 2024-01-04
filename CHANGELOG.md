@@ -1,3 +1,9 @@
+# Version 4.6.14-beta (not yet released)
+
+**Weather sources**
+- [Météo-France] Fix normals (missing in January, shifted by one month on other months)
+
+
 # Version 4.6.13-beta (2023-01-03)
 
 **Other improvements and fixes**
