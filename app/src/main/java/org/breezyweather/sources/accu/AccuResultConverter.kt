@@ -53,6 +53,7 @@ import org.breezyweather.sources.accu.json.AccuForecastDailyResult
 import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
 import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
+import org.breezyweather.sources.accu.json.AccuValue
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -152,15 +153,15 @@ private fun getDailyList(
                 weatherPhase = forecasts.Day?.ShortPhrase,
                 weatherCode = getWeatherCode(forecasts.Day?.Icon),
                 temperature = Temperature(
-                    temperature = forecasts.Temperature?.Maximum?.Value?.toFloat(),
-                    realFeelTemperature = forecasts.RealFeelTemperature?.Maximum?.Value?.toFloat(),
-                    realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Maximum?.Value?.toFloat()
+                    temperature = getTemperatureInCelsius(forecasts.Temperature?.Maximum),
+                    realFeelTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Maximum),
+                    realFeelShaderTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperatureShade?.Maximum)
                 ),
                 precipitation = Precipitation(
-                    total = forecasts.Day?.TotalLiquid?.Value?.toFloat(),
-                    rain = forecasts.Day?.Rain?.Value?.toFloat(),
-                    snow = forecasts.Day?.Snow?.Value?.toFloat(),
-                    ice = forecasts.Day?.Ice?.Value?.toFloat()
+                    total = getQuantityInMillimeters(forecasts.Day?.TotalLiquid),
+                    rain = getQuantityInMillimeters(forecasts.Day?.Rain),
+                    snow = getQuantityInMillimeters(forecasts.Day?.Snow),
+                    ice = getQuantityInMillimeters(forecasts.Day?.Ice)
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = forecasts.Day?.PrecipitationProbability?.toFloat(),
@@ -177,8 +178,8 @@ private fun getDailyList(
                 ),
                 wind = Wind(
                     degree = forecasts.Day?.Wind?.Direction?.Degrees?.toFloat(),
-                    speed = forecasts.Day?.Wind?.Speed?.Value?.div(3.6)?.toFloat(),
-                    gusts = forecasts.Day?.WindGust?.Speed?.Value?.div(3.6)?.toFloat()
+                    speed = getSpeedInMetersPerSecond(forecasts.Day?.Wind?.Speed),
+                    gusts = getSpeedInMetersPerSecond(forecasts.Day?.WindGust?.Speed)
                 ),
                 cloudCover = forecasts.Day?.CloudCover
             ),
@@ -187,15 +188,15 @@ private fun getDailyList(
                 weatherPhase = forecasts.Night?.ShortPhrase,
                 weatherCode = getWeatherCode(forecasts.Night?.Icon),
                 temperature = Temperature(
-                    temperature = forecasts.Temperature?.Minimum?.Value?.toFloat(),
-                    realFeelTemperature = forecasts.RealFeelTemperature?.Minimum?.Value?.toFloat(),
-                    realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Minimum?.Value?.toFloat()
+                    temperature = getTemperatureInCelsius(forecasts.Temperature?.Minimum),
+                    realFeelTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Minimum),
+                    realFeelShaderTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperatureShade?.Minimum)
                 ),
                 precipitation = Precipitation(
-                    total = forecasts.Night?.TotalLiquid?.Value?.toFloat(),
-                    rain = forecasts.Night?.Rain?.Value?.toFloat(),
-                    snow = forecasts.Night?.Snow?.Value?.toFloat(),
-                    ice = forecasts.Night?.Ice?.Value?.toFloat()
+                    total = getQuantityInMillimeters(forecasts.Night?.TotalLiquid),
+                    rain = getQuantityInMillimeters(forecasts.Night?.Rain),
+                    snow = getQuantityInMillimeters(forecasts.Night?.Snow),
+                    ice = getQuantityInMillimeters(forecasts.Night?.Ice)
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = forecasts.Night?.PrecipitationProbability?.toFloat(),
@@ -212,14 +213,14 @@ private fun getDailyList(
                 ),
                 wind = Wind(
                     degree = forecasts.Night?.Wind?.Direction?.Degrees?.toFloat(),
-                    speed = forecasts.Night?.Wind?.Speed?.Value?.div(3.6)?.toFloat(),
-                    gusts = forecasts.Night?.WindGust?.Speed?.Value?.div(3.6)?.toFloat()
+                    speed = getSpeedInMetersPerSecond(forecasts.Night?.Wind?.Speed),
+                    gusts = getSpeedInMetersPerSecond(forecasts.Night?.WindGust?.Speed)
                 ),
                 cloudCover = forecasts.Night?.CloudCover
             ),
             degreeDay = DegreeDay(
-                heating = forecasts.DegreeDaySummary?.Heating?.Value?.toFloat(),
-                cooling = forecasts.DegreeDaySummary?.Cooling?.Value?.toFloat()
+                heating = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Heating),
+                cooling = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Cooling)
             ),
             sun = Astro(
                 riseDate = forecasts.Sun?.EpochRise?.times(1000)?.toDate(),
@@ -292,16 +293,16 @@ private fun getHourlyList(
             weatherText = result.IconPhrase,
             weatherCode = getWeatherCode(result.WeatherIcon),
             temperature = Temperature(
-                temperature = result.Temperature?.Value?.toFloat(),
-                realFeelTemperature = result.RealFeelTemperature?.Value?.toFloat(),
-                realFeelShaderTemperature = result.RealFeelTemperatureShade?.Value?.toFloat(),
-                wetBulbTemperature = result.WetBulbTemperature?.Value?.toFloat()
+                temperature = getTemperatureInCelsius(result.Temperature),
+                realFeelTemperature = getTemperatureInCelsius(result.RealFeelTemperature),
+                realFeelShaderTemperature = getTemperatureInCelsius(result.RealFeelTemperatureShade),
+                wetBulbTemperature = getTemperatureInCelsius(result.WetBulbTemperature)
             ),
             precipitation = Precipitation(
-                total = result.TotalLiquid?.Value?.toFloat(),
-                rain = result.Rain?.Value?.toFloat(),
-                snow = result.Snow?.Value?.toFloat(),
-                ice = result.Ice?.Value?.toFloat()
+                total = getQuantityInMillimeters(result.TotalLiquid),
+                rain = getQuantityInMillimeters(result.Rain),
+                snow = getQuantityInMillimeters(result.Snow),
+                ice = getQuantityInMillimeters(result.Ice)
             ),
             precipitationProbability = PrecipitationProbability(
                 total = result.PrecipitationProbability?.toFloat(),
@@ -312,15 +313,15 @@ private fun getHourlyList(
             ),
             wind = Wind(
                 degree = result.Wind?.Direction?.Degrees?.toFloat(),
-                speed = result.Wind?.Speed?.Value?.div(3.6)?.toFloat(),
-                gusts = result.WindGust?.Speed?.Value?.div(3.6)?.toFloat()
+                speed = getSpeedInMetersPerSecond(result.Wind?.Speed),
+                gusts = getSpeedInMetersPerSecond(result.WindGust?.Speed)
             ),
             airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
             uV = UV(index = result.UVIndex?.toFloat()),
             relativeHumidity = result.RelativeHumidity?.toFloat(),
-            dewPoint = result.DewPoint?.Value?.toFloat(),
+            dewPoint = getTemperatureInCelsius(result.DewPoint),
             cloudCover = result.CloudCover,
-            visibility = result.Visibility?.Value?.times(1000)?.toFloat()
+            visibility = getDistanceInMeters(result.Visibility)
         )
     }
 }
@@ -425,4 +426,39 @@ fun convertSecondary(
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)
     )
+}
+
+fun getTemperatureInCelsius(value: AccuValue?): Float? {
+    return if (value?.UnitType == 18) { // F
+        value.Value?.minus(32)?.div(1.8)?.toFloat()
+    } else value?.Value?.toFloat()
+}
+
+fun getDegreeDayInCelsius(value: AccuValue?): Float? {
+    return if (value?.UnitType == 18) { // F
+        value.Value?.div(1.8)?.toFloat()
+    } else value?.Value?.toFloat()
+}
+
+fun getSpeedInMetersPerSecond(value: AccuValue?): Float? {
+    return if (value?.UnitType == 9) { // mi/h
+        value.Value?.div(2.23694)?.toFloat()
+    } else value?.Value?.div(3.6)?.toFloat()
+}
+
+fun getDistanceInMeters(value: AccuValue?): Float? {
+    return when (value?.UnitType) {
+        2 -> value.Value?.times(1609.344)?.toFloat() // mi
+        0 -> value.Value?.div(3.28084)?.toFloat() // ft
+        6 -> value.Value?.times(1000)?.toFloat() // km
+        else -> value?.Value?.toFloat() // m
+    }
+}
+
+fun getQuantityInMillimeters(value: AccuValue?): Float? {
+    return when (value?.UnitType) {
+        1 -> value.Value?.times(25.4)?.toFloat() // in
+        4 -> value.Value?.times(10)?.toFloat() // cm
+        else -> value?.Value?.toFloat() // mm
+    }
 }

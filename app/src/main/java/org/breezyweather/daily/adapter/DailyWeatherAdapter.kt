@@ -99,7 +99,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                     mModelList.add(
                         ValueIcon(
                             context.getString(R.string.temperature_degree_day_heating),
-                            temperatureUnit.getValueText(context, daily.degreeDay.heating),
+                            temperatureUnit.getDegreeDayValueText(context, daily.degreeDay.heating),
                             R.drawable.ic_mode_heat
                         )
                     )
@@ -107,7 +107,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                     mModelList.add(
                         ValueIcon(
                             context.getString(R.string.temperature_degree_day_cooling),
-                            temperatureUnit.getValueText(context, daily.degreeDay.cooling),
+                            temperatureUnit.getDegreeDayValueText(context, daily.degreeDay.cooling),
                             R.drawable.ic_mode_cool
                         )
                     )

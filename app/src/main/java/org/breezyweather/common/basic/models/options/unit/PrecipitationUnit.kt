@@ -25,12 +25,13 @@ import org.breezyweather.common.extensions.isRtl
 // actual precipitation = precipitation(mm) * factor.
 enum class PrecipitationUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
+    override val convertUnit: (Float) -> Float,
+    val decimals: Int = 1
 ): UnitEnum<Float> {
 
     MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }),
     CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
-    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }),
+    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
     LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
@@ -72,7 +73,7 @@ enum class PrecipitationUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 1,
+        decimalNumber = decimals,
         rtl = rtl
     )
 
@@ -89,7 +90,7 @@ enum class PrecipitationUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 1,
+        decimalNumber = decimals,
         rtl = rtl
     )
 }
@@ -97,12 +98,13 @@ enum class PrecipitationUnit(
 // actual precipitation intensity = precipitation intensity(mm/h) * factor.
 enum class PrecipitationIntensityUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
+    override val convertUnit: (Float) -> Float,
+    val decimals: Int = 1
 ): UnitEnum<Float> {
 
     MMPH("mmph", { valueInDefaultUnit -> valueInDefaultUnit }),
     CMPH("cmph", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
-    INPH("inph", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }),
+    INPH("inph", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
     LPSQMPH("lpsqmph", { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
@@ -129,7 +131,7 @@ enum class PrecipitationIntensityUnit(
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
+    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimals)!!
 
     override fun getValueText(
         context: Context,
@@ -144,7 +146,7 @@ enum class PrecipitationIntensityUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 1,
+        decimalNumber = decimals,
         rtl = rtl
     )
 
@@ -161,7 +163,7 @@ enum class PrecipitationIntensityUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 1,
+        decimalNumber = decimals,
         rtl = rtl
     )
 }

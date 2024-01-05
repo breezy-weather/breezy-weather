@@ -25,12 +25,13 @@ import org.breezyweather.common.extensions.isRtl
 
 enum class TemperatureUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
+    override val convertUnit: (Float) -> Float,
+    val convertDegreeDayUnit: (Float) -> Float
 ): UnitEnum<Float> {
 
-    C("c", { valueInDefaultUnit -> valueInDefaultUnit }),
-    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8f) }),
-    K("k", { valueInDefaultUnit -> 273.15f + valueInDefaultUnit });
+    C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
+    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8f) }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8f) }),
+    K("k", { valueInDefaultUnit -> 273.15f + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
         fun getInstance(
@@ -66,6 +67,8 @@ enum class TemperatureUnit(
 
     override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
 
+    fun getDegreeDayValueWithoutUnit(valueInDefaultUnit: Float) = convertDegreeDayUnit(valueInDefaultUnit)
+
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Float,
@@ -84,6 +87,35 @@ enum class TemperatureUnit(
     )
 
     override fun getValueText(
+        context: Context,
+        valueInDefaultUnit: Float,
+        rtl: Boolean
+    ) = Utils.getValueText(
+        context = context,
+        enum = this,
+        valueInDefaultUnit = valueInDefaultUnit,
+        decimalNumber = 1,
+        rtl = rtl
+    )
+
+    fun getDegreeDayValueText(
+        context: Context,
+        valueInDefaultUnit: Float,
+    ) = if (context.isRtl) {
+        (BidiFormatter
+            .getInstance()
+            .unicodeWrap(
+                Utils.formatFloat(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+            )
+                + "\u202f"
+                + Utils.getName(context, this))
+    } else {
+        (Utils.formatFloat(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+                + "\u202f"
+                + Utils.getName(context, this))
+    }
+
+    fun getDegreeDayValueText(
         context: Context,
         valueInDefaultUnit: Float,
         rtl: Boolean

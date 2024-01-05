@@ -23,6 +23,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
@@ -106,7 +107,7 @@ class AccuService @Inject constructor(
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
 
         val languageCode = SettingsManager.getInstance(context).language.code
-        //val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
+        val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
         val current = mApi.getCurrent(
             location.cityId,
             apiKey,
@@ -119,7 +120,7 @@ class AccuService @Inject constructor(
             apiKey,
             languageCode,
             details = true,
-            metric = true // TODO
+            metric = metric
         )
         val hourly = mApi.getHourly(
             hours.id,
@@ -127,7 +128,7 @@ class AccuService @Inject constructor(
             apiKey,
             languageCode,
             details = true,
-            metric = true // TODO
+            metric = metric
         )
         val minute = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
             && mApi is AccuEnterpriseApi

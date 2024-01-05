@@ -1,7 +1,13 @@
 # Version 4.6.14-beta (not yet released)
 
 **Weather sources**
+- [AccuWeather] Fix snow quantity being 10 times lower
+- [AccuWeather] Request texts in Imperial units if precipitation unit in app is configured as inch
 - [Météo-France] Fix normals (missing in January, shifted by one month on other months)
+
+**Other improvements and fixes**
+- Fix incorrect degree day in Fahrenheit
+- Show 2 decimals instead of 1 when precipitation unit is inch
 
 
 # Version 4.6.13-beta (2023-01-03)
