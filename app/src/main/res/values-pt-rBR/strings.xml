@@ -663,4 +663,7 @@
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
     <string name="common_weather_text_snow_showers_light">Nevasca fraca</string>
     <string name="settings_color_app">Siga o app</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>
+    <string name="notification_channel_crash_logs">Logs de travamento</string>
+    <string name="settings_debug_dump_crash_logs_saved">Logs de travamento salvo</string>
 </resources>
