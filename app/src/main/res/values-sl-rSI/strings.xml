@@ -177,4 +177,16 @@
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
     <string name="precipitation_probability">Verjetnost padavin</string>
+    <string name="air_quality_level_1">Odlično</string>
+    <string name="air_quality_level_2">Zmerno</string>
+    <string name="air_quality_level_3">Slabo</string>
+    <string name="air_quality_level_2_description">Kakovost zraka je na splošno sprejemljiva za večino posameznikov. Občutljive skupine ljudi pa lahko opazijo blage do zmerne simptome ob dolgotrajnejši izpostavljenosti.</string>
+    <string name="air_quality_level_3_description">Zrak je dosegel visoko raven onesnaženosti in ni zdrav za občutljive skupine ljudi. Zmanjšajte čas na prostem, če opazite simptome, kot so oteženo dihanje ali draženje v grlu.</string>
+    <string name="air_quality_level_1_description">Kakovost zraka je idealna za večino posameznikov. Uživajte v svojih dejavnostih na prostem.</string>
+    <string name="air_quality_level_4_description">Občutljivi ljudje lahko takoj opazijo učinke na zdravje. Zdravi ljudje lahko opazijo oteženo dihanje in draženje v grlu po dolgotrajnejši izpostavljenosti. Omejite aktivnosti na prostem.</string>
+    <string name="air_quality_level_5_description">Občutljivi ljudje takoj čutijo učinke na zdravje in morajo omejiti aktivnost na prostem. Zdravi ljudje bodo verjetno opazili oteženo dihanje in draženje v grlu. Razmislite o tem, da bi ostali v notranjih prostorih in prestavili aktivnosti na prostem na drugič.</string>
+    <string name="air_quality_level_6_description">Kakršna koli izpostavljenost zraku, tudi za nekaj minut, lahko vodi do resnih zdravstvenih učinkov za vse. Izogibajte se aktivnostim na prostem.</string>
+    <string name="air_quality_level_4">Nezdravo</string>
+    <string name="air_quality_level_5">Zelo nezdravo</string>
+    <string name="air_quality_level_6">Nevarno</string>
 </resources>
