@@ -23,7 +23,7 @@
     <string name="wind_strength">Snaga vjetra</string>
     <string name="hourly_forecast">Satna prognoza</string>
     <string name="short_thursday">Čet</string>
-    <string name="wind_strength_0">Mirno</string>
+    <string name="wind_strength_0">Tišina</string>
     <string name="temperature_normals">Normale temperature</string>
     <string name="pollen">Pelud i Alergeni</string>
     <string name="precipitation_intensity_light">Rosa</string>
@@ -67,4 +67,28 @@
     <string name="wind">Vjetar</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="minutely_forecast">Minutna prognoza</string>
+    <string name="wind_strength_2">Povjetarac</string>
+    <string name="wind_strength_4">Umjereni vjetar</string>
+    <string name="wind_strength_5">Umjereno jaki vjetar</string>
+    <string name="wind_strength_6">Jaki vjetar</string>
+    <string name="wind_strength_7">Žestoki vjetar</string>
+    <string name="wind_strength_9">Jaki olujni vjetar</string>
+    <string name="wind_strength_10">Orkanski vjetar</string>
+    <string name="air_quality_level_2_description">Kvalitet zraka je uglavnom prihvatljiv za većinu osoba. Međutim, osjetljive grupe mogu osjetiti blage do umjerene simptome u slučaju dugotrajnog izlaganja.</string>
+    <string name="air_quality_level_3">Nepovoljno</string>
+    <string name="air_quality_level_4">Nezdravo</string>
+    <string name="air_quality_level_4_description">Osjetljive grupe mogu odmah osjetiti efekte štetne po zdravlje. Zdrave osobe mogu iskusiti otežano disanje i iritaciju grla u slučaju dugotrajnog izlaganja. Ograničite aktivnosti na otvorenom.</string>
+    <string name="air_quality_level_5">Veoma nezdravo</string>
+    <string name="air_quality_level_6">Opasno</string>
+    <string name="air_quality_level_6_description">Svako izlaganje zraku, čak i na par minuta, može imati ozbiljne štetne efekte po zdravlje svih osoba. Izbjegavajte aktivnosti na otvorenom.</string>
+    <string name="wind_strength_11">Jaki orkanski vjetar</string>
+    <string name="wind_strength_12">Orkan</string>
+    <string name="air_quality_level_1_description">Kvalitet zraka je idealan za većinu osoba, uživajte u uobičajenim aktivnostima na otvorenom.</string>
+    <string name="air_quality_level_1">Odlično</string>
+    <string name="air_quality_level_2">Zadovoljavajuće</string>
+    <string name="air_quality_level_3_description">Visok nivo zagađenja zraka, štetno za zdravlje osoba iz osjetljivih grupa. Smanjite boravak na otvorenom ako osjetite simptome kao što je otežano disanje ili iritacija grla.</string>
+    <string name="air_quality_level_5_description">Osjetljive grupe će odmah osjetiti efekte štetne po zdravlje i trebaju izbjegavati aktivnosti na otvorenom. Zdrave osobe će vjerovatno iskusiti otežano disanje i iritaciju grla, razmislite o ostanku kod kuće i izmjeni rasporeda aktivnosti na otvorenom.</string>
+    <string name="wind_strength_1">Lahor</string>
+    <string name="wind_strength_3">Slabi vjetar</string>
+    <string name="wind_strength_8">Olujni vjetar</string>
 </resources>
