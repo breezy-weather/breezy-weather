@@ -10,6 +10,10 @@
 - Show 2 decimals instead of 1 when precipitation unit is inch
 - Fix air quality index being always shown as 250 when index > 250
 
+**Translations**
+- Initial translation added for Hindi (thanks Chandra Mohan Jha!)
+- Translations updated
+
 
 # Version 4.6.13-beta (2023-01-03)
 

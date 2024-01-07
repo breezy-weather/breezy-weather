@@ -74,6 +74,7 @@ enum class Language(
     UKRAINIAN("ukrainian", Locale("uk")),
     ARABIC("arabic", Locale("ar")),
     KURDISH_SORANI("kurdish_sorani", Locale("ckb")),
+    HINDI("hindi", Locale("hi")),
     KOREAN("korean", Locale("ko")),
     JAPANESE("japanese", Locale("ja")),
     CHINESE("chinese", Locale("zh", "CN")),
@@ -165,6 +166,7 @@ enum class Language(
             "ukrainian" -> UKRAINIAN
             "arabic" -> ARABIC
             "kurdish_sorani" -> KURDISH_SORANI
+            "hindi" -> HINDI
             "korean" -> KOREAN
             "japanese" -> JAPANESE
             "chinese" -> CHINESE
