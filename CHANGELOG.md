@@ -8,6 +8,7 @@
 **Other improvements and fixes**
 - Fix incorrect degree day in Fahrenheit
 - Show 2 decimals instead of 1 when precipitation unit is inch
+- Fix air quality index being always shown as 250 when index > 250
 
 
 # Version 4.6.13-beta (2023-01-03)

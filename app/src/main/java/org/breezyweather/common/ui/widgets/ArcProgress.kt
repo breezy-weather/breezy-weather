@@ -45,6 +45,7 @@ class ArcProgress @JvmOverloads constructor(
     private val mRectF = RectF()
     private var mArcBottomHeight = 0f
     private var mProgress: Float
+    private var mProgressMaxed: Float
     private var mMax: Float
     private val mArcAngle: Float
     private val mProgressWidth: Float
@@ -78,6 +79,7 @@ class ArcProgress @JvmOverloads constructor(
         val attributes = context.theme
             .obtainStyledAttributes(attrs, R.styleable.ArcProgress, defStyleAttr, 0)
         mProgress = attributes.getInt(R.styleable.ArcProgress_progress, 0).toFloat()
+        mProgressMaxed = attributes.getInt(R.styleable.ArcProgress_progress, 0).toFloat()
         mMax = attributes.getInt(R.styleable.ArcProgress_max, 100).toFloat()
         mArcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f)
         mProgressWidth = attributes.getDimension(
@@ -129,11 +131,13 @@ class ArcProgress @JvmOverloads constructor(
         get() = mProgress
         set(progress) {
             mProgress = progress
-            if (mProgress > max) {
-                mProgress = max
+            mProgressMaxed = progress
+            if (mProgressMaxed > max) {
+                mProgressMaxed = max
             }
             invalidate()
         }
+
     var max: Float
         get() = mMax
         set(max) {
@@ -230,10 +234,10 @@ class ArcProgress @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val startAngle = 270 - mArcAngle / 2f
-        val progressSweepAngle = (1.0 * mProgress / max * mArcAngle).toFloat()
+        val progressSweepAngle = (1.0 * mProgressMaxed / max * mArcAngle).toFloat()
         val progressEndAngle = startAngle + progressSweepAngle
         val deltaAngle = (mProgressWidth / 2 / Math.PI / (mRectF.width() / 2) * 180).toFloat()
-        if (mProgress > 0) {
+        if (mProgressMaxed > 0) {
             ensureShadowShader()
             mShadowPaint.setShader(mShaderWrapper.shader)
             if (progressEndAngle + deltaAngle >= 360) {
@@ -255,7 +259,7 @@ class ArcProgress @JvmOverloads constructor(
         }
         mProgressPaint.color = mBackgroundColor
         canvas.drawArc(mRectF, startAngle, mArcAngle, false, mProgressPaint)
-        if (mProgress > 0) {
+        if (mProgressMaxed > 0) {
             mProgressPaint.color = mProgressColor
             canvas.drawArc(mRectF, startAngle, progressSweepAngle, false, mProgressPaint)
         }
