@@ -1,4 +1,4 @@
-# Version 4.6.14-beta (not yet released)
+# Version 4.6.14-beta (2023-01-07)
 
 **Weather sources**
 - [AccuWeather] Fix snow quantity being 10 times lower
