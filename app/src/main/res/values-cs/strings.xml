@@ -376,7 +376,7 @@
     <string name="settings_widgets_notification_style_title">Styl</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">inch/h</string>
+    <string name="unit_inph">palec/h</string>
     <string name="common_weather_text_mainly_clear">Skoro jasno</string>
     <string name="weather_refresh_skipped_already_recently_updated">Nedávno aktualizováno</string>
     <string name="weather_api_unauthorized_content">U některých zdrojů dat o počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
@@ -486,7 +486,7 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_in">inch</string>
+    <string name="unit_in">palec</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
