@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="short_yesterday">Heri</string>
+    <string name="short_today">Hodie</string>
+    <string name="short_tomorrow">Dmn</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
+</resources>
