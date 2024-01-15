@@ -11,7 +11,7 @@
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
     <string name="uv_index_6_7">Visoko</string>
     <string name="location_search_change_weather_source">Promijeni izvor prognoze</string>
-    <string name="precipitation_thunderstorm">Grmljavinsko nevrijeme</string>
+    <string name="precipitation_thunderstorm">Oluja s grmljavinom</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
@@ -80,7 +80,7 @@
     <string name="minutely_precipitations">Padaline iz minute u minutu</string>
     <string name="temperature_wet_bulb">Mokar termometar</string>
     <string name="short_tomorrow">Sutra</string>
-    <string name="air_quality">Kakvoća zraka</string>
+    <string name="air_quality">Kvaliteta zraka</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Lunarni kalendar</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
@@ -125,7 +125,7 @@
     <string name="settings_debug_dump_crash_logs_summary">Sprema zapisnike grešaka u datoteku za dijeljenje sa programerima</string>
     <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
-    <string name="air_quality_level_1_description">Kakvoća zraka je idealna za većinu pojedinaca; Uživajte normalne vanjske aktivnosti.</string>
+    <string name="air_quality_level_1_description">Kvaliteta zraka je idealna za većinu osoba; uživajte u normalnim vanjskim aktivnostima.</string>
     <string name="message_source_not_installed_error_content">Izvor više nije dostupan; molimo uklonite lokaciju i postavite ju sa drugim izvorom.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
     <string name="settings_notifications_summary">Vremenska upozorenja, padaline, prognoza</string>
@@ -142,7 +142,7 @@
     <string name="weather_source_accu_preference_days_10">10 dana</string>
     <string name="settings_background_updates_battery_optimization_summary">Ovo je prva stvar koju trebate pokušati kada ne primate obavijesti ili se widgeti ne osvježavaju.</string>
     <string name="pollen_level_2">Nisko</string>
-    <string name="air_quality_level_5">Jako nezdravo</string>
+    <string name="air_quality_level_5">Vrlo nezdravo</string>
     <string name="precipitation_none">Nema padalina</string>
     <string name="settings_units_temperature">Jedinica temperature</string>
     <string name="widget_subtitle_data_custom">Prilagođeno</string>
@@ -195,7 +195,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Posebne upute po proizvođačima</string>
     <string name="settings_main_cards_title">Kartice</string>
     <string name="action_add_from_map">Dodajte sa mape</string>
-    <string name="air_quality_index">Indeks Kakvoće Zraka</string>
+    <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
     <string name="short_thursday">Čet</string>
     <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>
@@ -264,7 +264,7 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Trenutna točka kondenziranja</string>
     <string name="short_saturday">Sub</string>
     <string name="pollen_ragweed">Ambrozija</string>
-    <string name="ephemeris">Sunce i Mjesec</string>
+    <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="settings_main_summary">Redoslijed kartica, prikazane stavke, animacije</string>
     <string name="widget_week">Tjedno</string>
@@ -430,7 +430,7 @@
     <string name="settings_units_pressure">Jedinica tlaka</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="weather_api_key_required_missing_content">Kako biste koristili ovaj izvor, morate priložiti API ključ.</string>
-    <string name="alerts_count">$ Vremenska upozorenja</string>
+    <string name="alerts_count">$ vremenska upozorenja</string>
     <string name="wind_strength_2">Povjetarac</string>
     <string name="action_done">Gotovo</string>
     <string name="pollen_level_0">Nema</string>
@@ -461,7 +461,7 @@
     <string name="location_search_no_results">$1 ne može pronaći $2</string>
     <string name="widget_label_subtitle_data">Podatci titlova</string>
     <string name="wind_direction_short_N">S</string>
-    <string name="air_quality_level_2_description">Kakvoća zraka je većinski prihvatljiva za većinu pojedinaca. Međutim, osjetljive grupe mogu osjetiti blage ili umjerene simptome uslijed duže izloženosti.</string>
+    <string name="air_quality_level_2_description">Kvaliteta zraka je u glavnom prihvatljiva za većinu osoba. Međutim, osjetljive grupe mogu osjetiti blage ili umjerene simptome uslijed duže izloženosti.</string>
     <string name="pollen_grass">Trava</string>
     <string name="settings_location_access_switch_summaryOn">Dopušteno. Možete dodati svoju trenutnu lokaciju kao lokaciju.</string>
     <string name="wind_direction_short_E">I</string>
@@ -566,7 +566,7 @@
     <string name="weather_kind_haze">Izmaglica</string>
     <string name="about_contributors">Doprinositelji</string>
     <string name="unit_mmph_voice">Milimetara po satu</string>
-    <string name="weather_kind_thunderstorm">Grmljavinsko nevrijeme</string>
+    <string name="weather_kind_thunderstorm">Oluja s grmljavinom</string>
     <string name="common_weather_text_rain_light">Lagana kiša</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_fog">Magla</string>
