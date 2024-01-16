@@ -62,7 +62,7 @@
     <string name="action_about">O</string>
     <string name="weather_minutely_data_by">Padaline iz minute u minutu: $</string>
     <string name="weather_source_accu_preference_days_5">5 dana</string>
-    <string name="air_quality_level_1">Odlično</string>
+    <string name="air_quality_level_1">Izvrsno</string>
     <string name="widget_label_show_widget_card_alpha">Prozirnost</string>
     <string name="location_message_permission_missing">Nedostaje dopuštenje pristupu lokaciji</string>
     <string name="location_resident_location_summaryOn">Omogućeno. Skriveno dok ste unutar $ trenutne lokacije.</string>
@@ -100,7 +100,7 @@
     <string name="wind_direction_short_W">Z</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Dnevni opis</string>
     <string name="visibility">Vidljivost</string>
-    <string name="air_quality_level_2">Dobro</string>
+    <string name="air_quality_level_2">Prosječno</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Noćna prognoza danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -125,7 +125,7 @@
     <string name="settings_debug_dump_crash_logs_summary">Sprema zapisnike grešaka u datoteku za dijeljenje sa programerima</string>
     <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
-    <string name="air_quality_level_1_description">Kvaliteta zraka je idealna za većinu osoba; uživajte u normalnim vanjskim aktivnostima.</string>
+    <string name="air_quality_level_1_description">Kvaliteta zraka savršena je za većinu osoba. Uživajte u uobičajenim aktivnostima na otvorenom.</string>
     <string name="message_source_not_installed_error_content">Izvor više nije dostupan; molimo uklonite lokaciju i postavite ju sa drugim izvorom.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
     <string name="settings_notifications_summary">Vremenska upozorenja, padaline, prognoza</string>
@@ -166,7 +166,7 @@
     <string name="weather_refresh_skipped_already_recently_updated">Već nedavno ažurirano</string>
     <string name="wind_strength_7">Umjerena bura</string>
     <string name="widget_text">Tekst</string>
-    <string name="air_quality_level_3_description">Zrak je dosegnuo visoku razinu zagađenosti te nije zdrav za osjetljive grupe. Smanjite vrijeme provedeno vani ako osjećate simptome kao što su poteškoće disanja ili nadražljivost grla.</string>
+    <string name="air_quality_level_3_description">U zraku je visoka razina onečišćenja i nije zdrav za osjetljive skupine. Smanjite vrijeme provedeno na otvorenom ako osjetite simptome kao što su otežano disanje i iritacija grla.</string>
     <string name="precipitation_probability">Mogućnost padalina</string>
     <string name="weather_message_invalid_location">Neispravna lokacija, molimo obrišite te ju dodajte ponovo</string>
     <string name="widget_subtitle_data_aqi">Kvaliteta zraka</string>
@@ -187,7 +187,7 @@
     <string name="dialog_permissions_location_background_content">Kako biste dozvolili aplikaciji da pristupi lokaciji u pozadini, tako da može vidjeti promjene lokacije i pružiti vam ispravnu prognozu, molimo postavite pristup lokaciji na “Dopusti uvijek”.</string>
     <string name="air_quality_so2_voice">Sumporov dioksid</string>
     <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona su vidljive kroz periode sunčanog vremena.</string>
-    <string name="air_quality_level_6_description">Bilo kakva izloženost zraku, čak i na par minuta, može dovesti do ozbiljnih zdravstvenih problema kod svih. Izbjegavajte vanjske aktivnosti.</string>
+    <string name="air_quality_level_6_description">Izloženost zraku, čak i na nekoliko minuta, može imati ozbiljne zdravstvene posljedice za sve. Izbjegavajte aktivnosti na otvorenom.</string>
     <string name="settings_main_background_animation_enabled">Omogućeno</string>
     <string name="widget_custom_subtitle_keyword_al_description">Upozorenja</string>
     <string name="action_see_more">Vidi više</string>
@@ -421,7 +421,7 @@
     <string name="settings_debug">Otklanjanje pogrešaka</string>
     <string name="settings_main_cards_fade_in_switch">Nestajanje kartica</string>
     <string name="ephemeris_moonset_at">Zalazak Mjeseca u $</string>
-    <string name="air_quality_level_4_description">Osjetljive grupe mogu odmah osjetiti zdravstvene utjecaje. Zdravi pojedinci mogu osjetiti poteškoće s disanjem i nadražljivost grla uslijed duže izloženosti. Ograničite vanjsku aktivnost.</string>
+    <string name="air_quality_level_4_description">Osjetljive skupine mogu odmah osjetiti zdravstvene učinke. Zdrave osobe možda će otežano disati i osjetiti iritaciju grla ako budu dulje izložene. Ograničite aktivnosti na otvorenom.</string>
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_info_title">Ugljikov monoksid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
@@ -461,7 +461,7 @@
     <string name="location_search_no_results">$1 ne može pronaći $2</string>
     <string name="widget_label_subtitle_data">Podatci titlova</string>
     <string name="wind_direction_short_N">S</string>
-    <string name="air_quality_level_2_description">Kvaliteta zraka je u glavnom prihvatljiva za većinu osoba. Međutim, osjetljive grupe mogu osjetiti blage ili umjerene simptome uslijed duže izloženosti.</string>
+    <string name="air_quality_level_2_description">Kvaliteta zraka uglavnom je prihvatljiva za većinu osoba. Međutim, osjetljive skupine ljudi mogu osjetiti simptome manje do srednje jačine ako budu dulje izložene.</string>
     <string name="pollen_grass">Trava</string>
     <string name="settings_location_access_switch_summaryOn">Dopušteno. Možete dodati svoju trenutnu lokaciju kao lokaciju.</string>
     <string name="wind_direction_short_E">I</string>
@@ -483,7 +483,7 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Vrijeme obavijesti sutrašnje prognoze</string>
-    <string name="air_quality_level_5_description">Osjetljive grupe će odmah osjetiti zdravstvene utjecaje te trebaju izbjegavati vanjsku aktivnost. Zdravi pojedinci imaju veće šanse osjetiti poteškoće s disanjem i nadražljivost grla; Razmotrite ostajanje unutra i odgađanje vanjskih aktivnosti.</string>
+    <string name="air_quality_level_5_description">Osjetljive skupine odmah će osjetiti zdravstvene učinke, pa trebaju izbjegavati aktivnosti na otvorenom. Zdrave osobe vjerojatno će otežano disati i osjetiti iritaciju grla. Preporučujemo da ostanete u zatvorenom prostoru i odgodite aktivnosti na otvorenom.</string>
     <string name="minutely_forecast">Prognoza po minuti</string>
     <string name="widget_clock_day_week">Sat + Dnevno + Tjedno</string>
     <string name="unit_celsius_short">°</string>
