@@ -33,7 +33,7 @@
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades att hitta en matchande plats</string>
-    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftförorening p.g.a. deras förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
+    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftföroreningar p.g.a. deras förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
