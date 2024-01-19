@@ -44,13 +44,13 @@
     <string name="short_tuesday">Wt</string>
     <string name="short_wednesday">Śr</string>
     <string name="short_thursday">Czw</string>
-    <string name="short_friday">Pią</string>
+    <string name="short_friday">Pt</string>
     <string name="short_saturday">Sob</string>
     <string name="short_sunday">Niedz</string>
     <string name="temperature_apparent">Pozorna temperatura</string>
     <string name="temperature_wind_chill">Chłód</string>
     <string name="temperature_wet_bulb">Temperatura termometru mokrego</string>
-    <string name="temperature_degree_day">Degree day</string>
+    <string name="temperature_degree_day">Stopień ogrzewania dobowego</string>
     <string name="precipitation_total">Ogółem</string>
     <string name="precipitation_thunderstorm">Burza</string>
     <string name="precipitation_rain">Deszcz</string>
@@ -90,7 +90,7 @@
     <string name="minutely_forecast">Minutowa prognoza</string>
     <string name="precipitation_forecast">Prognoza opadów</string>
     <string name="air_quality">Jakość powietrza</string>
-    <string name="pollen">Alergeny</string>
+    <string name="pollen">Pyłki</string>
     <string name="details">Szczegóły</string>
     <string name="ephemeris">Słońce i księżyc</string>
     <string name="action_next">Następny</string>
@@ -110,7 +110,7 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">Lokalizacja w tle</string>
-    <string name="location_message_failed_to_locate">Lokalizacja nieuzyskana</string>
+    <string name="location_message_failed_to_locate">Nie udało się znaleźć bieżącej lokalizacji</string>
     <string name="weather_message_data_refresh_failed">Pobranie danych pogodowych nie powiodło się</string>
     <string name="location_dialog_failed_to_locate_title">Nie można poprawnie ustalić lokalizacji\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
@@ -167,8 +167,8 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Dzisiejsza faza księżyca, Tmw, …, 4 dni później</string>
     <string name="widget_live_wallpaper_weather_kind">Pogoda</string>
     <string name="widget_live_wallpaper_day_night_type">Czas</string>
-    <string name="location_message_added">Pomyślnie dodano lokalizację</string>
-    <string name="location_message_deleted">Pomyślnie usunięto lokalizację</string>
+    <string name="location_message_added">Dodano lokalizację</string>
+    <string name="location_message_deleted">Usunięto lokalizację</string>
     <string name="location_message_list_cannot_be_empty">Lista lokalizacji nie może być pusta</string>
     <string name="location_search_placeholder">Wyszukaj lokalizację…</string>
     <string name="location_current_not_found_yet">Aktualna lokalizacja nie została jeszcze znaleziona…</string>
@@ -176,7 +176,7 @@
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Zaktualizowano w tle</string>
-    <string name="notification_precipitation_today">Dzisiaj mogą być opady.</string>
+    <string name="notification_precipitation_today">Dzisiaj mogą w wystąpić opady.</string>
     <string name="notification_precipitation_short_term">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
     <string name="location_resident_message">Ustaw jako miasto zamieszkania</string>
     <string name="location_resident_dialog">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.
@@ -254,7 +254,7 @@
     <string name="common_weather_text_snow">Śnieg</string>
     <string name="weather_kind_hail">Grad</string>
     <string name="common_weather_text_fog">Mgła</string>
-    <string name="weather_kind_haze">Mgiełka</string>
+    <string name="weather_kind_haze">Lekka mgła</string>
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
     <string name="weather_kind_wind">Wiatr</string>
@@ -293,7 +293,7 @@
     <string name="weather_source_openweather_version_2_5">Wersja 2.5</string>
     <string name="weather_source_openweather_version_3_0">Wersja 3.0</string>
     <string name="locations">Lokalizacje</string>
-    <string name="widget_style_mini">Mini</string>
+    <string name="widget_style_mini">Mały</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -391,7 +391,7 @@
     <string name="unit_inhg">inHg</string>
     <string name="air_quality_level_4">Niezdrowa</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_inph">inch/h</string>
+    <string name="unit_inph">cal/h</string>
     <string name="unit_m_voice">Metry</string>
     <string name="unit_ft_voice">Stopa</string>
     <string name="unit_hpa">hPa</string>
@@ -449,7 +449,7 @@
     <string name="widget_material_you_current">Material You - Aktualnie</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optymalizacja baterii jest już wyłączona.</string>
     <string name="location_message_search_failed">Wyszukiwanie lokalizacji nie powiodło się</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Już niedawno zaktualizowano</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Niedawno zaktualizowano</string>
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
     <string name="dialog_permissions_location_title">Dostęp do informacji o lokalizacji</string>
     <string name="message_parsing_error_title">Nie udało się przeanalizować danych pogodowych</string>
@@ -484,7 +484,7 @@
     <string name="settings_background_updates_worker_info_summary">Ostatnie uruchomienie: $</string>
     <string name="settings_location_access_permission_already_granted">Uprawnienie już udzielone</string>
     <string name="settings_location_access_background_title">Dostęp do lokalizacji w tle</string>
-    <string name="weather_api_unauthorized_title">Nieautoryzowany dostęp do API</string>
+    <string name="weather_api_unauthorized_title">Brak autoryzacji dostępu do API</string>
     <string name="weather_message_invalid_location">Nieprawidłowa lokalizacja, proszę usuń ją i dodaj ponownie</string>
     <string name="action_help_me_choose">Pomóż mi wybrać</string>
     <string name="dialog_permissions_location_background_content">Aby umożliwić aplikacji dostęp do informacji o lokalizacji w tle, abyśmy mogli zauważać zmiany lokalizacji i dostarczać Tobie prawidłowe dane pogodowe, ustaw dostęp do lokalizacji na „Zawsze zezwalaj”.</string>
@@ -533,7 +533,7 @@
     <string name="settings_appearance_summary">Język, tryb ciemny, pakiet ikon, jednostki</string>
     <string name="settings_main_cards_fade_in_switch">Animacja pojawiania się kart</string>
     <string name="settings_main_background_animation_title">Animacja tła</string>
-    <string name="common_weather_text_snow_grains">Ziarna śniegu</string>
+    <string name="common_weather_text_snow_grains">Kryształki śniegu</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Mgła szadziowa</string>
     <string name="unit_mgpcum_voice">Miligramów na metr sześcienny</string>
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest zarówno sieć urządzenia, jak i dostawcy GPS.</string>
@@ -610,12 +610,12 @@
     <string name="about_contact">Kontakt</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">w skali Beauforta</string>
-    <string name="common_weather_text_rain_showers_light">Lekki prysznic</string>
+    <string name="common_weather_text_rain_showers_light">Lekkie opady</string>
     <string name="common_weather_text_rain_showers_moderate">Średnia ulewa</string>
     <string name="common_weather_text_rain_showers_heavy">Ulewa</string>
     <string name="weather_message_unsupported_feature">Źródło nie obsługuje jednej z żądanych funkcji</string>
     <string name="common_weather_text_rain_heavy">Ulewa</string>
-    <string name="temperature_average_short">środek</string>
+    <string name="temperature_average_short">Średnio</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Normy temperaturowe</string>
     <string name="weather_normals_data_by">Dane dotyczące norm temperaturowych podane przez $</string>
@@ -630,7 +630,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Silny śnieg z deszczem</string>
     <string name="pollen_and_mold">Pyłki i pleśń</string>
     <string name="common_weather_text_drizzle_freezing_light">Lekka marznąca mżawka</string>
-    <string name="metno_weather_text_andthunder">$ i grzmoty</string>
+    <string name="metno_weather_text_andthunder">$ z grzmotami</string>
     <string name="common_weather_text_drizzle">Mżawka</string>
     <string name="common_weather_text_snow_heavy">Silny śnieg</string>
     <string name="common_weather_text_rain_freezing_heavy">Silny marznący deszcz</string>
@@ -642,7 +642,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Opady śniegu z deszczem</string>
     <string name="settings_widgets_gadgetbridge_switch">Wyślij dane pogodowe do Gadgetbridge</string>
     <string name="common_weather_text_snow_showers_heavy">Silne opady śniegu</string>
-    <string name="common_weather_text_snow_showers">Opady śniegu</string>
+    <string name="common_weather_text_snow_showers">Przelotne opady śniegu</string>
     <string name="settings_debug_dump_crash_logs_saved">Log błędu zapisany</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lekkie opady śniegu z deszczem</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dotknij, aby otworzyć</string>
