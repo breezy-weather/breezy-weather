@@ -647,4 +647,8 @@
     <string name="minutely_precipitations">Csapadék percről percre</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Zivatar, heves jégesővel</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Zivatar, enyhe jégesővel</string>
+    <string name="settings_debug_dump_crash_logs_saved">Az összeomlási napló elmentve</string>
+    <string name="settings_color_app">Kövesse az alkalmazás beállításait</string>
+    <string name="notification_channel_crash_logs">Összeomlási naplók</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Koppints a megnyitáshoz</string>
 </resources>
