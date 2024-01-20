@@ -659,4 +659,5 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tormenta con granizo fuerte</string>
     <string name="null_data_text">N/A</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Llovizna helada fuerte</string>
+    <string name="settings_unavailable_no_background_updates">No disponible, active primero las actualizaciones en segundo plano</string>
 </resources>
