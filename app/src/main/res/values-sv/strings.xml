@@ -356,8 +356,8 @@
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats inte funnen än…</string>
     <string name="ephemeris_moon_phase_first_quarter">Första kvarteret</string>
-    <string name="air_quality_o3_info_origin">Det skapas genom fotokemiska reaktioner med föroreningar sin volatila organiska föreningar, kolmonoxid och kväveoxider från fordon och industrier. Pågrund av sin fotokemiska natur så är ozonnivåerna som högst under perioder med soligt väder.</string>
-    <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en stickande och skarp lukt.</string>
+    <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar såsom flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon samt industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
+    <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en karaktäristisk stickande, frän lukt.</string>
     <string name="location_results_by">Platsresultat från $</string>
     <string name="widget_ellipsis">…</string>
     <string name="message_source_not_installed_error_title">Källa inte längre tillgänglig</string>
@@ -372,8 +372,8 @@
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
     <string name="wind_direction_short_variable">Skiftande</string>
-    <string name="air_quality_o3_info_consequences">Stor exponering mot ozon kan orsaka andningsproblem, utlösa astma, sänka lungkapaciteten och leda till lungsjukdomar.</string>
-    <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en stor komponent i smog. Även om det är samma molekyl som skyddar jorden från UV-strålning i stratosfären så är den skadlig för människors hälsa i marknivå.</string>
+    <string name="air_quality_o3_info_consequences">Överdriven exponering för ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
+    <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från överdriven UV-strålning.</string>
     <string name="widget_material_you_current">Material You - nuvarande</string>
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från $</string>
@@ -456,7 +456,7 @@
     <string name="common_weather_text_drizzle">Duggregn</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nederbörd dagtid för i dag, i morgon, …, 4 dagar senare (%)</string>
     <string name="widget_label_hide_lunar">Dölj månkalender</string>
-    <string name="air_quality_no2_info_origin">Omgivande utsläpp till NO₂ kommer från förbränning vid hög temperatur från bränslen i verksamheter för uppvärmning, transport, industrier och kraftgeneration. Hushållens uppsläpp av kväveoxider (NOₓ) kommer från förbränningarpannor, eldstäder, kaminer och gasspisar och ugnar.</string>
+    <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som t.ex. de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Försäkra dig om att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt otillgänglig, i så fall vänligen försök igen senare. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
