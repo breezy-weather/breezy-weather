@@ -658,4 +658,10 @@
     <string name="null_data_text">N/A</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Llovizna helada fuerte</string>
     <string name="settings_unavailable_no_background_updates">No disponible, active primero las actualizaciones en segundo plano</string>
+    <string name="notification_precipitation_starting">Precipitaciones en breve</string>
+    <string name="notification_precipitation_starting_desc">Se espera que comience en %1$s</string>
+    <string name="notification_precipitation_stopping">Pronto dejará de llover</string>
+    <string name="notification_precipitation_stopping_desc">Se espera que pare en %1$s</string>
+    <string name="notification_precipitation_continuing">Precipitación</string>
+    <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %1$s</string>
 </resources>
