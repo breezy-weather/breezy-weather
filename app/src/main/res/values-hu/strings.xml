@@ -649,4 +649,5 @@
     <string name="settings_color_app">Kövesse az alkalmazás beállításait</string>
     <string name="notification_channel_crash_logs">Összeomlási naplók</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Koppints a megnyitáshoz</string>
+    <string name="settings_unavailable_no_background_updates">Nem elérhető, először engedélyezd a háttérfrissítéseket</string>
 </resources>
