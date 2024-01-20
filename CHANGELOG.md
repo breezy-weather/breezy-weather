@@ -1,7 +1,8 @@
 # Version 4.6.15-beta (not yet released)
 
 **Other improvements and fixes**
-- Make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable if background updates are disabled by greying the options in settings
+- When background updates are disabled, auto refresh on location loading if location was last refreshed more than 1.5 hours ago
+- When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 
 
 # Version 4.6.14-beta (2023-01-07)

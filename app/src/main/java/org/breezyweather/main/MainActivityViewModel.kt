@@ -235,7 +235,7 @@ class MainActivityViewModel @Inject constructor(
             SettingsManager
                 .getInstance(getApplication())
                 .updateInterval
-                .intervalInHour
+                .validityInHour
         ) ?: false
 
     // update.

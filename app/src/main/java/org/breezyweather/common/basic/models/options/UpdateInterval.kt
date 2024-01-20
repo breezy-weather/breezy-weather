@@ -57,4 +57,7 @@ enum class UpdateInterval(
     override val nameArrayId = R.array.automatic_refresh_rates
 
     override fun getName(context: Context) = Utils.getName(context, this)
+
+    // Makes locations valid for 1.5 hours when background updates are disabled
+    val validityInHour = intervalInHour ?: 1.5f
 }
