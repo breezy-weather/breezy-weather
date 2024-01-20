@@ -666,4 +666,5 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Klepnutím otevřete</string>
     <string name="notification_channel_crash_logs">Protokoly o chybách</string>
     <string name="settings_color_app">Sledovat aplikaci</string>
+    <string name="settings_unavailable_no_background_updates">Nedostupné, nejprve povolte aktualizace na pozadí</string>
 </resources>
