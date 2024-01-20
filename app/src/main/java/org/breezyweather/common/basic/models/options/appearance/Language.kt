@@ -69,6 +69,7 @@ enum class Language(
     TURKISH("turkish", Locale("tr")),
     GREEK("greek", Locale("el")),
     BULGARIAN("bulgarian", Locale("bg")),
+    MACEDONIAN("macedonian", Locale("mk")),
     RUSSIAN("russian", Locale("ru")),
     SERBIAN("serbian", Locale("sr")),
     UKRAINIAN("ukrainian", Locale("uk")),
@@ -161,6 +162,7 @@ enum class Language(
             "turkish" -> TURKISH
             "greek" -> GREEK
             "bulgarian" -> BULGARIAN
+            "macedonian" -> MACEDONIAN
             "russian" -> RUSSIAN
             "serbian" -> SERBIAN
             "ukrainian" -> UKRAINIAN

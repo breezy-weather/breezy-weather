@@ -10,6 +10,10 @@
 - When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 
+**Translations**
+- Initial translation added for Македонски (thanks @ikocevski7!)
+- Translations updated
+
 
 # Version 4.6.14-beta (2023-01-07)
 
