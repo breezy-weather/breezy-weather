@@ -30,6 +30,7 @@ import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.ipsb.IpSbLocationService
@@ -46,6 +47,7 @@ class SourceManager @Inject constructor(
     atmoAuraService: AtmoAuraService,
     baiduIPService: BaiduIPLocationService,
     chinaService: ChinaService,
+    ecccService: EcccService,
     geoNamesService: GeoNamesService,
     hereService: HereService,
     ipSbService: IpSbLocationService,
@@ -74,7 +76,10 @@ class SourceManager @Inject constructor(
         pirateWeatherService,
         hereService,
         mfService,
+
+        // Regional-only sources (sorted by population)
         chinaService,
+        ecccService,
 
         // Secondary weather sources
         atmoAuraService

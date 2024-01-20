@@ -29,7 +29,6 @@ import java.util.TimeZone
 import javax.inject.Inject
 
 class IpSbLocationService @Inject constructor(
-    @ApplicationContext context: Context,
     client: Retrofit.Builder
 ) : HttpSource(), LocationSource {
 

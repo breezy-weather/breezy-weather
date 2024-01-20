@@ -41,7 +41,6 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult

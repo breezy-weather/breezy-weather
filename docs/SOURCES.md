@@ -17,16 +17,17 @@ Here are some suggestions based on various criteria or testimonies (you can sugg
 |-------------------|--------------------------------------------------|-------------|------------|--------------|--------------|
 | Europe            |                                                  |             | Open-Meteo |              |              |
 | United States     | [Forecast Advisor](https://forecastadvisor.com/) |             |            |              |              |
+| Canada            | ECCC                                             |             |            |              | ECCC         |
 | France            | Météo-France                                     |             | Open-Meteo | Météo-France | Météo-France |
 | Norway            | MET Norway                                       | MET Norway  | Open-Meteo | MET Norway   |              |
 
 
 ## Status
 
-| Sources       | Open-Meteo | AccuWeather | MET Norway | OpenWeather   | Pirate Weather | Météo-France | China³ |
-|---------------|------------|-------------|------------|---------------|----------------|--------------|--------|
-| **API key**   | None       | Optional    | None       | Rate-limited¹ | Rate-limited¹  | Optional     | None   |
-| **Countries** | Worldwide² | Worldwide²  | Worldwide² | Worldwide²    | Worldwide²     | Worldwide²   | China  |
+| Sources       | Open-Meteo | AccuWeather | MET Norway | OpenWeather   | Pirate Weather | Météo-France | China³ | ECCC   |
+|---------------|------------|-------------|------------|---------------|----------------|--------------|--------|--------|
+| **API key**   | None       | Optional    | None       | Rate-limited¹ | Rate-limited¹  | Optional     | None   | None   |
+| **Countries** | Worldwide² | Worldwide²  | Worldwide² | Worldwide²    | Worldwide²     | Worldwide²   | China  | Canada |
 
 Additional sources are available to configure but requires an API key. You can find them at the bottom of this page.
 
@@ -37,17 +38,17 @@ Additional sources are available to configure but requires an API key. You can f
 
 ## Main features
 
-| Sources                       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
-|-------------------------------|------------|-------------|------------|-------------|--------------|-------|
-| **Daily (days)**              | 15         | 15          | ~10        | 7 or 8      | 14           | 15    |
-| **Hourly (days)**             | 16         | 10          | ~10        | 2           | 15           | 1     |
-| **Weather**                   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
-| **Temperature**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
-| **Precipitation**             | ✅          | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ❌     |
-| **Precipitation probability** | ✅          | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | Daily |
-| **Wind**                      | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
-| **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌     |
-| **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     |
+| Sources                       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China | ECCC |
+|-------------------------------|------------|-------------|------------|-------------|--------------|-------|------|
+| **Daily (days)**              | 15         | 15          | ~10        | 7 or 8      | 14           | 15    | 6    |
+| **Hourly (days)**             | 16         | 10          | ~10        | 2           | 15           | 1     | 1    |
+| **Weather**                   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     | ✅    |
+| **Temperature**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     | ✅    |
+| **Precipitation**             | ✅          | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ❌     | ❌    |
+| **Precipitation probability** | ✅          | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | Daily | ✅    |
+| **Wind**                      | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     | ✅    |
+| **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌     | ❌    |
+| **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅     | ✅    |
 
 Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
@@ -56,13 +57,13 @@ Note that no forecast above 7 days is reliable, so you should not decide based o
 
 The following features, if not available from your selected source, can be added from another source.
 
-| Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China    |
-|------------------------------------|------------|---------------|---------------|-------------|--------------|----------|
-| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | Current  |
-| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌        |
-| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ✅        |
-| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | ✅        |
-| **Normals**                        | Average¹   | ✅             | Average¹      | Average¹    | ✅            | Average¹ |
+| Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China    | ECCC |
+|------------------------------------|------------|---------------|---------------|-------------|--------------|----------|------|
+| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | Current  | ❌    |
+| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌        | ❌    |
+| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ✅        | ❌    |
+| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | ✅        | ✅    |
+| **Normals**                        | Average¹   | ✅             | Average¹      | Average¹    | ✅            | Average¹ | ✅    |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Works best in Europe at the moment
@@ -79,26 +80,26 @@ Legend:
 
 ## Other weather data
 
-| Sources                    | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China   |
-|----------------------------|------------|-------------|------------|-------------|--------------|---------|
-| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
-| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
-| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ❌       |
-| **Cloud cover**            | ✅          | ✅           | ✅          | ✅           | ✅            | ❌       |
-| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | Current |
-| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌       |
-| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌       |
-| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ✅       |
+| Sources                    | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China   | ECCC    |
+|----------------------------|------------|-------------|------------|-------------|--------------|---------|---------|
+| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | Current | Current |
+| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | Current | Current |
+| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ❌       | Current |
+| **Cloud cover**            | ✅          | ✅           | ✅          | ✅           | ✅            | ❌       | ❌       |
+| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | Current | Current |
+| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌       | ❌       |
+| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌       | ❌       |
+| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ✅       | ❌       |
 
 ¹ Median from daily forecast
 
 
 ## Location
 
-| Sources               | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
-|-----------------------|------------|-------------|------------|-------------|--------------|-------|
-| **Search**            | ✅          | ✅           | Default    | Default     | Default      | ✅³    |
-| **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅³    |
+| Sources               | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China | ECCC    |
+|-----------------------|------------|-------------|------------|-------------|--------------|-------|---------|
+| **Search**            | ✅          | ✅           | Default    | Default     | Default      | ✅³    | Default |
+| **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅³    | ✅²      |
 
 * ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
@@ -153,13 +154,13 @@ Legend:
 
 # Combinable sources
 
-| Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ATMO AURA     |
-|------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------------|
-| **Air quality**                    | ✅          | ❌           | Norway      | ✅           | ❌              | ❌            | France (AURA) |
-| **Pollen**                         | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌             |
-| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅           | ✅              | France       | ❌             |
-| **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | ❌             |
-| **Normals**                        | ❌          | ❌           | ❌           | ❌           | ❌              | ✅⁴           | ❌             |
+| Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | ECCC   | ATMO AURA     |
+|------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|--------|---------------|
+| **Air quality**                    | ✅          | ❌           | Norway      | ✅           | ❌              | ❌            | ❌      | France (AURA) |
+| **Pollen**                         | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌      | ❌             |
+| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅           | ✅              | France       | ❌      | ❌             |
+| **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | Canada | ❌             |
+| **Normals**                        | ❌          | ❌           | ❌           | ❌           | ❌              | ✅⁴           | Canada | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 

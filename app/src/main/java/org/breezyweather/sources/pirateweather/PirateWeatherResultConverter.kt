@@ -60,7 +60,7 @@ fun convert(
         /*base = Base(
             publishDate = forecastResult.currently?.time?.times(1000)?.toDate() ?: Date()
         ),*/
-        current = getCurrentForecast(forecastResult.currently),
+        current = getCurrent(forecastResult.currently),
         dailyForecast = getDailyForecast(forecastResult.daily!!.data!!),
         hourlyForecast = getHourlyForecast(forecastResult.hourly!!.data!!),
         minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
@@ -69,9 +69,9 @@ fun convert(
 }
 
 /**
- * Returns current weather forecast
+ * Returns current weather
  */
-private fun getCurrentForecast(result: PirateWeatherCurrently?): Current? {
+private fun getCurrent(result: PirateWeatherCurrently?): Current? {
     if (result == null) return null
     return Current(
         weatherText = result.summary,
@@ -171,7 +171,6 @@ private fun getHourlyForecast(
         )
     }
 }
-
 
 /**
  * Returns minutely forecast

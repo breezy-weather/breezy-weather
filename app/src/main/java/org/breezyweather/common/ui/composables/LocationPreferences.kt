@@ -232,7 +232,7 @@ private fun SecondarySourcesPreference(
                     }
                     SourceView(
                         title = stringResource(R.string.temperature_normals),
-                        selectedKey = alertSource.value,
+                        selectedKey = normalsSource.value,
                         sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
                                 compatibleNormalsSources.associate { it.id to it.name },
                     ) { sourceId ->

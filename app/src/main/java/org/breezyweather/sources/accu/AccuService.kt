@@ -200,7 +200,7 @@ class AccuService @Inject constructor(
             && mApi is AccuEnterpriseApi) {
             mApi.getClimoSummary(
                 cal[Calendar.YEAR],
-                cal[Calendar.MONTH],
+                cal[Calendar.MONTH] + 1,
                 location.cityId,
                 apiKey,
                 languageCode,
