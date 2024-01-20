@@ -172,8 +172,6 @@
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Frissítve a háttérben</string>
-    <string name="notification_precipitation_today">Ma csapadékra lehet számítani.</string>
-    <string name="notification_precipitation_short_term">Előfordulhat csapadék a következő pár órában.</string>
     <string name="location_resident_message">Beállítva lakóhelyként</string>
     <string name="location_resident_dialog">Az alkalmazás automatikusan megjeleníti és elrejti a lakóhelyét a jelenlegi tartózkodási helye alapján.
 \nPéldául beállíthatja szülővárosát lakóhelyként, így ellenőrizheti annak időjárását, amikor éppen úton van. Amint hazaér, a szülővárosa átmenetileg eltűnik a listából, és a jelenlegi tartózkodási hely időjárásaként fog megjelenni mindaddig, míg el nem hagyja azt.</string>

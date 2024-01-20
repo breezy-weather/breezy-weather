@@ -585,9 +585,7 @@
     <string name="settings_widgets_notification_feels_like_switch">Naudoti juntamają temperatūrą</string>
     <string name="settings_debug_dump_crash_logs_summary">Įrašo klaidų žurnalus į failą, kuriuo galima dalytis su kūrėjais</string>
     <string name="settings_item_delete">Ištrinti šį elementą</string>
-    <string name="notification_precipitation_short_term">Per artimiausias kelias valandas gali iškristi krituliai.</string>
     <string name="notification_update_error">%1$d atnaujinimas (-ai) nepavyko</string>
-    <string name="notification_precipitation_today">Šiandien gali būti kritulių.</string>
     <string name="about_matrix">Matrix kambarys</string>
     <string name="about_source_code">Šaltinio kodas</string>
     <string name="about_contribution_WangDaYeeeeee">Originalaus projekto Geometric Weather kūrėjas</string>

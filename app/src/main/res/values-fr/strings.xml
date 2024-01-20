@@ -296,8 +296,18 @@
     <string name="weather_updated_in_background">Actualisé en arrière-plan</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
-    <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
-    <string name="notification_precipitation_short_term">Précipitations possibles dans les heures à venir.</string>
+    <!-- Example: Precipitation soon - New York -->
+    <string name="notification_precipitation_starting">Précipitations à venir</string>
+    <!-- Example: Expected to start at 09:00 AM -->
+    <string name="notification_precipitation_starting_desc">Début prévu à %1$s</string>
+    <!-- Example: Precipitation - New York -->
+    <string name="notification_precipitation_continuing">Précipitations en cours</string>
+    <!-- Example: Expected to continue until at least 09:00 AM -->
+    <string name="notification_precipitation_continuing_desc">Persistantes jusqu’à au moins %1$s</string>
+    <!-- Example: Precipitation stopping soon - New York -->
+    <string name="notification_precipitation_stopping">Fin des précipitations à venir</string>
+    <!-- Example: Expected to stop at 09:00 AM -->
+    <string name="notification_precipitation_stopping_desc">Fin prévue à %1$s</string>
 
     <string name="location_resident_location">Emplacement de résidence</string>
     <string name="location_resident_location_summaryOn">Actif. Masqué si dans un rayon de $ de l’emplacement actuel.</string>

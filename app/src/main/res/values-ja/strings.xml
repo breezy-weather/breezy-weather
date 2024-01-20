@@ -178,8 +178,6 @@
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新 (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">バックグラウンドで更新</string>
-    <string name="notification_precipitation_today">今日は雨が降るかもしれません。</string>
-    <string name="notification_precipitation_short_term">数時間後に雨が降る可能性があります。</string>
     <string name="location_resident_message">居住地として設定</string>
     <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。
 \n例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>

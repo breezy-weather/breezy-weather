@@ -134,8 +134,6 @@
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
     <string name="weather_updated_in_background">تم التحديث في الخلفية</string>
-    <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم.</string>
-    <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
     <string name="location_resident_message">تعيين كمدينة الإقامة</string>
     <string name="location_resident_dialog">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي.
 \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>

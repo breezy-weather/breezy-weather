@@ -594,8 +594,6 @@
     <string name="notification_running_in_background">Darbojas fonā, lai turpinātu atjaunināšanu</string>
     <string name="unit_h_voice">stundas</string>
     <string name="notification_update_error">%1$d atjauninājums(-i) neizdevās</string>
-    <string name="notification_precipitation_today">Šodien iespējami nokrišņi.</string>
-    <string name="notification_precipitation_short_term">Tuvāko stundu laikā var būt nokrišņi.</string>
     <string name="notification_updating_weather_data">Atjaunina laikapstākļu datus (%1$d/%2$d)</string>
     <string name="notification_style_native">Dzimtā</string>
     <string name="about_contributors">Līdzstrādnieki</string>

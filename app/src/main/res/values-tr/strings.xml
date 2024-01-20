@@ -480,8 +480,6 @@
     <string name="unit_mmhg_voice">Milimetre cıva</string>
     <string name="notification_channel_background_services">Arkaplan servisleri</string>
     <string name="notification_running_in_background">Güncel kalmak için arkaplanda çalışıyor</string>
-    <string name="notification_precipitation_today">Bugün yağış olabilir.</string>
-    <string name="notification_precipitation_short_term">Takip eden birkaç saat içerisinde yağış olabilir.</string>
     <string name="notification_style_native">Yerel</string>
     <string name="common_weather_text_overcast">Kapalı</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Karla karışık hafif yağmurlar</string>

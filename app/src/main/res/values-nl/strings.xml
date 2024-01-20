@@ -500,8 +500,6 @@
     <string name="unit_h_voice">uren</string>
     <string name="unit_ppcm_voice">Per kubieke meter</string>
     <string name="notification_updating_weather_data">Weergegevens bijwerken (%1$d/%2$d)</string>
-    <string name="notification_precipitation_today">Er kan vandaag neerslag vallen.</string>
-    <string name="notification_precipitation_short_term">In de komende uren kan er neerslag vallen.</string>
     <string name="notification_style_cities">Steden</string>
     <string name="notification_style_native">Natief</string>
     <string name="notification_running_in_background">Draait op de achtergrond om te blijven updaten</string>

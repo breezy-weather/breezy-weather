@@ -549,8 +549,6 @@
     <string name="notification_channel_widget">Приспособление</string>
     <string name="notification_updating_weather_data">Данните за времето се актуализират (%1$d/%2$d)</string>
     <string name="notification_update_error">%1$d неуспешна(и) актуализаця(ии)</string>
-    <string name="notification_precipitation_today">Днес може да има валежи.</string>
-    <string name="notification_precipitation_short_term">В следващите часове са възможни валежи.</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик на оригиналния проект Geometric Weather</string>
     <string name="common_weather_text_overcast">Облачно</string>
     <string name="common_weather_text_mainly_clear">Предимно ясно</string>

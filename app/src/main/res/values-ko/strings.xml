@@ -174,8 +174,6 @@
     <string name="notification_running_in_background">날씨를 계속 업데이트하기 위해 백그라운드에서 실행 중</string>
     <string name="notification_updating_weather_data">날씨 데이터 업데이트 중 (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">백그라운드에서 업데이트했습니다</string>
-    <string name="notification_precipitation_today">오늘 비나 눈이 올 수 있어요.</string>
-    <string name="notification_precipitation_short_term">몇 시간 뒤에 비나 눈이 올 수 있어요.</string>
     <string name="location_resident_message">거주지로 지정</string>
     <string name="location_resident_dialog">Breezy Weather는 현재 위치에 따라 거주지를 자동으로 보여주거나 숨깁니다.
 \n예를 들어 고향을 거주지로 설정하면 여행하는 중에 고향을 날씨를 알 수 있습니다. 여행이 끝나고 집에 도착하면 고향의 날씨는 숨겨지고 현재 위치의 날씨로 바뀔 것입니다.</string>

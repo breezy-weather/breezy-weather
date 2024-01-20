@@ -560,7 +560,6 @@
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Pljuskovi susnježice</string>
     <string name="settings_color_dark">Tamno</string>
-    <string name="notification_precipitation_today">Moguće padaline danas.</string>
     <string name="common_weather_text_overcast">Naoblačeno</string>
     <string name="weather_kind_thunder">Grmljavina</string>
     <string name="weather_kind_haze">Izmaglica</string>
@@ -595,7 +594,6 @@
     <string name="notification_channel_background_services">Pozadinski servisi</string>
     <string name="unit_cmph_voice">Centimetara po satu</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="notification_precipitation_short_term">Mogućnost padalina kroz slijedećih par sati.</string>
     <string name="notification_style_native">Domaće</string>
     <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_bf_voice">na Beaufort ljestvici</string>

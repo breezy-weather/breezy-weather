@@ -526,7 +526,6 @@
     <string name="unit_inhg">дюйм рт. ст.</string>
     <string name="unit_inhg_voice">Дюймів ртутного стовпчика</string>
     <string name="notification_style_native">Системне</string>
-    <string name="notification_precipitation_today">Сьогодні можливі опади.</string>
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
     <string name="about_app">Про застосунок</string>
     <string name="about_contact">Контакти</string>
@@ -556,7 +555,6 @@
     <string name="about_translators">Перекладачі</string>
     <string name="common_weather_text_snow_heavy">Сильний сніг</string>
     <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру ”Відчувається як”</string>
-    <string name="notification_precipitation_short_term">Найближчим часом можливі опади.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза з сильним градом</string>
     <string name="weather_message_unsupported_feature">Джерело не підтримує одну із запитаних функцій</string>
     <string name="settings_debug_dump_crash_logs_title">Поділитися журналом збоїв</string>

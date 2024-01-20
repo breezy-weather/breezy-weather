@@ -176,8 +176,6 @@
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Zaktualizowano w tle</string>
-    <string name="notification_precipitation_today">Dzisiaj mogą w wystąpić opady.</string>
-    <string name="notification_precipitation_short_term">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
     <string name="location_resident_message">Ustaw jako miasto zamieszkania</string>
     <string name="location_resident_dialog">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.
 \nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>

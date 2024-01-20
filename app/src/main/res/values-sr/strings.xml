@@ -226,7 +226,6 @@
     <string name="unit_inhg">inHg</string>
     <string name="unit_inhg_voice">Инчи живе</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="notification_precipitation_today">Данас може бити падавина.</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
     <string name="location_results_by">Резултати за локације од $</string>
@@ -461,7 +460,6 @@
     <string name="unit_mb">mb</string>
     <string name="about_contributors">Сарадници</string>
     <string name="unit_mb_voice">Милибари</string>
-    <string name="notification_precipitation_short_term">У наредних неколико сати може доћи до падавина.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Таложење магле</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_cmph_voice">Центиметри по сату</string>

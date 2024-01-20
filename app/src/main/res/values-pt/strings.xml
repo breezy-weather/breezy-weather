@@ -335,7 +335,6 @@
     <string name="unit_mb_voice">Milibares</string>
     <string name="unit_mmhg_voice">Milímetros de mercúrio</string>
     <string name="unit_h_voice">horas</string>
-    <string name="notification_precipitation_short_term">Precipitação pode ocorrer nas próximas horas.</string>
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
@@ -592,7 +591,6 @@
     <string name="unit_kph_voice">Quilómetros por hora</string>
     <string name="unit_mps">m/s</string>
     <string name="notification_style_native">Nativo</string>
-    <string name="notification_precipitation_today">Pode haver precipitação hoje.</string>
     <string name="about_dependencies">Dependências</string>
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva fraca</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>

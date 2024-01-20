@@ -186,8 +186,6 @@
     <string name="notification_running_in_background">L’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Actualitzat en segon pla</string>
-    <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
-    <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>
     <string name="location_resident_message">Estableix com a ciutat on residiu</string>
     <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.
 \nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l’oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l’oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>

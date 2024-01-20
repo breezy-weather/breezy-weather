@@ -50,12 +50,10 @@
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Standortdienst auswählen</string>
-    <string name="notification_precipitation_short_term">In den nächsten Stunden kann Niederschlag auftreten.</string>
     <string name="widget_label_show_widget_card">Widgethintergrund</string>
     <string name="widget_label_show_widget_card_alpha">Transparenz</string>
     <string name="widget_label_subtitle_data">Untertiteldaten</string>
     <string name="widget_label_text_size">Schriftgröße</string>
-    <string name="notification_precipitation_today">Es kann Niederschlag auftreten.</string>
     <string name="weather_updated_in_background">Im Hintergrund aktualisiert</string>
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>

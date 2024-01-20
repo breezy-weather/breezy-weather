@@ -189,8 +189,6 @@
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
     <string name="notification_updating_weather_data">Se actualizează datele meteo (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Date actualizate în fundal</string>
-    <string name="notification_precipitation_today">Astăzi pot fi precipitații.</string>
-    <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
     <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>
     <string name="location_resident_dialog">Breezy Weather va afișa și ascunde automat orașele rezidente în funcție de locația dvs. curentă.
 \nDe exemplu, puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul natal în timp ce călătoriți. Când ajungi acasă, vremea din orașul tău natal va fi ascunsă și înlocuită cu vremea pentru locația ta actuală.</string>

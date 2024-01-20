@@ -448,12 +448,10 @@
     <string name="unit_h_voice">Giờ</string>
     <string name="unit_ppcm_voice">Trên mét khối</string>
     <string name="notification_channel_background_services">Dịch vụ chạy dưới nền</string>
-    <string name="notification_precipitation_short_term">Mưa có thể diễn ra trong vài giờ tiếp theo.</string>
     <string name="about_source_code">Mã nguồn</string>
     <string name="notification_channel_forecast">Dự báo</string>
     <string name="notification_updating_weather_data">Đang cập nhật dữ liệu thời tiết (%1$d/%2$d)</string>
     <string name="notification_channel_widget">Tiện ích</string>
-    <string name="notification_precipitation_today">Có thể sẽ có mưa vào hôm nay.</string>
     <string name="common_weather_text_overcast">U ám</string>
     <string name="common_weather_text_snow_grains">Hạt tuyết</string>
     <string name="widget_label_align_end">Căn chỉnh cuối</string>

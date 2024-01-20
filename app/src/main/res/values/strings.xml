@@ -660,8 +660,15 @@
     <string name="notification_running_in_background">Running in background to keep updating</string>
     <string name="notification_updating_weather_data">Updating weather data (%1$d/%2$d)</string>
     <string name="notification_update_error">%1$d update(s) failed</string>
-    <string name="notification_precipitation_today">There may be precipitation today.</string>
-    <string name="notification_precipitation_short_term">Precipitation may occur in the next few hours.</string>
+    <string name="notification_precipitation_starting">Precipitation soon</string>
+    <!-- Example: Expected to start at 09:00 AM -->
+    <string name="notification_precipitation_starting_desc">Expected to start at %1$s</string>
+    <string name="notification_precipitation_continuing">Precipitation</string>
+    <!-- Example: Expected to continue until at least 09:00 AM -->
+    <string name="notification_precipitation_continuing_desc">Expected to continue until at least %1$s</string>
+    <string name="notification_precipitation_stopping">Precipitation stopping soon</string>
+    <!-- Example: Expected to stop at 09:00 AM -->
+    <string name="notification_precipitation_stopping_desc">Expected to stop at %1$s</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Cities</string>
     <!-- About -->

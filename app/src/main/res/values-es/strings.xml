@@ -186,8 +186,6 @@
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">Actualizado en segundo plano</string>
-    <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
-    <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
     <string name="location_resident_message">Establecer como ciudad de residencia</string>
     <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades de residencia en base a tu ubicación actual.
 \nPor ejemplo, puedes establecer tu ciudad natal como una ciudad de residencia. Esto te dejaría revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>

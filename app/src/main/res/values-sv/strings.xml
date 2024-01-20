@@ -516,7 +516,6 @@
     <string name="weather_api_unauthorized_content">För vissa väderkällor så behöver du ange din egen API-nyckel. Om du redan har angett en så dubbelkolla din API-nyckel.</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
     <string name="settings_color_dark">Mörk</string>
-    <string name="notification_precipitation_today">Det kan komma nederbörd i dag.</string>
     <string name="common_weather_text_overcast">Mulet</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nederbörd nattetid för i dag, i morgon, …, 4 dagar senare (%)</string>
     <string name="settings_main_section_options">Alternativ</string>
@@ -564,7 +563,6 @@
     <string name="weather_message_unsupported_feature">Källan stödjer inte en av de begärda funktionerna</string>
     <string name="settings_debug_dump_crash_logs_title">Dela kraschloggar</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="notification_precipitation_short_term">Nederbörd kan komma inom de närmaste timmarna.</string>
     <string name="settings_location_service">Platstjänst</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_bf_voice">på Beauforts skala</string>

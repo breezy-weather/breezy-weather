@@ -38,7 +38,8 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
@@ -46,8 +47,6 @@ import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationI
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import java.text.DateFormat
-import java.util.Date
-import kotlin.math.min
 
 object Notifications {
 
@@ -86,9 +85,9 @@ object Notifications {
     private const val ALERT_GROUP_KEY = "breezy_weather_alert_notification_group"
     private const val PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE"
     private const val KEY_NOTIFICATION_ID = "NOTIFICATION_ID"
-    private const val PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT = "SHORT_TERM_PRECIPITATION_ALERT_PREFERENCE"
-    private const val KEY_PRECIPITATION_LOCATION_KEY = "PRECIPITATION_LOCATION_KEY"
-    private const val KEY_PRECIPITATION_DATE = "PRECIPITATION_DATE"
+    //private const val PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT = "SHORT_TERM_PRECIPITATION_ALERT_PREFERENCE"
+    //private const val KEY_PRECIPITATION_LOCATION_KEY = "PRECIPITATION_LOCATION_KEY"
+    //private const val KEY_PRECIPITATION_DATE = "PRECIPITATION_DATE"
 
     private val deprecatedChannels = listOf(
         "normally"
@@ -283,28 +282,44 @@ object Notifications {
     }
 
     // precipitation.
-    @SuppressLint("InlinedApi")
-    fun checkAndSendPrecipitationForecast(context: Context, location: Location) {
-        if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled || location.weather == null) return
-        val weather = location.weather
-        val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
-        val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
+    fun checkAndSendPrecipitation(context: Context, location: Location) {
+        if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled
+            || location.weather?.minutelyForecast.isNullOrEmpty()) return
+        //val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
+        //val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
 
-        // we only send precipitation alert once a day.
-        if (isSameDay(timestamp, System.currentTimeMillis())) return
-        if (isShortTermLiquid(weather) || isLiquidDay(weather)) {
+        val minutely = location.weather!!.minutelyForecast
+        if (minutely.any { it.dbz != null && it.dbz > 0 }) {
+            // 1 = soon, 2 = continue, 3 = end
+            val case = if (minutely.first().dbz != null && minutely.first().dbz!! > 0) {
+                if (minutely.last().dbz != null && minutely.last().dbz!! > 0) 2 else 3
+            } else 1
+
             context.notify(
                 ID_PRECIPITATION,
                 getNotificationBuilder(
                     context,
                     R.drawable.ic_precipitation,
-                    context.getString(R.string.precipitation_forecast),
-                    Date().getFormattedDate(
-                        location.timeZone,
-                        context.getString(R.string.date_format_widget_long)
-                    ),
                     context.getString(
-                        if (isShortTermLiquid(weather)) R.string.notification_precipitation_short_term else R.string.notification_precipitation_today
+                        when (case) {
+                            1 -> R.string.notification_precipitation_starting
+                            2 -> R.string.notification_precipitation_continuing
+                            3 -> R.string.notification_precipitation_stopping
+                            else -> R.string.notification_precipitation_continuing
+                        }
+                    ),
+                    location.getPlace(context),
+                    context.getString(
+                        when (case) {
+                            1 -> R.string.notification_precipitation_starting_desc
+                            2 -> R.string.notification_precipitation_continuing_desc
+                            3 -> R.string.notification_precipitation_stopping_desc
+                            else -> R.string.notification_precipitation_continuing_desc
+                        },
+                        when (case) {
+                            1 -> minutely.first { it.dbz != null && it.dbz > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
+                            else -> minutely.last { it.dbz != null && it.dbz > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
+                        }
                     ),
                     PendingIntent.getActivity(
                         context,
@@ -314,34 +329,11 @@ object Notifications {
                     )
                 ).build()
             )
-            config.edit()
+            /*config.edit()
                 .putString(KEY_PRECIPITATION_LOCATION_KEY, location.formattedId)
                 .putLong(KEY_PRECIPITATION_DATE, System.currentTimeMillis())
-                .apply()
+                .apply()*/
         }
-    }
-
-    private fun isLiquidDay(weather: Weather): Boolean {
-        return (weather.today?.day?.weatherCode != null
-                && weather.today!!.day!!.weatherCode!!.isPrecipitation)
-                || (weather.today?.night?.weatherCode != null
-                && weather.today!!.night!!.weatherCode!!.isPrecipitation)
-    }
-
-    private fun isShortTermLiquid(weather: Weather): Boolean {
-        for (i in 0 until min(4, weather.nextHourlyForecast.size)) {
-            if (weather.nextHourlyForecast.getOrNull(i)?.weatherCode != null
-                && weather.nextHourlyForecast[i].weatherCode!!.isPrecipitation) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun isSameDay(time1: Long, time2: Long): Boolean {
-        val day1 = time1 / 1000 / 60 / 60 / 24
-        val day2 = time2 / 1000 / 60 / 60 / 24
-        return day1 != day2
     }
 
     @ColorInt

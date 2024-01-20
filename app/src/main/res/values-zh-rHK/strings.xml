@@ -183,8 +183,6 @@
     <string name="notification_running_in_background">正在背景執行，以保持更新</string>
     <string name="notification_updating_weather_data">正在更新天氣資料 (%1$d/%2$d)</string>
     <string name="weather_updated_in_background">背景已更新</string>
-    <string name="notification_precipitation_today">今日可能出現降水。</string>
-    <string name="notification_precipitation_short_term">未來幾小時内可能出現降水。</string>
     <string name="location_resident_message">設為常住城市</string>
     <string name="location_resident_dialog">Breezy Weather 將會根據您目前的位置，自動顯示和隱藏常住城市。
 \n例如，您可以將您的家鄉設定為常住城市。當您旅行時，可以查看家鄉的天氣。一旦您回到家，家鄉的天氣將會被您目前所在地的天氣所取代。</string>
