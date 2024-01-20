@@ -162,6 +162,7 @@
     <string name="action_undo">Annuler</string>
     <string name="settings_enabled">Actif</string>
     <string name="settings_disabled">Inactif</string>
+    <string name="settings_unavailable_no_background_updates">Non disponible, activez d’abord les actualisations en arrière-plan</string>
     <string name="action_set">Définir</string>
     <string name="action_help">Aide</string>
     <string name="action_learn_more">En savoir plus</string>

@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
+import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.*
@@ -32,15 +33,19 @@ fun NotificationsSettingsScreen(
     todayForecastEnabled: Boolean,
     tomorrowForecastEnabled: Boolean,
     paddingValues: PaddingValues,
-    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
+    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit
 ) = PreferenceScreen(paddingValues = paddingValues) {
     sectionHeaderItem(R.string.settings_notifications_section_general)
     switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
         SwitchPreferenceView(
             titleId = id,
             summaryOnId = R.string.settings_enabled,
-            summaryOffId = R.string.settings_disabled,
-            checked = SettingsManager.getInstance(context).isAlertPushEnabled,
+            summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
+                R.string.settings_disabled
+            } else R.string.settings_unavailable_no_background_updates,
+            checked = SettingsManager.getInstance(context).isAlertPushEnabled
+                    && SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+            enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
             onValueChanged = {
                 SettingsManager.getInstance(context).isAlertPushEnabled = it
                 if (it) {
@@ -55,8 +60,12 @@ fun NotificationsSettingsScreen(
         SwitchPreferenceView(
             titleId = id,
             summaryOnId = R.string.settings_enabled,
-            summaryOffId = R.string.settings_disabled,
-            checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled,
+            summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
+                R.string.settings_disabled
+            } else R.string.settings_unavailable_no_background_updates,
+            checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled
+                    && SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+            enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
             onValueChanged = {
                 SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
                 if (it) {

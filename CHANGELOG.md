@@ -1,3 +1,9 @@
+# Version 4.6.15-beta (not yet released)
+
+**Other improvements and fixes**
+- Make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable if background updates are disabled by greying the options in settings
+
+
 # Version 4.6.14-beta (2023-01-07)
 
 **Weather sources**
