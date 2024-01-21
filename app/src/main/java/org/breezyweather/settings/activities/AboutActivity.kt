@@ -243,6 +243,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("uk"), "Cod3d.", "https://github.com/Cod3dDOT"),
         TranslatorItem(arrayOf("uk"), "Skrripy", "https://hosted.weblate.org/user/Skrripy/"),
         TranslatorItem(arrayOf("uk"), "Fqwe1", "https://hosted.weblate.org/user/Fqwe1/"),
+        TranslatorItem(arrayOf("uk"), "Сергій", "https://github.com/Serega124"),
         TranslatorItem(arrayOf("vi"), "minb", "https://hosted.weblate.org/user/minbe/"),
         TranslatorItem(arrayOf("vi"), "Fairy", "https://hosted.weblate.org/user/Fairy/"),
         TranslatorItem(arrayOf("vi"), "ngocanhtve", "https://github.com/ngocanhtve"),
@@ -254,7 +255,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "thaumiel9", "https://github.com/thaumiel9"),
         TranslatorItem(arrayOf("zh_rCN"), "tomac4t", "https://github.com/tomac4t"),
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", "https://github.com/abc0922001"),
-        TranslatorItem(arrayOf("zh_rCN"), "Eric", "https://hosted.weblate.org/user/hamburger2048/"),
+        TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", "https://hosted.weblate.org/user/hamburger2048/")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
