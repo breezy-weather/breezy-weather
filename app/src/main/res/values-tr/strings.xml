@@ -650,4 +650,11 @@
     <string name="settings_debug_dump_crash_logs_saved">Kilitlenme günlükleri kaydedildi</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Açmak için dokunun</string>
     <string name="notification_channel_crash_logs">Kilitlenme günlükleri</string>
+    <string name="notification_precipitation_continuing">Yağış</string>
+    <string name="notification_precipitation_stopping">Yağış yakında duracak</string>
+    <string name="notification_precipitation_stopping_desc">Beklenen bitiş zamanı: %1$s</string>
+    <string name="settings_unavailable_no_background_updates">Kullanılabilir değil, önce arka plan güncellemelerini etkinleştirin</string>
+    <string name="notification_precipitation_starting">Yağış yakında</string>
+    <string name="notification_precipitation_starting_desc">Beklenen başlama zamanı: %1$s</string>
+    <string name="notification_precipitation_continuing_desc">En az şu zamana kadar devam etmesi bekleniyor: %1$s</string>
 </resources>
