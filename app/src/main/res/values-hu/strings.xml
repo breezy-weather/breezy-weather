@@ -46,7 +46,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Hőérzet</string>
-    <string name="temperature_wind_chill">Szélhűvösség</string>
+    <string name="temperature_wind_chill">Szél hűtés</string>
     <string name="temperature_wet_bulb">Nedves hőmérséklet</string>
     <string name="temperature_degree_day">Foknap</string>
     <string name="precipitation_total">Összes</string>
@@ -86,7 +86,7 @@
     <string name="daily_forecast">Napi előrejelzés</string>
     <string name="hourly_forecast">Óránkénti előrejelzés</string>
     <string name="minutely_forecast">Percenkénti előrejelzés</string>
-    <string name="precipitation_forecast">Csapadék-előrejelzés</string>
+    <string name="precipitation_forecast">Csapadék előrejelzés</string>
     <string name="air_quality">Levegőminőség</string>
     <string name="pollen">Pollen</string>
     <string name="details">Részletek</string>
@@ -584,7 +584,7 @@
     <string name="unit_mmph_voice">Milliméter per óra</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_cmph_voice">Centiméter per óra</string>
-    <string name="alerts_count">$ időjárási riasztások</string>
+    <string name="alerts_count">$ időjárás riasztás</string>
     <string name="settings_automatic">Automatikus</string>
     <string name="unit_ftps_voice">Láb per másodperc</string>
     <string name="unit_mm">mm</string>
