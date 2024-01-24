@@ -126,19 +126,21 @@ private fun getDailyForecast(
     val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().times(1000).toDate().toTimezoneNoHour(timeZone)
     val dailyList: MutableList<Daily> = ArrayList()
     if (dailyFirstDay != null) {
+        val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null
         for (i in 0 until 6) {
-            val daytime = dailyResult.daily!!.getOrNull(i * 2)
-            val nighttime = dailyResult.daily.getOrNull((i * 2) + 1)
+            val daytime = if (!firstDayIsNight) {
+                dailyResult.daily.getOrNull(i * 2)
+            } else {
+                if (i != 0) {
+                    dailyResult.daily.getOrNull((i * 2) - 1)
+                } else null
+            }
+            val nighttime = if (!firstDayIsNight) {
+                dailyResult.daily.getOrNull((i * 2) + 1)
+            } else dailyResult.daily.getOrNull(i * 2)
 
-            if (daytime != null && nighttime != null) {
-                // If we see a low temperature in daytime period or a high temperature in nighttime
-                // period, this means we caught the wrong period
-                // Throw an exception to get it fixed
-                if ((daytime.temperature?.periodHigh == null && daytime.temperature?.periodLow != null)
-                    || (nighttime.temperature?.periodLow == null && nighttime.temperature?.periodHigh != null)) {
-                    throw Exception("ECCC: Unexpected high/low temperature value for daytime/nighttime")
-                }
-
+            if ((daytime != null && nighttime != null)
+                || (firstDayIsNight && i == 0 && nighttime != null)) {
                 val currentDay = if (i != 0) {
                     val cal = Calendar.getInstance()
                     cal.setTime(dailyFirstDay)
@@ -149,17 +151,19 @@ private fun getDailyForecast(
                 dailyList.add(
                     Daily(
                         date = currentDay,
-                        day = HalfDay(
-                            weatherCode = getWeatherCode(daytime.iconCode),
-                            weatherText = daytime.summary,
-                            weatherPhase = daytime.text,
-                            temperature = Temperature(
-                                temperature = daytime.temperature?.periodHigh?.toFloat()
-                            ),
-                            precipitationProbability = PrecipitationProbability(
-                                total = daytime.precip?.toFloatOrNull()
+                        day = if (daytime != null) {
+                            HalfDay(
+                                weatherCode = getWeatherCode(daytime.iconCode),
+                                weatherText = daytime.summary,
+                                weatherPhase = daytime.text,
+                                temperature = Temperature(
+                                    temperature = daytime.temperature?.periodHigh?.toFloat()
+                                ),
+                                precipitationProbability = PrecipitationProbability(
+                                    total = daytime.precip?.toFloatOrNull()
+                                )
                             )
-                        ),
+                        } else null,
                         night = HalfDay(
                             weatherCode = getWeatherCode(nighttime.iconCode),
                             weatherText = nighttime.summary,
