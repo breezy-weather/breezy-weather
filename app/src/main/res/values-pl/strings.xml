@@ -25,7 +25,7 @@
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="daytime">Dzień</string>
     <string name="nighttime">Noc</string>
-    <string name="temperature_feels_like">Odczuwalnie</string>
+    <string name="temperature_feels_like">Odczuwalne</string>
     <string name="settings_follow_system">Jak w systemie</string>
     <string name="pressure">Ciśnienie</string>
     <string name="visibility">Widoczność</string>
