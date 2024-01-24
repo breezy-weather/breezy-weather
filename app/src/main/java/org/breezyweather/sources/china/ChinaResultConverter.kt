@@ -144,7 +144,7 @@ private fun getDailyList(
     val dailyList: MutableList<Daily> = ArrayList(dailyForecast.weather.value.size)
     dailyForecast.weather.value.forEachIndexed { index, weather ->
         val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
-            add(Calendar.DATE, index) // FIXME: Wrong TimeZone for the first item
+            add(Calendar.DAY_OF_YEAR, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)

@@ -85,7 +85,7 @@ class AtmoAuraService @Inject constructor(
         }
 
         val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
-            add(Calendar.DATE, 1)
+            add(Calendar.DAY_OF_YEAR, 1)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)

@@ -144,7 +144,7 @@ private fun getDailyForecast(
                 val currentDay = if (i != 0) {
                     val cal = Calendar.getInstance()
                     cal.setTime(dailyFirstDay)
-                    cal.add(Calendar.DATE, i)
+                    cal.add(Calendar.DAY_OF_YEAR, i)
                     cal.time
                 } else dailyFirstDay
 
@@ -202,7 +202,7 @@ private fun getHourlyForecast(
                 PrecipitationProbability(total = result.precip.toFloatOrNull())
             } else null,
             wind = Wind(
-                //degree = result.windDir, // TODO
+                degree = getWindDegree(result.windDir),
                 speed = getNonEmptyMetric(result.windSpeed)?.div(3.6f),
                 gusts = getNonEmptyMetric(result.windGust)?.div(3.6f)
             )
@@ -272,6 +272,21 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "23", "44", "45" -> WeatherCode.HAZE
         "24" -> WeatherCode.FOG
         "25", "40", "41", "42", "43", "48" -> WeatherCode.WIND
+        else -> null
+    }
+}
+
+private fun getWindDegree(direction: String?): Float? {
+    return when (direction) {
+        "N" -> 0f
+        "NE" -> 45f
+        "E" -> 90f
+        "SE" -> 135f
+        "S" -> 180f
+        "SW", "SO" -> 225f
+        "W", "O" -> 270f
+        "NW", "NO" -> 315f
+        "VR" -> -1f
         else -> null
     }
 }

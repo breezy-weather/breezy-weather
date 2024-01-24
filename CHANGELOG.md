@@ -1,12 +1,16 @@
-# Version 4.6.15-beta (not yet released)
+# Version 4.7.0-beta (not yet released)
+
+**New features**
+- Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
 
 **Weather sources**
+- [Bright Sky (DWD)] Added support as a main source in Germany-only
+- [Bright Sky (DWD)] Added support as a secondary source for alerts in Germany-only
 - [Environment and Climate Change Canada] Added support as a main source in Canada-only
 - [Environment and Climate Change Canada] Added support as a secondary source for alerts and normals in Canada-only
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
 
 **Other improvements and fixes**
-- Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
 - Fix a display issue of “alert source” instead of “normals source” in secondary weather sources settings of a location
 - When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings

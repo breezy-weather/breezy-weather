@@ -26,7 +26,7 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOGS.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v4.6.15-beta -m "Version 4.6.15-beta"`).
+7) Tag version beginning with a `v` (example: `git tag v4.7.0-beta -m "Version 4.7.0-beta"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
@@ -198,6 +198,26 @@ Not used:
 | Places   | None    | Doesn’t have mandatory timezone field, miss many data on countries other than France |
 
 Uses Open-Meteo for location search.
+
+
+## Bright Sky
+
+*Last checked: 2024-01-24*
+
+| Endpoint        | Version |
+|-----------------|---------|
+| Weather         | v2.1    |
+| Current weather | v2.1    |
+| Alerts          | v2.1    |
+
+
+## ECCC
+
+*Last checked: 2024-01-24*
+
+| Endpoint    | Version |
+|-------------|---------|
+| Location    | v1      |
 
 
 ## China
