@@ -189,6 +189,7 @@
     <string name="nighttime">Nighttime</string>
     <string name="hours_of_sun">Hours of sun</string>
     <string name="humidity">Humidity</string>
+    <string name="humidity_dew_point">Humidity / Dew point</string>
     <string name="pressure">Pressure</string>
     <string name="visibility">Visibility</string>
     <string name="dew_point">Dew point</string>
@@ -865,6 +866,11 @@
     <string name="tag_precipitation" translatable="false">@string/precipitation</string>
     <string name="tag_aqi" translatable="false">@string/air_quality</string>
     <string name="tag_uv" translatable="false">@string/uv_index</string>
+    <string name="tag_feels_like" translatable="false">@string/temperature_feels_like</string>
+    <string name="tag_humidity_dew_point">@string/humidity_dew_point</string>
+    <string name="tag_pressure">@string/pressure</string>
+    <string name="tag_cloud_cover">@string/cloud_cover</string>
+    <string name="tag_visibility">@string/visibility</string>
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>

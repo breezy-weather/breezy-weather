@@ -14,6 +14,7 @@
     <string name="wind_direction">Szélirány</string>
     <string name="wind_speed">Szélsebesség</string>
     <string name="humidity">Páratartalom</string>
+    <string name="humidity_dew_point">Páratartalom / Harmatpont</string>
     <string name="uv_index">UV-szint</string>
     <string name="hours_of_sun">Napsütéses órák</string>
     <string name="notification_channel_forecast">Előrejelzés</string>

@@ -133,7 +133,7 @@ fun PreferenceView(
                         }
                     }
                 },
-                supportingContent = if (summary?.isNotEmpty() == true) {
+                supportingContent = if (!summary.isNullOrEmpty()) {
                     {
                         if (onClose == null) { // We already have spacing from close button
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
@@ -201,7 +201,7 @@ fun PreferenceView(
                     }
                 }
             },
-            supportingContent = if (summary?.isNotEmpty() == true) {
+            supportingContent = if (!summary.isNullOrEmpty()) {
                 {
                     if (onClose == null) { // We already have spacing from close button
                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))

@@ -353,6 +353,7 @@
     <string name="pollen_level_3">Mērens</string>
     <string name="daytime">Diena</string>
     <string name="humidity">Mitrums</string>
+    <string name="humidity_dew_point">Mitrums / Kušanas temperatūra</string>
     <string name="pollen_level_4">Augsts</string>
     <string name="cloud_cover">Mākoņu aizsegs</string>
     <string name="pollen_level_5">Ļoti augstu</string>

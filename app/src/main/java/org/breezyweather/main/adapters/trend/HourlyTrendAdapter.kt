@@ -70,6 +70,31 @@ class HourlyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).precipitationUnit
                 )
+                HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).temperatureUnit
+                )
+                HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).temperatureUnit
+                )
+                HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).pressureUnit
+                )
+                HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
+                HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).distanceUnit
+                )
             }
         }.filter {
             it.isValid(location)

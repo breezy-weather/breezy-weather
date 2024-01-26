@@ -14,6 +14,7 @@
     <string name="wind_direction">風向</string>
     <string name="wind_speed">風速</string>
     <string name="humidity">湿度</string>
+    <string name="humidity_dew_point">湿度 / 露点</string>
     <string name="uv_index">UV指数</string>
     <string name="hours_of_sun">日照時間</string>
     <string name="notification_channel_forecast">予報</string>

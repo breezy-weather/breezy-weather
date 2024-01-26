@@ -2,6 +2,7 @@
 <resources>
     <string name="hours_of_sun">Eguzki orduak</string>
     <string name="humidity">Hezetasuna</string>
+    <string name="humidity_dew_point">Hezetasuna / Ihintz-tenperatura</string>
     <string name="pressure">Presioa</string>
     <string name="nighttime">Gaua</string>
     <string name="app_name">Eguraldia</string>

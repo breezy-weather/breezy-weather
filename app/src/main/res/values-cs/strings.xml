@@ -15,6 +15,7 @@
     <string name="wind_direction">Směr větru</string>
     <string name="wind_speed">Rychlost větru</string>
     <string name="humidity">Vlhkost</string>
+    <string name="humidity_dew_point">Vlhkost / Rosný bod</string>
     <string name="uv_index">UV index</string>
     <string name="hours_of_sun">Hodiny slunce</string>
     <string name="notification_channel_forecast">Předpověď</string>

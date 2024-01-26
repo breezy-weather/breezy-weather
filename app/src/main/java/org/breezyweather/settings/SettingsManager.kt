@@ -56,16 +56,22 @@ class SettingsManager private constructor(context: Context) {
                 + "&pollen"
                 + "&sunrise_sunset"
                 + "&live")
-        private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
+        const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
                 + "&air_quality"
                 + "&wind"
                 + "&uv_index"
-                + "&precipitation")
-        private const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
+                + "&precipitation"
+                + "&feels_like")
+        const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
                 + "&air_quality"
                 + "&wind"
                 + "&uv_index"
-                + "&precipitation")
+                + "&precipitation"
+                + "&feels_like"
+                + "&humidity"
+                + "&pressure"
+                + "&cloud_cover"
+                + "&visibility")
         private const val DEFAULT_DETAILS_DISPLAY = ("feels_like"
                 + "&wind"
                 + "&uv_index"

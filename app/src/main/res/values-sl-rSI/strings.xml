@@ -9,6 +9,7 @@
     <string name="precipitation">Padavine</string>
     <string name="wind">Veter</string>
     <string name="humidity">Vlažnost</string>
+    <string name="humidity_dew_point">Vlažnost / Točka rose</string>
     <string name="uv_index">UV indeks</string>
     <string name="notification_channel_forecast">Napoved</string>
     <string name="daytime">Podnevi</string>

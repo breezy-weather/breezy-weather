@@ -15,6 +15,7 @@
     <string name="wind_direction">Tuulensuunta</string>
     <string name="wind_speed">Tuulennopeus</string>
     <string name="humidity">Ilmankosteus</string>
+    <string name="humidity_dew_point">Ilmankosteus / Kastepiste</string>
     <string name="uv_index">UV-indeksi</string>
     <string name="hours_of_sun">Auringonpaisteen kesto</string>
     <string name="notification_channel_forecast">Ennuste</string>

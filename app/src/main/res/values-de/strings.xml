@@ -69,6 +69,7 @@
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
+    <string name="humidity_dew_point">Luftfeuchte / Taupunkt</string>
     <string name="precipitation_ice">Eis</string>
     <string name="action_learn_more">Mehr erfahren</string>
     <string name="details">Details</string>

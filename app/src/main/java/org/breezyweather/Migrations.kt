@@ -20,6 +20,8 @@ import android.content.Context
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.db.repositories.AlertEntityRepository
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
@@ -49,6 +51,24 @@ object Migrations {
                 if (oldVersion < 40610) {
                     // Clean up all alerts due to change of alertId from long to string
                     AlertEntityRepository.deleteAllAlerts()
+                }
+                if (oldVersion < 40700) {
+                    // V4.7.0 adds many new charts
+                    // Adding it to people who customized their hourly trends tabs so they don't miss
+                    // this new feature. This can still be removed by user from settings
+                    // as this code is only executed once, after migrating from a version < 4.7.0
+                    try {
+                        val curHourlyTrendDisplayList = HourlyTrendDisplay.toValue(SettingsManager.getInstance(context).hourlyTrendDisplayList)
+                        if (curHourlyTrendDisplayList != SettingsManager.DEFAULT_HOURLY_TREND_DISPLAY) {
+                            SettingsManager.getInstance(context).hourlyTrendDisplayList = HourlyTrendDisplay.toHourlyTrendDisplayList("${curHourlyTrendDisplayList}&feels_like&humidity&pressure&cloud_cover&visibility")
+                        }
+                        val curDailyTrendDisplayList = DailyTrendDisplay.toValue(SettingsManager.getInstance(context).dailyTrendDisplayList)
+                        if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
+                            SettingsManager.getInstance(context).dailyTrendDisplayList = DailyTrendDisplay.toDailyTrendDisplayList("${curDailyTrendDisplayList}&feels_like")
+                        }
+                    } catch (ignored: Throwable) {
+                        // ignored
+                    }
                 }
             }
 

@@ -15,6 +15,7 @@
     <string name="wind_direction">풍향</string>
     <string name="wind_speed">풍속</string>
     <string name="humidity">습도</string>
+    <string name="humidity_dew_point">습도 / 이슬점</string>
     <string name="uv_index">자외선 지수</string>
     <string name="hours_of_sun">일조 시간</string>
     <string name="notification_channel_forecast">예보</string>

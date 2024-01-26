@@ -70,6 +70,12 @@ class DailyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).precipitationUnit
                 )
+                DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).temperatureUnit
+                )
             }
         }.filter {
             it.isValid(location)

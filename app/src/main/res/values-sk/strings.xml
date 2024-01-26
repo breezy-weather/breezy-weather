@@ -166,6 +166,7 @@
     <string name="null_data_text">N/A</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <string name="humidity">Vlhkosť</string>
+    <string name="humidity_dew_point">Vlhkosť / Rosný bod</string>
     <string name="ephemeris_moonset_at">Západ mesiaca v $</string>
     <string name="ephemeris_moonrise_at">Východ mesiaca v $</string>
     <string name="date_format_short">d.M.</string>

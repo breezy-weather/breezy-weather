@@ -9,6 +9,7 @@
     <string name="precipitation">Yağış</string>
     <string name="wind">Rüzgar</string>
     <string name="humidity">Nem</string>
+    <string name="humidity_dew_point">Nem / Çiy noktası</string>
     <string name="uv_index">UV indeksi</string>
     <string name="notification_channel_forecast">Tahmin</string>
     <string name="daytime">Gündüz</string>

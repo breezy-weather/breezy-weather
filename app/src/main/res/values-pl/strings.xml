@@ -19,6 +19,7 @@
     <string name="wind_direction">Kierunek wiatru</string>
     <string name="wind_speed">Prędkość wiatru</string>
     <string name="humidity">Wilgotność</string>
+    <string name="humidity_dew_point">Wilgotność / Punkt rosy</string>
     <string name="uv_index">Indeks UV</string>
     <string name="hours_of_sun">Godziny słońca</string>
     <string name="notification_channel_forecast">Prognoza</string>

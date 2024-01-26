@@ -30,7 +30,12 @@ enum class HourlyTrendDisplay(
     TAG_AIR_QUALITY("air_quality", R.string.air_quality),
     TAG_WIND("wind", R.string.wind),
     TAG_UV_INDEX("uv_index", R.string.uv_index),
-    TAG_PRECIPITATION("precipitation", R.string.precipitation);
+    TAG_PRECIPITATION("precipitation", R.string.precipitation),
+    TAG_FEELS_LIKE("feels_like", R.string.temperature_feels_like),
+    TAG_HUMIDITY("humidity", R.string.humidity_dew_point),
+    TAG_PRESSURE("pressure", R.string.pressure),
+    TAG_CLOUD_COVER("cloud_cover", R.string.cloud_cover),
+    TAG_VISIBILITY("visibility", R.string.visibility);
 
     companion object {
 
@@ -48,6 +53,11 @@ enum class HourlyTrendDisplay(
                     "wind" -> list.add(TAG_WIND)
                     "uv_index" -> list.add(TAG_UV_INDEX)
                     "precipitation" -> list.add(TAG_PRECIPITATION)
+                    "feels_like" -> list.add(TAG_FEELS_LIKE)
+                    "humidity" -> list.add(TAG_HUMIDITY)
+                    "pressure" -> list.add(TAG_PRESSURE)
+                    "cloud_cover" -> list.add(TAG_CLOUD_COVER)
+                    "visibility" -> list.add(TAG_VISIBILITY)
                 }
             }
             list

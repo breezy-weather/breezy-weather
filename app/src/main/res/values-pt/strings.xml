@@ -9,6 +9,7 @@
     <string name="precipitation">Precipitação</string>
     <string name="wind">Vento</string>
     <string name="humidity">Humidade</string>
+    <string name="humidity_dew_point">Humidade / Ponto de Orvalho</string>
     <string name="uv_index">Índice UV</string>
     <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">Dia</string>

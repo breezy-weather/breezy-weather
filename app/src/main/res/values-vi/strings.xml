@@ -143,6 +143,7 @@
     <string name="details">Chi tiết</string>
     <string name="hours_of_sun">Số giờ nắng</string>
     <string name="humidity">Độ ẩm</string>
+    <string name="humidity_dew_point">Độ ẩm / Điểm sương</string>
     <string name="pressure">Áp suất</string>
     <string name="visibility">Tầm nhìn xa</string>
     <string name="dew_point">Điểm sương</string>

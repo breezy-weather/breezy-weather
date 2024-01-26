@@ -19,6 +19,7 @@
     <string name="wind_gusts">Rafales de vent</string>
     <!-- Selon l’échelle de Beaufort -->
     <string name="humidity">Humidité</string>
+    <string name="humidity_dew_point">Humidité / Point de rosée</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Heures d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>

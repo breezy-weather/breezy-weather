@@ -2,6 +2,12 @@
 
 **New features**
 - Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
+- New daily chart: feels like temperature
+- New hourly chart: feels like temperature
+- New hourly chart: humidity / dew point
+- New hourly chart: pressure
+- New hourly chart: cloud cover
+- New hourly chart: visibility
 
 **Weather sources**
 - [Bright Sky (DWD)] Added support as a main source in Germany-only

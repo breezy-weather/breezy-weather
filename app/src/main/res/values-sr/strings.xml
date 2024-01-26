@@ -9,6 +9,7 @@
     <string name="precipitation">Падавине</string>
     <string name="wind">Ветар</string>
     <string name="humidity">Влажност</string>
+    <string name="humidity_dew_point">Влажност / Тачка росе</string>
     <string name="uv_index">УВ индекс</string>
     <string name="notification_channel_forecast">Прогноза</string>
     <string name="daytime">Дневно</string>

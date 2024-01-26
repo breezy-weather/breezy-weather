@@ -414,6 +414,7 @@
     <string name="settings_main_header_details_title">Detalji u zaglavlju</string>
     <string name="short_today">Danas</string>
     <string name="humidity">Vlažnost</string>
+    <string name="humidity_dew_point">Vlažnost / Točka orošenja</string>
     <string name="weather_source_openweather_version_2_5">Verzija 2.5</string>
     <string name="settings_main_background_animation_disabled">Onemogućeno</string>
     <string name="of_clock">:00</string>

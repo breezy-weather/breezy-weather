@@ -9,6 +9,7 @@
     <string name="precipitation">Neerslag</string>
     <string name="wind">Wind</string>
     <string name="humidity">Luchtvochtigheid</string>
+    <string name="humidity_dew_point">Luchtvochtigheid / Dauwpunt</string>
     <string name="uv_index">UV-index</string>
     <string name="notification_channel_forecast">Voorspelling</string>
     <string name="daytime">Overdag</string>

@@ -15,6 +15,7 @@
     <string name="wind_direction">Direcția vântului</string>
     <string name="wind_speed">Viteza vântului</string>
     <string name="humidity">Umiditate</string>
+    <string name="humidity_dew_point">Umiditate / Punct de rouă</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Ore cu soare</string>
     <string name="notification_channel_forecast">Prognoză</string>
