@@ -3,11 +3,12 @@ Breezy Weather est une application météo Android libre et gratuite, dérivé d
 Vous trouverez dans cette application, de façon non exhaustive :<ul>
 <li>Les conditions météorologiques en temps réel (Température, Ressenti, Vent, Indice UV, Humidité, Point de rosée, Pression atmosphérique, Visibilité, Couverture nuageuse, Plafond)</li>
 <li>Les prévisions quotidiennes et horaires jusqu’à un maximum de 16 jours (Température, Qualité de l’air, Vent, Indice UV, Précipitations)</li>
+<li>Détails des prévisions horaires (Humidité / Point de rosée, Pression, Couverture nuageuse, Visibilité)</li>
 <li>Les précipitations dans l’heure à venir</li>
 <li>Des informations sur la qualité de l’air, les allergènes et l’éphéméride</li>
 <li>Vigilances météo et alertes de précipitations</li></ul>
 
-L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations:<ul>
+L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations :<ul>
 <li>Thème sombre automatique</li>
 <li>Thèmes d’icônes personnalisées</li>
 <li>Une large sélection de widgets pour l’écran d’accueil pour disposer de l’information en un coup d’œil</li>
@@ -18,8 +19,13 @@ Les fournisseurs de données météo disponibles sont les suivants :<ul>
 <li>AccuWeather</li>
 <li>MET Norway</li>
 <li>OpenWeatherMap</li>
+<li>Pirate Weather</li>
+<li>HERE</li>
 <li>Météo France</li>
-<li>Mixed China providers</li></ul>
+<li>Mix de sources pour la Chine</li>
+<li>Bright Sky (DWD)</li>
+<li>Environnement et Changement Climatique Canada</li>
+<li>SMHI</li></ul>
 
 L’application nécessite un certain nombre de permissions ; certaines obligatoires, d’autres facultatives.
 

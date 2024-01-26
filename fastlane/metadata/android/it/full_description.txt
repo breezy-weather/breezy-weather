@@ -3,6 +3,7 @@ Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un f
 Nell'app troverete:<ul>
 <li>Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)</li>
 <li>Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni)</li>
+<li>Hourly details (Humidity / Dew point, Pressure, Cloud cover, Visibility)</li>
 <li>Precipitazioni durante l'ora a venire</li>
 <li>Qualità dell'aria, allergeni e dati sole e luna</li>
 <li>Avvisi di maltempo e di precipitazioni</li></ul>
@@ -18,8 +19,13 @@ I fornitori di meteo attualmente supportati:<ul>
 <li>AccuWeather</li>
 <li>MET Norway</li>
 <li>OpenWeatherMap</li>
+<li>Pirate Weather</li>
+<li>HERE</li>
 <li>Météo France</li>
-<li>Varie fonti per la Cina</li></ul>
+<li>Varie fonti per la Cina</li>
+<li>Bright Sky (DWD)</li>
+<li>Environment and Climate Change Canada</li>
+<li>SMHI</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
 

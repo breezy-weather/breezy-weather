@@ -61,6 +61,12 @@ alt="Get it on GitHub" align="center" height="80" />
       - Wind
       - UV index
       - Precipitation
+      - Feels like temperature
+    - Hourly forecasts
+      - Humidity / Dew point
+      - Pressure
+      - Cloud cover
+      - Visibility
     - Precipitation in the next hour
     - Air quality
     - Pollen & Mold
@@ -135,7 +141,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.
 
-[![Translation progress report](https://camo.githubusercontent.com/c651422c22fc5743a6bf2003b86ed171e1852a8b90030c2e3bae322e32b9f778/68747470733a2f2f686f737465642e7765626c6174652e6f72672f776964676574732f627265657a792d776561746865722f2d2f627265657a792d776561746865722d616e64726f69642f686f72697a6f6e74616c2d6175746f2e737667)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
+[![Translation progress report](https://camo.githubusercontent.com/300e06706d5aa03ae0333db112b8dce2dff67c698f86af7f95557fc4d081f616/68747470733a2f2f686f737465642e7765626c6174652e6f72672f7769646765742f627265657a792d776561746865722f627265657a792d776561746865722d616e64726f69642f686f72697a6f6e74616c2d6175746f2e737667)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
 
 * English regional variants must be updated on GitHub if they differ from the original English file
 * French translation is maintained by repo maintainers
@@ -157,7 +163,6 @@ These are time-consuming features and help is always appreciated. A fresh look t
 | ID                                                                                                                                     | Feature                            | Status                | Note                                                                                                                                     |
 |----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress      | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
-| [#15](https://github.com/breezy-weather/breezy-weather/issues/15)                                                                      | Humidity/Dew point chart           | Depends on new charts |                                                                                                                                          |
 | [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do         | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
 |                                                                                                                                        | Widgets redesign                   | Mockups in progress   | No widgets improvements will be done until completed                                                                                     |
 | [#23](https://github.com/breezy-weather/breezy-weather/issues/23)                                                                      | Radar                              | Survey to do          | To better understand expectations                                                                                                        |
