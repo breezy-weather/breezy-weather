@@ -6,7 +6,7 @@
     <string name="widget_refreshing">Osvježavanje</string>
     <string name="widget_label_black_text">Boja teksta</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
-    <string name="wind_strength_6">Jaki vjetar</string>
+    <string name="wind_strength_6">Jak vjetar</string>
     <string name="air_quality_so2_info_consequences">Izloženost SO₂ je povezana sa bolničkim liječenjima i posjetima hitnom prijemu zbog astme.</string>
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
     <string name="uv_index_6_7">Visoko</string>
@@ -19,7 +19,7 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertikalno</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
-    <string name="wind_strength_3">Slabi vjetar</string>
+    <string name="wind_strength_3">Slab vjetar</string>
     <string name="widget_label_show_widget_card">Boja pozadine</string>
     <string name="widget_label_hide_subtitle">Sakrij podnaslov</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona za prikazivanje u tjednim prikazima</string>
@@ -53,7 +53,7 @@
     <string name="location_message_reverse_geocoding_failed">Izvor prognoze nije uspješno našao odgovarajuću lokaciju</string>
     <string name="air_quality_pm_explanations_consequences">Čestice su najštetniji oblik zagađenja zraka zbog njihove mogućnosti probijanja duboko u pluća i mozak iz krvotoka, stvarajući zdravstvene probleme kao što su bolesti srca, bolesti pluća i prijevremena smrt.</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="wind_strength_10">Oluja</string>
+    <string name="wind_strength_10">Orkanski vjetar</string>
     <string name="temperature">Temperatura</string>
     <string name="precipitation_ice">Led</string>
     <string name="settings_background_updates_battery_optimization">Onemogući optimiranje baterije</string>
@@ -164,7 +164,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Tjedan (kratko)</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_refresh_skipped_already_recently_updated">Već nedavno ažurirano</string>
-    <string name="wind_strength_7">Žestoki vjetar</string>
+    <string name="wind_strength_7">Žestok vjetar</string>
     <string name="widget_text">Tekst</string>
     <string name="air_quality_level_3_description">U zraku je visoka razina onečišćenja i nije zdrav za osjetljive skupine. Smanjite vrijeme provedeno na otvorenom ako osjetite simptome kao što su otežano disanje i iritacija grla.</string>
     <string name="precipitation_probability">Vjerojatnost oborina</string>
@@ -206,11 +206,11 @@
     <string name="air_quality_no2_info_introduction">Dušikov dioksid (NO₂) je zagušljiv, toksični crveno-smeđi plin sa karakterističnim oporim, oštrim mirisom.</string>
     <string name="location_results_by">Rezultati lokacije: $</string>
     <string name="air_quality_no2_info_title">Dušikov dioksid (NO₂)</string>
-    <string name="wind_strength_0">Mirno</string>
+    <string name="wind_strength_0">Tišina</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Geografska širina</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dnevno vrijeme danas, sutra, …, 4 dana kasnije</string>
-    <string name="wind_strength_4">Umjereni vjetar</string>
+    <string name="wind_strength_4">Umjeren vjetar</string>
     <string name="settings_notifications_precipitations_title">Obavijesti o oborinama</string>
     <string name="temperature_normals">Normalne temperature</string>
     <string name="pollen">Pelud</string>
@@ -478,7 +478,7 @@
     <string name="short_sunday">Ned</string>
     <string name="ephemeris_moon_phase_last_quarter">Posljednja četvrt</string>
     <string name="wind">Vjetar</string>
-    <string name="wind_strength_5">Umjereno jaki vjetar</string>
+    <string name="wind_strength_5">Umjereno jak vjetar</string>
     <string name="settings_location_access_background_title">Pristup lokaciji u pozadini</string>
     <string name="widget_trend_hourly">Trend po satu</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
