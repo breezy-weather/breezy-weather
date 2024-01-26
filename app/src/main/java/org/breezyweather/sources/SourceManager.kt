@@ -40,6 +40,7 @@ import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
+import org.breezyweather.sources.smhi.SmhiService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -57,7 +58,8 @@ class SourceManager @Inject constructor(
     mfService: MfService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
-    pirateWeatherService: PirateWeatherService
+    pirateWeatherService: PirateWeatherService,
+    smhiService: SmhiService
 ) {
     // TODO: Initialize lazily
     // The order of this list is preserved in "source chooser" dialogs
@@ -83,6 +85,7 @@ class SourceManager @Inject constructor(
         chinaService,
         brightSkyService,
         ecccService,
+        smhiService,
 
         // Secondary weather sources
         atmoAuraService

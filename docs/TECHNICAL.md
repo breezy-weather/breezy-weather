@@ -213,11 +213,20 @@ Uses Open-Meteo for location search.
 
 ## ECCC
 
-*Last checked: 2024-01-24*
+*Last checked: 2024-01-26*
 
 | Endpoint    | Version |
 |-------------|---------|
-| Location    | v1      |
+| Location    | v2      |
+
+
+## SMHI
+
+*Last checked: 2024-01-26*
+
+| Endpoint | Version |
+|----------|---------|
+| Weather  | 2       |
 
 
 ## China

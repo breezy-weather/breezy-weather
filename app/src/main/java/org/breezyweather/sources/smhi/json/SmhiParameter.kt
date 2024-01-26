@@ -14,26 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.db.entities
+package org.breezyweather.sources.smhi.json
 
-import io.objectbox.annotation.Entity
-import io.objectbox.annotation.Id
-import java.util.*
+import kotlinx.serialization.Serializable
 
-/**
- * Alert entity.
- *
- * [Alert]
- */
-@Entity
-class AlertEntity(
-    @field:Id var id: Long = 0,
-    var formattedId: String,
-    var alertId: String,
-    var startDate: Date? = null,
-    var endDate: Date? = null,
-    var description: String,
-    var content: String? = null,
-    var priority: Int,
-    var color: Int
+@Serializable
+data class SmhiParameter(
+    val name: String,
+    val values: List<Float>
 )

@@ -35,8 +35,6 @@ import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
-import org.breezyweather.remoteviews.presenters.notification.MultiCityWidgetNotificationIMP
-import org.breezyweather.remoteviews.presenters.notification.NativeWidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory

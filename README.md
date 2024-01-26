@@ -88,6 +88,9 @@ alt="Get it on GitHub" align="center" height="80" />
   - HERE (no API key provided)
   - Météo France
   - Mixed China sources
+  - Bright Sky (DWD)
+  - Environment and Climate Change Canada
+  - SMHI
 </details>
 
 - Large selection of home screen widgets for at-a-glance information

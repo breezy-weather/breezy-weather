@@ -123,7 +123,7 @@ class SearchActivity : GeoActivity() {
                 //shape = shape,
                 color = SearchBarDefaults.colors().containerColor,
                 contentColor = contentColorFor(SearchBarDefaults.colors().containerColor),
-                tonalElevation = SearchBarDefaults.Elevation,
+                tonalElevation = SearchBarDefaults.TonalElevation,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(
@@ -147,7 +147,7 @@ class SearchActivity : GeoActivity() {
                         placeholder = { Text(stringResource(R.string.location_search_placeholder)) },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) }
                     )
-                    Divider(color = SearchBarDefaults.colors().dividerColor)
+                    HorizontalDivider(color = SearchBarDefaults.colors().dividerColor)
                     val listResourceState = viewModel.listResource.collectAsState()
                     if (listResourceState.value.second == LoadableLocationStatus.LOADING) {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())

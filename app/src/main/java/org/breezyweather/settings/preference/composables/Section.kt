@@ -18,7 +18,7 @@ package org.breezyweather.settings.preference.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,5 +44,5 @@ fun SectionHeader(
 
 @Composable
 fun SectionFooter() {
-    Divider(color = Color.Transparent)
+    HorizontalDivider(color = Color.Transparent)
 }

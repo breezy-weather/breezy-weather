@@ -45,7 +45,7 @@ class BrightSkyService @Inject constructor(
 
     override val id = "brightsky"
     override val name = "Bright Sky (DWD)"
-    override val privacyPolicyUrl = "https://pirate-weather.apiable.io/privacy"
+    override val privacyPolicyUrl = "https://brightsky.dev/"
 
     override val color = Color.rgb(240, 177, 138)
     // Mandatory mentions from DWD terms:

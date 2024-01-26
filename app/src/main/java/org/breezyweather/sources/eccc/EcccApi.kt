@@ -22,7 +22,7 @@ import org.breezyweather.sources.eccc.json.EcccResult
 import retrofit2.http.Path
 
 interface EcccApi {
-    @GET("v1/{lang}/Location/{lat},{lon}")
+    @GET("v2/{lang}/Location/{lat},{lon}")
     fun getForecast(
         @Path("lang") lang: String,
         @Path("lat") lat: Float,

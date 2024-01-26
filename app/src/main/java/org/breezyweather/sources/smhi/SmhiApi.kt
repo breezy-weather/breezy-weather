@@ -14,26 +14,17 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.db.entities
+package org.breezyweather.sources.smhi
 
-import io.objectbox.annotation.Entity
-import io.objectbox.annotation.Id
-import java.util.*
+import retrofit2.http.GET
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.smhi.json.SmhiForecastResult
+import retrofit2.http.Path
 
-/**
- * Alert entity.
- *
- * [Alert]
- */
-@Entity
-class AlertEntity(
-    @field:Id var id: Long = 0,
-    var formattedId: String,
-    var alertId: String,
-    var startDate: Date? = null,
-    var endDate: Date? = null,
-    var description: String,
-    var content: String? = null,
-    var priority: Int,
-    var color: Int
-)
+interface SmhiApi {
+    @GET("category/pmp3g/version/2/geotype/point/lon/{lon}/lat/{lat}/data.json")
+    fun getForecast(
+        @Path("lon") lon: Float,
+        @Path("lat") lat: Float
+    ): Observable<SmhiForecastResult>
+}

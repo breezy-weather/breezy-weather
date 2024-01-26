@@ -22,8 +22,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
@@ -37,12 +36,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
-import org.breezyweather.common.extensions.isRtl
 import kotlin.math.ln
 
 private val topAppBarElevation = 6.dp
@@ -96,7 +93,7 @@ fun FitStatusBarTopAppBar(
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(
-                imageVector = if (LocalContext.current.isRtl) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.action_back),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
             )
@@ -117,7 +114,7 @@ fun BWCenterAlignedTopAppBar(
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(
-                imageVector = if (LocalContext.current.isRtl) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.action_back),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
             )

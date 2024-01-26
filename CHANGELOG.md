@@ -8,6 +8,7 @@
 - [Bright Sky (DWD)] Added support as a secondary source for alerts in Germany-only
 - [Environment and Climate Change Canada] Added support as a main source in Canada-only
 - [Environment and Climate Change Canada] Added support as a secondary source for alerts and normals in Canada-only
+- [SMHI] Added support as a main source in Sweden-only
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
 
 **Other improvements and fixes**

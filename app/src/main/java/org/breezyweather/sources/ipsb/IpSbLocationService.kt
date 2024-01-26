@@ -17,7 +17,6 @@
 package org.breezyweather.sources.ipsb
 
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.rxjava.SchedulerTransformer
