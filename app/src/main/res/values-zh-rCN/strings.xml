@@ -661,4 +661,8 @@
     <string name="settings_unavailable_no_background_updates">不可用，请先开启后台更新</string>
     <string name="notification_precipitation_continuing">降水</string>
     <string name="notification_precipitation_stopping_desc">预计将于 %1$s 停止</string>
+    <string name="tag_humidity_dew_point">露点</string>
+    <string name="tag_pressure">气压</string>
+    <string name="tag_cloud_cover">云层覆盖</string>
+    <string name="tag_visibility">可见度</string>
 </resources>
