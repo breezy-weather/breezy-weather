@@ -41,4 +41,24 @@
     <string name="action_continue">Kemmel</string>
     <string name="action_cancel">Sesfex</string>
     <string name="action_close">Mdel</string>
+    <string name="unit_celsius_short">°</string>
+    <string name="unit_fahrenheit_short">°</string>
+    <string name="unit_kelvin_short">K</string>
+    <string name="widget_week">S dduṛt</string>
+    <string name="widget_day_week">Yal ass + yal smana</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Tazɣelt tamirant (°)</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Ddurt</string>
+    <string name="widget_week_style_5_days">5 n wussan</string>
+    <string name="widget_week_style_3_days">3 n wussan</string>
+    <string name="widget_style_temperature">Taẓɣelt</string>
+    <string name="metno_weather_text_andthunder">$ akked rɛud</string>
+    <string name="temperature">Taẓɣelt</string>
+    <string name="short_friday">Sem</string>
+    <string name="short_saturday">Sed</string>
+    <string name="short_tomorrow">Azk</string>
+    <string name="temperature_feels_like">Ad s-tiniḍ</string>
+    <string name="wind_strength">Lǧehd n waḍu</string>
+    <string name="wind_strength_0">Yerked</string>
+    <string name="temperature_normal_short">Amagnu</string>
+    <string name="hours_of_sun">Isragen n yiṭij</string>
 </resources>
