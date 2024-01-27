@@ -657,8 +657,4 @@
     <string name="notification_precipitation_stopping_desc">Очекује се да ће се зауставити у %1$s</string>
     <string name="notification_precipitation_continuing">Падавине</string>
     <string name="notification_precipitation_stopping">Ускоро престанак падавина</string>
-    <string name="tag_humidity_dew_point">\@string/humidity_dew_point</string>
-    <string name="tag_pressure">\@string/pressure</string>
-    <string name="tag_cloud_cover">\@string/cloud_cover</string>
-    <string name="tag_visibility">\@string/visibility</string>
 </resources>
