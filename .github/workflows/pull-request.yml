@@ -33,7 +33,7 @@ jobs:
           java-version: 17
           distribution: adopt
 
-      - uses: gradle/gradle-command-action@v2
+      - uses: gradle/gradle-command-action@v3
         with:
           arguments: assembleStandardDebug
 

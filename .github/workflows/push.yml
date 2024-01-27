@@ -45,7 +45,7 @@ jobs:
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
 
-      - uses: gradle/gradle-command-action@v2
+      - uses: gradle/gradle-command-action@v3
         with:
           arguments: assembleStandardRelease
 
