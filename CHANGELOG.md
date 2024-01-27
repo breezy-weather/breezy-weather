@@ -10,6 +10,7 @@
 - New hourly chart: visibility
 
 **Weather sources**
+- [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source (alerts for Denmark not yet supported)
 - [Bright Sky (DWD)] Added support as a main source in Germany-only
 - [Bright Sky (DWD)] Added support as a secondary source for alerts in Germany-only
 - [Environment and Climate Change Canada] Added support as a main source in Canada-only

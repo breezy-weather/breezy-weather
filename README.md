@@ -93,6 +93,7 @@ alt="Get it on GitHub" align="center" height="80" />
   - Pirate Weather (no API key provided)
   - HERE (no API key provided)
   - Météo France
+  - Danmarks Meteorologiske Institut (DMI)
   - Mixed China sources
   - Bright Sky (DWD)
   - Environment and Climate Change Canada

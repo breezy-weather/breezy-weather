@@ -22,6 +22,7 @@ Current supported weather providers:<ul>
 <li>Pirate Weather</li>
 <li>HERE</li>
 <li>Météo France</li>
+<li>Danmarks Meteorologiske Institut (DMI)</li>
 <li>Mixed China providers</li>
 <li>Bright Sky (DWD)</li>
 <li>Environment and Climate Change Canada</li>

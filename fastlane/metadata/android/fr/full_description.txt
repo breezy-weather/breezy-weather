@@ -22,6 +22,7 @@ Les fournisseurs de données météo disponibles sont les suivants :<ul>
 <li>Pirate Weather</li>
 <li>HERE</li>
 <li>Météo France</li>
+<li>Danmarks Meteorologiske Institut (DMI)</li>
 <li>Mix de sources pour la Chine</li>
 <li>Bright Sky (DWD)</li>
 <li>Environnement et Changement Climatique Canada</li>

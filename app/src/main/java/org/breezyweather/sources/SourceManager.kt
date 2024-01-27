@@ -31,6 +31,7 @@ import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.here.HereService
@@ -50,6 +51,7 @@ class SourceManager @Inject constructor(
     baiduIPService: BaiduIPLocationService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
+    dmiService: DmiService,
     ecccService: EcccService,
     geoNamesService: GeoNamesService,
     hereService: HereService,
@@ -79,9 +81,12 @@ class SourceManager @Inject constructor(
         openWeatherService,
         pirateWeatherService,
         hereService,
-        mfService,
 
-        // Regional-only sources (sorted by population)
+        // National sources supporting worldwide
+        mfService,
+        dmiService,
+
+        // National-only sources (sorted by population)
         chinaService,
         brightSkyService,
         ecccService,
