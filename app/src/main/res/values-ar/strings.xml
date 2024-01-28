@@ -657,4 +657,5 @@
     <string name="settings_unavailable_no_background_updates">غير متاح، قم بتمكين تحديثات الخلفية أولاً</string>
     <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %1$s على الأقل</string>
     <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %1$s</string>
+    <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
 </resources>
