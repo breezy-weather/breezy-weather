@@ -655,4 +655,11 @@
     <string name="common_weather_text_snow_showers_light">Lekkie przelotne opady śniegu</string>
     <string name="settings_widgets_gadgets_title">Narzędzia</string>
     <string name="settings_color_app">Podążaj za nami</string>
+    <string name="settings_unavailable_no_background_updates">Niedostępne, najpierw włącz aktualizacje w tle</string>
+    <string name="notification_precipitation_starting">Wkrótce opady</string>
+    <string name="notification_precipitation_continuing_desc">Przewidywany czas trwania przynajmniej do %1$s</string>
+    <string name="notification_precipitation_stopping">Wkrótce koniec opadów</string>
+    <string name="notification_precipitation_stopping_desc">Przedwidywany czas zakończenia o %1$s</string>
+    <string name="notification_precipitation_starting_desc">Przewidywane rozpoczęcie o %1$s</string>
+    <string name="notification_precipitation_continuing">Opady</string>
 </resources>
