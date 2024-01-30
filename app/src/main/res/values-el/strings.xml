@@ -410,7 +410,7 @@
     <string name="action_add_current_location">Προσθήκη τρέχουσας τοποθεσίας</string>
     <string name="action_add_from_map">Προσθήκη από χάρτη</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="settings_location_access_background_summaryOff">Παρακαλώ ενεργοποίησε το \"Επιτρέπεται πάντα\" για να γίνονται ανανεώσεις στο παρασκήνιο για την τρέχουσα τοποθεσία σου.</string>
+    <string name="settings_location_access_background_summaryOff">Παρακαλώ ενεργοποίησε το “Επιτρέπεται πάντα” για να γίνονται ανανεώσεις στο παρασκήνιο για την τρέχουσα τοποθεσία σου.</string>
     <string name="widget_week_style_3_days">3 μέρες</string>
     <string name="action_delete">Διαγραφή</string>
     <string name="dialog_permissions_location_background_title">Πρόσβαση τοποθεσίας στο παρασκήνιο</string>
@@ -436,7 +436,7 @@
     <string name="location_message_permission_background_missing">Η άδεια πρόσβασης τοποθεσίας στο παρασκήνιο λείπει</string>
     <string name="location_message_reverse_geocoding_failed">Η πηγή καιρού δε βρήκε τοποθεσία που να ταιριάζει</string>
     <string name="location_resident_location">Τοποθεσία κατοικίας</string>
-    <string name="location_resident_location_summaryOn">Ενεργό. Κρυμμένο όταν είναι εντός $ απ\' τη τρέχουσα τοποθεσία.</string>
+    <string name="location_resident_location_summaryOn">Ενεργό. Κρυμμένο όταν είναι εντός $ απ’ τη τρέχουσα τοποθεσία.</string>
     <string name="location_resident_location_summaryOff">Ανενεργό. Η τοποθεσία θα είναι πάντα διαθέσιμη.</string>
     <string name="action_location_list">Λίστα τοποθεσιών</string>
     <string name="action_add_new_location">Προσθήκη νέας τοποθεσίας</string>
@@ -447,7 +447,7 @@
     <string name="dialog_permissions_notification_title">Μείνε ενημερωμένος</string>
     <string name="dialog_permissions_notification_content">Πάτησε εδώ για να ενεργοποιήσεις τις ειδοποιήσεις σχετικά με προειδοποιήσεις καιρού ή αποφάσισε αργότερα στις Ρυθμίσεις.</string>
     <string name="dialog_permissions_location_title">Πληροφορίες πρόσβασης τοποθεσίας</string>
-    <string name="dialog_permissions_location_background_content">Για να επιτρέψεις στην εφαρμογή να έχει πρόσβαση σε πληροφορίες τοποθεσίας στο παρασκήνιο, ώστε να γίνονται αντιληπτές αλλαγές στη τοποθεσία και να παρέχονται έγκυρα δεδομένα καιρού, παρακαλώ θέσε την πρόσβαση τοποθεσίας σε \"Επιτρέπεται πάντα\".</string>
+    <string name="dialog_permissions_location_background_content">Για να επιτρέψεις στην εφαρμογή να έχει πρόσβαση σε πληροφορίες τοποθεσίας στο παρασκήνιο, ώστε να γίνονται αντιληπτές αλλαγές στη τοποθεσία και να παρέχονται έγκυρα δεδομένα καιρού, παρακαλώ θέσε την πρόσβαση τοποθεσίας σε “Επιτρέπεται πάντα”.</string>
     <string name="widget_multi_city">Πολλαπλές Πόλεις</string>
     <string name="widget_label_align_end">Ευθυγράμμιση Τέλους</string>
     <string name="widget_style_temperature">Θερμοκρασία</string>
@@ -477,7 +477,7 @@
     <string name="settings_location_summary">Ρυθμίσεις υπηρεσιών τοποθεσίας</string>
     <string name="widget_custom_subtitle_keyword_als_description">Προειδοποιήσεις (Σύντομο)</string>
     <string name="settings_location">Ανίχνευση τοποθεσίας</string>
-    <string name="settings_location_access_precise_summaryOff">Ενεργοποίησε το \"Χρήση ακριβούς τοποθεσίας\" αν έχεις πρόβλημα με την εύρεση θέσης.</string>
+    <string name="settings_location_access_precise_summaryOff">Ενεργοποίησε το “Χρήση ακριβούς τοποθεσίας” αν έχεις πρόβλημα με την εύρεση θέσης.</string>
     <string name="settings_background_updates_section_troubleshoot">Διαγνωστικός έλεγχος</string>
     <string name="settings_background_updates_battery_optimization_summary">Αυτό είναι το πρώτο πράγμα που πρέπει να δοκιμάσεις όταν δεν λαμβάνεις ειδοποιήσεις ή δεν ανανεώνονται τα widgets.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Η βελτιστοποίηση μπαταρίας είναι ήδη ανενεργή.</string>

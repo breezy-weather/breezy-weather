@@ -597,7 +597,7 @@
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
     <string name="unit_cm_voice">Centimetara</string>
-    <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu \"Osjećaj kao\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu “Osjećaj kao”</string>
     <string name="settings_debug">Otklanjanje pogrešaka</string>
     <string name="settings_debug_dump_crash_logs_saved">Zapisnici o padu spremljeni</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dodirnite za otvaranje</string>
