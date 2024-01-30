@@ -508,7 +508,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     }
 
     companion object {
-        private const val MARGIN_TOP_DIP = 16f
+        private const val MARGIN_TOP_DIP = 24f
         private const val MARGIN_BOTTOM_DIP = 36f
         private const val POLYLINE_SIZE_DIP = 5f
         private const val POLYLINE_TEXT_SIZE_DIP = 14f

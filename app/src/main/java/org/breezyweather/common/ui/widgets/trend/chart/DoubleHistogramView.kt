@@ -234,7 +234,7 @@ class DoubleHistogramView @JvmOverloads constructor(
     }
 
     companion object {
-        private const val MARGIN_DIP = 16f
+        private const val MARGIN_DIP = 24f
         private const val MARGIN_CENTER_DIP = 4f
         private const val HISTOGRAM_WIDTH_DIP = 8f
         private const val HISTOGRAM_TEXT_SIZE_DIP = 14f
