@@ -19,6 +19,8 @@ This major version introduces new hourly trends for more detailed weather data, 
 - [Environment and Climate Change Canada] Added support as a secondary source for alerts and normals in Canada-only
 - [SMHI] Added support as a main source in Sweden-only
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
+- [PirateWeather] Retrieve 168 hours of forecast
+- [PirateWeather] Fix precipitation probability
 
 **Other improvements and fixes**
 - Fix a display issue of “alert source” instead of “normals source” in secondary weather sources settings of a location

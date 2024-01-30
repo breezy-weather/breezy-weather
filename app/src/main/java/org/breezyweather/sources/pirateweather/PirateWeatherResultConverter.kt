@@ -153,7 +153,7 @@ private fun getHourlyForecast(
                 snow = if (result.precipType.equals("snow")) result.precipIntensity else null,
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.precipProbability,
+                total = result.precipProbability?.times(100),
             ),
             wind = Wind(
                 degree = result.windBearing,

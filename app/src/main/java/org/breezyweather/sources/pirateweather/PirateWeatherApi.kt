@@ -32,6 +32,8 @@ interface PirateWeatherApi {
         @Path("lat") lat: Float,
         @Path("lon") lon: Float,
         @Query("units") units: String,
-        @Query("lang") lang: String
+        @Query("lang") lang: String,
+        @Query("exclude") exclude: String?,
+        @Query("extend") extend: String?
     ): Observable<PirateWeatherForecastResult>
 }

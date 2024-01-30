@@ -77,7 +77,9 @@ class PirateWeatherService @Inject constructor(
             location.latitude,
             location.longitude,
             "si", // represents metric,
-            languageCode
+            languageCode,
+            null,
+            "hourly"
         )
 
         return pirateWeatherResult.map { convert(it) }
@@ -103,12 +105,21 @@ class PirateWeatherService @Inject constructor(
         }
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
+        val exclude = mutableListOf("currently", "hourly", "daily")
+        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            exclude.add("alerts")
+        }
+        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            exclude.add("minutely")
+        }
         val pirateWeatherResult = mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
             "si", // represents metric,
-            languageCode
+            languageCode,
+            exclude.joinToString(","),
+            null
         )
 
         return pirateWeatherResult.map { convertSecondary(it) }
