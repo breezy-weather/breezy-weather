@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v2
 
       - name: Dependency review
         uses: actions/dependency-review-action@v4
