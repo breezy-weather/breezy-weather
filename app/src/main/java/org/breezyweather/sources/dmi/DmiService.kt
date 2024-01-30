@@ -25,6 +25,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.sources.dmi.json.DmiResult
+import org.breezyweather.sources.dmi.json.DmiWarningResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -52,18 +54,27 @@ class DmiService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        val weatherResult = mApi.getWeather(
+        val weather = mApi.getWeather(
             location.latitude,
             location.longitude,
             "llj"
         )
 
-        /*val alertsResult = if (location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
-            "TODO"
-        } else "TODO"*/
+        val alerts = /*if (location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
+            mApi.getAlerts(location.cityId)
+        } else {*/
+            Observable.create { emitter ->
+                emitter.onNext(DmiWarningResult())
+            }
+        //}
 
-        return weatherResult.map {
-            convert(it, location.timeZone)
+        return Observable.zip(
+            weather,
+            alerts
+        ) { weatherResult: DmiResult,
+            alertsResult: DmiWarningResult
+            ->
+            convert(weatherResult, alertsResult, location.timeZone)
         }
     }
 

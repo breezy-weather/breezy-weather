@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DmiWarningResult(
-    val locationWarnings: List<DmiWarning>?
+    val locationWarnings: List<DmiWarning>? = null
 )

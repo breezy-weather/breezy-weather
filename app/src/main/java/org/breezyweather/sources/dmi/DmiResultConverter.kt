@@ -16,7 +16,9 @@
 
 package org.breezyweather.sources.dmi
 
+import android.graphics.Color
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -27,8 +29,12 @@ import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.sources.accu.json.AccuAlertResult
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
+import org.breezyweather.sources.dmi.json.DmiWarning
+import org.breezyweather.sources.dmi.json.DmiWarningResult
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -60,6 +66,7 @@ fun convert(
  */
 fun convert(
     dmiResult: DmiResult,
+    dmiWarningResult: DmiWarningResult,
     timeZone: TimeZone
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
@@ -70,7 +77,7 @@ fun convert(
     return WeatherWrapper(
         dailyForecast = getDailyForecast(timeZone, dmiResult.timeserie),
         hourlyForecast = getHourlyForecast(dmiResult.timeserie),
-        // alertList = TODO
+        alertList = getAlertList(dmiWarningResult.locationWarnings)
     )
 }
 
@@ -124,6 +131,17 @@ private fun getHourlyForecast(
             visibility = result.visibility
         )
     }
+}
+
+private fun getAlertList(
+    resultList: List<DmiWarning>?
+): List<Alert>? {
+    if (resultList == null) return null
+    return emptyList()/*resultList.map { result ->
+        Alert(
+            // TODO
+        )
+    }*/
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {
