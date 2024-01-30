@@ -133,7 +133,7 @@
     <!-- Please keep the 3 in O₃ written this way -->
     <string name="air_quality_o3_info_title">Ground-level ozone (O₃)</string>
     <string name="air_quality_o3_info_introduction">Ground-level ozone (O₃) is a major component of smog. Although the same molecule, ground-level ozone can be harmful to human health, unlike stratospheric ozone that protects the earth from excess UV radiation.</string>
-    <string name="air_quality_o3_info_origin">It is formed from photochemical reactions with pollutants such volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
+    <string name="air_quality_o3_info_origin">It is formed from photochemical reactions with pollutants such as volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
     <string name="air_quality_o3_info_consequences">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
     <!-- Please keep the 2 in NO₂ written this way -->
     <string name="air_quality_no2_info_title">Nitrogen dioxide (NO₂)</string>
