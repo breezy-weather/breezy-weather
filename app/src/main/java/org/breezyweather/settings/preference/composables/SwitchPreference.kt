@@ -181,12 +181,14 @@ fun SwitchPreferenceView(
             },
             supportingContent = if (currentSummary?.isNotEmpty() == true) {
                 {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                    Text(
-                        text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+                    Column {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = currentSummary,
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
                 }
             } else null,
             trailingContent = {
