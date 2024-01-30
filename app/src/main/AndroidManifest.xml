@@ -99,7 +99,6 @@
             android:name=".main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/BreezyWeatherTheme.Main"
-            android:screenOrientation="user"
             android:configChanges="uiMode"
             android:exported="true">
             <intent-filter>
@@ -140,8 +139,7 @@
             android:name=".settings.activities.SettingsActivity"
             android:exported="true"
             android:label="@string/action_settings"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user">
+            android:theme="@style/BreezyWeatherTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -152,44 +150,37 @@
         <activity
             android:name=".settings.activities.CardDisplayManageActivity"
             android:label="@string/settings_main_cards_title"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.DailyTrendDisplayManageActivity"
             android:label="@string/settings_main_daily_trends_title"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.HourlyTrendDisplayManageActivity"
             android:label="@string/settings_main_hourly_trends_title"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.DetailDisplayManageActivity"
             android:label="@string/settings_main_header_details_title"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.MainScreenSettingsActivity"
             android:label="@string/settings_main"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.SelectLocationProviderActivity"
             android:label="@string/settings_location"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.SelectWeatherProviderActivity"
             android:label="@string/settings_weather_sources"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.PreviewIconActivity"
@@ -199,32 +190,27 @@
         <activity
             android:name=".settings.activities.WorkerInfoActivity"
             android:label="@string/settings_background_updates_worker_info_title"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.AboutActivity"
             android:label="@string/action_about"
-            android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.DependenciesActivity"
             android:label="@string/action_dependencies"
-            android:screenOrientation="user"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.PrivacyPolicyActivity"
             android:label="@string/about_privacy_policy"
-            android:screenOrientation="user"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_widgets_live_wallpaper_title"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true" />
 
         <!-- widget -->
@@ -232,7 +218,6 @@
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -242,7 +227,6 @@
         <activity
             android:name=".remoteviews.config.WeekWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -252,7 +236,6 @@
         <activity
             android:name=".remoteviews.config.DayWeekWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -262,7 +245,6 @@
         <activity
             android:name=".remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -272,7 +254,6 @@
         <activity
             android:name=".remoteviews.config.ClockDayDetailsWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -282,7 +263,6 @@
         <activity
             android:name=".remoteviews.config.ClockDayVerticalWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -292,7 +272,6 @@
         <activity
             android:name=".remoteviews.config.ClockDayWeekWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -302,7 +281,6 @@
         <activity
             android:name=".remoteviews.config.TextWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -312,7 +290,6 @@
         <activity
             android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -322,7 +299,6 @@
         <activity
             android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -332,7 +308,6 @@
         <activity
             android:name=".remoteviews.config.MultiCityWidgetConfigActivity"
             android:theme="@style/BreezyWeatherTheme"
-            android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />

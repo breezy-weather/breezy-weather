@@ -1,5 +1,7 @@
 # Version 4.7.0-beta (not yet released)
 
+This major version introduces new hourly trends for more detailed weather data, and new weather sources from some national weather services using Open-Data.
+
 **New features**
 - Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
 - New daily chart: feels like temperature
