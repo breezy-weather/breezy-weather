@@ -186,7 +186,7 @@
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme ažuriranja</string>
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
     <string name="air_quality_so2_voice">Sumporov dioksid</string>
-    <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona su vidljive kroz periode sunčanog vremena.</string>
+    <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona se pojavljuju tijekom sunčanog vremena.</string>
     <string name="air_quality_level_6_description">Izloženost zraku, čak i na nekoliko minuta, može imati ozbiljne zdravstvene posljedice za sve. Izbjegavajte aktivnosti na otvorenom.</string>
     <string name="settings_main_background_animation_enabled">Omogućeno</string>
     <string name="widget_custom_subtitle_keyword_al_description">Upozorenja</string>
