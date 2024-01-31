@@ -36,6 +36,7 @@ import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.ipsb.IpSbLocationService
+import org.breezyweather.sources.metie.MetIeService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
@@ -56,6 +57,7 @@ class SourceManager @Inject constructor(
     geoNamesService: GeoNamesService,
     hereService: HereService,
     ipSbService: IpSbLocationService,
+    metIeService: MetIeService,
     metNoService: MetNoService,
     mfService: MfService,
     openMeteoService: OpenMeteoService,
@@ -91,6 +93,7 @@ class SourceManager @Inject constructor(
         brightSkyService,
         ecccService,
         smhiService,
+        metIeService,
 
         // Secondary weather sources
         atmoAuraService

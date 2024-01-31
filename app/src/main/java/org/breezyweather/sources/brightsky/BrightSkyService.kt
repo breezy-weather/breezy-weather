@@ -49,7 +49,7 @@ class BrightSkyService @Inject constructor(
 
     override val color = Color.rgb(240, 177, 138)
     // Mandatory mentions from DWD terms:
-    override val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated"
+    override val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
 
     private val mApi by lazy {
         client
