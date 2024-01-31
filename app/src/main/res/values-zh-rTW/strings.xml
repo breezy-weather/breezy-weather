@@ -363,7 +363,7 @@
     <string name="air_quality_pm_explanations_introduction">細懸浮微粒，即大氣中懸浮的微小固體或液體顆粒。</string>
     <string name="air_quality_o3_info_title">地表臭氧（O₃）</string>
     <string name="air_quality_pm_explanations_consequences">細懸浮微粒因能深入肺部和血液，進而影響心臟和肺部健康，甚至導致過早死亡，是最有害的空氣污染物。</string>
-    <string name="air_quality_o3_info_origin">透過光化學反應與揮發性有機化合物、一氧化碳和氮氧化物（NOₓ）等污染物反應而成。晴天時，臭氧濃度通常最高。</string>
+    <string name="air_quality_o3_info_origin">臭氧的形成源於光化學反應，與諸如揮發性有機化合物、一氧化碳及由車輛和工業排放的氮氧化物（NOₓ）等污染物相互作用。由於其光化學特性，臭氧濃度在晴朗天氣期間最高。</string>
     <string name="air_quality_no2_info_origin">主要來自高溫燃燒燃料的過程，包括供暖、運輸、工業和發電。家庭燃料設備如暖爐、壁爐和瓦斯爐也是來源之一。</string>
     <string name="weather_source_accu_preference_days_5">5 天</string>
     <string name="weather_source_accu_preference_days_10">10 天</string>
