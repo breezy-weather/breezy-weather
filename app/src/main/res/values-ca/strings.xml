@@ -118,7 +118,7 @@
     <string name="weather_message_data_refresh_failed">Ha fallat l’accés a les dades de l’oratge</string>
     <string name="location_dialog_failed_to_locate_title">No funciona la ubicació\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica els permisos d’accés a la ubicació</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Habilita la infomació d’ubicació</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Habilita la informació d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selecciona el servei d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Especifica la ubicació manualment i esborra “$”</string>
     <string name="dialog_permissions_location_background_title">Accés a la ubicació en segon pla</string>
@@ -259,7 +259,7 @@
     <string name="widget_subtitle_data_wind">Vent</string>
     <string name="widget_subtitle_data_feels_like">Sensació tèrmica</string>
     <string name="widget_subtitle_data_lunar">Calendari lunar</string>
-    <string name="widget_subtitle_data_custom">Personaliza</string>
+    <string name="widget_subtitle_data_custom">Personalitzat</string>
     <string name="settings_none">Cap</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Parcialment ennuvolat</string>
@@ -299,7 +299,7 @@
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
-    <string name="temperature_degree_day_heating">Calfant temperatura diaria</string>
+    <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diaria</string>
     <string name="pollen_and_mold">Pol·len i floridura</string>
     <string name="alerts_to_follow">Alertes pròximes, toca per a veure-les.</string>
@@ -458,7 +458,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
     <string name="action_add_from_map">Afegir des del mapa</string>
-    <string name="settings_widgets_notification_feels_like_switch">Usar la sensació termica</string>
+    <string name="settings_widgets_notification_feels_like_switch">Usa la sensació tèrmica</string>
     <string name="dialog_permissions_location_content">Breezy Weather ha de recopilar la vostra informació d’ubicació en primer pla o en segon pla per proporcionar les dades meteorològiques de la vostra ubicació actual. Per a això, sol·licitarem alguns permisos. La vostra informació d’ubicació només s’utilitzarà per obtenir dades meteorològiques a la vostra ubicació actual. Si no voleu compartir la vostra informació d’ubicació, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
