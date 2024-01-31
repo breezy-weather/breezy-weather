@@ -554,7 +554,7 @@
     <string name="null_data_text">无数据</string>
     <string name="air_quality_pm_explanations_introduction">颗粒物或大气颗粒物是悬浮在空气中的固体或液体物质的微小颗粒。</string>
     <string name="air_quality_pm_explanations_consequences">颗粒物是危害最大的大气污染形式，因为它们能够从血液深入肺部和大脑，导致诸如心脏病、肺病和过早死亡等健康问题。</string>
-    <string name="air_quality_o3_info_origin">它是由车辆和工业排放的挥发性有机化合物、一氧化碳和氮氧化物（NOₓ）等污染物发生光化学反应而形成的。由于其光化学性质，臭氧含量在晴朗天气期间达到最高水平。</string>
+    <string name="air_quality_o3_info_origin">它是由车辆和工业排放的挥发性有机化合物、一氧化碳和氮氧化物（NOₓ）等污染物发生光化学反应而形成的。由于其光化学性质，臭氧含量在晴天达到最高水平。</string>
     <string name="air_quality_no2_info_origin">环境中的二氧化氮来源于供暖、运输、工业和发电等过程中燃料的高温燃烧。家庭氮氧化物（NOₓ）来源包括燃烧燃料的设备，如火炉、壁炉、煤气炉和烤箱。</string>
     <string name="air_quality_so2_info_consequences">接触二氧化硫与哮喘患者住院和急诊就诊有关。</string>
     <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
