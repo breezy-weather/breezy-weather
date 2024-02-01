@@ -55,14 +55,14 @@
     <string name="precipitation_ice">Лёд</string>
     <string name="wind_strength_0">Штиль</string>
     <string name="wind_strength_1">Очень лёгкий ветер</string>
-    <string name="wind_strength_2">Лёгкий ветер</string>
-    <string name="wind_strength_3">Слабый ветер</string>
-    <string name="wind_strength_4">Умеренный ветер</string>
-    <string name="wind_strength_5">Свежий ветер</string>
-    <string name="wind_strength_6">Сильный ветер</string>
-    <string name="wind_strength_7">Крепкий ветер</string>
-    <string name="wind_strength_8">Очень крепкий ветер</string>
-    <string name="wind_strength_9">Шторм</string>
+    <string name="wind_strength_2">Лёгкий бриз</string>
+    <string name="wind_strength_3">Слабый бриз</string>
+    <string name="wind_strength_4">Умеренный бриз</string>
+    <string name="wind_strength_5">Свежий бриз</string>
+    <string name="wind_strength_6">Сильный бриз</string>
+    <string name="wind_strength_7">Сильный ветер</string>
+    <string name="wind_strength_8">Очень сильный ветер</string>
+    <string name="wind_strength_9">Сильные порывы ветра</string>
     <string name="wind_strength_10">Шторм</string>
     <string name="wind_strength_11">Жестокий шторм</string>
     <string name="wind_strength_12">Ураган</string>
@@ -171,7 +171,7 @@
     <string name="location_resident_message">Установить как место жительства</string>
     <string name="location_resident_dialog">Breezy Weather будет автоматически показывать или скрывать место жительства, основываясь на данных Вашего местоположения.
 \nНапример, Вы можете установить Ваш родной город как место жительства. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
-    <string name="pollen_tap_to_see_more">Дополнительно…</string>
+    <string name="pollen_tap_to_see_more">Нажмите, чтобы увидеть больше…</string>
     <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
     <!-- action -->
     <string name="alerts">Оповещения</string>
@@ -319,7 +319,7 @@
     <string name="air_quality_pm10_voice">Мелкие частицы десять</string>
     <string name="air_quality_so2_voice">Диоксид серы</string>
     <string name="air_quality_o3_voice">Озон</string>
-    <string name="air_quality_co_voice">Угарный газ</string>
+    <string name="air_quality_co_voice">Моноксид углерода</string>
     <string name="pollen_mold">Плесень</string>
     <string name="pollen_tree">Деревья</string>
     <string name="ephemeris_moonrise_at">Восход луны в $</string>
@@ -450,7 +450,7 @@
     <string name="unit_mmhg_voice">Миллиметров ртути</string>
     <string name="unit_inhg_voice">Дюймов ртути</string>
     <string name="notification_channel_alerts">Оповещения</string>
-    <string name="alerts_count">Оповещения о погоде</string>
+    <string name="alerts_count">$ оповещений о погоде</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
