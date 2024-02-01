@@ -176,7 +176,7 @@
     <string name="widget_multi_city">Meerdere steden</string>
     <string name="widget_week_style_3_days">3 dagen</string>
     <string name="settings_location_access_switch_title">Locatietoegang</string>
-    <string name="common_weather_text_overcast">Overbewolkt</string>
+    <string name="common_weather_text_overcast">Betrokken</string>
     <string name="common_weather_text_rain_freezing">Ijzel</string>
     <string name="common_weather_text_rain_freezing_light">Lichte ijzel</string>
     <string name="common_weather_text_drizzle_freezing">Ijzelende motregen</string>
@@ -566,7 +566,7 @@
     <string name="about_dependencies">Afhankelijkheden</string>
     <string name="air_quality_index">Luchtkwaliteitsindex</string>
     <string name="air_quality_level_1_description">De luchtkwaliteit is ideaal voor de meeste mensen; geniet van je normale buitenactiviteiten.</string>
-    <string name="air_quality_level_2">Eerlijk</string>
+    <string name="air_quality_level_2">Redelijk</string>
     <string name="air_quality_level_4_description">Gezondheidseffecten kunnen onmiddellijk gevoeld worden door gevoelige groepen. Gezonde personen kunnen ademhalingsmoeilijkheden en keelirritatie ondervinden bij langdurige blootstelling. Beperk buitenactiviteiten.</string>
     <string name="air_quality_level_5">Erg ongezond</string>
     <string name="air_quality_level_5_description">Gezondheidseffecten zullen onmiddellijk gevoeld worden door gevoelige groepen die buitenactiviteiten moeten vermijden. Gezonde mensen zullen waarschijnlijk ademhalingsmoeilijkheden en keelirritatie ondervinden; overweeg om binnen te blijven en buitenactiviteiten te verzetten.</string>
