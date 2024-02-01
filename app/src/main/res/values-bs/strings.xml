@@ -650,4 +650,5 @@
     <string name="settings_location_access_switch_summaryOff">Molimo dozvolite, ako želite biti u mogućnosti dodati vašu trenutnu lokaciju kao lokaciju za prognozu.</string>
     <string name="settings_units">Mjerne jedinice</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall verzija</string>
+    <string name="air_quality_o3_info_origin">Nastaje fotohemijskim reakcijama sa zagađivačima kao što su hlapljiva organska jedinjenja, ugljen monoksid i dušikovi oksidi (NOₓ) koji se emituju iz vozila i industrije. Zbog fotohemijske prirode, najviši nivoi ozona se vide u periodima sunčanog vremena.</string>
 </resources>
