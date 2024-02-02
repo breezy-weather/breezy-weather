@@ -26,4 +26,16 @@
     <string name="short_monday">دوشنبه</string>
     <string name="short_tuesday">سه شنبه</string>
     <string name="short_wednesday">چهار شنبه</string>
+    <string name="air_quality_level_1">عالی</string>
+    <string name="air_quality_level_2">متوسط</string>
+    <string name="air_quality_level_5">بسیار ناسالم</string>
+    <string name="air_quality_level_6">خطرناک</string>
+    <string name="air_quality_level_1_description">کیفیت هوا برای بیشتر افراد بسیار مناسب است؛ از فعالیت عادی در محیط باز لذت ببرید.</string>
+    <string name="air_quality_level_2_description">کیفیت هوا به طور کلی برای بیشتر افراد مناسب است. البته، گروه‌های حساس ممکن است بر اثر فعالیت بلند-مدت دچار نشانه‌های جزیی تا متوسط شوند.</string>
+    <string name="air_quality_level_3">نامناسب</string>
+    <string name="air_quality_level_3_description">آلودگی هوا به سطح بالایی رسیده و برای گروه‌های حساس ناسالم است. در صورت دچار شدن به مشکل تنفس یا ناراحتی گلو، مدت فعالیت در محیط باز را کاهش دهید.</string>
+    <string name="air_quality_level_4">ناسالم</string>
+    <string name="air_quality_level_4_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند. افراد سالم ممکن است بر اثر فعالیت بلند-مدت دچار مشکل تنفس و ناراحتی گلو شوند. فعالیت در هوای آزاد را محدود کنید.</string>
+    <string name="air_quality_level_5_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند و باید از فعالیت در هوای آزاد بپرهیزند. افراد سالم احتمالاً دچار مشکل تنفس و ناراحتی گلو می‌شوند؛ در فضای بسته بمانید و زمان فعالیت در هوای آزاد را تغییر دهید.</string>
+    <string name="air_quality_level_6_description">قرار گرفتن در معرض هوای آزاد، حتی به مدت چند دقیقه، ممکن است آثار جسمی زیانباری برای همه داشته باشد. از فعالیت در هوای آزاد پرهیز کنید.</string>
 </resources>
