@@ -38,4 +38,7 @@
     <string name="air_quality_level_4_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند. افراد سالم ممکن است بر اثر فعالیت بلند-مدت دچار مشکل تنفس و ناراحتی گلو شوند. فعالیت در هوای آزاد را محدود کنید.</string>
     <string name="air_quality_level_5_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند و باید از فعالیت در هوای آزاد بپرهیزند. افراد سالم احتمالاً دچار مشکل تنفس و ناراحتی گلو می‌شوند؛ در فضای بسته بمانید و زمان فعالیت در هوای آزاد را تغییر دهید.</string>
     <string name="air_quality_level_6_description">قرار گرفتن در معرض هوای آزاد، حتی به مدت چند دقیقه، ممکن است آثار جسمی زیانباری برای همه داشته باشد. از فعالیت در هوای آزاد پرهیز کنید.</string>
+    <string name="temperature_wet_bulb">نمناک</string>
+    <string name="temperature_apparent">نمایان</string>
+    <string name="temperature_wind_chill">باد سرد</string>
 </resources>
