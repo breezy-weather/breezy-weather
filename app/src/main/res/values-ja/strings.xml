@@ -47,7 +47,7 @@
     <string name="temperature_apparent">見かけ上</string>
     <string name="temperature_wind_chill">風の寒さ</string>
     <string name="temperature_wet_bulb">湿球温度</string>
-    <string name="temperature_degree_day">学位取得日</string>
+    <string name="temperature_degree_day">学位の日</string>
     <string name="precipitation_total">合計</string>
     <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
