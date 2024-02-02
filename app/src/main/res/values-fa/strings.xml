@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="minutely_forecast">پیش بینی دقیقه ای</string>
+    <string name="hourly_forecast">پیش بینی ساعتی</string>
+    <string name="precipitation_forecast">پیش بینی بارش</string>
+    <string name="pollen">گرده</string>
+    <string name="alerts_count">$ هشدار های آب و هوایی</string>
+    <string name="short_thursday">پنج شنبه</string>
+    <string name="short_friday">آدینه</string>
+    <string name="short_saturday">شنبه</string>
+    <string name="short_sunday">یک شنبه</string>
+    <string name="of_clock">:۰۰</string>
+    <string name="temperature">دما</string>
+    <string name="temperature_feels_like">احساس می شود</string>
+    <string name="app_name">آب و هوا</string>
+    <string name="daily_forecast">پیش بینی روزانه</string>
+    <string name="minutely_precipitations">بارش دقیقه به دقیقه</string>
+    <string name="air_quality">کیفیت هوا</string>
+    <string name="ephemeris">خورشید و ماه</string>
+    <string name="details">جزئیات</string>
+    <string name="alerts">هشدار ها</string>
+    <string name="alerts_to_follow">هشدار های آینده نزدیک، اینجا بزنید تا آن ها را ببینید.</string>
+    <string name="short_yesterday">دیروز</string>
+    <string name="short_today">امروز</string>
+    <string name="short_tomorrow">فردا</string>
+    <string name="short_monday">دوشنبه</string>
+    <string name="short_tuesday">سه شنبه</string>
+    <string name="short_wednesday">چهار شنبه</string>
+</resources>
