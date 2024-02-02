@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="air_quality_level_2_description">Якасць паветра ў цэлым з\'яўляецца прымальным для большасці людзей. Аднак у людзей з падвышанай адчувальнасцю пасля працяглага знаходжання на вуліцы могуць з\'яўляцца сімптомы малога і сярэдняга цяжару.</string>
-    <string name="air_quality_level_3_description">Забруджванне паветра дасягнула высокага ўзроўню, ён з\'яўляецца небяспечным для людзей з падвышанай адчувальнасцю. Калі вы адчуеце абцяжаранае дыханне ці раздражненне горла, скароціце час знаходжання на вуліцы.</string>
+    <string name="air_quality_level_2_description">Якасць паветра ў цэлым з’яўляецца прымальным для большасці людзей. Аднак у людзей з падвышанай адчувальнасцю пасля працяглага знаходжання на вуліцы могуць з’яўляцца сімптомы малога і сярэдняга цяжару.</string>
+    <string name="air_quality_level_3_description">Забруджванне паветра дасягнула высокага ўзроўню, ён з’яўляецца небяспечным для людзей з падвышанай адчувальнасцю. Калі вы адчуеце абцяжаранае дыханне ці раздражненне горла, скароціце час знаходжання на вуліцы.</string>
     <string name="air_quality_level_4_description">Людзі з падвышанай адчувальнасцю могуць імгненна адчуць сябе дрэнна. Пры працяглым знаходжанні на вуліцы здаровыя людзі могуць адчуць абцяжаранае дыханне ці раздражненне горла. Абмяжуйце знаходжанне на вуліцы.</string>
     <string name="air_quality_level_5_description">Людзі з падвышанай адчувальнасцю могуць імгненна адчуць сябе дрэнна, ім варта пазбягаць знаходжанні на вуліцы. У здаровых людзей могуць узнікаць сімптомы абцяжаранага дыхання ці раздражнення горла; рэкамендуецца заставацца ў памяшканні і перанесці мерапрыемствы на вуліцы.</string>
     <string name="air_quality_level_6">Небяспечна</string>
@@ -21,19 +21,19 @@
     <string name="ephemeris_moon_phase_last_quarter">Апошняя чвэрць</string>
     <string name="ephemeris_moon_phase_waning_crescent">Стары месяц</string>
     <string name="air_quality_pm_explanations_origin">Некаторыя цвёрдыя часціцы ўзнікаюць натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырсак. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці цвёрдых часціц, напрыклад, дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
-    <string name="air_quality_pm_explanations_consequences">Цвёрдыя часціцы з\'яўляюцца найбольш шкоднай формай забруджвання паветра з-за іх здольнасці пранікаць глыбока ў лёгкія і мозг з крывацёку, выклікаючы праблемы са здароўем, такія як хваробы сэрца, хваробы лёгкіх і заўчасную смерць.</string>
-    <string name="air_quality_o3_info_introduction">Прыземны азон (O₃) з\'яўляецца асноўным кампанентам смогу. Хоць гэта тая ж самая малекула, прыземны азон можа быць шкодным для здароўя чалавека, у адрозненне ад стратасфернага азону, які абараняе зямлю ад залішняга ЎХ-выпраменьвання.</string>
-    <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, вокіс вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор\'я.</string>
+    <string name="air_quality_pm_explanations_consequences">Цвёрдыя часціцы з’яўляюцца найбольш шкоднай формай забруджвання паветра з-за іх здольнасці пранікаць глыбока ў лёгкія і мозг з крывацёку, выклікаючы праблемы са здароўем, такія як хваробы сэрца, хваробы лёгкіх і заўчасную смерць.</string>
+    <string name="air_quality_o3_info_introduction">Прыземны азон (O₃) з’яўляецца асноўным кампанентам смогу. Хоць гэта тая ж самая малекула, прыземны азон можа быць шкодным для здароўя чалавека, у адрозненне ад стратасфернага азону, які абараняе зямлю ад залішняга ЎХ-выпраменьвання.</string>
+    <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, вокіс вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор’я.</string>
     <string name="air_quality_o3_info_consequences">Уздзеянне празмернай колькасці азону можа выклікаць праблемы з дыханнем, выклікаць астму, знізіць функцыянальнасць лёгкіх і прывесці да іх захворвання.</string>
-    <string name="air_quality_no2_info_introduction">Двухвокіс азоту (NO₂) — удушлівы атрутны чырванавата-карычневы газ з характэрным рэзкім з\'едлівым пахам.</string>
-    <string name="air_quality_so2_info_introduction">Дыяксід серы (SO₂) — бясколерны таксічны газ, з-за якога з\'яўляецца пах згарэлых запалак.</string>
+    <string name="air_quality_no2_info_introduction">Двухвокіс азоту (NO₂) — удушлівы атрутны чырванавата-карычневы газ з характэрным рэзкім з’едлівым пахам.</string>
+    <string name="air_quality_so2_info_introduction">Дыяксід серы (SO₂) — бясколерны таксічны газ, з-за якога з’яўляецца пах згарэлых запалак.</string>
     <string name="air_quality_no2_info_origin">Атачальныя крыніцы NO₂ узнікаюць у выніку высокатэмпературнага спальвання паліва ў такіх працэсах, як тыя, якія выкарыстоўваюцца для апалу, транспарта, прамысловасці і вытворчасці электраэнергіі. Бытавыя крыніцы аксідаў азоту (NOₓ) уключаюць абсталяванне, якое спальвае паліва, такое як печы, каміны, газавыя пліты і духоўкі.</string>
-    <string name="air_quality_no2_info_consequences">Уздзеянне дыяксіду азоту можа раздражняць дыхальныя шляхі і пагаршаць рэспіраторныя захворванні. Акрамя таго, NO₂ з\'яўляецца важным папярэднікам азону, забруджвальным рэчывам, цесна звязаным з астмай і іншымі рэспіраторнымі захворваннямі.</string>
+    <string name="air_quality_no2_info_consequences">Уздзеянне дыяксіду азоту можа раздражняць дыхальныя шляхі і пагаршаць рэспіраторныя захворванні. Акрамя таго, NO₂ з’яўляецца важным папярэднікам азону, забруджвальным рэчывам, цесна звязаным з астмай і іншымі рэспіраторнымі захворваннямі.</string>
     <string name="air_quality_so2_info_title">Дыяксід серы (SO₂)</string>
     <string name="air_quality_so2_info_origin">Ён вызваляецца натуральнай выявай у выніку вулканічнай дзейнасці і ў асноўным утворыцца ў выніку спальвання выкапнёвага паліва для апалу жылых памяшканняў, прамысловасці і вытворчасці электраэнергіі.</string>
     <string name="air_quality_so2_info_consequences">Уздзеянне SO₂ звязана са шпіталізацыяй з-за астмы і зваротамі ў аддзяленне хуткай дапамогі.</string>
     <string name="air_quality_co_info_introduction">Монааксід вугляроду (угарны газ) (CO) - гэта атрутны лёгкаўзгаральны газ, які не мае колеру, паху, густу і не выклікае раздражнення.</string>
-    <string name="air_quality_co_info_origin">Ён утворыцца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з\'яўляюцца аўтамабілі.</string>
+    <string name="air_quality_co_info_origin">Ён утворыцца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
     <string name="precipitation_forecast">Прагноз ападкаў</string>
     <string name="short_friday">Пт</string>
     <string name="short_saturday">Сб</string>
@@ -68,7 +68,7 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM|</string>
     <string name="weather_data_by">Дадзеныя прадастаўлены $</string>
     <string name="weather_air_quality_data_by">Інфармацыя аб якасці паветра прадастаўлена $</string>
-    <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць дадзеныя аб надвор\'і</string>
+    <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць дадзеныя аб надвор’і</string>
     <string name="weather_api_limit_reached_title">Перавышаны ліміт API-выклікаў</string>
     <string name="weather_api_key_required_missing_title">Адсутнічае API-ключ</string>
     <string name="settings_weather_source_portal">Канал</string>
@@ -84,7 +84,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Адчуваецца як (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Адчуваецца як (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Вецер</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Надвор\'е сёння днём, заўтра, …, на 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Надвор’е сёння днём, заўтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Начная тэмпература сёння, заўтра, …, на 4 дні (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Ападкі ноччу, заўтра, …, на 4 дні (%)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -152,7 +152,7 @@
     <string name="air_quality_level_3">Дрэнна</string>
     <string name="air_quality_level_4">Шкодна</string>
     <string name="air_quality_level_5">Вельмі шкодна</string>
-    <string name="air_quality_level_6_description">Любое знаходжанне на вуліцы, нават на працягу некалькіх хвілін, можа прывесці да сур\'ёзных ускладненняў ва ўсіх. Старайцеся не выходзіць на вуліцу.</string>
+    <string name="air_quality_level_6_description">Любое знаходжанне на вуліцы, нават на працягу некалькіх хвілін, можа прывесці да сур’ёзных ускладненняў ва ўсіх. Старайцеся не выходзіць на вуліцу.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">Дробныя часціцы два цэлых пяць дзясятых</string>
     <string name="air_quality_pm10">PM10</string>
@@ -191,9 +191,9 @@
     <string name="weather_pollen_data_by">Інфармацыя аб алергенах прадастаўлена $</string>
     <string name="weather_air_quality_and_pollen_data_by">Дадзеныя аб якасці паветра прадастаўлены $</string>
     <string name="weather_minutely_data_by">Пахвілінныя дадзеныя аб ападках прадастаўлены $</string>
-    <string name="weather_alert_data_by">Абвесткі аб надвор\'і прадастаўлены $</string>
+    <string name="weather_alert_data_by">Абвесткі аб надвор’і прадастаўлены $</string>
     <string name="weather_normals_data_by">Дадзеныя аб тэмпературных нормах прадастаўлены $</string>
-    <string name="weather_message_secondary_data_refresh_failed">Не атрымалася абнавіць дадзеныя аб надвор\'і для дадатковай крыніцы надвор\'я</string>
+    <string name="weather_message_secondary_data_refresh_failed">Не атрымалася абнавіць дадзеныя аб надвор’і для дадатковай крыніцы надвор’я</string>
     <string name="weather_message_invalid_location">Няправільнае месцазнаходжанне, выдаліце яго і дадайце нанова</string>
     <string name="weather_message_unsupported_feature">Крыніца не падтрымлівае адну з запытаных функцый</string>
     <string name="weather_refresh_skipped_already_recently_updated">Ужо нядаўна абноўлена</string>
@@ -201,7 +201,7 @@
     <string name="weather_api_unauthorized_title">Неаўтарызаваны доступ да API</string>
     <string name="weather_api_key_required_missing_content">Каб скарыстацца гэтай крыніцай, дадайце свой API-ключ.</string>
     <string name="setting_weather_source_accu_days">Дні</string>
-    <string name="weather_api_unauthorized_content">Для некаторых крыніц надвор\'я неабходна выкарыстоўваць свой уласны API-ключ. Калі вы ўжо дадалі яго, калі ласка, пераправерце правільнасць API-ключ.</string>
+    <string name="weather_api_unauthorized_content">Для некаторых крыніц надвор’я неабходна выкарыстоўваць свой уласны API-ключ. Калі вы ўжо дадалі яго, калі ласка, пераправерце правільнасць API-ключ.</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дзён</string>
     <string name="weather_source_accu_preference_days_10">10 дзён</string>
@@ -215,8 +215,8 @@
     <string name="weather_source_openweather_version_2_5">Версія 2.5</string>
     <string name="weather_source_openweather_version_3_0">Версія 3.0</string>
     <string name="location_none_added_yet_instructions">Месцазнаходжанне яшчэ не дададзена. Націсніце на значок пошуку, каб дадаць месцазнаходжанне ўручную, або дадайце сваё бягучае месцазнаходжанне з дапамогай кнопкі.</string>
-    <string name="location_search_weather_source">Крыніца надвор\'я</string>
-    <string name="location_search_change_weather_source">Змяніць крыніцу надвор\'я</string>
+    <string name="location_search_weather_source">Крыніца надвор’я</string>
+    <string name="location_search_change_weather_source">Змяніць крыніцу надвор’я</string>
     <string name="location_results_by">Вынікі месцазнаходжання па $</string>
     <string name="location_message_added">Месцазнаходжанне дададзена</string>
     <string name="location_message_deleted">Месцазнаходжанне выдалена</string>
@@ -226,7 +226,7 @@
     <string name="location_message_search_failed">Не ўдалося знайсці месцазнаходжанне</string>
     <string name="location_message_permission_missing">Адсутнічае дазвол на доступ да месцазнаходжання</string>
     <string name="location_message_permission_background_missing">Доступ да месцазнаходжання ў фонавым рэжыме адсутнічае</string>
-    <string name="location_message_reverse_geocoding_failed">Крыніцы надвор\'я не ўдалося знайсці прыдатнае месцазнаходжанне</string>
+    <string name="location_message_reverse_geocoding_failed">Крыніцы надвор’я не ўдалося знайсці прыдатнае месцазнаходжанне</string>
     <string name="location_dialog_failed_to_locate_title">Немагчыма правільна вызначыць месцазнаходжанне?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Праверка дазволаў месцазнаходжання</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Уключыць інфармацыю месцазнаходжання</string>
@@ -245,7 +245,7 @@
     <string name="location_service_native">Сістэмны API</string>
     <string name="action_location_list">Спіс месцазнаходжання</string>
     <string name="action_search">Пошук</string>
-    <string name="action_choose_weather_source">Абярыце крыніцу надвор\'я</string>
+    <string name="action_choose_weather_source">Абярыце крыніцу надвор’я</string>
     <string name="action_add_current_location">Дадаць бягучае месцазнаходжанне</string>
     <string name="action_add_from_map">Дадаць з карты</string>
     <string name="action_add_new_location">Дадаць новае месцазнаходжанне</string>
@@ -272,7 +272,7 @@
     <string name="action_share">Падзяліцца</string>
     <string name="action_show_errors">Націсніце, каб убачыць дэталі</string>
     <string name="dialog_permissions_notification_title">Заставацца праінфармаваным</string>
-    <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэння аб надвор\'і, або прыміце рашэнне пазней у наладах.</string>
+    <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэння аб надвор’і, або прыміце рашэнне пазней у наладах.</string>
     <string name="dialog_permissions_location_title">Доступ да інфармацыі аб месцазнаходжанні</string>
     <string name="daily_forecast">Паднеўны прагноз</string>
     <string name="alerts_to_follow">Для прагляду абвестак аб пагоде націсніце тут.</string>
@@ -330,7 +330,7 @@
     <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
 \n
 \nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясный День”.</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Надвор\'е зараз</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Надвор’е зараз</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Бягучая тэмпература (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Бягучы УФ-індэкс</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Вільготнасць</string>
@@ -350,7 +350,7 @@
     <string name="widget_custom_subtitle_keyword_dd_description">Дзённы падрабязны</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Пагадзінны падрабязны</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Новы радок</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Надвор\'е сёння ноччу, заўтра, …, на 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Надвор’е сёння ноччу, заўтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Дзённая тэмпература сёння, заўтра, …, на 4 дні (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дзённая тэмпература сёння, заўтра, …, на 4 дні (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Начная тэмпература сёння, заўтра, …, на 4 дні (°)</string>
@@ -377,7 +377,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="widget_live_wallpaper_weather_kind">Надвор\'е</string>
+    <string name="widget_live_wallpaper_weather_kind">Надвор’е</string>
     <string name="widget_live_wallpaper_day_night_type">Час</string>
     <string name="settings_background_updates">Фонавыя абнаўленні</string>
     <string name="settings_background_updates_summary">Частата абнаўлення, адладка</string>
@@ -408,18 +408,18 @@
     <string name="settings_location_access_switch_summaryOn">Дазволена. Вы можаце дадаць сваё бягучае месцазнаходжанне ў якасці месцазнаходжання.</string>
     <string name="settings_location_access_switch_summaryOff">Калі ласка, дазвольце, калі вы хочаце мець магчымасць дадаць ваша бягучае месцазнаходжанне ў якасці месцазнаходжання.</string>
     <string name="settings_location_access_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
-    <string name="settings_location_access_background_summaryOn">Уключана. Прыкладанне зможа абнаўляць дадзеныя аб надвор\'і для вашага бягучага месцазнаходжання ў фонавым рэжыме.</string>
+    <string name="settings_location_access_background_summaryOn">Уключана. Прыкладанне зможа абнаўляць дадзеныя аб надвор’і для вашага бягучага месцазнаходжання ў фонавым рэжыме.</string>
     <string name="settings_location_access_background_summaryOff">Калі ласка, уключыце Дазволіць у фоне, каб мець фонавае абнаўленне для вашага бягучага месцазнаходжання.</string>
     <string name="settings_location_access_precise_title">Выкарыстанне GPS прыладай</string>
     <string name="settings_location_access_precise_summaryOn">Уключана. Выкарыстоўваюцца як сетка прылады, так і крыніцы GPS.</string>
     <string name="settings_location_access_precise_summaryOff">Уключыце «Выкарыстоўваць дакладнае месцазнаходжанне», калі ў вас узніклі праблемы з вызначэннем месцазнаходжання.</string>
-    <string name="settings_weather_source">Крыніца надвор\'я</string>
-    <string name="settings_weather_sources">Крыніцы надвор\'я</string>
-    <string name="settings_weather_sources_summary">Настройкі крыніц інфармацыі аб надвор\'і, крыніца пошуку месцазнаходжання па змаўчанні</string>
+    <string name="settings_weather_source">Крыніца надвор’я</string>
+    <string name="settings_weather_sources">Крыніцы надвор’я</string>
+    <string name="settings_weather_sources_summary">Настройкі крыніц інфармацыі аб надвор’і, крыніца пошуку месцазнаходжання па змаўчанні</string>
     <string name="settings_weather_source_main">Асноўная крыніца</string>
-    <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор\'і для гэтага месцазнаходжання</string>
+    <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор’і для гэтага месцазнаходжання</string>
     <string name="settings_weather_sources_default_location_search">Сэрвіс пошуку месцазнаходжання па змаўчанні</string>
-    <string name="settings_weather_sources_current_location">Крыніца інфармацыі аб надвор\'і для бягучага месцазнаходжання</string>
+    <string name="settings_weather_sources_current_location">Крыніца інфармацыі аб надвор’і для бягучага месцазнаходжання</string>
     <string name="settings_source_default_value">Па змаўчанні</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версія OneCall</string>
@@ -431,7 +431,7 @@
     <string name="settings_appearance_icon_pack_title">Набор абразкоў</string>
     <string name="settings_icon_packs_title">Наборы абразкоў</string>
     <string name="settings_icon_packs_check_details">Праверыць дэталі</string>
-    <string name="settings_icon_packs_weather_adaptive_icon">Абразок надвор\'я</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Абразок надвор’я</string>
     <string name="settings_icon_packs_weather_icon_light">Светлы абразок</string>
     <string name="settings_icon_packs_weather_icon_grey">Шэры абразок</string>
     <string name="settings_icon_packs_weather_icon_dark">Цёмны абразок</string>
@@ -455,12 +455,12 @@
     <string name="settings_main_background_animation_title">Анімацыі фону</string>
     <string name="settings_main_background_animation_enabled">Уключана</string>
     <string name="settings_main_background_animation_disabled">Выключана</string>
-    <string name="settings_main_cards_fade_in_switch">З\'яўленне картак</string>
+    <string name="settings_main_cards_fade_in_switch">З’яўленне картак</string>
     <string name="settings_main_cards_other_element_animations_switch">Іншыя элементы анімацый</string>
-    <string name="settings_notifications_summary">Абвесткі аб надвор\'і, ападкі, прагноз</string>
-    <string name="settings_notifications_alerts_title">Апавяшчэнні аб надвор\'і</string>
+    <string name="settings_notifications_summary">Абвесткі аб надвор’і, ападкі, прагноз</string>
+    <string name="settings_notifications_alerts_title">Апавяшчэнні аб надвор’і</string>
     <string name="settings_notifications_precipitations_title">Апавяшчэнні аб ападках</string>
-    <string name="settings_notifications_section_forecast">Прагноз надвор\'я</string>
+    <string name="settings_notifications_section_forecast">Прагноз надвор’я</string>
     <string name="settings_notifications_forecast_today_title">Апавяшчэнне аб дзённым прагнозе</string>
     <string name="settings_notifications_forecast_time_today_title">Час апавяшчэння для дзённага прагнозу</string>
     <string name="settings_notifications_forecast_tomorrow_title">Апавяшчэнне аб прагнозе на наступны дзень</string>
@@ -468,7 +468,7 @@
     <string name="settings_widgets">Фішкі і жывыя шпалеры</string>
     <string name="settings_widgets_summary">Усталяваць шпалеры, наладзіць выкарыстоўваныя фішкі, віджэт у апавяшчэннях</string>
     <string name="settings_widgets_live_wallpaper_title">Жывыя шпалеры</string>
-    <string name="settings_widgets_live_wallpaper_summary">Усталюйце анімацыю надвор\'я ў якасці шпалер</string>
+    <string name="settings_widgets_live_wallpaper_summary">Усталюйце анімацыю надвор’я ў якасці шпалер</string>
     <string name="settings_widgets_live_wallpaper_error">Не ўдалося запусціць сродак выбару шпалер. Вы па-ранейшаму можаце ўключыць шпалеры Breezy Weather, выбраўшы Жывыя шпалеры ў меню выбару шпалер на галоўным экране.</string>
     <string name="settings_widgets_week_icon_mode_title">Абразкі для адлюстравання ў тыднёвых праглядах</string>
     <string name="settings_widgets_monochrome_icons_title">Манахромныя абразкі</string>
@@ -482,7 +482,7 @@
     <string name="settings_widgets_notification_temp_icon_switch">Паказваць тэмпературу ў радку стану</string>
     <string name="settings_widgets_notification_feels_like_switch">Выкарыстоўваць тэмпературу Па адчуваннях</string>
     <string name="settings_widgets_gadgets_title">Гаджэты</string>
-    <string name="settings_widgets_gadgetbridge_switch">Адправіць дадзеныя аб надвор\'і ў Gadgetbridge</string>
+    <string name="settings_widgets_gadgetbridge_switch">Адправіць дадзеныя аб надвор’і ў Gadgetbridge</string>
     <string name="about_privacy_policy">Палітыка прыватнасці</string>
     <string name="settings_debug">Адладка</string>
     <string name="settings_debug_summary">Журналы памылак</string>
@@ -571,7 +571,7 @@
     <string name="notification_channel_crash_logs">Часопісы аварыйных зачыненняў</string>
     <string name="notification_location_in_background">Запыт месцазнаходжання ў фоне</string>
     <string name="notification_running_in_background">Запушчана ў фоне для сталага абнаўлення</string>
-    <string name="notification_updating_weather_data">Абнаўленне дадзеных надвор\'я (%1$d/%2$d)</string>
+    <string name="notification_updating_weather_data">Абнаўленне дадзеных надвор’я (%1$d/%2$d)</string>
     <string name="notification_update_error">%1$d абнаўленне(й) не ўдалося</string>
     <string name="notification_precipitation_starting">Неўзабаве выпадуць ападкі</string>
     <string name="notification_style_cities">Гарады</string>
@@ -583,7 +583,7 @@
     <string name="about_contributors">Удзельнікі</string>
     <string name="about_translators">Перакладчыкі</string>
     <string name="about_contribution_WangDaYeeeeee">Распрацоўнік арыгінальнага праекту Geometric Weather</string>
-    <string name="about_contribution_weather_source">Дададзена падтрымка новай крыніцы надвор\'я</string>
+    <string name="about_contribution_weather_source">Дададзена падтрымка новай крыніцы надвор’я</string>
     <string name="about_contribution_designer">Дызайнер лагатыпа</string>
     <string name="common_weather_text_clear_sky">Ясна</string>
     <string name="common_weather_text_mainly_clear">У асноўным зразумела</string>
@@ -625,10 +625,10 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Навальніца са слабым градам</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Навальніца з моцным градам</string>
     <string name="metno_weather_text_andthunder">$ з навальніцай</string>
-    <string name="dialog_permissions_location_content">Breezy Weather неабходна збіраць інфармацыю аб вашым месцазнаходжанні на зараз ці ў фоне, каб прадастаўляць дадзеныя аб надвор\'і для вашага бягучага месцазнаходжання. Для гэтага мы запытаем некаторыя дазволы. Інфармацыя пра вашае месцазнаходжанне будзе выкарыстоўвацца толькі для атрымання дадзеных аб надвор\'і ў вашым бягучым месцазнаходжанні. Калі вы не хочаце дзяліцца інфармацыяй аб сваім месцазнаходжанні, вы можаце адхіліць гэтыя патрабаванні і ўручную пазначыць сваё месцазнаходжанне ў панэлі кіравання.</string>
+    <string name="dialog_permissions_location_content">Breezy Weather неабходна збіраць інфармацыю аб вашым месцазнаходжанні на зараз ці ў фоне, каб прадастаўляць дадзеныя аб надвор’і для вашага бягучага месцазнаходжання. Для гэтага мы запытаем некаторыя дазволы. Інфармацыя пра вашае месцазнаходжанне будзе выкарыстоўвацца толькі для атрымання дадзеных аб надвор’і ў вашым бягучым месцазнаходжанні. Калі вы не хочаце дзяліцца інфармацыяй аб сваім месцазнаходжанні, вы можаце адхіліць гэтыя патрабаванні і ўручную пазначыць сваё месцазнаходжанне ў панэлі кіравання.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
-    <string name="dialog_permissions_location_background_content">Каб дазволіць з дадаткам доступ да месцазнаходжання ў фоне, каб мы маглі сачыць за зменамі месцазнаходжання і прадастаўляць актуальны прагноз надвор\'я, уключыце доступ да месцазнаходжання Дазволіць у любым рэжыме.</string>
-    <string name="message_parsing_error_title">Не ўдалося прааналізаваць дадзеныя аб надвор\'і</string>
+    <string name="dialog_permissions_location_background_content">Каб дазволіць з дадаткам доступ да месцазнаходжання ў фоне, каб мы маглі сачыць за зменамі месцазнаходжання і прадастаўляць актуальны прагноз надвор’я, уключыце доступ да месцазнаходжання Дазволіць у любым рэжыме.</string>
+    <string name="message_parsing_error_title">Не ўдалося прааналізаваць дадзеныя аб надвор’і</string>
     <string name="message_parsing_error_content">Пераканайцеся, што вы абнавілі дадатак да апошняй версіі. Сервер можа быць часова недаступны, у гэтым выпадку паспрабуйце пазней. Калі праблема не ўхіленая, стварыце дамп часопіса збояў з налад адладкі і паведаміце аб праблеме на GitHub.</string>
     <string name="message_source_not_installed_error_title">Крыніца больш не даступна</string>
     <string name="message_source_not_installed_error_content">Гэтая крыніца больш не даступна; калі ласка, выдаліце месцазнаходжанне і стварыце яго зноўку з іншай крыніцы.</string>

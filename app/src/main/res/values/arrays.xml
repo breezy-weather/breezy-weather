@@ -51,12 +51,14 @@
         <item>Tiếng Việt</item>
         <item>Türkçe</item>
         <item>Ελληνικά</item>
+        <item>Беларуская</item>
         <item>Български</item>
         <item>Македонски</item>
         <item>Pусский</item>
         <item>Српски</item>
         <item>Українська</item>
         <item>العربية</item>
+        <item>فارسی</item>
         <item>کوردیی ناوەندی</item>
         <item>हिन्दी</item>
         <item>한국어</item>
@@ -97,12 +99,14 @@
         <item>vietnamese</item>
         <item>turkish</item>
         <item>greek</item>
+        <item>belarussian</item>
         <item>bulgarian</item>
         <item>macedonian</item>
         <item>russian</item>
         <item>serbian</item>
         <item>ukrainian</item>
         <item>arabic</item>
+        <item>persian</item>
         <item>kurdish_sorani</item>
         <item>hindi</item>
         <item>korean</item>

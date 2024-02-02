@@ -142,6 +142,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ca"), "Álvaro Martínez Majado", "https://github.com/alvaromartinezmajado"),
         TranslatorItem(arrayOf("ca"), "Arnau Mora", "https://github.com/ArnyminerZ"),
         TranslatorItem(arrayOf("ca"), "Sabrina Khan", "https://hosted.weblate.org/user/khansabrina594/"),
+        TranslatorItem(arrayOf("ca"), "Pere Orga", "https://github.com/pereorga"),
         TranslatorItem(arrayOf("ckb", "ar"), "anyone00", "https://hosted.weblate.org/user/anyone00/"),
         TranslatorItem(arrayOf("cs"), "Jiří Král", "mailto:jirkakral978@gmail.com"),
         TranslatorItem(arrayOf("cs"), "ikanakova", "https://github.com/ikanakova"),
@@ -171,6 +172,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("es"), "gallegonovato", "https://hosted.weblate.org/user/gallegonovato/"),
         TranslatorItem(arrayOf("es"), "Jose", "https://github.com/AzagraMac"),
         TranslatorItem(arrayOf("eu"), "Dabid", "https://github.com/desertorea"),
+        TranslatorItem(arrayOf("fa"), "Aspen", "https://hosted.weblate.org/user/olden/"),
         TranslatorItem(arrayOf("fr", "en"), "Julien Papasian", "https://github.com/papjul"),
         TranslatorItem(arrayOf("fr"), "Benjamin Tourrel", "mailto:polo_naref@hotmail.fr"),
         TranslatorItem(arrayOf("fr"), "Nam", "https://github.com/ldmpub"),
@@ -231,7 +233,6 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ru"), "Roman Adadurov", "mailto:orelars53@gmail.com"),
         TranslatorItem(arrayOf("ru"), "Denio", "mailto:deniosens@yandex.ru"),
         TranslatorItem(arrayOf("ru"), "Егор Ермаков", "https://hosted.weblate.org/user/creepen/"),
-        TranslatorItem(arrayOf("ru", "uk"), "kilimov25", "https://github.com/kilimov25"),
         TranslatorItem(arrayOf("sk"), "Kuko", "https://hosted.weblate.org/user/kuko7/"),
         TranslatorItem(arrayOf("sl_rSI"), "Gregor", "mailto:glakner@gmail.com"),
         TranslatorItem(arrayOf("sr"), "NEXI", "https://github.com/nexiRS"),
@@ -260,7 +261,8 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "thaumiel9", "https://github.com/thaumiel9"),
         TranslatorItem(arrayOf("zh_rCN"), "tomac4t", "https://github.com/tomac4t"),
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", "https://github.com/abc0922001"),
-        TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", "https://hosted.weblate.org/user/hamburger2048/")
+        TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", "https://hosted.weblate.org/user/hamburger2048/"),
+        TranslatorItem(arrayOf("zh_rHK", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", "https://github.com/kilimov25"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

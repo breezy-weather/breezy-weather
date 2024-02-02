@@ -29,7 +29,9 @@ This major version introduces new hourly trends for more detailed weather data, 
 - When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 
 **Translations**
-- Initial translation added for Македонски (thanks @ikocevski7!)
+- Translation added and completed for Беларуская (thanks @kilimov25!)
+- Translation added and completed for Македонски (thanks @ikocevski7 and @kilimov25!)
+- Initial translation added for فارسی (thanks Aspen!)
 - Translations updated
 
 

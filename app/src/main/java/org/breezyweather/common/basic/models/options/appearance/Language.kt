@@ -68,12 +68,14 @@ enum class Language(
     VIETNAMESE("vietnamese", Locale("vi")),
     TURKISH("turkish", Locale("tr")),
     GREEK("greek", Locale("el")),
+    BELARUSSIAN("belarussian", Locale("be")),
     BULGARIAN("bulgarian", Locale("bg")),
     MACEDONIAN("macedonian", Locale("mk")),
     RUSSIAN("russian", Locale("ru")),
     SERBIAN("serbian", Locale("sr")),
     UKRAINIAN("ukrainian", Locale("uk")),
     ARABIC("arabic", Locale("ar")),
+    PERSIAN("persian", Locale("fa")),
     KURDISH_SORANI("kurdish_sorani", Locale("ckb")),
     HINDI("hindi", Locale("hi")),
     KOREAN("korean", Locale("ko")),
@@ -161,12 +163,14 @@ enum class Language(
             "vietnamese" -> VIETNAMESE
             "turkish" -> TURKISH
             "greek" -> GREEK
+            "belarussian" -> BELARUSSIAN
             "bulgarian" -> BULGARIAN
             "macedonian" -> MACEDONIAN
             "russian" -> RUSSIAN
             "serbian" -> SERBIAN
             "ukrainian" -> UKRAINIAN
             "arabic" -> ARABIC
+            "persian" -> PERSIAN
             "kurdish_sorani" -> KURDISH_SORANI
             "hindi" -> HINDI
             "korean" -> KOREAN
