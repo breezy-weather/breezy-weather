@@ -411,8 +411,8 @@
     <string name="unit_mmph_voice">Millimeter per uur</string>
     <string name="null_data_text">N.V.T.</string>
     <string name="settings_debug_dump_crash_logs_summary">Slaat foutenlogboeken op in een bestand om te delen met de ontwikkelaars</string>
-    <string name="air_quality_level_3_description">De lucht is sterk vervuild en ongezond voor gevoelige groepen. Verminder de tijd die je buiten doorbrengt als je last hebt van symptomen zoals ademhalingsmoeilijkheden of keelirritatie.</string>
-    <string name="air_quality_level_6_description">Elke blootstelling aan de lucht, zelfs maar een paar minuten, kan bij iedereen ernstige gezondheidseffecten veroorzaken. Vermijd buitenactiviteiten.</string>
+    <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
+    <string name="air_quality_level_6_description">Blootstelling aan de buitenlucht, al is het maar enkele minuten, kan bij iedereen de gezondheid ernstig beïnvloeden. Vermijd buitenactiviteiten.</string>
     <string name="settings_weather_source">Weerbron</string>
     <string name="location_resident_location_summaryOn">Ingeschakeld. Verborgen binnen $ van huidige locatie.</string>
     <string name="location_resident_location_summaryOff">Uitgeschakeld. Locatie altijd beschikbaar.</string>
@@ -436,7 +436,7 @@
     <string name="wind_direction_short_NW">NW</string>
     <string name="air_quality_level_1">Uitstekend</string>
     <string name="air_quality_level_3">Slecht</string>
-    <string name="air_quality_level_2_description">De luchtkwaliteit is over het algemeen acceptabel voor de meeste mensen. Gevoelige groepen kunnen echter lichte tot matige symptomen ondervinden van langdurige blootstelling.</string>
+    <string name="air_quality_level_2_description">De luchtkwaliteit is voor de meeste mensen acceptabel. Bij langdurige blootstelling kunnen personen met overgevoeligheid echter lichte tot matige symptomen ervaren.</string>
     <string name="air_quality_pm25_voice">PM twee punt vijf</string>
     <string name="air_quality_pm10_voice">PM tien</string>
     <string name="pollen_tap_to_see_more">Tik om meer te zien…</string>
@@ -565,11 +565,11 @@
     <string name="settings_debug">Debug</string>
     <string name="about_dependencies">Afhankelijkheden</string>
     <string name="air_quality_index">Luchtkwaliteitsindex</string>
-    <string name="air_quality_level_1_description">De luchtkwaliteit is ideaal voor de meeste mensen; geniet van je normale buitenactiviteiten.</string>
+    <string name="air_quality_level_1_description">De luchtkwaliteit is voor de meeste mensen ideaal; ga lekker naar buiten, zoals normaal.</string>
     <string name="air_quality_level_2">Redelijk</string>
-    <string name="air_quality_level_4_description">Gezondheidseffecten kunnen onmiddellijk gevoeld worden door gevoelige groepen. Gezonde personen kunnen ademhalingsmoeilijkheden en keelirritatie ondervinden bij langdurige blootstelling. Beperk buitenactiviteiten.</string>
-    <string name="air_quality_level_5">Erg ongezond</string>
-    <string name="air_quality_level_5_description">Gezondheidseffecten zullen onmiddellijk gevoeld worden door gevoelige groepen die buitenactiviteiten moeten vermijden. Gezonde mensen zullen waarschijnlijk ademhalingsmoeilijkheden en keelirritatie ondervinden; overweeg om binnen te blijven en buitenactiviteiten te verzetten.</string>
+    <string name="air_quality_level_4_description">Het effect op de gezondheid is direct merkbaar voor groepen die hier gevoelig voor zijn. Gezonde personen kunnen bij langdurige blootstelling last hebben van moeite met ademhalen en keelirritatie. Beperk buitenactiviteiten.</string>
+    <string name="air_quality_level_5">Zeer ongezond</string>
+    <string name="air_quality_level_5_description">Het effect op de gezondheid is direct merkbaar voor groepen die hier gevoelig voor zijn. Zij kunnen buitenactiviteiten beter vermijden. Gezonde personen zullen waarschijnlijk last hebben van moeite met ademhalen en keelirritatie; overweeg om binnen te blijven en buitenactiviteiten uit te stellen.</string>
     <string name="air_quality_level_6">Gevaarlijk</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
