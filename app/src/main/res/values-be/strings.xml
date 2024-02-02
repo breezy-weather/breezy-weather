@@ -65,7 +65,7 @@
     <string name="pollen_level_1">Вельмі нізкі</string>
     <string name="humidity_dew_point">Вільготнасць / Кропка расы</string>
     <string name="date_format_short">d-M</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
+    <string name="date_format_widget_oreo_style">EEEE, d MMM|</string>
     <string name="weather_data_by">Дадзеныя прадастаўлены $</string>
     <string name="weather_air_quality_data_by">Інфармацыя аб якасці паветра прадастаўлена $</string>
     <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць дадзеныя аб надвор\'і</string>
