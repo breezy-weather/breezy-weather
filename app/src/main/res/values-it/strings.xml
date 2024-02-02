@@ -652,4 +652,11 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
     <string name="notification_channel_crash_logs">Crash log</string>
     <string name="settings_color_app">Segui app</string>
+    <string name="settings_unavailable_no_background_updates">Non disponibile, abilita prima gli aggiornamenti in background</string>
+    <string name="notification_precipitation_starting">Presto precipitazioni</string>
+    <string name="notification_precipitation_starting_desc">Inizio previsto alle %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Previsto arresto a %1$s</string>
+    <string name="notification_precipitation_continuing">Precipitazione</string>
+    <string name="notification_precipitation_continuing_desc">Si prevede che continui almeno fino al %1$s</string>
+    <string name="notification_precipitation_stopping">Le precipitazioni smetteranno presto</string>
 </resources>
