@@ -71,14 +71,14 @@
     <string name="date_format_widget_long">EEEE, dd\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Localização em segundo plano.</string>
-    <string name="location_message_failed_to_locate">Localização falhou.</string>
-    <string name="weather_message_data_refresh_failed">Atualização de clima falhou.</string>
+    <string name="notification_location_in_background">Localização em segundo plano</string>
+    <string name="location_message_failed_to_locate">Localização falhou</string>
+    <string name="weather_message_data_refresh_failed">Atualização de clima falhou</string>
     <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifique permissões de localização</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ative dados de localização</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
-    <string name="widget_label_view_style">Estilo de visão.</string>
+    <string name="widget_label_view_style">Estilo de visão</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
     <string name="widget_label_hide_subtitle">Ocultar Subtítulo</string>
     <string name="widget_label_subtitle_data">Dados do subtítulo</string>
@@ -89,8 +89,8 @@
     <string name="location_message_list_cannot_be_empty">Lista de locais não pode estar vazia</string>
     <string name="location_search_placeholder">Pesquise um endereço…</string>
     <string name="location_current_not_found_yet">Ainda não localizado…</string>
-    <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar.</string>
-    <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
+    <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar</string>
+    <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado</string>
     <string name="notification_updating_weather_data">Atualizando dados de clima (%1$d/%2$d)</string>
     <!-- action -->
     <string name="alerts">Alertas</string>
