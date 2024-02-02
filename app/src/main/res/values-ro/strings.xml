@@ -575,7 +575,7 @@
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_info_title">Ozonul la nivelul solului (O₃)</string>
     <string name="air_quality_o3_info_introduction">Ozonul la nivelul solului (O₃) este o componentă majoră a smogului. Deși este aceeași moleculă, ozonul de la nivelul solului poate fi dăunător pentru sănătatea umană, spre deosebire de ozonul stratosferic, care protejează Pământul de excesul de radiații UV.</string>
-    <string name="air_quality_no2_info_introduction">Dioxidul de azot (NO₂) este un gaz roșu-maroniu, toxic și sufocant, cu un miros înțepător și acru caracteristic,</string>
+    <string name="air_quality_no2_info_introduction">Dioxidul de azot (NO₂) este un gaz roșu-maroniu, toxic și sufocant, cu un miros înțepător și acru caracteristic.</string>
     <string name="air_quality_co_info_introduction">Monoxidul de carbon (CO) este un gaz otrăvitor, inflamabil, incolor, inodor, insipid și neiritant.</string>
     <string name="air_quality_co_info_origin">Este produs prin arderea incompletă a combustibililor carbonici, cum ar fi lemnul, benzina, cărbunele, gazul natural și kerosenul, în sobe simple, focuri deschise, lămpi cu fitil, cuptoare, șeminee. Sursa predominantă de monoxid de carbon (CO) în aerul înconjurător este reprezentată de autovehicule.</string>
     <string name="pollen_olive">Măsline</string>
