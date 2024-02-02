@@ -41,4 +41,10 @@
     <string name="temperature_wet_bulb">نمناک</string>
     <string name="temperature_apparent">نمایان</string>
     <string name="temperature_wind_chill">باد سرد</string>
+    <string name="temperature_degree_day">اختلاف دمای گرم شدن با بیرون</string>
+    <string name="temperature_degree_day_cooling">گرمای لازم برای خنک نگه داشتن خانه</string>
+    <string name="temperature_average_short">دمای میانگین</string>
+    <string name="temperature_degree_day_heating">گرمای لازم برای گرم نگه داشتن خانه</string>
+    <string name="temperature_normal_short">معمولی</string>
+    <string name="precipitation">پیش بینی بارش</string>
 </resources>
