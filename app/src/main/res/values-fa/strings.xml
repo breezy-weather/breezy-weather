@@ -76,7 +76,17 @@
     <string name="wind_direction_short_W">غرب</string>
     <string name="wind_direction_short_NW">شمال غرب</string>
     <string name="wind_strength">قدرت باد</string>
-    <string name="wind_strength_3">وزیدن ملایم</string>
-    <string name="wind_strength_4">وزیدن متوسط</string>
-    <string name="wind_strength_2">وزش ملایم</string>
+    <string name="wind_strength_3">وزش ملایم</string>
+    <string name="wind_strength_4">وزش متوسط</string>
+    <string name="wind_strength_2">نسیم</string>
+    <string name="wind_strength_5">باد بیش‌وَز</string>
+    <string name="wind_strength_6">وزش تند</string>
+    <string name="wind_strength_7">تندباد متوسط</string>
+    <string name="wind_strength_9">تندباد نیرومند</string>
+    <string name="wind_strength_10">طوفان</string>
+    <string name="wind_strength_11">طوفان سهمگین</string>
+    <string name="wind_strength_12">توفند</string>
+    <string name="uv_index">ضزیب اشعه UV</string>
+    <string name="uv_index_0_2">کم</string>
+    <string name="wind_strength_8">تندباد</string>
 </resources>
