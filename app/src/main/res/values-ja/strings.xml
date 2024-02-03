@@ -105,10 +105,10 @@
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
     <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM dd日</string>
-    <string name="date_format_widget_short">EEEE MMM dd日</string>
-    <string name="date_format_widget_long">EEEE MMM dd日</string>
-    <string name="date_format_widget_oreo_style">EEEE MMM dd日</string>
+    <string name="date_format_long">MMM d</string>
+    <string name="date_format_widget_short">EEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">バックグラウンドでの検索</string>
     <string name="location_message_failed_to_locate">現在の場所が見つかりませんでした</string>
