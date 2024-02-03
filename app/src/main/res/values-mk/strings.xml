@@ -220,7 +220,7 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">Ноќен ветер од денес, утре, …, 4 дена подоцна</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Изгрејсонце од денес, утре, …, 4 дена подоцна</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Месечината фаза од денес, утре, …, 4 дена подоцна</string>
-    <string name="widget_style_oreo">Орео</string>
+    <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорирајте кога батеријата е празна</string>
@@ -229,7 +229,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Ова е првото нешто што треба да се обидете кога не добивате известувања или виџетите не се освежуваат.</string>
     <string name="settings_background_updates_refresh_6h">6 часа</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизацијата на батеријата е веќе оневозможена.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Некои производители имаат дополнителни ограничувања за апликации кои ги убиваат услугите во заднина. Апликацијата Не ја убивај мојата! веб-страницата има информации за тоа како да го поправите.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Некои производители имаат дополнителни ограничувања за апликации кои ги убиваат услугите во заднина. Апликацијата Don\'t kill my app! веб-страницата има информации за тоа како да го поправите.</string>
     <string name="settings_background_updates_worker_info_title">Информации за работникот</string>
     <string name="settings_background_updates_worker_info_summary">Последно возење: $</string>
     <string name="settings_location">Локација</string>
@@ -307,7 +307,7 @@
     <string name="notification_precipitation_starting_desc">Се очекува да започне во %1$s</string>
     <string name="about_matrix">Матрична соба</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Пороен дожд и снег мешани врнежи</string>
-    <string name="weather_kind_thunder">ГРОМ</string>
+    <string name="weather_kind_thunder">Гром</string>
     <string name="weather_kind_thunderstorm">Невреме со грмотевици</string>
     <string name="weather_kind_wind">Ветер</string>
     <string name="weather_source_accu_preference_days_1">1 ден</string>
@@ -360,7 +360,7 @@
     <string name="widget_style_nano">Нано</string>
     <string name="widget_style_pixel">Пиксел</string>
     <string name="widget_style_vertical">Вертикално</string>
-    <string name="widget_style_oreo_google_sans">Орео (Google Sans)</string>
+    <string name="widget_style_oreo_google_sans">Оreo (Google Sans)</string>
     <string name="widget_week_style_5_days">5 дена</string>
     <string name="widget_clock_font_sans_serif">Санс Сериф</string>
     <string name="widget_clock_font_sans_serif_black">Санс Сериф Црното</string>
@@ -407,7 +407,7 @@
     <string name="unit_kph_voice">Километри на час</string>
     <string name="unit_mm">мм</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="unit_atm">банкомат</string>
+    <string name="unit_atm">atm</string>
     <string name="unit_atm_voice">Атмосфери</string>
     <string name="unit_mmhg">мм. жива</string>
     <string name="unit_kgfpsqcm">кгс/cм²</string>
