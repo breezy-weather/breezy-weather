@@ -119,4 +119,15 @@
     <string name="air_quality_level_2_description">Luftkvaliteten er generelt acceptabel for de fleste individer. Følsomme grupper kan dog opleve mindre til moderate symptomer fra langvarig eksponering.</string>
     <string name="pollen_grass">Græs</string>
     <string name="air_quality_level_5_description">Sundhedseffekter vil umiddelbart kunne mærkes af følsomme grupper og bør undgå udendørs aktivitet. Raske personer vil sandsynligvis opleve åndedrætsbesvær og halsirritation; overveje at blive indendørs og omlægge udendørs aktiviteter.</string>
+    <string name="air_quality_so2_voice">Svovldioxid</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_pm_info_title">Atmosfærisk støv (PM2,5 og PM10)</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_no2_voice">Kvælstofsoxid</string>
+    <string name="temperature_wet_bulb">Våd pære</string>
+    <string name="air_quality_o3_voice">Ozon</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_co_voice">Klumonoxid</string>
+    <string name="air_quality_pm_explanations_introduction">Atmosfærisk støv er mikroskopiske partikler af solid eller flydende materiale suspenderet i luften.</string>
 </resources>
