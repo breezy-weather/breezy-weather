@@ -485,7 +485,7 @@
     <string name="weather_message_secondary_data_refresh_failed">Fallo en la actualización de los datos meteorológicos desde una fuente meteorológica secundaria</string>
     <string name="ephemeris_sunset_at">Atardecer a las $</string>
     <string name="ephemeris_moonrise_at">Salida de la luna a las $</string>
-    <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como compuestos orgánicos volátiles, monóxido de carbono y óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a la naturaleza fotoquímica, los niveles más altos de ozono se observan durante los períodos de clima soleado.</string>
+    <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como los compuestos orgánicos volátiles, el monóxido de carbono y los óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a su naturaleza fotoquímica, los niveles más altos de ozono se observan durante los periodos de tiempo soleado.</string>
     <string name="minutely_precipitations">Precipitaciones minuto a minuto</string>
     <string name="settings_main_section_animations">Animaciones</string>
     <string name="settings_notifications">Notificaciones</string>
