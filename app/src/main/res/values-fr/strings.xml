@@ -235,8 +235,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Météo actuelle</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Température actuelle (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Température actuelle (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Température ressentie (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie actuelle (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actuel</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV actuel</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidité actuelle</string>

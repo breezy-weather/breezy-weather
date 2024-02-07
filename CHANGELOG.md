@@ -31,6 +31,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)
 - Translation added and completed for Македонски (thanks @ikocevski7 and @kilimov25!)
+- Initial translation added for Esperanto
 - Initial translation added for فارسی (thanks Aspen!)
 - Translations updated
 

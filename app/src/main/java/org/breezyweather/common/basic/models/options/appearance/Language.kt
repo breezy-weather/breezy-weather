@@ -46,6 +46,7 @@ enum class Language(
     ENGLISH_UK("english_britain", Locale("en", "GB")),
     ENGLISH_US("english_america", Locale("en", "US")),
     SPANISH("spanish", Locale("es")),
+    ESPERANTO("esperanto", Locale("eo")),
     BASQUE("basque", Locale("eu")),
     FRENCH("french", Locale("fr")),
     CROATIAN("croatian", Locale("hr")),
@@ -141,6 +142,7 @@ enum class Language(
             "english_britain" -> ENGLISH_UK
             "english_america" -> ENGLISH_US
             "spanish" -> SPANISH
+            "esperanto" -> ESPERANTO
             "basque" -> BASQUE
             "french" -> FRENCH
             "croatian" -> CROATIAN

@@ -364,8 +364,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Current Temperature (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Apparent Temperature (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Apparent Temperature (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Current Feels like Temperature (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Current Feels like Temperature (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Current Wind</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Current UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Current Humidity</string>
