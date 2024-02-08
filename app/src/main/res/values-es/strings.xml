@@ -140,7 +140,6 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Clima Actual</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actual (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura Actual (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description"></string>
     <string name="widget_custom_subtitle_keyword_atd_description">Sensación actual de temperatura (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Viento Actual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV Actual</string>
