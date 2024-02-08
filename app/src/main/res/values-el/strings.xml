@@ -130,8 +130,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Ο καιρός τώρα</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Τρέχουσα θερμοκρασία (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Τρέχουσα θερμοκρασία (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Αίσθηση (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Αίσθηση (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Θερμοκρασία Τρέχουσας Αίσθησης (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Τρέχουσα Αίσθηση Θερμοκρασίας (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Άνεμος</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Δείκτης UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Υγρασία</string>
