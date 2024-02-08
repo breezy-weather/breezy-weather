@@ -82,7 +82,7 @@
     <string name="ephemeris_moon_phase_last_quarter">Ubývající polovina</string>
     <string name="ephemeris_moon_phase_waning_crescent">Ubývající čtvrtina</string>
     <string name="pollen_grass">Tráva</string>
-    <string name="pollen_mold">Plísňe</string>
+    <string name="pollen_mold">Plísně</string>
     <string name="pollen_ragweed">Ambrózie</string>
     <string name="pollen_tree">Pyl</string>
     <string name="daily_forecast">Denní předpověď</string>
@@ -144,8 +144,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Současné počasí</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Současná teplota (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Současná teplota (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Zdánlivá teplota (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Zdánlivá teplota (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Pocitová teplota (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Pocitová teplota (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Současná vítr</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Současné UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Současná vlhkost</string>
@@ -582,8 +582,8 @@
     <string name="setting_weather_source_accu_days">Dny</string>
     <string name="wind_gusts">Poryvy větru</string>
     <string name="pollen_alder">Olše</string>
-    <string name="pollen_level_5">Velmi vysoká</string>
-    <string name="pollen_level_4">Vysoká</string>
+    <string name="pollen_level_5">Velmi vysoké</string>
+    <string name="pollen_level_4">Vysoké</string>
     <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od $</string>
     <string name="weather_pollen_data_by">Údaje o alergenech od $</string>
     <string name="weather_minutely_data_by">Údaje o minutových srážkách od $</string>
@@ -592,8 +592,8 @@
     <string name="pollen_mugwort">Pelyněk</string>
     <string name="pollen_olive">Oliva</string>
     <string name="pollen_level_0">Žádné</string>
-    <string name="pollen_level_2">Nízká</string>
-    <string name="pollen_level_1">Velmi nízká</string>
+    <string name="pollen_level_2">Nízké</string>
+    <string name="pollen_level_1">Velmi nízké</string>
     <string name="message_source_not_installed_error_content">Tento zdroj již není k dispozici; odstraňte prosím umístění a vytvořte jej znovu z jiného zdroje.</string>
     <string name="about_privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Smíšené dešťové a sněhové přeháňky</string>
