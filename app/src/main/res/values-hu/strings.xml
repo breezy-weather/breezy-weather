@@ -132,8 +132,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Jelenlegi időjárás</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Jelenlegi hőmérséklet (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Jelenlegi hőmérséklet (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Hőérzet (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Hőérzet (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Jelenlegi Hőérzet (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Jelenlegi Hőérzet (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Jelenlegi szél</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Jelenlegi UV</string>
     <string name="widget_custom_subtitle_keyword_l_description">Elhelyezkedés</string>
