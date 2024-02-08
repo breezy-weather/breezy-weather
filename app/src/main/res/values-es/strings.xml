@@ -664,4 +664,5 @@
     <string name="notification_precipitation_stopping_desc">Se espera que pare en %1$s</string>
     <string name="notification_precipitation_continuing">Precipitación</string>
     <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %1$s</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (℃/℉)</string>
 </resources>
