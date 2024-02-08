@@ -507,8 +507,8 @@
     <string name="widget_custom_subtitle_explanation">Možete unijeti bilo šta, ali molimo obratite pažnju na dužinu teksta. Ako želite citirati vremenske podatke, koristite $ za referencu na odgovarajuću ključnu riječ.
 \n
 \nNa primjer, „Trenutno vrijeme je: $cw$.” će se prikazati kao „Trenutno vrijeme je: Vedro.”.</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Prividna temperatura (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Prividna temperatura (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Trenutni osjećaj kao (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Trenutni osjećaj kao (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Trenutni vjetar</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Trenutni pritisak</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Trenutna vidljivost</string>
