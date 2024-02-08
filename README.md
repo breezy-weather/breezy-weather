@@ -110,6 +110,7 @@ alt="Get it on Obtainium" align="center" height="54" />
   - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
   - Chronus Weather icon packs
 - Automatic dark mode
+- Looking for radar? [Check out this document](docs/RADAR.md)
 
 - <details><summary>Free and Open Source</summary>
 
@@ -170,7 +171,6 @@ These are time-consuming features and help is always appreciated. A fresh look t
 | [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress      | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
 | [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do         | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
 |                                                                                                                                        | Widgets redesign                   | Mockups in progress   | No widgets improvements will be done until completed                                                                                     |
-| [#23](https://github.com/breezy-weather/breezy-weather/issues/23)                                                                      | Radar                              | Survey to do          | To better understand expectations                                                                                                        |
 | [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on   | We already have a dark mode                                                                                                              |
 
 
