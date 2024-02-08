@@ -103,7 +103,7 @@
     <string name="widget_custom_subtitle_keyword_l_description">Plats</string>
     <string name="precipitation_total">Totalt</string>
     <string name="pollen_mold">Mögel</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Upplevd temperatur (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Känns för närvarande som temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
     <string name="weather_source_accu_preference_hours_72">72 timmar</string>
     <string name="air_quality_co">CO</string>
@@ -137,7 +137,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Välj platstjänst</string>
     <string name="pollen_level_4">Hög</string>
     <string name="widget_style_temperature">Temperatur</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Upplevd temperatur (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Känns för närvarande som temperatur (℃/℉)</string>
     <string name="precipitation_intensity_light">Duggregn</string>
     <string name="location_search_placeholder">Sök efter en plats…</string>
     <string name="action_preview">Förhandsvisning</string>
