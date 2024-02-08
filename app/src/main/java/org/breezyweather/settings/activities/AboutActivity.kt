@@ -151,6 +151,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("cs"), "Jiří Král", "https://github.com/FrameXX"),
         TranslatorItem(arrayOf("cs"), "Fjuro", "https://github.com/Fjuro"),
         TranslatorItem(arrayOf("da"), "Peter", "https://github.com/peetabix"),
+        TranslatorItem(arrayOf("da"), "Grooty12", "https://hosted.weblate.org/user/Grooty12/"),
         TranslatorItem(arrayOf("de"), "Ken Berns", "mailto:ken.berns@yahoo.de"),
         TranslatorItem(arrayOf("de"), "Jörg Meinhardt", "mailto:jorime@web.de"),
         TranslatorItem(arrayOf("de"), "Thorsten Eckerlein", "mailto:thorsten.eckerlein@gmx.de"),

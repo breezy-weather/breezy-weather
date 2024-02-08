@@ -229,7 +229,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Ова е првото нешто што треба да се обидете кога не добивате известувања или виџетите не се освежуваат.</string>
     <string name="settings_background_updates_refresh_6h">6 часа</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизацијата на батеријата е веќе оневозможена.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Некои производители имаат дополнителни ограничувања за апликации кои ги убиваат услугите во заднина. Апликацијата Don\'t kill my app! веб-страницата има информации за тоа како да го поправите.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Некои производители имаат дополнителни ограничувања за апликации кои ги убиваат услугите во заднина. Апликацијата Don’t kill my app! веб-страницата има информации за тоа како да го поправите.</string>
     <string name="settings_background_updates_worker_info_title">Информации за работникот</string>
     <string name="settings_background_updates_worker_info_summary">Последно возење: $</string>
     <string name="settings_location">Локација</string>
