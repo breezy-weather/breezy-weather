@@ -17,10 +17,14 @@
 package org.breezyweather.sources.dmi.json
 
 import kotlinx.serialization.Serializable
+import org.breezyweather.common.serializer.DateSerializer
+import java.util.Date
 
 @Serializable
 data class DmiWarning(
-    val validFrom: Long?,
-    val validTo: Long?
-    // TODO: To be completed
+    @Serializable(DateSerializer::class) val validFrom: Date?,
+    @Serializable(DateSerializer::class) val validTo: Date?,
+    val warningTitle: String?,
+    val warningText: String?,
+    val additionalText: String?
 )

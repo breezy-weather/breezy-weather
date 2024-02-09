@@ -60,13 +60,13 @@ class DmiService @Inject constructor(
             "llj"
         )
 
-        val alerts = /*if (location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
+        val alerts = if (location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
             mApi.getAlerts(location.cityId)
-        } else {*/
+        } else {
             Observable.create { emitter ->
                 emitter.onNext(DmiWarningResult())
             }
-        //}
+        }
 
         return Observable.zip(
             weather,

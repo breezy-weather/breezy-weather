@@ -16,7 +16,6 @@
 
 package org.breezyweather.sources.dmi
 
-import android.graphics.Color
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Daily
@@ -29,13 +28,12 @@ import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.accu.json.AccuAlertResult
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
 import org.breezyweather.sources.dmi.json.DmiWarningResult
-import java.util.Date
 import java.util.Locale
+import java.util.Objects
 import java.util.TimeZone
 
 fun convert(
@@ -136,12 +134,17 @@ private fun getHourlyForecast(
 private fun getAlertList(
     resultList: List<DmiWarning>?
 ): List<Alert>? {
-    if (resultList == null) return null
-    return emptyList()/*resultList.map { result ->
+    if (resultList.isNullOrEmpty()) return null
+    return resultList.map {
         Alert(
-            // TODO
+            alertId = Objects.hash(it.warningTitle, it.validFrom).toString(),
+            startDate = it.validFrom,
+            endDate = it.validTo,
+            description = it.warningTitle ?: "Varsel",
+            content = it.warningText + "\n\n" + it.additionalText,
+            priority = 5, // TODO
         )
-    }*/
+    }
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {

@@ -12,7 +12,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 - New hourly chart: visibility
 
 **Weather sources**
-- [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source (alerts for Denmark not yet supported)
+- [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source, with alerts for Denmark-only
 - [National Weather Service (NWS)] Added support as a main source in United States of America-only
 - [Bright Sky (DWD)] Added support as a main source in Germany-only
 - [Bright Sky (DWD)] Added support as a secondary source for alerts in Germany-only

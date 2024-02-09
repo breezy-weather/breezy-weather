@@ -78,13 +78,13 @@ Note that no forecast above 7 days is reliable, so you should not decide based o
 
 The following features, if not available from your selected source, can be added from another source.
 
-| Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI           |
-|------------------------------------|------------|---------------|---------------|-------------|--------------|---------------|
-| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | ❌             |
-| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌             |
-| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ❌             |
-| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | *In progress* |
-| **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average       |
+| Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI     |
+|------------------------------------|------------|---------------|---------------|-------------|--------------|---------|
+| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | ❌       |
+| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌       |
+| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ❌       |
+| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | Denmark |
+| **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
 
 | Sources                            | China   | NWS     | Bright Sky | ECCC | SMHI    | MET Éireann   |
 |------------------------------------|---------|---------|------------|------|---------|---------------|
