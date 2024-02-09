@@ -180,6 +180,7 @@ class HourlyPressureAdapter(
 
     override fun isValid(location: Location): Boolean {
         return mHighestPressure != null && mLowestPressure != null
+                && mHighestPressure != PressureUnit.NORMAL && mLowestPressure != PressureUnit.NORMAL
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)

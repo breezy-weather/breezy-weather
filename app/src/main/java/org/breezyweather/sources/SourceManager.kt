@@ -39,6 +39,7 @@ import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.metie.MetIeService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
+import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
@@ -60,6 +61,7 @@ class SourceManager @Inject constructor(
     metIeService: MetIeService,
     metNoService: MetNoService,
     mfService: MfService,
+    nwsService: NwsService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
@@ -90,6 +92,7 @@ class SourceManager @Inject constructor(
 
         // National-only sources (sorted by population)
         chinaService,
+        nwsService,
         brightSkyService,
         ecccService,
         smhiService,

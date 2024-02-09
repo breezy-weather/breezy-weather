@@ -21,6 +21,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.LocationParameterEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.sources.RefreshHelper
@@ -85,6 +86,7 @@ class MainActivityRepository @Inject constructor(
     fun deleteLocation(location: Location) {
         AsyncHelper.runOnExecutor({
             LocationEntityRepository.deleteLocation(location)
+            LocationParameterEntityRepository.deleteLocationParameters(location.formattedId)
             WeatherEntityRepository.deleteWeather(location)
         }, singleThreadExecutor)
     }

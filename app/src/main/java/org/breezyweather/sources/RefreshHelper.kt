@@ -348,7 +348,10 @@ class RefreshHelper @Inject constructor(
                         // TODO: Replace location.isCurrentPosition with a boolean telling if current
                         // position was actually changed when we processed location earlier
                         && service.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
-                        locationParameters[service.id] = service
+                        locationParameters[service.id] =
+                            (if (locationParameters.getOrElse(service.id) { null } != null) {
+                                locationParameters[service.id]!!
+                            } else emptyMap()) + service
                             .requestLocationParameters(context, location.copy())
                             .awaitFirstOrElse {
                                 throw WeatherException()
@@ -446,7 +449,10 @@ class RefreshHelper @Inject constructor(
                                         // TODO: Replace location.isCurrentPosition with a boolean telling if current
                                         // position was actually changed when we processed location earlier
                                         && secondaryService.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
-                                        locationParameters[secondaryService.id] = secondaryService
+                                        locationParameters[secondaryService.id] =
+                                            (if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
+                                                locationParameters[secondaryService.id]!!
+                                            } else emptyMap()) + secondaryService
                                             .requestLocationParameters(context, location.copy())
                                             .awaitFirstOrElse {
                                                 throw WeatherException()
