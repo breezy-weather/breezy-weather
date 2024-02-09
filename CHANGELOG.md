@@ -13,6 +13,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 
 **Weather sources**
 - [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source (alerts for Denmark not yet supported)
+- [National Weather Service (NWS)] Added support as a main source in United States of America-only
 - [Bright Sky (DWD)] Added support as a main source in Germany-only
 - [Bright Sky (DWD)] Added support as a secondary source for alerts in Germany-only
 - [Environment and Climate Change Canada] Added support as a main source in Canada-only
