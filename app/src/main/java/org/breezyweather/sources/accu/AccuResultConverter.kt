@@ -36,7 +36,9 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.PollenWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
@@ -364,6 +366,73 @@ fun getAirQualityForHour(
     ) else null
 }
 
+/**
+ * Used from secondary
+ */
+fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): AirQualityWrapper? {
+    if (airQualityHourlyResult.isNullOrEmpty()) return null
+
+    val airQualityHourly = mutableMapOf<Date, AirQuality>()
+    airQualityHourlyResult
+        .forEach {
+            var pm25: Float? = null
+            var pm10: Float? = null
+            var so2: Float? = null
+            var no2: Float? = null
+            var o3: Float? = null
+            var co: Float? = null
+            it.pollutants?.forEach { p ->
+                when (p.type) {
+                    "O3" -> o3 = p.concentration.value?.toFloat()
+                    "NO2" -> no2 = p.concentration.value?.toFloat()
+                    "PM2_5" -> pm25 = p.concentration.value?.toFloat()
+                    "PM10" -> pm10 = p.concentration.value?.toFloat()
+                    "SO2" -> so2 = p.concentration.value?.toFloat()
+                    "CO" -> co = p.concentration.value?.div(1000.0)?.toFloat()
+                }
+            }
+            val airQuality = if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null || co != null) AirQuality(
+                pM25 = pm25,
+                pM10 = pm10,
+                sO2 = so2,
+                nO2 = no2,
+                o3 = o3,
+                cO = co
+            ) else null
+            if (airQuality != null) {
+                airQualityHourly[Date(it.epochDate.times(1000))] = airQuality
+            }
+        }
+
+    return AirQualityWrapper(
+        hourlyForecast = airQualityHourly
+    )
+}
+
+/**
+ * Used from secondary
+ */
+fun getPollenWrapper(
+    dailyPollenResult: List<AccuForecastDailyForecast>?,
+    timeZone: TimeZone
+): PollenWrapper? {
+    if (dailyPollenResult.isNullOrEmpty()) return null
+    if (!supportsPollen(dailyPollenResult)) return null
+
+    val pollenDaily = mutableMapOf<Date, Pollen>()
+    dailyPollenResult
+        .forEach {
+            val dailyPollen = getDailyPollen(it.AirAndPollen)
+            if (dailyPollen != null) {
+                pollenDaily[Date(it.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!] = dailyPollen
+            }
+        }
+
+    return PollenWrapper(
+        dailyForecast = pollenDaily
+    )
+}
+
 private fun getMinutelyList(
     minuteResult: AccuMinutelyResult?
 ): List<Minutely>? {
@@ -421,12 +490,26 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  * Secondary convert
  */
 fun convertSecondary(
+    timeZone: TimeZone,
+    airQualityHourlyResult: AccuAirQualityResult?,
+    dailyPollenResult: AccuForecastDailyResult?,
     minuteResult: AccuMinutelyResult?,
-    alertResultList: List<AccuAlertResult>?
+    alertResultList: List<AccuAlertResult>?,
+    climoSummaryResult: AccuClimoSummaryResult?,
+    currentMonth: Int
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
+        airQuality = getAirQualityWrapper(airQualityHourlyResult?.data),
+        pollen = getPollenWrapper(dailyPollenResult?.DailyForecasts, timeZone),
         minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getAlertList(alertResultList)
+        alertList = getAlertList(alertResultList),
+        normals = if (climoSummaryResult?.Normals?.Temperatures != null) {
+            Normals(
+                month = currentMonth,
+                daytimeTemperature = climoSummaryResult.Normals.Temperatures.Maximum.Metric?.Value?.toFloat(),
+                nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value?.toFloat()
+            )
+        } else null,
     )
 }
 

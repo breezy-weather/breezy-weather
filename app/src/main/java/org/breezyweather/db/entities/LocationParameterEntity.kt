@@ -14,15 +14,23 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.accu.json
+package org.breezyweather.db.entities
 
-import kotlinx.serialization.Serializable
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
 
 /**
- * Accu daily result.
+ * Location parameter entity.
+ *
+ * [LocationParameter].
  */
-@Serializable
-data class AccuForecastDailyResult(
-    val Headline: AccuForecastHeadline? = null,
-    val DailyForecasts: List<AccuForecastDailyForecast>? = null
+@Entity
+data class LocationParameterEntity(
+    @field:Id var id: Long = 0,
+
+    var formattedId: String,
+
+    var source: String,
+    var parameter: String,
+    var value: String
 )

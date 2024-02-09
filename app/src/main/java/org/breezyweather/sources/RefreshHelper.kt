@@ -50,11 +50,13 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.LocationSearchSource
+import org.breezyweather.common.source.ParameterizedLocationSource
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.LocationParameterEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.settings.SettingsManager
@@ -335,14 +337,29 @@ class RefreshHelper @Inject constructor(
                 }
             }
 
+            val locationParameters = location.parameters.toMutableMap()
+
             val mainWeather = if (isMainDataValid) {
                 LogHelper.log(msg = "Main weather data is still valid")
                 location.weather!!.toWeatherWrapper()
             } else {
                 try {
+                    if (service is ParameterizedLocationSource
+                        // TODO: Replace location.isCurrentPosition with a boolean telling if current
+                        // position was actually changed when we processed location earlier
+                        && service.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
+                        locationParameters[service.id] = service
+                            .requestLocationParameters(context, location.copy())
+                            .awaitFirstOrElse {
+                                throw WeatherException()
+                            }
+                    }
                     service
-                        .requestWeather(context, location.copy(), mainFeaturesIgnored)
-                        .awaitFirstOrElse {
+                        .requestWeather(
+                            context,
+                            location.copy(parameters = locationParameters),
+                            mainFeaturesIgnored
+                        ).awaitFirstOrElse {
                             throw WeatherException()
                         }
                 } catch (e: Throwable) {
@@ -425,8 +442,22 @@ class RefreshHelper @Inject constructor(
                                     }
                                 }
                                 secondarySourceCalls[entry.key] = try {
+                                    if (secondaryService is ParameterizedLocationSource
+                                        // TODO: Replace location.isCurrentPosition with a boolean telling if current
+                                        // position was actually changed when we processed location earlier
+                                        && secondaryService.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
+                                        locationParameters[secondaryService.id] = secondaryService
+                                            .requestLocationParameters(context, location.copy())
+                                            .awaitFirstOrElse {
+                                                throw WeatherException()
+                                            }
+                                    }
                                     secondaryService
-                                        .requestSecondaryWeather(context, location, entry.value)
+                                        .requestSecondaryWeather(
+                                            context,
+                                            location.copy(parameters = locationParameters),
+                                            entry.value
+                                        )
                                         .awaitFirstOrElse {
                                             throw SecondaryWeatherException()
                                         }
@@ -546,6 +577,7 @@ class RefreshHelper @Inject constructor(
                     it.endDate == null || it.endDate.time > Date().time
                 } ?: emptyList()
             )
+            LocationParameterEntityRepository.writeLocationParameters(location.formattedId, locationParameters)
             WeatherEntityRepository.writeWeather(location, weather)
             return WeatherResult(weather, errors)
         } catch (e: Throwable) {

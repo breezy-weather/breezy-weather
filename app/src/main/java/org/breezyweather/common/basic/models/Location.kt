@@ -56,7 +56,14 @@ data class Location(
     val isCurrentPosition: Boolean = false,
     val isResidentPosition: Boolean = false,
 
-    val needsGeocodeRefresh: Boolean = false
+    val needsGeocodeRefresh: Boolean = false,
+
+    /**
+     * "accu": {"cityId": "230"}
+     * "nws": {"gridId": "8", "gridX": "20", "gridY": "30"}
+     * etc
+     */
+    val parameters: Map<String, Map<String, String>> = emptyMap()
 ) : Parcelable {
 
     val formattedId: String

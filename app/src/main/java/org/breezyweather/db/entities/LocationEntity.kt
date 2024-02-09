@@ -16,9 +16,11 @@
 
 package org.breezyweather.db.entities
 
+import io.objectbox.BoxStore
 import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.annotation.Transient
 import org.breezyweather.db.converters.TimeZoneConverter
 import java.util.*
 
@@ -58,4 +60,27 @@ data class LocationEntity(
     var residentPosition: Boolean = false,
 
     var needsGeocodeRefresh: Boolean = false
-)
+) {
+    @Transient
+    protected var parametersEntityList: List<LocationParameterEntity>? = null
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    fun getParameterEntityList(boxStore: BoxStore): List<LocationParameterEntity> {
+        if (parametersEntityList == null) {
+            val parametersEntityBox = boxStore.boxFor(LocationParameterEntity::class.java)
+            val query = parametersEntityBox.query(LocationParameterEntity_.formattedId.equal(formattedId))
+                .build()
+            val parametersEntityListNew = query.find()
+            query.close()
+            synchronized(this) {
+                if (parametersEntityList == null) {
+                    parametersEntityList = parametersEntityListNew
+                }
+            }
+        }
+        return parametersEntityList ?: emptyList()
+    }
+}

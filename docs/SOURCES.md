@@ -13,17 +13,17 @@ When deciding about which source you want to use, accuracy of data is probably t
 
 Here are some suggestions based on various criteria or testimonies (you can suggest others in GitHub discussions):
 
-| Country/Continent | Main source                                      | Air quality | Pollen     | Minutely     | Alerts       | Normals      |
-|-------------------|--------------------------------------------------|-------------|------------|--------------|--------------|--------------|
-| Europe            |                                                  |             | Open-Meteo |              |              |              |
-| United States     | [Forecast Advisor](https://forecastadvisor.com/) |             |            |              |              |              |
-| Canada            | ECCC                                             |             |            |              | ECCC         | ECCC         |
-| Germany           | Bright Sky (DWD)                                 | Open-Meteo  | Open-Meteo |              | Bright Sky   |              |
-| France            | Météo-France                                     |             | Open-Meteo | Météo-France | Météo-France | Météo-France |
-| Sweden            | SMHI or MET Norway                               | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
-| DMI               | DMI or MET Norway                                | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
-| Norway            | MET Norway                                       | MET Norway  | Open-Meteo | MET Norway   |              |              |
-| Ireland           | MET Éireann                                      | Open-Meteo  | Open-Meteo |              |              |              |
+| Country/Continent | Main source                                      | Air quality | Pollen      | Minutely     | Alerts       | Normals      |
+|-------------------|--------------------------------------------------|-------------|-------------|--------------|--------------|--------------|
+| Europe            |                                                  |             | Open-Meteo  |              |              |              |
+| United States     | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |              |              |              |
+| Canada            | ECCC                                             | AccuWeather | AccuWeather |              | ECCC         | ECCC         |
+| Germany           | Bright Sky (DWD)                                 | Open-Meteo  | Open-Meteo  |              | Bright Sky   |              |
+| France            | Météo-France                                     |             | Open-Meteo  | Météo-France | Météo-France | Météo-France |
+| Sweden            | SMHI or MET Norway                               | Open-Meteo  | Open-Meteo  | MET Norway   |              |              |
+| DMI               | DMI or MET Norway                                | Open-Meteo  | Open-Meteo  | MET Norway   |              |              |
+| Norway            | MET Norway                                       | MET Norway  | Open-Meteo  | MET Norway   |              |              |
+| Ireland           | MET Éireann                                      | Open-Meteo  | Open-Meteo  |              |              |              |
 
 
 ## Status
@@ -160,15 +160,14 @@ Legend:
 
 | Sources                            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | Bright Sky | ECCC   | ATMO AURA     |
 |------------------------------------|------------|-------------|-------------|-------------|----------------|--------------|------------|--------|---------------|
-| **Air quality**                    | ✅          | ❌           | Norway      | ✅           | ❌              | ❌            | ❌          | ❌      | France (AuRA) |
-| **Pollen**                         | ✅²         | ❌           | ❌           | ❌           | ❌              | ❌            | ❌          | ❌      | ❌             |
+| **Air quality**                    | ✅          | ✅           | Norway      | ✅           | ❌              | ❌            | ❌          | ❌      | France (AuRA) |
+| **Pollen**                         | ✅²         | ✅           | ❌           | ❌           | ❌              | ❌            | ❌          | ❌      | ❌             |
 | **Precipitation in the next hour** | ✅³         | ✅           | Nordic area | ✅           | ✅              | France       | ❌          | ❌      | ❌             |
 | **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | Germany    | Canada | ❌             |
-| **Normals**                        | ❌          | ❌           | ❌           | ❌           | ❌              | ✅⁴           | ❌          | Canada | ❌             |
+| **Normals**                        | ❌          | ✅           | ❌           | ❌           | ❌              | ✅⁴           | ❌          | Canada | ❌             |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe
 * ³ Works best in Europe at the moment
-* ⁴ Implemented but it is not yet possible to change secondary normals source for a location from UI

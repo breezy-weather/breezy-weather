@@ -16,6 +16,7 @@
 
 package org.breezyweather.db.generators
 
+import io.objectbox.BoxStore
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.db.entities.LocationEntity
 
@@ -53,7 +54,7 @@ object LocationEntityGenerator {
         return entityList
     }
 
-    fun generate(entity: LocationEntity): Location {
+    fun generate(entity: LocationEntity, boxStore: BoxStore): Location {
         return Location(
             entity.cityId,
             entity.latitude,
@@ -74,14 +75,15 @@ object LocationEntityGenerator {
             entity.normalsSource,
             entity.currentPosition,
             entity.residentPosition,
-            entity.needsGeocodeRefresh
+            entity.needsGeocodeRefresh,
+            parameters = LocationParameterEntityGenerator.generate(entity.getParameterEntityList(boxStore))
         )
     }
 
-    fun generateModuleList(entityList: List<LocationEntity>): List<Location> {
+    fun generateModuleList(entityList: List<LocationEntity>, boxStore: BoxStore): List<Location> {
         val locationList: MutableList<Location> = ArrayList(entityList.size)
         for (entity in entityList) {
-            locationList.add(generate(entity))
+            locationList.add(generate(entity, boxStore))
         }
         return locationList
     }

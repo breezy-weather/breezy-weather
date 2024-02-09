@@ -24,8 +24,6 @@ import org.breezyweather.db.generators.LocationEntityGenerator
 import java.util.Locale
 
 object LocationEntityRepository {
-    private val mWritingLock: Any = Any()
-
     // insert.
     fun insertLocationEntity(entity: LocationEntity) {
         boxStore.boxFor(LocationEntity::class.java).put(entity)
@@ -47,6 +45,7 @@ object LocationEntityRepository {
                 if (oldLocation?.formattedId != null && location.formattedId != oldLocation.formattedId) {
                     // Clean up weather data from oldFormattedId if we changed formattedId
                     WeatherEntityRepository.deleteWeather(oldLocation.formattedId)
+                    LocationParameterEntityRepository.updateFormattedId(oldLocation.formattedId, location.formattedId)
                 }
 
                 entity.id = dbEntity.id
@@ -90,11 +89,11 @@ object LocationEntityRepository {
 
     fun readLocation(formattedId: String): Location? {
         val entity = selectLocationEntity(formattedId)
-        return if (entity != null) LocationEntityGenerator.generate(entity) else null
+        return if (entity != null) LocationEntityGenerator.generate(entity, boxStore) else null
     }
 
     fun readLocationList(): List<Location> {
-        return LocationEntityGenerator.generateModuleList(selectLocationEntityList())
+        return LocationEntityGenerator.generateModuleList(selectLocationEntityList(), boxStore)
     }
 
     fun selectLocationEntity(formattedId: String): LocationEntity? {
