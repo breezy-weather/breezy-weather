@@ -378,8 +378,8 @@
     <string name="widget_clock_font_analog">التناظريه</string>
     <string name="settings_background_updates_section_troubleshoot">استكشاف الاخطاء</string>
     <string name="weather_data_by">البيانات بواسطة $</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">درجة الحرارة الظاهرة (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">درجة الحرارة الظاهرة (°C / °F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">الشعور الحالي لدرجة الحرارة (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">الشعور الحالي لدرجة الحرارة (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">الرياح الحالية</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">الأشعة فوق البنفسجية الحالية</string>
     <string name="widget_custom_subtitle_keyword_ch_description">الرطوبة الحالية</string>
