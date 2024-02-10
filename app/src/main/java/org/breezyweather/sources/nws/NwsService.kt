@@ -27,6 +27,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -49,7 +50,9 @@ class NwsService @Inject constructor(
             .create(NwsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
 
     override fun requestWeather(
         context: Context, location: Location,
@@ -74,10 +77,16 @@ class NwsService @Inject constructor(
             "si"
         )
 
-        val nwsAlertsResult = mApi.getActiveAlerts(
-            userAgent,
-            "${location.latitude},${location.longitude}"
-        ).onErrorResumeNext {
+        val nwsAlertsResult = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mApi.getActiveAlerts(
+                userAgent,
+                "${location.latitude},${location.longitude}"
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(NwsAlertsResult())
+                }
+            }
+        } else {
             Observable.create { emitter ->
                 emitter.onNext(NwsAlertsResult())
             }

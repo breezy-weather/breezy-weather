@@ -48,7 +48,9 @@ class DmiService @Inject constructor(
             .create(DmiApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
 
     override fun requestWeather(
         context: Context, location: Location,
@@ -60,7 +62,8 @@ class DmiService @Inject constructor(
             "llj"
         )
 
-        val alerts = if (location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
+        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
             mApi.getAlerts(location.cityId)
         } else {
             Observable.create { emitter ->
