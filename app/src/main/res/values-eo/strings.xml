@@ -18,7 +18,7 @@
     <string name="alerts">Atentigoj</string>
     <string name="alerts_count">$ veteraj atentigoj</string>
     <!-- $ = alert count. -->
-    <string name="alerts_to_follow">Venontaj atentigoj, tuŝu ĉi tie por vidi ilin.</string>
+    <string name="alerts_to_follow">Venontaj atentigoj, tuŝeti ĉi tie por vidi ilin.</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Hie</string>
     <string name="short_today">Hod</string>
@@ -49,8 +49,8 @@
     <string name="temperature_normals">Normalna temperaturo</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitaĵo</string>
-    <string name="precipitation_probability">Probableco de precipitaĵoj</string>
-    <string name="precipitation_duration">Daŭro de precipitaĵoj</string>
+    <string name="precipitation_probability">Probableco de precipitaĵo</string>
+    <string name="precipitation_duration">Daŭro de precipitaĵo</string>
     <string name="precipitation_total">Totalo</string>
     <string name="precipitation_thunderstorm">Fulmotondro</string>
     <string name="precipitation_rain">Pluvo</string>
@@ -141,7 +141,7 @@
     <string name="pollen_level_3">Modesta</string>
     <string name="pollen_level_4">Alta</string>
     <string name="pollen_level_5">Tre alta</string>
-    <string name="pollen_tap_to_see_more">Tuŝu ĉi tie por vidi pli…</string>
+    <string name="pollen_tap_to_see_more">Tuŝeti ĉi tie por vidi pli…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">Novo</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Unua arko</string>
@@ -223,6 +223,25 @@
     <string name="action_add_from_map">Aldoni el mapo</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
     <string name="action_settings">Agordoj</string>
+    <string name="action_app_store">Aplikaĵejo</string>
+    <string name="action_refresh">Aktualigi</string>
+    <string name="action_restart">Restarti</string>
+    <string name="action_see_more">Vidi pli</string>
+    <string name="action_edit">Modifi</string>
+    <string name="action_delete">Forigi</string>
+    <string name="action_back">Reen</string>
+    <string name="action_next">Sekva</string>
+    <string name="action_done">Farite</string>
+    <string name="action_save">Konservi</string>
+    <string name="action_cancel">Rezigni</string>
+    <string name="action_undo">Malfari</string>
+    <string name="action_set">Agordi</string>
+    <string name="action_help">Helpo</string>
+    <string name="action_learn_more">Ekscii pli</string>
+    <string name="action_continue">Daŭrigi</string>
+    <string name="action_close">Fermi</string>
+    <string name="action_share">Komuni</string>
+    <string name="action_show_errors">Tuŝeti por vidi detaloj</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_subtitle_data_aqi">Aerkvalito</string>
     <string name="widget_subtitle_data_wind">Vento</string>
@@ -246,7 +265,7 @@
     <string name="widget_custom_subtitle_keyword_l_description">Loko</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitudo</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudo</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Ĝisdatigtempo</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Aktualigtempo</string>
     <string name="widget_custom_subtitle_keyword_d_description">Dato</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Ĉina kalendaro</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semajntago</string>
@@ -257,9 +276,9 @@
     <string name="widget_live_wallpaper_weather_kind">Veterkondiĉo</string>
     <!-- Settings (new design) -->
     <string name="settings_section_general">Generalo</string>
-    <string name="settings_background_updates">Fonaj ĝisdatigoj</string>
-    <string name="settings_background_updates_summary">Ĝisdatigi frekvencon, solvi problemojn</string>
-    <string name="settings_background_updates_refresh_title">Ĝisdatigi frekvencon</string>
+    <string name="settings_background_updates">Fonaj aktualigoj</string>
+    <string name="settings_background_updates_summary">Ofteco de aktualigo, solvi problemojn</string>
+    <string name="settings_background_updates_refresh_title">Ofteco de aktualigo</string>
     <string name="settings_background_updates_refresh_never">Neniam</string>
     <string name="settings_background_updates_refresh_30min">30 minutoj</string>
     <string name="settings_background_updates_refresh_1h">1 horo</string>
@@ -299,7 +318,7 @@
     <string name="about_privacy_policy">Privateca politiko</string>
     <string name="settings_debug">Senararigado</string>
     <string name="settings_debug_summary">Kraŝaj protokoloj</string>
-    <string name="settings_debug_dump_crash_logs_title">Eksporti kraŝaj protokoloj</string>
+    <string name="settings_debug_dump_crash_logs_title">Komuni kraŝaj protokoloj</string>
     <string name="settings_enabled">Aktivigita</string>
     <string name="settings_disabled">Malaktivigita</string>
     <string name="settings_automatic">Aŭtomatiko</string>
@@ -379,10 +398,10 @@
     <string name="notification_channel_widget">Fenestraĵo</string>
     <string name="notification_channel_background_services">Fonaj servoj</string>
     <string name="notification_channel_crash_logs">Kraŝaj protokoloj</string>
-    <string name="notification_updating_weather_data">Ĝisdatigante veterdatumojn (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d ĝisdatigo(j) malsukcesis</string>
+    <string name="notification_updating_weather_data">Aktualigante veterdatumojn (%1$d/%2$d)</string>
+    <string name="notification_update_error">%1$d aktualigo(j) malsukcesis</string>
     <!-- About -->
-    <string name="about_app">Pri apo</string>
+    <string name="about_app">Pri la apo</string>
     <string name="about_contact">Kontakto</string>
     <string name="about_source_code">Fontkodo</string>
     <string name="about_contributors">Kontribuantoj</string>
@@ -429,7 +448,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Frostega drezelo</string>
     <!-- Weather kind -->
     <string name="weather_kind_hail">Hajlo</string>
-    <string name="weather_kind_haze">Haze</string>
+    <string name="weather_kind_haze">Suna nebulo</string>
     <string name="weather_kind_thunder">Tondro</string>
     <string name="weather_kind_thunderstorm">Fulmotondro</string>
     <string name="weather_kind_wind">Vento</string>

@@ -549,7 +549,7 @@
     <string name="common_weather_text_rain_heavy">Pluie forte</string>
     <string name="weather_kind_hail">Grêle</string>
     <string name="common_weather_text_fog">Brouillard</string>
-    <string name="weather_kind_haze">Brume</string>
+    <string name="weather_kind_haze">Brume sèche</string>
     <string name="weather_kind_thunder">Tonnerre</string>
     <string name="weather_kind_thunderstorm">Orage</string>
     <string name="weather_kind_wind">Vent</string>
