@@ -21,12 +21,16 @@ import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import retrofit2.Retrofit
@@ -34,7 +38,7 @@ import javax.inject.Inject
 
 class NwsService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, ParameterizedLocationSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ParameterizedLocationSource {
 
     override val id = "nws"
     override val name = "National Weather Service (NWS)"
@@ -103,6 +107,46 @@ class NwsService @Inject constructor(
         }
     }
 
+    // SECONDARY WEATHER SOURCE
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return location.countryCode == "US"
+                || location.countryCode == "PR" // Puerto Rico
+                || location.countryCode == "VI" // St Thomas Islands
+                || location.countryCode == "MP" // Mariana Islands
+                || location.countryCode == "GU" // Guam
+                || location.countryCode == "FM" // Palikir
+                || location.countryCode == "PW" // Melekeok
+                || location.countryCode == "AS" // Pago Pago
+    }
+    override val airQualityAttribution = null
+    override val pollenAttribution = null
+    override val minutelyAttribution = null
+    override val alertAttribution = weatherAttribution
+    override val normalsAttribution = null
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_ALERT, location)) {
+            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
+            return Observable.error(SecondaryWeatherException())
+        }
+
+        val nwsAlertsResult = mApi.getActiveAlerts(
+            userAgent,
+            "${location.latitude},${location.longitude}"
+        )
+
+        return nwsAlertsResult.map {
+            convertSecondary(it)
+        }
+    }
 
     // Location parameters
     override fun needsLocationParametersRefresh(

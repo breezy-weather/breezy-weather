@@ -17,7 +17,6 @@
 package org.breezyweather.sources.nws
 
 import android.graphics.Color
-import androidx.annotation.ColorInt
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -25,10 +24,12 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.nws.json.NwsAlert
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsGridPointPeriod
@@ -120,6 +121,15 @@ fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
             color = getAlertColor(it.properties.event)
         )
     }
+}
+
+fun convertSecondary(
+    alertsResult: NwsAlertsResult
+): SecondaryWeatherWrapper {
+
+    return SecondaryWeatherWrapper(
+        alertList = getAlerts(alertsResult.features)
+    )
 }
 
 /**

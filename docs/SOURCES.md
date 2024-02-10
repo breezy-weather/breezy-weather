@@ -16,7 +16,7 @@ Here are some suggestions based on various criteria or testimonies (you can sugg
 | Country/Continent | Main source                                      | Air quality | Pollen      | Minutely     | Alerts       | Normals      |
 |-------------------|--------------------------------------------------|-------------|-------------|--------------|--------------|--------------|
 | Europe            |                                                  |             | Open-Meteo  |              |              |              |
-| United States     | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |              |              |              |
+| United States     | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |              | NWS          |              |
 | Canada            | ECCC                                             | AccuWeather | AccuWeather |              | ECCC         | ECCC         |
 | Germany           | Bright Sky (DWD)                                 | Open-Meteo  | Open-Meteo  |              | Bright Sky   |              |
 | France            | Météo-France                                     |             | Open-Meteo  | Météo-France | Météo-France | Météo-France |
@@ -207,13 +207,13 @@ Legend:
 | **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | *In progress* |
 | **Normals**                        | ❌          | ✅           | ❌           | ❌           | ❌              | ✅⁴           | ❌             |
 
-| Sources                            | China         | NWS           | Bright Sky | ECCC   | MET Éireann   | ATMO AURA     |
-|------------------------------------|---------------|---------------|------------|--------|---------------|---------------|
-| **Air quality**                    | *In progress* | ❌             | ❌          | ❌      | ❌             | France (AuRA) |
-| **Pollen**                         | ❌             | ❌             | ❌          | ❌      | ❌             | ❌             |
-| **Precipitation in the next hour** | *In progress* | ❌             | ❌          | ❌      | ❌             | ❌             |
-| **Alerts**                         | *In progress* | *In progress* | Germany    | Canada | *In progress* | ❌             |
-| **Normals**                        | *In progress* | ❌             | ❌          | Canada | ❌             | ❌             |
+| Sources                            | China         | NWS | Bright Sky | ECCC   | MET Éireann   | ATMO AURA     |
+|------------------------------------|---------------|-----|------------|--------|---------------|---------------|
+| **Air quality**                    | *In progress* | ❌   | ❌          | ❌      | ❌             | France (AuRA) |
+| **Pollen**                         | ❌             | ❌   | ❌          | ❌      | ❌             | ❌             |
+| **Precipitation in the next hour** | *In progress* | ❌   | ❌          | ❌      | ❌             | ❌             |
+| **Alerts**                         | *In progress* | ✅   | Germany    | Canada | *In progress* | ❌             |
+| **Normals**                        | *In progress* | ❌   | ❌          | Canada | ❌             | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe
