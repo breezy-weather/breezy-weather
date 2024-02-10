@@ -106,11 +106,11 @@
     <string name="unit_mgpcum">мг/м³</string>
     <string name="unit_mgpcum_voice">Міліграмы на кубічны метр</string>
     <string name="notification_refreshed_at">Абноўлена ў</string>
-    <string name="notification_precipitation_starting_desc">Чакаюцца пачынаючы з %1$s</string>
+    <string name="notification_precipitation_starting_desc">Чакаюцца пачынаючы з %s</string>
     <string name="notification_precipitation_continuing">Ападкі</string>
-    <string name="notification_precipitation_continuing_desc">Чаканая працягласць не менш %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Чаканая працягласць не менш %s</string>
     <string name="notification_precipitation_stopping">Ападкі неўзабаве спыняцца</string>
-    <string name="notification_precipitation_stopping_desc">Чакаецца спыненне ў %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Чакаецца спыненне ў %s</string>
     <string name="notification_style_native">Сістэмны</string>
     <string name="common_weather_text_fog">Туман</string>
     <string name="common_weather_text_rain_freezing">Абледзяненне</string>
@@ -128,7 +128,6 @@
     <string name="pollen_and_mold">Пылок і цвіль</string>
     <string name="ephemeris">Узыход і заход</string>
     <string name="details">Падрабязна</string>
-    <string name="alerts_count">$ абвестак о пагоде</string>
     <string name="short_tomorrow">Заўтра</string>
     <string name="short_monday">Пн</string>
     <string name="short_wednesday">Ср</string>
@@ -293,7 +292,7 @@
     <string name="precipitation_total">Усяго</string>
     <string name="precipitation_thunderstorm">Навальніца</string>
     <string name="precipitation_ice">Лёд</string>
-    <string name="precipitation_between_time">Ападкі ад $1 да $2</string>
+    <string name="precipitation_between_time">Ападкі ад %1$s да %2$s</string>
     <string name="wind">Вецер</string>
     <string name="wind_speed">Хуткасць ветру</string>
     <string name="wind_direction_short_NW">Пн. Зх.</string>
@@ -572,7 +571,7 @@
     <string name="notification_location_in_background">Запыт месцазнаходжання ў фоне</string>
     <string name="notification_running_in_background">Запушчана ў фоне для сталага абнаўлення</string>
     <string name="notification_updating_weather_data">Абнаўленне дадзеных надвор’я (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d абнаўленне(й) не ўдалося</string>
+    <string name="notification_update_error">%d абнаўленне(й) не ўдалося</string>
     <string name="notification_precipitation_starting">Неўзабаве выпадуць ападкі</string>
     <string name="notification_style_cities">Гарады</string>
     <string name="about_app">Аб дадатку</string>
@@ -624,7 +623,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Сярэдняя навальніца</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Навальніца са слабым градам</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Навальніца з моцным градам</string>
-    <string name="metno_weather_text_andthunder">$ з навальніцай</string>
+    <string name="metno_weather_text_andthunder">%s з навальніцай</string>
     <string name="dialog_permissions_location_content">Breezy Weather неабходна збіраць інфармацыю аб вашым месцазнаходжанні на зараз ці ў фоне, каб прадастаўляць дадзеныя аб надвор’і для вашага бягучага месцазнаходжання. Для гэтага мы запытаем некаторыя дазволы. Інфармацыя пра вашае месцазнаходжанне будзе выкарыстоўвацца толькі для атрымання дадзеных аб надвор’і ў вашым бягучым месцазнаходжанні. Калі вы не хочаце дзяліцца інфармацыяй аб сваім месцазнаходжанні, вы можаце адхіліць гэтыя патрабаванні і ўручную пазначыць сваё месцазнаходжанне ў панэлі кіравання.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
     <string name="dialog_permissions_location_background_content">Каб дазволіць з дадаткам доступ да месцазнаходжання ў фоне, каб мы маглі сачыць за зменамі месцазнаходжання і прадастаўляць актуальны прагноз надвор’я, уключыце доступ да месцазнаходжання Дазволіць у любым рэжыме.</string>

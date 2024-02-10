@@ -17,7 +17,6 @@
     <string name="details">Xehetasunak</string>
     <string name="ephemeris">Eguzkia eta ilargia</string>
     <string name="alerts">Alertak</string>
-    <string name="alerts_count">$ eguraldi alertak</string>
     <string name="short_monday">Al.</string>
     <string name="short_tuesday">Ar.</string>
     <string name="short_friday">Ol.</string>
@@ -40,7 +39,7 @@
     <string name="precipitation_intensity_heavy">Euri-jasa</string>
     <string name="precipitation_intensity_rainstorm">Zaparrada</string>
     <string name="precipitation_none">Prezipitaziorik gabe</string>
-    <string name="precipitation_between_time">Prezipitazioak $1 eta $2 artean</string>
+    <string name="precipitation_between_time">Prezipitazioak %1$s eta %2$s artean</string>
     <string name="wind">Haizea</string>
     <string name="wind_speed">Haizearen abiadura</string>
     <string name="wind_gusts">Haize boladak</string>
@@ -386,7 +385,7 @@
     <string name="notification_channel_background_services">Bigarren planoko zerbitzuak</string>
     <string name="notification_location_in_background">Kokapena bigarren planoan</string>
     <string name="notification_running_in_background">Bigarren planoan korrika eguneratzen jarraitzeko</string>
-    <string name="notification_update_error">%1$d eguneraketa(k) huts egin du</string>
+    <string name="notification_update_error">%d eguneraketa(k) huts egin du</string>
     <string name="notification_style_native">Natiboa</string>
     <string name="notification_style_cities">Hiriak</string>
     <string name="about_app">Aplikazioari buruz</string>
@@ -597,7 +596,7 @@
     <string name="notification_updating_weather_data">Eguraldi-datuak eguneratzen (%1$d/%2$d)</string>
     <string name="weather_kind_hail">Txingorra</string>
     <string name="notification_precipitation_starting">Prezipitazioak laster</string>
-    <string name="notification_precipitation_starting_desc">%1$s-n hastea espero da</string>
+    <string name="notification_precipitation_starting_desc">%s-n hastea espero da</string>
     <string name="notification_precipitation_stopping">Prezipitazioak laster geldituko dira</string>
     <string name="common_weather_text_rain_showers_heavy">Euri zaparradak</string>
     <string name="common_weather_text_rain_freezing">Euri izoztua</string>
@@ -614,7 +613,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Erri-lainoa metatzea</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Trumoi-ekaitza arina edo moderatua</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Trumoi-ekaitza txingorra gogorrarekin</string>
-    <string name="metno_weather_text_andthunder">$ eta trumoia</string>
+    <string name="metno_weather_text_andthunder">%s eta trumoia</string>
     <string name="ephemeris_moonset_at">Ilargia $-tan</string>
     <string name="date_format_long">MMM d</string>
     <string name="settings_weather_source_portal">Ataria</string>
@@ -640,8 +639,8 @@
     <string name="settings_widgets_gadgets_title">Gadgetak</string>
     <string name="settings_color_app">Jarraitu aplikazioa</string>
     <string name="notification_precipitation_continuing">Prezipitazioa</string>
-    <string name="notification_precipitation_continuing_desc">Gutxienez %1$s arte jarraitzea espero da</string>
-    <string name="notification_precipitation_stopping_desc">%1$s-n gelditzea espero da</string>
+    <string name="notification_precipitation_continuing_desc">Gutxienez %s arte jarraitzea espero da</string>
+    <string name="notification_precipitation_stopping_desc">%s-n gelditzea espero da</string>
     <string name="common_weather_text_rain_showers">Euri zaparradak</string>
     <string name="common_weather_text_rain_showers_light">Euri zaparrada arina</string>
     <string name="common_weather_text_rain_freezing_light">Euri izozte arina</string>

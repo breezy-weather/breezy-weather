@@ -54,7 +54,7 @@ class NwsService @Inject constructor(
             .create(NwsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>(
+    override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 

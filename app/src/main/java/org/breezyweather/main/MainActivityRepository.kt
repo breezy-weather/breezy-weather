@@ -103,7 +103,12 @@ class MainActivityRepository @Inject constructor(
 
             if (locationResult.location.isUsable
                 && !locationResult.location.needsGeocodeRefresh) {
-                val weatherResult = refreshHelper.getWeather(context, locationResult.location)
+                val weatherResult = refreshHelper.getWeather(
+                    context,
+                    locationResult.location,
+                    location.longitude != locationResult.location.longitude
+                            || location.latitude != locationResult.location.latitude
+                )
                 callback.onCompleted(
                     locationResult.location.copy(weather = weatherResult.weather),
                     locationResult.errors + weatherResult.errors

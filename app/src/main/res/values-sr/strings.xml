@@ -110,7 +110,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Слаба ледена росуља</string>
     <string name="weather_kind_thunderstorm">Олуја са грмљавином</string>
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
-    <string name="precipitation_between_time">Падавине између $1 и $2</string>
+    <string name="precipitation_between_time">Падавине између %1$s и %2$s</string>
     <string name="precipitation_intensity_light">Росуља</string>
     <string name="precipitation_intensity_middle">Киша</string>
     <string name="wind_speed">Брзина ветра</string>
@@ -197,7 +197,7 @@
     <string name="settings_debug_summary">Евиденције отказивања</string>
     <string name="settings_widgets_section_notification_widget">Виџет као обавештење</string>
     <string name="unit_atm">atm</string>
-    <string name="notification_update_error">%1$d ажурирање(а) није успело</string>
+    <string name="notification_update_error">%d ажурирање(а) није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
     <string name="common_weather_text_snow_showers_heavy">Јаки снежни пљускови</string>
     <string name="common_weather_text_drizzle_light">Слаба росуља</string>
@@ -308,7 +308,7 @@
     <string name="unit_nmi_voice">Наутичке миље</string>
     <string name="unit_ft">ft</string>
     <string name="unit_hpa_voice">Хектопаскали</string>
-    <string name="metno_weather_text_andthunder">$ и грмљавина</string>
+    <string name="metno_weather_text_andthunder">%s и грмљавина</string>
     <string name="pollen_alder">Јова</string>
     <string name="pollen_birch">Бреза</string>
     <string name="pollen_mugwort">Црни пелин</string>
@@ -526,7 +526,6 @@
     <string name="location_resident_dialog">Breezy Weather ће аутоматски приказивати и сакривати градове с пребивалиштем на основу ваше тренутне локације.
 \nНа пример, можете поставити свој родни град као град с пребивалиштем. Можете проверити временску прогнозу у свом родном граду док путујете. Када дођете кући, време у вашем родном граду ће бити сакривено и замењено временом за вашу тренутну локацију.</string>
     <string name="action_help_me_choose">Помози ми да изаберем</string>
-    <string name="alerts_count">$ временска упозорења</string>
     <string name="temperature_normals">Температурне норме</string>
     <string name="air_quality_level_1_description">Квалитет ваздуха је идеалан за већину особа; уживајте у својим нормалним активностима на отвореном простору.</string>
     <string name="air_quality_level_5_description">Осетљиве групе особа ће одмах осетити ефекте на здравље и требало би да избегавају активности на отвореном простору. Здраве особе ће вероватно имати потешкоће са дисањем и иритацију грла; размислите о томе да останете у затвореном простору и промените распоред активности на отвореном простору.</string>
@@ -652,9 +651,9 @@
     <string name="notification_channel_crash_logs">Евиденције отказивања</string>
     <string name="settings_unavailable_no_background_updates">Недоступно, прво омогућите ажурирања у позадини</string>
     <string name="notification_precipitation_starting">Ускоро падавине</string>
-    <string name="notification_precipitation_starting_desc">Очекује се да ће почети у %1$s</string>
-    <string name="notification_precipitation_continuing_desc">Очекује се да ће се наставити барем до %1$s</string>
-    <string name="notification_precipitation_stopping_desc">Очекује се да ће се зауставити у %1$s</string>
+    <string name="notification_precipitation_starting_desc">Очекује се да ће почети у %s</string>
+    <string name="notification_precipitation_continuing_desc">Очекује се да ће се наставити барем до %s</string>
+    <string name="notification_precipitation_stopping_desc">Очекује се да ће се зауставити у %s</string>
     <string name="notification_precipitation_continuing">Падавине</string>
     <string name="notification_precipitation_stopping">Ускоро престанак падавина</string>
 </resources>

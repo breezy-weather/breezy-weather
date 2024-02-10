@@ -17,8 +17,7 @@
     <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alerts">Alerts</string>
-    <string name="alerts_count">$ weather alerts</string>
-    <!-- $ = alert count. -->
+    <!-- Ex: 4 weather alerts -->
     <string name="alerts_to_follow">Upcoming alerts, tap here to see them.</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Yda</string>
@@ -62,8 +61,8 @@
     <string name="precipitation_intensity_heavy">Heavy rain</string>
     <string name="precipitation_intensity_rainstorm">Rainstorm</string>
     <string name="precipitation_none">No precipitation</string>
-    <string name="precipitation_between_time">Precipitation between $1 and $2</string>
-    <!-- $1 = start time, $2 = end time. -->
+    <!-- Precipitation between 09:02 and 09:34 -->
+    <string name="precipitation_between_time">Precipitation between %1$s and %2$s</string>
     <!-- Wind -->
     <string name="wind">Wind</string>
     <string name="wind_speed">Wind speed</string>
@@ -660,16 +659,16 @@
     <string name="notification_location_in_background">Locating in background</string>
     <string name="notification_running_in_background">Running in background to keep updating</string>
     <string name="notification_updating_weather_data">Updating weather data (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d update(s) failed</string>
+    <string name="notification_update_error">%d update(s) failed</string>
     <string name="notification_precipitation_starting">Precipitation soon</string>
     <!-- Example: Expected to start at 09:00 AM -->
-    <string name="notification_precipitation_starting_desc">Expected to start at %1$s</string>
+    <string name="notification_precipitation_starting_desc">Expected to start at %s</string>
     <string name="notification_precipitation_continuing">Precipitation</string>
     <!-- Example: Expected to continue until at least 09:00 AM -->
-    <string name="notification_precipitation_continuing_desc">Expected to continue until at least %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Expected to continue until at least %s</string>
     <string name="notification_precipitation_stopping">Precipitation stopping soon</string>
     <!-- Example: Expected to stop at 09:00 AM -->
-    <string name="notification_precipitation_stopping_desc">Expected to stop at %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Expected to stop at %s</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Cities</string>
     <!-- About -->
@@ -796,7 +795,7 @@
     <string name="metno_weather_text_snow" translatable="false">@string/common_weather_text_snow</string>
     <string name="metno_weather_text_snowshowers" translatable="false">@string/common_weather_text_snow_showers</string>
     <!-- Example: Heavy rain and thunder -->
-    <string name="metno_weather_text_andthunder">$ and thunder</string>
+    <string name="metno_weather_text_andthunder">%s and thunder</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>

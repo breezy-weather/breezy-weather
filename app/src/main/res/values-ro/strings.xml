@@ -366,9 +366,8 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_m">m</string>
     <string name="common_weather_text_clear_sky">Cer senin</string>
-    <string name="alerts_count">$ alerte de vreme</string>
     <string name="precipitation_none">Fără precipitații</string>
-    <string name="precipitation_between_time">Precipitații între $1 și $2</string>
+    <string name="precipitation_between_time">Precipitații între %1$s și %2$s</string>
     <string name="wind_direction_short_variable">Variabil</string>
     <string name="wind_direction_short_N">N</string>
     <string name="wind_direction_short_NE">NE</string>
@@ -551,7 +550,7 @@
     <string name="weather_refresh_skipped_already_recently_updated">Actualizată deja recent</string>
     <string name="action_show_errors">Apăsați pentru a vedea detalii</string>
     <string name="location_search_no_results">$1 nu poate găsi $2</string>
-    <string name="notification_update_error">%1$d actualizări eșuate</string>
+    <string name="notification_update_error">%d actualizări eșuate</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorați când bateria este descărcată</string>
     <string name="settings_source_api_key">Cheie API</string>
     <string name="message_server_timeout">Cererea a expirat</string>

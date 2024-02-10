@@ -20,7 +20,6 @@
     <string name="wind_strength_2">Легкий</string>
     <string name="wind_strength">Сила вітру</string>
     <string name="pollen">Алергени</string>
-    <string name="alerts_count">$ попереджень</string>
     <string name="short_yesterday">Вчора</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_degree_day_heating">Опалювальний градус дня</string>
@@ -139,7 +138,7 @@
     <string name="temperature">Температура</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_ice">Лід</string>
-    <string name="precipitation_between_time">Опади від $1 до $2</string>
+    <string name="precipitation_between_time">Опади від %1$s до %2$s</string>
     <string name="air_quality_pm_explanations_origin">Деякі тверді частинки виникають у природі через виверження вулканів, пилові бурі, лісові та лугові пожежі, живу рослинність і морський бриз. Людська діяльність також генерує значну кількість твердих частинок, наприклад, дорожній рух і транспорт, промислова діяльність, електростанції, будівельні майданчики, спалювання відходів або полів.</string>
     <string name="air_quality_o3_info_origin">Він утворюється внаслідок фотохімічних реакцій із забруднюючими речовинами, такими як летючі органічні сполуки, монооксид вуглецю та оксиди азоту (NOₓ), що викидаються транспортними засобами та промисловістю. Через фотохімічну природу найвищі рівні озону спостерігаються в періоди сонячної погоди.</string>
     <string name="temperature_wind_chill">Холодний вітер</string>
@@ -511,7 +510,7 @@
     <string name="unit_mb">мілібар</string>
     <string name="unit_hpa_voice">Гектопаскалі</string>
     <string name="notification_channel_forecast">Прогноз</string>
-    <string name="notification_update_error">%1$d оновлення(ів) не вдалося</string>
+    <string name="notification_update_error">%d оновлення(ів) не вдалося</string>
     <string name="notification_style_cities">Міста</string>
     <string name="about_source_code">Вихідний код</string>
     <string name="common_weather_text_rain_freezing_heavy">Сильний крижаний дощ</string>
@@ -630,7 +629,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Невелика морозна мряка</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Сильна морозна мряка</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Іній з туманом</string>
-    <string name="metno_weather_text_andthunder">$ з грозою</string>
+    <string name="metno_weather_text_andthunder">%s з грозою</string>
     <string name="about_contribution_designer">Дизайнер логотипу</string>
     <string name="temperature_normal_short">Нормальна</string>
     <string name="temperature_normals">Температурні норми</string>
@@ -645,10 +644,10 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Натисніть, щоб відкрити</string>
     <string name="notification_channel_crash_logs">Журнал збоїв</string>
     <string name="notification_precipitation_continuing">Опади</string>
-    <string name="notification_precipitation_continuing_desc">Очікувана тривалість принаймні до %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Очікувана тривалість принаймні до %s</string>
     <string name="notification_precipitation_stopping">Опади невдовзі припиняться</string>
-    <string name="notification_precipitation_stopping_desc">Очікується припинення об %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Очікується припинення об %s</string>
     <string name="settings_unavailable_no_background_updates">Недоступно, спочатку увімкніть фонові оновлення</string>
     <string name="notification_precipitation_starting">Незабаром опади</string>
-    <string name="notification_precipitation_starting_desc">Очікуються починаючи з %1$s</string>
+    <string name="notification_precipitation_starting_desc">Очікуються починаючи з %s</string>
 </resources>

@@ -56,13 +56,12 @@
     <string name="short_today">Danas</string>
     <string name="of_clock">:00</string>
     <string name="precipitation_snow">Snijeg</string>
-    <string name="alerts_count">$ vremenska upozorenja</string>
     <string name="wind_direction_short_SE">JI</string>
     <string name="app_name">Vrijeme</string>
     <string name="wind_direction_short_N">S</string>
     <string name="wind_direction_short_E">I</string>
     <string name="temperature_average_short">Prosjek</string>
-    <string name="precipitation_between_time">Padavine između $1 i $2</string>
+    <string name="precipitation_between_time">Padavine između %1$s i %2$s</string>
     <string name="short_sunday">Ned</string>
     <string name="wind">Vjetar</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -406,8 +405,8 @@
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_updating_weather_data">Osvježavanje prognoze (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d ažuriranje/a nije uspjelo</string>
-    <string name="notification_precipitation_stopping_desc">Očekuje se da će prestati u %1$s</string>
+    <string name="notification_update_error">%d ažuriranje/a nije uspjelo</string>
+    <string name="notification_precipitation_stopping_desc">Očekuje se da će prestati u %s</string>
     <string name="about_matrix">Matrix soba</string>
     <string name="about_contributors">Doprinijeli</string>
     <string name="about_dependencies">Ovisnosti aplikacije od biblioteka</string>
@@ -430,7 +429,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Blaga ili umjerena grmljavina</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Grmljavina s blagim gradom</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Grmljavina s jakim gradom</string>
-    <string name="metno_weather_text_andthunder">$ i grmljavina</string>
+    <string name="metno_weather_text_andthunder">%s i grmljavina</string>
     <string name="null_data_text">/</string>
     <string name="date_format_long">d MMM</string>
     <string name="humidity_dew_point">Vlažnost / Tačka rose</string>
@@ -623,9 +622,9 @@
     <string name="notification_location_in_background">Lociranje u pozadini</string>
     <string name="notification_running_in_background">Radi u pozadini zbog ažuriranja</string>
     <string name="notification_precipitation_starting">Početak padavina</string>
-    <string name="notification_precipitation_starting_desc">Početak se očekuje u %1$s</string>
+    <string name="notification_precipitation_starting_desc">Početak se očekuje u %s</string>
     <string name="notification_precipitation_continuing">Padavine</string>
-    <string name="notification_precipitation_continuing_desc">Očekuje se da će trajati barem do %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Očekuje se da će trajati barem do %s</string>
     <string name="notification_precipitation_stopping">Prestanak padavina</string>
     <string name="common_weather_text_partly_cloudy">Djelomično oblačno</string>
     <string name="common_weather_text_cloudy">Oblačno</string>

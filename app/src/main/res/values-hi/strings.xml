@@ -79,7 +79,6 @@
     <string name="of_clock">:00</string>
     <string name="precipitation_snow">बर्फ</string>
     <string name="air_quality_level_4_description">स्वास्थ्य प्रभाव तुरंत संवेदनशील समूहों द्वारा महसूस किया जा सकता है। स्वस्थ व्यक्तियों को लंबे समय तक जोखिम के साथ साँस लेने और गले की जलन का अनुभव हो सकता है। बाहरी गतिविधि को सीमित करें।।</string>
-    <string name="alerts_count">$ मौसम अलर्ट</string>
     <string name="wind_strength_2">अल्प समीर</string>
     <string name="wind_direction_short_SE">द पू</string>
     <string name="wind_strength_1">हल्की वायु</string>
@@ -87,7 +86,7 @@
     <string name="air_quality_level_2_description">आम तौर पर अधिकांश व्यक्तियों के लिए वायु गुणवत्ता स्वीकार्य होती है। हालांकि, संवेदनशील समूहों को दीर्घकालिक जोखिम से मामूली लक्षणों का अनुभव हो सकता है।।</string>
     <string name="wind_direction_short_E">पू</string>
     <string name="temperature_average_short">औसत</string>
-    <string name="precipitation_between_time">$1 और $2 के बीच वर्षा</string>
+    <string name="precipitation_between_time">%1$s और %2$s के बीच वर्षा</string>
     <string name="short_sunday">रवि</string>
     <string name="wind">हवा</string>
     <string name="wind_strength_5">सबल समीर</string>

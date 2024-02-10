@@ -110,7 +110,6 @@
     <string name="minutely_forecast">Dự báo chi tiết</string>
     <string name="hourly_forecast">Dự báo hàng giờ</string>
     <string name="air_quality">Chất lượng không khí</string>
-    <string name="alerts_count">$ cảnh báo thời tiết</string>
     <string name="app_name">Thời tiết</string>
     <string name="precipitation_forecast">Dự báo lượng mưa</string>
     <string name="uv_alert_level">Mức độ cảnh báo</string>
@@ -353,7 +352,7 @@
     <string name="precipitation_intensity_heavy">Mưa nhiều</string>
     <string name="precipitation_intensity_rainstorm">Mưa bão</string>
     <string name="precipitation_none">Không có mưa</string>
-    <string name="precipitation_between_time">Mưa giữa $1 và $2</string>
+    <string name="precipitation_between_time">Mưa giữa %1$s và %2$s</string>
     <string name="wind">Gió</string>
     <string name="wind_speed">Vận tốc gió</string>
     <string name="wind_direction">Hướng gió</string>
@@ -499,7 +498,7 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Bỏ qua khi pin yếu</string>
     <string name="action_show_errors">Bấm để xem chi tiết</string>
     <string name="wind_strength">Sức gió</string>
-    <string name="notification_update_error">%1$d cập nhật thất bại</string>
+    <string name="notification_update_error">%d cập nhật thất bại</string>
     <string name="temperature_real_feel">Cảm giác thật</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Không chân)</string>
@@ -631,7 +630,7 @@
     <string name="common_weather_text_rain_freezing">Mưa lạnh</string>
     <string name="common_weather_text_rain_freezing_light">Mưa lạnh nhẹ</string>
     <string name="settings_main_threshold_lines_on_charts">Đường ngưỡng trên biểu đồ</string>
-    <string name="metno_weather_text_andthunder">$ và sấm sét</string>
+    <string name="metno_weather_text_andthunder">%s và sấm sét</string>
     <string name="common_weather_text_drizzle_light">Mưa phùn nhẹ</string>
     <string name="common_weather_text_snow_showers_light">Mưa tuyết nhẹ</string>
     <string name="common_weather_text_snow_showers">Mưa tuyết</string>
@@ -647,8 +646,8 @@
     <string name="settings_unavailable_no_background_updates">Không có sẵn, trước tiên hãy bật cập nhật nền</string>
     <string name="notification_precipitation_starting">Sắp có mưa</string>
     <string name="notification_precipitation_continuing">Sự kết tủa</string>
-    <string name="notification_precipitation_starting_desc">Dự kiến bắt đầu lúc %1$s</string>
-    <string name="notification_precipitation_continuing_desc">Dự kiến sẽ tiếp tục cho đến ít nhất %1$s</string>
+    <string name="notification_precipitation_starting_desc">Dự kiến bắt đầu lúc %s</string>
+    <string name="notification_precipitation_continuing_desc">Dự kiến sẽ tiếp tục cho đến ít nhất %s</string>
     <string name="notification_precipitation_stopping">Lượng mưa sắp ngừng rơi</string>
-    <string name="notification_precipitation_stopping_desc">Dự kiến dừng ở %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Dự kiến dừng ở %s</string>
 </resources>

@@ -216,7 +216,11 @@ class WeatherUpdateJob @AssistedInject constructor(
                                         }
                                         if (locationResult.location.isUsable
                                             && !locationResult.location.needsGeocodeRefresh) {
-                                            val weatherResult = updateWeather(locationResult.location)
+                                            val weatherResult = updateWeather(
+                                                locationResult.location,
+                                                location.longitude != locationResult.location.longitude
+                                                        || location.latitude != locationResult.location.latitude
+                                            )
                                             newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
                                             weatherResult.errors.forEach {
                                                 val shortMessage = if (!it.source.isNullOrEmpty()) {
@@ -314,10 +318,11 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @param location the location to update.
      * @return weather.
      */
-    private suspend fun updateWeather(location: Location): WeatherResult {
+    private suspend fun updateWeather(location: Location, coordinatesChanged: Boolean): WeatherResult {
         return refreshHelper.getWeather(
             context,
-            location
+            location,
+            coordinatesChanged
         )
     }
 

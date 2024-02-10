@@ -34,7 +34,7 @@
     <string name="precipitation_intensity_heavy">Проливен дъжд</string>
     <string name="precipitation_intensity_rainstorm">Дъждовна буря</string>
     <string name="precipitation_none">Без валежи</string>
-    <string name="precipitation_between_time">Валежи между $1 и $2</string>
+    <string name="precipitation_between_time">Валежи между %1$s и %2$s</string>
     <string name="wind">Вятър</string>
     <string name="wind_speed">Скоростта на вятъра</string>
     <string name="wind_direction">Посока на вятъра</string>
@@ -45,7 +45,6 @@
     <string name="ephemeris">Слънце и луна</string>
     <string name="details">Подробности</string>
     <string name="alerts">Сигнали</string>
-    <string name="alerts_count">$ сигнала за времето</string>
     <string name="short_today">Днес</string>
     <string name="short_tomorrow">Утре</string>
     <string name="app_name">Време</string>
@@ -549,7 +548,7 @@
     <string name="notification_channel_forecast">Прогноза</string>
     <string name="notification_channel_widget">Приспособление</string>
     <string name="notification_updating_weather_data">Данните за времето се актуализират (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d неуспешна(и) актуализаця(ии)</string>
+    <string name="notification_update_error">%d неуспешна(и) актуализаця(ии)</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик на оригиналния проект Geometric Weather</string>
     <string name="common_weather_text_overcast">Облачно</string>
     <string name="common_weather_text_mainly_clear">Предимно ясно</string>
@@ -603,7 +602,7 @@
     <string name="common_weather_text_rain_freezing_light">Слаб леден дъжд</string>
     <string name="common_weather_text_drizzle_moderate">Умерен ръмеж</string>
     <string name="common_weather_text_drizzle_heavy">Силен ръмеж</string>
-    <string name="metno_weather_text_andthunder">$ и гръмотевици</string>
+    <string name="metno_weather_text_andthunder">%s и гръмотевици</string>
     <string name="common_weather_text_snow_showers">Краткотраен снеговалеж</string>
     <string name="common_weather_text_snow_showers_light">Лек краткотраен снеговалеж</string>
     <string name="common_weather_text_snow_showers_heavy">Обилен краткотраен снеговалеж</string>
@@ -646,9 +645,9 @@
     <string name="notification_channel_crash_logs">Журнали за сривове</string>
     <string name="settings_unavailable_no_background_updates">Недосъпни, първо активирайте актуализациите във фонов режим</string>
     <string name="notification_precipitation_starting">Скоро започват валежи</string>
-    <string name="notification_precipitation_starting_desc">Очаква се да започнат в %1$s</string>
+    <string name="notification_precipitation_starting_desc">Очаква се да започнат в %s</string>
     <string name="notification_precipitation_continuing">Валежи</string>
-    <string name="notification_precipitation_continuing_desc">Очаква се да продължат поне до %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Очаква се да продължат поне до %s</string>
     <string name="notification_precipitation_stopping">Валежите спират скоро</string>
-    <string name="notification_precipitation_stopping_desc">Очаква се да спрат в %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Очаква се да спрат в %s</string>
 </resources>

@@ -113,7 +113,6 @@
     <string name="widget_subtitle_data_lunar">Maankalender</string>
     <string name="minutely_forecast">Verwachting per minuut</string>
     <string name="precipitation_forecast">Neerslagverwachting</string>
-    <string name="alerts_count">$ weer alarmen</string>
     <string name="alerts_to_follow">Opkomende alarmen, tik om te zien.</string>
     <string name="temperature">Temperatuur</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -145,7 +144,7 @@
     <string name="temperature_degree_day_cooling">Koeldag</string>
     <string name="precipitation_snow">Sneeuw</string>
     <string name="precipitation_ice">Ijs</string>
-    <string name="precipitation_between_time">Neerslag tussen $1 en $2</string>
+    <string name="precipitation_between_time">Neerslag tussen %1$s en %2$s</string>
     <string name="wind_direction_short_S">Z</string>
     <string name="wind_direction_short_SW">ZW</string>
     <string name="air_quality_o3">O₃</string>
@@ -266,7 +265,7 @@
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Voet</string>
     <string name="unit_inhg">inHg</string>
-    <string name="notification_update_error">%1$d update(s) mislukt</string>
+    <string name="notification_update_error">%d update(s) mislukt</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrixkamer</string>
     <string name="common_weather_text_clear_sky">Heldere lucht</string>
@@ -338,7 +337,7 @@
     <string name="unit_cmph_voice">Centimeters per uur</string>
     <string name="unit_inph">inch/u</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lichte tot matige onweersbui</string>
-    <string name="metno_weather_text_andthunder">$ en onweer</string>
+    <string name="metno_weather_text_andthunder">%s en onweer</string>
     <string name="pollen_ragweed">Ragkruid</string>
     <string name="uv_alert_level">Waarschuwing</string>
     <string name="weather_data_by">Gegevens door $</string>

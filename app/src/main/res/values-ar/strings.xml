@@ -311,12 +311,11 @@
     <string name="air_quality_level_4">غير صحية</string>
     <string name="unit_m_voice">امتار</string>
     <string name="unit_inph">بوصة / ساعة</string>
-    <string name="alerts_count">$ تنبيهات الطقس</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
     <string name="unit_lpsqmph_voice">لتر لكل متر مربع في الساعة</string>
     <string name="uv_index_11">الأقصى</string>
     <string name="unit_mgpcum_voice">ملليغرام لكل متر مكعب</string>
-    <string name="precipitation_between_time">هطول الأمطار بين $1 و $2</string>
+    <string name="precipitation_between_time">هطول الأمطار بين %1$s و %2$s</string>
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
     <string name="widget_style_pixel">بكسل</string>
@@ -557,7 +556,7 @@
     <string name="settings_location_summary">إعدادات خدمة الموقع</string>
     <string name="settings_main">الشاشة الرئيسية</string>
     <string name="action_show_errors">انقر لرؤية التفاصيل</string>
-    <string name="notification_update_error">%1$d فشل التحديث</string>
+    <string name="notification_update_error">%d فشل التحديث</string>
     <string name="weather_refresh_skipped_already_recently_updated">تم تحديثه مؤخرا بالفعل</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="wind_strength">طاقة الرياح</string>
@@ -634,7 +633,7 @@
     <string name="common_weather_text_drizzle_heavy">رذاذ غزير</string>
     <string name="common_weather_text_drizzle_freezing">رذاذ متجمد</string>
     <string name="common_weather_text_drizzle_freezing_heavy">رذاذ متجمد غزير</string>
-    <string name="metno_weather_text_andthunder">$ و رعد</string>
+    <string name="metno_weather_text_andthunder">%s و رعد</string>
     <string name="settings_appearance_dark_mode_locations_title">وضع النهار / الليل للمواقع</string>
     <string name="weather_message_unsupported_feature">المصدر لا يدعم إحدى الميزات المطلوبة</string>
     <string name="about_contribution_designer">مصمم الشعار</string>
@@ -653,9 +652,9 @@
     <string name="notification_precipitation_starting">هطول الأمطار قريبا</string>
     <string name="notification_precipitation_continuing">هطول الأمطار</string>
     <string name="notification_precipitation_stopping">توقف هطول الأمطار قريبا</string>
-    <string name="notification_precipitation_stopping_desc">من المتوقع أن يتوقف عند %1$s</string>
+    <string name="notification_precipitation_stopping_desc">من المتوقع أن يتوقف عند %s</string>
     <string name="settings_unavailable_no_background_updates">غير متاح، قم بتمكين تحديثات الخلفية أولاً</string>
-    <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %1$s على الأقل</string>
-    <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %1$s</string>
+    <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %s على الأقل</string>
+    <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %s</string>
     <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
 </resources>

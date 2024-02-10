@@ -143,7 +143,6 @@
     <string name="widget_trend_daily">Tendência diária</string>
     <string name="widget_trend_hourly">Tendência horária</string>
     <string name="pollen">Alergéno</string>
-    <string name="alerts_count">$ alertas climáticos</string>
     <string name="alerts_to_follow">Próximos alertas, toque aqui para vê-los.</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tempestade</string>
@@ -155,7 +154,7 @@
     <string name="precipitation_intensity_heavy">Chuva intensa</string>
     <string name="precipitation_intensity_rainstorm">Tempestade de chuva</string>
     <string name="precipitation_none">Sem precipitação</string>
-    <string name="precipitation_between_time">Precipitação entre $1 e $2</string>
+    <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
     <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="minutely_forecast">Previsão por minuto</string>
@@ -316,7 +315,7 @@
     <string name="unit_lpsqmph_voice">Litros por metro quadrado por hora</string>
     <string name="unit_inhg_voice">Polegadas de mercúrio</string>
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
-    <string name="notification_update_error">%1$d falha na(s) atualização(ões)</string>
+    <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="locations">Locais</string>
     <string name="location_message_search_failed">A busca de localização falhou</string>
     <string name="action_edit">Editar</string>
@@ -599,7 +598,7 @@
     <string name="settings_weather_sources_default_location_search">Fonte de pesquisa para a localização padrão</string>
     <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
-    <string name="metno_weather_text_andthunder">$ com trovoadas</string>
+    <string name="metno_weather_text_andthunder">%s com trovoadas</string>
     <string name="location_resident_location_summaryOn">Ativado. Oculto quando dentro de $ da localização atual.</string>
     <string name="minutely_precipitations">Precipitação minuto a minuto</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>

@@ -198,7 +198,6 @@
     <!-- content description -->
     <string name="action_back">Takaisin</string>
     <string name="settings_icon_packs_check_details">Tarkista tiedot</string>
-    <string name="alerts_count">$ sää hälytykset</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">Pienhiukkaset (PM2,5)</string>
     <string name="air_quality_pm10_voice">Hengitettävät hiukkaset (PM10)</string>
@@ -215,7 +214,7 @@
     <string name="ephemeris_moonset_at">Kuu laskee $</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Ei sadetta</string>
-    <string name="precipitation_between_time">Sadetta $1 ja $2 välillä</string>
+    <string name="precipitation_between_time">Sadetta %1$s ja %2$s välillä</string>
     <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Lisää nykyinen sijainti</string>
     <string name="settings_items_drag_to_sort">Lajittele luettelon kohteet napauttamalla ja vetämällä niitä</string>
@@ -461,7 +460,7 @@
     <string name="unit_kgfpsqcm_voice">Kilogrammaa neliösenttimetrillä</string>
     <string name="pollen_level_0">Ei yhtään</string>
     <string name="settings_location_access_permission_already_granted">Lupa myönnetty jo</string>
-    <string name="notification_update_error">%1$d päivitys(tä) epäonnistui</string>
+    <string name="notification_update_error">%d päivitys(tä) epäonnistui</string>
     <string name="settings_location_access_switch_title">Sijainnin käyttöoikeus</string>
     <string name="weather_source_openweather_version_3_0">Versio 3.0</string>
     <string name="unit_h">t</string>
@@ -490,7 +489,7 @@
     <string name="pollen_mugwort">Pujo</string>
     <string name="unit_nmi_voice">Merimailia</string>
     <string name="location_message_reverse_geocoding_failed">Säälähde ei onnistunut löytämään vastaavaa sijaintia</string>
-    <string name="metno_weather_text_andthunder">$ ja ukkosta</string>
+    <string name="metno_weather_text_andthunder">%s ja ukkosta</string>
     <string name="location_message_permission_missing">Sijainnin käyttöoikeus puuttuu</string>
     <string name="unit_mi_voice">Mailia</string>
     <string name="location_search_weather_source">Säälähde</string>

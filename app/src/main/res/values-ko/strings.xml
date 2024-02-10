@@ -333,10 +333,9 @@
     <string name="unit_celsius_short">°</string>
     <string name="uv_index_0_2">낮음</string>
     <string name="uv_alert_level">경보</string>
-    <string name="alerts_count">$개의 날씨 경보</string>
     <string name="alerts_to_follow">경보가 있습니다. 여기를 눌러 확인하세요.</string>
     <string name="precipitation_none">강수 없음</string>
-    <string name="precipitation_between_time">$1부터 $2 까지 강수</string>
+    <string name="precipitation_between_time">%1$s부터 %2$s 까지 강수</string>
     <string name="wind_direction_short_E">동</string>
     <string name="wind_direction_short_S">남</string>
     <string name="wind_direction_short_SW">남서</string>

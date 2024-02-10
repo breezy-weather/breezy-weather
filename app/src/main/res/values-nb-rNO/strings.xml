@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Vær</string>
-    <string name="alerts_count">$ værvarsler</string>
     <string name="alerts_to_follow">Kommende varsler, trykk her for å se dem.</string>
     <string name="short_yesterday">I går</string>
     <string name="short_today">I dag</string>
@@ -67,7 +66,7 @@
     <string name="precipitation_intensity_heavy">Mye regn</string>
     <string name="precipitation_intensity_rainstorm">Regnbyge</string>
     <string name="precipitation_none">Ingen nedbør</string>
-    <string name="precipitation_between_time">Nedbør mellom $1 og $2</string>
+    <string name="precipitation_between_time">Nedbør mellom %1$s og %2$s</string>
     <string name="wind">Vind</string>
     <string name="wind_speed">Vindkast</string>
     <string name="wind_gusts">Vindkast</string>

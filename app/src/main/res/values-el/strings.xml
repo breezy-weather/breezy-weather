@@ -269,7 +269,6 @@
     <string name="unit_nmi">ΝΜίλ</string>
     <string name="unit_ft">Πόδ</string>
     <string name="unit_h">ώ</string>
-    <string name="alerts_count">$ ειδοποιήσεις καιρού</string>
     <string name="alerts_to_follow">Προσεχείς ειδοποιήσεις, πατήστε εδώ για να τις δείτε.</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Διοξείδιο του Αζώτου</string>
@@ -307,7 +306,7 @@
     <string name="wind_direction_short_N">Β</string>
     <string name="wind_direction_short_E">Α</string>
     <string name="temperature_average_short">Μέσος Όρος</string>
-    <string name="precipitation_between_time">Βροχοπτωση ανάμεσα σε $1 και $2</string>
+    <string name="precipitation_between_time">Βροχοπτωση ανάμεσα σε %1$s και %2$s</string>
     <string name="minutely_precipitations">Βροχόπτωση λεπτό προς λεπτό</string>
     <string name="air_quality_level_1">Εξαιρετικός</string>
     <string name="air_quality_level_1_description">Η ποιότητα του αέρα είναι ιδανική για τους περισσότερους ανθρώπους. Απολαύστε τις συνήθεις εξωτερικές δραστηριότητές σας.</string>
@@ -520,8 +519,8 @@
     <string name="notification_channel_alerts">Ειδοποιήσεις</string>
     <string name="notification_channel_widget">Γραφικό στοιχείο</string>
     <string name="notification_precipitation_starting">Σύντομα βροχόπτωση</string>
-    <string name="notification_precipitation_starting_desc">Αναμένεται να ξεκινήσει στις %1$s</string>
-    <string name="notification_precipitation_continuing_desc">Αναμένεται να συνεχιστεί τουλάχιστον έως τις %1$s</string>
+    <string name="notification_precipitation_starting_desc">Αναμένεται να ξεκινήσει στις %s</string>
+    <string name="notification_precipitation_continuing_desc">Αναμένεται να συνεχιστεί τουλάχιστον έως τις %s</string>
     <string name="about_contributors">Συνεισφέροντες</string>
     <string name="about_contribution_weather_source">Προστέθηκε υποστήριξη για νέες πηγές καιρού</string>
     <string name="common_weather_text_clear_sky">Καθαρός ουρανός</string>
@@ -540,7 +539,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Έντονο παγωμένο ψιλόβροχο</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Καταιγίδα ελαφρά ή μέτρια</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Καταιγίδα με ισχυρό χαλάζι</string>
-    <string name="metno_weather_text_andthunder">$ και βροντή</string>
+    <string name="metno_weather_text_andthunder">%s και βροντή</string>
     <string name="settings_notifications_forecast_time_today_title">Ώρα ειδοποίησης για την πρόβλεψη της ημέρας</string>
     <string name="settings_notifications_forecast_tomorrow_title">Ειδοποίηση για την πρόβλεψη της επόμενης ημέρας</string>
     <string name="settings_widgets_live_wallpaper_summary">Ορίστε μια κινούμενη εικόνα καιρού ως ταπετσαρία</string>
@@ -588,7 +587,7 @@
     <string name="unit_hpa">hPa</string>
     <string name="notification_channel_background_services">Υπηρεσίες παρασκηνίου</string>
     <string name="notification_channel_crash_logs">κούτσουρα συντριβής</string>
-    <string name="notification_update_error">%1$d ενημερώσεις απέτυχαν</string>
+    <string name="notification_update_error">%d ενημερώσεις απέτυχαν</string>
     <string name="common_weather_text_rain_showers">Μπάνια ΒΡΟΧΗΣ</string>
     <string name="common_weather_text_drizzle_heavy">Έντονο ψιλόβροχο</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ώρα ειδοποίησης για την πρόβλεψη της επόμενης ημέρας</string>
@@ -598,7 +597,7 @@
     <string name="settings_widgets_configure_widget_summary">Διαμόρφωση αυτού του γραφικού στοιχείου</string>
     <string name="notification_precipitation_continuing">Κατακρήμνιση</string>
     <string name="notification_precipitation_stopping">Η βροχόπτωση θα σταματήσει σύντομα</string>
-    <string name="notification_precipitation_stopping_desc">Αναμένεται να σταματήσει στο %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Αναμένεται να σταματήσει στο %s</string>
     <string name="about_matrix">Δωμάτιο Matrix</string>
     <string name="about_dependencies">Εξαρτήσεις</string>
     <string name="about_contribution_WangDaYeeeeee">Προγραμματιστής του αρχικού έργου Geometric Weather</string>

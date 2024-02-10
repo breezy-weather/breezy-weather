@@ -16,7 +16,6 @@
     <string name="details">Detaloj</string>
     <!-- Alerts -->
     <string name="alerts">Atentigoj</string>
-    <string name="alerts_count">$ veteraj atentigoj</string>
     <!-- $ = alert count. -->
     <string name="alerts_to_follow">Venontaj atentigoj, tuŝeti ĉi tie por vidi ilin.</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
@@ -61,7 +60,7 @@
     <string name="precipitation_intensity_heavy">Pluvego</string>
     <string name="precipitation_intensity_rainstorm">Fortpluvego</string>
     <string name="precipitation_none">Neniu precipitaĵo</string>
-    <string name="precipitation_between_time">Precipitaĵoj inter $1 kaj $2</string>
+    <string name="precipitation_between_time">Precipitaĵoj inter %1$s kaj %2$s</string>
     <!-- $1 = start time, $2 = end time. -->
     <!-- Wind -->
     <string name="wind">Vento</string>
@@ -433,7 +432,7 @@
     <string name="notification_channel_background_services">Fonaj servoj</string>
     <string name="notification_channel_crash_logs">Kraŝaj protokoloj</string>
     <string name="notification_updating_weather_data">Aktualigante veterdatumojn (%1$d/%2$d)</string>
-    <string name="notification_update_error">%1$d aktualigo(j) malsukcesis</string>
+    <string name="notification_update_error">%d aktualigo(j) malsukcesis</string>
     <!-- About -->
     <string name="about_app">Pri la apo</string>
     <string name="about_contact">Kontakto</string>
@@ -488,6 +487,6 @@
     <string name="weather_kind_thunder">Tondro</string>
     <string name="weather_kind_thunderstorm">Fulmotondro</string>
     <string name="weather_kind_wind">Vento</string>
-    <string name="metno_weather_text_andthunder">$ kaj tondro</string>
+    <string name="metno_weather_text_andthunder">%s kaj tondro</string>
     <string name="null_data_text">N/A</string>
 </resources>

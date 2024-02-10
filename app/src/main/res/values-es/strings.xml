@@ -303,10 +303,9 @@
     <string name="uv_index_8_10">Muy alto</string>
     <string name="wind_direction_short_NW">NO</string>
     <string name="wind_direction_short_variable">Variable</string>
-    <string name="alerts_count">$ alertas meteorológicas</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="alerts_to_follow">Próximas alertas, pulsa aquí para verlas.</string>
-    <string name="precipitation_between_time">Precipitaciones entre $1 y $2</string>
+    <string name="precipitation_between_time">Precipitaciones entre %1$s y %2$s</string>
     <string name="wind_direction_short_N">N</string>
     <string name="wind_direction_short_NE">NE</string>
     <string name="wind_direction_short_E">E</string>
@@ -634,7 +633,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Fuertes lluvias de aguanieve</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="common_weather_text_rain_showers">Chubascos</string>
-    <string name="notification_update_error">%1$d actualización(es) fallida(s)</string>
+    <string name="notification_update_error">%d actualización(es) fallida(s)</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="common_weather_text_drizzle_light">llovizna</string>
@@ -650,7 +649,7 @@
     <string name="about_contribution_WangDaYeeeeee">Desarrollador del proyecto original de Geometric Weather</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Niebla por depósito de escarcha</string>
     <string name="common_weather_text_drizzle_freezing_light">Llovizna helada ligera</string>
-    <string name="metno_weather_text_andthunder">$ con truenos</string>
+    <string name="metno_weather_text_andthunder">%s con truenos</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tormenta con granizo ligero</string>
     <string name="common_weather_text_drizzle_freezing">Llovizna helada</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tormenta ligera o moderada</string>
@@ -659,10 +658,10 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Llovizna helada fuerte</string>
     <string name="settings_unavailable_no_background_updates">No disponible, active primero las actualizaciones en segundo plano</string>
     <string name="notification_precipitation_starting">Precipitaciones en breve</string>
-    <string name="notification_precipitation_starting_desc">Se espera que comience en %1$s</string>
+    <string name="notification_precipitation_starting_desc">Se espera que comience en %s</string>
     <string name="notification_precipitation_stopping">Pronto dejará de llover</string>
-    <string name="notification_precipitation_stopping_desc">Se espera que pare en %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Se espera que pare en %s</string>
     <string name="notification_precipitation_continuing">Precipitación</string>
-    <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %s</string>
     <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (℃/℉)</string>
 </resources>

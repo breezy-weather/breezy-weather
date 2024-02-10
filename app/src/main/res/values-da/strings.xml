@@ -56,13 +56,12 @@
     <string name="wind_direction_short_NW">NV</string>
     <string name="temperature_degree_day">Grad dag</string>
     <string name="precipitation_snow">Sne</string>
-    <string name="alerts_count">$ vejr varsler</string>
     <string name="wind_strength_2">Let brise</string>
     <string name="wind_direction_short_SE">SØ</string>
     <string name="wind_direction_short_N">N</string>
     <string name="wind_direction_short_E">Ø</string>
     <string name="temperature_average_short">Gen</string>
-    <string name="precipitation_between_time">Nedbør imellem $1 og $2</string>
+    <string name="precipitation_between_time">Nedbør imellem %1$s og %2$s</string>
     <string name="wind">Vind</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="minutely_forecast">Minutter prognose</string>

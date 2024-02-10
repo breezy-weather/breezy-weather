@@ -300,15 +300,15 @@
     <!-- Example: Precipitation soon - New York -->
     <string name="notification_precipitation_starting">Précipitations à venir</string>
     <!-- Example: Expected to start at 09:00 AM -->
-    <string name="notification_precipitation_starting_desc">Début prévu à %1$s</string>
+    <string name="notification_precipitation_starting_desc">Début prévu à %s</string>
     <!-- Example: Precipitation - New York -->
     <string name="notification_precipitation_continuing">Précipitations en cours</string>
     <!-- Example: Expected to continue until at least 09:00 AM -->
-    <string name="notification_precipitation_continuing_desc">Persistantes jusqu’à au moins %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Persistantes jusqu’à au moins %s</string>
     <!-- Example: Precipitation stopping soon - New York -->
     <string name="notification_precipitation_stopping">Fin des précipitations à venir</string>
     <!-- Example: Expected to stop at 09:00 AM -->
-    <string name="notification_precipitation_stopping_desc">Fin prévue à %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Fin prévue à %s</string>
 
     <string name="location_resident_location">Emplacement de résidence</string>
     <string name="location_resident_location_summaryOn">Actif. Masqué si dans un rayon de $ de l’emplacement actuel.</string>
@@ -341,7 +341,7 @@
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>
     <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
-    <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
+    <!-- $ = alert count. -->
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm25_voice">PM deux point cinq</string>
     <string name="air_quality_pm10">PM10</string>
@@ -379,7 +379,7 @@
     <string name="ephemeris_moonrise_at">Lever de lune à $</string> <!-- $ = time. -->
     <string name="ephemeris_moonset_at">Coucher de lune à $</string> <!-- $ = time. -->
     <string name="precipitation_none">Pas de précipitations</string>
-    <string name="precipitation_between_time">Précipitations entre $1 et $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="precipitation_between_time">Précipitations entre %1$s et %2$s</string> <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
@@ -689,7 +689,7 @@
 
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>
-    <string name="notification_update_error">%1$d mise(s) à jour en échec</string>
+    <string name="notification_update_error">%d mise(s) à jour en échec</string>
     <string name="common_weather_text_snow_light">Neige légère</string>
     <string name="common_weather_text_snow_moderate">Neige modérée</string>
     <string name="common_weather_text_snow_heavy">Neige forte</string>
@@ -716,5 +716,5 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Averses de neige mouillée</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Averses de neige mouillée légères</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Averses de neige mouillée fortes</string>
-    <string name="metno_weather_text_andthunder">$ et tonnerre</string>
+    <string name="metno_weather_text_andthunder">%s et tonnerre</string>
 </resources>

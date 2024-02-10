@@ -298,7 +298,7 @@
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_none">Без осадков</string>
-    <string name="precipitation_between_time">Осадки от $1 до $2</string>
+    <string name="precipitation_between_time">Осадки от %1$s до %2$s</string>
     <string name="wind_direction_short_N">С</string>
     <string name="wind_direction_short_NE">СВ</string>
     <string name="wind_direction_short_E">В</string>
@@ -450,7 +450,6 @@
     <string name="unit_mmhg_voice">Миллиметров ртути</string>
     <string name="unit_inhg_voice">Дюймов ртути</string>
     <string name="notification_channel_alerts">Оповещения</string>
-    <string name="alerts_count">$ оповещений о погоде</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
@@ -562,7 +561,7 @@
     <string name="message_parsing_error_title">Не удалось проанализировать данные о погоде</string>
     <string name="wind_strength">Сила ветра</string>
     <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен, в этом случае повторите попытку позже. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
-    <string name="notification_update_error">%1$d обновление(ий) не удалось</string>
+    <string name="notification_update_error">%d обновление(ий) не удалось</string>
     <string name="message_source_not_installed_error_title">Источник больше не доступен</string>
     <string name="message_source_not_installed_error_content">Этот источник больше не доступен; пожалуйста, удалите местоположение и создайте его заново из другого источника.</string>
     <string name="temperature_degree_day_cooling">Градусо-день охлодительного сезона</string>
@@ -632,7 +631,7 @@
     <string name="common_weather_text_drizzle_heavy">Сильная изморось</string>
     <string name="common_weather_text_drizzle_light">Лёгкая изморось</string>
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая морозящая изморось</string>
-    <string name="metno_weather_text_andthunder">$ с грозой</string>
+    <string name="metno_weather_text_andthunder">%s с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
     <string name="unit_bf_voice">на шкале Бофорта</string>
     <string name="unit_bf">Бф</string>
@@ -654,8 +653,8 @@
     <string name="settings_unavailable_no_background_updates">Недоступно, сначала включите фоновые обновления</string>
     <string name="notification_precipitation_continuing">Осадки</string>
     <string name="notification_precipitation_starting">Вскоре выпадут осадки</string>
-    <string name="notification_precipitation_starting_desc">Ожидаются начиная с %1$s</string>
-    <string name="notification_precipitation_continuing_desc">Ожидаемая продолжительность не менее %1$s</string>
+    <string name="notification_precipitation_starting_desc">Ожидаются начиная с %s</string>
+    <string name="notification_precipitation_continuing_desc">Ожидаемая продолжительность не менее %s</string>
     <string name="notification_precipitation_stopping">Осадки вскоре прекратятся</string>
-    <string name="notification_precipitation_stopping_desc">Ожидается прекращение в %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Ожидается прекращение в %s</string>
 </resources>

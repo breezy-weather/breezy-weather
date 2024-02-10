@@ -286,7 +286,7 @@
     <string name="temperature_normals">Hőmérsékleti normák</string>
     <string name="air_quality_level_4_description">Az egészségügyi hatások az érzékeny csoportok számára azonnal érezhetők. Az egészséges egyének légzési nehézséget és torokirritációt tapasztalhatnak hosszabb kitettség esetén. Korlátozza a szabadtéri tevékenységeit.</string>
     <string name="precipitation_none">Nincs csapadék</string>
-    <string name="precipitation_between_time">Csapadék $1 és $2 között</string>
+    <string name="precipitation_between_time">Csapadék %1$s és %2$s között</string>
     <string name="wind_gusts">Széllökések</string>
     <string name="wind_direction_short_variable">Változó</string>
     <string name="wind_direction_short_N">É</string>
@@ -458,7 +458,7 @@
     <string name="settings_location">Helymeghatározás</string>
     <string name="settings_location_summary">Helyszolgáltatások beállításai</string>
     <string name="common_weather_text_rain_freezing_heavy">Heves ónos eső</string>
-    <string name="metno_weather_text_andthunder">$ és mennydörgés</string>
+    <string name="metno_weather_text_andthunder">%s és mennydörgés</string>
     <string name="weather_kind_haze">Ködös</string>
     <string name="weather_kind_thunder">Mennydörgés</string>
     <string name="unit_kph">km/h</string>
@@ -494,7 +494,7 @@
     <string name="unit_inhg">inHg</string>
     <string name="unit_inhg_voice">Higanyhüvelyk</string>
     <string name="notification_channel_alerts">Riasztások</string>
-    <string name="notification_update_error">%1$d frissítés sikertelen</string>
+    <string name="notification_update_error">%d frissítés sikertelen</string>
     <string name="about_dependencies">Függőségek</string>
     <string name="common_weather_text_clear_sky">Tiszta</string>
     <string name="common_weather_text_rain_moderate">Mérsékelt eső</string>
@@ -584,7 +584,6 @@
     <string name="unit_mmph_voice">Milliméter per óra</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_cmph_voice">Centiméter per óra</string>
-    <string name="alerts_count">$ időjárás riasztás</string>
     <string name="settings_automatic">Automatikus</string>
     <string name="unit_ftps_voice">Láb per másodperc</string>
     <string name="unit_mm">mm</string>
@@ -654,7 +653,7 @@
     <string name="notification_precipitation_starting">Hamarosan csapadék várható</string>
     <string name="notification_precipitation_continuing">Csapadék</string>
     <string name="notification_precipitation_stopping">Hamarosan megszűnik a csapadék</string>
-    <string name="notification_precipitation_stopping_desc">Várhatóan %1$s-kor megszűnik</string>
-    <string name="notification_precipitation_continuing_desc">Várhatóan legalább %1$s-ig folytatódik</string>
-    <string name="notification_precipitation_starting_desc">Várhatóan %1$s-kor kezdődik</string>
+    <string name="notification_precipitation_stopping_desc">Várhatóan %s-kor megszűnik</string>
+    <string name="notification_precipitation_continuing_desc">Várhatóan legalább %s-ig folytatódik</string>
+    <string name="notification_precipitation_starting_desc">Várhatóan %s-kor kezdődik</string>
 </resources>

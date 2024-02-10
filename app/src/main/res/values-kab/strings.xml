@@ -51,7 +51,7 @@
     <string name="widget_week_style_5_days">5 n wussan</string>
     <string name="widget_week_style_3_days">3 n wussan</string>
     <string name="widget_style_temperature">Taẓɣelt</string>
-    <string name="metno_weather_text_andthunder">$ akked rɛud</string>
+    <string name="metno_weather_text_andthunder">%s akked rɛud</string>
     <string name="temperature">Taẓɣelt</string>
     <string name="short_friday">Sem</string>
     <string name="short_saturday">Sed</string>

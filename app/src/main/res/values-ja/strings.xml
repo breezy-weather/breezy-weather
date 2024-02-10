@@ -281,7 +281,7 @@
     <string name="uv_index_0_2">低い</string>
     <string name="uv_index_3_5">適度</string>
     <string name="uv_index_6_7">高い</string>
-    <string name="precipitation_between_time">降水量1～2ドル</string>
+    <string name="precipitation_between_time">降水量%1$s～%2$sドル</string>
     <string name="uv_alert_level">アラート</string>
     <string name="uv_index_8_10">すごく高い</string>
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
@@ -294,7 +294,6 @@
     <string name="wind_direction_short_NW">NW</string>
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>
-    <string name="alerts_count">$ 天気予報</string>
     <string name="alerts_to_follow">複数のアラートを確認</string>
     <string name="air_quality_level_1">優良</string>
     <string name="air_quality_level_3_description">大気汚染が高いレベルに達しており、敏感な人々に健康被害が生じる場合があります。呼吸困難やのどの痛みなどの症状を感じている場合は、屋外で過ごす時間を減らしてください。</string>
@@ -466,9 +465,9 @@
     <string name="settings_widgets_notification_feels_like_switch">使用感の温度</string>
     <string name="unit_kn">知っている</string>
     <string name="notification_precipitation_starting">もうすぐ降水量</string>
-    <string name="notification_precipitation_starting_desc">%1$s に開始予定</string>
+    <string name="notification_precipitation_starting_desc">%s に開始予定</string>
     <string name="notification_precipitation_stopping">降水はもうすぐ止む</string>
-    <string name="notification_precipitation_stopping_desc">%1$sで停止する予定です</string>
+    <string name="notification_precipitation_stopping_desc">%sで停止する予定です</string>
     <string name="notification_style_native">ネイティブ</string>
     <string name="notification_style_cities">都市</string>
     <string name="common_weather_text_clear_sky">晴天</string>
@@ -496,14 +495,13 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">霧氷の堆積</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">激しいひょうを伴う雷雨</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">わずかな雹を伴う雷雨</string>
-    <string name="metno_weather_text_andthunder">ドルと雷</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_color_app">アプリをフォローする</string>
     <string name="weather_refresh_skipped_already_recently_updated">すでに最近更新されました</string>
     <string name="weather_api_key_required_missing_title">必要な API キーがありません</string>
     <string name="dialog_permissions_notification_title">最新情報を入手</string>
-    <string name="notification_update_error">%1$d 件のアップデートに失敗しました</string>
+    <string name="notification_update_error">%d 件のアップデートに失敗しました</string>
     <string name="location_search_weather_source">気象源</string>
     <string name="location_search_no_results_advice">検索の綴りが正確で、具体的すぎないことを確認してください。あるいは、別の気象データ ソースを試してみると、異なる場所の検索結果が生成される可能性があります。</string>
     <string name="settings_location_access_permission_already_granted">許可はすでに与えられています</string>
@@ -617,7 +615,7 @@
     <string name="settings_notifications_precipitations_title">降水量のお知らせ</string>
     <string name="settings_widgets_summary">壁紙の設定、使用するウィジェット、通知ウィジェットの設定</string>
     <string name="settings_widgets_gadgets_title">ガジェット</string>
-    <string name="notification_precipitation_continuing_desc">少なくとも %1$s までは継続すると予想されます</string>
+    <string name="notification_precipitation_continuing_desc">少なくとも %s までは継続すると予想されます</string>
     <string name="common_weather_text_mainly_clear">主にクリア</string>
     <string name="common_weather_text_overcast">曇り</string>
     <string name="common_weather_text_rain_showers">にわか雨</string>

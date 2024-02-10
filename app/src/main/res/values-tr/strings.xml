@@ -89,10 +89,9 @@
     <string name="minutely_forecast">Anlık tahmin</string>
     <string name="precipitation_forecast">Yağış tahmini</string>
     <string name="pollen">Polen</string>
-    <string name="alerts_count">$ hava durumu uyarıları</string>
     <string name="alerts_to_follow">Yaklaşan uyarıları görmek için buraya dokunun.</string>
     <string name="precipitation_none">Yağış yok</string>
-    <string name="precipitation_between_time">$1 ve $2 arasında yağış</string>
+    <string name="precipitation_between_time">%1$s ve %2$s arasında yağış</string>
     <string name="wind_strength">Rüzgar gücü</string>
     <string name="uv_index_3_5">Orta</string>
     <string name="uv_index_0_2">Düşük</string>
@@ -517,7 +516,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="unit_lpsqm_voice">Metrekare başına litre</string>
     <string name="common_weather_text_rain_snow_mixed_light">Karla karışık hafif yağmur</string>
-    <string name="metno_weather_text_andthunder">$ ve fırtına</string>
+    <string name="metno_weather_text_andthunder">%s ve fırtına</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Karla karışık şiddetli sağanak</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Karla karışık yağmurlar</string>
     <string name="common_weather_text_rain_showers_light">Hafif yağmurlar</string>
@@ -628,7 +627,7 @@
     <string name="air_quality_so2_info_origin">Bu volkanik etkinliklerle doğal olarak salınır ve ağırlıklı olarak evsel ısıtma, sanayi ve enerji üretimi için fosil yakıtların kullanımından elde edilir.</string>
     <string name="air_quality_so2_info_consequences">SO₂’ye maruz kalmak astım için hastaneye başvurular ve acil servis ziyaretleriyle ilişkilidir.</string>
     <string name="weather_message_secondary_data_refresh_failed">İkinci hava durumu kaynağı için hava durumu verisi güncellemesi başarısız oldu</string>
-    <string name="notification_update_error">%1$d güncelleme başarısız oldu</string>
+    <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="about_contribution_weather_source">Yeni hava durumu kaynağı desteği eklendi</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı sağlamanız gerekir. Eğer zaten bir tane sağladıysanız API anahtarınızı iki kere kontrol edin.</string>
@@ -652,9 +651,9 @@
     <string name="notification_channel_crash_logs">Kilitlenme günlükleri</string>
     <string name="notification_precipitation_continuing">Yağış</string>
     <string name="notification_precipitation_stopping">Yağış yakında duracak</string>
-    <string name="notification_precipitation_stopping_desc">Beklenen bitiş zamanı: %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Beklenen bitiş zamanı: %s</string>
     <string name="settings_unavailable_no_background_updates">Kullanılabilir değil, önce arka plan güncellemelerini etkinleştirin</string>
     <string name="notification_precipitation_starting">Yağış yakında</string>
-    <string name="notification_precipitation_starting_desc">Beklenen başlama zamanı: %1$s</string>
-    <string name="notification_precipitation_continuing_desc">En az şu zamana kadar devam etmesi bekleniyor: %1$s</string>
+    <string name="notification_precipitation_starting_desc">Beklenen başlama zamanı: %s</string>
+    <string name="notification_precipitation_continuing_desc">En az şu zamana kadar devam etmesi bekleniyor: %s</string>
 </resources>

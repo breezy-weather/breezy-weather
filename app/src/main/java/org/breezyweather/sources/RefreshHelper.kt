@@ -232,7 +232,7 @@ class RefreshHelper @Inject constructor(
     }
 
     suspend fun getWeather(
-        context: Context, location: Location
+        context: Context, location: Location, coordinatesChanged: Boolean
     ): WeatherResult {
         try {
             if (!location.isUsable
@@ -345,9 +345,7 @@ class RefreshHelper @Inject constructor(
             } else {
                 try {
                     if (service is ParameterizedLocationSource
-                        // TODO: Replace location.isCurrentPosition with a boolean telling if current
-                        // position was actually changed when we processed location earlier
-                        && service.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
+                        && service.needsLocationParametersRefresh(location, coordinatesChanged)) {
                         locationParameters[service.id] =
                             (if (locationParameters.getOrElse(service.id) { null } != null) {
                                 locationParameters[service.id]!!
@@ -446,9 +444,7 @@ class RefreshHelper @Inject constructor(
                                 }
                                 secondarySourceCalls[entry.key] = try {
                                     if (secondaryService is ParameterizedLocationSource
-                                        // TODO: Replace location.isCurrentPosition with a boolean telling if current
-                                        // position was actually changed when we processed location earlier
-                                        && secondaryService.needsLocationParametersRefresh(location, location.isCurrentPosition)) {
+                                        && secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)) {
                                         locationParameters[secondaryService.id] =
                                             (if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
                                                 locationParameters[secondaryService.id]!!

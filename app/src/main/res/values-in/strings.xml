@@ -203,7 +203,6 @@
     <!-- content description -->
     <string name="action_back">Kembali</string>
     <string name="settings_icon_packs_check_details">Cek detail</string>
-    <string name="alerts_count">$ peringatan cuaca</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM dua koma lima</string>
     <string name="air_quality_pm10_voice">PM sepuluh</string>
@@ -220,7 +219,7 @@
     <string name="ephemeris_moonset_at">Bulan tenggelam di $</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Tidak ada curah hujan</string>
-    <string name="precipitation_between_time">Curah hujan antara $1 dan $2</string>
+    <string name="precipitation_between_time">Curah hujan antara %1$s dan %2$s</string>
     <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Tambah lokasi saat ini</string>
     <string name="settings_items_drag_to_sort">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
@@ -570,7 +569,7 @@
     <string name="location_message_reverse_geocoding_failed">Sumber cuaca gagal mencari lokasi yang cocok</string>
     <string name="common_weather_text_drizzle_freezing_light">Gerimis beku ringan</string>
     <string name="settings_background_updates_battery_optimization">Nonaktifkan optimasi baterai</string>
-    <string name="metno_weather_text_andthunder">$ dan guntur</string>
+    <string name="metno_weather_text_andthunder">%s dan guntur</string>
     <string name="location_message_permission_missing">Belum ada izin akses lokasi</string>
     <string name="location_resident_location_summaryOn">Diaktifkan. Disembunyikan ketika dalam $ lokasi saat ini.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Badai petir disertai sedikit hujan es</string>
@@ -651,7 +650,7 @@
     <string name="weather_api_key_required_missing_content">Untuk menggunakan sumber ini, Anda perlu menyediakan kunci API.</string>
     <string name="unit_kgfpsqcm_voice">Gaya kilogram per sentimeter persegi</string>
     <string name="settings_location_access_permission_already_granted">Izin sudah diberi</string>
-    <string name="notification_update_error">%1$d pembaruan gagal</string>
+    <string name="notification_update_error">%d pembaruan gagal</string>
     <string name="settings_weather_sources_current_location">Sumber cuaca untuk lokasi saat ini</string>
     <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan dan GPS perangkat digunakan.</string>
     <string name="common_weather_text_rain_showers_moderate">Hujan sedang</string>

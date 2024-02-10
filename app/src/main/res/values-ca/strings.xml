@@ -320,9 +320,8 @@
     <string name="temperature_normals">Normals de temperatura</string>
     <string name="wind_direction_short_variable">Variable</string>
     <string name="wind_direction_short_W">O</string>
-    <string name="precipitation_between_time">Precipitació entre $1 i $2</string>
+    <string name="precipitation_between_time">Precipitació entre %1$s i %2$s</string>
     <string name="wind_direction_short_NW">NO</string>
-    <string name="alerts_count">$ alertes de clima</string>
     <string name="precipitation_none">Sense precipitació</string>
     <string name="wind_direction_short_SW">SO</string>
     <string name="uv_alert_level">Alerta</string>
@@ -370,7 +369,7 @@
     <string name="settings_background_updates_battery_optimization">Desactivar l’optimització de la bateria</string>
     <string name="setting_weather_source_accu_days">Dies</string>
     <string name="air_quality_level_4">Insalubre</string>
-    <string name="metno_weather_text_andthunder">$ i trons</string>
+    <string name="metno_weather_text_andthunder">%s i trons</string>
     <string name="weather_minutely_data_by">Dades de precipitació minut a minut per $</string>
     <string name="weather_source_accu_preference_days_5">5 dies</string>
     <string name="unit_mph">mph</string>
@@ -623,7 +622,7 @@
     <string name="pollen_level_0">Cap</string>
     <string name="settings_location_access_permission_already_granted">Permís ja concedit</string>
     <string name="ephemeris_moonrise_at">Sortida de la lluna a les $</string>
-    <string name="notification_update_error">%1$d Actualització(ns) fallida(es)</string>
+    <string name="notification_update_error">%d actualització(ns) fallida(es)</string>
     <string name="settings_location_access_switch_title">Accés a la ubicació</string>
     <string name="weather_source_openweather_version_3_0">Versió 3.0</string>
     <string name="weather_api_unauthorized_title">Accés a l’API no autoritzat</string>

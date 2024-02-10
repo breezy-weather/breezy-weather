@@ -199,7 +199,6 @@
     <!-- content description -->
     <string name="action_back">Voltar</string>
     <string name="settings_icon_packs_check_details">Verificar detalhes</string>
-    <string name="alerts_count">$ alertas meteorológicos</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">MP dois ponto cinco</string>
     <string name="air_quality_pm10_voice">MP dez</string>
@@ -216,7 +215,7 @@
     <string name="ephemeris_moonset_at">Pôr da lua às $</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Sem precipitação</string>
-    <string name="precipitation_between_time">Precipitação entre $1 e $2</string>
+    <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
     <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Adicionar localização atual</string>
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
@@ -573,7 +572,7 @@
     <string name="action_show_errors">Toque para ver detalhes</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar quando a bateria estiver baixa</string>
     <string name="message_parsing_error_title">Falha ao analisar dados meteorológicos</string>
-    <string name="notification_update_error">%1$d falha na(s) atualização(ões)</string>
+    <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="wind_strength">Força do vento</string>
     <string name="message_server_timeout">Solicitação expirou</string>
     <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do aplicativo. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
@@ -635,7 +634,7 @@
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
-    <string name="metno_weather_text_andthunder">$ com trovoadas</string>
+    <string name="metno_weather_text_andthunder">%s com trovoadas</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>
     <string name="common_weather_text_drizzle">Garoa</string>
     <string name="common_weather_text_snow_heavy">Neve forte</string>

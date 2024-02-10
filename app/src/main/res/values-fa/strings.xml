@@ -4,7 +4,6 @@
     <string name="hourly_forecast">پیش بینی ساعتی</string>
     <string name="precipitation_forecast">پیش بینی بارش</string>
     <string name="pollen">گرده</string>
-    <string name="alerts_count">$ هشدار های آب و هوایی</string>
     <string name="short_thursday">پنج شنبه</string>
     <string name="short_friday">آدینه</string>
     <string name="short_saturday">شنبه</string>
@@ -69,7 +68,7 @@
     <string name="precipitation_total">در کل</string>
     <string name="precipitation_rain">باران</string>
     <string name="precipitation_thunderstorm">آذرخش</string>
-    <string name="precipitation_between_time">احتمال بارش بین $1 و $2</string>
+    <string name="precipitation_between_time">احتمال بارش بین %1$s و %2$s</string>
     <string name="wind">باد</string>
     <string name="wind_direction_short_E">شرق</string>
     <string name="wind_direction_short_SE">جنوب شرق</string>

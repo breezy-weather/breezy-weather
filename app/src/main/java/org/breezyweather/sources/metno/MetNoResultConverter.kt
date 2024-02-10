@@ -257,8 +257,7 @@ private fun getWeatherText(context: Context, icon: String?): String? {
     }
 
     return if (icon.contains("andthunder")) {
-        context.getString(R.string.metno_weather_text_andthunder)
-            .replace("$", weatherWithoutThunder ?: context.getString(R.string.null_data_text))
+        context.getString(R.string.metno_weather_text_andthunder, weatherWithoutThunder ?: context.getString(R.string.null_data_text))
     } else weatherWithoutThunder
 }
 

@@ -13,7 +13,6 @@
     <string name="ephemeris">خۆر و مانگ</string>
     <string name="details">ووردەکاریەکان</string>
     <string name="alerts">ئاگادارکردنەوەکان</string>
-    <string name="alerts_count">$ ئاگادارکردنەوەی کەش و هەوا</string>
     <string name="short_yesterday">دوێنێ</string>
     <string name="short_monday">دووشەممە</string>
     <string name="short_tuesday">سێشەممە</string>
@@ -107,7 +106,7 @@
     <string name="precipitation_snow">بەفر</string>
     <string name="wind">با</string>
     <string name="wind_strength_3">شنەبای نەرم</string>
-    <string name="precipitation_between_time">بارانبارین لە نێوان $1 و $2</string>
+    <string name="precipitation_between_time">بارانبارین لە نێوان %1$s و %2$s</string>
     <string name="wind_direction_short_N">باک</string>
     <string name="wind_direction_short_E">هەڵ</string>
     <string name="wind_direction_short_S">باش</string>

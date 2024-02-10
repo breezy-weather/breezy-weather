@@ -30,7 +30,7 @@
     <string name="precipitation_intensity_heavy">Stiprus lietus</string>
     <string name="precipitation_intensity_rainstorm">Liūtinis lietus</string>
     <string name="precipitation_none">Kritulių nėra</string>
-    <string name="precipitation_between_time">Krituliai nuo $1 iki $2</string>
+    <string name="precipitation_between_time">Krituliai nuo %1$s iki %2$s</string>
     <string name="wind">Vėjas</string>
     <string name="wind_speed">Vėjo greitis</string>
     <string name="wind_direction">Vėjo kryptis</string>
@@ -157,7 +157,6 @@
     <string name="daily_forecast">Orai artimiausiomis dienomis</string>
     <string name="precipitation_forecast">Lietaus prognozė</string>
     <string name="ephemeris">Saulė ir Mėnulis</string>
-    <string name="alerts_count">$ perspėjimai</string>
     <string name="details">Išsamesnė informacija</string>
     <string name="temperature_apparent">Numanoma temperatūra</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -586,7 +585,7 @@
     <string name="settings_widgets_notification_feels_like_switch">Naudoti juntamają temperatūrą</string>
     <string name="settings_debug_dump_crash_logs_summary">Įrašo klaidų žurnalus į failą, kuriuo galima dalytis su kūrėjais</string>
     <string name="settings_item_delete">Ištrinti šį elementą</string>
-    <string name="notification_update_error">%1$d atnaujinimas (-ai) nepavyko</string>
+    <string name="notification_update_error">%d atnaujinimas (-ai) nepavyko</string>
     <string name="about_matrix">Matrix kambarys</string>
     <string name="about_source_code">Šaltinio kodas</string>
     <string name="about_contribution_WangDaYeeeeee">Originalaus projekto Geometric Weather kūrėjas</string>
@@ -612,7 +611,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Šarma</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Stipri šlapdriba</string>
     <string name="common_weather_text_drizzle_freezing_light">Silpna ledijanti dulksna</string>
-    <string name="metno_weather_text_andthunder">$ ir griaustinis</string>
+    <string name="metno_weather_text_andthunder">%s ir griaustinis</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Perkūnija su nedidele kruša</string>
     <string name="common_weather_text_drizzle">Dulksna</string>
     <string name="common_weather_text_snow_heavy">Stiprus sniegas</string>

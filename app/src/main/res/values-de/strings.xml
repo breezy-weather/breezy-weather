@@ -213,7 +213,7 @@
     <string name="uv_index_8_10">Sehr hoch</string>
     <string name="common_weather_text_rain">Regen</string>
     <string name="weather_kind_haze">Dunst</string>
-    <string name="precipitation_between_time">Niederschlag zwischen $1 und $2</string>
+    <string name="precipitation_between_time">Niederschlag zwischen %1$s und %2$s</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall Version</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
@@ -277,7 +277,6 @@
     <string name="action_add_new_location">Neuen Ort hinzufügen</string>
     <string name="ephemeris_moonset_at">Monduntergang um $</string>
     <string name="dialog_permissions_location_background_title">Zugriff auf Standort im Hintergrund</string>
-    <string name="alerts_count">$ Wetterwarnungen</string>
     <string name="weather_api_unauthorized_content">Bei einigen Wetterdiensten müssen Sie Ihren eigenen API-Schlüssel angeben. Wenn Sie bereits einen angegeben haben, überprüfen Sie bitte den API-Schlüssel, den Sie angegeben haben.</string>
     <string name="weather_api_limit_reached_title">Limit für API-Anfragen erreicht</string>
     <string name="unit_kph_voice">Kilometer pro Stunde</string>
@@ -564,7 +563,7 @@
     <string name="temperature_degree_day_cooling">Kühlgradtag</string>
     <string name="settings_source_api_key">API-Schlüssel</string>
     <string name="temperature_degree_day_heating">Heizgradtag</string>
-    <string name="notification_update_error">%1$d Aktualisierung(en) fehlgeschlagen</string>
+    <string name="notification_update_error">%d Aktualisierung(en) fehlgeschlagen</string>
     <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar. Bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
     <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
@@ -619,7 +618,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Schneeregenschauer</string>
     <string name="common_weather_text_drizzle_freezing_light">Leichter gefrierender Sprühregen</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Starker gefrierender Sprühregen</string>
-    <string name="metno_weather_text_andthunder">$ und Donner</string>
+    <string name="metno_weather_text_andthunder">%s und Donner</string>
     <string name="common_weather_text_snow_heavy">Starker Schneefall</string>
     <string name="common_weather_text_snow_showers">Schneeschauer</string>
     <string name="common_weather_text_snow_showers_heavy">Starke Schneeschauer</string>
@@ -647,10 +646,10 @@
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
     <string name="settings_color_app">Automatisch</string>
     <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktiviere zuerst die Hintergrundaktualisierungen</string>
-    <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %1$s</string>
+    <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %s</string>
     <string name="notification_precipitation_starting">Baldiger Niederschlag</string>
     <string name="notification_precipitation_continuing">Niederschläge</string>
-    <string name="notification_precipitation_continuing_desc">Voraussichtlich andauernd bis mindestens %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Voraussichtlich andauernd bis mindestens %s</string>
     <string name="notification_precipitation_stopping">Niederschläge bald beendet</string>
-    <string name="notification_precipitation_stopping_desc">Voraussichtliches Ende um %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Voraussichtliches Ende um %s</string>
 </resources>

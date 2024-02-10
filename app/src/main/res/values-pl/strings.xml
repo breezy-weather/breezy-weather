@@ -308,7 +308,6 @@
     <string name="unit_in">cal</string>
     <string name="unit_mb_voice">Milibary</string>
     <string name="unit_kpa">kPa</string>
-    <string name="alerts_count">$ alerty pogodowe</string>
     <string name="wind_direction_short_variable">Zmienna</string>
     <string name="wind_direction_short_NW">NW</string>
     <string name="uv_index_0_2">Niski</string>
@@ -434,7 +433,7 @@
     <string name="wind_strength">Siła wiatru</string>
     <string name="air_quality_level_2">Umiarkowana</string>
     <string name="air_quality_level_2_description">Jakość powietrza jest akceptowalna dla większości osób. Jednak osoby wrażliwe mogą odczuwać niewielkie lub umiarkowane objawy po dłuższym przebywaniu na zewnątrz.</string>
-    <string name="precipitation_between_time">Opady między $1 a $2</string>
+    <string name="precipitation_between_time">Opady między %1$s a %2$s</string>
     <string name="wind_gusts">Porywy wiatru</string>
     <string name="air_quality_level_3_description">Powietrze osiągnęło wysoki poziom zanieczyszczenia i jest niezdrowe dla osób wrażliwych. Jeśli odczuwasz takie objawy jak trudności w oddychaniu czy drapanie w gardle, skróć przebywanie na zewnątrz.</string>
     <string name="air_quality_pm_info_title">Cząstki stałe (PM2.5 i PM10)</string>
@@ -560,7 +559,7 @@
     <string name="settings_widgets_live_wallpaper_summary">Ustaw animację pogody jako tapetę</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona wyświetlana w widokach tygodniowych</string>
     <string name="settings_debug_dump_crash_logs_title">Udostępnij dzienniki awarii</string>
-    <string name="notification_update_error">Aktualizacja %1$d nie powiodła się</string>
+    <string name="notification_update_error">Aktualizacja %d nie powiodła się</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Czas powiadomienia o prognozie na następny dzień</string>
     <string name="unit_inhg_voice">Cali słupa rtęci</string>
     <string name="unit_mps_voice">Metrów na sekundę</string>
@@ -629,7 +628,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Silny deszcz ze śniegiem</string>
     <string name="pollen_and_mold">Pyłki i pleśń</string>
     <string name="common_weather_text_drizzle_freezing_light">Lekka marznąca mżawka</string>
-    <string name="metno_weather_text_andthunder">$ z piorunami</string>
+    <string name="metno_weather_text_andthunder">%s z piorunami</string>
     <string name="common_weather_text_drizzle">Mżawka</string>
     <string name="common_weather_text_snow_heavy">Silne opady śniegu</string>
     <string name="common_weather_text_rain_freezing_heavy">Silny marznący deszcz</string>
@@ -657,9 +656,9 @@
     <string name="settings_color_app">Podążaj za nami</string>
     <string name="settings_unavailable_no_background_updates">Niedostępne, najpierw włącz aktualizacje w tle</string>
     <string name="notification_precipitation_starting">Wkrótce opady</string>
-    <string name="notification_precipitation_continuing_desc">Przewidywany czas trwania przynajmniej do %1$s</string>
+    <string name="notification_precipitation_continuing_desc">Przewidywany czas trwania przynajmniej do %s</string>
     <string name="notification_precipitation_stopping">Wkrótce koniec opadów</string>
-    <string name="notification_precipitation_stopping_desc">Przedwidywany czas zakończenia o %1$s</string>
-    <string name="notification_precipitation_starting_desc">Przewidywane rozpoczęcie o %1$s</string>
+    <string name="notification_precipitation_stopping_desc">Przedwidywany czas zakończenia o %s</string>
+    <string name="notification_precipitation_starting_desc">Przewidywane rozpoczęcie o %s</string>
     <string name="notification_precipitation_continuing">Opady</string>
 </resources>
