@@ -223,6 +223,8 @@
     <string name="action_add_from_map">Aldoni el mapo</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
     <string name="action_settings">Agordoj</string>
+    <string name="action_preview">Antaŭmontri</string>
+    <string name="action_about">Pri</string>
     <string name="action_app_store">Aplikaĵejo</string>
     <string name="action_refresh">Aktualigi</string>
     <string name="action_restart">Restarti</string>
@@ -277,7 +279,7 @@
     <!-- Settings (new design) -->
     <string name="settings_section_general">Generalo</string>
     <string name="settings_background_updates">Fonaj aktualigoj</string>
-    <string name="settings_background_updates_summary">Ofteco de aktualigo, solvi problemojn</string>
+    <string name="settings_background_updates_summary">Ofteco de aktualigo, problemsolvi</string>
     <string name="settings_background_updates_refresh_title">Ofteco de aktualigo</string>
     <string name="settings_background_updates_refresh_never">Neniam</string>
     <string name="settings_background_updates_refresh_30min">30 minutoj</string>
@@ -288,6 +290,9 @@
     <string name="settings_background_updates_refresh_6h">6 horoj</string>
     <string name="settings_background_updates_refresh_12h">12 horoj</string>
     <string name="settings_background_updates_refresh_24h">24 horojs</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignori kiam baterio estas malalta</string>
+    <string name="settings_background_updates_section_troubleshoot">Problemsolvi</string>
+    <string name="settings_background_updates_battery_optimization">Malŝalti bateria optimumigo</string>
     <string name="settings_location">Loko</string>
     <string name="settings_location_summary">Agordoj de lokaj servoj</string>
     <string name="settings_location_service">Loka servo</string>
@@ -299,9 +304,13 @@
     <string name="settings_source_api_key">API ŝlosilo</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall versio</string>
     <string name="settings_appearance">Aspketo</string>
-    <string name="settings_appearance_summary">Lingvo, malhela reĝimo, ikonaj pakoj, unuoj</string>
+    <string name="settings_appearance_summary">Lingvo, malhela reĝimo, pakoj de bildsimboloj, unuoj</string>
     <string name="settings_appearance_language_title">Lingvo</string>
     <string name="settings_appearance_dark_mode_title">Malhela reĝimo</string>
+    <string name="settings_appearance_dark_mode_locations_title">Tago / Noto reĝimo por lokoj</string>
+    <string name="settings_appearance_icon_pack_title">Pako de bildsimboloj</string>
+    <string name="settings_icon_packs_title">Pakoj de bildsimboloj</string>
+    <string name="settings_icon_packs_check_details">Kontroli detaloj</string>
     <string name="settings_units">Unuoj</string>
     <string name="settings_units_summary">Temperatura, precipitaĵa, distanca, rapideco, prema</string>
     <string name="settings_units_temperature">Temperatura unuo</string>
@@ -310,8 +319,33 @@
     <string name="settings_units_speed">Rapideca unuo</string>
     <string name="settings_units_pressure">Prema unuo</string>
     <string name="settings_main">Ĉefa ekrenao</string>
+    <string name="settings_main_summary">Ordo de kartoj, montritaj elementoj, efektoj</string>
+    <!-- Data is plural here -->
+    <string name="settings_main_section_displayed_data">Montritaj datumoj</string>
+    <string name="settings_main_cards_title">Kartoj</string>
+    <string name="settings_main_daily_trends_title">Ĉiutagaj tendencoj</string>
+    <string name="settings_main_hourly_trends_title">Ĉiuhoraj tendencoj</string>
+    <!-- Also possible: ĉapo, paĝokapo -->
+    <string name="settings_main_header_details_title">Detaloj en kapo</string>
+    <string name="settings_main_section_options">Opcioj</string>
+    <string name="settings_main_threshold_lines_on_charts">Sojlaj linioj sur diagramoj</string>
+    <string name="settings_main_section_animations">Efektoj</string>
+    <string name="settings_main_background_animation_title">Fona movbildo</string>
+    <string name="settings_main_background_animation_enabled">Aktivigita</string>
+    <string name="settings_main_background_animation_disabled">Malaktivigita</string>
+    <string name="settings_main_gravity_sensor_switch">Gravita sentilo</string>
+    <string name="settings_main_cards_fade_in_switch">Maldissolvo de kartoj</string>
+    <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
+    <string name="settings_main_cards_other_element_animations_switch">Efectoj de aliaj elementoj</string>
     <string name="settings_notifications">Sciigoj</string>
-    <string name="settings_notifications_summary">Veteraj atentigoj, precipitaĵoj, prognozoj</string>
+    <string name="settings_notifications_summary">Veteraj atentigoj, precipitaĵo, prognozoj</string>
+    <string name="settings_notifications_alerts_title">Sciigo de veteraj atentigoj</string>
+    <string name="settings_notifications_precipitations_title">Sciigo de precipitaĵo</string>
+    <string name="settings_notifications_section_forecast">Prognozoj</string>
+    <string name="settings_notifications_forecast_today_title">Sciigo por hodiaŭa prognozoj</string>
+    <string name="settings_notifications_forecast_time_today_title">Sciiga horo por hodiaŭa prognozoj</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Sciigo por morgaŭa prognozoj</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Sciiga horo por morgaŭa prognozoj</string>
     <string name="settings_widgets">Fenestraĵoj &amp; Viva ekranfono</string>
     <string name="settings_widgets_live_wallpaper_title">Viva ekranfono</string>
     <string name="settings_widgets_notification_feels_like_switch">Usi sentotemperaturo</string>
@@ -403,7 +437,9 @@
     <!-- About -->
     <string name="about_app">Pri la apo</string>
     <string name="about_contact">Kontakto</string>
+    <string name="about_matrix">Matrix ĉambro</string>
     <string name="about_source_code">Fontkodo</string>
+    <string name="about_dependencies">Dependecoj</string>
     <string name="about_contributors">Kontribuantoj</string>
     <string name="about_translators">Tradukistoj</string>
     <!-- Weather condition text -->
@@ -452,4 +488,6 @@
     <string name="weather_kind_thunder">Tondro</string>
     <string name="weather_kind_thunderstorm">Fulmotondro</string>
     <string name="weather_kind_wind">Vento</string>
+    <string name="metno_weather_text_andthunder">$ kaj tondro</string>
+    <string name="null_data_text">N/A</string>
 </resources>
