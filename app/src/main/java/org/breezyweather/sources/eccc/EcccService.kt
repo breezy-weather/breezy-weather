@@ -55,6 +55,10 @@ class EcccService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
     )
 
+    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+        return location.countryCode.equals("CA", ignoreCase = true)
+    }
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -84,7 +88,7 @@ class EcccService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return location.countryCode.equals("CA", ignoreCase = true)
+        return isWeatherSupportedForLocation(location)
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null

@@ -48,6 +48,10 @@ class MetIeService @Inject constructor(
 
     override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
 
+    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+        return location.countryCode.equals("IE", ignoreCase = true)
+    }
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>

@@ -657,7 +657,11 @@ class RefreshHelper @Inject constructor(
 
         return searchService.requestLocationSearch(context, query).map { locationList ->
             // Rewrite all locations to point to selected weather source
-            locationList.map {
+            (if (service !is LocationSearchSource) {
+                // If we used the default location search source, we need to filter in case
+                // the source doesn't support some locations (such as country-specific sources)
+                locationList.filter { service.isWeatherSupportedForLocation(it) }
+            } else locationList).map {
                 it.copy(weatherSource = service.id)
             }
         }

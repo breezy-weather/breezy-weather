@@ -63,7 +63,7 @@ class DmiService @Inject constructor(
         )
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
-            location.countryCode == "DK" && !location.cityId.isNullOrEmpty()) {
+            location.countryCode.equals("DK", ignoreCase = true) && !location.cityId.isNullOrEmpty()) {
             mApi.getAlerts(location.cityId)
         } else {
             Observable.create { emitter ->

@@ -62,6 +62,10 @@ class BrightSkyService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
+    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+        return location.countryCode.equals("DE", ignoreCase = true)
+    }
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -126,7 +130,7 @@ class BrightSkyService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return location.countryCode.equals("DE", ignoreCase = true)
+        return isWeatherSupportedForLocation(location)
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null

@@ -47,6 +47,13 @@ interface MainWeatherSource : Source {
     val supportedFeaturesInMain: List<SecondaryWeatherSourceFeature>
 
     /**
+     * May be used when you don't have reverse geocoding implemented and you want to filter
+     * location results from default location search source to only include some countries
+     * for example
+     */
+    fun isWeatherSupportedForLocation(location: Location): Boolean = true
+
+    /**
      * Returns weather converted to Breezy Weather Weather object
      * @param ignoreFeatures List of features we request later to a secondary source. If your
      * weather source support them, you should ignore them (for example, not call an

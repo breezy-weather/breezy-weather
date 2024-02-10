@@ -58,6 +58,17 @@ class NwsService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
+    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+        return location.countryCode.equals("US", ignoreCase = true)
+                || location.countryCode.equals("PR", ignoreCase = true) // Puerto Rico
+                || location.countryCode.equals("VI", ignoreCase = true) // St Thomas Islands
+                || location.countryCode.equals("MP", ignoreCase = true) // Mariana Islands
+                || location.countryCode.equals("GU", ignoreCase = true) // Guam
+                || location.countryCode.equals("FM", ignoreCase = true) // Palikir
+                || location.countryCode.equals("PW", ignoreCase = true) // Melekeok
+                || location.countryCode.equals("AS", ignoreCase = true) // Pago Pago
+    }
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -114,14 +125,7 @@ class NwsService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return location.countryCode == "US"
-                || location.countryCode == "PR" // Puerto Rico
-                || location.countryCode == "VI" // St Thomas Islands
-                || location.countryCode == "MP" // Mariana Islands
-                || location.countryCode == "GU" // Guam
-                || location.countryCode == "FM" // Palikir
-                || location.countryCode == "PW" // Melekeok
-                || location.countryCode == "AS" // Pago Pago
+        return isWeatherSupportedForLocation(location)
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null
