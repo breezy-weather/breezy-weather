@@ -28,17 +28,17 @@ import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.sources.accu.preferences.AccuPortalPreference
-import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 class NwsService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ParameterizedLocationSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
+    ReverseGeocodingSource, ParameterizedLocationSource {
 
     override val id = "nws"
     override val name = "National Weather Service (NWS)"
@@ -149,6 +149,27 @@ class NwsService @Inject constructor(
 
         return nwsAlertsResult.map {
             convertSecondary(it)
+        }
+    }
+
+    // Reverse geocoding
+    override fun isUsable(location: Location): Boolean = true
+
+    override fun requestReverseGeocodingLocation(
+        context: Context,
+        location: Location
+    ): Observable<List<Location>> {
+        return mApi.getPoints(
+            userAgent,
+            location.latitude,
+            location.longitude
+        ).map {
+            if (it.properties == null) {
+                throw InvalidLocationException()
+            }
+            val locationList: MutableList<Location> = ArrayList()
+            locationList.add(convert(location, it.properties))
+            locationList
         }
     }
 

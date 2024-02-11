@@ -17,6 +17,7 @@
 package org.breezyweather.sources.nws
 
 import android.graphics.Color
+import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -29,13 +30,34 @@ import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.nws.json.NwsAlert
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsGridPointPeriod
 import org.breezyweather.sources.nws.json.NwsGridPointResult
+import org.breezyweather.sources.nws.json.NwsPointProperties
 import java.util.Locale
 import java.util.TimeZone
+
+fun convert(
+    location: Location,
+    locationProperties: NwsPointProperties
+): Location {
+    return Location(
+        latitude = locationProperties.relativeLocation?.geometry?.coordinates?.getOrNull(1) ?: location.latitude,
+        longitude = locationProperties.relativeLocation?.geometry?.coordinates?.getOrNull(0) ?: location.longitude,
+        timeZone = TimeZone.getTimeZone(locationProperties.timeZone),
+        countryCode = "US",
+        province = locationProperties.relativeLocation?.properties?.state,
+        provinceCode = locationProperties.relativeLocation?.properties?.state,
+        city = locationProperties.relativeLocation?.properties?.city ?: "",
+        weatherSource = "nws",
+        airQualitySource = location.airQualitySource,
+        pollenSource = location.pollenSource,
+        minutelySource = location.minutelySource,
+        alertSource = location.alertSource,
+        normalsSource = location.normalsSource
+    )
+}
 
 fun convert(
     forecastResult: NwsGridPointResult,

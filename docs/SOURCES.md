@@ -144,7 +144,7 @@ Legend:
 | Sources               | China | NWS     | Bright Sky | ECCC    | SMHI    | MET Éireann |
 |-----------------------|-------|---------|------------|---------|---------|-------------|
 | **Search**            | ✅³    | Default | Default    | Default | Default | Default     |
-| **Reverse geocoding** | ✅³    | ✅       | ✅²         | ✅²      | ✅²      | ❌²          |
+| **Reverse geocoding** | ✅³    | ✅       | ❌²         | ✅²      | ❌²      | ❌²          |
 
 * ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
