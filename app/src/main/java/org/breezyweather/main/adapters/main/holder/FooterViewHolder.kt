@@ -112,23 +112,23 @@ class FooterViewHolder(
         val creditsText = StringBuilder()
         if (location.weather != null) {
             creditsText.append(
-                context.getString(R.string.weather_data_by)
-                    .replace("$", credits["weather"] ?: context.getString(R.string.null_data_text))
+                context.getString(
+                    R.string.weather_data_by,
+                    credits["weather"] ?: context.getString(R.string.null_data_text)
+                )
             )
             if (location.weather.minutelyForecast.isNotEmpty()
                 && !credits["minutely"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
-                    context.getString(R.string.weather_minutely_data_by)
-                        .replace("$", credits["minutely"]!!)
+                    context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
                 )
             }
             if (location.weather.alertList.isNotEmpty()
                 && !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
-                            context.getString(R.string.weather_alert_data_by)
-                                .replace("$", credits["alert"]!!)
+                            context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
                 )
             }
             // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case
@@ -137,41 +137,41 @@ class FooterViewHolder(
                     if (credits["airQuality"] == credits["pollen"]) {
                         creditsText.append(
                             "\n" +
-                            context.getString(R.string.weather_air_quality_and_pollen_data_by)
-                                .replace("$", credits["airQuality"]!!)
+                            context.getString(
+                                R.string.weather_air_quality_and_pollen_data_by,
+                                credits["airQuality"]!!
+                            )
                         )
                     } else {
                         creditsText.append(
                             "\n" +
-                            context.getString(R.string.weather_air_quality_data_by)
-                                .replace("$", credits["airQuality"]!!) +
+                            context.getString(
+                                R.string.weather_air_quality_data_by, credits["airQuality"]!!
+                            ) +
                             "\n" +
-                            context.getString(R.string.weather_pollen_data_by)
-                                .replace("$", credits["pollen"]!!)
+                            context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
                         )
                     }
                 } else {
                     creditsText.append(
                         "\n" +
-                        context.getString(R.string.weather_air_quality_data_by)
-                            .replace("$", credits["airQuality"]!!)
+                        context.getString(
+                            R.string.weather_air_quality_data_by, credits["airQuality"]!!
+                        )
                     )
                 }
             } else {
                 if (!credits["pollen"].isNullOrEmpty()) {
                     creditsText.append(
                         "\n" +
-                        context.getString(R.string.weather_pollen_data_by)
-                            .replace("$", credits["pollen"]!!)
+                        context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
                     )
                 }
             }
             if (location.weather.normals?.month != null
                 && !credits["normals"].isNullOrEmpty()) {
                 creditsText.append(
-                    "\n" +
-                            context.getString(R.string.weather_normals_data_by)
-                                .replace("$", credits["normals"]!!)
+                    "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
                 )
             }
         }

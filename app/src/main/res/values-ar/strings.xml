@@ -114,7 +114,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
     <string name="location_dialog_failed_to_locate_action_select_source">إختيار خدمة الموقع</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً ”$“</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً ”%s“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
     <string name="widget_label_show_widget_card_alpha">الشفافية</string>
@@ -319,7 +319,7 @@
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
     <string name="widget_style_pixel">بكسل</string>
-    <string name="ephemeris_moonrise_at">طلوع القمر عند $</string>
+    <string name="ephemeris_moonrise_at">طلوع القمر عند %s</string>
     <string name="wind_direction_short_NW">ش غ</string>
     <string name="unit_cm_voice">السنتيمترات</string>
     <string name="location_swipe_to_delete">يمكنك التمرير إلى اليسار لحذف هذا العنصر</string>
@@ -331,13 +331,13 @@
     <string name="unit_mgpcum">ملغم / متر مكعب</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
     <string name="uv_index_8_10">مرتفع جدا</string>
-    <string name="location_results_by">نتائج الموقع بواسطة $</string>
+    <string name="location_results_by">نتائج الموقع بواسطة %s</string>
     <string name="unit_mmph">مم / ساعة</string>
     <string name="wind_direction_short_SE">ج ش</string>
     <string name="air_quality_co_voice">أول أكسيد الكربون</string>
     <string name="air_quality_level_3_description">وصل الهواء إلى مستوى عال من التلوث وهو غير صحي للمجموعات الحساسة. قلل الوقت الذي تقضيه في الخارج إذا كنت تشعر بأعراض مثل صعوبة التنفس أو تهيج الحلق.</string>
     <string name="air_quality_pm25_voice">PM اثنين فاصلة خمسة</string>
-    <string name="ephemeris_sunset_at">غروب الشمس في $</string>
+    <string name="ephemeris_sunset_at">غروب الشمس في %s</string>
     <string name="widget_custom_subtitle_keyword_cw_description">الطقس الحالي</string>
     <string name="action_back">رجوع</string>
     <string name="widget_material_you_forecast">المواد أنت - التنبؤ</string>
@@ -356,7 +356,7 @@
     <string name="air_quality_level_1_description">جودة الهواء مثالية لمعظم الأفراد ؛ استمتع بأنشطتك العادية في الهواء الطلق.</string>
     <string name="air_quality_level_4_description">يمكن أن تشعر المجموعات الحساسة بالآثار الصحية على الفور. قد يواجه الأفراد الأصحاء صعوبة في التنفس وتهيج الحلق اثناء التعرض له لفترات طويلة. قلل من النشاط في الهواء الطلق.</string>
     <string name="air_quality_level_5">غير صحي للغاية</string>
-    <string name="ephemeris_sunrise_at">شروق الشمس عند $</string>
+    <string name="ephemeris_sunrise_at">شروق الشمس عند %s</string>
     <string name="dialog_permissions_location_title">الوصول إلى معلومات الموقع</string>
     <string name="widget_custom_subtitle_keyword_ut_description">وقت التحديث</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -376,7 +376,7 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">التناظريه</string>
     <string name="settings_background_updates_section_troubleshoot">استكشاف الاخطاء</string>
-    <string name="weather_data_by">البيانات بواسطة $</string>
+    <string name="weather_data_by">البيانات بواسطة %s</string>
     <string name="widget_custom_subtitle_keyword_atd_description">الشعور الحالي لدرجة الحرارة (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">الشعور الحالي لدرجة الحرارة (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">الرياح الحالية</string>
@@ -420,8 +420,8 @@
     <string name="air_quality_so2_info_consequences">يرتبط التعرض لـ SO₂ بدخول اصحاب الربو للمستشفى وزيارات غرفة الطوارئ.</string>
     <string name="air_quality_co_info_title">أول أكسيد الكربون (CO)</string>
     <string name="air_quality_co_info_introduction">أول أكسيد الكربون (CO) هو غاز سام قابل للاشتعال عديم اللون والرائحة والطعم وغير مهيج.</string>
-    <string name="ephemeris_moonset_at">غروب القمر في $</string>
-    <string name="weather_air_quality_and_pollen_data_by">جودة الهواء وبيانات حبوب اللقاح بواسطة $</string>
+    <string name="ephemeris_moonset_at">غروب القمر في %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">جودة الهواء وبيانات حبوب اللقاح بواسطة %s</string>
     <string name="weather_api_limit_reached_title">تم الوصول إلى الحد الأقصى لطلبات واجهة برمجة التطبيقات</string>
     <string name="weather_api_limit_reached_content">للتغلب على الحد ، أضف مفتاح API الخاص بك.</string>
     <string name="weather_api_unauthorized_title">الوصول إلى واجهة برمجة التطبيقات غير مصرح به</string>
@@ -462,7 +462,7 @@
     <string name="air_quality_co_info_consequences">ينتشر أول أكسيد الكربون عبر أنسجة الرئة وفي مجرى الدم ، مما يجعل من الصعب على خلايا الجسم الارتباط بالأكسجين. هذا النقص في الأكسجين يضر الأنسجة والخلايا. يمكن أن يسبب التعرض لأول أكسيد الكربون صعوبات في التنفس والإرهاق والدوخة وأعراض أخرى تشبه أعراض الأنفلونزا. التعرض لمستويات عالية من أول أكسيد الكربون يمكن أن يكون مميتا.</string>
     <string name="air_quality_co_info_origin">يتم إنتاجه عن طريق الاحتراق غير الكامل للوقود الكربوني مثل الخشب والبنزين والفحم والغاز الطبيعي والكيروسين في المواقد البسيطة والحرائق المفتوحة ومصابيح الفتيل والأفران والمدافئ. المصدر السائد لأول أكسيد الكربون (CO) في الهواء المحيط هو من السيارات.</string>
     <string name="weather_api_unauthorized_content">في بعض مصادر الطقس ، تحتاج إلى توفير مفتاح API الخاص بك. إذا كنت قد قدمت واحدة بالفعل ، فيرجى التحقق مرة أخرى من مفتاح واجهة برمجة التطبيقات الذي قدمته.</string>
-    <string name="location_search_no_results">$1 لا يمكن العثور على $2</string>
+    <string name="location_search_no_results">%1$s لا يمكن العثور على %2$s</string>
     <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددا للغاية. بدلا من ذلك ، يمكنك تجربة مصدر بيانات آخر قد ينتج عنه نتائج بحث مختلفة عن الموقع.</string>
     <string name="dialog_permissions_notification_title">ابق على اطلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتمكين الإشعارات حول تنبيهات الطقس ، أو حدد لاحقا في الإعدادات.</string>
@@ -569,7 +569,7 @@
     <string name="temperature_degree_day_cooling">يوم درجة البرودة</string>
     <string name="temperature_degree_day_heating">درجة الحرارة لتسخين منزلك</string>
     <string name="settings_weather_source_open_weather_one_call_version">إصدار OneCall</string>
-    <string name="settings_background_updates_worker_info_summary">آخر تشغيل: $</string>
+    <string name="settings_background_updates_worker_info_summary">آخر تشغيل: %s</string>
     <string name="action_help_me_choose">ساعدني في الاختيار</string>
     <string name="pollen_alder">ألدر</string>
     <string name="pollen_birch">البتولا</string>
@@ -586,11 +586,11 @@
     <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
     <string name="settings_weather_source">مصدر الطقس</string>
-    <string name="weather_air_quality_data_by">بيانات جودة الهواء $</string>
-    <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار $</string>
-    <string name="weather_minutely_data_by">بيانات الترسبات دقيقة بدقية بواسطة $</string>
+    <string name="weather_air_quality_data_by">بيانات جودة الهواء %s</string>
+    <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار %s</string>
+    <string name="weather_minutely_data_by">بيانات الترسبات دقيقة بدقية بواسطة %s</string>
     <string name="weather_message_invalid_location">الموقع غير صالح ، يرجى حذفه وإعادة إضافته</string>
-    <string name="weather_alert_data_by">بيانات التنبيه حسب $</string>
+    <string name="weather_alert_data_by">بيانات التنبيه حسب %s</string>
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
     <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
@@ -601,7 +601,7 @@
     <string name="settings_weather_sources_default_location_search">المصدر الافتراضي للبحث عن الموقع</string>
     <string name="about_privacy_policy">سياسة الخصوصية</string>
     <string name="about_contact">الاتصال</string>
-    <string name="location_resident_location_summaryOn">مفعل مخفي في حدود $ من الموقع الحالي.</string>
+    <string name="location_resident_location_summaryOn">مفعل مخفي في حدود %s من الموقع الحالي.</string>
     <string name="common_weather_text_rain_moderate">أمطر متوسطة</string>
     <string name="common_weather_text_rain_snow_mixed_light">مطر خفيف وثلج مجتمعان</string>
     <string name="common_weather_text_rain_heavy">مطر غزير</string>
@@ -640,7 +640,7 @@
     <string name="temperature_average_short">المتوسط</string>
     <string name="temperature_normal_short">عادي</string>
     <string name="temperature_normals">معايير درجة الحرارة</string>
-    <string name="weather_normals_data_by">بيانات درجة الحرارة العادية بواسطة $</string>
+    <string name="weather_normals_data_by">بيانات درجة الحرارة العادية بواسطة %s</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_widgets_gadgets_title">الأدوات</string>
     <string name="settings_widgets_gadgetbridge_switch">إرسال بيانات الطقس إلى GadgetBridge</string>

@@ -82,10 +82,12 @@ fun LocationPreference(
                 title = stringResource(R.string.location_resident_location),
                 iconId = R.drawable.ic_tag_plus,
                 summary = { context, it ->
-                    context.getString(if (it) {
-                        R.string.location_resident_location_summaryOn
-                    } else R.string.location_resident_location_summaryOff)
-                        .replace("$", SettingsManager.getInstance(context).distanceUnit.getValueText(context, 20000f))
+                    if (it) {
+                        context.getString(
+                            R.string.location_resident_location_summaryOn,
+                            SettingsManager.getInstance(context).distanceUnit.getValueText(context, 20000f)
+                        )
+                    } else context.getString(R.string.location_resident_location_summaryOff)
                 },
                 checked = location.isResidentPosition,
                 card = false,

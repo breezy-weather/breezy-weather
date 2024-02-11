@@ -175,14 +175,14 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_last_quarter">Last quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-    <string name="ephemeris_sunrise_at">Sunrise at $</string>
-    <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Sunset at $</string>
-    <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Moonrise at $</string>
-    <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Moonset at $</string>
-    <!-- $ = time. -->
+    <!-- Sunrise at 05:54 -->
+    <string name="ephemeris_sunrise_at">Sunrise at %s</string>
+    <!-- Sunset at 17:54 -->
+    <string name="ephemeris_sunset_at">Sunset at %s</string>
+    <!-- Moonrise at 05:54 -->
+    <string name="ephemeris_moonrise_at">Moonrise at %s</string>
+    <!-- Moonset at 17:54 -->
+    <string name="ephemeris_moonset_at">Moonset at %s</string>
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
@@ -204,14 +204,13 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- Weather sources -->
-    <string name="weather_data_by">Data by $</string>
-    <string name="weather_air_quality_data_by">Air quality data by $</string>
-    <string name="weather_pollen_data_by">Pollen data by $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
-    <string name="weather_minutely_data_by">Precipitation minute by minute data by $</string>
-    <string name="weather_alert_data_by">Alert data by $</string>
-    <string name="weather_normals_data_by">Temperature normals data by $</string>
-    <!-- $ = weather data source -->
+    <string name="weather_data_by">Data by %s</string>
+    <string name="weather_air_quality_data_by">Air quality data by %s</string>
+    <string name="weather_pollen_data_by">Pollen data by %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by %s</string>
+    <string name="weather_minutely_data_by">Precipitation minute by minute data by %s</string>
+    <string name="weather_alert_data_by">Alert data by %s</string>
+    <string name="weather_normals_data_by">Temperature normals data by %s</string>
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
@@ -247,8 +246,8 @@
     <string name="location_resident">Resident location</string>
     <string name="location_search_weather_source">Weather source</string>
     <string name="location_search_change_weather_source">Change weather source</string>
-    <string name="location_results_by">Location results by $</string>
-    <!-- $ = location source -->
+    <!-- Ex: Location results by Open-Meteo -->
+    <string name="location_results_by">Location results by %s</string>
     <string name="location_message_added">Location added</string>
     <string name="location_message_deleted">Location deleted</string>
     <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
@@ -263,15 +262,15 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Select location service</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “%s”</string>
     <string name="location_search_placeholder">Search for a location…</string>
     <!-- Example: AccuWeather can’t find djglidfjg -->
-    <string name="location_search_no_results">$1 can’t find $2</string>
+    <string name="location_search_no_results">%1$s can’t find %2$s</string>
     <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another weather data source which may produce different location search results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <string name="location_resident_location">Resident location</string>
-    <!-- $ = 20 km, will be replaced by the selected unit by the user -->
-    <string name="location_resident_location_summaryOn">Enabled. Hidden when within $ of current location.</string>
+    <!-- Enabled. Hidden when within 20 km of current location. -->
+    <string name="location_resident_location_summaryOn">Enabled. Hidden when within %s of current location.</string>
     <string name="location_resident_location_summaryOff">Disabled. Location always available.</string>
     <!-- To be deprecated -->
     <string name="location_resident_message">Set as resident city</string>
@@ -439,12 +438,12 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Couldn’t open device settings.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Battery optimization is already disabled.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Manufacturer specific instructions</string>
-    <!-- $ = Don’t kill my app! -->
+    <!-- Keep "Don’t kill my app!" in English -->
     <string name="settings_background_updates_dont_kill_my_app_summary">Some manufacturers have additional app restrictions that kill background services. The Don’t kill my app! website has info on how to fix it.</string>
     <!-- Worker is a technical term, you can switch to “Process” if that makes more sense in your language -->
     <string name="settings_background_updates_worker_info_title">Worker info</string>
-    <!-- $ is a date, when the last worker job ran -->
-    <string name="settings_background_updates_worker_info_summary">Last run: $</string>
+    <!-- Last run: 2024-02-11 -->
+    <string name="settings_background_updates_worker_info_summary">Last run: %s</string>
     <string name="settings_background_updates_worker_info_enqueued" translatable="false">Enqueued</string>
     <string name="settings_background_updates_worker_info_finished" translatable="false">Finished</string>
     <string name="settings_background_updates_worker_info_running" translatable="false">Running</string>

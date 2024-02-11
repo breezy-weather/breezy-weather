@@ -125,8 +125,8 @@
     <string name="air_quality_co_info_introduction">Угљен-моноксид (CO) је отрован, запаљив гас који је безбојан, без мириса, укуса и не изазива иритацију.</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Растући месечев срп</string>
     <string name="air_quality_co_info_origin">Настаје непотпуним сагоревањем угљеничних горива као што су дрво, бензин, угаљ, природни гас и керозин у једноставним пећима, отвореним ватрама, фитиљ лампама, пећима, каминима. Преовлађујући извор угљен-моноксида (CO) у амбијенталном ваздуху је из моторних возила.</string>
-    <string name="ephemeris_moonrise_at">Излазак месеца у $</string>
-    <string name="ephemeris_moonset_at">Залазак месеца у $</string>
+    <string name="ephemeris_moonrise_at">Излазак месеца у %s</string>
+    <string name="ephemeris_moonset_at">Залазак месеца у %s</string>
     <string name="hours_of_sun">Сунчани сати</string>
     <string name="visibility">Видљивост</string>
     <string name="dew_point">Тачка росе</string>
@@ -203,7 +203,7 @@
     <string name="common_weather_text_drizzle_light">Слаба росуља</string>
     <string name="common_weather_text_drizzle_moderate">Умерена росуља</string>
     <string name="message_source_not_installed_error_content">Овај извор више није доступан; избришите локацију и поново је креирајте из другог извора.</string>
-    <string name="settings_background_updates_worker_info_summary">Последње покретање: $</string>
+    <string name="settings_background_updates_worker_info_summary">Последње покретање: %s</string>
     <string name="settings_notifications_alerts_title">Обавештења о временским упозорењима</string>
     <string name="unit_km_voice">Километри</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Омогући информације о локацији</string>
@@ -229,7 +229,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
-    <string name="location_results_by">Резултати за локације од $</string>
+    <string name="location_results_by">Резултати за локације од %s</string>
     <string name="location_message_permission_missing">Недостаје дозвола за приступ локацији</string>
     <string name="settings_debug">Отклањање грешака</string>
     <string name="setting_weather_source_accu_days">Дани</string>
@@ -249,7 +249,7 @@
     <string name="location_none_added_yet_instructions">Још увек није додата ниједна локација. Додирните иконицу за претраживање да бисте ручно додали локацију или додајте своју тренутну локацију помоћу плутајућег дугмета.</string>
     <string name="location_resident">Локација становања</string>
     <string name="location_message_reverse_geocoding_failed">Извор времена није успео да пронађе одговарајућу локацију</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Додај локацију ручно и избриши „$“</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Додај локацију ручно и избриши „%s“</string>
     <string name="location_service_native">Изворни API</string>
     <string name="action_choose_weather_source">Изабери извор времена</string>
     <string name="action_add_current_location">Додај тренутну локацију</string>
@@ -347,7 +347,7 @@
     <string name="pollen_olive">Маслина</string>
     <string name="pollen_ragweed">Амброзија</string>
     <string name="pollen_mold">Буђ</string>
-    <string name="weather_normals_data_by">Подаци о температурним нормама од $</string>
+    <string name="weather_normals_data_by">Подаци о температурним нормама од %s</string>
     <string name="pollen_level_0">Нема</string>
     <string name="weather_api_limit_reached_content">Да бисте заобишли ограничење, додајте свој API кључ.</string>
     <string name="weather_api_key_required_missing_content">Да бисте користили овај извор, потребно је да обезбедите API кључ.</string>
@@ -358,7 +358,7 @@
     <string name="weather_source_accu_preference_hours_1">1 сат</string>
     <string name="location_swipe_to_delete">Можете превући налево да бисте избрисали ову ставку</string>
     <string name="location_message_search_failed">Претрага локације није успела</string>
-    <string name="location_search_no_results">$1 не може пронаћи $2</string>
+    <string name="location_search_no_results">%1$s не може пронаћи %2$s</string>
     <string name="location_search_no_results_advice">Уверите се да је Ваша претрага исправно написана и да није превише специфична. Алтернативно, можете испробати други извор података о времену који може дати различите резултате претраге локације.</string>
     <string name="dialog_permissions_location_title">Приступ информацијама о локацији</string>
     <string name="dialog_permissions_notification_content">Додирните овде да омогућите обавештења о временским упозорењима или одлучите касније у подешавањима.</string>
@@ -468,7 +468,7 @@
     <string name="unit_lpsqmph_voice">Литри по квадратном метру по сату</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="location_resident_location_summaryOn">Омогућено. Сакривено, када је унутар $ од тренутне локације.</string>
+    <string name="location_resident_location_summaryOn">Омогућено. Сакривено, када је унутар %s од тренутне локације.</string>
     <string name="action_refresh">Освежи</string>
     <string name="action_restart">Рестартуј</string>
     <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о отказивању апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>
@@ -491,8 +491,8 @@
     <string name="ephemeris_moon_phase_waxing_gibbous">Растућа месечева грба</string>
     <string name="ephemeris_moon_phase_last_quarter">Последња четврт</string>
     <string name="ephemeris_moon_phase_waning_crescent">Опадајући месечев срп</string>
-    <string name="ephemeris_sunrise_at">Излазак сунца у $</string>
-    <string name="ephemeris_sunset_at">Залазак сунца у $</string>
+    <string name="ephemeris_sunrise_at">Излазак сунца у %s</string>
+    <string name="ephemeris_sunset_at">Залазак сунца у %s</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Географска ширина</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Географска дужина</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Недеља (кратко)</string>
@@ -596,7 +596,7 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_message_secondary_data_refresh_failed">Освежавање података о времену за секундарни извор времена није успело</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
-    <string name="weather_data_by">Подаци од $</string>
+    <string name="weather_data_by">Подаци од %s</string>
     <string name="weather_message_invalid_location">Неважећа локација, избришите је и поново додајте</string>
     <string name="weather_refresh_skipped_already_recently_updated">Већ недавно ажурирано</string>
     <string name="action_see_more">Види више</string>
@@ -604,11 +604,11 @@
     <string name="action_back">Назад</string>
     <string name="action_save">Сачувај</string>
     <string name="action_learn_more">Сазнај више</string>
-    <string name="weather_air_quality_data_by">Подаци о квалитету ваздуха од $</string>
-    <string name="weather_pollen_data_by">Подаци о алергенима од $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Подаци о квалитету ваздуха и алергенима од $</string>
-    <string name="weather_minutely_data_by">Падавине из минута у минут од $</string>
-    <string name="weather_alert_data_by">Подаци упозорења од $</string>
+    <string name="weather_air_quality_data_by">Подаци о квалитету ваздуха од %s</string>
+    <string name="weather_pollen_data_by">Подаци о алергенима од %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Подаци о квалитету ваздуха и алергенима од %s</string>
+    <string name="weather_minutely_data_by">Падавине из минута у минут од %s</string>
+    <string name="weather_alert_data_by">Подаци упозорења од %s</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Миље на сат</string>
     <string name="unit_ftps_voice">Стопе у секунди</string>

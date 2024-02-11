@@ -213,7 +213,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Vérifiez les permissions de localisation</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activez les informations de localisation</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Sélectionnez un service de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « $ »</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « %s »</string>
     <string name="weather_api_limit_reached_title">Limite de requêtes API atteinte</string>
     <string name="weather_api_limit_reached_content">Pour contourner la limite, ajoutez votre propre clé API.</string>
     <string name="weather_api_unauthorized_title">Accès API non autorisé</string>
@@ -281,7 +281,7 @@
 
     <string name="location_search_placeholder">Rechercher une localisation…</string>
     <string name="location_current_not_found_yet">Pas encore localisé…</string>
-    <string name="location_search_no_results">$1 n’a pu trouver aucun résultat pour $2</string>
+    <string name="location_search_no_results">%1$s n’a pu trouver aucun résultat pour %2$s</string>
     <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de données météo qui peut produire des résultats de recherche d’emplacements différents.</string>
 
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
@@ -311,7 +311,7 @@
     <string name="notification_precipitation_stopping_desc">Fin prévue à %s</string>
 
     <string name="location_resident_location">Emplacement de résidence</string>
-    <string name="location_resident_location_summaryOn">Actif. Masqué si dans un rayon de $ de l’emplacement actuel.</string>
+    <string name="location_resident_location_summaryOn">Actif. Masqué si dans un rayon de %s de l’emplacement actuel.</string>
     <string name="location_resident_location_summaryOff">Inactif. Emplacement toujours disponible.</string>
     <string name="location_resident_message">Défini en tant que ville de résidence</string>
     <string name="location_resident_dialog">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
@@ -374,24 +374,24 @@
     <string name="air_quality_co_info_introduction">Le monoxyde de carbone (CO) est un gaz toxique et inflammable, incolore, inodore, insipide et non irritant.</string>
     <string name="air_quality_co_info_origin">Il est produit par la combustion incomplète de combustibles carbonés tels que le bois, l’essence, le charbon, le gaz naturel et le kérosène dans des poêles simples, des feux ouverts, des lampes à mèche, des fours et des cheminées. La principale source de monoxyde de carbone (CO) dans l’air ambiant provient des véhicules à moteur.</string>
     <string name="air_quality_co_info_consequences">Le monoxyde de carbone se diffuse à travers les tissus pulmonaires et dans la circulation sanguine, empêchant les cellules de l’organisme de se lier à l’oxygène. Ce manque d’oxygène endommage les tissus et les cellules. L’exposition au monoxyde de carbone peut entraîner des difficultés respiratoires, de l’épuisement, des vertiges et d’autres symptômes semblables à ceux de la grippe. L’exposition à des niveaux élevés de monoxyde de carbone peut être mortelle.</string>
-    <string name="ephemeris_sunrise_at">Lever de soleil à $</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Coucher de soleil à $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Lever de lune à $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Coucher de lune à $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunrise_at">Lever de soleil à %s</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Coucher de soleil à %s</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Lever de lune à %s</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Coucher de lune à %s</string> <!-- $ = time. -->
     <string name="precipitation_none">Pas de précipitations</string>
     <string name="precipitation_between_time">Précipitations entre %1$s et %2$s</string> <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
-    <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
-    <string name="weather_air_quality_data_by">Données de qualité de l’air par $</string>
-    <string name="weather_pollen_data_by">Données de pollen par $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par $</string>
-    <string name="weather_minutely_data_by">Données de précipitations détaillées par $</string>
-    <string name="weather_alert_data_by">Données d’alertes par $</string>
-    <string name="weather_normals_data_by">Données des normales de température par $</string>
-    <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location source -->
+    <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
+    <string name="weather_air_quality_data_by">Données de qualité de l’air par %s</string>
+    <string name="weather_pollen_data_by">Données de pollen par %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par %s</string>
+    <string name="weather_minutely_data_by">Données de précipitations détaillées par %s</string>
+    <string name="weather_alert_data_by">Données d’alertes par %s</string>
+    <string name="weather_normals_data_by">Données des normales de température par %s</string>
+    <string name="location_results_by">Résultats d’emplacement par %s</string> <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>
     <string name="settings_icon_packs_weather_icon_grey">Icône grise</string>
@@ -449,7 +449,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
-    <string name="settings_background_updates_worker_info_summary">Dernière exécution : $</string>
+    <string name="settings_background_updates_worker_info_summary">Dernière exécution : %s</string>
     <string name="settings_location">Localisation</string>
     <string name="settings_weather_sources_default_location_search">Source de recherche d’emplacements par défaut</string>
     <string name="settings_weather_sources_current_location">Source météo pour ma localisation</string>

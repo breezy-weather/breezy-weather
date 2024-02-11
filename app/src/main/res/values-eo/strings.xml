@@ -150,13 +150,13 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Lasta ĝibo</string>
     <string name="ephemeris_moon_phase_last_quarter">Lasta duono</string>
     <string name="ephemeris_moon_phase_waning_crescent">Lasta arko</string>
-    <string name="ephemeris_sunrise_at">Sunleviĝo je $</string>
+    <string name="ephemeris_sunrise_at">Sunleviĝo je %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Sunsubiro je $</string>
+    <string name="ephemeris_sunset_at">Sunsubiro je %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Lunleviĝo je $</string>
+    <string name="ephemeris_moonrise_at">Lunleviĝo je %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Lunsubiro je $</string>
+    <string name="ephemeris_moonset_at">Lunsubiro je %s</string>
     <!-- $ = time. -->
     <!-- Other weather details vocabulary -->
     <string name="daytime">Tagtempo</string>
@@ -179,13 +179,13 @@
     <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- Weather sources -->
-    <string name="weather_data_by">Datumoj de $</string>
-    <string name="weather_air_quality_data_by">Aerkvalito datumoj de $</string>
-    <string name="weather_pollen_data_by">Poleno datumoj de $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Aerkvalito kaj poleno datumoj de $</string>
-    <string name="weather_minutely_data_by">Ĉiuminutaj precipitaĵoj datumoj de $</string>
-    <string name="weather_alert_data_by">Atentigo datumoj de $</string>
-    <string name="weather_normals_data_by">Normalaj temperaturoj datumoj de $</string>
+    <string name="weather_data_by">Datumoj de %s</string>
+    <string name="weather_air_quality_data_by">Aerkvalito datumoj de %s</string>
+    <string name="weather_pollen_data_by">Poleno datumoj de %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Aerkvalito kaj poleno datumoj de %s</string>
+    <string name="weather_minutely_data_by">Ĉiuminutaj precipitaĵoj datumoj de %s</string>
+    <string name="weather_alert_data_by">Atentigo datumoj de %s</string>
+    <string name="weather_normals_data_by">Normalaj temperaturoj datumoj de %s</string>
     <!-- $ = weather data source -->
     <string name="settings_weather_source_portal">Portalo</string>
     <string name="setting_weather_source_accu_days">Tagoj</string>
@@ -208,7 +208,7 @@
     <string name="location_resident">Loĝanta loko</string>
     <string name="location_search_weather_source">Veterfonto</string>
     <string name="location_search_change_weather_source">Ŝangî la veterfonton</string>
-    <string name="location_results_by">Rezultoj de lokaĵoj de $</string>
+    <string name="location_results_by">Rezultoj de lokaĵoj de %s</string>
     <!-- $ = location source -->
     <string name="location_message_added">Loko aldonita</string>
     <string name="location_message_deleted">Loko forigita</string>
@@ -306,7 +306,7 @@
     <string name="settings_appearance_summary">Lingvo, malhela reĝimo, pakoj de bildsimboloj, unuoj</string>
     <string name="settings_appearance_language_title">Lingvo</string>
     <string name="settings_appearance_dark_mode_title">Malhela reĝimo</string>
-    <string name="settings_appearance_dark_mode_locations_title">Tago / Noto reĝimo por lokoj</string>
+    <string name="settings_appearance_dark_mode_locations_title">Tago / Nokto reĝimo por lokoj</string>
     <string name="settings_appearance_icon_pack_title">Pako de bildsimboloj</string>
     <string name="settings_icon_packs_title">Pakoj de bildsimboloj</string>
     <string name="settings_icon_packs_check_details">Kontroli detaloj</string>

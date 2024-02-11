@@ -115,7 +115,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">위치 권한 확인</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">위치 정보 사용</string>
     <string name="location_dialog_failed_to_locate_action_select_source">위치 공급자 선택</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">위치를 직접 추가하고 “$” 삭제</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">위치를 직접 추가하고 “%s” 삭제</string>
     <string name="widget_label_view_style">보이는 스타일</string>
     <string name="widget_label_show_widget_card">배경색</string>
     <string name="widget_label_show_widget_card_alpha">투명도</string>
@@ -316,7 +316,7 @@
     <string name="unit_h_voice">시간</string>
     <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
-    <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 $ 제공</string>
+    <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 %s 제공</string>
     <string name="action_location_list">위치 목록</string>
     <string name="action_choose_weather_source">날씨 제공 업체 선택</string>
     <string name="action_add_from_map">지도에서 추가</string>
@@ -366,7 +366,7 @@
     <string name="weather_source_accu_preference_hours_72">72시간</string>
     <string name="weather_source_accu_preference_hours_120">120시간</string>
     <string name="weather_source_accu_preference_hours_240">240시간</string>
-    <string name="location_results_by">$ 제공 위치 결과</string>
+    <string name="location_results_by">%s 제공 위치 결과</string>
     <string name="location_message_permission_missing">위치 접근 권한 없음</string>
     <string name="settings_background_updates_summary">새로고침 간격, 문제 해결</string>
     <string name="settings_widgets_notification_style_title">스타일</string>
@@ -376,11 +376,11 @@
     <string name="about_contribution_WangDaYeeeeee">기존 Geometric Weather 프로젝트 개발자</string>
     <string name="wind_direction_short_variable">다양</string>
     <string name="wind_direction_short_N">북</string>
-    <string name="ephemeris_sunrise_at">$에 일출</string>
-    <string name="ephemeris_sunset_at">$에 일몰</string>
-    <string name="ephemeris_moonrise_at">$에 월출</string>
-    <string name="ephemeris_moonset_at">$에 월몰</string>
-    <string name="weather_data_by">$ 제공</string>
+    <string name="ephemeris_sunrise_at">%s에 일출</string>
+    <string name="ephemeris_sunset_at">%s에 일몰</string>
+    <string name="ephemeris_moonrise_at">%s에 월출</string>
+    <string name="ephemeris_moonset_at">%s에 월몰</string>
+    <string name="weather_data_by">%s 제공</string>
     <string name="weather_source_openweather_version_2_5">버전 2.5</string>
     <string name="weather_source_openweather_version_3_0">버전 3.0</string>
     <string name="locations">위치</string>

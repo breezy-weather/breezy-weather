@@ -117,8 +117,10 @@ fun BackgroundSettingsScreen(
             PreferenceView(
                 title = context.getString(id),
                 summary = if (SettingsManager.getInstance(context).weatherUpdateLastTimestamp > 0) {
-                    context.getString(R.string.settings_background_updates_worker_info_summary)
-                        .replace("$", Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp).getFormattedDate(pattern = "yyyy-MM-dd HH:mm"))
+                    context.getString(
+                        R.string.settings_background_updates_worker_info_summary,
+                        Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp).getFormattedDate(pattern = "yyyy-MM-dd HH:mm")
+                    )
                 } else null
             ) {
                 context.startActivity(Intent(context, WorkerInfoActivity::class.java))

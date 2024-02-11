@@ -142,7 +142,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">检查位置权限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
     <string name="location_dialog_failed_to_locate_action_select_source">选择位置服务源</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“%s”</string>
     <string name="weather_api_limit_reached_title">达到 API 请求次数上限</string>
     <string name="weather_api_limit_reached_content">要绕过此限制，请添加你自己的 API 密钥。</string>
     <string name="weather_api_unauthorized_title">API 访问认证未通过</string>
@@ -224,10 +224,10 @@
     <string name="air_quality_no2_voice">二氧化氮</string>
     <string name="air_quality_o3_voice">臭氧</string>
     <string name="air_quality_co_voice">一氧化碳</string>
-    <string name="ephemeris_sunrise_at">$日出</string>
-    <string name="ephemeris_sunset_at">$日落</string>
-    <string name="ephemeris_moonrise_at">$月出</string>
-    <string name="ephemeris_moonset_at">$月落</string>
+    <string name="ephemeris_sunrise_at">%s日出</string>
+    <string name="ephemeris_sunset_at">%s日落</string>
+    <string name="ephemeris_moonrise_at">%s月出</string>
+    <string name="ephemeris_moonset_at">%s月落</string>
     <string name="precipitation_none">无降水</string>
     <string name="precipitation_between_time">%1$s至%2$s间存在降水</string>
     <string name="action_add_current_location">添加当前位置</string>
@@ -411,11 +411,11 @@
     <string name="notification_channel_alerts">警报</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="weather_data_by">数据来自 $</string>
+    <string name="weather_data_by">数据来自 %s</string>
     <string name="weather_source_openweather_version_2_5">2.5 版本</string>
     <string name="weather_source_openweather_version_3_0">3.0 版本</string>
     <string name="locations">位置</string>
-    <string name="location_results_by">位置结果来自 $</string>
+    <string name="location_results_by">位置结果来自 %s</string>
     <string name="action_add_from_map">从地图中添加</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -449,7 +449,7 @@
     <string name="weather_source_accu_preference_hours_72">72小时</string>
     <string name="settings_background_updates">后台更新</string>
     <string name="settings_background_updates_dont_kill_my_app_title">OEM特定说明</string>
-    <string name="weather_air_quality_and_pollen_data_by">空气质量和大气污染数据来自 $</string>
+    <string name="weather_air_quality_and_pollen_data_by">空气质量和大气污染数据来自 %s</string>
     <string name="location_message_search_failed">搜索位置失败</string>
     <string name="location_message_permission_background_missing">缺少在后台访问位置的权限</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些OEM有额外的限制，可以终止后台服务。Don’t kill my app! 网站有关于如何修复它的信息。</string>
@@ -558,7 +558,7 @@
     <string name="air_quality_so2_info_consequences">接触二氧化硫与哮喘患者住院和急诊就诊有关。</string>
     <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
     <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他天气数据源，这可能会产生不同的位置搜索结果。</string>
-    <string name="location_search_no_results">$1 找不到 $2</string>
+    <string name="location_search_no_results">%1$s 找不到 %2$s</string>
     <string name="action_show_errors">点击以查看详情</string>
     <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
     <string name="notification_update_error">%d 更新失败</string>
@@ -569,7 +569,7 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">电池电量低时停用后台刷新</string>
     <string name="message_source_not_installed_error_content">此来源不再可用，请删除该位置并从其他来源重新创建。</string>
     <string name="temperature_degree_day_heating">采暖度日</string>
-    <string name="settings_background_updates_worker_info_summary">最后运行：$</string>
+    <string name="settings_background_updates_worker_info_summary">最后运行：%s</string>
     <string name="settings_source_api_key">API密钥</string>
     <string name="temperature_degree_day_cooling">制冷度日</string>
     <string name="message_source_not_installed_error_title">来源不再可用</string>
@@ -589,10 +589,10 @@
     <string name="location_resident_location">常驻位置</string>
     <string name="settings_weather_source">天气数据源</string>
     <string name="action_delete">删除</string>
-    <string name="weather_air_quality_data_by">空气质量数据来自 $</string>
-    <string name="weather_minutely_data_by">每分钟降水量数据来自 $</string>
-    <string name="weather_pollen_data_by">过敏原数据来自 $</string>
-    <string name="weather_alert_data_by">警报数据来自 $</string>
+    <string name="weather_air_quality_data_by">空气质量数据来自 %s</string>
+    <string name="weather_minutely_data_by">每分钟降水量数据来自 %s</string>
+    <string name="weather_pollen_data_by">过敏原数据来自 %s</string>
+    <string name="weather_alert_data_by">警报数据来自 %s</string>
     <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
     <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
@@ -602,7 +602,7 @@
     <string name="settings_weather_source_main">主要来源</string>
     <string name="settings_weather_sources_per_location_summary">为当前位置自定义天气数据源</string>
     <string name="minutely_precipitations">每分钟降水量</string>
-    <string name="location_resident_location_summaryOn">已启用。当距离您$以内时隐藏。</string>
+    <string name="location_resident_location_summaryOn">已启用。当距离您%s以内时隐藏。</string>
     <string name="settings_weather_sources_default_location_search">默认位置搜索源</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contact">联络方式</string>
@@ -641,7 +641,7 @@
     <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
     <string name="about_contribution_designer">Logo 设计者</string>
-    <string name="weather_normals_data_by">$ 的气温正常值数据</string>
+    <string name="weather_normals_data_by">%s 的气温正常值数据</string>
     <string name="settings_main_threshold_lines_on_charts">图表中的阈值线</string>
     <string name="temperature_average_short">平均气温</string>
     <string name="temperature_normals">气温正常值</string>

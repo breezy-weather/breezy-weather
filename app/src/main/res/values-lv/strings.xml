@@ -86,10 +86,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Dilstošs Mēness</string>
     <string name="ephemeris_moon_phase_last_quarter">Pēdējais ceturksnis</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dilstošs pusmēness</string>
-    <string name="ephemeris_sunrise_at">Saullēkts $</string>
-    <string name="ephemeris_sunset_at">Saulriets $</string>
-    <string name="ephemeris_moonrise_at">Mēness lēkts $</string>
-    <string name="ephemeris_moonset_at">Mēness riets $</string>
+    <string name="ephemeris_sunrise_at">Saullēkts %s</string>
+    <string name="ephemeris_sunset_at">Saulriets %s</string>
+    <string name="ephemeris_moonrise_at">Mēness lēkts %s</string>
+    <string name="ephemeris_moonset_at">Mēness riets %s</string>
     <string name="nighttime">Nakts</string>
     <string name="hours_of_sun">Saules stundas</string>
     <string name="pressure">Spiediens</string>
@@ -116,9 +116,9 @@
     <string name="location_message_added">Atrašanās vieta pievienota</string>
     <string name="location_message_reverse_geocoding_failed">Laikapstākļu avotam neizdevās atrast atbilstošu atrašanās vietu</string>
     <string name="location_search_placeholder">Meklēt atrašanās vietu…</string>
-    <string name="location_search_no_results">$1 nevar atrast $2</string>
+    <string name="location_search_no_results">%1$s nevar atrast %2$s</string>
     <string name="location_search_no_results_advice">Pārliecinieties, vai meklēšanas vaicājums ir uzrakstīts pareizi un nav pārāk precīzs. Varat arī izmēģināt citu laikapstākļu datu avotu, kas var radīt dažādus atrašanās vietas meklēšanas rezultātus.</string>
-    <string name="location_resident_location_summaryOn">Iespējots. Paslēpts, ja atrodas $ no pašreizējās atrašanās vietas.</string>
+    <string name="location_resident_location_summaryOn">Iespējots. Paslēpts, ja atrodas %s no pašreizējās atrašanās vietas.</string>
     <string name="location_resident_location_summaryOff">Atspējots. Vieta vienmēr pieejama.</string>
     <string name="location_resident_dialog">Breezy Weather automātiski rādīs un paslēps iedzīvotāju pilsētas, pamatojoties uz jūsu pašreizējo atrašanās vietu.
 \nPiemēram, varat iestatīt savu dzimto pilsētu kā rezidentu pilsētu. Jūs varat pārbaudīt laika apstākļus savā dzimtajā pilsētā, kamēr atrodaties ceļojumā. Kad atgriezīsities mājās, laikapstākļi jūsu dzimtajā pilsētā tiks paslēpti un aizstāti ar jūsu pašreizējās atrašanās vietas laikapstākļiem.</string>
@@ -181,7 +181,7 @@
     <string name="settings_background_updates_battery_optimization">Atspējot akumulatora optimizāciju</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nevarēja atvērt ierīces iestatījumus.</string>
     <string name="settings_background_updates_worker_info_title">Informācija par procesu</string>
-    <string name="settings_background_updates_worker_info_summary">Pēdējā palaišana: $</string>
+    <string name="settings_background_updates_worker_info_summary">Pēdējā palaišana: %s</string>
     <string name="settings_location">Atrašanās vieta</string>
     <string name="settings_location_access_precise_summaryOn">Iespējots. Tiek izmantots gan ierīces tīkls, gan GPS nodrošinātāji.</string>
     <string name="settings_location_access_precise_summaryOff">Iespējojiet opciju “Izmantot precīzu atrašanās vietu”, ja rodas problēmas ar atrašanās vietas noteikšanu.</string>
@@ -229,7 +229,7 @@
     <string name="setting_weather_source_accu_hours">Stundas</string>
     <string name="weather_source_accu_preference_hours_1">1 stunda</string>
     <string name="weather_source_accu_preference_hours_12">12 stundas</string>
-    <string name="location_results_by">Atrašanās vietas rezultāti no $</string>
+    <string name="location_results_by">Atrašanās vietas rezultāti no %s</string>
     <string name="location_message_failed_to_locate">Neizdevās atrast pašreizējo atrašanās vietu</string>
     <string name="location_message_permission_missing">Trūkst piekļuves atrašanās vietas atļaujas</string>
     <string name="dialog_permissions_notification_title">Esiet informēts</string>
@@ -361,13 +361,13 @@
     <string name="ephemeris_moon_phase_new_moon">Jauns mēness</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Augošs pusmēness</string>
     <string name="ephemeris_moon_phase_first_quarter">Pirmais ceturksnis</string>
-    <string name="weather_air_quality_data_by">Gaisa kvalitātes dati no $</string>
-    <string name="weather_data_by">Dati no $</string>
-    <string name="weather_alert_data_by">Brīdinājuma dati no $</string>
-    <string name="weather_normals_data_by">Temperatūras normas dati no $</string>
-    <string name="weather_pollen_data_by">Alergēnu dati no $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Gaisa kvalitātes un ziedputekšņi dati no $</string>
-    <string name="weather_minutely_data_by">Dati par nokrišņiem minūtē pēc minūtes no $</string>
+    <string name="weather_air_quality_data_by">Gaisa kvalitātes dati no %s</string>
+    <string name="weather_data_by">Dati no %s</string>
+    <string name="weather_alert_data_by">Brīdinājuma dati no %s</string>
+    <string name="weather_normals_data_by">Temperatūras normas dati no %s</string>
+    <string name="weather_pollen_data_by">Alergēnu dati no %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Gaisa kvalitātes un ziedputekšņi dati no %s</string>
+    <string name="weather_minutely_data_by">Dati par nokrišņiem minūtē pēc minūtes no %s</string>
     <string name="weather_source_accu_preference_hours_240">240 stundas</string>
     <string name="location_swipe_to_delete">Varat vilkt pa kreisi, lai dzēstu šo vienumu</string>
     <string name="weather_source_accu_preference_hours_24">24 stundas</string>
@@ -377,7 +377,7 @@
     <string name="weather_source_accu_preference_hours_120">120 stundas</string>
     <string name="location_message_permission_background_missing">Trūkst piekļuves atrašanās vietas fona atļaujas</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Iespējot atrašanās vietas informāciju</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Pievienojiet atrašanās vietu manuāli un izdzēsiet “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Pievienojiet atrašanās vietu manuāli un izdzēsiet “%s”</string>
     <string name="location_dialog_failed_to_locate_title">Vai nevarat pareizi noteikt atrašanās vietu\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Izvēlieties atrašanās vietas pakalpojumu</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Pārbaudiet atrašanās vietas atļaujas</string>

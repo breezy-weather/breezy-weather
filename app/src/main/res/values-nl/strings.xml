@@ -123,8 +123,8 @@
     <string name="temperature_degree_day">Daggraad dag</string>
     <string name="minutely_precipitations">Neerslag per minuut</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Regen- en sneeuwbuien</string>
-    <string name="weather_pollen_data_by">Allergenengegevens door $</string>
-    <string name="weather_alert_data_by">Waarschuwingsgegevens door $</string>
+    <string name="weather_pollen_data_by">Allergenengegevens door %s</string>
+    <string name="weather_alert_data_by">Waarschuwingsgegevens door %s</string>
     <string name="message_source_not_installed_error_content">Deze bron is niet langer beschikbaar; verwijder de locatie en maak deze opnieuw aan met een andere bron.</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -181,7 +181,7 @@
     <string name="common_weather_text_drizzle_freezing">Ijzelende motregen</string>
     <string name="unit_mi">mi</string>
     <string name="common_weather_text_rain">Regen</string>
-    <string name="weather_minutely_data_by">Neerslag per minuut gegevens door $</string>
+    <string name="weather_minutely_data_by">Neerslag per minuut gegevens door %s</string>
     <string name="unit_mps_voice">Meters per seconde</string>
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
     <string name="settings_main">Hoofdscherm</string>
@@ -201,7 +201,7 @@
     <string name="settings_location_access_switch_summaryOn">Toegestaan. U kunt uw huidige locatie toevoegen als locatie.</string>
     <string name="location_message_permission_missing">Toestemming voor toegang tot locatie ontbreekt</string>
     <string name="location_message_permission_background_missing">Toegangslocatie in achtergrondtoestemming ontbreekt</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Locatie handmatig toevoegen en “$” verwijderen</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Locatie handmatig toevoegen en “%s” verwijderen</string>
     <string name="action_location_list">Lijst met locaties</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Huidige wind</string>
     <string name="widget_style_nano">Nano</string>
@@ -218,7 +218,7 @@
     <string name="weather_api_limit_reached_content">Om de limiet te omzeilen, kunt u uw eigen API-sleutel toevoegen.</string>
     <string name="weather_api_unauthorized_title">API-toegang ongeautoriseerd</string>
     <string name="weather_api_unauthorized_content">Voor sommige weergegevensbronnen moet u uw eigen API-sleutel opgeven. Als u er al een hebt opgegeven, controleer dan de API-sleutel die u hebt opgegeven.</string>
-    <string name="location_search_no_results">$1 kan $2 niet vinden</string>
+    <string name="location_search_no_results">%1$s kan %2$s niet vinden</string>
     <string name="action_continue">Doorgaan</string>
     <string name="settings_section_general">Algemeen</string>
     <string name="settings_icon_packs_get_more">Meer krijgen</string>
@@ -238,8 +238,8 @@
     <string name="settings_main_section_displayed_data">Weergegeven gegevens</string>
     <string name="settings_main_background_animation_disabled">Uit</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Onweersbui met lichte hagel</string>
-    <string name="ephemeris_moonrise_at">Maanopgang bij $</string>
-    <string name="ephemeris_moonset_at">Maansondergang bij $</string>
+    <string name="ephemeris_moonrise_at">Maanopgang bij %s</string>
+    <string name="ephemeris_moonset_at">Maansondergang bij %s</string>
     <string name="visibility">Zicht</string>
     <string name="dew_point">Dauwpunt</string>
     <string name="message_server_timeout">Verzoek is verlopen</string>
@@ -250,8 +250,8 @@
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Dagelijkse beschrijving</string>
     <string name="message_parsing_error_title">Weergegevens zijn niet verwerkt</string>
-    <string name="weather_air_quality_and_pollen_data_by">Gegevens over luchtkwaliteit en allergenen door $</string>
-    <string name="weather_normals_data_by">Normgegevens temperatuur door $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Gegevens over luchtkwaliteit en allergenen door %s</string>
+    <string name="weather_normals_data_by">Normgegevens temperatuur door %s</string>
     <string name="weather_message_unsupported_feature">De bron ondersteunt een van de gevraagde functies niet</string>
     <string name="setting_weather_source_accu_days">Dagen</string>
     <string name="weather_api_key_required_missing_title">Vereiste API-sleutel ontbreekt</string>
@@ -301,10 +301,10 @@
     <string name="air_quality_so2_info_consequences">Blootstelling aan SO₂ wordt in verband gebracht met ziekenhuisopnames voor astma en bezoeken aan de spoedafdeling.</string>
     <string name="pollen_alder">Els</string>
     <string name="pollen_olive">Olijf</string>
-    <string name="ephemeris_sunrise_at">Zonsopgang bij $</string>
-    <string name="ephemeris_sunset_at">Zonsondergang bij $</string>
+    <string name="ephemeris_sunrise_at">Zonsopgang bij %s</string>
+    <string name="ephemeris_sunset_at">Zonsondergang bij %s</string>
     <string name="cloud_cover">Bewolking</string>
-    <string name="weather_air_quality_data_by">Luchtkwaliteitsgegevens door $</string>
+    <string name="weather_air_quality_data_by">Luchtkwaliteitsgegevens door %s</string>
     <string name="location_search_weather_source">Weerbron</string>
     <string name="weather_updated_in_background">Bijgewerkt in de achtergrond</string>
     <string name="settings_units_summary">Temperatuur, neerslag, afstand, snelheid, druk</string>
@@ -327,7 +327,7 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_week_style_5_days">5 dagen</string>
     <string name="settings_main_threshold_lines_on_charts">Drempellijnen op grafieken</string>
-    <string name="settings_background_updates_worker_info_summary">Laatste keer: $</string>
+    <string name="settings_background_updates_worker_info_summary">Laatste keer: %s</string>
     <string name="settings_location_service">Locatieservice</string>
     <string name="settings_notifications">Meldingen</string>
     <string name="settings_notifications_summary">Weerwaarschuwingen, neerslag, voorspelling</string>
@@ -340,7 +340,7 @@
     <string name="metno_weather_text_andthunder">%s en onweer</string>
     <string name="pollen_ragweed">Ragkruid</string>
     <string name="uv_alert_level">Waarschuwing</string>
-    <string name="weather_data_by">Gegevens door $</string>
+    <string name="weather_data_by">Gegevens door %s</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Locatiegegevens inschakelen</string>
     <string name="pollen">Allergieën</string>
     <string name="weather_kind_hail">Hagel</string>
@@ -413,7 +413,7 @@
     <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
     <string name="air_quality_level_6_description">Blootstelling aan de buitenlucht, al is het maar enkele minuten, kan bij iedereen de gezondheid ernstig beïnvloeden. Vermijd buitenactiviteiten.</string>
     <string name="settings_weather_source">Weerbron</string>
-    <string name="location_resident_location_summaryOn">Ingeschakeld. Verborgen binnen $ van huidige locatie.</string>
+    <string name="location_resident_location_summaryOn">Ingeschakeld. Verborgen binnen %s van huidige locatie.</string>
     <string name="location_resident_location_summaryOff">Uitgeschakeld. Locatie altijd beschikbaar.</string>
     <string name="action_choose_weather_source">Kies weerbron</string>
     <string name="action_add_current_location">Huidige locatie toevoegen</string>
@@ -578,7 +578,7 @@
     <string name="weather_source_openweather_version_2_5">Versie 2.5</string>
     <string name="weather_source_openweather_version_3_0">Versie 3.0</string>
     <string name="location_none_added_yet_instructions">Er is nog geen locatie toegevoegd. Tik op het zoekpictogram om handmatig een locatie toe te voegen, of voeg uw huidige locatie toe via de zwevende knop.</string>
-    <string name="location_results_by">Locatie resultaten door $</string>
+    <string name="location_results_by">Locatie resultaten door %s</string>
     <string name="weather_kind_thunderstorm">Onweersbui</string>
     <string name="weather_kind_wind">Wind</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Zonsopgang van vandaag, morgen, …, 4 dagen later</string>

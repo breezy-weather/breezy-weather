@@ -92,14 +92,20 @@ class SearchActivity : GeoActivity() {
                         ) {
                             Column {
                                 Text(
-                                    text = stringResource(R.string.weather_data_by).replace("$", weatherSource.name),
+                                    text = stringResource(
+                                        R.string.weather_data_by,
+                                        weatherSource.name
+                                    ),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = Color(weatherSource.color)
                                 )
                                 if (locationSearchSource.locationSearchAttribution != weatherSource.name) {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
-                                        text = stringResource(R.string.location_results_by).replace("$", locationSearchSource.locationSearchAttribution),
+                                        text = stringResource(
+                                            R.string.location_results_by,
+                                            locationSearchSource.locationSearchAttribution
+                                        ),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = DayNightTheme.colors.bodyColor
                                     )
@@ -178,9 +184,11 @@ class SearchActivity : GeoActivity() {
                                 && listResourceState.value.second == LoadableLocationStatus.SUCCESS
                             ) {
                                 Text(
-                                    text = stringResource(R.string.location_search_no_results)
-                                        .replace("$1", locationSearchSource.name)
-                                        .replace("$2", latestTextSearch),
+                                    text = stringResource(
+                                        R.string.location_search_no_results,
+                                        locationSearchSource.name,
+                                        latestTextSearch
+                                    ),
                                     style = MaterialTheme.typography.titleMedium,
                                     color = DayNightTheme.colors.titleColor
                                 )

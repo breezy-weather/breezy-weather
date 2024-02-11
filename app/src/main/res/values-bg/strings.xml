@@ -127,7 +127,7 @@
     <string name="locations">Местоположения</string>
     <string name="location_current">Текущо местонахождение</string>
     <string name="location_resident">Местоположение на пребиваване</string>
-    <string name="location_results_by">Резултати за местоположение по $</string>
+    <string name="location_results_by">Резултати за местоположение по %s</string>
     <string name="location_message_deleted">Местоположението е изтрито</string>
     <string name="location_message_list_cannot_be_empty">Списъкът с местоположения не може да бъде празен</string>
     <string name="location_message_search_failed">Неуспешно търсене на местоположение</string>
@@ -136,7 +136,7 @@
     <string name="location_dialog_failed_to_locate_title">Не можете да получите правилно местоположението\?</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Активиране на информация за местоположение</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Изберете източник на местоположение</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “%s”</string>
     <string name="location_search_placeholder">Търсене на местоположение…</string>
     <string name="location_current_not_found_yet">Текущото местоположение все още не е намерено…</string>
     <string name="location_resident_message">Задаване като град на пребиваване</string>
@@ -211,7 +211,7 @@
     <string name="location_message_failed_to_locate">Неуспешно намиране на текущото местоположение</string>
     <string name="location_message_reverse_geocoding_failed">Източникът на прогнозата за времето не успя да намери съответстващо местоположение</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
-    <string name="location_search_no_results">$1 не може да намери $2</string>
+    <string name="location_search_no_results">%1$s не може да намери %2$s</string>
     <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг източник на данните на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
     <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
     <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
@@ -244,10 +244,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Намаляваща луна</string>
     <string name="ephemeris_moon_phase_last_quarter">Трета четвърт</string>
     <string name="ephemeris_moon_phase_waning_crescent">Залязващ полумесец</string>
-    <string name="ephemeris_sunrise_at">Изгрев в $</string>
-    <string name="ephemeris_sunset_at">Залез в $</string>
-    <string name="ephemeris_moonrise_at">Изгрев на луната в $</string>
-    <string name="ephemeris_moonset_at">Залез на луната в $</string>
+    <string name="ephemeris_sunrise_at">Изгрев в %s</string>
+    <string name="ephemeris_sunset_at">Залез в %s</string>
+    <string name="ephemeris_moonrise_at">Изгрев на луната в %s</string>
+    <string name="ephemeris_moonset_at">Залез на луната в %s</string>
     <string name="daytime">Дневно</string>
     <string name="nighttime">Нощно</string>
     <string name="hours_of_sun">Слънчеви часове</string>
@@ -273,8 +273,8 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-    <string name="weather_data_by">Данни от $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Данни за качеството на въздуха и праха от $</string>
+    <string name="weather_data_by">Данни от %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Данни за качеството на въздуха и праха от %s</string>
     <string name="weather_message_data_refresh_failed">Опресняването на данните за времето неуспешно</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Текущо налягане</string>
     <string name="settings_units_summary">Температура, валежи, разстояние, скорост, налягане</string>
@@ -564,7 +564,7 @@
     <string name="message_source_not_installed_error_title">Източникът вече не е наличен</string>
     <string name="message_source_not_installed_error_content">Този източник вече не е наличен, моля, изтрийте местоположението и го създайте отново от друг източник.</string>
     <string name="action_help_me_choose">Помогни ми да избера</string>
-    <string name="settings_background_updates_worker_info_summary">Последно изпълнение: $</string>
+    <string name="settings_background_updates_worker_info_summary">Последно изпълнение: %s</string>
     <string name="pollen_birch">Бреза</string>
     <string name="pollen_mugwort">Пелин</string>
     <string name="pollen_olive">Маслина</string>
@@ -582,10 +582,10 @@
     <string name="action_delete">Изтрий</string>
     <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
     <string name="weather_message_secondary_data_refresh_failed">Опресняването на метеорологичните данни за вторичен метеорологичен източник не бе успешно</string>
-    <string name="weather_air_quality_data_by">Данни за качеството на въздуха от $</string>
-    <string name="weather_pollen_data_by">Данни за алергените от $</string>
-    <string name="weather_minutely_data_by">Поминутни данни за валежите от $</string>
-    <string name="weather_alert_data_by">Данни за предупредителните сигнали от $</string>
+    <string name="weather_air_quality_data_by">Данни за качеството на въздуха от %s</string>
+    <string name="weather_pollen_data_by">Данни за алергените от %s</string>
+    <string name="weather_minutely_data_by">Поминутни данни за валежите от %s</string>
+    <string name="weather_alert_data_by">Данни за предупредителните сигнали от %s</string>
     <string name="wind_gusts">Пориви вятър</string>
     <string name="minutely_precipitations">Валежи поминутно</string>
     <string name="settings_weather_sources_default_location_search">Източник за търсене на местоположение по подразбиране</string>
@@ -594,7 +594,7 @@
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
-    <string name="location_resident_location_summaryOn">Активирано. Скрит, когато в рамките на $ от текущото местоположение.</string>
+    <string name="location_resident_location_summaryOn">Активирано. Скрит, когато в рамките на %s от текущото местоположение.</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>
     <string name="settings_weather_source_main">Основен източник</string>
@@ -631,7 +631,7 @@
     <string name="common_weather_text_snow_heavy">Обилен снеговалеж</string>
     <string name="weather_message_unsupported_feature">Източникът не поддържа една от заявените функции</string>
     <string name="about_contribution_designer">Дизайнер на логото</string>
-    <string name="weather_normals_data_by">Данни за температурни норми от $</string>
+    <string name="weather_normals_data_by">Данни за температурни норми от %s</string>
     <string name="temperature_average_short">Средно</string>
     <string name="temperature_normal_short">Нормална</string>
     <string name="settings_main_threshold_lines_on_charts">Прагови линии на диаграмите</string>

@@ -130,7 +130,10 @@ class LocationHolder(
         }
 
         // source.
-        mBinding.source.text = context.getString(R.string.weather_data_by).replace("$", model.mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
+        mBinding.source.text = context.getString(
+            R.string.weather_data_by,
+            model.mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text)
+        )
         mBinding.source.setTextColor(model.mainWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
         mBinding.container.setOnClickListener { mClickListener(model.location.formattedId) }
         // TODO

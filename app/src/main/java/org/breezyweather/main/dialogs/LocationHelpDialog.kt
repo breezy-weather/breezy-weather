@@ -59,8 +59,9 @@ object LocationHelpDialog {
             dialog.dismiss()
         }
         view.findViewById<TextView>(R.id.dialog_location_help_manageTitle).text =
-            activity.getString(R.string.location_dialog_failed_to_locate_action_add_manually).replace(
-                "$", activity.getString(R.string.location_current)
+            activity.getString(
+                R.string.location_dialog_failed_to_locate_action_add_manually,
+                activity.getString(R.string.location_current)
             )
     }
 }

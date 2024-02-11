@@ -125,7 +125,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Vyberte službu určení polohy</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “%s”</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
     <string name="widget_label_show_widget_card_alpha">Průhlednost</string>
@@ -206,13 +206,13 @@
     <string name="air_quality_no2_voice">Oxid dusičitý</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Oxid uhelnatý</string>
-    <string name="ephemeris_sunrise_at">Východ slunce v $</string>
+    <string name="ephemeris_sunrise_at">Východ slunce v %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Západ slunce v $</string>
+    <string name="ephemeris_sunset_at">Západ slunce v %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Východ měsíce v $</string>
+    <string name="ephemeris_moonrise_at">Východ měsíce v %s</string>
     <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Západ měsíce v $</string>
+    <string name="ephemeris_moonset_at">Západ měsíce v %s</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Žádné srážky</string>
     <string name="precipitation_between_time">Srážky mezi %1$s a %2$s</string>
@@ -381,7 +381,7 @@
     <string name="weather_api_key_required_missing_content">Chcete-li tento zdroj použít, musíte zadat klíč API.</string>
     <string name="weather_source_openweather_version_2_5">Verze 2.5</string>
     <string name="weather_source_openweather_version_3_0">Verze 3.0</string>
-    <string name="location_search_no_results">$1 nemůže najít $2</string>
+    <string name="location_search_no_results">%1$s nemůže najít %2$s</string>
     <string name="action_undo">Vrátit zpĚt</string>
     <string name="action_close">Zavřít</string>
     <string name="action_show_errors">Klepnutím zobrazíte podrobnosti</string>
@@ -406,7 +406,7 @@
     <string name="uv_index_3_5">Střední</string>
     <string name="uv_index_6_7">Vysoký</string>
     <string name="uv_index_8_10">Velmi vysoký</string>
-    <string name="location_results_by">Výsledky polohy podle $</string>
+    <string name="location_results_by">Výsledky polohy podle %s</string>
     <string name="air_quality_level_1">Vynikající</string>
     <string name="air_quality_level_2_description">Kvalita vzduchu je převážně vhodná pro většinu jedinců. Ovšem, citlivé skupiny lidí mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
     <string name="air_quality_no2_info_introduction">Oxid dusičitý (NO₂) je dusivý, jedovatý červenohnědý plyn s charakteristickým štiplavým, ostrým zápachem.</string>
@@ -479,7 +479,7 @@
     <string name="air_quality_level_5">Velmi nezdravá</string>
     <string name="air_quality_level_5_description">Zdravotní účinky pocítí citlivé skupiny okamžitě a měly by se vyhnout venkovním aktivitám. Zdraví jedinci pravděpodobně pocítí potíže s dýcháním a podráždění hrdla; zvažte pobyt v uzavřených prostorách a přeložte venkovní aktivity.</string>
     <string name="air_quality_level_4_description">Zdravotní účinky mohou citlivé skupiny pocítit okamžitě. Zdraví jedinci mohou při dlouhodobé expozici pociťovat potíže s dýcháním a podráždění hrdla. Omezte venkovní aktivity.</string>
-    <string name="weather_data_by">Údaje od $</string>
+    <string name="weather_data_by">Údaje od %s</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
@@ -548,7 +548,7 @@
     <string name="air_quality_so2_info_origin">Uvolňuje se přirozeně vulkanickou činností a převážně vzniká spalováním fosilních paliv pro vytápění domácností, průmyslu a výroby energie.</string>
     <string name="air_quality_so2_info_consequences">Vystavení SO₂ je spojeno s hospitalizacemi kvůli astmatu a návštěvami pohotovostí.</string>
     <string name="air_quality_co_info_introduction">Oxid uhelnatý (CO) je jedovatý hořlavý plyn, který je bezbarvý, bez zápachu a chuti a není dráždivý.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Údaje o kvalitě ovzduší a pylu od $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Údaje o kvalitě ovzduší a pylu od %s</string>
     <string name="weather_api_limit_reached_title">Dosažen limit požadavků API</string>
     <string name="weather_api_key_required_missing_title">Chybí potřebný klíč API</string>
     <string name="dialog_permissions_notification_title">Zůstaňte informováni</string>
@@ -583,9 +583,9 @@
     <string name="pollen_alder">Olše</string>
     <string name="pollen_level_5">Velmi vysoké</string>
     <string name="pollen_level_4">Vysoké</string>
-    <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od $</string>
-    <string name="weather_pollen_data_by">Údaje o alergenech od $</string>
-    <string name="weather_minutely_data_by">Údaje o minutových srážkách od $</string>
+    <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od %s</string>
+    <string name="weather_pollen_data_by">Údaje o alergenech od %s</string>
+    <string name="weather_minutely_data_by">Údaje o minutových srážkách od %s</string>
     <string name="minutely_precipitations">Minutové srážky</string>
     <string name="pollen_birch">Bříza</string>
     <string name="pollen_mugwort">Pelyněk</string>
@@ -602,7 +602,7 @@
     <string name="common_weather_text_snow_showers">Sněhové přeháňky</string>
     <string name="common_weather_text_rain_freezing">Mrazivý déšť</string>
     <string name="common_weather_text_drizzle_freezing_light">Lehké mrznoucí mrholení</string>
-    <string name="settings_background_updates_worker_info_summary">Poslední spuštění: $</string>
+    <string name="settings_background_updates_worker_info_summary">Poslední spuštění: %s</string>
     <string name="common_weather_text_rain_showers_heavy">Silné dešťové přeháňky</string>
     <string name="common_weather_text_rain_freezing_light">Slabý mrazivý déšť</string>
     <string name="common_weather_text_rain_freezing_heavy">Silný mrazivý déšť</string>
@@ -625,8 +625,8 @@
     <string name="common_weather_text_drizzle">Mrholení</string>
     <string name="temperature_normal_short">Normální</string>
     <string name="temperature_normals">Teplotní normy</string>
-    <string name="weather_alert_data_by">Údaje o varováních podle $</string>
-    <string name="weather_normals_data_by">Údaje o teplotních normách podle $</string>
+    <string name="weather_alert_data_by">Údaje o varováních podle %s</string>
+    <string name="weather_normals_data_by">Údaje o teplotních normách podle %s</string>
     <string name="message_source_not_installed_error_title">Zdroj již není k dispozici</string>
     <string name="about_contribution_designer">Designer loga</string>
     <string name="common_weather_text_rain_showers">Dešťové přeháňky</string>
@@ -642,7 +642,7 @@
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
     <string name="common_weather_text_drizzle_freezing">Mrznoucí mrholení</string>
     <string name="location_resident_location">Místo pobytu</string>
-    <string name="location_resident_location_summaryOn">Povoleno. Skryté, když je v dosahu $ aktuální polohy.</string>
+    <string name="location_resident_location_summaryOn">Povoleno. Skryté, když je v dosahu %s aktuální polohy.</string>
     <string name="location_resident_location_summaryOff">Vypnuto. Umístění je vždy k dispozici.</string>
     <string name="action_delete">Odstranit</string>
     <string name="settings_weather_source">Zdroj počasí</string>

@@ -97,9 +97,9 @@
     <string name="ephemeris_moon_phase_waxing_gibbous">Priešpilnis</string>
     <string name="ephemeris_moon_phase_last_quarter">Delčia</string>
     <string name="ephemeris_moon_phase_waning_crescent">Delčia</string>
-    <string name="ephemeris_sunrise_at">Saulėtekis $</string>
-    <string name="ephemeris_sunset_at">Saulėlydis $</string>
-    <string name="ephemeris_moonrise_at">Mėnulio patekėjimas $</string>
+    <string name="ephemeris_sunrise_at">Saulėtekis %s</string>
+    <string name="ephemeris_sunset_at">Saulėlydis %s</string>
+    <string name="ephemeris_moonrise_at">Mėnulio patekėjimas %s</string>
     <string name="nighttime">Naktis</string>
     <string name="hours_of_sun">Saulė keliaus dangumi</string>
     <string name="humidity">Drėgmė</string>
@@ -122,8 +122,8 @@
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="weather_data_by">Duomenys iš $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Oro kokybės ir žiedadulkių duomenys iš $</string>
+    <string name="weather_data_by">Duomenys iš %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Oro kokybės ir žiedadulkių duomenys iš %s</string>
     <string name="weather_message_data_refresh_failed">Orų duomenų atnaujinimas nepavyko</string>
     <string name="weather_api_limit_reached_title">Pasiektas API prašymų limitas</string>
     <string name="weather_api_unauthorized_title">Prieiga prie API neleista</string>
@@ -139,7 +139,7 @@
     <string name="location_resident">Gyvenamoji vieta</string>
     <string name="location_search_weather_source">Orų šaltinis</string>
     <string name="location_search_change_weather_source">Keisti orų šaltinį</string>
-    <string name="location_results_by">Vietovių rezultatai iš $</string>
+    <string name="location_results_by">Vietovių rezultatai iš %s</string>
     <string name="location_none_added_yet_instructions">Dar nepridėjote jokios vietovės. Jei norite pridėti vietovę patys, spauskite ieškojimo ikoną. Norėdami pridėti savo dabartinę buvimo vietą spauskite ant plaukiojančio mygtuko.</string>
     <string name="location_message_added">Vietovė pridėta</string>
     <string name="location_message_deleted">Vietovė ištrinta</string>
@@ -186,7 +186,7 @@
     <string name="pollen_mold">Grybeliniai</string>
     <string name="ephemeris_moon_phase_full_moon">Pilnatis</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Pilnatis</string>
-    <string name="ephemeris_moonset_at">Mėnulio nusileidimas $</string>
+    <string name="ephemeris_moonset_at">Mėnulio nusileidimas %s</string>
     <string name="daytime">Diena</string>
     <string name="common_weather_text_snow">Sniegas</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
@@ -230,7 +230,7 @@
     <string name="message_source_not_installed_error_content">Šis šaltinis nebėra prieinamas; ištrinkite vietą ir atkurkite ją iš kito šaltinio.</string>
     <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
     <string name="weather_refresh_skipped_already_recently_updated">Jau neseniai atnaujinta</string>
-    <string name="location_search_no_results">$1 negali rasti $2</string>
+    <string name="location_search_no_results">%1$s negali rasti %2$s</string>
     <string name="action_search">Paieška</string>
     <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
     <string name="action_add_from_map">Pridėti iš žemėlapio</string>
@@ -259,7 +259,7 @@
     <string name="temperature_degree_day">Laipsnio diena</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Įjungti vietos informaciją</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Pasirinkite vietovės paslaugą</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „$“</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „%s“</string>
     <string name="location_search_placeholder">Ieškoti vietovės…</string>
     <string name="message_parsing_error_content">Įsitikinkite, kad atnaujinote naujausią programos versiją. Serveris gali būti laikinai nepasiekiamas, tokiu atveju bandykite vėliau. Jei problema išlieka, iš derinimo nustatymų iškelkite strigčių žurnalą ir praneškite apie problemą GitHub.</string>
     <string name="widget_label_hide_lunar">Paslėpti Mėnulio kalendorių</string>
@@ -301,7 +301,7 @@
     <string name="settings_background_updates_summary">Atnaujinimo dažnis, trikčių šalinimas</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoruoti, kai išsikrauna akumuliatorius</string>
     <string name="settings_background_updates_battery_optimization">Išjungti akumuliatoriaus optimizavimą</string>
-    <string name="settings_background_updates_worker_info_summary">Paskutinis paleidimas: $</string>
+    <string name="settings_background_updates_worker_info_summary">Paskutinis paleidimas: %s</string>
     <string name="widget_multi_city">Keli miestai</string>
     <string name="widget_material_you_forecast">Material You - Prognozė</string>
     <string name="widget_material_you_current">Material You - Dabartinė</string>
@@ -501,10 +501,10 @@
     <string name="settings_weather_sources_current_location">Dabartinės vietos orų šaltinis</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
     <string name="wind_gusts">Vėjo gūsiai</string>
-    <string name="weather_air_quality_data_by">Oro kokybės duomenys pagal $</string>
-    <string name="weather_pollen_data_by">Duomenys apie alergenus pagal $</string>
-    <string name="weather_minutely_data_by">Kritulių kiekio minutė po minutės duomenys pagal $</string>
-    <string name="weather_alert_data_by">Įspėjimo duomenys pagal $</string>
+    <string name="weather_air_quality_data_by">Oro kokybės duomenys pagal %s</string>
+    <string name="weather_pollen_data_by">Duomenys apie alergenus pagal %s</string>
+    <string name="weather_minutely_data_by">Kritulių kiekio minutė po minutės duomenys pagal %s</string>
+    <string name="weather_alert_data_by">Įspėjimo duomenys pagal %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Nepavyko atnaujinti antrinio orų šaltinio orų duomenų</string>
     <string name="settings_weather_source">Orų šaltinis</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
@@ -547,7 +547,7 @@
     <string name="temperature_average_short">Vid.</string>
     <string name="temperature_normal_short">Normalus</string>
     <string name="temperature_normals">Temperatūros normos</string>
-    <string name="weather_normals_data_by">Temperatūros normų duomenys pagal $</string>
+    <string name="weather_normals_data_by">Temperatūros normų duomenys pagal %s</string>
     <string name="settings_weather_source_main">Pagrindinis šaltinis</string>
     <string name="settings_units_speed">Greičio vienetas</string>
     <string name="settings_main_background_animation_disabled">Išjungta</string>
@@ -562,7 +562,7 @@
     <string name="settings_main_gravity_sensor_switch">Gravitacijos jutiklis</string>
     <string name="settings_widgets_live_wallpaper_summary">Nustatykite orų animaciją kaip ekrano užsklandą</string>
     <string name="settings_widgets_monochrome_icons_title">Vienspalvės piktogramos</string>
-    <string name="location_resident_location_summaryOn">Įjungta. Paslėpta, kai yra $ atstumu nuo dabartinės buvimo vietos.</string>
+    <string name="location_resident_location_summaryOn">Įjungta. Paslėpta, kai yra %s atstumu nuo dabartinės buvimo vietos.</string>
     <string name="minutely_precipitations">Kritulių kiekis minutėmis</string>
     <string name="settings_weather_sources_default_location_search">Numatytasis vietos paieškos šaltinis</string>
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>

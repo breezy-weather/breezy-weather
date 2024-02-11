@@ -124,7 +124,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Verificați permisiunile pentru locație</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activați informațiile despre locație</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selectați furnizorul de servicii de localizare</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți “$”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți “%s”</string>
     <string name="widget_label_view_style">Tip vizualizare</string>
     <string name="widget_label_show_widget_card">Culoare fundal</string>
     <string name="widget_label_show_widget_card_alpha">Transparență</string>
@@ -307,7 +307,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="weather_air_quality_and_pollen_data_by">Calitatea aerului și datele polenului furnizate de $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Calitatea aerului și datele polenului furnizate de %s</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
     <string name="action_see_more">Vezi mai mult</string>
     <string name="message_network_unavailable">Rețea indisponibilă</string>
@@ -437,15 +437,15 @@
     <string name="air_quality_no2_voice">Dioxid de azot</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Monoxid de carbon</string>
-    <string name="ephemeris_sunset_at">Apus de soare la $</string>
-    <string name="ephemeris_sunrise_at">Răsărit la $</string>
-    <string name="ephemeris_moonrise_at">Răsărit de lună la $</string>
-    <string name="ephemeris_moonset_at">Apusul lunii la $</string>
-    <string name="weather_data_by">Date furnizate de $</string>
+    <string name="ephemeris_sunset_at">Apus de soare la %s</string>
+    <string name="ephemeris_sunrise_at">Răsărit la %s</string>
+    <string name="ephemeris_moonrise_at">Răsărit de lună la %s</string>
+    <string name="ephemeris_moonset_at">Apusul lunii la %s</string>
+    <string name="weather_data_by">Date furnizate de %s</string>
     <string name="weather_source_openweather_version_2_5">Versiunea 2.5</string>
     <string name="weather_source_openweather_version_3_0">Versiunea 3.0</string>
     <string name="locations">Locații</string>
-    <string name="location_results_by">Rezultate locație de $</string>
+    <string name="location_results_by">Rezultate locație de %s</string>
     <string name="location_swipe_to_delete">Puteți glisa spre stânga pentru a șterge acest articol</string>
     <string name="action_choose_weather_source">Alegeți furnizorul de vreme</string>
     <string name="action_add_current_location">Adăugați locația curentă</string>
@@ -549,7 +549,7 @@
     <string name="air_quality_co_info_consequences">Monoxidul de carbon se difuzează prin țesuturile pulmonare și ajunge în fluxul sanguin, îngreunând legătura dintre celulele organismului și oxigen. Această lipsă de oxigen deteriorează țesuturile și celulele. Expunerea la monoxid de carbon poate provoca dificultăți de respirație, epuizare, amețeli și alte simptome asemănătoare gripei. Expunerea la niveluri ridicate de monoxid de carbon poate fi mortală.</string>
     <string name="weather_refresh_skipped_already_recently_updated">Actualizată deja recent</string>
     <string name="action_show_errors">Apăsați pentru a vedea detalii</string>
-    <string name="location_search_no_results">$1 nu poate găsi $2</string>
+    <string name="location_search_no_results">%1$s nu poate găsi %2$s</string>
     <string name="notification_update_error">%d actualizări eșuate</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorați când bateria este descărcată</string>
     <string name="settings_source_api_key">Cheie API</string>
@@ -559,14 +559,14 @@
     <string name="pollen_alder">Arin</string>
     <string name="message_parsing_error_title">Analizarea datelor meteo a eșuat</string>
     <string name="message_source_not_installed_error_title">Sursa nu mai este disponibilă</string>
-    <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: $</string>
+    <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: %s</string>
     <string name="location_resident_location">Locația rezidentă</string>
     <string name="location_resident_location_summaryOff">Dezactivat. Locația este întotdeauna disponibilă.</string>
     <string name="action_delete">Ștergeți</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
     <string name="message_source_not_installed_error_content">Această sursă nu mai este disponibilă, vă rugăm să ștergeți locația și să o recreați din altă sursă.</string>
     <string name="about_contribution_weather_source">A fost adăugat suport pentru o nouă sursă(e) meteo</string>
-    <string name="weather_alert_data_by">Date despre alerte de $</string>
+    <string name="weather_alert_data_by">Date despre alerte de %s</string>
     <string name="wind_gusts">Rafale de vânt</string>
     <string name="wind_strength">Puterea vântului</string>
     <string name="air_quality_pm10">PM10</string>
@@ -581,8 +581,8 @@
     <string name="pollen_level_0">Niciunul</string>
     <string name="pollen_level_1">Foarte scăzut</string>
     <string name="pollen_level_2">Scăzut</string>
-    <string name="weather_pollen_data_by">Date despre alergeni de $</string>
-    <string name="weather_minutely_data_by">Date despre precipitațiile minut cu minut de $</string>
+    <string name="weather_pollen_data_by">Date despre alergeni de %s</string>
+    <string name="weather_minutely_data_by">Date despre precipitațiile minut cu minut de %s</string>
     <string name="weather_message_invalid_location">Locație invalidă, vă rugăm să-l ștergeți și re-adăugați</string>
     <string name="settings_weather_source">Furnizor meteo</string>
     <string name="about_dependencies">Dependențe</string>
@@ -602,6 +602,6 @@
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_4">Ridicat</string>
     <string name="pollen_level_5">Foarte ridicat</string>
-    <string name="weather_air_quality_data_by">Date despre calitatea aerului de $</string>
-    <string name="location_resident_location_summaryOn">Activat. Afișat dacă se află la mai puțin de 20 km de locația curentă, altfel este ascuns.</string>
+    <string name="weather_air_quality_data_by">Date despre calitatea aerului de %s</string>
+    <string name="location_resident_location_summaryOn">Activat. Afișat dacă se află la mai puțin de %s de locația curentă, altfel este ascuns.</string>
 </resources>
