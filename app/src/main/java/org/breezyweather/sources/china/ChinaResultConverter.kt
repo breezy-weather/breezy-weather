@@ -31,7 +31,9 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -55,6 +57,7 @@ fun convert(
         longitude = location?.longitude ?: result.longitude!!.toFloat(),
         timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
         country = "",
+        countryCode = "CN",
         province = result.affiliation,
         city = result.name!!,
         weatherSource = "china",
@@ -65,6 +68,7 @@ fun convert(
         normalsSource = location?.normalsSource
     )
 }
+
 fun convert(
     location: Location,
     forecastResult: ChinaForecastResult,
@@ -76,9 +80,6 @@ fun convert(
     }
 
     return WeatherWrapper(
-        /*base = Base(
-            publishDate = forecastResult.current.pubTime
-        ),*/
         current = Current(
             weatherText = getWeatherText(forecastResult.current.weather),
             weatherCode = getWeatherCode(forecastResult.current.weather),
@@ -273,6 +274,30 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
             color = getAlertColor(alert.level)
         )
     }
+}
+
+fun convertSecondary(
+    location: Location,
+    forecastResult: ChinaForecastResult,
+    minutelyResult: ChinaMinutelyResult
+): SecondaryWeatherWrapper {
+
+    return SecondaryWeatherWrapper(
+        airQuality = forecastResult.aqi?.let {
+            AirQualityWrapper(
+                current = AirQuality(
+                    pM25 = it.pm25?.toFloat(),
+                    pM10 = it.pm10?.toFloat(),
+                    sO2 = it.so2?.toFloat(),
+                    nO2 = it.no2?.toFloat(),
+                    o3 = it.o3?.toFloat(),
+                    cO = it.co?.toFloat()
+                )
+            )
+        },
+        minutelyForecast = getMinutelyList(location.timeZone, minutelyResult),
+        alertList = getAlertList(forecastResult),
+    )
 }
 
 private fun getWeatherText(icon: String?): String {

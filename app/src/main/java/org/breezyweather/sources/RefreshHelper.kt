@@ -561,10 +561,11 @@ class RefreshHelper @Inject constructor(
                     alertsUpdateTime = alertsUpdateTime,
                     normalsUpdateTime = normalsUpdateTime
                 ),
-                current = completeCurrentFromTodayDailyAndHourly(
+                current = completeCurrentFromSecondaryData(
                     mainWeatherCompleted.current,
                     currentHour,
                     currentDay,
+                    secondaryWeatherWrapperCompleted?.airQuality?.current,
                     location.timeZone
                 ),
                 normals = secondaryWeatherWrapper?.normals

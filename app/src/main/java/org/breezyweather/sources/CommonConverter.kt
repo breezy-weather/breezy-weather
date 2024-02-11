@@ -1198,10 +1198,11 @@ private fun getCurrentUVFromDayMax(
  * @param todayDaily daily for today
  * @param timeZone timeZone of the location
  */
-fun completeCurrentFromTodayDailyAndHourly(
+fun completeCurrentFromSecondaryData(
     initialCurrent: Current?,
     hourly: Hourly?,
     todayDaily: Daily?,
+    currentAirQuality: AirQuality?,
     timeZone: TimeZone
 ): Current {
     val newCurrent = initialCurrent ?: Current()
@@ -1244,7 +1245,7 @@ fun completeCurrentFromTodayDailyAndHourly(
             todayDaily.sun?.setDate,
             timeZone
         ) else newCurrent.uV,
-        airQuality = newCurrent.airQuality ?: hourly.airQuality,
+        airQuality = currentAirQuality ?: newCurrent.airQuality ?: hourly.airQuality,
         relativeHumidity = newRelativeHumidity,
         dewPoint = newDewPoint,
         pressure = newCurrent.pressure ?: hourly.pressure,

@@ -20,6 +20,7 @@ import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -29,6 +30,7 @@ import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
@@ -37,8 +39,8 @@ import javax.inject.Inject
 
 class ChinaService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, LocationSearchSource,
-    ReverseGeocodingSource, ParameterizedLocationSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
+    LocationSearchSource, ReverseGeocodingSource, ParameterizedLocationSource {
 
     override val id = "china"
     override val name = "中国"
@@ -56,6 +58,7 @@ class ChinaService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
@@ -81,8 +84,8 @@ class ChinaService @Inject constructor(
             location.isCurrentPosition,
             locationKey = "weathercn%3A" + locationKey,
             days = 15,
-            appKey = "weather20151024",
-            sign = "zUFJoAR2ZVrDy1vF3D07",
+            appKey = CHINA_APP_KEY,
+            sign = CHINA_SIGN,
             isGlobal = false,
             SettingsManager.getInstance(context).language.code
         )
@@ -92,9 +95,9 @@ class ChinaService @Inject constructor(
                 location.longitude.toDouble(),
                 SettingsManager.getInstance(context).language.code,
                 isGlobal = false,
-                appKey = "weather20151024",
+                appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A" + locationKey,
-                sign = "zUFJoAR2ZVrDy1vF3D07"
+                sign = CHINA_SIGN
             )
         } else {
             Observable.create { emitter ->
@@ -112,6 +115,86 @@ class ChinaService @Inject constructor(
             )
         }
     }
+
+    // SECONDARY WEATHER SOURCE
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return location.countryCode == "CN"
+    }
+    override val airQualityAttribution = weatherAttribution
+    override val pollenAttribution = null
+    override val minutelyAttribution = weatherAttribution
+    override val alertAttribution = weatherAttribution
+    override val normalsAttribution = null
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        val locationKey = location.parameters
+            .getOrElse(id) { null }?.getOrElse("locationKey") { null }
+
+        if (locationKey.isNullOrEmpty()) {
+            return if (location.isCurrentPosition) {
+                Observable.error(ReverseGeocodingException())
+            } else {
+                Observable.error(InvalidLocationException())
+            }
+        }
+
+        val mainly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getForecastWeather(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                location.isCurrentPosition,
+                locationKey = "weathercn%3A" + locationKey,
+                days = 15,
+                appKey = CHINA_APP_KEY,
+                sign = CHINA_SIGN,
+                isGlobal = false,
+                SettingsManager.getInstance(context).language.code
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(ChinaForecastResult())
+            }
+        }
+
+        val minutely = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            mApi.getMinutelyWeather(
+                location.latitude.toDouble(),
+                location.longitude.toDouble(),
+                SettingsManager.getInstance(context).language.code,
+                isGlobal = false,
+                appKey = CHINA_APP_KEY,
+                locationKey = "weathercn%3A" + locationKey,
+                sign = CHINA_SIGN
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(ChinaMinutelyResult())
+            }
+        }
+
+        return Observable.zip(mainly, minutely) {
+                mainlyResult: ChinaForecastResult,
+                minutelyResult: ChinaMinutelyResult
+            ->
+            convertSecondary(
+                location,
+                mainlyResult,
+                minutelyResult
+            )
+        }
+    }
+
 
     override fun requestLocationSearch(
         context: Context, query: String
@@ -186,5 +269,7 @@ class ChinaService @Inject constructor(
 
     companion object {
         private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.market.xiaomi.com/wtr-v3/"
+        private const val CHINA_APP_KEY = "weather20151024"
+        private const val CHINA_SIGN = "zUFJoAR2ZVrDy1vF3D07"
     }
 }

@@ -20,11 +20,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChinaForecastResult(
-    val current: ChinaCurrent?,
-    val forecastDaily: ChinaForecastDaily?,
-    val forecastHourly: ChinaForecastHourly?,
-    val yesterday: ChinaYesterday?,
-    val updateTime: Long,
-    val aqi: ChinaAqi?,
-    val alerts: List<ChinaAlert>?
+    val current: ChinaCurrent? = null,
+    val forecastDaily: ChinaForecastDaily? = null,
+    val forecastHourly: ChinaForecastHourly? = null,
+    val yesterday: ChinaYesterday? = null,
+    val updateTime: Long? = null,
+    val aqi: ChinaAqi? = null,
+    val alerts: List<ChinaAlert>? = null
 )
