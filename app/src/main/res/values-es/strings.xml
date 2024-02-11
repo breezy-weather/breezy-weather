@@ -108,10 +108,10 @@
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
     <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
+    <string name="date_format_long">dd MMM</string>
+    <string name="date_format_widget_short">dd MMM EEE</string>
+    <string name="date_format_widget_long">dd MMM EEE</string>
+    <string name="date_format_widget_oreo_style">dd MMM EEE│</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">Ubicando en segundo plano</string>
     <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
@@ -525,7 +525,7 @@
     <string name="settings_main_section_displayed_data">Datos mostrados</string>
     <string name="action_delete">Borrar</string>
     <string name="location_resident_location">Residencia</string>
-    <string name="location_resident_location_summaryOn">Activado. Oculto cuando está a menos de %s de la ubicación actual.</string>
+    <string name="location_resident_location_summaryOn">Activado. Oculto cuando está dentro de %s de la ubicación actual.</string>
     <string name="location_resident_location_summaryOff">Desactivado. Ubicación siempre disponible.</string>
     <string name="settings_location_access_precise_summaryOff">Activa “Usar la ubicación precisa” si tienes problemas para obtener una ubicación.</string>
     <string name="settings_weather_source">Fuente meteorológica</string>
