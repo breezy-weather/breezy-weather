@@ -145,7 +145,6 @@ class HereService @Inject constructor(
         }
     }
 
-    override fun isUsable(location: Location): Boolean = true
 
     /**
      * Returns cities near provided coordinates

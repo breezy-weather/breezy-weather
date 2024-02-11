@@ -81,8 +81,6 @@ class DmiService @Inject constructor(
         }
     }
 
-    override fun isUsable(location: Location): Boolean = true
-
     override fun requestReverseGeocodingLocation(
         context: Context,
         location: Location

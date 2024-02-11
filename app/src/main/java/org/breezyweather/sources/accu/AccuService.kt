@@ -442,8 +442,6 @@ class AccuService @Inject constructor(
         }
     }
 
-    override fun isUsable(location: Location): Boolean = true
-
     override fun requestReverseGeocodingLocation(
         context: Context,
         location: Location
@@ -563,9 +561,9 @@ class AccuService @Inject constructor(
             || features.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
             || features.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
             || features.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
-            val currentCityId = location.parameters
+            val currentLocationKey = location.parameters
                 .getOrElse(id) { null }?.getOrElse("locationKey") { null }
-            return currentCityId.isNullOrEmpty()
+            return currentLocationKey.isNullOrEmpty()
         } else {
             // If we request alerts or minutely, we don't need locationKey
             return false

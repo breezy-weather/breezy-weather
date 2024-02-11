@@ -94,7 +94,6 @@ class RefreshHelper @Inject constructor(
             val locationGeocoded = if (weatherService != null) {
                 if (currentLocation.isCurrentPosition
                     || currentLocation.needsGeocodeRefresh
-                    || !weatherService.isUsable(currentLocation)
                 ) {
                     try {
                         weatherService
