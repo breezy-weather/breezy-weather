@@ -17,6 +17,8 @@
 package org.breezyweather.background.forecast
 
 import android.content.Context
+import android.content.pm.ServiceInfo
+import android.os.Build
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.ForegroundInfo
@@ -70,6 +72,11 @@ class TomorrowForecastNotificationJob(
         return ForegroundInfo(
             Notifications.ID_UPDATING_TOMORROW_FORECAST,
             notifier.showProgress(today = false).build(),
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
+            } else {
+                0
+            },
         )
     }
 

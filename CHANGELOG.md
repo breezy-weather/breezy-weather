@@ -27,6 +27,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 - [PirateWeather] Fix precipitation probability
 
 **Other improvements and fixes**
+- Fix crash when today/tomorrow notification was received on Android 14
 - Fix a display issue of “alert source” instead of “normals source” in secondary weather sources settings of a location
 - When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
