@@ -33,13 +33,12 @@ interface NwsApi {
         @Path("lon") lon: Float
     ): Observable<NwsPointResult>
 
-    @GET("gridpoints/{gridId}/{gridX},{gridY}/forecast/hourly")
+    @GET("gridpoints/{gridId}/{gridX},{gridY}")
     fun getForecast(
         @Header("User-Agent") userAgent: String,
         @Path("gridId") gridId: String,
         @Path("gridX") gridX: Int,
-        @Path("gridY") gridY: Int,
-        @Query("units") units: String
+        @Path("gridY") gridY: Int
     ): Observable<NwsGridPointResult>
 
     @GET("alerts/active")

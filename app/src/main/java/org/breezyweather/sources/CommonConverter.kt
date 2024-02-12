@@ -379,7 +379,22 @@ fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>
 ): List<HourlyWrapper> {
     return hourlyList.map { hourly ->
-        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null) {
+        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null
+            || hourly.temperature.wetBulbTemperature == null
+            || hourly.weatherCode == null || hourly.weatherText.isNullOrEmpty()) {
+            // TODO
+            /*val halfDayWeatherCode = newHalfDay.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
+                halfDayHourlyList,
+                totalPrecipitation,
+                maxPrecipitationProbability,
+                maxWind,
+                avgCloudCover,
+                getHalfDayAvgVisibilityFromHourlyList(halfDayHourlyList)
+            )
+
+            val halfDayWeatherTextFromCode = WeatherViewController.getWeatherText(halfDayWeatherCode)
+            val halfDayWeatherText = newHalfDay.weatherText ?: halfDayWeatherTextFromCode
+            val halfDayWeatherPhase = newHalfDay.weatherPhase ?: halfDayWeatherTextFromCode*/
             hourly.copy(
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature?.toDouble(), hourly.relativeHumidity?.toDouble()),
                 temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
@@ -1083,7 +1098,6 @@ private fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
  * Completes hourly data from daily data:
  * - isDaylight
  * - UV field
- * TODO: Calculate dewpoint from humidity
  *
  * Also removes hourlys in the past (30 min margin)
  *

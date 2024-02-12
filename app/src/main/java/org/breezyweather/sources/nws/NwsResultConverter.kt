@@ -20,6 +20,7 @@ import android.graphics.Color
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
@@ -27,16 +28,24 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.common.utils.ISO8601Utils
 import org.breezyweather.sources.nws.json.NwsAlert
 import org.breezyweather.sources.nws.json.NwsAlertsResult
-import org.breezyweather.sources.nws.json.NwsGridPointPeriod
 import org.breezyweather.sources.nws.json.NwsGridPointResult
 import org.breezyweather.sources.nws.json.NwsPointProperties
+import org.breezyweather.sources.nws.json.NwsValueFloatContainer
+import org.breezyweather.sources.nws.json.NwsValueIntContainer
+import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Duration.Companion.parseIsoString
 
 fun convert(
     location: Location,
@@ -65,23 +74,98 @@ fun convert(
     timeZone: TimeZone
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
-    if (forecastResult.properties?.periods.isNullOrEmpty()) {
+    if (forecastResult.properties == null) {
         throw WeatherException()
     }
 
+    //val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)
+
+    val temperatureForecastList = getFloatForecast(forecastResult.properties.temperature, false, timeZone)
+    val apparentTemperatureForecastList = getFloatForecast(forecastResult.properties.apparentTemperature, false, timeZone)
+    val wetBulbGlobeTemperatureForecastList = getFloatForecast(forecastResult.properties.wetBulbGlobeTemperature, false, timeZone)
+    //val heatIndexForecastList = getFloatForecast(forecastResult.properties.heatIndex, false, timeZone)
+    val windChillForecastList = getFloatForecast(forecastResult.properties.windChill, false, timeZone)
+
+    val dewpointForecastList = getFloatForecast(forecastResult.properties.dewpoint, false, timeZone)
+    val relativeHumidityList = getIntForecast(forecastResult.properties.relativeHumidity, timeZone)
+
+    val quantitativePrecipitationForecastList = getFloatForecast(forecastResult.properties.quantitativePrecipitation, true, timeZone)
+    val snowfallAmountForecastList = getFloatForecast(forecastResult.properties.snowfallAmount, true, timeZone)
+    val iceAccumulationForecastList = getFloatForecast(forecastResult.properties.iceAccumulation, true, timeZone)
+
+    val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, timeZone)
+    val probabilityOfThunderForecastList = getIntForecast(forecastResult.properties.probabilityOfThunder, timeZone)
+
+    val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, timeZone)
+    val windSpeedForecastList = getFloatForecast(forecastResult.properties.windSpeed, false, timeZone)
+    val windGustForecastList = getFloatForecast(forecastResult.properties.windGust, false, timeZone)
+
+    val pressureForecastList = getFloatForecast(forecastResult.properties.pressure, false, timeZone)
+
+    val skyCoverForecastList = getIntForecast(forecastResult.properties.skyCover, timeZone)
+    val visibilityForecastList = getFloatForecast(forecastResult.properties.visibility, false, timeZone)
+    //val ceilingHeightForecastList = getFloatForecast(forecastResult.properties.ceilingHeight, false, timeZone)
+
+    val uniqueDates = (temperatureForecastList.keys + dewpointForecastList.keys +
+            relativeHumidityList.keys + apparentTemperatureForecastList.keys +
+            wetBulbGlobeTemperatureForecastList.keys + //heatIndexForecastList.keys +
+            windChillForecastList.keys + skyCoverForecastList.keys +
+            windDirectionForecastList.keys + windSpeedForecastList.keys +
+            windGustForecastList.keys + //weatherForecastList.keys +
+            probabilityOfPrecipitationForecastList.keys +
+            quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
+            snowfallAmountForecastList.keys + //ceilingHeightForecastList.keys +
+            visibilityForecastList.keys + pressureForecastList.keys +
+            probabilityOfThunderForecastList.keys).sorted()
+
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(timeZone, forecastResult.properties!!.periods!!),
-        hourlyForecast = getHourlyForecast(forecastResult.properties.periods!!),
+        dailyForecast = getDailyForecast(timeZone, uniqueDates),
+        hourlyForecast = uniqueDates.map {
+            //val weather = weatherForecastList.getOrElse(it) { null }
+
+            HourlyWrapper(
+                date = it,
+                //Let our CommonConverter process it instead
+                //weatherCode = getWeatherCode(weather),
+                //weatherText = getWeatherText(weather),
+                temperature = Temperature(
+                    temperature = temperatureForecastList.getOrElse(it) { null },
+                    apparentTemperature = apparentTemperatureForecastList.getOrElse(it) { null },
+                    wetBulbTemperature = wetBulbGlobeTemperatureForecastList.getOrElse(it) { null },
+                    windChillTemperature = windChillForecastList.getOrElse(it) { null }
+                ),
+                precipitation = Precipitation(
+                    total = quantitativePrecipitationForecastList.getOrElse(it) { null },
+                    snow = snowfallAmountForecastList.getOrElse(it) { null },
+                    ice = iceAccumulationForecastList.getOrElse(it) { null }
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = probabilityOfPrecipitationForecastList.getOrElse(it) { null }?.toFloat(),
+                    thunderstorm = probabilityOfThunderForecastList.getOrElse(it) { null }?.toFloat()
+                ),
+                wind = Wind(
+                    degree = windDirectionForecastList.getOrElse(it) { null }?.toFloat(),
+                    speed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6)?.toFloat(),
+                    gusts = windGustForecastList.getOrElse(it) { null }?.div(3.6)?.toFloat()
+                ),
+                relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toFloat(),
+                dewPoint = dewpointForecastList.getOrElse(it) { null },
+                // TODO: Check unit
+                pressure = pressureForecastList.getOrElse(it) { null },
+                cloudCover = skyCoverForecastList.getOrElse(it) { null },
+                visibility = visibilityForecastList.getOrElse(it) { null }
+            )
+        },
         alertList = getAlerts(alertResult.features)
     )
 }
 
 private fun getDailyForecast(
     timeZone: TimeZone,
-    forecastResult: List<NwsGridPointPeriod>
+    uniqueDates: List<Date>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = forecastResult.groupBy { it.startTime.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = uniqueDates.groupBy { it.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
         if (dayDate != null) {
@@ -93,35 +177,6 @@ private fun getDailyForecast(
         }
     }
     return dailyList
-}
-
-/**
- * Returns hourly forecast
- */
-private fun getHourlyForecast(
-    forecastResult: List<NwsGridPointPeriod>
-): List<HourlyWrapper> {
-    return forecastResult.map { result ->
-        HourlyWrapper(
-            date = result.startTime,
-            weatherCode = getWeatherCode(result.shortForecast),
-            weatherText = result.shortForecast,
-            temperature = Temperature(
-                temperature = result.temperature?.toFloat()
-            ),
-            precipitationProbability = PrecipitationProbability(
-                total = result.probabilityOfPrecipitation?.value
-            ),
-            wind = Wind(
-                degree = getWindDegree(result.windDirection),
-                speed = if (!result.windSpeed.isNullOrEmpty() && result.windSpeed.contains(" km/h")) {
-                    result.windSpeed.replace(" km/h", "").toDoubleOrNull()?.div(3.6)?.toFloat()
-                } else null
-            ),
-            relativeHumidity = result.relativeHumidity?.value,
-            dewPoint = result.dewpoint?.value,
-        )
-    }
 }
 
 fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
@@ -154,47 +209,119 @@ fun convertSecondary(
     )
 }
 
-/**
- * May need to be completed; we don't have a full list of existing status
- */
-private fun getWeatherCode(shortForecast: String?): WeatherCode? {
-    if (shortForecast == null) return null
-    return with (shortForecast) {
-        when {
-            equals("Sunny") || equals("Mostly clear") -> WeatherCode.CLEAR
-            equals("Partly Sunny") || equals("Partly Cloudy") -> WeatherCode.PARTLY_CLOUDY
-            equals("Cloudy") || equals("Mostly Cloudy") -> WeatherCode.CLOUDY
-            contains("Thunderstorms") -> WeatherCode.THUNDERSTORM
-            contains("Rain And Snow") -> WeatherCode.SLEET
-            contains("Snow") -> WeatherCode.SNOW
-            contains("Rain") -> WeatherCode.RAIN
-            contains("Showers") -> WeatherCode.RAIN
-            else -> null
+private fun getFloatForecast(
+    floatProperties: NwsValueFloatContainer?,
+    multipleHoursAreDivided: Boolean = false,
+    timeZone: TimeZone
+): Map<Date, Float> {
+    if (floatProperties?.values == null) return emptyMap()
+
+    val floatForecast = mutableMapOf<Date, Float>()
+    floatProperties.values.forEach {
+        if (it.value != null) {
+            val dateInterval = it.validTime.split("/")
+            val date = ISO8601Utils.parse(dateInterval[0])
+            val durationInHours = parseIsoString(dateInterval[1]).inWholeHours.toInt()
+
+            // Just to be sure we didn't get sent 1 century
+            if (durationInHours > 360) { // 15 days
+                throw ParsingException()
+            }
+
+            for (i in 1..durationInHours) {
+                val newDate = if (i > 1) {
+                    date.toCalendarWithTimeZone(timeZone).apply {
+                        add(Calendar.HOUR_OF_DAY, i - 1)
+                    }.time
+                } else date
+                floatForecast[newDate] = if (multipleHoursAreDivided) {
+                    it.value.div(durationInHours)
+                } else it.value
+            }
         }
     }
+
+    return floatForecast
 }
 
-private fun getWindDegree(direction: String?): Float? {
-    return when (direction) {
-        "N" -> 0f
-        "NNE" -> 22.5f
-        "NE" -> 45f
-        "ENE" -> 67.5f
-        "E" -> 90f
-        "ESE" -> 112.5f
-        "SE" -> 135f
-        "SSE" -> 157.5f
-        "S" -> 180f
-        "SSW" -> 202.5f
-        "SW" -> 225f
-        "WSW" -> 247.5f
-        "W" -> 270f
-        "WNW" -> 292.5f
-        "NW" -> 315f
-        "NNW" -> 337.5f
+private fun getIntForecast(
+    intProperties: NwsValueIntContainer?,
+    timeZone: TimeZone
+): Map<Date, Int> {
+    if (intProperties?.values == null) return emptyMap()
+
+    val intForecast = mutableMapOf<Date, Int>()
+    intProperties.values.forEach {
+        if (it.value != null) {
+            val dateInterval = it.validTime.split("/")
+            val date = ISO8601Utils.parse(dateInterval[0])
+            val durationInHours = parseIsoString(dateInterval[1]).inWholeHours.toInt()
+
+            // Just to be sure we didn't get sent 1 century
+            if (durationInHours > 360) { // 15 days
+                throw ParsingException()
+            }
+
+            for (i in 1..durationInHours) {
+                val newDate = if (i > 1) {
+                    date.toCalendarWithTimeZone(timeZone).apply {
+                        add(Calendar.HOUR_OF_DAY, i - 1)
+                    }.time
+                } else date
+                intForecast[newDate] = it.value
+            }
+        }
+    }
+
+    return intForecast
+}
+
+/*private fun getWeatherForecast(
+    weatherProperties: NwsValueWeatherContainer?,
+    timeZone: TimeZone
+): Map<Date, String> {
+    if (weatherProperties?.values == null) return emptyMap()
+
+    val weatherForecast = mutableMapOf<Date, String>()
+    weatherProperties.values.forEach {
+        if (!it.value?.getOrNull(0)?.weather.isNullOrEmpty()) {
+            val dateInterval = it.validTime.split("/")
+            val date = ISO8601Utils.parse(dateInterval[0])
+            val durationInHours = parseIsoString(dateInterval[1]).inWholeHours.toInt()
+
+            // Just to be sure we didn't get sent 1 century
+            if (durationInHours > 360) { // 15 days
+                throw ParsingException()
+            }
+
+            for (i in 1..durationInHours) {
+                val newDate = if (i > 1) {
+                    date.toCalendarWithTimeZone(timeZone).apply {
+                        add(Calendar.HOUR_OF_DAY, i - 1)
+                    }.time
+                } else date
+                weatherForecast[newDate] = it.value!![0].weather!!
+            }
+        }
+    }
+
+    return weatherForecast
+}*/
+
+/*private fun getWeatherCode(weather: String?): WeatherCode? {
+    if (weather == null) return null
+    return when (weather) {
+        "rain", "rain_showers", "freezing_rain", "drizzle", "freezing_drizzle", "freezing_spray" -> WeatherCode.RAIN
+        "sleet" -> WeatherCode.SLEET
+        "snow", "snow_showers", "blowing_snow", "frost", "ice_crystals" -> WeatherCode.SNOW
+        "thunderstorms" -> WeatherCode.THUNDERSTORM
+        "fog", "freezing_fog", "ice_fog" -> WeatherCode.FOG
+        "blowing_sand", "water_spouts" -> WeatherCode.WIND
+        "hail" -> WeatherCode.HAIL
+        "haze", "smoke", "volcanic_ash" -> WeatherCode.HAZE
         else -> null
     }
-}
+}*/
 
 /**
  * Based on https://www.weather.gov/help-map

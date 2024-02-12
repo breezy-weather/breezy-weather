@@ -20,5 +20,24 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsGridPointProperties(
-    val periods: List<NwsGridPointPeriod>?
+    val temperature: NwsValueFloatContainer?,
+    val dewpoint: NwsValueFloatContainer?,
+    val relativeHumidity: NwsValueIntContainer?,
+    val apparentTemperature: NwsValueFloatContainer?,
+    val wetBulbGlobeTemperature: NwsValueFloatContainer?,
+    val heatIndex: NwsValueFloatContainer?,
+    val windChill: NwsValueFloatContainer?,
+    val skyCover: NwsValueIntContainer?,
+    val windDirection: NwsValueIntContainer?,
+    val windSpeed: NwsValueFloatContainer?,
+    val windGust: NwsValueFloatContainer?,
+    val weather: NwsValueWeatherContainer?,
+    val probabilityOfPrecipitation: NwsValueIntContainer?,
+    val quantitativePrecipitation: NwsValueFloatContainer?,
+    val iceAccumulation: NwsValueFloatContainer?,
+    val snowfallAmount: NwsValueFloatContainer?,
+    val ceilingHeight: NwsValueFloatContainer?,
+    val visibility: NwsValueFloatContainer?,
+    val pressure: NwsValueFloatContainer?,
+    val probabilityOfThunder: NwsValueIntContainer?,
 )

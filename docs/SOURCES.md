@@ -59,17 +59,17 @@ Additional sources are available to configure but requires an API key. You can f
 | **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
 | **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
 
-| Sources                       | China | NWS | Bright Sky | ECCC | SMHI | MET Éireann |
-|-------------------------------|-------|-----|------------|------|------|-------------|
-| **Daily (days)**              | 15    | 7   | 10         | 6    | 15   | 7           |
-| **Hourly (days)**             | 1     | 7   | 10         | 1    | 15   | 7           |
-| **Weather**                   | ✅     | ✅   | ✅          | ✅    | ✅    | ✅           |
-| **Temperature**               | ✅     | ✅   | ✅          | ✅    | ✅    | ✅           |
-| **Precipitation**             | ❌     | ❌   | ✅          | ❌    | ✅    | ✅           |
-| **Precipitation probability** | Daily | ❌   | ✅          | ✅    | T    | ❌           |
-| **Wind**                      | ✅     | ✅   | ✅          | ✅    | ✅    | ✅           |
-| **UV**                        | ❌     | ❌   | ❌          | ❌    | ❌    | ❌           |
-| **Sun & Moon & Moon phase**   | ✅     | ✅   | ✅          | ✅    | ✅    | ✅           |
+| Sources                       | China | NWS    | Bright Sky | ECCC | SMHI | MET Éireann |
+|-------------------------------|-------|--------|------------|------|------|-------------|
+| **Daily (days)**              | 15    | 7      | 10         | 6    | 15   | 7           |
+| **Hourly (days)**             | 1     | 7      | 10         | 1    | 15   | 7           |
+| **Weather**                   | ✅     | ✅      | ✅          | ✅    | ✅    | ✅           |
+| **Temperature**               | ✅     | ✅      | ✅          | ✅    | ✅    | ✅           |
+| **Precipitation**             | ❌     | ✅ (SI) | ✅          | ❌    | ✅    | ✅           |
+| **Precipitation probability** | Daily | ✅ (T)  | ✅          | ✅    | T    | ❌           |
+| **Wind**                      | ✅     | ✅      | ✅          | ✅    | ✅    | ✅           |
+| **UV**                        | ❌     | ❌      | ❌          | ❌    | ❌    | ❌           |
+| **Sun & Moon & Moon phase**   | ✅     | ✅      | ✅          | ✅    | ✅    | ✅           |
 
 Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
@@ -124,9 +124,9 @@ Legend:
 |----------------------------|---------|-----|------------|---------|------|-------------|
 | **Humidity**               | Current | ✅   | ✅          | Current | ✅    | ✅           |
 | **Dew point**              | Current | ✅   | ✅          | Current | ✅    | ✅           |
-| **Pressure**               | ❌       | ❌   | ✅          | Current | ✅    | ✅           |
-| **Cloud cover**            | ❌       | ❌   | ✅          | ❌       | ❌    | ❌           |
-| **Visibility**             | Current | ❌   | ✅          | Current | ✅    | ❌           |
+| **Pressure**               | ❌       | ✅   | ✅          | Current | ✅    | ✅           |
+| **Cloud cover**            | ❌       | ✅   | ✅          | ❌       | ❌    | ❌           |
+| **Visibility**             | Current | ✅   | ✅          | Current | ✅    | ❌           |
 | **Ceiling**                | ❌       | ❌   | ❌          | ❌       | ❌    | ❌           |
 | **Precipitation duration** | ❌       | ❌   | ❌          | ❌       | ❌    | ❌           |
 | **Hours of sun**           | ✅       | ❌   | ✅          | ✅       | ❌    | ❌           |

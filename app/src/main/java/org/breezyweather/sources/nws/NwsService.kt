@@ -88,8 +88,7 @@ class NwsService @Inject constructor(
             userAgent,
             gridId,
             gridX.toInt(),
-            gridY.toInt(),
-            "si"
+            gridY.toInt()
         )
 
         val nwsAlertsResult = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {

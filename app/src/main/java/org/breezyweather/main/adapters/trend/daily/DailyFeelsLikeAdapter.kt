@@ -183,12 +183,12 @@ class DailyFeelsLikeAdapter(
             }
         }
         weather.dailyForecast.forEach { daily ->
-            daily.day?.temperature?.temperature?.let {
+            daily.day?.temperature?.feelsLikeTemperature?.let {
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
                     mHighestTemperature = it
                 }
             }
-            daily.night?.temperature?.temperature?.let {
+            daily.night?.temperature?.feelsLikeTemperature?.let {
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
                     mLowestTemperature = it
                 }
