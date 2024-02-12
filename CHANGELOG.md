@@ -26,6 +26,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
 - [PirateWeather] Retrieve 168 hours of forecast
 - [PirateWeather] Fix precipitation probability
+- Various improvements to missing data computing/extrapolating
 
 **Other improvements and fixes**
 - Fix crash when today/tomorrow notification was received on Android 14

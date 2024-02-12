@@ -372,8 +372,11 @@ fun mergeSecondaryWeatherDataIntoDailyList(
 
 /**
  * Completes a List<HourlyWrapper> with the following data than can be computed:
+ * - Weather code
+ * - Weather text
  * - Dew point
  * - Wind chill temperature
+ * - Wet bulb temperature
  */
 fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>
@@ -382,20 +385,19 @@ fun computeMissingHourlyData(
         if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null
             || hourly.temperature.wetBulbTemperature == null
             || hourly.weatherCode == null || hourly.weatherText.isNullOrEmpty()) {
-            // TODO
-            /*val halfDayWeatherCode = newHalfDay.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
-                halfDayHourlyList,
-                totalPrecipitation,
-                maxPrecipitationProbability,
-                maxWind,
-                avgCloudCover,
-                getHalfDayAvgVisibilityFromHourlyList(halfDayHourlyList)
+
+            val weatherCode = hourly.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
+                listOf(hourly),
+                hourly.precipitation,
+                hourly.precipitationProbability,
+                hourly.wind,
+                hourly.cloudCover,
+                hourly.visibility?.toDouble()
             )
 
-            val halfDayWeatherTextFromCode = WeatherViewController.getWeatherText(halfDayWeatherCode)
-            val halfDayWeatherText = newHalfDay.weatherText ?: halfDayWeatherTextFromCode
-            val halfDayWeatherPhase = newHalfDay.weatherPhase ?: halfDayWeatherTextFromCode*/
             hourly.copy(
+                weatherCode = weatherCode,
+                weatherText = hourly.weatherText ?: WeatherViewController.getWeatherText(weatherCode),
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature?.toDouble(), hourly.relativeHumidity?.toDouble()),
                 temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
             )
@@ -774,8 +776,8 @@ private fun completeHalfDayFromHourlyList(
  */
 private fun getHalfDayWeatherCodeFromHourlyList(
     halfDayHourlyList: List<HourlyWrapper>,
-    totPrecipitation: Precipitation,
-    maxPrecipitationProbability: PrecipitationProbability,
+    totPrecipitation: Precipitation?,
+    maxPrecipitationProbability: PrecipitationProbability?,
     maxWind: Wind?,
     avgCloudCover: Int?,
     avgVisibility: Double?
@@ -790,24 +792,24 @@ private fun getHalfDayWeatherCodeFromHourlyList(
 
     // If total precipitation is greater than 1 mm
     // and max probability is greater than 30 % (assume 100 % if not reported)
-    if ((totPrecipitation.total ?: 0f) > minPrecipIntensity &&
-        (maxPrecipitationProbability.total ?: 100f) > minPrecipProbability
+    if ((totPrecipitation?.total ?: 0f) > minPrecipIntensity &&
+        (maxPrecipitationProbability?.total ?: 100f) > minPrecipProbability
     ) {
         val isRain =
-            maxPrecipitationProbability.rain?.let { it > minPrecipProbability }
-                ?: totPrecipitation.rain?.let { it > 0 }
+            maxPrecipitationProbability?.rain?.let { it > minPrecipProbability }
+                ?: totPrecipitation!!.rain?.let { it > 0 }
                 ?: false
         val isSnow =
-            maxPrecipitationProbability.snow?.let { it > minPrecipProbability }
-                ?: totPrecipitation.snow?.let { it > 0 }
+            maxPrecipitationProbability?.snow?.let { it > minPrecipProbability }
+                ?: totPrecipitation!!.snow?.let { it > 0 }
                 ?: false
         val isIce =
-            maxPrecipitationProbability.ice?.let { it > minPrecipProbability }
-                ?: totPrecipitation.ice?.let { it > 0 }
+            maxPrecipitationProbability?.ice?.let { it > minPrecipProbability }
+                ?: totPrecipitation!!.ice?.let { it > 0 }
                 ?: false
         val isThunder =
-            maxPrecipitationProbability.thunderstorm?.let { it > minPrecipProbability }
-                ?: totPrecipitation.thunderstorm?.let { it > 0 }
+            maxPrecipitationProbability?.thunderstorm?.let { it > minPrecipProbability }
+                ?: totPrecipitation!!.thunderstorm?.let { it > 0 }
                 ?: false
 
         if (isRain || isSnow || isIce || isThunder) {
