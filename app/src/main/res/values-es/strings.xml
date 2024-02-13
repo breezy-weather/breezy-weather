@@ -107,11 +107,11 @@
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">dd MMM</string>
-    <string name="date_format_widget_short">dd MMM EEE</string>
-    <string name="date_format_widget_long">dd MMM EEE</string>
-    <string name="date_format_widget_oreo_style">dd MMM EEE│</string>
+    <string name="date_format_short">d-M</string>
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_widget_short">EEEE d MMM</string>
+    <string name="date_format_widget_long">EEEE d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">Ubicando en segundo plano</string>
     <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
