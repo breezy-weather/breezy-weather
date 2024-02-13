@@ -158,7 +158,7 @@
     <string name="weather_kind_wind">Ветар</string>
     <string name="common_weather_text_snow_grains">Снежна зрна</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Тренутна температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Привидна температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Тренутна „Осећа се као“ температура (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Тренутно УВ</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недеља</string>
     <string name="settings_debug_dump_crash_logs_summary">Чува евиденције грешака у фајл за дељење са програмерима</string>
@@ -207,7 +207,7 @@
     <string name="settings_notifications_alerts_title">Обавештења о временским упозорењима</string>
     <string name="unit_km_voice">Километри</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Омогући информације о локацији</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Привидна температура (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Тренутна „Осећа се као“ температура (°)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Тренутна влажност</string>
     <string name="widget_custom_subtitle_keyword_al_description">Упозорења</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Месечеве фазе - данас, сутра, …, 4 дана касније</string>
