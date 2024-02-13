@@ -98,19 +98,17 @@ class HereService @Inject constructor(
             "forecastHourly",
             "forecastAstronomy"
         )
-        val forecast = mWeatherApi.getForecast(
+
+        return mWeatherApi.getForecast(
             apiKey,
-            products.joinToString(separator = ",") +
-                    if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-                        ",nwsAlerts"
-                    } else "",
+            products.joinToString(separator = ","),
             "${location.latitude},${location.longitude}",
             "metric",
             languageCode,
             oneObservation = true
-        )
-
-        return forecast.map { convert(it) }
+        ).map {
+            convert(it)
+        }
     }
 
     /**
@@ -127,16 +125,14 @@ class HereService @Inject constructor(
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
 
-        val locationResult = mGeocodingApi.geoCode(
+        return mGeocodingApi.geoCode(
             apiKey,
             query,
             types = "city",
             limit = 20,
             languageCode,
             show = "tz" // we need timezone info
-        )
-
-        return locationResult.map {
+        ).map {
             if (it.items == null) {
                 throw LocationSearchException()
             } else {
@@ -160,16 +156,14 @@ class HereService @Inject constructor(
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.codeWithCountry
 
-        val locationResult = mRevGeocodingApi.revGeoCode(
+        return mRevGeocodingApi.revGeoCode(
             apiKey,
             "${location.latitude},${location.longitude}",
             types = "city",
             limit = 20,
             languageCode,
             show = "tz"
-        )
-
-        return locationResult.map {
+        ).map {
             if (it.items == null) {
                 throw ReverseGeocodingException()
             } else {

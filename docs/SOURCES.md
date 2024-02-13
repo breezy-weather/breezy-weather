@@ -2,28 +2,64 @@
 
 This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
 
-**AccuWeather** is the most complete source, although you may not need so much completeness (not many people care about ceiling, for example).
-
-**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (short-term forecast accuracy, alerts, realtime precipitations and reverse geocoding).
+**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, and probably more accurate as well, however still lacks a few features (station observations, alerts, reverse geocoding), but you can combine the missing features with a secondary source (see below).
 
 
-## Accuracy
+## Suggestions by country
 
 When deciding about which source you want to use, accuracy of data is probably the most important criteria.
 
-Here are some suggestions based on various criteria or testimonies (you can suggest others in GitHub discussions):
+When possible, we suggest using data from your national weather source, which are usually best tailored for your country. Additional, most of the time, you will benefit from a large network of observation stations for real-time weather (instead of having “current weather” extrapolated from forecast models refreshed only every few hours).
 
-| Country/Continent | Main source                                      | Air quality | Pollen      | Minutely     | Alerts       | Normals      |
-|-------------------|--------------------------------------------------|-------------|-------------|--------------|--------------|--------------|
-| Europe            |                                                  |             | Open-Meteo  |              |              |              |
-| United States     | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |              | NWS          |              |
-| Canada            | ECCC                                             | AccuWeather | AccuWeather |              | ECCC         | ECCC         |
-| Germany           | Bright Sky (DWD)                                 | Open-Meteo  | Open-Meteo  |              | Bright Sky   |              |
-| France            | Météo-France                                     |             | Open-Meteo  | Météo-France | Météo-France | Météo-France |
-| Sweden            | SMHI or MET Norway                               | Open-Meteo  | Open-Meteo  | MET Norway   |              |              |
-| DMI               | DMI or MET Norway                                | Open-Meteo  | Open-Meteo  | MET Norway   |              |              |
-| Norway            | MET Norway                                       | MET Norway  | Open-Meteo  | MET Norway   |              |              |
-| Ireland           | MET Éireann                                      | Open-Meteo  | Open-Meteo  |              |              |              |
+When not possible or for some data not usually provided by national weather sources (such as Air quality, Pollen), we suggest sources that make use of Open-Data for specific-country or continent (such as Copernicus for Europe air quality, used by Open-Meteo).
+
+Based on these criteria, here are some suggestions:
+
+### North America
+
+| Country       | Main source                                      | Air quality | Pollen      | Minutely | Alerts | Normals |
+|---------------|--------------------------------------------------|-------------|-------------|----------|--------|---------|
+| Canada        | ECCC                                             | AccuWeather | AccuWeather |          | ECCC   | ECCC    |
+| United States | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |          | NWS    |         |
+
+
+### South America
+
+*No recommendation yet.*
+
+
+### Europe
+
+| Country         | Main source               | Air quality | Pollen     | Minutely     | Alerts       | Normals      |
+|-----------------|---------------------------|-------------|------------|--------------|--------------|--------------|
+| Danmark         | DMI or MET Norway         | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
+| Deutschland     | Bright Sky (DWD)          | Open-Meteo  | Open-Meteo |              | Bright Sky   |              |
+| France          | Météo-France              |             | Open-Meteo | Météo-France | Météo-France | Météo-France |
+| Ireland         | MET Éireann               | Open-Meteo  | Open-Meteo |              |              |              |
+| Norge/Noreg     | MET Norway                | MET Norway  | Open-Meteo | MET Norway   |              |              |
+| Sverige         | SMHI or MET Norway        | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
+| Other countries | Open-Meteo¹ or MET Norway |             | Open-Meteo |              |              |              |
+
+¹ Has forecast data from DWD (Deutschland), Météo-France, MET Norway, AM ARPAE ARPAP (Italia) and ECWMF (Europe) weather models
+
+
+### Asia
+
+| Country | Main source       | Air quality | Pollen | Minutely | Alerts | Normals |
+|---------|-------------------|-------------|--------|----------|--------|---------|
+| 中国      | 中国 or Open-Meteo¹ | 中国          |        | 中国       | 中国     |         |
+| 日本      | Open-Meteo¹       |             |        |          |        |         |
+
+¹ Has forecast data from CMA (China) and JMA (Japan)
+
+
+### Oceania
+
+| Country   | Main source | Air quality | Pollen | Minutely | Alerts | Normals |
+|-----------|-------------|-------------|--------|----------|--------|---------|
+| Australia | Open-Meteo¹ |             |        |          |        |         |
+
+¹ Has forecast data from Australian Bureau of Meteorology (BOM)
 
 
 ## Status
@@ -45,7 +81,7 @@ Additional sources are available to configure but requires an API key. You can f
 * ³ Aggregated data from Beijing Meteorological Service, ColorfulClouds (Caiyun) and CNEMC
 
 
-## Main features
+## Main features supported by each source
 
 | Sources                       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI |
 |-------------------------------|------------|-------------|------------|-------------|--------------|-----|
@@ -174,7 +210,7 @@ Legend:
 | **Air quality**                    | ❌              | ❌        |
 | **Pollen**                         | ❌              | ❌        |
 | **Precipitation in the next hour** | ✅              | ❌        |
-| **Alerts**                         | ✅              | US (NWS) |
+| **Alerts**                         | ✅              | ❌        |
 | **Normals**                        | Average¹       | Average¹ |
 
 ¹ Median from daily forecast

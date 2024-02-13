@@ -24,6 +24,7 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
@@ -145,6 +146,15 @@ private fun getAlertList(
             priority = 5, // TODO
         )
     }
+}
+
+fun convertSecondary(
+    dmiWarningResult: DmiWarningResult,
+): SecondaryWeatherWrapper {
+
+    return SecondaryWeatherWrapper(
+        alertList = getAlertList(dmiWarningResult.locationWarnings)
+    )
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {

@@ -55,12 +55,12 @@ class SmhiService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        val smhiForecastResult = mApi.getForecast(
+        return mApi.getForecast(
             location.longitude,
             location.latitude
-        )
-
-        return smhiForecastResult.map { convert(it, location.timeZone) }
+        ).map {
+            convert(it, location.timeZone)
+        }
     }
 
     companion object {

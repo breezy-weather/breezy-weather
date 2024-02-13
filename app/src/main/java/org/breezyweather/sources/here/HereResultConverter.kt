@@ -36,7 +36,6 @@ import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
-import org.breezyweather.sources.here.json.HereWeatherNWSAlerts
 import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -97,7 +96,6 @@ fun convert(
     val astronomyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
         it.astronomyForecasts?.getOrNull(0)?.forecasts
     }
-    val nwsAlerts = hereWeatherForecastResult.places.firstNotNullOfOrNull { it.nwsAlerts }
 
     return WeatherWrapper(
         /*base = Base(
@@ -105,8 +103,7 @@ fun convert(
         ),*/
         current = getCurrentForecast(currentForecast),
         dailyForecast = getDailyForecast(dailySimpleForecasts, astronomyForecasts),
-        hourlyForecast = getHourlyForecast(hourlyForecasts),
-        alertList = getAlertList(nwsAlerts)
+        hourlyForecast = getHourlyForecast(hourlyForecasts)
     )
 }
 
@@ -207,40 +204,6 @@ private fun getHourlyForecast(
             visibility = result.visibility?.times(1000)
         )
     }
-}
-
-private fun getAlertList(
-    nwsAlerts: HereWeatherNWSAlerts?
-): List<Alert> {
-    val converted = arrayListOf<Alert>()
-
-    val nwsAlertsCombined = (nwsAlerts?.warnings ?: listOf()) + (nwsAlerts?.watches ?: listOf())
-    for (alert in nwsAlertsCombined) {
-        val description = alert.description ?: ""
-
-        // try to deduplicate
-        if (converted.find {
-                it.description == description &&
-                        it.startDate == alert.validFromTimeLocal &&
-                        it.endDate == alert.validUntilTimeLocal
-            } != null) {
-            continue
-        }
-
-        converted.add(
-            Alert(
-                // Create unique ID from: description, severity, start time
-                alertId = Objects.hash(description, alert.severity, alert.validFromTimeLocal?.time).toString(),
-                startDate = alert.validFromTimeLocal,
-                endDate = alert.validUntilTimeLocal,
-                description = description,
-                content = alert.message,
-                priority = alert.severity ?: 1
-            )
-        )
-    }
-
-    return converted
 }
 
 /**

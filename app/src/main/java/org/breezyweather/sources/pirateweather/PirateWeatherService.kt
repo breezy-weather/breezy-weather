@@ -70,9 +70,11 @@ class PirateWeatherService @Inject constructor(
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
+
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
-        val pirateWeatherResult = mApi.getForecast(
+
+        return mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
@@ -80,9 +82,9 @@ class PirateWeatherService @Inject constructor(
             languageCode,
             null,
             "hourly"
-        )
-
-        return pirateWeatherResult.map { convert(it) }
+        ).map {
+            convert(it)
+        }
     }
 
     // SECONDARY WEATHER SOURCE
@@ -103,6 +105,7 @@ class PirateWeatherService @Inject constructor(
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
+
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
         val exclude = mutableListOf("currently", "hourly", "daily")
@@ -112,7 +115,8 @@ class PirateWeatherService @Inject constructor(
         if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             exclude.add("minutely")
         }
-        val pirateWeatherResult = mApi.getForecast(
+
+        return mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
@@ -120,9 +124,9 @@ class PirateWeatherService @Inject constructor(
             languageCode,
             exclude.joinToString(","),
             null
-        )
-
-        return pirateWeatherResult.map { convertSecondary(it) }
+        ).map {
+            convertSecondary(it)
+        }
     }
 
     // CONFIG

@@ -45,7 +45,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
 
     @GET("airquality/v2/forecasts/hourly/96hour/{city_key}")
     fun getAirQuality(
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("pollutants") pollutants: Boolean,
         @Query("language") language: String
@@ -55,7 +55,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
     fun getClimoSummary(
         @Path("year") year: Int,
         @Path("month") month: Int,
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean

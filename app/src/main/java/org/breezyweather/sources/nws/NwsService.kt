@@ -141,12 +141,10 @@ class NwsService @Inject constructor(
             return Observable.error(SecondaryWeatherException())
         }
 
-        val nwsAlertsResult = mApi.getActiveAlerts(
+        return mApi.getActiveAlerts(
             userAgent,
             "${location.latitude},${location.longitude}"
-        )
-
-        return nwsAlertsResult.map {
+        ).map {
             convertSecondary(it)
         }
     }

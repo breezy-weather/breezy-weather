@@ -78,7 +78,7 @@ This section keep track of endpoints and when they were last checked.
 
 ## Open-Meteo
 
-*Last checked: 2023-12-05*
+*Last checked: 2024-02-13*
 
 | Endpoint            | Version  | Notes                                                                                                                                                                                                                              |
 |---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -95,29 +95,27 @@ Future additional endpoints/improvements for existing endpoints:
 
 ## AccuWeather
 
-*Last checked: 2023-07-12*
+*Last checked: 2024-02-13*
 
-| Endpoint               | Version | Notes                      |
-|------------------------|---------|----------------------------|
-| Location — Translate   | v1      |                            |
-| Location — Geoposition | v1      |                            |
-| Current conditions     | v1      |                            |
-| Daily                  | v1      | Up to 45 days, but useless |
-| Hourly                 | v1      | Up to 240 hours            |
-| Minutely               | v1      | 1 minute precision         |
-| Alerts by geoposition  | v1      |                            |
-| Air quality            | v2      | Up to 96 hours             |
+https://apidev.accuweather.com/developers/
 
-Not yet implemented in app:
-
-| Endpoint | Version |
-|----------|---------|
-| Climo    | v1      |
+| Endpoint               | Version | Notes                                                      |
+|------------------------|---------|------------------------------------------------------------|
+| Location — Translate   | v1      |                                                            |
+| Location — Geoposition | v1      |                                                            |
+| Current conditions     | v1      |                                                            |
+| Daily                  | v1      | Up to 45 days, but useless                                 |
+| Hourly                 | v1      | Up to 240 hours                                            |
+| Minutely               | v1      | 1 minute precision                                         |
+| Alerts by geoposition  | v1      |                                                            |
+| Alerts by location     | v1      |                                                            |
+| Air quality            | v2      | Up to 96 hours. TODO: Observational endpoint for SK and CN |
+| Climo                  | v1      |                                                            |
 
 
 ## MET Norway
 
-*Last checked: 2023-12-05*
+*Last checked: 2024-02-13*
 
 | Endpoint          | Version | Notes                                                                                                     |
 |-------------------|---------|-----------------------------------------------------------------------------------------------------------|
@@ -128,17 +126,16 @@ Not yet implemented in app:
 
 Not yet implemented in app:
 
-| Endpoint    | Version | Notes                                              |
-|-------------|---------|----------------------------------------------------|
-| MET alerts  | 1.1     | Norway only by country code, requires a XML parser |
-
+| Endpoint    | Version | Notes                                                                                                |
+|-------------|---------|------------------------------------------------------------------------------------------------------|
+| MET alerts  | 1.1     | Norway only by country code, there is a GeoJSON format but is heavily discouraged for production use |
 
 No location search endpoint exists, it uses Open-Meteo instead.
 
 
 ## OpenWeather
 
-*Last checked: 2023-12-05*
+*Last checked: 2024-02-13*
 
 | Endpoint      | Version | Notes                 |
 |---------------|---------|-----------------------|
@@ -157,31 +154,31 @@ Uses Open-Meteo for location search.
 
 ## Pirate Weather
 
-*Last checked: 2023-12-05*
+*Last checked: 2024-02-13*
 
 See: https://github.com/alexander0042/pirateweather/
 
 | Endpoint    | Version |
 |-------------|---------|
-| Forecast    | v1.5.5  |
+| Forecast    | v1.5.6  |
 
 We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
 
 
 ## HERE
 
-*Last checked: 2023-07-30*
+*Last checked: 2024-02-13*
 
-| Endpoint            | Version |
-|---------------------|---------|
-| Weather Destination | v3      |
-| Geocode             | v1      |
-| Reverse geocode     | v1      |
+| Endpoint            | Version    | Documentation                                                                                  |
+|---------------------|------------|------------------------------------------------------------------------------------------------|
+| Weather Destination | v3         | https://www.here.com/docs/bundle/here-destination-weather-api-v3-api-reference/page/index.html |
+| Geocode             | v1 (7.116) | https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html     |
+| Reverse geocode     | v1 (7.116) | https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html     |
 
 
 ## Météo-France
 
-*Last checked: 2023-12-05*
+*Last checked: 2024-02-13*
 
 | Endpoint    | Version |
 |-------------|---------|
@@ -195,14 +192,14 @@ Not used:
 
 | Endpoint | Version | Notes                                                                                |
 |----------|---------|--------------------------------------------------------------------------------------|
-| Places   | None    | Doesn’t have mandatory timezone field, miss many data on countries other than France |
+| Places   | V2      | Doesn’t have mandatory timezone field, miss many data on countries other than France |
 
 Uses Open-Meteo for location search.
 
 
 ## Bright Sky
 
-*Last checked: 2024-01-24*
+*Last checked: 2024-02-13*
 
 | Endpoint        | Version |
 |-----------------|---------|
@@ -229,6 +226,21 @@ Uses Open-Meteo for location search.
 | Weather  | 2       |
 
 
+## DMI
+
+*To be documented*
+
+
+## MET Éireann
+
+*To be documented*
+
+
+## National Weather Service (NWS)
+
+*To be documented*
+
+
 ## China
 
-*Undocumented*
+*Legacy source, undocumented*

@@ -56,12 +56,12 @@ class MetIeService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        val metIeResult = mApi.getForecast(
+        return mApi.getForecast(
             location.latitude,
             location.longitude
-        )
-
-        return metIeResult.map { convert(it, location.timeZone) }
+        ).map {
+            convert(it, location.timeZone)
+        }
     }
 
     companion object {

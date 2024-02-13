@@ -13,6 +13,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 
 **Weather sources**
 - [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source, with alerts for Denmark-only
+- [Danmarks Meteorologiske Institut (DMI)] Added support as a secondary source for alerts in Denmark-only
 - [China] Added support as a secondary source for minutely, alerts and air quality in China-only
 - [National Weather Service (NWS)] Added support as a main source in United States of America and territories-only
 - [National Weather Service (NWS)] Added support as a secondary source for alerts in United States of America and territories-only
@@ -26,6 +27,7 @@ This major version introduces new hourly trends for more detailed weather data, 
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
 - [PirateWeather] Retrieve 168 hours of forecast
 - [PirateWeather] Fix precipitation probability
+- [HERE] Remove support for NWS alerts, they were never filtered according to the location (was returning all alerts from USA!), so use directly NWS source instead
 - Various improvements to missing data computing/extrapolating
 
 **Other improvements and fixes**

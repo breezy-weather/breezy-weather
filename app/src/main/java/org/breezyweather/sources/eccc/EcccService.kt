@@ -64,13 +64,12 @@ class EcccService @Inject constructor(
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val languageCode = SettingsManager.getInstance(context).language.code
-        val ecccResult = mApi.getForecast(
+
+        return mApi.getForecast(
             languageCode,
             location.latitude,
             location.longitude
-        )
-
-        return ecccResult.map {
+        ).map {
             // Can’t do that because it is a List when it succeed
             //if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
             if (it.isEmpty()) {
@@ -101,13 +100,12 @@ class EcccService @Inject constructor(
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
         val languageCode = SettingsManager.getInstance(context).language.code
-        val ecccResult = mApi.getForecast(
+
+        return mApi.getForecast(
             languageCode,
             location.latitude,
             location.longitude
-        )
-
-        return ecccResult.map {
+        ).map {
             // Can’t do that because it is a List when it succeed
             //if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
             if (it.isEmpty()) {
@@ -122,13 +120,12 @@ class EcccService @Inject constructor(
         location: Location
     ): Observable<List<Location>> {
         val languageCode = SettingsManager.getInstance(context).language.code
-        val ecccResult = mApi.getForecast(
+
+        return mApi.getForecast(
             languageCode,
             location.latitude,
             location.longitude
-        )
-
-        return ecccResult.map {
+        ).map {
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }

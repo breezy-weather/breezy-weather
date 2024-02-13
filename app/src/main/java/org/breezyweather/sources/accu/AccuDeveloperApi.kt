@@ -45,7 +45,7 @@ interface AccuDeveloperApi {
 
     @GET("currentconditions/v1/{city_key}")
     fun getCurrent(
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean
@@ -54,7 +54,7 @@ interface AccuDeveloperApi {
     @GET("forecasts/v1/daily/{days}day/{city_key}")
     fun getDaily(
         @Path("days") days: String,
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
@@ -64,7 +64,7 @@ interface AccuDeveloperApi {
     @GET("forecasts/v1/hourly/{hours}hour/{city_key}")
     fun getHourly(
         @Path("hours") hours: String,
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
@@ -73,7 +73,7 @@ interface AccuDeveloperApi {
 
     @GET("alerts/v1/{city_key}")
     fun getAlertsByCityKey(
-        @Path("city_key") city_key: String,
+        @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean

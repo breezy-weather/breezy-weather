@@ -25,13 +25,14 @@ import org.breezyweather.common.extensions.isRtl
 // actual distance = distance(km) * factor.
 enum class DistanceUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
+    override val convertUnit: (Float) -> Float,
+    val decimalNumbers: Int = 0
 ): UnitEnum<Float> {
 
     M("m", { valueInDefaultUnit -> valueInDefaultUnit }),
-    KM("km", { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) }),
-    MI("mi", { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344f) }),
-    NMI("nmi", { valueInDefaultUnit -> valueInDefaultUnit.div(1852f) }),
+    KM("km", { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) }, 1),
+    MI("mi", { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344f) }, 1),
+    NMI("nmi", { valueInDefaultUnit -> valueInDefaultUnit.div(1852f) }, 1),
     FT("ft", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) });
 
     companion object {
@@ -59,7 +60,7 @@ enum class DistanceUnit(
 
     override fun getValueTextWithoutUnit(
         valueInDefaultUnit: Float
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 2)!!
+    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimalNumbers)!!
 
     override fun getValueText(
         context: Context,
@@ -74,7 +75,7 @@ enum class DistanceUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = decimalNumbers,
         rtl = rtl
     )
 
@@ -91,7 +92,7 @@ enum class DistanceUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = decimalNumbers,
         rtl = rtl
     )
 }

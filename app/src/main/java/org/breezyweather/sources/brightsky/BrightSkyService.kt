@@ -142,12 +142,10 @@ class BrightSkyService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val alertsResult = mApi.getAlerts(
+        return mApi.getAlerts(
             location.latitude,
             location.longitude
-        )
-
-        return alertsResult.map {
+        ).map {
             val languageCode = SettingsManager.getInstance(context).language.code
             convertSecondary(it, languageCode)
         }
