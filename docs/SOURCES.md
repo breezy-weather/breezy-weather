@@ -2,7 +2,7 @@
 
 This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
 
-**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, and probably more accurate as well, however still lacks a few features (station observations, alerts, reverse geocoding), but you can combine the missing features with a secondary source (see below).
+**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, and probably more accurate as well, however still lacks a few features (station observations, alerts, reverse geocoding), but you can combine the missing features with a secondary source (at the very bottom of this document).
 
 
 ## Suggestions by country
@@ -30,17 +30,18 @@ Based on these criteria, here are some suggestions:
 
 ### Europe
 
-| Country         | Main source               | Air quality | Pollen     | Minutely     | Alerts       | Normals      |
-|-----------------|---------------------------|-------------|------------|--------------|--------------|--------------|
-| Danmark         | DMI or MET Norway         | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
-| Deutschland     | Bright Sky (DWD)          | Open-Meteo  | Open-Meteo |              | Bright Sky   |              |
-| France          | Météo-France              |             | Open-Meteo | Météo-France | Météo-France | Météo-France |
-| Ireland         | MET Éireann               | Open-Meteo  | Open-Meteo |              |              |              |
-| Norge/Noreg     | MET Norway                | MET Norway  | Open-Meteo | MET Norway   |              |              |
-| Sverige         | SMHI or MET Norway        | Open-Meteo  | Open-Meteo | MET Norway   |              |              |
-| Other countries | Open-Meteo¹ or MET Norway |             | Open-Meteo |              |              |              |
+| Country         | Main source               | Air quality              | Pollen     | Minutely     | Alerts       | Normals      |
+|-----------------|---------------------------|--------------------------|------------|--------------|--------------|--------------|
+| Danmark         | DMI or MET Norway         | Open-Meteo               | Open-Meteo | MET Norway   |              |              |
+| Deutschland     | Bright Sky (DWD)          | Open-Meteo               | Open-Meteo |              | Bright Sky   |              |
+| France          | Météo-France              | Open-Meteo or ATMO-AURA² | Open-Meteo | Météo-France | Météo-France | Météo-France |
+| Ireland         | MET Éireann               | Open-Meteo               | Open-Meteo |              |              |              |
+| Norge/Noreg     | MET Norway                | MET Norway               | Open-Meteo | MET Norway   |              |              |
+| Sverige         | SMHI or MET Norway        | Open-Meteo               | Open-Meteo | MET Norway   |              |              |
+| Other countries | Open-Meteo¹ or MET Norway | Open-Meteo               | Open-Meteo |              |              |              |
 
 ¹ Has forecast data from DWD (Deutschland), Météo-France, MET Norway, AM ARPAE ARPAP (Italia) and ECWMF (Europe) weather models
+² Only available in Auvergne-Rhône-Alpes
 
 
 ### Asia
