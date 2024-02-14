@@ -28,10 +28,10 @@
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „%s“ löschen</string>
-    <string name="widget_label_black_text">Dunkler Text</string>
+    <string name="widget_label_black_text">Schriftfarbe</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigungen prüfen</string>
     <string name="pollen_tap_to_see_more">Mehr…</string>
-    <string name="widget_label_clock_font">Schriftfarbe</string>
+    <string name="widget_label_clock_font">Font der Uhr</string>
     <string name="location_message_added">Ort hinzugefügt</string>
     <string name="location_message_deleted">Ort gelöscht</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Standortbestimmung aktivieren</string>
@@ -50,7 +50,7 @@
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Standortdienst auswählen</string>
-    <string name="widget_label_show_widget_card">Widgethintergrund</string>
+    <string name="widget_label_show_widget_card">Hintergrundfarbe</string>
     <string name="widget_label_show_widget_card_alpha">Transparenz</string>
     <string name="widget_label_subtitle_data">Untertiteldaten</string>
     <string name="widget_label_text_size">Schriftgröße</string>
