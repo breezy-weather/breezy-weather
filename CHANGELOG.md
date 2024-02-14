@@ -25,6 +25,7 @@
 - [MET Éireann] Added support as a main source in Ireland-only (alerts not yet supported)
 - [AccuWeather] Added support as a secondary-source for air quality, pollen and normals
 - [AccuWeather] Fix normals (missing in January, shifted by one month on other months)
+- [MET Norway] Fix precipitation in the next hour failing in some cases
 - [PirateWeather] Retrieve 168 hours of forecast
 - [PirateWeather] Fix precipitation probability
 - [HERE] Remove support for NWS alerts, they were never filtered according to the location (was returning all alerts from USA!), so use directly NWS source instead

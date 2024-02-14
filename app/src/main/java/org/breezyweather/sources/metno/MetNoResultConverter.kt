@@ -184,7 +184,7 @@ private fun getDailyList(
 
 private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): List<Minutely> {
     val minutelyList: MutableList<Minutely> = arrayListOf()
-    if (nowcastTimeseries.isNullOrEmpty()) return minutelyList
+    if (nowcastTimeseries.isNullOrEmpty() || nowcastTimeseries.size < 2) return minutelyList
 
     nowcastTimeseries.forEachIndexed { i, nowcastForecast ->
         minutelyList.add(
