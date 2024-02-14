@@ -43,6 +43,7 @@ Optional permissions: <ul>
 <li>Read phone state (READ_PHONE_STATE): Required by an app dependency: not actually used, but can't be removed. It's okay to never enable this.</li>
 </ul>
 
-Anti-feature: <ul>
+Anti-features: <ul>
+<li>Non-Free dependency: It has been brought to our attention that one dependency is partially closed source. Actions to remediate are being taken. See issue #677 on GitHub.</li>
 <li>Non-Free Assets: Logo is part of the branding of Breezy Weather and you are only allowed to re-use it under specific terms (see license additional terms for more info).</li>
 </ul>
