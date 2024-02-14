@@ -662,4 +662,7 @@
     <string name="notification_precipitation_continuing">Precipitación</string>
     <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %s</string>
     <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (℃/℉)</string>
+    <string name="location_search_source">Fuente para encontrar la ubicación</string>
+    <string name="location_search_change_source">Cambiar la fuente para la ubicación</string>
+    <string name="settings_weather_source_none">Ninguna</string>
 </resources>
