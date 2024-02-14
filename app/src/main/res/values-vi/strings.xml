@@ -99,7 +99,7 @@
     <string name="settings_weather_sources">Nguồn cung cấp thời tiết</string>
     <string name="settings_icon_packs_weather_icon_dark">Biểu tượng tối</string>
     <string name="settings_icon_packs_get_more">Lấy thêm</string>
-    <string name="settings_weather_sources_summary">Cài đặt nhà cung cấp thời tiết, default location search source</string>
+    <string name="settings_weather_sources_summary">Cài đặt nhà cung cấp thời tiết</string>
     <string name="settings_icon_packs_weather_icon_grey">Biểu tượng xám</string>
     <string name="settings_icon_packs_weather_icon_light">Biểu tượng sáng</string>
     <string name="settings_icon_packs_get_more_store">Lấy thêm từ cửa hàng ứng dụng</string>
@@ -178,7 +178,6 @@
     <string name="location_current">Vị trí hiện tại</string>
     <string name="location_resident">Vị trí thường trú</string>
     <string name="location_search_weather_source">Nguồn cung cấp thời tiết</string>
-    <string name="location_search_change_weather_source">Thay đổi nguồn cung cấp thời tiết</string>
     <string name="location_results_by">Kết quả vị trí bởi %s</string>
     <string name="location_message_failed_to_locate">Thất bại trong việc tìm kiếm vị trí hiện tại</string>
     <string name="location_message_added">Đã thêm vị trí</string>
@@ -590,7 +589,6 @@
     <string name="action_save">Lưu</string>
     <string name="settings_weather_source_main">Nguồn chính</string>
     <string name="settings_weather_sources_per_location_summary">Tùy chỉnh các nguồn dữ liệu thời tiết cho vị trí này</string>
-    <string name="settings_weather_sources_default_location_search">Nguồn tìm kiếm vị trí mặc định</string>
     <string name="about_privacy_policy">Chính sách riêng tư</string>
     <string name="about_contact">Liên hệ</string>
     <string name="about_dependencies">Các sự lệ thuộc</string>

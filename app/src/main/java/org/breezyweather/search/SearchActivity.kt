@@ -45,10 +45,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.source.LocationSearchSource
+import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
@@ -73,14 +72,11 @@ class SearchActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val context = LocalContext.current
-        val dialogOpenState = remember { mutableStateOf(false) }
+        val dialogLocationSearchSourceOpenState = remember { mutableStateOf(false) }
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
-        val enabledSourceState = viewModel.enabledSource.collectAsState()
-        val weatherSource = sourceManager.getMainWeatherSourceOrDefault(enabledSourceState.value)
-        val locationSearchSource = if (weatherSource !is LocationSearchSource) {
-            sourceManager.getLocationSearchSourceOrDefault(SettingsManager.getInstance(context).locationSearchSource)
-        } else weatherSource
+        val locationSearchSourceState = viewModel.locationSearchSource.collectAsState()
+        val locationSearchSource = sourceManager.getLocationSearchSourceOrDefault(locationSearchSourceState.value)
 
         Material3Scaffold(
             bottomBar = {
@@ -93,33 +89,22 @@ class SearchActivity : GeoActivity() {
                             Column {
                                 Text(
                                     text = stringResource(
-                                        R.string.weather_data_by,
-                                        weatherSource.name
+                                        R.string.location_results_by,
+                                        locationSearchSource.locationSearchAttribution
                                     ),
-                                    style = MaterialTheme.typography.titleSmall,
-                                    color = Color(weatherSource.color)
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = DayNightTheme.colors.bodyColor
                                 )
-                                if (locationSearchSource.locationSearchAttribution != weatherSource.name) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                                    Text(
-                                        text = stringResource(
-                                            R.string.location_results_by,
-                                            locationSearchSource.locationSearchAttribution
-                                        ),
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = DayNightTheme.colors.bodyColor
-                                    )
-                                }
                             }
                         }
                     },
                     floatingActionButton = {
                         FloatingActionButton(
-                            onClick = { dialogOpenState.value = true },
+                            onClick = { dialogLocationSearchSourceOpenState.value = true },
                             containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                         ) {
-                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_weather_source))
+                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
                         }
                     }
                 )
@@ -168,7 +153,8 @@ class SearchActivity : GeoActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        finishSelf(location)
+                                        // TODO: Open dialog to presets of main/secondary sources
+                                        finishSelf(LocationPreset.getLocationWithPresetApplied(location))
                                     }
                                 )
                             }
@@ -205,13 +191,12 @@ class SearchActivity : GeoActivity() {
             }
         }
 
-        if (dialogOpenState.value) {
-            val uriHandler = LocalUriHandler.current
+        if (dialogLocationSearchSourceOpenState.value) {
             AlertDialog(
-                onDismissRequest = { dialogOpenState.value = false },
+                onDismissRequest = { dialogLocationSearchSourceOpenState.value = false },
                 title = {
                     Text(
-                        text = stringResource(R.string.location_search_weather_source),
+                        text = stringResource(R.string.location_search_source),
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.headlineSmall,
                     )
@@ -220,11 +205,11 @@ class SearchActivity : GeoActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        items(sourceManager.getConfiguredMainWeatherSources()) {
+                        items(sourceManager.getConfiguredLocationSearchSources()) {
                             RadioButton(
-                                selected = weatherSource.id == it.id,
+                                selected = locationSearchSource.id == it.id,
                                 onClick = {
-                                    dialogOpenState.value = false
+                                    dialogLocationSearchSourceOpenState.value = false
                                     viewModel.setEnabledSource(it.id)
                                     if (text.isNotEmpty()) {
                                         viewModel.requestLocationList(text)
@@ -237,21 +222,10 @@ class SearchActivity : GeoActivity() {
                 },
                 confirmButton = {
                     TextButton(
-                        onClick = { dialogOpenState.value = false }
+                        onClick = { dialogLocationSearchSourceOpenState.value = false }
                     ) {
                         Text(
                             text = stringResource(R.string.action_cancel),
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
-                        )
-                    }
-                },
-                dismissButton = {
-                    TextButton(
-                        onClick = { uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md") }
-                    ) {
-                        Text(
-                            text = stringResource(R.string.action_help_me_choose),
                             color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.labelLarge,
                         )

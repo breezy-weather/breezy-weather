@@ -471,7 +471,6 @@
     <string name="pollen_birch">Brzoza</string>
     <string name="pollen_mugwort">Bylica</string>
     <string name="pollen_olive">Oliwka</string>
-    <string name="location_search_change_weather_source">Zmień źródło danych pogodowych</string>
     <string name="location_message_permission_background_missing">Brak pozwolenia na dostęp do lokalizacji w tle</string>
     <string name="dialog_permissions_notification_content">Dotknij tutaj, aby włączyć powiadomienia o alertach pogodowych, lub zdecyduj później w Ustawieniach.</string>
     <string name="location_results_by">Wyniki lokalizacji według %s</string>
@@ -535,7 +534,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Mgła osadzająca szadź</string>
     <string name="unit_mgpcum_voice">Miligramów na metr sześcienny</string>
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest zarówno sieć urządzenia, jak i dostawcy GPS.</string>
-    <string name="settings_weather_sources_summary">Ustawienia źródeł danych pogodowych, domyślne źródło wyszukiwania lokalizacji</string>
+    <string name="settings_weather_sources_summary">Ustawienia źródeł danych pogodowych</string>
     <string name="settings_main_summary">Kolejność kart, wyświetlane elementy, animacje</string>
     <string name="settings_main_header_details_title">Szczegóły w nagłówku</string>
     <string name="settings_notifications_summary">Alerty pogodowe, opady, prognoza pogody</string>
@@ -603,7 +602,6 @@
     <string name="settings_weather_source_main">Główne źródło</string>
     <string name="settings_weather_sources_per_location_summary">Dostosuj źródła danych pogodowych dla tej lokalizacji</string>
     <string name="message_parsing_error_content">Upewnij się, że zaktualizowałeś do najnowszej wersji aplikacji. Serwer może być tymczasowo nie dostępny, w tym przypadku spróbuj ponownie później. Jeśli problem się utrwala, proszę o wygenerowanie dziennika crasha z ustawień debugowania i zgłoszenie problemu na GitHubie.</string>
-    <string name="settings_weather_sources_default_location_search">Domyślne źródło wyszukiwania lokalizacji</string>
     <string name="about_privacy_policy">Polityka prywatności</string>
     <string name="about_contact">Kontakt</string>
     <string name="unit_bf">Bf</string>

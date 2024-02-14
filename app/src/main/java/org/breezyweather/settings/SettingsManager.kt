@@ -149,12 +149,6 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
-    var locationSearchSource: String
-        set(value) {
-            config.edit().putString("location_search_source", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("location_search_source", null) ?: BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE
 
     // unit.
     var temperatureUnit: TemperatureUnit

@@ -47,11 +47,11 @@ class SearchActivityRepository @Inject internal constructor(
     private val mConfig: ConfigStore = ConfigStore(context, PREFERENCE_SEARCH_CONFIG)
 
     fun searchLocationList(
-        context: Context, query: String, enabledSource: String,
+        context: Context, query: String, locationSearchSource: String,
         callback: (t: Pair<List<Location>?, RefreshErrorType?>?, done: Boolean) -> Unit
     ) {
         mRefreshHelper
-            .requestSearchLocations(context, query, enabledSource)
+            .requestSearchLocations(context, query, locationSearchSource)
             .compose(SchedulerTransformer.create())
             .subscribe(ObserverContainer(mCompositeDisposable, object : DisposableObserver<List<Location>>() {
                 override fun onNext(t: List<Location>) {
@@ -98,11 +98,11 @@ class SearchActivityRepository @Inject internal constructor(
             }))
     }
 
-    var lastSelectedWeatherSource: String
+    var lastSelectedLocationSearchSource: String
         set(value) {
             mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, value).apply()
         }
-        get() = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
+        get() = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, null) ?: BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE
 
     fun cancel() {
         mCompositeDisposable.clear()

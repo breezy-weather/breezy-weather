@@ -228,7 +228,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Selecteer locatieservice</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_weather_sources">Weerbronnen</string>
-    <string name="settings_weather_sources_summary">Instellingen weergegevensbronnen, standaard zoekbron locatie</string>
+    <string name="settings_weather_sources_summary">Instellingen weergegevensbronnen</string>
     <string name="settings_weather_sources_current_location">Weerbron voor huidige locatie</string>
     <string name="settings_source_api_key">API-sleutel</string>
     <string name="settings_appearance">Uiterlijk</string>
@@ -258,7 +258,6 @@
     <string name="setting_weather_source_accu_hours">Uren</string>
     <string name="weather_source_accu_preference_hours_240">240 uur</string>
     <string name="location_resident">Bewonerslocatie</string>
-    <string name="location_search_change_weather_source">Weerbron wijzigen</string>
     <string name="widget_subtitle_data_wind">Wind</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_nmi_voice">Nautische mijlen</string>
@@ -552,7 +551,6 @@
     <string name="settings_location_access_precise_summaryOn">Ingeschakeld. Het netwerk van het apparaat en de GPS-providers worden beide gebruikt.</string>
     <string name="settings_location_access_precise_summaryOff">Schakel “Precieze locatie gebruiken” in als je problemen hebt met het vinden van een locatie.</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall-versie</string>
-    <string name="settings_weather_sources_default_location_search">Standaardlocatie zoekbron</string>
     <string name="settings_source_default_value">Standaard (ongewijzigd)</string>
     <string name="settings_appearance_summary">Taal, donkere modus, icoonpakket, eenheden</string>
     <string name="settings_appearance_dark_mode_title">Donkere modus</string>

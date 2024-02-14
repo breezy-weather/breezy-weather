@@ -376,7 +376,6 @@
     <string name="widget_clock_font_analog">Análogo</string>
     <string name="settings_background_updates_refresh_title">Frecuencia de actualización</string>
     <string name="settings_weather_source_portal">Portal</string>
-    <string name="location_search_change_weather_source">Cambiar fuente meteorológica</string>
     <string name="location_search_no_results_advice">Asegúrate de que tu búsqueda está bien escrita y no es demasiado específica. Como alternativa, puedes probar con otra fuente de datos meteorológicos que puede producir resultados diferentes.</string>
     <string name="air_quality_so2_info_title">Dióxido de azufre (SO₂)</string>
     <string name="air_quality_so2_info_introduction">El dióxido de azufre (SO₂) es un gas tóxico incoloro responsable del olor de los fósforos quemados.</string>
@@ -498,13 +497,12 @@
     <string name="settings_location_access_precise_summaryOn">Activado. Se utilizan tanto la red del dispositivo como los proveedores GPS.</string>
     <string name="settings_weather_source_main">Fuente principal</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar las fuentes de los datos meteorológicos para esta ubicación</string>
-    <string name="settings_weather_sources_default_location_search">Fuente para la búsqueda de la ubicación predeterminada</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo día/noche para las ubicaciones</string>
     <string name="settings_main_cards_other_element_animations_switch">Otras animaciones para los elementos</string>
     <string name="settings_main_daily_trends_title">Evolución diaria</string>
     <string name="settings_units_summary">Temperatura, precipitaciones, distancia, velocidad, presión</string>
     <string name="settings_notifications_precipitations_title">Notificaciones de las precipitaciones</string>
-    <string name="settings_weather_sources_summary">Configuración de las fuentes de los datos meteorológicos, fuente para búsqueda de una ubicación predeterminada</string>
+    <string name="settings_weather_sources_summary">Configuración de las fuentes de los datos meteorológicos</string>
     <string name="settings_weather_sources">Fuentes meteorológicas</string>
     <string name="settings_weather_sources_current_location">Fuente meteorológica para la ubicación actual</string>
     <string name="settings_main_summary">Orden de las tarjetas, datos mostrados, animaciones</string>

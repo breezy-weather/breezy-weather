@@ -138,6 +138,7 @@ private fun SecondarySourcesPreference(
         val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
         val weatherSources = sourceManager.getConfiguredMainWeatherSources()
         val secondarySources = sourceManager.getSecondaryWeatherSources()
+        val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
         val compatibleAirQualitySources = secondarySources.filter {
             it.id != location.weatherSource &&
                     it.supportedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
@@ -199,8 +200,14 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.air_quality),
                         selectedKey = airQualitySource.value,
-                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatibleAirQualitySources.associate { it.id to it.name },
+                        sourceList = mapOf(
+                            "" to stringResource(
+                                if (mainSource!!.supportedFeaturesInMain
+                                        .contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+                                    ) {
+                                    R.string.settings_weather_source_main
+                                } else R.string.settings_weather_source_none)
+                        ) + compatibleAirQualitySources.associate { it.id to it.name }
                     ) { sourceId ->
                         airQualitySource.value = sourceId
                         hasChangedASecondarySource.value = true
@@ -208,8 +215,14 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.pollen),
                         selectedKey = pollenSource.value,
-                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatiblePollenSources.associate { it.id to it.name },
+                        sourceList = mapOf(
+                            "" to stringResource(
+                                if (mainSource.supportedFeaturesInMain
+                                        .contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+                                ) {
+                                    R.string.settings_weather_source_main
+                                } else R.string.settings_weather_source_none)
+                        ) + compatiblePollenSources.associate { it.id to it.name }
                     ) { sourceId ->
                         pollenSource.value = sourceId
                         hasChangedASecondarySource.value = true
@@ -217,8 +230,14 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.minutely_precipitations),
                         selectedKey = minutelySource.value,
-                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatibleMinutelySources.associate { it.id to it.name },
+                        sourceList = mapOf(
+                            "" to stringResource(
+                                if (mainSource.supportedFeaturesInMain
+                                        .contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                                ) {
+                                    R.string.settings_weather_source_main
+                                } else R.string.settings_weather_source_none)
+                        ) + compatibleMinutelySources.associate { it.id to it.name }
                     ) { sourceId ->
                         minutelySource.value = sourceId
                         hasChangedASecondarySource.value = true
@@ -226,8 +245,14 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.alerts),
                         selectedKey = alertSource.value,
-                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatibleAlertSources.associate { it.id to it.name },
+                        sourceList = mapOf(
+                            "" to stringResource(
+                                if (mainSource.supportedFeaturesInMain
+                                        .contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+                                ) {
+                                    R.string.settings_weather_source_main
+                                } else R.string.settings_weather_source_none)
+                        ) + compatibleAlertSources.associate { it.id to it.name }
                     ) { sourceId ->
                         alertSource.value = sourceId
                         hasChangedASecondarySource.value = true
@@ -235,8 +260,14 @@ private fun SecondarySourcesPreference(
                     SourceView(
                         title = stringResource(R.string.temperature_normals),
                         selectedKey = normalsSource.value,
-                        sourceList = mapOf("" to stringResource(R.string.settings_weather_source_main)) +
-                                compatibleNormalsSources.associate { it.id to it.name },
+                        sourceList = mapOf(
+                            "" to stringResource(
+                                if (mainSource.supportedFeaturesInMain
+                                        .contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                                ) {
+                                    R.string.settings_weather_source_main
+                                } else R.string.settings_weather_source_none)
+                        ) + compatibleNormalsSources.associate { it.id to it.name }
                     ) { sourceId ->
                         normalsSource.value = sourceId
                         hasChangedASecondarySource.value = true

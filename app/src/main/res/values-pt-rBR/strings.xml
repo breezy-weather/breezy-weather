@@ -428,7 +428,7 @@
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
     <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>
     <string name="settings_location_access_background_summaryOn">Habilitado. O aplicativo poderá atualizar os dados meteorológicos de sua localização atual em segundo plano.</string>
-    <string name="settings_weather_sources_summary">Configurações dos provedores de dados metereológicos, default location search source</string>
+    <string name="settings_weather_sources_summary">Configurações dos provedores de dados metereológicos</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
@@ -464,7 +464,6 @@
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_search_weather_source">Provedor meteorológico</string>
-    <string name="location_search_change_weather_source">Mudar provedor meteorológico</string>
     <string name="settings_location_summary">Configurações dos provedores de localização</string>
     <string name="settings_location">Localização</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
@@ -613,7 +612,6 @@
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">na escala de Beaufort</string>
     <string name="weather_message_unsupported_feature">A fonte não suporta uma das funcionalidades solicitadas</string>
-    <string name="settings_weather_sources_default_location_search">Fonte de pesquisa para a localização padrão</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="about_contribution_designer">Designer da logo</string>
     <string name="location_resident_location_summaryOn">Habilitado. Oculto quando dentro de %s da localização atual.</string>

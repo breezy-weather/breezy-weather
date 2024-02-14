@@ -4,7 +4,6 @@
     <string name="short_yesterday">Igår</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
-    <string name="location_search_change_weather_source">Byt väderkälla</string>
     <string name="precipitation_thunderstorm">Åskväder</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Kvävedioxid</string>
@@ -383,14 +382,13 @@
     <string name="widget_trend_hourly">Timtrend</string>
     <string name="widget_clock_day_week">Klocka + daglig + veckovis</string>
     <string name="settings_background_updates_refresh_title">Uppdateringsfrekvens</string>
-    <string name="settings_weather_sources_default_location_search">Förvald platssökningskälla</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Tilltagande skära</string>
     <string name="visibility">Sikt</string>
     <string name="settings_main">Huvudskärm</string>
     <string name="settings_notifications_summary">Vädervarningar, nederbörd, prognos</string>
     <string name="settings_location_summary">Inställningar för platstjänster</string>
     <string name="settings_location">Positionering</string>
-    <string name="settings_weather_sources_summary">Inställningar för väderdatakällor, förvald platssökningskälla</string>
+    <string name="settings_weather_sources_summary">Inställningar för väderdatakällor</string>
     <string name="settings_widgets_live_wallpaper_title">Levande bakgrund</string>
     <string name="settings_notifications">Aviseringar</string>
     <string name="settings_main_summary">Kortordning, visade objekt, animationer</string>

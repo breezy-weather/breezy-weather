@@ -292,7 +292,6 @@ class SettingsActivity : GeoActivity() {
                     WeatherSourcesSettingsScreen(
                         context = this@SettingsActivity,
                         configurableSources = sourceManager.getConfigurableSources(),
-                        locationSearchSources = sourceManager.getConfiguredLocationSearchSources(),
                         paddingValues = paddings,
                     )
                 }

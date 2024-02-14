@@ -77,7 +77,6 @@ class SelectWeatherProviderActivity : GeoActivity() {
                     WeatherSourcesSettingsScreen(
                         context = this@SelectWeatherProviderActivity,
                         configurableSources = sourceManager.getConfigurableSources(),
-                        locationSearchSources = sourceManager.getConfiguredLocationSearchSources(),
                         paddingValues = paddings,
                     )
                 }

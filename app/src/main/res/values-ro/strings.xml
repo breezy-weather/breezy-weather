@@ -403,7 +403,6 @@
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
     <string name="weather_source_accu_preference_hours_240">240 ore</string>
     <string name="weather_source_accu_preference_hours_24">24 de ore</string>
-    <string name="location_search_change_weather_source">Schimbă furnizorul de vreme</string>
     <string name="location_message_permission_background_missing">Permisiunea de acces de Locație în fundal lipsește</string>
     <string name="settings_widgets_notification_widget_title">Widget de notificare</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
@@ -522,7 +521,7 @@
     <string name="settings_location_access_background_summaryOff">Vă rog sa activați „Permiteți tot timpul” pentru a avea reîmprospătări de fundal pentru locația dvs. actuală.</string>
     <string name="settings_location_access_precise_title">Utilizarea GPS-ului dispozitivului</string>
     <string name="settings_weather_sources">Furnizorii de vreme</string>
-    <string name="settings_weather_sources_summary">Setările furnizorilor de vreme, default location search source</string>
+    <string name="settings_weather_sources_summary">Setările furnizorilor de vreme</string>
     <string name="settings_location_access_permission_already_granted">Permisiunea a fost deja acordată</string>
     <string name="settings_location_access_switch_title">Acces la locație</string>
     <string name="settings_location_access_switch_summaryOff">Vă rugăm să permiteți dacă doriți să puteți adăuga locația dvs. actuală ca locație.</string>

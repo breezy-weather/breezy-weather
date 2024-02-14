@@ -288,7 +288,7 @@
     <string name="settings_background_updates">백그라운드 업데이트</string>
     <string name="settings_background_updates_section_troubleshoot">문제 해결</string>
     <string name="settings_background_updates_refresh_title">새로고침 간격</string>
-    <string name="settings_weather_sources_summary">날씨 제공 업체 설정, default location search source</string>
+    <string name="settings_weather_sources_summary">날씨 제공 업체 설정</string>
     <string name="settings_background_updates_battery_optimization_summary">알림을 받지 못하거나 위젯이 새로고침되지 않을 때 가장 먼저 시도해 보세요.</string>
     <string name="settings_background_updates_worker_info_title">Worker 정보</string>
     <string name="settings_weather_sources">날씨 제공 업체</string>
@@ -303,7 +303,6 @@
     <string name="settings_widgets_summary">배경화면, 사용 중인 위젯, 알림 위젯 설정</string>
     <string name="settings_debug_dump_crash_logs_summary">오류 로그를 파일로 저장하여 개발자와 공유</string>
     <string name="location_search_weather_source">날씨 제공 업체</string>
-    <string name="location_search_change_weather_source">날씨 제공 업체 변경</string>
     <string name="location_message_search_failed">위치 검색 실패</string>
     <string name="settings_section_general">일반</string>
     <string name="settings_appearance_summary">언어, 다크 모드, 아이콘 팩, 단위</string>

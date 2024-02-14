@@ -44,7 +44,7 @@ import javax.inject.Inject
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource,
+) : HttpSource(), MainWeatherSource, /*LocationSearchSource, */ReverseGeocodingSource,
     ConfigurableSource {
     override val id = "here"
     override val name = "HERE"
@@ -52,7 +52,7 @@ class HereService @Inject constructor(
 
     override val color = Color.rgb(72, 218, 208)
     override val weatherAttribution = "HERE"
-    override val locationSearchAttribution = "HERE"
+    //override val locationSearchAttribution = "HERE"
 
     private val mWeatherApi by lazy {
         client
@@ -61,12 +61,12 @@ class HereService @Inject constructor(
             .create(HereWeatherApi::class.java)
     }
 
-    private val mGeocodingApi by lazy {
+    /*private val mGeocodingApi by lazy {
         client
             .baseUrl(HERE_GEOCODING_BASE_URL)
             .build()
             .create(HereGeocodingApi::class.java)
-    }
+    }*/
 
     private val mRevGeocodingApi by lazy {
         client
@@ -114,7 +114,7 @@ class HereService @Inject constructor(
     /**
      * Returns cities matching a query
      */
-    override fun requestLocationSearch(
+    /*override fun requestLocationSearch(
         context: Context,
         query: String
     ): Observable<List<Location>> {
@@ -139,8 +139,7 @@ class HereService @Inject constructor(
                 convert(null, it.items)
             }
         }
-    }
-
+    }*/
 
     /**
      * Returns cities near provided coordinates
@@ -210,7 +209,7 @@ class HereService @Inject constructor(
     companion object {
         private const val HERE_WEATHER_BASE_URL = "https://weather.cc.api.here.com/"
         private const val HERE_WEATHER_DEV_BASE_URL = "https://weather.cit.cc.api.here.com/"
-        private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
+        //private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
         private const val HERE_REV_GEOCODING_BASE_URL = "https://revgeocode.search.hereapi.com/"
     }
 }

@@ -215,7 +215,6 @@
     <string name="weather_source_openweather_version_3_0">Версія 3.0</string>
     <string name="location_none_added_yet_instructions">Месцазнаходжанне яшчэ не дададзена. Націсніце на значок пошуку, каб дадаць месцазнаходжанне ўручную, або дадайце сваё бягучае месцазнаходжанне з дапамогай кнопкі.</string>
     <string name="location_search_weather_source">Крыніца надвор’я</string>
-    <string name="location_search_change_weather_source">Змяніць крыніцу надвор’я</string>
     <string name="location_results_by">Вынікі месцазнаходжання па %s</string>
     <string name="location_message_added">Месцазнаходжанне дададзена</string>
     <string name="location_message_deleted">Месцазнаходжанне выдалена</string>
@@ -414,10 +413,9 @@
     <string name="settings_location_access_precise_summaryOff">Уключыце «Выкарыстоўваць дакладнае месцазнаходжанне», калі ў вас узніклі праблемы з вызначэннем месцазнаходжання.</string>
     <string name="settings_weather_source">Крыніца надвор’я</string>
     <string name="settings_weather_sources">Крыніцы надвор’я</string>
-    <string name="settings_weather_sources_summary">Настройкі крыніц інфармацыі аб надвор’і, крыніца пошуку месцазнаходжання па змаўчанні</string>
+    <string name="settings_weather_sources_summary">Настройкі крыніц інфармацыі аб надвор’і</string>
     <string name="settings_weather_source_main">Асноўная крыніца</string>
     <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор’і для гэтага месцазнаходжання</string>
-    <string name="settings_weather_sources_default_location_search">Сэрвіс пошуку месцазнаходжання па змаўчанні</string>
     <string name="settings_weather_sources_current_location">Крыніца інфармацыі аб надвор’і для бягучага месцазнаходжання</string>
     <string name="settings_source_default_value">Па змаўчанні</string>
     <string name="settings_source_api_key">Ключ API</string>

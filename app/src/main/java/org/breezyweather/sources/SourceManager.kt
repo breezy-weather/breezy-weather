@@ -115,8 +115,6 @@ class SourceManager @Inject constructor(
     // Weather
     fun getMainWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
     fun getMainWeatherSource(id: String): MainWeatherSource? = getMainWeatherSources().firstOrNull { it.id == id }
-    fun getMainWeatherSourceOrDefault(id: String): MainWeatherSource = getMainWeatherSource(id)
-        ?: getMainWeatherSource(BuildConfig.DEFAULT_WEATHER_SOURCE)!!
     fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources().filter {
         it !is ConfigurableSource || it.isConfigured
     }

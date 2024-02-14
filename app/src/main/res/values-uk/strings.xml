@@ -80,7 +80,6 @@
     <string name="locations">Розташування</string>
     <string name="location_current">Поточне місцезнаходження</string>
     <string name="location_search_weather_source">Джерело погоди</string>
-    <string name="location_search_change_weather_source">Змінити джерело погоди</string>
     <string name="location_message_deleted">Розташування видалено</string>
     <string name="location_message_list_cannot_be_empty">Список розташувань не може бути порожнім</string>
     <string name="location_message_search_failed">Помилка пошуку розташувань</string>
@@ -406,7 +405,7 @@
     <string name="settings_location_access_background_summaryOn">Увімкнено. Застосунок зможе оновлювати погодні дані для вашого поточного місцезнаходження у фоновому режимі.</string>
     <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
-    <string name="settings_weather_sources_summary">Налаштування джерел інформації про погоду, джерело пошуку місцезнаходження за промовчанням</string>
+    <string name="settings_weather_sources_summary">Налаштування джерел інформації про погоду</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версія OneCall</string>
     <string name="settings_appearance_summary">Мова, тема, пакети значків, одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
@@ -475,7 +474,6 @@
     <string name="settings_notifications_precipitations_title">Повідомлення про опади</string>
     <string name="settings_widgets_live_wallpaper_title">Живі шпалери</string>
     <string name="settings_widgets_live_wallpaper_summary">Встановіть анімацію погоди як шпалери</string>
-    <string name="settings_weather_sources_default_location_search">Сервіс пошуку місцезнаходження за промовчанням</string>
     <string name="settings_widgets_live_wallpaper_error">Не вдалося запустити засіб вибору шпалер. Ви, як і раніше, можете увімкнути шпалери Breezy Weather, вибравши «Живі шпалери» в меню вибору шпалер на головному екрані.</string>
     <string name="settings_weather_sources_current_location">Джерело інформації про погоду для поточного місцезнаходження</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Зворотний порядок денних та нічних температур</string>

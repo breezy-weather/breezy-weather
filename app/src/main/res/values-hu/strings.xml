@@ -237,7 +237,6 @@
     <string name="settings_background_updates_refresh_1h_30min">1,5 óra</string>
     <string name="settings_background_updates_battery_optimization_summary">Ez az első teendő, amikor nem kap értesítéseket, vagy a modulok nem frissülnek.</string>
     <string name="settings_weather_source_main">Elsődleges forrás</string>
-    <string name="settings_weather_sources_default_location_search">Helykeresés alapértelmezett forrása</string>
     <string name="location_message_reverse_geocoding_failed">Az időjárásforrás nem talált megegyező helyet</string>
     <string name="widget_multi_city">Több város</string>
     <string name="settings_background_updates_battery_optimization_disabled">Az akkumulátoroptimalizáció már le van tiltva.</string>
@@ -398,7 +397,7 @@
     <string name="location_resident_location_summaryOff">Letiltva. A hely mindig elérhető.</string>
     <string name="action_delete">Törlés</string>
     <string name="dialog_permissions_notification_content">Koppintson ide a riasztásokról szóló értesítések engedélyezéséhez, ez bármikor módosítható a beállításokban.</string>
-    <string name="settings_weather_sources_summary">Időjárás-adatforrások beállítása, helykeresés alapértelmezett forrása</string>
+    <string name="settings_weather_sources_summary">Időjárás-adatforrások beállítása</string>
     <string name="settings_source_api_key">API-kulcs</string>
     <string name="settings_weather_source">Időjárásforrás</string>
     <string name="action_continue">Folytatás</string>
@@ -414,7 +413,6 @@
     <string name="weather_source_accu_preference_hours_120">120 óra</string>
     <string name="location_resident">Lakóhely</string>
     <string name="location_search_weather_source">Időjárásforrás</string>
-    <string name="location_search_change_weather_source">Időjárásforrás módosítása</string>
     <string name="location_search_no_results_advice">Győződjön meg róla, hogy a keresés helyesen van-e beírva, és nem túl specifikus. Alternatívaként megpróbálhat egy másik időjárásforrást, amely más helykeresési eredményeket adhat.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Jelenlegi páratartalom</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Jelenlegi légnyomás</string>

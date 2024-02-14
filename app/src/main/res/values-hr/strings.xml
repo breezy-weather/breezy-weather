@@ -10,7 +10,6 @@
     <string name="air_quality_so2_info_consequences">Izloženost SO₂ je povezana sa bolničkim liječenjima i posjetima hitnom prijemu zbog astme.</string>
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
     <string name="uv_index_6_7">Visoko</string>
-    <string name="location_search_change_weather_source">Promijeni izvor prognoze</string>
     <string name="precipitation_thunderstorm">Grmljavina</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
@@ -37,7 +36,6 @@
     <string name="wind_direction_short_S">J</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Geografska dužina</string>
     <string name="air_quality_so2_info_title">Sumporov dioksid (SO₂)</string>
-    <string name="settings_weather_sources_default_location_search">Glavni izvor za pretrage lokacija</string>
     <string name="widget_label_text_size">Veličina teksta</string>
     <string name="uv_index">UV indeks</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dnevni vjetar danas, sutra, …, 4 dana kasnije</string>
@@ -174,7 +172,7 @@
     <string name="settings_notifications_alerts_title">Obavijesti vremenskih upozorenja</string>
     <string name="settings_background_updates_refresh_30min">Pola sata</string>
     <string name="uv_index_11">Ekstremno</string>
-    <string name="settings_weather_sources_summary">Postavke izvora prognoze, glavni izvor pretrage lokacije</string>
+    <string name="settings_weather_sources_summary">Postavke izvora prognoze</string>
     <string name="settings_background_updates_refresh_6h">6 sati</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linija</string>

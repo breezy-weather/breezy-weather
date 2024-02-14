@@ -431,7 +431,6 @@
     <string name="settings_weather_source_portal">入口</string>
     <string name="setting_weather_source_accu_days">天數</string>
     <string name="location_search_weather_source">天氣資料來源</string>
-    <string name="location_search_change_weather_source">更改天氣資料來源</string>
     <string name="action_choose_weather_source">選擇天氣資料來源</string>
     <string name="location_search_no_results_advice">請確保您的搜尋拼寫正確且不過於特定。或者，您可以嘗試使用另一個氣象資料來源，以獲得不同的地點搜尋結果。</string>
     <string name="widget_clock_font_sans_serif">無襯線體</string>
@@ -542,7 +541,7 @@
     <string name="air_quality_pm_explanations_origin">自然來源包括火山、沙塵暴、森林和草地火災，以及海浪噴霧。人為活動，例如交通運輸、工業活動、發電廠、建築工地和垃圾焚燒，也會產生大量細懸浮微粒。</string>
     <string name="air_quality_o3_info_introduction">地表臭氧（O₃）是煙霧的主要成分，與保護地球免受過多紫外線的同一分子不同，對人體有害。</string>
     <string name="location_message_search_failed">位置搜尋失敗</string>
-    <string name="settings_weather_sources_summary">天氣資料來源設定、預設位置搜尋來源</string>
+    <string name="settings_weather_sources_summary">天氣資料來源設定</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
@@ -603,7 +602,6 @@
     <string name="settings_weather_source_main">主要資料來源</string>
     <string name="about_privacy_policy">隱私政策</string>
     <string name="about_contact">聯絡</string>
-    <string name="settings_weather_sources_default_location_search">預設位置搜尋來源</string>
     <string name="location_resident_location_summaryOn">已啟用。當與目前所在地的距離在 %s 以內時會隱藏。</string>
     <string name="common_weather_text_rain_heavy">大雨</string>
     <string name="common_weather_text_rain_showers_light">小陣雨</string>

@@ -187,7 +187,6 @@
     <string name="weather_source_openweather_version_3_0">Verzija 3.0</string>
     <string name="locations">Lokacije</string>
     <string name="location_search_weather_source">Izvor prognoze</string>
-    <string name="location_search_change_weather_source">Promijeni izvor prognoze</string>
     <string name="location_message_list_cannot_be_empty">Lista lokacija ne može biti prazna</string>
     <string name="location_swipe_to_delete">Prevucite lijevo za brisanje stavke</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Omogućite informacije o lokaciji</string>
@@ -271,8 +270,7 @@
     <string name="settings_weather_source">Izvor prognoze</string>
     <string name="settings_location_access_background_summaryOff">Omogućite „Dozvoli uvijek” za pozadinska osvježenja za vašu trenutnu lokaciju.</string>
     <string name="settings_weather_sources">Izvori prognoze</string>
-    <string name="settings_weather_sources_summary">Postavke izvora prognoze, glavni izvor pretrage lokacije</string>
-    <string name="settings_weather_sources_default_location_search">Glavni izvor za pretragu lokacija</string>
+    <string name="settings_weather_sources_summary">Postavke izvora prognoze</string>
     <string name="settings_appearance_dark_mode_title">Tamni režim</string>
     <string name="settings_appearance_dark_mode_locations_title">Dnevni / Noćni način za lokacije</string>
     <string name="settings_appearance_summary">Jezik, tamni režim, paketi ikona, mjerne jedinice</string>

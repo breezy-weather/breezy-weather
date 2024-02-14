@@ -34,8 +34,8 @@ class SearchViewModel @Inject constructor(
 ) : GeoViewModel(application!!) {
     private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(Pair(emptyList(), LoadableLocationStatus.SUCCESS))
     val listResource = _listResource.asStateFlow()
-    private val _enabledSource: MutableStateFlow<String> = MutableStateFlow(repository.lastSelectedWeatherSource)
-    val enabledSource = _enabledSource.asStateFlow()
+    private val _locationSearchSource: MutableStateFlow<String> = MutableStateFlow(repository.lastSelectedLocationSearchSource)
+    val locationSearchSource = _locationSearchSource.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 
     fun requestLocationList(str: String) {
@@ -43,7 +43,7 @@ class SearchViewModel @Inject constructor(
         mRepository.searchLocationList(
             getApplication(),
             str,
-            enabledSource.value
+            locationSearchSource.value
         ) { result: Pair<List<Location>?, RefreshErrorType?>?, _: Boolean ->
             result?.second?.let { msg ->
                 msg.showDialogAction?.let { showDialogAction ->
@@ -68,9 +68,9 @@ class SearchViewModel @Inject constructor(
         _listResource.value = Pair(emptyList(), LoadableLocationStatus.LOADING)
     }
 
-    fun setEnabledSource(weatherSource: String) {
-        mRepository.lastSelectedWeatherSource = weatherSource
-        _enabledSource.value = weatherSource
+    fun setEnabledSource(locSearchSource: String) {
+        mRepository.lastSelectedLocationSearchSource = locSearchSource
+        _locationSearchSource.value = locSearchSource
     }
 
     override fun onCleared() {

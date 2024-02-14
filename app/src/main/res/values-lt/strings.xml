@@ -138,7 +138,6 @@
     <string name="location_current">Dabartinė buvimo vieta</string>
     <string name="location_resident">Gyvenamoji vieta</string>
     <string name="location_search_weather_source">Orų šaltinis</string>
-    <string name="location_search_change_weather_source">Keisti orų šaltinį</string>
     <string name="location_results_by">Vietovių rezultatai iš %s</string>
     <string name="location_none_added_yet_instructions">Dar nepridėjote jokios vietovės. Jei norite pridėti vietovę patys, spauskite ieškojimo ikoną. Norėdami pridėti savo dabartinę buvimo vietą spauskite ant plaukiojančio mygtuko.</string>
     <string name="location_message_added">Vietovė pridėta</string>
@@ -497,7 +496,7 @@
     <string name="location_resident_location">Gyvenamoji vieta</string>
     <string name="location_resident_location_summaryOff">Išjungta. Vieta visada prieinama.</string>
     <string name="action_delete">Ištrinti</string>
-    <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai, default location search source</string>
+    <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai</string>
     <string name="settings_weather_sources_current_location">Dabartinės vietos orų šaltinis</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
     <string name="wind_gusts">Vėjo gūsiai</string>
@@ -564,7 +563,6 @@
     <string name="settings_widgets_monochrome_icons_title">Vienspalvės piktogramos</string>
     <string name="location_resident_location_summaryOn">Įjungta. Paslėpta, kai yra %s atstumu nuo dabartinės buvimo vietos.</string>
     <string name="minutely_precipitations">Kritulių kiekis minutėmis</string>
-    <string name="settings_weather_sources_default_location_search">Numatytasis vietos paieškos šaltinis</string>
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>
     <string name="pollen_and_mold">Žiedadulkės ir pelėsis</string>
     <string name="settings_main_threshold_lines_on_charts">Ribinės linijos diagramose</string>

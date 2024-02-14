@@ -205,7 +205,6 @@
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="location_none_added_yet_instructions">Все още няма добавено местоположение. Моля, докоснете иконата за търсене, за да добавите ръчно местоположение, или добавете текущото си местоположение от плаващия бутон.</string>
     <string name="location_search_weather_source">Източник на времето</string>
-    <string name="location_search_change_weather_source">Промяна на източника на времето</string>
     <string name="location_message_added">Местоположението е добавено</string>
     <string name="location_swipe_to_delete">Можете да плъзнете наляво, за да изтриете този елемент</string>
     <string name="location_message_failed_to_locate">Неуспешно намиране на текущото местоположение</string>
@@ -385,7 +384,7 @@
     <string name="settings_location_access_precise_summaryOn">Активирано. Използват се както мрежата на устройството, така и GPS доставчиците.</string>
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
-    <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето, default location search source</string>
+    <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето</string>
     <string name="settings_weather_sources_current_location">Източник на прогноза за текущото местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
@@ -588,7 +587,6 @@
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от %s</string>
     <string name="wind_gusts">Пориви вятър</string>
     <string name="minutely_precipitations">Валежи поминутно</string>
-    <string name="settings_weather_sources_default_location_search">Източник за търсене на местоположение по подразбиране</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
     <string name="unit_bf">Bf</string>

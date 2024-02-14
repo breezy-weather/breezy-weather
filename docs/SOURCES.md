@@ -118,9 +118,9 @@ The following features, if not available from your selected source, can be added
 | Sources                            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI     |
 |------------------------------------|------------|---------------|---------------|-------------|--------------|---------|
 | **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | ❌       |
-| **Pollen**                         | Europe     | North America | ❌             | ❌           | ❌            | ❌       |
+| **Pollen**                         | ✅          | North America | ❌             | ❌           | ❌            | ❌       |
 | **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ❌       |
-| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | ✅            | Denmark |
+| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
 | **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
 
 | Sources                            | China   | NWS     | Bright Sky | ECCC | SMHI    | MET Éireann   |

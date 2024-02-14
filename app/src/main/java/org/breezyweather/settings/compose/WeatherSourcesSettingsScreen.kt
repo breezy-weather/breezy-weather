@@ -41,24 +41,8 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 fun WeatherSourcesSettingsScreen(
     context: Context,
     configurableSources: List<ConfigurableSource>,
-    locationSearchSources: List<LocationSearchSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    sectionHeaderItem(R.string.settings_weather_providers_section_general)
-    listPreferenceItem(R.string.settings_weather_sources_default_location_search) { id ->
-        ListPreferenceView(
-            title = context.getString(id),
-            selectedKey = SettingsManager.getInstance(context).locationSearchSource,
-            valueArray = locationSearchSources.map { it.id }.toTypedArray(),
-            nameArray = locationSearchSources.map { it.name }.toTypedArray(),
-            summary = { _, value -> locationSearchSources.firstOrNull { it.id == value }?.name },
-            onValueChanged = { sourceId ->
-                SettingsManager.getInstance(context).locationSearchSource = sourceId
-            }
-        )
-    }
-    sectionFooterItem(R.string.settings_weather_providers_section_general)
-
     configurableSources
         .filter { it !is LocationSource } // Exclude location sources configured in its own screen
         .sortedBy { it.name } // Sort by name because there are now a lot of sources

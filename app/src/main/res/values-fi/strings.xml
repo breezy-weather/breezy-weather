@@ -485,7 +485,6 @@
     <string name="about_contribution_WangDaYeeeeee">Alkuperäisen Geometric Weather -projektin kehittäjä</string>
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Kevyitä sadekuuroja</string>
-    <string name="location_search_change_weather_source">Vaihda säälähdettä</string>
     <string name="pollen_mugwort">Pujo</string>
     <string name="unit_nmi_voice">Merimailia</string>
     <string name="location_message_reverse_geocoding_failed">Säälähde ei onnistunut löytämään vastaavaa sijaintia</string>
@@ -607,7 +606,6 @@
     <string name="settings_widgets_week_icon_mode_title">Viikkonäkymissä näytettävä kuvake</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Kerrostuva sumu</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Rankkaa vesisateen ja lumen sekoitusta</string>
-    <string name="settings_weather_sources_default_location_search">Oletusarvoisen sijainnin hakulähde</string>
     <string name="unit_mugpcum_voice">Mikrogrammaa per kuutiometri</string>
     <string name="common_weather_text_drizzle_freezing_light">Kevyttä jäätävää tihkusadetta</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Ukkosmyrsky ja lieviä raekuuroja</string>
@@ -618,7 +616,7 @@
     <string name="unit_ppcm_voice">Per kuutiometri</string>
     <string name="common_weather_text_snow_grains">Lumitihkusadetta</string>
     <string name="settings_location">Sijainti</string>
-    <string name="settings_weather_sources_summary">Säätietolähteiden asetukset, oletussijainnin hakulähde</string>
+    <string name="settings_weather_sources_summary">Säätietolähteiden asetukset</string>
     <string name="common_weather_text_drizzle_freezing">Jäätävää tihkusadetta</string>
     <string name="common_weather_text_rain_snow_mixed_light">Kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="widget_material_you_forecast">Material You - Ennuste</string>

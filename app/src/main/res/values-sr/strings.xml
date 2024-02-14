@@ -243,7 +243,6 @@
     <string name="uv_index_0_2">Ниско</string>
     <string name="weather_source_openweather_version_2_5">Верзија 2.5</string>
     <string name="settings_weather_source_portal">Портал</string>
-    <string name="location_search_change_weather_source">Промени извор времена</string>
     <string name="location_search_weather_source">Извор времена</string>
     <string name="weather_source_accu_preference_hours_240">240 сати</string>
     <string name="location_none_added_yet_instructions">Још увек није додата ниједна локација. Додирните иконицу за претраживање да бисте ручно додали локацију или додајте своју тренутну локацију помоћу плутајућег дугмета.</string>
@@ -446,7 +445,7 @@
     <string name="action_app_store">Продавница апликација</string>
     <string name="settings_weather_source">Извор времена</string>
     <string name="settings_weather_sources">Извори времена</string>
-    <string name="settings_weather_sources_summary">Подешавања извора података о времену, подразумевани извор претраге локације</string>
+    <string name="settings_weather_sources_summary">Подешавања извора података о времену</string>
     <string name="about_contribution_weather_source">Додао подршку за нове изворе времена</string>
     <string name="action_location_list">Листа локација</string>
     <string name="settings_main_background_animation_enabled">Омогућено</string>
@@ -624,7 +623,6 @@
     <string name="uv_alert_level">Алармантно</string>
     <string name="weather_api_key_required_missing_title">Недостаје потребан API кључ</string>
     <string name="weather_api_unauthorized_content">На неким изворима података о времену, потребно је да обезбедите свој API кључ. Ако сте га већ обезбедили, поново проверите API кључ који сте обезбедили.</string>
-    <string name="settings_weather_sources_default_location_search">Подразумевани извор претраге локације</string>
     <string name="about_contact">Контакт</string>
     <string name="about_privacy_policy">Политика приватности</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Ноћна температура - данас, сутра, …, 4 дана касније (°)</string>

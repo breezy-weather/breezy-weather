@@ -340,7 +340,7 @@
     <string name="settings_location_access_background_title">Přístup k poloze na pozadí</string>
     <string name="settings_location_access_switch_summaryOn">Povoleno. Jako umístění můžete přidat svou aktuální polohu.</string>
     <string name="settings_weather_sources">Zdroje počasí</string>
-    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí, default location search source</string>
+    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí</string>
     <string name="settings_weather_sources_current_location">Zdroj počasí pro aktuální polohu</string>
     <string name="settings_location_access_background_summaryOn">Povoleno. Aplikace bude moci na pozadí obnovovat údaje o počasí pro vaši aktuální polohu.</string>
     <string name="settings_location_access_background_summaryOff">Povolte možnost „Povolit po celou dobu“, chcete-li mít aktualizace na pozadí pro aktuální polohu.</string>
@@ -361,7 +361,6 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_units_summary">Teplota, srážky, vzdálenost, rychlost, tlak</string>
     <string name="location_search_weather_source">Zdroj počasí</string>
-    <string name="location_search_change_weather_source">Změna zdroje počasí</string>
     <string name="location_message_search_failed">Vyhledávání polohy se nezdařilo</string>
     <string name="location_message_permission_background_missing">Chybějící oprávnění k přístupu k poloze na pozadí</string>
     <string name="settings_background_updates_refresh_never">Nikdy</string>
@@ -634,7 +633,6 @@
     <string name="common_weather_text_drizzle_heavy">Silné mrholení</string>
     <string name="settings_weather_source_main">Hlavní zdroj</string>
     <string name="settings_weather_sources_per_location_summary">Přizpůsobte zdroj dat o počasí pro toto umístění</string>
-    <string name="settings_weather_sources_default_location_search">Výchozí zdroj vyhledávání polohy</string>
     <string name="settings_appearance_dark_mode_locations_title">Denní / noční režim pro umístění</string>
     <string name="settings_main_threshold_lines_on_charts">Prahové čáry na grafech</string>
     <string name="unit_bf">Bf</string>

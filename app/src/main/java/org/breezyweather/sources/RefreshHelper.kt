@@ -635,32 +635,16 @@ class RefreshHelper @Inject constructor(
     fun requestSearchLocations(
         context: Context,
         query: String,
-        enabledSource: String
+        locationSearchSource: String
     ): Observable<List<Location>> {
-        val service = sourceManager.getMainWeatherSource(enabledSource)
-        if (service == null) {
-            return Observable.error(SourceNotInstalledException())
-        }
-
-        val searchService = if (service !is LocationSearchSource) {
-            sourceManager.getLocationSearchSourceOrDefault(SettingsManager.getInstance(context).locationSearchSource)
-        } else service
+        val searchService = sourceManager.getLocationSearchSourceOrDefault(locationSearchSource)
 
         // Debug source is not online
         if (searchService is HttpSource && !context.isOnline()) {
             return Observable.error(NoNetworkException())
         }
 
-        return searchService.requestLocationSearch(context, query).map { locationList ->
-            // Rewrite all locations to point to selected weather source
-            (if (service !is LocationSearchSource) {
-                // If we used the default location search source, we need to filter in case
-                // the source doesn't support some locations (such as country-specific sources)
-                locationList.filter { service.isWeatherSupportedForLocation(it) }
-            } else locationList).map {
-                it.copy(weatherSource = service.id)
-            }
-        }
+        return searchService.requestLocationSearch(context, query)
     }
 
     /**

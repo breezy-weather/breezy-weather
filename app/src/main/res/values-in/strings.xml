@@ -559,11 +559,9 @@
     <string name="weather_alert_data_by">Data peringatan oleh %s</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Tidak dapat membuka pengaturan perangkat.</string>
     <string name="common_weather_text_rain_showers_light">Hujan ringan</string>
-    <string name="location_search_change_weather_source">Ubah sumber cuaca</string>
     <string name="action_add_new_location">Tambahkan lokasi baru</string>
     <string name="settings_widgets_week_icon_mode_title">Ikon untuk ditampilkan dalam tampilan mingguan</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Hujan dan salju berat bercampur</string>
-    <string name="settings_weather_sources_default_location_search">Sumber pencarian lokasi bawaan</string>
     <string name="unit_mugpcum_voice">Mikrogram per meter kubik</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Abaikan ketika baterai lemah</string>
     <string name="location_message_reverse_geocoding_failed">Sumber cuaca gagal mencari lokasi yang cocok</string>
@@ -596,7 +594,7 @@
     <string name="weather_refresh_skipped_already_recently_updated">Sudah diperbarui baru-baru ini</string>
     <string name="weather_message_invalid_location">Lokasi tidak valid, silakan hapus dan tambahkan lagi</string>
     <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca</string>
-    <string name="settings_weather_sources_summary">Pengaturan sumber data cuaca, sumber pencarian lokasi bawaan</string>
+    <string name="settings_weather_sources_summary">Pengaturan sumber data cuaca</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Petunjuk spesifik pabrikan</string>
     <string name="settings_notifications_forecast_time_today_title">Waktu notifikasi untuk perkiraan hari itu</string>
     <string name="location_results_by">Hasil lokasi oleh %s</string>

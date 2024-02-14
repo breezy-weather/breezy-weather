@@ -372,7 +372,6 @@
     <string name="location_swipe_to_delete">Μπορείς να σύρεις αριστερά για να διαγράψεις το αντικείμενο</string>
     <string name="weather_source_accu_preference_days_10">10 μέρες</string>
     <string name="location_search_weather_source">Πηγή καιρού</string>
-    <string name="location_search_change_weather_source">Αλλαγή πηγής καιρού</string>
     <string name="location_message_search_failed">Η αναζήτηση τοποθεσίας απέτυχε</string>
     <string name="location_search_no_results">Το %1$s δεν μπορεί να βρει το %2$s</string>
     <string name="location_search_no_results_advice">Βεβαιώσου ότι η αναζήτησή σου είναι γραμμένη σωστά και δεν είναι πολύ συγκεκριμένη. Εναλλακτικά, μπορείς να δοκιμάσεις άλλη πηγή καιρού που μπορεί να παράξει διαφορετικά αποτελέσματα αναζήτησης τοποθεσίας.</string>
@@ -399,7 +398,7 @@
     <string name="widget_label_hide_lunar">Απόκρυψη σεληνιακού ημερολογίου</string>
     <string name="setting_weather_source_accu_hours">Ώρες</string>
     <string name="action_choose_weather_source">Επέλεξε πηγή καιρού</string>
-    <string name="settings_weather_sources_summary">Ρυθμίσεις πηγών δεδομένων καιρού, προεπιλεγμένη πηγή αναζήτησης τοποθεσίας</string>
+    <string name="settings_weather_sources_summary">Ρυθμίσεις πηγών δεδομένων καιρού</string>
     <string name="widget_custom_subtitle_keyword_al_description">Προειδοποιήσεις</string>
     <string name="message_parsing_error_title">Αποτυχία ανάγνωσης δεδομένων καιρού</string>
     <string name="weather_source_accu_preference_days_5">5 μέρες</string>
@@ -465,7 +464,6 @@
     <string name="settings_location_access_precise_summaryOn">Ενεργό. Χρησιμοποιούνται και οι πάροχοι δικτύου και GPS της συσκευής.</string>
     <string name="settings_weather_source">Πηγή καιρού</string>
     <string name="settings_weather_sources_per_location_summary">Παραμετροποίησε πηγές δεδομένων καιρού για αυτή την τοποθεσία</string>
-    <string name="settings_weather_sources_default_location_search">Προεπιλεγμένη πηγή αναζήτησης θέσης</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="location_service_native">Εγγενές API</string>
     <string name="locations">Τοποθεσίες</string>

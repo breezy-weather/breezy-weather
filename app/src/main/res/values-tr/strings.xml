@@ -237,7 +237,6 @@
     <string name="weather_source_accu_preference_hours_24">24 saatlik</string>
     <string name="location_resident">İkamet yeri</string>
     <string name="location_search_weather_source">Hava durumu kaynağı</string>
-    <string name="location_search_change_weather_source">Hava durumu kaynağını değiştir</string>
     <string name="settings_widgets_notification_persistent_switch">Sabit</string>
     <string name="message_server_timeout">İstek zaman aşımına uğradı</string>
     <string name="widget_label_text_size">Metin boyutu</string>
@@ -456,7 +455,6 @@
     <string name="settings_location_access_background_summaryOn">Etkinleştirildi. Uygulama anlık konumunuz için hava durumu verisini arkaplanda güncelleyebilecek.</string>
     <string name="settings_location_access_background_summaryOff">Arkaplanda anlık konumunuzun güncellenebilmesi için lütfen “Her zaman izin ver” seçeneğini işaretleyin.</string>
     <string name="settings_location_access_precise_summaryOn">Etkinleştirildi. Cihazın ağ ve GPS sensörü sağlayıcıları aynı anda kullanılıyor.</string>
-    <string name="settings_weather_sources_default_location_search">Varsayılan konum arama kaynağı</string>
     <string name="settings_location_access_precise_summaryOff">Konum almada sorun yaşıyorsanız “Tam konumu kullan” seçeneğini etkinleştirin.</string>
     <string name="settings_appearance_dark_mode_locations_title">Konumlar için gündüz / gece modu</string>
     <string name="settings_main_daily_trends_title">Günlük akımlar</string>
@@ -608,7 +606,7 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="settings_weather_sources_summary">Hava durumu kaynakları ayarları, varsayılan konum arama kaynağı</string>
+    <string name="settings_weather_sources_summary">Hava durumu kaynakları ayarları</string>
     <string name="weather_alert_data_by">%s tarafından sağlanan alarm verileri</string>
     <string name="air_quality_no2_info_origin">Ortamdaki NO₂ ısıtma, ulaşım, endüstri ve güç üretimi sırasında yakılan yakıtların yüksek sıcaklıkta yanmasıyla oluşur. Evlerdeki nitrojen oksit (NOₓ) kaynakları arasında fırınlar, şömineler, gaz sobaları ve fırınları gibi yakıtla çalışan ekipmanlar yer alır.</string>
     <string name="air_quality_co_info_consequences">Karbon monoksit akciğer dokuları ve kan dolaşımına yayılarak vücut hücrelerinin oksijene bağlanmasını zorlaştırır ve bu da dokulara ve hücrelere zarar verir. Karbon monoksite maruz kalmak solunum zorluğuna, bitkinliğe, baş dönmelerine ve diğer grip benzeri belirtilere neden olabilirken yüksek düzeyde karbon monoksite maruz kalmak ölümcül olabilir.</string>
