@@ -654,4 +654,7 @@
     <string name="notification_precipitation_starting">Yağış yakında</string>
     <string name="notification_precipitation_starting_desc">Beklenen başlama zamanı: %s</string>
     <string name="notification_precipitation_continuing_desc">En az şu zamana kadar devam etmesi bekleniyor: %s</string>
+    <string name="location_search_source">Konum arama kaynağı</string>
+    <string name="location_search_change_source">Konum arama kaynağını değiştir</string>
+    <string name="settings_weather_source_none">Yok</string>
 </resources>
