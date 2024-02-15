@@ -650,4 +650,7 @@
     <string name="notification_precipitation_continuing_desc">Voraussichtlich andauernd bis mindestens %s</string>
     <string name="notification_precipitation_stopping">Niederschläge bald beendet</string>
     <string name="notification_precipitation_stopping_desc">Voraussichtliches Ende um %s</string>
+    <string name="location_search_source">Quelle der Ortssuche</string>
+    <string name="location_search_change_source">Quelle der Ortssuche ändern</string>
+    <string name="settings_weather_source_none">Keine</string>
 </resources>
