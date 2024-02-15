@@ -648,4 +648,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Стыль знешняга выгляду</string>
     <string name="widget_label_show_widget_card">Колер фону</string>
+    <string name="location_search_source">Крыніца пошуку</string>
+    <string name="settings_weather_source_none">Нема</string>
+    <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
 </resources>
