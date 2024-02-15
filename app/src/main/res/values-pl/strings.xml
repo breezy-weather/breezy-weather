@@ -659,4 +659,7 @@
     <string name="notification_precipitation_stopping_desc">Przedwidywany czas zakończenia o %s</string>
     <string name="notification_precipitation_starting_desc">Przewidywane rozpoczęcie o %s</string>
     <string name="notification_precipitation_continuing">Opady</string>
+    <string name="location_search_source">Wyszukaj źródło</string>
+    <string name="settings_weather_source_none">Nie</string>
+    <string name="location_search_change_source">Zmień źródło wyszukiwania</string>
 </resources>
