@@ -130,7 +130,6 @@
     <string name="ephemeris_sunrise_at">پگاه در %s</string>
     <string name="nighttime">شب</string>
     <string name="date_format_short">M-d</string>
-    <string name="date_format_long"></string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_pollen_data_by">داده گردوخاک از %s</string>
