@@ -137,8 +137,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（℃/℉）</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_at_description">體感溫度（℃/℉）</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">體感溫度（°）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">目前體感溫度（°）</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">當前風況</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">當前紫外線</string>
     <string name="widget_custom_subtitle_keyword_ch_description">當前濕度</string>
@@ -657,4 +657,7 @@
     <string name="notification_precipitation_starting_desc">預計於 %s 開始</string>
     <string name="notification_precipitation_starting">即將降雨</string>
     <string name="notification_precipitation_continuing">降雨</string>
+    <string name="location_search_change_source">更換位置搜尋來源</string>
+    <string name="location_search_source">位置搜尋來源</string>
+    <string name="settings_weather_source_none">無</string>
 </resources>
