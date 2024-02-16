@@ -453,7 +453,7 @@
     <string name="air_quality_co_info_origin">يتم إنتاجه عن طريق الاحتراق غير الكامل للوقود الكربوني مثل الخشب والبنزين والفحم والغاز الطبيعي والكيروسين في المواقد البسيطة والحرائق المفتوحة ومصابيح الفتيل والأفران والمدافئ. المصدر السائد لأول أكسيد الكربون (CO) في الهواء المحيط هو من السيارات.</string>
     <string name="weather_api_unauthorized_content">في بعض مصادر الطقس ، تحتاج إلى توفير مفتاح API الخاص بك. إذا كنت قد قدمت واحدة بالفعل ، فيرجى التحقق مرة أخرى من مفتاح واجهة برمجة التطبيقات الذي قدمته.</string>
     <string name="location_search_no_results">%1$s لا يمكن العثور على %2$s</string>
-    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددا للغاية. بدلا من ذلك ، يمكنك تجربة مصدر بيانات آخر قد ينتج عنه نتائج بحث مختلفة عن الموقع.</string>
+    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددًا للغاية. وبدلاً من ذلك، يمكنك تجربة مصدر آخر للبحث عن الموقع والذي قد يؤدي إلى نتائج مختلفة.</string>
     <string name="dialog_permissions_notification_title">ابق على اطلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتمكين الإشعارات حول تنبيهات الطقس ، أو حدد لاحقا في الإعدادات.</string>
     <string name="precipitation_none">لاتوجد احتمالية هطول</string>
@@ -643,4 +643,9 @@
     <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %s على الأقل</string>
     <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %s</string>
     <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
+    <string name="location_message_updated">تم تحديث الموقع</string>
+    <string name="settings_weather_source_none">لاشيء</string>
+    <string name="location_message_already_exists">يوجد بالفعل موقع له نفس مصدر الطقس الرئيسي.</string>
+    <string name="location_search_source">مصدر البحث عن الموقع</string>
+    <string name="location_search_change_source">تغيير مصدر البحث عن الموقع</string>
 </resources>
