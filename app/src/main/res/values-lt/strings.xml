@@ -93,10 +93,10 @@
     <string name="pollen_tap_to_see_more">Norėdami daugiau pamatyti spauskite čia…</string>
     <string name="ephemeris_moon_phase_new_moon">Jaunatis</string>
     <string name="ephemeris_moon_phase_first_quarter">Priešpilnis</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Jaunatis</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Priešpilnis</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Augantis pusmėnulis</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Augantis priešpilnis</string>
     <string name="ephemeris_moon_phase_last_quarter">Delčia</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Delčia</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Dylantis pusmėnulis</string>
     <string name="ephemeris_sunrise_at">Saulėtekis %s</string>
     <string name="ephemeris_sunset_at">Saulėlydis %s</string>
     <string name="ephemeris_moonrise_at">Mėnulio patekėjimas %s</string>
@@ -184,7 +184,7 @@
     <string name="pollen_grass">Žolių</string>
     <string name="pollen_mold">Grybeliniai</string>
     <string name="ephemeris_moon_phase_full_moon">Pilnatis</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Pilnatis</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Dylantis priešpilnis</string>
     <string name="ephemeris_moonset_at">Mėnulio nusileidimas %s</string>
     <string name="daytime">Diena</string>
     <string name="common_weather_text_snow">Sniegas</string>
@@ -309,7 +309,7 @@
     <string name="widget_label_hide_subtitle">Paslėpti subtitrus</string>
     <string name="widget_subtitle_data_aqi">Oro kokybė</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Dabartiniai orai</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Tariamoji temperatūra (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Dabartinė jutiminė temperatūra (°)</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Dabartinis rasos taškas</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Dabartinis matomumas</string>
     <string name="widget_custom_subtitle_keyword_l_description">Vieta</string>
@@ -343,7 +343,7 @@
 \nPavyzdžiui, “Dabartinis oras yra: $cw$.” bus rodomas kaip “Dabartinis oras yra: Giedra diena.”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Dabartinė temperatūra (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Dabartinė temperatūra (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Tariamoji temperatūra (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Dabartinė jutiminė temperatūra (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Mėnulio kalendorius</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Dabartinis vėjas</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Dabartinis slėgis</string>
@@ -641,4 +641,14 @@
     <string name="common_weather_text_rain_freezing_light">Silpna lijundra</string>
     <string name="common_weather_text_snow_moderate">Vidutinio stiprumo sniegas</string>
     <string name="common_weather_text_snow_showers_light">Silpnos sniego liūtys</string>
+    <string name="location_search_source">Vietos paieškos šaltinis</string>
+    <string name="settings_weather_source_none">Joks</string>
+    <string name="settings_unavailable_no_background_updates">Nepasiekiama, pirmiausia įjunkite fono atnaujinimus</string>
+    <string name="notification_precipitation_continuing">Krituliai</string>
+    <string name="notification_precipitation_starting">Netrukus krituliai</string>
+    <string name="notification_precipitation_starting_desc">Tikėtina, kad pradžia bus %s</string>
+    <string name="notification_precipitation_continuing_desc">Tikėtina, kad tęsis bent iki %s</string>
+    <string name="notification_precipitation_stopping">Krituliai netrukus liausis</string>
+    <string name="notification_precipitation_stopping_desc">Tikėtina, kad baigsis %s</string>
+    <string name="location_search_change_source">Pakeisti vietos paieškos šaltinį</string>
 </resources>
