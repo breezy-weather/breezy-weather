@@ -636,4 +636,7 @@
     <string name="settings_enabled">Овозможено</string>
     <string name="unit_mph">милји на час</string>
     <string name="unit_ftps">ft/s</string>
+    <string name="location_search_source">Локација извор за пребарување</string>
+    <string name="settings_weather_source_none">Никој</string>
+    <string name="location_search_change_source">Променете ја локацијата извор на пребарување</string>
 </resources>

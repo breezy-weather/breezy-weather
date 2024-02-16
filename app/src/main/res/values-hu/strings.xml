@@ -171,7 +171,7 @@
     <string name="settings_changes_apply_after_restart">A módosítások újraindítás után lépnek életbe</string>
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
+    <string name="pollen_tap_to_see_more">Koppints a további részletekért…</string>
     <string name="message_tap_again_to_exit">Koppintson újra a kilépéshez</string>
     <!-- action -->
     <string name="alerts">Riasztások</string>
@@ -594,7 +594,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>
-    <string name="alerts_to_follow">Közelgő riasztások, koppintson ide, ha látni szeretné őket.</string>
+    <string name="alerts_to_follow">Közelgő riasztások, koppints ide, ha látni szeretnéd őket.</string>
     <string name="about_contribution_weather_source">Hozzáadta az új időjárásforrások támogatását</string>
     <string name="settings_color_light">Világos</string>
     <string name="unit_mph">mph</string>
@@ -642,4 +642,7 @@
     <string name="notification_precipitation_stopping_desc">Várhatóan %s-kor megszűnik</string>
     <string name="notification_precipitation_continuing_desc">Várhatóan legalább %s-ig folytatódik</string>
     <string name="notification_precipitation_starting_desc">Várhatóan %s-kor kezdődik</string>
+    <string name="location_search_source">Helyszín keresés forrása</string>
+    <string name="location_search_change_source">Helyszín keresés forrásának megváltoztatása</string>
+    <string name="settings_weather_source_none">Semmi</string>
 </resources>

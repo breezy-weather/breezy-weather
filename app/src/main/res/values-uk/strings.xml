@@ -636,4 +636,7 @@
     <string name="settings_unavailable_no_background_updates">Недоступно, спочатку увімкніть фонові оновлення</string>
     <string name="notification_precipitation_starting">Незабаром опади</string>
     <string name="notification_precipitation_starting_desc">Очікуються починаючи з %s</string>
+    <string name="location_search_source">Джерело пошуку</string>
+    <string name="settings_weather_source_none">Немає</string>
+    <string name="location_search_change_source">Змінити джерело пошуку</string>
 </resources>

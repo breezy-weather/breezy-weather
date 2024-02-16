@@ -646,4 +646,7 @@
     <string name="settings_unavailable_no_background_updates">不可用，请先开启后台更新</string>
     <string name="notification_precipitation_continuing">降水</string>
     <string name="notification_precipitation_stopping_desc">预计将于 %s 停止</string>
+    <string name="location_search_source">位置搜索源</string>
+    <string name="location_search_change_source">更改位置搜索源</string>
+    <string name="settings_weather_source_none">无</string>
 </resources>
