@@ -263,7 +263,7 @@
     <string name="air_quality_co_info_introduction">Karbon monoksit (CO), renksiz, kokusuz, tatsız ve tahriş edici olmayan zehirli, yanıcı bir gazdır.</string>
     <string name="air_quality_co_info_origin">Odun, petrol, kömür, doğal gaz ve kerosen gibi karbonlu yakıtların basit sobalarda, açık ateşlerde, fitilli kandillerde, fırınlarda, şöminelerde tam yanmamasıyla üretilir. Ortam havasındaki baskın karbon monoksit (CO) kaynağı motorlu araçlardır.</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Konum hizmetini seçin</string>
-    <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok spesifik olmadığından emin olun. Alternatif olarak, farklı konum arama sonuçları üretebilecek başka bir hava durumu veri kaynağını deneyebilirsiniz.</string>
+    <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok özel olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Şu Anki Sıcaklık (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Hissedilen sıcaklık (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Hissedilen sıcaklık (°)</string>
