@@ -154,7 +154,6 @@
     <string name="location_dialog_failed_to_locate_action_select_source">انتخاب سرویس مکان</string>
     <string name="action_location_list">فهرست مکان ها</string>
     <string name="action_search">جستجو</string>
-    <string name="action_choose_weather_source">منبع آب و هوا را انتخاب کنید</string>
     <string name="action_add_current_location">افزودن مکان فعلی</string>
     <string name="action_add_from_map">افزودن از نقشه</string>
     <string name="action_settings">تنظیمات</string>
@@ -177,7 +176,6 @@
     <string name="dialog_permissions_notification_title">آگاه بمانید</string>
     <string name="dialog_permissions_location_background_title">دسترسی به مکان در پس زمینه</string>
     <string name="message_source_not_installed_error_title">منبع دیگر در دسترس نیست</string>
-    <string name="weather_updated_in_background">در پس زمینه به روز شد</string>
     <string name="message_source_not_installed_error_content">این منبع دیگر در دسترس نیست، خواهشمند است مکان را پاک کرده و آن را از منبع دیگری از نو بسازید.</string>
     <string name="widget_day">روزانه</string>
     <string name="widget_clock_day_details">ساعت + روزانه (جزئیات)</string>
@@ -196,7 +194,6 @@
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm_explanations_origin">برخی گردوخاک ها به طور طبیعی اتفاق می افتد، که از آتش فشان ها، طوفان های شنی، سوختن جنگل ها یا مناطق سرسبز، پوشش گیاهی زنده و افشانه دریا منشاء می گیرد. فعالیت های انسان نیز مقدار قابل توجهی ریزگرد تولید می کند، مانند شدامد و ترابری، فعالیت های صنعتی، نیروگاه ها، محل های ساخت و ساز، سوختن زباله و مراتع.</string>
     <string name="locations">مکان ها</string>
-    <string name="location_resident">محل اقامت</string>
     <string name="location_message_search_failed">جستجوی مکان انجام نشد</string>
     <string name="location_search_placeholder">جستجو برای یک مکان…</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">فعال کردن اطلاعات مکان</string>
@@ -260,7 +257,6 @@
     <string name="widget_label_subtitle_data">داده زیرنویس</string>
     <string name="pollen_and_mold">گرده و کپک</string>
     <string name="temperature_real_feel">RealFeel®</string>
-    <string name="weather_refresh_skipped_already_recently_updated">به تازگی به روز شده</string>
     <string name="weather_api_limit_reached_title">سقف محدودیت درخواست API</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">افزودن مکان به صورت دستی و پاک کردن \"%s\"</string>
     <string name="location_service_native">API بومی</string>
@@ -340,7 +336,6 @@
     <string name="widget_custom_subtitle_keyword_ut_description">به روز رسانی زمان</string>
     <string name="widget_custom_subtitle_keyword_d_description">تاریخ</string>
     <string name="widget_style_mini">کوچک</string>
-    <string name="location_resident_message">نشاندن به عنوان شهر محل سکونت</string>
     <string name="action_app_store">اَپ اِستور</string>
     <string name="action_show_errors">برای دیدن ریزگان لمس کنید</string>
     <string name="message_parsing_error_title">تجزیه و تحلیل داده های آب و هوایی انجام نشد</string>
