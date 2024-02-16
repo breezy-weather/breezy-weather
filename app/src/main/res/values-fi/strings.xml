@@ -4,7 +4,6 @@
     <string name="app_name">Sää</string>
     <!-- keyword. -->
     <string name="location_current">Nykyinen sijainti</string>
-    <string name="location_resident">Asuinpaikka</string>
     <string name="short_today">Tänään</string>
     <string name="notification_refreshed_at">Päivitetty</string>
     <string name="precipitation">Sademäärä</string>
@@ -113,7 +112,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Sijaintitiedot taustalla</string>
     <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
     <string name="dialog_permissions_location_content">Breezy Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
     <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
@@ -189,10 +187,6 @@
     <string name="settings_changes_apply_after_restart">Muutokset tulevat voimaan uudelleenkäynnistyksen jälkeen</string>
     <string name="notification_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
     <string name="notification_updating_weather_data">Päivitetään säätietoja (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Päivitetty taustalla</string>
-    <string name="location_resident_message">Aseta asuinkaupungiksi</string>
-    <string name="location_resident_dialog">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.
-\nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
     <string name="pollen_tap_to_see_more">Napauta nähdäksesi lisää…</string>
     <string name="message_tap_again_to_exit">Napauta uudelleen poistuaksesi</string>
     <!-- content description -->
@@ -268,9 +262,7 @@
     <string name="settings_color_day_always">Aina päivänäkymä</string>
     <string name="settings_color_night_always">Aina yönäkymä</string>
     <string name="settings_color_light">Vaalea</string>
-    <string name="settings_color_light_always">Aina vaalea</string>
     <string name="settings_color_dark">Tumma</string>
-    <string name="settings_color_dark_always">Aina tumma</string>
     <string name="settings_background_updates_refresh_30min">Puoli tuntia</string>
     <string name="settings_background_updates_refresh_1h">1 tunti</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 tuntia</string>
@@ -377,7 +369,6 @@
     <string name="settings_background_updates">Taustapäivitykset</string>
     <string name="pollen_birch">Koivu</string>
     <string name="uv_index_3_5">Kohtalainen</string>
-    <string name="settings_weather_source">Säälähde</string>
     <string name="settings_notifications">Ilmoitukset</string>
     <string name="weather_api_unauthorized_content">Voidaksesi käyttää joitakin säätietolähteitä, sinun tulee toimittaa oma API-avain. Mikäli olet jo tehnyt niin, tarkista antamasi API-avain.</string>
     <string name="settings_main_summary">Korttien järjestys, näytettävät osiot, animaatiot</string>
@@ -511,7 +502,6 @@
     <string name="common_weather_text_snow_light">Kevyttä lumisadetta</string>
     <string name="common_weather_text_rain_showers_heavy">Rankkoja sadekuuroja</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Päivitetty jo äskettäin</string>
     <string name="settings_notifications_alerts_title">Ilmoita säävaroituksista</string>
     <string name="action_add_from_map">Lisää kartasta</string>
     <string name="common_weather_text_rain_freezing">Jäätävää sadetta</string>
@@ -534,7 +524,6 @@
     <string name="unit_cmph_voice">Senttimetriä tunnissa</string>
     <string name="message_server_timeout">Pyyntö aikakatkaistiin</string>
     <string name="common_weather_text_snow_showers">Lumikuuroja</string>
-    <string name="action_choose_weather_source">Valitse säälähde</string>
     <string name="unit_celsius">°C</string>
     <string name="settings_debug">Vianjäljitys</string>
     <string name="unit_lpsqm">L/m²</string>
@@ -645,7 +634,6 @@
     <string name="common_weather_text_drizzle_heavy">Rankkaa tihkusadetta</string>
     <string name="common_weather_text_rain_moderate">Kohtalaista sadetta</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kuurottaista rankkaa vesisateen ja lumen sekoitusta</string>
-    <string name="settings_weather_sources_current_location">Tämänhetkisen sijainnin säälähde</string>
     <string name="common_weather_text_rain_showers_moderate">Kohtalaisia sadekuuroja</string>
     <string name="common_weather_text_snow_moderate">Kohtalaista lumisadetta</string>
     <string name="common_weather_text_snow_showers_light">Kuurottaista kevyttä lumisadetta</string>

@@ -107,7 +107,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Helymeghatározás a háttérben</string>
     <string name="location_message_failed_to_locate">A jelenlegi hely meghatározása sikertelen</string>
     <string name="weather_message_data_refresh_failed">Időjárásadatok frissítése sikertelen</string>
     <string name="location_dialog_failed_to_locate_title">Nem tudja megtalálni a megfelelő helyet\?</string>
@@ -172,10 +171,6 @@
     <string name="settings_changes_apply_after_restart">A módosítások újraindítás után lépnek életbe</string>
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Frissítve a háttérben</string>
-    <string name="location_resident_message">Beállítva lakóhelyként</string>
-    <string name="location_resident_dialog">Az alkalmazás automatikusan megjeleníti és elrejti a lakóhelyét a jelenlegi tartózkodási helye alapján.
-\nPéldául beállíthatja szülővárosát lakóhelyként, így ellenőrizheti annak időjárását, amikor éppen úton van. Amint hazaér, a szülővárosa átmenetileg eltűnik a listából, és a jelenlegi tartózkodási hely időjárásaként fog megjelenni mindaddig, míg el nem hagyja azt.</string>
     <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
     <string name="message_tap_again_to_exit">Koppintson újra a kilépéshez</string>
     <!-- action -->
@@ -252,7 +247,6 @@
     <string name="settings_appearance_summary">Nyelv, sötét mód, ikoncsomag, mértékegységek</string>
     <string name="weather_api_key_required_missing_content">A forrás használatához meg kell adnia egy API-kulcsot.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Riasztások (Rövid)</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Már nemrég frissült</string>
     <string name="weather_api_limit_reached_title">Az API-kérelmek száma elérte a korlátot</string>
     <string name="weather_api_limit_reached_content">A korlátozás megkerüléséhez hozzáadhat saját API-kulcsot.</string>
     <string name="weather_api_unauthorized_title">Engedély nélküli API-hozzáférés</string>
@@ -263,7 +257,6 @@
     <string name="settings_weather_source_portal">Portál</string>
     <string name="setting_weather_source_accu_days">Napok</string>
     <string name="locations">Helyek</string>
-    <string name="action_choose_weather_source">Időjárásforrás kiválasztása</string>
     <string name="action_help_me_choose">Segíts választani</string>
     <string name="settings_weather_sources">Időjárásforrások</string>
     <string name="settings_icon_packs_title">Ikonkészletek</string>
@@ -277,7 +270,6 @@
     <string name="weather_message_unsupported_feature">A forrás nem támogatja a kért funkciók valamelyikét</string>
     <string name="message_server_timeout">A kérelem időtúllépés miatt lejárt</string>
     <string name="widget_style_tile">Csempe</string>
-    <string name="settings_weather_sources_current_location">Időjárásforrás az aktuális helyhez</string>
     <string name="settings_appearance_dark_mode_locations_title">Nappali/éjszakai mód a helyekhez</string>
     <string name="temperature_degree_day_heating">Fűtési foknap</string>
     <string name="temperature_degree_day_cooling">Hűtési foknap</string>
@@ -399,7 +391,6 @@
     <string name="dialog_permissions_notification_content">Koppintson ide a riasztásokról szóló értesítések engedélyezéséhez, ez bármikor módosítható a beállításokban.</string>
     <string name="settings_weather_sources_summary">Időjárás-adatforrások beállítása</string>
     <string name="settings_source_api_key">API-kulcs</string>
-    <string name="settings_weather_source">Időjárásforrás</string>
     <string name="action_continue">Folytatás</string>
     <string name="widget_style_rectangle">Téglalap</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -411,7 +402,6 @@
     <string name="location_swipe_to_delete">Balra húzással eltávolíthatja ezt az elemet</string>
     <string name="location_message_permission_missing">A helyadatokhoz való hozzáférés nincs engedélyezve</string>
     <string name="weather_source_accu_preference_hours_120">120 óra</string>
-    <string name="location_resident">Lakóhely</string>
     <string name="location_search_weather_source">Időjárásforrás</string>
     <string name="location_search_no_results_advice">Győződjön meg róla, hogy a keresés helyesen van-e beírva, és nem túl specifikus. Alternatívaként megpróbálhat egy másik időjárásforrást, amely más helykeresési eredményeket adhat.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Jelenlegi páratartalom</string>
@@ -527,9 +517,9 @@
     <string name="settings_widgets_notification_style_title">Stílus</string>
     <string name="settings_widgets_notification_widget_title">Értesítési modul</string>
     <string name="settings_color_day_always">Mindig nappali</string>
+    <string name="settings_color_night_always">Mindig esti</string>
     <string name="settings_color_day_night">Nappal/este</string>
     <string name="settings_none">Nincs</string>
-    <string name="settings_color_night_always">Mindig esti</string>
     <string name="unit_mb_voice">Millibár</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">Kilogramm erő per négyzetcentiméter</string>
@@ -590,7 +580,6 @@
     <string name="settings_notifications">Értesítések</string>
     <string name="settings_notifications_forecast_today_title">Értesítés a napi előrejelzésről</string>
     <string name="settings_widgets_summary">Háttérkép beállítása, modulok beállításai, értesítési modul</string>
-    <string name="settings_color_light_always">Mindig világos</string>
     <string name="settings_color_grey">Szürke</string>
     <string name="unit_kn">kn</string>
     <string name="unit_kn_voice">Csomó</string>
@@ -632,7 +621,6 @@
     <string name="settings_widgets_day_night_temp_reversed_title">Fordított nappali/éjszakai hőmérsékletsorrend</string>
     <string name="settings_widgets_gadgetbridge_switch">Időjárásadatok elküldése a Gadgetbridge számára</string>
     <string name="settings_color_dark">Sötét</string>
-    <string name="settings_color_dark_always">Mindig sötét</string>
     <string name="unit_mi_voice">Mérföld</string>
     <string name="notification_channel_background_services">Háttérszolgáltatások</string>
     <string name="about_contribution_WangDaYeeeeee">Az eredeti Geometric Weather projekt fejlesztője</string>

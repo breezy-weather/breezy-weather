@@ -4,7 +4,6 @@
     <string name="app_name">El temps</string>
     <!-- keyword. -->
     <string name="location_current">Ubicació actual</string>
-    <string name="location_resident">Ubicació residencial</string>
     <string name="short_today">Avui</string>
     <string name="notification_refreshed_at">Actualitzat a les</string>
     <string name="precipitation">Precipitació</string>
@@ -113,7 +112,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Ubicació en segon pla</string>
     <string name="location_message_failed_to_locate">Ha fallat l’accés a la ubicació</string>
     <string name="weather_message_data_refresh_failed">Ha fallat l’accés a les dades de l’oratge</string>
     <string name="location_dialog_failed_to_locate_title">No funciona la ubicació\?</string>
@@ -186,10 +184,6 @@
     <string name="settings_changes_apply_after_restart">Els canvis es faran efectius després de reiniciar</string>
     <string name="notification_running_in_background">L’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Actualitzat en segon pla</string>
-    <string name="location_resident_message">Estableix com a ciutat on residiu</string>
-    <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.
-\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l’oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l’oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
     <string name="pollen_tap_to_see_more">Premeu per saber-ne més…</string>
     <string name="message_tap_again_to_exit">Premeu de nou per a sortir</string>
     <!-- action -->
@@ -231,8 +225,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura com a icona en la barra d’estat</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
-    <string name="settings_color_light_always">Sempre clar</string>
-    <string name="settings_color_dark_always">Sempre fosc</string>
     <string name="settings_background_updates_refresh_never">Mai</string>
     <string name="settings_background_updates_refresh_30min">Mitja hora</string>
     <string name="settings_background_updates_refresh_1h">1 hora</string>
@@ -435,7 +427,6 @@
     <string name="air_quality_co">CO</string>
     <string name="weather_api_limit_reached_title">S’ha arribat al límit de sol·licituds de l’API</string>
     <string name="settings_weather_source_portal">Portal</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Ja s’ha actualitzat recentment</string>
     <string name="air_quality_level_3_description">L’aire ha assolit un alt nivell de contaminació i és insalubre per als grups sensibles. Reduïu el temps que passeu a l’exterior si sentiu símptomes com ara dificultat per respirar o irritació de gola.</string>
     <string name="common_weather_text_snow_grains">Neu granulada</string>
     <string name="unit_atm">atm</string>
@@ -483,7 +474,6 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Polzades per hora</string>
     <string name="settings_icon_packs_weather_icon_light">Icona clara</string>
-    <string name="settings_weather_source">Font meteorològica</string>
     <string name="air_quality_o3_voice">Ozó</string>
     <string name="settings_notifications">Notificacions</string>
     <string name="weather_api_unauthorized_content">En algunes fonts de dades meteorològiques, heu de proporcionar la vostra pròpia clau API. Si ja n’heu proporcionat una, comproveu la clau de l’API que heu proporcionat.</string>
@@ -586,7 +576,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Ruixats mixtos de pluja dèbil i neu</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toqueu per obrir</string>
     <string name="action_save">Guardar</string>
-    <string name="action_choose_weather_source">Trieu la font meteorològica</string>
     <string name="weather_api_limit_reached_content">Per solucionar el límit, afegiu la vostra pròpia clau API.</string>
     <string name="air_quality_o3_info_consequences">L’exposició a un excés d’ozó pot causar problemes per respirar, desencadenar asma, reduir la funció pulmonar i provocar malalties pulmonars.</string>
     <string name="null_data_text">n.p.</string>
@@ -629,7 +618,6 @@
     <string name="common_weather_text_drizzle_light">Plugim dèbil</string>
     <string name="weather_source_accu_preference_hours_12">12 hores</string>
     <string name="weather_source_accu_preference_hours_1">1 hora</string>
-    <string name="settings_weather_sources_current_location">Font meteorològica per a la ubicació actual</string>
     <string name="weather_source_accu_preference_days_15">15 dies</string>
     <string name="weather_source_accu_preference_hours_24">24 hores</string>
     <string name="settings_location_access_precise_summaryOn">Activat. S’utilitzen tant la xarxa de dispositius com els proveïdors de GPS.</string>

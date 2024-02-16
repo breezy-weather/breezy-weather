@@ -162,12 +162,10 @@
     <string name="widget_custom_subtitle_keyword_cuv_description">Тренутно УВ</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недеља</string>
     <string name="settings_debug_dump_crash_logs_summary">Чува евиденције грешака у фајл за дељење са програмерима</string>
-    <string name="settings_color_dark_always">Увек тамно</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_m_voice">Метри</string>
     <string name="unit_hpa">hPa</string>
-    <string name="weather_updated_in_background">Ажурирано у позадини</string>
     <string name="action_set">Постави</string>
     <string name="action_continue">Настави</string>
     <string name="action_share">Дели</string>
@@ -217,7 +215,6 @@
     <string name="settings_units">Мерне јединице</string>
     <string name="settings_main_cards_fade_in_switch">Изблеђивање картица</string>
     <string name="settings_main_cards_other_element_animations_switch">Остале анимације елемената</string>
-    <string name="settings_color_light_always">Увек светло</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmhg_voice">Милиметри живе</string>
     <string name="notification_channel_alerts">Упозорења</string>
@@ -246,11 +243,9 @@
     <string name="location_search_weather_source">Извор времена</string>
     <string name="weather_source_accu_preference_hours_240">240 сати</string>
     <string name="location_none_added_yet_instructions">Још увек није додата ниједна локација. Додирните иконицу за претраживање да бисте ручно додали локацију или додајте своју тренутну локацију помоћу плутајућег дугмета.</string>
-    <string name="location_resident">Локација становања</string>
     <string name="location_message_reverse_geocoding_failed">Извор времена није успео да пронађе одговарајућу локацију</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додај локацију ручно и избриши „%s“</string>
     <string name="location_service_native">Изворни API</string>
-    <string name="action_choose_weather_source">Изабери извор времена</string>
     <string name="action_add_current_location">Додај тренутну локацију</string>
     <string name="location_message_permission_background_missing">Недостаје дозвола за приступ локацији у позадини</string>
     <string name="widget_label_text_size">Величина текста</string>
@@ -260,7 +255,6 @@
     <string name="widget_custom_subtitle_keyword_als_description">Упозорења (кратка)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Локација</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Дневна температура - данас, сутра, …, 4 дана касније (℃/℉)</string>
-    <string name="settings_weather_sources_current_location">Извор времена за тренутну локацију</string>
     <string name="settings_source_default_value">Подразумевано (непромењено)</string>
     <string name="settings_source_api_key">API кључ</string>
     <string name="settings_icon_packs_get_more">Преузми више</string>
@@ -291,7 +285,6 @@
     <string name="settings_appearance_summary">Језик, тамни режим, пакет иконица, мерне јединице</string>
     <string name="settings_appearance">Изглед</string>
     <string name="settings_main_section_options">Опције</string>
-    <string name="location_resident_message">Постави као град пребивалишта</string>
     <string name="message_tap_again_to_exit">Додирните поново да бисте изашли</string>
     <string name="widget_trend_hourly">Тренд по сатима</string>
     <string name="widget_multi_city">Више градова</string>
@@ -299,7 +292,6 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_message_unsupported_feature">Извор не подржава једну од тражених функција</string>
     <string name="dialog_permissions_notification_title">Будите информисани</string>
-    <string name="notification_location_in_background">Лоцирање у позадини</string>
     <string name="about_contribution_WangDaYeeeeee">Програмер оригиналног пројекта Geometric Weather</string>
     <string name="common_weather_text_rain_showers_light">Слаби пљускови</string>
     <string name="unit_km">km</string>
@@ -443,7 +435,6 @@
     <string name="location_resident_location_summaryOff">Онемогућено. Локација увек доступна.</string>
     <string name="action_preview">Преглед</string>
     <string name="action_app_store">Продавница апликација</string>
-    <string name="settings_weather_source">Извор времена</string>
     <string name="settings_weather_sources">Извори времена</string>
     <string name="settings_weather_sources_summary">Подешавања извора података о времену</string>
     <string name="about_contribution_weather_source">Додао подршку за нове изворе времена</string>
@@ -522,8 +513,6 @@
     <string name="settings_main_summary">Редослед картица, приказане ставке, анимације</string>
     <string name="settings_main_header_details_title">Детаљи у заглављу</string>
     <string name="dialog_permissions_location_content">Breezy Weather мора да прикупи информације о Вашој локацији у првом плану или у позадини, како би обезбедио податке о времену за Вашу тренутну локацију. Из овог разлога, затражићемо неке дозволе. Информације о Вашој локацији ће се користити само за добијање података о времену на Вашој тренутној локацији. Ако не желите да делите информације о својој локацији, можете да одбијете те захтеве и ручно подесите своју локацију на страници за управљање.</string>
-    <string name="location_resident_dialog">Breezy Weather ће аутоматски приказивати и сакривати градове с пребивалиштем на основу ваше тренутне локације.
-\nНа пример, можете поставити свој родни град као град с пребивалиштем. Можете проверити временску прогнозу у свом родном граду док путујете. Када дођете кући, време у вашем родном граду ће бити сакривено и замењено временом за вашу тренутну локацију.</string>
     <string name="action_help_me_choose">Помози ми да изаберем</string>
     <string name="temperature_normals">Температурне норме</string>
     <string name="air_quality_level_1_description">Квалитет ваздуха је идеалан за већину особа; уживајте у својим нормалним активностима на отвореном простору.</string>
@@ -597,7 +586,6 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
     <string name="weather_data_by">Подаци од %s</string>
     <string name="weather_message_invalid_location">Неважећа локација, избришите је и поново додајте</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Већ недавно ажурирано</string>
     <string name="action_see_more">Види више</string>
     <string name="action_delete">Избриши</string>
     <string name="action_back">Назад</string>

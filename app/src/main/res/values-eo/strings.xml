@@ -205,7 +205,6 @@
     <!-- Location -->
     <string name="locations">Lokoj</string>
     <string name="location_current">Nuna loko</string>
-    <string name="location_resident">Loĝanta loko</string>
     <string name="location_search_weather_source">Veterfonto</string>
     <string name="location_results_by">Rezultoj de lokaĵoj de %s</string>
     <!-- $ = location source -->
@@ -216,7 +215,6 @@
     <!-- Actions -->
     <string name="action_location_list">Listo de lokoj</string>
     <string name="action_search">Serĉi</string>
-    <string name="action_choose_weather_source">Elekti veterfonton</string>
     <string name="action_add_current_location">Aldoni nunan lokon</string>
     <string name="action_add_from_map">Aldoni el mapo</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
@@ -294,7 +292,6 @@
     <string name="settings_location">Loko</string>
     <string name="settings_location_summary">Agordoj de lokaj servoj</string>
     <string name="settings_location_service">Loka servo</string>
-    <string name="settings_weather_source">Veterfonto</string>
     <string name="settings_weather_sources">Veterfontoj</string>
     <string name="settings_weather_sources_summary">Agordoj de veterfontoj</string>
     <string name="settings_weather_source_main">Ĉefa fonto</string>

@@ -107,7 +107,6 @@
     <string name="weather_source_accu_preference_hours_72">72 timmar</string>
     <string name="air_quality_co">CO</string>
     <string name="unit_ftps_voice">Fot per sekund</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Redan nyligen uppdaterad</string>
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
@@ -244,7 +243,6 @@
     <string name="action_delete">Ta bort</string>
     <string name="wind_direction_short_NE">NO</string>
     <string name="action_save">Spara</string>
-    <string name="action_choose_weather_source">Välj väderkälla</string>
     <string name="wind_direction">Vindriktning</string>
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
@@ -257,7 +255,6 @@
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuvarande vind</string>
     <string name="widget_subtitle_data_lunar">Månkalender</string>
     <string name="wind_direction_short_NW">NV</string>
-    <string name="location_resident_message">Välj som hemort</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
     <string name="short_today">Idag</string>
@@ -367,7 +364,6 @@
     <string name="ephemeris_moon_phase_waxing_gibbous">Andra kvarteret</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Tredje kvarteret</string>
     <string name="location_swipe_to_delete">Du kan svepa åt vänster för att ta bort detta objekt</string>
-    <string name="weather_updated_in_background">Uppdaterad i bakgrunden</string>
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
     <string name="wind_direction_short_variable">Skiftande</string>
@@ -412,7 +408,6 @@
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
     <string name="air_quality_so2_info_consequences">Exponering mot SO₂ förknippas med astma, sjukhusvistelse och besök hos akutmottagning.</string>
-    <string name="settings_color_light_always">Alltid ljus</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
     <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
@@ -436,9 +431,8 @@
     <string name="settings_notifications_forecast_today_title">Avisering för dagens prognos</string>
     <string name="common_weather_text_rain_heavy">Kraftigt regn</string>
     <string name="settings_color_day_always">Alltid dag</string>
+    <string name="settings_color_night_always">Alltid natt</string>
     <string name="weather_api_key_required_missing_title">Krävd API-nyckel saknas</string>
-    <string name="location_resident_dialog">Breezy Weather kommer automatiskt visa och dölja hemorter baserat på din nuvarande plats.
-\nExempelvis kan du ange din hemort som en bostadsort. You kan kolla vädret på din hemort när du reser. När du kommer hem, kommer vädret på din hemort att döljas och ersättas med vädret på din nuvarande plats.</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen på dags-/nattemperaturer</string>
     <string name="unit_mph_voice">Miles per timme</string>
@@ -498,7 +492,6 @@
     <string name="common_weather_text_rain_snow_mixed_light">Lätt snöblandat regn</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Väder dagtid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_notifications_precipitations_title">Aviseringar för nederbörd</string>
-    <string name="location_resident">Hemort</string>
     <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="settings_source_default_value">Förvald (oförändrad)</string>
     <string name="settings_automatic">Automatisk</string>
@@ -509,7 +502,6 @@
     <string name="settings_widgets_monochrome_icons_title">Enfärgade ikoner</string>
     <string name="widget_subtitle_data_feels_like">Upplevd temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
-    <string name="settings_weather_source">Väderkälla</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
     <string name="weather_api_unauthorized_content">För vissa väderkällor så behöver du ange din egen API-nyckel. Om du redan har angett en så dubbelkolla din API-nyckel.</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
@@ -565,11 +557,9 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_bf_voice">på Beauforts skala</string>
     <string name="settings_none">Ingen</string>
-    <string name="settings_color_dark_always">Alltid mörk</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
     <string name="message_server_timeout">Begäran timade ut</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall-version</string>
-    <string name="settings_color_night_always">Alltid natt</string>
     <string name="action_set">Välj</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Åskstorm med kraftigt hagel</string>
     <string name="settings_item_delete">Ta bort detta objekt</string>
@@ -598,7 +588,6 @@
     <string name="weather_api_unauthorized_title">Obehörig API-tillgång</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="settings_weather_sources_current_location">Väderkälla för nuvarande plats</string>
     <string name="settings_location_access_precise_summaryOn">Aktiverad. Både enhetens nätverks- och gps-operatörer används.</string>
     <string name="unit_mmhg_voice">Millimeter kvicksilver</string>
     <string name="common_weather_text_rain_showers_moderate">Måttliga regnskurar</string>
@@ -637,7 +626,6 @@
     <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
     <string name="widget_label_align_end">Justera mot slutet</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
-    <string name="notification_location_in_background">Lokaliseras i bakgrunden</string>
     <string name="settings_color_app">Följ appen</string>
     <string name="unit_mi">mi</string>
     <string name="settings_widgets_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera Breezy Weather-bakgrundsbild genom att välja “Live Wallpaper” i bakgrundsväljaren på startskärmen.</string>

@@ -1,7 +1,7 @@
 # Version 4.7.0-beta (not yet released)
 
 **New features and main improvements**
-- Location search no longer asks you to choose your weather source, which may have been confusing. Instead, you will make a search, and when tapping on a location in the result list, location will be set up with a preset of main and secondary sources we recommend that varies depending on the country of that location. In a future version, you will be able to change these sources before confirming adding of that location. At the moment, this only affects manually added locations and experience of adding of current location remains unchanged due to technical reasons.
+- Location search no longer asks you to choose your weather source, which may have been confusing. Instead, you will make a search, and when tapping on a location in the result list, location will be set up with a preset of main and secondary sources we recommend that varies depending on the country of that location. You are able to change these sources before confirming adding of that location. At the moment, this only affects manually added locations and experience of adding of current location remains unchanged due to technical reasons (no reverse geocoding available).
 - Following that change, the purpose of the “Change source” button on bottom of location search is to change the default location search source (which was previously found rather hidden in settings) instead of the weather source to use with locations.
 - Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
 - New daily chart: feels like temperature
@@ -32,12 +32,16 @@
 - [HERE] Remove as a location search source as other sources are more reliable to be used with the new location search page
 
 **Other improvements and fixes**
-- Various improvements to missing data computing/extrapolating
-- Clarified features supported by main source in secondary weather sources preferences. For exemple, at the moment of writing, Open-Meteo doesn't support alerts. If your main source is Open-Meteo and you don't have a secondary source set for Alerts, it showed “Main source”, now it will show “None” instead.
-- Fix crash when today/tomorrow notification was received on Android 14
-- Fix a display issue of “alert source” instead of “normals source” in secondary weather sources settings of a location
-- When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
-- When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
+- [Weather refresh] Various improvements to missing data computing/extrapolating
+- [Location list] Swiping left on a manually added location now opens the weather sources preferences instead of (un)setting resident location status
+- [Location weather sources preferences] Clarified features supported by main source in secondary weather sources preferences. For exemple, at the moment of writing, Open-Meteo doesn't support alerts. If your main source is Open-Meteo and you don't have a secondary source set for Alerts, it showed “Main source”, now it will show “None” instead.
+- [Location weather sources preferences] Fix secondary source choices not updating when changing main weather source (if main source supports secondary features, it wouldn't be showing in secondary sources list)
+- [Location weather sources preferences] Fix a display issue of “alert source” instead of “normals source” in secondary weather sources settings of a location
+- [Location weather sources preferences] Fix duplicate location when main weather source is changed to an existing same location with same weather source
+- [Location weather sources preferences] Fix when changing main weather source, saving previously redirected to first location in location list. Now, it will stay on the correct location
+- [Notifications] Fix crash when today/tomorrow notification was received on Android 14
+- [Weather refresh] When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
+- [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)

@@ -5,7 +5,6 @@
 
     <!-- mots-clés -->
     <string name="location_current">Ma position</string>
-    <string name="location_resident">Mon domicile</string>
     <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
@@ -140,7 +139,7 @@
     <string name="minutely_forecast">Prévisions minute par minute</string>
     <string name="precipitation_forecast">Prévisions de précipitations</string>
     <string name="minutely_precipitations">Précipitations minute par minute</string>
-    <string name="air_quality">"Qualité de l’air"</string>
+    <string name="air_quality">Qualité de l’air</string>
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; moisissure</string>
     <string name="details">Détails</string>
@@ -190,8 +189,6 @@
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
 
     <!-- feedback. -->
-    <string name="notification_location_in_background">Localisation en arrière-plan</string>
-
     <string name="dialog_permissions_notification_title">Restez informés</string>
     <string name="dialog_permissions_notification_content">Appuyez ici pour activer les notifications de vigilances météo, ou décidez plus tard depuis les paramètres.</string>
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>
@@ -275,6 +272,8 @@
     <string name="widget_live_wallpaper_day_night_type">Heure</string>
 
     <string name="location_message_added">Emplacement ajouté</string>
+    <string name="location_message_updated">Emplacement mis à jour</string>
+    <string name="location_message_already_exists">Un emplacement avec la même source météo principale existe déjà.</string>
     <string name="location_message_deleted">Emplacement supprimé</string>
     <string name="location_message_list_cannot_be_empty">La liste de localisation ne peut être vide</string>
 
@@ -283,7 +282,7 @@
     <string name="location_search_change_source">Changer la source de recherche d’emplacements</string>
     <string name="location_current_not_found_yet">Pas encore localisé…</string>
     <string name="location_search_no_results">%1$s n’a pu trouver aucun résultat pour %2$s</string>
-    <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de données météo qui peut produire des résultats de recherche d’emplacements différents.</string>
+    <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de recherche d’emplacements qui peut produire des résultats différents.</string>
 
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
 
@@ -295,7 +294,6 @@
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
     <string name="message_source_not_installed_error_content">Cette source n’existe plus, veuillez supprimer l’emplacement et l’ajouter à nouveau depuis une autre source.</string>
-    <string name="weather_updated_in_background">Actualisé en arrière-plan</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
     <!-- Example: Precipitation soon - New York -->
@@ -314,8 +312,6 @@
     <string name="location_resident_location">Emplacement de résidence</string>
     <string name="location_resident_location_summaryOn">Actif. Masqué si dans un rayon de %s de l’emplacement actuel.</string>
     <string name="location_resident_location_summaryOff">Inactif. Emplacement toujours disponible.</string>
-    <string name="location_resident_message">Défini en tant que ville de résidence</string>
-    <string name="location_resident_dialog">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
 
     <string name="pollen_tap_to_see_more">Appuyez pour en voir plus…</string>
     <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
@@ -335,7 +331,6 @@
     <string name="settings_location_access_precise_title">Usage du GPS de l’appareil</string>
     <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation et le GPS de l’appareil sont tous les deux utilisés.</string>
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
-    <string name="settings_weather_source">Source météo</string>
     <string name="settings_weather_sources">Sources météo</string>
     <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
     <string name="settings_weather_source_main">Source principale</string>
@@ -438,7 +433,6 @@
     <string name="settings_background_updates_refresh_6h">6 heures</string>
     <string name="settings_background_updates_refresh_12h">12 heures</string>
     <string name="settings_background_updates_refresh_24h">24 heures</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Déjà mis à jour récemment</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer quand la batterie est faible</string>
@@ -453,7 +447,6 @@
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
     <string name="settings_background_updates_worker_info_summary">Dernière exécution : %s</string>
     <string name="settings_location">Localisation</string>
-    <string name="settings_weather_sources_current_location">Source météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
@@ -498,7 +491,7 @@
     <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran Breezy Weather en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
     <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>
     <string name="settings_widgets_monochrome_icons_title">Icônes monochromes</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Inverse l’ordre des températures jour/nuit</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Inverser l’ordre des températures jour/nuit</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets utilisés</string>
     <string name="settings_widgets_configure_widget_summary">Configurer ce widget</string>
     <string name="settings_widgets_section_notification_widget">Notification widget</string>
@@ -561,10 +554,8 @@
     <string name="settings_color_day_always">Toujours de jour</string>
     <string name="settings_color_night_always">Toujours de nuit</string>
     <string name="settings_color_light">Clair</string>
-    <string name="settings_color_light_always">Toujours clair</string>
     <string name="settings_color_grey">Gris</string>
     <string name="settings_color_dark">Sombre</string>
-    <string name="settings_color_dark_always">Toujours sombre</string>
 
     <string name="about_source_code">Code source</string>
     <string name="about_dependencies">Dépendences</string>
@@ -686,7 +677,6 @@
     <string name="unit_ppcm_voice">Par mètre cube</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
-    <string name="action_choose_weather_source">Choisir la source des données météo</string>
 
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>

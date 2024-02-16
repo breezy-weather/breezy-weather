@@ -76,24 +76,8 @@ class LocationItemTouchCallback(
         var location = mViewModel.totalLocationList.value.first[position]
         when (direction) {
             ItemTouchHelper.START -> {
-                if (location.isCurrentPosition) {
-                    viewHolder.bindingAdapter!!.notifyItemChanged(position)
-                    mViewModel.openChooseCurrentLocationWeatherSourceDialog()
-                } else {
-                    location = location.copy(isResidentPosition = !location.isResidentPosition)
-                    mViewModel.updateLocation(location)
-                    if (location.isResidentPosition) {
-                        SnackbarHelper.showSnackbar(
-                            content = mActivity.getString(R.string.location_resident_message),
-                            action = mActivity.getString(R.string.action_learn_more)
-                        ) {
-                            MaterialAlertDialogBuilder(mActivity)
-                                .setTitle(R.string.location_resident)
-                                .setMessage(R.string.location_resident_dialog)
-                                .show()
-                        }
-                    }
-                }
+                viewHolder.bindingAdapter!!.notifyItemChanged(position)
+                mViewModel.openChooseWeatherSourcesDialog(location)
             }
 
             ItemTouchHelper.END -> if (mViewModel.totalLocationList.value.first.size <= 1) {

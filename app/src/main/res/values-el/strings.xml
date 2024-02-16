@@ -4,7 +4,6 @@
     <string name="app_name">Καιρός</string>
     <!-- keyword. -->
     <string name="location_current">Τρέχουσα τοποθεσία</string>
-    <string name="location_resident">Τοποθεσία διαμονής</string>
     <string name="short_today">Σήμερα</string>
     <string name="notification_refreshed_at">Ενημερώθηκε</string>
     <string name="precipitation">Βροχόπτωση</string>
@@ -108,7 +107,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Εντοπισμός στο παρασκήνιο</string>
     <string name="location_message_failed_to_locate">Σφάλμα τοποθεσίας</string>
     <string name="weather_message_data_refresh_failed">Αποτυχία αποστολής μετεωρολογικών δεδομένων</string>
     <string name="location_dialog_failed_to_locate_title">Υπήρξε αδυναμία εντοπισμού τοποθεσίας;</string>
@@ -174,10 +172,6 @@
     <string name="settings_changes_apply_after_restart">Οι αλλαγές θα τεθούν σε ισχύ μετά την επανεκκίνηση</string>
     <string name="notification_running_in_background">Λειτουργία ενημέρωσης στο παρασκήνιο</string>
     <string name="notification_updating_weather_data">Ενημέρωση δεδομένων καιρού (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Ενημερώθηκε στο παρασκήνιο</string>
-    <string name="location_resident_message">Ορισμός ως τόπος μόνιμης διαμονής</string>
-    <string name="location_resident_dialog">Το Breezy Weather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.
-\nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
     <string name="pollen_tap_to_see_more">Περισσότερα…</string>
     <!-- action -->
     <string name="alerts">Ειδοποιήσεις</string>
@@ -220,10 +214,8 @@
     <string name="settings_color_day_always">Πάντα μέρα</string>
     <string name="settings_color_night_always">Πάντα νύχτα</string>
     <string name="settings_color_light">Λευκό</string>
-    <string name="settings_color_light_always">Πάντα φωτεινό</string>
     <string name="settings_color_grey">Γκρί</string>
     <string name="settings_color_dark">Μαύρο</string>
-    <string name="settings_color_dark_always">Πάντα σκοτεινό</string>
     <string name="settings_background_updates_refresh_30min">00:30</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
@@ -341,7 +333,6 @@
     <string name="ephemeris_sunrise_at">Ανατολή στις %s</string>
     <string name="ephemeris_moonrise_at">Αυγή Σελήνης στις %s</string>
     <string name="ephemeris_moonset_at">Δύση Σελήνης στις %s</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Ενημερώθηκε ήδη πρόσφατα</string>
     <string name="weather_message_unsupported_feature">Η πηγή δεν υποστηρίζει ένα από τα αιτούμενα χαρακτηριστικά</string>
     <string name="weather_message_invalid_location">Μη έγκυρη τοποθεσία, παρακαλώ σβήσε και πρόσθεσε ξανά</string>
     <string name="air_quality_no2_info_title">Διοξείδιο Αζώτου (NO₂)</string>
@@ -397,7 +388,6 @@
     <string name="message_source_not_installed_error_title">Η πηγή δεν είναι πια διαθέσιμη</string>
     <string name="widget_label_hide_lunar">Απόκρυψη σεληνιακού ημερολογίου</string>
     <string name="setting_weather_source_accu_hours">Ώρες</string>
-    <string name="action_choose_weather_source">Επέλεξε πηγή καιρού</string>
     <string name="settings_weather_sources_summary">Ρυθμίσεις πηγών δεδομένων καιρού</string>
     <string name="widget_custom_subtitle_keyword_al_description">Προειδοποιήσεις</string>
     <string name="message_parsing_error_title">Αποτυχία ανάγνωσης δεδομένων καιρού</string>
@@ -462,7 +452,6 @@
     <string name="settings_location_access_background_summaryOn">Ενεργό. Η εφαρμογή θα μπορεί να ανανεώσει τα δεδομένα καιρού για την τρέχουσα τοπθεσία σου στο παρασκήνιο.</string>
     <string name="settings_location_access_precise_title">Χρήση GPS συσκευής</string>
     <string name="settings_location_access_precise_summaryOn">Ενεργό. Χρησιμοποιούνται και οι πάροχοι δικτύου και GPS της συσκευής.</string>
-    <string name="settings_weather_source">Πηγή καιρού</string>
     <string name="settings_weather_sources_per_location_summary">Παραμετροποίησε πηγές δεδομένων καιρού για αυτή την τοποθεσία</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="location_service_native">Εγγενές API</string>
@@ -480,7 +469,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">Η βελτιστοποίηση μπαταρίας είναι ήδη ανενεργή.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Κάποιοι κατασκευαστές έχουν επιπλέον περιορισμούς εφαρμογών που τερματίζουν διεργασίες παρασκηνίου. Η ιστοσελίδα The Don’t kill my app! έχει πληροφορίες για το πώς να το διορθώσεις.</string>
     <string name="settings_main">Κύρια οθόνη</string>
-    <string name="settings_weather_sources_current_location">Πηγή καιρού για τρέχουσα τοποθεσία</string>
     <string name="settings_source_default_value">Προεπιλογή (καμία αλλαγή)</string>
     <string name="settings_source_api_key">Κλειδί API</string>
     <string name="settings_icon_packs_title">Πακέτα εικονιδίων</string>

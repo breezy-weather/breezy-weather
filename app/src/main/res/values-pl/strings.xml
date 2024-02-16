@@ -8,7 +8,6 @@
     <string name="app_name">Pogoda</string>
     <!-- keyword. -->
     <string name="location_current">Obecna lokalizacja</string>
-    <string name="location_resident">Miejsce zamieszkania</string>
     <string name="short_today">Dziś</string>
     <string name="notification_refreshed_at">Odświeżono</string>
     <string name="precipitation">Opad atmosferyczny</string>
@@ -110,7 +109,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Lokalizacja w tle</string>
     <string name="location_message_failed_to_locate">Nie udało się znaleźć bieżącej lokalizacji</string>
     <string name="weather_message_data_refresh_failed">Pobranie danych pogodowych nie powiodło się</string>
     <string name="location_dialog_failed_to_locate_title">Nie można poprawnie ustalić lokalizacji\?</string>
@@ -176,10 +174,6 @@
     <string name="settings_changes_apply_after_restart">Zmiany zaczną obowiązywać po ponownym uruchomieniu</string>
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Zaktualizowano w tle</string>
-    <string name="location_resident_message">Ustaw jako miasto zamieszkania</string>
-    <string name="location_resident_dialog">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.
-\nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
     <string name="pollen_tap_to_see_more">Kliknij, aby zobaczyć więcej…</string>
     <!-- action -->
     <string name="alerts">Alerty</string>
@@ -223,10 +217,8 @@
     <string name="settings_color_day_always">Tryb dzienny</string>
     <string name="settings_color_night_always">Tryb nocny</string>
     <string name="settings_color_light">Jasny</string>
-    <string name="settings_color_light_always">Zawsze jasny</string>
     <string name="settings_color_grey">Szary</string>
     <string name="settings_color_dark">Ciemny</string>
-    <string name="settings_color_dark_always">Zawsze ciemny</string>
     <string name="settings_background_updates_refresh_30min">00:30</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
@@ -447,7 +439,6 @@
     <string name="widget_material_you_current">Material You - Aktualnie</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optymalizacja baterii jest już wyłączona.</string>
     <string name="location_message_search_failed">Wyszukiwanie lokalizacji nie powiodło się</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Niedawno zaktualizowano</string>
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
     <string name="dialog_permissions_location_title">Dostęp do informacji o lokalizacji</string>
     <string name="message_parsing_error_title">Nie udało się przeanalizować danych pogodowych</string>
@@ -455,7 +446,6 @@
     <string name="settings_background_updates_battery_optimization">Wyłącz optymalizację baterii</string>
     <string name="settings_background_updates_battery_optimization_summary">Jest to pierwsza rzecz, którą należy wypróbować, gdy nie otrzymujesz powiadomień lub widżety nie odświeżają się.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nie udało się otworzyć ustawień urządzenia.</string>
-    <string name="action_choose_weather_source">Wybierz źródło danych pogodowych</string>
     <string name="location_search_no_results">%1$s nie może znaleźć %2$s</string>
     <string name="action_add_current_location">Dodaj bieżącą lokalizację</string>
     <string name="action_add_from_map">Dodaj z mapy</string>
@@ -550,7 +540,6 @@
     <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
     <string name="settings_widgets_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
     <string name="settings_location_access_background_summaryOff">Włącz opcję „Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
-    <string name="settings_weather_sources_current_location">Źródło pogody dla bieżącej lokalizacji</string>
     <string name="settings_units_summary">Temperatura, opady, odległość, prędkość, ciśnienie</string>
     <string name="settings_main_cards_other_element_animations_switch">Animacje innych elementów</string>
     <string name="settings_notifications_alerts_title">Powiadomienia o alertach pogodowych</string>
@@ -570,7 +559,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lekka lub umiarkowana burza z piorunami</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
     <string name="location_resident_location_summaryOff">Wyłączone. Lokalizacja zawsze dostępna.</string>
-    <string name="settings_weather_source">Źródło pogody</string>
     <string name="settings_source_api_key">Klucz API</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_weather_source_open_weather_one_call_version">Wersja OneCall</string>

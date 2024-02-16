@@ -4,7 +4,6 @@
     <string name="app_name">Погода</string>
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
-    <string name="location_resident">Домашнее местоположение</string>
     <string name="short_today">Сегодня</string>
     <string name="notification_refreshed_at">Обновлено в</string>
     <string name="precipitation">Осадки</string>
@@ -97,7 +96,6 @@
     <string name="about_app">О приложении</string>
     <string name="about_translators">Переводчики</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Запрос местоположения в фоне</string>
     <string name="location_message_failed_to_locate">Не удалось найти текущее местоположение</string>
     <string name="weather_message_data_refresh_failed">Не удалось обновить данные о погоде</string>
     <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
@@ -167,10 +165,6 @@
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="notification_updating_weather_data">Обновление погодных данных (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Обновлено в фоне</string>
-    <string name="location_resident_message">Установить как место жительства</string>
-    <string name="location_resident_dialog">Breezy Weather будет автоматически показывать или скрывать место жительства, основываясь на данных Вашего местоположения.
-\nНапример, Вы можете установить Ваш родной город как место жительства. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
     <string name="pollen_tap_to_see_more">Нажмите, чтобы увидеть больше…</string>
     <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
     <!-- action -->
@@ -219,10 +213,8 @@
     <string name="settings_color_day_always">Всегда день</string>
     <string name="settings_color_night_always">Всегда ночь</string>
     <string name="settings_color_light">Светлая</string>
-    <string name="settings_color_light_always">Всегда светлая</string>
     <string name="settings_color_grey">Серая</string>
     <string name="settings_color_dark">Тёмная</string>
-    <string name="settings_color_dark_always">Всегда тёмная</string>
     <string name="settings_background_updates_refresh_30min">Полчаса</string>
     <string name="settings_background_updates_refresh_1h">1 час</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
@@ -375,7 +367,6 @@
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
     <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и источники GPS.</string>
     <string name="settings_source_default_value">По умолчанию</string>
-    <string name="settings_weather_sources_current_location">Источник информации о погоде для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
     <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
@@ -538,7 +529,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
     <string name="settings_icon_packs_weather_icon_light">Светлая иконка</string>
     <string name="action_location_list">Список местоположений</string>
-    <string name="action_choose_weather_source">Выберите источник погоды</string>
     <string name="action_add_new_location">Добавить новое местоположение</string>
     <string name="settings_background_updates_battery_optimization_summary">Это первое, что нужно попробовать, если вы не получаете уведомления или виджеты не обновляются.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не удалось открыть настройки устройства.</string>
@@ -553,7 +543,6 @@
     <string name="settings_location">Местоположение</string>
     <string name="settings_location_summary">Настройки сервисов местоположения</string>
     <string name="settings_weather_sources">Источники погоды</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
     <string name="message_server_timeout">Истекло время запроса</string>
@@ -583,7 +572,6 @@
     <string name="pollen_level_3">Средний</string>
     <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
     <string name="location_resident_location">Местоположение места жительства</string>
-    <string name="settings_weather_source">Источник погоды</string>
     <string name="location_resident_location_summaryOff">Выключено. Местоположение всегда доступно.</string>
     <string name="action_delete">Удалить</string>
     <string name="weather_pollen_data_by">Информация об аллергенах предоставлена %s</string>

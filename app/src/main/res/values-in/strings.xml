@@ -4,7 +4,6 @@
     <string name="app_name">Cuaca</string>
     <!-- keyword. -->
     <string name="location_current">Lokasi saat ini</string>
-    <string name="location_resident">Lokasi penduduk</string>
     <string name="short_today">Hari ini</string>
     <string name="notification_refreshed_at">Dimuat ulang pada</string>
     <string name="precipitation">Curah hujan</string>
@@ -115,7 +114,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Menemukan di latar belakang</string>
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
     <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
     <string name="dialog_permissions_location_background_title">Akses lokasi di latar-belakang</string>
@@ -194,10 +192,6 @@
     <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai-ulang</string>
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Diperbarui dilatar-belakang</string>
-    <string name="location_resident_message">Tetapkan sebagai kota penduduk</string>
-    <string name="location_resident_dialog">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.
-\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
     <string name="pollen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
     <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
     <!-- content description -->
@@ -321,7 +315,6 @@
     <string name="pollen_mugwort">Mugwort</string>
     <string name="widget_style_mini">Kecil</string>
     <string name="widget_style_vertical">Vertikal</string>
-    <string name="settings_color_light_always">Selalu terang</string>
     <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Gerimis sedang</string>
     <string name="settings_background_updates_worker_info_title">Info proses</string>
@@ -351,6 +344,7 @@
     <string name="common_weather_text_rain_heavy">Hujan deras</string>
     <string name="unit_kelvin_short">K</string>
     <string name="settings_color_day_always">Selalu pagi</string>
+    <string name="settings_color_night_always">Selalu malam</string>
     <string name="unit_cm_voice">Sentimeter</string>
     <string name="unit_inph">inci/j</string>
     <string name="unit_mph_voice">Mil per jam</string>
@@ -424,7 +418,6 @@
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Inci per jam</string>
-    <string name="settings_weather_source">Sumber cuaca</string>
     <string name="settings_notifications">Notifikasi</string>
     <string name="widget_style_rectangle">Persegi panjang</string>
     <string name="settings_color_dark">Gelap</string>
@@ -489,12 +482,10 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_style_native">Asli</string>
     <string name="settings_none">Tidak ada</string>
-    <string name="settings_color_dark_always">Selalu gelap</string>
     <string name="common_weather_text_partly_cloudy">Sebagian berawan</string>
     <string name="unit_mb_voice">Milibar</string>
     <string name="unit_mps">m/d</string>
     <string name="settings_weather_source_open_weather_one_call_version">Versi OneCall</string>
-    <string name="settings_color_night_always">Selalu malam</string>
     <string name="unit_hpa_voice">Hectopascal</string>
     <string name="settings_weather_sources">Sumber cuaca</string>
     <string name="common_weather_text_snow_showers">Hujan salju</string>
@@ -591,7 +582,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Ini adalah hal pertama yang harus dicoba ketika Anda tidak menerima notifikasi atau widget tidak menyegarkan.</string>
     <string name="settings_widgets_live_wallpaper_summary">Tetapkan animasi cuaca sebagai latar belakang</string>
     <string name="message_parsing_error_title">Gagal mengurai data cuaca</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Sudah diperbarui baru-baru ini</string>
     <string name="weather_message_invalid_location">Lokasi tidak valid, silakan hapus dan tambahkan lagi</string>
     <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca</string>
     <string name="settings_weather_sources_summary">Pengaturan sumber data cuaca</string>
@@ -638,7 +628,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Catatan kemogokan disimpan</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Hujan dan salju ringan bercampur</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Ketuk untuk membuka</string>
-    <string name="action_choose_weather_source">Ubah sumber cuaca</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Gerimis beku berat</string>
     <string name="settings_location_access_background_summaryOn">Diaktifkan. Aplikaai akan dapat menyegarkan data cuaca untuk lokasi Anda saat ini di latar belakang.</string>
     <string name="settings_units_summary">Suhu, curah hujan, jarak, kecepatan, tekanan</string>
@@ -649,7 +638,6 @@
     <string name="unit_kgfpsqcm_voice">Gaya kilogram per sentimeter persegi</string>
     <string name="settings_location_access_permission_already_granted">Izin sudah diberi</string>
     <string name="notification_update_error">%d pembaruan gagal</string>
-    <string name="settings_weather_sources_current_location">Sumber cuaca untuk lokasi saat ini</string>
     <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan dan GPS perangkat digunakan.</string>
     <string name="common_weather_text_rain_showers_moderate">Hujan sedang</string>
     <string name="unit_lpsqm_voice">Liter per meter persegi</string>

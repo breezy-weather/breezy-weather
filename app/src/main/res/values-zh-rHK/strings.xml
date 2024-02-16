@@ -4,7 +4,6 @@
     <string name="app_name">天氣</string>
     <!-- keyword. -->
     <string name="location_current">當前位置</string>
-    <string name="location_resident">常住地點</string>
     <string name="short_today">今日</string>
     <string name="notification_refreshed_at">更新於</string>
     <string name="precipitation">降水量</string>
@@ -109,7 +108,6 @@
     <string name="date_format_widget_long">M 月 d 日 EEEE</string>
     <string name="date_format_widget_oreo_style">M 月 d 日EEEE │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">在背景中定位</string>
     <string name="dialog_permissions_location_title">取得位置資訊</string>
     <string name="dialog_permissions_location_content">為了提供您所在地的天氣資料，「Breezy Weather」需要在前景或背景收集您的位置信息。此操作需要您授予某些權限。您的位置資訊僅用於取得您當前所在地的天氣數據。若您不願分享位置資訊，您可以拒絕這些權限並在管理頁面中手動設定位置。</string>
     <string name="dialog_permissions_location_background_title">背景取得位置資訊</string>
@@ -183,10 +181,6 @@
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
     <string name="notification_running_in_background">正在背景執行，以保持更新</string>
     <string name="notification_updating_weather_data">正在更新天氣資料 (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">背景已更新</string>
-    <string name="location_resident_message">設為常住城市</string>
-    <string name="location_resident_dialog">Breezy Weather 將會根據您目前的位置，自動顯示和隱藏常住城市。
-\n例如，您可以將您的家鄉設定為常住城市。當您旅行時，可以查看家鄉的天氣。一旦您回到家，家鄉的天氣將會被您目前所在地的天氣所取代。</string>
     <string name="pollen_tap_to_see_more">點擊以查看更多…</string>
     <!-- content description -->
     <string name="action_back">返回</string>
@@ -258,10 +252,8 @@
     <string name="settings_color_day_always">總是白天</string>
     <string name="settings_color_night_always">總是夜間</string>
     <string name="settings_color_light">淺色</string>
-    <string name="settings_color_light_always">總是淺色</string>
     <string name="settings_color_grey">灰色</string>
     <string name="settings_color_dark">深色</string>
-    <string name="settings_color_dark_always">總是深色</string>
     <string name="settings_background_updates_refresh_30min">0.5小時</string>
     <string name="settings_background_updates_refresh_1h">1小時</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5小時</string>
@@ -416,7 +408,6 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
     <string name="settings_background_updates_summary">更新率、疑難排解</string>
     <string name="common_weather_text_overcast">天陰</string>
-    <string name="weather_refresh_skipped_already_recently_updated">已近期更新過</string>
     <string name="weather_source_accu_preference_hours_1">1 小時</string>
     <string name="weather_source_accu_preference_hours_24">24 小時</string>
     <string name="location_none_added_yet_instructions">尚未加入任何地點。請點擊搜尋圖示以手動加入地點，或從懸浮按鈕加入您目前所在地。</string>
@@ -431,7 +422,6 @@
     <string name="settings_weather_source_portal">入口</string>
     <string name="setting_weather_source_accu_days">天數</string>
     <string name="location_search_weather_source">天氣資料來源</string>
-    <string name="action_choose_weather_source">選擇天氣資料來源</string>
     <string name="location_search_no_results_advice">請確保您的搜尋拼寫正確且不過於特定。或者，您可以嘗試使用另一個氣象資料來源，以獲得不同的地點搜尋結果。</string>
     <string name="widget_clock_font_sans_serif">無襯線體</string>
     <string name="settings_section_general">常規</string>
@@ -521,8 +511,6 @@
     <string name="weather_air_quality_data_by">本空氣品質數據由 %s 提供</string>
     <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
     <string name="settings_location_access_precise_summaryOn">已啟用。設備的網絡和 GPS 定位均被使用。</string>
-    <string name="settings_weather_source">天氣資料來源</string>
-    <string name="settings_weather_sources_current_location">當前位置的天氣資料來源</string>
     <string name="settings_source_default_value">預設（未變更）</string>
     <string name="weather_source_accu_preference_hours_72">72 小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>

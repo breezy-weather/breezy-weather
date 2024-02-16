@@ -4,7 +4,6 @@
     <string name="app_name">Meteo</string>
     <!-- keyword. -->
     <string name="location_current">Posizione automatica</string>
-    <string name="location_resident">Posizione residente</string>
     <string name="short_today">Oggi</string>
     <string name="notification_refreshed_at">Aggiornato il</string>
     <string name="precipitation">Precipitazioni</string>
@@ -110,7 +109,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Localizzazione in corso</string>
     <string name="dialog_permissions_location_title">Accesso alle informazioni sulla posizione</string>
     <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell’utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell’utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
     <string name="dialog_permissions_location_background_title">Accedi alla posizione in background</string>
@@ -217,10 +215,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura come icona della barra di stato</string>
     <string name="settings_source_default_value">Predefinito (invariato)</string>
     <string name="settings_widgets_notification_feels_like_switch">Usa temperatura percepita</string>
-    <string name="weather_updated_in_background">Aggiornato in background</string>
-    <string name="location_resident_message">Imposta una città di residenza</string>
-    <string name="location_resident_dialog">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.
-\nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
     <string name="pollen_tap_to_see_more">Premi qui per saperne di più…</string>
     <string name="message_tap_again_to_exit">Clicca nuovamente per uscire</string>
     <string name="action_back">Indietro</string>
@@ -260,10 +254,8 @@
     <string name="settings_color_day_always">Sempre diurno</string>
     <string name="settings_color_night_always">Sempre notturno</string>
     <string name="settings_color_light">Chiaro</string>
-    <string name="settings_color_light_always">Sempre chiaro</string>
     <string name="settings_color_grey">Grigio</string>
     <string name="settings_color_dark">Scuro</string>
-    <string name="settings_color_dark_always">Sempre scuro</string>
     <string name="settings_background_updates_refresh_30min">Mezz’ora</string>
     <string name="settings_background_updates_refresh_1h">1 ora</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 ore</string>
@@ -402,7 +394,6 @@
     <string name="settings_notifications_forecast_today_title">Notifica per le previsioni odierne</string>
     <string name="air_quality_level_5">Molto malsana</string>
     <string name="weather_data_by">Dati da %s</string>
-    <string name="action_choose_weather_source">Scegli la fonte meteo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="location_message_permission_missing">Autorizzazione di accesso alla posizione mancante</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -433,7 +424,6 @@
     <string name="common_weather_text_mainly_clear">Prevalentemente sereno</string>
     <string name="about_source_code">Codice sorgente</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
-    <string name="settings_weather_sources_current_location">Fonte meteo per la posizione corrente</string>
     <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni</string>
     <string name="settings_main_section_displayed_data">Dati visualizzati</string>
     <string name="settings_main_cards_title">Schede</string>
@@ -510,7 +500,6 @@
     <string name="settings_weather_sources">Fonti meteo</string>
     <string name="air_quality_pm_info_title">Particolati (PM2.5 &amp; PM10)</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Già aggiornato di recente</string>
     <string name="air_quality_index">Indice Qualità dell’Aria</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_o3">O₃</string>
@@ -554,7 +543,6 @@
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
     <string name="location_resident_location_summaryOff">Disabilitata. Questa località sarà sempre disponibile.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
-    <string name="settings_weather_source">Fonte meteo</string>
     <string name="about_contribution_weather_source">Ha aggiunto il supporto per una o più nuove fonti meteo</string>
     <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Temporale con grandine leggera</string>
