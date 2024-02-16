@@ -37,15 +37,14 @@ import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.LocationPreset
+import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
 import org.breezyweather.settings.preference.composables.RadioButton
@@ -73,6 +72,8 @@ class SearchActivity : GeoActivity() {
     private fun ContentView() {
         val context = LocalContext.current
         val dialogLocationSearchSourceOpenState = remember { mutableStateOf(false) }
+        val dialogLocationSourcesOpenState = remember { mutableStateOf(false) }
+        var selectedLocation: Location? by rememberSaveable { mutableStateOf(null) }
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
         val locationSearchSourceState = viewModel.locationSearchSource.collectAsState()
@@ -153,10 +154,21 @@ class SearchActivity : GeoActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        // TODO: Open dialog to presets of main/secondary sources
-                                        finishSelf(LocationPreset.getLocationWithPresetApplied(location))
+                                        selectedLocation = LocationPreset.getLocationWithPresetApplied(location)
+                                        dialogLocationSourcesOpenState.value = true
                                     }
                                 )
+                            }
+                        }
+                        if (dialogLocationSourcesOpenState.value && selectedLocation != null) {
+                            SecondarySourcesPreference(
+                                sourceManager,
+                                selectedLocation!!
+                            ) { location: Location? ->
+                                if (location != null) {
+                                    finishSelf(location)
+                                }
+                                dialogLocationSourcesOpenState.value = false
                             }
                         }
                     } else {

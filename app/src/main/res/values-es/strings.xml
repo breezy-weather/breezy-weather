@@ -4,7 +4,6 @@
     <string name="app_name">Clima</string>
     <!-- keyword. -->
     <string name="location_current">Ubicación actual</string>
-    <string name="location_resident">Ubicación de los residentes</string>
     <string name="short_today">Hoy</string>
     <string name="notification_refreshed_at">Actualizado a las</string>
     <string name="precipitation">Precipitación</string>
@@ -113,7 +112,6 @@
     <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Ubicando en segundo plano</string>
     <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
     <string name="weather_message_data_refresh_failed">La solicitud de datos del clima falló</string>
     <string name="location_dialog_failed_to_locate_title">¿No pudo obtener la ubicación correctamente\?</string>
@@ -185,10 +183,6 @@
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Actualizado en segundo plano</string>
-    <string name="location_resident_message">Establecer como ciudad de residencia</string>
-    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades de residencia en base a tu ubicación actual.
-\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad de residencia. Esto te dejaría revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
     <string name="pollen_tap_to_see_more">Toca para obtener más…</string>
     <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
     <!-- action -->
@@ -234,10 +228,8 @@
     <string name="settings_color_day_always">Siempre diurno</string>
     <string name="settings_color_night_always">Siempre nocturno</string>
     <string name="settings_color_light">Claro</string>
-    <string name="settings_color_light_always">Siempre claro</string>
     <string name="settings_color_grey">Gris</string>
     <string name="settings_color_dark">Oscuro</string>
-    <string name="settings_color_dark_always">Siempre oscuro</string>
     <string name="settings_background_updates_refresh_30min">Media hora</string>
     <string name="settings_background_updates_refresh_1h">1 hora</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 horas</string>
@@ -360,7 +352,6 @@
     <string name="location_message_reverse_geocoding_failed">La fuente meteorológica no pudo encontrar una ubicación que coincida</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucciones específicas según fabricante</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Algunos fabricantes tienen restricciones adicionales para las aplicaciones que eliminan los servicios en segundo plano. El sitio web Don’t kill my app! contiene información sobre cómo solucionarlo.</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Recientemente actualizado</string>
     <string name="weather_api_limit_reached_content">Para evitar este límite, añada su propia clave API.</string>
     <string name="weather_api_key_required_missing_content">Para utilizar esta fuente, debes proporcionar una clave API.</string>
     <string name="setting_weather_source_accu_days">Días</string>
@@ -368,7 +359,6 @@
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_search_weather_source">Fuente meteorológica</string>
     <string name="location_message_search_failed">Búsqueda de ubicación fallida</string>
-    <string name="action_choose_weather_source">Elegir la fuente meteorológica</string>
     <string name="action_undo">Deshacer</string>
     <string name="action_help_me_choose">Ayúdame a elegir</string>
     <string name="widget_style_mini">Mini</string>
@@ -504,7 +494,6 @@
     <string name="settings_notifications_precipitations_title">Notificaciones de las precipitaciones</string>
     <string name="settings_weather_sources_summary">Configuración de las fuentes de los datos meteorológicos</string>
     <string name="settings_weather_sources">Fuentes meteorológicas</string>
-    <string name="settings_weather_sources_current_location">Fuente meteorológica para la ubicación actual</string>
     <string name="settings_main_summary">Orden de las tarjetas, datos mostrados, animaciones</string>
     <string name="settings_source_api_key">Clave de la API</string>
     <string name="settings_icon_packs_check_details">Ver los detalles</string>
@@ -526,7 +515,6 @@
     <string name="location_resident_location_summaryOn">Activado. Oculto cuando está dentro de %s de la ubicación actual.</string>
     <string name="location_resident_location_summaryOff">Desactivado. Ubicación siempre disponible.</string>
     <string name="settings_location_access_precise_summaryOff">Activa “Usar la ubicación precisa” si tienes problemas para obtener una ubicación.</string>
-    <string name="settings_weather_source">Fuente meteorológica</string>
     <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de Breezy Weather seleccionando “Fondo de pantalla animado” en el selector de fondos de la pantalla de inicio.</string>
     <string name="settings_widgets_week_icon_mode_title">Icono para mostrar en las vistas semanales</string>
     <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, previsiones</string>

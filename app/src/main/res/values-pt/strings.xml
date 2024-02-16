@@ -71,7 +71,6 @@
     <string name="date_format_widget_long">EEEE, dd\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Localização em segundo plano</string>
     <string name="location_message_failed_to_locate">Localização falhou</string>
     <string name="weather_message_data_refresh_failed">Atualização de clima falhou</string>
     <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente\?</string>
@@ -121,10 +120,8 @@
     <string name="location_service_native">API Nativa</string>
     <string name="settings_automatic">Automático</string>
     <string name="settings_color_light">Claro</string>
-    <string name="settings_color_light_always">Sempre claro</string>
     <string name="settings_color_grey">Cinza</string>
     <string name="settings_color_dark">Escuro</string>
-    <string name="settings_color_dark_always">Sempre escuro</string>
     <string name="settings_background_updates_refresh_30min">00:30</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
@@ -206,7 +203,6 @@
     <string name="action_preview">Visualização</string>
     <string name="action_see_more">Ver mais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
-    <string name="weather_updated_in_background">Atualizado em segundo plano</string>
     <string name="message_tap_again_to_exit">Clique novamente para sair</string>
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
@@ -229,10 +225,8 @@
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="unit_kph">km/h</string>
     <string name="weather_api_unauthorized_content">Em alguns provedores de previsão do tempo, é necessário fornecer a sua própria chave de API. Se já forneceu uma, verifique novamente a chave de API que forneceu.</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Já atualizado recentemente</string>
     <string name="weather_api_limit_reached_title">Limite de solicitações à API atingido</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione a sua própria chave de API.</string>
-    <string name="location_resident_message">Definido como uma cidade residente</string>
     <string name="action_show_errors">Toque para ver detalhes</string>
     <string name="settings_main_section_options">Opções</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover “%s”</string>
@@ -241,7 +235,6 @@
     <string name="settings_background_updates_worker_info_summary">Última execução: %s</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Pode adicionar a sua localização atual como um local.</string>
     <string name="settings_location_access_precise_title">Uso do GPS do aparelho</string>
-    <string name="settings_weather_sources_current_location">Provedor meteorológico para a localização atual</string>
     <string name="settings_source_default_value">Padrão (inalterado)</string>
     <string name="settings_source_api_key">Chave de API</string>
     <string name="settings_icon_packs_title">Pacotes de ícones</string>
@@ -370,7 +363,6 @@
     <string name="ceiling">Teto de nuvens</string>
     <string name="weather_kind_wind">Vento</string>
     <string name="weather_source_openweather_version_3_0">Versão 3.0</string>
-    <string name="location_resident">Local de residência</string>
     <string name="widget_multi_city">Várias cidades</string>
     <string name="widget_material_you_forecast">Material You - Previsão</string>
     <string name="widget_material_you_current">Material You - Atual</string>
@@ -446,7 +438,6 @@
     <string name="hours_of_sun">Horas de sol</string>
     <string name="weather_kind_haze">Neblina</string>
     <string name="weather_kind_thunderstorm">Trovoada</string>
-    <string name="settings_weather_source">Provedor meteorológico</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -510,7 +501,6 @@
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="location_search_no_results_advice">Certifique-se de que a sua pesquisa esteja escrita corretamente e não seja muito específica. Como alternativa, pode tentar outro provedor de meteorologia, que pode produzir resultados de pesquisa de local diferentes.</string>
     <string name="location_resident_location_summaryOff">Desativado. Localização sempre disponível.</string>
-    <string name="action_choose_weather_source">Escolha um provedor meteorológico</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para a sua localização atual.</string>
     <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
@@ -545,8 +535,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates_battery_optimization_disabled">A otimização da pilha já está desativada.</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
-    <string name="location_resident_dialog">Breezy Weather mostrará e ocultará automaticamente as cidades residentes com base na sua localização atual.
-\nPor exemplo, pode definir a sua cidade natal como uma cidade residente. Pode verificar o clima na sua cidade natal enquanto viajar. Quando chegar a casa, o clima da sua cidade natal será ocultado e substituído pelo clima da sua localização atual.</string>
     <string name="unit_in_voice">Polegadas</string>
     <string name="unit_lpsqm_voice">Litros por metro quadrado</string>
     <string name="unit_kn">kn</string>

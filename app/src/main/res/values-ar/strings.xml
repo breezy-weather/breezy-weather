@@ -4,7 +4,6 @@
     <string name="app_name">الطقس</string>
     <!-- keyword. -->
     <string name="location_current">الموقع الحالي</string>
-    <string name="location_resident">موقع الإقامة</string>
     <string name="short_today">اليوم</string>
     <string name="notification_refreshed_at">تم التحديث في</string>
     <string name="precipitation">الهطول</string>
@@ -107,7 +106,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">تحديد الموقع في الخلفية</string>
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
     <string name="weather_message_data_refresh_failed">فشل في الحصول على بيانات الطقس</string>
     <string name="location_dialog_failed_to_locate_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
@@ -133,10 +131,6 @@
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
-    <string name="weather_updated_in_background">تم التحديث في الخلفية</string>
-    <string name="location_resident_message">تعيين كمدينة الإقامة</string>
-    <string name="location_resident_dialog">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي.
-\nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
     <string name="pollen_tap_to_see_more">أنقر للمزيد…</string>
     <!-- action -->
     <string name="alerts">تنبيهات</string>
@@ -180,10 +174,8 @@
     <string name="settings_color_day_always">دائماً في النهار</string>
     <string name="settings_color_night_always">دائماً في الليل</string>
     <string name="settings_color_light">فاتح</string>
-    <string name="settings_color_light_always">ًفاتح دائما</string>
     <string name="settings_color_grey">رمادي</string>
     <string name="settings_color_dark">داكن</string>
-    <string name="settings_color_dark_always">ًداكن دائما</string>
     <string name="settings_background_updates_refresh_30min">كل ٣٠ دقيقة</string>
     <string name="settings_background_updates_refresh_1h">كل ساعة</string>
     <string name="settings_background_updates_refresh_1h_30min">كل ساعة ونصف</string>
@@ -264,7 +256,6 @@
     <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ للحصول على تحديثات خلفية حية لموقعك الحالي.</string>
     <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_source_default_value">افتراضي (بدون تغيير)</string>
-    <string name="settings_weather_sources_current_location">مصدر الطقس للموقع الحالي</string>
     <string name="settings_icon_packs_weather_adaptive_icon">أيقونة الطقس</string>
     <string name="settings_icon_packs_weather_icon_grey">رمز رمادي</string>
     <string name="settings_main_summary">ترتيب البطاقات، العناصر المعروضة، الرسوم المتحركة</string>
@@ -478,7 +469,6 @@
     <string name="action_see_more">انظر أكثر</string>
     <string name="location_service_native">واجهة برمجة التطبيقات الأصلية</string>
     <string name="action_location_list">قائمة المواقع</string>
-    <string name="action_choose_weather_source">اختر مصدر الطقس</string>
     <string name="action_add_current_location">إضافة الموقع الحالي</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">وقت الإشعار لتوقعات اليوم التالي</string>
     <string name="settings_main_section_animations">الرسوم المتحركه</string>
@@ -556,7 +546,6 @@
     <string name="settings_main">الشاشة الرئيسية</string>
     <string name="action_show_errors">انقر لرؤية التفاصيل</string>
     <string name="notification_update_error">%d فشل التحديث</string>
-    <string name="weather_refresh_skipped_already_recently_updated">تم تحديثه مؤخرا بالفعل</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="wind_strength">طاقة الرياح</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
@@ -584,7 +573,6 @@
     <string name="location_resident_location">موقع الإقامة</string>
     <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
-    <string name="settings_weather_source">مصدر الطقس</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء %s</string>
     <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار %s</string>
     <string name="weather_minutely_data_by">بيانات الترسبات دقيقة بدقية بواسطة %s</string>

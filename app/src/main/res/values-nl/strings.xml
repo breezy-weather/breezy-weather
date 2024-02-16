@@ -57,7 +57,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Lokaliseren op achtergrond</string>
     <string name="location_message_failed_to_locate">Huidige locatie niet gevonden</string>
     <string name="weather_message_data_refresh_failed">Verversen van weergegevens mislukt</string>
     <string name="widget_label_view_style">Weergavestijl</string>
@@ -94,10 +93,8 @@
     <string name="settings_appearance_icon_pack_title">Icoonstijl</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
     <string name="settings_color_light">Licht</string>
-    <string name="settings_color_light_always">Always licht</string>
     <string name="settings_color_grey">Grijs</string>
     <string name="settings_color_dark">Donker</string>
-    <string name="settings_color_dark_always">Always donker</string>
     <string name="settings_background_updates_refresh_30min">00:30</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
@@ -213,7 +210,6 @@
     <string name="settings_main_section_animations">Animaties</string>
     <string name="settings_item_delete">Dit item verwijderen</string>
     <string name="settings_main_header_details_title">Details in koptekst</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Recentelijk al bijgewerkt</string>
     <string name="weather_api_limit_reached_title">API-verzoekenlimiet bereikt</string>
     <string name="weather_api_limit_reached_content">Om de limiet te omzeilen, kunt u uw eigen API-sleutel toevoegen.</string>
     <string name="weather_api_unauthorized_title">API-toegang ongeautoriseerd</string>
@@ -229,7 +225,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_weather_sources">Weerbronnen</string>
     <string name="settings_weather_sources_summary">Instellingen weergegevensbronnen</string>
-    <string name="settings_weather_sources_current_location">Weerbron voor huidige locatie</string>
     <string name="settings_source_api_key">API-sleutel</string>
     <string name="settings_appearance">Uiterlijk</string>
     <string name="settings_icon_packs_title">Pictogrammenpakketten</string>
@@ -257,7 +252,6 @@
     <string name="weather_api_key_required_missing_title">Vereiste API-sleutel ontbreekt</string>
     <string name="setting_weather_source_accu_hours">Uren</string>
     <string name="weather_source_accu_preference_hours_240">240 uur</string>
-    <string name="location_resident">Bewonerslocatie</string>
     <string name="widget_subtitle_data_wind">Wind</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_nmi_voice">Nautische mijlen</string>
@@ -305,7 +299,6 @@
     <string name="cloud_cover">Bewolking</string>
     <string name="weather_air_quality_data_by">Luchtkwaliteitsgegevens door %s</string>
     <string name="location_search_weather_source">Weerbron</string>
-    <string name="weather_updated_in_background">Bijgewerkt in de achtergrond</string>
     <string name="settings_units_summary">Temperatuur, neerslag, afstand, snelheid, druk</string>
     <string name="action_see_more">Bekijk meer</string>
     <string name="action_preview">Voorbeeld</string>
@@ -378,9 +371,6 @@
     <string name="location_swipe_to_delete">U kunt naar links vegen om dit item te verwijderen</string>
     <string name="location_dialog_failed_to_locate_title">Kan locatie niet correct krijgen\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Locatierechten controleren</string>
-    <string name="location_resident_message">Instellen als woonplaats</string>
-    <string name="location_resident_dialog">Breezy Weather toont en verbergt automatisch inwonende steden op basis van uw huidige locatie.
-\nU kunt bijvoorbeeld uw woonplaats instellen als woonstad. U kunt het weer in uw woonplaats bekijken terwijl u op reis bent. Wanneer u thuiskomt, wordt het weer in uw woonplaats verborgen en vervangen door het weer van uw huidige locatie.</string>
     <string name="widget_trend_hourly">Trend per uur</string>
     <string name="widget_material_you_forecast">Material You - Voorspelling</string>
     <string name="widget_material_you_current">Material You - Huidig</string>
@@ -411,10 +401,8 @@
     <string name="settings_debug_dump_crash_logs_summary">Slaat foutenlogboeken op in een bestand om te delen met de ontwikkelaars</string>
     <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
     <string name="air_quality_level_6_description">Blootstelling aan de buitenlucht, al is het maar enkele minuten, kan bij iedereen de gezondheid ernstig beïnvloeden. Vermijd buitenactiviteiten.</string>
-    <string name="settings_weather_source">Weerbron</string>
     <string name="location_resident_location_summaryOn">Ingeschakeld. Verborgen binnen %s van huidige locatie.</string>
     <string name="location_resident_location_summaryOff">Uitgeschakeld. Locatie altijd beschikbaar.</string>
-    <string name="action_choose_weather_source">Kies weerbron</string>
     <string name="action_add_current_location">Huidige locatie toevoegen</string>
     <string name="settings_background_updates_section_troubleshoot">Problemen oplossen</string>
     <string name="settings_background_updates_battery_optimization">Batterijoptimalisatie uitschakelen</string>

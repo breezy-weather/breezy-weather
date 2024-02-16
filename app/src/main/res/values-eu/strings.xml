@@ -142,7 +142,6 @@
     <string name="location_service_native">API natiboa</string>
     <string name="action_location_list">Kokapen zerrenda</string>
     <string name="action_search">Bilatu</string>
-    <string name="action_choose_weather_source">Aukeratu eguraldi iturria</string>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_preview">Aurreikusi</string>
     <string name="action_app_store">Aplikazioen denda</string>
@@ -160,7 +159,6 @@
     <string name="message_server_timeout">Eskaera iraungita</string>
     <string name="message_source_not_installed_error_title">Iturria ez dago erabilgarri</string>
     <string name="message_source_not_installed_error_content">Iturri hau ez dago erabilgarri. Mesedez, ezabatu kokalekua eta sortu berriro beste iturri batetik abiatuta.</string>
-    <string name="weather_updated_in_background">Atzeko planoan eguneratuta</string>
     <string name="message_tap_again_to_exit">Irteteko ukitu berriro</string>
     <string name="widget_trend_daily">Eguneko joera</string>
     <string name="widget_trend_hourly">Orduko joera</string>
@@ -194,7 +192,6 @@
     <string name="weather_message_data_refresh_failed">Eguraldiari buruzko datuen eguneraketak huts egin du</string>
     <string name="weather_message_unsupported_feature">Iturriak ez du eskatutako funtzioetako bat onartzen</string>
     <string name="weather_message_invalid_location">Kokapena ez da baliozkoa, ezabatu eta gehitu berriro</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Duela gutxi eguneratua</string>
     <string name="weather_api_limit_reached_title">APIren eskaeren muga gainditu da</string>
     <string name="weather_api_limit_reached_content">Muga hau saihesteko, gehitu zure API gakoa.</string>
     <string name="weather_api_unauthorized_title">Baimendu gabeko API sarbidea</string>
@@ -230,8 +227,6 @@
     <string name="location_search_no_results">%1$s ezin du %2$s aurkitu</string>
     <string name="location_search_no_results_advice">Ziurtatu zure bilaketa ondo idatzita dagoela eta ez dela espezifikoegia. Beste eguraldi iturri batekin egiazta dezakezu, baliteke kokalekuaren bilaketaren emaitzak desberdinak izatea.</string>
     <string name="location_resident_location_summaryOn">Gaituta. Ezkutatuta, gaur egungo kokapenaren %s barruan dagoenean.</string>
-    <string name="location_resident_dialog">Breezy Weatherrek automatikoki erakutsiko eta ezkutatuko ditu hiri egoiliarrak, zure egungo kokapenaren arabera.
-\nAdibidez, zure jaioterria hiri egoiliar gisa ezar dezakezu. Zure jaioterriko klima ikus dezakezu bidaiatzen ari zaren bitartean. Etxera iristen zarenean, zure jaioterriko klima ezkutatuta egongo da, eta gaur egungo kokapenaren klimak ordezkatuko du.</string>
     <string name="action_add_current_location">Gehitu egungo kokapena</string>
     <string name="action_add_from_map">Gehitu mapatik</string>
     <string name="action_add_new_location">Gehitu kokapen berria</string>
@@ -259,13 +254,11 @@
     <string name="weather_message_secondary_data_refresh_failed">Huts egin du meteorologia-datuak bigarren mailako iturri meteorologiko batetik eguneratzeak</string>
     <string name="weather_alert_data_by">Alerten datuan %s(r)en bidez</string>
     <string name="weather_normals_data_by">Tenperatura-parametroen datuak %s(r)en bidez</string>
-    <string name="location_resident">Egoiliarren kokapena</string>
     <string name="location_results_by">Kokapen emaitzak %s(r)en bidez</string>
     <string name="location_swipe_to_delete">Ezkerrera irristatu dezakezu elementu hau ezabatzeko</string>
     <string name="location_message_permission_missing">Kokapenera sartzeko baimenik ez</string>
     <string name="location_message_permission_background_missing">Bigarren planoan kokapenera sartzeko baimenik ez</string>
     <string name="location_resident_location">Egoiliarren kokapena</string>
-    <string name="location_resident_message">Ezarri egoiliar kokapena gisa</string>
     <string name="widget_day">Egunerokoa</string>
     <string name="widget_week">Asterokoa</string>
     <string name="widget_day_week">Egunerokoa + Asterokoa</string>
@@ -304,11 +297,9 @@
     <string name="settings_location_access_background_summaryOn">Gaitua. Orain duzun kokalekuko datu meteorologikoak eguneratu ahal izango dituzu bigarren planoan.</string>
     <string name="settings_background_updates_worker_info_summary">Azken exekuzioa: %s</string>
     <string name="settings_location_access_precise_summaryOff">Gaitu “Kokapen zehatza erabili” kokapen bat lortzeko arazoak izanez gero.</string>
-    <string name="settings_weather_source">Eguraldiaren iturria</string>
     <string name="settings_weather_sources">Eguraldiaren iturriak</string>
     <string name="settings_weather_source_main">Iturri nagusia</string>
     <string name="settings_weather_sources_per_location_summary">Pertsonalizatu kokapen honetarako datu meteorologikoen iturriak</string>
-    <string name="settings_weather_sources_current_location">Egungo kokapenerako iturri meteorologikoa</string>
     <string name="settings_source_api_key">API gakoa</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall bertsioa</string>
     <string name="settings_main_daily_trends_title">Egunkako joerak</string>
@@ -344,10 +335,8 @@
     <string name="settings_color_day_always">Beti eguna</string>
     <string name="settings_color_night_always">Beti gaua</string>
     <string name="settings_color_light">Argia</string>
-    <string name="settings_color_light_always">Beti argia</string>
     <string name="settings_color_grey">Grisa</string>
     <string name="settings_color_dark">Iluna</string>
-    <string name="settings_color_dark_always">Beti iluna</string>
     <string name="unit_ftps_voice">Oin segundoko</string>
     <string name="unit_mm">mm</string>
     <string name="unit_mm_voice">Milimetroak</string>
@@ -381,7 +370,6 @@
     <string name="unit_ppcm_voice">Metro kubikoko</string>
     <string name="notification_channel_alerts">Alertak</string>
     <string name="notification_channel_background_services">Bigarren planoko zerbitzuak</string>
-    <string name="notification_location_in_background">Kokapena bigarren planoan</string>
     <string name="notification_running_in_background">Bigarren planoan korrika eguneratzen jarraitzeko</string>
     <string name="notification_update_error">%d eguneraketa(k) huts egin du</string>
     <string name="notification_style_native">Natiboa</string>

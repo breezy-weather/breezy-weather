@@ -75,7 +75,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">Lokacija v ozadju</string>
     <string name="location_message_failed_to_locate">Pridobivanje lokacije ni bilo uspešno</string>
     <string name="weather_message_data_refresh_failed">Podatki o vremenu niso na voljo</string>
     <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije\?</string>
@@ -103,7 +102,6 @@
     <string name="settings_changes_apply_after_restart">Spremembe bodo veljavne po ponovnem zaognu</string>
     <string name="notification_running_in_background">Teče v ozadju za redne posodobitve</string>
     <string name="notification_updating_weather_data">Posodabljanje podatkov o vremenu (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">Posodobljeno v ozadju</string>
     <!-- action -->
     <string name="alerts">Opozorilo</string>
     <string name="action_search">Išči</string>
@@ -142,10 +140,8 @@
     <string name="settings_color_day_always">Vedno dnevni čas</string>
     <string name="settings_color_night_always">Vedno nočni čas</string>
     <string name="settings_color_light">Svetel</string>
-    <string name="settings_color_light_always">Vedno svetel</string>
     <string name="settings_color_grey">Siv</string>
     <string name="settings_color_dark">Temen</string>
-    <string name="settings_color_dark_always">Vedno temen</string>
     <string name="settings_background_updates_refresh_30min">00:30</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>

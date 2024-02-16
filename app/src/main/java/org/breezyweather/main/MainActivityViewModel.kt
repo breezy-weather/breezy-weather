@@ -52,8 +52,11 @@ class MainActivityViewModel @Inject constructor(
     private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val totalLocationList = _totalLocationList.asStateFlow()
 
-    private val _dialogChooseCurrentLocationWeatherSourceOpen = MutableStateFlow(false)
-    val dialogChooseCurrentLocationWeatherSourceOpen = _dialogChooseCurrentLocationWeatherSourceOpen.asStateFlow()
+    private val _dialogChooseWeatherSourcesOpen = MutableStateFlow(false)
+    val dialogChooseWeatherSourcesOpen = _dialogChooseWeatherSourcesOpen.asStateFlow()
+
+    private val _selectedLocation: MutableStateFlow<Location?> = MutableStateFlow(null)
+    val selectedLocation = _selectedLocation.asStateFlow()
 
     private val _loading = MutableStateFlow(false)
     val loading = _loading.asStateFlow()
@@ -118,14 +121,11 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // update inner data.
-    private fun updateInnerData(location: Location) {
+    private fun updateInnerData(location: Location, oldLocation: Location? = null) {
         val total = ArrayList(totalLocationList.value.first)
+
         for (i in total.indices) {
-            if (total[i].formattedId == location.formattedId ||
-                // Hacky way to get a manually added location which changed weather source to refresh
-                (location.needsGeocodeRefresh && total[i].longitude == location.longitude
-                        && total[i].latitude == location.latitude)
-                ) {
+            if (total[i].formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
                 total[i] = location
                 break
             }
@@ -134,47 +134,77 @@ class MainActivityViewModel @Inject constructor(
         updateInnerData(total)
     }
 
-    fun openChooseCurrentLocationWeatherSourceDialog() {
-        _dialogChooseCurrentLocationWeatherSourceOpen.value = true
+    /**
+     * @param location: If null, will create a location of type currentPosition
+     */
+    fun openChooseWeatherSourcesDialog(location: Location?) {
+        _selectedLocation.value = location
+        _dialogChooseWeatherSourcesOpen.value = true
     }
 
-    fun closeChooseCurrentLocationWeatherSourceDialog() {
-        _dialogChooseCurrentLocationWeatherSourceOpen.value = false
+    fun closeChooseWeatherSourcesDialog() {
+        _dialogChooseWeatherSourcesOpen.value = false
+        _selectedLocation.value = null
     }
 
-    private fun updateInnerData(total: List<Location>) {
+    private fun updateInnerData(newTotal: List<Location>) {
         // get valid locations and current index.
-        val valid = Location.excludeInvalidResidentLocation(
+        val newValid = Location.excludeInvalidResidentLocation(
             getApplication(),
-            total,
+            newTotal,
         )
 
-        var index = 0
-        for (i in valid.indices) {
-            if (valid[i].formattedId == currentLocation.value?.location?.formattedId ||
-                // Hacky way to get a manually added location which changed weather source to refresh
-                (currentLocation.value?.location?.needsGeocodeRefresh == true
-                        && total[i].longitude == currentLocation.value?.location?.longitude
-                        && total[i].latitude == currentLocation.value?.location?.latitude)
-            ) {
-                index = i
-                break
+        var index: Int? = null
+        if (newValid.size != validLocationList.value.first.size) {
+            if (newValid.size > validLocationList.value.first.size) {
+                // New location added case
+                index = newValid.size - 1
+            } else {
+                // Look for our location by formattedId in the new list (maybe the location deleted
+                // is not the currently focused location!)
+                for (i in newValid.indices) {
+                    if (newValid[i].formattedId == currentLocation.value?.location?.formattedId) {
+                        index = i
+                        break
+                    }
+                }
+            } // Deleted location case
+        } else {
+            // If the size didn't change, look for our location by formattedId in the new list
+            for (i in newValid.indices) {
+                if (newValid[i].formattedId == currentLocation.value?.location?.formattedId) {
+                    index = i
+                    break
+                }
+            }
+
+            // If we didn't find it, it means formattedId changed (main weather source was changed)!
+            // In that case, pick up latest known index for that location
+            if (index == null) {
+                for (i in validLocationList.value.first.indices) {
+                    if (validLocationList.value.first[i].formattedId == currentLocation.value?.location?.formattedId) {
+                        index = i
+                        break
+                    }
+                }
             }
         }
 
-        _indicator.value = Indicator(total = valid.size, index = index)
+        index = index ?: 0
+
+        _indicator.value = Indicator(total = newValid.size, index = index)
 
         // update current location.
-        setCurrentLocation(valid[index])
+        setCurrentLocation(newValid[index])
 
         // check difference in valid locations.
-        val diffInValidLocations = validLocationList.value.first != valid
-        if (diffInValidLocations || validLocationList.value.second != valid[index].formattedId) {
-            _validLocationList.value = Pair(valid, valid[index].formattedId)
+        val diffInValidLocations = validLocationList.value.first != newValid
+        if (diffInValidLocations || validLocationList.value.second != newValid[index].formattedId) {
+            _validLocationList.value = Pair(newValid, newValid[index].formattedId)
         }
 
         // update total locations.
-        _totalLocationList.value = Pair(total, valid[index].formattedId)
+        _totalLocationList.value = Pair(newTotal, newValid[index].formattedId)
     }
 
     private fun setCurrentLocation(location: Location) {
@@ -307,10 +337,17 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (currentLocation.value?.location?.formattedId == location.formattedId) {
+        // Only updates are coming here (no location added or deleted)
+        // If we don't find the formattedId in the current list, it means main source was changed
+        // for currently focused location
+        val oldLocation = validLocationList.value.first.firstOrNull {
+            it.formattedId == location.formattedId
+        } ?: currentLocation.value?.location
+
+        if (currentLocation.value?.location?.formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
             cancelRequest()
         }
-        updateInnerData(location)
+        updateInnerData(location, oldLocation)
     }
 
     // set location.
@@ -414,11 +451,20 @@ class MainActivityViewModel @Inject constructor(
         )
     }
 
-    fun updateLocation(location: Location) {
-        updateInnerData(location)
+    fun updateLocation(newLocation: Location, oldLocation: Location) {
+        updateInnerData(newLocation, oldLocation)
         repository.writeLocationList(
             locationList = totalLocationList.value.first,
         )
+    }
+
+    fun locationExists(location: Location): Boolean {
+        return totalLocationList.value.first
+            .firstOrNull { item ->
+                item.longitude == location.longitude &&
+                item.latitude == location.latitude &&
+                item.weatherSource == location.weatherSource
+            } != null
     }
 
     fun deleteLocation(position: Int): Location {

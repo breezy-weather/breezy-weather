@@ -126,7 +126,6 @@
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
     <string name="locations">Местоположения</string>
     <string name="location_current">Текущо местонахождение</string>
-    <string name="location_resident">Местоположение на пребиваване</string>
     <string name="location_results_by">Резултати за местоположение по %s</string>
     <string name="location_message_deleted">Местоположението е изтрито</string>
     <string name="location_message_list_cannot_be_empty">Списъкът с местоположения не може да бъде празен</string>
@@ -139,7 +138,6 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “%s”</string>
     <string name="location_search_placeholder">Търсене на местоположение…</string>
     <string name="location_current_not_found_yet">Текущото местоположение все още не е намерено…</string>
-    <string name="location_resident_message">Задаване като град на пребиваване</string>
     <string name="action_location_list">Списък с местоположения</string>
     <string name="action_search">Търсене</string>
     <string name="action_add_current_location">Добавяне на текущо местоположение</string>
@@ -179,10 +177,7 @@
     <string name="widget_label_subtitle_data">Данни за подзаглавието</string>
     <string name="widget_label_text_size">Размер на текста</string>
     <string name="widget_label_clock_font">Шрифт на часовника</string>
-    <string name="location_resident_dialog">Breezy Weather автоматично ще показва и скрива местните градове въз основа на вашето текущо местоположение.
-\nНапример, можете да зададете родния си град като град на пребиваване. Можете да проверите времето в родния си град, докато пътувате. Когато се приберете у дома, времето в родния ви град ще бъде скрито и заменено от времето за текущото ви местоположение.</string>
     <string name="location_service_native">Вградено API</string>
-    <string name="action_choose_weather_source">Изберете източник на времето</string>
     <string name="action_add_new_location">Добавете ново местоположение</string>
     <string name="action_preview">Преглед</string>
     <string name="action_app_store">Магазин за приложения</string>
@@ -194,7 +189,6 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Нарастващ полумесец</string>
     <string name="ephemeris_moon_phase_first_quarter">Първа четвърт</string>
     <string name="air_quality_so2_info_consequences">Излагането на SO₂ е свързано с приемането в болница за астма и посещенията в спешното отделение.</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Вече наскоро актуализиран</string>
     <string name="weather_api_limit_reached_content">За да заобиколите ограничението, добавете свой собствен API ключ.</string>
     <string name="weather_api_unauthorized_content">При някои източници на данни за времето трябва да предоставите свой собствен API ключ. Ако вече сте предоставили такъв, моля, проверете повторно API ключа, който сте предоставили.</string>
     <string name="weather_api_key_required_missing_title">Липсва необходимият API ключ</string>
@@ -214,7 +208,6 @@
     <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг източник на данните на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
     <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
     <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
-    <string name="weather_updated_in_background">Актуализиран във фонов режим</string>
     <string name="widget_clock_day_horizontal">Часовник + Ежедневно (хоризонтален стил)</string>
     <string name="widget_clock_day_vertical">Часовник + Ежедневно (вертикален стил)</string>
     <string name="widget_material_you_forecast">Material You - Прогноза</string>
@@ -385,7 +378,6 @@
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
     <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето</string>
-    <string name="settings_weather_sources_current_location">Източник на прогноза за текущото местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
     <string name="settings_appearance">Изглед</string>
@@ -488,10 +480,8 @@
     <string name="settings_color_day_always">Винаги ден</string>
     <string name="settings_color_night_always">Винаги нощ</string>
     <string name="settings_color_grey">Сиво</string>
-    <string name="settings_color_light_always">Винаги светло</string>
     <string name="settings_color_dark">Тъмно</string>
     <string name="settings_color_light">Светло</string>
-    <string name="settings_color_dark_always">Винаги тъмно</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_kn_voice">Възли</string>
     <string name="unit_mps">m/s</string>
@@ -543,7 +533,6 @@
     <string name="about_matrix">Стая Matrix</string>
     <string name="about_contributors">Сътрудници</string>
     <string name="notification_refreshed_at">Обновен на</string>
-    <string name="notification_location_in_background">Намиране във фонов режим</string>
     <string name="notification_channel_forecast">Прогноза</string>
     <string name="notification_channel_widget">Приспособление</string>
     <string name="notification_updating_weather_data">Данните за времето се актуализират (%1$d/%2$d)</string>
@@ -576,7 +565,6 @@
     <string name="pollen_level_5">Много високо</string>
     <string name="location_resident_location">Местоположение на пребиваване</string>
     <string name="location_resident_location_summaryOff">Деактивирано. Местоположението е винаги налично.</string>
-    <string name="settings_weather_source">Източник на прогноза за времето</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
     <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>

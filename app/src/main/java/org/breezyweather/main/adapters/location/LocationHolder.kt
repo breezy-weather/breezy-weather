@@ -64,12 +64,7 @@ class LocationHolder(
             swipe(0f)
             iconResStart = R.drawable.ic_delete
         }
-        if (model.currentPosition) {
-            mBinding.container.iconResEnd = R.drawable.ic_settings
-        } else {
-            mBinding.container.iconResEnd =
-                if (model.residentPosition) R.drawable.ic_tag_off else R.drawable.ic_tag_plus
-        }
+        mBinding.container.iconResEnd = R.drawable.ic_settings
         mBinding.container.apply {
             backgroundColorStart =
                 MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorErrorContainer)

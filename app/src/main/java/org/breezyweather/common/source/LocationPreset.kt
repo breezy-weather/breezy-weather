@@ -41,7 +41,7 @@ enum class LocationPreset(
     DEFAULT("openmeteo", alert = "accu", normals = "accu"),
 
     // North America
-    CANADA("eccc", airQuality = "openmeteo", pollen = "openmeteo"),
+    CANADA("eccc", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     USA("nws", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
 
     // Europe

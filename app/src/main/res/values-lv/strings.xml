@@ -98,7 +98,6 @@
     <string name="weather_message_data_refresh_failed">Laikapstākļu datu atsvaidzināšana neizdevās</string>
     <string name="weather_message_secondary_data_refresh_failed">Neizdevās atsvaidzināt laikapstākļu datus sekundārajam laikapstākļu avotam</string>
     <string name="weather_message_invalid_location">Nederīga atrašanās vieta, lūdzu, izdzēsiet to un pievienojiet vēlreiz</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Jau nesen atjaunināts</string>
     <string name="weather_api_limit_reached_title">Sasniegts API pieprasījumu ierobežojums</string>
     <string name="weather_api_limit_reached_content">Lai apietu ierobežojumu, pievienojiet savu API atslēgu.</string>
     <string name="weather_api_unauthorized_title">API piekļuve neautorizēta</string>
@@ -109,7 +108,6 @@
     <string name="locations">Atrašanās vietas</string>
     <string name="location_none_added_yet_instructions">Atrašanās vieta vēl nav pievienota. Lūdzu, pieskarieties meklēšanas ikonai, lai manuāli pievienotu atrašanās vietu, vai pievienojiet savu pašreizējo atrašanās vietu no peldošās pogas.</string>
     <string name="location_current">Pašreizējā atrašanās vieta</string>
-    <string name="location_resident">Iedzīvotāja atrašanās vieta</string>
     <string name="location_message_deleted">Atrašanās vieta dzēsta</string>
     <string name="location_message_list_cannot_be_empty">Atrašanās vietu saraksts nedrīkst būt tukšs</string>
     <string name="location_message_search_failed">Atrašanās vietas meklēšana neizdevās</string>
@@ -120,9 +118,6 @@
     <string name="location_search_no_results_advice">Pārliecinieties, vai meklēšanas vaicājums ir uzrakstīts pareizi un nav pārāk precīzs. Varat arī izmēģināt citu laikapstākļu datu avotu, kas var radīt dažādus atrašanās vietas meklēšanas rezultātus.</string>
     <string name="location_resident_location_summaryOn">Iespējots. Paslēpts, ja atrodas %s no pašreizējās atrašanās vietas.</string>
     <string name="location_resident_location_summaryOff">Atspējots. Vieta vienmēr pieejama.</string>
-    <string name="location_resident_dialog">Breezy Weather automātiski rādīs un paslēps iedzīvotāju pilsētas, pamatojoties uz jūsu pašreizējo atrašanās vietu.
-\nPiemēram, varat iestatīt savu dzimto pilsētu kā rezidentu pilsētu. Jūs varat pārbaudīt laika apstākļus savā dzimtajā pilsētā, kamēr atrodaties ceļojumā. Kad atgriezīsities mājās, laikapstākļi jūsu dzimtajā pilsētā tiks paslēpti un aizstāti ar jūsu pašreizējās atrašanās vietas laikapstākļiem.</string>
-    <string name="action_choose_weather_source">Izvēlieties laikapstākļu avotu</string>
     <string name="action_add_current_location">Pievienojiet pašreizējo atrašanās vietu</string>
     <string name="action_add_from_map">Pievienot no kartes</string>
     <string name="action_settings">Iestatījumi</string>
@@ -235,7 +230,6 @@
     <string name="dialog_permissions_notification_title">Esiet informēts</string>
     <string name="dialog_permissions_location_title">Piekļūstiet informācijai par atrašanās vietu</string>
     <string name="message_server_timeout">Pieprasījuma noildze</string>
-    <string name="weather_updated_in_background">Atjaunināts fonā</string>
     <string name="settings_appearance">Izskats</string>
     <string name="settings_icon_packs_weather_icon_dark">Tumša ikona</string>
     <string name="settings_units_summary">Temperatūra, nokrišņi, attālums, ātrums, spiediens</string>
@@ -269,12 +263,10 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Īpašas ražotāja instrukcijas</string>
     <string name="settings_location_service">Atrašanās vietas pakalpojums</string>
     <string name="settings_location_access_permission_already_granted">Atļauja jau piešķirta</string>
-    <string name="settings_weather_source">Laikapstākļu avots</string>
     <string name="settings_weather_sources">Laikapstākļu avoti</string>
     <string name="settings_weather_sources_summary">Laikapstākļu datu avotu iestatījumi</string>
     <string name="settings_weather_source_main">Galvenais avots</string>
     <string name="settings_weather_sources_per_location_summary">Pielāgojiet laikapstākļu datu avotus šai atrašanās vietai</string>
-    <string name="settings_weather_sources_current_location">Laikapstākļu avots pašreizējai atrašanās vietai</string>
     <string name="settings_source_api_key">API atslēga</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall versija</string>
     <string name="settings_appearance_summary">Valoda, tumšais režīms, ikonu pakotne, vienības</string>
@@ -389,7 +381,6 @@
     <string name="action_cancel">Atcelt</string>
     <string name="action_undo">Atsaukt</string>
     <string name="action_help">Palīdzība</string>
-    <string name="location_resident_message">Iestatīt kā rezidentu pilsētu</string>
     <string name="action_learn_more">Uzzināt vairāk</string>
     <string name="action_share">Dalīties</string>
     <string name="action_show_errors">Pieskarieties, lai skatītu detalizētu informāciju</string>
@@ -521,7 +512,6 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Miligrami uz kubikmetru</string>
     <string name="unit_h">h</string>
-    <string name="notification_location_in_background">Atrašanās vietas noteikšana fonā</string>
     <string name="notification_refreshed_at">Atsvaidzināts plkst</string>
     <string name="notification_channel_alerts">Brīdinājumi</string>
     <string name="notification_channel_forecast">Prognoze</string>
@@ -569,10 +559,8 @@
     <string name="settings_color_day_always">Vienmēr diena</string>
     <string name="settings_color_night_always">Vienmēr nakts</string>
     <string name="settings_color_light">Gaišs</string>
-    <string name="settings_color_light_always">Vienmēr gaišs</string>
     <string name="settings_color_grey">Pelēks</string>
     <string name="settings_color_dark">Tumšs</string>
-    <string name="settings_color_dark_always">Vienmēr tumšs</string>
     <string name="unit_bf">Dēļa pēda</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>

@@ -82,8 +82,6 @@
     <string name="widget_custom_subtitle_keyword_lc_description">Lunarni kalendar</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
-    <string name="location_resident_dialog">Breezy Weather će automatski pokazati i sakriti mjesta stanovanja ovisno o vašoj trenutnoj lokaciji.
-\nNa primjer, možete postaviti svoj grad u kojem živite kao mjesto stanovanja. Možete provjeriti vrijeme u vašem mjestu stanovanja dok putujete. Kada dođete kući, vrijeme vašeg mjesta stanovanja će biti skrivena i zamijenjena vremenom vaše trenutne lokacije.</string>
     <string name="action_help_me_choose">Pomoć pri izboru</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Izlazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Zamijeni redoslijed temperatura dan/noć</string>
@@ -161,7 +159,6 @@
     <string name="weather_api_limit_reached_title">Dosegnut limit API zahtjeva</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tjedan (kratko)</string>
     <string name="settings_weather_source_portal">Portal</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Već nedavno ažurirano</string>
     <string name="wind_strength_7">Žestok vjetar</string>
     <string name="widget_text">Tekst</string>
     <string name="air_quality_level_3_description">U zraku je visoka razina onečišćenja i nije zdrav za osjetljive skupine. Smanjite vrijeme provedeno na otvorenom ako osjetite simptome kao što su otežano disanje i iritacija grla.</string>
@@ -215,7 +212,6 @@
     <string name="message_source_not_installed_error_title">Izvor više nije dostupan</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
     <string name="widget_material_you_forecast">Material You – Prognoza</string>
-    <string name="location_resident">Lokacija stanovanja</string>
     <string name="settings_location_access_background_summaryOff">Omogućite „Dozvoli uvijek” za pozadinska osvježenja za vašu trenutnu lokaciju.</string>
     <string name="settings_widgets_gadgets_title">Programčići</string>
     <string name="pollen_level_4">Visoko</string>
@@ -250,7 +246,6 @@
     <string name="uv_index_3_5">Umjereno</string>
     <string name="action_refresh">Osvježi</string>
     <string name="settings_icon_packs_weather_icon_light">Svijetla ikona</string>
-    <string name="settings_weather_source">Izvor prognoze</string>
     <string name="dialog_permissions_location_background_title">Pristup lokaciji u pozadini</string>
     <string name="temperature_feels_like">Subjektivni osjećaj</string>
     <string name="air_quality_o3_voice">Ozon</string>
@@ -316,7 +311,6 @@
     <string name="settings_background_updates_summary">Brzina osvježavanja, rješavanje problema</string>
     <string name="settings_location_access_precise_title">GPS iskorištenje uređaja</string>
     <string name="wind_direction_short_SW">JZ</string>
-    <string name="weather_updated_in_background">Ažurirano u pozadini</string>
     <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje oborina</string>
     <string name="air_quality_co_info_consequences">Ugljikov monoksid se raspršuje kroz plućna tkiva u krvotok te otežava povezivanje kisika na tjelesne stanice. Manjak kisika oštećuje tkiva i stanice. Izloženost ugljikovom dioksidu može stvoriti poteškoće disanja, umor, vrtoglavicu te druge simptome slične gripi.</string>
@@ -385,7 +379,6 @@
     <string name="wind_direction_short_NE">SI</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dodirnite za otvaranje</string>
     <string name="action_save">Spremi</string>
-    <string name="action_choose_weather_source">Odaberite izvor prognoze</string>
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
     <string name="air_quality_o3_info_consequences">Prevelika izloženost ozonu može stvoriti poteškoće disanja, potaknuti astmu, smanjiti plućne funkcije i dovesti do plućnih bolesti.</string>
     <string name="wind_direction">Smjer vjetra</string>
@@ -406,7 +399,6 @@
     <string name="widget_subtitle_data_lunar">Lunarni kalendar</string>
     <string name="wind_direction_short_NW">SZ</string>
     <string name="settings_icon_packs_get_more">Preuzmi više</string>
-    <string name="location_resident_message">Postavi kao mjesto stanovanja</string>
     <string name="temperature_degree_day">Temperatura za grijanje ili hlađenje</string>
     <string name="action_settings">Postavke</string>
     <string name="settings_main_header_details_title">Detalji u zaglavlju</string>
@@ -448,7 +440,6 @@
     <string name="wind_strength_1">Lahor</string>
     <string name="weather_source_accu_preference_hours_12">12 sati</string>
     <string name="weather_source_accu_preference_hours_1">1 sat</string>
-    <string name="settings_weather_sources_current_location">Izvor prognoze za trenutnu lokaciju</string>
     <string name="weather_source_accu_preference_days_15">15 dana</string>
     <string name="weather_source_accu_preference_hours_24">24 sata</string>
     <string name="settings_location_access_precise_summaryOn">Omogućeno. Koriste se mreža uređaja i GPS usluge.</string>
@@ -487,7 +478,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Blagi pljuskovi</string>
     <string name="about_app">O aplikaciji</string>
-    <string name="settings_color_light_always">Uvijek svijetla</string>
     <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Umjerena kišica</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Pothlađene kapljice</string>
@@ -511,6 +501,7 @@
     <string name="common_weather_text_rain_heavy">Jaka kiša</string>
     <string name="unit_kelvin_short">K</string>
     <string name="settings_color_day_always">Uvijek dan</string>
+    <string name="settings_color_night_always">Uvijek noć</string>
     <string name="unit_cm_voice">Centimetara</string>
     <string name="unit_inph">inch/h</string>
     <string name="unit_mph_voice">Milja na sat</string>
@@ -549,7 +540,6 @@
     <string name="common_weather_text_drizzle_freezing">Ledena kišica</string>
     <string name="unit_kn_voice">Čvorova</string>
     <string name="unit_km_voice">Kilometara</string>
-    <string name="notification_location_in_background">Lociranje u pozadini</string>
     <string name="common_weather_text_rain_freezing">Ledena kiša</string>
     <string name="common_weather_text_rain_snow_mixed_light">Blaga susnježica</string>
     <string name="settings_automatic">Automatski</string>
@@ -596,11 +586,9 @@
     <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_bf_voice">na Beaufort ljestvici</string>
     <string name="settings_none">Nema</string>
-    <string name="settings_color_dark_always">Uvijek tamna</string>
     <string name="common_weather_text_partly_cloudy">Djelomično oblačno</string>
     <string name="unit_mb_voice">Milibari</string>
     <string name="unit_mps">m/s</string>
-    <string name="settings_color_night_always">Uvijek noć</string>
     <string name="unit_hpa_voice">Hektopaskala</string>
     <string name="common_weather_text_snow_showers">Snježni pljuskovi</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Grmljavina s jakom tučom</string>

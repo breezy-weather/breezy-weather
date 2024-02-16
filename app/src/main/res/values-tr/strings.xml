@@ -235,7 +235,6 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="setting_weather_source_accu_hours">Saatler</string>
     <string name="weather_source_accu_preference_hours_24">24 saatlik</string>
-    <string name="location_resident">İkamet yeri</string>
     <string name="location_search_weather_source">Hava durumu kaynağı</string>
     <string name="settings_widgets_notification_persistent_switch">Sabit</string>
     <string name="message_server_timeout">İstek zaman aşımına uğradı</string>
@@ -252,14 +251,11 @@
     <string name="common_weather_text_partly_cloudy">Parçalı bulutlu</string>
     <string name="null_data_text">Bulunamadı</string>
     <string name="common_weather_text_snow_heavy">Yoğun kar</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Zaten yakın zamanda güncellendi</string>
     <string name="message_source_not_installed_error_content">Bu kaynak artık mevcut değil; lütfen konumu silin ve başka bir kaynaktan yeniden oluşturun.</string>
-    <string name="weather_updated_in_background">Arka planda güncellendi</string>
     <string name="ephemeris_moonrise_at">Ay doğumu saati %s</string>
     <string name="ephemeris_moonset_at">Ay batımı saati %s</string>
     <string name="dialog_permissions_location_background_title">Arka planda konum erişimi</string>
     <string name="weather_source_accu_preference_hours_120">120 saatlik</string>
-    <string name="action_choose_weather_source">Hava durumu kaynağını seçiniz</string>
     <string name="action_continue">Devam et</string>
     <string name="action_share">Paylaş</string>
     <string name="settings_background_updates_refresh_1h">1 saat</string>
@@ -400,8 +396,6 @@
     <string name="action_save">Kaydet</string>
     <string name="message_network_unavailable">Ağ erişimi yok</string>
     <string name="action_preview">Ön izleme</string>
-    <string name="location_resident_dialog">Breezy Weather, mevcut konumunuza göre yerleşik şehirleri otomatik olarak gösterecek ve gizleyecektir.
-\nÖrneğin, memleketinizi ikamet edilen bir şehir olarak ayarlayabilirsiniz. Seyahat ederken memleketinizin hava durumunu kontrol edebilirsiniz. Eve döndüğünüzde, memleketinizdeki hava durumu gizlenecek ve bulunduğunuz yerin hava durumu ile değiştirilecektir.</string>
     <string name="action_app_store">Uygulama mağazası</string>
     <string name="action_refresh">Yenile</string>
     <string name="action_restart">Yeniden başlat</string>
@@ -526,7 +520,6 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Yeni Satır</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Günlük Açıklama</string>
     <string name="settings_weather_sources">Hava durumu kaynakları</string>
-    <string name="settings_weather_sources_current_location">Anlık konum için hava durumu kaynağı</string>
     <string name="settings_source_api_key">API anahtarı</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Gündüz/gece sıcaklık sıralamalarını tersine çevir</string>
     <string name="settings_notifications_alerts_title">Hava durumu alarm bildirimleri</string>
@@ -537,11 +530,9 @@
     <string name="settings_none">Hiçbiri</string>
     <string name="unit_cm_voice">Santimetre</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_color_night_always">Sürekli gece</string>
     <string name="unit_ftps">ft/sn</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Metreküp başına miligram</string>
-    <string name="notification_location_in_background">Arkaplanda konumlanıyor</string>
     <string name="unit_atm_voice">Atmosfer</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_m">m</string>
@@ -549,7 +540,6 @@
     <string name="unit_mm">mm</string>
     <string name="weather_source_openweather_version_2_5">Sürüm 2.5</string>
     <string name="unit_h_voice">saat</string>
-    <string name="settings_color_light_always">Sürekli aydınlık</string>
     <string name="weather_normals_data_by">%s tarafından sağlanan sıcaklık normalleri verisi</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik Açıklama</string>
@@ -601,7 +591,6 @@
     <string name="unit_hpa_voice">Hektopaskal</string>
     <string name="unit_inhg_voice">İnç cıva</string>
     <string name="settings_location_access_switch_summaryOff">Anlık konumunuzu konum olarak eklemek istiyorsanız lütfen kabul edin.</string>
-    <string name="settings_weather_source">Hava durumu kaynağı</string>
     <string name="settings_source_default_value">Varsayılan (değiştirilmemiş)</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
@@ -610,7 +599,6 @@
     <string name="weather_alert_data_by">%s tarafından sağlanan alarm verileri</string>
     <string name="air_quality_no2_info_origin">Ortamdaki NO₂ ısıtma, ulaşım, endüstri ve güç üretimi sırasında yakılan yakıtların yüksek sıcaklıkta yanmasıyla oluşur. Evlerdeki nitrojen oksit (NOₓ) kaynakları arasında fırınlar, şömineler, gaz sobaları ve fırınları gibi yakıtla çalışan ekipmanlar yer alır.</string>
     <string name="air_quality_co_info_consequences">Karbon monoksit akciğer dokuları ve kan dolaşımına yayılarak vücut hücrelerinin oksijene bağlanmasını zorlaştırır ve bu da dokulara ve hücrelere zarar verir. Karbon monoksite maruz kalmak solunum zorluğuna, bitkinliğe, baş dönmelerine ve diğer grip benzeri belirtilere neden olabilirken yüksek düzeyde karbon monoksite maruz kalmak ölümcül olabilir.</string>
-    <string name="location_resident_message">Yerleşik şehir olarak seç</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Hafif dolu ve gök gürültülü sağanak</string>
     <string name="about_dependencies">Bağımlılıklar</string>
     <string name="weather_api_limit_reached_content">Bu limite takılmamak için kendi API anahtarınızı ekleyin.</string>
@@ -619,7 +607,6 @@
     <string name="weather_kind_thunderstorm">Gök gürültülü fırtına</string>
     <string name="settings_notifications_precipitations_title">Yağış bildirimleri</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Sonraki gün tahmin bildirimi zamanı</string>
-    <string name="settings_color_dark_always">Sürekli karanlık</string>
     <string name="unit_kph_voice">Saatte kilometre</string>
     <string name="unit_km_voice">Kilometre</string>
     <string name="air_quality_so2_info_origin">Bu volkanik etkinliklerle doğal olarak salınır ve ağırlıklı olarak evsel ısıtma, sanayi ve enerji üretimi için fosil yakıtların kullanımından elde edilir.</string>
@@ -638,6 +625,7 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">Bugünün, yarının, …, 4 gün sonrasının gece rüzgarı</string>
     <string name="unit_lpsqmph">L/m²/sa</string>
     <string name="settings_color_day_always">Sürekli gündüz</string>
+    <string name="settings_color_night_always">Sürekli gece</string>
     <string name="unit_kph">km/s</string>
     <string name="unit_mmph_voice">Saat başına milimetre</string>
     <string name="unit_cmph">cm/sa</string>

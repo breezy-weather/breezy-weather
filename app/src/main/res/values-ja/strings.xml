@@ -110,7 +110,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">バックグラウンドでの検索</string>
     <string name="location_message_failed_to_locate">現在の場所が見つかりませんでした</string>
     <string name="weather_message_data_refresh_failed">気象データを取得できませんでした</string>
     <string name="location_dialog_failed_to_locate_title">位置情報が正しくありませんか？</string>
@@ -178,10 +177,6 @@
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新 (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">バックグラウンドで更新</string>
-    <string name="location_resident_message">居住都市として設定</string>
-    <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。
-\n例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
     <string name="pollen_tap_to_see_more">Click to get more…</string>
     <!-- action -->
     <string name="alerts">警告</string>
@@ -220,7 +215,6 @@
     <string name="settings_units_speed">速度</string>
     <string name="settings_notifications_section_forecast">予報通知</string>
     <string name="settings_widgets_notification_temp_icon_switch">気温を通知バーに表示する</string>
-    <string name="location_resident">居住地</string>
     <string name="location_service_native">ネイティブAPI</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無し</string>
@@ -228,10 +222,8 @@
     <string name="settings_color_day_always">Always 日中</string>
     <string name="settings_color_night_always">Always 夜間</string>
     <string name="settings_color_light">ライト</string>
-    <string name="settings_color_light_always">ライトモード</string>
     <string name="settings_color_grey">グレー</string>
     <string name="settings_color_dark">ダーク</string>
-    <string name="settings_color_dark_always">ダークモード</string>
     <string name="settings_background_updates_refresh_30min">30分</string>
     <string name="settings_background_updates_refresh_1h">1時間</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5時間</string>
@@ -496,7 +488,6 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_color_app">アプリをフォローする</string>
-    <string name="weather_refresh_skipped_already_recently_updated">すでに最近更新されました</string>
     <string name="weather_api_key_required_missing_title">必要な API キーがありません</string>
     <string name="dialog_permissions_notification_title">最新情報を入手</string>
     <string name="notification_update_error">%d 件のアップデートに失敗しました</string>
@@ -507,7 +498,6 @@
     <string name="settings_icon_packs_weather_icon_light">ライトアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
     <string name="location_none_added_yet_instructions">まだ場所は追加されていません。検索アイコンをタップして手動で場所を追加するか、フローティング ボタンから現在の場所を追加してください。</string>
-    <string name="settings_weather_sources_current_location">現在地の気象情報源</string>
     <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、Breezy Weather の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">ソースは要求された機能の 1 つをサポートしていません</string>
     <string name="unit_mmph_voice">ミリメートル/時</string>
@@ -520,7 +510,6 @@
     <string name="air_quality_no2_info_introduction">二酸化窒素 (NO₂) は、特有の刺激的で刺激的な臭気を持つ、窒息性の有毒な赤茶色のガスです。</string>
     <string name="air_quality_co_info_title">一酸化炭素(CO)</string>
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
-    <string name="action_choose_weather_source">気象情報源を選択してください</string>
     <string name="settings_weather_source_main">主な情報源</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">キログラム力/平方センチメートル</string>
@@ -533,7 +522,6 @@
     <string name="widget_clock_font_sans_serif">サンセリフ</string>
     <string name="settings_background_updates_refresh_never">一度もない</string>
     <string name="settings_location_access_background_title">バックグラウンドでの位置情報アクセス</string>
-    <string name="settings_weather_source">気象源</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
     <string name="location_message_search_failed">位置検索に失敗しました</string>
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>

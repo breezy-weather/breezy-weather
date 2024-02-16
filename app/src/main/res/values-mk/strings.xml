@@ -124,7 +124,6 @@
     <string name="weather_alert_data_by">Податоци за предупредување за %s</string>
     <string name="weather_message_data_refresh_failed">Освежувањето на временските податоци не успеа</string>
     <string name="weather_message_invalid_location">Неважечка локација, избришете ја и повторно додајте</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Веќе неодамна ажуриран</string>
     <string name="weather_api_limit_reached_content">За да го заобиколите ограничувањето, додајте свој клуч API.</string>
     <string name="weather_api_unauthorized_title">Пристапот до API е неовластен</string>
     <string name="weather_api_key_required_missing_content">За да го користите овој извор, треба да обезбедите клуч API.</string>
@@ -139,7 +138,6 @@
     <string name="weather_source_openweather_version_3_0">Верзија 3.0</string>
     <string name="locations">Локации</string>
     <string name="location_none_added_yet_instructions">Сè уште не е додадена локација. Ве молиме допрете на иконата за пребарување за рачно да додадете локација или додадете ја вашата моментална локација од лебдечкото копче.</string>
-    <string name="location_resident">Локација на жител</string>
     <string name="location_search_weather_source">Извор на времето</string>
     <string name="location_message_added">Додадена е локација</string>
     <string name="location_message_deleted">Локацијата е избришана</string>
@@ -152,9 +150,6 @@
     <string name="location_current_not_found_yet">Тековната локација сè уште не е пронајдена…</string>
     <string name="location_resident_location_summaryOn">Овозможено. Скриени кога се во %s од моменталната локација.</string>
     <string name="location_resident_location_summaryOff">Оневозможено. Локацијата е секогаш достапна.</string>
-    <string name="location_resident_message">Поставен како град на живеење</string>
-    <string name="location_resident_dialog">Breezy Weather автоматски ќе ги прикаже и сокрие градовите на жителите врз основа на вашата моментална локација.
-\nНа пример, можете да го поставите вашиот роден град како град на жители. Можете да го проверите времето во вашиот роден град додека патувате. Кога ќе се вратите дома, времето во вашиот роден град ќе биде скриено и заменето со времето за вашата моментална локација.</string>
     <string name="action_show_errors">Допрете за да видите детали</string>
     <string name="dialog_permissions_notification_content">Допрете овде за да овозможите известувања за временските предупредувања или одлучете подоцна во „Поставки“.</string>
     <string name="dialog_permissions_location_content">Breezy Weather треба да ги собере информациите за вашата локација во преден план или заднина за да ги обезбеди временските податоци за вашата моментална локација. За ова, ќе побараме некои дозволи. Информациите за вашата локација ќе се користат само за добивање податоци за времето на вашата моментална локација. Ако не сакате да ги споделувате информациите за вашата локација, можете да ги одбиете тие барања и рачно да ја поставите вашата локација на страницата за управување.</string>
@@ -163,7 +158,6 @@
     <string name="message_parsing_error_content">Проверете дали сте ја ажурирале на најновата верзија на апликацијата. Серверот можеби е привремено недостапен, во тој случај, обидете се повторно подоцна. Ако проблемот продолжи, ве молиме исфрлете го дневникот за падови од поставките за отстранување грешки и пријавете проблем на GitHub.</string>
     <string name="message_source_not_installed_error_title">Изворот повеќе не е достапен</string>
     <string name="message_source_not_installed_error_content">Овој извор повеќе не е достапен; Ве молиме избришете ја локацијата и повторно креирајте ја од друг извор.</string>
-    <string name="weather_updated_in_background">Ажурирано во позадина</string>
     <string name="message_tap_again_to_exit">Допрете повторно за да излезете</string>
     <string name="widget_day">Дневно</string>
     <string name="widget_week">Неделно</string>
@@ -368,7 +362,6 @@
     <string name="settings_location_service">Услуга за локација</string>
     <string name="settings_location_access_background_title">Пристап до локација во позадина</string>
     <string name="settings_location_access_background_summaryOff">Овозможете „Дозволи цело време“ да има освежување во заднина за вашата моментална локација.</string>
-    <string name="settings_weather_sources_current_location">Извор на времето за моменталната локација</string>
     <string name="settings_appearance">Изглед</string>
     <string name="settings_appearance_summary">Јазик, темен режим, пакет со икони, единици</string>
     <string name="settings_icon_packs_weather_icon_light">Светлосна икона</string>
@@ -501,10 +494,8 @@
     <string name="settings_color_day_always">Секогаш ден</string>
     <string name="settings_color_night_always">Секогаш ноќе</string>
     <string name="settings_color_light">Светлина</string>
-    <string name="settings_color_light_always">Секогаш светло</string>
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Темно</string>
-    <string name="settings_color_dark_always">Секогаш темно</string>
     <string name="unit_bf">Бф</string>
     <string name="unit_bf_voice">на скала Бофор</string>
     <string name="unit_mps">m/s</string>
@@ -545,7 +536,6 @@
     <string name="notification_channel_forecast">Прогноза</string>
     <string name="notification_channel_widget">Виџет</string>
     <string name="notification_channel_crash_logs">Дневници за падови</string>
-    <string name="notification_location_in_background">Лоцирање во позадина</string>
     <string name="common_weather_text_rain_freezing">Замрзнат дожд</string>
     <string name="common_weather_text_rain_freezing_light">Слаб замрзнат дожд</string>
     <string name="common_weather_text_drizzle_light">Слаб дожд</string>
@@ -602,7 +592,6 @@
     <string name="weather_air_quality_data_by">Податоци за квалитетот на воздухот за %s</string>
     <string name="settings_weather_source_portal">Портал</string>
     <string name="action_search">Пребарување</string>
-    <string name="action_choose_weather_source">Изберете извор на времето</string>
     <string name="action_add_current_location">Додадете моментална локација</string>
     <string name="action_add_from_map">Додај од мапата</string>
     <string name="action_add_new_location">Додадете нова локација</string>
@@ -637,7 +626,6 @@
     <string name="settings_location_access_background_summaryOn">Овозможено. Апликацијата ќе може да ги освежува временските податоци за вашата моментална локација во заднина.</string>
     <string name="settings_location_access_precise_title">Користење GPS на уредот</string>
     <string name="settings_location_access_precise_summaryOn">Овозможено. И двете се користат мрежата на уредот и давателите на GPS.</string>
-    <string name="settings_weather_source">Извор на времето</string>
     <string name="settings_icon_packs_weather_icon_grey">Сива икона</string>
     <string name="settings_icon_packs_weather_icon_dark">Темна икона</string>
     <string name="settings_icon_packs_get_more">Добијте повеќе</string>

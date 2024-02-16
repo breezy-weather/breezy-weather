@@ -166,7 +166,6 @@
     <string name="ceiling">Oblačni plafon</string>
     <string name="weather_pollen_data_by">Podaci o alergenima od %s</string>
     <string name="weather_alert_data_by">Podaci o upozorenjima: %s</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Već ažurirano</string>
     <string name="weather_api_limit_reached_title">Dosegnut limit API zahtjeva</string>
     <string name="weather_message_unsupported_feature">Izvor ne podržava jednu od zatraženih funkcija</string>
     <string name="weather_message_invalid_location">Neispravna lokacija, molimo obrišite i unesite ponovo</string>
@@ -267,7 +266,6 @@
     <string name="settings_location_access_switch_summaryOn">Dozvoljeno. Vašu trenutnu lokaciju možete dodati kao lokaciju za prognozu.</string>
     <string name="settings_location_access_switch_title">Pristup lokaciji</string>
     <string name="settings_location_access_precise_title">Upotreba GPS-a vašeg uređaja</string>
-    <string name="settings_weather_source">Izvor prognoze</string>
     <string name="settings_location_access_background_summaryOff">Omogućite „Dozvoli uvijek” za pozadinska osvježenja za vašu trenutnu lokaciju.</string>
     <string name="settings_weather_sources">Izvori prognoze</string>
     <string name="settings_weather_sources_summary">Postavke izvora prognoze</string>
@@ -306,7 +304,6 @@
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
     <string name="settings_items_drag_to_sort">Dodirnite za sortiranje stavki povlačenjem</string>
     <string name="settings_item_delete">Obriši ovu stavku</string>
-    <string name="settings_color_light_always">Uvijek svijetla</string>
     <string name="settings_color_grey">Siva</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mps_voice">Metara u sekundi</string>
@@ -365,8 +362,6 @@
     <string name="weather_kind_thunderstorm">Oluja sa grmljavinom</string>
     <string name="weather_kind_wind">Vjetar</string>
     <string name="settings_unavailable_no_background_updates">Onemogućeno, najprije omogućite pozadinska ažuriranja</string>
-    <string name="settings_color_night_always">Uvijek noć</string>
-    <string name="settings_color_dark_always">Uvijek tamna</string>
     <string name="settings_color_dark">Tamna</string>
     <string name="unit_bf_voice">na Beaufort skali</string>
     <string name="unit_bf">Bf</string>
@@ -449,7 +444,6 @@
     <string name="weather_source_accu_preference_hours_72">72 sata</string>
     <string name="weather_source_accu_preference_hours_120">120 sati</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
-    <string name="location_resident">Lokacija stanovanja</string>
     <string name="location_results_by">Rezultati lokacije: %s</string>
     <string name="location_message_added">Lokacija dodana</string>
     <string name="location_message_deleted">Lokacija obrisana</string>
@@ -462,11 +456,9 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “%s”</string>
     <string name="location_search_no_results">%1$s ne može pronaći %2$s</string>
     <string name="location_resident_location_summaryOn">Omogućeno. Skriveno dok ste unutar %s trenutne lokacije.</string>
-    <string name="location_resident_message">Postavi kao mjesto stanovanja</string>
     <string name="location_service_native">Izvorni API</string>
     <string name="action_location_list">Lista lokacija</string>
     <string name="action_search">Pretražite</string>
-    <string name="action_choose_weather_source">Odaberite izvor prognoze</string>
     <string name="action_add_current_location">Dodajte trenutnu lokaciju</string>
     <string name="action_settings">Postavke</string>
     <string name="action_preview">Pregled</string>
@@ -487,7 +479,6 @@
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
     <string name="message_source_not_installed_error_title">Izvor više nije dostupan</string>
     <string name="message_source_not_installed_error_content">Izvor više nije dostupan. Izbrišite lokaciju i napravite je ponovo iz drugog izvora.</string>
-    <string name="weather_updated_in_background">Ažurirano u pozadini</string>
     <string name="message_tap_again_to_exit">Ponovite za izlaz</string>
     <string name="widget_clock_day_vertical">Sat + Dnevno (Uspravni stil)</string>
     <string name="widget_clock_day_week">Sat + Dnevno + Sedmično</string>
@@ -555,7 +546,6 @@
     <string name="settings_location_access_precise_summaryOn">Omogućeno. Koriste se mreža uređaja i GPS usluge.</string>
     <string name="settings_weather_source_main">Glavni izvor</string>
     <string name="settings_weather_sources_per_location_summary">Uredite izvore prognoze za ovu lokaciju</string>
-    <string name="settings_weather_sources_current_location">Izvor prognoze za trenutnu lokaciju</string>
     <string name="settings_source_default_value">Podrazumijevano (nepromijenjeno)</string>
     <string name="settings_source_api_key">API ključ</string>
     <string name="settings_appearance">Izgled</string>
@@ -605,6 +595,7 @@
     <string name="settings_none">Ništa</string>
     <string name="settings_color_day_night">Dan / Noć</string>
     <string name="settings_color_day_always">Uvijek dan</string>
+    <string name="settings_color_night_always">Uvijek noć</string>
     <string name="settings_color_light">Svijetla</string>
     <string name="unit_mm_voice">Milimetara</string>
     <string name="unit_in">inč</string>
@@ -617,7 +608,6 @@
     <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Po metru kubnom</string>
-    <string name="notification_location_in_background">Lociranje u pozadini</string>
     <string name="notification_running_in_background">Radi u pozadini zbog ažuriranja</string>
     <string name="notification_precipitation_starting">Početak padavina</string>
     <string name="notification_precipitation_starting_desc">Početak se očekuje u %s</string>
@@ -635,8 +625,6 @@
     <string name="pollen_ragweed">Ambrozija</string>
     <string name="location_search_placeholder">Pretražite lokaciju…</string>
     <string name="location_resident_location_summaryOff">Onemogućeno. Lokacija uvijek dostupna.</string>
-    <string name="location_resident_dialog">Breezy Weather će automatski prikazati i sakriti gradove sa prebivalištem na osnovu vaše trenutne lokacije.
-\nNa primjer, možete postaviti svoj rodni grad kao mjesto stanovanja. Možete provjeriti vrijeme u svom rodnom gradu dok putujete. Kada dođete kući, vrijeme u vašem rodnom gradu će biti skriveno i zamijenjeno vremenom za vašu trenutnu lokaciju.</string>
     <string name="location_message_permission_background_missing">Dozvola za pristup lokaciji u pozadini nije data</string>
     <string name="message_parsing_error_title">Neuspješno analiziranje vremenskih podataka</string>
     <string name="widget_label_clock_font">Font sata</string>

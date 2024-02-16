@@ -43,9 +43,6 @@
     <string name="location_dialog_failed_to_locate_title">Standort kann nicht ermittelt werden\?</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
     <string name="location_current_not_found_yet">Aktueller Standort noch nicht gefunden…</string>
-    <string name="location_resident_message">Als Wohnort festgelegt</string>
-    <string name="location_resident_dialog">Abhängig von Ihrem aktuellen Standort zeigt und verbirgt Breezy Weather Ihre Wohnorte.
-\nSie können zum Beispiel Ihre Heimatstadt als Wohnort festlegen. Sie können das Wetter in Ihrer Heimatstadt überprüfen, während Sie auf Reisen sind. Wenn Sie nach Hause kommen, wird das Wetter in Ihrer Heimatstadt ausgeblendet und durch das Wetter für Ihren aktuellen Standort ersetzt.</string>
     <string name="settings_changes_apply_after_restart">Änderungen werden bei Neustart übernommen</string>
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
@@ -54,7 +51,6 @@
     <string name="widget_label_show_widget_card_alpha">Transparenz</string>
     <string name="widget_label_subtitle_data">Untertiteldaten</string>
     <string name="widget_label_text_size">Schriftgröße</string>
-    <string name="weather_updated_in_background">Im Hintergrund aktualisiert</string>
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
@@ -103,7 +99,6 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="action_refresh">Aktualisieren</string>
     <string name="notification_refreshed_at">Aktualisiert um</string>
-    <string name="location_resident">Wohnort</string>
     <string name="action_restart">Neustart</string>
     <string name="settings_notifications_section_forecast">Vorhersage</string>
     <string name="settings_appearance_language_title">Sprache</string>
@@ -177,8 +172,6 @@
     <string name="settings_background_updates_refresh_12h">12 Stunden</string>
     <string name="settings_background_updates_refresh_24h">24 Stunden</string>
     <string name="settings_automatic">Automatisch</string>
-    <string name="settings_color_light_always">Immer hell</string>
-    <string name="settings_color_dark_always">Immer dunkel</string>
     <string name="settings_color_light">Hell</string>
     <string name="settings_color_grey">Grau</string>
     <string name="settings_color_dark">Dunkel</string>
@@ -283,7 +276,6 @@
     <string name="unit_ftps">ft/s</string>
     <string name="unit_mmph_voice">Millimeter pro Stunde</string>
     <string name="unit_kn_voice">Knoten</string>
-    <string name="notification_location_in_background">Ortung im Hintergrund</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
     <string name="air_quality_level_2">Mäßig</string>
     <string name="unit_inhg">inHg</string>
@@ -304,7 +296,6 @@
     <string name="unit_h">h</string>
     <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, fügen Sie Ihren eigenen API-Schlüssel hinzu.</string>
     <string name="dialog_permissions_location_title">Zugriff auf Standortinformationen</string>
-    <string name="settings_color_night_always">Immer Nacht</string>
     <string name="alerts_to_follow">Für anstehende Warnmeldungen antippen.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Gewitter mit leichtem Hagel</string>
     <string name="unit_nmi">nmi</string>
@@ -376,6 +367,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_color_day_always">Immer Tag</string>
+    <string name="settings_color_night_always">Immer Nacht</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="unit_cm_voice">Zentimeter</string>
     <string name="unit_in_voice">Zoll</string>
@@ -412,7 +404,6 @@
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
     <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
-    <string name="settings_weather_sources_current_location">Wetterdienst für aktuellen Standort</string>
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
@@ -486,7 +477,6 @@
     <string name="settings_background_updates_worker_info_title">Worker Info</string>
     <string name="settings_location_access_permission_already_granted">Berechtigung bereits erteilt</string>
     <string name="location_message_search_failed">Ortssuche fehlgeschlagen</string>
-    <string name="action_choose_weather_source">Wetterdienst auswählen</string>
     <string name="location_service_native">Native API</string>
     <string name="action_location_list">Ortsliste</string>
     <string name="settings_location">Standort</string>
@@ -554,7 +544,6 @@
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
     <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Bereits kürzlich aktualisiert</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorieren, wenn Akku niedrig ist</string>
     <string name="wind_strength">Windstärke</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
@@ -576,7 +565,6 @@
     <string name="pollen_level_3">Mäßig</string>
     <string name="pollen_level_4">Hoch</string>
     <string name="pollen_level_5">Sehr hoch</string>
-    <string name="settings_weather_source">Wetterdienst</string>
     <string name="location_resident_location">Wohnort</string>
     <string name="location_resident_location_summaryOff">Deaktiviert. Ort ist immer verfügbar.</string>
     <string name="action_delete">Löschen</string>

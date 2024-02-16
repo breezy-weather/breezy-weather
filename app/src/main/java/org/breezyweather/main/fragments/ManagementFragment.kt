@@ -33,18 +33,14 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MyLocation
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -54,7 +50,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
@@ -73,6 +68,7 @@ import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.ui.composables.NotificationCard
+import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.insets.BWCenterAlignedTopAppBar
@@ -85,7 +81,6 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.main.widgets.LocationItemTouchCallback
 import org.breezyweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -149,7 +144,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         val totalLocationListState = viewModel.totalLocationList.collectAsState()
         var notificationDismissed by remember { mutableStateOf(false) }
 
-        val dialogCurrentLocationProviderOpenState = viewModel.dialogChooseCurrentLocationWeatherSourceOpen.collectAsState()
+        val dialogChooseWeatherSourcesOpenState = viewModel.dialogChooseWeatherSourcesOpen.collectAsState()
+        val selectedLocationState = viewModel.selectedLocation.collectAsState()
         /*
          * We should add a scroll behavior to make the top bar change color when scrolling, but
          * as we mix ComposeView and XML views, this leads to stuttering in scrolling.
@@ -183,7 +179,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     if (totalLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
-                                viewModel.openChooseCurrentLocationWeatherSourceDialog()
+                                viewModel.openChooseWeatherSourcesDialog(null)
                             },
                         ) {
                             Icon(
@@ -266,77 +262,35 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             }
         }
 
-        if (dialogCurrentLocationProviderOpenState.value) {
-            val uriHandler = LocalUriHandler.current
-            AlertDialog(
-                onDismissRequest = { viewModel.closeChooseCurrentLocationWeatherSourceDialog() },
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_weather_sources_current_location),
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.headlineSmall,
-                    )
-                },
-                text = {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        val currentLocation = totalLocationListState.value.first
-                            .firstOrNull { it.isCurrentPosition }
-                        items((requireActivity() as MainActivity).sourceManager.getConfiguredMainWeatherSources()) { source ->
-                            RadioButton(
-                                selected = if (currentLocation != null) source.id == currentLocation.weatherSource else false,
-                                onClick = {
-                                    viewModel.closeChooseCurrentLocationWeatherSourceDialog()
+        if (dialogChooseWeatherSourcesOpenState.value) {
+            SecondarySourcesPreference(
+                (requireActivity() as MainActivity).sourceManager,
+                selectedLocationState.value ?: Location(isResidentPosition = true)
+            ) { newLocation: Location? ->
+                viewModel.closeChooseWeatherSourcesDialog()
 
-                                    // TODO: Contains code to change existing current location
-                                    // However, not yet called from the swipe event
-                                    if (currentLocation != null) {
-                                        viewModel.updateLocation(
-                                            currentLocation.copy(
-                                                weatherSource = source.id
-                                                // Should we clean old weather data?
-                                            )
-                                        )
-                                    } else {
-                                        viewModel.addLocation(
-                                            Location(
-                                                weatherSource = source.id,
-                                                isCurrentPosition = true
-                                            ),
-                                            null
-                                        )
-                                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
-                                    }
-                                },
-                                text = source.name,
-                            )
+                if (newLocation != null) {
+                    // If coming from an existing location
+                    if (selectedLocationState.value != null) {
+                        // If main source was changed, we need to check first that it doesn't create
+                        // a duplicate
+                        if (selectedLocationState.value!!.weatherSource != newLocation.weatherSource) {
+                            if (viewModel.locationExists(newLocation)) {
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                            } else {
+                                viewModel.updateLocation(newLocation, selectedLocationState.value!!)
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
+                            }
+                        } else {
+                            viewModel.updateLocation(newLocation, selectedLocationState.value!!)
+                            SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
                         }
-                    }
-                },
-                confirmButton = {
-                    TextButton(
-                        onClick = { viewModel.closeChooseCurrentLocationWeatherSourceDialog() }
-                    ) {
-                        Text(
-                            text = stringResource(R.string.action_cancel),
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
-                        )
-                    }
-                },
-                dismissButton = {
-                    TextButton(
-                        onClick = { uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md") }
-                    ) {
-                        Text(
-                            text = stringResource(R.string.action_help_me_choose),
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
-                        )
+                    } else {
+                        viewModel.addLocation(newLocation, null)
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                     }
                 }
-            )
+            }
         }
     }
 

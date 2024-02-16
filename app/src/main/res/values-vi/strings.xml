@@ -32,8 +32,6 @@
     <string name="action_preview">Xem trước</string>
     <string name="location_swipe_to_delete">Bạn có thể vuốt sang phải để xóa vị trí này</string>
     <string name="location_message_search_failed">Tìm kiếm vị trí thất bại</string>
-    <string name="location_resident_dialog">Breezy Weather sẽ tự động hiển thị và ẩn các thành phố cư trú dựa trên vị trí hiện tại của bạn.
-\nVí dụ: bạn có thể đặt quê hương của mình làm thành phố cư trú. Bạn có thể kiểm tra thời tiết ở quê nhà trong khi bạn đang đi du lịch. Khi bạn về nhà, thời tiết ở quê nhà của bạn sẽ bị ẩn và thay thế bằng thời tiết cho vị trí hiện tại của bạn.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Trăng khuyết đầu tháng</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Trăng khuyết cuối tháng</string>
     <string name="ephemeris_moon_phase_last_quarter">Trăng bán nguyệt cuối tháng</string>
@@ -59,7 +57,6 @@
     <string name="dialog_permissions_location_content">Breezy Weather cần thu thập thông tin địa điểm của bạn ở trên hoặc dưới nền để cung cấp dữ liệu thời tiết của địa điểm hiện tại của bạn. Vì chuyện này, chúng tôi sẽ yêu cầu xin phép. Thông tin địa điểm của bạn chỉ được sử dụng để lấy dữ liệu thời tiết ở vị trí hiện tại của bạn. Nếu bạn không muốn chia sẻ thông tin địa điểm của bạn, bạn có thể phủ nhận những yêu cầu đó và đặt vị trí của bạn ở trang quản lý.</string>
     <string name="dialog_permissions_location_background_content">Để cho phép ứng dụng truy cập thông tin địa điểm, để chúng tôi có thể nhận thức được sự thay đổi vị trí và cung cấp cho bạn dữ liệu thời tiết hợp lệ, làm ơn đặt quyền vị trí thành “Cho phép mọi lúc”.</string>
     <string name="message_network_unavailable">Mạng không khả dụng</string>
-    <string name="weather_updated_in_background">Đã cập nhật dưới nền</string>
     <string name="widget_custom_subtitle_explanation">Bạn có thể nhập vào bất cứ thứ gì, nhưng hãy chú ý đến chiều dài của tin nhắn. Nếu bạn muốn trích dẫn dữ liệu thời tiết, hãy dùng $ để xem từ khóa tương ứng.
 \n
 \nVí dụ, “Thời tiết hiện tại là: $cw$.” sẽ được hiển thị như “Thời tiết hiện tại là: Ngày Trong.”.</string>
@@ -176,7 +173,6 @@
     <string name="weather_source_openweather_version_3_0">Phiên bản 3.0</string>
     <string name="locations">Vị trí</string>
     <string name="location_current">Vị trí hiện tại</string>
-    <string name="location_resident">Vị trí thường trú</string>
     <string name="location_search_weather_source">Nguồn cung cấp thời tiết</string>
     <string name="location_results_by">Kết quả vị trí bởi %s</string>
     <string name="location_message_failed_to_locate">Thất bại trong việc tìm kiếm vị trí hiện tại</string>
@@ -190,10 +186,8 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Thêm vị trí thủ công và xóa “%s”</string>
     <string name="location_search_placeholder">Tìm một vị trí…</string>
     <string name="location_current_not_found_yet">Vị trí hiện tại chưa thể tìm…</string>
-    <string name="location_resident_message">Chọn làm thành phố cư trú</string>
     <string name="action_location_list">Danh sách vị trí</string>
     <string name="action_search">Tìm kiếm</string>
-    <string name="action_choose_weather_source">Chọn nguồn cung cấp thời tiết</string>
     <string name="action_add_current_location">Thêm vị trí hiện tại</string>
     <string name="action_add_from_map">Thêm từ bản đồ</string>
     <string name="action_about">Thông tin</string>
@@ -294,7 +288,6 @@
     <string name="settings_location_access_background_summaryOn">Đã bật. Ứng dụng sẽ có thể làm mới dữ liệu thời tiết cho vị trí hiện tại của bạn dưới nền.</string>
     <string name="settings_location_access_precise_title">Sử dụng GPS của thiết bị</string>
     <string name="settings_location_access_precise_summaryOn">Đã bật. Mạng của thiết bị và nhà cung cấp GPS đều đã được sử dụng.</string>
-    <string name="settings_weather_sources_current_location">Nguồn cung cấp thời tiết cho vị trí hiện tại</string>
     <string name="settings_appearance">Vẻ ngoài</string>
     <string name="settings_appearance_summary">Ngôn ngữ, chế độ tối, gói biểu tượng, đơn vị</string>
     <string name="settings_appearance_language_title">Ngôn ngữ</string>
@@ -389,9 +382,7 @@
     <string name="settings_color_day_always">Luôn ban ngày</string>
     <string name="settings_color_night_always">Luôn ban đêm</string>
     <string name="settings_color_light">Sáng</string>
-    <string name="settings_color_light_always">Luôn sáng</string>
     <string name="settings_color_grey">Xám</string>
-    <string name="settings_color_dark_always">Luôn tối</string>
     <string name="unit_mps_voice">Mét trên giây</string>
     <string name="unit_kn_voice">Nút</string>
     <string name="unit_mph_voice">Dặm trên giờ</string>
@@ -403,7 +394,6 @@
     <string name="unit_mugpcum_voice">Microgram trên mét khối</string>
     <string name="notification_refreshed_at">Được làm mới vào lúc</string>
     <string name="notification_channel_alerts">Cảnh báo</string>
-    <string name="notification_location_in_background">Lấy vị trí dưới nền</string>
     <string name="notification_running_in_background">Đang chạy dưới nền để tiếp tục cập nhật</string>
     <string name="about_app">Về ứng dụng</string>
     <string name="about_matrix">Phòng Matrix</string>
@@ -501,7 +491,6 @@
     <string name="temperature_real_feel">Cảm giác thật</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Không chân)</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Đã được cập nhật gần đây</string>
     <string name="message_server_timeout">Đã hết thời gian chờ yêu cầu</string>
     <string name="message_parsing_error_content">Hãy đảm bảo bạn đã cập nhật lên phiên bản mới nhất của ứng dụng. Máy chủ có thể tạm thời không khả dụng, trong trường hợp đó, vui lòng thử lại sau. Nếu sự cố vẫn tiếp diễn, hãy xuất nhật ký sự cố từ cài đặt gỡ lỗi, và báo cáo sự cố trên GitHub.</string>
     <string name="message_source_not_installed_error_title">Nguồn không còn nữa</string>
@@ -564,7 +553,6 @@
     <string name="pollen_alder">Xích dương</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="action_delete">Xoá</string>
-    <string name="settings_weather_source">Nguồn cung cấp thời tiết</string>
     <string name="about_contribution_weather_source">Thêm hỗ trợ cho nguồn thời tiết mới</string>
     <string name="location_resident_location">Nơi ở</string>
     <string name="wind_gusts">Gió mạnh</string>

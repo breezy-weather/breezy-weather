@@ -4,7 +4,6 @@
     <string name="app_name">날씨</string>
     <!-- keyword. -->
     <string name="location_current">현재 위치</string>
-    <string name="location_resident">거주지</string>
     <string name="short_today">오늘</string>
     <string name="notification_refreshed_at">새로고침 시간:</string>
     <string name="precipitation">강수</string>
@@ -108,7 +107,6 @@
     <string name="date_format_widget_long">MMM d, EEEE</string>
     <string name="date_format_widget_oreo_style">MMM d, EEEE│</string>
     <!-- feedback. -->
-    <string name="notification_location_in_background">백그라운드에 상주 중</string>
     <string name="location_message_failed_to_locate">현재 위치 찾기 실패</string>
     <string name="weather_message_data_refresh_failed">날씨 데이터 새로고침 실패</string>
     <string name="location_dialog_failed_to_locate_title">위치를 제대로 받아오지 못했나요\?</string>
@@ -174,10 +172,7 @@
     <string name="settings_changes_apply_after_restart">변경 사항은 재시작 후에 적용됩니다</string>
     <string name="notification_running_in_background">날씨를 계속 업데이트하기 위해 백그라운드에서 실행 중</string>
     <string name="notification_updating_weather_data">날씨 데이터 업데이트 중 (%1$d/%2$d)</string>
-    <string name="weather_updated_in_background">백그라운드에서 업데이트했습니다</string>
-    <string name="location_resident_message">거주지로 지정</string>
-    <string name="location_resident_dialog">Breezy Weather는 현재 위치에 따라 거주지를 자동으로 보여주거나 숨깁니다.
-\n예를 들어 고향을 거주지로 설정하면 여행하는 중에 고향을 날씨를 알 수 있습니다. 여행이 끝나고 집에 도착하면 고향의 날씨는 숨겨지고 현재 위치의 날씨로 바뀔 것입니다.</string>
+    <string name="location_resident_location">거주지</string>
     <string name="pollen_tap_to_see_more">눌러서 더 알아보기…</string>
     <!-- action -->
     <string name="alerts">경보</string>
@@ -222,10 +217,8 @@
     <string name="settings_color_day_always">항상 주간</string>
     <string name="settings_color_night_always">항상 야간</string>
     <string name="settings_color_light">밝음</string>
-    <string name="settings_color_light_always">항상 밝음</string>
     <string name="settings_color_grey">회색</string>
     <string name="settings_color_dark">어두움</string>
-    <string name="settings_color_dark_always">항상 어두움</string>
     <string name="settings_background_updates_refresh_30min">30분</string>
     <string name="settings_background_updates_refresh_1h">1시간</string>
     <string name="settings_background_updates_refresh_1h_30min">1시간 30분</string>
@@ -292,7 +285,6 @@
     <string name="settings_background_updates_battery_optimization_summary">알림을 받지 못하거나 위젯이 새로고침되지 않을 때 가장 먼저 시도해 보세요.</string>
     <string name="settings_background_updates_worker_info_title">Worker 정보</string>
     <string name="settings_weather_sources">날씨 제공 업체</string>
-    <string name="settings_weather_sources_current_location">현재 위치에 사용할 날씨 제공 업체</string>
     <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall 버전</string>
     <string name="notification_channel_background_services">백그라운드 서비스</string>
@@ -317,7 +309,6 @@
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 %s 제공</string>
     <string name="action_location_list">위치 목록</string>
-    <string name="action_choose_weather_source">날씨 제공 업체 선택</string>
     <string name="action_add_from_map">지도에서 추가</string>
     <string name="widget_subtitle_data_aqi">대기질</string>
     <string name="unit_kph_voice">시속 킬로미터</string>

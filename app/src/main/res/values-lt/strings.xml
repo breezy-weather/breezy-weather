@@ -136,7 +136,6 @@
     <string name="weather_source_openweather_version_2_5">2,5 versija</string>
     <string name="weather_source_openweather_version_3_0">3,0 versija</string>
     <string name="location_current">Dabartinė buvimo vieta</string>
-    <string name="location_resident">Gyvenamoji vieta</string>
     <string name="location_search_weather_source">Orų šaltinis</string>
     <string name="location_results_by">Vietovių rezultatai iš %s</string>
     <string name="location_none_added_yet_instructions">Dar nepridėjote jokios vietovės. Jei norite pridėti vietovę patys, spauskite ieškojimo ikoną. Norėdami pridėti savo dabartinę buvimo vietą spauskite ant plaukiojančio mygtuko.</string>
@@ -220,21 +219,16 @@
     <string name="wind_strength">Vėjo stiprumas</string>
     <string name="location_search_no_results_advice">Įsitikinkite, kad paieška parašyta teisingai ir nėra pernelyg konkreti. Arba galite išbandyti kitą orų duomenų šaltinį, kuris gali pateikti kitokius vietovės paieškos rezultatus.</string>
     <string name="location_current_not_found_yet">Dabartinė buvimo vieta dar nerasta…</string>
-    <string name="location_resident_message">Nustatyti kaip gyvenamąją vietą</string>
-    <string name="location_resident_dialog">Breezy Weather automatiškai parodys ir paslėps gyvenamąją vietą pagal jūsų dabartinę buvimo vietą.
-\nPavyzdžiui, galite nustatyti savo gimtąjį miestą kaip gyvenamąją vietą. Keliaudami galėsite patikrinti orus gimtajame mieste. Grįžus namo, gimtojo miesto orai bus paslėpti ir pakeisti dabartinės jūsų buvimo vietos orais.</string>
     <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>
     <string name="action_cancel">AtŠaukti</string>
     <string name="message_source_not_installed_error_content">Šis šaltinis nebėra prieinamas; ištrinkite vietą ir atkurkite ją iš kito šaltinio.</string>
     <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
-    <string name="weather_refresh_skipped_already_recently_updated">Jau neseniai atnaujinta</string>
     <string name="location_search_no_results">%1$s negali rasti %2$s</string>
     <string name="action_search">Paieška</string>
     <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
     <string name="action_add_from_map">Pridėti iš žemėlapio</string>
     <string name="action_location_list">Vietovių sąrašas</string>
-    <string name="action_choose_weather_source">Pasirinkti orų šaltinį</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_add_new_location">Pridėti naują vietovę</string>
     <string name="action_see_more">Žiūrėti daugiau</string>
@@ -245,7 +239,6 @@
     <string name="message_server_timeout">Užklausos laikas baigėsi</string>
     <string name="message_tap_again_to_exit">Bakstelėkite dar kartą, kad išeitumėte</string>
     <string name="widget_day">Dienos</string>
-    <string name="weather_updated_in_background">Atnaujinta fone</string>
     <string name="widget_day_week">Dienos + Savaitės</string>
     <string name="widget_week">Savaitės</string>
     <string name="widget_clock_day_horizontal">Laikrodis + Dienos (Horizontalus stilius)</string>
@@ -376,9 +369,7 @@
     <string name="settings_enabled">Įjungta</string>
     <string name="settings_disabled">Išjungta</string>
     <string name="settings_automatic">Automatinis</string>
-    <string name="settings_color_night_always">Visada naktis</string>
     <string name="settings_color_light">Šviesus</string>
-    <string name="settings_color_light_always">Visada šviesus</string>
     <string name="settings_color_grey">Pilka</string>
     <string name="settings_location_access_precise_summaryOn">Įjungta. Naudojamas ir įrenginio tinklas, ir GPS teikėjai.</string>
     <string name="settings_follow_system">Sekti sistemą</string>
@@ -421,7 +412,6 @@
     <string name="unit_mps_voice">Metrai per sekundę</string>
     <string name="unit_kn">kn</string>
     <string name="settings_color_dark">Tamsus</string>
-    <string name="settings_color_dark_always">Visada tamsu</string>
     <string name="unit_kn_voice">Mazgai</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Mylios per valandą</string>
@@ -477,7 +467,6 @@
     <string name="notification_channel_background_services">Fono paslaugos</string>
     <string name="notification_refreshed_at">Atnaujinta</string>
     <string name="notification_channel_alerts">Perspėjimai</string>
-    <string name="notification_location_in_background">Vieta nustatoma fone</string>
     <string name="pollen_alder">Alksnis</string>
     <string name="pollen_mugwort">Kiečio</string>
     <string name="pollen_birch">Beržas</string>
@@ -492,12 +481,12 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Orų piktograma</string>
     <string name="settings_icon_packs_weather_icon_grey">Pilka piktograma</string>
     <string name="settings_color_day_always">Visada diena</string>
+    <string name="settings_color_night_always">Visada naktis</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_resident_location">Gyvenamoji vieta</string>
     <string name="location_resident_location_summaryOff">Išjungta. Vieta visada prieinama.</string>
     <string name="action_delete">Ištrinti</string>
     <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai</string>
-    <string name="settings_weather_sources_current_location">Dabartinės vietos orų šaltinis</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
     <string name="wind_gusts">Vėjo gūsiai</string>
     <string name="weather_air_quality_data_by">Oro kokybės duomenys pagal %s</string>
@@ -505,7 +494,6 @@
     <string name="weather_minutely_data_by">Kritulių kiekio minutė po minutės duomenys pagal %s</string>
     <string name="weather_alert_data_by">Įspėjimo duomenys pagal %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Nepavyko atnaujinti antrinio orų šaltinio orų duomenų</string>
-    <string name="settings_weather_source">Orų šaltinis</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
     <string name="settings_main_cards_other_element_animations_switch">Kitų elementų animacija</string>
     <string name="temperature_degree_day_heating">Šildymo laipsnių diena</string>
