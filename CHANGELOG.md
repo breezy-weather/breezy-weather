@@ -42,6 +42,7 @@
 - [Notifications] Fix crash when today/tomorrow notification was received on Android 14
 - [Weather refresh] When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
+- [Widgets] Fix clock day vertical widget in vertical or tile mode was showing decimals to current temperature
 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)

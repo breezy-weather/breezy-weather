@@ -270,7 +270,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit))
+                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit, 0))
                 }
                 stringBuilder.toString()
             } else null
