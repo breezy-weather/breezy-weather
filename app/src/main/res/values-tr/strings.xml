@@ -645,4 +645,6 @@
     <string name="location_search_source">Konum arama kaynağı</string>
     <string name="location_search_change_source">Konum arama kaynağını değiştir</string>
     <string name="settings_weather_source_none">Yok</string>
+    <string name="location_message_updated">Konum güncellendi</string>
+    <string name="location_message_already_exists">Aynı ana hava durumu kaynağına sahip bir konum zaten var.</string>
 </resources>
