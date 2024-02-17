@@ -85,7 +85,14 @@ class MainAdapter(
                 }
                 if (c === CardDisplay.CARD_LIVE
                     && (location.weather.current == null
-                            || (DetailsViewHolder.availableDetails(activity, SettingsManager.getInstance(activity).detailDisplayUnlisted, location.weather.current, location.isDaylight)).isEmpty()
+                            || (
+                            DetailsViewHolder.availableDetails(
+                                activity,
+                                SettingsManager.getInstance(activity).detailDisplayList,
+                                SettingsManager.getInstance(activity).detailDisplayUnlisted,
+                                location.weather.current,
+                                location.isDaylight
+                            )).isEmpty()
                     )) {
                     continue
                 }

@@ -38,6 +38,7 @@ import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -76,17 +77,26 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mTime.text = location.weather.base.mainUpdateTime?.getFormattedTime(location.timeZone, context.is12Hour)
             mDetailsList.setContent {
                 BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
-                    ContentView(SettingsManager.getInstance(context).detailDisplayUnlisted, location.weather.current, location)
+                    ContentView(
+                        SettingsManager.getInstance(context).detailDisplayList,
+                        SettingsManager.getInstance(context).detailDisplayUnlisted,
+                        location.weather.current,
+                        location
+                    )
                 }
             }
         }
     }
 
     @Composable
-    private fun ContentView(detailDisplayList: List<DetailDisplay>, current: Current, location: Location) {
+    private fun ContentView(
+        detailsInHeaderList: List<DetailDisplay>,
+        detailsNotInHeaderList: List<DetailDisplay>,
+        current: Current, location: Location
+    ) {
         // TODO: Lazy
         Column {
-            availableDetails(LocalContext.current, detailDisplayList, current, location.isDaylight).forEach { detailDisplay ->
+            availableDetails(LocalContext.current, detailsInHeaderList, detailsNotInHeaderList, current, location.isDaylight).forEach { detailDisplay ->
                 ListItem(
                     colors = ListItemDefaults.colors(
                         containerColor = Color.Transparent
@@ -119,11 +129,26 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     companion object {
         fun availableDetails(
             context: Context,
-            detailDisplayList: List<DetailDisplay>,
+            detailsInHeaderList: List<DetailDisplay>,
+            detailsNotInHeaderList: List<DetailDisplay>,
             current: Current,
             isDaylight: Boolean
-        ): List<DetailDisplay> = detailDisplayList.filter {
-            it.getCurrentValue(context, current, isDaylight) != null
+        ): List<DetailDisplay> {
+            val detailsInHeaderNotNullList = detailsInHeaderList.filter {
+                it.getCurrentValue(context, current, isDaylight) != null
+            }
+            val detailsNotInHeaderNotNullList = detailsNotInHeaderList.filter {
+                it.getCurrentValue(context, current, isDaylight) != null
+            }
+            val nbMaxInHeader = if (context.isLandscape) {
+                HeaderViewHolder.NB_CURRENT_ITEMS_LANDSCAPE
+            } else HeaderViewHolder.NB_CURRENT_ITEMS_PORTRAIT
+            return if (detailsInHeaderNotNullList.size > nbMaxInHeader) {
+                detailsInHeaderNotNullList.subList(nbMaxInHeader, detailsInHeaderList.size) +
+                        detailsNotInHeaderNotNullList
+            } else {
+                detailsNotInHeaderNotNullList
+            }
         }
     }
 }

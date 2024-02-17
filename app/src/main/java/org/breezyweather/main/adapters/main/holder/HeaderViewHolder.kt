@@ -121,7 +121,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                         it.getCurrentValue(LocalContext.current, current, location.isDaylight) != null
                     }
                     HeaderDetails(
-                        detailList.subList(0, min(detailList.size, if (context.isLandscape) 5 else 4)),
+                        detailList.subList(0, min(detailList.size, if (context.isLandscape) NB_CURRENT_ITEMS_LANDSCAPE else NB_CURRENT_ITEMS_PORTRAIT)),
                         current,
                         location.isDaylight
                     )
@@ -210,4 +210,9 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         get() {
             return mContainer.top
         }
+
+    companion object {
+        const val NB_CURRENT_ITEMS_PORTRAIT = 4
+        const val NB_CURRENT_ITEMS_LANDSCAPE = 5
+    }
 }
