@@ -81,7 +81,7 @@ enum class PressureUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = decimalNumbers,
         rtl = rtl
     )
 
@@ -98,7 +98,7 @@ enum class PressureUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = decimalNumbers,
         rtl = rtl
     )
 }

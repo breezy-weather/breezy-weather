@@ -113,7 +113,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
     }
 
     override fun getHeaderTopMargin(context: Context): Int = (
-            context.resources.displayMetrics.heightPixels * 0.3 // 0.66
+            context.resources.displayMetrics.heightPixels * 0.25 // 0.66
     ).toInt()
 
     override fun getHeaderTextColor(context: Context): Int {

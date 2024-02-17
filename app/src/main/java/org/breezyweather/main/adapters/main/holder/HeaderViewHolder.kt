@@ -25,15 +25,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -42,6 +54,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.widgets.NumberAnimTextView
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
@@ -51,6 +64,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMainViewHolder(
@@ -103,8 +117,11 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
 
             itemView.findViewById<ComposeView>(R.id.container_main_header_details).setContent {
                 BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+                    val detailList = SettingsManager.getInstance(context).detailDisplayList.filter {
+                        it.getCurrentValue(LocalContext.current, current, location.isDaylight) != null
+                    }
                     HeaderDetails(
-                        SettingsManager.getInstance(context).detailDisplayList,
+                        detailList.subList(0, min(detailList.size, if (context.isLandscape) 5 else 4)),
                         current,
                         location.isDaylight
                     )
@@ -121,42 +138,52 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
 
     @Composable
     private fun HeaderDetails(detailDisplayList: List<DetailDisplay>, current: Current, isDaylight: Boolean = true) {
-        var firstItem = true
-        Column {
-            detailDisplayList.forEach { detailDisplay ->
-                detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let {
-                    if (!firstItem) {
-                        HorizontalDivider(color = Color.White.copy(alpha = 0.5f), thickness = 0.5.dp)
-                    } else {
-                        firstItem = false
-                    }
-                    ListItem(
-                        colors = ListItemDefaults.colors(
-                            containerColor = Color.Transparent,
-                            leadingIconColor = Color.White
-                        ),
-                        headlineContent = {
-                            Text(
-                                detailDisplay.getName(LocalContext.current),
-                                color = Color.White,
-                                fontSize = dimensionResource(R.dimen.current_weather_details_name_text_size).value.sp
-                            )
-                        },
-                        trailingContent = {
-                            Text(
-                                detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)!!,
-                                color = Color.White,
-                                fontSize = dimensionResource(R.dimen.current_weather_details_value_text_size).value.sp,
-                                fontWeight = FontWeight.Light
-                            )
-                        },
-                        leadingContent = {
-                            Icon(
-                                painterResource(detailDisplay.iconId),
-                                contentDescription = detailDisplay.getName(LocalContext.current),
-                            )
+        if (detailDisplayList.isNotEmpty()) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                HorizontalDivider(
+                    color = Color.White.copy(alpha = 0.5f),
+                    thickness = 0.5.dp,
+                    modifier = Modifier.width(200.dp)
+                )
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.large_margin)))
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    detailDisplayList.forEach { detailDisplay ->
+                        detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let { currentValue ->
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(1f)
+                                    .padding(horizontal = 5.dp)
+                                //.background(Color.Blue) // For debugging purposes
+                            ) {
+                                Icon(
+                                    painterResource(detailDisplay.iconId),
+                                    contentDescription = detailDisplay.getName(LocalContext.current),
+                                    tint = Color.White
+                                )
+                                Text(
+                                    currentValue,
+                                    color = Color.White,
+                                    fontSize = dimensionResource(R.dimen.current_weather_details_value_text_size).value.sp,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Black
+                                )
+                                Text(
+                                    detailDisplay.getName(LocalContext.current),
+                                    color = Color.White,
+                                    fontSize = dimensionResource(R.dimen.current_weather_details_name_text_size).value.sp,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Light
+                                )
+                            }
                         }
-                    )
+                    }
                 }
             }
         }

@@ -78,7 +78,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
 
         // At what position will animations disappear
         // TODO: Stops too early, should take into account "current details" height
-        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.3).toInt() // 0.66
+        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.25).toInt() // 0.66
         for (index in 0 until childCount) {
             val child = getChildAt(index)
             child.measure(

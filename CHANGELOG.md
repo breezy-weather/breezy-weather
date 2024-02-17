@@ -1,15 +1,16 @@
 # Version 4.7.0-beta (not yet released)
 
 **New features and main improvements**
-- Location search no longer asks you to choose your weather source, which may have been confusing. Instead, you will make a search, and when tapping on a location in the result list, location will be set up with a preset of main and secondary sources we recommend that varies depending on the country of that location. You are able to change these sources before confirming adding of that location. At the moment, this only affects manually added locations and experience of adding of current location remains unchanged due to technical reasons (no reverse geocoding available).
-- Following that change, the purpose of the “Change source” button on bottom of location search is to change the default location search source (which was previously found rather hidden in settings) instead of the weather source to use with locations.
-- Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
+- Design refresh of current details in header
 - New daily chart: feels like temperature
 - New hourly chart: feels like temperature
 - New hourly chart: humidity / dew point
 - New hourly chart: pressure
 - New hourly chart: cloud cover
 - New hourly chart: visibility
+- Better precipitation notifications, now based on precipitation minute by minute (not supported by all weather sources)
+- Location search no longer asks you to choose your weather source, which may have been confusing. Instead, you will make a search, and when tapping on a location in the result list, location will be set up with a preset of main and secondary sources we recommend that varies depending on the country of that location. You are able to change these sources before confirming adding of that location. At the moment, this only affects manually added locations and experience of adding of current location remains unchanged due to technical reasons (no reverse geocoding available).
+- Following that change, the purpose of the “Change source” button on bottom of location search is to change the default location search source (which was previously found rather hidden in settings) instead of the weather source to use with locations.
 
 **Weather sources**
 - [Danmarks Meteorologiske Institut (DMI)] Added support as a worldwide main source, with alerts for Denmark-only
@@ -43,6 +44,7 @@
 - [Weather refresh] When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 - [Widgets] Fix clock day vertical widget in vertical or tile mode was showing decimals to current temperature
+- Fix UV index description being sometimes wrong
 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)

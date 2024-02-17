@@ -27,13 +27,6 @@
 
 <h4 align="center">Breezy Weather is a weather app with a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability.</h4>
 
-<hr />
-
-<div align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" alt="" style="width: 300px" />
-</div>
-
-
 <div align="center">
 
 # Download
@@ -54,6 +47,12 @@ alt="Get it on GitHub" align="center" height="80" /></a>
 <img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png"
 alt="Get it on Obtainium" align="center" height="54" />
 </a>
+</div>
+
+<hr />
+
+<div align="center">
+    <img src="docs/FullHomepageScreenshot.png" alt="" style="width: 300px" />
 </div>
 
 # Features

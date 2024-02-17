@@ -69,10 +69,10 @@ class UV(
     }
 
     companion object {
-        const val UV_INDEX_LOW = 2f
-        const val UV_INDEX_MIDDLE = 5f
-        const val UV_INDEX_HIGH = 7f
-        const val UV_INDEX_EXCESSIVE = 10f
+        const val UV_INDEX_LOW = 3f
+        const val UV_INDEX_MIDDLE = 6f
+        const val UV_INDEX_HIGH = 8f
+        const val UV_INDEX_EXCESSIVE = 11f
 
         @ColorInt
         fun getUVColor(index: Float?, context: Context): Int {
