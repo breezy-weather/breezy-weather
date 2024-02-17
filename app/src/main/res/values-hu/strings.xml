@@ -403,7 +403,7 @@
     <string name="location_message_permission_missing">A helyadatokhoz való hozzáférés nincs engedélyezve</string>
     <string name="weather_source_accu_preference_hours_120">120 óra</string>
     <string name="location_search_weather_source">Időjárásforrás</string>
-    <string name="location_search_no_results_advice">Győződjön meg róla, hogy a keresés helyesen van-e beírva, és nem túl specifikus. Alternatívaként megpróbálhat egy másik időjárásforrást, amely más helykeresési eredményeket adhat.</string>
+    <string name="location_search_no_results_advice">Győződj meg róla, hogy a keresés helyesen van-e írva, és nem túl specifikus. Alternatívaként megpróbálhatsz egy másik helykeresési forrást is, amely más eredményeket adhat.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Jelenlegi páratartalom</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Jelenlegi légnyomás</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -645,4 +645,6 @@
     <string name="location_search_source">Helyszín keresés forrása</string>
     <string name="location_search_change_source">Helyszín keresés forrásának megváltoztatása</string>
     <string name="settings_weather_source_none">Semmi</string>
+    <string name="location_message_already_exists">Már létezik egy olyan helyszín, ahol ugyanez a fő időjárási forrás található.</string>
+    <string name="location_message_updated">Helyszín frissítve</string>
 </resources>
