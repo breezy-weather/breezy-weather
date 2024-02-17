@@ -650,4 +650,16 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>
     <string name="notification_channel_crash_logs">Logs de travamento</string>
     <string name="settings_debug_dump_crash_logs_saved">Logs de travamento salvo</string>
+    <string name="notification_precipitation_starting">Precipitação em breve</string>
+    <string name="notification_precipitation_starting_desc">Se espera começar em %s</string>
+    <string name="notification_precipitation_continuing">Precipitação</string>
+    <string name="notification_precipitation_continuing_desc">Se espera continuar até pelo menos %s</string>
+    <string name="notification_precipitation_stopping">Precipitação para breve</string>
+    <string name="location_message_updated">Localização atualizada</string>
+    <string name="location_message_already_exists">Uma localização com a mesma fonte meteorológica já existe.</string>
+    <string name="settings_weather_source_none">Nenhuma</string>
+    <string name="settings_unavailable_no_background_updates">Indisponível, habilite as atualizações de fundo primeiro</string>
+    <string name="notification_precipitation_stopping_desc">Se espera parar em %s</string>
+    <string name="location_search_source">Fonte para encontrar a localização</string>
+    <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
 </resources>
