@@ -350,7 +350,7 @@
     <string name="location_swipe_to_delete">Можете превући налево да бисте избрисали ову ставку</string>
     <string name="location_message_search_failed">Претрага локације није успела</string>
     <string name="location_search_no_results">%1$s не може пронаћи %2$s</string>
-    <string name="location_search_no_results_advice">Уверите се да је Ваша претрага исправно написана и да није превише специфична. Алтернативно, можете испробати други извор података о времену који може дати различите резултате претраге локације.</string>
+    <string name="location_search_no_results_advice">Уверите се да је Ваша претрага исправно написана и да није превише специфична. Алтернативно, можете покушати са другим извором претраживања локације који може дати другачије резултате.</string>
     <string name="dialog_permissions_location_title">Приступ информацијама о локацији</string>
     <string name="dialog_permissions_notification_content">Додирните овде да омогућите обавештења о временским упозорењима или одлучите касније у подешавањима.</string>
     <string name="settings_widgets_live_wallpaper_title">Жива позадина</string>
@@ -642,4 +642,9 @@
     <string name="notification_precipitation_stopping_desc">Очекује се да ће се зауставити у %s</string>
     <string name="notification_precipitation_continuing">Падавине</string>
     <string name="notification_precipitation_stopping">Ускоро престанак падавина</string>
+    <string name="location_message_updated">Локација је ажурирана</string>
+    <string name="location_message_already_exists">Локација са истим главним извором времена већ постоји.</string>
+    <string name="settings_weather_source_none">Ниједно</string>
+    <string name="location_search_source">Извор претраге локације</string>
+    <string name="location_search_change_source">Промените извор претраге локације</string>
 </resources>
