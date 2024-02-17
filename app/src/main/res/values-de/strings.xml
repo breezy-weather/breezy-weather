@@ -540,7 +540,7 @@
     <string name="air_quality_co_info_introduction">Kohlenmonoxid (CO) ist ein giftiges, brennbares Gas, das farblos, geruchlos und nicht reizend ist.</string>
     <string name="air_quality_co_info_consequences">Kohlenmonoxid gelangt über die Lungenbläschen in den Blutkreislauf und erschwert es den Zellen, Sauerstoff zu binden. Dieser Sauerstoffmangel schädigt Gewebe und Zellen. Der Kontakt mit Kohlenmonoxid kann Atembeschwerden, Erschöpfung, Schwindel und grippeähnliche Symptome hervorrufen. Hohe Kohlenmonoxid-Konzentrationen können tödlich sein.</string>
     <string name="location_search_no_results">%1$s kann %2$s nicht finden</string>
-    <string name="location_search_no_results_advice">Achten Sie darauf, dass Ihr Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ können Sie einen anderen Wetterdienst ausprobieren, der möglicherweise andere Standortergebnisse liefert.</string>
+    <string name="location_search_no_results_advice">Achten Sie darauf, dass Ihr Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ können Sie eine andere Quelle für die Ortssuche ausprobieren, die möglicherweise andere Ergebnisse liefert.</string>
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
     <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
@@ -638,7 +638,7 @@
     <string name="notification_precipitation_continuing_desc">Voraussichtlich andauernd bis mindestens %s</string>
     <string name="notification_precipitation_stopping">Niederschläge bald beendet</string>
     <string name="notification_precipitation_stopping_desc">Voraussichtliches Ende um %s</string>
-    <string name="location_search_source">Quelle der Ortssuche</string>
-    <string name="location_search_change_source">Quelle der Ortssuche ändern</string>
+    <string name="location_search_source">Quelle für die Ortssuche</string>
+    <string name="location_search_change_source">Quelle für die Ortssuche ändern</string>
     <string name="settings_weather_source_none">Keine</string>
 </resources>
