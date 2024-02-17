@@ -242,7 +242,7 @@
     <string name="widget_refreshing">čekám</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Živé pozadí</string>
+    <string name="settings_widgets_live_wallpaper_title">Živá tapeta</string>
     <string name="settings_location_service">Služba lokace</string>
     <string name="settings_appearance_dark_mode_title">Tmavý režim</string>
     <string name="settings_appearance_icon_pack_title">Balíček ikon</string>
@@ -357,7 +357,7 @@
     <string name="settings_background_updates_refresh_never">Nikdy</string>
     <string name="settings_background_updates_refresh_title">Obnovovací frekvence</string>
     <string name="settings_main">Úvodní obrazovka</string>
-    <string name="settings_widgets">Widgety &amp; živé tapety</string>
+    <string name="settings_widgets">Widgety a živá tapeta</string>
     <string name="settings_widgets_section_widgets_in_use">Používané widgety</string>
     <string name="settings_widgets_notification_persistent_switch">Trvalý</string>
     <string name="settings_widgets_notification_widget_title">Widget oznámení</string>
