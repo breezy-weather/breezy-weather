@@ -230,7 +230,7 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Дадаць месцазнаходжанне і выдаліць “%s”</string>
     <string name="location_search_placeholder">Пошук месцазнаходжання…</string>
     <string name="location_search_no_results">%1$s не можа знайсці %2$s</string>
-    <string name="location_search_no_results_advice">Упэўніцеся, што пошукавы запыт напісаны правільна і не занадта спецыфічны. Вы таксама можаце паспрабаваць іншай крыніцы інфармацыі, які можа даць іншыя вынікі пошуку месцазнаходжання.</string>
+    <string name="location_search_no_results_advice">Пераканайцеся, што пошукавы запыт напісаны правільна і не занадта спецыфічны. Вы таксама можаце паспрабаваць выкарыстоўваць іншую крыніцу пошуку месцазнаходжання, якая можа даць іншыя вынікі.</string>
     <string name="location_current_not_found_yet">Месцазнаходжанне не зададзена…</string>
     <string name="location_resident_location">Месцазнаходжанне месца жыхарства</string>
     <string name="location_resident_location_summaryOn">Уключана. Утоена калі на адлегласці больш за %s ад бягучага месцазнаходжання.</string>
@@ -639,4 +639,6 @@
     <string name="location_search_source">Крыніца пошуку</string>
     <string name="settings_weather_source_none">Нема</string>
     <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
+    <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
+    <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор\'я ўжо існуе.</string>
 </resources>
