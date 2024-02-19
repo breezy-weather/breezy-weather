@@ -182,7 +182,7 @@
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="location_message_added">Local adicionado com sucesso</string>
     <string name="location_message_deleted">Local removido com sucesso</string>
-    <string name="location_message_list_cannot_be_empty">A lista de locais não pode estar vazia</string>
+    <string name="location_message_list_cannot_be_empty">A lista de locais não pode ficar vazia</string>
     <string name="location_search_placeholder">Encontrar local…</string>
     <string name="location_current_not_found_yet">Nenhum local ainda…</string>
     <string name="settings_changes_apply_after_restart">As alterações terão efeito após reiniciar</string>
