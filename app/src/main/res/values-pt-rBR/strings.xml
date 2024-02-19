@@ -398,7 +398,7 @@
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
-    <string name="settings_notifications_summary">Alertas metereológicos, precipitações, previsões</string>
+    <string name="settings_notifications_summary">Alertas meteorológicos, precipitações, previsões</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>
     <string name="settings_background_updates">Atualizações em segundo plano</string>
@@ -418,7 +418,7 @@
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
     <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>
     <string name="settings_location_access_background_summaryOn">Habilitado. O aplicativo poderá atualizar os dados meteorológicos de sua localização atual em segundo plano.</string>
-    <string name="settings_weather_sources_summary">Configurações dos provedores de dados metereológicos</string>
+    <string name="settings_weather_sources_summary">Configurações dos provedores de dados meteorológicos</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
