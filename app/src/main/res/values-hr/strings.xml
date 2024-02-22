@@ -637,7 +637,7 @@
     <string name="notification_precipitation_stopping_desc">Očekuje se da će prestati u %s</string>
     <string name="notification_precipitation_stopping">Prestanak oborina</string>
     <string name="location_message_updated">Lokacija ažurirana</string>
-    <string name="location_message_already_exists">Mjesto s istim osnovnim vremenskim izvorom već postoji.</string>
+    <string name="location_message_already_exists">Lokacija s istim osnovnim vremenskim izvorom već postoji.</string>
     <string name="location_search_source">Izvor pretraživanja</string>
     <string name="settings_weather_source_none">Ništa</string>
 </resources>
