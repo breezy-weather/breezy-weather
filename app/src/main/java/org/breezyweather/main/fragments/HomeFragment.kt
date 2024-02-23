@@ -36,13 +36,14 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.databinding.FragmentHomeBinding
-import org.breezyweather.main.MainActivity
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
 import org.breezyweather.main.layouts.MainLayoutManager
@@ -209,7 +210,6 @@ class HomeFragment : MainModuleFragment() {
             binding.recyclerView,
             weatherView,
             null,
-            (requireActivity() as MainActivity).sourceManager,
             resourceProvider!!,
             listAnimationEnabled,
             itemAnimationEnabled

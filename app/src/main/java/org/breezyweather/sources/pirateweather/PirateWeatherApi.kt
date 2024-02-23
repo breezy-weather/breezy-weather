@@ -29,8 +29,8 @@ interface PirateWeatherApi {
     @GET("forecast/{apikey}/{lat},{lon}")
     fun getForecast(
         @Path("apikey") apikey: String,
-        @Path("lat") lat: Float,
-        @Path("lon") lon: Float,
+        @Path("lat") lat: Double,
+        @Path("lon") lon: Double,
         @Query("units") units: String,
         @Query("lang") lang: String,
         @Query("exclude") exclude: String?,

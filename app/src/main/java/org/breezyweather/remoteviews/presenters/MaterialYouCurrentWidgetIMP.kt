@@ -24,8 +24,9 @@ import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -41,7 +42,7 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
             ).isNotEmpty()
         }
 
-        fun updateWidgetView(context: Context, location: Location) {
+        fun updateWidgetView(context: Context, location: Location?) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                 ComponentName(context, WidgetMaterialYouCurrentProvider::class.java),
                 buildRemoteViews(context, location, R.layout.widget_material_you_current)
@@ -52,14 +53,13 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
 
 private fun buildRemoteViews(
     context: Context,
-    location: Location,
+    location: Location?,
     @LayoutRes layoutId: Int,
 ): RemoteViews {
 
     val views = RemoteViews(context.packageName, layoutId)
 
-    val weather = location.weather
-    val dayTime = location.isDaylight
+    val weather = location?.weather ?: return views
 
     val provider = ResourcesProviderFactory.newInstance
 
@@ -67,14 +67,14 @@ private fun buildRemoteViews(
     val temperatureUnit = settings.temperatureUnit
 
     // current.
-    weather?.current?.weatherCode?.let {
+    weather.current?.weatherCode?.let {
         views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.VISIBLE)
         views.setImageViewUri(
             R.id.widget_material_you_current_currentIcon,
             ResourceHelper.getWidgetNotificationIconUri(
                 provider,
                 it,
-                dayTime,
+                location.isDaylight,
                 false,
                 NotificationTextColor.LIGHT
             )
@@ -83,7 +83,9 @@ private fun buildRemoteViews(
 
     views.setTextViewText(
         R.id.widget_material_you_current_currentTemperature,
-        weather?.current?.temperature?.getShortTemperature(context, temperatureUnit)
+        weather.current?.temperature?.temperature?.let {
+            temperatureUnit.getShortValueText(context, it)
+        }
     )
 
     // pending intent.

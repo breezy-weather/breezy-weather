@@ -24,7 +24,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.ui.activities.AlertActivity
 import org.breezyweather.common.ui.activities.PollenActivity
 import org.breezyweather.daily.DailyWeatherActivity

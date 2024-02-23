@@ -23,16 +23,18 @@ import android.content.pm.PackageManager.PackageInfoFlags
 import android.os.Build
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.index.PollutantIndex
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.Hourly
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeAirQuality
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeDailyForecast
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeData
@@ -109,9 +111,9 @@ object GadgetBridgeService {
             currentHumidity = current?.relativeHumidity?.roundToInt(),
             windSpeed = current?.wind?.speed?.let {
                 SpeedUnit.KPH.convertUnit(it)
-            }?.roundDecimals(1),
+            }?.roundDecimals(1)?.toFloat(),
             windDirection = current?.wind?.degree?.roundToInt(),
-            uvIndex = current?.uV?.index?.roundDecimals(1),
+            uvIndex = current?.uV?.index?.roundDecimals(1)?.toFloat(),
 
             todayMaxTemp = today?.day?.temperature?.temperature?.roundCelsiusToKelvin(),
             todayMinTemp = today?.night?.temperature?.temperature?.roundCelsiusToKelvin(),
@@ -119,9 +121,9 @@ object GadgetBridgeService {
             precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
 
             dewPoint = current?.dewPoint?.roundCelsiusToKelvin(),
-            pressure = current?.pressure?.roundDecimals(1),
+            pressure = current?.pressure?.roundDecimals(1)?.toFloat(),
             cloudCover = current?.cloudCover,
-            visibility = current?.visibility?.roundDecimals(1),
+            visibility = current?.visibility?.roundDecimals(1)?.toFloat(),
 
             sunRise = today?.sun?.riseDate?.time?.div(1000)?.toInt(),
             sunSet = today?.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -129,8 +131,8 @@ object GadgetBridgeService {
             moonSet = today?.moon?.setDate?.time?.div(1000)?.toInt(),
             moonPhase = today?.moonPhase?.angle,
 
-            latitude = location.latitude,
-            longitude = location.longitude,
+            latitude = location.latitude.toFloat(),
+            longitude = location.longitude.toFloat(),
             isCurrentLocation = if (location.isCurrentPosition) 1 else 0,
 
             airQuality = getAirQuality(current?.airQuality),
@@ -166,12 +168,12 @@ object GadgetBridgeService {
 
         return GadgetBridgeAirQuality(
             aqi = aqi,
-            co = airQuality.cO?.roundDecimals(2),
-            no2 = airQuality.nO2?.roundDecimals(2),
-            o3 = airQuality.o3?.roundDecimals(2),
-            pm10 = airQuality.pM10?.roundDecimals(2),
-            pm25 = airQuality.pM25?.roundDecimals(2),
-            so2 = airQuality.sO2?.roundDecimals(2),
+            co = airQuality.cO?.roundDecimals(2)?.toFloat(),
+            no2 = airQuality.nO2?.roundDecimals(2)?.toFloat(),
+            o3 = airQuality.o3?.roundDecimals(2)?.toFloat(),
+            pm10 = airQuality.pM10?.roundDecimals(2)?.toFloat(),
+            pm25 = airQuality.pM25?.roundDecimals(2)?.toFloat(),
+            so2 = airQuality.sO2?.roundDecimals(2)?.toFloat(),
             coAqi = airQuality.getIndex(PollutantIndex.CO),
             no2Aqi = airQuality.getIndex(PollutantIndex.NO2),
             o3Aqi = airQuality.getIndex(PollutantIndex.O3),
@@ -192,7 +194,7 @@ object GadgetBridgeService {
                 humidity = hour.relativeHumidity?.roundToInt(),
                 windSpeed = hour.wind?.speed?.let {
                     SpeedUnit.KPH.convertUnit(it)
-                }?.roundDecimals(1),
+                }?.roundDecimals(1)?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
             )
         }
@@ -217,6 +219,6 @@ object GadgetBridgeService {
     }
 }
 
-internal fun Float.roundCelsiusToKelvin(): Int {
+internal fun Double.roundCelsiusToKelvin(): Int {
     return TemperatureUnit.K.convertUnit(this).roundToInt()
 }

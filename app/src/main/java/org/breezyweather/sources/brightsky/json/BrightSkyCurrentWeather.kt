@@ -25,14 +25,14 @@ import java.util.Date
 data class BrightSkyCurrentWeather(
     @Serializable(DateSerializer::class) val timestamp: Date?,
     val icon: String?,
-    val temperature: Float?,
+    val temperature: Double?,
     @SerialName("wind_direction_10") val windDirection: Int?,
-    @SerialName("wind_speed_10") val windSpeed: Float?,
+    @SerialName("wind_speed_10") val windSpeed: Double?,
     @SerialName("wind_gust_direction_10") val windGustDirection: Int?,
-    @SerialName("wind_gust_speed_10") val windGustSpeed: Float?,
+    @SerialName("wind_gust_speed_10") val windGustSpeed: Double?,
     @SerialName("cloud_cover") val cloudCover: Int?,
-    @SerialName("dew_point") val dewPoint: Float?,
+    @SerialName("dew_point") val dewPoint: Double?,
     @SerialName("relative_humidity") val relativeHumidity: Int?,
-    @SerialName("pressure_msl") val pressure: Float?,
+    @SerialName("pressure_msl") val pressure: Double?,
     val visibility: Int?
 )

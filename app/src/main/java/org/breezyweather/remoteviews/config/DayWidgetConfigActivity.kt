@@ -19,13 +19,40 @@ package org.breezyweather.remoteviews.config
 import android.os.Build
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.DayWidgetIMP
+import javax.inject.Inject
 
 /**
  * Day widget config activity.
  */
+@AndroidEntryPoint
 class DayWidgetConfigActivity : AbstractWidgetConfigActivity() {
+    var locationNow: Location? = null
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
+    override suspend fun initLocations() {
+        val location = locationRepository.getFirstLocation(withParameters = false)
+        locationNow = location?.copy(
+            weather = weatherRepository.getWeatherByLocationId(
+                location.formattedId,
+                withDaily = true,
+                withHourly = false,
+                withMinutely = false,
+                withAlerts = true // Custom subtitle
+            )
+        )
+    }
+
     override fun initData() {
         super.initData()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {

@@ -27,12 +27,14 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
-import org.breezyweather.common.basic.models.weather.Wind
+import breezyweather.domain.weather.model.Wind
 import org.breezyweather.common.ui.images.RotateDrawable
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
 
 /**
@@ -57,21 +59,23 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]
 
-            if (hourly.wind != null && hourly.wind.isValid) {
+            if (hourly.wind?.isValid == true) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.tag_wind))
-                    .append(" : ").append(hourly.wind.getDescription(activity, mSpeedUnit))
+                    .append(" : ").append(hourly.wind!!.getDescription(activity, mSpeedUnit))
             }
             val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT
-            val hourlyIcon = if (hourly.wind?.degree == -1f) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-            } else if (hourly.wind?.degree != null) {
-                RotateDrawable(
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                ).apply {
-                    rotate(hourly.wind.degree + 180)
+            val hourlyIcon = hourly.wind?.degree?.let { degree ->
+                if (degree == -1.0) {
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+                } else {
+                    RotateDrawable(
+                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                    ).apply {
+                        rotate(degree.toFloat() + 180f)
+                    }
                 }
-            } else null
+            }
             hourlyIcon?.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)
             hourlyItem.setIconDrawable(hourlyIcon, missingIconVisibility = View.INVISIBLE)
 
@@ -79,7 +83,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
                 null, null,
                 null, null,
                 null, null,
-                hourly.wind?.speed,
+                hourly.wind?.speed?.toFloat(),
                 hourly.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
                 mHighestWindSpeed, 0f
             )
@@ -102,7 +106,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     init {
         mHighestWindSpeed = location.weather!!.nextHourlyForecast
             .mapNotNull { it.wind?.speed }
-            .maxOrNull() ?: 0f
+            .maxOrNull()?.toFloat() ?: 0f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -131,7 +135,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_3,
+                Wind.WIND_SPEED_3.toFloat(),
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -139,7 +143,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_7,
+                Wind.WIND_SPEED_7.toFloat(),
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -147,7 +151,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_3,
+                -Wind.WIND_SPEED_3.toFloat(),
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
@@ -155,7 +159,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_7,
+                -Wind.WIND_SPEED_7.toFloat(),
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE

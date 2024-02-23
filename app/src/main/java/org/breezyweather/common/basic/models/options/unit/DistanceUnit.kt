@@ -25,9 +25,9 @@ import org.breezyweather.common.extensions.isRtl
 // actual distance = distance(km) * factor.
 enum class DistanceUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float,
+    override val convertUnit: (Double) -> Double,
     val decimalNumbers: Int = 0
-): UnitEnum<Float> {
+): UnitEnum<Double> {
 
     M("m", { valueInDefaultUnit -> valueInDefaultUnit }),
     KM("km", { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) }, 1),
@@ -56,20 +56,20 @@ enum class DistanceUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
+    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimalNumbers)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
@@ -81,12 +81,12 @@ enum class DistanceUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getVoiceText(
         context = context,

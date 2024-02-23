@@ -22,12 +22,14 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.DailyTrendItemView
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.main.utils.MainThemeColorProvider
 import java.util.Date
 

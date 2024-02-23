@@ -56,21 +56,11 @@
                         tools:src="@drawable/weather_clear_day"
                         tools:ignore="ContentDescription" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/resident_icon"
-                        android:src="@drawable/ic_circle_medium"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_margin="0dp"
-                        style="@style/material_icon"
-                        app:tint="?attr/colorSecondary" />
-
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/weather_icon"
-                        android:layout_toStartOf="@id/resident_icon"
                         android:orientation="vertical">
 
                         <TextView

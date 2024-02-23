@@ -76,8 +76,8 @@ class BaiduIPLocationService @Inject constructor(
                 } else {
                     try {
                         LocationPositionWrapper(
-                            t.content.point.y.toFloat(),
-                            t.content.point.x.toFloat()
+                            t.content.point.y.toDouble(),
+                            t.content.point.x.toDouble()
                         )
                     } catch (ignore: Exception) {
                         throw LocationException()

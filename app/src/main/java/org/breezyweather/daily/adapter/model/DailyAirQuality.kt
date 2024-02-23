@@ -16,7 +16,7 @@
 
 package org.breezyweather.daily.adapter.model
 
-import org.breezyweather.common.basic.models.weather.AirQuality
+import breezyweather.domain.weather.model.AirQuality
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class DailyAirQuality(

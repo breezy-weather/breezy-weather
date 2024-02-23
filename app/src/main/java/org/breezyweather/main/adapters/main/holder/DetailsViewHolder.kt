@@ -33,12 +33,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
-import org.breezyweather.common.basic.models.weather.Current
+import breezyweather.domain.weather.model.Current
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -64,25 +65,27 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             activity, location, provider,
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
-        if (location.weather?.current != null) {
-            mTitle.setTextColor(
-                ThemeManager.getInstance(context)
-                    .weatherThemeDelegate
-                    .getThemeColors(
-                        context,
-                        WeatherViewController.getWeatherKind(location.weather),
-                        location.isDaylight
-                    )[0]
-            )
-            mTime.text = location.weather.base.mainUpdateTime?.getFormattedTime(location.timeZone, context.is12Hour)
-            mDetailsList.setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
-                    ContentView(
-                        SettingsManager.getInstance(context).detailDisplayList,
-                        SettingsManager.getInstance(context).detailDisplayUnlisted,
-                        location.weather.current,
-                        location
-                    )
+        location.weather?.let { weather ->
+            weather.current?.let { current ->
+                mTitle.setTextColor(
+                    ThemeManager.getInstance(context)
+                        .weatherThemeDelegate
+                        .getThemeColors(
+                            context,
+                            WeatherViewController.getWeatherKind(weather),
+                            location.isDaylight
+                        )[0]
+                )
+                mTime.text = weather.base.mainUpdateTime?.getFormattedTime(location.timeZone, context.is12Hour)
+                mDetailsList.setContent {
+                    BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+                        ContentView(
+                            SettingsManager.getInstance(context).detailDisplayList,
+                            SettingsManager.getInstance(context).detailDisplayUnlisted,
+                            current,
+                            location
+                        )
+                    }
                 }
             }
         }

@@ -21,38 +21,53 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager.widget.ViewPager
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.insets.FitBothSideBarView
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Daily
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.domain.weather.model.isToday
+import org.breezyweather.domain.weather.model.lunar
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
-import java.util.*
+import java.util.TimeZone
+import javax.inject.Inject
 
 /**
  * Daily weather activity.
+ * TODO: Consider moving this activity as a fragment of MainActivity, so we don't have to query the database twice
  */
+@AndroidEntryPoint
 class DailyWeatherActivity : GeoActivity() {
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
     private var mToolbar: MaterialToolbar? = null
     private var mTitle: TextView? = null
     private var mSubtitle: TextView? = null
     private var mIndicator: TextView? = null
     private var mFormattedId: String? = null
     private var mPosition = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather_daily)
@@ -84,27 +99,32 @@ class DailyWeatherActivity : GeoActivity() {
         }
         mIndicator = findViewById(R.id.activity_weather_daily_indicator)
         val formattedId = mFormattedId
-        AsyncHelper.runOnIO({ emitter: AsyncHelper.Emitter<Location> ->
+
+        lifecycleScope.launchUI {
             var location: Location? = null
             if (!formattedId.isNullOrEmpty()) {
-                location = LocationEntityRepository.readLocation(formattedId)
+                location = locationRepository.getLocation(formattedId, withParameters = false)
             }
             if (location == null) {
-                location = LocationEntityRepository.readLocationList()[0]
+                location = locationRepository.getFirstLocation(withParameters = false)
             }
-            emitter.send(
-                location.copy(weather = WeatherEntityRepository.readWeather(location)),
-                true
-            )
-        }, { location: Location?, _: Boolean ->
             if (location == null) {
                 finish()
-                return@runOnIO
+                return@launchUI
             }
+            location = location.copy(
+                weather = weatherRepository.getWeatherByLocationId(
+                    location.formattedId,
+                    withDaily = true,
+                    withHourly = false,
+                    withMinutely = false,
+                    withAlerts = false
+                )
+            )
             val weather = location.weather
             if (weather == null) {
                 finish()
-                return@runOnIO
+                return@launchUI
             }
             selectPage(
                 weather.dailyForecast[mPosition],
@@ -115,12 +135,12 @@ class DailyWeatherActivity : GeoActivity() {
             val viewList: MutableList<View> = ArrayList(weather.dailyForecast.size)
             val titleList: MutableList<String> = ArrayList(weather.dailyForecast.size)
             weather.dailyForecast.forEachIndexed { i, daily ->
-                val rv = FitSystemBarRecyclerView(this)
+                val rv = FitSystemBarRecyclerView(this@DailyWeatherActivity)
                 rv.removeFitSide(FitBothSideBarView.SIDE_TOP)
                 rv.addFitSide(FitBothSideBarView.SIDE_BOTTOM)
                 rv.clipToPadding = false
-                val dailyWeatherAdapter = DailyWeatherAdapter(this, location.timeZone, daily, 3)
-                val gridLayoutManager = GridLayoutManager(this, 3)
+                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.timeZone, daily, 3)
+                val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
                 rv.adapter = dailyWeatherAdapter
                 rv.layoutManager = gridLayoutManager
@@ -129,10 +149,10 @@ class DailyWeatherActivity : GeoActivity() {
             }
             val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
             pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList)
-            pager.pageMargin = this.dpToPx(1f).toInt()
+            pager.pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
             pager.setPageMarginDrawable(
                 ColorDrawable(
-                    ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
+                    ThemeManager.getInstance(this@DailyWeatherActivity).getThemeColor(this@DailyWeatherActivity, com.google.android.material.R.attr.colorOutline)
                 )
             )
             pager.currentItem = mPosition
@@ -155,7 +175,7 @@ class DailyWeatherActivity : GeoActivity() {
                     // do nothing.
                 }
             })
-        })
+        }
     }
 
     @SuppressLint("SetTextI18n")

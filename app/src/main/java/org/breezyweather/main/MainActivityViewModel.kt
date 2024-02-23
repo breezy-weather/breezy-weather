@@ -17,40 +17,56 @@
 package org.breezyweather.main
 
 import android.app.Application
+import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.hasPermission
+import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError
+import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.main.utils.StatementManager
+import org.breezyweather.remoteviews.Gadgets
+import org.breezyweather.remoteviews.Notifications
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.RefreshHelper
 import javax.inject.Inject
+
+interface WeatherRequestCallback {
+    fun onCompleted(
+        location: Location,
+        errors: List<RefreshError> = emptyList()
+    )
+}
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     application: Application,
     private val savedStateHandle: SavedStateHandle,
-    private val repository: MainActivityRepository,
     val statementManager: StatementManager,
-) : GeoViewModel(application),
-    MainActivityRepository.WeatherRequestCallback {
+    private val refreshHelper: RefreshHelper,
+    private val locationRepository: LocationRepository,
+    private val weatherRepository: WeatherRepository
+) : GeoViewModel(application), WeatherRequestCallback {
 
     // flow
     private val _currentLocation: MutableStateFlow<DayNightLocation?> = MutableStateFlow(null)
     val currentLocation = _currentLocation.asStateFlow()
     private val _validLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val validLocationList = _validLocationList.asStateFlow()
-    private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
-    val totalLocationList = _totalLocationList.asStateFlow()
 
     private val _dialogChooseWeatherSourcesOpen = MutableStateFlow(false)
     val dialogChooseWeatherSourcesOpen = _dialogChooseWeatherSourcesOpen.asStateFlow()
@@ -68,7 +84,8 @@ class MainActivityViewModel @Inject constructor(
 
     // inner data.
 
-    private var initCompleted = false
+    private val _initCompleted = MutableStateFlow(false)
+    val initCompleted = _initCompleted.asStateFlow()
     private var updating = false
 
     companion object {
@@ -76,62 +93,55 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // life cycle.
-
-    override fun onCleared() {
-        super.onCleared()
-    }
-
     fun init(formattedId: String? = null) {
         onCleared()
 
         var id = formattedId ?: savedStateHandle[KEY_FORMATTED_ID]
 
         // init live data.
-        val totalList = repository.initLocations(formattedId = id)
-        val validList = Location.excludeInvalidResidentLocation(getApplication(), totalList)
+        viewModelScope.launch {
+            val validList = initLocations(formattedId = id)
 
-        id = formattedId ?: validList.getOrNull(0)?.formattedId
-        val current = validList.firstOrNull { item -> item.formattedId == id }
+            id = formattedId ?: validList.getOrNull(0)?.formattedId
+            val current = validList.firstOrNull { item -> item.formattedId == id }
 
-        initCompleted = false
+            current?.let {
+                _currentLocation.value = DayNightLocation(location = it)
+            }
+            _validLocationList.value = Pair(validList, id)
 
-        current?.let {
-            _currentLocation.value = DayNightLocation(location = it)
-        }
-        _validLocationList.value = Pair(validList, id)
-        _totalLocationList.value = Pair(totalList, id)
+            _loading.value = false
+            _indicator.value = Indicator(
+                total = validList.size,
+                index = validList.indexOfFirst { it.formattedId == id }
+            )
 
-        _loading.value = false
-        _indicator.value = Indicator(
-            total = validList.size,
-            index = validList.indexOfFirst { it.formattedId == id }
-        )
+            locationPermissionsRequest.value = null
+            snackbarError.setValue(null)
 
-        locationPermissionsRequest.value = null
-        snackbarError.setValue(null)
+            // read weather caches.
+            val newList = getWeatherCacheForLocations(
+                oldList = validList,
+                ignoredFormattedId = id,
+            )
 
-        // read weather caches.
-        repository.getWeatherCacheForLocations(
-            oldList = totalList,
-            ignoredFormattedId = id,
-        ) { newList, _ ->
-            initCompleted = true
+            _initCompleted.value = true
             if (newList.isNotEmpty()) { updateInnerData(newList) }
         }
     }
 
     // update inner data.
     private fun updateInnerData(location: Location, oldLocation: Location? = null) {
-        val total = ArrayList(totalLocationList.value.first)
+        val valid = ArrayList(validLocationList.value.first)
 
-        for (i in total.indices) {
-            if (total[i].formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
-                total[i] = location
+        for (i in valid.indices) {
+            if (valid[i].formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
+                valid[i] = location
                 break
             }
         }
 
-        updateInnerData(total)
+        updateInnerData(valid)
     }
 
     /**
@@ -147,13 +157,8 @@ class MainActivityViewModel @Inject constructor(
         _selectedLocation.value = null
     }
 
-    private fun updateInnerData(newTotal: List<Location>) {
+    private fun updateInnerData(newValid: List<Location>) {
         // get valid locations and current index.
-        val newValid = Location.excludeInvalidResidentLocation(
-            getApplication(),
-            newTotal,
-        )
-
         var index: Int? = null
         if (newValid.size != validLocationList.value.first.size) {
             if (newValid.size > validLocationList.value.first.size) {
@@ -202,9 +207,6 @@ class MainActivityViewModel @Inject constructor(
         if (diffInValidLocations || validLocationList.value.second != newValid[index].formattedId) {
             _validLocationList.value = Pair(newValid, newValid[index].formattedId)
         }
-
-        // update total locations.
-        _totalLocationList.value = Pair(newTotal, newValid[index].formattedId)
     }
 
     private fun setCurrentLocation(location: Location) {
@@ -245,7 +247,7 @@ class MainActivityViewModel @Inject constructor(
             // if is not valid, we need:
             // update if init completed.
             // otherwise, mark a loading state and wait the init progress complete.
-            if (initCompleted) {
+            if (initCompleted.value) {
                 updateWithUpdatingChecking(
                     triggeredByUser = false,
                     checkPermissions = true,
@@ -286,7 +288,7 @@ class MainActivityViewModel @Inject constructor(
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
             viewModelScope.launch {
-                repository.getWeather(
+                getWeather(
                     getApplication(),
                     locationToCheck,
                     this@MainActivityViewModel
@@ -298,8 +300,7 @@ class MainActivityViewModel @Inject constructor(
         // check permissions.
         val locationPermissionList: MutableList<String> = mutableListOf()
         if (locationToCheck.isCurrentPosition) {
-            locationPermissionList.addAll(repository
-                .getLocatePermissionList(getApplication())
+            locationPermissionList.addAll(getLocatePermissionList(getApplication())
                 .filter { !(getApplication() as Application).hasPermission(it) }
                 .toMutableList())
         }
@@ -307,7 +308,7 @@ class MainActivityViewModel @Inject constructor(
             // already got all permissions -> request data directly.
             updating = true
             viewModelScope.launch {
-                repository.getWeather(
+                getWeather(
                     getApplication(),
                     locationToCheck,
                     this@MainActivityViewModel
@@ -333,7 +334,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun updateLocationFromBackground(location: Location) {
-        if (!initCompleted) {
+        if (!initCompleted.value) {
             return
         }
 
@@ -369,7 +370,6 @@ class MainActivityViewModel @Inject constructor(
 
                 _indicator.value = Indicator(total = locationList.size, index = index)
 
-                _totalLocationList.value = Pair(totalLocationList.value.first, formattedId)
                 _validLocationList.value = Pair(validLocationList.value.first, formattedId)
             }
         }
@@ -400,7 +400,6 @@ class MainActivityViewModel @Inject constructor(
 
         _indicator.value = Indicator(total = validLocationList.value.first.size, index = index)
 
-        _totalLocationList.value = Pair(totalLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
         _validLocationList.value = Pair(validLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
 
         return currentLocation.value?.location?.formattedId != oldFormattedId
@@ -414,52 +413,48 @@ class MainActivityViewModel @Inject constructor(
         index: Int? = null,
     ): Boolean {
         // do not add an existing location.
-        if (totalLocationList.value.first.firstOrNull {
+        if (validLocationList.value.first.firstOrNull {
             it.formattedId == location.formattedId
         } != null) {
             return false
         }
 
-        val total = ArrayList(totalLocationList.value.first)
-        total.add(index ?: total.size, location)
+        val valid = ArrayList(validLocationList.value.first)
+        valid.add(index ?: valid.size, location)
 
-        updateInnerData(total)
-        repository.writeLocationList(locationList = total)
+        updateInnerData(valid)
+        writeLocationList(locationList = valid)
 
         return true
     }
 
     fun swapLocations(from: Int, to: Int) {
-        /*val fromItem = _totalLocationList.value.first[from]
-        val toItem = _totalLocationList.value.first[to]
-        val newList = _totalLocationList.value.first.toMutableList()
+        /*val fromItem = _validLocationList.value.first[from]
+        val toItem = _validLocationList.value.first[to]
+        val newList = _validLocationList.value.first.toMutableList()
         newList[from] = toItem
         newList[to] = fromItem
 
-        _totalLocationList.value = Pair(newList, _totalLocationList.value.second)*/
+        _validLocationList.value = Pair(newList, _validLocationList.value.second)*/
         if (from == to) {
             return
         }
 
-        val total = ArrayList(totalLocationList.value.first)
-        total.add(to, total.removeAt(from))
+        val valid = ArrayList(validLocationList.value.first)
+        valid.add(to, valid.removeAt(from))
 
-        updateInnerData(total)
+        updateInnerData(valid)
 
-        repository.writeLocationList(
-            locationList = totalLocationList.value.first
-        )
+        writeLocationList(locationList = validLocationList.value.first)
     }
 
-    fun updateLocation(newLocation: Location, oldLocation: Location) {
+    fun updateLocation(newLocation: Location, oldLocation: Location?) {
         updateInnerData(newLocation, oldLocation)
-        repository.writeLocationList(
-            locationList = totalLocationList.value.first,
-        )
+        writeLocationList(locationList = validLocationList.value.first)
     }
 
     fun locationExists(location: Location): Boolean {
-        return totalLocationList.value.first
+        return validLocationList.value.first
             .firstOrNull { item ->
                 item.longitude == location.longitude &&
                 item.latitude == location.latitude &&
@@ -468,11 +463,11 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun deleteLocation(position: Int): Location {
-        val total = ArrayList(totalLocationList.value.first)
-        val location = total.removeAt(position)
+        val valid = ArrayList(validLocationList.value.first)
+        val location = valid.removeAt(position)
 
-        updateInnerData(total)
-        repository.deleteLocation(location = location)
+        updateInnerData(valid)
+        deleteLocation(location = location)
 
         return location
     }
@@ -500,5 +495,111 @@ class MainActivityViewModel @Inject constructor(
 
     override fun onCompleted(location: Location, errors: List<RefreshError>) {
         onUpdateResult(location, errors)
+    }
+
+    // Repository
+    suspend fun initLocations(formattedId: String?): List<Location> {
+        val list = locationRepository.getAllLocations().toMutableList()
+        if (list.size == 0) return list
+
+        if (formattedId != null) {
+            for (i in list.indices) {
+                if (list[i].formattedId == formattedId) {
+                    list[i] = list[i].copy(weather = weatherRepository.getWeatherByLocationId(list[i].formattedId))
+                    break
+                }
+            }
+        } else {
+            list[0] = list[0].copy(weather = weatherRepository.getWeatherByLocationId(list[0].formattedId))
+        }
+
+        return list
+    }
+
+    suspend fun getWeatherCacheForLocations(
+        oldList: List<Location>,
+        ignoredFormattedId: String?
+    ): List<Location> {
+        return oldList.map {
+            if (it.formattedId == ignoredFormattedId) {
+                it
+            } else {
+                it.copy(weather = weatherRepository.getWeatherByLocationId(it.formattedId))
+            }
+        }
+    }
+
+    fun writeLocationList(locationList: List<Location>) {
+        viewModelScope.launch {
+            locationRepository.addAll(locationList)
+        }
+    }
+
+    fun deleteLocation(location: Location) {
+        viewModelScope.launch {
+            // Note: we will have a gap in the listOrder, but this doesn't cause any issue, and
+            // it will fix by itself on next rewrite of the full location list
+            locationRepository.delete(location.formattedId)
+            // It cascades delete location parameters, weather and so on
+        }
+    }
+
+    fun getLocatePermissionList(context: Context) = refreshHelper.getPermissions(context)
+
+    suspend fun getWeather(
+        context: Context,
+        location: Location,
+        callback: WeatherRequestCallback,
+    ) {
+        try {
+            val locationResult = refreshHelper.getLocation(
+                context, location, false
+            )
+
+            if (locationResult.location.isUsable
+                && !locationResult.location.needsGeocodeRefresh) {
+                val weatherResult = refreshHelper.getWeather(
+                    context,
+                    locationResult.location,
+                    location.longitude != locationResult.location.longitude
+                            || location.latitude != locationResult.location.latitude
+                )
+                callback.onCompleted(
+                    locationResult.location.copy(weather = weatherResult.weather),
+                    locationResult.errors + weatherResult.errors
+                )
+            } else {
+                callback.onCompleted(
+                    locationResult.location,
+                    locationResult.errors
+                )
+            }
+        } catch (e: Throwable) {
+            // Should never happen
+            e.printStackTrace()
+            callback.onCompleted(
+                location,
+                listOf(RefreshError(RefreshErrorType.WEATHER_REQ_FAILED))
+            )
+        }
+    }
+
+    fun refreshBackgroundViews(context: Context, locationList: List<Location>?) {
+        locationList?.let {
+            if (it.isNotEmpty()) {
+                viewModelScope.launchIO {
+                    AsyncHelper.delayRunOnIO({
+                        Widgets.updateWidgetIfNecessary(context, it[0])
+                        Notifications.updateNotificationIfNecessary(context, it)
+                        Widgets.updateWidgetIfNecessary(context, it)
+                        Gadgets.updateGadgetIfNecessary(context, it[0])
+                    }, 1000)
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                        refreshHelper.refreshShortcuts(context, it)
+                    }
+                }
+            }
+        }
     }
 }

@@ -148,8 +148,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">Овозможете информации за локацијата</string>
     <string name="location_search_placeholder">Пребарајте локација…</string>
     <string name="location_current_not_found_yet">Тековната локација сè уште не е пронајдена…</string>
-    <string name="location_resident_location_summaryOn">Овозможено. Скриени кога се во %s од моменталната локација.</string>
-    <string name="location_resident_location_summaryOff">Оневозможено. Локацијата е секогаш достапна.</string>
     <string name="action_show_errors">Допрете за да видите детали</string>
     <string name="dialog_permissions_notification_content">Допрете овде за да овозможите известувања за временските предупредувања или одлучете подоцна во „Поставки“.</string>
     <string name="dialog_permissions_location_content">Breezy Weather треба да ги собере информациите за вашата локација во преден план или заднина за да ги обезбеди временските податоци за вашата моментална локација. За ова, ќе побараме некои дозволи. Информациите за вашата локација ќе се користат само за добивање податоци за времето на вашата моментална локација. Ако не сакате да ги споделувате информациите за вашата локација, можете да ги одбиете тие барања и рачно да ја поставите вашата локација на страницата за управување.</string>
@@ -312,7 +310,6 @@
     <string name="settings_background_updates_refresh_3h">3 часа</string>
     <string name="unit_nmi">наут. милји</string>
     <string name="location_search_no_results_advice">Проверете дали вашето пребарување е правилно напишано и не е премногу специфично. Алтернативно, можете да пробате друг извор на податоци за времето што може да произведе различни резултати од пребарувањето локација.</string>
-    <string name="location_resident_location">Локација на жител</string>
     <string name="location_service_native">Мајчин API</string>
     <string name="action_location_list">Список на локации</string>
     <string name="action_app_store">Продавница за Апликации</string>

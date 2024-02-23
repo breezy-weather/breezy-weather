@@ -26,21 +26,21 @@ import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 interface BrightSkyApi {
     @GET("weather")
     fun getWeather(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("date") date: String,
         @Query("last_date") lastDate: String
     ): Observable<BrightSkyWeatherResult>
 
     @GET("current_weather")
     fun getCurrentWeather(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double
     ): Observable<BrightSkyCurrentWeatherResult>
 
     @GET("alerts")
     fun getAlerts(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double
     ): Observable<BrightSkyAlertsResult>
 }

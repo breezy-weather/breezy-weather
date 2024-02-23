@@ -201,7 +201,6 @@
     <string name="location_search_change_source">تغییر منبع جستجو مکان</string>
     <string name="location_search_no_results">%1$s نمی تواند %2$s را بیابد</string>
     <string name="location_current_not_found_yet">مکان فعلی هنوز پیدا نشده است…</string>
-    <string name="location_resident_location_summaryOff">غیرفعال. مکان همیشه در دسترس است.</string>
     <string name="air_quality_o3_voice">اوزون</string>
     <string name="pollen_mold">کَپَک</string>
     <string name="pollen_level_0">هیچ</string>
@@ -233,7 +232,6 @@
     <string name="location_message_deleted">مکان حذف شد</string>
     <string name="location_message_list_cannot_be_empty">فهرست مکان ها نمی توانند خالی باشند</string>
     <string name="location_swipe_to_delete">شما می توانید به سمت چپ بکشید تا این آیتم را حذف کنید</string>
-    <string name="location_resident_location">محل اقامت</string>
     <string name="daytime">روز</string>
     <string name="weather_alert_data_by">داده هشدار از %s</string>
     <string name="weather_normals_data_by">داده دمای معتدل با %s</string>

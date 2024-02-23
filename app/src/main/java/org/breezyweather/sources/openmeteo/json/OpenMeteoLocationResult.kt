@@ -26,8 +26,8 @@ import kotlinx.serialization.Serializable
 data class OpenMeteoLocationResult(
     val id: Int,
     val name: String,
-    val latitude: Float,
-    val longitude: Float,
+    val latitude: Double,
+    val longitude: Double,
     val timezone: String,
     @SerialName("country_code") val countryCode: String?,
     val country: String?,

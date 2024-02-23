@@ -17,17 +17,17 @@
 package org.breezyweather.sources.brightsky
 
 import android.graphics.Color
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
@@ -75,15 +75,15 @@ private fun getCurrent(result: BrightSkyCurrentWeather?): Current? {
             temperature = result.temperature
         ),
         wind = Wind(
-            degree = result.windDirection?.toFloat(),
-            speed = result.windSpeed?.div(3.6f),
-            gusts = result.windGustSpeed?.div(3.6f)
+            degree = result.windDirection?.toDouble(),
+            speed = result.windSpeed?.div(3.6),
+            gusts = result.windGustSpeed?.div(3.6)
         ),
-        relativeHumidity = result.relativeHumidity?.toFloat(),
+        relativeHumidity = result.relativeHumidity?.toDouble(),
         dewPoint = result.dewPoint,
         pressure = result.pressure,
         cloudCover = result.cloudCover,
-        visibility = result.visibility?.toFloat()
+        visibility = result.visibility?.toDouble()
     )
 }
 
@@ -126,18 +126,18 @@ private fun getHourlyForecast(
                 total = result.precipitation
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.precipitationProbability?.toFloat()
+                total = result.precipitationProbability?.toDouble()
             ),
             wind = Wind(
-                degree = result.windDirection?.toFloat(),
-                speed = result.windSpeed?.div(3.6f),
-                gusts = result.windGustSpeed?.div(3.6f)
+                degree = result.windDirection?.toDouble(),
+                speed = result.windSpeed?.div(3.6),
+                gusts = result.windGustSpeed?.div(3.6)
             ),
-            relativeHumidity = result.relativeHumidity?.toFloat(),
+            relativeHumidity = result.relativeHumidity?.toDouble(),
             dewPoint = result.dewPoint,
             pressure = result.pressure,
             cloudCover = result.cloudCover,
-            visibility = result.visibility?.toFloat()
+            visibility = result.visibility?.toDouble()
         )
     }
 }

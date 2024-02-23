@@ -1,0 +1,37 @@
+CREATE TABLE alerts(
+    _id INTEGER NOT NULL PRIMARY KEY,
+    location_formatted_id TEXT NOT NULL,
+    alert_id TEXT NOT NULL,
+    start_date INTEGER,
+    end_date INTEGER,
+    description TEXT NOT NULL,
+    content TEXT,
+    priority INTEGER NOT NULL,
+    color INTEGER NOT NULL,
+
+    FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX alerts_location_formatted_id_index ON alerts(location_formatted_id);
+
+getAlertListByLocationId:
+SELECT *
+FROM alerts
+WHERE location_formatted_id = :locationFormattedId
+ORDER BY priority, start_date;
+
+getCurrentAlertsByLocationId:
+SELECT *
+FROM alerts
+WHERE location_formatted_id = :locationFormattedId
+AND (end_date IS NULL OR end_date > :now)
+ORDER BY priority, start_date;
+
+insert:
+INSERT INTO alerts(location_formatted_id, alert_id, start_date, end_date, description, content, priority, color)
+VALUES (:locationFormattedId, :alertId, :startDate, :endDate, :description, :content, :priority, :color);
+
+deleteAlertListForLocationId:
+DELETE FROM alerts
+WHERE location_formatted_id = :locationFormattedId;

@@ -16,24 +16,24 @@
 
 package org.breezyweather.sources.openweather
 
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.AirQualityWrapper
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -77,16 +77,16 @@ fun convert(
                 apparentTemperature = oneCallResult.current.feelsLike
             ),
             wind = Wind(
-                degree = oneCallResult.current.windDeg?.toFloat(),
+                degree = oneCallResult.current.windDeg?.toDouble(),
                 speed = oneCallResult.current.windSpeed,
                 gusts = oneCallResult.current.windGust
             ),
             uV = UV(index = oneCallResult.current.uvi),
-            relativeHumidity = oneCallResult.current.humidity?.toFloat(),
+            relativeHumidity = oneCallResult.current.humidity?.toDouble(),
             dewPoint = oneCallResult.current.dewPoint,
-            pressure = oneCallResult.current.pressure?.toFloat(),
+            pressure = oneCallResult.current.pressure?.toDouble(),
             cloudCover = oneCallResult.current.clouds,
-            visibility = oneCallResult.current.visibility?.toFloat()
+            visibility = oneCallResult.current.visibility?.toDouble()
         ) else null,
         dailyForecast = getDailyList(oneCallResult.daily, hourlyAirQuality, location.timeZone),
         hourlyForecast = getHourlyList(oneCallResult.hourly, hourlyAirQuality),
@@ -170,25 +170,25 @@ private fun getHourlyList(
                 rain = result.rain?.cumul1h,
                 snow = result.snow?.cumul1h
             ),
-            precipitationProbability = PrecipitationProbability(total = result.pop?.times(100f)),
+            precipitationProbability = PrecipitationProbability(total = result.pop?.times(100.0)),
             wind = Wind(
-                degree = result.windDeg?.toFloat(),
+                degree = result.windDeg?.toDouble(),
                 speed = result.windSpeed,
                 gusts = result.windGust
             ),
             airQuality = hourlyAirQuality.getOrElse(theDate) { null },
             uV = UV(index = result.uvi),
-            relativeHumidity = result.humidity?.toFloat(),
+            relativeHumidity = result.humidity?.toDouble(),
             dewPoint = result.dewPoint,
-            pressure = result.pressure?.toFloat(),
+            pressure = result.pressure?.toDouble(),
             cloudCover = result.clouds,
-            visibility = result.visibility?.toFloat()
+            visibility = result.visibility?.toDouble()
         )
     }
 }
 
 // Function that checks for null before sum up
-private fun getTotalPrecipitation(rain: Float?, snow: Float?): Float? {
+private fun getTotalPrecipitation(rain: Double?, snow: Double?): Double? {
     if (rain == null) {
         return snow
     }
@@ -207,7 +207,7 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
                     ((minutelyResult[i + 1].dt - minutelyForecast.dt) / 60).toDouble().roundToInt()
                 } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble()
                     .roundToInt(),
-                precipitationIntensity = minutelyForecast.precipitation?.toDouble()
+                precipitationIntensity = minutelyForecast.precipitation
             )
         )
     }
@@ -266,7 +266,7 @@ private fun getHourlyAirQuality(
             sO2 = it.components?.so2,
             nO2 = it.components?.no2,
             o3 = it.components?.o3,
-            cO = it.components?.co?.div(1000.0)?.toFloat()
+            cO = it.components?.co?.div(1000.0)
         )
     }
     return airQualityHourly

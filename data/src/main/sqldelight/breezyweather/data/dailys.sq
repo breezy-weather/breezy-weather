@@ -1,0 +1,137 @@
+import breezyweather.domain.weather.model.WeatherCode;
+
+CREATE TABLE dailys(
+    _id INTEGER NOT NULL PRIMARY KEY,
+    location_formatted_id TEXT NOT NULL,
+
+    date INTEGER NOT NULL,
+
+    -- daytime
+    daytime_weather_text TEXT,
+    daytime_weather_phase TEXT,
+    daytime_weather_code TEXT AS WeatherCode,
+
+    daytime_temperature REAL,
+    daytime_real_feel_temperature REAL,
+    daytime_real_feel_shader_temperature REAL,
+    daytime_apparent_temperature REAL,
+    daytime_wind_chill_temperature REAL,
+    daytime_wet_bulb_temperature REAL,
+
+    daytime_total_precipitation REAL,
+    daytime_thunderstorm_precipitation REAL,
+    daytime_rain_precipitation REAL,
+    daytime_snow_precipitation REAL,
+    daytime_ice_precipitation REAL,
+
+    daytime_total_precipitation_probability REAL,
+    daytime_thunderstorm_precipitation_probability REAL,
+    daytime_rain_precipitation_probability REAL,
+    daytime_snow_precipitation_probability REAL,
+    daytime_ice_precipitation_probability REAL,
+
+    daytime_total_precipitation_duration REAL,
+    daytime_thunderstorm_precipitation_duration REAL,
+    daytime_rain_precipitation_duration REAL,
+    daytime_snow_precipitation_duration REAL,
+    daytime_ice_precipitation_duration REAL,
+
+    daytime_wind_degree REAL,
+    daytime_wind_speed REAL,
+    daytime_wind_gusts REAL,
+
+    daytime_cloud_cover INTEGER,
+
+    -- nighttime
+    nighttime_weather_text TEXT,
+    nighttime_weather_phase TEXT,
+    nighttime_weather_code TEXT AS WeatherCode,
+
+    nighttime_temperature REAL,
+    nighttime_real_feel_temperature REAL,
+    nighttime_real_feel_shader_temperature REAL,
+    nighttime_apparent_temperature REAL,
+    nighttime_wind_chill_temperature REAL,
+    nighttime_wet_bulb_temperature REAL,
+
+    nighttime_total_precipitation REAL,
+    nighttime_thunderstorm_precipitation REAL,
+    nighttime_rain_precipitation REAL,
+    nighttime_snow_precipitation REAL,
+    nighttime_ice_precipitation REAL,
+
+    nighttime_total_precipitation_probability REAL,
+    nighttime_thunderstorm_precipitation_probability REAL,
+    nighttime_rain_precipitation_probability REAL,
+    nighttime_snow_precipitation_probability REAL,
+    nighttime_ice_precipitation_probability REAL,
+    nighttime_total_precipitation_duration REAL,
+
+    nighttime_thunderstorm_precipitation_duration REAL,
+    nighttime_rain_precipitation_duration REAL,
+    nighttime_snow_precipitation_duration REAL,
+    nighttime_ice_precipitation_duration REAL,
+
+    nighttime_wind_degree REAL,
+    nighttime_wind_speed REAL,
+    nighttime_wind_gusts REAL,
+
+    nighttime_cloud_cover INTEGER,
+
+    degree_day_heating REAL,
+    degree_day_cooling REAL,
+
+    -- sun.
+    sun_rise_date INTEGER,
+    sun_set_date INTEGER,
+
+    -- moon
+    moon_rise_date INTEGER,
+    moon_set_date INTEGER,
+
+    -- moon phase
+    moon_phase_angle INTEGER,
+
+    -- aqi.
+    pm25 REAL,
+    pm10 REAL,
+    so2 REAL,
+    no2 REAL,
+    o3 REAL,
+    co REAL,
+
+    -- pollen
+    tree INTEGER,
+    alder INTEGER,
+    birch INTEGER,
+    grass INTEGER,
+    olive INTEGER,
+    ragweed INTEGER,
+    mugwort INTEGER,
+    mold INTEGER,
+
+    -- uv.
+    uv_index REAL,
+
+    hours_of_sun REAL,
+
+    UNIQUE(location_formatted_id, date) ON CONFLICT REPLACE,
+    FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX dailys_location_formatted_id_index ON dailys(location_formatted_id);
+
+getDailyListByLocationId:
+SELECT *
+FROM dailys
+WHERE location_formatted_id = :locationFormattedId
+ORDER BY date;
+
+insert:
+INSERT INTO dailys(location_formatted_id, date, daytime_weather_text, daytime_weather_phase, daytime_weather_code, daytime_temperature, daytime_real_feel_temperature, daytime_real_feel_shader_temperature, daytime_apparent_temperature, daytime_wind_chill_temperature, daytime_wet_bulb_temperature, daytime_total_precipitation, daytime_thunderstorm_precipitation, daytime_rain_precipitation, daytime_snow_precipitation, daytime_ice_precipitation, daytime_total_precipitation_probability, daytime_thunderstorm_precipitation_probability, daytime_rain_precipitation_probability, daytime_snow_precipitation_probability, daytime_ice_precipitation_probability, daytime_total_precipitation_duration, daytime_thunderstorm_precipitation_duration, daytime_rain_precipitation_duration, daytime_snow_precipitation_duration, daytime_ice_precipitation_duration, daytime_wind_degree, daytime_wind_speed, daytime_wind_gusts, daytime_cloud_cover, nighttime_weather_text, nighttime_weather_phase, nighttime_weather_code, nighttime_temperature, nighttime_real_feel_temperature, nighttime_real_feel_shader_temperature, nighttime_apparent_temperature, nighttime_wind_chill_temperature, nighttime_wet_bulb_temperature, nighttime_total_precipitation, nighttime_thunderstorm_precipitation, nighttime_rain_precipitation, nighttime_snow_precipitation, nighttime_ice_precipitation, nighttime_total_precipitation_probability, nighttime_thunderstorm_precipitation_probability, nighttime_rain_precipitation_probability, nighttime_snow_precipitation_probability, nighttime_ice_precipitation_probability, nighttime_total_precipitation_duration, nighttime_thunderstorm_precipitation_duration, nighttime_rain_precipitation_duration, nighttime_snow_precipitation_duration, nighttime_ice_precipitation_duration, nighttime_wind_degree, nighttime_wind_speed, nighttime_wind_gusts, nighttime_cloud_cover, degree_day_heating, degree_day_cooling, sun_rise_date, sun_set_date, moon_rise_date, moon_set_date, moon_phase_angle, pm25, pm10, so2, no2, o3, co, tree, alder, birch, grass, olive, ragweed, mugwort, mold, uv_index, hours_of_sun)
+VALUES (:locationFormattedId, :date, :daytimeWeatherText, :daytimeWeatherPhase, :daytimeWeatherCode, :daytimeTemperature, :daytimeRealFeelTemperature, :daytimeRealFeelShaderTemperature, :daytimeApparentTemperature, :daytimeWindChillTemperature, :daytimeWetBulbTemperature, :daytimeTotalPrecipitation, :daytimeThunderstormPrecipitation, :daytimeRainPrecipitation, :daytimeSnowPrecipitation, :daytimeIcePrecipitation, :daytimeTotalPrecipitationProbability, :daytimeThunderstormPrecipitationProbability, :daytimeRainPrecipitationProbability, :daytimeSnowPrecipitationProbability, :daytimeIcePrecipitationProbability, :daytimeTotalPrecipitationDuration, :daytimeThunderstormPrecipitationDuration, :daytimeRainPrecipitationDuration, :daytimeSnowPrecipitationDuration, :daytimeIcePrecipitationDuration, :daytimeWindDegree, :daytimeWindSpeed, :daytimeWindGusts, :daytimeCloudCover, :nighttimeWeatherText, :nighttimeWeatherPhase, :nighttimeWeatherCode, :nighttimeTemperature, :nighttimeRealFeelTemperature, :nighttimeRealFeelShaderTemperature, :nighttimeApparentTemperature, :nighttimeWindChillTemperature, :nighttimeWetBulbTemperature, :nighttimeTotalPrecipitation, :nighttimeThunderstormPrecipitation, :nighttimeRainPrecipitation, :nighttimeSnowPrecipitation, :nighttimeIcePrecipitation, :nighttimeTotalPrecipitationProbability, :nighttimeThunderstormPrecipitationProbability, :nighttimeRainPrecipitationProbability, :nighttimeSnowPrecipitationProbability, :nighttimeIcePrecipitationProbability, :nighttimeTotalPrecipitationDuration, :nighttimeThunderstormPrecipitationDuration, :nighttimeRainPrecipitationDuration, :nighttimeSnowPrecipitationDuration, :nighttimeIcePrecipitationDuration, :nighttimeWindDegree, :nighttimeWindSpeed, :nighttimeWindGusts, :nighttimeCloudCover, :degreeDayHeating, :degreeDayCooling, :sunRiseDate, :sunSetDate, :moonRiseDate, :moonSetDate, :moonPhaseAngle, :pm25, :pm10, :so2, :no2, :o3, :co, :tree, :alder, :birch, :grass, :olive, :ragweed, :mugwort, :mold, :uvIndex, :hoursOfSun);
+
+deleteDailyListForLocationId:
+DELETE FROM dailys
+WHERE location_formatted_id = :locationFormattedId;

@@ -576,10 +576,7 @@
     <string name="location_results_by">Sijaintitulokset tarjoaa %s</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="location_resident_location_summaryOn">Käytössä. Piilotettu, kun %s :n sisällä nykyisestä sijainnista.</string>
-    <string name="location_resident_location">Asuinpaikan sijainti</string>
     <string name="dialog_permissions_notification_content">Ota säähälytyksiä koskevat ilmoitukset käyttöön napauttamalla tätä tai päätä siitä myöhemmin Asetuksissa.</string>
-    <string name="location_resident_location_summaryOff">Ei käytössä. Sijainti aina saatavilla.</string>
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
     <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
     <string name="widget_style_mini">Mini</string>

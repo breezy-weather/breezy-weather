@@ -5,8 +5,7 @@
   ],
   "schedule": ["every saturday"],
   "ignoreDeps": [
-    "dagger.hilt.android.plugin",
-    "io.objectbox"
+    "dagger.hilt.android.plugin"
   ],
   "packageRules": [
     {

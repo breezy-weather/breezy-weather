@@ -27,12 +27,14 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
-import org.breezyweather.common.basic.models.weather.Wind
+import breezyweather.domain.weather.model.Wind
 import org.breezyweather.common.ui.images.RotateDrawable
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 
@@ -58,29 +60,31 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
 
-            if (daily.day?.wind != null && daily.day.wind.isValid) {
+            if (daily.day?.wind?.isValid == true) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.daytime))
-                    .append(" : ").append(daily.day.wind.getDescription(activity, mSpeedUnit))
+                    .append(" : ").append(daily.day!!.wind!!.getDescription(activity, mSpeedUnit))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
-            val dayIcon = if (daily.day?.wind?.degree == -1f) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-            } else if (daily.day?.wind?.degree != null) {
-                RotateDrawable(
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                ).apply {
-                    rotate(daily.day.wind.degree + 180)
+            val dayIcon = daily.day?.wind?.degree?.let { degree ->
+                if (degree == -1.0) {
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+                } else {
+                    RotateDrawable(
+                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                    ).apply {
+                        rotate(degree.toFloat() + 180f)
+                    }
                 }
-            } else null
+            }
             dayIcon?.colorFilter = PorterDuffColorFilter(dayWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setDayIconDrawable(dayIcon, missingIconVisibility = View.INVISIBLE)
 
             val nightWindColor = daily.night?.wind?.getColor(activity) ?: Color.TRANSPARENT
 
             mDoubleHistogramView.setData(
-                daily.day?.wind?.speed ?: 0f,
-                daily.night?.wind?.speed ?: 0f,
+                daily.day?.wind?.speed?.toFloat() ?: 0f,
+                daily.night?.wind?.speed?.toFloat() ?: 0f,
                 daily.day?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
                 daily.night?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
                 mHighestWindSpeed
@@ -93,20 +97,22 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
 
-            if (daily.night?.wind != null && daily.night.wind.isValid) {
+            if (daily.night?.wind?.isValid == true) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.nighttime))
-                    .append(" : ").append(daily.night.wind.getDescription(activity, mSpeedUnit))
+                    .append(" : ").append(daily.night!!.wind!!.getDescription(activity, mSpeedUnit))
             }
-            val nightIcon = if (daily.night?.wind?.degree == -1f) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-            } else if (daily.night?.wind?.degree != null) {
-                RotateDrawable(
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                ).apply {
-                    rotate(daily.night.wind.degree + 180)
+            val nightIcon = daily.night?.wind?.degree?.let { degree ->
+                if (degree == -1.0) {
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+                } else {
+                    RotateDrawable(
+                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                    ).apply {
+                        rotate(degree.toFloat() + 180f)
+                    }
                 }
-            } else null
+            }
             nightIcon?.colorFilter = PorterDuffColorFilter(nightWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setNightIconDrawable(nightIcon, missingIconVisibility = View.INVISIBLE)
 
@@ -118,11 +124,11 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
         mHighestWindSpeed = maxOf(
             location.weather!!.dailyForecast
                 .mapNotNull { it.day?.wind?.speed }
-                .maxOrNull() ?: 0f,
-            location.weather.dailyForecast
+                .maxOrNull() ?: 0.0,
+            location.weather!!.dailyForecast
                 .mapNotNull { it.night?.wind?.speed }
-                .maxOrNull() ?: 0f
-        )
+                .maxOrNull() ?: 0.0
+        ).toFloat()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -146,7 +152,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_3,
+                Wind.WIND_SPEED_3.toFloat(),
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -154,7 +160,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_7,
+                Wind.WIND_SPEED_7.toFloat(),
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -162,7 +168,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_3,
+                -Wind.WIND_SPEED_3.toFloat(),
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
@@ -170,7 +176,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_7,
+                -Wind.WIND_SPEED_7.toFloat(),
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE

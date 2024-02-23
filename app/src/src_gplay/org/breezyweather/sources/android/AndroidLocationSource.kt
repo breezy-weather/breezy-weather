@@ -156,18 +156,18 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
                 gmsLocation?.let {
                     clearLocationUpdates()
-                    send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                    send(LocationPositionWrapper(it.latitude, it.longitude))
                 }
 
                 gpsLocation?.let {
                     clearLocationUpdates()
-                    send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                    send(LocationPositionWrapper(it.latitude, it.longitude))
                 }
             }
 
             // if we are unlucky enough to get a fix, get the last known location
             getLastKnownLocation(locationManager!!)?.let {
-                send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                send(LocationPositionWrapper(it.latitude, it.longitude))
             } ?: throw LocationException()
         }.doOnDispose {
             clearLocationUpdates()

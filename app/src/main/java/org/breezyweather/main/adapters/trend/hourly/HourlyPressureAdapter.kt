@@ -23,13 +23,12 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -63,8 +62,8 @@ class HourlyPressureAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            if (hourly.pressure != null) {
-                talkBackBuilder.append(", ").append(mPressureUnit.getValueText(activity, hourly.pressure))
+            hourly.pressure?.let { pressure ->
+                talkBackBuilder.append(", ").append(mPressureUnit.getValueText(activity, pressure))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -75,7 +74,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                if (hourly.pressure != null) mPressureUnit.getValueTextWithoutUnit(hourly.pressure) else null,
+                hourly.pressure?.let { mPressureUnit.getValueTextWithoutUnit(it) },
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -136,7 +135,7 @@ class HourlyPressureAdapter(
         run {
             var i = 0
             while (i < mPressures.size) {
-                mPressures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.pressure
+                mPressures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.pressure?.toFloat()
                 i += 2
             }
         }
@@ -151,16 +150,16 @@ class HourlyPressureAdapter(
                 i += 2
             }
         }
-        mHighestPressure = PressureUnit.NORMAL
-        mLowestPressure = PressureUnit.NORMAL
+        mHighestPressure = PressureUnit.NORMAL.toFloat()
+        mLowestPressure = PressureUnit.NORMAL.toFloat()
         weather.nextHourlyForecast
             .forEach { hourly ->
                 hourly.pressure?.let {
                     if (mHighestPressure == null || it > mHighestPressure!!) {
-                        mHighestPressure = it
+                        mHighestPressure = it.toFloat()
                     }
                     if (mLowestPressure == null || it < mLowestPressure!!) {
-                        mLowestPressure = it
+                        mLowestPressure = it.toFloat()
                     }
                 }
             }
@@ -180,7 +179,7 @@ class HourlyPressureAdapter(
 
     override fun isValid(location: Location): Boolean {
         return mHighestPressure != null && mLowestPressure != null
-                && mHighestPressure != PressureUnit.NORMAL && mLowestPressure != PressureUnit.NORMAL
+                && mHighestPressure != PressureUnit.NORMAL.toFloat() && mLowestPressure != PressureUnit.NORMAL.toFloat()
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)
@@ -189,7 +188,7 @@ class HourlyPressureAdapter(
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                PressureUnit.NORMAL,
+                PressureUnit.NORMAL.toFloat(),
                 mPressureUnit.getValueTextWithoutUnit(PressureUnit.NORMAL),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE

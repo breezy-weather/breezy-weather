@@ -16,27 +16,25 @@
 
 package org.breezyweather.sources.here
 
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.MoonPhase
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
-import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
@@ -117,14 +115,14 @@ private fun getCurrentForecast(result: HereWeatherData?): Current? {
         weatherCode = getWeatherCode(result.iconId),
         temperature = Temperature(
             temperature = result.temperature,
-            apparentTemperature = result.comfort?.toFloat()
+            apparentTemperature = result.comfort?.toDouble()
         ),
         wind = Wind(
             degree = result.windDirection,
-            speed = result.windSpeed?.div(3.6f)
+            speed = result.windSpeed?.div(3.6)
         ),
-        uV = UV(index = result.uvIndex?.toFloat()),
-        relativeHumidity = result.humidity?.toFloat(),
+        uV = UV(index = result.uvIndex?.toDouble()),
+        relativeHumidity = result.humidity?.toDouble(),
         dewPoint = result.dewPoint,
         pressure = result.barometerPressure,
         visibility = result.visibility?.times(1000)
@@ -149,7 +147,7 @@ private fun getDailyForecast(
                 day = HalfDay(
                     temperature = Temperature(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
-                            dailyForecast.highTemperature.toFloat()
+                            dailyForecast.highTemperature.toDouble()
                         } else null
                     )
                 ),
@@ -158,12 +156,12 @@ private fun getDailyForecast(
                     // so we try to get low temp from next day if available
                     temperature = Temperature(
                         temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
-                            dailySimpleForecasts[i + 1].lowTemperature!!.toFloat()
+                            dailySimpleForecasts[i + 1].lowTemperature!!.toDouble()
                         } else null
                     )
                 ),
-                moonPhase = MoonPhase(angle = astro?.moonPhase?.times(360f)?.roundToInt()),
-                uV = UV(index = dailyForecast.uvIndex?.toFloat())
+                moonPhase = MoonPhase(angle = astro?.moonPhase?.times(360)?.roundToInt()),
+                uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )
     }
@@ -183,7 +181,7 @@ private fun getHourlyForecast(
             weatherCode = getWeatherCode(result.iconId),
             temperature = Temperature(
                 temperature = result.temperature,
-                apparentTemperature = result.comfort?.toFloat()
+                apparentTemperature = result.comfort?.toDouble()
             ),
             precipitation = Precipitation(
                 total = result.precipitation1H ?: (result.rainFall + result.snowFall),
@@ -191,14 +189,14 @@ private fun getHourlyForecast(
                 snow = result.snowFall,
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.precipitationProbability?.toFloat()
+                total = result.precipitationProbability?.toDouble()
             ),
             wind = Wind(
                 degree = result.windDirection,
-                speed = result.windSpeed?.div(3.6f)
+                speed = result.windSpeed?.div(3.6)
             ),
-            uV = UV(index = result.uvIndex?.toFloat()),
-            relativeHumidity = result.humidity?.toFloat(),
+            uV = UV(index = result.uvIndex?.toDouble()),
+            relativeHumidity = result.humidity?.toDouble(),
             dewPoint = result.dewPoint,
             pressure = result.barometerPressure,
             visibility = result.visibility?.times(1000)

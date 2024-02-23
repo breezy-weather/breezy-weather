@@ -30,14 +30,14 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Weather
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
@@ -45,10 +45,15 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.domain.weather.model.getShortDescription
+import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
-import java.util.*
+import java.util.Date
+import java.util.TimeZone
 
 abstract class AbstractRemoteViewsPresenter {
     class WidgetConfig {
@@ -267,20 +272,24 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ct$",
-                    weather.current?.temperature?.getTemperature(context, temperatureUnit, 0)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.temperature?.let {
+                        temperatureUnit.getValueText(context, it, 0)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ctd$",
-                    weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$at$",
-                    weather.current?.temperature?.getFeelsLikeTemperature(context, temperatureUnit, 0)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.feelsLikeTemperature?.let {
+                        temperatureUnit.getValueText(context, it, 0)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$atd$",
-                    weather.current?.temperature?.getShortFeelsLikeTemperature(context, temperatureUnit)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.feelsLikeTemperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cwd$",
                     weather.current?.wind?.getShortDescription(context, speedUnit)
@@ -355,23 +364,23 @@ abstract class AbstractRemoteViewsPresenter {
                     shortBuilder.append("\n")
                 }
                 defaultBuilder.append(currentAlert.description)
-                if (currentAlert.startDate != null) {
-                    val startDateDay = currentAlert.startDate.getFormattedDate(
+                currentAlert.startDate?.let { startDate ->
+                    val startDateDay = startDate.getFormattedDate(
                         timeZone, context.getString(R.string.date_format_long)
                     )
                     defaultBuilder.append(", ")
                         .append(startDateDay)
                         .append(", ")
-                        .append(currentAlert.startDate.getFormattedTime(timeZone, context.is12Hour))
-                    if (currentAlert.endDate != null) {
+                        .append(startDate.getFormattedTime(timeZone, context.is12Hour))
+                    currentAlert.endDate?.let { endDate ->
                         defaultBuilder.append("-")
-                        val endDateDay = currentAlert.endDate.getFormattedDate(
+                        val endDateDay = endDate.getFormattedDate(
                             timeZone, context.getString(R.string.date_format_long)
                         )
                         if (startDateDay != endDateDay) {
                             defaultBuilder.append(endDateDay).append(", ")
                         }
-                        defaultBuilder.append(currentAlert.endDate.getFormattedTime(timeZone, context.is12Hour))
+                        defaultBuilder.append(endDate.getFormattedTime(timeZone, context.is12Hour))
                     }
                 }
                 shortBuilder.append(currentAlert.description)
@@ -396,20 +405,24 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dt$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getTemperature(context, temperatureUnit, 0)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
+                        temperatureUnit.getValueText(context, it, 0)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nt$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getTemperature(context, temperatureUnit, 0)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
+                        temperatureUnit.getValueText(context, it, 0)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dtd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ntd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dp$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {

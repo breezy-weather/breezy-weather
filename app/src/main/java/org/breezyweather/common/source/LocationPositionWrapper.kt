@@ -20,8 +20,8 @@ import java.util.TimeZone
 
 // location.
 data class LocationPositionWrapper(
-    val latitude: Float,
-    val longitude: Float,
+    val latitude: Double,
+    val longitude: Double,
     val timeZone: TimeZone? = null,
     val country: String? = null,
     val countryCode: String? = null,

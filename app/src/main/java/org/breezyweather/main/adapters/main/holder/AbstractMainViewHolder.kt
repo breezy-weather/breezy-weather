@@ -22,7 +22,7 @@ import android.content.Context
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.main.utils.MainModuleUtils
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -34,10 +34,10 @@ abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view
     private var mInScreen = false
     private var mItemAnimator: Animator? = null
     private var mDelayController: AsyncHelper.Controller? = null
+
     @CallSuper
     open fun onBindView(
-        context: Context, location: Location,
-        provider: ResourceProvider,
+        context: Context, location: Location, provider: ResourceProvider,
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
     ) {
         this.context = context

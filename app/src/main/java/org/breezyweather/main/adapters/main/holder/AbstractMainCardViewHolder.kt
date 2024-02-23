@@ -25,7 +25,7 @@ import androidx.annotation.CallSuper
 import androidx.cardview.widget.CardView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.main.adapters.main.FirstCardHeaderController
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager

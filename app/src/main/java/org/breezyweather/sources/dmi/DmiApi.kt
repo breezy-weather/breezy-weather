@@ -26,8 +26,8 @@ import retrofit2.http.Query
 interface DmiApi {
     @GET("NinJo2DmiDk/ninjo2dmidk")
     fun getWeather(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("cmd") cmd: String
     ): Observable<DmiResult>
 

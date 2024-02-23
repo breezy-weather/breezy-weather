@@ -18,24 +18,24 @@ package org.breezyweather.sources.mf
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Normals
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.MoonPhase
+import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -107,7 +107,7 @@ fun convert(
                 temperature = currentResult.properties?.gridded?.temperature
             ),
             wind = if (currentResult.properties?.gridded != null) Wind(
-                degree = currentResult.properties.gridded.windDirection?.toFloat(),
+                degree = currentResult.properties.gridded.windDirection?.toDouble(),
                 speed = currentResult.properties.gridded.windSpeed
             ) else null
         ),
@@ -175,7 +175,7 @@ private fun getDailyList(
                 moonPhase = if (i == 0) MoonPhase(
                     angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
                 ) else null,
-                uV = UV(index = dailyForecast.uvIndex?.toFloat())
+                uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )
     }
@@ -202,11 +202,11 @@ private fun getHourlyList(
                 hourlyForecast.time
             ),
             wind = Wind(
-                degree = hourlyForecast.windDirection?.toFloat(),
-                speed = hourlyForecast.windSpeed?.toFloat(),
-                gusts = hourlyForecast.windSpeedGust?.toFloat() // Seems to be always 0? Or not available in low wind speeds maybe
+                degree = hourlyForecast.windDirection?.toDouble(),
+                speed = hourlyForecast.windSpeed?.toDouble(),
+                gusts = hourlyForecast.windSpeedGust?.toDouble() // Seems to be always 0? Or not available in low wind speeds maybe
             ),
-            relativeHumidity = hourlyForecast.relativeHumidity?.toFloat(),
+            relativeHumidity = hourlyForecast.relativeHumidity?.toDouble(),
             pressure = hourlyForecast.pSea,
             cloudCover = hourlyForecast.totalCloudCover
         )
@@ -236,9 +236,9 @@ private fun getHourlyPrecipitationProbability(
 ): PrecipitationProbability? {
     if (probabilityForecastResult.isNullOrEmpty()) return null
 
-    var rainProbability: Float? = null
-    var snowProbability: Float? = null
-    var iceProbability: Float? = null
+    var rainProbability: Double? = null
+    var snowProbability: Double? = null
+    var iceProbability: Double? = null
     for (probabilityForecast in probabilityForecastResult) {
         /*
          * Probablity are given every 3 hours, sometimes every 6 hours.
@@ -248,17 +248,17 @@ private fun getHourlyPrecipitationProbability(
          */
         if (probabilityForecast.time.time == dt.time || probabilityForecast.time.time + 3600 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 2 * 1000 == dt.time) {
             if (probabilityForecast.rainHazard3h != null) {
-                rainProbability = probabilityForecast.rainHazard3h.toFloat()
+                rainProbability = probabilityForecast.rainHazard3h.toDouble()
             } else if (probabilityForecast.rainHazard6h != null) {
-                rainProbability = probabilityForecast.rainHazard6h.toFloat()
+                rainProbability = probabilityForecast.rainHazard6h.toDouble()
             }
             if (probabilityForecast.snowHazard3h != null) {
-                snowProbability = probabilityForecast.snowHazard3h.toFloat()
+                snowProbability = probabilityForecast.snowHazard3h.toDouble()
             } else if (probabilityForecast.snowHazard6h != null) {
-                snowProbability = probabilityForecast.snowHazard6h.toFloat()
+                snowProbability = probabilityForecast.snowHazard6h.toDouble()
             }
             if (probabilityForecast.freezingHazard != null) {
-                iceProbability = probabilityForecast.freezingHazard.toFloat()
+                iceProbability = probabilityForecast.freezingHazard.toDouble()
             }
         }
 
@@ -268,18 +268,18 @@ private fun getHourlyPrecipitationProbability(
          */
         if (probabilityForecast.time.time + 3600 * 3 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 4 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 5 * 1000 == dt.time) {
             if (probabilityForecast.rainHazard6h != null) {
-                rainProbability = probabilityForecast.rainHazard6h.toFloat()
+                rainProbability = probabilityForecast.rainHazard6h.toDouble()
             }
             if (probabilityForecast.snowHazard6h != null) {
-                snowProbability = probabilityForecast.snowHazard6h.toFloat()
+                snowProbability = probabilityForecast.snowHazard6h.toDouble()
             }
             if (probabilityForecast.freezingHazard != null) {
-                iceProbability = probabilityForecast.freezingHazard.toFloat()
+                iceProbability = probabilityForecast.freezingHazard.toDouble()
             }
         }
     }
     return PrecipitationProbability(
-        maxOf(rainProbability ?: 0f, snowProbability ?: 0f, iceProbability ?: 0f),
+        maxOf(rainProbability ?: 0.0, snowProbability ?: 0.0, iceProbability ?: 0.0),
         null,
         rainProbability,
         snowProbability,

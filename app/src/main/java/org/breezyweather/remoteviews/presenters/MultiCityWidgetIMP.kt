@@ -27,8 +27,10 @@ import androidx.annotation.IdRes
 import androidx.annotation.IntRange
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMultiCityProvider
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Temperature
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -109,12 +111,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
                 views.setTextViewText(
                     cityId[3],
-                    Temperature.getTrendTemperature(
-                        context,
-                        location.weather?.today?.night?.temperature?.temperature,
-                        location.weather?.today?.day?.temperature?.temperature,
-                        temperatureUnit
-                    )
+                    location.weather?.today?.getTrendTemperature(context, temperatureUnit)
                 )
                 setOnClickPendingIntent(context, views, location, cityId[0], i)
             } ?: views.setViewVisibility(cityId[0], View.GONE)

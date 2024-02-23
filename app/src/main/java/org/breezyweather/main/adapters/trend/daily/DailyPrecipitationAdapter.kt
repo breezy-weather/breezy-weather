@@ -24,11 +24,12 @@ import android.view.View
 import android.view.ViewGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.weather.Precipitation
+import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView
+import org.breezyweather.domain.weather.model.getPrecipitationColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -86,8 +87,8 @@ class DailyPrecipitationAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             mDoubleHistogramView.setData(
-                daily.day?.precipitation?.total,
-                daily.night?.precipitation?.total,
+                daily.day?.precipitation?.total?.toFloat(),
+                daily.night?.precipitation?.total?.toFloat(),
                 daytimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
                 nighttimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
                 mHighestPrecipitation
@@ -113,11 +114,11 @@ class DailyPrecipitationAdapter(
         mHighestPrecipitation = maxOf(
             location.weather!!.dailyForecast
                 .mapNotNull { it.day?.precipitation?.total }
-                .maxOrNull() ?: 0f,
-            location.weather.dailyForecast
+                .maxOrNull() ?: 0.0,
+            location.weather!!.dailyForecast
                 .mapNotNull { it.night?.precipitation?.total }
-                .maxOrNull() ?: 0f
-        )
+                .maxOrNull() ?: 0.0
+        ).toFloat()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -141,7 +142,7 @@ class DailyPrecipitationAdapter(
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_LIGHT,
+                Precipitation.PRECIPITATION_LIGHT.toFloat(),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -149,7 +150,7 @@ class DailyPrecipitationAdapter(
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HEAVY,
+                Precipitation.PRECIPITATION_HEAVY.toFloat(),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -157,7 +158,7 @@ class DailyPrecipitationAdapter(
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_LIGHT,
+                -Precipitation.PRECIPITATION_LIGHT.toFloat(),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
@@ -165,7 +166,7 @@ class DailyPrecipitationAdapter(
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_HEAVY,
+                -Precipitation.PRECIPITATION_HEAVY.toFloat(),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE

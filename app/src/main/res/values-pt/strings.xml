@@ -386,7 +386,6 @@
     <string name="unit_nmi">nmi</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="location_resident_location">Local de residência</string>
     <string name="action_delete">Apagar</string>
     <string name="widget_style_tile">Bloco</string>
     <string name="weather_source_openweather_version_2_5">Versão 2.5</string>
@@ -500,7 +499,6 @@
     <string name="ephemeris_moonrise_at">Nascer da lua às %s</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="location_search_no_results_advice">Certifique-se de que a sua pesquisa esteja escrita corretamente e não seja muito específica. Como alternativa, pode tentar outro provedor de meteorologia, que pode produzir resultados de pesquisa de local diferentes.</string>
-    <string name="location_resident_location_summaryOff">Desativado. Localização sempre disponível.</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para a sua localização atual.</string>
     <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
@@ -585,7 +583,6 @@
     <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
     <string name="metno_weather_text_andthunder">%s com trovoadas</string>
-    <string name="location_resident_location_summaryOn">Ativado. Oculto quando dentro de %s da localização atual.</string>
     <string name="minutely_precipitations">Precipitação minuto a minuto</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>
     <string name="about_contact">Contato</string>

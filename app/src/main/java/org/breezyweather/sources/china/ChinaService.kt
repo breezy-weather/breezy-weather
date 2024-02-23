@@ -19,12 +19,12 @@ package org.breezyweather.sources.china
 import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.settings.SettingsManager
@@ -79,8 +79,8 @@ class ChinaService @Inject constructor(
         }
 
         val mainly = mApi.getForecastWeather(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             location.isCurrentPosition,
             locationKey = "weathercn%3A" + locationKey,
             days = 15,
@@ -91,8 +91,8 @@ class ChinaService @Inject constructor(
         )
         val minutely = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getMinutelyWeather(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 SettingsManager.getInstance(context).language.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
@@ -151,8 +151,8 @@ class ChinaService @Inject constructor(
         val mainly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
             || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getForecastWeather(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 location.isCurrentPosition,
                 locationKey = "weathercn%3A" + locationKey,
                 days = 15,
@@ -169,8 +169,8 @@ class ChinaService @Inject constructor(
 
         val minutely = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getMinutelyWeather(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 SettingsManager.getInstance(context).language.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
@@ -220,8 +220,8 @@ class ChinaService @Inject constructor(
         location: Location
     ): Observable<List<Location>> {
         return mApi.getLocationByGeoPosition(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             SettingsManager.getInstance(context).language.code
         )
             .map {
@@ -252,8 +252,8 @@ class ChinaService @Inject constructor(
         context: Context, location: Location
     ): Observable<Map<String, String>> {
         return mApi.getLocationByGeoPosition(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             SettingsManager.getInstance(context).language.code
         ).map {
             if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true

@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SmhiParameter(
     val name: String,
-    val values: List<Float>
+    val values: List<Double>
 )

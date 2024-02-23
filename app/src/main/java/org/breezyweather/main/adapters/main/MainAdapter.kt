@@ -21,17 +21,18 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.adapters.main.holder.*
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 
 class MainAdapter(
     activity: GeoActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
-    private val sourceManager: SourceManager,
     provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
 ) : RecyclerView.Adapter<AbstractMainViewHolder?>() {
     private lateinit var mActivity: GeoActivity
@@ -65,8 +66,7 @@ class MainAdapter(
         mHeaderCurrentTemperatureTextHeight = -1
         mListAnimationEnabled = listAnimationEnabled
         mItemAnimationEnabled = itemAnimationEnabled
-        if (location?.weather != null) {
-            val weather = location.weather
+        location?.weather?.let { weather ->
             val cardDisplayList = SettingsManager.getInstance(activity).cardDisplayList
             mViewTypeList.add(ViewType.HEADER)
             for (c in cardDisplayList) {
@@ -74,23 +74,23 @@ class MainAdapter(
                     continue
                 }
                 if (c === CardDisplay.CARD_POLLEN
-                    && (weather.dailyForecast.isEmpty() || weather.today?.pollen == null || !weather.today?.pollen!!.isIndexValid)
+                    && (weather.dailyForecast.isEmpty() || weather.today?.pollen?.isIndexValid != true)
                 ) {
                     continue
                 }
                 if (c === CardDisplay.CARD_SUNRISE_SUNSET
-                    && (weather.dailyForecast.isEmpty() || weather.today?.sun == null || !weather.today?.sun!!.isValid)
+                    && (weather.dailyForecast.isEmpty() || weather.today?.sun?.isValid != true)
                 ) {
                     continue
                 }
                 if (c === CardDisplay.CARD_LIVE
-                    && (location.weather.current == null
+                    && (weather.current == null
                             || (
                             DetailsViewHolder.availableDetails(
                                 activity,
                                 SettingsManager.getInstance(activity).detailDisplayList,
                                 SettingsManager.getInstance(activity).detailDisplayUnlisted,
-                                location.weather.current,
+                                weather.current!!,
                                 location.isDaylight
                             )).isEmpty()
                     )) {
@@ -130,15 +130,6 @@ class MainAdapter(
                     mListAnimationEnabled,
                     mItemAnimationEnabled,
                     mFirstCardPosition != null && mFirstCardPosition == position
-                )
-            } else if (holder is FooterViewHolder) {
-                holder.onBindView(
-                    mActivity,
-                    mLocation!!,
-                    mProvider!!,
-                    mListAnimationEnabled,
-                    mItemAnimationEnabled,
-                    sourceManager
                 )
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)

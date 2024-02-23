@@ -37,7 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -59,9 +59,9 @@ class FirstCardHeaderController(
 
     init {
         // Don’t show if alertList only contains alerts in the past
-        if (location.weather != null && location.weather.alertList.any {
-            it.endDate == null || it.endDate.time > Date().time }
-        ) {
+        if (location.weather?.alertList?.any {
+            (it.endDate?.time ?: 0L) > Date().time
+        } == true) {
             mView.visibility = View.VISIBLE
             mView.setOnClickListener {
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
@@ -78,7 +78,8 @@ class FirstCardHeaderController(
 
     @Composable
     fun ContentView(location: Location) {
-        if (location.weather!!.currentAlertList.isEmpty()) {
+        val weather = location.weather ?: return
+        if (weather.currentAlertList.isEmpty()) {
             ListItem(
                 modifier = Modifier
                     .clickable(
@@ -109,7 +110,7 @@ class FirstCardHeaderController(
         } else {
             // TODO: Lazy
             Column {
-                location.weather.currentAlertList.forEach { currentAlert ->
+                weather.currentAlertList.forEach { currentAlert ->
                     ListItem(
                         modifier = Modifier
                             .clickable(
@@ -129,23 +130,23 @@ class FirstCardHeaderController(
                                 style = MaterialTheme.typography.titleMedium
                             )
                         },
-                        supportingContent = if (currentAlert.startDate != null) {
+                        supportingContent = currentAlert.startDate?.let { startDate ->
                             {
                                 val builder = StringBuilder()
-                                val startDateDay = currentAlert.startDate.getFormattedDate(
+                                val startDateDay = startDate.getFormattedDate(
                                     location.timeZone, mActivity.getString(R.string.date_format_long)
                                 )
                                 builder.append(startDateDay)
                                     .append(", ")
                                     .append(
-                                        currentAlert.startDate.getFormattedTime(
+                                        startDate.getFormattedTime(
                                             location.timeZone,
                                             mActivity.is12Hour
                                         )
                                     )
-                                if (currentAlert.endDate != null) {
+                                currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
-                                    val endDateDay = currentAlert.endDate.getFormattedDate(
+                                    val endDateDay = endDate.getFormattedDate(
                                         location.timeZone,
                                         mActivity.getString(R.string.date_format_long)
                                     )
@@ -154,7 +155,7 @@ class FirstCardHeaderController(
                                             .append(", ")
                                     }
                                     builder.append(
-                                        currentAlert.endDate.getFormattedTime(
+                                        endDate.getFormattedTime(
                                             location.timeZone,
                                             mActivity.is12Hour
                                         )
@@ -165,7 +166,7 @@ class FirstCardHeaderController(
                                     color = DayNightTheme.colors.bodyColor
                                 )
                             }
-                        } else null,
+                        },
                         leadingContent = {
                             Icon(
                                 painterResource(R.drawable.ic_alert),

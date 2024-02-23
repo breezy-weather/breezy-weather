@@ -269,10 +269,7 @@
     <string name="location_search_no_results">%1$s can’t find %2$s</string>
     <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another location search source which may produce different results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
-    <string name="location_resident_location">Resident location</string>
     <!-- Enabled. Hidden when within 20 km of current location. -->
-    <string name="location_resident_location_summaryOn">Enabled. Hidden when within %s of current location.</string>
-    <string name="location_resident_location_summaryOff">Disabled. Location always available.</string>
     <!-- To be deprecated -->
     <string name="location_service_native">Native API</string>
     <!-- Actions -->
@@ -555,7 +552,6 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tap to open</string>
     <!-- Only shown in debug builds, so we don’t need translations -->
     <string name="settings_debug_force_weather_update" translatable="false">Force weather update</string>
-    <string name="settings_debug_start_objectbox_admin" translatable="false">Start ObjectBox Admin</string>
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>

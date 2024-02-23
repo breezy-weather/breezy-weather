@@ -22,7 +22,7 @@ import android.util.AttributeSet
 import android.widget.RemoteViews.RemoteView
 import android.widget.TextView
 import org.breezyweather.common.extensions.relativeTime
-import java.util.*
+import java.util.Date
 
 /**
  *

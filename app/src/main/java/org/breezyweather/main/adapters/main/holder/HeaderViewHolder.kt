@@ -25,9 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -50,12 +47,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Current
+import breezyweather.domain.weather.model.Current
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.widgets.NumberAnimTextView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -76,8 +74,8 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
     private val mWeatherText: TextView = itemView.findViewById(R.id.container_main_header_weather_text)
-    private var mTemperatureCFrom = 0f
-    private var mTemperatureCTo = 0f
+    private var mTemperatureCFrom = 0.0
+    private var mTemperatureCTo = 0.0
     private var mTemperatureUnit: TemperatureUnit? = null
 
     init {
@@ -105,7 +103,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
                 mTemperature.duration =
-                    max(2000f, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
+                    max(2000.0, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
                 mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
             }
             if (!current.weatherText.isNullOrEmpty()) {

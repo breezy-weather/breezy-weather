@@ -24,13 +24,13 @@ import java.util.Date
 @Serializable
 data class DmiTimeserie(
     @Serializable(DateSerializer::class) val localTimeIso: Date,
-    val temp: Float?,
+    val temp: Double?,
     val symbol: Int?,
-    @SerialName("precip1") val precip: Float?,
-    val windDegree: Float?,
-    val windSpeed: Float?,
-    val windGust: Float?,
-    val humidity: Float?,
-    val pressure: Float?,
-    val visibility: Float?
+    @SerialName("precip1") val precip: Double?,
+    val windDegree: Double?,
+    val windSpeed: Double?,
+    val windGust: Double?,
+    val humidity: Double?,
+    val pressure: Double?,
+    val visibility: Double?
 )

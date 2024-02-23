@@ -18,8 +18,8 @@ package org.breezyweather.theme.weatherView
 
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.Weather
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 
 object WeatherViewController {

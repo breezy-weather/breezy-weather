@@ -24,8 +24,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Minutely
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Minutely
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -35,6 +35,7 @@ import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -178,7 +179,7 @@ class HourlyViewHolder(
                     SettingsManager
                         .getInstance(activity)
                         .precipitationIntensityUnit
-                        .getValueText(activity, precipitation.toFloat())
+                        .getValueText(activity, precipitation)
             }
 
             val size = minutelyList.size

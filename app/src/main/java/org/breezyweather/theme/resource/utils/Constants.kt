@@ -16,7 +16,7 @@
 
 package org.breezyweather.theme.resource.utils
 
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 
 object Constants {
     const val ACTION_ICON_PROVIDER = "org.breezyweather.ICON_PROVIDER"

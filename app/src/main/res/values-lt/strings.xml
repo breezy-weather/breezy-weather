@@ -483,8 +483,6 @@
     <string name="settings_color_day_always">Visada diena</string>
     <string name="settings_color_night_always">Visada naktis</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="location_resident_location">Gyvenamoji vieta</string>
-    <string name="location_resident_location_summaryOff">Išjungta. Vieta visada prieinama.</string>
     <string name="action_delete">Ištrinti</string>
     <string name="settings_weather_sources_summary">Orų duomenų teikėjų nustatymai</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
@@ -549,7 +547,6 @@
     <string name="settings_main_gravity_sensor_switch">Gravitacijos jutiklis</string>
     <string name="settings_widgets_live_wallpaper_summary">Nustatykite orų animaciją kaip ekrano užsklandą</string>
     <string name="settings_widgets_monochrome_icons_title">Vienspalvės piktogramos</string>
-    <string name="location_resident_location_summaryOn">Įjungta. Paslėpta, kai yra %s atstumu nuo dabartinės buvimo vietos.</string>
     <string name="minutely_precipitations">Kritulių kiekis minutėmis</string>
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>
     <string name="pollen_and_mold">Žiedadulkės ir pelėsis</string>

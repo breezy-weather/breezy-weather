@@ -31,17 +31,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.bus.EventBus
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
-import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.sources.SourceManager
 
 @Composable
@@ -49,7 +46,7 @@ fun LocationPreference(
     activity: MainActivity,
     location: Location,
     includeMainScreenSettings: Boolean = false,
-    onClose: (() -> Unit)
+    onClose: ((location: Location?) -> Unit)
 ) {
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
 
@@ -65,7 +62,7 @@ fun LocationPreference(
                 card = false
             ) {
                 IntentHelper.startMainScreenSettingsActivity(activity)
-                onClose()
+                onClose(null)
             }
         }
         if (location.isCurrentPosition) {
@@ -78,32 +75,8 @@ fun LocationPreference(
                 helpMeChoose = null
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
-                onClose()
+                onClose(null)
             }
-        } else {
-            SwitchPreferenceView(
-                title = stringResource(R.string.location_resident_location),
-                iconId = R.drawable.ic_tag_plus,
-                summary = { context, it ->
-                    if (it) {
-                        context.getString(
-                            R.string.location_resident_location_summaryOn,
-                            SettingsManager.getInstance(context).distanceUnit.getValueText(context, 20000f)
-                        )
-                    } else context.getString(R.string.location_resident_location_summaryOff)
-                },
-                checked = location.isResidentPosition,
-                card = false,
-                onValueChanged = {
-                    val newLocation = location.copy(
-                        isResidentPosition = it
-                    )
-                    LocationEntityRepository.writeLocation(newLocation)
-                    EventBus.instance
-                        .with(Location::class.java)
-                        .postValue(newLocation)
-                },
-            )
         }
         PreferenceView(
             titleId = R.string.settings_weather_sources,
@@ -127,21 +100,20 @@ fun LocationPreference(
                             SnackbarHelper.showSnackbar(
                                 activity.getString(R.string.location_message_already_exists)
                             )
+                            dialogWeatherSourcesOpenState.value = false
+                            onClose(null)
                         } else {
-                            LocationEntityRepository.writeLocation(newLocation, location)
-                            EventBus.instance
-                                .with(Location::class.java)
-                                .postValue(newLocation)
+                            dialogWeatherSourcesOpenState.value = false
+                            onClose(newLocation)
                         }
                     } else {
-                        LocationEntityRepository.writeLocation(newLocation, location)
-                        EventBus.instance
-                            .with(Location::class.java)
-                            .postValue(newLocation)
+                        dialogWeatherSourcesOpenState.value = false
+                        onClose(newLocation)
                     }
+                } else {
+                    dialogWeatherSourcesOpenState.value = false
+                    onClose(null)
                 }
-                dialogWeatherSourcesOpenState.value = false
-                onClose()
             }
         }
     }
@@ -333,17 +305,19 @@ fun SecondarySourcesPreference(
                             needsGeocodeRefresh = hasChangedMainSource.value,
                             // TODO: Will trigger a full refresh which we should avoid
                             // if we only change a secondary weather source
-                            weather = location.weather?.copy(
-                                base = location.weather.base.copy(
-                                    refreshTime = null,
-                                    mainUpdateTime = null,
-                                    airQualityUpdateTime = null,
-                                    pollenUpdateTime = null,
-                                    minutelyUpdateTime = null,
-                                    alertsUpdateTime = null,
-                                    normalsUpdateTime = null
+                            weather = location.weather?.let {
+                                it.copy(
+                                    base = it.base.copy(
+                                        refreshTime = null,
+                                        mainUpdateTime = null,
+                                        airQualityUpdateTime = null,
+                                        pollenUpdateTime = null,
+                                        minutelyUpdateTime = null,
+                                        alertsUpdateTime = null,
+                                        normalsUpdateTime = null
+                                    )
                                 )
-                            )
+                            }
                         )
                         onClose(newLocation)
                     } else {

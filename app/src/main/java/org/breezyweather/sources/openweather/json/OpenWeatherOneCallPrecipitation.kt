@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OpenWeatherOneCallPrecipitation(
-    @SerialName("1h") val cumul1h: Float?
+    @SerialName("1h") val cumul1h: Double?
 )

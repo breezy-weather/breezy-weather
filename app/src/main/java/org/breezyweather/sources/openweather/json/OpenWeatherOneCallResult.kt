@@ -23,8 +23,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenWeatherOneCallResult(
-    val lat: Float? = null,
-    val lon: Float? = null,
+    val lat: Double? = null,
+    val lon: Double? = null,
     val timezone: String? = null,
     val current: OpenWeatherOneCallCurrent? = null,
     val minutely: List<OpenWeatherOneCallMinutely>? = null,

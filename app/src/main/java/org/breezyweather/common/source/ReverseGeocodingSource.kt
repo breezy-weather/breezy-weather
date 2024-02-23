@@ -18,7 +18,7 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 
 /**
  * Reverse geocoding source

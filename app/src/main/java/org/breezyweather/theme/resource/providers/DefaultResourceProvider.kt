@@ -30,7 +30,7 @@ import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.ui.images.MoonDrawable
 import org.breezyweather.common.ui.images.SunDrawable
 import org.breezyweather.theme.resource.utils.Constants

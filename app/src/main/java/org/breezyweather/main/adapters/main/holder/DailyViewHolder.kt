@@ -24,13 +24,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -75,81 +76,83 @@ class DailyViewHolder(
             itemAnimationEnabled,
             firstCard
         )
-        val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(weather),
-                location.isDaylight
-            )
+        location.weather?.let { weather ->
 
-        title.setTextColor(colors[0])
-
-        if (weather.current?.dailyForecast.isNullOrEmpty()) {
-            subtitle.visibility = View.GONE
-        } else {
-            subtitle.visibility = View.VISIBLE
-            subtitle.text = weather.current?.dailyForecast
-        }
-
-        val trendAdapter = DailyTrendAdapter(activity, trendRecyclerView).apply {
-            bindData(location)
-        }
-        val tagList: MutableList<TagAdapter.Tag> = trendAdapter.adapters.map {
-            object : TagAdapter.Tag {
-                override val name = it.getDisplayName(activity)
-            }
-        }.toMutableList()
-
-        if (tagList.size < 2) {
-            tagView.visibility = View.GONE
-        } else {
-            tagView.visibility = View.VISIBLE
-            val decorCount = tagView.itemDecorationCount
-            for (i in 0 until decorCount) {
-                tagView.removeItemDecorationAt(0)
-            }
-            tagView.addItemDecoration(
-                GridMarginsDecoration(
-                    context.resources.getDimension(R.dimen.little_margin),
-                    context.resources.getDimension(R.dimen.normal_margin),
-                    tagView
+            val colors = ThemeManager
+                .getInstance(context)
+                .weatherThemeDelegate
+                .getThemeColors(
+                    context,
+                    WeatherViewController.getWeatherKind(weather),
+                    location.isDaylight
                 )
-            )
-            tagView.layoutManager =
-                TrendHorizontalLinearLayoutManager(context)
-            tagView.adapter = TagAdapter(
-                tagList,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                ColorUtils.getWidgetSurfaceColor(
-                    DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+
+            title.setTextColor(colors[0])
+
+            if (weather.current?.dailyForecast.isNullOrEmpty()) {
+                subtitle.visibility = View.GONE
+            } else {
+                subtitle.visibility = View.VISIBLE
+                subtitle.text = weather.current?.dailyForecast
+            }
+
+            val trendAdapter = DailyTrendAdapter(activity, trendRecyclerView).apply {
+                bindData(location)
+            }
+            val tagList: MutableList<TagAdapter.Tag> = trendAdapter.adapters.map {
+                object : TagAdapter.Tag {
+                    override val name = it.getDisplayName(activity)
+                }
+            }.toMutableList()
+
+            if (tagList.size < 2) {
+                tagView.visibility = View.GONE
+            } else {
+                tagView.visibility = View.VISIBLE
+                val decorCount = tagView.itemDecorationCount
+                for (i in 0 until decorCount) {
+                    tagView.removeItemDecorationAt(0)
+                }
+                tagView.addItemDecoration(
+                    GridMarginsDecoration(
+                        context.resources.getDimension(R.dimen.little_margin),
+                        context.resources.getDimension(R.dimen.normal_margin),
+                        tagView
+                    )
+                )
+                tagView.layoutManager =
+                    TrendHorizontalLinearLayoutManager(context)
+                tagView.adapter = TagAdapter(
+                    tagList,
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
                     MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
-                ),
-                { _, _, newPosition ->
-                    trendAdapter.selectedIndex = newPosition
-                    return@TagAdapter false
-                },
-                0
+                    ColorUtils.getWidgetSurfaceColor(
+                        DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+                        MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
+                    ),
+                    { _, _, newPosition ->
+                        trendAdapter.selectedIndex = newPosition
+                        return@TagAdapter false
+                    },
+                    0
+                )
+            }
+            trendRecyclerView.layoutManager =
+                TrendHorizontalLinearLayoutManager(
+                    context,
+                    if (context.isLandscape) 7 else 5
+                )
+            trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+            trendRecyclerView.adapter = trendAdapter
+            trendRecyclerView.setKeyLineVisibility(
+                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
             )
+            if (weather.todayIndex >= 0) {
+                trendRecyclerView.scrollToPosition(weather.todayIndex)
+            }
+            scrollBar.resetColor(location)
         }
-        trendRecyclerView.layoutManager =
-            TrendHorizontalLinearLayoutManager(
-                context,
-                if (context.isLandscape) 7 else 5
-            )
-        trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
-        trendRecyclerView.adapter = trendAdapter
-        trendRecyclerView.setKeyLineVisibility(
-            SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        )
-        if (location.weather.todayIndex >= 0) {
-            trendRecyclerView.scrollToPosition(location.weather.todayIndex)
-        }
-        scrollBar.resetColor(location)
     }
 }
