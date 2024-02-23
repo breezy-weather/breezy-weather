@@ -27,7 +27,7 @@ import androidx.annotation.Size
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
-import java.util.*
+import java.util.Random
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sin

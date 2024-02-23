@@ -29,7 +29,6 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.db.ObjectBox
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -80,8 +79,6 @@ class BreezyWeather : Application(),
         super.onCreate()
 
         instance = this
-
-        ObjectBox.init(this)
 
         this.setLanguage(SettingsManager.getInstance(this).language.locale)
 

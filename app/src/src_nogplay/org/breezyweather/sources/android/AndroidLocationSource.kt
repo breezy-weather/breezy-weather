@@ -89,13 +89,13 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
                 gpsLocation?.let {
                     clearLocationUpdates()
-                    send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                    send(LocationPositionWrapper(it.latitude, it.longitude))
                 }
             }
 
             clearLocationUpdates()
             getLastKnownLocation(locationManager!!)?.let {
-                send(LocationPositionWrapper(it.latitude.toFloat(), it.longitude.toFloat()))
+                send(LocationPositionWrapper(it.latitude, it.longitude))
             } ?: run {
                 // Actually it’s a timeout, but it is more reasonable to say it failed to find location
                 throw LocationException()

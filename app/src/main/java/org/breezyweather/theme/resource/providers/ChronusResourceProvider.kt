@@ -27,7 +27,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.resource.utils.Constants
 
 class ChronusResourceProvider(

@@ -25,8 +25,8 @@ import org.breezyweather.common.extensions.isRtl
 // actual air quality CO = quality(mg/m³) * factor.
 enum class AirQualityCOUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
-): UnitEnum<Float> {
+    override val convertUnit: (Double) -> Double
+): UnitEnum<Double> {
 
     MGPCUM("mgpcum", { valueInDefaultUnit -> valueInDefaultUnit });
 
@@ -38,20 +38,20 @@ enum class AirQualityCOUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
+    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
@@ -63,12 +63,12 @@ enum class AirQualityCOUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getVoiceText(
         context = context,

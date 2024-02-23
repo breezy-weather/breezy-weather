@@ -18,6 +18,7 @@ package org.breezyweather.common.extensions
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ShortcutManager
 import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
@@ -42,6 +43,9 @@ fun Context.hasPermission(permission: String) = PermissionChecker.checkSelfPermi
 
 val Context.powerManager: PowerManager
     get() = getSystemService()!!
+
+val Context.shortcutManager: ShortcutManager?
+    get() = getSystemService()
 
 fun Context.createFileInCacheDir(name: String): File {
     val file = File(externalCacheDir, name)

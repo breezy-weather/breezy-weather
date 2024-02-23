@@ -34,15 +34,15 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import breezyweather.domain.location.model.Location
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
@@ -57,7 +57,14 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
+//@AndroidEntryPoint
 class MaterialLiveWallpaperService : WallpaperService() {
+    //@Inject
+    //lateinit var locationRepository: LocationRepository
+
+    //@Inject
+    //lateinit var weatherRepository: WeatherRepository
+
     private enum class DeviceOrientation {
         TOP,
         LEFT,
@@ -66,10 +73,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
     }
 
     override fun onCreateEngine(): Engine {
-        return WeatherEngine()
+        return WeatherEngine(/*locationRepository, weatherRepository*/)
     }
 
-    private inner class WeatherEngine : Engine() {
+    private inner class WeatherEngine(
+        //private val locationRepository: LocationRepository,
+        //private val weatherRepository: WeatherRepository
+    ) : Engine() {
+
         private var mHolder: SurfaceHolder? = null
         private var mIntervalComputer: IntervalComputer? = null
         private var mRotators: Array<MaterialWeatherView.RotateController>? = null
@@ -333,15 +344,27 @@ class MaterialLiveWallpaperService : WallpaperService() {
             if (mOrientationListener.canDetectOrientation()) {
                 mOrientationListener.enable()
             }
-            val location = LocationEntityRepository.readLocationList().getOrNull(0)
-                .let {
-                    it?.copy(
-                        weather = WeatherEntityRepository.readWeather(it)
-                    )
-                }
             val configManager = LiveWallpaperConfigManager(
                 this@MaterialLiveWallpaperService
             )
+
+            val location: Location? = if (configManager.weatherKind == "auto" || configManager.dayNightType == "auto") {
+                // TODO: Isn't there a more efficient way than reloading the location from database
+                // everytime the visibility changes??
+                /*locationRepository.getFirstLocation(withParameters = false)
+                    .let {
+                        it?.copy(
+                            weather = weatherRepository.getWeatherByLocationId(
+                                it.formattedId,
+                                withDaily = configManager.dayNightType == "auto",
+                                withHourly = false,
+                                withMinutely = false,
+                                withAlerts = false
+                            )
+                        )
+                    }*/
+                null
+            } else null
             val weatherKind = when (configManager.weatherKind) {
                 "auto" -> location?.weather?.current?.weatherCode?.id
                 else -> configManager.weatherKind
@@ -353,7 +376,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
             setWeather(
                 WeatherViewController.getWeatherKind(
-                    weatherKind?.let { WeatherCode.getInstance(it) }
+                    WeatherCode.getInstance(weatherKind)
                 ),
                 daytime
             )

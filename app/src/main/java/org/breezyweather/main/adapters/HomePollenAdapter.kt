@@ -21,11 +21,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Daily
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.composables.PollenGrid
 import org.breezyweather.databinding.ItemPollenDailyBinding
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 

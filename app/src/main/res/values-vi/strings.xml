@@ -554,10 +554,8 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="action_delete">Xoá</string>
     <string name="about_contribution_weather_source">Thêm hỗ trợ cho nguồn thời tiết mới</string>
-    <string name="location_resident_location">Nơi ở</string>
     <string name="wind_gusts">Gió mạnh</string>
     <string name="pollen_birch">Bạch dương</string>
-    <string name="location_resident_location_summaryOff">Đã tắt. Địa điểm sẽ luôn có sẵn.</string>
     <string name="minutely_precipitations">Lượng mưa từng phút</string>
     <string name="pollen_mugwort">Ngải cứu</string>
     <string name="pollen_olive">Ô liu</string>
@@ -573,7 +571,6 @@
     <string name="weather_alert_data_by">Dữ liệu báo động bởi %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Sự làm mới dữ liệu thời cho nguồn thời tiết phụ đã thất bại</string>
     <string name="weather_message_invalid_location">Địa điểm không hợp lệ, hãy xoá và thêm lại</string>
-    <string name="location_resident_location_summaryOn">Đã kích hoạt. Bị ẩn khi ở trong bán kính %s so với địa điểm hiện tại.</string>
     <string name="action_save">Lưu</string>
     <string name="settings_weather_source_main">Nguồn chính</string>
     <string name="settings_weather_sources_per_location_summary">Tùy chỉnh các nguồn dữ liệu thời tiết cho vị trí này</string>

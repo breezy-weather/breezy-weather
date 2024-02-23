@@ -19,13 +19,10 @@ package org.breezyweather.settings.compose
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import org.breezyweather.R
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
@@ -34,8 +31,6 @@ import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.settings.preference.editTextPreferenceItem
 import org.breezyweather.settings.preference.listPreferenceItem
-import org.breezyweather.settings.preference.sectionFooterItem
-import org.breezyweather.settings.preference.sectionHeaderItem
 
 @Composable
 fun WeatherSourcesSettingsScreen(

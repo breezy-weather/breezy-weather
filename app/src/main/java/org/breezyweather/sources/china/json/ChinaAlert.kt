@@ -16,7 +16,7 @@
 
 package org.breezyweather.sources.china.json
 
-import java.util.*
+import java.util.Date
 
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer

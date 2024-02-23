@@ -50,8 +50,8 @@ class IpSbLocationService @Inject constructor(
                     throw LocationException()
                 }
                 LocationPositionWrapper(
-                    latitude = t.latitude.toFloat(),
-                    longitude = t.longitude.toFloat(),
+                    latitude = t.latitude,
+                    longitude = t.longitude,
                     timeZone = if (!t.timezone.isNullOrEmpty()) TimeZone.getTimeZone(t.timezone) else null,
                     country = t.country,
                     countryCode = t.countryCode,

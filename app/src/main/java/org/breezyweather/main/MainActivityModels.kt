@@ -16,7 +16,8 @@
 
 package org.breezyweather.main
 
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.location.model.isDaylight
 
 class Indicator(val total: Int, val index: Int) {
 

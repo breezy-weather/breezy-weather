@@ -22,7 +22,7 @@ import kotlinx.serialization.Serializable
 data class PirateWeatherMinutely(
     val time: Long,
     val precipType: String?,
-    val precipIntensity: Float?,
-    val precipProbability: Float?,
-    val precipIntensityError: Float?
+    val precipIntensity: Double?,
+    val precipProbability: Double?,
+    val precipIntensityError: Double?
 )

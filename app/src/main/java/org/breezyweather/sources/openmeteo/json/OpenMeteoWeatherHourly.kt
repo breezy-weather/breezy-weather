@@ -22,22 +22,22 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OpenMeteoWeatherHourly(
     val time: LongArray,
-    @SerialName("temperature_2m") val temperature: Array<Float?>?,
-    @SerialName("apparent_temperature") val apparentTemperature: Array<Float?>?,
+    @SerialName("temperature_2m") val temperature: Array<Double?>?,
+    @SerialName("apparent_temperature") val apparentTemperature: Array<Double?>?,
     @SerialName("precipitation_probability") val precipitationProbability: Array<Int?>?,
-    val precipitation: Array<Float?>?,
-    val rain: Array<Float?>?,
-    val showers: Array<Float?>?,
-    val snowfall: Array<Float?>?,
+    val precipitation: Array<Double?>?,
+    val rain: Array<Double?>?,
+    val showers: Array<Double?>?,
+    val snowfall: Array<Double?>?,
     @SerialName("weathercode") val weatherCode: Array<Int?>?,
-    @SerialName("windspeed_10m") val windSpeed: Array<Float?>?,
+    @SerialName("windspeed_10m") val windSpeed: Array<Double?>?,
     @SerialName("winddirection_10m") val windDirection: Array<Int?>?,
-    @SerialName("windgusts_10m") val windGusts: Array<Float?>?,
-    @SerialName("uv_index") val uvIndex: Array<Float?>?,
+    @SerialName("windgusts_10m") val windGusts: Array<Double?>?,
+    @SerialName("uv_index") val uvIndex: Array<Double?>?,
     @SerialName("is_day") val isDay: IntArray?, /* Should be a boolean (true or false) but API returns an integer */
     @SerialName("relativehumidity_2m") val relativeHumidity: Array<Int?>?,
-    @SerialName("dewpoint_2m") val dewPoint: Array<Float?>?,
-    @SerialName("pressure_msl") val pressureMsl: Array<Float?>?,
+    @SerialName("dewpoint_2m") val dewPoint: Array<Double?>?,
+    @SerialName("pressure_msl") val pressureMsl: Array<Double?>?,
     @SerialName("cloudcover") val cloudCover: Array<Int?>?,
-    val visibility: Array<Float?>?
+    val visibility: Array<Double?>?
 )

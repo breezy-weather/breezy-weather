@@ -18,24 +18,38 @@ package org.breezyweather.remoteviews.config
 
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
+import javax.inject.Inject
 
 /**
  * Multi city widget config activity.
  */
+@AndroidEntryPoint
 class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
     private var locationList = mutableListOf<Location>()
 
-    override fun initData() {
-        super.initData()
-        locationList = LocationEntityRepository.readLocationList().toMutableList()
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
+    override suspend fun initLocations() {
+        locationList = locationRepository.getXLocations(3, withParameters = false).toMutableList()
         for (i in locationList.indices) {
             locationList[i] = locationList[i].copy(
-                weather = WeatherEntityRepository.readWeather(locationList[i])
+                weather = weatherRepository.getWeatherByLocationId(
+                    locationList[i].formattedId,
+                    withDaily = true,
+                    withHourly = false,
+                    withMinutely = false,
+                    withAlerts = false
+                )
             )
         }
     }

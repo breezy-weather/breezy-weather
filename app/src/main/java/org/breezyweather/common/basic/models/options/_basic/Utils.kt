@@ -63,13 +63,13 @@ object Utils {
     ) = values.zip(names).firstOrNull { it.first == value }?.second
 
     fun getValueTextWithoutUnit(
-        enum: UnitEnum<Float>,
-        valueInDefaultUnit: Float,
+        enum: UnitEnum<Double>,
+        valueInDefaultUnit: Double,
         decimalNumber: Int
     ) = BidiFormatter
         .getInstance()
         .unicodeWrap(
-            formatFloat(
+            formatDouble(
                 enum.getValueWithoutUnit(valueInDefaultUnit),
                 decimalNumber
             )
@@ -88,15 +88,15 @@ object Utils {
 
     fun getValueText(
         context: Context,
-        enum: UnitEnum<Float>,
-        valueInDefaultUnit: Float,
+        enum: UnitEnum<Double>,
+        valueInDefaultUnit: Double,
         decimalNumber: Int,
         rtl: Boolean
     ) = if (rtl) {
         (BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatFloat(
+                formatDouble(
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
@@ -104,7 +104,7 @@ object Utils {
                 + "\u202f"
                 + getName(context, enum))
     } else {
-        (formatFloat(
+        (formatDouble(
             enum.getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
         )
@@ -137,15 +137,15 @@ object Utils {
 
     fun getVoiceText(
         context: Context,
-        enum: UnitEnum<Float>,
-        valueInDefaultUnit: Float,
+        enum: UnitEnum<Double>,
+        valueInDefaultUnit: Double,
         decimalNumber: Int,
         rtl: Boolean
     ) = if (rtl) {
         (BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatFloat(
+                formatDouble(
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
@@ -153,7 +153,7 @@ object Utils {
                 + "\u202f"
                 + getVoice(context, enum))
     } else {
-        (formatFloat(
+        (formatDouble(
             enum.getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
         )
@@ -184,10 +184,10 @@ object Utils {
                 + getVoice(context, enum))
     }
 
-    fun formatFloat(value: Float, decimalNumber: Int = 2): String {
-        val factor = 10.0.pow(decimalNumber.toDouble()).toFloat()
+    fun formatDouble(value: Double, decimalNumber: Int = 2): String {
+        val factor = 10.0.pow(decimalNumber)
         return if (
-            value.roundToInt() * factor == (value * factor).roundToInt().toFloat()
+            value.roundToInt() * factor == (value * factor).roundToInt().toDouble()
         ) {
             value.roundToInt().toString()
         } else {

@@ -423,9 +423,6 @@
     <string name="location_message_permission_missing">Δεν υπάρχεις άδεια πρόσβασης τοποθεσίας</string>
     <string name="location_message_permission_background_missing">Η άδεια πρόσβασης τοποθεσίας στο παρασκήνιο λείπει</string>
     <string name="location_message_reverse_geocoding_failed">Η πηγή καιρού δε βρήκε τοποθεσία που να ταιριάζει</string>
-    <string name="location_resident_location">Τοποθεσία κατοικίας</string>
-    <string name="location_resident_location_summaryOn">Ενεργό. Κρυμμένο όταν είναι εντός %s απ’ τη τρέχουσα τοποθεσία.</string>
-    <string name="location_resident_location_summaryOff">Ανενεργό. Η τοποθεσία θα είναι πάντα διαθέσιμη.</string>
     <string name="action_location_list">Λίστα τοποθεσιών</string>
     <string name="action_add_new_location">Προσθήκη νέας τοποθεσίας</string>
     <string name="action_back">Πίσω</string>

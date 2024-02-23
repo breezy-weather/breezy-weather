@@ -1,9 +1,0 @@
-subprojects {
-    tasks.withType(Test).configureEach {
-        useJUnitPlatform()
-    }
-}
-
-tasks.register('clean', Delete) {
-    delete rootProject.buildDir
-}

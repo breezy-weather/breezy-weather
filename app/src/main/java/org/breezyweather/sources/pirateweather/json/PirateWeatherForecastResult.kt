@@ -20,10 +20,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PirateWeatherForecastResult(
-    val latitude: Float?,
-    val longitude: Float?,
+    val latitude: Double?,
+    val longitude: Double?,
     val timezone: String?,
-    val offset: Float?,
+    val offset: Double?,
     val elevation: Int?,
     val currently: PirateWeatherCurrently?,
     val minutely: PirateWeatherForecast<PirateWeatherMinutely>?,

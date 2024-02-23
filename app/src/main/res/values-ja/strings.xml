@@ -418,7 +418,6 @@
     <string name="settings_weather_source_portal">ポータル</string>
     <string name="location_message_reverse_geocoding_failed">気象情報源が一致する場所を見つけることができませんでした</string>
     <string name="weather_source_openweather_version_3_0">バージョン3.0</string>
-    <string name="location_resident_location_summaryOn">有効。現在の場所から%s以内の場合は非表示になります。</string>
     <string name="action_location_list">所在地リスト</string>
     <string name="action_add_current_location">現在地を追加</string>
     <string name="action_add_from_map">地図から追加</string>
@@ -518,7 +517,6 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプしてこの項目を削除できます</string>
-    <string name="location_resident_location">居住地</string>
     <string name="widget_clock_font_sans_serif">サンセリフ</string>
     <string name="settings_background_updates_refresh_never">一度もない</string>
     <string name="settings_location_access_background_title">バックグラウンドでの位置情報アクセス</string>
@@ -576,7 +574,6 @@
     <string name="weather_source_accu_preference_hours_12">12時間</string>
     <string name="weather_source_accu_preference_hours_24">24時間</string>
     <string name="location_message_permission_background_missing">バックグラウンドでの位置情報へのアクセス権限がありません</string>
-    <string name="location_resident_location_summaryOff">無効。場所はいつでも利用可能です。</string>
     <string name="action_see_more">続きを見る</string>
     <string name="action_delete">消去</string>
     <string name="widget_label_hide_lunar">旧暦を非表示にする</string>

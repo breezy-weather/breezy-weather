@@ -19,8 +19,8 @@ package org.breezyweather.common.source
 import android.content.Context
 import androidx.annotation.ColorInt
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 
 /**
  * Weather service.

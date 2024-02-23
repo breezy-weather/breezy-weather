@@ -22,7 +22,7 @@ import android.net.Uri
 import androidx.annotation.IntRange
 import androidx.annotation.Size
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.ui.images.pixel.PixelMoonDrawable
 import org.breezyweather.common.ui.images.pixel.PixelSunDrawable
 import org.breezyweather.theme.resource.utils.Constants

@@ -25,10 +25,10 @@ import kotlin.math.roundToInt
 
 enum class PollenUnit(
     override val id: String,
-    override val convertUnit: (Int) -> Float
+    override val convertUnit: (Int) -> Double
 ): UnitEnum<Int> {
 
-    PPCM("ppcm", { valueInDefaultUnit -> valueInDefaultUnit * 1f });
+    PPCM("ppcm", { valueInDefaultUnit -> valueInDefaultUnit * 1.0 });
 
     override val valueArrayId = R.array.pollen_unit_values
     override val nameArrayId = R.array.pollen_units

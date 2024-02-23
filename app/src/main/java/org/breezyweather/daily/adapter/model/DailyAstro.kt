@@ -16,10 +16,10 @@
 
 package org.breezyweather.daily.adapter.model
 
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.MoonPhase
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.MoonPhase
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
-import java.util.*
+import java.util.TimeZone
 
 class DailyAstro(
     val timeZone: TimeZone,

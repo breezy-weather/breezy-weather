@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.GeoViewModel
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import javax.inject.Inject

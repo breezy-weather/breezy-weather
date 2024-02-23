@@ -26,10 +26,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.*
+import java.util.Random
 
 object AdaptiveIconDialog {
     fun show(

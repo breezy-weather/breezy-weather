@@ -23,14 +23,15 @@ import android.util.TypedValue
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_text_setting))
         val views = getRemoteViews(context, location, config.textColor, config.textSize, config.alignEnd)
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -65,7 +66,9 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             )
             setTextViewText(
                 R.id.widget_text_temperature,
-                weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
+                weather.current?.temperature?.temperature?.let {
+                    temperatureUnit.getShortValueText(context, it)
+                }
             )
             setTextColor(R.id.widget_text_date, color.textColor)
             setTextColor(R.id.widget_text_weather, color.textColor)

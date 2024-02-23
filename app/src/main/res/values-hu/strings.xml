@@ -384,9 +384,6 @@
     <string name="air_quality_so2_voice">Kén dioxid</string>
     <string name="widget_week_style_3_days">3 nap</string>
     <string name="location_results_by">Helyeredmények a(z) %s által</string>
-    <string name="location_resident_location">Lakóhely</string>
-    <string name="location_resident_location_summaryOn">Engedélyezve. Rejtett, ha az aktuális helytől %s-en belül van.</string>
-    <string name="location_resident_location_summaryOff">Letiltva. A hely mindig elérhető.</string>
     <string name="action_delete">Törlés</string>
     <string name="dialog_permissions_notification_content">Koppintson ide a riasztásokról szóló értesítések engedélyezéséhez, ez bármikor módosítható a beállításokban.</string>
     <string name="settings_weather_sources_summary">Időjárás-adatforrások beállítása</string>

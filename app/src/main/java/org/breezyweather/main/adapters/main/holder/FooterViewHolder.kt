@@ -43,14 +43,13 @@ import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.main.MainActivity
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -61,10 +60,9 @@ class FooterViewHolder(
 
     @SuppressLint("SetTextI18n")
     @CallSuper
-    fun onBindView(
+    override fun onBindView(
         context: Context, location: Location, provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean,
-        sourceManager: SourceManager
+        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
@@ -81,7 +79,7 @@ class FooterViewHolder(
             location.alertSourceNotNull,
             location.normalsSourceNotNull
         ).distinct().forEach {
-            distinctSources[it] = sourceManager.getSource(it)
+            distinctSources[it] = (context as MainActivity).sourceManager.getSource(it)
         }
 
         val credits = mutableMapOf<String, String?>()
@@ -110,21 +108,21 @@ class FooterViewHolder(
         } else null
 
         val creditsText = StringBuilder()
-        if (location.weather != null) {
+        location.weather?.let { weather ->
             creditsText.append(
                 context.getString(
                     R.string.weather_data_by,
                     credits["weather"] ?: context.getString(R.string.null_data_text)
                 )
             )
-            if (location.weather.minutelyForecast.isNotEmpty()
+            if (weather.minutelyForecast.isNotEmpty()
                 && !credits["minutely"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
                     context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
                 )
             }
-            if (location.weather.alertList.isNotEmpty()
+            if (weather.alertList.isNotEmpty()
                 && !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
@@ -168,14 +166,13 @@ class FooterViewHolder(
                     )
                 }
             }
-            if (location.weather.normals?.month != null
+            if (weather.normals?.month != null
                 && !credits["normals"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
                 )
             }
         }
-
 
         composeView.setContent {
             BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
@@ -188,6 +185,7 @@ class FooterViewHolder(
     fun ComposeView(activity: MainActivity, location: Location, creditsText: String, cardMarginsVertical: Int) {
         var expand by remember { mutableStateOf(false) }
         var dialogOpenState by remember { mutableStateOf(false) }
+        val scope = rememberCoroutineScope()
 
         val paddingTop = dimensionResource(R.dimen.little_margin) - cardMarginsVertical.dp
         Row(
@@ -239,7 +237,10 @@ class FooterViewHolder(
                     )
                 },
                 text = {
-                    LocationPreference(activity, location, true) {
+                    LocationPreference(activity, location, true) { newLocation: Location? ->
+                        if (newLocation != null) {
+                            activity.updateLocation(newLocation)
+                        }
                         dialogOpenState = false
                     }
                 },

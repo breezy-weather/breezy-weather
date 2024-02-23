@@ -21,16 +21,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetNoForecastDataDetails(
-    @SerialName("air_pressure_at_sea_level") val airPressureAtSeaLevel: Float?,
-    @SerialName("air_temperature") val airTemperature: Float?,
-    @SerialName("dew_point_temperature") val dewPointTemperature: Float?,
-    @SerialName("precipitation_rate") val precipitationRate: Float?,
-    @SerialName("precipitation_amount") val precipitationAmount: Float?,
-    @SerialName("probability_of_precipitation") val probabilityOfPrecipitation: Float?,
-    @SerialName("probability_of_thunder") val probabilityOfThunder: Float?,
-    @SerialName("relative_humidity") val relativeHumidity: Float?,
-    @SerialName("ultraviolet_index_clear_sky") val ultravioletIndexClearSky: Float?,
-    @SerialName("wind_from_direction") val windFromDirection: Float?,
-    @SerialName("wind_speed") val windSpeed: Float?,
-    @SerialName("cloud_area_fraction") val cloudAreaFraction: Float?
+    @SerialName("air_pressure_at_sea_level") val airPressureAtSeaLevel: Double?,
+    @SerialName("air_temperature") val airTemperature: Double?,
+    @SerialName("dew_point_temperature") val dewPointTemperature: Double?,
+    @SerialName("precipitation_rate") val precipitationRate: Double?,
+    @SerialName("precipitation_amount") val precipitationAmount: Double?,
+    @SerialName("probability_of_precipitation") val probabilityOfPrecipitation: Double?,
+    @SerialName("probability_of_thunder") val probabilityOfThunder: Double?,
+    @SerialName("relative_humidity") val relativeHumidity: Double?,
+    @SerialName("ultraviolet_index_clear_sky") val ultravioletIndexClearSky: Double?,
+    @SerialName("wind_from_direction") val windFromDirection: Double?,
+    @SerialName("wind_speed") val windSpeed: Double?,
+    @SerialName("cloud_area_fraction") val cloudAreaFraction: Double?
 )

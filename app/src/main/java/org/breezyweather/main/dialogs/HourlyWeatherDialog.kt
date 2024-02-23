@@ -22,11 +22,12 @@ import android.view.View
 import android.widget.TextView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
-import org.breezyweather.common.basic.models.weather.Hourly
+import breezyweather.domain.weather.model.Hourly
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.AnimatableIconView
+import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -70,13 +71,17 @@ object HourlyWeatherDialog {
         }
         hourly.temperature?.temperature?.let {
             if (builder.toString().isNotEmpty()) builder.append(", ")
-            builder.append(hourly.temperature.getTemperature(view.context, temperatureUnit))
+            builder.append(
+                temperatureUnit.getValueText(view.context, it)
+            )
         }
         hourly.temperature?.feelsLikeTemperature?.let {
             if (builder.toString().isNotEmpty()) builder.append("\n")
             builder.append(view.context.getString(R.string.temperature_feels_like))
                 .append(" ")
-                .append(hourly.temperature.getFeelsLikeTemperature(view.context, temperatureUnit))
+                .append(
+                    temperatureUnit.getValueText(view.context, it)
+                )
         }
         hourly.precipitation?.total?.let {
             if (builder.toString().isNotEmpty()) builder.append("\n")
@@ -84,11 +89,11 @@ object HourlyWeatherDialog {
                 .append(view.context.getString(R.string.colon_separator))
                 .append(precipitationUnit.getValueText(view.context, it))
         }
-        if (hourly.precipitationProbability?.total != null && hourly.precipitationProbability.total > 0) {
+        if ((hourly.precipitationProbability?.total ?: 0.0) > 0) {
             if (builder.toString().isNotEmpty()) builder.append("\n")
             builder.append(view.context.getString(R.string.precipitation_probability))
                 .append(view.context.getString(R.string.colon_separator))
-                .append(ProbabilityUnit.PERCENT.getValueText(view.context, hourly.precipitationProbability.total.toInt()))
+                .append(ProbabilityUnit.PERCENT.getValueText(view.context, hourly.precipitationProbability!!.total!!.toInt()))
         }
         weatherText.text = builder.toString()
     }

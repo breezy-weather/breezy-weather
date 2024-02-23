@@ -33,7 +33,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -150,7 +150,7 @@ object ResourceHelper {
         return provider.moonDrawable
     }
 
-    fun createTempBitmap(context: Context, temp: Float): Bitmap {
+    fun createTempBitmap(context: Context, temp: Double): Bitmap {
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         val temperatureFormatted = temperatureUnit.getShortValueText(context, temp)
 

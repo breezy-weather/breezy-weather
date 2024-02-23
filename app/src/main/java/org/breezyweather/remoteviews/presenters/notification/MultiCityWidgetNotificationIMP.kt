@@ -26,19 +26,24 @@ import androidx.core.graphics.drawable.IconCompat
 import notificationBuilder
 import notify
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getStrength
+import org.breezyweather.domain.weather.model.getTrendTemperature
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.*
+import java.util.Date
 
 object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
@@ -97,18 +102,20 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setOnlyAlertOnce(true)
         }.build()
 
-        if (!tempIcon && current.weatherCode != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                notification.javaClass
-                    .getMethod("setSmallIcon", Icon::class.java)
-                    .invoke(
-                        notification,
-                        ResourceHelper.getMinimalIcon(
-                            provider, current.weatherCode, dayTime
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            current.weatherCode?.let { weatherCode ->
+                try {
+                    notification.javaClass
+                        .getMethod("setSmallIcon", Icon::class.java)
+                        .invoke(
+                            notification,
+                            ResourceHelper.getMinimalIcon(
+                                provider, weatherCode, dayTime
+                            )
                         )
-                    )
-            } catch (ignore: Exception) {
-                // do nothing.
+                } catch (ignore: Exception) {
+                    // do nothing.
+                }
             }
         }
 
@@ -132,37 +139,33 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         }
 
         views.apply {
-            if (current.weatherCode != null) {
+            current.weatherCode?.let { weatherCode ->
                 setImageViewUri(
                     R.id.notification_base_icon,
                     ResourceHelper.getWidgetNotificationIconUri(
                         provider,
-                        current.weatherCode,
+                        weatherCode,
                         dayTime,
                         false,
                         NotificationTextColor.GREY
                     )
                 )
             }
-            if (temperature != null) {
+            temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    Temperature.getShortTemperature(
-                        context,
-                        temperature,
-                        temperatureUnit
-                    )
+                    temperatureUnit.getShortValueText(context, it)
                 )
             }
-            if (current.airQuality != null && current.airQuality.isIndexValid) {
+            if (current.airQuality?.isIndexValid == true) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context)
+                    context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
                 )
-            } else if (current.wind?.getStrength(context) != null) {
+            } else current.wind?.getStrength(context)?.let { strength ->
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.wind) + " - " + current.wind.getStrength(context)
+                    context.getString(R.string.wind) + " - " + strength
                 )
             }
             if (!current.weatherText.isNullOrEmpty()) {
@@ -226,14 +229,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             location.getPlace(context, true)
         )
         location.weather?.today?.let {
-            builder.append(", ").append(
-                Temperature.getTrendTemperature(
-                    context,
-                    it.night?.temperature?.temperature,
-                    it.day?.temperature?.temperature,
-                    unit
-                )
-            )
+            builder.append(", ").append(it.getTrendTemperature(context, unit))
         }
         return builder.toString()
     }

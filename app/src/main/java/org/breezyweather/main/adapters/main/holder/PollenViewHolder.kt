@@ -24,8 +24,11 @@ import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.main.adapters.HomePollenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -66,7 +69,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (daily.isToday(timeZone)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
-                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
+                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather!!.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
             }
         }
     }

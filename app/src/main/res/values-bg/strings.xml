@@ -563,8 +563,6 @@
     <string name="pollen_level_1">Много ниско</string>
     <string name="pollen_level_4">Високо</string>
     <string name="pollen_level_5">Много високо</string>
-    <string name="location_resident_location">Местоположение на пребиваване</string>
-    <string name="location_resident_location_summaryOff">Деактивирано. Местоположението е винаги налично.</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
     <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
@@ -580,7 +578,6 @@
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
-    <string name="location_resident_location_summaryOn">Активирано. Скрит, когато в рамките на %s от текущото местоположение.</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>
     <string name="settings_weather_source_main">Основен източник</string>

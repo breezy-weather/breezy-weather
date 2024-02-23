@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsPointLocationGeometry(
-    val coordinates: List<Float>?
+    val coordinates: List<Double>?
 )

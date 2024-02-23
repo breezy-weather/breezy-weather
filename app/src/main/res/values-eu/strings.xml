@@ -137,7 +137,6 @@
     <string name="location_search_weather_source">Eguraldi iturria</string>
     <string name="location_message_failed_to_locate">Akatsa egungo kokapena aurkitzen</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Gaitu kokapen informazioa</string>
-    <string name="location_resident_location_summaryOff">Desgaituta. Kokalekua beti erabilgarri.</string>
     <string name="location_current_not_found_yet">Egungo kokapena ez da oraindik aurkitu…</string>
     <string name="location_service_native">API natiboa</string>
     <string name="action_location_list">Kokapen zerrenda</string>
@@ -226,7 +225,6 @@
     <string name="location_search_placeholder">Bilatu kokapen bat…</string>
     <string name="location_search_no_results">%1$s ezin du %2$s aurkitu</string>
     <string name="location_search_no_results_advice">Ziurtatu zure bilaketa ondo idatzita dagoela eta ez dela espezifikoegia. Beste eguraldi iturri batekin egiazta dezakezu, baliteke kokalekuaren bilaketaren emaitzak desberdinak izatea.</string>
-    <string name="location_resident_location_summaryOn">Gaituta. Ezkutatuta, gaur egungo kokapenaren %s barruan dagoenean.</string>
     <string name="action_add_current_location">Gehitu egungo kokapena</string>
     <string name="action_add_from_map">Gehitu mapatik</string>
     <string name="action_add_new_location">Gehitu kokapen berria</string>
@@ -258,7 +256,6 @@
     <string name="location_swipe_to_delete">Ezkerrera irristatu dezakezu elementu hau ezabatzeko</string>
     <string name="location_message_permission_missing">Kokapenera sartzeko baimenik ez</string>
     <string name="location_message_permission_background_missing">Bigarren planoan kokapenera sartzeko baimenik ez</string>
-    <string name="location_resident_location">Egoiliarren kokapena</string>
     <string name="widget_day">Egunerokoa</string>
     <string name="widget_week">Asterokoa</string>
     <string name="widget_day_week">Egunerokoa + Asterokoa</string>

@@ -63,7 +63,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
@@ -141,7 +141,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private fun ContentView() {
         ensureResourceProvider()
 
-        val totalLocationListState = viewModel.totalLocationList.collectAsState()
+        val validLocationListState = viewModel.validLocationList.collectAsState()
         var notificationDismissed by remember { mutableStateOf(false) }
 
         val dialogChooseWeatherSourcesOpenState = viewModel.dialogChooseWeatherSourcesOpen.collectAsState()
@@ -176,7 +176,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             },
             floatingActionButton = {
                 Column {
-                    if (totalLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
+                    if (validLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
                                 viewModel.openChooseWeatherSourcesDialog(null)
@@ -198,7 +198,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 }
             }
         ) { paddings ->
-            if (totalLocationListState.value.first.isNotEmpty()) {
+            if (validLocationListState.value.first.isNotEmpty()) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -265,7 +265,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         if (dialogChooseWeatherSourcesOpenState.value) {
             SecondarySourcesPreference(
                 (requireActivity() as MainActivity).sourceManager,
-                selectedLocationState.value ?: Location(isResidentPosition = true)
+                selectedLocationState.value ?: Location(isCurrentPosition = true)
             ) { newLocation: Location? ->
                 viewModel.closeChooseWeatherSourcesDialog()
 
@@ -381,7 +381,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 // Trigger the flow and start listening for values.
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
-                viewModel.totalLocationList.collect {
+                viewModel.validLocationList.collect {
                     // New value received
                     adapter.update(it.first, it.second)
                 }

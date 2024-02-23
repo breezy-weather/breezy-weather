@@ -32,11 +32,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.trend.TrendLinearLayout
 import org.breezyweather.remoteviews.trend.WidgetItemView
@@ -50,7 +53,7 @@ import kotlin.math.min
 
 object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             innerUpdateWidget(context, location)
             return
@@ -59,7 +62,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     @WorkerThread
-    private fun innerUpdateWidget(context: Context, location: Location) {
+    private fun innerUpdateWidget(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_daily_trend_setting))
         if (config.cardStyle == "none") {
             config.cardStyle = "auto"
@@ -93,7 +96,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < daytimeTemperatures.size) {
-                daytimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature
+                daytimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -113,7 +116,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < nighttimeTemperatures.size) {
-                nighttimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature
+                nighttimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -130,42 +133,44 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         weather.normals?.let { normals ->
-            highestTemperature = normals.daytimeTemperature
-            lowestTemperature = normals.nighttimeTemperature
+            highestTemperature = normals.daytimeTemperature?.toFloat()
+            lowestTemperature = normals.nighttimeTemperature?.toFloat()
         }
 
         for (i in 0 until itemCount) {
             weather.dailyForecast[i].day?.temperature?.temperature?.let {
                 if (highestTemperature == null || it > highestTemperature!!) {
-                    highestTemperature = it
+                    highestTemperature = it.toFloat()
                 }
             }
             weather.dailyForecast[i].night?.temperature?.temperature?.let {
                 if (lowestTemperature == null || it < lowestTemperature!!) {
-                    lowestTemperature = it
+                    lowestTemperature = it.toFloat()
                 }
             }
         }
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_daily, null, false)
-        if (weather.normals?.daytimeTemperature != null && weather.normals.nighttimeTemperature != null
-            && highestTemperature != null && lowestTemperature != null) {
-            val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
-            trendParent.normals = weather.normals.month != null
-            trendParent.setData(
-                arrayOf(weather.normals.daytimeTemperature, weather.normals.nighttimeTemperature),
-                highestTemperature!!,
-                lowestTemperature!!,
-                temperatureUnit,
-                true
-            )
-            // TODO: Investigate this and all code ln215-237 to fix
-            //  https://github.com/breezy-weather/breezy-weather/issues/227
-            trendParent.setColor(lightTheme)
-            trendParent.setKeyLineVisibility(
-                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-            )
+        weather.normals?.let { normals ->
+            if (normals.daytimeTemperature != null && normals.nighttimeTemperature != null
+                && highestTemperature != null && lowestTemperature != null) {
+                val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
+                trendParent.normals = normals.month != null
+                trendParent.setData(
+                    arrayOf(normals.daytimeTemperature!!.toFloat(), normals.nighttimeTemperature!!.toFloat()),
+                    highestTemperature!!,
+                    lowestTemperature!!,
+                    temperatureUnit,
+                    true
+                )
+                // TODO: Investigate this and all code ln215-237 to fix
+                //  https://github.com/breezy-weather/breezy-weather/issues/227
+                trendParent.setColor(lightTheme)
+                trendParent.setKeyLineVisibility(
+                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
+                )
+            }
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
@@ -195,17 +200,21 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                         )
                     )
                 }
-                val daytimePrecipitationProbability: Float? = daily.day?.precipitationProbability?.total
-                val nighttimePrecipitationProbability: Float? = daily.night?.precipitationProbability?.total
-                val p: Float = max(
+                val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total?.toFloat()
+                val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total?.toFloat()
+                val p = max(
                     daytimePrecipitationProbability ?: 0f,
                     nighttimePrecipitationProbability ?: 0f
                 )
                 widgetItemView.trendItemView.setData(
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
-                    daily.day?.temperature?.getShortTemperature(context, temperatureUnit),
-                    daily.night?.temperature?.getShortTemperature(context, temperatureUnit),
+                    daily.day?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    },
+                    daily.night?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    },
                     highestTemperature,
                     lowestTemperature,
                     if (p < 5) null else p,

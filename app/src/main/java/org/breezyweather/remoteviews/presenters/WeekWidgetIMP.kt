@@ -25,8 +25,11 @@ import android.view.View
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetWeekProvider
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Temperature
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getTrendTemperature
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -34,7 +37,7 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_week_setting))
         val views = getRemoteViews(
             context, location, config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor, config.textSize
@@ -66,12 +69,14 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
-        if (weather.current?.temperature?.temperature != null) {
+        weather.current?.temperature?.temperature?.let {
             views.setTextViewText(
                 R.id.widget_week_temp,
-                weather.current.temperature.getShortTemperature(context, temperatureUnit)
+                temperatureUnit.getShortValueText(context, it)
             )
-        } else views.setTextViewText(R.id.widget_week_temp, null)
+        } ?: run {
+            views.setTextViewText(R.id.widget_week_temp, null)
+        }
         weather.current?.weatherCode?.let {
             views.setViewVisibility(R.id.widget_week_icon, View.VISIBLE)
             views.setImageViewUri(
@@ -101,10 +106,8 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
                 dailyId[1],
-                Temperature.getTrendTemperature(
+                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(
                     context,
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature,
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature,
                     temperatureUnit
                 )
             )

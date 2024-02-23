@@ -23,13 +23,12 @@ import android.view.View
 import android.view.ViewGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.weatherView.WeatherViewController
 
@@ -54,14 +53,14 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]
 
-            if (hourly.cloudCover != null) {
-                talkBackBuilder.append(", ").append(ProbabilityUnit.PERCENT.getValueVoice(activity, hourly.cloudCover))
+            hourly.cloudCover?.let { cloudCover ->
+                talkBackBuilder.append(", ").append(ProbabilityUnit.PERCENT.getValueVoice(activity, cloudCover))
             }
             mPolylineAndHistogramView.setData(
                 null, null,
                 null, null,
                 null, null,
-                hourly.cloudCover?.toFloat() ?: 0f, if (hourly.cloudCover != null) ProbabilityUnit.PERCENT.getValueText(activity, hourly.cloudCover) else null,
+                hourly.cloudCover?.toFloat() ?: 0f, hourly.cloudCover?.let { ProbabilityUnit.PERCENT.getValueText(activity, it) },
                 100f, 0f
             )
             mPolylineAndHistogramView.setLineColors(

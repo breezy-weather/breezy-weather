@@ -570,8 +570,6 @@
     <string name="pollen_level_0">لاشيء</string>
     <string name="pollen_level_2">منخفض</string>
     <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
-    <string name="location_resident_location">موقع الإقامة</string>
-    <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء %s</string>
     <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار %s</string>
@@ -587,7 +585,6 @@
     <string name="settings_weather_sources_per_location_summary">تخصيص مصادر بيانات الطقس لهذا الموقع</string>
     <string name="about_privacy_policy">سياسة الخصوصية</string>
     <string name="about_contact">الاتصال</string>
-    <string name="location_resident_location_summaryOn">مفعل مخفي في حدود %s من الموقع الحالي.</string>
     <string name="common_weather_text_rain_moderate">أمطر متوسطة</string>
     <string name="common_weather_text_rain_snow_mixed_light">مطر خفيف وثلج مجتمعان</string>
     <string name="common_weather_text_rain_heavy">مطر غزير</string>

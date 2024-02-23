@@ -192,7 +192,6 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="location_search_no_results_advice">Provjerite je li vaša pretraga ispravno napisana ili previše specifična. Alternativno, možete isprobati drugi izvor podataka o vremenu koji može dati različite rezultate pretraživanja lokacije.</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
-    <string name="location_resident_location">Lokacija stanovanja</string>
     <string name="action_add_from_map">Dodajte sa mape</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
     <string name="action_restart">Ponovo pokreni</string>
@@ -455,7 +454,6 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “%s”</string>
     <string name="location_search_no_results">%1$s ne može pronaći %2$s</string>
-    <string name="location_resident_location_summaryOn">Omogućeno. Skriveno dok ste unutar %s trenutne lokacije.</string>
     <string name="location_service_native">Izvorni API</string>
     <string name="action_location_list">Lista lokacija</string>
     <string name="action_search">Pretražite</string>
@@ -624,7 +622,6 @@
     <string name="settings_color_app">Prati aplikaciju</string>
     <string name="pollen_ragweed">Ambrozija</string>
     <string name="location_search_placeholder">Pretražite lokaciju…</string>
-    <string name="location_resident_location_summaryOff">Onemogućeno. Lokacija uvijek dostupna.</string>
     <string name="location_message_permission_background_missing">Dozvola za pristup lokaciji u pozadini nije data</string>
     <string name="message_parsing_error_title">Neuspješno analiziranje vremenskih podataka</string>
     <string name="widget_label_clock_font">Font sata</string>

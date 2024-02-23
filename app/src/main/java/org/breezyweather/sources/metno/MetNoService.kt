@@ -20,9 +20,9 @@ import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -67,21 +67,21 @@ class MetNoService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble()
+            location.latitude,
+            location.longitude
         )
 
         val formattedDate = Date().getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
         val sun = mApi.getSun(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             formattedDate
         )
         val moon = mApi.getMoon(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             formattedDate
         )
 
@@ -96,8 +96,8 @@ class MetNoService @Inject constructor(
         ) {
             mApi.getNowcast(
                 userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble()
+                location.latitude,
+                location.longitude
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(MetNoNowcastResult())
@@ -117,8 +117,8 @@ class MetNoService @Inject constructor(
             ) {
                 mApi.getAirQuality(
                     userAgent,
-                    location.latitude.toDouble(),
-                    location.longitude.toDouble()
+                    location.latitude,
+                    location.longitude
                 ).onErrorResumeNext {
                     Observable.create { emitter ->
                         emitter.onNext(MetNoAirQualityResult())
@@ -188,8 +188,8 @@ class MetNoService @Inject constructor(
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 mApi.getNowcast(
                     userAgent,
-                    location.latitude.toDouble(),
-                    location.longitude.toDouble()
+                    location.latitude,
+                    location.longitude
                 )
             } else {
                 Observable.create { emitter ->
@@ -201,8 +201,8 @@ class MetNoService @Inject constructor(
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                 mApi.getAirQuality(
                     userAgent,
-                    location.latitude.toDouble(),
-                    location.longitude.toDouble()
+                    location.latitude,
+                    location.longitude
                 )
             } else {
                 Observable.create { emitter ->

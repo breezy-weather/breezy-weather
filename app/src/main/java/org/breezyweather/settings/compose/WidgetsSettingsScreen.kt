@@ -29,10 +29,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
-import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
@@ -48,6 +45,9 @@ fun WidgetsSettingsScreen(
     notificationTemperatureIconEnabled: Boolean,
     paddingValues: PaddingValues,
     postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
+    updateWidgetIfNecessary: (Context) -> Unit,
+    updateNotificationIfNecessary: (Context) -> Unit,
+    updateGadgetIfNecessary: (Context) -> Unit,
 ) = PreferenceScreen(paddingValues = paddingValues) {
     // widget.
     sectionHeaderItem(R.string.settings_widgets_section_general)
@@ -82,7 +82,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
-                Widgets.updateWidgetIfNecessary(context)
+                updateWidgetIfNecessary(context)
             },
         )
     }
@@ -94,7 +94,7 @@ fun WidgetsSettingsScreen(
             checked = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons,
             onValueChanged = {
                 SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons = it
-                Widgets.updateWidgetIfNecessary(context)
+                updateWidgetIfNecessary(context)
             },
         )
     }
@@ -231,7 +231,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled = it
                 if (it) { // open notification.
                     postNotificationPermissionEnsurer {
-                        Notifications.updateNotificationIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 } else { // close notification.
                     WidgetNotificationIMP.cancelNotification(context)
@@ -252,7 +252,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .isWidgetNotificationPersistent = it
-                Notifications.updateNotificationIfNecessary(context)
+                updateNotificationIfNecessary(context)
             }
         )
     }
@@ -267,7 +267,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .widgetNotificationStyle = NotificationStyle.getInstance(it)
-                Notifications.updateNotificationIfNecessary(context)
+                updateNotificationIfNecessary(context)
             },
         )
     }
@@ -285,7 +285,7 @@ fun WidgetsSettingsScreen(
                     SettingsManager
                         .getInstance(context)
                         .isWidgetNotificationTemperatureIconEnabled = it
-                    Notifications.updateNotificationIfNecessary(context)
+                    updateNotificationIfNecessary(context)
                 }
             )
         }
@@ -302,7 +302,7 @@ fun WidgetsSettingsScreen(
                     SettingsManager
                         .getInstance(context)
                         .isWidgetNotificationUsingFeelsLike = it
-                    Notifications.updateNotificationIfNecessary(context)
+                    updateNotificationIfNecessary(context)
                 }
             )
         }
@@ -324,7 +324,7 @@ fun WidgetsSettingsScreen(
                         .getInstance(context)
                         .isGadgetBridgeSupportEnabled = it
                     if (it) {
-                        Gadgets.updateGadgetIfNecessary(context)
+                        updateGadgetIfNecessary(context)
                     }
                 }
             )

@@ -571,8 +571,6 @@
     <string name="pollen_birch">Берёза</string>
     <string name="pollen_level_3">Средний</string>
     <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
-    <string name="location_resident_location">Местоположение места жительства</string>
-    <string name="location_resident_location_summaryOff">Выключено. Местоположение всегда доступно.</string>
     <string name="action_delete">Удалить</string>
     <string name="weather_pollen_data_by">Информация об аллергенах предоставлена %s</string>
     <string name="weather_alert_data_by">Оповещения о погоде предоставлены %s</string>
@@ -586,7 +584,6 @@
     <string name="action_save">Сохранить</string>
     <string name="settings_weather_source_main">Основной источник</string>
     <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде для этого местоположения</string>
-    <string name="location_resident_location_summaryOn">Включено. Скрыто когда на расстоянии больше %s от текущего местоположения.</string>
     <string name="about_privacy_policy">Политика конфиденциальности</string>
     <string name="about_contact">Контакты</string>
     <string name="common_weather_text_rain_showers">Ливень</string>

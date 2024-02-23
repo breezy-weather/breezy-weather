@@ -25,7 +25,7 @@ interface EcccApi {
     @GET("v2/{lang}/Location/{lat},{lon}")
     fun getForecast(
         @Path("lang") lang: String,
-        @Path("lat") lat: Float,
-        @Path("lon") lon: Float
+        @Path("lat") lat: Double,
+        @Path("lon") lon: Double
     ): Observable<List<EcccResult>>
 }

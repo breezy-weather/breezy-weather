@@ -23,11 +23,13 @@ import android.view.View
 import android.view.ViewGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.weather.Precipitation
+import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getPrecipitationColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -69,7 +71,7 @@ class HourlyPrecipitationAdapter(
             )
 
             val precipitation = hourly.precipitation?.total
-            if (precipitation != null && precipitation > 0f) {
+            if (precipitation != null && precipitation > 0.0) {
                 talkBackBuilder.append(", ")
                     .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
             } else {
@@ -80,14 +82,14 @@ class HourlyPrecipitationAdapter(
                 null, null,
                 null, null,
                 null, null,
-                precipitation ?: 0f,
+                precipitation?.toFloat() ?: 0f,
                 precipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
                 mHighestPrecipitation,
                 0f
             )
             mPolylineAndHistogramView.setLineColors(
-                if (precipitation != null) hourly.precipitation.getPrecipitationColor(activity) else Color.TRANSPARENT,
-                if (precipitation != null) hourly.precipitation.getPrecipitationColor(activity) else Color.TRANSPARENT,
+                hourly.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
+                hourly.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
 
@@ -116,9 +118,9 @@ class HourlyPrecipitationAdapter(
     }
 
     init {
-        mHighestPrecipitation = location.weather!!.nextHourlyForecast
+        mHighestPrecipitation = (location.weather!!.nextHourlyForecast
             .mapNotNull { it.precipitation?.total }
-            .maxOrNull() ?: 0f
+            .maxOrNull() ?: 0.0).toFloat()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -148,7 +150,7 @@ class HourlyPrecipitationAdapter(
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_LIGHT,
+                Precipitation.PRECIPITATION_LIGHT.toFloat(),
                 activity.getString(R.string.precipitation_intensity_light),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -156,7 +158,7 @@ class HourlyPrecipitationAdapter(
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HEAVY,
+                Precipitation.PRECIPITATION_HEAVY.toFloat(),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE

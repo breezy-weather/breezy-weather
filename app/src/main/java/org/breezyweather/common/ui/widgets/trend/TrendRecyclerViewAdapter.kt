@@ -17,7 +17,7 @@
 package org.breezyweather.common.ui.widgets.trend
 
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 
 abstract class TrendRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(
     private var mLocation: Location

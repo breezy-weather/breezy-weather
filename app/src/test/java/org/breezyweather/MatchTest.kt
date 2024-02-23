@@ -20,7 +20,7 @@ import kotlinx.coroutines.test.runTest
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.junit.jupiter.api.Test
 import java.text.DecimalFormat
-import java.util.*
+import java.util.Date
 import java.util.regex.Pattern
 
 // TODO: Use functions from AccuResultConverter, or just implement AccuConverter differently so we don't have to

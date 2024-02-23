@@ -18,7 +18,7 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.Wind
+import breezyweather.domain.weather.model.Wind
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl
@@ -26,29 +26,29 @@ import org.breezyweather.common.extensions.isRtl
 // actual speed = speed(km/h) * factor.
 enum class SpeedUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float
-): UnitEnum<Float> {
+    override val convertUnit: (Double) -> Double
+): UnitEnum<Double> {
 
     MPS("mps", { valueInDefaultUnit -> valueInDefaultUnit }),
-    KPH("kph", { valueInDefaultUnit -> valueInDefaultUnit.times(3.6f) }),
-    KN("kn", { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385f) }),
-    MPH("mph", { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694f) }),
-    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) }),
+    KPH("kph", { valueInDefaultUnit -> valueInDefaultUnit.times(3.6) }),
+    KN("kn", { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385) }),
+    MPH("mph", { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694) }),
+    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084) }),
     BF("bf", { valueInDefaultUnit -> when (valueInDefaultUnit) {
-        in 0f..Wind.WIND_SPEED_0 -> 0f
-        in Wind.WIND_SPEED_0..Wind.WIND_SPEED_1 -> 1f
-        in Wind.WIND_SPEED_1..Wind.WIND_SPEED_2 -> 2f
-        in Wind.WIND_SPEED_2..Wind.WIND_SPEED_3 -> 3f
-        in Wind.WIND_SPEED_3..Wind.WIND_SPEED_4 -> 4f
-        in Wind.WIND_SPEED_4..Wind.WIND_SPEED_5 -> 5f
-        in Wind.WIND_SPEED_5..Wind.WIND_SPEED_6 -> 6f
-        in Wind.WIND_SPEED_6..Wind.WIND_SPEED_7 -> 7f
-        in Wind.WIND_SPEED_7..Wind.WIND_SPEED_8 -> 8f
-        in Wind.WIND_SPEED_8..Wind.WIND_SPEED_9 -> 9f
-        in Wind.WIND_SPEED_9..Wind.WIND_SPEED_10 -> 10f
-        in Wind.WIND_SPEED_10..Wind.WIND_SPEED_11 -> 11f
-        in Wind.WIND_SPEED_11..Float.MAX_VALUE -> 12f
-        else -> 0f
+        in 0.0..Wind.WIND_SPEED_0 -> 0.0
+        in Wind.WIND_SPEED_0..Wind.WIND_SPEED_1 -> 1.0
+        in Wind.WIND_SPEED_1..Wind.WIND_SPEED_2 -> 2.0
+        in Wind.WIND_SPEED_2..Wind.WIND_SPEED_3 -> 3.0
+        in Wind.WIND_SPEED_3..Wind.WIND_SPEED_4 -> 4.0
+        in Wind.WIND_SPEED_4..Wind.WIND_SPEED_5 -> 5.0
+        in Wind.WIND_SPEED_5..Wind.WIND_SPEED_6 -> 6.0
+        in Wind.WIND_SPEED_6..Wind.WIND_SPEED_7 -> 7.0
+        in Wind.WIND_SPEED_7..Wind.WIND_SPEED_8 -> 8.0
+        in Wind.WIND_SPEED_8..Wind.WIND_SPEED_9 -> 9.0
+        in Wind.WIND_SPEED_9..Wind.WIND_SPEED_10 -> 10.0
+        in Wind.WIND_SPEED_10..Wind.WIND_SPEED_11 -> 11.0
+        in Wind.WIND_SPEED_11..Double.MAX_VALUE -> 12.0
+        else -> 0.0
     } });
 
     companion object {
@@ -73,20 +73,20 @@ enum class SpeedUnit(
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
+    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
@@ -98,12 +98,12 @@ enum class SpeedUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getVoiceText(
         context = context,

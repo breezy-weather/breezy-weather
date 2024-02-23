@@ -18,16 +18,21 @@ package org.breezyweather.sources
 
 import android.Manifest
 import android.content.Context
+import android.content.pm.ShortcutInfo
 import android.os.Build
+import androidx.annotation.RequiresApi
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Base
-import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Base
+import breezyweather.domain.weather.model.Weather
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -44,22 +49,29 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
+import org.breezyweather.common.extensions.shortcutManager
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationResult
-import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ParameterizedLocationSource
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.LocationParameterEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.common.utils.helpers.ShortcutsHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.RefreshErrorType
+import org.breezyweather.remoteviews.Gadgets
+import org.breezyweather.remoteviews.Notifications
+import org.breezyweather.remoteviews.Widgets
+import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
+import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -68,9 +80,12 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
+import kotlin.math.min
 
 class RefreshHelper @Inject constructor(
-    private val sourceManager: SourceManager
+    private val sourceManager: SourceManager,
+    private val locationRepository: LocationRepository,
+    private val weatherRepository: WeatherRepository
 ) {
     suspend fun getLocation(
         context: Context, location: Location, background: Boolean
@@ -96,12 +111,12 @@ class RefreshHelper @Inject constructor(
                     || currentLocation.needsGeocodeRefresh
                 ) {
                     try {
-                        weatherService
+                        val locationWithGeocodeInfo = weatherService
                             .requestReverseGeocodingLocation(context, currentLocation)
                             .map { locationList ->
                                 if (locationList.isNotEmpty()) {
                                     val result = locationList[0]
-                                    val locationWithGeocodeInfo = currentLocation.copy(
+                                    currentLocation.copy(
                                         cityId = result.cityId,
                                         timeZone = result.timeZone,
                                         country = result.country,
@@ -112,17 +127,17 @@ class RefreshHelper @Inject constructor(
                                         district = result.district ?: "",
                                         needsGeocodeRefresh = false
                                     )
-                                    LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
-                                    locationWithGeocodeInfo
                                 } else {
                                     throw ReverseGeocodingException()
                                 }
                             }.awaitFirstOrElse {
                                 throw ReverseGeocodingException()
                             }
+                        locationRepository.update(locationWithGeocodeInfo)
+                        locationWithGeocodeInfo
                     } catch (e: Throwable) {
                         if (location.isCurrentPosition) {
-                            LocationEntityRepository.writeLocation(currentLocation)
+                            locationRepository.update(currentLocation)
                         }
                         return LocationResult(
                             currentLocation,
@@ -137,7 +152,7 @@ class RefreshHelper @Inject constructor(
                 // but write in case the location service has provided us information for current
                 if (location.isCurrentPosition || location.needsGeocodeRefresh) {
                     val currentLocationNoGeocodeRefresh = currentLocation.copy(needsGeocodeRefresh = false)
-                    LocationEntityRepository.writeLocation(currentLocationNoGeocodeRefresh)
+                    locationRepository.update(currentLocationNoGeocodeRefresh)
                     currentLocationNoGeocodeRefresh
                 } else {
                     currentLocation
@@ -209,6 +224,10 @@ class RefreshHelper @Inject constructor(
                 )
             )
         }
+    }
+
+    suspend fun updateLocation(location: Location, oldFormattedId: String? = null) {
+        locationRepository.update(location, oldFormattedId)
     }
 
     fun getPermissions(context: Context): List<String> {
@@ -328,10 +347,10 @@ class RefreshHelper @Inject constructor(
                 // If there are no secondary sources to process, let’s just return the same weather
                 if (isMainDataValid && mainFeaturesIgnored.isEmpty()) {
                     LogHelper.log(msg = "Main weather data is still valid")
-                    val newWeather = location.weather.copy(
+                    val newWeather = location.weather!!.copy(
                         base = base
                     )
-                    WeatherEntityRepository.writeWeather(location, newWeather)
+                    weatherRepository.insert(location, newWeather)
                     return WeatherResult(newWeather)
                 }
             }
@@ -481,31 +500,31 @@ class RefreshHelper @Inject constructor(
                  */
                 SecondaryWeatherWrapper(
                     airQuality = if (!location.airQualitySource.isNullOrEmpty() && location.airQualitySource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.airQualitySource) { null }?.airQuality?.let {
+                        secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
                             airQualityUpdateTime = Date()
                             it
                         } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
                     pollen = if (!location.pollenSource.isNullOrEmpty() && location.pollenSource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.pollenSource) { null }?.pollen?.let {
+                        secondarySourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
                             pollenUpdateTime = Date()
                             it
                         } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
                     } else null,
                     minutelyForecast = if (!location.minutelySource.isNullOrEmpty() && location.minutelySource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.minutelySource) { null }?.minutelyForecast?.let {
+                        secondarySourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
                             minutelyUpdateTime = Date()
                             it
                         } ?: getMinutelyFromWeather(location.weather)
                     } else null,
                     alertList = if (!location.alertSource.isNullOrEmpty() && location.alertSource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.alertSource) { null }?.alertList?.let {
+                        secondarySourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
                             alertsUpdateTime = Date()
                             it
                         } ?: getAlertsFromWeather(location.weather)
                     } else null,
                     normals = if (!location.normalsSource.isNullOrEmpty() && location.normalsSource != location.weatherSource) {
-                        secondarySourceCalls.getOrElse(location.normalsSource) { null }?.normals?.let {
+                        secondarySourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
                             normalsUpdateTime = Date()
                             it
                         } ?: getNormalsFromWeather(location)
@@ -576,11 +595,11 @@ class RefreshHelper @Inject constructor(
                     ?: mainWeatherCompleted.minutelyForecast ?: emptyList(),
                 alertList = (secondaryWeatherWrapper?.alertList ?: mainWeatherCompleted.alertList)?.filter {
                     // Don’t save past alerts in database
-                    it.endDate == null || it.endDate.time > Date().time
+                    (it.endDate?.time ?: 0L) > Date().time
                 } ?: emptyList()
             )
-            LocationParameterEntityRepository.writeLocationParameters(location.formattedId, locationParameters)
-            WeatherEntityRepository.writeWeather(location, weather)
+            locationRepository.insertParameters(location.formattedId, locationParameters)
+            weatherRepository.insert(location, weather)
             return WeatherResult(weather, errors)
         } catch (e: Throwable) {
             e.printStackTrace()
@@ -647,6 +666,107 @@ class RefreshHelper @Inject constructor(
         return searchService.requestLocationSearch(context, query)
     }
 
+    suspend fun updateWidgetIfNecessary(context: Context) {
+        val locationList = locationRepository.getXLocations(3, withParameters = false).toMutableList()
+        if (locationList.isNotEmpty()) {
+            for (i in locationList.indices) {
+                locationList[i] = locationList[i].copy(
+                    weather = weatherRepository.getWeatherByLocationId(
+                        locationList[i].formattedId,
+                        withDaily = true,
+                        withHourly = i == 0, // Not needed in multi city
+                        withMinutely = false,
+                        withAlerts = i == 0 // Not needed in multi city
+                    )
+                )
+            }
+            Widgets.updateWidgetIfNecessary(context, locationList[0])
+            Widgets.updateWidgetIfNecessary(context, locationList)
+        }
+    }
+
+    suspend fun updateNotificationIfNecessary(context: Context) {
+        if (WidgetNotificationIMP.isEnabled(context)) {
+            val locationList = locationRepository.getXLocations(5, withParameters = false).toMutableList()
+            for (i in locationList.indices) {
+                locationList[i] = locationList[i].copy(
+                    weather = weatherRepository.getWeatherByLocationId(
+                        locationList[i].formattedId,
+                        withDaily = true,
+                        withHourly = i == 0, // Not needed in multi city
+                        withMinutely = false,
+                        withAlerts = i == 0 // Not needed in multi city
+                    )
+                )
+            }
+            Notifications.updateNotificationIfNecessary(context, locationList)
+        }
+    }
+
+    suspend fun updateGadgetIfNecessary(context: Context) {
+        if (GadgetBridgeService.isEnabled(context)) {
+            val locationList =
+                locationRepository.getXLocations(1, withParameters = false)//.toMutableList()
+            if (locationList.isNotEmpty()) {
+                Gadgets.updateGadgetIfNecessary(
+                    context,
+                    locationList[0].copy(
+                        weather = weatherRepository.getWeatherByLocationId(
+                            locationList[0].formattedId,
+                            withDaily = true,
+                            withHourly = true,
+                            withMinutely = false,
+                            withAlerts = false
+                        )
+                    )
+                )
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
+    suspend fun refreshShortcuts(context: Context, locationList: List<Location>) {
+        val shortcutManager = context.shortcutManager ?: return
+        val provider = ResourcesProviderFactory.newInstance
+        val shortcutList: MutableList<ShortcutInfo> = ArrayList()
+
+        // location list.
+        val count = min(shortcutManager.maxShortcutCountPerActivity - 1, locationList.size)
+        for (i in 0 until count) {
+            val weather = locationList[i].weather ?: weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
+            val icon =
+                weather?.current?.weatherCode?.let { weatherCode ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        ShortcutsHelper.getAdaptiveIcon(
+                            provider,
+                            weatherCode,
+                            locationList[i].isDaylight
+                        )
+                    } else {
+                        ShortcutsHelper.getIcon(
+                            provider,
+                            weatherCode,
+                            locationList[i].isDaylight
+                        )
+                    }
+                } ?: ShortcutsHelper.getIcon(provider, WeatherCode.CLEAR, true)
+            val title = locationList[i].getPlace(context, true)
+            shortcutList.add(
+                ShortcutInfo.Builder(context, locationList[i].formattedId)
+                    .setIcon(icon)
+                    .setShortLabel(title)
+                    .setLongLabel(title)
+                    .setIntent(IntentHelper.buildMainActivityIntent(locationList[i]))
+                    .build()
+            )
+        }
+        try {
+            shortcutManager.setDynamicShortcuts(shortcutList)
+        } catch (ignore: Exception) {
+            // do nothing.
+        }
+    }
+
     /**
      * For a given location, will tell if data is still valid or needs a refresh
      * @param feature if null, will tell for main weather
@@ -664,22 +784,22 @@ class RefreshHelper @Inject constructor(
         when (feature) {
             SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY -> {
                 return isUpdateStillValid(
-                    location.weather.base.airQualityUpdateTime,
+                    location.weather!!.base.airQualityUpdateTime,
                     if (isRestricted) WAIT_AIR_QUALITY_RESTRICTED else WAIT_AIR_QUALITY,
                     minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_POLLEN -> {
                 return isUpdateStillValid(
-                    location.weather.base.pollenUpdateTime,
+                    location.weather!!.base.pollenUpdateTime,
                     if (isRestricted) WAIT_POLLEN_RESTRICTED else WAIT_POLLEN,
                     minimumTime
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_MINUTELY -> {
                 return isUpdateStillValid(
-                    location.weather.base.minutelyUpdateTime,
-                    if (location.weather.minutelyForecast.none { it.precipitationIntensity != null && it.precipitationIntensity!! > 0 }) {
+                    location.weather!!.base.minutelyUpdateTime,
+                    if (location.weather!!.minutelyForecast.none { (it.precipitationIntensity ?: 0.0) > 0 }) {
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED else WAIT_MINUTELY
                     } else {
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED_ONGOING else WAIT_MINUTELY_ONGOING
@@ -689,8 +809,8 @@ class RefreshHelper @Inject constructor(
             }
             SecondaryWeatherSourceFeature.FEATURE_ALERT -> {
                 return isUpdateStillValid(
-                    location.weather.base.alertsUpdateTime,
-                    if (location.weather.currentAlertList.isEmpty()) {
+                    location.weather!!.base.alertsUpdateTime,
+                    if (location.weather!!.currentAlertList.isEmpty()) {
                         if (isRestricted) WAIT_ALERTS_RESTRICTED else WAIT_ALERTS
                     } else {
                         if (isRestricted) WAIT_ALERTS_RESTRICTED_ONGOING else WAIT_ALERTS_ONGOING
@@ -699,22 +819,22 @@ class RefreshHelper @Inject constructor(
                 )
             }
             SecondaryWeatherSourceFeature.FEATURE_NORMALS -> {
-                if (location.weather.base.normalsUpdateTime == null) return true
+                if (location.weather!!.base.normalsUpdateTime == null) return true
 
                 if (location.isCurrentPosition) {
                     return isUpdateStillValid(
-                        location.weather.base.normalsUpdateTime,
+                        location.weather!!.base.normalsUpdateTime,
                         if (isRestricted) WAIT_NORMALS_CURRENT_RESTRICTED else WAIT_NORMALS_CURRENT
                     )
                 } else {
-                    if (location.weather.normals?.month == null) return false
+                    if (location.weather!!.normals?.month == null) return false
                     val cal = Date().toCalendarWithTimeZone(location.timeZone)
-                    return location.weather.normals.month == cal[Calendar.MONTH]
+                    return location.weather!!.normals!!.month == cal[Calendar.MONTH]
                 }
             }
             else -> {
                 return isUpdateStillValid(
-                    location.weather.base.mainUpdateTime,
+                    location.weather!!.base.mainUpdateTime,
                     if (isRestricted) WAIT_MAIN_RESTRICTED else WAIT_MAIN,
                     minimumTime
                 )

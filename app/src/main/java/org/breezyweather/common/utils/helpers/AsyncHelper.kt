@@ -21,7 +21,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
 object AsyncHelper {
@@ -44,31 +43,6 @@ object AsyncHelper {
         return Controller(
             Observable.create { _: ObservableEmitter<Any>? -> runnable.run() }
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
-        )
-    }
-
-    fun <T> runOnExecutor(
-        task: (emitter: Emitter<T>) -> Unit,
-        callback: (t: T, done: Boolean) -> Unit,
-        executor: Executor
-    ): Controller {
-        return Controller(
-            Observable.create { emitter: ObservableEmitter<Data<T>> ->
-                task(Emitter(emitter))
-            }
-                .subscribeOn(Schedulers.from(executor))
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { data: Data<T> -> callback(data.t, data.done) }
-                .subscribe()
-        )
-    }
-
-    fun runOnExecutor(runnable: Runnable, executor: Executor): Controller {
-        return Controller(
-            Observable.create { _: ObservableEmitter<Any>? -> runnable.run() }
-                .subscribeOn(Schedulers.from(executor))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
         )

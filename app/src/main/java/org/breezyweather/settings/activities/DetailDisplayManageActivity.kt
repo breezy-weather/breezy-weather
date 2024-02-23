@@ -40,7 +40,6 @@ import org.breezyweather.databinding.ActivityDetailDisplayManageBinding
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.adapters.DetailDisplayAdapter
 import org.breezyweather.theme.ThemeManager
-import java.util.*
 
 class DetailDisplayManageActivity : GeoActivity() {
     private lateinit var mBinding: ActivityDetailDisplayManageBinding

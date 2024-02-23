@@ -29,8 +29,8 @@ interface NwsApi {
     @GET("points/{lat},{lon}")
     fun getPoints(
         @Header("User-Agent") userAgent: String,
-        @Path("lat") lat: Float,
-        @Path("lon") lon: Float
+        @Path("lat") lat: Double,
+        @Path("lon") lon: Double
     ): Observable<NwsPointResult>
 
     @GET("gridpoints/{gridId}/{gridX},{gridY}")

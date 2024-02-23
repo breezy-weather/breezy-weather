@@ -23,7 +23,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
 

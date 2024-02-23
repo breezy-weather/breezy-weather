@@ -18,13 +18,40 @@ package org.breezyweather.remoteviews.config
 
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
+import javax.inject.Inject
 
 /**
  * Week widget config activity.
  */
+@AndroidEntryPoint
 class WeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
+    var locationNow: Location? = null
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
+    override suspend fun initLocations() {
+        val location = locationRepository.getFirstLocation(withParameters = false)
+        locationNow = location?.copy(
+            weather = weatherRepository.getWeatherByLocationId(
+                location.formattedId,
+                withDaily = true,
+                withHourly = false,
+                withMinutely = false,
+                withAlerts = false
+            )
+        )
+    }
+
     override fun initData() {
         super.initData()
         val widgetStyles = resources.getStringArray(R.array.widget_week_styles)

@@ -23,10 +23,11 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -61,8 +62,8 @@ class HourlyVisibilityAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            if (hourly.visibility != null) {
-                talkBackBuilder.append(", ").append(mVisibilityUnit.getValueText(activity, hourly.visibility))
+            hourly.visibility?.let {
+                talkBackBuilder.append(", ").append(mVisibilityUnit.getValueText(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -73,7 +74,7 @@ class HourlyVisibilityAdapter(
             mPolylineAndHistogramView.setData(
                 buildVisibilityArrayForItem(mVisibilities, position),
                 null,
-                if (hourly.visibility != null) mVisibilityUnit.getValueTextWithoutUnit(hourly.visibility) else null,
+                hourly.visibility?.let { mVisibilityUnit.getValueTextWithoutUnit(it) },
                 null,
                 mHighestVisibility,
                 mLowestVisibility,
@@ -134,7 +135,7 @@ class HourlyVisibilityAdapter(
         run {
             var i = 0
             while (i < mVisibilities.size) {
-                mVisibilities[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.visibility
+                mVisibilities[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.visibility?.toFloat()
                 i += 2
             }
         }
@@ -153,10 +154,10 @@ class HourlyVisibilityAdapter(
             .forEach { hourly ->
                 hourly.visibility?.let {
                     if (mHighestVisibility == null || it > mHighestVisibility!!) {
-                        mHighestVisibility = it
+                        mHighestVisibility = it.toFloat()
                     }
                     if (mLowestVisibility == null || it < mLowestVisibility!!) {
-                        mLowestVisibility = it
+                        mLowestVisibility = it.toFloat()
                     }
                 }
             }

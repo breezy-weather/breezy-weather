@@ -36,7 +36,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
-import org.breezyweather.common.basic.models.weather.Pollen
+import breezyweather.domain.weather.model.Pollen
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getConcentration
+import org.breezyweather.domain.weather.model.getIndexName
+import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.theme.compose.DayNightTheme
 
 @Composable

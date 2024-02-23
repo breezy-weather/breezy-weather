@@ -18,25 +18,25 @@ package org.breezyweather.sources.openmeteo
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Pollen
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.AirQualityWrapper
-import org.breezyweather.common.basic.wrappers.PollenWrapper
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Pollen
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.PollenWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
@@ -103,7 +103,7 @@ fun convert(
                 gusts = weatherResult.current?.windGusts
             ),
             uV = UV(index = weatherResult.current?.uvIndex),
-            relativeHumidity = weatherResult.current?.relativeHumidity?.toFloat(),
+            relativeHumidity = weatherResult.current?.relativeHumidity?.toDouble(),
             dewPoint = weatherResult.current?.dewPoint,
             pressure = weatherResult.current?.pressureMsl,
             cloudCover = weatherResult.current?.cloudCover,
@@ -172,10 +172,10 @@ private fun getHourlyList(
                     snow = hourlyResult.snowfall?.getOrNull(i)
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = hourlyResult.precipitationProbability?.getOrNull(i)?.toFloat()
+                    total = hourlyResult.precipitationProbability?.getOrNull(i)?.toDouble()
                 ),
                 wind = Wind(
-                    degree = hourlyResult.windDirection?.getOrNull(i)?.toFloat(),
+                    degree = hourlyResult.windDirection?.getOrNull(i)?.toDouble(),
                     speed = hourlyResult.windSpeed?.getOrNull(i),
                     gusts = hourlyResult.windGusts?.getOrNull(i)
                 ),
@@ -185,7 +185,7 @@ private fun getHourlyList(
                     sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(airQualityIndex),
                     nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(airQualityIndex),
                     o3 = airQualityResult.hourly.ozone?.getOrNull(airQualityIndex),
-                    cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0)?.toFloat(),
+                    cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0),
                 ) else null,
                 pollen = if (airQualityIndex != null && airQualityIndex != -1) Pollen(
                     alder = airQualityResult.hourly.alderPollen?.getOrNull(airQualityIndex)?.roundToInt(),
@@ -196,11 +196,11 @@ private fun getHourlyList(
                     ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(airQualityIndex)?.roundToInt(),
                 ) else null,
                 uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
-                relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toFloat(),
+                relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),
                 dewPoint = hourlyResult.dewPoint?.getOrNull(i),
                 pressure = hourlyResult.pressureMsl?.getOrNull(i),
                 cloudCover = hourlyResult.cloudCover?.getOrNull(i),
-                visibility = hourlyResult.visibility?.getOrNull(i)?.toFloat()
+                visibility = hourlyResult.visibility?.getOrNull(i)?.toDouble()
             )
         )
     }
@@ -303,7 +303,7 @@ fun convertSecondary(
                     sO2 = hourlyAirQualityResult.sulphurDioxide?.getOrNull(i),
                     nO2 = hourlyAirQualityResult.nitrogenDioxide?.getOrNull(i),
                     o3 = hourlyAirQualityResult.ozone?.getOrNull(i),
-                    cO = hourlyAirQualityResult.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
+                    cO = hourlyAirQualityResult.carbonMonoxide?.getOrNull(i)?.div(1000.0),
                 )
             }
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {

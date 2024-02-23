@@ -19,25 +19,32 @@ package org.breezyweather.background.forecast
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Build
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.ForegroundInfo
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import cancelNotification
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.settings.SettingsManager
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
-class TomorrowForecastNotificationJob(
-    private val context: Context, workerParams: WorkerParameters
+@HiltWorker
+class TomorrowForecastNotificationJob @AssistedInject constructor(
+    @Assisted private val context: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val locationRepository: LocationRepository,
+    private val weatherRepository: WeatherRepository
 ) : CoroutineWorker(context, workerParams) {
 
     private val notifier = ForecastNotificationNotifier(context)
@@ -46,15 +53,20 @@ class TomorrowForecastNotificationJob(
         setForegroundSafely()
 
         return try {
-            val locationList = LocationEntityRepository.readLocationList()
-            if (locationList.isNotEmpty()) {
-                val location = locationList[0].copy(weather = WeatherEntityRepository.readWeather(
-                    locationList[0]
+            val location = locationRepository.getFirstLocation(withParameters = false)
+            if (location != null) {
+                notifier.showComplete(
+                    location.copy(
+                        weather = weatherRepository.getWeatherByLocationId(
+                            location.formattedId,
+                            withDaily = true,
+                            withHourly = false,
+                            withMinutely = false,
+                            withAlerts = false
+                        )
+                    ),
+                    today = false
                 )
-                )
-                notifier.showComplete(location, today = false)
-            } else {
-                // No location added yet, skipping
             }
             Result.success()
         } catch (e: Exception) {

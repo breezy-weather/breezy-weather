@@ -18,23 +18,23 @@ package org.breezyweather.sources.china
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.AirQualityWrapper
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.china.json.ChinaForecastDaily
@@ -53,8 +53,8 @@ fun convert(
 ): Location {
     return Location(
         cityId = result.locationKey!!.replace("weathercn:", ""),
-        latitude = location?.latitude ?: result.latitude!!.toFloat(),
-        longitude = location?.longitude ?: result.longitude!!.toFloat(),
+        latitude = location?.latitude ?: result.latitude!!.toDouble(),
+        longitude = location?.longitude ?: result.longitude!!.toDouble(),
         timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
         country = "",
         countryCode = "CN",
@@ -84,34 +84,34 @@ fun convert(
             weatherText = getWeatherText(forecastResult.current.weather),
             weatherCode = getWeatherCode(forecastResult.current.weather),
             temperature = Temperature(
-                temperature = forecastResult.current.temperature?.value?.toFloatOrNull(),
-                apparentTemperature = forecastResult.current.feelsLike?.value?.toFloatOrNull()
+                temperature = forecastResult.current.temperature?.value?.toDoubleOrNull(),
+                apparentTemperature = forecastResult.current.feelsLike?.value?.toDoubleOrNull()
             ),
             wind = if (forecastResult.current.wind != null) Wind(
-                degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
-                speed = forecastResult.current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)?.toFloat()
+                degree = forecastResult.current.wind.direction?.value?.toDoubleOrNull(),
+                speed = forecastResult.current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)
             ) else null,
             uV = if (forecastResult.current.uvIndex != null) {
-                UV(index = forecastResult.current.uvIndex.toFloatOrNull())
+                UV(index = forecastResult.current.uvIndex.toDoubleOrNull())
             } else null,
             airQuality = forecastResult.aqi?.let {
                 AirQuality(
-                    pM25 = it.pm25?.toFloat(),
-                    pM10 = it.pm10?.toFloat(),
-                    sO2 = it.so2?.toFloat(),
-                    nO2 = it.no2?.toFloat(),
-                    o3 = it.o3?.toFloat(),
-                    cO = it.co?.toFloat()
+                    pM25 = it.pm25?.toDoubleOrNull(),
+                    pM10 = it.pm10?.toDoubleOrNull(),
+                    sO2 = it.so2?.toDoubleOrNull(),
+                    nO2 = it.no2?.toDoubleOrNull(),
+                    o3 = it.o3?.toDoubleOrNull(),
+                    cO = it.co?.toDoubleOrNull()
                 )
             },
             relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) {
-                forecastResult.current.humidity!!.value!!.toFloatOrNull()
+                forecastResult.current.humidity!!.value!!.toDoubleOrNull()
             } else null,
             pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) {
-                forecastResult.current.pressure!!.value!!.toFloat()
+                forecastResult.current.pressure!!.value!!.toDoubleOrNull()
             } else null,
             visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) {
-                forecastResult.current.visibility!!.value!!.toFloatOrNull()?.times(1000)
+                forecastResult.current.visibility!!.value!!.toDoubleOrNull()?.times(1000)
             } else null,
             hourlyForecast = if (minutelyResult.precipitation != null) {
                 minutelyResult.precipitation.description
@@ -159,14 +159,14 @@ private fun getDailyList(
                     weatherPhase = getWeatherText(weather.from),
                     weatherCode = getWeatherCode(weather.from),
                     temperature = Temperature(
-                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toFloatOrNull()
+                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull(),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toDoubleOrNull()?.div(3.6)?.toFloat()
+                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toDoubleOrNull(),
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toDoubleOrNull()?.div(3.6)
                     ) else null
                 ),
                 night = HalfDay(
@@ -174,14 +174,14 @@ private fun getDailyList(
                     weatherPhase = getWeatherText(weather.to),
                     weatherCode = getWeatherCode(weather.to),
                     temperature = Temperature(
-                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toFloatOrNull()
+                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull(),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toDoubleOrNull()?.div(3.6)?.toFloat()
+                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toDoubleOrNull(),
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toDoubleOrNull()?.div(3.6)
                     ) else null
                 ),
                 sun = Astro(
@@ -194,11 +194,11 @@ private fun getDailyList(
     return dailyList
 }
 
-private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int): Float? {
+private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int): Double? {
     if (forecast.precipitationProbability == null
         || forecast.precipitationProbability.value.isNullOrEmpty()) return null
 
-    return forecast.precipitationProbability.value.getOrNull(index)?.toFloatOrNull()
+    return forecast.precipitationProbability.value.getOrNull(index)?.toDoubleOrNull()
 }
 
 private fun getHourlyList(
@@ -222,11 +222,11 @@ private fun getHourlyList(
                 weatherText = getWeatherText(weather.toString()),
                 weatherCode = getWeatherCode(weather.toString()),
                 temperature = Temperature(
-                    temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toFloat()
+                    temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toDouble()
                 ),
                 wind = if (hourlyForecast.wind != null) Wind(
-                    degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloatOrNull(),
-                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toDoubleOrNull()?.div(3.6)?.toFloat()
+                    degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toDoubleOrNull(),
+                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toDoubleOrNull()?.div(3.6)
                 ) else null
             )
         )
@@ -286,12 +286,12 @@ fun convertSecondary(
         airQuality = forecastResult.aqi?.let {
             AirQualityWrapper(
                 current = AirQuality(
-                    pM25 = it.pm25?.toFloat(),
-                    pM10 = it.pm10?.toFloat(),
-                    sO2 = it.so2?.toFloat(),
-                    nO2 = it.no2?.toFloat(),
-                    o3 = it.o3?.toFloat(),
-                    cO = it.co?.toFloat()
+                    pM25 = it.pm25?.toDoubleOrNull(),
+                    pM10 = it.pm10?.toDoubleOrNull(),
+                    sO2 = it.so2?.toDoubleOrNull(),
+                    nO2 = it.no2?.toDoubleOrNull(),
+                    o3 = it.o3?.toDoubleOrNull(),
+                    cO = it.co?.toDoubleOrNull()
                 )
             )
         },

@@ -40,7 +40,6 @@ import org.breezyweather.databinding.ActivityDailyTrendDisplayManageBinding
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.adapters.DailyTrendDisplayAdapter
 import org.breezyweather.theme.ThemeManager
-import java.util.*
 
 class DailyTrendDisplayManageActivity : GeoActivity() {
     private lateinit var mBinding: ActivityDailyTrendDisplayManageBinding

@@ -32,9 +32,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.trend.TrendLinearLayout
 import org.breezyweather.remoteviews.trend.WidgetItemView
@@ -48,7 +50,7 @@ import kotlin.math.min
 
 object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             innerUpdateWidget(context, location)
             return
@@ -57,7 +59,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     @WorkerThread
-    private fun innerUpdateWidget(context: Context, location: Location) {
+    private fun innerUpdateWidget(context: Context, location: Location?) {
         val config = getWidgetConfig(
             context,
             context.getString(R.string.sp_widget_hourly_trend_setting)
@@ -92,7 +94,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < temperatures.size) {
-                temperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature
+                temperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -108,37 +110,39 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         weather.normals?.let { normals ->
-            highestTemperature = normals.daytimeTemperature
-            lowestTemperature = normals.nighttimeTemperature
+            highestTemperature = normals.daytimeTemperature?.toFloat()
+            lowestTemperature = normals.nighttimeTemperature?.toFloat()
         }
         for (i in 0 until itemCount) {
             weather.nextHourlyForecast[i].temperature?.temperature?.let {
                 if (highestTemperature == null || it > highestTemperature!!) {
-                    highestTemperature = it
+                    highestTemperature = it.toFloat()
                 }
                 if (lowestTemperature == null || it < lowestTemperature!!) {
-                    lowestTemperature = it
+                    lowestTemperature = it.toFloat()
                 }
             }
         }
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_hourly, null, false)
-        if (weather.normals?.daytimeTemperature != null && weather.normals.nighttimeTemperature != null
-            && highestTemperature != null && lowestTemperature != null) {
-            val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
-            trendParent.normals = weather.normals.month != null
-            trendParent.setData(
-                arrayOf(weather.normals.daytimeTemperature, weather.normals.nighttimeTemperature),
-                highestTemperature!!,
-                lowestTemperature!!,
-                temperatureUnit,
-                false
-            )
-            trendParent.setColor(lightTheme)
-            trendParent.setKeyLineVisibility(
-                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-            )
+        weather.normals?.let { normals ->
+            if (normals.daytimeTemperature != null && normals.nighttimeTemperature != null
+                && highestTemperature != null && lowestTemperature != null) {
+                val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
+                trendParent.normals = normals.month != null
+                trendParent.setData(
+                    arrayOf(normals.daytimeTemperature!!.toFloat(), normals.nighttimeTemperature!!.toFloat()),
+                    highestTemperature!!,
+                    lowestTemperature!!,
+                    temperatureUnit,
+                    false
+                )
+                trendParent.setColor(lightTheme)
+                trendParent.setKeyLineVisibility(
+                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
+                )
+            }
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
@@ -165,7 +169,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.trendItemView.setData(
                     buildTemperatureArrayForItem(temperatures, i),
                     null,
-                    hourly.temperature?.getShortTemperature(context, temperatureUnit),
+                    hourly.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    },
                     null,
                     highestTemperature,
                     lowestTemperature,

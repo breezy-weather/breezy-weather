@@ -20,7 +20,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.main.adapters.trend.daily.*

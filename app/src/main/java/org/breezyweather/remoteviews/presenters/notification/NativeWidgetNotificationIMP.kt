@@ -24,18 +24,22 @@ import androidx.core.graphics.drawable.IconCompat
 import notificationBuilder
 import notify
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getStrength
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import java.util.*
+import java.util.Date
 
 object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
@@ -58,11 +62,13 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         subtitle.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
             subtitle.append(", ").append(LunarHelper.getLunarDate(Date()))
-        } else if (location.weather.base.refreshTime != null) {
-            subtitle.append(", ")
-                .append(context.getString(R.string.notification_refreshed_at))
-                .append(" ")
-                .append(location.weather.base.refreshTime.getFormattedTime(location.timeZone, context.is12Hour))
+        } else {
+            location.weather!!.base.refreshTime?.let {
+                subtitle.append(", ")
+                    .append(context.getString(R.string.notification_refreshed_at))
+                    .append(" ")
+                    .append(it.getFormattedTime(location.timeZone, context.is12Hour))
+            }
         }
 
         val contentTitle = StringBuilder()
@@ -89,36 +95,40 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, daytime)
                 )
             }
-            if (current.weatherCode != null) setLargeIcon(
-                ResourceHelper.getWidgetNotificationIcon(
-                    provider, current.weatherCode,
-                    daytime, false, false
-                ).toBitmap()
-            )
+            current.weatherCode?.let { weatherCode ->
+                setLargeIcon(
+                    ResourceHelper.getWidgetNotificationIcon(
+                        provider, weatherCode,
+                        daytime, false, false
+                    ).toBitmap()
+                )
+            }
             setSubText(subtitle.toString())
             setContentTitle(contentTitle.toString())
-            if (current.airQuality != null && current.airQuality.isIndexValid) {
-                setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context))
-            } else if (current.wind?.getStrength(context) != null) {
-                setContentText(context.getString(R.string.wind) + " - " + current.wind.getStrength(context))
+            if (current.airQuality?.isIndexValid == true) {
+                setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context))
+            } else current.wind?.getStrength(context)?.let { strength ->
+                setContentText(context.getString(R.string.wind) + " - " + strength)
             }
             setOngoing(persistent)
             setOnlyAlertOnce(true)
             setContentIntent(getWeatherPendingIntent(context, null, Notifications.ID_WIDGET))
         }.build()
 
-        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && current.weatherCode != null) {
-            try {
-                notification.javaClass
-                    .getMethod("setSmallIcon", Icon::class.java)
-                    .invoke(
-                        notification,
-                        ResourceHelper.getMinimalIcon(
-                            provider, current.weatherCode, daytime
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            current.weatherCode?.let { weatherCode ->
+                try {
+                    notification.javaClass
+                        .getMethod("setSmallIcon", Icon::class.java)
+                        .invoke(
+                            notification,
+                            ResourceHelper.getMinimalIcon(
+                                provider, weatherCode, daytime
+                            )
                         )
-                    )
-            } catch (ignore: Exception) {
-                // do nothing.
+                } catch (ignore: Exception) {
+                    // do nothing.
+                }
             }
         }
 

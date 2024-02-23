@@ -24,12 +24,12 @@ import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -41,7 +41,8 @@ import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.*
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
-import java.util.*
+import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 
 /**
@@ -85,23 +86,23 @@ class MfService @Inject constructor(
         val token = getToken()
         val current = mApi.getCurrent(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             languageCode,
             "iso",
             token
         )
         val forecast = mApi.getForecast(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             "iso",
             token
         )
         val ephemeris = mApi.getEphemeris(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             "en", // English required to convert moon phase
             "iso",
             token
@@ -109,8 +110,8 @@ class MfService @Inject constructor(
         val rain = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
                 userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 languageCode,
                 "iso",
                 token
@@ -131,7 +132,7 @@ class MfService @Inject constructor(
         ) {
             mApi.getWarnings(
                 userAgent,
-                location.provinceCode,
+                location.provinceCode!!,
                 "iso",
                 token
             ).onErrorResumeNext {
@@ -149,8 +150,8 @@ class MfService @Inject constructor(
         val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 token
             ).onErrorResumeNext {
                 Observable.create { emitter ->
@@ -227,8 +228,8 @@ class MfService @Inject constructor(
         val rain = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
                 userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 languageCode,
                 "iso",
                 token
@@ -246,7 +247,7 @@ class MfService @Inject constructor(
         ) {
             mApi.getWarnings(
                 userAgent,
-                location.provinceCode,
+                location.provinceCode!!,
                 "iso",
                 token
             )
@@ -259,8 +260,8 @@ class MfService @Inject constructor(
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 userAgent,
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 token
             )
         } else {
@@ -301,8 +302,8 @@ class MfService @Inject constructor(
         }
         return mApi.getForecast(
             userAgent,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             "iso",
             getToken()
         ).map {

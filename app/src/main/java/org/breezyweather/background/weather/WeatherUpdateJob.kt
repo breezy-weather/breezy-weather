@@ -33,6 +33,8 @@ import androidx.work.WorkInfo
 import androidx.work.WorkQuery
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CancellationException
@@ -43,7 +45,7 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getUriCompat
@@ -54,9 +56,7 @@ import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
-import org.breezyweather.common.utils.helpers.ShortcutsHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
@@ -78,7 +78,9 @@ import java.util.concurrent.atomic.AtomicInteger
 class WeatherUpdateJob @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
-    private val refreshHelper: RefreshHelper
+    private val refreshHelper: RefreshHelper,
+    private val locationRepository: LocationRepository,
+    private val weatherRepository: WeatherRepository
 ) : CoroutineWorker(context, workerParams) {
 
 
@@ -143,17 +145,17 @@ class WeatherUpdateJob @AssistedInject constructor(
      *
      * @param locationFormattedId the ID of the location to update, or null if all locations.
      */
-    private fun addLocationToQueue(locationFormattedId: String?) {
+    private suspend fun addLocationToQueue(locationFormattedId: String?) {
         locationsToUpdate = if (locationFormattedId != null) {
-            val location = LocationEntityRepository.readLocation(locationFormattedId)
+            val location = locationRepository.getLocation(locationFormattedId)
             if (location != null) {
-                listOf(location.copy(weather = WeatherEntityRepository.readWeather(location)))
+                listOf(location.copy(weather = weatherRepository.getWeatherByLocationId(location.formattedId)))
             } else emptyList()
         } else {
-            val locationList = LocationEntityRepository.readLocationList().toMutableList()
+            val locationList = locationRepository.getAllLocations().toMutableList()
             for (i in locationList.indices) {
                 locationList[i] = locationList[i].copy(
-                    weather = WeatherEntityRepository.readWeather(locationList[i])
+                    weather = weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
                 )
             }
             locationList
@@ -249,10 +251,10 @@ class WeatherUpdateJob @AssistedInject constructor(
 
         if (newUpdates.isNotEmpty()) {
             // We updated at least one location, so we need to reload location list and make some post-actions
-            val locationList = LocationEntityRepository.readLocationList().toMutableList()
+            val locationList = locationRepository.getAllLocations().toMutableList()
             for (i in locationList.indices) {
                 locationList[i] = locationList[i].copy(
-                    weather = WeatherEntityRepository.readWeather(locationList[i])
+                    weather = weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
                 )
             }
 
@@ -262,7 +264,7 @@ class WeatherUpdateJob @AssistedInject constructor(
 
             // Update shortcuts
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsHelper.refreshShortcutsInNewThread(applicationContext, locationList)
+                refreshHelper.refreshShortcuts(applicationContext, locationList)
             }
 
             val location = locationList[0]

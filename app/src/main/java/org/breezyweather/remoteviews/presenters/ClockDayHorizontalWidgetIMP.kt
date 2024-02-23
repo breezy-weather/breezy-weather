@@ -25,17 +25,19 @@ import android.view.View
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayHorizontalProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import java.util.*
+import java.util.Date
 
 object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_horizontal_setting))
         val views = getRemoteViews(
             context, location,
@@ -77,8 +79,10 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
-        if (weather.current?.temperature?.temperature != null) {
-            builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit, 0))
+        weather.current?.temperature?.temperature?.let {
+            builder.append(" ").append(
+                temperatureUnit.getValueText(context, it, 0)
+            )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
         if (color.textColor != Color.TRANSPARENT) {

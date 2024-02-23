@@ -19,9 +19,9 @@ package org.breezyweather.sources.openmeteo
 import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
@@ -139,8 +139,8 @@ class OpenMeteoService @Inject constructor(
             "visibility"
         )
         val weather = mWeatherApi.getWeather(
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             daily.joinToString(","),
             hourly.joinToString(","),
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -163,8 +163,8 @@ class OpenMeteoService @Inject constructor(
                     pollenHourly
                 } else arrayOf())
             mAirQualityApi.getAirQuality(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 airQualityPollenHourly.joinToString(","),
                 forecastDays = 7,
                 pastDays = 1,
@@ -204,8 +204,8 @@ class OpenMeteoService @Inject constructor(
     ): Observable<SecondaryWeatherWrapper> {
         val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mWeatherApi.getWeather(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 "",
                 "",
                 "",
@@ -226,8 +226,8 @@ class OpenMeteoService @Inject constructor(
                 (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
                         (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) pollenHourly else emptyArray())
             mAirQualityApi.getAirQuality(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 airQualityPollenHourly.joinToString(","),
                 forecastDays = 7,
                 pastDays = 1,

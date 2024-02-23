@@ -327,8 +327,6 @@
     <string name="widget_label_clock_font">Saat yazı tipi</string>
     <string name="action_add_new_location">Yeni bir konum ekle</string>
     <string name="action_location_list">Konum listesi</string>
-    <string name="location_resident_location_summaryOn">Etkin. Geçerli konumun %s yakınında gizlenir.</string>
-    <string name="location_resident_location">İkamet yeri</string>
     <string name="action_delete">Sil</string>
     <string name="action_learn_more">Daha fazla bilgi</string>
     <string name="action_close">Kapat</string>
@@ -362,7 +360,6 @@
     <string name="location_message_permission_missing">Konum erişimi izni verilmemiş</string>
     <string name="dialog_permissions_location_background_content">Uygulamanın arka planda konum bilgilerine erişmesine izin vermek, böylece konumdaki değişiklikleri algılayabilmemiz ve size geçerli hava durumu verileri sunabilmemiz için lütfen konum erişimini “Her zaman izin ver” olarak ayarlayın.</string>
     <string name="message_parsing_error_title">Hava durumu verileri ayrıştırılamadı</string>
-    <string name="location_resident_location_summaryOff">Devre dışı. Konum her zaman etkin.</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Konumu manuel olarak ekle ve “%s” öğesini sil</string>
     <string name="widget_label_show_widget_card_alpha">Şeffaflık</string>
     <string name="widget_subtitle_data_time">Yenileme zamanı</string>

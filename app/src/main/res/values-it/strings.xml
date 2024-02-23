@@ -541,7 +541,6 @@
     <string name="pollen_alder">Ontano</string>
     <string name="pollen_olive">Olivo</string>
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
-    <string name="location_resident_location_summaryOff">Disabilitata. Questa località sarà sempre disponibile.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
     <string name="about_contribution_weather_source">Ha aggiunto il supporto per una o più nuove fonti meteo</string>
     <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>
@@ -567,8 +566,6 @@
     <string name="settings_weather_source_main">Fonte principale</string>
     <string name="action_save">Salva</string>
     <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo per questa posizione</string>
-    <string name="location_resident_location">Posizione di residenza</string>
-    <string name="location_resident_location_summaryOn">Abilitata. Non viene mostrata quando entro %s dalla posizione corrente.</string>
     <string name="action_delete">Elimina</string>
     <string name="air_quality_co_info_origin">È prodotto dalla combustione incompleta di combustibili carboniosi come legna, benzina, carbone, gas naturale e cherosene in semplici stufe, caminetti, lampade a stoppino, fornaci, caminetti. La fonte predominante di monossido di carbonio (CO) nell’aria aperta proviene dai veicoli a motore.</string>
     <string name="air_quality_co_info_consequences">Il monossido di carbonio si diffonde attraverso i tessuti polmonari e nel flusso sanguigno, rendendo difficile per le cellule dell’organismo legarsi all’ossigeno. Questa mancanza di ossigeno danneggia i tessuti e le cellule. L’esposizione al monossido di carbonio può causare difficoltà respiratorie, spossatezza, vertigini e altri sintomi influenzali. L’esposizione a livelli elevati di monossido di carbonio può essere letale.</string>

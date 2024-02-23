@@ -37,14 +37,13 @@ import kotlinx.coroutines.launch
 import org.breezyweather.Migrations
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
 import org.breezyweather.main.fragments.HomeFragment
@@ -52,9 +51,7 @@ import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
@@ -67,6 +64,7 @@ class MainActivity : GeoActivity(),
 
     @Inject
     lateinit var sourceManager: SourceManager
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
 
@@ -97,6 +95,25 @@ class MainActivity : GeoActivity(),
                 SnackbarHelper.showSnackbar(getString(R.string.message_updated_in_background))
             }*/
         }
+    }
+
+    fun updateLocation(location: Location) {
+        if (!viewModel.initCompleted.value) {
+            return
+        }
+
+        // Only updates are coming here (no location added or deleted)
+        // If we don't find the formattedId in the current list, it means main source was changed
+        // for currently focused location
+        // TODO: This shouldn't be the case anymore, as only WeatherUpdateJob comes here
+        val oldLocation = viewModel.validLocationList.value.first.firstOrNull {
+            it.formattedId == location.formattedId
+        } ?: viewModel.currentLocation.value?.location
+
+        if (viewModel.currentLocation.value?.location?.formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
+            viewModel.cancelRequest()
+        }
+        viewModel.updateLocation(location, oldLocation)
     }
 
     private val fragmentsLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
@@ -139,7 +156,7 @@ class MainActivity : GeoActivity(),
 
         EventBus.instance
             .with(Location::class.java)
-            .observeForever(backgroundUpdateObserver)
+            .observeForever(backgroundUpdateObserver) // Only comes from WeatherUpdateJob
         EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
             // Force refresh but with latest location used
             viewModel.init(viewModel.currentLocation.value?.location?.formattedId)
@@ -264,10 +281,18 @@ class MainActivity : GeoActivity(),
             }
         }
         lifecycleScope.launch {
+            // repeatOnLifecycle launches the block in a new coroutine every time the
+            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.totalLocationList.collect {
-                    if (it.first.isEmpty()) {
-                        setManagementFragmentVisibility(true)
+                // Trigger the flow and start listening for values.
+                // Note that this happens when lifecycle is STARTED and stops
+                // collecting when the lifecycle is STOPPED
+                viewModel.initCompleted.collect {
+                    if (it) {
+                        if (viewModel.validLocationList.value.first.isEmpty()) {
+                            // FIXME DB rewrite: Replace with a OnboardingCompleted property instead
+                            setManagementFragmentVisibility(true)
+                        }
                     }
                 }
             }
@@ -522,20 +547,7 @@ class MainActivity : GeoActivity(),
     }
 
     private fun refreshBackgroundViews(locationList: List<Location>?) {
-        locationList?.let {
-            if (it.isNotEmpty()) {
-                AsyncHelper.delayRunOnIO({
-                    Widgets.updateWidgetIfNecessary(this, it[0])
-                    Notifications.updateNotificationIfNecessary(this, it)
-                    Widgets.updateWidgetIfNecessary(this, it)
-                    Gadgets.updateGadgetIfNecessary(this, it[0])
-                }, 1000)
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    ShortcutsHelper.refreshShortcutsInNewThread(this, it)
-                }
-            }
-        }
+        viewModel.refreshBackgroundViews(this, locationList)
     }
 
     // interface.

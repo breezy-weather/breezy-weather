@@ -22,16 +22,16 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OpenMeteoAirQualityHourly(
     val time: LongArray,
-    val pm10: Array<Float?>?,
-    @SerialName("pm2_5") val pm25: Array<Float?>?,
-    @SerialName("carbon_monoxide") val carbonMonoxide: Array<Float?>?,
-    @SerialName("nitrogen_dioxide") val nitrogenDioxide: Array<Float?>?,
-    @SerialName("sulphur_dioxide") val sulphurDioxide: Array<Float?>?,
-    val ozone: Array<Float?>?,
-    @SerialName("alder_pollen") val alderPollen: Array<Float?>?,
-    @SerialName("birch_pollen") val birchPollen: Array<Float?>?,
-    @SerialName("grass_pollen") val grassPollen: Array<Float?>?,
-    @SerialName("mugwort_pollen") val mugwortPollen: Array<Float?>?,
-    @SerialName("olive_pollen") val olivePollen: Array<Float?>?,
-    @SerialName("ragweed_pollen") val ragweedPollen: Array<Float?>?
+    val pm10: Array<Double?>?,
+    @SerialName("pm2_5") val pm25: Array<Double?>?,
+    @SerialName("carbon_monoxide") val carbonMonoxide: Array<Double?>?,
+    @SerialName("nitrogen_dioxide") val nitrogenDioxide: Array<Double?>?,
+    @SerialName("sulphur_dioxide") val sulphurDioxide: Array<Double?>?,
+    val ozone: Array<Double?>?,
+    @SerialName("alder_pollen") val alderPollen: Array<Double?>?,
+    @SerialName("birch_pollen") val birchPollen: Array<Double?>?,
+    @SerialName("grass_pollen") val grassPollen: Array<Double?>?,
+    @SerialName("mugwort_pollen") val mugwortPollen: Array<Double?>?,
+    @SerialName("olive_pollen") val olivePollen: Array<Double?>?,
+    @SerialName("ragweed_pollen") val ragweedPollen: Array<Double?>?
 )

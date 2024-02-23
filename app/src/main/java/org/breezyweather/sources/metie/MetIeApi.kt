@@ -24,7 +24,7 @@ import retrofit2.http.Path
 interface MetIeApi {
     @GET("weather/details/{lat}/{lon}")
     fun getForecast(
-        @Path("lat") lat: Float,
-        @Path("lon") lon: Float
+        @Path("lat") lat: Double,
+        @Path("lon") lon: Double
     ): Observable<List<MetIeHourly>>
 }

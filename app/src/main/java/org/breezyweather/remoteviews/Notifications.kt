@@ -35,14 +35,14 @@ import buildNotificationChannelGroup
 import notificationBuilder
 import notify
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Weather
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
@@ -137,16 +137,6 @@ object Notifications {
         )
     }
 
-    fun updateNotificationIfNecessary(context: Context) {
-        if (WidgetNotificationIMP.isEnabled(context)) {
-            val locationList = LocationEntityRepository.readLocationList().toMutableList()
-            for (i in locationList.indices) {
-                locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
-            }
-            updateNotificationIfNecessary(context, locationList)
-        }
-    }
-
     fun updateNotificationIfNecessary(context: Context, locationList: List<Location>) {
         if (WidgetNotificationIMP.isEnabled(context)) {
             WidgetNotificationIMP.buildNotificationAndSendIt(context, locationList)
@@ -222,6 +212,7 @@ object Notifications {
         context: Context, location: Location, alert: Alert, inGroup: Boolean, notificationId: Int
     ): Notification {
         // FIXME: Timezone
+        // FIXME: Start date may be null
         val time = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(alert.startDate)
         val builder = getNotificationBuilder(
             context,
@@ -289,7 +280,7 @@ object Notifications {
         //val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
 
         val minutely = location.weather!!.minutelyForecast
-        if (minutely.any { it.dbz != null && it.dbz > 0 }) {
+        if (minutely.any { (it.dbz ?: 0) > 0 }) {
             // 1 = soon, 2 = continue, 3 = end
             val case = if (minutely.first().dbz != null && minutely.first().dbz!! > 0) {
                 if (minutely.last().dbz != null && minutely.last().dbz!! > 0) 2 else 3
@@ -317,8 +308,8 @@ object Notifications {
                             else -> R.string.notification_precipitation_continuing_desc
                         },
                         when (case) {
-                            1 -> minutely.first { it.dbz != null && it.dbz > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
-                            else -> minutely.last { it.dbz != null && it.dbz > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
+                            1 -> minutely.first { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
+                            else -> minutely.last { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
                         }
                     ),
                     PendingIntent.getActivity(

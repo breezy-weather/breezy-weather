@@ -16,22 +16,22 @@
 
 package org.breezyweather.sources.pirateweather
 
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.MoonPhase
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
@@ -188,7 +188,7 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
                         .roundToInt()
                 } else ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble()
                     .roundToInt(),
-                precipitationIntensity = minutelyForecast.precipIntensity?.toDouble()
+                precipitationIntensity = minutelyForecast.precipIntensity
             )
         )
     }
