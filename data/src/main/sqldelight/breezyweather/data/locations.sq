@@ -1,0 +1,111 @@
+import java.util.TimeZone;
+import kotlin.Boolean;
+
+CREATE TABLE locations(
+    formatted_id TEXT NOT NULL PRIMARY KEY,
+    list_order INTEGER NOT NULL,
+
+    city_id TEXT,
+    latitude REAL NOT NULL,
+    longitude REAL NOT NULL,
+    timezone TEXT AS TimeZone NOT NULL,
+    country TEXT NOT NULL,
+    country_code TEXT,
+    province TEXT,
+    province_code TEXT,
+    city TEXT NOT NULL,
+    district TEXT,
+
+    -- Sources
+    weather_source TEXT NOT NULL,
+    air_quality_source TEXT,
+    pollen_source TEXT,
+    minutely_source TEXT,
+    alert_source TEXT,
+    normals_source TEXT,
+
+    current_position INTEGER AS Boolean NOT NULL DEFAULT 0,
+
+    needs_geocode_refresh INTEGER AS Boolean NOT NULL DEFAULT 0
+);
+
+getLocationById:
+SELECT *
+FROM locations
+WHERE formatted_id = :formattedId;
+
+getAllLocations:
+SELECT *
+FROM locations
+ORDER BY list_order;
+
+getXLocations:
+SELECT *
+FROM locations
+ORDER BY list_order
+LIMIT :limit;
+
+getFirstLocation:
+SELECT *
+FROM locations
+ORDER BY list_order
+LIMIT 1;
+
+insert:
+INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh)
+VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :province, :provinceCode, :city, :district, :weatherSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh)
+ON CONFLICT(formatted_id) DO UPDATE SET
+    list_order = coalesce(:listOrder, list_order),
+    city_id = coalesce(:cityId, city_id),
+    latitude = coalesce(:latitude, latitude),
+    longitude = coalesce(:longitude, longitude),
+    timezone = coalesce(:timezone, timezone),
+    country = coalesce(:country, country),
+    country_code = coalesce(:countryCode, country_code),
+    province = coalesce(:province, province),
+    province_code = coalesce(:provinceCode, province_code),
+    city = coalesce(:city, city),
+    district = coalesce(:district, district),
+    weather_source = coalesce(:weatherSource, weather_source),
+    air_quality_source = coalesce(:airQualitySource, air_quality_source),
+    pollen_source = coalesce(:pollenSource, pollen_source),
+    minutely_source = coalesce(:minutelySource, minutely_source),
+    alert_source = coalesce(:alertSource, alert_source),
+    normals_source = coalesce(:normalsSource, normals_source),
+    current_position = coalesce(:currentPosition, current_position),
+    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh);
+
+updateFormattedId:
+UPDATE locations
+SET formatted_id = coalesce(:newFormattedId, formatted_id)
+WHERE formatted_id = coalesce(:oldFormattedId, formatted_id);
+
+update:
+UPDATE locations
+SET city_id = coalesce(:cityId, city_id),
+    latitude = coalesce(:latitude, latitude),
+    longitude = coalesce(:longitude, longitude),
+    timezone = coalesce(:timezone, timezone),
+    country = coalesce(:country, country),
+    country_code = coalesce(:countryCode, country_code),
+    province = coalesce(:province, province),
+    province_code = coalesce(:provinceCode, province_code),
+    city = coalesce(:city, city),
+    district = coalesce(:district, district),
+    weather_source = coalesce(:weatherSource, weather_source),
+    air_quality_source = coalesce(:airQualitySource, air_quality_source),
+    pollen_source = coalesce(:pollenSource, pollen_source),
+    minutely_source = coalesce(:minutelySource, minutely_source),
+    alert_source = coalesce(:alertSource, alert_source),
+    normals_source = coalesce(:normalsSource, normals_source),
+    current_position = coalesce(:currentPosition, current_position),
+    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh)
+WHERE formatted_id = coalesce(:formattedId, formatted_id);
+
+deleteLocation:
+DELETE FROM locations
+WHERE formatted_id = :formattedId;
+
+deleteAllNonMatchingLocations:
+DELETE FROM locations
+WHERE formatted_id NOT IN :formattedIds;

@@ -36,6 +36,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.slider.Slider
@@ -43,14 +44,11 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
+import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import kotlin.math.max
@@ -79,8 +77,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     private var mBottomSheetScrollView: FitSystemBarNestedScrollView? = null
     private var mSubtitleInputLayout: TextInputLayout? = null
     private var mSubtitleEditText: TextInputEditText? = null
-    var locationNow: Location? = null
-        protected set
 
     protected var destroyed = false
     protected var viewTypeValueNow: String? = null
@@ -104,13 +100,17 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var hideLunar = false
     protected var alignEnd = false
     private var mLastBackPressedTime: Long = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_widget_config)
-        initData()
-        readConfig()
-        initView()
-        updateHostView()
+        lifecycleScope.launchUI {
+            initLocations()
+            initData()
+            readConfig()
+            initView()
+            updateHostView()
+        }
     }
 
     @Deprecated("Deprecated in Java")
@@ -156,10 +156,10 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         // do nothing.
     }
 
+    abstract suspend fun initLocations()
+
     @CallSuper
     open fun initData() {
-        val locationList = LocationEntityRepository.readLocationList()
-        locationNow = locationList.getOrNull(0)?.copy(weather = WeatherEntityRepository.readWeather(locationList[0]))
         val res = resources
         viewTypeValueNow = "rectangle"
         viewTypes = res.getStringArray(R.array.widget_styles)
@@ -375,7 +375,8 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             val resultValue = Intent()
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             setResult(RESULT_OK, resultValue)
-            Widgets.updateWidgetIfNecessary(this)
+            // TODO: Removed because… is it really needed? When you add a widget, it already calls onUpdate()
+            //Widgets.updateWidgetIfNecessary(this)
             finish()
         }
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView)

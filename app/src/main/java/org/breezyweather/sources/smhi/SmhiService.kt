@@ -19,8 +19,8 @@ package org.breezyweather.sources.smhi
 import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature

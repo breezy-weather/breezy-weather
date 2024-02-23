@@ -19,13 +19,12 @@ package org.breezyweather.remoteviews
 import android.content.Context
 import android.text.TextPaint
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.remoteviews.presenters.*
-import java.util.*
+import java.util.Calendar
+import java.util.TimeZone
 
 object Widgets {
 
@@ -107,17 +106,6 @@ object Widgets {
     const val MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
     const val MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
 
-    fun updateWidgetIfNecessary(context: Context) {
-        val locationList = LocationEntityRepository.readLocationList().toMutableList()
-        if (locationList.isNotEmpty()) {
-            for (i in locationList.indices) {
-                locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
-            }
-            updateWidgetIfNecessary(context, locationList[0])
-            updateWidgetIfNecessary(context, locationList)
-        }
-    }
-
     fun updateWidgetIfNecessary(context: Context, location: Location) {
         if (DayWidgetIMP.isInUse(context)) {
             DayWidgetIMP.updateWidgetView(context, location)
@@ -159,16 +147,22 @@ object Widgets {
 
     fun updateWidgetIfNecessary(context: Context, locationList: List<Location>) {
         if (MultiCityWidgetIMP.isInUse(context)) {
-            MultiCityWidgetIMP.updateWidgetView(context, Location.excludeInvalidResidentLocation(context, locationList))
+            MultiCityWidgetIMP.updateWidgetView(context, locationList)
         }
     }
 
     fun buildWidgetDayStyleText(context: Context, weather: Weather, unit: TemperatureUnit): Array<String> {
         val texts = arrayOf(
             weather.current?.weatherText ?: "",
-            weather.current?.temperature?.getTemperature(context, unit, 0) ?: "",
-            weather.today?.day?.temperature?.getShortTemperature(context, unit) ?: "",
-            weather.today?.night?.temperature?.getShortTemperature(context, unit) ?: "",
+            weather.current?.temperature?.temperature?.let {
+                unit.getValueText(context, it, 0)
+            } ?: "",
+            weather.today?.day?.temperature?.temperature?.let {
+                unit.getShortValueText(context, it)
+            } ?: "",
+            weather.today?.night?.temperature?.temperature?.let {
+                unit.getShortValueText(context, it)
+            } ?: ""
         )
         val paint = TextPaint()
         val widths = FloatArray(4)
@@ -215,6 +209,7 @@ object Widgets {
         )
     }
 
+    // TODO: Missing TimeZone
     fun getWeek(context: Context, timeZone: TimeZone?): String? {
         val c = Calendar.getInstance()
         return when (c[Calendar.DAY_OF_WEEK]) {

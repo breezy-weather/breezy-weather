@@ -27,12 +27,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedDate
@@ -43,13 +50,21 @@ import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import javax.inject.Inject
 
+// TODO: Consider moving this activity as a fragment of MainActivity, so we don't have to query the database twice
+@AndroidEntryPoint
 class PollenActivity : GeoActivity() {
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
 
     companion object {
         const val KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID =
@@ -66,20 +81,40 @@ class PollenActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID) ?: ""
-        var location = LocationEntityRepository.readLocation(formattedId)
-            ?: LocationEntityRepository.readLocationList()[0]
+        val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
+        val location = remember { mutableStateOf<Location?>(null) }
 
-        location = location.copy(weather = WeatherEntityRepository.readWeather(location))
-        val weather = location.weather
-        if (weather == null) {
-            finish()
-            return
+        LaunchedEffect(formattedId) {
+            var locationC: Location? = null
+            if (!formattedId.isNullOrEmpty()) {
+                locationC = locationRepository.getLocation(formattedId, withParameters = false)
+            }
+            if (locationC == null) {
+                locationC = locationRepository.getFirstLocation(withParameters = false)
+            }
+            if (locationC == null) {
+                finish()
+                return@LaunchedEffect
+            }
+
+            val weather = weatherRepository.getWeatherByLocationId(
+                locationC.formattedId,
+                withDaily = true,
+                withHourly = false,
+                withMinutely = false,
+                withAlerts = false
+            )
+            if (weather == null) {
+                finish()
+                return@LaunchedEffect
+            }
+
+            location.value = locationC.copy(weather = weather)
         }
 
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, location)) {
+        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, location.value)) {
             Material3Scaffold(
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                 topBar = {
@@ -90,35 +125,37 @@ class PollenActivity : GeoActivity() {
                     )
                 },
             ) {
-                LazyColumn(
-                    modifier = Modifier.fillMaxHeight(),
-                    contentPadding = it,
-                ) {
-                    items(weather.dailyForecastStartingToday.filter { d -> d.pollen?.isIndexValid == true }) { daily ->
-                        daily.pollen?.let { pollen ->
-                            Material3CardListItem(
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Column {
-                                    Text(
-                                        modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                                        text = daily.date.getFormattedDate(
-                                            location.timeZone,
-                                            stringResource(R.string.date_format_widget_long)
-                                        ),
-                                        color = DayNightTheme.colors.titleColor,
-                                        fontWeight = FontWeight.Bold,
-                                        style = MaterialTheme.typography.titleMedium,
-                                    )
-                                    PollenGrid(pollen = pollen)
+                location.value?.weather?.let { weather ->
+                    LazyColumn(
+                        modifier = Modifier.fillMaxHeight(),
+                        contentPadding = it,
+                    ) {
+                        items(weather.dailyForecastStartingToday.filter { d -> d.pollen?.isIndexValid == true }) { daily ->
+                            daily.pollen?.let { pollen ->
+                                Material3CardListItem(
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Column {
+                                        Text(
+                                            modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
+                                            text = daily.date.getFormattedDate(
+                                                location.value!!.timeZone,
+                                                stringResource(R.string.date_format_widget_long)
+                                            ),
+                                            color = DayNightTheme.colors.titleColor,
+                                            fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.titleMedium,
+                                        )
+                                        PollenGrid(pollen = pollen)
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    bottomInsetItem(
-                        extraHeight = getCardListItemMarginDp(this@PollenActivity).dp
-                    )
+                        bottomInsetItem(
+                            extraHeight = getCardListItemMarginDp(this@PollenActivity).dp
+                        )
+                    }
                 }
             }
         }

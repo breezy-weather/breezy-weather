@@ -17,30 +17,28 @@
 
 package org.breezyweather.sources.nws
 
-import java.util.Date
-
 /**
  * Transition class for NwsGridPointProperties data
  */
 class NwsForecast(
-    val temperature: Float?,
-    val dewpoint: Float?,
+    val temperature: Double?,
+    val dewpoint: Double?,
     val relativeHumidity: Int?,
-    val apparentTemperature: Float?,
-    val wetBulbGlobeTemperature: Float?,
-    val heatIndex: Float?,
-    val windChill: Float?,
+    val apparentTemperature: Double?,
+    val wetBulbGlobeTemperature: Double?,
+    val heatIndex: Double?,
+    val windChill: Double?,
     val skyCover: Int?,
     val windDirection: Int?,
-    val windSpeed: Float?,
-    val windGust: Float?,
+    val windSpeed: Double?,
+    val windGust: Double?,
     val weather: String?,
     val probabilityOfPrecipitation: Int?,
-    val quantitativePrecipitation: Float?,
-    val iceAccumulation: Float?,
-    val snowfallAmount: Float?,
-    val ceilingHeight: Float?,
-    val visibility: Float?,
-    val pressure: Float?,
+    val quantitativePrecipitation: Double?,
+    val iceAccumulation: Double?,
+    val snowfallAmount: Double?,
+    val ceilingHeight: Double?,
+    val visibility: Double?,
+    val pressure: Double?,
     val probabilityOfThunder: Int?,
 )

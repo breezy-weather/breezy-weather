@@ -24,10 +24,11 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -65,14 +66,14 @@ class DailyFeelsLikeAdapter(
             val daily = location.weather!!.dailyForecast[position]
             daily.day?.let { day ->
                 talkBackBuilder.append(", ").append(activity.getString(R.string.daytime)).append(" : ")
-                if (day.temperature?.feelsLikeTemperature != null) {
-                    talkBackBuilder.append(day.temperature.getFeelsLikeTemperature(activity, mTemperatureUnit))
+                day.temperature?.feelsLikeTemperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             daily.night?.let { night ->
                 talkBackBuilder.append(", ").append(activity.getString(R.string.nighttime)).append(" : ")
-                if (night.temperature?.feelsLikeTemperature != null) {
-                    talkBackBuilder.append(night.temperature.getFeelsLikeTemperature(activity, mTemperatureUnit))
+                night.temperature?.feelsLikeTemperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(
@@ -82,8 +83,12 @@ class DailyFeelsLikeAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
-                daily.day?.temperature?.getShortFeelsLikeTemperature(activity, mTemperatureUnit),
-                daily.night?.temperature?.getShortFeelsLikeTemperature(activity, mTemperatureUnit),
+                daily.day?.temperature?.temperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                },
+                daily.night?.temperature?.temperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                },
                 mHighestTemperature,
                 mLowestTemperature,
                 null,
@@ -147,7 +152,7 @@ class DailyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mDaytimeTemperatures.size) {
-                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature
+                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.toFloat()
                 i += 2
             }
         }
@@ -166,7 +171,7 @@ class DailyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mNighttimeTemperatures.size) {
-                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature
+                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.toFloat()
                 i += 2
             }
         }
@@ -185,12 +190,12 @@ class DailyFeelsLikeAdapter(
         weather.dailyForecast.forEach { daily ->
             daily.day?.temperature?.feelsLikeTemperature?.let {
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                    mHighestTemperature = it
+                    mHighestTemperature = it.toFloat()
                 }
             }
             daily.night?.temperature?.feelsLikeTemperature?.let {
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                    mLowestTemperature = it
+                    mLowestTemperature = it.toFloat()
                 }
             }
         }

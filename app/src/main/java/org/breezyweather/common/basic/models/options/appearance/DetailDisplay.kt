@@ -23,7 +23,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
 import org.breezyweather.common.basic.models.options.unit.CloudCoverUnit
 import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
-import org.breezyweather.common.basic.models.weather.Current
+import breezyweather.domain.weather.model.Current
+import org.breezyweather.domain.weather.model.getShortDescription
+import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.settings.SettingsManager
 
 enum class DetailDisplay(
@@ -125,29 +127,29 @@ enum class DetailDisplay(
     override fun getName(context: Context) = context.getString(nameId)
 
     fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when(id) {
-        "feels_like" -> if (current.temperature?.feelsLikeTemperature != null) current.temperature.getFeelsLikeTemperature(context, SettingsManager.getInstance(context).temperatureUnit, 0) else null
+        "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
+            SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
+        }
         "wind" -> if (!current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit) else null
-        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV.index > 0)) current.uV.getShortUVDescription(context) else null
-        "humidity" -> if (current.relativeHumidity != null) RelativeHumidityUnit.PERCENT.getValueText(
-            context, current.relativeHumidity.toInt()
-        ) else null
-        "dew_point" -> if (current.dewPoint != null) SettingsManager.getInstance(context).temperatureUnit.getValueText(
-            context, current.dewPoint, 0
-        ) else null
-        "pressure" -> if (current.pressure != null) SettingsManager.getInstance(context).pressureUnit.getValueText(
-            context, current.pressure
-        ) else null
-        "visibility" -> if (current.visibility != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
-            context, current.visibility
-        ) else null
-        "cloud_cover" -> if (current.cloudCover != null) CloudCoverUnit.PERCENT.getValueText(
-            context,
-            current.cloudCover
-        ) else null
-        "ceiling" -> if (current.ceiling != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
-            context,
-            current.ceiling
-        ) else null
+        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) current.uV!!.getShortUVDescription(context) else null
+        "humidity" -> current.relativeHumidity?.let {
+            RelativeHumidityUnit.PERCENT.getValueText(context, it.toInt())
+        }
+        "dew_point" -> current.dewPoint?.let {
+            SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
+        }
+        "pressure" -> current.pressure?.let {
+            SettingsManager.getInstance(context).pressureUnit.getValueText(context, it)
+        }
+        "visibility" -> current.visibility?.let {
+            SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
+        }
+        "cloud_cover" -> current.cloudCover?.let {
+            CloudCoverUnit.PERCENT.getValueText(context, it)
+        }
+        "ceiling" -> current.ceiling?.let {
+            SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
+        }
         else -> null
     }
 }

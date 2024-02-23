@@ -431,8 +431,6 @@
     <string name="widget_custom_subtitle_keyword_hd_description">Опис по сатима</string>
     <string name="unit_ft_voice">Стопе</string>
     <string name="action_edit">Измени</string>
-    <string name="location_resident_location">Локација становања</string>
-    <string name="location_resident_location_summaryOff">Онемогућено. Локација увек доступна.</string>
     <string name="action_preview">Преглед</string>
     <string name="action_app_store">Продавница апликација</string>
     <string name="settings_weather_sources">Извори времена</string>
@@ -458,12 +456,10 @@
     <string name="unit_lpsqmph_voice">Литри по квадратном метру по сату</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="location_resident_location_summaryOn">Омогућено. Сакривено, када је унутар %s од тренутне локације.</string>
     <string name="action_refresh">Освежи</string>
     <string name="action_restart">Рестартуј</string>
     <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о отказивању апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Дневно време - данас, сутра, …, 4 дана касније</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates">Ажурирања у позадини</string>
     <string name="settings_widgets_monochrome_icons_title">Монохроматске иконице</string>

@@ -17,17 +17,16 @@
 package org.breezyweather.sources.nws
 
 import android.graphics.Color
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
@@ -38,9 +37,8 @@ import org.breezyweather.sources.nws.json.NwsAlert
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsGridPointResult
 import org.breezyweather.sources.nws.json.NwsPointProperties
-import org.breezyweather.sources.nws.json.NwsValueFloatContainer
+import org.breezyweather.sources.nws.json.NwsValueDoubleContainer
 import org.breezyweather.sources.nws.json.NwsValueIntContainer
-import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -80,31 +78,31 @@ fun convert(
 
     //val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)
 
-    val temperatureForecastList = getFloatForecast(forecastResult.properties.temperature, false, timeZone)
-    val apparentTemperatureForecastList = getFloatForecast(forecastResult.properties.apparentTemperature, false, timeZone)
-    val wetBulbGlobeTemperatureForecastList = getFloatForecast(forecastResult.properties.wetBulbGlobeTemperature, false, timeZone)
-    //val heatIndexForecastList = getFloatForecast(forecastResult.properties.heatIndex, false, timeZone)
-    val windChillForecastList = getFloatForecast(forecastResult.properties.windChill, false, timeZone)
+    val temperatureForecastList = getDoubleForecast(forecastResult.properties.temperature, false, timeZone)
+    val apparentTemperatureForecastList = getDoubleForecast(forecastResult.properties.apparentTemperature, false, timeZone)
+    val wetBulbGlobeTemperatureForecastList = getDoubleForecast(forecastResult.properties.wetBulbGlobeTemperature, false, timeZone)
+    //val heatIndexForecastList = getDoubleForecast(forecastResult.properties.heatIndex, false, timeZone)
+    val windChillForecastList = getDoubleForecast(forecastResult.properties.windChill, false, timeZone)
 
-    val dewpointForecastList = getFloatForecast(forecastResult.properties.dewpoint, false, timeZone)
+    val dewpointForecastList = getDoubleForecast(forecastResult.properties.dewpoint, false, timeZone)
     val relativeHumidityList = getIntForecast(forecastResult.properties.relativeHumidity, timeZone)
 
-    val quantitativePrecipitationForecastList = getFloatForecast(forecastResult.properties.quantitativePrecipitation, true, timeZone)
-    val snowfallAmountForecastList = getFloatForecast(forecastResult.properties.snowfallAmount, true, timeZone)
-    val iceAccumulationForecastList = getFloatForecast(forecastResult.properties.iceAccumulation, true, timeZone)
+    val quantitativePrecipitationForecastList = getDoubleForecast(forecastResult.properties.quantitativePrecipitation, true, timeZone)
+    val snowfallAmountForecastList = getDoubleForecast(forecastResult.properties.snowfallAmount, true, timeZone)
+    val iceAccumulationForecastList = getDoubleForecast(forecastResult.properties.iceAccumulation, true, timeZone)
 
     val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, timeZone)
     val probabilityOfThunderForecastList = getIntForecast(forecastResult.properties.probabilityOfThunder, timeZone)
 
     val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, timeZone)
-    val windSpeedForecastList = getFloatForecast(forecastResult.properties.windSpeed, false, timeZone)
-    val windGustForecastList = getFloatForecast(forecastResult.properties.windGust, false, timeZone)
+    val windSpeedForecastList = getDoubleForecast(forecastResult.properties.windSpeed, false, timeZone)
+    val windGustForecastList = getDoubleForecast(forecastResult.properties.windGust, false, timeZone)
 
-    val pressureForecastList = getFloatForecast(forecastResult.properties.pressure, false, timeZone)
+    val pressureForecastList = getDoubleForecast(forecastResult.properties.pressure, false, timeZone)
 
     val skyCoverForecastList = getIntForecast(forecastResult.properties.skyCover, timeZone)
-    val visibilityForecastList = getFloatForecast(forecastResult.properties.visibility, false, timeZone)
-    //val ceilingHeightForecastList = getFloatForecast(forecastResult.properties.ceilingHeight, false, timeZone)
+    val visibilityForecastList = getDoubleForecast(forecastResult.properties.visibility, false, timeZone)
+    //val ceilingHeightForecastList = getDoubleForecast(forecastResult.properties.ceilingHeight, false, timeZone)
 
     val uniqueDates = (temperatureForecastList.keys + dewpointForecastList.keys +
             relativeHumidityList.keys + apparentTemperatureForecastList.keys +
@@ -140,15 +138,15 @@ fun convert(
                     ice = iceAccumulationForecastList.getOrElse(it) { null }
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = probabilityOfPrecipitationForecastList.getOrElse(it) { null }?.toFloat(),
-                    thunderstorm = probabilityOfThunderForecastList.getOrElse(it) { null }?.toFloat()
+                    total = probabilityOfPrecipitationForecastList.getOrElse(it) { null }?.toDouble(),
+                    thunderstorm = probabilityOfThunderForecastList.getOrElse(it) { null }?.toDouble()
                 ),
                 wind = Wind(
-                    degree = windDirectionForecastList.getOrElse(it) { null }?.toFloat(),
-                    speed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6)?.toFloat(),
-                    gusts = windGustForecastList.getOrElse(it) { null }?.div(3.6)?.toFloat()
+                    degree = windDirectionForecastList.getOrElse(it) { null }?.toDouble(),
+                    speed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
+                    gusts = windGustForecastList.getOrElse(it) { null }?.div(3.6)
                 ),
-                relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toFloat(),
+                relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toDouble(),
                 dewPoint = dewpointForecastList.getOrElse(it) { null },
                 // TODO: Check unit
                 pressure = pressureForecastList.getOrElse(it) { null },
@@ -209,15 +207,15 @@ fun convertSecondary(
     )
 }
 
-private fun getFloatForecast(
-    floatProperties: NwsValueFloatContainer?,
+private fun getDoubleForecast(
+    doubleProperties: NwsValueDoubleContainer?,
     multipleHoursAreDivided: Boolean = false,
     timeZone: TimeZone
-): Map<Date, Float> {
-    if (floatProperties?.values == null) return emptyMap()
+): Map<Date, Double> {
+    if (doubleProperties?.values == null) return emptyMap()
 
-    val floatForecast = mutableMapOf<Date, Float>()
-    floatProperties.values.forEach {
+    val doubleForecast = mutableMapOf<Date, Double>()
+    doubleProperties.values.forEach {
         if (it.value != null) {
             val dateInterval = it.validTime.split("/")
             val date = ISO8601Utils.parse(dateInterval[0])
@@ -234,14 +232,14 @@ private fun getFloatForecast(
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else date
-                floatForecast[newDate] = if (multipleHoursAreDivided) {
+                doubleForecast[newDate] = if (multipleHoursAreDivided) {
                     it.value.div(durationInHours)
                 } else it.value
             }
         }
     }
 
-    return floatForecast
+    return doubleForecast
 }
 
 private fun getIntForecast(

@@ -24,12 +24,12 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -71,23 +71,23 @@ class DailyTemperatureAdapter(
             daily.day?.let { day ->
                 talkBackBuilder.append(", ").append(activity.getString(R.string.daytime)).append(" : ")
                 if (!day.weatherText.isNullOrEmpty()) talkBackBuilder.append(day.weatherText).append(", ")
-                if (day.temperature?.temperature != null) {
-                    talkBackBuilder.append(day.temperature.getTemperature(activity, mTemperatureUnit))
+                day.temperature?.temperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             daily.night?.let { night ->
                 talkBackBuilder.append(", ").append(activity.getString(R.string.nighttime)).append(" : ")
                 if (!night.weatherText.isNullOrEmpty()) talkBackBuilder.append(night.weatherText).append(", ")
-                if (night.temperature?.temperature != null) {
-                    talkBackBuilder.append(night.temperature.getTemperature(activity, mTemperatureUnit))
+                night.temperature?.temperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(
                 daily.day?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
                 missingIconVisibility = View.INVISIBLE
             )
-            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
-            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
+            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total?.toFloat()
+            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total?.toFloat()
             var p: Float = max(
                 daytimePrecipitationProbability ?: 0f,
                 nighttimePrecipitationProbability ?: 0f
@@ -98,8 +98,12 @@ class DailyTemperatureAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
-                daily.day?.temperature?.getShortTemperature(activity, mTemperatureUnit),
-                daily.night?.temperature?.getShortTemperature(activity, mTemperatureUnit),
+                daily.day?.temperature?.temperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                },
+                daily.night?.temperature?.temperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                },
                 mHighestTemperature,
                 mLowestTemperature,
                 if (p < 5) null else p,
@@ -163,7 +167,7 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mDaytimeTemperatures.size) {
-                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature
+                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -182,7 +186,7 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mNighttimeTemperatures.size) {
-                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature
+                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -199,18 +203,18 @@ class DailyTemperatureAdapter(
             }
         }
         weather.normals?.let { normals ->
-            mHighestTemperature = normals.daytimeTemperature
-            mLowestTemperature = normals.nighttimeTemperature
+            mHighestTemperature = normals.daytimeTemperature?.toFloat()
+            mLowestTemperature = normals.nighttimeTemperature?.toFloat()
         }
         weather.dailyForecast.forEach { daily ->
             daily.day?.temperature?.temperature?.let {
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                    mHighestTemperature = it
+                    mHighestTemperature = it.toFloat()
                 }
             }
             daily.night?.temperature?.temperature?.let {
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                    mLowestTemperature = it
+                    mLowestTemperature = it.toFloat()
                 }
             }
         }
@@ -235,32 +239,28 @@ class DailyTemperatureAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_temperature)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val weather = location.weather ?: return
-        if (weather.normals?.daytimeTemperature == null || weather.normals.nighttimeTemperature == null) {
+        val normals = location.weather?.normals
+        if (normals?.daytimeTemperature == null || normals.nighttimeTemperature == null) {
             host.setData(null, 0f, 0f)
         } else {
             val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.normals.daytimeTemperature,
-                    Temperature.getShortTemperature(
-                        activity,
-                        weather.normals.daytimeTemperature,
-                        SettingsManager.getInstance(activity).temperatureUnit
+                    normals.daytimeTemperature!!.toFloat(),
+                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                        activity, normals.daytimeTemperature!!
                     ),
-                    activity.getString(if (weather.normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.normals.nighttimeTemperature,
-                    Temperature.getShortTemperature(
-                        activity,
-                        weather.normals.nighttimeTemperature,
-                        SettingsManager.getInstance(activity).temperatureUnit
+                    normals.nighttimeTemperature!!.toFloat(),
+                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                        activity, normals.nighttimeTemperature!!
                     ),
-                    activity.getString(if (weather.normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )

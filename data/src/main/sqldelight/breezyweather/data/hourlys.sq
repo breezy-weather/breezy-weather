@@ -1,0 +1,73 @@
+import breezyweather.domain.weather.model.WeatherCode;
+import kotlin.Boolean;
+
+CREATE TABLE hourlys(
+    _id INTEGER NOT NULL PRIMARY KEY,
+    location_formatted_id TEXT NOT NULL,
+
+    date INTEGER NOT NULL,
+
+    daylight INTEGER AS Boolean NOT NULL DEFAULT 1,
+    weather_text TEXT,
+    weather_code TEXT AS WeatherCode,
+
+    temperature REAL,
+    real_feel_temperature REAL,
+    real_feel_shader_temperature REAL,
+    apparent_temperature REAL,
+    wind_chill_temperature REAL,
+    wet_bulb_temperature REAL,
+
+    total_precipitation REAL,
+    thunderstorm_precipitation REAL,
+    rain_precipitation REAL,
+    snow_precipitation REAL,
+    ice_precipitation REAL,
+
+    total_precipitation_probability REAL,
+    thunderstorm_precipitation_probability REAL,
+    rain_precipitation_probability REAL,
+    snow_precipitation_probability REAL,
+    ice_precipitation_probability REAL,
+
+    wind_degree REAL,
+    wind_speed REAL,
+    wind_gusts REAL,
+
+    pm25 REAL,
+    pm10 REAL,
+    so2 REAL,
+    no2 REAL,
+    o3 REAL,
+    co REAL,
+
+    -- uv.
+    uvIndex REAL,
+
+    -- details
+    relative_humidity REAL,
+    dew_point REAL,
+    pressure REAL,
+    cloud_cover INTEGER,
+    visibility REAL,
+
+    UNIQUE(location_formatted_id, date) ON CONFLICT REPLACE,
+    FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX hourlys_location_formatted_id_index ON hourlys(location_formatted_id);
+
+getHourlyListByLocationId:
+SELECT *
+FROM hourlys
+WHERE location_formatted_id = :locationFormattedId
+ORDER BY date;
+
+insert:
+INSERT INTO hourlys(location_formatted_id, date, daylight, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility)
+VALUES (:locationFormattedId, :date, :daylight, :weatherText, :weatherCode, :temperature, :realFeelTemperature, :realFeelShaderTemperature, :apparentTemperature, :windChillTemperature, :wetBulbTemperature, :totalPrecipitation, :thunderstormPrecipitation, :rainPrecipitation, :snowPrecipitation, :icePrecipitation, :totalPrecipitationProbability, :thunderstormPrecipitationProbability, :rainPrecipitationProbability, :snowPrecipitationProbability, :icePrecipitationProbability, :windDegree, :windSpeed, :windGusts, :pm25, :pm10, :so2, :no2, :o3, :co, :uvIndex, :relativeHumidity, :dewPoint, :pressure, :cloudCover, :visibility);
+
+deleteHourlyListForLocationId:
+DELETE FROM hourlys
+WHERE location_formatted_id = :locationFormattedId;

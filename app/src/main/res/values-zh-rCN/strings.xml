@@ -299,7 +299,6 @@
     <string name="widget_style_tile">平铺</string>
     <string name="widget_style_vertical">竖版</string>
     <string name="widget_style_oreo">Oreo风格</string>
-    <string name="widget_style_oreo_google_sans">Oreo 风格（Google Sans）</string>
     <string name="widget_style_temperature">仅温度</string>
     <string name="widget_week_style_5_days">五天</string>
     <string name="widget_week_style_3_days">三天</string>
@@ -574,7 +573,6 @@
     <string name="pollen_level_5">非常高</string>
     <string name="pollen_level_3">中</string>
     <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
-    <string name="location_resident_location">常驻位置</string>
     <string name="action_delete">删除</string>
     <string name="weather_air_quality_data_by">空气质量数据来自 %s</string>
     <string name="weather_minutely_data_by">每分钟降水量数据来自 %s</string>
@@ -582,14 +580,12 @@
     <string name="weather_alert_data_by">警报数据来自 %s</string>
     <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
-    <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
     <string name="wind_gusts">阵风</string>
     <string name="about_dependencies">依赖</string>
     <string name="action_save">保存</string>
     <string name="settings_weather_source_main">主要来源</string>
     <string name="settings_weather_sources_per_location_summary">为当前位置自定义天气数据源</string>
     <string name="minutely_precipitations">每分钟降水量</string>
-    <string name="location_resident_location_summaryOn">已启用。当距离您%s以内时隐藏。</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contact">联络方式</string>
     <string name="common_weather_text_rain_light">小雨</string>

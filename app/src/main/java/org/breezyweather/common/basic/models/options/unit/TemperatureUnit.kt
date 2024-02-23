@@ -25,13 +25,13 @@ import org.breezyweather.common.extensions.isRtl
 
 enum class TemperatureUnit(
     override val id: String,
-    override val convertUnit: (Float) -> Float,
-    val convertDegreeDayUnit: (Float) -> Float
-): UnitEnum<Float> {
+    override val convertUnit: (Double) -> Double,
+    val convertDegreeDayUnit: (Double) -> Double
+): UnitEnum<Double> {
 
     C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
-    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8f) }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8f) }),
-    K("k", { valueInDefaultUnit -> 273.15f + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit });
+    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8) }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }),
+    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit });
 
     companion object {
         fun getInstance(
@@ -60,23 +60,23 @@ enum class TemperatureUnit(
     )!!
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 0)!!
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Float) = convertUnit(valueInDefaultUnit)
+    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    fun getDegreeDayValueWithoutUnit(valueInDefaultUnit: Float) = convertDegreeDayUnit(valueInDefaultUnit)
+    fun getDegreeDayValueWithoutUnit(valueInDefaultUnit: Double) = convertDegreeDayUnit(valueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         decimalNumber: Int = 1
     ) = Utils.getValueText(
         context = context,
@@ -88,7 +88,7 @@ enum class TemperatureUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
@@ -100,24 +100,24 @@ enum class TemperatureUnit(
 
     fun getDegreeDayValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
     ) = if (context.isRtl) {
         (BidiFormatter
             .getInstance()
             .unicodeWrap(
-                Utils.formatFloat(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+                Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
             )
                 + "\u202f"
                 + Utils.getName(context, this))
     } else {
-        (Utils.formatFloat(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+        (Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
                 + "\u202f"
                 + Utils.getName(context, this))
     }
 
     fun getDegreeDayValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
@@ -129,26 +129,26 @@ enum class TemperatureUnit(
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getShortValueText(context, valueInDefaultUnit, 0, context.isRtl)
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         decimalNumber: Int,
         rtl: Boolean
     ) = if (rtl) {
         (BidiFormatter
             .getInstance()
             .unicodeWrap(
-                Utils.formatFloat(
+                Utils.formatDouble(
                     getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
             )
                 + getShortName(context))
     } else {
-        (Utils.formatFloat(
+        (Utils.formatDouble(
             getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
         )
@@ -157,12 +157,12 @@ enum class TemperatureUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float
+        valueInDefaultUnit: Double
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Float,
+        valueInDefaultUnit: Double,
         rtl: Boolean
     ) = Utils.getVoiceText(
         context = context,

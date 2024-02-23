@@ -17,19 +17,10 @@
 package org.breezyweather.remoteviews
 
 import android.content.Context
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import breezyweather.domain.location.model.Location
 import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 
 object Gadgets {
-
-    fun updateGadgetIfNecessary(context: Context) {
-        val locationList = LocationEntityRepository.readLocationList().toMutableList()
-        if (locationList.isNotEmpty()) {
-            updateGadgetIfNecessary(context, locationList[0].copy(weather = WeatherEntityRepository.readWeather(locationList[0])))
-        }
-    }
 
     fun updateGadgetIfNecessary(context: Context, location: Location) {
         if (GadgetBridgeService.isEnabled(context)) {

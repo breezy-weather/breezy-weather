@@ -25,6 +25,9 @@ import org.breezyweather.R
 import org.breezyweather.common.ui.widgets.RoundProgress
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyAirQuality
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
 
 class AirQualityHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_air, parent, false)

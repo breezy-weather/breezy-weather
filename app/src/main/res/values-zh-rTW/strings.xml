@@ -269,7 +269,6 @@
     <string name="widget_style_tile">瓷磚</string>
     <string name="widget_style_vertical">竪版</string>
     <string name="widget_style_oreo">Oreo 風格</string>
-    <string name="widget_style_oreo_google_sans">Oreo 風格（Google字體）</string>
     <string name="widget_style_temperature">僅溫度</string>
     <string name="widget_week_style_5_days">5天</string>
     <string name="widget_week_style_3_days">3天</string>
@@ -480,8 +479,6 @@
     <string name="wind_direction_short_variable">風向不定</string>
     <string name="air_quality_level_2_description">空氣品質對大多數人來說一般是可接受的。但敏感人群長期暴露在戶外可能會出現輕度至中度症狀。</string>
     <string name="settings_appearance_summary">語言、深色模式、圖示套件、單位</string>
-    <string name="location_resident_location">常住位置</string>
-    <string name="location_resident_location_summaryOff">已禁用。位置始終可用。</string>
     <string name="action_delete">刪除</string>
     <string name="about_contribution_weather_source">添加了新的天氣來源</string>
     <string name="action_share">分享</string>
@@ -590,7 +587,6 @@
     <string name="settings_weather_source_main">主要資料來源</string>
     <string name="about_privacy_policy">隱私政策</string>
     <string name="about_contact">聯絡</string>
-    <string name="location_resident_location_summaryOn">已啟用。當與目前所在地的距離在 %s 以內時會隱藏。</string>
     <string name="common_weather_text_rain_showers_moderate">中陣雨</string>
     <string name="common_weather_text_rain_freezing">凍雨</string>
     <string name="common_weather_text_rain_freezing_light">小凍雨</string>

@@ -29,6 +29,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyAstro
+import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.theme.ThemeManager
 
 class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(

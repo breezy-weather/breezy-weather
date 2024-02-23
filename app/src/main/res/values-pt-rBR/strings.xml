@@ -488,7 +488,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="unit_mm">mm</string>
@@ -584,8 +583,6 @@
     <string name="pollen_level_3">Moderado</string>
     <string name="pollen_level_4">Alto</string>
     <string name="pollen_level_5">Muito alto</string>
-    <string name="location_resident_location">Local de residência</string>
-    <string name="location_resident_location_summaryOff">Desabilitado. Localização sempre disponível.</string>
     <string name="action_delete">Excluir</string>
     <string name="weather_air_quality_data_by">Dados de qualidade do ar por %s</string>
     <string name="weather_pollen_data_by">Dados de alergênicos por %s</string>
@@ -602,7 +599,6 @@
     <string name="weather_message_unsupported_feature">A fonte não suporta uma das funcionalidades solicitadas</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="about_contribution_designer">Designer da logo</string>
-    <string name="location_resident_location_summaryOn">Habilitado. Oculto quando dentro de %s da localização atual.</string>
     <string name="action_save">Salvar</string>
     <string name="settings_weather_source_main">Fonte principal</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos para este local</string>

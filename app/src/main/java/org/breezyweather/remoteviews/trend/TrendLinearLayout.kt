@@ -27,7 +27,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 
@@ -103,13 +102,13 @@ class TrendLinearLayout @JvmOverloads constructor(
         mPaint.textAlign = Paint.Align.LEFT
         mPaint.color = mTextColor
         canvas.drawText(
-            Temperature.getShortTemperature(context, mHistoryTemps[0], mTemperatureUnit) ?: "",
+            mTemperatureUnit.getShortValueText(context, mHistoryTemps[0].toDouble()),
             2 * MARGIN_TEXT,
             mHistoryTempYs[0] - mPaint.fontMetrics.bottom - MARGIN_TEXT,
             mPaint
         )
         canvas.drawText(
-            Temperature.getShortTemperature(context, mHistoryTemps[1], mTemperatureUnit) ?: "",
+            mTemperatureUnit.getShortValueText(context, mHistoryTemps[1].toDouble()),
             2 * MARGIN_TEXT,
             mHistoryTempYs[1] - mPaint.fontMetrics.top + MARGIN_TEXT,
             mPaint

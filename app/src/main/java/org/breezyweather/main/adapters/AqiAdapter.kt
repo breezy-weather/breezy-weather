@@ -49,11 +49,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.index.PollutantIndex
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
 import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import org.breezyweather.common.ui.widgets.RoundProgress
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
@@ -274,7 +277,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
         mItemList = ArrayList()
         location.weather?.validAirQuality?.let { airQuality ->
             // We use air quality index for the progress bar instead of concentration for more realistic bar
-            if (airQuality.pM25 != null) {
+            airQuality.pM25?.let {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.PM25,
@@ -282,15 +285,15 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.PM25)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_pm25),
-                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.pM25),
+                        AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_pm25_voice)
                                 + ", "
-                                + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.pM25),
+                                + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
             }
-            if (airQuality.pM10 != null) {
+            airQuality.pM10?.let {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.PM10,
@@ -298,14 +301,14 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.PM10)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_pm10),
-                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.pM10),
+                        AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_pm10_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.pM10),
+                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
             }
-            if (airQuality.o3 != null) {
+            airQuality.o3?.let {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.O3,
@@ -313,14 +316,14 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.O3)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_o3),
-                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.o3),
+                        AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_o3_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.o3),
+                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
             }
-            if (airQuality.nO2 != null) {
+            airQuality.nO2?.let {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.NO2,
@@ -328,14 +331,14 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.NO2)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_no2),
-                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.nO2),
+                        AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_no2_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.nO2),
+                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
             }
-            if (airQuality.sO2 != null && airQuality.sO2 > 0) {
+            if ((airQuality.sO2 ?: 0.0) > 0) {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.SO2,
@@ -343,14 +346,14 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.SO2)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_so2),
-                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2),
+                        AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2!!),
                         context.getString(R.string.air_quality_so2_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2),
+                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
                         executeAnimation
                     )
                 )
             }
-            if (airQuality.cO != null && airQuality.cO > 0) {
+            if ((airQuality.cO ?: 0.0) > 0) {
                 mItemList.add(
                     AqiItem(
                         PollutantIndex.CO,
@@ -358,9 +361,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         airQuality.getIndex(PollutantIndex.CO)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_co),
-                        AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO),
+                        AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO!!),
                         context.getString(R.string.air_quality_co_voice)
-                                + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO),
+                                + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
                         executeAnimation
                     )
                 )

@@ -23,7 +23,7 @@ import android.graphics.RectF
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
-import java.util.*
+import java.util.Random
 import kotlin.math.pow
 import kotlin.math.sin
 

@@ -22,11 +22,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -79,16 +79,16 @@ class OpenWeatherService @Inject constructor(
         val oneCall = mApi.getOneCall(
             oneCallVersion.id,
             apiKey,
-            location.latitude.toDouble(),
-            location.longitude.toDouble(),
+            location.latitude,
+            location.longitude,
             "metric",
             languageCode
         )
         val airPollution = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
                 apiKey,
-                location.latitude.toDouble(),
-                location.longitude.toDouble()
+                location.latitude,
+                location.longitude
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(OpenWeatherAirPollutionResult())
@@ -138,8 +138,8 @@ class OpenWeatherService @Inject constructor(
             mApi.getOneCall(
                 oneCallVersion.id,
                 apiKey,
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
+                location.latitude,
+                location.longitude,
                 "metric",
                 languageCode
             )
@@ -151,8 +151,8 @@ class OpenWeatherService @Inject constructor(
         val airPollution = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
                 apiKey,
-                location.latitude.toDouble(),
-                location.longitude.toDouble()
+                location.latitude,
+                location.longitude
             )
         } else {
             Observable.create { emitter ->

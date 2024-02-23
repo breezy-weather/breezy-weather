@@ -24,19 +24,37 @@ import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
-import org.breezyweather.db.repositories.LocationEntityRepository
-import org.breezyweather.db.repositories.WeatherEntityRepository
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
+import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Tile service.
  * TODO: Memory leak
  */
+@AndroidEntryPoint
 @RequiresApi(api = Build.VERSION_CODES.N)
-class TileService : TileService() {
+class TileService : TileService(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
     override fun onTileAdded() {
         refreshTile(this, qsTile)
     }
@@ -63,27 +81,38 @@ class TileService : TileService() {
                 PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             )
         } else {
+            @Suppress("DEPRECATION")
             this.startActivityAndCollapse(intent)
         }
     }
 
-    companion object {
-        private fun refreshTile(context: Context, tile: Tile?) {
-            if (tile == null) return
-            val location = LocationEntityRepository.readLocationList().getOrNull(0) ?: return
-            val locationRefreshed = location.copy(weather = WeatherEntityRepository.readWeather(location))
-            if (locationRefreshed.weather?.current != null) {
+    private fun refreshTile(context: Context, tile: Tile?) {
+        if (tile == null) return
+        launch {
+            val location = locationRepository.getFirstLocation(withParameters = false) ?: return@launch
+            val locationRefreshed = location.copy(
+                weather = weatherRepository.getWeatherByLocationId(
+                    location.formattedId,
+                    withDaily = true, // isDaylight
+                    withHourly = false,
+                    withMinutely = false,
+                    withAlerts = false
+                )
+            )
+            locationRefreshed.weather?.current?.let { current ->
                 tile.apply {
-                    locationRefreshed.weather.current.weatherCode?.let {
+                    current.weatherCode?.let {
                         icon = ResourceHelper.getMinimalIcon(
                             ResourcesProviderFactory.newInstance,
                             it,
                             locationRefreshed.isDaylight
                         )
                     }
-                    tile.label = locationRefreshed.weather.current.temperature?.getTemperature(
-                        context, SettingsManager.getInstance(context).temperatureUnit
-                    )
+                    tile.label = current.temperature?.temperature?.let {
+                        SettingsManager.getInstance(context).temperatureUnit.getValueText(
+                            context, it
+                        )
+                    }
                     state = Tile.STATE_INACTIVE
                 }
                 tile.updateTile()

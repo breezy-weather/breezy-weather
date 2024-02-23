@@ -55,13 +55,13 @@ class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         if (!overview.halfDay.weatherText .isNullOrEmpty()) {
             builder.append(overview.halfDay.weatherText)
         }
-        if (overview.halfDay.temperature != null
-            && !overview.halfDay.temperature.getTemperature(mTitle.context, mTemperatureUnit).isNullOrEmpty()
-        ) {
+        overview.halfDay.temperature?.temperature?.let {
             if (builder.toString().isNotEmpty()) {
                 builder.append(", ")
             }
-            builder.append(overview.halfDay.temperature.getTemperature(mTitle.context, mTemperatureUnit))
+            builder.append(
+                mTemperatureUnit.getValueText(mTitle.context, it)
+            )
         }
         if (builder.toString().isNotEmpty()) {
             mTitle.text = builder.toString()

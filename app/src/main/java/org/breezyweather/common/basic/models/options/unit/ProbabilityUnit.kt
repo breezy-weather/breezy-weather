@@ -24,10 +24,10 @@ import kotlin.math.roundToInt
 
 enum class ProbabilityUnit(
     override val id: String,
-    override val convertUnit: (Int) -> Float
+    override val convertUnit: (Int) -> Double
 ): UnitEnum<Int> {
 
-    PERCENT("%", { valueInDefaultUnit -> valueInDefaultUnit * 1f });
+    PERCENT("%", { valueInDefaultUnit -> valueInDefaultUnit * 1.0 });
 
     override val valueArrayId = 0
     override val nameArrayId = 0

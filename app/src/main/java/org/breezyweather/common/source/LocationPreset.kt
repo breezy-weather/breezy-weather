@@ -17,7 +17,7 @@
 
 package org.breezyweather.common.source
 
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import java.util.Locale
 
 /**

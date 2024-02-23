@@ -42,11 +42,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
+import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme

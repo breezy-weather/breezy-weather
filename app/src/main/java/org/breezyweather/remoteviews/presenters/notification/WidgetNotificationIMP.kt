@@ -26,20 +26,28 @@ import androidx.core.graphics.drawable.IconCompat
 import notificationBuilder
 import notify
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getHour
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getStrength
+import org.breezyweather.domain.weather.model.getTrendTemperature
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.*
+import java.util.Date
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
@@ -125,20 +133,22 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setOnlyAlertOnce(true)
         }.build()
 
-        if (!tempIcon && current.weatherCode != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                notification.javaClass
-                    .getMethod("setSmallIcon", Icon::class.java)
-                    .invoke(
-                        notification,
-                        ResourceHelper.getMinimalIcon(
-                            provider,
-                            current.weatherCode,
-                            dayTime
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            current.weatherCode?.let { weatherCode ->
+                try {
+                    notification.javaClass
+                        .getMethod("setSmallIcon", Icon::class.java)
+                        .invoke(
+                            notification,
+                            ResourceHelper.getMinimalIcon(
+                                provider,
+                                weatherCode,
+                                dayTime
+                            )
                         )
-                    )
-            } catch (ignore: Exception) {
-                // do nothing.
+                } catch (ignore: Exception) {
+                    // do nothing.
+                }
             }
         }
 
@@ -164,37 +174,33 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         }
 
         views.apply {
-            if (current.weatherCode != null) {
+            current.weatherCode?.let { weatherCode ->
                 setImageViewUri(
                     R.id.notification_base_icon,
                     ResourceHelper.getWidgetNotificationIconUri(
                         provider,
-                        current.weatherCode,
+                        weatherCode,
                         dayTime,
                         false,
                         NotificationTextColor.GREY
                     )
                 )
             }
-            if (temperature != null) {
+            temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    Temperature.getShortTemperature(
-                        context,
-                        temperature,
-                        temperatureUnit
-                    )
+                    temperatureUnit.getShortValueText(context, it)
                 )
             }
-            if (current.airQuality != null && current.airQuality.isIndexValid) {
+            if (current.airQuality?.isIndexValid == true) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context)
+                    context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
                 )
-            } else if (current.wind?.getStrength(context) != null) {
+            } else current.wind?.getStrength(context)?.let { strength ->
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.wind) + " - " + current.wind.getStrength(context)
+                    context.getString(R.string.wind) + " - " + strength
                 )
             }
             if (!current.weatherText.isNullOrEmpty()) {
@@ -240,12 +246,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         } else daily.getWeek(context, location.timeZone))
                         setTextViewText(
                             viewId.second,
-                            Temperature.getTrendTemperature(
-                                context,
-                                daily.night?.temperature?.temperature,
-                                daily.day?.temperature?.temperature,
-                                temperatureUnit
-                            )
+                            daily.getTrendTemperature(context, temperatureUnit)
                         )
                         if (weatherCode != null) {
                             setImageViewUri(
@@ -268,18 +269,18 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
                     views.apply {
                         setTextViewText(viewId.first, hourly.getHour(context, location.timeZone))
-                        if (hourly.temperature?.temperature != null) {
+                        hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,
-                                hourly.temperature.getShortTemperature(context, temperatureUnit)
+                                temperatureUnit.getShortValueText(context, it)
                             )
                         }
-                        if (hourly.weatherCode != null) {
+                        hourly.weatherCode?.let { weatherCode ->
                             setImageViewUri(
                                 viewId.third,
                                 ResourceHelper.getWidgetNotificationIconUri(
                                     provider,
-                                    hourly.weatherCode,
+                                    weatherCode,
                                     hourly.isDaylight,
                                     false,
                                     NotificationTextColor.GREY

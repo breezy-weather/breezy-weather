@@ -22,10 +22,9 @@ import androidx.annotation.Px
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivityViewModel
@@ -73,14 +72,14 @@ class LocationItemTouchCallback(
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.bindingAdapterPosition
-        var location = mViewModel.totalLocationList.value.first[position]
+        var location = mViewModel.validLocationList.value.first[position]
         when (direction) {
             ItemTouchHelper.START -> {
                 viewHolder.bindingAdapter!!.notifyItemChanged(position)
                 mViewModel.openChooseWeatherSourcesDialog(location)
             }
 
-            ItemTouchHelper.END -> if (mViewModel.totalLocationList.value.first.size <= 1) {
+            ItemTouchHelper.END -> if (mViewModel.validLocationList.value.first.size <= 1) {
                 viewHolder.bindingAdapter!!.notifyItemChanged(position)
                 SnackbarHelper.showSnackbar(
                     mActivity.getString(R.string.location_message_list_cannot_be_empty)

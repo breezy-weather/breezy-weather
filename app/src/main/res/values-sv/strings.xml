@@ -71,7 +71,6 @@
     <string name="action_share">Dela</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_m">m</string>
-    <string name="location_resident_location">Hemort</string>
     <string name="location_message_added">Plats tillagd</string>
     <string name="settings_background_updates_refresh_1h">1 timme</string>
     <string name="about_translators">Översättare</string>
@@ -183,7 +182,6 @@
     <string name="air_quality_so2_info_introduction">Svaveldioxid (SO₂) är en färglös giftig gas som luktar bränd tändsticka.</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="details">Detaljer</string>
-    <string name="location_resident_location_summaryOff">Inaktiverad. Plats alltid tillgänglig.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
@@ -421,7 +419,6 @@
     <string name="settings_enabled">Aktiverad</string>
     <string name="settings_background_updates_battery_optimization">Inaktivera batterioptimering</string>
     <string name="widget_label_show_widget_card_alpha">Transparens</string>
-    <string name="location_resident_location_summaryOn">Aktiverad. Dold när du befinner dig inom %s från nuvarande plats.</string>
     <string name="unit_mi_voice">Engelsk mil</string>
     <string name="widget_custom_subtitle_explanation">Du kan skriva in vad som helst men var uppmärksam på textlängden. Om du vill citera väderdata använd $ som referens till motsvarade nyckelord.
 \n
@@ -596,7 +593,6 @@
     <string name="settings_location_access_switch_summaryOn">Tillåten. Du kan lägga till din nuvarande plats som en plats.</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Soluppgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_main_threshold_lines_on_charts">Tröskellinjer i diagram</string>
     <string name="common_weather_text_rain_freezing_light">Lätt underkylt regn</string>
     <string name="settings_location_access_background_title">Platsåtkomst i bakgrunden</string>

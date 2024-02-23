@@ -25,18 +25,22 @@ import android.view.View
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Temperature
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getTrendTemperature
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import java.util.*
+import java.util.Date
 
 object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_week_setting))
         val views = getRemoteViews(
             context, location,
@@ -79,8 +83,10 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
-        if (weather.current?.temperature?.temperature != null) {
-            builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit, 0))
+        weather.current?.temperature?.temperature?.let {
+            builder.append(" ").append(
+                temperatureUnit.getValueText(context, it, 0)
+            )
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())
 
@@ -103,10 +109,8 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
                 dailyId[1],
-                Temperature.getTrendTemperature(
+                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(
                     context,
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature,
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature,
                     temperatureUnit
                 )
             )

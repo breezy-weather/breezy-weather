@@ -232,9 +232,6 @@
     <string name="location_search_no_results">%1$s не можа знайсці %2$s</string>
     <string name="location_search_no_results_advice">Пераканайцеся, што пошукавы запыт напісаны правільна і не занадта спецыфічны. Вы таксама можаце паспрабаваць выкарыстоўваць іншую крыніцу пошуку месцазнаходжання, якая можа даць іншыя вынікі.</string>
     <string name="location_current_not_found_yet">Месцазнаходжанне не зададзена…</string>
-    <string name="location_resident_location">Месцазнаходжанне месца жыхарства</string>
-    <string name="location_resident_location_summaryOn">Уключана. Утоена калі на адлегласці больш за %s ад бягучага месцазнаходжання.</string>
-    <string name="location_resident_location_summaryOff">Выключана. Месцазнаходжанне заўсёды даступна.</string>
     <string name="location_service_native">Сістэмны API</string>
     <string name="action_location_list">Спіс месцазнаходжання</string>
     <string name="action_search">Пошук</string>
@@ -362,7 +359,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Вертыкальны</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Тэмпература</string>
     <string name="widget_week_style_5_days">5 дней</string>
     <string name="widget_week_style_3_days">3 дня</string>

@@ -361,7 +361,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_week_style_5_days">5 Tage</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -565,8 +564,6 @@
     <string name="pollen_level_3">Mäßig</string>
     <string name="pollen_level_4">Hoch</string>
     <string name="pollen_level_5">Sehr hoch</string>
-    <string name="location_resident_location">Wohnort</string>
-    <string name="location_resident_location_summaryOff">Deaktiviert. Ort ist immer verfügbar.</string>
     <string name="action_delete">Löschen</string>
     <string name="pollen_level_0">Keine</string>
     <string name="weather_message_secondary_data_refresh_failed">Aktualisierung der Wetterdaten für sekundäre Wetterquelle fehlgeschlagen</string>
@@ -576,7 +573,6 @@
     <string name="weather_minutely_data_by">Minutengenaue Niederschlagsdaten von %s</string>
     <string name="weather_alert_data_by">Warndaten von %s</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
-    <string name="location_resident_location_summaryOn">Aktiviert. Ausgeblendet, wenn im %s-Umkreis des aktuellen Standorts.</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_source_main">Hauptquelle</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>

@@ -26,12 +26,13 @@ import cancelNotification
 import notificationBuilder
 import notify
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
@@ -123,7 +124,7 @@ class ForecastNotificationNotifier(private val context: Context) {
                     .invoke(
                         notification,
                         ResourceHelper.getMinimalIcon(
-                            provider, weather.current.weatherCode, daytime
+                            provider, weather.current!!.weatherCode!!, daytime
                         )
                     )
             } catch (ignore: Exception) {
@@ -151,10 +152,14 @@ class ForecastNotificationNotifier(private val context: Context) {
     private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.daytime) +
                 " " + daily.day?.weatherText +
-                " " + daily.day?.temperature?.getTemperature(context, temperatureUnit, 0)
+                " " + daily.day?.temperature?.temperature?.let {
+                    temperatureUnit.getValueText(context, it, 0)
+                }
 
     private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.nighttime) +
                 " " + daily.night?.weatherText +
-                " " + daily.night?.temperature?.getTemperature(context, temperatureUnit, 0)
+                " " + daily.night?.temperature?.temperature?.let {
+                    temperatureUnit.getValueText(context, it, 0)
+                }
 }

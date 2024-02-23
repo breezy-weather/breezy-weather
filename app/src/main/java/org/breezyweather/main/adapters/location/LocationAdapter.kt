@@ -20,7 +20,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.ui.adapters.SyncListAdapter
 import org.breezyweather.databinding.ItemLocationCardBinding

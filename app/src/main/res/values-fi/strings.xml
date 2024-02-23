@@ -529,7 +529,6 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_lpsqm_voice">Litraa neliömetriä kohden</string>
     <string name="location_search_no_results">%1$s ei löydä %2$s</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_main_threshold_lines_on_charts">Kynnysarvoviivat sääkartoissa</string>
     <string name="common_weather_text_rain_freezing_light">Kevyttä jäätävää sadetta</string>
     <string name="wind_direction_short_S">E</string>
@@ -576,10 +575,7 @@
     <string name="location_results_by">Sijaintitulokset tarjoaa %s</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="location_resident_location_summaryOn">Käytössä. Piilotettu, kun %s :n sisällä nykyisestä sijainnista.</string>
-    <string name="location_resident_location">Asuinpaikan sijainti</string>
     <string name="dialog_permissions_notification_content">Ota säähälytyksiä koskevat ilmoitukset käyttöön napauttamalla tätä tai päätä siitä myöhemmin Asetuksissa.</string>
-    <string name="location_resident_location_summaryOff">Ei käytössä. Sijainti aina saatavilla.</string>
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
     <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
     <string name="widget_style_mini">Mini</string>

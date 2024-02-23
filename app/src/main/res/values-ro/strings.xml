@@ -306,7 +306,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_items_drag_to_sort">Atingeți pentru a trage elementele din listă pentru a le sorta</string>
@@ -548,8 +547,6 @@
     <string name="message_parsing_error_title">Analizarea datelor meteo a eșuat</string>
     <string name="message_source_not_installed_error_title">Sursa nu mai este disponibilă</string>
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: %s</string>
-    <string name="location_resident_location">Locația rezidentă</string>
-    <string name="location_resident_location_summaryOff">Dezactivat. Locația este întotdeauna disponibilă.</string>
     <string name="action_delete">Ștergeți</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
     <string name="message_source_not_installed_error_content">Această sursă nu mai este disponibilă, vă rugăm să ștergeți locația și să o recreați din altă sursă.</string>
@@ -590,5 +587,4 @@
     <string name="pollen_level_4">Ridicat</string>
     <string name="pollen_level_5">Foarte ridicat</string>
     <string name="weather_air_quality_data_by">Date despre calitatea aerului de %s</string>
-    <string name="location_resident_location_summaryOn">Activat. Afișat dacă se află la mai puțin de %s de locația curentă, altfel este ascuns.</string>
 </resources>

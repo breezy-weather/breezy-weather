@@ -28,20 +28,20 @@ data class PirateWeatherCurrently(
     val nearestStormBearing: Int?,
 
     val precipType: String?,
-    val precipIntensity: Float?,
-    val precipProbability: Float?,
-    val precipIntensityError: Float?,
+    val precipIntensity: Double?,
+    val precipProbability: Double?,
+    val precipIntensityError: Double?,
 
-    val temperature: Float?,
-    val apparentTemperature: Float?,
+    val temperature: Double?,
+    val apparentTemperature: Double?,
 
-    val dewPoint: Float?,
-    val humidity: Float?,
-    val pressure: Float?,
-    val windSpeed: Float?,
-    val windGust: Float?,
-    val windBearing: Float?,
-    val cloudCover: Float?,
-    val uvIndex: Float?,
-    val visibility: Float?
+    val dewPoint: Double?,
+    val humidity: Double?,
+    val pressure: Double?,
+    val windSpeed: Double?,
+    val windGust: Double?,
+    val windBearing: Double?,
+    val cloudCover: Double?,
+    val uvIndex: Double?,
+    val visibility: Double?
 )

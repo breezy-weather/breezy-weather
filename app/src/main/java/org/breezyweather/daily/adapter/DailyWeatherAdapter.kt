@@ -25,13 +25,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
 import org.breezyweather.daily.adapter.holder.*
 import org.breezyweather.daily.adapter.model.*
 import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.settings.SettingsManager
-import java.util.*
+import java.util.TimeZone
 
 class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, spanCount: Int) :
     RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder>() {
@@ -56,35 +57,55 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
     init {
         // model list.
         mModelList = ArrayList()
-        if (daily.day != null) {
+        daily.day?.let { day ->
             mModelList.add(LargeTitle(context.getString(R.string.daytime)))
-            mModelList.add(Overview(daily.day, true))
-            if (daily.day.wind != null && daily.day.wind.isValid) {
-                mModelList.add(DailyWind(daily.day.wind))
+            mModelList.add(Overview(day, true))
+            day.wind?.let { wind ->
+                if (wind.isValid) {
+                    mModelList.add(DailyWind(wind))
+                }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(context, daily.day))
+            mModelList.addAll(getHalfDayOptionalModelList(context, day))
         }
-        if (daily.night != null) {
+        daily.night?.let { night ->
             mModelList.add(Line())
             mModelList.add(LargeTitle(context.getString(R.string.nighttime)))
-            mModelList.add(Overview(daily.night, false))
-            if (daily.night.wind != null && daily.night.wind.isValid) {
-                mModelList.add(DailyWind(daily.night.wind))
+            mModelList.add(Overview(night, false))
+            night.wind?.let { wind ->
+                if (wind.isValid) {
+                    mModelList.add(DailyWind(wind))
+                }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(context, daily.night))
+            mModelList.addAll(getHalfDayOptionalModelList(context, night))
         }
         mModelList.add(Line())
-        if (daily.airQuality != null && daily.airQuality.isIndexValid) {
-            mModelList.add(Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)))
-            mModelList.add(DailyAirQuality(daily.airQuality))
+        daily.airQuality?.let { airQuality ->
+            if (airQuality.isIndexValid) {
+                mModelList.add(
+                    Title(
+                        R.drawable.weather_haze_mini_xml,
+                        context.getString(R.string.air_quality)
+                    )
+                )
+                mModelList.add(DailyAirQuality(airQuality))
+            }
         }
-        if (daily.pollen?.isIndexValid == true) {
-            mModelList.add(Title(R.drawable.ic_allergy, context.getString(if (daily.pollen.isMoldValid) R.string.pollen_and_mold else R.string.pollen)))
-            mModelList.add(DailyPollen(daily.pollen))
+        daily.pollen?.let { pollen ->
+            if (pollen.isIndexValid) {
+                mModelList.add(
+                    Title(
+                        R.drawable.ic_allergy,
+                        context.getString(if (pollen.isMoldValid) R.string.pollen_and_mold else R.string.pollen)
+                    )
+                )
+                mModelList.add(DailyPollen(pollen))
+            }
         }
-        if (daily.uV?.isValid == true) {
-            mModelList.add(Title(R.drawable.ic_uv, context.getString(R.string.uv_index)))
-            mModelList.add(DailyUV(daily.uV))
+        daily.uV?.let { uV ->
+            if (uV.isValid) {
+                mModelList.add(Title(R.drawable.ic_uv, context.getString(R.string.uv_index)))
+                mModelList.add(DailyUV(uV))
+            }
         }
         if (daily.sun?.isValid == true || daily.moon?.isValid == true || daily.moonPhase?.isValid == true) {
             mModelList.add(LargeTitle(context.getString(R.string.ephemeris)))
@@ -93,31 +114,39 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         if (daily.degreeDay?.isValid == true || daily.hoursOfSun != null) {
             mModelList.add(Line())
             mModelList.add(LargeTitle(context.getString(R.string.details)))
-            if (daily.degreeDay?.isValid == true) {
-                val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-                if (daily.degreeDay.heating != null && daily.degreeDay.heating > 0) {
-                    mModelList.add(
-                        ValueIcon(
-                            context.getString(R.string.temperature_degree_day_heating),
-                            temperatureUnit.getDegreeDayValueText(context, daily.degreeDay.heating),
-                            R.drawable.ic_mode_heat
+            daily.degreeDay?.let { degreeDay ->
+                if (degreeDay.isValid) {
+                    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+                    if ((degreeDay.heating ?: 0.0) > 0) {
+                        mModelList.add(
+                            ValueIcon(
+                                context.getString(R.string.temperature_degree_day_heating),
+                                temperatureUnit.getDegreeDayValueText(
+                                    context,
+                                    degreeDay.heating!!
+                                ),
+                                R.drawable.ic_mode_heat
+                            )
                         )
-                    )
-                } else if (daily.degreeDay.cooling != null && daily.degreeDay.cooling > 0) {
-                    mModelList.add(
-                        ValueIcon(
-                            context.getString(R.string.temperature_degree_day_cooling),
-                            temperatureUnit.getDegreeDayValueText(context, daily.degreeDay.cooling),
-                            R.drawable.ic_mode_cool
+                    } else if ((degreeDay.cooling ?: 0.0) > 0) {
+                        mModelList.add(
+                            ValueIcon(
+                                context.getString(R.string.temperature_degree_day_cooling),
+                                temperatureUnit.getDegreeDayValueText(
+                                    context,
+                                    degreeDay.cooling!!
+                                ),
+                                R.drawable.ic_mode_cool
+                            )
                         )
-                    )
+                    }
                 }
             }
-            if (daily.hoursOfSun != null) {
+            daily.hoursOfSun?.let { hoursOfSun ->
                 mModelList.add(
                     ValueIcon(
                         context.getString(R.string.hours_of_sun),
-                        DurationUnit.H.getValueText(context, daily.hoursOfSun),
+                        DurationUnit.H.getValueText(context, hoursOfSun),
                         R.drawable.ic_hours_of_sun
 
                     )
@@ -223,43 +252,43 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         // precipitation.
         val precipitation = halfDay.precipitation
         val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
-        if (precipitation?.total != null && precipitation.total > 0) {
+        if ((precipitation?.total ?: 0.0) > 0) {
             list.add(Title(R.drawable.ic_water, context.getString(R.string.precipitation)))
             list.add(
                 Value(
                     context.getString(R.string.precipitation_total),
-                    precipitationUnit.getValueText(context, precipitation.total)
+                    precipitationUnit.getValueText(context, precipitation!!.total!!)
                 )
             )
-            if (precipitation.rain != null && precipitation.rain > 0) {
+            if ((precipitation.rain ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_rain),
-                        precipitationUnit.getValueText(context, precipitation.rain)
+                        precipitationUnit.getValueText(context, precipitation.rain!!)
                     )
                 )
             }
-            if (precipitation.snow != null && precipitation.snow > 0) {
+            if ((precipitation.snow ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_snow),
-                        precipitationUnit.getValueText(context, precipitation.snow)
+                        precipitationUnit.getValueText(context, precipitation.snow!!)
                     )
                 )
             }
-            if (precipitation.ice != null && precipitation.ice > 0) {
+            if ((precipitation.ice ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_ice),
-                        precipitationUnit.getValueText(context, precipitation.ice)
+                        precipitationUnit.getValueText(context, precipitation.ice!!)
                     )
                 )
             }
-            if (precipitation.thunderstorm != null && precipitation.thunderstorm > 0) {
+            if ((precipitation.thunderstorm ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_thunderstorm),
-                        precipitationUnit.getValueText(context, precipitation.thunderstorm)
+                        precipitationUnit.getValueText(context, precipitation.thunderstorm!!)
                     )
                 )
             }
@@ -268,43 +297,43 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
 
         // precipitation probability.
         val probability = halfDay.precipitationProbability
-        if (probability?.total != null && probability.total > 0) {
+        if ((probability?.total ?: 0.0) > 0) {
             list.add(Title(R.drawable.ic_water_percent, context.getString(R.string.precipitation_probability)))
             list.add(
                 Value(
                     context.getString(R.string.precipitation_total),
-                    ProbabilityUnit.PERCENT.getValueText(context, probability.total.toInt())
+                    ProbabilityUnit.PERCENT.getValueText(context, probability!!.total!!.toInt())
                 )
             )
-            if (probability.rain != null && probability.rain > 0) {
+            if ((probability.rain ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_rain),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.rain.toInt())
+                        ProbabilityUnit.PERCENT.getValueText(context, probability.rain!!.toInt())
                     )
                 )
             }
-            if (probability.snow != null && probability.snow > 0) {
+            if ((probability.snow ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_snow),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.snow.toInt())
+                        ProbabilityUnit.PERCENT.getValueText(context, probability.snow!!.toInt())
                     )
                 )
             }
-            if (probability.ice != null && probability.ice > 0) {
+            if ((probability.ice ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_ice),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.ice.toInt())
+                        ProbabilityUnit.PERCENT.getValueText(context, probability.ice!!.toInt())
                     )
                 )
             }
-            if (probability.thunderstorm != null && probability.thunderstorm > 0) {
+            if ((probability.thunderstorm ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_thunderstorm),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.thunderstorm.toInt())
+                        ProbabilityUnit.PERCENT.getValueText(context, probability.thunderstorm!!.toInt())
                     )
                 )
             }
@@ -313,43 +342,43 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
 
         // precipitation duration.
         val duration = halfDay.precipitationDuration
-        if (duration?.total != null && duration.total > 0) {
+        if ((duration?.total ?: 0.0) > 0) {
             list.add(Title(R.drawable.ic_time, context.getString(R.string.precipitation_duration)))
             list.add(
                 Value(
                     context.getString(R.string.precipitation_total),
-                    DurationUnit.H.getValueText(context, duration.total)
+                    DurationUnit.H.getValueText(context, duration!!.total!!)
                 )
             )
-            if (duration.rain != null && duration.rain > 0) {
+            if ((duration.rain ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_rain),
-                        DurationUnit.H.getValueText(context, duration.rain)
+                        DurationUnit.H.getValueText(context, duration.rain!!)
                     )
                 )
             }
-            if (duration.snow != null && duration.snow > 0) {
+            if ((duration.snow ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_snow),
-                        DurationUnit.H.getValueText(context, duration.snow)
+                        DurationUnit.H.getValueText(context, duration.snow!!)
                     )
                 )
             }
-            if (duration.ice != null && duration.ice > 0) {
+            if ((duration.ice ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_ice),
-                        DurationUnit.H.getValueText(context, duration.ice)
+                        DurationUnit.H.getValueText(context, duration.ice!!)
                     )
                 )
             }
-            if (duration.thunderstorm != null && duration.thunderstorm > 0) {
+            if ((duration.thunderstorm ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_thunderstorm),
-                        DurationUnit.H.getValueText(context, duration.thunderstorm)
+                        DurationUnit.H.getValueText(context, duration.thunderstorm!!)
                     )
                 )
             }

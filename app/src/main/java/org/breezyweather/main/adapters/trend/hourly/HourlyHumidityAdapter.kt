@@ -23,12 +23,12 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -63,8 +63,10 @@ class HourlyHumidityAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            if (hourly.dewPoint != null) {
-                talkBackBuilder.append(", ").append(Temperature.getTemperature(activity, hourly.dewPoint, mDewPointUnit))
+            hourly.dewPoint?.let {
+                talkBackBuilder.append(", ").append(
+                    mDewPointUnit.getValueText(activity, it)
+                )
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -76,11 +78,13 @@ class HourlyHumidityAdapter(
             mPolylineAndHistogramView.setData(
                 buildDewPointArrayForItem(mDewPoints, position),
                 null,
-                Temperature.getShortTemperature(activity, hourly.dewPoint, mDewPointUnit),
+                hourly.dewPoint?.let {
+                    mDewPointUnit.getShortValueText(activity, it)
+                },
                 null,
                 mHighestDewPoint,
                 mLowestDewPoint,
-                relativeHumidity,
+                relativeHumidity?.toFloat(),
                 if (relativeHumidity != null) ProbabilityUnit.PERCENT.getValueText(activity, relativeHumidity.toInt()) else null,
                 100f,
                 0f
@@ -137,7 +141,7 @@ class HourlyHumidityAdapter(
         run {
             var i = 0
             while (i < mDewPoints.size) {
-                mDewPoints[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.dewPoint
+                mDewPoints[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.dewPoint?.toFloat()
                 i += 2
             }
         }
@@ -156,10 +160,10 @@ class HourlyHumidityAdapter(
             .forEach { hourly ->
                 hourly.dewPoint?.let {
                     if (mHighestDewPoint == null || it > mHighestDewPoint!!) {
-                        mHighestDewPoint = it
+                        mHighestDewPoint = it.toFloat()
                     }
                     if (mLowestDewPoint == null || it < mLowestDewPoint!!) {
-                        mLowestDewPoint = it
+                        mLowestDewPoint = it.toFloat()
                     }
                 }
             }

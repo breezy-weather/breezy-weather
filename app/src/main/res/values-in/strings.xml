@@ -357,7 +357,6 @@
     <string name="action_share">Bagikan</string>
     <string name="weather_kind_hail">Hujan es</string>
     <string name="unit_m">m</string>
-    <string name="location_resident_location">Lokasi tempat tinggal</string>
     <string name="air_quality_no2_info_origin">Sumber NO₂ di lingkungan dihasilkan dari pembakaran bahan bakar bersuhu tinggi dalam proses seperti yang digunakan untuk pemanasan, transportasi, industri, dan pembangkit listrik. Sumber nitrogen oksida (NOₓ) rumah tangga mencakup peralatan yang membakar bahan bakar seperti tungku, perapian, serta kompor dan oven gas.</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -533,7 +532,6 @@
     <string name="about_dependencies">Ketergantungan</string>
     <string name="notification_channel_crash_logs">Catatan pemogokan</string>
     <string name="about_source_code">Kode sumber</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="unit_mm_voice">Milimeter</string>
     <string name="common_weather_text_snow_moderate">Salju sedang</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Tipis</string>
@@ -560,7 +558,6 @@
     <string name="settings_background_updates_battery_optimization">Nonaktifkan optimasi baterai</string>
     <string name="metno_weather_text_andthunder">%s dan guntur</string>
     <string name="location_message_permission_missing">Belum ada izin akses lokasi</string>
-    <string name="location_resident_location_summaryOn">Diaktifkan. Disembunyikan ketika dalam %s lokasi saat ini.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Badai petir disertai sedikit hujan es</string>
     <string name="settings_notifications_forecast_today_title">Notifikasi untuk ramalan cuaca hari ini</string>
     <string name="unit_lpsqmph_voice">Liter per meter persegi per jam</string>
@@ -606,7 +603,6 @@
     <string name="settings_widgets_gadgetbridge_switch">Kirim data cuaca ke Gadgetbridge</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode pagi/malam untuk lokasi</string>
     <string name="common_weather_text_snow_showers_heavy">Hujan salju berat</string>
-    <string name="location_resident_location_summaryOff">Dinonaktifkan. Lokasi selalu tersedia.</string>
     <string name="settings_background_updates_worker_info_summary">Terakhir dijalankan: %s</string>
     <string name="weather_normals_data_by">Suhu normal cuaca dari %s</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Badai petir ringan atau sedang</string>

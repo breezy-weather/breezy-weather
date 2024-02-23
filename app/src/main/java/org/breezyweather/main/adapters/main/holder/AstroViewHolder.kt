@@ -33,18 +33,21 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Weather
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.common.ui.widgets.astro.SunMoonView
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
-import java.util.*
+import java.util.Calendar
+import java.util.TimeZone
 import kotlin.math.max
 import kotlin.math.min
 

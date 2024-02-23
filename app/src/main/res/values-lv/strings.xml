@@ -116,8 +116,6 @@
     <string name="location_search_placeholder">Meklēt atrašanās vietu…</string>
     <string name="location_search_no_results">%1$s nevar atrast %2$s</string>
     <string name="location_search_no_results_advice">Pārliecinieties, vai meklēšanas vaicājums ir uzrakstīts pareizi un nav pārāk precīzs. Varat arī izmēģināt citu laikapstākļu datu avotu, kas var radīt dažādus atrašanās vietas meklēšanas rezultātus.</string>
-    <string name="location_resident_location_summaryOn">Iespējots. Paslēpts, ja atrodas %s no pašreizējās atrašanās vietas.</string>
-    <string name="location_resident_location_summaryOff">Atspējots. Vieta vienmēr pieejama.</string>
     <string name="action_add_current_location">Pievienojiet pašreizējo atrašanās vietu</string>
     <string name="action_add_from_map">Pievienot no kartes</string>
     <string name="action_settings">Iestatījumi</string>
@@ -375,7 +373,6 @@
     <string name="action_restart">Restartēt</string>
     <string name="action_save">Saglabāt</string>
     <string name="action_set">Iestatīt</string>
-    <string name="location_resident_location">Iedzīvotāja atrašanās vieta</string>
     <string name="action_see_more">Redzēt vairāk</string>
     <string name="action_edit">Rediģēt</string>
     <string name="action_cancel">Atcelt</string>
@@ -428,7 +425,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pikselis</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatūra</string>
     <string name="settings_background_updates">Fona atjauninājumi</string>
     <string name="settings_background_updates_refresh_title">Atjaunošanas biežums</string>

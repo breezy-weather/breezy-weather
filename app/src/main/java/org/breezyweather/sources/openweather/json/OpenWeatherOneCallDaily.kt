@@ -30,14 +30,14 @@ data class OpenWeatherOneCallDaily(
     @SerialName("feels_like") val feelsLike: OpenWeatherOneCallDailyFeelsLike?,
     val pressure: Int?,
     val humidity: Int?,
-    @SerialName("dew_point") val dewPoint: Float?,
-    @SerialName("wind_speed") val windSpeed: Float?,
+    @SerialName("dew_point") val dewPoint: Double?,
+    @SerialName("wind_speed") val windSpeed: Double?,
     @SerialName("wind_deg") val windDeg: Int?,
-    @SerialName("wind_gust") val windGust: Float?,
+    @SerialName("wind_gust") val windGust: Double?,
     val weather: List<OpenWeatherOneCallWeather>?,
     val clouds: Int?,
-    val pop: Float?,
-    val rain: Float?,
-    val snow: Float?,
-    val uvi: Float?
+    val pop: Double?,
+    val rain: Double?,
+    val snow: Double?,
+    val uvi: Double?
 )

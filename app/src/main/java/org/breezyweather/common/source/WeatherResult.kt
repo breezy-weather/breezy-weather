@@ -16,7 +16,7 @@
 
 package org.breezyweather.common.source
 
-import org.breezyweather.common.basic.models.weather.Weather
+import breezyweather.domain.weather.model.Weather
 
 class WeatherResult(
     val weather: Weather? = null,

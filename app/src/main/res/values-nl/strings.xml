@@ -348,7 +348,6 @@
     <string name="weather_source_accu_preference_days_10">10 dagen</string>
     <string name="location_message_search_failed">Zoeken naar locatie mislukt</string>
     <string name="location_message_reverse_geocoding_failed">Weerbron heeft geen overeenkomstige locatie gevonden</string>
-    <string name="location_resident_location">Bewonerslocatie</string>
     <string name="action_refresh">Ververs</string>
     <string name="action_delete">Verwijder</string>
     <string name="action_undo">Ongedaan maken</string>
@@ -401,8 +400,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Slaat foutenlogboeken op in een bestand om te delen met de ontwikkelaars</string>
     <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
     <string name="air_quality_level_6_description">Blootstelling aan de buitenlucht, al is het maar enkele minuten, kan bij iedereen de gezondheid ernstig beïnvloeden. Vermijd buitenactiviteiten.</string>
-    <string name="location_resident_location_summaryOn">Ingeschakeld. Verborgen binnen %s van huidige locatie.</string>
-    <string name="location_resident_location_summaryOff">Uitgeschakeld. Locatie altijd beschikbaar.</string>
     <string name="action_add_current_location">Huidige locatie toevoegen</string>
     <string name="settings_background_updates_section_troubleshoot">Problemen oplossen</string>
     <string name="settings_background_updates_battery_optimization">Batterijoptimalisatie uitschakelen</string>
@@ -448,7 +445,6 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Week (Kort)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
     <string name="settings_none">Geen</string>

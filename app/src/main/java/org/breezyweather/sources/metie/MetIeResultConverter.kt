@@ -16,13 +16,13 @@
 
 package org.breezyweather.sources.metie
 
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
@@ -79,17 +79,17 @@ private fun getHourlyForecast(
             weatherCode = getWeatherCode(result.weatherNumber),
             weatherText = result.weatherDescription,
             temperature = Temperature(
-                temperature = result.temperature?.toFloat()
+                temperature = result.temperature?.toDouble()
             ),
             precipitation = Precipitation(
-                total = result.rainfall?.toFloatOrNull()
+                total = result.rainfall?.toDoubleOrNull()
             ),
             wind = Wind(
-                degree = result.windDirection?.toFloatOrNull(),
-                speed = result.windSpeed?.div(3.6)?.toFloat()
+                degree = result.windDirection?.toDoubleOrNull(),
+                speed = result.windSpeed?.div(3.6)
             ),
-            relativeHumidity = result.humidity?.toFloatOrNull(),
-            pressure = result.pressure?.toFloatOrNull(),
+            relativeHumidity = result.humidity?.toDoubleOrNull(),
+            pressure = result.pressure?.toDoubleOrNull(),
         )
     }
 }

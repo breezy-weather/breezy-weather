@@ -18,13 +18,40 @@ package org.breezyweather.remoteviews.config
 
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
+import javax.inject.Inject
 
 /**
  * Clock day vertical widget config activity.
  */
+@AndroidEntryPoint
 class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
+    var locationNow: Location? = null
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
+
+    override suspend fun initLocations() {
+        val location = locationRepository.getFirstLocation(withParameters = false)
+        locationNow = location?.copy(
+            weather = weatherRepository.getWeatherByLocationId(
+                location.formattedId,
+                withDaily = true,
+                withHourly = false,
+                withMinutely = false,
+                withAlerts = true // Custom subtitle
+            )
+        )
+    }
+
     override fun initData() {
         super.initData()
         val widgetStyles = resources.getStringArray(R.array.widget_styles)
@@ -36,7 +63,7 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             widgetStyles[2],
             widgetStyles[3],
             widgetStyles[6],
-            widgetStyles[9]
+            widgetStyles[8]
         )
         viewTypeValues = arrayOf(
             widgetStyleValues[0],
@@ -44,7 +71,7 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             widgetStyleValues[2],
             widgetStyleValues[3],
             widgetStyleValues[6],
-            widgetStyleValues[9]
+            widgetStyleValues[8]
         )
     }
 

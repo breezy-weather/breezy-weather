@@ -24,10 +24,14 @@ import android.view.View
 import android.view.ViewGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.index.PollutantIndex
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.weatherView.WeatherViewController
@@ -58,7 +62,7 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
                 talkBackBuilder.append(", ").append(index).append(", ")
-                    .append(hourly.airQuality.getName(itemView.context))
+                    .append(hourly.airQuality!!.getName(itemView.context))
             }
             mPolylineAndHistogramView.setData(
                 null, null,
@@ -68,8 +72,8 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
                 mHighestIndex.toFloat(), 0f
             )
             mPolylineAndHistogramView.setLineColors(
-                if (index != null) hourly.airQuality.getColor(activity) else Color.TRANSPARENT,
-                if (index != null) hourly.airQuality.getColor(activity) else Color.TRANSPARENT,
+                hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
+                hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
 

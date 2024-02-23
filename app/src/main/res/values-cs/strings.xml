@@ -557,7 +557,6 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don’t kill my app! najdete informace o tom, jak to napravit.</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_section_troubleshoot">Řešení potíží</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Specifické pokyny výrobce</string>
     <string name="settings_location">Poloha</string>
@@ -628,9 +627,6 @@
     <string name="unit_bf_voice">na Beaufortově stupnici</string>
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
     <string name="common_weather_text_drizzle_freezing">Mrznoucí mrholení</string>
-    <string name="location_resident_location">Místo pobytu</string>
-    <string name="location_resident_location_summaryOn">Povoleno. Skryté, když je v dosahu %s aktuální polohy.</string>
-    <string name="location_resident_location_summaryOff">Vypnuto. Umístění je vždy k dispozici.</string>
     <string name="action_delete">Odstranit</string>
     <string name="about_contribution_weather_source">Přidána podpora pro nové zdroje počasí</string>
     <string name="weather_message_secondary_data_refresh_failed">Obnovení dat o počasí pro sekundární zdroj počasí se nezdařilo</string>

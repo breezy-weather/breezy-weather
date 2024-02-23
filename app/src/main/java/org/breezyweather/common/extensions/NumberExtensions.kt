@@ -29,15 +29,15 @@ operator fun Int?.plus(other: Int?): Int? = if (this != null || other != null) {
     (this ?: 0) + (other ?: 0)
 } else null
 
-operator fun Float?.plus(other: Float?): Float? = if (this != null || other != null) {
-    (this ?: 0f) + (other ?: 0f)
+operator fun Double?.plus(other: Double?): Double? = if (this != null || other != null) {
+    (this ?: 0.0) + (other ?: 0.0)
 } else null
 
-fun Float.roundDecimals(decimals: Int): Float {
-    return this.toBigDecimal().setScale(decimals, RoundingMode.HALF_EVEN).toFloat()
+fun Double.roundDecimals(decimals: Int): Double {
+    return this.toBigDecimal().setScale(decimals, RoundingMode.HALF_EVEN).toDouble()
 }
 
-fun Float.format(decimals: Int): String {
+fun Double.format(decimals: Int): String {
     val df = DecimalFormat("0").apply {
         maximumFractionDigits = decimals
     }
@@ -45,13 +45,13 @@ fun Float.format(decimals: Int): String {
     return df.format(this)
 }
 
-val Array<Float>.median: Float
+val Array<Double>.median: Double
     get() {
         this.sort()
 
         return if (this.size % 2 != 0) {
             this[this.size / 2]
-        } else (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0f
+        } else (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0
     }
 
 /**

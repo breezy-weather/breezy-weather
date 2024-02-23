@@ -17,19 +17,19 @@
 package org.breezyweather.sources.eccc
 
 import android.graphics.Color
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Normals
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
@@ -103,14 +103,14 @@ private fun getCurrent(result: EcccObservation?): Current? {
             apparentTemperature = getNonEmptyMetric(result.feelsLike)
         ),
         wind = Wind(
-            degree = result.windBearing?.toFloat(),
-            speed = getNonEmptyMetric(result.windSpeed)?.div(3.6f),
-            gusts = getNonEmptyMetric(result.windGust)?.div(3.6f)
+            degree = result.windBearing?.toDouble(),
+            speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
+            gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
         ),
-        relativeHumidity = result.humidity?.toFloatOrNull(),
+        relativeHumidity = result.humidity?.toDoubleOrNull(),
         dewPoint = getNonEmptyMetric(result.dewpoint),
-        pressure = getNonEmptyMetric(result.pressure)?.times(10f),
-        visibility = getNonEmptyMetric(result.visibility)?.times(1000f)
+        pressure = getNonEmptyMetric(result.pressure)?.times(10),
+        visibility = getNonEmptyMetric(result.visibility)?.times(1000)
     )
 }
 
@@ -157,10 +157,10 @@ private fun getDailyForecast(
                                 weatherText = daytime.summary,
                                 weatherPhase = daytime.text,
                                 temperature = Temperature(
-                                    temperature = daytime.temperature?.periodHigh?.toFloat()
+                                    temperature = daytime.temperature?.periodHigh?.toDouble()
                                 ),
                                 precipitationProbability = PrecipitationProbability(
-                                    total = daytime.precip?.toFloatOrNull()
+                                    total = daytime.precip?.toDoubleOrNull()
                                 )
                             )
                         } else null,
@@ -169,10 +169,10 @@ private fun getDailyForecast(
                             weatherText = nighttime.summary,
                             weatherPhase = nighttime.text,
                             temperature = Temperature(
-                                temperature = nighttime.temperature?.periodLow?.toFloat()
+                                temperature = nighttime.temperature?.periodLow?.toDouble()
                             ),
                             precipitationProbability = PrecipitationProbability(
-                                total = nighttime.precip?.toFloatOrNull()
+                                total = nighttime.precip?.toDoubleOrNull()
                             )
                         )
                     )
@@ -199,12 +199,12 @@ private fun getHourlyForecast(
                 apparentTemperature = getNonEmptyMetric(result.feelsLike)
             ),
             precipitationProbability = if (!result.precip.isNullOrEmpty()) {
-                PrecipitationProbability(total = result.precip.toFloatOrNull())
+                PrecipitationProbability(total = result.precip.toDoubleOrNull())
             } else null,
             wind = Wind(
                 degree = getWindDegree(result.windDir),
-                speed = getNonEmptyMetric(result.windSpeed)?.div(3.6f),
-                gusts = getNonEmptyMetric(result.windGust)?.div(3.6f)
+                speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
+                gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
             )
         )
     }
@@ -244,19 +244,19 @@ private fun getNormals(timeZone:  TimeZone, normals: EcccRegionalNormalsMetric?)
     val currentMonth = Date().toCalendarWithTimeZone(timeZone)[Calendar.MONTH]
     return Normals(
         month = currentMonth,
-        daytimeTemperature = normals.highTemp.toFloat(),
-        nighttimeTemperature = normals.lowTemp.toFloat()
+        daytimeTemperature = normals.highTemp.toDouble(),
+        nighttimeTemperature = normals.lowTemp.toDouble()
     )
 }
 
-private fun getNonEmptyMetric(ecccUnit: EcccUnit?): Float? {
+private fun getNonEmptyMetric(ecccUnit: EcccUnit?): Double? {
     if (ecccUnit == null
         || (ecccUnit.metric.isNullOrEmpty() && ecccUnit.metricUnrounded.isNullOrEmpty())) {
         return null
     }
     return if (!ecccUnit.metricUnrounded.isNullOrEmpty()) {
-        ecccUnit.metricUnrounded.toFloatOrNull()
-    } else ecccUnit.metric!!.toFloatOrNull()
+        ecccUnit.metricUnrounded.toDoubleOrNull()
+    } else ecccUnit.metric!!.toDoubleOrNull()
 }
 
 private fun getWeatherCode(icon: String?): WeatherCode? {
@@ -276,17 +276,17 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     }
 }
 
-private fun getWindDegree(direction: String?): Float? {
+private fun getWindDegree(direction: String?): Double? {
     return when (direction) {
-        "N" -> 0f
-        "NE" -> 45f
-        "E" -> 90f
-        "SE" -> 135f
-        "S" -> 180f
-        "SW", "SO" -> 225f
-        "W", "O" -> 270f
-        "NW", "NO" -> 315f
-        "VR" -> -1f
+        "N" -> 0.0
+        "NE" -> 45.0
+        "E" -> 90.0
+        "SE" -> 135.0
+        "S" -> 180.0
+        "SW", "SO" -> 225.0
+        "W", "O" -> 270.0
+        "NW", "NO" -> 315.0
+        "VR" -> -1.0
         else -> null
     }
 }

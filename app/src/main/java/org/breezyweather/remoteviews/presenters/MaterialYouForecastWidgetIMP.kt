@@ -26,8 +26,16 @@ import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getHour
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getShortDescription
+import org.breezyweather.domain.weather.model.getWeek
+import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -43,7 +51,7 @@ class MaterialYouForecastWidgetIMP: AbstractRemoteViewsPresenter() {
             ).isNotEmpty()
         }
 
-        fun updateWidgetView(context: Context, location: Location) {
+        fun updateWidgetView(context: Context, location: Location?) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                 ComponentName(context, WidgetMaterialYouForecastProvider::class.java),
                 buildWeatherWidget(context, location)
@@ -54,38 +62,38 @@ class MaterialYouForecastWidgetIMP: AbstractRemoteViewsPresenter() {
 
 private fun buildWeatherWidget(
     context: Context,
-    location: Location
+    location: Location?
 ): RemoteViews = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
     RemoteViews(
         mapOf(
             SizeF(1.0f, 1.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_1x1
             ),
-            SizeF (120.0f, 120.0f) to buildRemoteViews(
+            SizeF(120.0f, 120.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_2x1
             ),
-            SizeF (156.0f, 156.0f) to buildRemoteViews(
+            SizeF(156.0f, 156.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_2x2
             ),
-            SizeF (192.0f, 98.0f) to buildRemoteViews(
+            SizeF(192.0f, 98.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_3x1
             ),
-            SizeF (148.0f, 198.0f) to buildRemoteViews(
+            SizeF(148.0f, 198.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_3x2
             ),
-            SizeF (256.0f, 100.0f) to buildRemoteViews(
+            SizeF(256.0f, 100.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_4x1
             ),
-            SizeF (256.0f, 198.0f) to buildRemoteViews(
+            SizeF(256.0f, 198.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_4x2
             ),
-            SizeF (256.0f, 312.0f) to buildRemoteViews(
+            SizeF(256.0f, 312.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_4x3
             ),
-            SizeF (298.0f, 198.0f) to buildRemoteViews(
+            SizeF(298.0f, 198.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_5x2
             ),
-            SizeF (298.0f, 312.0f) to buildRemoteViews(
+            SizeF(298.0f, 312.0f) to buildRemoteViews(
                 context, location, R.layout.widget_material_you_forecast_5x3
             ),
         )
@@ -96,13 +104,13 @@ private fun buildWeatherWidget(
 
 private fun buildRemoteViews(
     context: Context,
-    location: Location,
+    location: Location?,
     @LayoutRes layoutId: Int,
 ): RemoteViews {
 
     val views = RemoteViews(context.packageName, layoutId)
 
-    val weather = location.weather
+    val weather = location?.weather ?: return views
     val dayTime = location.isDaylight
 
     val provider = ResourcesProviderFactory.newInstance
@@ -133,33 +141,40 @@ private fun buildRemoteViews(
     views.apply {
         setTextViewText(
             R.id.widget_material_you_forecast_currentTemperature,
-            weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.current?.temperature?.temperature?.let {
+                temperatureUnit.getShortValueText(context, it)
+            }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_daytimeTemperature,
-            weather.today?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.today?.day?.temperature?.temperature?.let {
+                temperatureUnit.getShortValueText(context, it)
+            }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_nighttimeTemperature,
-            weather.today?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.today?.night?.temperature?.temperature?.let {
+                temperatureUnit.getShortValueText(context, it)
+            }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_weatherText,
-            location.weather.current?.weatherText
+            weather.current?.weatherText
         )
     }
 
-    if (weather.current?.airQuality != null && weather.current.airQuality.isIndexValid) {
-        views.setTextViewText(
-            R.id.widget_material_you_forecast_aqiOrWind,
-            context.getString(R.string.air_quality) + " - " + weather.current.airQuality.getName(context)
-        )
-    } else if (weather.current?.wind != null && weather.current.wind.getShortDescription(context, speedUnit).isNotEmpty()) {
-        views.setTextViewText(
-            R.id.widget_material_you_forecast_aqiOrWind,
-            context.getString(R.string.wind) + " - " + weather.current.wind.getShortDescription(context, speedUnit)
-        )
-    } else views.setTextViewText(R.id.widget_material_you_forecast_aqiOrWind, null)
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_aqiOrWind,
+        weather.current?.let { current ->
+            if (current.airQuality?.isIndexValid == true) {
+                context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
+            } else current.wind?.let { wind ->
+                wind.getShortDescription(context, speedUnit)?.let {
+                    context.getString(R.string.wind) + " - " + it
+                }
+            }
+        }
+    )
 
     // Hourly
     val hourlyIds = arrayOf(
@@ -182,7 +197,9 @@ private fun buildRemoteViews(
                 )
             )
         } ?: views.setViewVisibility(hourlyId[1], View.INVISIBLE)
-        views.setTextViewText(hourlyId[2], weather.nextHourlyForecast.getOrNull(i)?.temperature?.getShortTemperature(context, temperatureUnit))
+        views.setTextViewText(hourlyId[2], weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.let {
+            temperatureUnit.getShortValueText(context, it)
+        })
     }
 
     // Daily
@@ -251,11 +268,15 @@ private fun buildRemoteViews(
         } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
         views.setTextViewText(
             dailyId[2],
-            weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
+                temperatureUnit.getShortValueText(context, it)
+            }
         )
         views.setTextViewText(
             dailyId[3],
-            weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
+                temperatureUnit.getShortValueText(context, it)
+            }
         )
         weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {
             views.setViewVisibility(dailyId[4], View.VISIBLE)

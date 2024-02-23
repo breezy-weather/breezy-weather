@@ -28,6 +28,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyWind
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getDirection
+import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.settings.SettingsManager
 
 class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
@@ -51,34 +54,34 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 itemView.context.getString(R.string.wind)
             )
             mIcon.supportImageTintList = ColorStateList.valueOf(wind.getColor(itemView.context))
-            if (wind.degree != null) {
-                if (wind.degree != -1f) {
-                    mIcon.rotation = wind.degree + 180
+            wind.degree?.let { degree ->
+                if (degree != -1.0) {
+                    mIcon.rotation = degree.toFloat() + 180f
                 }
                 talkBackBuilder.append(", ").append(wind.getDirection(itemView.context))
-                if (wind.degree == -1f || wind.degree % 45 == 0f) {
+                if (wind.degree == -1.0 || degree % 45 == 0.0) {
                     mDirectionText.text = wind.getDirection(itemView.context)
                 } else {
                     mDirectionText.text = (wind.getDirection(itemView.context)
-                            + " (" + (wind.degree % 360).toInt() + "°)")
+                            + " (" + (degree % 360).toInt() + "°)")
                 }
             }
-            if (wind.speed > 0) {
+            if ((wind.speed ?: 0.0) > 0) {
                 talkBackBuilder.append(", ")
-                    .append(mSpeedUnit.getValueText(mSpeedText.context, wind.speed))
+                    .append(mSpeedUnit.getValueText(mSpeedText.context, wind.speed!!))
                 mSpeed.visibility = View.VISIBLE
-                mSpeedText.text = mSpeedUnit.getValueText(mSpeedText.context, wind.speed)
+                mSpeedText.text = mSpeedUnit.getValueText(mSpeedText.context, wind.speed!!)
             } else {
                 mSpeed.visibility = View.GONE
             }
             talkBackBuilder.append(", ").append(wind.getStrength(mSpeedText.context))
             mStrengthText.text = wind.getStrength(mSpeedText.context)
             itemView.contentDescription = talkBackBuilder.toString()
-            if (wind.gusts != null && wind.gusts > 0) {
+            if ((wind.gusts ?: 0.0) > 0) {
                 talkBackBuilder.append(", ")
-                    .append(mSpeedUnit.getValueText(mGustsText.context, wind.gusts))
+                    .append(mSpeedUnit.getValueText(mGustsText.context, wind.gusts!!))
                 mGusts.visibility = View.VISIBLE
-                mGustsText.text = mSpeedUnit.getValueText(mGustsText.context, wind.gusts)
+                mGustsText.text = mSpeedUnit.getValueText(mGustsText.context, wind.gusts!!)
             } else {
                 mGusts.visibility = View.GONE
             }

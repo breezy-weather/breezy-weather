@@ -16,12 +16,14 @@
 
 package org.breezyweather.settings.activities
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
@@ -30,6 +32,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
@@ -40,6 +43,7 @@ import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.compose.MainScreenSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
+import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
@@ -48,6 +52,7 @@ import javax.inject.Inject
 class MainScreenSettingsActivity : GeoActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
+    @Inject lateinit var refreshHelper: RefreshHelper
     private val cardDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).cardDisplayList
     )
@@ -96,6 +101,7 @@ class MainScreenSettingsActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
+        val scope = rememberCoroutineScope()
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -120,6 +126,11 @@ class MainScreenSettingsActivity : GeoActivity() {
                         hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
                         detailDisplayList = remember { detailsDisplayState }.value,
                         paddingValues = paddings,
+                        updateWidgetIfNecessary = { context: Context ->
+                            scope.launch {
+                                refreshHelper.updateWidgetIfNecessary(context)
+                            }
+                        }
                     )
                 }
             }

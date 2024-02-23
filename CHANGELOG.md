@@ -1,4 +1,8 @@
-# Version 4.7.0-beta (not yet released)
+# Version 5.0.0-alpha (not yet released)
+
+We found a proprietary dependency in the database component. To get rid of it, we chose to use a different database component and not offer any migration. You will have to re-add your locations. Your preferences are safe.
+
+This an **alpha release**. Use it at your own risk. If you do, report any issue you found to help stabilizing the app!
 
 **New features and main improvements**
 - Design refresh of current details in header
@@ -45,6 +49,10 @@
 - [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 - [Widgets] Fix clock day vertical widget in vertical or tile mode was showing decimals to current temperature
 - Fix UV index description being sometimes wrong
+
+**Removed features**
+- Resident locations. Undocumented, encourages bad practices (two identical locations to be refreshed) and terrible technical implementation. May be brought back differently if you can provide well-thought use cases, functional specifications, and a better technical implementation.
+- Widget Oreo (Google Sans). We don’t have licensing rights of the Google Sans font. Customizing font on widgets was also an unofficial feature that was removed with a security update released in 2021, so that feature didn’t work for most devices anyway.
 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)

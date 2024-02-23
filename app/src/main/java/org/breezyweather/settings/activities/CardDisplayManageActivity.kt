@@ -40,7 +40,6 @@ import org.breezyweather.databinding.ActivityCardDisplayManageBinding
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.adapters.CardDisplayAdapter
 import org.breezyweather.theme.ThemeManager
-import java.util.*
 
 class CardDisplayManageActivity : GeoActivity() {
     private lateinit var mBinding: ActivityCardDisplayManageBinding

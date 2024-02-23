@@ -88,7 +88,6 @@
     <string name="location_dialog_failed_to_locate_title">Не вдається правильно визначити місцезнаходження\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Виберіть сервіс визначення місцезнаходження</string>
     <string name="location_search_placeholder">Пошук місцезнаходження…</string>
-    <string name="location_resident_location_summaryOff">Вимкнено. Місцезнаходження завжди доступне.</string>
     <string name="location_service_native">Нативний API</string>
     <string name="action_location_list">Список місць</string>
     <string name="action_search">Пошук</string>
@@ -258,11 +257,9 @@
     <string name="message_source_not_installed_error_content">Це джерело більше не доступне; будь ласка, видаліть місцезнаходження та відтворіть його з іншого джерела.</string>
     <string name="dialog_permissions_location_title">Доступ до інформації про місцезнаходження</string>
     <string name="action_app_store">Магазин застосунків</string>
-    <string name="location_resident_location_summaryOn">Увімкнено. Приховано, якщо знаходиться в межах %s від поточного місцезнаходження.</string>
     <string name="wind_strength_11">Жорстокий шторм</string>
     <string name="uv_index_0_2">Низький</string>
     <string name="uv_index_11">Надмірний</string>
-    <string name="location_resident_location">Місце проживання</string>
     <string name="action_add_from_map">Додати з мапи</string>
     <string name="action_restart">Перезапустити</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
@@ -350,7 +347,6 @@
     <string name="widget_style_vertical">Вертикальний</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_week_style_3_days">3 дні</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>

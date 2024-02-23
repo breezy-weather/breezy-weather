@@ -17,6 +17,7 @@
 package org.breezyweather.settings.activities
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -30,6 +31,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
@@ -38,6 +40,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.rememberPermissionState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
@@ -49,6 +52,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.compose.*
+import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
@@ -59,6 +63,7 @@ private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 class SettingsActivity : GeoActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
+    @Inject lateinit var refreshHelper: RefreshHelper
 
     private val updateIntervalState = mutableStateOf(
         SettingsManager.getInstance(this).updateInterval
@@ -167,6 +172,7 @@ class SettingsActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
+        val scope = rememberCoroutineScope()
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -230,6 +236,11 @@ class SettingsActivity : GeoActivity() {
                         hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
                         detailDisplayList = remember { detailsDisplayState }.value,
                         paddingValues = paddings,
+                        updateWidgetIfNecessary = { context: Context ->
+                            scope.launch {
+                                refreshHelper.updateWidgetIfNecessary(context)
+                            }
+                        }
                     )
                 }
                 composable(SettingsScreenRouter.Notifications.route) {
@@ -275,6 +286,21 @@ class SettingsActivity : GeoActivity() {
                                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                                 PERMISSION_CODE_POST_NOTIFICATION
                             )
+                        },
+                        updateWidgetIfNecessary = { context: Context ->
+                            scope.launch {
+                                refreshHelper.updateWidgetIfNecessary(context)
+                            }
+                        },
+                        updateNotificationIfNecessary = { context: Context ->
+                            scope.launch {
+                                refreshHelper.updateNotificationIfNecessary(context)
+                            }
+                        },
+                        updateGadgetIfNecessary = { context: Context ->
+                            scope.launch {
+                                refreshHelper.updateGadgetIfNecessary(context)
+                            }
                         }
                     )
                 }

@@ -25,20 +25,25 @@ import android.view.View
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.Weather
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getShortDescription
+import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import java.util.*
+import java.util.Date
 
 object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location) {
+    fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_details_setting))
         val views = getRemoteViews(
             context, location,
@@ -80,37 +85,34 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
-        if (weather.current?.temperature?.temperature != null) {
-            builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit, 0))
+        weather.current?.temperature?.temperature?.let {
+            builder.append(" ").append(
+                temperatureUnit.getValueText(context, it, 0)
+            )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
-        Temperature.getTrendTemperature(
-            context,
-            weather.today?.night?.temperature?.temperature,
-            weather.today?.day?.temperature?.temperature,
-            temperatureUnit
-        )?.let {
+        weather.today?.getTrendTemperature(context, temperatureUnit)?.let {
             views.setTextViewText(R.id.widget_clock_day_todayTemp, context.getString(R.string.short_today) + " " + it)
-        } ?: views.setTextViewText(R.id.widget_clock_day_todayTemp, null)
-        if (weather.current?.temperature?.feelsLikeTemperature != null) {
+        } ?: run {
+            views.setTextViewText(R.id.widget_clock_day_todayTemp, null)
+        }
+        weather.current?.temperature?.feelsLikeTemperature?.let {
             views.setTextViewText(
                 R.id.widget_clock_day_feelsLikeTemp,
                 context.getString(R.string.temperature_feels_like)
                         + " "
-                        + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit, 0)
+                        + temperatureUnit.getValueText(context, it, 0)
             )
-        } else {
+        } ?: run {
             views.setTextViewText(R.id.widget_clock_day_feelsLikeTemp, null)
         }
         views.setTextViewText(R.id.widget_clock_day_aqiHumidity, getAQIHumidityTempText(context, weather))
-        if (weather.current?.wind != null) {
+        weather.current?.wind?.let { wind ->
             val speedUnit = settings.speedUnit
-            if (weather.current.wind.getShortDescription(context, speedUnit).isNotEmpty()) {
-                views.setTextViewText(
-                    R.id.widget_clock_day_wind,
-                    weather.current.wind.getShortDescription(context, speedUnit)
-                )
-            } else views.setTextViewText(R.id.widget_clock_day_wind, null)
+            views.setTextViewText(
+                R.id.widget_clock_day_wind,
+                wind.getShortDescription(context, speedUnit)
+            )
         }
         if (color.textColor != Color.TRANSPARENT) {
             views.apply {
@@ -192,20 +194,18 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getAQIHumidityTempText(context: Context, weather: Weather): String? {
         return if (weather.current?.airQuality?.getIndex() != null
-            && weather.current.airQuality.getName(context) != null
+            && weather.current!!.airQuality!!.getName(context) != null
         ) {
             (context.getString(R.string.air_quality) + " "
-                    + weather.current.airQuality.getIndex()
+                    + weather.current!!.airQuality!!.getIndex()
                     + " ("
-                    + weather.current.airQuality.getName(context)
+                    + weather.current!!.airQuality!!.getName(context)
                     + ")")
-        } else if (weather.current?.relativeHumidity != null) {
+        } else weather.current?.relativeHumidity?.let {
             (context.getString(R.string.humidity)
                     + " "
-                    + RelativeHumidityUnit.PERCENT.getValueText(context, weather.current.relativeHumidity.toInt()
+                    + RelativeHumidityUnit.PERCENT.getValueText(context, it.toInt()
             ))
-        } else {
-            null
         }
     }
 

@@ -52,12 +52,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.index.PollutantIndex
-import org.breezyweather.common.basic.models.weather.AirQuality
+import breezyweather.domain.location.model.Location
+import org.breezyweather.domain.weather.index.PollutantIndex
+import breezyweather.domain.weather.model.AirQuality
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.ArcProgress
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.adapters.AqiAdapter
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
@@ -95,7 +102,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
 
-        val isDaily = (location.weather?.current?.airQuality == null || !location.weather.current.airQuality.isIndexValid)
+        val isDaily = (location.weather?.current?.airQuality?.isIndexValid == true)
         location.weather!!.validAirQuality?.let { airQuality ->
             mAqiIndex = airQuality.getIndex() ?: 0
             mEnable = true
@@ -110,7 +117,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
             mTime.text = if (isDaily) {
                 context.getString(R.string.short_today)
-            } else location.weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
+            } else location.weather!!.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
             if (itemAnimationEnabled) {
                 mProgress.apply {
                     progress = 0f

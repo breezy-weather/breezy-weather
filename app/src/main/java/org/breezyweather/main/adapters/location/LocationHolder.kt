@@ -30,6 +30,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class LocationHolder(
@@ -93,7 +94,6 @@ class LocationHolder(
         )
         mBinding.sortButton.visibility = View.VISIBLE
         mBinding.content.setPaddingRelative(0, 0, 0, 0)
-        mBinding.residentIcon.visibility = if (model.residentPosition) View.VISIBLE else View.GONE
         if (model.weatherCode != null) {
             mBinding.weatherIcon.apply {
                 visibility = View.VISIBLE

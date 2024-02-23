@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.weather.WeatherCode
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.utils.ColorUtils
@@ -40,7 +40,7 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.PixelResourcesProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.*
+import java.util.Locale
 
 class PreviewIconActivity : GeoActivity() {
     private var mProvider: ResourceProvider? = null

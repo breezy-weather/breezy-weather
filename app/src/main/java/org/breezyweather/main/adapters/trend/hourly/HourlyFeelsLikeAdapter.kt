@@ -23,10 +23,11 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -61,8 +62,10 @@ class HourlyFeelsLikeAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            if (hourly.temperature?.feelsLikeTemperature != null) {
-                talkBackBuilder.append(", ").append(hourly.temperature.getFeelsLikeTemperature(activity, mTemperatureUnit))
+            hourly.temperature?.feelsLikeTemperature?.let {
+                talkBackBuilder.append(", ").append(
+                    mTemperatureUnit.getValueText(activity, it)
+                )
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -73,7 +76,9 @@ class HourlyFeelsLikeAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
-                hourly.temperature?.getShortFeelsLikeTemperature(activity, mTemperatureUnit),
+                hourly.temperature?.feelsLikeTemperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                },
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
@@ -134,7 +139,7 @@ class HourlyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mTemperatures.size) {
-                mTemperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature
+                mTemperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.toFloat()
                 i += 2
             }
         }
@@ -153,10 +158,10 @@ class HourlyFeelsLikeAdapter(
             .forEach { hourly ->
                 hourly.temperature?.feelsLikeTemperature?.let {
                     if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                        mHighestTemperature = it
+                        mHighestTemperature = it.toFloat()
                     }
                     if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                        mLowestTemperature = it
+                        mLowestTemperature = it.toFloat()
                     }
                 }
             }

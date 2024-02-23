@@ -442,7 +442,6 @@
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
     <string name="dialog_permissions_location_title">Dostęp do informacji o lokalizacji</string>
     <string name="message_parsing_error_title">Nie udało się przeanalizować danych pogodowych</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_battery_optimization">Wyłącz optymalizację baterii</string>
     <string name="settings_background_updates_battery_optimization_summary">Jest to pierwsza rzecz, którą należy wypróbować, gdy nie otrzymujesz powiadomień lub widżety nie odświeżają się.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nie udało się otworzyć ustawień urządzenia.</string>
@@ -466,7 +465,6 @@
     <string name="location_results_by">Wyniki lokalizacji według %s</string>
     <string name="location_swipe_to_delete">Możesz przesunąć w lewo, aby usunąć ten element</string>
     <string name="widget_label_hide_lunar">Ukryj kalendarz księżycowy</string>
-    <string name="location_resident_location">Miejsce zamieszkania</string>
     <string name="action_delete">Usuń</string>
     <string name="settings_background_updates_worker_info_summary">Ostatnie uruchomienie: %s</string>
     <string name="settings_location_access_permission_already_granted">Uprawnienie już udzielone</string>
@@ -558,7 +556,6 @@
     <string name="common_weather_text_mainly_clear">Przeważnie bezchmurnie</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lekka lub umiarkowana burza z piorunami</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
-    <string name="location_resident_location_summaryOff">Wyłączone. Lokalizacja zawsze dostępna.</string>
     <string name="settings_source_api_key">Klucz API</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_weather_source_open_weather_one_call_version">Wersja OneCall</string>
@@ -607,7 +604,6 @@
     <string name="settings_main_threshold_lines_on_charts">Linie progów na wykresach</string>
     <string name="about_contribution_designer">Projektant logo</string>
     <string name="common_weather_text_rain_light">Lekkie opady deszczu</string>
-    <string name="location_resident_location_summaryOn">Dołączony. Ukryty, gdy odległość od bieżącej lokalizacji jest większa niż %s.</string>
     <string name="common_weather_text_rain_moderate">Umiarkowane opady deszczu</string>
     <string name="common_weather_text_rain_showers">Przelotne opady deszczu</string>
     <string name="common_weather_text_drizzle_moderate">Umiarkowana mżawka</string>

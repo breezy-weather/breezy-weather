@@ -211,7 +211,6 @@
     <string name="location_message_added">Loko aldonita</string>
     <string name="location_message_deleted">Loko forigita</string>
     <string name="location_search_placeholder">Serĉi lokon…</string>
-    <string name="location_resident_location">Loĝanta loko</string>
     <!-- Actions -->
     <string name="action_location_list">Listo de lokoj</string>
     <string name="action_search">Serĉi</string>

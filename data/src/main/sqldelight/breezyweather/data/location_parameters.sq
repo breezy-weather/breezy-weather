@@ -1,0 +1,27 @@
+CREATE TABLE location_parameters(
+    _id INTEGER NOT NULL PRIMARY KEY,
+    location_formatted_id TEXT NOT NULL,
+    source TEXT NOT NULL,
+    parameter TEXT NOT NULL,
+    value TEXT NOT NULL,
+
+    UNIQUE(location_formatted_id, source, parameter) ON CONFLICT REPLACE,
+    FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX location_parameters_location_formatted_id_index ON location_parameters(location_formatted_id);
+
+getLocationParametersByLocationId:
+SELECT *
+FROM location_parameters
+WHERE location_formatted_id = :locationFormattedId;
+
+insert:
+INSERT INTO location_parameters(location_formatted_id, source, parameter, value)
+VALUES (:locationFormattedId, :source, :parameter, :value);
+
+deleteAllNonMatchingParameters:
+DELETE FROM location_parameters
+WHERE location_formatted_id = :locationFormattedId
+AND parameter NOT IN :locationParameterNames;
