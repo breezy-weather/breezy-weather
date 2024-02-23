@@ -52,6 +52,7 @@ This an **alpha release**. Use it at your own risk. If you do, report any issue 
 
 **Removed features**
 - Resident locations. Undocumented, encourages bad practices (two identical locations to be refreshed) and terrible technical implementation. May be brought back differently if you can provide well-thought use cases, functional specifications, and a better technical implementation.
+- Widget Oreo (Google Sans). We don’t have licensing rights of the Google Sans font. Customizing font on widgets was also an unofficial feature that was removed with a security update released in 2021, so that feature didn’t work for most devices anyway.
 
 **Translations**
 - Translation added and completed for Беларуская (thanks @kilimov25!)

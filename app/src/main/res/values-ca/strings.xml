@@ -628,7 +628,6 @@
     <string name="settings_widgets">Ginys i fons de pantalla animat</string>
     <string name="about_contribution_weather_source">S’ha afegit suport per a noves fonts meteorològiques</string>
     <string name="about_source_code">Codi font</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_main_threshold_lines_on_charts">Línies llindars als gràfics</string>
     <string name="common_weather_text_rain_freezing_light">Pluja gelada dèbil</string>
     <string name="settings_location_access_background_title">Accés a la ubicació en segon pla</string>

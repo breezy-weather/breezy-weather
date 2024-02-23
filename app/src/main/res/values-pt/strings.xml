@@ -184,7 +184,6 @@
     <string name="unit_mmph">mm/h</string>
     <string name="location_message_reverse_geocoding_failed">O provedor meteorológico não conseguiu encontrar um local correspondente</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Nascer da lua de hoje, amanhã, …, 4 dias depois</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar a sua localização atual como um local.</string>
     <string name="settings_units_speed">Unidade de velocidade</string>
     <string name="settings_main_section_animations">Animações</string>

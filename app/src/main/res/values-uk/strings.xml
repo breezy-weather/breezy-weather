@@ -347,7 +347,6 @@
     <string name="widget_style_vertical">Вертикальний</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_week_style_3_days">3 дні</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>

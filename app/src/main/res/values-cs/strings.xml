@@ -557,7 +557,6 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don’t kill my app! najdete informace o tom, jak to napravit.</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_section_troubleshoot">Řešení potíží</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Specifické pokyny výrobce</string>
     <string name="settings_location">Poloha</string>

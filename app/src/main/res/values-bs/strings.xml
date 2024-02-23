@@ -250,7 +250,6 @@
     <string name="widget_custom_subtitle_keyword_xss_description">Zalazak sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_style_rectangle">Pravougaonik</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_section_general">Opšte</string>

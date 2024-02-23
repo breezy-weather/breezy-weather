@@ -425,7 +425,6 @@
     <string name="widget_label_hide_lunar">إخفاء التقويم القمري</string>
     <string name="widget_label_align_end">محاذاة النهاية</string>
     <string name="widget_custom_subtitle_keyword_cps_description">الضغط الحالي</string>
-    <string name="widget_style_oreo_google_sans">أوريو (جوجل سان)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_section_general">عام</string>
     <string name="settings_background_updates_refresh_title">معدل التحديث</string>

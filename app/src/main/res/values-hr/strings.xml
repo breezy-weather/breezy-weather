@@ -455,7 +455,6 @@
     <string name="location_current">Trenutna lokacija</string>
     <string name="settings_appearance_language_title">Jezik</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, …, 4 dana kasnije</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
     <string name="precipitation_between_time">Oborine između %1$s i %2$s</string>

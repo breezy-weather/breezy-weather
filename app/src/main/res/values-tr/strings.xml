@@ -333,7 +333,6 @@
     <string name="action_help_me_choose">Seçmem için bana yardım et</string>
     <string name="widget_label_subtitle_data">Alt yazı verisi</string>
     <string name="settings_icon_packs_get_more_store">Uygulama mağazasından daha fazla al</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Sıcaklık</string>
     <string name="widget_live_wallpaper_weather_kind">Hava Durumu</string>
     <string name="widget_style_nano">Nano</string>

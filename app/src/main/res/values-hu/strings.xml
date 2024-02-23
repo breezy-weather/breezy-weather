@@ -427,7 +427,6 @@
     <string name="ephemeris_moonrise_at">Holdkelte ekkor: %s</string>
     <string name="ephemeris_sunset_at">Napnyugta ekkor: %s</string>
     <string name="ephemeris_sunrise_at">Napkelte ekkor: %s</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_location_access_background_summaryOff">Kérjük, válassza ki a „Mindig engedélyezett” lehetőséget, hogy háttérben frissülhessenek az aktuális tartózkodási helyének időjárásadatai.</string>
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
     <string name="pollen_level_3">Közepes</string>

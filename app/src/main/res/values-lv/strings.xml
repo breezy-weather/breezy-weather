@@ -425,7 +425,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pikselis</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatūra</string>
     <string name="settings_background_updates">Fona atjauninājumi</string>
     <string name="settings_background_updates_refresh_title">Atjaunošanas biežums</string>

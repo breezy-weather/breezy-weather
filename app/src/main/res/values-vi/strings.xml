@@ -490,7 +490,6 @@
     <string name="notification_update_error">%d cập nhật thất bại</string>
     <string name="temperature_real_feel">Cảm giác thật</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Không chân)</string>
     <string name="message_server_timeout">Đã hết thời gian chờ yêu cầu</string>
     <string name="message_parsing_error_content">Hãy đảm bảo bạn đã cập nhật lên phiên bản mới nhất của ứng dụng. Máy chủ có thể tạm thời không khả dụng, trong trường hợp đó, vui lòng thử lại sau. Nếu sự cố vẫn tiếp diễn, hãy xuất nhật ký sự cố từ cài đặt gỡ lỗi, và báo cáo sự cố trên GitHub.</string>
     <string name="message_source_not_installed_error_title">Nguồn không còn nữa</string>

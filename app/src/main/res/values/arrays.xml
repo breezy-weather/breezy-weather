@@ -189,7 +189,6 @@
         <item>@string/widget_style_pixel</item>
         <item>@string/widget_style_vertical</item>
         <item>@string/widget_style_oreo</item>
-        <item>@string/widget_style_oreo_google_sans</item>
         <item>@string/widget_style_temperature</item>
     </string-array>
     <string-array name="widget_style_values">
@@ -201,7 +200,6 @@
         <item>pixel</item>
         <item>vertical</item>
         <item>oreo</item>
-        <item>oreo_google_sans</item>
         <item>temp</item>
     </string-array>
 

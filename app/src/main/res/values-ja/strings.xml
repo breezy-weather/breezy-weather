@@ -579,7 +579,6 @@
     <string name="widget_label_hide_lunar">旧暦を非表示にする</string>
     <string name="widget_label_align_end">端を揃える</string>
     <string name="widget_custom_subtitle_keyword_al_description">アラート</string>
-    <string name="widget_style_oreo_google_sans">オレオ (Google Sans)</string>
     <string name="widget_style_temperature">温度</string>
     <string name="widget_clock_font_sans_serif_light">サンセリフライト</string>
     <string name="settings_weather_sources_summary">気象データ ソースの設定</string>

@@ -593,7 +593,6 @@
     <string name="settings_location_access_switch_summaryOn">Tillåten. Du kan lägga till din nuvarande plats som en plats.</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Soluppgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_main_threshold_lines_on_charts">Tröskellinjer i diagram</string>
     <string name="common_weather_text_rain_freezing_light">Lätt underkylt regn</string>
     <string name="settings_location_access_background_title">Platsåtkomst i bakgrunden</string>

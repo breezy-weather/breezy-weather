@@ -361,7 +361,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_week_style_5_days">5 Tage</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>

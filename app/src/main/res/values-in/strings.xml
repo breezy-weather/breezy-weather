@@ -532,7 +532,6 @@
     <string name="about_dependencies">Ketergantungan</string>
     <string name="notification_channel_crash_logs">Catatan pemogokan</string>
     <string name="about_source_code">Kode sumber</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="unit_mm_voice">Milimeter</string>
     <string name="common_weather_text_snow_moderate">Salju sedang</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Tipis</string>

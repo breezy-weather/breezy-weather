@@ -306,7 +306,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_items_drag_to_sort">Atingeți pentru a trage elementele din listă pentru a le sorta</string>

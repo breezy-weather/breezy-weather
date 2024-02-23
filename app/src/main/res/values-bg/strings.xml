@@ -308,7 +308,6 @@
     <string name="widget_style_tile">Тапет</string>
     <string name="widget_style_mini">Мини</string>
     <string name="widget_style_vertical">Вертикален</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Черно</string>
     <string name="widget_clock_font_analog">Аналогов</string>

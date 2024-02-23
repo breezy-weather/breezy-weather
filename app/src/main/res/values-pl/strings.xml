@@ -442,7 +442,6 @@
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
     <string name="dialog_permissions_location_title">Dostęp do informacji o lokalizacji</string>
     <string name="message_parsing_error_title">Nie udało się przeanalizować danych pogodowych</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_battery_optimization">Wyłącz optymalizację baterii</string>
     <string name="settings_background_updates_battery_optimization_summary">Jest to pierwsza rzecz, którą należy wypróbować, gdy nie otrzymujesz powiadomień lub widżety nie odświeżają się.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nie udało się otworzyć ustawień urządzenia.</string>

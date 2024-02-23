@@ -63,7 +63,7 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             widgetStyles[2],
             widgetStyles[3],
             widgetStyles[6],
-            widgetStyles[9]
+            widgetStyles[8]
         )
         viewTypeValues = arrayOf(
             widgetStyleValues[0],
@@ -71,7 +71,7 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             widgetStyleValues[2],
             widgetStyleValues[3],
             widgetStyleValues[6],
-            widgetStyleValues[9]
+            widgetStyleValues[8]
         )
     }
 

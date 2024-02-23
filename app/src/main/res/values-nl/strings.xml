@@ -445,7 +445,6 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Week (Kort)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
     <string name="settings_none">Geen</string>

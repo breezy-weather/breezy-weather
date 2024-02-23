@@ -562,7 +562,6 @@
     <string name="widget_style_pixel">Pixela</string>
     <string name="widget_style_vertical">Bertikala</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Tenperatura</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Argia</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>

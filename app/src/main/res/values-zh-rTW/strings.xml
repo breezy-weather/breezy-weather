@@ -269,7 +269,6 @@
     <string name="widget_style_tile">瓷磚</string>
     <string name="widget_style_vertical">竪版</string>
     <string name="widget_style_oreo">Oreo 風格</string>
-    <string name="widget_style_oreo_google_sans">Oreo 風格（Google字體）</string>
     <string name="widget_style_temperature">僅溫度</string>
     <string name="widget_week_style_5_days">5天</string>
     <string name="widget_week_style_3_days">3天</string>

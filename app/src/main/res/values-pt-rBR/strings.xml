@@ -488,7 +488,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="unit_mm">mm</string>

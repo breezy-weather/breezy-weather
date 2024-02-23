@@ -104,8 +104,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 "nano" -> if (!color.showCard) R.layout.widget_day_nano else R.layout.widget_day_nano_card
                 "pixel" -> if (!color.showCard) R.layout.widget_day_pixel else R.layout.widget_day_pixel_card
                 "vertical" -> if (!color.showCard) R.layout.widget_day_vertical else R.layout.widget_day_vertical_card
-                "oreo" -> if (!color.showCard) R.layout.widget_day_oreo else R.layout.widget_day_oreo_card
-                "oreo_google_sans" -> if (!color.showCard) R.layout.widget_day_oreo_google_sans else R.layout.widget_day_oreo_google_sans_card
+                "oreo", "oreo_google_sans" -> if (!color.showCard) R.layout.widget_day_oreo else R.layout.widget_day_oreo_card
                 "temp" -> if (!color.showCard) R.layout.widget_day_temp else R.layout.widget_day_temp_card
                 else -> if (!color.showCard) R.layout.widget_day_symmetry else R.layout.widget_day_symmetry_card
             }

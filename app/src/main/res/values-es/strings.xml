@@ -381,7 +381,6 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar cuando la batería esté baja</string>
     <string name="settings_background_updates_worker_info_summary">Última ejecución: %s</string>
     <string name="message_server_timeout">Solicitud expirada</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_background_updates_section_troubleshoot">Solucionar problemas</string>
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>

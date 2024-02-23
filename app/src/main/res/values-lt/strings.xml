@@ -286,7 +286,6 @@
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dienos temperatūra šiandien, rytoj, …, po 4 dienų (°)</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="widget_style_temperature">Temperatūra</string>
     <string name="widget_week_style_5_days">5 dienos</string>
     <string name="widget_week_style_3_days">3 dienos</string>

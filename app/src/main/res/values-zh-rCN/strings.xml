@@ -299,7 +299,6 @@
     <string name="widget_style_tile">平铺</string>
     <string name="widget_style_vertical">竖版</string>
     <string name="widget_style_oreo">Oreo风格</string>
-    <string name="widget_style_oreo_google_sans">Oreo 风格（Google Sans）</string>
     <string name="widget_style_temperature">仅温度</string>
     <string name="widget_week_style_5_days">五天</string>
     <string name="widget_week_style_3_days">三天</string>
