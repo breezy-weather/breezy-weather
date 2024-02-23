@@ -285,7 +285,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">هفته (کوچک)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">توضیحات روزانه</string>
     <string name="widget_custom_subtitle_keyword_hd_description">توضیحات ساعتی</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">طلوع آفتاب امروز، فردا، ...، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">طلوع آفتاب امروز، فردا، …، ۴ روز آینده</string>
     <string name="widget_style_rectangle">مستطیل</string>
     <string name="widget_style_symmetry">هم نهشتی</string>
     <string name="widget_style_tile">کاشی</string>
@@ -317,9 +317,9 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">نمی توان تنظیمات دستگاه را باز کرد.</string>
     <string name="widget_custom_subtitle_keyword_lon_description">طول جغرافیایی</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">برخی از تولید کنندگان محدودیت های برنامه اضافی دارند که خدمات پس زمینه را از کار می اندازد. وب سایت برنامه من را نکشید! اطلاعاتی در مورد چگونگی تغییر این دارد.</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">باد شبانه امروز، فردا، ...، ۴ روز آینده</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">غروب ماه امروز، فردا، ...، ۴ روز آینده</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">طلوع ماه امروز، فردا، ...، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">باد شبانه امروز، فردا، …، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">غروب ماه امروز، فردا، …، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">طلوع ماه امروز، فردا، …، ۴ روز آینده</string>
     <string name="settings_background_updates">به روز رسانی های پس زمینه</string>
     <string name="widget_custom_subtitle_keyword_ct_description">دمای فعلی (℃/℉)</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -344,8 +344,8 @@
     <string name="widget_custom_subtitle_keyword_lat_description">عرض جغرافیایی</string>
     <string name="widget_custom_subtitle_keyword_lc_description">گاهشمار قمری</string>
     <string name="widget_custom_subtitle_keyword_w_description">هفته</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">غروب آفتاب امروز، فردا، ...، ۴ روز آینده</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">گام‌های ماه برای امروز، فردا، ...، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">غروب آفتاب امروز، فردا، …، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">گام‌های ماه برای امروز، فردا، …، ۴ روز آینده</string>
     <string name="widget_style_nano">خُرد</string>
     <string name="widget_style_temperature">دما</string>
     <string name="settings_section_general">عمومی</string>

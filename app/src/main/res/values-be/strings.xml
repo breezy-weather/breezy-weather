@@ -636,5 +636,5 @@
     <string name="settings_weather_source_none">Нема</string>
     <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
-    <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор\'я ўжо існуе.</string>
+    <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор’я ўжо існуе.</string>
 </resources>
