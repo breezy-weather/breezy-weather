@@ -239,7 +239,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Перевірте дозволи на місцезнаходження</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Увімкнути інформацію про місцезнаходження</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додайте місцезнаходження вручну та видаліть “%s”</string>
-    <string name="location_search_no_results_advice">Переконайтеся, що пошуковий запит написаний правильно та не надто конкретний. Крім того, ви можете спробувати інше джерело погодних даних, яке може видавати інші результати пошуку.</string>
+    <string name="location_search_no_results_advice">Переконайтеся, що пошуковий запит написаний правильно та не надто специфічний. Ви також можете спробувати використовувати інше джерело пошуку розташування, яке може дати інші результати.</string>
     <string name="air_quality_co_info_origin">Він утворюється внаслідок неповного згоряння вуглецевого палива, такого як деревина, бензин, вугілля, природний газ і гас у простих плитах, відкритих вогнищах, лампах з ґнотом, печах, камінах. Основним джерелом оксиду вуглецю (CO) в навколишньому повітрі є автотранспорт.</string>
     <string name="ephemeris_sunset_at">Захід Сонця о %s</string>
     <string name="location_current_not_found_yet">Поточне місцезнаходження поки що не знайдено…</string>
@@ -635,4 +635,6 @@
     <string name="location_search_source">Джерело пошуку</string>
     <string name="settings_weather_source_none">Немає</string>
     <string name="location_search_change_source">Змінити джерело пошуку</string>
+    <string name="location_message_already_exists">Розташування з таким самим основним джерелом погоди вже існує.</string>
+    <string name="location_message_updated">Розташування оновлено</string>
 </resources>

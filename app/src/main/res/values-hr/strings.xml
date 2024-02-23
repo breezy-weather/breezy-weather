@@ -147,7 +147,7 @@
     <string name="precipitation_total">Ukupno</string>
     <string name="pollen_mold">Plijesan</string>
     <string name="settings_appearance_icon_pack_title">Paket ikona</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Očita temperatura (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Trenutačni osjećaj temperature (°)</string>
     <string name="settings_widgets_live_wallpaper_summary">Postavi animaciju prognoze kao pozadinu</string>
     <string name="message_parsing_error_title">Neuspješno analiziranje vremenskih podataka</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Trenutno vrijeme</string>
@@ -214,12 +214,12 @@
     <string name="settings_widgets_gadgets_title">Programčići</string>
     <string name="pollen_level_4">Visoko</string>
     <string name="widget_style_temperature">Temperatura</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Očita temperatura (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Trenutačni osjećaj temperature (°C/°F)</string>
     <string name="precipitation_intensity_light">Kišica</string>
     <string name="location_search_placeholder">Pretražite lokaciju…</string>
     <string name="settings_source_default_value">Tvorničko (nepromijenjeno)</string>
     <string name="action_preview">Pregled</string>
-    <string name="location_search_no_results_advice">Provjerite da ste pravilno napisali pretragu te da niste previše specifični. U protivnom, možete pokušati drugi izvor vremenskih podataka koji će možda prikazati drukčije rezultate pretraživanja lokacije.</string>
+    <string name="location_search_no_results_advice">Provjerite da ste pravilno napisali izraz pretrage te da niste previše specifični. Alternativno možete pokušati jedan drugi izvor pretraživanja lokacije koji će možda prikazati drukčije rezultate.</string>
     <string name="nighttime">Noć</string>
     <string name="short_wednesday">Sri</string>
     <string name="precipitation">Oborine</string>
@@ -632,4 +632,8 @@
     <string name="notification_precipitation_continuing">Oborine</string>
     <string name="notification_precipitation_stopping_desc">Očekuje se da će prestati u %s</string>
     <string name="notification_precipitation_stopping">Prestanak oborina</string>
+    <string name="location_message_updated">Lokacija ažurirana</string>
+    <string name="location_message_already_exists">Lokacija s istim osnovnim vremenskim izvorom već postoji.</string>
+    <string name="location_search_source">Izvor pretraživanja</string>
+    <string name="settings_weather_source_none">Ništa</string>
 </resources>

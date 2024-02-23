@@ -309,7 +309,7 @@
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
     <string name="settings_background_updates_refresh_3h">3 часа</string>
     <string name="unit_nmi">наут. милји</string>
-    <string name="location_search_no_results_advice">Проверете дали вашето пребарување е правилно напишано и не е премногу специфично. Алтернативно, можете да пробате друг извор на податоци за времето што може да произведе различни резултати од пребарувањето локација.</string>
+    <string name="location_search_no_results_advice">Осигурајте се дека барањето за пребарување е напишано правилно и не е премногу специфично. Можете исто така да се обидете да користите друг извор за пребарување локација, што може да даде различни резултати.</string>
     <string name="location_service_native">Мајчин API</string>
     <string name="action_location_list">Список на локации</string>
     <string name="action_app_store">Продавница за Апликации</string>
@@ -635,4 +635,6 @@
     <string name="location_search_source">Локација извор за пребарување</string>
     <string name="settings_weather_source_none">Никој</string>
     <string name="location_search_change_source">Променете ја локацијата извор на пребарување</string>
+    <string name="location_message_updated">Локацијата е ажурирана</string>
+    <string name="location_message_already_exists">Локација со ист главен извор на времето веќе постои.</string>
 </resources>

@@ -138,7 +138,7 @@
     <string name="precipitation_intensity_light">Duggregn</string>
     <string name="location_search_placeholder">Sök efter en plats…</string>
     <string name="action_preview">Förhandsvisning</string>
-    <string name="location_search_no_results_advice">Kontrollera att din sökning är rättstavad och inte alltför specifik. Alternativt kan du testa en annan väderdatakälla, som eventuellt kan erbjuda andra sökresultat för platser.</string>
+    <string name="location_search_no_results_advice">Se till att din sökning är rättstavad och inte för specifik. Alternativt kan du prova en annan platssökningskälla som kan ge andra resultat.</string>
     <string name="nighttime">Nattetid</string>
     <string name="short_wednesday">Ons</string>
     <string name="precipitation">Nederbörd</string>
@@ -632,4 +632,9 @@
     <string name="notification_precipitation_stopping">Nederbörd upphör snart</string>
     <string name="notification_precipitation_continuing_desc">Förväntas fortsätta till åtminstone %s</string>
     <string name="notification_precipitation_stopping_desc">Förväntas upphöra vid %s</string>
+    <string name="location_message_updated">Plats uppdaterad</string>
+    <string name="location_message_already_exists">En plats med samma huvudväderkälla finns redan.</string>
+    <string name="settings_weather_source_none">Ingen</string>
+    <string name="location_search_source">Platssök källa</string>
+    <string name="location_search_change_source">Ändra platssök källa</string>
 </resources>

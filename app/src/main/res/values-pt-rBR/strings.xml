@@ -182,7 +182,7 @@
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="location_message_added">Local adicionado com sucesso</string>
     <string name="location_message_deleted">Local removido com sucesso</string>
-    <string name="location_message_list_cannot_be_empty">A lista de locais não pode estar vazia</string>
+    <string name="location_message_list_cannot_be_empty">A lista de locais não pode ficar vazia</string>
     <string name="location_search_placeholder">Encontrar local…</string>
     <string name="location_current_not_found_yet">Nenhum local ainda…</string>
     <string name="settings_changes_apply_after_restart">As alterações terão efeito após reiniciar</string>
@@ -398,7 +398,7 @@
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
-    <string name="settings_notifications_summary">Alertas metereológicos, precipitações, previsões</string>
+    <string name="settings_notifications_summary">Alertas meteorológicos, precipitações, previsões</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>
     <string name="settings_background_updates">Atualizações em segundo plano</string>
@@ -418,7 +418,7 @@
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
     <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>
     <string name="settings_location_access_background_summaryOn">Habilitado. O aplicativo poderá atualizar os dados meteorológicos de sua localização atual em segundo plano.</string>
-    <string name="settings_weather_sources_summary">Configurações dos provedores de dados metereológicos</string>
+    <string name="settings_weather_sources_summary">Configurações dos provedores de dados meteorológicos</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
@@ -646,4 +646,16 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>
     <string name="notification_channel_crash_logs">Logs de travamento</string>
     <string name="settings_debug_dump_crash_logs_saved">Logs de travamento salvo</string>
+    <string name="notification_precipitation_starting">Precipitação em breve</string>
+    <string name="notification_precipitation_starting_desc">Se espera começar em %s</string>
+    <string name="notification_precipitation_continuing">Precipitação</string>
+    <string name="notification_precipitation_continuing_desc">Se espera continuar até pelo menos %s</string>
+    <string name="notification_precipitation_stopping">Precipitação para breve</string>
+    <string name="location_message_updated">Localização atualizada</string>
+    <string name="location_message_already_exists">Uma localização com a mesma fonte meteorológica já existe.</string>
+    <string name="settings_weather_source_none">Nenhuma</string>
+    <string name="settings_unavailable_no_background_updates">Indisponível, habilite as atualizações de fundo primeiro</string>
+    <string name="notification_precipitation_stopping_desc">Se espera parar em %s</string>
+    <string name="location_search_source">Fonte para encontrar a localização</string>
+    <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
 </resources>

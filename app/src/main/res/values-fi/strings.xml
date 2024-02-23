@@ -646,4 +646,15 @@
     <string name="air_quality_level_5_description">Herkät ryhmät tuntevat vaikutuksia välittömästi, ja heidän on vältettävä ulkoilua. Pitkällinen altistuminen aiheuttaa todennäköisesti hengitysvaikeuksia ja kurkun ärsytystä terveille henkilöille. Harkitse pysymistä sisällä ja ulkoilun siirtämistä.</string>
     <string name="air_quality_level_6">Vaarallinen</string>
     <string name="air_quality_level_6_description">Kaikki altistuminen ilmalle edes muutaman minuutin ajan voi johtaa vakaviin terveysvaikutuksiin kaikilla. Vältä ulkoilua.</string>
+    <string name="settings_unavailable_no_background_updates">Ei käytettävissä, ota taustapäivitykset ensin käyttöön</string>
+    <string name="notification_precipitation_continuing_desc">Arvioitu jatkuvan ainakin klo %s asti</string>
+    <string name="notification_precipitation_continuing">Sade</string>
+    <string name="location_message_updated">Sijainti päivitetty</string>
+    <string name="location_message_already_exists">Sijainti samalla säälähteellä on jo olemassa.</string>
+    <string name="notification_precipitation_starting">Pian sataa</string>
+    <string name="notification_precipitation_stopping">Sade lakkaa pian</string>
+    <string name="notification_precipitation_starting_desc">Arvioitu alkamisaika klo %s</string>
+    <string name="notification_precipitation_stopping_desc">Arvioitu loppuvan klo %s</string>
+    <string name="location_search_source">Sijaintihaun lähde</string>
+    <string name="location_search_change_source">Vaihda sijaintihaun lähdettä</string>
 </resources>

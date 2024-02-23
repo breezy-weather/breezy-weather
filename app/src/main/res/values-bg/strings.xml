@@ -205,7 +205,7 @@
     <string name="location_message_reverse_geocoding_failed">Източникът на прогнозата за времето не успя да намери съответстващо местоположение</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
     <string name="location_search_no_results">%1$s не може да намери %2$s</string>
-    <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг източник на данните на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
+    <string name="location_search_no_results_advice">Уверете се, че заявката за търсене е написана правилно и не е твърде специфична. Можете също да опитате да използвате друг източник за търсене на местоположение, който може да даде различни резултати.</string>
     <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
     <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
     <string name="widget_clock_day_horizontal">Часовник + Ежедневно (хоризонтален стил)</string>
@@ -632,4 +632,9 @@
     <string name="notification_precipitation_continuing_desc">Очаква се да продължат поне до %s</string>
     <string name="notification_precipitation_stopping">Валежите спират скоро</string>
     <string name="notification_precipitation_stopping_desc">Очаква се да спрат в %s</string>
+    <string name="location_message_already_exists">Местоположение със същия основен източник на време вече съществува.</string>
+    <string name="location_message_updated">Местоположение актуализирано</string>
+    <string name="settings_weather_source_none">Не</string>
+    <string name="location_search_source">Източник на търсене</string>
+    <string name="location_search_change_source">Промяна на източника на търсене</string>
 </resources>
