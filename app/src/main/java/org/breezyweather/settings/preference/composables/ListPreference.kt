@@ -33,7 +33,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
@@ -52,6 +51,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
+import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.theme.compose.DayNightTheme
@@ -212,7 +212,7 @@ fun ListPreferenceView(
     }
 
     if (dialogOpenState.value) {
-        AlertDialog(
+        AlertDialogNoPadding(
             onDismissRequest = { dialogOpenState.value = false },
             title = {
                 Text(

@@ -126,8 +126,7 @@ fun EditTextPreferenceView(
                     value = inputState.value,
                     onValueChange = { inputState.value = it },
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(dimensionResource(R.dimen.little_margin)),
+                        .fillMaxWidth(),
                     readOnly = false,
                     enabled = true,
                     singleLine = true,

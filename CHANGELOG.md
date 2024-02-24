@@ -49,6 +49,7 @@ This an **alpha release**. Use it at your own risk. If you do, report any issue 
 - [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 - [Widgets] Fix clock day vertical widget in vertical or tile mode was showing decimals to current temperature
 - Fix UV index description being sometimes wrong
+- Fix all alert dialogs that had too much padding in content compared to title.
 
 **Removed features**
 - Resident locations. Undocumented, encourages bad practices (two identical locations to be refreshed) and terrible technical implementation. May be brought back differently if you can provide well-thought use cases, functional specifications, and a better technical implementation.

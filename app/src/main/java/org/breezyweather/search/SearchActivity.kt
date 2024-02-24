@@ -44,6 +44,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.LocationPreset
+import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
@@ -205,7 +206,7 @@ class SearchActivity : GeoActivity() {
         }
 
         if (dialogLocationSearchSourceOpenState.value) {
-            AlertDialog(
+            AlertDialogNoPadding(
                 onDismissRequest = { dialogLocationSearchSourceOpenState.value = false },
                 title = {
                     Text(

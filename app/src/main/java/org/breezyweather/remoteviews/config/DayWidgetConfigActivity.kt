@@ -16,7 +16,6 @@
 
 package org.breezyweather.remoteviews.config
 
-import android.os.Build
 import android.view.View
 import android.widget.RemoteViews
 import breezyweather.data.location.LocationRepository
