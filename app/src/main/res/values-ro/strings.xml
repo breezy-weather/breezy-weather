@@ -581,7 +581,6 @@
     <string name="air_quality_pm_explanations_origin">Unele particule se produc în mod natural, provenind de la vulcani, furtuni de praf, incendii de pădure și de pășuni, vegetație vie și spray-uri marine. Activitățile umane generează, de asemenea, cantități semnificative de particule, cum ar fi traficul și transportul, activitățile industriale, centralele electrice, șantierele de construcții, arderea deșeurilor sau câmpurile.</string>
     <string name="air_quality_no2_info_consequences">Expunerea la dioxid de azot poate irita căile respiratorii și agrava bolile respiratorii. În plus, NO₂ este un precursor important al ozonului, un poluant strâns legat de astm și de alte afecțiuni respiratorii.</string>
     <string name="weather_message_secondary_data_refresh_failed">Actualizarea datelor meteorologice pentru o sursă meteorologică secundară a eșuat</string>
-    <string name="location_search_no_results_advice">Asigurați-vă că căutarea este scrisă corect și că nu este prea specifică. Alternativ, puteți încerca un alt furnizor de servicii meteorologice, care poate produce rezultate diferite în ceea ce privește căutarea locației.</string>
     <string name="dialog_permissions_notification_content">Atingeți aici pentru a activa notificările privind alertele meteo sau decideți mai târziu în Setări.</string>
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_4">Ridicat</string>

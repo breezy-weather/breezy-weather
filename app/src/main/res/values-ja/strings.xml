@@ -491,7 +491,6 @@
     <string name="dialog_permissions_notification_title">最新情報を入手</string>
     <string name="notification_update_error">%d 件のアップデートに失敗しました</string>
     <string name="location_search_weather_source">気象源</string>
-    <string name="location_search_no_results_advice">検索の綴りが正確で、具体的すぎないことを確認してください。あるいは、別の気象データ ソースを試してみると、異なる場所の検索結果が生成される可能性があります。</string>
     <string name="settings_location_access_permission_already_granted">許可はすでに与えられています</string>
     <string name="settings_location_access_switch_summaryOn">許可された。現在の場所を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">ライトアイコン</string>

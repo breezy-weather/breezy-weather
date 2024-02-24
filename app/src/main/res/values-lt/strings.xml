@@ -217,7 +217,6 @@
     <string name="message_parsing_error_title">Nepavyko išanalizuoti orų duomenų</string>
     <string name="widget_trend_daily">Dienos tendencija</string>
     <string name="wind_strength">Vėjo stiprumas</string>
-    <string name="location_search_no_results_advice">Įsitikinkite, kad paieška parašyta teisingai ir nėra pernelyg konkreti. Arba galite išbandyti kitą orų duomenų šaltinį, kuris gali pateikti kitokius vietovės paieškos rezultatus.</string>
     <string name="location_current_not_found_yet">Dabartinė buvimo vieta dar nerasta…</string>
     <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>

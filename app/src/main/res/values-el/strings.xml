@@ -365,7 +365,6 @@
     <string name="location_search_weather_source">Πηγή καιρού</string>
     <string name="location_message_search_failed">Η αναζήτηση τοποθεσίας απέτυχε</string>
     <string name="location_search_no_results">Το %1$s δεν μπορεί να βρει το %2$s</string>
-    <string name="location_search_no_results_advice">Βεβαιώσου ότι η αναζήτησή σου είναι γραμμένη σωστά και δεν είναι πολύ συγκεκριμένη. Εναλλακτικά, μπορείς να δοκιμάσεις άλλη πηγή καιρού που μπορεί να παράξει διαφορετικά αποτελέσματα αναζήτησης τοποθεσίας.</string>
     <string name="action_share">Κοινοποίηση</string>
     <string name="action_see_more">Δες περισσότερα</string>
     <string name="action_undo">Αναίρεση</string>

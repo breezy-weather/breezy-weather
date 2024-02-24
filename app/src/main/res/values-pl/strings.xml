@@ -431,7 +431,6 @@
     <string name="air_quality_pm_info_title">Cząstki stałe (PM2.5 i PM10)</string>
     <string name="air_quality_pm_explanations_consequences">Cząstki stałe są najbardziej szkodliwą formą zanieczyszczenia powietrza ze względu na ich zdolność do przenikania głęboko do płuc i mózgu z krwiobiegu, powodując problemy zdrowotne, takie jak choroby serca, choroby płuc i przedwczesną śmierć.</string>
     <string name="weather_data_by">Dane według %s</string>
-    <string name="location_search_no_results_advice">Upewnij się, że wyszukiwanie jest napisane poprawnie i nie jest zbyt szczegółowe. Alternatywnie możesz wypróbować inne źródło danych pogodowych, które może zwrócić inne wyniki wyszukiwania lokalizacji.</string>
     <string name="location_none_added_yet_instructions">Nie dodano jeszcze żadnej lokalizacji. Dotknij ikony wyszukiwania, aby ręcznie dodać lokalizację, lub dodaj bieżącą lokalizację za pomocą pływającego przycisku.</string>
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>

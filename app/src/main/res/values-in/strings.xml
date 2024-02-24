@@ -589,7 +589,6 @@
     <string name="settings_notifications_precipitations_title">Notifikasi curah hujan</string>
     <string name="message_source_not_installed_error_title">Sumber tidak lagi tersedia</string>
     <string name="settings_location_access_background_summaryOff">Silakan mengktifkan “Perbolehkan sepanjang waktu” untuk dapat melakukan penyegaran latar belakang untuk lokasi Anda saat ini.</string>
-    <string name="location_search_no_results_advice">Pastikan pencarian Anda dieja dengan benar dan tidak terlalu spesifik. Secara alternatif, Anda dapat mencoba sumber data cuaca lainnya yang dapat menyediakan hasil pencarian lokasi yang berbeda.</string>
     <string name="location_message_permission_background_missing">Izin akses lokasi di latar belakang belum ada</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Beberapa produsen memiliki pembatasan aplikasi tambahan yang menutup layanan latar belakang. Situs web Don’t kill my app! memiliki informasi tentang cara memperbaikinya.</string>
     <string name="settings_widgets_configure_widget_summary">Atur widget ini</string>

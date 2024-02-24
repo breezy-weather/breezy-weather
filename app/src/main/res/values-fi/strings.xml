@@ -507,7 +507,6 @@
     <string name="common_weather_text_rain_freezing">Jäätävää sadetta</string>
     <string name="settings_notifications_precipitations_title">Ilmoita sateista</string>
     <string name="message_source_not_installed_error_title">Lähde ei enää käytettävissä</string>
-    <string name="location_search_no_results_advice">Varmista, että hakusi on kirjoitettu oikein eikä ole liian yksityiskohtainen. Vaihtoehtoisesti voit kokeilla toista säälähdettä, joka saattaa tuottaa erilaisia sijainnin hakutuloksia.</string>
     <string name="location_message_permission_background_missing">Sijainnin käyttöoikeus taustalla puuttuu</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Tuumaa tunnissa</string>

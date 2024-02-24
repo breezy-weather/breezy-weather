@@ -598,7 +598,6 @@
     <string name="common_weather_text_drizzle">Pioggerella</string>
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
     <string name="metno_weather_text_andthunder">%s e tuoni</string>
-    <string name="location_search_no_results_advice">Assicurati che la tua ricerca sia scritta correttamente e non troppo specifica. In alternativa, puoi provare un’altra fonte di dati meteorologici che potrebbe produrre risultati di ricerca della posizione diversi.</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: %s</string>
     <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%d aggiornamento/i fallito/i</string>

@@ -421,7 +421,6 @@
     <string name="settings_weather_source_portal">入口</string>
     <string name="setting_weather_source_accu_days">天數</string>
     <string name="location_search_weather_source">天氣資料來源</string>
-    <string name="location_search_no_results_advice">請確保您的搜尋拼寫正確且不過於特定。或者，您可以嘗試使用另一個氣象資料來源，以獲得不同的地點搜尋結果。</string>
     <string name="widget_clock_font_sans_serif">無襯線體</string>
     <string name="settings_section_general">常規</string>
     <string name="settings_location_access_precise_summaryOff">若您無法獲取位置，請啟用「使用精確位置」。</string>

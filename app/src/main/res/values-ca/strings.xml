@@ -459,7 +459,6 @@
     <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="pollen_level_4">Alt</string>
     <string name="settings_source_default_value">Per defecte (sense canvis)</string>
-    <string name="location_search_no_results_advice">Assegureu-vos que la cerca estigui escrita correctament i no sigui massa específica. També podeu provar una altra font de dades meteorològiques que pugui produir resultats de cerca d’ubicacions diferents.</string>
     <string name="location_message_permission_background_missing">Falta la ubicació amb permís en segon pla</string>
     <string name="air_quality_pm10_voice">PM deu</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Icona del temps</string>

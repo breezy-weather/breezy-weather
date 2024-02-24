@@ -115,7 +115,6 @@
     <string name="location_message_reverse_geocoding_failed">Laikapstākļu avotam neizdevās atrast atbilstošu atrašanās vietu</string>
     <string name="location_search_placeholder">Meklēt atrašanās vietu…</string>
     <string name="location_search_no_results">%1$s nevar atrast %2$s</string>
-    <string name="location_search_no_results_advice">Pārliecinieties, vai meklēšanas vaicājums ir uzrakstīts pareizi un nav pārāk precīzs. Varat arī izmēģināt citu laikapstākļu datu avotu, kas var radīt dažādus atrašanās vietas meklēšanas rezultātus.</string>
     <string name="action_add_current_location">Pievienojiet pašreizējo atrašanās vietu</string>
     <string name="action_add_from_map">Pievienot no kartes</string>
     <string name="action_settings">Iestatījumi</string>
