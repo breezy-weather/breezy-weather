@@ -123,7 +123,7 @@
     <string name="hourly_forecast">Пагадзінны прагноз</string>
     <string name="minutely_forecast">Хвілінны прагноз</string>
     <string name="app_name">Пагода</string>
-    <string name="pollen">Алергены</string>
+    <string name="pollen">Пылок</string>
     <string name="pollen_and_mold">Пылок і цвіль</string>
     <string name="ephemeris">Узыход і заход</string>
     <string name="details">Падрабязна</string>
@@ -269,7 +269,7 @@
     <string name="short_yesterday">Учора</string>
     <string name="short_today">Сёння</string>
     <string name="air_quality">Якасць паветра</string>
-    <string name="short_tuesday">Ау</string>
+    <string name="short_tuesday">Аў</string>
     <string name="short_thursday">Чц</string>
     <string name="alerts">Абвесткі</string>
     <string name="temperature_wet_bulb">Вільготны тэрмометр</string>
@@ -277,7 +277,7 @@
     <string name="temperature_degree_day">Градуса-дзень</string>
     <string name="temperature_degree_day_heating">Градуса-дзень ацяпляльнага перыяду</string>
     <string name="temperature_normal_short">Норма</string>
-    <string name="precipitation_intensity_light">Вымарося</string>
+    <string name="precipitation_intensity_light">Iмжа</string>
     <string name="precipitation_duration">Працягласць ападкаў</string>
     <string name="precipitation_total">Усяго</string>
     <string name="precipitation_thunderstorm">Навальніца</string>
