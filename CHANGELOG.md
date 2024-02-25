@@ -38,6 +38,7 @@ This an **alpha release**. Use it at your own risk. If you do, report any issue 
 
 **Other improvements and fixes**
 - [Weather refresh] Various improvements to missing data computing/extrapolating
+- [Alerts] Show alert color icon on alert details page
 - [Location list] Swiping left on a manually added location now opens the weather sources preferences instead of (un)setting resident location status
 - [Location weather sources preferences] Clarified features supported by main source in secondary weather sources preferences. For exemple, at the moment of writing, Open-Meteo doesn't support alerts. If your main source is Open-Meteo and you don't have a secondary source set for Alerts, it showed “Main source”, now it will show “None” instead.
 - [Location weather sources preferences] Fix secondary source choices not updating when changing main weather source (if main source supports secondary features, it wouldn't be showing in secondary sources list)

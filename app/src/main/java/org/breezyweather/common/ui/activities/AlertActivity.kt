@@ -23,16 +23,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,6 +58,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.main.utils.MainThemeColorProvider
 import java.util.TimeZone
 import javax.inject.Inject
@@ -126,7 +131,7 @@ class AlertActivity : GeoActivity() {
             }
             location.value = locationC
 
-            val alerts = weatherRepository.getCurrentAlertsByLocationId(locationC.formattedId)
+            val alerts = weatherRepository.getAlertListByLocationId(locationC.formattedId)
             alertList.value = alerts
 
             if (alerts.isNotEmpty()) {
@@ -169,19 +174,31 @@ class AlertActivity : GeoActivity() {
                                     .padding(dimensionResource(R.dimen.normal_margin))
                                     .fillMaxWidth(),
                             ) {
-                                Text(
-                                    text = alert.description,
-                                    color = DayNightTheme.colors.titleColor,
-                                    fontWeight = FontWeight.Bold,
-                                    style = MaterialTheme.typography.titleMedium,
-                                )
-                                Text(
-                                    text = getAlertDate(context, alert, location.value!!.timeZone),
-                                    color = DayNightTheme.colors.captionColor,
-                                    style = MaterialTheme.typography.labelMedium,
-                                )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        painterResource(R.drawable.ic_alert),
+                                        contentDescription = alert.description,
+                                        tint = Color(ColorUtils.getDarkerColor(alert.color))
+                                    )
+                                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
+                                    Column {
+                                        Text(
+                                            text = alert.description,
+                                            color = DayNightTheme.colors.titleColor,
+                                            fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.titleMedium,
+                                        )
+                                        Text(
+                                            text = getAlertDate(context, alert, location.value!!.timeZone),
+                                            color = DayNightTheme.colors.captionColor,
+                                            style = MaterialTheme.typography.labelMedium,
+                                        )
+                                    }
+                                }
                                 alert.content?.let { content ->
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
                                         text = content,
                                         color = DayNightTheme.colors.bodyColor,

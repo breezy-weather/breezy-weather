@@ -170,7 +170,7 @@ class FirstCardHeaderController(
                         leadingContent = {
                             Icon(
                                 painterResource(R.drawable.ic_alert),
-                                contentDescription = stringResource(R.string.alerts_to_follow),
+                                contentDescription = currentAlert.description,
                                 tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
                             )
                         }
