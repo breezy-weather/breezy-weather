@@ -639,11 +639,16 @@
     <string name="location_search_no_results">%1$s tidak dapat mencari %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Diperbolehkan. Anda dapat menambahkan lokasi Anda saat ini sebagai sebuah lokasi.</string>
     <string name="settings_widgets">Widget dan &amp; latar belakang Langsung</string>
-    <string name="about_contribution_weather_source">Ditambahkan dukungam untuk sumber cuaca baru</string>
     <string name="settings_main_threshold_lines_on_charts">Garis ambang batas pada grafik</string>
     <string name="common_weather_text_rain_freezing_light">Hujan beku ringan</string>
     <string name="settings_location_access_background_title">Akses lokasi di latar belakang</string>
     <string name="common_weather_text_snow_showers_light">Hujan salju ringan</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Waktu notifikasi untuk perkiraan hari berikutnya</string>
     <string name="about_contribution_WangDaYeeeeee">Pengembang proyek Geometric Weather yang asli</string>
+    <string name="cloud_cover_short">Cover awan</string>
+    <string name="ceiling_short">Atap</string>
+    <string name="wind_short">Angin</string>
+    <string name="uv_index_short">Indeks UV</string>
+    <string name="visibility_short">Visibilitas</string>
+    <string name="pressure_short">Tekanan</string>
 </resources>

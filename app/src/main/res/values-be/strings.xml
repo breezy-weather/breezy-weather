@@ -565,7 +565,6 @@
     <string name="about_contributors">Удзельнікі</string>
     <string name="about_translators">Перакладчыкі</string>
     <string name="about_contribution_WangDaYeeeeee">Распрацоўнік арыгінальнага праекту Geometric Weather</string>
-    <string name="about_contribution_weather_source">Дададзена падтрымка новай крыніцы надвор’я</string>
     <string name="about_contribution_designer">Дызайнер лагатыпа</string>
     <string name="common_weather_text_clear_sky">Ясна</string>
     <string name="common_weather_text_mainly_clear">У асноўным зразумела</string>
@@ -637,4 +636,8 @@
     <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
     <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор’я ўжо існуе.</string>
+    <string name="wind_short">Вецер</string>
+    <string name="uv_index_short">УФ-индекс</string>
+    <string name="visibility_short">Бачнасць</string>
+    <string name="pressure_short">Ціск</string>
 </resources>

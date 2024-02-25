@@ -163,13 +163,14 @@ object ResourceHelper {
             getTextBounds(temperatureFormatted, 0, temperatureFormatted.length, bounds)
         }
 
-        val conf = Bitmap.Config.ARGB_8888
-        val bitmap = Bitmap.createBitmap(bounds.width(), iconSize, conf)
+        // Consider leading whitespace and descenders to properly center the text.
+        // Thanks to https://stackoverflow.com/a/32081250.
+        val bitmap = Bitmap.createBitmap(bounds.right, iconSize, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         canvas.drawText(
             temperatureFormatted,
-            (bitmap.getWidth() - bounds.width()) / 2f,
-            (bitmap.getHeight() + bounds.height()) / 2f,
+            (bitmap.getWidth() - bounds.width()) / 2f - bounds.left,
+            (bitmap.getHeight() + bounds.height()) / 2f - bounds.bottom,
             paint
         )
 

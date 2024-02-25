@@ -114,4 +114,7 @@
     <string name="air_quality_pm25_voice">PM to komma fem</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_o3_info_introduction">Bakkenær ozon (O₃) er en viktig komponent i smog. Selv om det er det samme molekylet, kan bakkenær ozon være skadelig for menneskers helse, i motsetning til stratosfærisk ozon som beskytter jorden mot overflødig UV-stråling.</string>
+    <string name="temperature_feels_like_short">Føles som</string>
+    <string name="wind_short">Vind</string>
+    <string name="uv_index_short">UV-indeks</string>
 </resources>

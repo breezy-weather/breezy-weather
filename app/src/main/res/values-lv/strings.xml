@@ -480,7 +480,6 @@
     <string name="about_translators">Tulkotāji</string>
     <string name="common_weather_text_mainly_clear">Galvenokārt skaidrs</string>
     <string name="about_contribution_WangDaYeeeeee">Oriģinālā projekta Geometric Weather izstrādātājs</string>
-    <string name="about_contribution_weather_source">Pievienoja atbalstu jauniem laika apstākļu avotiem</string>
     <string name="common_weather_text_clear_sky">Skaidras debesis</string>
     <string name="common_weather_text_rain_showers">Lietus dušas</string>
     <string name="common_weather_text_drizzle_freezing_light">Neliels sasalstošs smalks lietus</string>
@@ -624,4 +623,11 @@
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Pieskarieties, lai atvērtu</string>
     <string name="notification_channel_crash_logs">Avāriju žurnāli</string>
+    <string name="temperature_feels_like_short">Jūtas kā</string>
+    <string name="ceiling_short">Griesti</string>
+    <string name="humidity_short">Mitrums</string>
+    <string name="wind_short">Vējš</string>
+    <string name="uv_index_short">UV indekss</string>
+    <string name="visibility_short">Redzamība</string>
+    <string name="pressure_short">Spiediens</string>
 </resources>

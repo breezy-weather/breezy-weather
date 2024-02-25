@@ -402,7 +402,6 @@
     <string name="about_dependencies">Ovisnosti aplikacije od biblioteka</string>
     <string name="about_translators">Prevoditelji</string>
     <string name="about_contribution_WangDaYeeeeee">Programer izvornog projekta „Geometric Weather”</string>
-    <string name="about_contribution_weather_source">Dodana podrška za nove izvore prognoze</string>
     <string name="about_contribution_designer">Dizajner logotipa</string>
     <string name="common_weather_text_clear_sky">Vedro</string>
     <string name="common_weather_text_mainly_clear">Pretežno vedro</string>
@@ -631,4 +630,11 @@
     <string name="settings_units">Mjerne jedinice</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall verzija</string>
     <string name="air_quality_o3_info_origin">Nastaje fotohemijskim reakcijama sa zagađivačima kao što su hlapljiva organska jedinjenja, ugljen monoksid i dušikovi oksidi (NOₓ) koji se emituju iz vozila i industrije. Zbog fotohemijske prirode, najviši nivoi ozona se vide u periodima sunčanog vremena.</string>
+    <string name="dew_point_short">Tačka rose</string>
+    <string name="cloud_cover_short">Oblačnost</string>
+    <string name="humidity_short">Vlažnost</string>
+    <string name="wind_short">Vjetar</string>
+    <string name="uv_index_short">UV indeks</string>
+    <string name="visibility_short">Vidljivost</string>
+    <string name="pressure_short">Pritisak</string>
 </resources>

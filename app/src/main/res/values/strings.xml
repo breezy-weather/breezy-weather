@@ -34,6 +34,8 @@
     <!-- Temperature -->
     <string name="temperature">Temperature</string>
     <string name="temperature_feels_like">Feels like</string>
+    <!-- 10 characters max version of temperature_feels_like to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="temperature_feels_like_short">Feels like</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparent</string>
@@ -65,6 +67,8 @@
     <string name="precipitation_between_time">Precipitation between %1$s and %2$s</string>
     <!-- Wind -->
     <string name="wind">Wind</string>
+    <!-- 10 characters max version of wind to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="wind_short">Wind</string>
     <string name="wind_speed">Wind speed</string>
     <string name="wind_gusts">Wind gusts</string>
     <string name="wind_direction">Wind direction</string>
@@ -93,6 +97,8 @@
     <string name="wind_strength_12">Hurricane</string>
     <!-- UV -->
     <string name="uv_index">UV index</string>
+    <!-- 10 characters max version of uv_index to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="uv_index_short">UV index</string>
     <string name="uv_index_0_2">Low</string>
     <string name="uv_index_3_5">Moderate</string>
     <string name="uv_index_6_7">High</string>
@@ -188,12 +194,22 @@
     <string name="nighttime">Nighttime</string>
     <string name="hours_of_sun">Hours of sun</string>
     <string name="humidity">Humidity</string>
+    <!-- 10 characters max version of humidity to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="humidity_short">Humidity</string>
     <string name="humidity_dew_point">Humidity / Dew point</string>
     <string name="pressure">Pressure</string>
+    <string name="pressure_short">Pressure</string>
     <string name="visibility">Visibility</string>
+    <string name="visibility_short">Visibility</string>
     <string name="dew_point">Dew point</string>
+    <!-- 10 characters max version of dew_point to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="dew_point_short">Dew point</string>
     <string name="cloud_cover">Cloud cover</string>
+    <!-- 10 characters max version of cloud_cover to be used in current details header. Don’t copy English! If you can fit “Cloud cover” fully, do it! -->
+    <string name="cloud_cover_short">Cover</string>
     <string name="ceiling">Ceiling</string>
+    <!-- 10 characters max version of ceiling to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <string name="ceiling_short">Ceiling</string>
     <!-- Date format strings -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -665,7 +681,6 @@
     <string name="about_contributors">Contributors</string>
     <string name="about_translators">Translators</string>
     <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
-    <string name="about_contribution_weather_source">Added support for new weather source(s)</string>
     <string name="about_contribution_designer">Logo designer</string>
     <!-- Weather condition text -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->

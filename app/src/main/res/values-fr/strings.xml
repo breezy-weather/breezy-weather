@@ -11,29 +11,30 @@
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
     <string name="precipitation_duration">Durée des précipitations</string>
-    <string name="temperature">Température</string>
-    <string name="wind">Vent</string>
-    <string name="wind_direction">Direction du vent</string>
-    <string name="wind_speed">Vitesse du vent</string>
-    <string name="wind_gusts">Rafales de vent</string>
     <!-- Selon l’échelle de Beaufort -->
     <string name="humidity">Humidité</string>
+    <string name="humidity_short">Humidité</string>
     <string name="humidity_dew_point">Humidité / Point de rosée</string>
-    <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Heures d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
     <string name="temperature_feels_like">Ressenti</string>
+    <string name="temperature_feels_like_short">Ressenti</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="notification_channel_crash_logs">Journaux d’incident</string>
     <string name="pressure">Pression</string>
+    <string name="pressure_short">Pression</string>
     <string name="visibility">Visibilité</string>
+    <string name="visibility_short">Visibilité</string>
     <string name="dew_point">Point de rosée</string>
+    <string name="dew_point_short">P. de rosée</string>
     <string name="cloud_cover">Couverture nuageuse</string>
+    <string name="cloud_cover_short">Couverture</string>
     <string name="ceiling">Plafond nuageux</string>
+    <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
     <string name="settings_icon_packs_get_more_store">Voir plus dans le magasin d’applications</string>
     <string name="settings_icon_packs_get_more_github">Voir plus sur GitHub</string>
@@ -54,6 +55,7 @@
     <string name="short_saturday">Sam.</string>
     <string name="short_sunday">Dim.</string>
 
+    <string name="temperature">Température</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Ressentie</string>
@@ -72,6 +74,11 @@
     <string name="precipitation_snow">Neige</string>
     <string name="precipitation_ice">Verglas</string>
 
+    <string name="wind">Vent</string>
+    <string name="wind_short">Vent</string>
+    <string name="wind_direction">Direction du vent</string>
+    <string name="wind_speed">Vitesse du vent</string>
+    <string name="wind_gusts">Rafales de vent</string>
     <string name="wind_strength">Force du vent</string>
     <string name="wind_strength_0">Calme</string>
     <string name="wind_strength_1">Très légère brise</string>
@@ -128,6 +135,8 @@
     <string name="pollen_level_5">Très fort</string>
 
     <!-- UV levels -->
+    <string name="uv_index">Indice UV</string>
+    <string name="uv_index_short">Indice UV</string>
     <string name="uv_index_0_2">Faible</string>
     <string name="uv_index_3_5">Modéré</string>
     <string name="uv_index_6_7">Élevé</string>
@@ -557,7 +566,6 @@
     <string name="about_dependencies">Dépendences</string>
     <string name="about_contributors">Contributeurs</string>
     <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
-    <string name="about_contribution_weather_source">A ajouté le support de nouvelle(s) source(s) météo</string>
     <string name="about_contribution_designer">Concepteur du logo</string>
     <string name="action_location_list">Liste des emplacements</string>
     <string name="setting_weather_source_accu_days">Jours</string>

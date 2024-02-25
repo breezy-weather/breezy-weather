@@ -570,7 +570,6 @@
     <string name="air_quality_so2_info_consequences">Narażenie na SO₂ wiąże się z przyjęciami do szpitala z astmą i wizytami na izbie przyjęć.</string>
     <string name="air_quality_so2_info_origin">Jest uwalniany naturalnie w wyniku aktywności wulkanicznej i pochodzi głównie ze spalania paliw kopalnych do ogrzewania domów, przemysłu i wytwarzania energii.</string>
     <string name="air_quality_co_info_consequences">Tlenek węgla przenika przez tkanki płuc do krwiobiegu, utrudniając komórkom organizmu wiązanie się z tlenem. Ten brak tlenu uszkadza tkanki i komórki. Narażenie na tlenek węgla może powodować trudności w oddychaniu, wyczerpanie, zawroty głowy i inne objawy grypopodobne. Narażenie na wysokie poziomy tlenku węgla może być śmiertelne.</string>
-    <string name="about_contribution_weather_source">Dodano obsługę nowych źródeł pogody</string>
     <string name="about_dependencies">Zależności</string>
     <string name="air_quality_co_info_origin">Powstaje w wyniku niecałkowitego spalania paliw zawierających węgiel, takich jak drewno, benzyna, węgiel, gaz ziemny i nafta w prostych piecach, kominkach, lampach knotowych, piecach, kominkach. Głównym źródłem tlenku węgla (CO) w otaczającym powietrzu są pojazdy silnikowe.</string>
     <string name="air_quality_co_info_introduction">Tlenek węgla (CO) to trujący, łatwopalny gaz, który jest bezbarwny, bezwonny, niedrażniący i nie ma smaku.</string>
@@ -645,4 +644,11 @@
     <string name="location_search_source">Wyszukaj źródło</string>
     <string name="settings_weather_source_none">Nie</string>
     <string name="location_search_change_source">Zmień źródło wyszukiwania</string>
+    <string name="temperature_feels_like_short">Odczuwalne</string>
+    <string name="dew_point_short">Punkt rosy</string>
+    <string name="humidity_short">Wilgotność</string>
+    <string name="wind_short">Wiatr</string>
+    <string name="uv_index_short">Indeks UV</string>
+    <string name="visibility_short">Widoczność</string>
+    <string name="pressure_short">Ciśnienie</string>
 </resources>

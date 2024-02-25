@@ -43,6 +43,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -170,10 +171,12 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                     color = Color.White,
                                     fontSize = dimensionResource(R.dimen.current_weather_details_value_text_size).value.sp,
                                     textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Black
+                                    fontWeight = FontWeight.Black,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    detailDisplay.getName(LocalContext.current),
+                                    detailDisplay.getShortName(LocalContext.current),
                                     color = Color.White,
                                     fontSize = dimensionResource(R.dimen.current_weather_details_name_text_size).value.sp,
                                     textAlign = TextAlign.Center,

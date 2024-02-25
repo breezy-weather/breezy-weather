@@ -398,7 +398,6 @@
     <string name="ephemeris_moon_phase_waning_crescent">Avtagande skära</string>
     <string name="about_dependencies">Beroenden</string>
     <string name="settings_widgets">Widgetar &amp; levande bakgrund</string>
-    <string name="about_contribution_weather_source">Lade till stöd för ny väderkälla/nya väderkällor</string>
     <string name="about_contribution_WangDaYeeeeee">Utvecklare av det ursprungliga projektet Geometric Weather</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Kunde inte öppna enhetens inställningar.</string>
     <string name="settings_source_api_key">API-nyckel</string>
@@ -637,4 +636,11 @@
     <string name="settings_weather_source_none">Ingen</string>
     <string name="location_search_source">Platssök källa</string>
     <string name="location_search_change_source">Ändra platssök källa</string>
+    <string name="temperature_feels_like_short">Känns som</string>
+    <string name="dew_point_short">Daggpunkt</string>
+    <string name="ceiling_short">Tak</string>
+    <string name="wind_short">Vind</string>
+    <string name="uv_index_short">UV-index</string>
+    <string name="visibility_short">Sikt</string>
+    <string name="pressure_short">Lufttryck</string>
 </resources>

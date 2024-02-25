@@ -568,7 +568,6 @@
     <string name="pollen_olive">زيتون</string>
     <string name="pollen_level_0">لاشيء</string>
     <string name="pollen_level_2">منخفض</string>
-    <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
     <string name="action_delete">حذف</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء %s</string>
     <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار %s</string>
@@ -644,4 +643,11 @@
     <string name="location_message_already_exists">يوجد بالفعل موقع له نفس مصدر الطقس الرئيسي.</string>
     <string name="location_search_source">مصدر البحث عن الموقع</string>
     <string name="location_search_change_source">تغيير مصدر البحث عن الموقع</string>
+    <string name="temperature_feels_like_short">تبدو وكأنها</string>
+    <string name="dew_point_short">درجة التكثف</string>
+    <string name="ceiling_short">الحد الأعلى</string>
+    <string name="humidity_short">الرطوبة</string>
+    <string name="wind_short">الرياح</string>
+    <string name="visibility_short">الرؤية</string>
+    <string name="pressure_short">الضغط</string>
 </resources>

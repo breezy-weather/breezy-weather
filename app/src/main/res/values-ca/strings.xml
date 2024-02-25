@@ -625,7 +625,6 @@
     <string name="location_search_no_results">%1$s no pot trobar %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Permès. Pots afegir la teva ubicació actual com a ubicació.</string>
     <string name="settings_widgets">Ginys i fons de pantalla animat</string>
-    <string name="about_contribution_weather_source">S’ha afegit suport per a noves fonts meteorològiques</string>
     <string name="about_source_code">Codi font</string>
     <string name="settings_main_threshold_lines_on_charts">Línies llindars als gràfics</string>
     <string name="common_weather_text_rain_freezing_light">Pluja gelada dèbil</string>
@@ -637,4 +636,11 @@
     <string name="notification_channel_alerts">Alertes</string>
     <string name="air_quality_level_5_description">Els grups sensibles notaran immediatament els efectes sobre la salut i han d’evitar l’activitat a l’aire lliure. És probable que les persones sanes experimentin dificultat per respirar i irritació de gola; considereu a quedar-vos a l’interior i reprogramar activitats a l’aire lliure.</string>
     <string name="about_contribution_WangDaYeeeeee">Desenvolupador del projecte original Geometric Weather</string>
+    <string name="cloud_cover_short">Nuvolositat</string>
+    <string name="ceiling_short">Plafó</string>
+    <string name="humidity_short">Humitat</string>
+    <string name="wind_short">Vent</string>
+    <string name="uv_index_short">Índex UV</string>
+    <string name="visibility_short">Visibilitat</string>
+    <string name="pressure_short">Pressió</string>
 </resources>

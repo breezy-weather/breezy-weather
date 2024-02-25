@@ -121,11 +121,12 @@ class AboutActivity : GeoActivity() {
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", "https://github.com/papjul"),
         ContributorItem("WangDaYeeeeee", "https://github.com/WangDaYeeeeee", R.string.about_contribution_WangDaYeeeeee),
-        ContributorItem("Cod3d.", "https://github.com/Cod3dDOT", R.string.about_contribution_weather_source),
+        ContributorItem("Cod3d.", "https://github.com/Cod3dDOT"),
         ContributorItem("Romain Théry", "https://github.com/rthery"),
         ContributorItem("danielzhang130", "https://github.com/danielzhang130"),
         ContributorItem("majjejjam", "https://github.com/majjejjam"),
         ContributorItem("Mark Bestavros", "https://github.com/mbestavros"),
+        ContributorItem("min7-i", "https://github.com/min7-i"),
         ContributorItem("Anthony Dégrange", "https://anthony-degrange-design.fr/", R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed

@@ -569,7 +569,6 @@
     <string name="pollen_level_2">Низкий</string>
     <string name="pollen_birch">Берёза</string>
     <string name="pollen_level_3">Средний</string>
-    <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
     <string name="action_delete">Удалить</string>
     <string name="weather_pollen_data_by">Информация об аллергенах предоставлена %s</string>
     <string name="weather_alert_data_by">Оповещения о погоде предоставлены %s</string>
@@ -644,4 +643,9 @@
     <string name="settings_weather_source_none">Нет</string>
     <string name="location_message_updated">Местоположение обновлено</string>
     <string name="location_message_already_exists">Местоположение с таким же основным источником погоды уже существует.</string>
+    <string name="humidity_short">Влажность</string>
+    <string name="wind_short">Ветер</string>
+    <string name="uv_index_short">УФ-индекс</string>
+    <string name="visibility_short">Видимость</string>
+    <string name="pressure_short">Давление</string>
 </resources>

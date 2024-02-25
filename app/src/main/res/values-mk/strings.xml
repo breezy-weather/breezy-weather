@@ -550,7 +550,6 @@
     <string name="about_contributors">Соработници</string>
     <string name="about_translators">Преведувачи</string>
     <string name="about_contribution_WangDaYeeeeee">Развивач на оригиналниот проект Geometric Weather</string>
-    <string name="about_contribution_weather_source">Додадена е поддршка за нови временски извори</string>
     <string name="about_contribution_designer">Дизајнер на лого</string>
     <string name="common_weather_text_clear_sky">Чисто небо</string>
     <string name="common_weather_text_cloudy">Облачно</string>
@@ -637,4 +636,10 @@
     <string name="location_search_change_source">Променете ја локацијата извор на пребарување</string>
     <string name="location_message_updated">Локацијата е ажурирана</string>
     <string name="location_message_already_exists">Локација со ист главен извор на времето веќе постои.</string>
+    <string name="ceiling_short">Таванот</string>
+    <string name="humidity_short">Влажност</string>
+    <string name="wind_short">Ветер</string>
+    <string name="uv_index_short">УВ индекс</string>
+    <string name="visibility_short">Видливост</string>
+    <string name="pressure_short">Притисок</string>
 </resources>

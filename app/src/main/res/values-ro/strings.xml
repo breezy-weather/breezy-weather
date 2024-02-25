@@ -550,7 +550,6 @@
     <string name="action_delete">Ștergeți</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
     <string name="message_source_not_installed_error_content">Această sursă nu mai este disponibilă, vă rugăm să ștergeți locația și să o recreați din altă sursă.</string>
-    <string name="about_contribution_weather_source">A fost adăugat suport pentru o nouă sursă(e) meteo</string>
     <string name="weather_alert_data_by">Date despre alerte de %s</string>
     <string name="wind_gusts">Rafale de vânt</string>
     <string name="wind_strength">Puterea vântului</string>
@@ -586,4 +585,11 @@
     <string name="pollen_level_4">Ridicat</string>
     <string name="pollen_level_5">Foarte ridicat</string>
     <string name="weather_air_quality_data_by">Date despre calitatea aerului de %s</string>
+    <string name="temperature_feels_like_short">Se simt</string>
+    <string name="ceiling_short">Plafon</string>
+    <string name="humidity_short">Umiditate</string>
+    <string name="wind_short">Vânt</string>
+    <string name="uv_index_short">Indice UV</string>
+    <string name="visibility_short">Vizibilitate</string>
+    <string name="pressure_short">Presiune</string>
 </resources>

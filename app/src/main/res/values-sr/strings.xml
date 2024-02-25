@@ -435,7 +435,6 @@
     <string name="action_app_store">Продавница апликација</string>
     <string name="settings_weather_sources">Извори времена</string>
     <string name="settings_weather_sources_summary">Подешавања извора података о времену</string>
-    <string name="about_contribution_weather_source">Додао подршку за нове изворе времена</string>
     <string name="action_location_list">Листа локација</string>
     <string name="settings_main_background_animation_enabled">Омогућено</string>
     <string name="settings_main_gravity_sensor_switch">Гравитациони сензор</string>
@@ -643,4 +642,9 @@
     <string name="settings_weather_source_none">Ниједно</string>
     <string name="location_search_source">Извор претраге локације</string>
     <string name="location_search_change_source">Промените извор претраге локације</string>
+    <string name="cloud_cover_short">Облачност</string>
+    <string name="humidity_short">Влажност</string>
+    <string name="wind_short">Ветар</string>
+    <string name="uv_index_short">УВ индекс</string>
+    <string name="pressure_short">Притисак</string>
 </resources>

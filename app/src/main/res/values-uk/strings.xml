@@ -580,7 +580,6 @@
     <string name="notification_channel_widget">Віджет</string>
     <string name="notification_channel_background_services">Фонові сервіси</string>
     <string name="about_contribution_WangDaYeeeeee">Розробник оригінального проєкту Geometric Weather</string>
-    <string name="about_contribution_weather_source">Додав підтримку нових джерел погоди</string>
     <string name="common_weather_text_mainly_clear">Переважно ясно</string>
     <string name="common_weather_text_rain_light">Невеликий дощ</string>
     <string name="common_weather_text_rain_moderate">Помірний дощ</string>
@@ -637,4 +636,10 @@
     <string name="location_search_change_source">Змінити джерело пошуку</string>
     <string name="location_message_already_exists">Розташування з таким самим основним джерелом погоди вже існує.</string>
     <string name="location_message_updated">Розташування оновлено</string>
+    <string name="cloud_cover_short">Хмарність</string>
+    <string name="humidity_short">Вологість</string>
+    <string name="wind_short">Вітер</string>
+    <string name="uv_index_short">УФ-індекс</string>
+    <string name="visibility_short">Видимість</string>
+    <string name="pressure_short">Тиск</string>
 </resources>

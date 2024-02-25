@@ -468,7 +468,6 @@
     <string name="notification_channel_crash_logs">Kaatumislokit</string>
     <string name="settings_location_access_switch_summaryOn">Sallittu. Voit lisätä nykyisen olinpaikkasi sijainniksi.</string>
     <string name="settings_widgets">Widgetit &amp; Live taustakuva</string>
-    <string name="about_contribution_weather_source">Lisäsi tuen uusille säälähteille</string>
     <string name="about_source_code">Lähdekoodi</string>
     <string name="unit_mm_voice">Millimetriä</string>
     <string name="settings_location_access_background_title">Sijainnin käyttöoikeus taustalla</string>
@@ -656,4 +655,11 @@
     <string name="notification_precipitation_stopping_desc">Arvioitu loppuvan klo %s</string>
     <string name="location_search_source">Sijaintihaun lähde</string>
     <string name="location_search_change_source">Vaihda sijaintihaun lähdettä</string>
+    <string name="dew_point_short">Kastepiste</string>
+    <string name="cloud_cover_short">Pilvisyys</string>
+    <string name="ceiling_short">Pilvipeite</string>
+    <string name="wind_short">Tuuli</string>
+    <string name="uv_index_short">UV-indeksi</string>
+    <string name="visibility_short">Näkyvyys</string>
+    <string name="pressure_short">Ilmanpaine</string>
 </resources>

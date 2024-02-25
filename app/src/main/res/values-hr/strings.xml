@@ -616,7 +616,6 @@
     <string name="common_weather_text_rain_showers_moderate">Umjereni pljuskovi</string>
     <string name="unit_lpsqm_voice">Litara po metru kvadratnom</string>
     <string name="notification_channel_crash_logs">Zapisnici o padu</string>
-    <string name="about_contribution_weather_source">Dodana podrška za nove izvore prognoze</string>
     <string name="about_source_code">Izvorni kod</string>
     <string name="unit_mm_voice">Milimetara</string>
     <string name="common_weather_text_rain_freezing_light">Blaga ledena kiša</string>
@@ -637,4 +636,9 @@
     <string name="location_search_source">Izvor pretraživanja</string>
     <string name="settings_weather_source_none">Ništa</string>
     <string name="location_search_change_source">Promijenite izvor pretrage lokacije</string>
+    <string name="humidity_short">Vlažnost</string>
+    <string name="wind_short">Vjetar</string>
+    <string name="uv_index_short">UV indeks</string>
+    <string name="visibility_short">Vidljivost</string>
+    <string name="pressure_short">Tlak</string>
 </resources>
