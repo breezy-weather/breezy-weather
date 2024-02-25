@@ -46,6 +46,7 @@ This an **alpha release**. Use it at your own risk. If you do, report any issue 
 - [Location weather sources preferences] Fix duplicate location when main weather source is changed to an existing same location with same weather source
 - [Location weather sources preferences] Fix when changing main weather source, saving previously redirected to first location in location list. Now, it will stay on the correct location
 - [Notifications] Fix crash when today/tomorrow notification was received on Android 14
+- [Notification-widget] Fix temperature icon in status bar being cut off on some devices (@min7-i)
 - [Weather refresh] When background updates are disabled, when opening a location, it will now automatically refresh if it was last refreshed more than 1.5 hours ago
 - [Settings] When background updates are disabled, make user aware that “Notifications of weather alerts” and “Notifications of precipitations” are unavailable by greying the options in settings
 - [Widgets] Fix clock day vertical widget in vertical or tile mode was showing decimals to current temperature
