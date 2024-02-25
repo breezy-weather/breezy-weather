@@ -556,7 +556,6 @@
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: %s</string>
     <string name="pollen_mugwort">Beifuß</string>
     <string name="pollen_alder">Erle</string>
-    <string name="about_contribution_weather_source">Unterstützung für neue Wetterquelle(n) hinzugefügt</string>
     <string name="pollen_birch">Birke</string>
     <string name="pollen_olive">Olive</string>
     <string name="pollen_level_1">Sehr niedrig</string>

@@ -339,7 +339,6 @@
     <string name="unit_hpa">hPa</string>
     <string name="hours_of_sun">Zonuren</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="about_contribution_weather_source">Ondersteuning toegevoegd voor nieuwe weerbron(nen)</string>
     <string name="action_back">Terug</string>
     <string name="action_help_me_choose">Help mij kiezen</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>

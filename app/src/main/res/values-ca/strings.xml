@@ -625,7 +625,6 @@
     <string name="location_search_no_results">%1$s no pot trobar %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Permès. Pots afegir la teva ubicació actual com a ubicació.</string>
     <string name="settings_widgets">Ginys i fons de pantalla animat</string>
-    <string name="about_contribution_weather_source">S’ha afegit suport per a noves fonts meteorològiques</string>
     <string name="about_source_code">Codi font</string>
     <string name="settings_main_threshold_lines_on_charts">Línies llindars als gràfics</string>
     <string name="common_weather_text_rain_freezing_light">Pluja gelada dèbil</string>

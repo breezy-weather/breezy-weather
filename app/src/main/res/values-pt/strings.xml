@@ -501,7 +501,6 @@
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para a sua localização atual.</string>
     <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
     <string name="settings_units_temperature">Unidade de temperatura</string>
-    <string name="about_contribution_weather_source">Adicionado suporte para novas fontes meteorológicas</string>
     <string name="air_quality_index">Índice de qualidade do ar</string>
     <string name="air_quality_level_3_description">A qualidade do ar atingiu um nível elevado de poluição e está prejudicial para grupos sensíveis. Reduza o tempo gasto ao ar livre se sente sintomas como dificuldade para respirar ou irritação na garganta.</string>
     <string name="air_quality_level_4">Insalubre</string>

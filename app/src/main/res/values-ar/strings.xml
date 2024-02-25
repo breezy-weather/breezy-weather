@@ -568,7 +568,6 @@
     <string name="pollen_olive">زيتون</string>
     <string name="pollen_level_0">لاشيء</string>
     <string name="pollen_level_2">منخفض</string>
-    <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
     <string name="action_delete">حذف</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء %s</string>
     <string name="weather_pollen_data_by">بيانات مسببات الحساسية بمقدار %s</string>

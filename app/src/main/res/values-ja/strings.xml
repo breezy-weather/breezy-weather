@@ -327,7 +327,6 @@
     <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
     <string name="settings_main_daily_trends_title">日時予報</string>
     <string name="about_contributors">貢献者</string>
-    <string name="about_contribution_weather_source">新しい気象ソースへの対応を追加</string>
     <string name="settings_background_updates_dont_kill_my_app_title">メーカーごとの改善方法</string>
     <string name="minutely_precipitations">毎分降水量</string>
     <string name="settings_location">位置情報</string>

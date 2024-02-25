@@ -572,7 +572,6 @@
     <string name="pollen_level_4">高</string>
     <string name="pollen_level_5">非常高</string>
     <string name="pollen_level_3">中</string>
-    <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
     <string name="action_delete">删除</string>
     <string name="weather_air_quality_data_by">空气质量数据来自 %s</string>
     <string name="weather_minutely_data_by">每分钟降水量数据来自 %s</string>

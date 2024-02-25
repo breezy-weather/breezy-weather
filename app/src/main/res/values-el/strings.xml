@@ -503,7 +503,6 @@
     <string name="notification_precipitation_starting_desc">Αναμένεται να ξεκινήσει στις %s</string>
     <string name="notification_precipitation_continuing_desc">Αναμένεται να συνεχιστεί τουλάχιστον έως τις %s</string>
     <string name="about_contributors">Συνεισφέροντες</string>
-    <string name="about_contribution_weather_source">Προστέθηκε υποστήριξη για νέες πηγές καιρού</string>
     <string name="common_weather_text_clear_sky">Καθαρός ουρανός</string>
     <string name="common_weather_text_mainly_clear">Κυρίως ξεκάθαρο</string>
     <string name="about_contribution_designer">Σχεδιαστής λογοτύπου</string>

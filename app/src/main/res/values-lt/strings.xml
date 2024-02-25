@@ -557,7 +557,6 @@
     <string name="about_app">Apie programėlę</string>
     <string name="about_contact">Kontaktai</string>
     <string name="about_dependencies">Priklausomybės</string>
-    <string name="about_contribution_weather_source">Pridėtas naujo (-ų) orų šaltinio (-ių) palaikymas</string>
     <string name="common_weather_text_overcast">Debesuota</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatūra kaip būsenos juostos piktograma</string>
     <string name="settings_widgets_notification_style_title">Stilius</string>

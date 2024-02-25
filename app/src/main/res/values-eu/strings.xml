@@ -483,7 +483,6 @@
     <string name="unit_mgpcum_voice">Miligramoak metro kubikoko</string>
     <string name="notification_channel_forecast">Iragarpena</string>
     <string name="about_contributors">Laguntzaileak</string>
-    <string name="about_contribution_weather_source">Eguraldi iturri berrientzako euskarria gehitu da</string>
     <string name="about_contribution_designer">Logoaren diseinatzailea</string>
     <string name="common_weather_text_overcast">Hodeituta</string>
     <string name="common_weather_text_fog">Lainoa</string>

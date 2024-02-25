@@ -271,7 +271,6 @@
     <string name="common_weather_text_drizzle_light">Ľahké mrholenie</string>
     <string name="about_dependencies">Závislosti</string>
     <string name="common_weather_text_rain_showers_moderate">Mierne dažďové prehánky</string>
-    <string name="about_contribution_weather_source">Pridaná podpora nového zdroja počasia</string>
     <string name="about_source_code">Zdrojový kód</string>
     <string name="widget_live_wallpaper_weather_kind">Počasie</string>
     <string name="common_weather_text_rain_freezing_light">Slabý mrznúci dážď</string>

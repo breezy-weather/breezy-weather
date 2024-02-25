@@ -564,7 +564,6 @@
     <string name="pollen_level_5">Много високо</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
-    <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
     <string name="weather_message_secondary_data_refresh_failed">Опресняването на метеорологичните данни за вторичен метеорологичен източник не бе успешно</string>
     <string name="weather_air_quality_data_by">Данни за качеството на въздуха от %s</string>
     <string name="weather_pollen_data_by">Данни за алергените от %s</string>

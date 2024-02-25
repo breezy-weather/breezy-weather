@@ -628,7 +628,6 @@
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
     <string name="common_weather_text_drizzle_freezing">Mrznoucí mrholení</string>
     <string name="action_delete">Odstranit</string>
-    <string name="about_contribution_weather_source">Přidána podpora pro nové zdroje počasí</string>
     <string name="weather_message_secondary_data_refresh_failed">Obnovení dat o počasí pro sekundární zdroj počasí se nezdařilo</string>
     <string name="weather_message_invalid_location">Neplatné umístění, odstraňte jej a znovu přidejte</string>
     <string name="temperature_average_short">Prům</string>

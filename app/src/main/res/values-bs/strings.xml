@@ -402,7 +402,6 @@
     <string name="about_dependencies">Ovisnosti aplikacije od biblioteka</string>
     <string name="about_translators">Prevoditelji</string>
     <string name="about_contribution_WangDaYeeeeee">Programer izvornog projekta „Geometric Weather”</string>
-    <string name="about_contribution_weather_source">Dodana podrška za nove izvore prognoze</string>
     <string name="about_contribution_designer">Dizajner logotipa</string>
     <string name="common_weather_text_clear_sky">Vedro</string>
     <string name="common_weather_text_mainly_clear">Pretežno vedro</string>

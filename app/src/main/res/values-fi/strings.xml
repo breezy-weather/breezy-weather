@@ -468,7 +468,6 @@
     <string name="notification_channel_crash_logs">Kaatumislokit</string>
     <string name="settings_location_access_switch_summaryOn">Sallittu. Voit lisätä nykyisen olinpaikkasi sijainniksi.</string>
     <string name="settings_widgets">Widgetit &amp; Live taustakuva</string>
-    <string name="about_contribution_weather_source">Lisäsi tuen uusille säälähteille</string>
     <string name="about_source_code">Lähdekoodi</string>
     <string name="unit_mm_voice">Millimetriä</string>
     <string name="settings_location_access_background_title">Sijainnin käyttöoikeus taustalla</string>

@@ -616,7 +616,6 @@
     <string name="common_weather_text_rain_showers_moderate">Umjereni pljuskovi</string>
     <string name="unit_lpsqm_voice">Litara po metru kvadratnom</string>
     <string name="notification_channel_crash_logs">Zapisnici o padu</string>
-    <string name="about_contribution_weather_source">Dodana podrška za nove izvore prognoze</string>
     <string name="about_source_code">Izvorni kod</string>
     <string name="unit_mm_voice">Milimetara</string>
     <string name="common_weather_text_rain_freezing_light">Blaga ledena kiša</string>

@@ -623,7 +623,6 @@
     <string name="about_dependencies">Dependencias</string>
     <string name="common_weather_text_rain_showers_moderate">Chubascos moderados</string>
     <string name="notification_channel_crash_logs">Registros de errores</string>
-    <string name="about_contribution_weather_source">Añadida la compatibilidad con las nuevas fuentes meteorológicas</string>
     <string name="about_source_code">Código fuente</string>
     <string name="common_weather_text_rain_freezing_light">Aguanieve</string>
     <string name="common_weather_text_snow_moderate">Nieve ligera</string>

@@ -589,7 +589,6 @@
     <string name="weather_alert_data_by">Dados de alerta por %s</string>
     <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
     <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
-    <string name="about_contribution_weather_source">Adicionou suporte para novas fontes meteorológicas</string>
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
