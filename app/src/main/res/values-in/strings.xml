@@ -646,4 +646,10 @@
     <string name="common_weather_text_snow_showers_light">Hujan salju ringan</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Waktu notifikasi untuk perkiraan hari berikutnya</string>
     <string name="about_contribution_WangDaYeeeeee">Pengembang proyek Geometric Weather yang asli</string>
+    <string name="cloud_cover_short">Cover awan</string>
+    <string name="ceiling_short">Atap</string>
+    <string name="wind_short">Angin</string>
+    <string name="uv_index_short">Indeks UV</string>
+    <string name="visibility_short">Visibilitas</string>
+    <string name="pressure_short">Tekanan</string>
 </resources>

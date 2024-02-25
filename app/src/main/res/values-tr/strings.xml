@@ -643,4 +643,9 @@
     <string name="settings_weather_source_none">Yok</string>
     <string name="location_message_updated">Konum güncellendi</string>
     <string name="location_message_already_exists">Aynı ana hava durumu kaynağına sahip bir konum zaten var.</string>
+    <string name="ceiling_short">Tavan</string>
+    <string name="humidity_short">Nem</string>
+    <string name="wind_short">Rüzgar</string>
+    <string name="uv_index_short">UV indeksi</string>
+    <string name="pressure_short">Basınç</string>
 </resources>

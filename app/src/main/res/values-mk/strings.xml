@@ -637,4 +637,10 @@
     <string name="location_search_change_source">Променете ја локацијата извор на пребарување</string>
     <string name="location_message_updated">Локацијата е ажурирана</string>
     <string name="location_message_already_exists">Локација со ист главен извор на времето веќе постои.</string>
+    <string name="ceiling_short">Таванот</string>
+    <string name="humidity_short">Влажност</string>
+    <string name="wind_short">Ветер</string>
+    <string name="uv_index_short">УВ индекс</string>
+    <string name="visibility_short">Видливост</string>
+    <string name="pressure_short">Притисок</string>
 </resources>

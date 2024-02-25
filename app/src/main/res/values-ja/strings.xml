@@ -645,4 +645,13 @@
     <string name="common_weather_text_rain_snow_mixed_light">小雨と雪が混じる</string>
     <string name="dialog_permissions_location_content">Breezy Weather は、現在の場所の気象データを提供するために、フォアグラウンドまたはバックグラウンドで位置情報を収集する必要があります。このために、いくつかの許可をリクエストします。位置情報は、現在地の気象データを取得するためにのみ使用されます。位置情報を共有したくない場合は、これらの要件を拒否し、管理ページで手動で位置情報を設定できます。</string>
     <string name="message_server_timeout">リクエストはタイムアウトしました</string>
+    <string name="temperature_feels_like_short">体感温度</string>
+    <string name="dew_point_short">露点</string>
+    <string name="cloud_cover_short">雲量</string>
+    <string name="ceiling_short">雲低高度</string>
+    <string name="humidity_short">湿度</string>
+    <string name="wind_short">風</string>
+    <string name="uv_index_short">UV指数</string>
+    <string name="visibility_short">視程</string>
+    <string name="pressure_short">プレッシャー</string>
 </resources>

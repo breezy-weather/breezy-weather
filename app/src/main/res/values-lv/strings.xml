@@ -624,4 +624,11 @@
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Pieskarieties, lai atvērtu</string>
     <string name="notification_channel_crash_logs">Avāriju žurnāli</string>
+    <string name="temperature_feels_like_short">Jūtas kā</string>
+    <string name="ceiling_short">Griesti</string>
+    <string name="humidity_short">Mitrums</string>
+    <string name="wind_short">Vējš</string>
+    <string name="uv_index_short">UV indekss</string>
+    <string name="visibility_short">Redzamība</string>
+    <string name="pressure_short">Spiediens</string>
 </resources>

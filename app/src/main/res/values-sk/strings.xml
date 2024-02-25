@@ -278,4 +278,9 @@
     <string name="common_weather_text_snow_moderate">Mierne sneženie</string>
     <string name="common_weather_text_snow_showers_light">Slabé snehové prehánky</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojár pôvodného projektu Geometric Weather</string>
+    <string name="dew_point_short">Rosný bod</string>
+    <string name="cloud_cover_short">Oblačnosť</string>
+    <string name="humidity_short">Vlhkosť</string>
+    <string name="wind_short">Vietor</string>
+    <string name="pressure_short">Tlak</string>
 </resources>

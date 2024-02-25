@@ -640,4 +640,13 @@
     <string name="notification_precipitation_continuing">沉澱</string>
     <string name="notification_precipitation_continuing_desc">預計會持續到至少 %s</string>
     <string name="notification_precipitation_stopping_desc">預計停在 %s</string>
+    <string name="temperature_feels_like_short">體感溫度</string>
+    <string name="dew_point_short">露點</string>
+    <string name="cloud_cover_short">雲量</string>
+    <string name="ceiling_short">雲高</string>
+    <string name="humidity_short">相對濕度</string>
+    <string name="wind_short">風況</string>
+    <string name="uv_index_short">紫外線指數</string>
+    <string name="visibility_short">能見度</string>
+    <string name="pressure_short">氣壓</string>
 </resources>

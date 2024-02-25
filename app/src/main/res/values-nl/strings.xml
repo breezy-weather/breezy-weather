@@ -629,4 +629,12 @@
     <string name="settings_debug_dump_crash_logs_saved">Crashlogs opgeslagen</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tik om te openen</string>
     <string name="notification_channel_crash_logs">Crashlogs</string>
+    <string name="temperature_feels_like_short">Voelt als</string>
+    <string name="dew_point_short">Dauwpunt</string>
+    <string name="cloud_cover_short">Bewolking</string>
+    <string name="ceiling_short">Plafond</string>
+    <string name="wind_short">Wind</string>
+    <string name="uv_index_short">UV-index</string>
+    <string name="visibility_short">Zicht</string>
+    <string name="pressure_short">Luchtdruk</string>
 </resources>

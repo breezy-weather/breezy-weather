@@ -657,4 +657,9 @@
     <string name="notification_precipitation_stopping_desc">Se espera parar em %s</string>
     <string name="location_search_source">Fonte para encontrar a localização</string>
     <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
+    <string name="temperature_feels_like_short">Sensação</string>
+    <string name="humidity_short">Umidade</string>
+    <string name="wind_short">Vento</string>
+    <string name="uv_index_short">Índice UV</string>
+    <string name="pressure_short">Pressão</string>
 </resources>

@@ -637,4 +637,11 @@
     <string name="settings_weather_source_none">Ingen</string>
     <string name="location_search_source">Platssök källa</string>
     <string name="location_search_change_source">Ändra platssök källa</string>
+    <string name="temperature_feels_like_short">Känns som</string>
+    <string name="dew_point_short">Daggpunkt</string>
+    <string name="ceiling_short">Tak</string>
+    <string name="wind_short">Vind</string>
+    <string name="uv_index_short">UV-index</string>
+    <string name="visibility_short">Sikt</string>
+    <string name="pressure_short">Lufttryck</string>
 </resources>

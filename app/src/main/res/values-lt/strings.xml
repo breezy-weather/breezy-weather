@@ -634,4 +634,9 @@
     <string name="notification_precipitation_stopping">Krituliai netrukus liausis</string>
     <string name="notification_precipitation_stopping_desc">Tikėtina, kad baigsis %s</string>
     <string name="location_search_change_source">Pakeisti vietos paieškos šaltinį</string>
+    <string name="ceiling_short">Lubos</string>
+    <string name="humidity_short">Drėgmė</string>
+    <string name="wind_short">Vėjas</string>
+    <string name="visibility_short">Matomumas</string>
+    <string name="pressure_short">Slėgis</string>
 </resources>

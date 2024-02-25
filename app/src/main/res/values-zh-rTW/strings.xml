@@ -643,4 +643,13 @@
     <string name="location_search_change_source">更換位置搜尋來源</string>
     <string name="location_search_source">位置搜尋來源</string>
     <string name="settings_weather_source_none">無</string>
+    <string name="temperature_feels_like_short">體感溫度</string>
+    <string name="dew_point_short">露點</string>
+    <string name="cloud_cover_short">雲量</string>
+    <string name="ceiling_short">雲高</string>
+    <string name="humidity_short">相對濕度</string>
+    <string name="wind_short">風況</string>
+    <string name="uv_index_short">紫外線指數</string>
+    <string name="visibility_short">能見度</string>
+    <string name="pressure_short">氣壓</string>
 </resources>

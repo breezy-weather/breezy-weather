@@ -631,4 +631,10 @@
     <string name="ephemeris_moonrise_at">Ilargia %s-tan</string>
     <string name="settings_debug_dump_crash_logs_saved">Gorde dira hutsegiteen erregistroak</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Sakatu irekitzeko</string>
+    <string name="cloud_cover_short">Hodeitza</string>
+    <string name="ceiling_short">Sabaia</string>
+    <string name="humidity_short">Hezetasuna</string>
+    <string name="wind_short">Haizea</string>
+    <string name="visibility_short">Ikuspena</string>
+    <string name="pressure_short">Presioa</string>
 </resources>

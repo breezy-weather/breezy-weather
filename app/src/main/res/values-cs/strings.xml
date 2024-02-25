@@ -658,4 +658,11 @@
     <string name="settings_weather_source_none">Žádný</string>
     <string name="location_message_updated">Poloha aktualizována</string>
     <string name="location_message_already_exists">Poloha se stejným hlavním zdrojem počasí již existuje.</string>
+    <string name="dew_point_short">Rosný bod</string>
+    <string name="cloud_cover_short">Oblačnost</string>
+    <string name="humidity_short">Vlhkost</string>
+    <string name="wind_short">Vítr</string>
+    <string name="uv_index_short">UV index</string>
+    <string name="visibility_short">Viditelnost</string>
+    <string name="pressure_short">Tlak</string>
 </resources>

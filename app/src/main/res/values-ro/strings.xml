@@ -586,4 +586,11 @@
     <string name="pollen_level_4">Ridicat</string>
     <string name="pollen_level_5">Foarte ridicat</string>
     <string name="weather_air_quality_data_by">Date despre calitatea aerului de %s</string>
+    <string name="temperature_feels_like_short">Se simt</string>
+    <string name="ceiling_short">Plafon</string>
+    <string name="humidity_short">Umiditate</string>
+    <string name="wind_short">Vânt</string>
+    <string name="uv_index_short">Indice UV</string>
+    <string name="visibility_short">Vizibilitate</string>
+    <string name="pressure_short">Presiune</string>
 </resources>

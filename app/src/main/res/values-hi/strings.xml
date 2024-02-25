@@ -94,4 +94,7 @@
     <string name="minutely_forecast">न्यूनतम पूर्वानुमान</string>
     <string name="app_name">मौसम</string>
     <string name="minutely_precipitations">मिनट दर मिनट वर्षा</string>
+    <string name="temperature_feels_like_short">जैसा लगना</string>
+    <string name="wind_short">हवा</string>
+    <string name="uv_index_short">यूवी सूचकांक</string>
 </resources>

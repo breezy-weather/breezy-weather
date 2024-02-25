@@ -631,4 +631,10 @@
     <string name="notification_precipitation_continuing_desc">Dự kiến sẽ tiếp tục cho đến ít nhất %s</string>
     <string name="notification_precipitation_stopping">Lượng mưa sắp ngừng rơi</string>
     <string name="notification_precipitation_stopping_desc">Dự kiến dừng ở %s</string>
+    <string name="cloud_cover_short">Mây che phủ</string>
+    <string name="ceiling_short">Trần mây</string>
+    <string name="humidity_short">Độ ẩm</string>
+    <string name="wind_short">Gió</string>
+    <string name="uv_index_short">Chỉ số UV</string>
+    <string name="pressure_short">Áp suất</string>
 </resources>

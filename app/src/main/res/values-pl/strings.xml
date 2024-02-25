@@ -645,4 +645,11 @@
     <string name="location_search_source">Wyszukaj źródło</string>
     <string name="settings_weather_source_none">Nie</string>
     <string name="location_search_change_source">Zmień źródło wyszukiwania</string>
+    <string name="temperature_feels_like_short">Odczuwalne</string>
+    <string name="dew_point_short">Punkt rosy</string>
+    <string name="humidity_short">Wilgotność</string>
+    <string name="wind_short">Wiatr</string>
+    <string name="uv_index_short">Indeks UV</string>
+    <string name="visibility_short">Widoczność</string>
+    <string name="pressure_short">Ciśnienie</string>
 </resources>

@@ -643,4 +643,9 @@
     <string name="settings_weather_source_none">Ниједно</string>
     <string name="location_search_source">Извор претраге локације</string>
     <string name="location_search_change_source">Промените извор претраге локације</string>
+    <string name="cloud_cover_short">Облачност</string>
+    <string name="humidity_short">Влажност</string>
+    <string name="wind_short">Ветар</string>
+    <string name="uv_index_short">УВ индекс</string>
+    <string name="pressure_short">Притисак</string>
 </resources>

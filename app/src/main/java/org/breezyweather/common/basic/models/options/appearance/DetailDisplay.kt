@@ -31,18 +31,19 @@ import org.breezyweather.settings.SettingsManager
 enum class DetailDisplay(
     override val id: String,
     @StringRes private val nameId: Int,
+    @StringRes private val nameShortId: Int,
     @DrawableRes val iconId: Int
 ): BaseEnum {
 
-    DETAIL_FEELS_LIKE("feels_like", R.string.temperature_feels_like, R.drawable.ic_device_thermostat),
-    DETAIL_WIND("wind", R.string.wind, R.drawable.ic_wind),
-    DETAIL_UV_INDEX("uv_index", R.string.uv_index, R.drawable.ic_uv),
-    DETAIL_HUMIDITY("humidity", R.string.humidity, R.drawable.ic_humidity_percentage),
-    DETAIL_DEW_POINT("dew_point", R.string.dew_point, R.drawable.ic_dew_point),
-    DETAIL_PRESSURE("pressure", R.string.pressure, R.drawable.ic_gauge),
-    DETAIL_VISIBILITY("visibility", R.string.visibility, R.drawable.ic_eye),
-    DETAIL_CLOUD_COVER("cloud_cover", R.string.cloud_cover, R.drawable.ic_cloud),
-    DETAIL_CEILING("ceiling", R.string.ceiling, R.drawable.ic_top);
+    DETAIL_FEELS_LIKE("feels_like", R.string.temperature_feels_like, R.string.temperature_feels_like_short, R.drawable.ic_device_thermostat),
+    DETAIL_WIND("wind", R.string.wind, R.string.wind_short, R.drawable.ic_wind),
+    DETAIL_UV_INDEX("uv_index", R.string.uv_index, R.string.uv_index_short, R.drawable.ic_uv),
+    DETAIL_HUMIDITY("humidity", R.string.humidity, R.string.humidity_short, R.drawable.ic_humidity_percentage),
+    DETAIL_DEW_POINT("dew_point", R.string.dew_point, R.string.dew_point_short, R.drawable.ic_dew_point),
+    DETAIL_PRESSURE("pressure", R.string.pressure, R.string.pressure_short, R.drawable.ic_gauge),
+    DETAIL_VISIBILITY("visibility", R.string.visibility, R.string.visibility_short, R.drawable.ic_eye),
+    DETAIL_CLOUD_COVER("cloud_cover", R.string.cloud_cover, R.string.cloud_cover_short, R.drawable.ic_cloud),
+    DETAIL_CEILING("ceiling", R.string.ceiling, R.string.ceiling_short, R.drawable.ic_top);
 
     companion object {
 
@@ -125,6 +126,8 @@ enum class DetailDisplay(
     override val nameArrayId = 0
 
     override fun getName(context: Context) = context.getString(nameId)
+
+    fun getShortName(context: Context) = context.getString(nameShortId)
 
     fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when(id) {
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {

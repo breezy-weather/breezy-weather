@@ -630,4 +630,9 @@
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
     <string name="common_weather_text_snow_showers_light">Nevasca fraca</string>
     <string name="settings_debug_dump_crash_logs_saved">Registos de travamentos gravados</string>
+    <string name="temperature_feels_like_short">Parece</string>
+    <string name="humidity_short">Humidade</string>
+    <string name="wind_short">Vento</string>
+    <string name="uv_index_short">Índice UV</string>
+    <string name="pressure_short">Pressão</string>
 </resources>

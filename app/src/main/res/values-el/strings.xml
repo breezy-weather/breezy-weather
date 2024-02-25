@@ -637,4 +637,10 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Πατήστε για άνοιγμα</string>
     <string name="settings_items_drag_to_sort">Πατήστε για να σύρετε τα στοιχεία της λίστας για ταξινόμηση</string>
     <string name="settings_item_delete">Διαγράψτε αυτό το στοιχείο</string>
+    <string name="temperature_feels_like_short">Αίσθηση</string>
+    <string name="cloud_cover_short">Συννεφιά</string>
+    <string name="humidity_short">Υγρασία</string>
+    <string name="wind_short">Άνεμος</string>
+    <string name="visibility_short">Ορατότητα</string>
+    <string name="pressure_short">Πίεση</string>
 </resources>

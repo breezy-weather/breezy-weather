@@ -98,4 +98,6 @@
     <string name="pollen_level_0">Ulac</string>
     <string name="settings_enabled">Urmid</string>
     <string name="settings_automatic">Awurman</string>
+    <string name="temperature_feels_like_short">Ad s-tiniḍ</string>
+    <string name="wind_short">Aḍu</string>
 </resources>

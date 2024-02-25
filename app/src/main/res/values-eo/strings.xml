@@ -33,6 +33,7 @@
     <!-- Temperature -->
     <string name="temperature">Temperaturo</string>
     <string name="temperature_feels_like">Sentotemperaturo</string>
+    <string name="temperature_feels_like_short">Sentotemp.</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aspektotemperaturo</string>
@@ -64,6 +65,7 @@
     <!-- $1 = start time, $2 = end time. -->
     <!-- Wind -->
     <string name="wind">Vento</string>
+    <string name="wind_short">Vento</string>
     <string name="wind_speed">Rapideco de vento</string>
     <string name="wind_gusts">Ventoblovoj</string>
     <string name="wind_direction">Direkto de vento</string>
@@ -92,6 +94,7 @@
     <string name="wind_strength_12">Uragano</string>
     <!-- UV -->
     <string name="uv_index">UV indico</string>
+    <string name="uv_index_short">UV indico</string>
     <string name="uv_index_0_2">Malalta</string>
     <string name="uv_index_3_5">Meza</string>
     <string name="uv_index_6_7">Alta</string>
@@ -163,12 +166,18 @@
     <string name="nighttime">Noktotempo</string>
     <string name="hours_of_sun">Horoj da suno</string>
     <string name="humidity">Humideco</string>
+    <string name="humidity_short">Humideco</string>
     <string name="humidity_dew_point">Humideco / Rosopunkto</string>
     <string name="pressure">Premo</string>
+    <string name="pressure_short">Premo</string>
     <string name="visibility">Vidodistanco</string>
+    <string name="visibility_short">Vidodist.</string>
     <string name="dew_point">Rosopunkto</string>
+    <string name="dew_point_short">Rosopunkto</string>
     <string name="cloud_cover">Nubkovro</string>
+    <string name="cloud_cover_short">Nubkovro</string>
     <string name="ceiling">Nubplafono</string>
+    <string name="ceiling_short">Nubplafono</string>
     <!-- Date format strings -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->

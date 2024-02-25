@@ -639,4 +639,11 @@
     <string name="settings_weather_source_none">Keine</string>
     <string name="location_message_updated">Ort wurde aktualisiert</string>
     <string name="location_message_already_exists">Ein Ort mit derselben Wetterquelle existiert bereits.</string>
+    <string name="temperature_feels_like_short">Gefühlt</string>
+    <string name="dew_point_short">Taupunkt</string>
+    <string name="cloud_cover_short">Bewölkung</string>
+    <string name="wind_short">Wind</string>
+    <string name="uv_index_short">UV Index</string>
+    <string name="visibility_short">Sicht</string>
+    <string name="pressure_short">Druck</string>
 </resources>

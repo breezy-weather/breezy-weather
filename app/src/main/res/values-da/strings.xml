@@ -129,4 +129,7 @@
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Klumonoxid</string>
     <string name="air_quality_pm_explanations_introduction">Atmosfærisk støv er mikroskopiske partikler af solid eller flydende materiale suspenderet i luften.</string>
+    <string name="temperature_feels_like_short">Føles som</string>
+    <string name="wind_short">Vind</string>
+    <string name="uv_index_short">UV indeks</string>
 </resources>

@@ -637,4 +637,9 @@
     <string name="settings_weather_source_none">Не</string>
     <string name="location_search_source">Източник на търсене</string>
     <string name="location_search_change_source">Промяна на източника на търсене</string>
+    <string name="humidity_short">Влажност</string>
+    <string name="wind_short">Вятър</string>
+    <string name="uv_index_short">UV индекс</string>
+    <string name="visibility_short">Видимост</string>
+    <string name="pressure_short">налягане</string>
 </resources>

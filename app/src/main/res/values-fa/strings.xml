@@ -357,4 +357,10 @@
     <string name="air_quality_o3_info_introduction">ازون تروپوسفری، مولکول‌های ازون نزدیک‌تر به سطح زمین، از عوامل اصلی مه‌دود و برای سلامتی انسان مضر است. در مقابل، لایه‌ی ازون در ارتفاعات بالاتر از ورود بیشتر پرتوهای فرابنفش به زمین جلوگیری می‌کند.</string>
     <string name="air_quality_o3_info_consequences">قرار گرفتن در معرض سطح بالای ازون باعث بروز مشکلات تنفسی، عود بیماری آسم، کاهش عملکرد ریه‌ها و در طولانی‌مدت باعث بیماری‌های ریوی می‌شود.</string>
     <string name="air_quality_o3_info_origin">ازون تروپوسفری از واکنش فتوشیمیایی آلاینده‌هایی همچون ترکیبات آلی فرّار، کربن مونوکسید و اکسیدهای نیتروژن (ناشی از مصرف سوخت خودروها و کارخانه‌ها) تشکیل می‌شود. چون نور در واکنش‌های فتوشیمیایی نقش مهمی ایفا می‌کند، سطح بالایی از این نوع از ازون در روزها آفتابی تشکیل می‌شود.</string>
+    <string name="dew_point_short">نقطه شبنم</string>
+    <string name="cloud_cover_short">پوشش ابر</string>
+    <string name="humidity_short">نم</string>
+    <string name="wind_short">باد</string>
+    <string name="visibility_short">دید</string>
+    <string name="pressure_short">فشار</string>
 </resources>

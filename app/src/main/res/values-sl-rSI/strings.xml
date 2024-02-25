@@ -186,4 +186,11 @@
     <string name="air_quality_level_4">Nezdravo</string>
     <string name="air_quality_level_5">Zelo nezdravo</string>
     <string name="air_quality_level_6">Nevarno</string>
+    <string name="temperature_feels_like_short">Občuti se</string>
+    <string name="dew_point_short">Točka rose</string>
+    <string name="humidity_short">Vlažnost</string>
+    <string name="wind_short">Veter</string>
+    <string name="uv_index_short">UV indeks</string>
+    <string name="visibility_short">Vidnost</string>
+    <string name="pressure_short">Tlak</string>
 </resources>

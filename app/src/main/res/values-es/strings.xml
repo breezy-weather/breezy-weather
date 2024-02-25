@@ -11,6 +11,7 @@
     <string name="precipitation_duration">Duración de precipitación</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Viento</string>
+    <string name="wind_short">Viento</string>
     <string name="wind_direction">Dirección del viento</string>
     <string name="wind_speed">Velocidad del viento</string>
     <string name="humidity">Humedad</string>
@@ -651,4 +652,8 @@
     <string name="settings_weather_source_none">Ninguna</string>
     <string name="location_message_updated">Ubicación actualizada</string>
     <string name="location_message_already_exists">Ya existe una ubicación con la misma fuente meteorológica.</string>
+    <string name="humidity_short">Humedad</string>
+    <string name="uv_index_short">Índice UV</string>
+    <string name="visibility_short">Visibilidad</string>
+    <string name="pressure_short">Presión</string>
 </resources>
