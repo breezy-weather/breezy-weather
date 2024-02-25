@@ -664,4 +664,6 @@
     <string name="uv_index_short">UV index</string>
     <string name="visibility_short">Viditelnost</string>
     <string name="pressure_short">Tlak</string>
+    <string name="temperature_feels_like_short">Pocitově</string>
+    <string name="ceiling_short">Strop</string>
 </resources>
