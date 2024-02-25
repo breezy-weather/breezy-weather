@@ -635,6 +635,7 @@
     <string name="location_message_already_exists">Lokacija s istim osnovnim vremenskim izvorom već postoji.</string>
     <string name="location_search_source">Izvor pretraživanja</string>
     <string name="settings_weather_source_none">Ništa</string>
+    <string name="location_search_change_source">Promijenite izvor pretrage lokacije</string>
     <string name="humidity_short">Vlažnost</string>
     <string name="wind_short">Vjetar</string>
     <string name="uv_index_short">UV indeks</string>
