@@ -42,7 +42,7 @@
     <string name="settings_units_precipitation">Jedinica za oborine</string>
     <string name="pollen_and_mold">Pelud i plijesan</string>
     <string name="wind_strength_9">Jak olujni vjetar</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, d. MMM</string>
     <string name="wind_speed">Brzina vjetra</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Pun Mjesec</string>
@@ -58,7 +58,7 @@
     <string name="setting_weather_source_accu_days">Dani</string>
     <string name="air_quality_level_4">Nezdravo</string>
     <string name="action_about">O</string>
-    <string name="weather_minutely_data_by">Podatci o oborinama iz minute u minutu: %s</string>
+    <string name="weather_minutely_data_by">Podatci o oborinama iz minute u minutu od %s</string>
     <string name="weather_source_accu_preference_days_5">5 dana</string>
     <string name="air_quality_level_1">Izvrsno</string>
     <string name="widget_label_show_widget_card_alpha">Prozirnost</string>
@@ -132,7 +132,7 @@
     <string name="location_service_native">Izvorni API</string>
     <string name="precipitation_intensity_heavy">Jaka kiša</string>
     <string name="settings_location_summary">Postavke lokacijskih usluga</string>
-    <string name="weather_pollen_data_by">Podatci o peludi: %s</string>
+    <string name="weather_pollen_data_by">Podatci o peludi od %s</string>
     <string name="weather_source_accu_preference_days_10">10 dana</string>
     <string name="settings_background_updates_battery_optimization_summary">Ovo je prva stvar koju trebate pokušati kada ne primate obavijesti ili se widgeti ne osvježavaju.</string>
     <string name="pollen_level_2">Nisko</string>
@@ -174,7 +174,7 @@
     <string name="precipitation_intensity_middle">Kiša</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
-    <string name="weather_air_quality_and_pollen_data_by">Kvaliteta zraka i podatci o peludi: %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Kvaliteta zraka i podatci o peludi od %s</string>
     <string name="hourly_forecast">Prognoza po satu</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme ažuriranja</string>
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
@@ -268,10 +268,10 @@
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
     <string name="air_quality_pm_explanations_origin">Neke čestice nastaju prirodno, nastaju iz vulkana, pješčanih oluja, šuma i šumskih požara, žive vegetacije i morskog špricanja. Ljudske aktivnosti također stvaraju značajne količine čestica, kao što su promet i prijevoz, industrijske aktivnosti, elektrane, gradilišta, spalionice otpada ili polja.</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
+    <string name="date_format_widget_short">EEE, d. MMM</string>
     <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
     <string name="widget_multi_city">Više gradova</string>
-    <string name="date_format_long">MMM d</string>
+    <string name="date_format_long">d. MMM</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="air_quality_co_info_introduction">Ugljikov monoksid (CO) je otrovan, zapaljiv plin koji je bezbojan, nema mirisa, okusa i nije nadražljiv.</string>
@@ -285,7 +285,7 @@
     <string name="settings_widgets_gadgetbridge_switch">Pošaljite prognozu na Gadgetbridge</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
-    <string name="weather_air_quality_data_by">Podatci o kvaliteti zraka: %s</string>
+    <string name="weather_air_quality_data_by">Podatci o kvaliteti zraka od %s</string>
     <string name="air_quality_so2_info_introduction">Sumporov dioksid (SO₂) je bezbojni toksični plin odgovoran za smrad izgorenih šibica.</string>
     <string name="details">Detalji</string>
     <string name="settings_appearance_dark_mode_locations_title">Način Dan / Noć za lokacije</string>
@@ -297,7 +297,7 @@
     <string name="action_learn_more">Nauči više</string>
     <string name="settings_background_updates_section_troubleshoot">Rješavanje problema</string>
     <string name="dialog_permissions_location_title">Informacije o pristupu lokaciji</string>
-    <string name="weather_normals_data_by">Podatci o normalnim temperaturama: %s</string>
+    <string name="weather_normals_data_by">Podatci o normama temperature od %s</string>
     <string name="settings_units">Mjerne jedinice</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_widgets_notification_persistent_switch">Stalni</string>
@@ -336,7 +336,7 @@
     <string name="air_quality_co_info_origin">Nastaje nepotpunim izgaranjem ugljičnih goriva kao što su drvo, benzin, ugljen, prirodni plin i kerozin u jednostavnim štednjacima, otvorenim vatrama, fenjerima, pećima, kaminima. Prevladavajući izvor ugljikovog monoksida (CO) u okolnom zraku su motorna vozila.</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="pollen_level_3">Umjereno</string>
-    <string name="weather_data_by">Izvor podataka: %s</string>
+    <string name="weather_data_by">Podatci od %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Trenutni tlak</string>
     <string name="short_tuesday">Uto</string>
     <string name="pollen_level_5">Jako visoko</string>
@@ -352,7 +352,7 @@
     <string name="weather_message_unsupported_feature">Izvor ne podržava jednu od zatraženih značajki</string>
     <string name="about_privacy_policy">Politike privatnosti</string>
     <string name="settings_debug_dump_crash_logs_title">Podijeli zapisnike o padu aplikacije</string>
-    <string name="cloud_cover">Pokrivenost oblaka</string>
+    <string name="cloud_cover">Oblačnost</string>
     <string name="settings_location_service">Lokacijske usluge</string>
     <string name="settings_widgets_live_wallpaper_error">Neuspješno pokretanje biranja pozadine. Pozadinu za „Breezy Weather” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, …, 4 dana kasnije</string>
@@ -381,7 +381,7 @@
     <string name="wind_direction">Smjer vjetra</string>
     <string name="air_quality_o3_info_introduction">Prizemni ozon (O₃) je važna komponenta smoga. Iako su iste molekule, prizemni ozon može biti štetan za ljudsko zdravlje, za razliku od stratosferskog ozona koji štiti Zemlju od viška UV zračenja.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Trenutni UV</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d |</string>
+    <string name="date_format_widget_oreo_style">EEEE, d. MMM |</string>
     <string name="settings_background_updates_refresh_3h">3 sata</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
     <string name="widget_material_you_current">Material You – Trenutno</string>
@@ -414,7 +414,7 @@
     <string name="air_quality_co_info_title">Ugljikov monoksid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Omogućite informacije o lokaciji</string>
-    <string name="weather_alert_data_by">Podatci o upozorenjima: %s</string>
+    <string name="weather_alert_data_by">Podatci o upozorenjima od %s</string>
     <string name="settings_units_pressure">Jedinica za tlak</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="weather_api_key_required_missing_content">Kako biste koristili ovaj izvor, morate priložiti API ključ.</string>
@@ -424,7 +424,7 @@
     <string name="settings_units_distance">Jedinica za udaljenost</string>
     <string name="settings_location_access_permission_already_granted">Dozvola je već odobrena</string>
     <string name="ephemeris_moonrise_at">Izlazak Mjeseca u %s</string>
-    <string name="date_format_short">M-d</string>
+    <string name="date_format_short">d. M.</string>
     <string name="wind_direction_short_SE">JI</string>
     <string name="weather_message_data_refresh_failed">Osvježavanje vremenskih podataka neuspješno</string>
     <string name="app_name">Vrijeme</string>
@@ -507,7 +507,7 @@
     <string name="common_weather_text_drizzle">Kišica</string>
     <string name="weather_kind_hail">Tuča</string>
     <string name="unit_m">m</string>
-    <string name="ceiling">Baza oblaka</string>
+    <string name="ceiling">Visina oblaka</string>
     <string name="about_translators">Prevoditelji</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -641,4 +641,7 @@
     <string name="uv_index_short">UV indeks</string>
     <string name="visibility_short">Vidljivost</string>
     <string name="pressure_short">Tlak</string>
+    <string name="temperature_feels_like_short">Subjektivni osjećaj</string>
+    <string name="cloud_cover_short">Oblačnost</string>
+    <string name="ceiling_short">Visina oblaka</string>
 </resources>
