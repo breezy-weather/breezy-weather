@@ -142,8 +142,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Clima atual</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura atual (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura aparente (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Temperatura aparente (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura aparente atual (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Temperatura aparente atual (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vento atual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV atual</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Umidade atual</string>
@@ -657,4 +657,5 @@
     <string name="notification_precipitation_stopping_desc">Se espera parar em %s</string>
     <string name="location_search_source">Fonte para encontrar a localização</string>
     <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
+    <string name="location_search_no_results_advice">Certifique-se de que sua pesquisa é escrita corretamente e não muito específica. Alternativamente, você pode tentar outra fonte de pesquisa de localização que pode produzir resultados diferentes.</string>
 </resources>
