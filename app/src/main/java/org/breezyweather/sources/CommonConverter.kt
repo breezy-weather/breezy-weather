@@ -168,7 +168,9 @@ fun getAlertsFromWeather(
     weather: Weather?
 ): List<Alert>? {
     if (weather == null) return null
-    return weather.alertList.filter { (it.endDate?.time ?: 0L) >= Date().time }
+    return weather.alertList.filter {
+        it.endDate == null || it.endDate!!.time > Date().time
+    }
 }
 
 /**

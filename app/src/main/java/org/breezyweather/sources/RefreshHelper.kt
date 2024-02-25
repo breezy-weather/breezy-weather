@@ -595,7 +595,7 @@ class RefreshHelper @Inject constructor(
                     ?: mainWeatherCompleted.minutelyForecast ?: emptyList(),
                 alertList = (secondaryWeatherWrapper?.alertList ?: mainWeatherCompleted.alertList)?.filter {
                     // Don’t save past alerts in database
-                    (it.endDate?.time ?: 0L) > Date().time
+                    it.endDate == null || it.endDate!!.time > Date().time
                 } ?: emptyList()
             )
             locationRepository.insertParameters(location.formattedId, locationParameters)

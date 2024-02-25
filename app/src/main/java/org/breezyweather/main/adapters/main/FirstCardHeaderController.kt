@@ -60,7 +60,7 @@ class FirstCardHeaderController(
     init {
         // Don’t show if alertList only contains alerts in the past
         if (location.weather?.alertList?.any {
-            (it.endDate?.time ?: 0L) > Date().time
+            it.endDate == null || it.endDate!!.time > Date().time
         } == true) {
             mView.visibility = View.VISIBLE
             mView.setOnClickListener {
