@@ -655,4 +655,8 @@
     <string name="uv_index_short">Índice UV</string>
     <string name="visibility_short">Visibilidad</string>
     <string name="pressure_short">Presión</string>
+    <string name="temperature_feels_like_short">Sensación</string>
+    <string name="dew_point_short">Punto de rocío</string>
+    <string name="cloud_cover_short">Nubosidad</string>
+    <string name="ceiling_short">Techo</string>
 </resources>
