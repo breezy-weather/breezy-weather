@@ -126,7 +126,7 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “%s”</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
-    <string name="widget_label_show_widget_card_alpha">Průhlednost</string>
+    <string name="widget_label_show_widget_card_alpha">Neprůhlednost</string>
     <string name="widget_label_hide_subtitle">Skrýt popis</string>
     <string name="widget_label_subtitle_data">Data popisu</string>
     <string name="widget_label_black_text">Barva písma</string>
