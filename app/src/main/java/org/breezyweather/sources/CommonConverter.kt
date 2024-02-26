@@ -399,7 +399,7 @@ fun computeMissingHourlyData(
 
             hourly.copy(
                 weatherCode = weatherCode,
-                weatherText = hourly.weatherText ?: WeatherViewController.getWeatherText(weatherCode),
+                weatherText = hourly.weatherText ?: weatherCode?.let { WeatherViewController.getWeatherText(it) },
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
                 temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
             )

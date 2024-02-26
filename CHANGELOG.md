@@ -2,6 +2,7 @@
 
 **Fixes**
 - Fix crash when adding more than 4 or 5 locations
+- Fix weather source failing in loop (noticed with NWS source, for example)
 - Fallback to real temperature if feels like temperature is missing in daily feels like chart to avoid weird looking chart
 
 
