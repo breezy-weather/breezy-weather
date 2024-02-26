@@ -651,4 +651,21 @@
     <string name="uv_index_short">Indeks UV</string>
     <string name="visibility_short">Visibilitas</string>
     <string name="pressure_short">Tekanan</string>
+    <string name="settings_unavailable_no_background_updates">Tidak tersedia, aktifkan pembaruan latar belakang terlebih dahulu</string>
+    <string name="notification_precipitation_starting_desc">Diperkirakan akan mulai pada %s</string>
+    <string name="notification_precipitation_starting">Segera hujan</string>
+    <string name="notification_precipitation_continuing">Hujan</string>
+    <string name="notification_precipitation_continuing_desc">Diperkirakan akan lanjut sampai setidaknya %s</string>
+    <string name="notification_precipitation_stopping_desc">Diperkirakan akan berhenti pada %s</string>
+    <string name="notification_precipitation_stopping">Hujan segera berhenti</string>
+    <string name="location_message_updated">Lokasi diperbarui</string>
+    <string name="location_message_already_exists">Sebuah lokasi dengan sumber cuaca utama yang sama sudah ada.</string>
+    <string name="location_search_no_results_advice">Pastikan pencarian Anda dieja dengan benar dan tidak terlalu spesifik. Secara alternatif, Anda dapat mencoba sumber pencarian lokasi lain yang dapat menimbulkan hasil yang beda.</string>
+    <string name="settings_color_app">Ikuti aplikasi</string>
+    <string name="temperature_feels_like_short">Terasa seperti</string>
+    <string name="humidity_short">Kelembapan</string>
+    <string name="dew_point_short">Titik embun</string>
+    <string name="settings_weather_source_none">Tidak ada</string>
+    <string name="location_search_source">Sumber pencarian lokasi</string>
+    <string name="location_search_change_source">Ubah sumber pencarian lokasi</string>
 </resources>
