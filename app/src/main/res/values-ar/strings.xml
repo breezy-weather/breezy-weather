@@ -115,7 +115,7 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً ”%s“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
-    <string name="widget_label_show_widget_card_alpha">الشفافية</string>
+    <string name="widget_label_show_widget_card_alpha">التعتيم</string>
     <string name="widget_label_hide_subtitle">إخفاء العنوان</string>
     <string name="widget_label_subtitle_data">بيانات العنوان</string>
     <string name="widget_label_black_text">لون الخط</string>
