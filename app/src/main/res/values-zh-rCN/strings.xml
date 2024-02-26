@@ -655,4 +655,5 @@
     <string name="uv_index_short">紫外线指数</string>
     <string name="visibility_short">能见度</string>
     <string name="pressure_short">气压</string>
+    <string name="comma_separator">、</string>
 </resources>

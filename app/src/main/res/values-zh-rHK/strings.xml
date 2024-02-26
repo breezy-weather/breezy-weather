@@ -648,4 +648,5 @@
     <string name="uv_index_short">紫外線指數</string>
     <string name="visibility_short">能見度</string>
     <string name="pressure_short">氣壓</string>
+    <string name="comma_separator">、</string>
 </resources>

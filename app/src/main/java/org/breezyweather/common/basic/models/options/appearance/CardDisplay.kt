@@ -77,7 +77,7 @@ enum class CardDisplay(
             if (builder.isNotEmpty() && builder[0] == ',') {
                 builder.deleteCharAt(0)
             }
-            return builder.toString().replace(",", ", ")
+            return builder.toString().replace(",", context.getString(R.string.comma_separator))
         }
     }
 

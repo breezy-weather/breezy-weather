@@ -18,6 +18,7 @@ package org.breezyweather.common.basic.models.options.appearance
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
 
@@ -76,7 +77,7 @@ enum class DailyTrendDisplay(
             if (builder.isNotEmpty() && builder[0] == ',') {
                 builder.deleteCharAt(0)
             }
-            return builder.toString().replace(",", ", ")
+            return builder.toString().replace(",", context.getString(R.string.comma_separator))
         }
     }
 

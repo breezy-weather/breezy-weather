@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.compose.ui.res.stringResource
 import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
@@ -43,6 +44,7 @@ class UVHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             ColorStateList.valueOf(uv.getUVColor(context))
         )
         mTitle.text = uv.getUVDescription(context)
-        itemView.contentDescription = context.getString(R.string.uv_index) + ", " + mTitle.text
+        itemView.contentDescription = context.getString(R.string.uv_index) +
+                context.getString(R.string.comma_separator) + mTitle.text
     }
 }

@@ -137,7 +137,7 @@ class FirstCardHeaderController(
                                     location.timeZone, mActivity.getString(R.string.date_format_long)
                                 )
                                 builder.append(startDateDay)
-                                    .append(", ")
+                                    .append(stringResource(R.string.comma_separator))
                                     .append(
                                         startDate.getFormattedTime(
                                             location.timeZone,
@@ -152,7 +152,7 @@ class FirstCardHeaderController(
                                     )
                                     if (startDateDay != endDateDay) {
                                         builder.append(endDateDay)
-                                            .append(", ")
+                                            .append(stringResource(R.string.comma_separator))
                                     }
                                     builder.append(
                                         endDate.getFormattedTime(

@@ -653,4 +653,5 @@
     <string name="uv_index_short">UV指数</string>
     <string name="visibility_short">視程</string>
     <string name="pressure_short">プレッシャー</string>
+    <string name="comma_separator">、</string>
 </resources>
