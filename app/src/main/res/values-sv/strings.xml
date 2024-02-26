@@ -643,4 +643,5 @@
     <string name="uv_index_short">UV-index</string>
     <string name="visibility_short">Sikt</string>
     <string name="pressure_short">Lufttryck</string>
+    <string name="humidity_short">Luftfuktighet</string>
 </resources>

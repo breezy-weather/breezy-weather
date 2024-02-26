@@ -645,4 +645,6 @@
     <string name="uv_index_short">UV Index</string>
     <string name="visibility_short">Sicht</string>
     <string name="pressure_short">Druck</string>
+    <string name="humidity_short">Luftfeuchte</string>
+    <string name="ceiling_short">Wolkendecke</string>
 </resources>

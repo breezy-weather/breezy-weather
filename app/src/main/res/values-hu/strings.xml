@@ -648,4 +648,7 @@
     <string name="wind_short">Szél</string>
     <string name="uv_index_short">UV-szint</string>
     <string name="pressure_short">Légnyomás</string>
+    <string name="visibility_short">Látótávolság</string>
+    <string name="humidity_short">Páratartalom</string>
+    <string name="cloud_cover_short">Felhőtakaró</string>
 </resources>
