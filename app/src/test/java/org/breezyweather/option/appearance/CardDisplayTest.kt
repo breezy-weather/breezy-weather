@@ -21,6 +21,7 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.junit.jupiter.api.Test
 
@@ -56,6 +57,7 @@ class CardDisplayTest {
     fun getSummary() = runTest {
         val context = mockk<Context>()
         every { context.getString(any()) } returns "Name"
+        every { context.getString(R.string.comma_separator) } returns ", "
         val list = arrayListOf(
             CardDisplay.CARD_DAILY_OVERVIEW,
             CardDisplay.CARD_HOURLY_OVERVIEW,

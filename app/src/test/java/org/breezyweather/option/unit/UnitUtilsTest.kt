@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Test
 class UnitUtilsTest {
     @Test
     fun formatFloat() = runTest {
-        Utils.formatFloat(14.34234f) shouldBeIn arrayOf("14.34", "14,34")
-        Utils.formatFloat(14.34834f) shouldBeIn arrayOf("14.35", "14,35")
-        Utils.formatFloat(14.34834f, 3) shouldBeIn arrayOf("14.348", "14,348")
-        Utils.formatFloat(14.34864f, 3) shouldBeIn arrayOf("14.349", "14,349")
+        Utils.formatDouble(14.34234) shouldBeIn arrayOf("14.34", "14,34")
+        Utils.formatDouble(14.34834) shouldBeIn arrayOf("14.35", "14,35")
+        Utils.formatDouble(14.34834, 3) shouldBeIn arrayOf("14.348", "14,348")
+        Utils.formatDouble(14.34864, 3) shouldBeIn arrayOf("14.349", "14,349")
     }
 
     @Test
