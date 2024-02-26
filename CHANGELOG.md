@@ -1,3 +1,10 @@
+# Version 5.0.1-alpha (not yet released)
+
+**Fixes**
+- Fix crash when adding more than 4 or 5 locations
+- Fallback to real temperature if feels like temperature is missing in daily feels like chart to avoid weird looking chart
+
+
 # Version 5.0.0-alpha (2024-02-26)
 
 We found a proprietary dependency in the database component. To get rid of it, we chose to use a different database component and not offer any migration. You will have to re-add your locations. Your preferences are safe.

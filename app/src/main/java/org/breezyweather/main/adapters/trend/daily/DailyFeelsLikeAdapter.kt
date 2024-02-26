@@ -153,6 +153,7 @@ class DailyFeelsLikeAdapter(
             var i = 0
             while (i < mDaytimeTemperatures.size) {
                 mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.toFloat()
+                    ?: weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -172,6 +173,7 @@ class DailyFeelsLikeAdapter(
             var i = 0
             while (i < mNighttimeTemperatures.size) {
                 mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.toFloat()
+                    ?: weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -192,8 +194,16 @@ class DailyFeelsLikeAdapter(
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
                     mHighestTemperature = it.toFloat()
                 }
+            } ?: daily.day?.temperature?.temperature?.let {
+                if (mHighestTemperature == null || it > mHighestTemperature!!) {
+                    mHighestTemperature = it.toFloat()
+                }
             }
             daily.night?.temperature?.feelsLikeTemperature?.let {
+                if (mLowestTemperature == null || it < mLowestTemperature!!) {
+                    mLowestTemperature = it.toFloat()
+                }
+            } ?: daily.night?.temperature?.temperature?.let {
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
                     mLowestTemperature = it.toFloat()
                 }
