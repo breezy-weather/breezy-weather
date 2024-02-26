@@ -125,7 +125,7 @@
     <string name="app_name">Пагода</string>
     <string name="pollen">Пылок</string>
     <string name="pollen_and_mold">Пылок і цвіль</string>
-    <string name="ephemeris">Узыход і заход</string>
+    <string name="ephemeris">Сонца і месяц</string>
     <string name="details">Падрабязна</string>
     <string name="short_tomorrow">Заўтра</string>
     <string name="short_monday">Пн</string>
@@ -640,4 +640,8 @@
     <string name="uv_index_short">УФ-индекс</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
+    <string name="temperature_feels_like_short">Адчуваць</string>
+    <string name="humidity_short">Вільготнасць</string>
+    <string name="dew_point_short">Пункт расы</string>
+    <string name="cloud_cover_short">Хмарнасць</string>
 </resources>
