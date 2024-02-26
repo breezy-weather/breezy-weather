@@ -8,7 +8,7 @@ Unfinished things that will be in a future 5.0.x version:
 - Bring back temporarily removed "auto" option for live wallpaper
 - Offline reverse geocoding to get location presets for current location
 - [UX] Improve weather sources dialog to be less overwhelming
-- Release a stable v4.6.15 that inform users that next version will empty location list
+- Maybe release a stable v4.6.15 that inform users that next version will empty location list, if there are too many reports
 
 **New features and main improvements**
 - Design refresh of current details in header
