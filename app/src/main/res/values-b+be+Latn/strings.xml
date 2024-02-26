@@ -25,7 +25,6 @@
     <string name="temperature_apparent">Adčuvajecca jak</string>
     <string name="temperature_wind_chill">Adčuvajecca pry vietry</string>
     <string name="temperature_wet_bulb">Vilhotny termomietr</string>
-    <string name="temperature_degree_day_heating"></string>
     <string name="temperature_normal_short">Norma</string>
     <string name="precipitation">Apadki</string>
     <string name="precipitation_probability">Vierahodnaść apadkaŭ</string>
