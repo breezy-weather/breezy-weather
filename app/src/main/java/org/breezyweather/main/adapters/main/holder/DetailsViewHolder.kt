@@ -147,7 +147,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 HeaderViewHolder.NB_CURRENT_ITEMS_LANDSCAPE
             } else HeaderViewHolder.NB_CURRENT_ITEMS_PORTRAIT
             return if (detailsInHeaderNotNullList.size > nbMaxInHeader) {
-                detailsInHeaderNotNullList.subList(nbMaxInHeader, detailsInHeaderList.size) +
+                detailsInHeaderNotNullList.subList(nbMaxInHeader, detailsInHeaderNotNullList.size) +
                         detailsNotInHeaderNotNullList
             } else {
                 detailsNotInHeaderNotNullList
