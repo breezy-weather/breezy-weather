@@ -2,7 +2,13 @@
 
 We found a proprietary dependency in the database component. To get rid of it, we chose to use a different database component and not offer any migration. You will have to re-add your locations. Your preferences are safe.
 
-This an **alpha release**. Use it at your own risk. If you do, report any issue you found to help stabilizing the app!
+This an **alpha release**. Use it at your own risk. If you do, report any issue you found to help stabilizing the app! Stay on v4.6.14 for now if you want a stable release and are not concerned about the proprietary dependency.
+
+Unfinished things that will be in a future 5.0.x version:
+- Bring back temporarily removed "auto" option for live wallpaper
+- Offline reverse geocoding to get location presets for current location
+- [UX] Improve weather sources dialog to be less overwhelming
+- Release a stable v4.6.15 that inform users that next version will empty location list
 
 **New features and main improvements**
 - Design refresh of current details in header

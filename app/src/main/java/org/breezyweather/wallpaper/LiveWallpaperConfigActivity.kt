@@ -171,7 +171,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
         ) {
             OutlinedTextField(
-                value = names[values.indexOf(currentVal.value)],
+                value = names[if (values.indexOf(currentVal.value) != -1) values.indexOf(currentVal.value) else 0],
                 onValueChange = {},
                 modifier = Modifier
                     .fillMaxWidth()
