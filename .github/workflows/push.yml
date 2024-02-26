@@ -18,11 +18,18 @@ jobs:
       - name: Gradle Wrapper
         uses: gradle/wrapper-validation-action@v2
 
+      - name: Setup Android SDK
+        run: |
+          ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3"
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: adopt
+
+      - name: Set up gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Add secrets to local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
