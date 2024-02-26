@@ -1,4 +1,4 @@
-# Version 5.0.0-alpha (not yet released)
+# Version 5.0.0-alpha (2024-02-26)
 
 We found a proprietary dependency in the database component. To get rid of it, we chose to use a different database component and not offer any migration. You will have to re-add your locations. Your preferences are safe.
 
