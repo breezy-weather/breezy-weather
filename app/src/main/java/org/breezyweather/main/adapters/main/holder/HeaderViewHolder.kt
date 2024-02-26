@@ -180,7 +180,9 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                     color = Color.White,
                                     fontSize = dimensionResource(R.dimen.current_weather_details_name_text_size).value.sp,
                                     textAlign = TextAlign.Center,
-                                    fontWeight = FontWeight.Light
+                                    fontWeight = FontWeight.Light,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
                                 )
                             }
                         }
