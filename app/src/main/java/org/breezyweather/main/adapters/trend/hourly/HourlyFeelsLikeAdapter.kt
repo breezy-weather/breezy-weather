@@ -140,6 +140,7 @@ class HourlyFeelsLikeAdapter(
             var i = 0
             while (i < mTemperatures.size) {
                 mTemperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.toFloat()
+                    ?: weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -157,6 +158,13 @@ class HourlyFeelsLikeAdapter(
         weather.nextHourlyForecast
             .forEach { hourly ->
                 hourly.temperature?.feelsLikeTemperature?.let {
+                    if (mHighestTemperature == null || it > mHighestTemperature!!) {
+                        mHighestTemperature = it.toFloat()
+                    }
+                    if (mLowestTemperature == null || it < mLowestTemperature!!) {
+                        mLowestTemperature = it.toFloat()
+                    }
+                } ?: hourly.temperature?.temperature?.let {
                     if (mHighestTemperature == null || it > mHighestTemperature!!) {
                         mHighestTemperature = it.toFloat()
                     }

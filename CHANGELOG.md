@@ -1,4 +1,10 @@
-# Version 5.0.1-alpha (not yet released)
+# Version 5.0.2-alpha (not yet released)
+
+**Fixes**
+- Fallback to real temperature if feels like temperature is missing in daily feels like chart to avoid weird looking chart
+
+
+# Version 5.0.1-alpha (2024-02-26)
 
 **Fixes**
 - Fix crash when adding more than 4 or 5 locations
