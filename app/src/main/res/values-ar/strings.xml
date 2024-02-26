@@ -650,4 +650,6 @@
     <string name="wind_short">الرياح</string>
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
+    <string name="uv_index_short">مؤشر الأشعة فوق البنفسجية</string>
+    <string name="cloud_cover_short">الغطاء</string>
 </resources>
