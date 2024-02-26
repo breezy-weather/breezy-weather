@@ -353,7 +353,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">View style</string>
     <string name="widget_label_show_widget_card">Background color</string>
-    <string name="widget_label_show_widget_card_alpha">Transparency</string>
+    <string name="widget_label_show_widget_card_alpha">Opacity</string>
     <string name="widget_label_hide_subtitle">Hide subtitle</string>
     <string name="widget_label_subtitle_data">Subtitle data</string>
     <string name="widget_label_black_text">Text color</string>

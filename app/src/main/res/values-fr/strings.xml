@@ -227,7 +227,7 @@
     <string name="weather_api_key_required_missing_content">Pour utiliser cette source, vous devez fournir une clé API.</string>
     <string name="widget_label_view_style">Apparence</string>
     <string name="widget_label_show_widget_card">Couleur d’arrière-plan</string>
-    <string name="widget_label_show_widget_card_alpha">Transparence</string>
+    <string name="widget_label_show_widget_card_alpha">Opacité</string>
     <string name="widget_label_hide_subtitle">Masquer le sous-titre</string>
     <string name="widget_label_subtitle_data">Sous-titre</string>
     <string name="widget_label_black_text">Couleur du texte</string><!-- Texte sombre -->
