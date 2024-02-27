@@ -1,4 +1,4 @@
-# Version 5.0.2-alpha (not yet released)
+# Version 5.0.2-alpha (2024-02-27)
 
 **Improvements and fixes**
 - Don’t display “Feels like” tab in Daily and Hourly trends if there is no data
@@ -17,7 +17,7 @@
 # Version 5.0.1-alpha (2024-02-26)
 
 **Fixes**
-- Fix crash when adding more than 4 or 5 locations
+- Fix crash when adding more than 4 or 5 current details in header
 - Fix weather source failing in loop (noticed with NWS source, for example)
 - Fallback to real temperature if feels like temperature is missing in daily feels like chart to avoid weird looking chart
 
