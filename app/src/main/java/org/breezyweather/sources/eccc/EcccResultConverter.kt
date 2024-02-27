@@ -98,6 +98,7 @@ private fun getCurrent(result: EcccObservation?): Current? {
     if (result == null) return null
     return Current(
         weatherCode = getWeatherCode(result.iconCode),
+        weatherText = result.condition,
         temperature = Temperature(
             temperature = getNonEmptyMetric(result.temperature),
             apparentTemperature = getNonEmptyMetric(result.feelsLike)

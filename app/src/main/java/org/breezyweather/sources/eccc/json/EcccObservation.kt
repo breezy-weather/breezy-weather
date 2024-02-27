@@ -21,6 +21,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EcccObservation(
     val iconCode: String?,
+    val condition: String?,
 
     val temperature: EcccUnit?,
     val feelsLike: EcccUnit?,

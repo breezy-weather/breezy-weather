@@ -2,6 +2,8 @@
 
 **Improvements and fixes**
 - You can now choose to always use a specific weather source for new locations instead of Breezy Weather recommendations (Settings > Weather sources)
+- [ECCC] Fix missing observation text
+- Fix mismatching text with current weather condition in some very rare cases
 
 
 # Version 5.0.2-alpha (2024-02-27)

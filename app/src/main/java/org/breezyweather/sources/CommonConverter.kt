@@ -1270,7 +1270,9 @@ fun completeCurrentFromSecondaryData(
         computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
     } else hourly.dewPoint // Already calculated earlier
     return newCurrent.copy(
-        weatherText = newCurrent.weatherText ?: hourly.weatherText,
+        weatherText = newCurrent.weatherText ?: newCurrent.weatherCode?.let {
+            WeatherViewController.getWeatherText(it)
+        } ?: hourly.weatherText,
         weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
         temperature = newTemperature,
         wind = newWind,
