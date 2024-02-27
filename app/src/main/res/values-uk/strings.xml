@@ -62,7 +62,7 @@
     <string name="air_quality_o3_info_title">Приземний озон (O₃)</string>
     <string name="air_quality_no2_info_title">Діоксид азоту (NO₂)</string>
     <string name="air_quality_so2_info_title">Діоксид сірки (SO₂)</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Спадаючий Місяць</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Спадаючий місяць</string>
     <string name="humidity">Вологість</string>
     <string name="humidity_dew_point">Вологість / Точка роси</string>
     <string name="weather_api_limit_reached_title">Досягнуто ліміту запитів API</string>
@@ -71,7 +71,7 @@
     <string name="weather_source_accu_preference_days_5">5 днів</string>
     <string name="weather_source_accu_preference_days_10">10 днів</string>
     <string name="weather_source_accu_preference_hours_1">1 година</string>
-    <string name="setting_weather_source_accu_hours">Кількість годин</string>
+    <string name="setting_weather_source_accu_hours">Години</string>
     <string name="weather_source_accu_preference_hours_12">12 годин</string>
     <string name="weather_source_accu_preference_hours_24">24 години</string>
     <string name="weather_source_accu_preference_hours_120">120 годин</string>
@@ -88,7 +88,7 @@
     <string name="location_dialog_failed_to_locate_title">Не вдається правильно визначити місцезнаходження\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Виберіть сервіс визначення місцезнаходження</string>
     <string name="location_search_placeholder">Пошук місцезнаходження…</string>
-    <string name="location_service_native">Нативний API</string>
+    <string name="location_service_native">Системний API</string>
     <string name="action_location_list">Список місць</string>
     <string name="action_search">Пошук</string>
     <string name="action_add_current_location">Додати поточне місцезнаходження</string>
@@ -112,7 +112,7 @@
     <string name="dialog_permissions_notification_title">Будьте в курсі</string>
     <string name="dialog_permissions_location_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="message_server_timeout">Час запиту вичерпано</string>
-    <string name="message_tap_again_to_exit">Натисніть ще раз, щоб вийти</string>
+    <string name="message_tap_again_to_exit">Натисніть ще раз для виходу</string>
     <string name="widget_day">Щоденний</string>
     <string name="widget_week">Щотижневий</string>
     <string name="widget_day_week">Щоденний + щотижневий</string>
@@ -167,15 +167,15 @@
     <string name="pollen_tap_to_see_more">Натисніть, щоб побачити більше…</string>
     <string name="pollen_level_4">Високий</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Молодий Місяць</string>
-    <string name="ephemeris_moonrise_at">Схід Місяця о %s</string>
+    <string name="ephemeris_moonrise_at">Схід місяця о %s</string>
     <string name="ephemeris_moon_phase_new_moon">Новий Місяць</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Зростаючий Місяць</string>
-    <string name="ephemeris_moon_phase_full_moon">Повний Місяць</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Зростаючий місяць</string>
+    <string name="ephemeris_moon_phase_full_moon">Повний місяць</string>
     <string name="ephemeris_moon_phase_last_quarter">Остання чверть</string>
     <string name="ephemeris_moon_phase_first_quarter">Перша чверть</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Старий Місяць</string>
-    <string name="ephemeris_sunrise_at">Схід Сонця о %s</string>
-    <string name="ephemeris_moonset_at">Захід Місяця о %s</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Старий місяць</string>
+    <string name="ephemeris_sunrise_at">Схід сонця о %s</string>
+    <string name="ephemeris_moonset_at">Захід місяця о %s</string>
     <string name="nighttime">Вночі</string>
     <string name="daytime">Вдень</string>
     <string name="hours_of_sun">Годин Сонця</string>
@@ -241,7 +241,7 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Додайте місцезнаходження вручну та видаліть “%s”</string>
     <string name="location_search_no_results_advice">Переконайтеся, що пошуковий запит написаний правильно та не надто специфічний. Ви також можете спробувати використовувати інше джерело пошуку розташування, яке може дати інші результати.</string>
     <string name="air_quality_co_info_origin">Він утворюється внаслідок неповного згоряння вуглецевого палива, такого як деревина, бензин, вугілля, природний газ і гас у простих плитах, відкритих вогнищах, лампах з ґнотом, печах, камінах. Основним джерелом оксиду вуглецю (CO) в навколишньому повітрі є автотранспорт.</string>
-    <string name="ephemeris_sunset_at">Захід Сонця о %s</string>
+    <string name="ephemeris_sunset_at">Захід сонця о %s</string>
     <string name="location_current_not_found_yet">Поточне місцезнаходження поки що не знайдено…</string>
     <string name="action_back">Назад</string>
     <string name="action_continue">Продовжити</string>
@@ -374,7 +374,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не вдалося відкрити налаштування пристрою.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимізація батареї вже вимкнена.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Спеціальні інструкції виробника</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники встановлюють додаткові обмеження для застосунків, які відключають фонові служби. На сайті “Don’t kill my app!” є інформація про те, як це виправити.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Деякі виробники встановлюють додаткові обмеження для застосунків, які відключають фонові служби. На сайті Don’t kill my app! є інформація про те, як це виправити.</string>
     <string name="settings_background_updates_worker_info_title">Інформація про процес</string>
     <string name="settings_background_updates_worker_info_summary">Останній запуск: %s</string>
     <string name="settings_location_access_permission_already_granted">Дозвіл вже надано</string>
@@ -642,4 +642,8 @@
     <string name="uv_index_short">УФ-індекс</string>
     <string name="visibility_short">Видимість</string>
     <string name="pressure_short">Тиск</string>
+    <string name="dew_point_short">Точка роси</string>
+    <string name="ceiling_short">Межа</string>
+    <string name="settings_weather_sources_default_source">Джерело за замовчуванням для нових місць</string>
+    <string name="temperature_feels_like_short">Відчувається як</string>
 </resources>
