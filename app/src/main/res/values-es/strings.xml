@@ -124,7 +124,7 @@
     <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
-    <string name="widget_label_show_widget_card_alpha">Transparencia</string>
+    <string name="widget_label_show_widget_card_alpha">Opacidad</string>
     <string name="widget_label_hide_subtitle">Ocultar subtítulo</string>
     <string name="widget_label_subtitle_data">Datos del subtítulo</string>
     <string name="widget_label_black_text">Color del texto</string>
