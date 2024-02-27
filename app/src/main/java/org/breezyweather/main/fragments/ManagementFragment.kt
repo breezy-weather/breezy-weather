@@ -168,7 +168,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             Icon(
                                 imageVector = Icons.Outlined.Search,
                                 contentDescription = stringResource(R.string.action_add_new_location),
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         }
                     }
