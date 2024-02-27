@@ -648,4 +648,6 @@
     <string name="uv_index_short">УФ-индекс</string>
     <string name="visibility_short">Видимость</string>
     <string name="pressure_short">Давление</string>
+    <string name="cloud_cover_short">Облачность</string>
+    <string name="dew_point_short">Точка росы</string>
 </resources>
