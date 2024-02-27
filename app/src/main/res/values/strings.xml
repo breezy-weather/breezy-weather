@@ -473,6 +473,8 @@
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
     <string name="settings_weather_sources">Weather sources</string>
     <string name="settings_weather_sources_summary">Weather data sources settings</string>
+    <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_weather_sources_default_source">Default source for new locations</string>
     <string name="settings_weather_source_main">Main source</string>
     <string name="settings_weather_source_none">None</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources for this location</string>

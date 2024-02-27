@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
@@ -76,6 +77,9 @@ class SelectWeatherProviderActivity : GeoActivity() {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
                     WeatherSourcesSettingsScreen(
                         context = this@SelectWeatherProviderActivity,
+                        configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources().filter {
+                            it.isWeatherSupportedForLocation(Location())
+                        },
                         configurableSources = sourceManager.getConfigurableSources(),
                         paddingValues = paddings,
                     )

@@ -352,14 +352,15 @@ fun SecondarySourcesPreference(
 }
 
 @Composable
-private fun SourceView(
+fun SourceView(
     title: String,
     @DrawableRes iconId: Int? = null,
     selectedKey: String,
     enabled: Boolean = true,
     sourceList: Map<String, String>,
     helpMeChoose: String? = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md",
-    onValueChanged: (String) -> Unit,
+    card: Boolean = false,
+    onValueChanged: (String) -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
     ListPreferenceView(
@@ -388,6 +389,6 @@ private fun SourceView(
             }
         } else null,
         enabled = enabled,
-        card = false
+        card = card
     )
 }

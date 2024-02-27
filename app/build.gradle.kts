@@ -59,7 +59,7 @@ android {
     buildTypes.forEach {
         it.buildConfigField("String", "DEFAULT_LOCATION_SOURCE", "\"${properties.getProperty("breezy.source.default_location") ?: "native"}\"")
         it.buildConfigField("String", "DEFAULT_LOCATION_SEARCH_SOURCE", "\"${properties.getProperty("breezy.source.default_location_search") ?: "openmeteo"}\"")
-        it.buildConfigField("String", "DEFAULT_WEATHER_SOURCE", "\"${properties.getProperty("breezy.source.default_weather") ?: "openmeteo"}\"")
+        it.buildConfigField("String", "DEFAULT_WEATHER_SOURCE", "\"${properties.getProperty("breezy.source.default_weather") ?: "auto"}\"")
         it.buildConfigField("String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\"")
         it.buildConfigField("String", "ATMO_AURA_KEY", "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\"")
         it.buildConfigField("String", "BAIDU_IP_LOCATION_AK", "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\"")

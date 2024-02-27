@@ -19,10 +19,15 @@ package org.breezyweather.settings.compose
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import org.breezyweather.R
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.ui.composables.SourceView
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
@@ -31,13 +36,31 @@ import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.settings.preference.editTextPreferenceItem
 import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.settings.preference.sectionFooterItem
+import org.breezyweather.settings.preference.sectionHeaderItem
 
 @Composable
 fun WeatherSourcesSettingsScreen(
     context: Context,
+    configuredWorldwideSources: List<MainWeatherSource>,
     configurableSources: List<ConfigurableSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
+    sectionHeaderItem(R.string.settings_weather_sources_section_general)
+    listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
+        SourceView(
+            title = stringResource(id),
+            selectedKey = "auto",
+            sourceList = mapOf(
+                "auto" to stringResource(R.string.settings_automatic)
+            ) + configuredWorldwideSources.associate { it.id to it.name },
+            card = true
+        ) { defaultSource ->
+            SettingsManager.getInstance(context).defaultWeatherSource = defaultSource
+        }
+    }
+    sectionFooterItem(R.string.settings_weather_sources_section_general)
+
     configurableSources
         .filter { it !is LocationSource } // Exclude location sources configured in its own screen
         .sortedBy { it.name } // Sort by name because there are now a lot of sources

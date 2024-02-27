@@ -338,6 +338,7 @@
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
     <string name="settings_weather_sources">Sources météo</string>
     <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
+    <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
     <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_source_none">Aucune</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>

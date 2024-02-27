@@ -150,6 +150,13 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
 
+    var defaultWeatherSource: String
+        set(value) {
+            config.edit().putString("default_weather_source", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
+
     // unit.
     var temperatureUnit: TemperatureUnit
         set(value) {

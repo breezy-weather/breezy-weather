@@ -49,6 +49,7 @@ import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
@@ -156,7 +157,11 @@ class SearchActivity : GeoActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        selectedLocation = LocationPreset.getLocationWithPresetApplied(location)
+                                        val defaultSource = SettingsManager.getInstance(context).defaultWeatherSource
+                                        selectedLocation = when (defaultSource) {
+                                            "auto" -> LocationPreset.getLocationWithPresetApplied(location)
+                                            else -> location.copy(weatherSource = defaultSource)
+                                        }
                                         dialogLocationSourcesOpenState.value = true
                                     }
                                 )

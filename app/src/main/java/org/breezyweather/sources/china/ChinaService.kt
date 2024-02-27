@@ -63,6 +63,10 @@ class ChinaService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
+    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+        return location.countryCode.equals("CN", ignoreCase = true)
+    }
+
     override fun requestWeather(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>

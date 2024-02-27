@@ -21,7 +21,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.compose.ui.res.stringResource
 import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
 import org.breezyweather.daily.adapter.DailyWeatherAdapter

@@ -18,7 +18,6 @@ package org.breezyweather.common.basic.models.options.appearance
 
 import android.content.Context
 import androidx.annotation.StringRes
-import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
 
