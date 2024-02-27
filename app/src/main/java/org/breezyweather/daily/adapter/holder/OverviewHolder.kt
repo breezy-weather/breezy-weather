@@ -57,7 +57,7 @@ class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         }
         overview.halfDay.temperature?.temperature?.let {
             if (builder.toString().isNotEmpty()) {
-                builder.append(", ")
+                builder.append(mTitle.context.getString(R.string.comma_separator))
             }
             builder.append(
                 mTemperatureUnit.getValueText(mTitle.context, it)

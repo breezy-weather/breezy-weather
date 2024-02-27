@@ -62,8 +62,10 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
 
             if (daily.day?.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(", ").append(activity.getString(R.string.daytime))
-                    .append(" : ").append(daily.day!!.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.daytime))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(daily.day!!.wind!!.getDescription(activity, mSpeedUnit))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
             val dayIcon = daily.day?.wind?.degree?.let { degree ->
@@ -99,8 +101,10 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
 
             if (daily.night?.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(", ").append(activity.getString(R.string.nighttime))
-                    .append(" : ").append(daily.night!!.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.nighttime))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(daily.night!!.wind!!.getDescription(activity, mSpeedUnit))
             }
             val nightIcon = daily.night?.wind?.degree?.let { degree ->
                 if (degree == -1.0) {

@@ -69,15 +69,25 @@ class DailyTemperatureAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
             daily.day?.let { day ->
-                talkBackBuilder.append(", ").append(activity.getString(R.string.daytime)).append(" : ")
-                if (!day.weatherText.isNullOrEmpty()) talkBackBuilder.append(day.weatherText).append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.daytime))
+                    .append(activity.getString(R.string.colon_separator))
+                if (!day.weatherText.isNullOrEmpty()) {
+                    talkBackBuilder.append(day.weatherText)
+                        .append(activity.getString(R.string.comma_separator))
+                }
                 day.temperature?.temperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             daily.night?.let { night ->
-                talkBackBuilder.append(", ").append(activity.getString(R.string.nighttime)).append(" : ")
-                if (!night.weatherText.isNullOrEmpty()) talkBackBuilder.append(night.weatherText).append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.nighttime))
+                    .append(activity.getString(R.string.colon_separator))
+                if (!night.weatherText.isNullOrEmpty()) {
+                    talkBackBuilder.append(night.weatherText)
+                        .append(activity.getString(R.string.comma_separator))
+                }
                 night.temperature?.temperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }

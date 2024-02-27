@@ -127,7 +127,8 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
                 )
                 mPhaseText.text = moonPhase.getDescription(context)
-                talkBackBuilder.append(", ").append(mPhaseText.text)
+                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    .append(mPhaseText.text)
             } else {
                 mPhaseText.visibility = View.GONE
                 mPhaseView.visibility = View.GONE
@@ -175,9 +176,9 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 mSunContainer.visibility = View.VISIBLE
                 mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓"
                 talkBackBuilder
-                    .append(", ")
+                    .append(context.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.ephemeris_sunrise_at, sunriseTime))
-                    .append(", ")
+                    .append(context.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.ephemeris_sunset_at, sunsetTime))
             } else {
                 mSunContainer.visibility = View.GONE
@@ -193,9 +194,9 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 mMoonContainer.visibility = View.VISIBLE
                 mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓"
                 talkBackBuilder
-                    .append(", ")
+                    .append(context.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.ephemeris_moonrise_at, moonriseTime))
-                    .append(", ")
+                    .append(context.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.ephemeris_moonset_at, moonsetTime))
             } else {
                 mMoonContainer.visibility = View.GONE

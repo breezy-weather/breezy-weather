@@ -64,9 +64,8 @@ class HourlyHumidityAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.dewPoint?.let {
-                talkBackBuilder.append(", ").append(
-                    mDewPointUnit.getValueText(activity, it)
-                )
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(mDewPointUnit.getValueText(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -74,7 +73,6 @@ class HourlyHumidityAdapter(
                 },
                 missingIconVisibility = View.INVISIBLE
             )
-            val relativeHumidity = hourly.relativeHumidity
             mPolylineAndHistogramView.setData(
                 buildDewPointArrayForItem(mDewPoints, position),
                 null,
@@ -84,8 +82,10 @@ class HourlyHumidityAdapter(
                 null,
                 mHighestDewPoint,
                 mLowestDewPoint,
-                relativeHumidity?.toFloat(),
-                if (relativeHumidity != null) ProbabilityUnit.PERCENT.getValueText(activity, relativeHumidity.toInt()) else null,
+                hourly.relativeHumidity?.toFloat(),
+                hourly.relativeHumidity?.let {
+                    ProbabilityUnit.PERCENT.getValueText(activity, it.toInt())
+                },
                 100f,
                 0f
             )

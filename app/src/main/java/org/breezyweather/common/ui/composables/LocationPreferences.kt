@@ -132,7 +132,11 @@ fun SecondarySourcesPreference(
     val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
     val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
     val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
-    val weatherSources = sourceManager.getConfiguredMainWeatherSources()
+    val weatherSources = sourceManager.getConfiguredMainWeatherSources().filter {
+        // TODO: For now, we don't have a reverse geocoding source, so allow to choose any source
+        // for current position
+        location.isCurrentPosition || it.isWeatherSupportedForLocation(location)
+    }
     val secondarySources = sourceManager.getSecondaryWeatherSources()
     val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
     val compatibleAirQualitySources = secondarySources.filter {

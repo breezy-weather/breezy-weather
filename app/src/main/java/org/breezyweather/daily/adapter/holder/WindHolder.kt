@@ -58,7 +58,8 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 if (degree != -1.0) {
                     mIcon.rotation = degree.toFloat() + 180f
                 }
-                talkBackBuilder.append(", ").append(wind.getDirection(itemView.context))
+                talkBackBuilder.append(itemView.context.getString(R.string.comma_separator))
+                    .append(wind.getDirection(itemView.context))
                 if (wind.degree == -1.0 || degree % 45 == 0.0) {
                     mDirectionText.text = wind.getDirection(itemView.context)
                 } else {
@@ -67,18 +68,19 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 }
             }
             if ((wind.speed ?: 0.0) > 0) {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(itemView.context.getString(R.string.comma_separator))
                     .append(mSpeedUnit.getValueText(mSpeedText.context, wind.speed!!))
                 mSpeed.visibility = View.VISIBLE
                 mSpeedText.text = mSpeedUnit.getValueText(mSpeedText.context, wind.speed!!)
             } else {
                 mSpeed.visibility = View.GONE
             }
-            talkBackBuilder.append(", ").append(wind.getStrength(mSpeedText.context))
+            talkBackBuilder.append(itemView.context.getString(R.string.comma_separator))
+                .append(wind.getStrength(mSpeedText.context))
             mStrengthText.text = wind.getStrength(mSpeedText.context)
             itemView.contentDescription = talkBackBuilder.toString()
             if ((wind.gusts ?: 0.0) > 0) {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(itemView.context.getString(R.string.comma_separator))
                     .append(mSpeedUnit.getValueText(mGustsText.context, wind.gusts!!))
                 mGusts.visibility = View.VISIBLE
                 mGustsText.text = mSpeedUnit.getValueText(mGustsText.context, wind.gusts!!)

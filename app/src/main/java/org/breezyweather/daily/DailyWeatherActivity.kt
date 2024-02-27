@@ -182,7 +182,7 @@ class DailyWeatherActivity : GeoActivity() {
     private fun selectPage(daily: Daily, timeZone: TimeZone, position: Int, size: Int) {
         mTitle?.text = daily.date.getFormattedDate(timeZone, getString(R.string.date_format_widget_long))
         mSubtitle?.text = daily.lunar
-        mToolbar?.contentDescription = mTitle?.text.toString() + ", " + mSubtitle?.text
+        mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
         mIndicator?.text = if (daily.isToday(timeZone)) {
             getString(R.string.short_today)
         } else (position + 1).toString() + "/" + size

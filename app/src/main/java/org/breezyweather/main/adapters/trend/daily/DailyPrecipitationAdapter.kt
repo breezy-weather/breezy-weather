@@ -66,20 +66,20 @@ class DailyPrecipitationAdapter(
             val nighttimePrecipitation = daily.night?.precipitation?.total
             if ((daytimePrecipitation != null && daytimePrecipitation > 0f)
                 || (nighttimePrecipitation != null && nighttimePrecipitation > 0f)) {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.daytime))
-                    .append(" : ")
+                    .append(activity.getString(R.string.colon_separator))
                     .append(if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
                         mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
                     } else activity.getString(R.string.precipitation_none))
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.nighttime))
-                    .append(" : ")
+                    .append(activity.getString(R.string.colon_separator))
                     .append(if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
                         mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
                     } else activity.getString(R.string.precipitation_none))
             } else {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_none))
             }
             dailyItem.setDayIconDrawable(

@@ -32,6 +32,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DayWidgetConfigActivity : AbstractWidgetConfigActivity() {
     var locationNow: Location? = null
+        private set
 
     @Inject
     lateinit var locationRepository: LocationRepository

@@ -54,7 +54,8 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
             val hourly = location.weather!!.nextHourlyForecast[position]
 
             hourly.cloudCover?.let { cloudCover ->
-                talkBackBuilder.append(", ").append(ProbabilityUnit.PERCENT.getValueVoice(activity, cloudCover))
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(ProbabilityUnit.PERCENT.getValueVoice(activity, cloudCover))
             }
             mPolylineAndHistogramView.setData(
                 null, null,

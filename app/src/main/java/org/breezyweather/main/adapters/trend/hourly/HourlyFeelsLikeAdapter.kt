@@ -63,9 +63,8 @@ class HourlyFeelsLikeAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.feelsLikeTemperature?.let {
-                talkBackBuilder.append(", ").append(
-                    mTemperatureUnit.getValueText(activity, it)
-                )
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(mTemperatureUnit.getValueText(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -188,7 +187,9 @@ class HourlyFeelsLikeAdapter(
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return mHighestTemperature != null && mLowestTemperature != null
+        return location.weather?.nextHourlyForecast?.any {
+            it.temperature?.feelsLikeTemperature != null
+        } == true
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_feels_like)

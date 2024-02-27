@@ -93,7 +93,7 @@ class AlertActivity : GeoActivity() {
                 timeZone, context.getString(R.string.date_format_long)
             )
             builder.append(startDateDay)
-                .append(", ")
+                .append(context.getString(R.string.comma_separator))
                 .append(startDate.getFormattedTime(timeZone, context.is12Hour))
             alert.endDate?.let { endDate ->
                 builder.append(" — ")
@@ -101,7 +101,7 @@ class AlertActivity : GeoActivity() {
                     timeZone, context.getString(R.string.date_format_long)
                 )
                 if (startDateDay != endDateDay) {
-                    builder.append(endDateDay).append(", ")
+                    builder.append(endDateDay).append(context.getString(R.string.comma_separator))
                 }
                 builder.append(endDate.getFormattedTime(timeZone, context.is12Hour))
             }

@@ -51,14 +51,14 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         val talkBackBuilder = StringBuilder(context.getString(R.string.ephemeris))
         if (model.sun != null && model.sun.isValid) {
             talkBackBuilder
-                .append(", ")
+                .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_sunrise_at,
                         model.sun.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
                     )
                 )
-                .append(", ")
+                .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_sunset_at,
@@ -72,14 +72,14 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         }
         if (model.moon != null && model.moon.isValid) {
             talkBackBuilder
-                .append(", ")
+                .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_moonrise_at,
                         model.moon.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
                     )
                 )
-                .append(", ")
+                .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_moonset_at,
@@ -92,7 +92,7 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             mMoon.visibility = View.GONE
         }
         if (model.moonPhase != null && model.moonPhase.isValid) {
-            talkBackBuilder.append(", ").append(model.moonPhase.getDescription(context))
+            talkBackBuilder.append(context.getString(R.string.comma_separator)).append(model.moonPhase.getDescription(context))
             mMoonPhase.visibility = View.VISIBLE
             mMoonPhaseIcon.setSurfaceAngle(model.moonPhase.angle!!.toFloat())
             mMoonPhaseIcon.setColor(

@@ -63,7 +63,8 @@ class HourlyVisibilityAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.visibility?.let {
-                talkBackBuilder.append(", ").append(mVisibilityUnit.getValueText(activity, it))
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(mVisibilityUnit.getValueText(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {

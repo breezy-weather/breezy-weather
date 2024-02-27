@@ -63,7 +63,9 @@ class DailyAirQualityAdapter(
 
             val index = daily.airQuality?.getIndex()
             if (index != null) {
-                talkBackBuilder.append(", ").append(index).append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(index)
+                    .append(activity.getString(R.string.comma_separator))
                     .append(daily.airQuality!!.getName(itemView.context))
             }
             mPolylineAndHistogramView.setData(

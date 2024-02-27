@@ -63,7 +63,8 @@ class HourlyPressureAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.pressure?.let { pressure ->
-                talkBackBuilder.append(", ").append(mPressureUnit.getValueText(activity, pressure))
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(mPressureUnit.getValueText(activity, pressure))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {

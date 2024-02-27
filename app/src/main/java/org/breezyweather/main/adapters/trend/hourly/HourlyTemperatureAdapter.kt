@@ -67,10 +67,12 @@ class HourlyTemperatureAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             if (hourly.weatherText.isNullOrEmpty()) {
-                talkBackBuilder.append(", ").append(hourly.weatherText)
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(hourly.weatherText)
             }
             hourly.temperature?.temperature?.let {
-                talkBackBuilder.append(", ").append(mTemperatureUnit.getValueText(activity, it))
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(mTemperatureUnit.getValueText(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {

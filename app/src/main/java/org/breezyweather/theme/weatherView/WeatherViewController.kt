@@ -61,7 +61,7 @@ object WeatherViewController {
         else -> WeatherView.WEATHER_KIND_CLEAR
     }
 
-    fun getWeatherText(weatherCode: WeatherCode?): String {
+    fun getWeatherText(weatherCode: WeatherCode): String {
         val values = BreezyWeather.instance.resources.getStringArray(R.array.live_wallpaper_weather_kinds)
         val index = when (weatherCode) {
             WeatherCode.CLEAR -> 0

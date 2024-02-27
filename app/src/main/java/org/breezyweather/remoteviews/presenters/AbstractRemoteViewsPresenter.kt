@@ -368,9 +368,9 @@ abstract class AbstractRemoteViewsPresenter {
                     val startDateDay = startDate.getFormattedDate(
                         timeZone, context.getString(R.string.date_format_long)
                     )
-                    defaultBuilder.append(", ")
+                    defaultBuilder.append(context.getString(R.string.comma_separator))
                         .append(startDateDay)
-                        .append(", ")
+                        .append(context.getString(R.string.comma_separator))
                         .append(startDate.getFormattedTime(timeZone, context.is12Hour))
                     currentAlert.endDate?.let { endDate ->
                         defaultBuilder.append("-")
@@ -378,7 +378,8 @@ abstract class AbstractRemoteViewsPresenter {
                             timeZone, context.getString(R.string.date_format_long)
                         )
                         if (startDateDay != endDateDay) {
-                            defaultBuilder.append(endDateDay).append(", ")
+                            defaultBuilder.append(endDateDay)
+                                .append(context.getString(R.string.comma_separator))
                         }
                         defaultBuilder.append(endDate.getFormattedTime(timeZone, context.is12Hour))
                     }

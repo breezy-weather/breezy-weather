@@ -1,7 +1,16 @@
 # Version 5.0.2-alpha (not yet released)
 
-**Fixes**
+**Improvements and fixes**
+- Don’t display “Feels like” tab in Daily and Hourly trends if there is no data
 - Fallback to real temperature if feels like temperature is missing in hourly feels like chart to avoid weird looking chart
+- Compute missing relative humidity if we have temperature and dew point (useful for DWD)
+- Fix weather text showing “Clear sky” when weather condition is unknown
+- Remove the ability to select a main weather source incompatible with that country
+- Fix widgets not updating after a widget config change
+
+**Translations**
+- Translations updated
+- Comma were replaced by 、 in Chinese and Japanese languages. If you use a different character than “,” for comma in your language, please open an issue on GitHub (not available through Weblate).
 
 
 # Version 5.0.1-alpha (2024-02-26)

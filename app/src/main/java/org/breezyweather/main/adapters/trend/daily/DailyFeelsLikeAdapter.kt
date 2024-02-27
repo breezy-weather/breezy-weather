@@ -65,13 +65,17 @@ class DailyFeelsLikeAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
             daily.day?.let { day ->
-                talkBackBuilder.append(", ").append(activity.getString(R.string.daytime)).append(" : ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.daytime))
+                    .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             daily.night?.let { night ->
-                talkBackBuilder.append(", ").append(activity.getString(R.string.nighttime)).append(" : ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.nighttime))
+                    .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
@@ -224,7 +228,10 @@ class DailyFeelsLikeAdapter(
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return mHighestTemperature != null && mLowestTemperature != null
+        return location.weather?.dailyForecast?.any {
+            it.day?.temperature?.feelsLikeTemperature != null ||
+            it.night?.temperature?.feelsLikeTemperature != null
+        } == true
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_feels_like)

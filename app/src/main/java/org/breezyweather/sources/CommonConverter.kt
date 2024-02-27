@@ -54,6 +54,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.atan
+import kotlin.math.exp
 import kotlin.math.ln
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -400,11 +401,29 @@ fun computeMissingHourlyData(
             hourly.copy(
                 weatherCode = weatherCode,
                 weatherText = hourly.weatherText ?: weatherCode?.let { WeatherViewController.getWeatherText(it) },
+                relativeHumidity = hourly.relativeHumidity ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint),
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
                 temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
             )
         } else hourly
     }
+}
+
+/**
+ * Compute relative humidity from temperature and dew point
+ * Uses Magnus approximation with Arden Buck best variable set
+ * TODO: Unit test
+ *
+ * @param temperature in °C
+ * @param dewPoint in °C
+ */
+private fun computeRelativeHumidity(temperature: Double?, dewPoint: Double?): Double? {
+    if (temperature == null || dewPoint == null) return null
+
+    val b = if (temperature < 0) 17.966 else 17.368
+    val c = if (temperature < 0) 227.15 else 238.88 //°C
+
+    return 100 * (exp((b * dewPoint).div(c + dewPoint)) / exp((b * temperature).div(c + temperature)))
 }
 
 /**
@@ -749,7 +768,7 @@ private fun completeHalfDayFromHourlyList(
                 "wind: ${maxWind?.speed}, vis: $avgVisibility, clouds: $avgCloudCover")
     }*/
 
-    val halfDayWeatherTextFromCode = WeatherViewController.getWeatherText(halfDayWeatherCode)
+    val halfDayWeatherTextFromCode = halfDayWeatherCode?.let { WeatherViewController.getWeatherText(it) }
     val halfDayWeatherText = newHalfDay.weatherText ?: halfDayWeatherTextFromCode
     val halfDayWeatherPhase = newHalfDay.weatherPhase ?: halfDayWeatherTextFromCode
 

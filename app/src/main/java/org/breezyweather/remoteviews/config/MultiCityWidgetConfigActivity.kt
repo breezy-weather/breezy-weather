@@ -31,7 +31,8 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
-    private var locationList = mutableListOf<Location>()
+    var locationList = mutableListOf<Location>()
+        private set
 
     @Inject
     lateinit var locationRepository: LocationRepository

@@ -61,10 +61,11 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val subtitle = StringBuilder()
         subtitle.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
-            subtitle.append(", ").append(LunarHelper.getLunarDate(Date()))
+            subtitle.append(context.getString(R.string.comma_separator))
+                .append(LunarHelper.getLunarDate(Date()))
         } else {
             location.weather!!.base.refreshTime?.let {
-                subtitle.append(", ")
+                subtitle.append(context.getString(R.string.comma_separator))
                     .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
                     .append(it.getFormattedTime(location.timeZone, context.is12Hour))

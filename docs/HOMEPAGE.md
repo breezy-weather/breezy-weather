@@ -20,7 +20,7 @@ Followed by default by the following current details:
 - UV index (only during daylight)
 - Humidity
 
-Details shown in header can be configured in the settings (Appearance). Details not shown there will be shown in the Current details card.
+Details shown in header can be configured in the settings (Appearance). You can fit up to 4 details in portrait, and 5 details in landscape. You can configure more than 5 details because if some detail is missing from the source or if it’s nighttime (no UV), it will fallback to the next detail you configured in order. All details that you configured to display in header but don’t fit will be displayed in the Details card instead.
 
 
 ## Cards
@@ -46,6 +46,8 @@ Daily forecast is made of multiple tabs called trends. Order of daily trends can
 
 For each trend, the day of the week or "Today" is shown on top of each column, and just below, the day of the month and the month are shown.
 
+When data is missing for the whole period, the tab will be hidden.
+
 
 #### Temperature trends
 
@@ -56,7 +58,7 @@ From top to bottom:
 - Weather condition of nighttime (icon)
 - Maximum precipitation probability for the whole day (bar + text)
 
-If weather source has yesterday data, it will show two lines with maximum daytime temperature and minimum nighttime temperature of yesterday. From v4.6.0, it will show temperature normals (for the month) instead or median for the daily forecast period if feature not available from source, and yesterday data is moved to a dedicate day. It can be disabled in the settings (Appearance).
+If weather source has normals data, it will show two lines with maximum and minimum temperature normals for the month of the first day in forecast. If normals are not available, it will fallback to use a median maximum and minimum temperature for the daily forecast period.
 
 
 #### Air quality trends
@@ -120,6 +122,26 @@ If total of all precipitation is 0, it will not be shown.
 If total of all precipitation for all days is 0, precipitation trends will be hidden.
 
 
+#### Feels like trends
+
+Feels like temperature is the first available data from this list:
+- RealFeel® temperature
+- RealFeel Shade™ temperature
+- Apparent temperature
+- Wind chill temperature
+- Wet bulb temperature
+- Temperature
+
+From top to bottom:
+- Weather condition of daytime (icon)
+- Maximum feels like temperature of daytime (graph)
+- Minimum feels like temperature of nighttime (graph)
+- Weather condition of nighttime (icon)
+- Maximum precipitation probability for the whole day (bar + text)
+
+If weather source has normals data, it will show two lines with maximum and minimum temperature normals for the month of the first day in forecast. If normals are not available, it will fallback to use a median maximum and minimum temperature for the daily forecast period.
+
+
 ### Hourly forecast
 
 Just like daily forecast, hourly is made of the same tabs called trends. Order of hourly trends can be changed in settings.
@@ -128,12 +150,15 @@ For each trend, the hour of the week is shown on top of each column, and just be
 
 Below trends, a minute by minute precipitation quantity graph will be shown if precipitations in the next hour are above 0.
 
+When data is missing for the whole period, the tab will be hidden.
+
 
 #### Temperature trends
 
 From top to bottom:
 - Weather condition of the hour (icon)
 - Temperature of the hour (graph)
+- Precipitation probability (text)
 
 
 #### Air quality trends
@@ -150,6 +175,7 @@ Bar color will have a different color according to air quality index:
 
 Two lines show two alert levels (20 and 150). It can be disabled in the settings (Appearance).
 
+
 #### Wind trends
 
 From top to bottom:
@@ -163,6 +189,7 @@ Wind icons and speed bars have a different color according to Beaufort wind scal
 - Red: from 8 to 9
 - Purple: from 10 to 11
 - Brown: 12 and above
+
 
 #### UV trends
 
@@ -186,6 +213,41 @@ From top to bottom:
 
 If total of all precipitation for all hours is 0, precipitation trends will be hidden.
 
+
+#### Feels like trends
+
+From top to bottom:
+- Weather condition of the hour (icon)
+- Feels like temperature of the hour (graph)
+
+
+#### Humidity / Dew point trends
+
+From top to bottom:
+- Weather condition of the hour (icon)
+- Dew point of the hour (graph)
+- Relative humidity percentage (text)
+
+
+#### Pressure trends
+
+From top to bottom:
+- Weather condition of the hour (icon)
+- Pressure of the hour (graph)
+
+
+#### Cloud cover trends
+
+Each column shows the cloud cover percentage for the hour (bar + text).
+
+Two lines show two levels (clear sky and partly cloudy). It can be disabled in the settings (Appearance).
+
+
+#### Visibility trends
+
+From top to bottom:
+- Weather condition of the hour (icon)
+- Visibility of the hour (graph)
 
 
 ### Current air quality
@@ -263,5 +325,4 @@ In the footer, you have credits and acknowledgment for the weather source used f
 You also have an Edit button that lets you access different options, such as:
 - Reorganize main screen (applies to all locations)
 - (Current location only) Change location service
-- (Manually added locations only) Set location as resident city
 - Change main weather source or secondary weather sources (air quality, allergens, precipitations minute by minute, alerts)

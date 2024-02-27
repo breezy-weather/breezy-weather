@@ -70,7 +70,9 @@ object HourlyWeatherDialog {
             builder.append(it)
         }
         hourly.temperature?.temperature?.let {
-            if (builder.toString().isNotEmpty()) builder.append(", ")
+            if (builder.toString().isNotEmpty()) {
+                builder.append(view.context.getString(R.string.comma_separator))
+            }
             builder.append(
                 temperatureUnit.getValueText(view.context, it)
             )

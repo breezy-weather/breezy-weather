@@ -49,13 +49,16 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
             val timeZone = location.timeZone
             val daily = weather!!.dailyForecast[position]
             if (daily.isToday(timeZone)) {
-                talkBackBuilder.append(", ").append(context.getString(R.string.short_today))
+                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    .append(context.getString(R.string.short_today))
                 dailyItem.setWeekText(context.getString(R.string.short_today))
             } else {
-                talkBackBuilder.append(", ").append(daily.getWeek(context, location.timeZone))
+                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    .append(daily.getWeek(context, location.timeZone))
                 dailyItem.setWeekText(daily.getWeek(context, location.timeZone))
             }
-            talkBackBuilder.append(", ").append(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
+            talkBackBuilder.append(context.getString(R.string.comma_separator))
+                .append(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
             dailyItem.setDateText(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
             val useAccentColorForDate = daily.isToday(timeZone) || daily.date > Date()
             dailyItem.setTextColor(

@@ -61,8 +61,10 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
 
             if (hourly.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(", ").append(activity.getString(R.string.tag_wind))
-                    .append(" : ").append(hourly.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.tag_wind))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(hourly.wind!!.getDescription(activity, mSpeedUnit))
             }
             val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT
             val hourlyIcon = hourly.wind?.degree?.let { degree ->

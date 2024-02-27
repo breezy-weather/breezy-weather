@@ -61,7 +61,9 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
 
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
-                talkBackBuilder.append(", ").append(index).append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(index)
+                    .append(activity.getString(R.string.comma_separator))
                     .append(hourly.airQuality!!.getName(itemView.context))
             }
             mPolylineAndHistogramView.setData(

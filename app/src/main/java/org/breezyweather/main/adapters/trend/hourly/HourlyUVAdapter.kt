@@ -60,7 +60,10 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
 
             val index = hourly.uV?.index
             if (index != null) {
-                talkBackBuilder.append(", ").append(index).append(", ").append(hourly.uV!!.getLevel(activity))
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(index)
+                    .append(activity.getString(R.string.comma_separator))
+                    .append(hourly.uV!!.getLevel(activity))
             }
             mPolylineAndHistogramView.setData(
                 null, null,

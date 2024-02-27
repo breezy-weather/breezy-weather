@@ -170,7 +170,8 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
-            timeStr.append(", ").append(LunarHelper.getLunarDate(Date()))
+            timeStr.append(context.getString(R.string.comma_separator))
+                .append(LunarHelper.getLunarDate(Date()))
         }
 
         views.apply {

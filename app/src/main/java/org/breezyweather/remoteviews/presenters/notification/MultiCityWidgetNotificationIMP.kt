@@ -135,7 +135,8 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
         if (SettingsManager.getInstance(context).language.isChinese) {
-            timeStr.append(", ").append(LunarHelper.getLunarDate(Date()))
+            timeStr.append(context.getString(R.string.comma_separator))
+                .append(LunarHelper.getLunarDate(Date()))
         }
 
         views.apply {
@@ -229,7 +230,8 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             location.getPlace(context, true)
         )
         location.weather?.today?.let {
-            builder.append(", ").append(it.getTrendTemperature(context, unit))
+            builder.append(context.getString(R.string.comma_separator))
+                .append(it.getTrendTemperature(context, unit))
         }
         return builder.toString()
     }

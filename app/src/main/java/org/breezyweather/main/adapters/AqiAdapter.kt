@@ -287,7 +287,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_pm25),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_pm25_voice)
-                                + ", "
+                                + context.getString(R.string.comma_separator)
                                 + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
@@ -302,8 +302,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_pm10),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
-                        context.getString(R.string.air_quality_pm10_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                        context.getString(R.string.air_quality_pm10_voice) +
+                                context.getString(R.string.comma_separator) +
+                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -317,8 +318,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_o3),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
-                        context.getString(R.string.air_quality_o3_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                        context.getString(R.string.air_quality_o3_voice) +
+                                context.getString(R.string.comma_separator) +
+                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -332,8 +334,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_no2),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
-                        context.getString(R.string.air_quality_no2_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                        context.getString(R.string.air_quality_no2_voice) +
+                                context.getString(R.string.comma_separator) +
+                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -347,8 +350,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_so2),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2!!),
-                        context.getString(R.string.air_quality_so2_voice)
-                                + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
+                        context.getString(R.string.air_quality_so2_voice) +
+                                context.getString(R.string.comma_separator) +
+                                AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
                         executeAnimation
                     )
                 )
@@ -362,8 +366,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_co),
                         AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO!!),
-                        context.getString(R.string.air_quality_co_voice)
-                                + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
+                        context.getString(R.string.air_quality_co_voice) +
+                                context.getString(R.string.comma_separator) +
+                                AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
                         executeAnimation
                     )
                 )

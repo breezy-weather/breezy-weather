@@ -72,10 +72,10 @@ class HourlyPrecipitationAdapter(
 
             val precipitation = hourly.precipitation?.total
             if (precipitation != null && precipitation > 0.0) {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
             } else {
-                talkBackBuilder.append(", ")
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_none))
             }
             mPolylineAndHistogramView.setData(
