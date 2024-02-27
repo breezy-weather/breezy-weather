@@ -651,4 +651,10 @@
     <string name="uv_index_short">Indeks UV</string>
     <string name="visibility_short">Widoczność</string>
     <string name="pressure_short">Ciśnienie</string>
+    <string name="cloud_cover_short">Zachmurzenie</string>
+    <string name="ceiling_short">Granica</string>
+    <string name="settings_weather_sources_default_source">Domyślne źródło dla nowych lokalizacji</string>
+    <string name="location_message_updated">Lokalizacja zaktualizowana</string>
+    <string name="location_message_already_exists">Lokalizacja z tym samym głównym źródłem pogody już istnieje.</string>
+    <string name="location_search_no_results_advice">Upewnij się, że wyszukiwane hasło jest poprawnie napisane i niezbyt szczegółowe. Możesz także spróbować użyć innego źródła wyszukiwania lokalizacji, które może dać inne wyniki.</string>
 </resources>
