@@ -189,7 +189,7 @@ class SettingsActivity : GeoActivity() {
                             Icon(
                                 imageVector = Icons.Outlined.Info,
                                 contentDescription = stringResource(R.string.action_about),
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                                tint = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                     },
