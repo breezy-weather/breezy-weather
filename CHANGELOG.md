@@ -7,6 +7,7 @@
 - Fix weather text showing “Clear sky” when weather condition is unknown
 - Remove the ability to select a main weather source incompatible with that country
 - Fix widgets not updating after a widget config change
+- Fix contrast issue when using monochrome theme (@min7-i)
 
 **Translations**
 - Translations updated
