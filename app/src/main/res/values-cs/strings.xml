@@ -98,7 +98,7 @@
     <string name="settings_enabled">Povoleno</string>
     <string name="settings_disabled">Zakázáno</string>
     <string name="action_set">Nastavit</string>
-    <string name="action_help">NápovĚda</string>
+    <string name="action_help">Nápověda</string>
     <string name="action_learn_more">Zjistit více</string>
     <string name="about_app">O aplikaci</string>
     <string name="about_contributors">Přispěvatelé</string>
@@ -371,7 +371,7 @@
     <string name="weather_source_openweather_version_2_5">Verze 2.5</string>
     <string name="weather_source_openweather_version_3_0">Verze 3.0</string>
     <string name="location_search_no_results">%1$s nemůže najít %2$s</string>
-    <string name="action_undo">Vrátit zpĚt</string>
+    <string name="action_undo">Vrátit zpět</string>
     <string name="action_close">Zavřít</string>
     <string name="action_show_errors">Klepnutím zobrazíte podrobnosti</string>
     <string name="widget_subtitle_data_aqi">Kvalita ovzduší</string>
