@@ -644,4 +644,6 @@
     <string name="humidity_short">Вільготнасць</string>
     <string name="dew_point_short">Пункт расы</string>
     <string name="cloud_cover_short">Хмарнасць</string>
+    <string name="ceiling_short">Мяжа</string>
+    <string name="settings_weather_sources_default_source">Крыніца па змаўчанні для новых месцаў</string>
 </resources>
