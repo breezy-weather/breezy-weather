@@ -145,6 +145,12 @@ kapt {
     correctErrorTypes = true
 }
 
+aboutLibraries {
+    // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
+    // Warning: Please do not use the parent folder of a module as path, as this can result in issues. More details: https://github.com/mikepenz/AboutLibraries/issues/936
+    configPath = "config"
+}
+
 dependencies {
     implementation(projects.data)
     implementation(projects.domain)
