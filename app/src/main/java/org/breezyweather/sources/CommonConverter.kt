@@ -400,7 +400,9 @@ fun computeMissingHourlyData(
 
             hourly.copy(
                 weatherCode = weatherCode,
-                weatherText = hourly.weatherText ?: weatherCode?.let { WeatherViewController.getWeatherText(it) },
+                weatherText = if (hourly.weatherText.isNullOrEmpty()) {
+                    weatherCode?.let { WeatherViewController.getWeatherText(it) }
+                } else hourly.weatherText,
                 relativeHumidity = hourly.relativeHumidity ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint),
                 dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
                 temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
@@ -769,8 +771,14 @@ private fun completeHalfDayFromHourlyList(
     }*/
 
     val halfDayWeatherTextFromCode = halfDayWeatherCode?.let { WeatherViewController.getWeatherText(it) }
-    val halfDayWeatherText = newHalfDay.weatherText ?: halfDayWeatherTextFromCode
-    val halfDayWeatherPhase = newHalfDay.weatherPhase ?: halfDayWeatherTextFromCode
+    val halfDayWeatherText = if (newHalfDay.weatherText.isNullOrEmpty()) {
+        halfDayWeatherTextFromCode
+    } else newHalfDay.weatherText
+    val halfDayWeatherPhase = if (newHalfDay.weatherPhase.isNullOrEmpty()) {
+        if (newHalfDay.weatherText.isNullOrEmpty()) {
+            halfDayWeatherTextFromCode
+        } else newHalfDay.weatherText
+    } else newHalfDay.weatherPhase
 
     return newHalfDay.copy(
         weatherText = halfDayWeatherText,
@@ -1270,9 +1278,13 @@ fun completeCurrentFromSecondaryData(
         computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
     } else hourly.dewPoint // Already calculated earlier
     return newCurrent.copy(
-        weatherText = newCurrent.weatherText ?: newCurrent.weatherCode?.let {
-            WeatherViewController.getWeatherText(it)
-        } ?: hourly.weatherText,
+        weatherText = if (newCurrent.weatherText.isNullOrEmpty()) {
+            newCurrent.weatherCode?.let {
+                WeatherViewController.getWeatherText(it)
+            } ?: hourly.weatherCode?.let {
+                WeatherViewController.getWeatherText(it)
+            } ?: hourly.weatherText
+        } else newCurrent.weatherText,
         weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
         temperature = newTemperature,
         wind = newWind,
