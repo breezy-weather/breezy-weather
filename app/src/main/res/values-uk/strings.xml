@@ -127,7 +127,7 @@
     <string name="minutely_precipitations">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
     <string name="ephemeris">Сонце та Місяць</string>
-    <string name="temperature_feels_like">Відчувається як</string>
+    <string name="temperature_feels_like">За відчуттями</string>
     <string name="details">Подробиці</string>
     <string name="alerts_to_follow">Щоб переглянути майбутні попередження, натисніть тут.</string>
     <string name="alerts">Попередження</string>
@@ -282,7 +282,7 @@
     <string name="air_quality_pm_explanations_consequences">Тверді частинки є найшкідливішою формою забруднення повітря через їхню здатність проникати з потоками крові глибоко в легені та мозок, викликаючи такі проблеми зі здоров’ям, як хвороби серця, легень і передчасну смерть.</string>
     <string name="air_quality_no2_info_origin">Джерела NO₂ у навколишньому середовищі є результатом високотемпературного згорання палива в таких процесах, як опалення, транспорт, промисловість та виробництво електроенергії. До побутових джерел оксидів азоту (NOₓ) належить обладнання, яке спалює паливо, наприклад, печі, каміни, газові плити та духовки.</string>
     <string name="message_parsing_error_title">Не вдалося отримати погодні дані</string>
-    <string name="temperature_apparent">Відчувається як</string>
+    <string name="temperature_apparent">За відчуттями</string>
     <string name="wind_direction_short_N">Пн.</string>
     <string name="wind_strength_3">Слабкий</string>
     <string name="pollen_olive">Олива</string>
@@ -645,5 +645,5 @@
     <string name="dew_point_short">Точка роси</string>
     <string name="ceiling_short">Межа</string>
     <string name="settings_weather_sources_default_source">Джерело за замовчуванням для нових місць</string>
-    <string name="temperature_feels_like_short">Відчувається як</string>
+    <string name="temperature_feels_like_short">За відчуттями</string>
 </resources>
