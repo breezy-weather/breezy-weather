@@ -23,7 +23,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
@@ -31,6 +30,7 @@ import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
+import androidx.core.content.res.ResourcesCompat
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import breezyweather.domain.weather.model.WeatherCode
@@ -157,9 +157,9 @@ object ResourceHelper {
         val iconSize = 72
         val bounds = Rect()
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            setColor(Color.WHITE)
+            color = Color.WHITE
             textSize = iconSize.toFloat()
-            setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            typeface = ResourcesCompat.getFont(context, R.font.asap_condensed_bold)
             getTextBounds(temperatureFormatted, 0, temperatureFormatted.length, bounds)
         }
 
