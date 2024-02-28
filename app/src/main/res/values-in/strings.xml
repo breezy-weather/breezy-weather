@@ -130,7 +130,7 @@
     <string name="weather_api_unauthorized_content">Pada beberapa sumber data cuaca, Anda perlu menyediakan kunci API Anda sendiri. Jika Anda sudah memberikannya, silakan periksa kembali kunci API yang Anda berikan.</string>
     <string name="widget_label_view_style">Gaya lihat</string>
     <string name="widget_label_show_widget_card">Warna latar</string>
-    <string name="widget_label_show_widget_card_alpha">Transparansi</string>
+    <string name="widget_label_show_widget_card_alpha">Opasitas</string>
     <string name="widget_label_hide_subtitle">Sembunyikan subtitle</string>
     <string name="widget_label_subtitle_data">data subtitle</string>
     <string name="widget_label_black_text">Warna teks</string>
@@ -668,4 +668,5 @@
     <string name="settings_weather_source_none">Tidak ada</string>
     <string name="location_search_source">Sumber pencarian lokasi</string>
     <string name="location_search_change_source">Ubah sumber pencarian lokasi</string>
+    <string name="settings_weather_sources_default_source">Sumber bawaan untuk aplikasi baru</string>
 </resources>
