@@ -1,8 +1,8 @@
 # Radar
 
-Breezy Weather does not offer radar feature for many various reasons.
+Breezy Weather offers no radar feature because there is no free radar API we can use that can compete with the other free websites listed below, and we don't intend to become a paid app, so it's best to just add to your homescreen a bookmark to one of the free websites below, that will be more feature-complete. Alternatively, if you are looking for a paid open source app, consider subscribing to OsmAnd Pro (also mentioned below).
 
-Here are some alternative suggestions from the community (feel free to submit a pull request to complete it).
+Below is a list of suggested alternatives (you can submit a pull request to add more).
 
 
 ## Open source apps and Websites
