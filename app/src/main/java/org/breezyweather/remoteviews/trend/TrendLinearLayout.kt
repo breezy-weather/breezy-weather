@@ -128,14 +128,23 @@ class TrendLinearLayout @JvmOverloads constructor(
         )
     }
 
-    // control.
     fun setColor(lightTheme: Boolean) {
         if (lightTheme) {
-            mLineColor = ColorUtils.setAlphaComponent(Color.BLACK, (255 * 0.05).toInt())
-            mTextColor = ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+            mLineColor = ColorUtils.setAlphaComponent(Color.BLACK, (255 * 0.075).toInt())
+            mTextColor = ColorUtils.setAlphaComponent(
+                ContextCompat.getColor(
+                    context,
+                    R.color.colorTextDark2nd
+                ), (255 * 0.65).toInt()
+            )
         } else {
-            mLineColor = ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.1).toInt())
-            mTextColor = ContextCompat.getColor(context, R.color.colorTextGrey)
+            mLineColor = ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.15).toInt())
+            mTextColor = ColorUtils.setAlphaComponent(
+                ContextCompat.getColor(
+                    context,
+                    R.color.colorTextLight2nd
+                ), (255 * 0.65).toInt()
+            )
         }
     }
 

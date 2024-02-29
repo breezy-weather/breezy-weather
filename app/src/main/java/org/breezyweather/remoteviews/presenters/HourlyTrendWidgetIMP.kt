@@ -186,9 +186,24 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 )
                 widgetItemView.trendItemView.setShadowColors(colors[1], colors[2], lightTheme)
                 widgetItemView.trendItemView.setTextColors(
-                    ContextCompat.getColor(context, if (lightTheme) R.color.colorTextDark else R.color.colorTextLight),
-                    ContextCompat.getColor(context, if (lightTheme) R.color.colorTextDark2nd else R.color.colorTextLight2nd),
-                    ContextCompat.getColor(context, if (lightTheme) R.color.colorTextGrey2nd else R.color.colorTextGrey)
+                    ContextCompat.getColor(
+                        context,
+                        if (lightTheme) R.color.colorTextDark else R.color.colorTextLight
+                    ),
+                    ColorUtils.setAlphaComponent(
+                        ContextCompat.getColor(
+                            context,
+                            if (lightTheme) R.color.colorTextDark else R.color.colorTextLight
+                        ),
+                        (255 * 0.6).toInt()
+                    ),
+                    ColorUtils.setAlphaComponent(
+                        ContextCompat.getColor(
+                            context,
+                            if (lightTheme) R.color.colorTextDark2nd else R.color.colorTextLight2nd
+                        ),
+                        (255 * 0.6).toInt()
+                    )
                 )
                 widgetItemView.trendItemView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
                 widgetItemView.setBottomIconDrawable(null)
