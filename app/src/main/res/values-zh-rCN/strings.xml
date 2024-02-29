@@ -147,7 +147,7 @@
     <string name="weather_api_unauthorized_content">对于某些天气数据源，您需要提供自己的 API 密钥。如果您已经提供，请再次检查您提供的 API 密钥。</string>
     <string name="widget_label_view_style">界面风格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
-    <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
+    <string name="widget_label_show_widget_card_alpha">不透明度</string>
     <string name="widget_label_hide_subtitle">隐藏副标题</string>
     <string name="widget_label_subtitle_data">副标题数据</string>
     <string name="widget_label_black_text">暗色字体</string>
@@ -656,4 +656,5 @@
     <string name="visibility_short">能见度</string>
     <string name="pressure_short">气压</string>
     <string name="comma_separator">、</string>
+    <string name="settings_weather_sources_default_source">新位置的默认源</string>
 </resources>
