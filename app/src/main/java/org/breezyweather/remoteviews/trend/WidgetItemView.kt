@@ -24,6 +24,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
@@ -174,14 +175,19 @@ class WidgetItemView @JvmOverloads constructor(
         }
     }
 
-    // control.
     fun setColor(daytime: Boolean) {
         if (daytime) {
-            mContentColor = ContextCompat.getColor(context, R.color.colorTextDark2nd)
-            mSubtitleColor = ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+            mContentColor = ContextCompat.getColor(context, R.color.colorTextDark)
+            mSubtitleColor = ColorUtils.setAlphaComponent(
+                ContextCompat.getColor(context, R.color.colorTextDark),
+                (255 * 0.7).toInt()
+            )
         } else {
-            mContentColor = ContextCompat.getColor(context, R.color.colorTextLight2nd)
-            mSubtitleColor = ContextCompat.getColor(context, R.color.colorTextGrey)
+            mContentColor = ContextCompat.getColor(context, R.color.colorTextLight)
+            mSubtitleColor = ColorUtils.setAlphaComponent(
+                ContextCompat.getColor(context, R.color.colorTextLight),
+                (255 * 0.7).toInt()
+            )
         }
     }
 
