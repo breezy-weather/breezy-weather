@@ -16,33 +16,27 @@
 package com.google.maps.android.data.geojson;
 
 import com.google.maps.android.model.LatLng;
-import com.google.maps.android.data.Point;
+import com.google.maps.android.data.LineString;
+
+import java.util.List;
 
 /**
- * A GeoJsonPoint geometry contains a single {@link com.google.maps.android.model.LatLng}.
+ * A GeoJsonLineString geometry represents a number of connected {@link
+ * LatLng}s.
  */
-public class GeoJsonPoint extends Point {
-    private final Double mAltitude;
+public class GeoJsonLineString extends LineString {
+    private final List<Double> mAltitudes;
 
     /**
-     * Creates a new GeoJsonPoint
+     * Creates a new GeoJsonLineString object
      *
-     * @param coordinates coordinates of GeoJsonPoint to store
+     * @param coordinates array of coordinates
+     * @param altitudes   array of altitudes
      */
-    public GeoJsonPoint(LatLng coordinates) {
-        this(coordinates, null);
-    }
-
-    /**
-     * Creates a new GeoJsonPoint
-     *
-     * @param coordinates coordinates of the KmlPoint
-     * @param altitude    altitude of the KmlPoint
-     */
-    public GeoJsonPoint(LatLng coordinates, Double altitude) {
+    public GeoJsonLineString(List<LatLng> coordinates, List<Double> altitudes) {
         super(coordinates);
 
-        this.mAltitude = altitude;
+        this.mAltitudes = altitudes;
     }
 
     /**
@@ -56,20 +50,12 @@ public class GeoJsonPoint extends Point {
     }
 
     /**
-     * Gets the coordinates of the GeoJsonPoint
+     * Gets the coordinates of the GeoJsonLineString
      *
-     * @return coordinates of the GeoJsonPoint
+     * @return list of coordinates of the GeoJsonLineString
      */
-    public LatLng getCoordinates() {
+    public List<LatLng> getCoordinates() {
         return getGeometryObject();
     }
 
-    /**
-     * Gets the altitude of the GeoJsonPoint
-     *
-     * @return altitude of the GeoJsonPoint
-     */
-    public Double getAltitude() {
-        return mAltitude;
-    }
 }

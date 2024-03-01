@@ -16,6 +16,6 @@ class LatLng(
     }
 
     override fun toString(): String {
-        return "(lat: $latitude, lon: $longitude)"
+        return "LatLng: [latitude=$latitude, longitude=$longitude]"
     }
 }

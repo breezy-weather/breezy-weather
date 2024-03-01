@@ -16,6 +16,7 @@
 
 package com.google.maps.android.data;
 
+import com.google.maps.android.data.geojson.GeoJsonLineString;
 import com.google.maps.android.model.LatLng;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import androidx.annotation.NonNull;
 /**
  * An abstraction that shares the common properties of
  * {@link com.google.maps.android.data.kml.KmlLineString KmlLineString} and
- * {@link com.google.maps.android.data.geojson.GeoJsonLineString GeoJsonLineString}
+ * {@link GeoJsonLineString GeoJsonLineString}
  */
 public class LineString implements Geometry<List<LatLng>> {
 
@@ -66,10 +67,10 @@ public class LineString implements Geometry<List<LatLng>> {
     @NonNull
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(GEOMETRY_TYPE).append("{");
-        sb.append("\n coordinates=").append(mCoordinates);
-        sb.append("\n}\n");
-        return sb.toString();
+        String sb = GEOMETRY_TYPE + "{" +
+                "\n coordinates=" + mCoordinates +
+                "\n}\n";
+        return sb;
     }
 
 }

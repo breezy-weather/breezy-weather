@@ -21,18 +21,22 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
+import com.google.maps.android.data.geojson.GeoJsonMultiLineString;
+import com.google.maps.android.data.geojson.GeoJsonMultiPoint;
+import com.google.maps.android.data.geojson.GeoJsonMultiPolygon;
+
 /**
  * An abstraction that shares the common properties of
  * {@link com.google.maps.android.data.kml.KmlMultiGeometry KmlMultiGeometry}
- * and {@link com.google.maps.android.data.geojson.GeoJsonMultiLineString GeoJsonMultiLineString},
- * {@link com.google.maps.android.data.geojson.GeoJsonMultiPoint GeoJsonMultiPoint} and
- * {@link com.google.maps.android.data.geojson.GeoJsonMultiPolygon GeoJsonMultiPolygon}
+ * and {@link GeoJsonMultiLineString GeoJsonMultiLineString},
+ * {@link GeoJsonMultiPoint GeoJsonMultiPoint} and
+ * {@link GeoJsonMultiPolygon GeoJsonMultiPolygon}
  */
 public class MultiGeometry implements Geometry {
 
     private String geometryType = "MultiGeometry";
 
-    private List<Geometry> mGeometries;
+    private final List<Geometry> mGeometries;
 
     /**
      * Creates a new MultiGeometry object
@@ -94,9 +98,9 @@ public class MultiGeometry implements Geometry {
             typeString = "Polygons=";
         }
 
-        StringBuilder sb = new StringBuilder(getGeometryType()).append("{");
-        sb.append("\n " + typeString).append(getGeometryObject());
-        sb.append("\n}\n");
-        return sb.toString();
+        String sb = getGeometryType() + "{" +
+                "\n " + typeString + getGeometryObject() +
+                "\n}\n";
+        return sb;
     }
 }

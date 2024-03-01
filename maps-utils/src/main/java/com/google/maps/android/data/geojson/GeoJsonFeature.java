@@ -96,26 +96,15 @@ public class GeoJsonFeature extends Feature implements Observer {
         notifyObservers();
     }
 
-    /**
-     * Gets the array containing the coordinates of the bounding box for the feature. If
-     * the feature did not have a bounding box then null will be returned.
-     *
-     * @return LatLngBounds containing bounding box of the feature, null if no bounding box
-     */
-    public LatLngBounds getBoundingBox() {
-        return mBoundingBox;
-    }
-
     @NonNull
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Feature{");
-        sb.append("\n bounding box=").append(mBoundingBox);
-        sb.append(",\n geometry=").append(getGeometry());
-        sb.append(",\n id=").append(mId);
-        sb.append(",\n properties=").append(getProperties());
-        sb.append("\n}\n");
-        return sb.toString();
+        String sb = "Feature{" + "\n bounding box=" + mBoundingBox +
+                ",\n geometry=" + getGeometry() +
+                ",\n id=" + mId +
+                ",\n properties=" + getProperties() +
+                "\n}\n";
+        return sb;
     }
 
     /**

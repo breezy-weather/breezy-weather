@@ -15,10 +15,8 @@
  */
 package com.google.maps.android.data.geojson;
 
-import com.google.maps.android.data.Geometry;
 import com.google.maps.android.data.MultiGeometry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,20 +43,4 @@ public class GeoJsonMultiLineString extends MultiGeometry {
         return getGeometryType();
     }
 
-    /**
-     * Gets a list of GeoJsonLineStrings
-     *
-     * @return list of GeoJsonLineStrings
-     */
-    public List<GeoJsonLineString> getLineStrings() {
-        // Convert list of Geometry types to list of GeoJsonLineString types
-        List<Geometry> geometryList = getGeometryObject();
-        ArrayList<GeoJsonLineString> geoJsonLineStrings = new ArrayList<GeoJsonLineString>();
-        for (Geometry geometry : geometryList) {
-            GeoJsonLineString lineString = (GeoJsonLineString) geometry;
-            geoJsonLineStrings.add(lineString);
-        }
-
-        return geoJsonLineStrings;
-    }
 }

@@ -20,10 +20,6 @@ import com.google.maps.android.model.LatLng;
 
 import static com.google.maps.android.MathUtil.mercator;
 import static com.google.maps.android.MathUtil.wrap;
-import static java.lang.Math.PI;
-import static java.lang.Math.sin;
-import static java.lang.Math.tan;
-import static java.lang.Math.toRadians;
 
 import java.util.List;
 
@@ -37,7 +33,7 @@ public class PolyUtil {
      * See http://williams.best.vwh.net/avform.htm .
      */
     private static double tanLatGC(double lat1, double lat2, double lng2, double lng3) {
-        return (tan(lat1) * sin(lng2 - lng3) + tan(lat2) * sin(lng3)) / sin(lng2);
+        return (Math.tan(lat1) * Math.sin(lng2 - lng3) + Math.tan(lat2) * Math.sin(lng3)) / Math.sin(lng2);
     }
 
     /**
@@ -59,14 +55,14 @@ public class PolyUtil {
             return false;
         }
         // Point is South Pole.
-        if (lat3 <= -PI / 2) {
+        if (lat3 <= -Math.PI / 2) {
             return false;
         }
         // Any segment end is a pole.
-        if (lat1 <= -PI / 2 || lat2 <= -PI / 2 || lat1 >= PI / 2 || lat2 >= PI / 2) {
+        if (lat1 <= -Math.PI / 2 || lat2 <= -Math.PI / 2 || lat1 >= Math.PI / 2 || lat2 >= Math.PI / 2) {
             return false;
         }
-        if (lng2 <= -PI) {
+        if (lng2 <= -Math.PI) {
             return false;
         }
         double linearLat = (lat1 * (lng2 - lng3) + lat2 * lng3) / lng2;
@@ -79,13 +75,13 @@ public class PolyUtil {
             return true;
         }
         // North Pole.
-        if (lat3 >= PI / 2) {
+        if (lat3 >= Math.PI / 2) {
             return true;
         }
         // Compare lat3 with latitude on the GC/Rhumb segment corresponding to lng3.
         // Compare through a strictly-increasing function (tan() or mercator()) as convenient.
         return geodesic ?
-                tan(lat3) >= tanLatGC(lat1, lat2, lng2, lng3) :
+                Math.tan(lat3) >= tanLatGC(lat1, lat2, lng2, lng3) :
                 mercator(lat3) >= mercatorLatRhumb(lat1, lat2, lng2, lng3);
     }
 
@@ -106,22 +102,22 @@ public class PolyUtil {
         if (size == 0) {
             return false;
         }
-        double lat3 = toRadians(latitude);
-        double lng3 = toRadians(longitude);
+        double lat3 = Math.toRadians(latitude);
+        double lng3 = Math.toRadians(longitude);
         LatLng prev = polygon.get(size - 1);
-        double lat1 = toRadians(prev.getLatitude());
-        double lng1 = toRadians(prev.getLongitude());
+        double lat1 = Math.toRadians(prev.getLatitude());
+        double lng1 = Math.toRadians(prev.getLongitude());
         int nIntersect = 0;
         for (LatLng point2 : polygon) {
-            double dLng3 = wrap(lng3 - lng1, -PI, PI);
+            double dLng3 = wrap(lng3 - lng1, -Math.PI, Math.PI);
             // Special case: point equal to vertex is inside.
             if (lat3 == lat1 && dLng3 == 0) {
                 return true;
             }
-            double lat2 = toRadians(point2.getLatitude());
-            double lng2 = toRadians(point2.getLongitude());
+            double lat2 = Math.toRadians(point2.getLatitude());
+            double lng2 = Math.toRadians(point2.getLongitude());
             // Offset longitudes by -lng1.
-            if (intersects(lat1, lat2, wrap(lng2 - lng1, -PI, PI), lat3, dLng3, geodesic)) {
+            if (intersects(lat1, lat2, wrap(lng2 - lng1, -Math.PI, Math.PI), lat3, dLng3, geodesic)) {
                 ++nIntersect;
             }
             lat1 = lat2;

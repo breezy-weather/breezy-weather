@@ -16,6 +16,8 @@
 
 package com.google.maps.android.data;
 
+import com.google.maps.android.data.geojson.GeoJsonFeature;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -23,7 +25,7 @@ import java.util.Observable;
 /**
  * An abstraction that shares the common properties of
  * {@link com.google.maps.android.data.kml.KmlPlacemark KmlPlacemark} and
- * {@link com.google.maps.android.data.geojson.GeoJsonFeature GeoJsonFeature}
+ * {@link GeoJsonFeature GeoJsonFeature}
  */
 public class Feature extends Observable {
 

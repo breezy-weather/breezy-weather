@@ -17,7 +17,7 @@ package com.google.maps.android.data.geojson;
 
 /**
  * Class used to apply styles for the
- * {@link com.google.maps.android.data.geojson.GeoJsonFeature GeoJsonFeature} objects
+ * {@link GeoJsonFeature GeoJsonFeature} objects
  */
 interface GeoJsonStyle {
 

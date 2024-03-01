@@ -16,13 +16,14 @@
 
 package com.google.maps.android.data;
 
+import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.google.maps.android.model.LatLng;
 
 import java.util.List;
 
 /**
  * An interface containing the common properties of
- * {@link com.google.maps.android.data.geojson.GeoJsonPolygon GeoJsonPolygon} and
+ * {@link GeoJsonPolygon GeoJsonPolygon} and
  * {@link com.google.maps.android.data.kml.KmlPolygon KmlPolygon}
  *
  * @param <T> the type of Polygon - GeoJsonPolygon or KmlPolygon

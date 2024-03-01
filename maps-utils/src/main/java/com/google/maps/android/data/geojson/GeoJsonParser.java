@@ -144,7 +144,7 @@ public class GeoJsonParser {
                 properties = parseProperties(geoJsonFeature.getJSONObject("properties"));
             }
         } catch (JSONException e) {
-            Log.w(LOG_TAG, "Feature could not be successfully parsed " + geoJsonFeature.toString());
+            Log.w(LOG_TAG, "Feature could not be successfully parsed " + geoJsonFeature);
             return null;
         }
         return new GeoJsonFeature(geometry, id, properties, boundingBox);
@@ -508,18 +508,6 @@ public class GeoJsonParser {
      */
     public ArrayList<GeoJsonFeature> getFeatures() {
         return mGeoJsonFeatures;
-    }
-
-    /**
-     * Gets the array containing the coordinates of the bounding box for the FeatureCollection. If
-     * the FeatureCollection did not have a bounding box or if the GeoJSON file did not contain a
-     * FeatureCollection then null will be returned.
-     *
-     * @return LatLngBounds object containing bounding box of FeatureCollection, null if no bounding
-     * box
-     */
-    public LatLngBounds getBoundingBox() {
-        return mBoundingBox;
     }
 
 }

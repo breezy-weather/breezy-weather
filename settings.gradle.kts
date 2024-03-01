@@ -33,3 +33,4 @@ rootProject.name = "BreezyWeather"
 include(":app")
 include(":data")
 include(":domain")
+include(":maps-utils")

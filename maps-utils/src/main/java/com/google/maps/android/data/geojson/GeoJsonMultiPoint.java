@@ -15,10 +15,8 @@
  */
 package com.google.maps.android.data.geojson;
 
-import com.google.maps.android.data.Geometry;
 import com.google.maps.android.data.MultiGeometry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,19 +43,4 @@ public class GeoJsonMultiPoint extends MultiGeometry {
         return getGeometryType();
     }
 
-    /**
-     * Gets a list of GeoJsonPoints
-     *
-     * @return list of GeoJsonPoints
-     */
-    public List<GeoJsonPoint> getPoints() {
-        //convert list of Geometry types to list of GeoJsonPoint types
-        List<Geometry> geometryList = getGeometryObject();
-        ArrayList<GeoJsonPoint> geoJsonPoints = new ArrayList<GeoJsonPoint>();
-        for (Geometry geometry : geometryList) {
-            GeoJsonPoint point = (GeoJsonPoint) geometry;
-            geoJsonPoints.add(point);
-        }
-        return geoJsonPoints;
-    }
 }

@@ -16,8 +16,6 @@
 
 package com.google.maps.android;
 
-import static java.lang.Math.*;
-
 /**
  * Utility functions that are used my both PolyUtil and SphericalUtil.
  */
@@ -49,7 +47,7 @@ class MathUtil {
      * See http://en.wikipedia.org/wiki/Mercator_projection .
      */
     static double mercator(double lat) {
-        return log(tan(lat * 0.5 + PI / 4));
+        return Math.log(Math.tan(lat * 0.5 + Math.PI / 4));
     }
 
 }

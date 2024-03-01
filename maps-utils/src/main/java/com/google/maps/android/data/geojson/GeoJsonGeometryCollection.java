@@ -44,12 +44,4 @@ public class GeoJsonGeometryCollection extends MultiGeometry {
         return getGeometryType();
     }
 
-    /**
-     * Gets the stored Geometry objects
-     *
-     * @return stored Geometry objects
-     */
-    public List<Geometry> getGeometries() {
-        return getGeometryObject();
-    }
 }

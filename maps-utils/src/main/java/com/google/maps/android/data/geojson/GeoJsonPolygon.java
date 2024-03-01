@@ -24,7 +24,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 /**
- * A GeoJsonPolygon geometry contains an array of arrays of {@link com.google.maps.android.model.LatLng}s.
+ * A GeoJsonPolygon geometry contains an array of arrays of {@link LatLng}s.
  * The first array is the polygon exterior boundary. Subsequent arrays are holes.
  */
 
@@ -117,9 +117,9 @@ public class GeoJsonPolygon implements DataPolygon {
     @NonNull
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(GEOMETRY_TYPE).append("{");
-        sb.append("\n coordinates=").append(mCoordinates);
-        sb.append("\n}\n");
-        return sb.toString();
+        String sb = GEOMETRY_TYPE + "{" +
+                "\n coordinates=" + mCoordinates +
+                "\n}\n";
+        return sb;
     }
 }

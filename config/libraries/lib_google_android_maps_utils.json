@@ -1,0 +1,15 @@
+{
+  "uniqueId": "com.google.android.maps:custom",
+  "developers": [
+    {
+    "name": "Google Inc."
+    }
+  ],
+  "artifactVersion": "",
+  "description": "",
+  "name": "Maps SDK for Android Utility Library",
+  "website": "https://github.com/googlemaps/android-maps-utils",
+  "licenses": [
+    "Apache-2.0"
+  ]
+}

@@ -155,6 +155,7 @@ aboutLibraries {
 dependencies {
     implementation(projects.data)
     implementation(projects.domain)
+    implementation(projects.mapsUtils)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
