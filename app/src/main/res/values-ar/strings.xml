@@ -652,4 +652,5 @@
     <string name="pressure_short">الضغط</string>
     <string name="uv_index_short">مؤشر الأشعة فوق البنفسجية</string>
     <string name="cloud_cover_short">الغطاء</string>
+    <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
 </resources>
