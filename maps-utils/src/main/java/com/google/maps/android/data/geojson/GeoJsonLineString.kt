@@ -13,49 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.maps.android.data.geojson;
+package com.google.maps.android.data.geojson
 
-import com.google.maps.android.model.LatLng;
-import com.google.maps.android.data.LineString;
-
-import java.util.List;
+import com.google.maps.android.data.LineString
+import com.google.maps.android.model.LatLng
 
 /**
- * A GeoJsonLineString geometry represents a number of connected {@link
- * LatLng}s.
+ * A GeoJsonLineString geometry represents a number of connected [ ]s.
+ * @param coordinates array of coordinates
  */
-public class GeoJsonLineString extends LineString {
-    private final List<Double> mAltitudes;
-
-    /**
-     * Creates a new GeoJsonLineString object
-     *
-     * @param coordinates array of coordinates
-     * @param altitudes   array of altitudes
-     */
-    public GeoJsonLineString(List<LatLng> coordinates, List<Double> altitudes) {
-        super(coordinates);
-
-        this.mAltitudes = altitudes;
-    }
-
+class GeoJsonLineString(coordinates: List<LatLng>) : LineString(coordinates) {
     /**
      * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
      * specification.
      *
      * @return type of geometry
      */
-    public String getType() {
-        return getGeometryType();
-    }
+    val type: String
+        get() = geometryType
 
     /**
      * Gets the coordinates of the GeoJsonLineString
      *
      * @return list of coordinates of the GeoJsonLineString
      */
-    public List<LatLng> getCoordinates() {
-        return getGeometryObject();
-    }
-
+    val coordinates: List<LatLng>
+        get() = geometryObject
 }

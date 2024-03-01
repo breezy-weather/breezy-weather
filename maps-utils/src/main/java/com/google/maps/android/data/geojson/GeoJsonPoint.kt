@@ -13,34 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.maps.android.data.geojson;
+package com.google.maps.android.data.geojson
 
-import com.google.maps.android.data.MultiGeometry;
-
-import java.util.List;
+import com.google.maps.android.data.Point
+import com.google.maps.android.model.LatLng
 
 /**
- * A GeoJsonMultiPoint geometry contains a number of {@link GeoJsonPoint}s.
+ * A GeoJsonPoint geometry contains a single [LatLng].
+ * @param coordinates coordinates of the KmlPoint
  */
-public class GeoJsonMultiPoint extends MultiGeometry {
-    /**
-     * Creates a GeoJsonMultiPoint object
-     *
-     * @param geoJsonPoints list of GeoJsonPoints to store
-     */
-    public GeoJsonMultiPoint(List<GeoJsonPoint> geoJsonPoints) {
-        super(geoJsonPoints);
-        setGeometryType("MultiPoint");
-    }
-
+class GeoJsonPoint(val coordinates: LatLng) : Point(coordinates) {
     /**
      * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
      * specification.
      *
      * @return type of geometry
      */
-    public String getType() {
-        return getGeometryType();
-    }
+    val type: String
+        get() = geometryType
 
 }

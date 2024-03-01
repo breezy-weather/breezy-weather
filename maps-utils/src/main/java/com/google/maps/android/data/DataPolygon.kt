@@ -13,35 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.google.maps.android.data
 
-package com.google.maps.android.data;
-
-import com.google.maps.android.data.geojson.GeoJsonPolygon;
-import com.google.maps.android.model.LatLng;
-
-import java.util.List;
+import com.google.maps.android.data.geojson.GeoJsonPolygon
+import com.google.maps.android.model.LatLng
 
 /**
  * An interface containing the common properties of
- * {@link GeoJsonPolygon GeoJsonPolygon} and
- * {@link com.google.maps.android.data.kml.KmlPolygon KmlPolygon}
+ * [GeoJsonPolygon] and
+ * [KmlPolygon][com.google.maps.android.data.kml.KmlPolygon]
  *
  * @param <T> the type of Polygon - GeoJsonPolygon or KmlPolygon
- */
-public interface DataPolygon<T> extends Geometry {
-
+</T> */
+interface DataPolygon<T> : Geometry<Any?> {
     /**
      * Gets an array of outer boundary coordinates
      *
      * @return array of outer boundary coordinates
      */
-    List<LatLng> getOuterBoundaryCoordinates();
+    val outerBoundaryCoordinates: List<LatLng?>?
 
     /**
      * Gets an array of arrays of inner boundary coordinates
      *
      * @return array of arrays of inner boundary coordinates
      */
-    List<List<LatLng>> getInnerBoundaryCoordinates();
-
+    val innerBoundaryCoordinates: List<List<LatLng?>?>
 }

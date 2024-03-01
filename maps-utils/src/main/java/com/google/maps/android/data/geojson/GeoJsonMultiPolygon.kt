@@ -13,27 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.maps.android.data.geojson;
+package com.google.maps.android.data.geojson
 
-import com.google.maps.android.data.Geometry;
-import com.google.maps.android.data.MultiGeometry;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.maps.android.data.MultiGeometry
 
 /**
- * A GeoJsonMultiPolygon geometry contains a number of {@link GeoJsonPolygon}s.
+ * A GeoJsonMultiPolygon geometry contains a number of [GeoJsonPolygon]s.
  */
-public class GeoJsonMultiPolygon extends MultiGeometry {
-
+class GeoJsonMultiPolygon(
+    geoJsonPolygons: List<GeoJsonPolygon>
+) : MultiGeometry(geoJsonPolygons) {
     /**
      * Creates a new GeoJsonMultiPolygon
      *
      * @param geoJsonPolygons list of GeoJsonPolygons to store
      */
-    public GeoJsonMultiPolygon(List<GeoJsonPolygon> geoJsonPolygons) {
-        super(geoJsonPolygons);
-        setGeometryType("MultiPolygon");
+    init {
+        geometryType = "MultiPolygon"
     }
 
     /**
@@ -42,23 +38,22 @@ public class GeoJsonMultiPolygon extends MultiGeometry {
      *
      * @return type of geometry
      */
-    public String getType() {
-        return getGeometryType();
-    }
+    val type: String
+        get() = geometryType
 
     /**
      * Gets a list of GeoJsonPolygons
      *
      * @return list of GeoJsonPolygons
      */
-    public List<GeoJsonPolygon> getPolygons() {
-        //convert list of Geometry types to list of GeoJsonPolygon types
-        List<Geometry> geometryList = getGeometryObject();
-        ArrayList<GeoJsonPolygon> geoJsonPolygon = new ArrayList<GeoJsonPolygon>();
-        for (Geometry geometry : geometryList) {
-            GeoJsonPolygon polygon = (GeoJsonPolygon) geometry;
-            geoJsonPolygon.add(polygon);
+    val polygons: List<GeoJsonPolygon>
+        get() {
+            //convert list of Geometry types to list of GeoJsonPolygon types
+            val geometryList = geometryObject
+            val geoJsonPolygon = ArrayList<GeoJsonPolygon>()
+            for (geometry in geometryList as List<GeoJsonPolygon>) {
+                geoJsonPolygon.add(geometry)
+            }
+            return geoJsonPolygon
         }
-        return geoJsonPolygon;
-    }
 }

@@ -92,7 +92,9 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
             location.copy(
                 country = matchingCountries[0].getProperty("NAME_$languageCode")
                     ?: matchingCountries[0].getProperty("NAME")
-                    ?: matchingCountries[0].getProperty("NAME_EN"),
+                    ?: matchingCountries[0].getProperty("NAME_EN")
+                    ?: matchingCountries[0].getProperty("ISO_A2")
+                    ?: "",
                 countryCode = matchingCountries[0].getProperty("ISO_A2")
             )
         )

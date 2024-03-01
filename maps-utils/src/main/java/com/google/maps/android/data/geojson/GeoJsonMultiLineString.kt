@@ -13,34 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.maps.android.data.geojson;
+package com.google.maps.android.data.geojson
 
-import com.google.maps.android.data.MultiGeometry;
-
-import java.util.List;
+import com.google.maps.android.data.MultiGeometry
 
 /**
- * A GeoJsonMultiLineString geometry contains a number of {@link GeoJsonLineString}s.
+ * A GeoJsonMultiLineString geometry contains a number of [GeoJsonLineString]s.
  */
-public class GeoJsonMultiLineString extends MultiGeometry {
+class GeoJsonMultiLineString(
+    geoJsonLineStrings: List<GeoJsonLineString>
+) : MultiGeometry(geoJsonLineStrings) {
     /**
      * Creates a new GeoJsonMultiLineString object
      *
      * @param geoJsonLineStrings list of GeoJsonLineStrings to store
      */
-    public GeoJsonMultiLineString(List<GeoJsonLineString> geoJsonLineStrings) {
-        super(geoJsonLineStrings);
-        setGeometryType("MultiLineString");
+    init {
+        geometryType = "MultiLineString"
     }
 
-    /**
-     * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
-     * specification.
-     *
-     * @return type of geometry
-     */
-    public String getType() {
-        return getGeometryType();
-    }
-
+    val type: String
+        /**
+         * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
+         * specification.
+         *
+         * @return type of geometry
+         */
+        get() = geometryType
 }

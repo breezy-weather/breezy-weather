@@ -13,25 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.maps.android.data.geojson;
+package com.google.maps.android.data.geojson
 
-import com.google.maps.android.data.Geometry;
-import com.google.maps.android.data.MultiGeometry;
-
-import java.util.List;
+import com.google.maps.android.data.Geometry
+import com.google.maps.android.data.MultiGeometry
 
 /**
  * A GeoJsonGeometryCollection geometry contains a number of GeoJson Geometry objects.
  */
-public class GeoJsonGeometryCollection extends MultiGeometry {
+class GeoJsonGeometryCollection(geometries: List<Geometry<*>>) : MultiGeometry(geometries) {
     /**
      * Creates a new GeoJsonGeometryCollection object
      *
      * @param geometries array of Geometry objects to add to the GeoJsonGeometryCollection
      */
-    public GeoJsonGeometryCollection(List<Geometry> geometries) {
-        super(geometries);
-        setGeometryType("GeometryCollection");
+    init {
+        geometryType = "GeometryCollection"
     }
 
     /**
@@ -40,8 +37,6 @@ public class GeoJsonGeometryCollection extends MultiGeometry {
      *
      * @return type of geometry
      */
-    public String getType() {
-        return getGeometryType();
-    }
-
+    val type: String
+        get() = geometryType
 }
