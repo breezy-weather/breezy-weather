@@ -24,14 +24,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.daily.adapter.holder.*
 import org.breezyweather.daily.adapter.model.*
 import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.settings.SettingsManager
+import java.text.NumberFormat
 import java.util.TimeZone
 
 class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, spanCount: Int) :
@@ -298,18 +299,21 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         // precipitation probability.
         val probability = halfDay.precipitationProbability
         if ((probability?.total ?: 0.0) > 0) {
+            val percentUnit = NumberFormat.getPercentInstance(context.currentLocale).apply {
+                maximumFractionDigits = 0
+            }
             list.add(Title(R.drawable.ic_water_percent, context.getString(R.string.precipitation_probability)))
             list.add(
                 Value(
                     context.getString(R.string.precipitation_total),
-                    ProbabilityUnit.PERCENT.getValueText(context, probability!!.total!!.toInt())
+                    percentUnit.format(probability!!.total!!.div(100.0))
                 )
             )
             if ((probability.rain ?: 0.0) > 0) {
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_rain),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.rain!!.toInt())
+                        percentUnit.format(probability.rain!!.div(100.0))
                     )
                 )
             }
@@ -317,7 +321,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_snow),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.snow!!.toInt())
+                        percentUnit.format(probability.snow!!.div(1000))
                     )
                 )
             }
@@ -325,7 +329,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_ice),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.ice!!.toInt())
+                        percentUnit.format(probability.ice!!.div(1000))
                     )
                 )
             }
@@ -333,7 +337,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 list.add(
                     Value(
                         context.getString(R.string.precipitation_thunderstorm),
-                        ProbabilityUnit.PERCENT.getValueText(context, probability.thunderstorm!!.toInt())
+                        percentUnit.format(probability.thunderstorm!!.div(1000))
                     )
                 )
             }

@@ -21,12 +21,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
-import org.breezyweather.common.basic.models.options.unit.CloudCoverUnit
-import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
 import breezyweather.domain.weather.model.Current
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.settings.SettingsManager
+import java.text.NumberFormat
 
 enum class DetailDisplay(
     override val id: String,
@@ -134,9 +134,13 @@ enum class DetailDisplay(
             SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
         }
         "wind" -> if (!current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit) else null
-        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) current.uV!!.getShortUVDescription(context) else null
+        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) {
+            current.uV!!.getShortUVDescription(context)
+        } else null
         "humidity" -> current.relativeHumidity?.let {
-            RelativeHumidityUnit.PERCENT.getValueText(context, it.toInt())
+            NumberFormat.getPercentInstance(context.currentLocale).apply {
+                maximumFractionDigits = 0
+            }.format(it.div(100.0))
         }
         "dew_point" -> current.dewPoint?.let {
             SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
@@ -148,7 +152,9 @@ enum class DetailDisplay(
             SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
-            CloudCoverUnit.PERCENT.getValueText(context, it)
+            NumberFormat.getPercentInstance(context.currentLocale).apply {
+                maximumFractionDigits = 0
+            }.format(it.div(100.0))
         }
         "ceiling" -> current.ceiling?.let {
             SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)

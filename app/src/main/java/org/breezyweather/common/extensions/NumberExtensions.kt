@@ -55,10 +55,10 @@ val Array<Double>.median: Double
     }
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/58a0add4f6bd8a5ab1006755035ff1b102355d4a/presentation-core/src/main/java/tachiyomi/presentation/core/util/PaddingValues.kt
+ * https://github.com/mihonapp/mihon/blob/58a0add4f6bd8a5ab1006755035ff1b102355d4a/presentation-core/src/main/java/tachiyomi/presentation/core/util/PaddingValues.kt
  */
 @Composable
 @ReadOnlyComposable

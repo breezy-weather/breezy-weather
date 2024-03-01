@@ -26,8 +26,8 @@ import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
@@ -39,6 +39,7 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
+import java.text.NumberFormat
 import java.util.Date
 
 object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
@@ -204,8 +205,10 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         } else weather.current?.relativeHumidity?.let {
             (context.getString(R.string.humidity)
                     + " "
-                    + RelativeHumidityUnit.PERCENT.getValueText(context, it.toInt()
-            ))
+                    + NumberFormat.getPercentInstance(context.currentLocale).apply {
+                        maximumFractionDigits = 0
+                    }.format(it.div(100.0))
+            )
         }
     }
 

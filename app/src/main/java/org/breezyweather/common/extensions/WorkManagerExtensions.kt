@@ -24,10 +24,10 @@ import kotlinx.coroutines.delay
 import org.breezyweather.common.utils.helpers.LogHelper
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/859601a46e5d32cd14979177832edaf342615e19/app/src/main/java/eu/kanade/tachiyomi/util/system/WorkManagerExtensions.kt
+ * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/util/system/WorkManagerExtensions.kt
  */
 
 val Context.workManager: WorkManager

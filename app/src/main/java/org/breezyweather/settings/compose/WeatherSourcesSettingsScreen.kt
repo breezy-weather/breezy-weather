@@ -50,7 +50,7 @@ fun WeatherSourcesSettingsScreen(
     listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
         SourceView(
             title = stringResource(id),
-            selectedKey = "auto",
+            selectedKey = SettingsManager.getInstance(context).defaultWeatherSource,
             sourceList = mapOf(
                 "auto" to stringResource(R.string.settings_automatic)
             ) + configuredWorldwideSources.associate { it.id to it.name },

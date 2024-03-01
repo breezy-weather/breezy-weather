@@ -23,10 +23,10 @@ import android.os.Build
 import androidx.core.content.getSystemService
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/d703fb79462574c96c5c429c83d0c3d44de99082/app/src/main/java/eu/kanade/tachiyomi/util/system/NetworkExtensions.kt
+ * https://github.com/mihonapp/mihon/blob/c5e8c9f01fa6b54425675ee3ebdc6f735aee7ba9/app/src/main/java/eu/kanade/tachiyomi/util/system/NetworkExtensions.kt
  */
 val Context.connectivityManager: ConnectivityManager
     get() = getSystemService()!!

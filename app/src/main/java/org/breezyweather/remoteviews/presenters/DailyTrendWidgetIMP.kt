@@ -33,7 +33,7 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -48,6 +48,7 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.weatherView.WeatherViewController
+import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
 
@@ -217,8 +218,12 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     },
                     highestTemperature,
                     lowestTemperature,
-                    if (p < 5) null else p,
-                    if (p < 5) null else ProbabilityUnit.PERCENT.getValueText(context, p.toInt()),
+                    if (p >= 5) p else null,
+                    if (p >= 5) {
+                        NumberFormat.getPercentInstance(context.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(p.div(100.0))
+                    } else null,
                     100f,
                     0f
                 )

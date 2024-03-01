@@ -19,8 +19,8 @@ package org.breezyweather.common.utils
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import cancelNotification
-import notify
+import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.receiver.NotificationReceiver
@@ -32,10 +32,10 @@ import org.breezyweather.common.extensions.withUIContext
 import org.breezyweather.remoteviews.Notifications
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/75460e01c80a75d604ae4323c14ffe73252efa9e/app/src/main/java/eu/kanade/tachiyomi/util/CrashLogUtil.kt
+ * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/util/CrashLogUtil.kt
  */
 
 class CrashLogUtils(private val context: Context) {
@@ -56,13 +56,11 @@ class CrashLogUtils(private val context: Context) {
     fun getDebugInfo(): String {
         return """
             App version: ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}, ${BuildConfig.VERSION_CODE}
-            Android version: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})
-            Android build ID: ${Build.DISPLAY}
+            Android version: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT}); build ${Build.DISPLAY}
             Device brand: ${Build.BRAND}
             Device manufacturer: ${Build.MANUFACTURER}
-            Device name: ${Build.DEVICE}
+            Device name: ${Build.DEVICE} (${Build.PRODUCT})
             Device model: ${Build.MODEL}
-            Device product name: ${Build.PRODUCT}
         """.trimIndent()
     }
 

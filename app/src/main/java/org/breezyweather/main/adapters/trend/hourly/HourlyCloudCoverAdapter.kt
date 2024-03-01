@@ -18,19 +18,25 @@ package org.breezyweather.main.adapters.trend.hourly
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
+import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
+import org.breezyweather.domain.weather.model.getCloudCoverColor
+import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.weatherView.WeatherViewController
+import java.text.NumberFormat
 
 /**
  * Hourly Cloud Cover adapter.
@@ -55,18 +61,31 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
 
             hourly.cloudCover?.let { cloudCover ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(ProbabilityUnit.PERCENT.getValueVoice(activity, cloudCover))
+                    .append(
+                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(cloudCover.div(100.0))
+                    )
             }
             mPolylineAndHistogramView.setData(
-                null, null,
-                null, null,
-                null, null,
-                hourly.cloudCover?.toFloat() ?: 0f, hourly.cloudCover?.let { ProbabilityUnit.PERCENT.getValueText(activity, it) },
-                100f, 0f
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                hourly.cloudCover?.toFloat() ?: 0f,
+                hourly.cloudCover?.let {
+                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                        maximumFractionDigits = 0
+                    }.format(it.div(100.0))
+                },
+                100f,
+                0f
             )
             mPolylineAndHistogramView.setLineColors(
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline),
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline),
+                hourly.getCloudCoverColor(activity),
+                hourly.getCloudCoverColor(activity),
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
 
@@ -120,16 +139,20 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                75f,
-                ProbabilityUnit.PERCENT.getValueText(activity, 75),
+                CLOUD_COVER_PARTLY.toFloat(),
+                NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(CLOUD_COVER_PARTLY.div(100.0)),
                 activity.getString(R.string.weather_kind_partly_cloudy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                37.5f,
-                ProbabilityUnit.PERCENT.getValueText(activity, 38),
+                CLOUD_COVER_CLEAR.toFloat(),
+                NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                    maximumFractionDigits = 1
+                }.format(CLOUD_COVER_CLEAR.div(100.0)),
                 activity.getString(R.string.weather_kind_clear),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

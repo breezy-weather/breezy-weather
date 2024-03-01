@@ -23,8 +23,8 @@ import android.view.View
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
-import notificationBuilder
-import notify
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor

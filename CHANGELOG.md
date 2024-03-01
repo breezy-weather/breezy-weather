@@ -3,9 +3,10 @@
 **Improvements and fixes**
 - You can now choose to always use a specific weather source for new locations instead of Breezy Weather recommendations (Settings > Weather sources)
 - Bring back “auto” mode for Live Wallpaper
+- Add colors to cloud cover hourly chart
 - [ECCC] Fix missing observation text
 - Fix mismatching text with current weather condition in some very rare cases
-- Use a different font for temperature icon to improve readability
+- Use a different font for temperature icon in status bar to improve readability (@min7-i)
 
 
 # Version 5.0.2-alpha (2024-02-27)

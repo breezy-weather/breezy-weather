@@ -30,10 +30,10 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_MIN
 import androidx.core.content.ContextCompat
-import buildNotificationChannel
-import buildNotificationChannelGroup
-import notificationBuilder
-import notify
+import org.breezyweather.common.extensions.buildNotificationChannel
+import org.breezyweather.common.extensions.buildNotificationChannelGroup
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert

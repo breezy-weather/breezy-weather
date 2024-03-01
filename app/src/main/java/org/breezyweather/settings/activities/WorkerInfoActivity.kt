@@ -60,10 +60,10 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
 /**
- * Partially taken from Tachiyomi
+ * Partially taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/6263a527772f4cce8b3b164b87d7b526773ad7ad/app/src/main/java/eu/kanade/presentation/more/settings/screen/debug/WorkerInfoScreen.kt
+ * https://github.com/mihonapp/mihon/blob/5aec8f8018236a38106483da08f9cbc28261ac9b/app/src/main/java/eu/kanade/presentation/more/settings/screen/debug/WorkerInfoScreen.kt
  */
 class WorkerInfoActivity : GeoActivity() {
     private lateinit var viewModel: WorkerInfoViewModel
@@ -153,7 +153,9 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
     private val ioCoroutineScope = MainScope()
 
     val finished = workManager
-        .getWorkInfosFlow(WorkQuery.fromStates(WorkInfo.State.SUCCEEDED, WorkInfo.State.FAILED, WorkInfo.State.CANCELLED))
+        .getWorkInfosFlow(
+            WorkQuery.fromStates(WorkInfo.State.SUCCEEDED, WorkInfo.State.FAILED, WorkInfo.State.CANCELLED)
+        )
         .map(::constructString)
         .stateIn(ioCoroutineScope, SharingStarted.WhileSubscribed(), "")
 
@@ -180,7 +182,8 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
                 appendLine("State: ${workInfo.state}")
                 if (workInfo.state == WorkInfo.State.ENQUEUED) {
                     appendLine(
-                        "Next scheduled run: ${workInfo.nextScheduleTimeMillis.toDate().getFormattedDate(pattern = "yyyy-MM-dd HH:mm")}",
+                        "Next scheduled run: ${workInfo.nextScheduleTimeMillis.toDate()
+                            .getFormattedDate(pattern = "yyyy-MM-dd HH:mm")}",
                     )
                     appendLine("Attempt #${workInfo.runAttemptCount + 1}")
                 }

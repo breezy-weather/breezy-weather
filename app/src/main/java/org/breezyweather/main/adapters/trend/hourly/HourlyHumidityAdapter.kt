@@ -24,8 +24,8 @@ import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.domain.location.model.isDaylight
@@ -34,6 +34,7 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
+import java.text.NumberFormat
 import kotlin.math.max
 
 /**
@@ -84,7 +85,9 @@ class HourlyHumidityAdapter(
                 mLowestDewPoint,
                 hourly.relativeHumidity?.toFloat(),
                 hourly.relativeHumidity?.let {
-                    ProbabilityUnit.PERCENT.getValueText(activity, it.toInt())
+                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                        maximumFractionDigits = 0
+                    }.format(it.div(100.0))
                 },
                 100f,
                 0f

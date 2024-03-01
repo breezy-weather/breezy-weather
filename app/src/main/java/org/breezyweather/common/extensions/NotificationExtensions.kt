@@ -14,6 +14,8 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
+package org.breezyweather.common.extensions
+
 import android.Manifest
 import android.app.Notification
 import android.app.NotificationManager
@@ -27,21 +29,31 @@ import androidx.core.content.PermissionChecker
 import androidx.core.content.getSystemService
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/1de4bc95865a5eb6491db79c413d98e05e8545e3/app/src/main/java/eu/kanade/tachiyomi/util/system/NotificationExtensions.kt
+ * https://github.com/mihonapp/mihon/blob/953f5fb0253879547a94f88231b36ce81a35b48e/app/src/main/java/eu/kanade/tachiyomi/util/system/NotificationExtensions.kt
  */
 val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
-fun Context.notify(id: Int, channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null) {
+fun Context.notify(
+    id: Int,
+    channelId: String,
+    block: (NotificationCompat.Builder.() -> Unit)? = null
+) {
     val notification = notificationBuilder(channelId, block).build()
     this.notify(id, notification)
 }
 
 fun Context.notify(id: Int, notification: Notification) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && PermissionChecker.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PermissionChecker.PERMISSION_GRANTED) {
+    if (
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+        && PermissionChecker.checkSelfPermission(
+            this,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) != PermissionChecker.PERMISSION_GRANTED
+    ) {
         return
     }
 
@@ -59,7 +71,10 @@ fun Context.cancelNotification(id: Int) {
  * @param block the function that will execute inside the builder.
  * @return a notification to be displayed or updated.
  */
-fun Context.notificationBuilder(channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null): NotificationCompat.Builder {
+fun Context.notificationBuilder(
+    channelId: String,
+    block: (NotificationCompat.Builder.() -> Unit)? = null
+): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
     if (block != null) {
         builder.block()

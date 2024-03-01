@@ -44,7 +44,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
@@ -62,6 +62,7 @@ import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
+import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -270,7 +271,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             valueTo = 100f
             value = ((cardAlpha.toDouble() / 10.0).roundToInt() * 10.0).toFloat()
             setLabelFormatter { value: Float ->
-                ProbabilityUnit.PERCENT.getValueText(context, value.roundToInt())
+                NumberFormat.getPercentInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(value.div(100.0))
             }
             addOnChangeListener { _, value, _ ->
                 if (cardAlpha != value.roundToInt()) {
@@ -330,7 +333,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                 }
             }
             setLabelFormatter { value: Float ->
-                ProbabilityUnit.PERCENT.getValueText(context, value.roundToInt())
+                NumberFormat.getPercentInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(value.div(100.0))
             }
         }
 

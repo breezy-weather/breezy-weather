@@ -27,10 +27,10 @@ import androidx.core.content.getSystemService
 import java.io.File
 
 /**
- * Taken from Tachiyomi
+ * Taken from Mihon
  * Apache License, Version 2.0
  *
- * https://github.com/tachiyomiorg/tachiyomi/blob/9a10656bf07a7dd35400fa6e42dd0e4889ddb177/app/src/main/java/eu/kanade/tachiyomi/util/system/ContextExtensions.kt
+ * https://github.com/mihonapp/mihon/blob/162b6397050e1577c113a88e7b7cfe9f98e6a45c/app/src/main/java/eu/kanade/tachiyomi/util/system/ContextExtensions.kt
  */
 
 /**
@@ -39,7 +39,9 @@ import java.io.File
  * @param permission the permission to check.
  * @return true if it has permissions.
  */
-fun Context.hasPermission(permission: String) = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
+fun Context.hasPermission(
+    permission: String
+) = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
 val Context.powerManager: PowerManager
     get() = getSystemService()!!

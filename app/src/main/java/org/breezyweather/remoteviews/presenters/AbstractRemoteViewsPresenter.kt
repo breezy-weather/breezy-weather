@@ -33,11 +33,10 @@ import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
-import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
@@ -52,6 +51,7 @@ import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
+import java.text.NumberFormat
 import java.util.Date
 import java.util.TimeZone
 
@@ -301,7 +301,9 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$ch$",
                     weather.current?.relativeHumidity?.let {
-                        RelativeHumidityUnit.PERCENT.getValueText(context, it.toInt())
+                        NumberFormat.getPercentInstance(context.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(it.div(100.0))
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cps$",
@@ -427,12 +429,16 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "$" + i + "dp$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {
-                        ProbabilityUnit.PERCENT.getValueText(context, it.toInt())
+                        NumberFormat.getPercentInstance(context.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(it.div(100.0))
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "np$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.precipitationProbability?.total?.let {
-                        ProbabilityUnit.PERCENT.getValueText(context, it.toInt())
+                        NumberFormat.getPercentInstance(context.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(it.div(100.0))
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",

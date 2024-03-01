@@ -23,14 +23,15 @@ import android.widget.TextView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import breezyweather.domain.weather.model.Hourly
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.AnimatableIconView
 import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
+import java.text.NumberFormat
 
 object HourlyWeatherDialog {
     fun show(activity: Activity, location: Location, hourly: Hourly) {
@@ -95,7 +96,11 @@ object HourlyWeatherDialog {
             if (builder.toString().isNotEmpty()) builder.append("\n")
             builder.append(view.context.getString(R.string.precipitation_probability))
                 .append(view.context.getString(R.string.colon_separator))
-                .append(ProbabilityUnit.PERCENT.getValueText(view.context, hourly.precipitationProbability!!.total!!.toInt()))
+                .append(
+                    NumberFormat.getPercentInstance(view.context.currentLocale).apply {
+                        maximumFractionDigits = 0
+                    }.format(hourly.precipitationProbability!!.total!!.div(100.0))
+                )
         }
         weatherText.text = builder.toString()
     }

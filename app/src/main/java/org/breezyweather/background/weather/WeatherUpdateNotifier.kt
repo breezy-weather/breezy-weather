@@ -19,9 +19,9 @@ package org.breezyweather.background.weather
 import android.content.Context
 import android.net.Uri
 import androidx.core.app.NotificationCompat
-import cancelNotification
-import notificationBuilder
-import notify
+import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.chop
@@ -29,9 +29,9 @@ import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.remoteviews.Notifications
 
 /**
- * Based on Tachiyomi
+ * Based on Mihon
  * Apache License, Version 2.0
- * https://github.com/tachiyomiorg/tachiyomi/blob/198604227788444f374b8702076b95fb593c8657/app/src/main/java/eu/kanade/tachiyomi/data/library/LibraryUpdateNotifier.kt
+ * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/data/library/LibraryUpdateNotifier.kt
  */
 class WeatherUpdateNotifier(private val context: Context) {
 
@@ -63,16 +63,12 @@ class WeatherUpdateNotifier(private val context: Context) {
      * @param total the total progress.
      */
     fun showProgressNotification(locations: List<Location>, current: Int, total: Int) {
-        /*if (SettingsManager.getInstance(context).hideNotificationContent) {
-            progressNotificationBuilder
-                .setContentTitle(context.getString(R.string.notification_check_updates))
-                .setContentText("($current/$total)")
-        } else {*/
-            val updatingText = locations.joinToString("\n") { it.city.chop(40) }
-            progressNotificationBuilder
-                .setContentTitle(context.getString(R.string.notification_updating_weather_data, current, total))
-                .setStyle(NotificationCompat.BigTextStyle().bigText(updatingText))
-        //}
+        val updatingText = locations.joinToString("\n") { it.city.chop(40) }
+        progressNotificationBuilder
+            .setContentTitle(
+                context.getString(R.string.notification_updating_weather_data, current, total)
+            )
+            .setStyle(NotificationCompat.BigTextStyle().bigText(updatingText))
 
         context.notify(
             Notifications.ID_WEATHER_PROGRESS,
@@ -104,27 +100,6 @@ class WeatherUpdateNotifier(private val context: Context) {
             setContentIntent(NotificationReceiver.openErrorLogPendingActivity(context, uri))
         }
     }
-
-    /**
-     * Shows notification containing update entries that were skipped.
-     *
-     * @param skipped Number of entries that were skipped during the update.
-     */
-    /*fun showUpdateSkippedNotification(skipped: Int) {
-        if (skipped == 0) {
-            return
-        }
-
-        context.notify(
-            Notifications.ID_WEATHER_SKIPPED,
-            Notifications.CHANNEL_BACKGROUND,
-        ) {
-            setContentTitle(context.resources.getString(R.string.notification_update_skipped, skipped))
-            setContentText(context.getString(R.string.action_learn_more))
-            setSmallIcon(R.drawable.ic_running_in_background)
-            setContentIntent(NotificationHandler.openUrl(context, HELP_SKIPPED_URL))
-        }
-    }*/
 
     /**
      * Cancels the progress notification.

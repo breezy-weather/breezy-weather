@@ -21,8 +21,8 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
-import notificationBuilder
-import notify
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedTime

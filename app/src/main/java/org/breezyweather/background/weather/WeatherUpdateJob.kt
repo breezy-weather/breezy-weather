@@ -70,9 +70,9 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * Based on Tachiyomi LibraryUpdateJob
+ * Based on Mihon LibraryUpdateJob
  * Licensed under Apache License, Version 2.0
- * https://github.com/tachiyomiorg/tachiyomi/blob/88e9fefa59b3f7f77ab3ddcab1b039f81534c83e/app/src/main/java/eu/kanade/tachiyomi/data/library/LibraryUpdateJob.kt
+ * https://github.com/mihonapp/mihon/blob/88e9fefa59b3f7f77ab3ddcab1b039f81534c83e/app/src/main/java/eu/kanade/tachiyomi/data/library/LibraryUpdateJob.kt
  */
 @HiltWorker
 class WeatherUpdateJob @AssistedInject constructor(
