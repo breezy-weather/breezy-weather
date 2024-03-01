@@ -36,3 +36,8 @@ fun File.getUriCompat(context: Context): Uri {
         this.toUri()
     }
 }
+
+fun fileFromAsset(resource: Int, context: Context): File =
+    File("${context.cacheDir}/$resource").apply {
+        writeBytes(context.resources.openRawResource(resource).readBytes())
+    }

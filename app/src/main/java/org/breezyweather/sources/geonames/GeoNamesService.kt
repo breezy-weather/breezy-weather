@@ -61,7 +61,7 @@ class GeoNamesService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.codeAlt
+        val languageCode = SettingsManager.getInstance(context).language.codeForGeonames
         return mApi.getLocation(
             query,
             fuzzy = 0.8,

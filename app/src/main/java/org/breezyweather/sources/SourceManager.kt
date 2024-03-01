@@ -39,6 +39,7 @@ import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.metie.MetIeService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
+import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
@@ -61,6 +62,7 @@ class SourceManager @Inject constructor(
     metIeService: MetIeService,
     metNoService: MetNoService,
     mfService: MfService,
+    naturalEarthService: NaturalEarthService,
     nwsService: NwsService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
@@ -77,6 +79,9 @@ class SourceManager @Inject constructor(
 
         // Location search sources
         geoNamesService,
+
+        // Reverse geocoding sources
+        naturalEarthService,
 
         // Weather sources
         openMeteoService,
@@ -135,6 +140,8 @@ class SourceManager @Inject constructor(
     // Reverse geocoding
     fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
+    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
+        ?: getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!
 
     // Configurables sources
     fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()

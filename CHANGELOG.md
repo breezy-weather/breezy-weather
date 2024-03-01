@@ -7,6 +7,7 @@
 - Use a different font for temperature icon in status bar to improve readability (@min7-i)
 
 **Weather sources**
+- [Natural Earth] Added as an offline country-only reverse geocoding source. Helps providing the compatible weather sources for each location.
 - [ECCC] Fix missing observation text
 - Fix mismatching text with current weather condition in some very rare cases
 

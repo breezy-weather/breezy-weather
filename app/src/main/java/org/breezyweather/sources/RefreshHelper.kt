@@ -105,7 +105,7 @@ class RefreshHelper @Inject constructor(
 
         if (currentLocation.isUsable) {
             val source = location.weatherSource
-            val weatherService = sourceManager.getReverseGeocodingSource(source)
+            val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
             val locationGeocoded = if (weatherService != null) {
                 if (currentLocation.isCurrentPosition
                     || currentLocation.needsGeocodeRefresh
