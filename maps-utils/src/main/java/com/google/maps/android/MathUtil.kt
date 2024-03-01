@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.google.maps.android
 
-package com.google.maps.android;
+import kotlin.math.ln
+import kotlin.math.tan
 
 /**
  * Utility functions that are used my both PolyUtil and SphericalUtil.
  */
-class MathUtil {
-
+internal object MathUtil {
     /**
      * Wraps the given value into the inclusive-exclusive interval between min and max.
      *
@@ -28,8 +29,8 @@ class MathUtil {
      * @param min The minimum.
      * @param max The maximum.
      */
-    static double wrap(double n, double min, double max) {
-        return (n >= min && n < max) ? n : (mod(n - min, max - min) + min);
+    fun wrap(n: Double, min: Double, max: Double): Double {
+        return if (n >= min && n < max) n else mod(n - min, max - min) + min
     }
 
     /**
@@ -38,16 +39,15 @@ class MathUtil {
      * @param x The operand.
      * @param m The modulus.
      */
-    static double mod(double x, double m) {
-        return ((x % m) + m) % m;
+    fun mod(x: Double, m: Double): Double {
+        return (x % m + m) % m
     }
 
     /**
      * Returns mercator Y corresponding to latitude.
-     * See http://en.wikipedia.org/wiki/Mercator_projection .
+     * See https://en.wikipedia.org/wiki/Mercator_projection .
      */
-    static double mercator(double lat) {
-        return Math.log(Math.tan(lat * 0.5 + Math.PI / 4));
+    fun mercator(lat: Double): Double {
+        return ln(tan(lat * 0.5 + Math.PI / 4))
     }
-
 }
