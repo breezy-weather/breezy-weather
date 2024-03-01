@@ -79,6 +79,6 @@ object WeatherViewController {
             else -> 0
         }
         // ignore "automatic"
-        return values[index/* + 1*/] // TODO: #695
+        return values[index + 1]
     }
 }

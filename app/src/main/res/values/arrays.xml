@@ -285,7 +285,7 @@
 
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_weather_kinds">
-        <!--<item>@string/settings_automatic</item>--><!-- TODO #695 -->
+        <item>@string/settings_automatic</item>
         <item>@string/weather_kind_clear</item>
         <item>@string/weather_kind_partly_cloudy</item>
         <item>@string/weather_kind_cloudy</item>
@@ -300,7 +300,7 @@
         <item>@string/weather_kind_wind</item>
     </string-array>
     <string-array name="live_wallpaper_weather_kind_values">
-        <!--<item>auto</item>--><!-- TODO #695 -->
+        <item>auto</item>
         <item>CLEAR</item>
         <item>PARTLY_CLOUDY</item>
         <item>CLOUDY</item>
@@ -317,12 +317,12 @@
 
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_day_night_types">
-        <!--<item>@string/settings_automatic</item>--><!-- TODO #695 -->
+        <item>@string/settings_automatic</item>
         <item>@string/settings_color_day_always</item>
         <item>@string/settings_color_night_always</item>
     </string-array>
     <string-array name="live_wallpaper_day_night_type_values">
-        <!--<item>auto</item>--><!-- TODO #695 -->
+        <item>auto</item>
         <item>day</item>
         <item>night</item>
     </string-array>

@@ -34,10 +34,14 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import breezyweather.domain.weather.model.WeatherCode
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
@@ -51,19 +55,20 @@ import org.breezyweather.theme.weatherView.materialWeatherView.DelayRotateContro
 import org.breezyweather.theme.weatherView.materialWeatherView.IntervalComputer
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView
 import org.breezyweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory
+import javax.inject.Inject
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MaterialLiveWallpaperService : WallpaperService() {
-    //@Inject
-    //lateinit var locationRepository: LocationRepository
+    @Inject
+    lateinit var locationRepository: LocationRepository
 
-    //@Inject
-    //lateinit var weatherRepository: WeatherRepository
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
 
     private enum class DeviceOrientation {
         TOP,
@@ -73,12 +78,12 @@ class MaterialLiveWallpaperService : WallpaperService() {
     }
 
     override fun onCreateEngine(): Engine {
-        return WeatherEngine(/*locationRepository, weatherRepository*/)
+        return WeatherEngine(locationRepository, weatherRepository)
     }
 
     private inner class WeatherEngine(
-        //private val locationRepository: LocationRepository,
-        //private val weatherRepository: WeatherRepository
+        private val locationRepository: LocationRepository,
+        private val weatherRepository: WeatherRepository
     ) : Engine() {
 
         private var mHolder: SurfaceHolder? = null
@@ -351,19 +356,20 @@ class MaterialLiveWallpaperService : WallpaperService() {
             val location: Location? = if (configManager.weatherKind == "auto" || configManager.dayNightType == "auto") {
                 // TODO: Isn't there a more efficient way than reloading the location from database
                 // everytime the visibility changes??
-                /*locationRepository.getFirstLocation(withParameters = false)
-                    .let {
-                        it?.copy(
-                            weather = weatherRepository.getWeatherByLocationId(
-                                it.formattedId,
-                                withDaily = configManager.dayNightType == "auto",
-                                withHourly = false,
-                                withMinutely = false,
-                                withAlerts = false
+                runBlocking { // TODO
+                    locationRepository.getFirstLocation(withParameters = false)
+                        .let {
+                            it?.copy(
+                                weather = weatherRepository.getWeatherByLocationId(
+                                    it.formattedId,
+                                    withDaily = configManager.dayNightType == "auto",
+                                    withHourly = false,
+                                    withMinutely = false,
+                                    withAlerts = false
+                                )
                             )
-                        )
-                    }*/
-                null
+                        }
+                }
             } else null
             val weatherKind = when (configManager.weatherKind) {
                 "auto" -> location?.weather?.current?.weatherCode?.id

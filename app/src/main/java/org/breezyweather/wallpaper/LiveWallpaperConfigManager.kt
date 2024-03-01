@@ -25,8 +25,8 @@ class LiveWallpaperConfigManager(context: Context) {
 
     init {
         val config = ConfigStore(context, SP_LIVE_WALLPAPER_CONFIG)
-        weatherKind = config.getString(KEY_WEATHER_KIND, null) ?: "clear" //"auto" TODO: #695
-        dayNightType = config.getString(KEY_DAY_NIGHT_TYPE, null) ?: "day" //"auto" TODO: #695
+        weatherKind = config.getString(KEY_WEATHER_KIND, null) ?: "auto"
+        dayNightType = config.getString(KEY_DAY_NIGHT_TYPE, null) ?: "auto"
     }
 
     companion object {
