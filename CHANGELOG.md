@@ -2,6 +2,7 @@
 
 **Weather sources**
 - [MET IE] Add warnings as main source in Ireland-only
+- [MET IE] Add warnings as secondary source in Ireland-only
 - [MET IE] Add reverse geocoding in Ireland-only
 
 

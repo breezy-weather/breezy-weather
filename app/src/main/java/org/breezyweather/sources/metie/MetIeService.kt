@@ -20,12 +20,14 @@ import android.content.Context
 import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeWarningResult
@@ -34,12 +36,11 @@ import javax.inject.Inject
 
 /**
  * MET Éireann service
- *
- * TODO: Alerts, location parameters
  */
 class MetIeService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, ParameterizedLocationSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
+    ReverseGeocodingSource, ParameterizedLocationSource {
 
     override val id = "metie"
     override val name = "MET Éireann"
@@ -86,6 +87,30 @@ class MetIeService @Inject constructor(
                 warningsResult: MetIeWarningResult
             ->
             convert(forecastResult, warningsResult, location)
+        }
+    }
+
+    // SECONDARY WEATHER SOURCE
+    override val supportedFeatures = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
+    override fun isFeatureSupportedForLocation(
+        feature: SecondaryWeatherSourceFeature, location: Location
+    ): Boolean {
+        return isWeatherSupportedForLocation(location)
+    }
+    override val airQualityAttribution = null
+    override val pollenAttribution = null
+    override val minutelyAttribution = null
+    override val alertAttribution = weatherAttribution
+    override val normalsAttribution = null
+
+    override fun requestSecondaryWeather(
+        context: Context, location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<SecondaryWeatherWrapper> {
+        return mApi.getWarnings().map {
+            convertSecondary(it, location)
         }
     }
 

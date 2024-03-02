@@ -129,7 +129,7 @@ class ChinaService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return location.countryCode == "CN"
+        return isWeatherSupportedForLocation(location)
     }
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null

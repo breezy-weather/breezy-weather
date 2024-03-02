@@ -1,6 +1,6 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.0.3 or later of Breezy Weather**.
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features.
 
@@ -69,13 +69,13 @@ The following features, if not available from your selected source, can be added
 | **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
 | **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
 
-| Sources                            | China   | NWS     | Bright Sky | ECCC | SMHI    | MET Éireann |
-|------------------------------------|---------|---------|------------|------|---------|-------------|
-| **Air quality**                    | Current | ❌       | ❌          | ❌    | ❌       | ❌           |
-| **Pollen**                         | ❌       | ❌       | ❌          | ❌    | ❌       | ❌           |
-| **Precipitation in the next hour** | ✅       | ❌       | ❌          | ❌    | ❌       | ❌           |
-| **Alerts**                         | ✅       | ✅       | ✅          | ✅    | ❌       | ✅           |
-| **Normals**                        | Average | Average | Average    | ✅    | Average | Average     |
+| Sources                            | China   | NWS           | Bright Sky | ECCC   | SMHI    | MET Éireann     |
+|------------------------------------|---------|---------------|------------|--------|---------|-----------------|
+| **Air quality**                    | Current | ❌             | ❌          | ❌      | ❌       | ❌               |
+| **Pollen**                         | ❌       | ❌             | ❌          | ❌      | ❌       | ❌               |
+| **Precipitation in the next hour** | ✅       | ❌             | ❌          | ❌      | ❌       | ❌               |
+| **Alerts**                         | China   | United States | Germany    | Canada | ❌       | Ireland V5.0.4+ |
+| **Normals**                        | Average | Average       | Average    | ✅      | Average | Average         |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Works best in Europe at the moment
@@ -191,13 +191,13 @@ Legend:
 | **Alerts**                         | ❌          | ✅           | ❌           | ✅           | ✅              | France       | *In progress* |
 | **Normals**                        | ❌          | ✅           | ❌           | ❌           | ❌              | ✅⁴           | ❌             |
 
-| Sources                            | China | NWS | Bright Sky | ECCC   | MET Éireann   | ATMO AURA     |
-|------------------------------------|-------|-----|------------|--------|---------------|---------------|
-| **Air quality**                    | China | ❌   | ❌          | ❌      | ❌             | France (AuRA) |
-| **Pollen**                         | ❌     | ❌   | ❌          | ❌      | ❌             | ❌             |
-| **Precipitation in the next hour** | China | ❌   | ❌          | ❌      | ❌             | ❌             |
-| **Alerts**                         | China | ✅   | Germany    | Canada | *In progress* | ❌             |
-| **Normals**                        | ❌     | ❌   | ❌          | Canada | ❌             | ❌             |
+| Sources                            | China | NWS           | Bright Sky | ECCC   | MET Éireann     | ATMO AURA     |
+|------------------------------------|-------|---------------|------------|--------|-----------------|---------------|
+| **Air quality**                    | China | ❌             | ❌          | ❌      | ❌               | France (AuRA) |
+| **Pollen**                         | ❌     | ❌             | ❌          | ❌      | ❌               | ❌             |
+| **Precipitation in the next hour** | China | ❌             | ❌          | ❌      | ❌               | ❌             |
+| **Alerts**                         | China | United States | Germany    | Canada | Ireland V5.0.4+ | ❌             |
+| **Normals**                        | ❌     | ❌             | ❌          | Canada | ❌               | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe
