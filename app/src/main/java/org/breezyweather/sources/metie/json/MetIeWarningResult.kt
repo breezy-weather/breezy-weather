@@ -22,12 +22,5 @@ import java.util.Date
 
 @Serializable
 data class MetIeWarningResult(
-    val warnings: MetIeWarnings?,
-    val severity: String?,
-    val level: String?,
-    @Serializable(DateSerializer::class) val onset: Date?,
-    @Serializable(DateSerializer::class) val expiry: Date?,
-    val headline: String?,
-    val description: String?,
-    val regions: List<String>
+    val warnings: MetIeWarnings? = null
 )

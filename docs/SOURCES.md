@@ -69,13 +69,13 @@ The following features, if not available from your selected source, can be added
 | **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
 | **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
 
-| Sources                            | China   | NWS     | Bright Sky | ECCC | SMHI    | MET Éireann   |
-|------------------------------------|---------|---------|------------|------|---------|---------------|
-| **Air quality**                    | Current | ❌       | ❌          | ❌    | ❌       | ❌             |
-| **Pollen**                         | ❌       | ❌       | ❌          | ❌    | ❌       | ❌             |
-| **Precipitation in the next hour** | ✅       | ❌       | ❌          | ❌    | ❌       | ❌             |
-| **Alerts**                         | ✅       | ✅       | ✅          | ✅    | ❌       | *In progress* |
-| **Normals**                        | Average | Average | Average    | ✅    | Average | Average       |
+| Sources                            | China   | NWS     | Bright Sky | ECCC | SMHI    | MET Éireann |
+|------------------------------------|---------|---------|------------|------|---------|-------------|
+| **Air quality**                    | Current | ❌       | ❌          | ❌    | ❌       | ❌           |
+| **Pollen**                         | ❌       | ❌       | ❌          | ❌    | ❌       | ❌           |
+| **Precipitation in the next hour** | ✅       | ❌       | ❌          | ❌    | ❌       | ❌           |
+| **Alerts**                         | ✅       | ✅       | ✅          | ✅    | ❌       | ✅           |
+| **Normals**                        | Average | Average | Average    | ✅    | Average | Average     |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Works best in Europe at the moment

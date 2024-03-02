@@ -16,7 +16,9 @@
 
 package org.breezyweather.sources.metie
 
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
@@ -28,6 +30,8 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
+import org.breezyweather.sources.metie.json.MetIeWarning
+import org.breezyweather.sources.metie.json.MetIeWarningResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -46,7 +50,8 @@ fun convert(
 }
 fun convert(
     hourlyResult: List<MetIeHourly>?,
-    timeZone: TimeZone
+    warningsResult: MetIeWarningResult?,
+    location: Location
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (hourlyResult.isNullOrEmpty()) {
@@ -54,9 +59,45 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(timeZone, hourlyResult),
-        hourlyForecast = getHourlyForecast(hourlyResult)
+        dailyForecast = getDailyForecast(location.timeZone, hourlyResult),
+        hourlyForecast = getHourlyForecast(hourlyResult),
+        alertList = getAlertList(location, warningsResult?.warnings?.national)
     )
+}
+
+fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>? {
+    if (warnings == null) return null
+    if (warnings.isEmpty()) return emptyList()
+
+    val region = if (MetIeService.regionsMapping.containsKey(location.province)) {
+        location.province
+    } else location.parameters.getOrElse("metie") { null }?.getOrElse("region") { null }
+    val eiRegion = region?.let { MetIeService.regionsMapping.getOrElse(region) { null } }
+
+    return warnings
+        .filter { it.regions.contains("EI0") /* National */ || it.regions.contains(eiRegion) }
+        .map { alert ->
+            Alert(
+                alertId = alert.id,
+                startDate = alert.onset,
+                endDate = alert.expiry,
+                description = alert.headline ?: "Alert",
+                content = alert.description,
+                priority = when (alert.severity?.lowercase()) {
+                    "extreme" -> 1
+                    "severe" -> 2
+                    "moderate" -> 3
+                    "minor" -> 4
+                    else -> 5
+                },
+                color = when (alert.level?.lowercase()) {
+                    "red" -> Color.rgb(224, 0, 0)
+                    "orange" -> Color.rgb(255, 140, 0)
+                    "yellow" -> Color.rgb(255, 255, 0)
+                    else -> null
+                }
+            )
+        }
 }
 
 private fun getDailyForecast(

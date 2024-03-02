@@ -1,7 +1,8 @@
 # Version 5.0.4-alpha (not yet released)
 
 **Weather sources**
-- [MET IE] Add reverse geocoding
+- [MET IE] Add warnings as main source in Ireland-only
+- [MET IE] Add reverse geocoding in Ireland-only
 
 
 # Version 5.0.3-alpha (2024-03-02)

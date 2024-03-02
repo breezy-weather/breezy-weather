@@ -21,12 +21,14 @@ import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ParameterizedLocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.metie.json.MetIeHourly
+import org.breezyweather.sources.metie.json.MetIeWarningResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -37,7 +39,7 @@ import javax.inject.Inject
  */
 class MetIeService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, ReverseGeocodingSource/*, ParameterizedLocationSource*/ {
+) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, ParameterizedLocationSource {
 
     override val id = "metie"
     override val name = "MET Éireann"
@@ -54,7 +56,9 @@ class MetIeService @Inject constructor(
             .create(MetIeApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
+    )
 
     override fun isWeatherSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
@@ -64,11 +68,24 @@ class MetIeService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        return mApi.getForecast(
+        val forecast = mApi.getForecast(
             location.latitude,
             location.longitude
-        ).map {
-            convert(it, location.timeZone)
+        )
+
+        val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mApi.getWarnings()
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MetIeWarningResult())
+            }
+        }
+
+        return Observable.zip(forecast, warnings) {
+                forecastResult: List<MetIeHourly>,
+                warningsResult: MetIeWarningResult
+            ->
+            convert(forecastResult, warningsResult, location)
         }
     }
 
@@ -87,6 +104,37 @@ class MetIeService @Inject constructor(
                 }
                 locationList
             }
+    }
+
+    // Location parameters
+    override fun needsLocationParametersRefresh(
+        location: Location,
+        coordinatesChanged: Boolean,
+        features: List<SecondaryWeatherSourceFeature>
+    ): Boolean {
+        if (regionsMapping.containsKey(location.province)) return false
+
+        val currentRegion = location.parameters
+            .getOrElse(id) { null }?.getOrElse("region") { null }
+
+        return currentRegion.isNullOrEmpty()
+    }
+
+    override fun requestLocationParameters(
+        context: Context, location: Location
+    ): Observable<Map<String, String>> {
+        return mApi.getReverseLocation(
+            location.latitude,
+            location.longitude
+        ).map {
+            if (it.city != "NO LOCATION SELECTED"
+                && !it.county.isNullOrEmpty()
+                && regionsMapping.containsKey(it.county)) {
+                mapOf("region" to it.county)
+            } else {
+                throw InvalidLocationException()
+            }
+        }
     }
 
     companion object {

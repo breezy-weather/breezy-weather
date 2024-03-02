@@ -199,7 +199,6 @@ class ChinaService @Inject constructor(
         }
     }
 
-
     override fun requestLocationSearch(
         context: Context, query: String
     ): Observable<List<Location>> {
