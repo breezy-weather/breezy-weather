@@ -87,7 +87,7 @@
     <string name="minutely_forecast">詳細予報</string>
     <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質指数</string>
-    <string name="pollen">アレルギー</string>
+    <string name="pollen">花粉</string>
     <string name="details">その他</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次</string>
@@ -112,9 +112,9 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">現在の場所が見つかりませんでした</string>
     <string name="weather_message_data_refresh_failed">気象データを取得できませんでした</string>
-    <string name="location_dialog_failed_to_locate_title">位置情報が正しくありませんか？</string>
+    <string name="location_dialog_failed_to_locate_title">位置情報を正しく取得できませんか?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">位置情報の許可を確認する</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Enable Location Information</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">位置情報を有効にする</string>
     <string name="location_dialog_failed_to_locate_action_select_source">位置情報サービスを選択する</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動で場所を追加し、「%s」を削除</string>
     <string name="widget_label_view_style">View style</string>
@@ -246,11 +246,11 @@
     <string name="widget_subtitle_data_lunar">旧暦</string>
     <string name="widget_subtitle_data_custom">カスタム</string>
     <!-- Weather kind -->
-    <string name="common_weather_text_partly_cloudy">一部曇り</string>
+    <string name="common_weather_text_partly_cloudy">所により曇り</string>
     <string name="common_weather_text_cloudy">おおむね曇り</string>
     <string name="common_weather_text_rain">雨</string>
     <string name="common_weather_text_snow">雪</string>
-    <string name="weather_kind_hail">ひょう</string>
+    <string name="weather_kind_hail">雹</string>
     <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">霞</string>
     <string name="weather_kind_thunder">雷</string>
