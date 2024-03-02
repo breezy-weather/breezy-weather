@@ -44,6 +44,5 @@ Optional permissions: <ul>
 </ul>
 
 Anti-features: <ul>
-<li>Non-Free dependency: It has been brought to our attention that one dependency is partially closed source. This dependency was removed in v5.0.0-alpha and later.</li>
-<li>Non-Free Assets: Logo is part of the branding of Breezy Weather and you are only allowed to re-use it under specific terms (see license additional terms for more info).</li>
+<li>Non-Free Assets: Logos that are part of brandings, such as weather sources logos or Breezy Weather logo are non-free.</li>
 </ul>

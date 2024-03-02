@@ -1,4 +1,4 @@
-# Version 5.0.3-alpha (not yet released)
+# Version 5.0.3-alpha (2024-03-02)
 
 **Improvements and fixes**
 - You can now choose to always use a specific weather source for new locations instead of Breezy Weather recommendations (Settings > Weather sources)

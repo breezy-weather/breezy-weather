@@ -44,6 +44,5 @@ Permissions facultatives :<ul>
 </ul>
 
 Antifonctions : <ul>
-<li>Dépendance non libre : une des dépendances de l’application est partiellement à sources fermées. Cette dépendance a été retirée à partir de la version 5.0.0-alpha.</li>
-<li>Éléments non libres : le logo fait partie de la marque Breezy Weather et vous n’êtes autorisé à le réutiliser que selon certains termes spécifiques (voir les termes additionnels de la licence pour plus d’infos).</li>
+<li>Éléments non libres : les logos qui font partie de marques, tels que les logos des sources météo ou le logo de Breezy Weather ne sont pas libres.</li>
 </ul>
