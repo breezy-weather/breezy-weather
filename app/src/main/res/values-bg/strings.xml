@@ -641,4 +641,9 @@
     <string name="uv_index_short">UV индекс</string>
     <string name="visibility_short">Видимост</string>
     <string name="pressure_short">налягане</string>
+    <string name="dew_point_short">Точка на оросяване</string>
+    <string name="ceiling_short">Облачен Таван</string>
+    <string name="temperature_feels_like_short">Усеща се като</string>
+    <string name="cloud_cover_short">Облачно покритие</string>
+    <string name="settings_weather_sources_default_source">Източник по подразбиране за нови местоположения</string>
 </resources>
