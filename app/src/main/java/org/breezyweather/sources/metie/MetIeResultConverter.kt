@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.metie
 
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
@@ -26,10 +27,23 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
+import org.breezyweather.sources.metie.json.MetIeLocationResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
+fun convert(
+    location: Location,
+    result: MetIeLocationResult
+): Location {
+    return location.copy(
+        timeZone = TimeZone.getTimeZone("Europe/Dublin"),
+        country = "Ireland",
+        countryCode = "IE",
+        province = result.county,
+        city = result.city ?: ""
+    )
+}
 fun convert(
     hourlyResult: List<MetIeHourly>?,
     timeZone: TimeZone

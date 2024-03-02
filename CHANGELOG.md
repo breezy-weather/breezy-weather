@@ -1,3 +1,9 @@
+# Version 5.0.4-alpha (not yet released)
+
+**Weather sources**
+- [MET IE] Add reverse geocoding
+
+
 # Version 5.0.3-alpha (2024-03-02)
 
 **Improvements and fixes**

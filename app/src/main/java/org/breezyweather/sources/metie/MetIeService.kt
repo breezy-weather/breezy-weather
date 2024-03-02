@@ -23,13 +23,21 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.settings.SettingsManager
 import retrofit2.Retrofit
 import javax.inject.Inject
 
+/**
+ * MET Éireann service
+ *
+ * TODO: Alerts, location parameters
+ */
 class MetIeService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource {
+) : HttpSource(), MainWeatherSource, ReverseGeocodingSource/*, ParameterizedLocationSource*/ {
 
     override val id = "metie"
     override val name = "MET Éireann"
@@ -64,7 +72,55 @@ class MetIeService @Inject constructor(
         }
     }
 
+    override fun requestReverseGeocodingLocation(
+        context: Context,
+        location: Location
+    ): Observable<List<Location>> {
+        return mApi.getReverseLocation(
+            location.latitude,
+            location.longitude
+        )
+            .map {
+                val locationList = mutableListOf<Location>()
+                if (it.city != "NO LOCATION SELECTED") {
+                    locationList.add(convert(location, it))
+                }
+                locationList
+            }
+    }
+
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
+        // Last checked: 2024-03-02 https://prodapi.metweb.ie/v2/warnings/regions
+        val regionsMapping = mapOf(
+            "All Counties" to "EI0",
+            "All Sea Areas" to "EI8",
+            "Carlow" to "EI01",
+            "Cavan" to "EI02",
+            "Clare" to "EI03",
+            "Cork" to "EI04",
+            "Donegal" to "EI06",
+            "Dublin" to "EI07",
+            "Galway" to "EI10",
+            "Kerry" to "EI11",
+            "Kildare" to "EI12",
+            "Kilkenny" to "EI13",
+            "Laois" to "EI15",
+            "Leitrim" to "EI14",
+            "Limerick" to "EI16",
+            "Longford" to "EI18",
+            "Louth" to "EI19",
+            "Mayo" to "EI20",
+            "Meath" to "EI21",
+            "Monaghan" to "EI22",
+            "Offaly" to "EI23",
+            "Roscommon" to "EI24",
+            "Sligo" to "EI25",
+            "Tipperary" to "EI26",
+            "Waterford" to "EI27",
+            "Westmeath" to "EI29",
+            "Wexford" to "EI30",
+            "Wicklow" to "EI31"
+        )
     }
 }

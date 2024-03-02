@@ -2,65 +2,11 @@
 
 This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
 
-**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, and probably more accurate as well, however still lacks a few features (station observations, alerts, reverse geocoding), but you can combine the missing features with a secondary source (at the very bottom of this document).
+By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features.
 
+When we don’t have support for your national weather source, we suggest **Open-Meteo** which is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, and usually more accurate for many countries, however still lacks a few features (station observations, alerts, reverse geocoding), which is why AccuWeather is also suggested for alerts and normals for some countries.
 
-## Suggestions by country
-
-When deciding about which source you want to use, accuracy of data is probably the most important criteria.
-
-When possible, we suggest using data from your national weather source, which are usually best tailored for your country. Additional, most of the time, you will benefit from a large network of observation stations for real-time weather (instead of having “current weather” extrapolated from forecast models refreshed only every few hours).
-
-When not possible or for some data not usually provided by national weather sources (such as Air quality, Pollen), we suggest sources that make use of Open-Data for specific-country or continent (such as Copernicus for Europe air quality, used by Open-Meteo).
-
-Based on these criteria, here are some suggestions:
-
-### North America
-
-| Country       | Main source                                      | Air quality | Pollen      | Minutely | Alerts | Normals |
-|---------------|--------------------------------------------------|-------------|-------------|----------|--------|---------|
-| Canada        | ECCC                                             | AccuWeather | AccuWeather |          | ECCC   | ECCC    |
-| United States | [Forecast Advisor](https://forecastadvisor.com/) | AccuWeather | AccuWeather |          | NWS    |         |
-
-
-### South America
-
-*No recommendation yet.*
-
-
-### Europe
-
-| Country         | Main source               | Air quality              | Pollen     | Minutely     | Alerts       | Normals      |
-|-----------------|---------------------------|--------------------------|------------|--------------|--------------|--------------|
-| Danmark         | DMI or MET Norway         | Open-Meteo               | Open-Meteo | MET Norway   |              |              |
-| Deutschland     | Bright Sky (DWD)          | Open-Meteo               | Open-Meteo |              | Bright Sky   |              |
-| France          | Météo-France              | Open-Meteo or ATMO-AURA² | Open-Meteo | Météo-France | Météo-France | Météo-France |
-| Ireland         | MET Éireann               | Open-Meteo               | Open-Meteo |              |              |              |
-| Norge/Noreg     | MET Norway                | MET Norway               | Open-Meteo | MET Norway   |              |              |
-| Sverige         | SMHI or MET Norway        | Open-Meteo               | Open-Meteo | MET Norway   |              |              |
-| Other countries | Open-Meteo¹ or MET Norway | Open-Meteo               | Open-Meteo |              |              |              |
-
-¹ Has forecast data from DWD (Deutschland), Météo-France, MET Norway, AM ARPAE ARPAP (Italia) and ECWMF (Europe) weather models
-² Only available in Auvergne-Rhône-Alpes
-
-
-### Asia
-
-| Country | Main source       | Air quality | Pollen | Minutely | Alerts | Normals |
-|---------|-------------------|-------------|--------|----------|--------|---------|
-| 中国      | 中国 or Open-Meteo¹ | 中国          |        | 中国       | 中国     |         |
-| 日本      | Open-Meteo¹       |             |        |          |        |         |
-
-¹ Has forecast data from CMA (China) and JMA (Japan)
-
-
-### Oceania
-
-| Country   | Main source | Air quality | Pollen | Minutely | Alerts | Normals |
-|-----------|-------------|-------------|--------|----------|--------|---------|
-| Australia | Open-Meteo¹ |             |        |          |        |         |
-
-¹ Has forecast data from Australian Bureau of Meteorology (BOM)
+Below, you can find details about the support and implementation status for features on each weather source.
 
 
 ## Status
@@ -181,11 +127,12 @@ Legend:
 | Sources               | China | NWS     | Bright Sky | ECCC    | SMHI    | MET Éireann |
 |-----------------------|-------|---------|------------|---------|---------|-------------|
 | **Search**            | ✅³    | Default | Default    | Default | Default | Default     |
-| **Reverse geocoding** | ✅³    | ✅       | ❌²         | ✅²      | ❌²      | ❌²          |
+| **Reverse geocoding** | ✅³    | ✅       | ❌²         | ✅²      | ❌²      | ✅⁴          |
 
 * ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
-* ³ TimeZone is assumed to be China
+* ³ TimeZone is assumed to be Asia/Shanghai
+* ⁴ TimeZone is assumed to be Europe/Dublin
 
 
 # Additional sources with mandatory API key
