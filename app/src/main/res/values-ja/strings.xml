@@ -5,7 +5,7 @@
     <!-- keyword. -->
     <string name="location_current">現在地</string>
     <string name="short_today">今日</string>
-    <string name="notification_refreshed_at">で更新されました</string>
+    <string name="notification_refreshed_at">更新時刻</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水確率</string>
     <string name="precipitation_duration">降水時間</string>
@@ -21,7 +21,7 @@
     <string name="daytime">昼間</string>
     <string name="nighttime">夜間</string>
     <string name="temperature_feels_like">体感温度</string>
-    <string name="settings_follow_system">本体設定</string>
+    <string name="settings_follow_system">端末の設定を使う</string>
     <string name="pressure">気圧</string>
     <string name="visibility">視程</string>
     <string name="dew_point">露点</string>
@@ -218,7 +218,7 @@
     <string name="location_service_native">ネイティブAPI</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">なし</string>
-    <string name="settings_color_day_night">日中 / 夜間</string>
+    <string name="settings_color_day_night">昼間 / 夜間</string>
     <string name="settings_color_day_always">いつも日中</string>
     <string name="settings_color_night_always">いつも夜間</string>
     <string name="settings_color_light">ライト</string>
