@@ -121,7 +121,7 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">手動加入位置並刪除「%s」</string>
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
-    <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
+    <string name="widget_label_show_widget_card_alpha">卡片不透明度</string>
     <string name="widget_label_hide_subtitle">隱藏副標題</string>
     <string name="widget_label_subtitle_data">副標題資料</string>
     <string name="widget_label_black_text">文字顔色</string>
@@ -135,8 +135,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（℃/℉）</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_at_description">體感溫度（℃/℉）</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">體感溫度（°）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">當前體感溫度（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">當前體感溫度（°）</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">當前風況</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">當前紫外線</string>
     <string name="widget_custom_subtitle_keyword_ch_description">當前濕度</string>
@@ -649,4 +649,11 @@
     <string name="visibility_short">能見度</string>
     <string name="pressure_short">氣壓</string>
     <string name="comma_separator">、</string>
+    <string name="settings_weather_source_none">無</string>
+    <string name="settings_weather_sources_default_source">新位置的默認信息源</string>
+    <string name="location_search_no_results_advice">請確保您的搜索拼寫正確且未過於具體，或您可嘗試使用其他搜索源，也許會得到不同結果。</string>
+    <string name="location_message_updated">位置已更新</string>
+    <string name="location_message_already_exists">已存在與主天氣源相同之位置。</string>
+    <string name="location_search_source">位置搜尋來源</string>
+    <string name="location_search_change_source">更換位置搜尋來源</string>
 </resources>
