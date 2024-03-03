@@ -124,7 +124,7 @@
     <string name="widget_label_subtitle_data">サブタイトルデータ</string>
     <string name="widget_label_black_text">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
-    <string name="widget_label_clock_font">時間のフォント</string>
+    <string name="widget_label_clock_font">時計のフォント</string>
     <string name="widget_custom_subtitle_explanation">何でも入力できますが、テキストの長さを注意してください。天気データを引用したいなら、$を使って対応キーワードを参照してください。
 \n
 \n例えば、「現在の天気＝$cw$」の場合は、「現在の天気＝晴れ」と表示されます。</string>
@@ -140,16 +140,16 @@
     <string name="widget_custom_subtitle_keyword_ch_description">現在の湿度</string>
     <string name="widget_custom_subtitle_keyword_cps_description">現在の気圧</string>
     <string name="widget_custom_subtitle_keyword_cv_description">現在の視程</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">現在の露点温度</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">現在の露点</string>
     <string name="widget_custom_subtitle_keyword_l_description">場所</string>
     <string name="widget_custom_subtitle_keyword_lat_description">緯度</string>
     <string name="widget_custom_subtitle_keyword_lon_description">経度</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">更新時刻</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">更新時間</string>
     <string name="widget_custom_subtitle_keyword_d_description">日付</string>
     <string name="widget_custom_subtitle_keyword_lc_description">旧暦</string>
     <string name="widget_custom_subtitle_keyword_w_description">曜日</string>
     <string name="widget_custom_subtitle_keyword_ws_description">曜日 (短い)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">日ごとの説明</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">毎日の説明</string>
     <string name="widget_custom_subtitle_keyword_hd_description">時間ごとの説明</string>
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日の昼間天気, 明日, …, 4日目</string>
@@ -208,11 +208,11 @@
     <string name="settings_main_gravity_sensor_switch">重力センサー</string>
     <string name="settings_appearance_language_title">言語</string>
     <string name="settings_units">単位</string>
-    <string name="settings_units_temperature">気温</string>
-    <string name="settings_units_distance">距離</string>
+    <string name="settings_units_temperature">温度単位</string>
+    <string name="settings_units_distance">距離単位</string>
     <string name="settings_units_precipitation">降水量</string>
-    <string name="settings_units_pressure">気圧</string>
-    <string name="settings_units_speed">速度</string>
+    <string name="settings_units_pressure">圧力単位</string>
+    <string name="settings_units_speed">速度単位</string>
     <string name="settings_notifications_section_forecast">予報通知</string>
     <string name="settings_widgets_notification_temp_icon_switch">気温を通知バーに表示する</string>
     <string name="location_service_native">ネイティブAPI</string>
