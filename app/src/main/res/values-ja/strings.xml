@@ -217,7 +217,7 @@
     <string name="settings_widgets_notification_temp_icon_switch">気温を通知バーに表示する</string>
     <string name="location_service_native">ネイティブAPI</string>
     <string name="settings_automatic">自動</string>
-    <string name="settings_none">無し</string>
+    <string name="settings_none">なし</string>
     <string name="settings_color_day_night">日中 / 夜間</string>
     <string name="settings_color_day_always">いつも日中</string>
     <string name="settings_color_night_always">いつも夜間</string>
@@ -330,7 +330,7 @@
     <string name="minutely_precipitations">分間隔降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定する</string>
-    <string name="about_privacy_policy">個人情報保護方針</string>
+    <string name="about_privacy_policy">プライバシーポリシー</string>
     <string name="about_dependencies">依存関係</string>
     <string name="about_contribution_designer">ロゴデザイナー</string>
     <string name="settings_widgets_notification_widget_title">通知ウィジェット</string>
