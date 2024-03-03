@@ -408,15 +408,15 @@
     <string name="locations">位置</string>
     <string name="location_results_by">位置结果来自 %s</string>
     <string name="action_add_from_map">从地图中添加</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif">无衬线体</string>
+    <string name="widget_clock_font_sans_serif_black">无衬线体（粗）</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
     <string name="alerts_to_follow">有新的预警，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">无衬线体（细）</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
@@ -509,7 +509,7 @@
     <string name="notification_channel_background_services">后台服务</string>
     <string name="settings_widgets_notification_style_title">风格</string>
     <string name="location_message_reverse_geocoding_failed">天气数据源未找到符合的位置</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">模拟时钟</string>
     <string name="action_undo">撤消</string>
     <string name="notification_channel_widget">微件</string>
     <string name="settings_widgets_live_wallpaper_error">无法启动壁纸选择器。您仍然可以通过在主屏幕壁纸选择器中选择动态壁纸来启用Breezy Weather壁纸。</string>
