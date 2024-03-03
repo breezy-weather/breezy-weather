@@ -112,10 +112,10 @@ class ChronusResourceProvider(
             WeatherCode.WIND -> "24"
             WeatherCode.FOG -> "20"
             WeatherCode.HAZE -> "21"
-            WeatherCode.SLEET -> "18"
+            WeatherCode.SLEET -> "5"
             WeatherCode.HAIL -> "17"
             WeatherCode.THUNDER -> "4"
-            WeatherCode.THUNDERSTORM -> if (daytime) "38" else "47"
+            WeatherCode.THUNDERSTORM -> "4"
             else -> "na"
         }
     }
