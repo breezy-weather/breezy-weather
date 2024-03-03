@@ -84,11 +84,11 @@
     <string name="pollen_tree">木</string>
     <string name="daily_forecast">日時予報</string>
     <string name="hourly_forecast">毎時予報</string>
-    <string name="minutely_forecast">詳細予報</string>
+    <string name="minutely_forecast">毎分予報</string>
     <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質指数</string>
     <string name="pollen">花粉</string>
-    <string name="details">その他</string>
+    <string name="details">詳細</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次</string>
     <string name="action_done">終わり</string>
@@ -177,7 +177,7 @@
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新 (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Click to get more…</string>
+    <string name="pollen_tap_to_see_more">さらに見るにはタップしてください…</string>
     <!-- action -->
     <string name="alerts">警告</string>
     <string name="action_search">検索</string>
@@ -232,8 +232,8 @@
     <string name="settings_background_updates_refresh_6h">6時間</string>
     <string name="settings_background_updates_refresh_12h">12時間</string>
     <string name="settings_background_updates_refresh_24h">24時間</string>
-    <string name="widget_style_rectangle">長方形</string>
-    <string name="widget_style_symmetry">対称的</string>
+    <string name="widget_style_rectangle">矩形</string>
+    <string name="widget_style_symmetry">対称</string>
     <string name="widget_style_tile">タイル</string>
     <string name="widget_style_mini">ミニ</string>
     <string name="widget_style_nano">ナノ</string>
@@ -263,8 +263,8 @@
     <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10日</string>
     <string name="weather_source_accu_preference_days_15">15日</string>
-    <string name="temperature_degree_day_heating">加熱度日</string>
-    <string name="temperature_degree_day_cooling">冷却度日</string>
+    <string name="temperature_degree_day_heating">暖房度日</string>
+    <string name="temperature_degree_day_cooling">冷房度日</string>
     <string name="precipitation_none">降水なし</string>
     <string name="wind_direction_short_variable">変数</string>
     <string name="wind_direction_short_N">N</string>
@@ -342,7 +342,7 @@
     <string name="settings_widgets_configure_widget_summary">設定を開く</string>
     <string name="settings_notifications_forecast_tomorrow_title">翌日の予報</string>
     <string name="settings_widgets_section_notification_widget">通知ウィジェット</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">翌日の予報の時間</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">翌日予報の通知時間</string>
     <string name="temperature_average_short">平均気温</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">二酸化窒素</string>
