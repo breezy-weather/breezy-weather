@@ -3,6 +3,7 @@
 **Weather sources**
 - [Israel Meteorological Service] Added as main source
 - [Israel Meteorological Service] Added as secondary alert source
+- [MET IE] Fix 12-hour system issue
 - [MET IE] Add warnings as main source in Ireland-only
 - [MET IE] Add warnings as secondary source in Ireland-only
 - [MET IE] Add reverse geocoding in Ireland-only

@@ -91,7 +91,7 @@ private fun getDailyForecast(
 private fun getHourlyForecast(
     hourlyResult: List<MetIeHourly>
 ): List<HourlyWrapper> {
-    val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.ENGLISH)
+    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Dublin")
 
     return hourlyResult.map { result ->
