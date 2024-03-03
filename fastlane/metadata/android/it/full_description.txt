@@ -24,9 +24,12 @@ I fornitori di meteo attualmente supportati:<ul>
 <li>Météo France</li>
 <li>Danmarks Meteorologiske Institut (DMI)</li>
 <li>Varie fonti per la Cina</li>
+<li>National Weather Service (NWS)</li>
 <li>Bright Sky (DWD)</li>
 <li>Environment and Climate Change Canada</li>
-<li>SMHI</li></ul>
+<li>Israel Meteorological Service (IMS)</li>
+<li>SMHI</li>
+<li>MET Éireann</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
 

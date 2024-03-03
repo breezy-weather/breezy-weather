@@ -98,10 +98,12 @@ alt="Get it on Obtainium" align="center" height="54" />
   - Météo France
   - Danmarks Meteorologiske Institut (DMI)
   - Mixed China sources
+  - National Weather Service (NWS)
   - Bright Sky (DWD)
   - Environment and Climate Change Canada
   - Israel Meteorological Service (IMS)
   - SMHI
+  - MET Éireann
 </details>
 
 - Large selection of home screen widgets for at-a-glance information
