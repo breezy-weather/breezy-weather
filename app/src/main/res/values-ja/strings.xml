@@ -338,7 +338,7 @@
     <string name="settings_notifications_forecast_today_title">当日の天気予報</string>
     <string name="settings_widgets_section_widgets_in_use">使用中のウィジェット</string>
     <string name="settings_notifications_forecast_time_today_title">当日予報の通知時間</string>
-    <string name="settings_widgets_configure_widget_summary">このウィジェットを設定します</string>
+    <string name="settings_widgets_configure_widget_summary">このウィジェットを設定する</string>
     <string name="settings_notifications_forecast_tomorrow_title">翌日の予報</string>
     <string name="settings_widgets_section_notification_widget">通知ウィジェット</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">翌日予報の通知時間</string>
