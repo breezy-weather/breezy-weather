@@ -26,7 +26,7 @@
     <string name="visibility">視程</string>
     <string name="dew_point">露点</string>
     <string name="cloud_cover">雲量</string>
-    <string name="ceiling">雲低高度</string>
+    <string name="ceiling">雲高</string>
     <string name="settings_icon_packs_get_more">追加する</string>
     <string name="settings_icon_packs_get_more_store">アプリストアから追加する</string>
     <string name="settings_icon_packs_get_more_github">GitHub から追加する</string>
@@ -88,7 +88,7 @@
     <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質指数</string>
     <string name="pollen">花粉</string>
-    <string name="details">詳細</string>
+    <string name="details">詳細情報</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次</string>
     <string name="action_done">終了</string>
@@ -116,12 +116,12 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">位置情報の許可を確認する</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">位置情報を有効にする</string>
     <string name="location_dialog_failed_to_locate_action_select_source">位置情報サービスを選択する</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">手動で場所を追加し、「%s」を削除</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">手動で場所を追加し、「%s」を削除してください</string>
     <string name="widget_label_view_style">UIスタイル</string>
     <string name="widget_label_show_widget_card">背景色</string>
     <string name="widget_label_show_widget_card_alpha">不透明度</string>
-    <string name="widget_label_hide_subtitle">字幕を隠す</string>
-    <string name="widget_label_subtitle_data">字幕データ</string>
+    <string name="widget_label_hide_subtitle">サブタイトルを隠す</string>
+    <string name="widget_label_subtitle_data">サブタイトルデータ</string>
     <string name="widget_label_black_text">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時間のフォント</string>
@@ -195,7 +195,7 @@
     <string name="widget_clock_day_week">時計 + 毎日 + 週間</string>
     <string name="widget_text">テキスト</string>
     <string name="widget_trend_daily">日中の動き</string>
-    <string name="widget_trend_hourly">時間ごとの動き</string>
+    <string name="widget_trend_hourly">時間別の動き</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新を待っています</string>
     <string name="widget_ellipsis">…</string>
@@ -279,7 +279,7 @@
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
     <string name="uv_index_11">極高</string>
     <string name="wind_direction_short_W">W</string>
-    <string name="wind_direction_short_SW">SW</string>
+    <string name="wind_direction_short_SW">南西</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="wind_direction_short_S">S</string>
