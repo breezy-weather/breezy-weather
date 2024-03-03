@@ -175,8 +175,8 @@
     <string name="location_search_placeholder">場所を検索…</string>
     <string name="location_current_not_found_yet">現在地がまだ見つかりません…</string>
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
-    <string name="notification_running_in_background">バックグラウンドで更新</string>
-    <string name="notification_updating_weather_data">気象データの更新 (%1$d/%2$d)</string>
+    <string name="notification_running_in_background">バックグラウンドで更新しています</string>
+    <string name="notification_updating_weather_data">気象データを更新しています (%1$d/%2$d)</string>
     <string name="pollen_tap_to_see_more">さらに見るにはタップしてください…</string>
     <!-- action -->
     <string name="alerts">アラート</string>
