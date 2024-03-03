@@ -100,6 +100,7 @@ alt="Get it on Obtainium" align="center" height="54" />
   - Mixed China sources
   - Bright Sky (DWD)
   - Environment and Climate Change Canada
+  - Israel Meteorological Service (IMS)
   - SMHI
 </details>
 

@@ -15,13 +15,24 @@
  */
 package com.google.maps.android
 
+import kotlin.math.asin
+import kotlin.math.cos
 import kotlin.math.ln
+import kotlin.math.sin
+import kotlin.math.sqrt
 import kotlin.math.tan
 
 /**
  * Utility functions that are used my both PolyUtil and SphericalUtil.
  */
 internal object MathUtil {
+
+    /**
+     * The earth's radius, in meters.
+     * Mean radius as defined by IUGG.
+     */
+    const val EARTH_RADIUS = 6371009.0
+
     /**
      * Wraps the given value into the inclusive-exclusive interval between min and max.
      *
@@ -49,5 +60,30 @@ internal object MathUtil {
      */
     fun mercator(lat: Double): Double {
         return ln(tan(lat * 0.5 + Math.PI / 4))
+    }
+
+    /**
+     * Returns haversine(angle-in-radians).
+     * hav(x) == (1 - cos(x)) / 2 == sin(x / 2)^2.
+     */
+    fun hav(x: Double): Double {
+        val sinHalf: Double = sin(x * 0.5)
+        return sinHalf * sinHalf
+    }
+
+    /**
+     * Computes inverse haversine. Has good numerical stability around 0.
+     * arcHav(x) == acos(1 - 2 * x) == 2 * asin(sqrt(x)).
+     * The argument must be in [0, 1], and the result is positive.
+     */
+    fun arcHav(x: Double): Double {
+        return 2 * asin(sqrt(x))
+    }
+
+    /**
+     * Returns hav() of distance from (lat1, lng1) to (lat2, lng2) on the unit sphere.
+     */
+    fun havDistance(lat1: Double, lat2: Double, dLng: Double): Double {
+        return hav(lat1 - lat2) + hav(dLng) * cos(lat1) * cos(lat2)
     }
 }
