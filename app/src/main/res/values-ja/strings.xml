@@ -315,7 +315,7 @@
     <string name="settings_main_background_animation_disabled">無効</string>
     <string name="settings_background_updates_refresh_title">更新間隔</string>
     <string name="settings_background_updates_worker_info_title">バックグラウンド更新情報</string>
-    <string name="settings_main_background_animation_title">ライブ背景</string>
+    <string name="settings_main_background_animation_title">背景アニメーション</string>
     <string name="settings_main_summary">カードの順序･表示する情報･アニメーション</string>
     <string name="settings_main_section_animations">アニメーション</string>
     <string name="about_matrix">マトリックスルーム</string>
