@@ -122,7 +122,7 @@
     <string name="widget_label_show_widget_card_alpha">不透明度</string>
     <string name="widget_label_hide_subtitle">サブタイトルを隠す</string>
     <string name="widget_label_subtitle_data">サブタイトルデータ</string>
-    <string name="widget_label_black_text">文字の色</string>
+    <string name="widget_label_black_text">テキストの色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時間のフォント</string>
     <string name="widget_custom_subtitle_explanation">何でも入力できますが、テキストの長さを注意してください。天気データを引用したいなら、$を使って対応キーワードを参照してください。
@@ -179,7 +179,7 @@
     <string name="notification_updating_weather_data">気象データの更新 (%1$d/%2$d)</string>
     <string name="pollen_tap_to_see_more">さらに見るにはタップしてください…</string>
     <!-- action -->
-    <string name="alerts">警告</string>
+    <string name="alerts">アラート</string>
     <string name="action_search">検索</string>
     <string name="action_settings">設定</string>
     <string name="action_preview">プレビュー</string>
@@ -187,12 +187,12 @@
     <string name="action_app_store">アプリストア</string>
     <!-- widget -->
     <string name="widget_day">毎日</string>
-    <string name="widget_week">週間</string>
-    <string name="widget_day_week">毎日 + 週間</string>
+    <string name="widget_week">毎週</string>
+    <string name="widget_day_week">毎日 + 毎週</string>
     <string name="widget_clock_day_horizontal">時計 + 毎日 (水平)</string>
     <string name="widget_clock_day_details">時計 + 毎日 (詳細)</string>
     <string name="widget_clock_day_vertical">時計 + 毎日 (垂直)</string>
-    <string name="widget_clock_day_week">時計 + 毎日 + 週間</string>
+    <string name="widget_clock_day_week">時計 + 毎日 + 毎週</string>
     <string name="widget_text">テキスト</string>
     <string name="widget_trend_daily">日中の動き</string>
     <string name="widget_trend_hourly">時間別の動き</string>
@@ -268,7 +268,7 @@
     <string name="precipitation_none">降水なし</string>
     <string name="wind_direction_short_variable">変数</string>
     <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_short_NE">北東</string>
     <string name="wind_strength">風力</string>
     <string name="uv_index_0_2">低い</string>
     <string name="uv_index_3_5">並</string>
@@ -283,7 +283,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_NW">NW</string>
+    <string name="wind_direction_short_NW">北西</string>
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>
     <string name="alerts_to_follow">複数のアラートを確認</string>
