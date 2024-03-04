@@ -645,4 +645,5 @@
     <string name="location_search_source">Nguồn tìm kiếm vị trí</string>
     <string name="location_search_change_source">Thay đổi nguồn tìm kiếm vị trí</string>
     <string name="settings_weather_sources_default_source">Nguồn mặc định cho vị trí mới</string>
+    <string name="visibility_short">Tầm nhìn xa</string>
 </resources>
