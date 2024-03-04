@@ -400,8 +400,8 @@
     <string name="air_quality_so2_info_consequences">SO₂ への曝露は喘息の入院や救急外来の受診に関連しています。</string>
     <string name="pollen_alder">榛木花粉</string>
     <string name="pollen_birch">樺木花粉</string>
-    <string name="pollen_mugwort">艾花粉</string>
-    <string name="pollen_olive">オリーブ花粉</string>
+    <string name="pollen_mugwort">蓬草花粉</string>
+    <string name="pollen_olive">橄欖花粉</string>
     <string name="pollen_level_0">なし</string>
     <string name="pollen_level_1">非常に少ない</string>
     <string name="pollen_level_2">少ない</string>
