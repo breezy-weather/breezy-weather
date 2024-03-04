@@ -220,7 +220,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Kiểu xem</string>
     <string name="widget_label_show_widget_card">Màu nền</string>
-    <string name="widget_label_show_widget_card_alpha">Độ trong suốt</string>
+    <string name="widget_label_show_widget_card_alpha">Độ mờ</string>
     <string name="widget_label_hide_subtitle">Ẩn phụ đề</string>
     <string name="widget_label_subtitle_data">Dữ liệu phụ đề</string>
     <string name="widget_label_black_text">Màu chữ</string>
@@ -236,8 +236,8 @@
     <string name="widget_subtitle_data_custom">Tùy chỉnh</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Thời tiết hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nhiệt độ hiện tại (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Nhiệt độ biểu kiến (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Nhiệt độ biểu kiến (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Nhiệt độ cảm nhận hiện tại (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Nhiệt độ cảm nhận hiện tại (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Gió hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Độ ẩm hiện tại</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Tầm nhìn xa hiện tại</string>
@@ -636,4 +636,13 @@
     <string name="wind_short">Gió</string>
     <string name="uv_index_short">Chỉ số UV</string>
     <string name="pressure_short">Áp suất</string>
+    <string name="dew_point_short">Điểm sương</string>
+    <string name="location_search_no_results_advice">Đảm bảo tìm kiếm của bạn được viết đúng chính tả và không quá cụ thể. Ngoài ra, bạn có thể thử nguồn tìm kiếm vị trí khác có thể tạo ra kết quả khác.</string>
+    <string name="location_message_updated">Đã cập nhật vị trí</string>
+    <string name="location_message_already_exists">Đã tồn tại một vị trí có cùng nguồn thời tiết chính.</string>
+    <string name="temperature_feels_like_short">Cảm giác như</string>
+    <string name="settings_weather_source_none">Không có</string>
+    <string name="location_search_source">Nguồn tìm kiếm vị trí</string>
+    <string name="location_search_change_source">Thay đổi nguồn tìm kiếm vị trí</string>
+    <string name="settings_weather_sources_default_source">Nguồn mặc định cho vị trí mới</string>
 </resources>
