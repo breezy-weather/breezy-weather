@@ -75,6 +75,7 @@
         android:largeHeap="true"
         android:theme="@style/BreezyWeatherTheme"
         android:enableOnBackInvokedCallback="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled,UnusedAttribute"
         tools:replace="android:label"
         tools:targetApi="n">

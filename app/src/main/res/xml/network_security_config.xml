@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="@raw/isrg_root_x2" />
+            <certificates src="@raw/isrg_root_x1" />
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
