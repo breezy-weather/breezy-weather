@@ -1,0 +1,52 @@
+Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un fork di Geometric Weather, che aggiunge nuove funzionalità e fonti di dati, modernizza il codice, risolve vari bug, aggiorna le dipendenze per ragioni di sicurezza, eccetera, continuando allo stesso tempo a perseguire l'obbiettivo di un'esperienza fluida per utenti e sviluppatori.
+
+Nell'app troverete:<ul>
+<li>Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)</li>
+<li>Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni)</li>
+<li>Hourly details (Humidity / Dew point, Pressure, Cloud cover, Visibility)</li>
+<li>Precipitazioni durante l'ora a venire</li>
+<li>Qualità dell'aria, allergeni e dati sole e luna</li></ul>
+
+L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:<ul>
+<li>Tema scuro automatico</li>
+<li>Temi di icone personalizzati</li>
+<li>Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.</li>
+<li>Sfondo animato</li></ul>
+
+I fornitori di meteo attualmente supportati in the F-Droid default repository:<ul>
+<li>Open-Meteo</li></ul>
+
+The following sources are non-free/self-hostable and only available with the standard version of Breezy Weather from <a href="https://github.com/breezy-weather/fdroid-repo/blob/main/README.md">Breezy Weather F-Droid repository</a>:<ul>
+<li>AccuWeather</li>
+<li>MET Norway</li>
+<li>OpenWeatherMap</li>
+<li>Pirate Weather</li>
+<li>HERE</li>
+<li>Météo France</li>
+<li>Danmarks Meteorologiske Institut (DMI)</li>
+<li>Varie fonti per la Cina</li>
+<li>National Weather Service (NWS)</li>
+<li>Bright Sky (DWD)</li>
+<li>Environment and Climate Change Canada</li>
+<li>Israel Meteorological Service (IMS)</li>
+<li>SMHI</li>
+<li>MET Éireann</li></ul>
+
+Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
+
+Autorizzazioni obbligatorie:<ul>
+<li>Rete (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): consente all'applicazione di ottenere dati meteo da fornitori via Internet</li>
+<li>Aggiornamenti in background (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, FOREGROUND_SERVICE, SET_ALARM): consente all'app di aggiornare i dati meteo in background</li>
+<li>Tile (EXPAND_STATUS_BAR): consente all'app di avviarsi dalle impostazioni rapide</li>
+</ul>
+
+Autorizzazioni facoltative: <ul>
+<li>Posizione (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): consente all'applicazione di mostrare il meteo nella posizione corrente</li>
+<li>Archiviazione (READ_EXTERNAL_STORAGE, dellaWRITE_EXTERNAL_STORAGE): Consente all'applicazione di impostare lo sfondo e/o i widget del meteo in tempo reale su alcuni dispositivi</li>
+<li>Ignora le ottimizzazioni  batteria (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): impedisce che l'applicazione venga uccisa in background. Metodo potenzialmente più affidabile per recuperare i dati meteo in background su alcuni dispositivi</li>
+<li>Leggi lo stato del telefono (READ_PHONE_STATE): Richiesto da una dipendenza dell'applicazione: non viene utilizzato, ma non può essere rimosso. Va bene non abilitarlo mai.</li>
+</ul>
+
+Anti-feature: <ul>
+<li>Non-Free Assets: Logos that are part of brandings, such as weather sources logos or Breezy Weather logo are non-free.</li>
+</ul>

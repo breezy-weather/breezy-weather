@@ -5,8 +5,7 @@ In the app, you'll find:<ul>
 <li>Daily and hourly forecasts up to 16 days (Temperature, Air quality, Wind, UV index, Precipitation, Feels Like)</li>
 <li>Detailed hourly forecasts (Humidity / Dew point, Pressure, Cloud cover, Visibility)</li>
 <li>Precipitation in the next hour</li>
-<li>Air quality, allergen and ephemeris information</li>
-<li>Severe weather and precipitation alerts</li></ul>
+<li>Air quality, allergen and ephemeris information</li></ul>
 
 The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:<ul>
 <li>Automatic dark mode</li>
@@ -14,8 +13,10 @@ The app has a strong focus on design, with a simple, clean UX, smooth animations
 <li>Large selection of home screen widgets for at-a-glance information</li>
 <li>Live wallpaper</li></ul>
 
-Current supported weather sources:<ul>
-<li>Open-Meteo</li>
+Current supported weather sources in the F-Droid default repository:<ul>
+<li>Open-Meteo</li></ul>
+
+The following sources are non-free/self-hostable and only available with the standard version of Breezy Weather from <a href="https://github.com/breezy-weather/fdroid-repo/blob/main/README.md">Breezy Weather F-Droid repository</a>:<ul>
 <li>AccuWeather</li>
 <li>MET Norway</li>
 <li>OpenWeatherMap</li>
