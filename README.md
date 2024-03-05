@@ -176,16 +176,23 @@ These are time-consuming features and help is always appreciated. A fresh look t
 | [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on   | We already have a dark mode                                                                                                              |
 
 
-# Build variant
+# Build flavors
 
-A variant called `gplay` is available and may be distributed on Google Play Store in the future.
+A flavor called `gplay` is available and may be distributed on Google Play Store in the future.
 It enables Instant App and bundles Google Network Location Provider (proprietary).
 
 
 # License
 
 * [GNU Lesser General Public License v3.0](/LICENSE)
-* [Additional license terms](/LICENSE_ADDITIONAL)
-* [Guidelines regarding Breezy Weather identity and forks](/IDENTITY.md)
-* [Built on Geometric Weather Android app (GNU Lesser General Public License v3.0)](https://github.com/WangDaYeeeeee/GeometricWeather). Breezy Weather is not officially associated with Geometric Weather or its products.
+* Logo is not free to re-use
 
+Forks are allowed so long as they abide by the project’s LICENSE.
+
+When creating a fork, remember to:
+
+- To avoid confusion with Breezy Weather app:
+    - Change the app name
+    - Change the app icon
+- To avoid installation conflicts:
+    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L19)

@@ -1,0 +1,15 @@
+{
+  "uniqueId": "wangdaye.com.geometricweather:9ccc1580e169aaba39b63b1d93795ac6c587885c",
+  "developers": [
+    {
+      "name": "WangDaYeeeeee"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "A Material Design weather application Breezy Weather was forked from",
+  "name": "Geometric Weather App",
+  "website": "https://github.com/WangDaYeeeeee/GeometricWeather",
+  "licenses": [
+    "LGPL-3.0-only"
+  ]
+}
