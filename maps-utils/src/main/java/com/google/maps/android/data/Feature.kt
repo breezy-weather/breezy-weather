@@ -16,7 +16,6 @@
 package com.google.maps.android.data
 
 import com.google.maps.android.data.geojson.GeoJsonFeature
-import java.util.Observable
 
 /**
  * An abstraction that shares the common properties of

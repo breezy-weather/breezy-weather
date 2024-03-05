@@ -75,8 +75,12 @@ android {
     flavorDimensions.add("default")
 
     productFlavors {
-        create("standard") {
+        create("basic") {
             dimension = "default"
+        }
+        create("fdroid") {
+            dimension = "default"
+            versionNameSuffix = "_fdroid"
         }
         create("gplay") {
             dimension = "default"
@@ -85,8 +89,9 @@ android {
     }
 
     sourceSets {
-        getByName("standard").java.srcDirs("src/src_nogplay")
-        getByName("gplay").java.srcDirs("src/src_gplay")
+        getByName("basic").java.srcDirs("src/src_nofdroid", "src/src_nogplay")
+        getByName("fdroid").java.srcDirs("src/src_fdroid", "src/src_nogplay")
+        getByName("gplay").java.srcDirs("src/src_nofdroid", "src/src_gplay")
         getByName("gplay").manifest.srcFile("manifest_gplay/AndroidManifest.xml")
     }
 

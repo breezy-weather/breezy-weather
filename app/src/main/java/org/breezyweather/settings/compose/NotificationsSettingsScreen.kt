@@ -19,6 +19,7 @@ package org.breezyweather.settings.compose
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
@@ -36,25 +37,27 @@ fun NotificationsSettingsScreen(
     postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit
 ) = PreferenceScreen(paddingValues = paddingValues) {
     sectionHeaderItem(R.string.settings_notifications_section_general)
-    switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
-        SwitchPreferenceView(
-            titleId = id,
-            summaryOnId = R.string.settings_enabled,
-            summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
-                R.string.settings_disabled
-            } else R.string.settings_unavailable_no_background_updates,
-            checked = SettingsManager.getInstance(context).isAlertPushEnabled
-                    && SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
-            enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
-            onValueChanged = {
-                SettingsManager.getInstance(context).isAlertPushEnabled = it
-                if (it) {
-                    postNotificationPermissionEnsurer {
-                        // Do nothing
+    if (BuildConfig.FLAVOR != "fdroid") {
+        switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
+            SwitchPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
+                    R.string.settings_disabled
+                } else R.string.settings_unavailable_no_background_updates,
+                checked = SettingsManager.getInstance(context).isAlertPushEnabled
+                        && SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isAlertPushEnabled = it
+                    if (it) {
+                        postNotificationPermissionEnsurer {
+                            // Do nothing
+                        }
                     }
-                }
-            },
-        )
+                },
+            )
+        }
     }
     switchPreferenceItem(R.string.settings_notifications_precipitations_title) { id ->
         SwitchPreferenceView(

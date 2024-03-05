@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.openApplicationDetailsSettings
 import org.breezyweather.common.preference.EditTextPreference
@@ -54,20 +55,22 @@ fun LocationSettingsScreen(
     accessBackgroundLocationPermissionState: PermissionState,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    sectionHeaderItem(R.string.settings_location_section_general)
-    listPreferenceItem(R.string.settings_location_service) { id ->
-        ListPreferenceView(
-            title = context.getString(id),
-            selectedKey = SettingsManager.getInstance(context).locationSource,
-            valueArray = locationSources.map { it.id }.toTypedArray(),
-            nameArray = locationSources.map { it.name }.toTypedArray(),
-            summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
-            onValueChanged = { sourceId ->
-                SettingsManager.getInstance(context).locationSource = sourceId
-            }
-        )
+    if (BuildConfig.FLAVOR != "fdroid") {
+        sectionHeaderItem(R.string.settings_location_section_general)
+        listPreferenceItem(R.string.settings_location_service) { id ->
+            ListPreferenceView(
+                title = context.getString(id),
+                selectedKey = SettingsManager.getInstance(context).locationSource,
+                valueArray = locationSources.map { it.id }.toTypedArray(),
+                nameArray = locationSources.map { it.name }.toTypedArray(),
+                summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
+                onValueChanged = { sourceId ->
+                    SettingsManager.getInstance(context).locationSource = sourceId
+                }
+            )
+        }
+        sectionFooterItem(R.string.settings_location_section_general)
     }
-    sectionFooterItem(R.string.settings_location_section_general)
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         sectionHeaderItem(R.string.location_service_native)

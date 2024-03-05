@@ -340,7 +340,9 @@
     <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
     <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
     <string name="settings_weather_source_main">Source principale</string>
+    <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_none">Aucune</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Vous utilisez la version de Breezy Weather du dépôt par défaut de F-Droid, qui ne prend en charge que les sources météorologiques qui utilisent une solution de serveur disponible publiquement, auto-hébergeable et libre. Appuyez ici pour en savoir plus.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>
     <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>

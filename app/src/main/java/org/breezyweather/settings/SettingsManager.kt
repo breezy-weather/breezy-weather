@@ -148,14 +148,18 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
+        get() = if (BuildConfig.FLAVOR != "fdroid") {
+            config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
+        } else "native"
 
     var defaultWeatherSource: String
         set(value) {
             config.edit().putString("default_weather_source", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
+        get() = if (BuildConfig.FLAVOR != "fdroid") {
+            config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
+        } else "openmeteo"
 
     // unit.
     var temperatureUnit: TemperatureUnit

@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import breezyweather.domain.location.model.Location
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
@@ -102,15 +103,17 @@ class SearchActivity : GeoActivity() {
                             }
                         }
                     },
-                    floatingActionButton = {
-                        FloatingActionButton(
-                            onClick = { dialogLocationSearchSourceOpenState.value = true },
-                            containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                        ) {
-                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
+                    floatingActionButton = if (BuildConfig.FLAVOR != "fdroid") {
+                        {
+                            FloatingActionButton(
+                                onClick = { dialogLocationSearchSourceOpenState.value = true },
+                                containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                                elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                            ) {
+                                Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
+                            }
                         }
-                    }
+                    } else null
                 )
             }
         ) { paddings ->
@@ -158,11 +161,17 @@ class SearchActivity : GeoActivity() {
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
                                         val defaultSource = SettingsManager.getInstance(context).defaultWeatherSource
-                                        selectedLocation = when (defaultSource) {
-                                            "auto" -> LocationPreset.getLocationWithPresetApplied(location)
-                                            else -> location.copy(weatherSource = defaultSource)
+                                        if (BuildConfig.FLAVOR != "fdroid") {
+                                            selectedLocation = when (defaultSource) {
+                                                "auto" -> LocationPreset.getLocationWithPresetApplied(
+                                                    location
+                                                )
+                                                else -> location.copy(weatherSource = defaultSource)
+                                            }
+                                            dialogLocationSourcesOpenState.value = true
+                                        } else {
+                                            finishSelf(location.copy(weatherSource = defaultSource))
                                         }
-                                        dialogLocationSourcesOpenState.value = true
                                     }
                                 )
                             }

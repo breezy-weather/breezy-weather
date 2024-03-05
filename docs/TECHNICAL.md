@@ -2,18 +2,24 @@
 
 GitHub releases contain default API keys of the project that make all weather sources work by default (until API limits are reached).
 
-If you want to self-build, you will need to add your own API keys in `local.properties` if you want the same behaviour:
+If you want to self-build, you can add your own API keys in `local.properties` for sources to be configured by default in the build:
 ```properties
+breezy.accu.portal=developer
 breezy.accu.key=myapikey
-breezy.baiduip.key=myapikey
+breezy.accu.days=15
+breezy.accu.hours=120
 breezy.atmoaura.key=myapikey
+breezy.baiduip.key=myapikey
+breezy.geonames.key=myapikey
+breezy.here.key=myapikey
 breezy.mf.jwtKey=myapikey
 breezy.mf.key=myapikey
 breezy.openweather.key=myapikey
 breezy.openweather.oneCallVersion=3.0
+breezy.pirateweather.key=myapikey
 ```
 
-If you don’t, it will still work (for example, Open-Meteo will work), but other sources won’t work by default and user will need to input API key in settings.
+You can omit any of the following properties to let the user configure their own API key in the settings, or only use API-key-less sources (such as Open-Meteo).
 
 
 # Release management
@@ -21,8 +27,8 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 *Instructions for members of the organization.*
 
 1) Test your debug build.
-2) Run tests `./gradlew testStandardReleaseUnitTest`.
-3) Try to assemble a release `./gradlew assembleStandardRelease`.
+2) Run tests `./gradlew testBasicReleaseUnitTest`.
+3) Try to assemble a release `./gradlew assembleBasicRelease`.
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOGS.md`.
 6) Commit all changes.

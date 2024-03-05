@@ -24,6 +24,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.IntentHelper
 
@@ -36,8 +37,7 @@ object ApiHelpDialog {
         val view = LayoutInflater
             .from(activity)
             .inflate(R.layout.dialog_api_help, null, false)
-        view.findViewById<TextView>(R.id.dialog_api_help_content).text =
-            activity.getString(content).replace("$", "15")
+        view.findViewById<TextView>(R.id.dialog_api_help_content).text = activity.getString(content)
         initWidget(
             activity,
             view,
@@ -50,7 +50,9 @@ object ApiHelpDialog {
 
     @SuppressLint("SetTextI18n")
     private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
-        view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-            .setOnClickListener { IntentHelper.startSelectWeatherProviderActivity(activity) }
+        if (BuildConfig.FLAVOR != "fdroid") {
+            view.findViewById<View>(R.id.dialog_location_help_providerContainer)
+                .setOnClickListener { IntentHelper.startSelectWeatherProviderActivity(activity) }
+        }
     }
 }

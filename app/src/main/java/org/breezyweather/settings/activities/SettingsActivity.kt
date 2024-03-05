@@ -42,6 +42,7 @@ import breezyweather.domain.location.model.Location
 import com.google.accompanist.permissions.rememberPermissionState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
@@ -318,9 +319,10 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
                     WeatherSourcesSettingsScreen(
                         context = this@SettingsActivity,
-                        configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources().filter {
-                            it.isWeatherSupportedForLocation(Location())
-                        },
+                        configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
+                            .filter {
+                                it.isWeatherSupportedForLocation(Location())
+                            },
                         configurableSources = sourceManager.getConfigurableSources(),
                         paddingValues = paddings,
                     )

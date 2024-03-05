@@ -65,9 +65,10 @@ import kotlin.math.ln
 // helper.
 
 @Composable
-fun getWidgetSurfaceColor(elevation: Dp): Color {
-    val surface = MaterialTheme.colorScheme.surface
-
+fun getWidgetSurfaceColor(
+    elevation: Dp,
+    surface: Color = MaterialTheme.colorScheme.surface
+): Color {
     if (elevation == 0.dp) {
         return surface
     }
@@ -190,6 +191,8 @@ fun getCardListItemMarginDp(context: Context) = context
 fun Material3CardListItem(
     modifier: Modifier = Modifier,
     elevation: Dp = defaultCardListItemElevation,
+    surface: Color = MaterialTheme.colorScheme.surface,
+    onSurface: Color = MaterialTheme.colorScheme.onSurface,
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier
@@ -203,8 +206,8 @@ fun Material3CardListItem(
         size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)
     ),
     colors = CardDefaults.cardColors(
-        containerColor = getWidgetSurfaceColor(elevation),
-        contentColor = MaterialTheme.colorScheme.onSurface
+        containerColor = getWidgetSurfaceColor(elevation, surface),
+        contentColor = onSurface
     ),
     content = content
 )

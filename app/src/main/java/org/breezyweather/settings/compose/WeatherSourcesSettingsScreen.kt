@@ -20,6 +20,7 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
@@ -46,20 +47,22 @@ fun WeatherSourcesSettingsScreen(
     configurableSources: List<ConfigurableSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    sectionHeaderItem(R.string.settings_weather_sources_section_general)
-    listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
-        SourceView(
-            title = stringResource(id),
-            selectedKey = SettingsManager.getInstance(context).defaultWeatherSource,
-            sourceList = mapOf(
-                "auto" to stringResource(R.string.settings_automatic)
-            ) + configuredWorldwideSources.associate { it.id to it.name },
-            card = true
-        ) { defaultSource ->
-            SettingsManager.getInstance(context).defaultWeatherSource = defaultSource
+    if (BuildConfig.FLAVOR != "fdroid") {
+        sectionHeaderItem(R.string.settings_weather_sources_section_general)
+        listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
+            SourceView(
+                title = stringResource(id),
+                selectedKey = SettingsManager.getInstance(context).defaultWeatherSource,
+                sourceList = mapOf(
+                    "auto" to stringResource(R.string.settings_automatic)
+                ) + configuredWorldwideSources.associate { it.id to it.name },
+                card = true
+            ) { defaultSource ->
+                SettingsManager.getInstance(context).defaultWeatherSource = defaultSource
+            }
         }
+        sectionFooterItem(R.string.settings_weather_sources_section_general)
     }
-    sectionFooterItem(R.string.settings_weather_sources_section_general)
 
     configurableSources
         .filter { it !is LocationSource } // Exclude location sources configured in its own screen
