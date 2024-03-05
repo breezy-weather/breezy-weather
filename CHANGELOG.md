@@ -1,5 +1,14 @@
 # Version 5.0.4-beta (not yet released)
 
+**New features**
+- Breezy Weather now comes in 3 flavors:
+  - Standard: this is the version you used so far
+  - Google Play: same as Standard + proprietary Fused location from Google Play Services. Useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
+  - F-Droid: this version removes any non-free weather sources, so you are sure to get a 100% FOSS experience and not connect by mistake to a non-free network. There are plans to add this version to the default F-Droid repository.
+
+**Improvements and fixes**
+- Better mapping for icons of Chronus icon packs (@min7-i)
+
 **Weather sources**
 - [Israel Meteorological Service] Added as main source
 - [Israel Meteorological Service] Added as secondary alert source
