@@ -267,6 +267,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN"), "tomac4t", "https://github.com/tomac4t"),
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", "https://github.com/abc0922001"),
         TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", "https://hosted.weblate.org/user/hamburger2048/"),
+        TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rHK", "zh_rTW"), "天ツ風", "https://github.com/Yibuki"),
         TranslatorItem(arrayOf("zh_rHK", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", "https://github.com/kilimov25"),
     )
 

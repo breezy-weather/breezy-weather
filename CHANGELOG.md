@@ -1,4 +1,4 @@
-# Version 5.0.4-alpha (not yet released)
+# Version 5.0.4-beta (not yet released)
 
 **Weather sources**
 - [Israel Meteorological Service] Added as main source
@@ -7,6 +7,9 @@
 - [MET IE] Add warnings as main source in Ireland-only
 - [MET IE] Add warnings as secondary source in Ireland-only
 - [MET IE] Add reverse geocoding in Ireland-only
+
+**Translations**
+- Translations updated
 
 
 # Version 5.0.3-alpha (2024-03-02)
