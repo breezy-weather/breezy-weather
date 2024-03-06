@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -52,6 +53,7 @@ import org.breezyweather.main.MainActivity
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class FooterViewHolder(
@@ -185,7 +187,6 @@ class FooterViewHolder(
     fun ComposeView(activity: MainActivity, location: Location, creditsText: String, cardMarginsVertical: Int) {
         var expand by remember { mutableStateOf(false) }
         var dialogOpenState by remember { mutableStateOf(false) }
-        val scope = rememberCoroutineScope()
 
         val paddingTop = dimensionResource(R.dimen.little_margin) - cardMarginsVertical.dp
         Row(
@@ -227,8 +228,11 @@ class FooterViewHolder(
         }
 
         if (dialogOpenState) {
+            val dialogDeleteLocationOpenState = remember { mutableStateOf(false) }
             AlertDialogNoPadding(
-                onDismissRequest = { dialogOpenState = false },
+                onDismissRequest = {
+                    dialogOpenState = false
+                },
                 title = {
                     Text(
                         text = stringResource(R.string.action_settings),
@@ -256,27 +260,80 @@ class FooterViewHolder(
                             style = MaterialTheme.typography.labelLarge,
                         )
                     }
-                }/*,
-                dismissButton = if (true) { // If location list size > 1
+                },
+                dismissButton = if (activity.locationListSize() > 1) {
                     {
-                        Button(
+                        TextButton(
                             onClick = {
-                                //dialogOpenState = false
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.error,
-                                contentColor = MaterialTheme.colorScheme.onError,
-                            ),
+                                dialogDeleteLocationOpenState.value = true
+                            }
                         ) {
                             Text(
                                 text = stringResource(R.string.action_delete),
-                                color = MaterialTheme.colorScheme.onError,
+                                color = MaterialTheme.colorScheme.error,
                                 style = MaterialTheme.typography.labelLarge,
                             )
                         }
                     }
-                } else null*/
+                } else null
             )
+
+            if (dialogDeleteLocationOpenState.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        dialogDeleteLocationOpenState.value = false
+                    },
+                    title = {
+                        Text(
+                            text = stringResource(R.string.location_delete_location_dialog_title),
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = if (location.city.isNotEmpty()) {
+                                stringResource(
+                                    R.string.location_delete_location_dialog_message,
+                                    location.city
+                                )
+                            } else {
+                                stringResource(R.string.location_delete_location_dialog_message_no_name)
+                            },
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                dialogDeleteLocationOpenState.value = false
+                                dialogOpenState = false
+                                activity.deleteLocation(location)
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_confirm),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(
+                            onClick = {
+                                dialogDeleteLocationOpenState.value = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_cancel),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    }
+                )
+            }
         }
     }
 

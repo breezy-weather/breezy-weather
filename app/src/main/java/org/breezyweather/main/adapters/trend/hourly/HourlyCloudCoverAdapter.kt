@@ -18,7 +18,6 @@ package org.breezyweather.main.adapters.trend.hourly
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,6 @@ import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
 import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
 import org.breezyweather.domain.weather.model.getCloudCoverColor
-import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.weatherView.WeatherViewController

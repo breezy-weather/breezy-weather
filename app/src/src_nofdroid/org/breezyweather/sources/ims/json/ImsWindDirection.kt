@@ -16,7 +16,6 @@
 
 package org.breezyweather.sources.ims.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

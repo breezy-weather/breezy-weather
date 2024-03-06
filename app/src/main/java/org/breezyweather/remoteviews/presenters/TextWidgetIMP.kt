@@ -20,20 +20,35 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.util.TypedValue
+import android.view.View
 import android.widget.RemoteViews
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Weather
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
+import java.util.Date
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
     fun updateWidgetView(context: Context, location: Location?) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_text_setting))
-        val views = getRemoteViews(context, location, config.textColor, config.textSize, config.alignEnd)
+        val views = getRemoteViews(
+            context, location,
+            config.textColor, config.textSize, config.alignEnd,
+            config.hideSubtitle, config.subtitleData
+        )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTextProvider::class.java),
             views
@@ -41,7 +56,9 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?, textColor: String?, textSize: Int, alignEnd: Boolean
+        context: Context, location: Location?,
+        textColor: String?, textSize: Int, alignEnd: Boolean,
+        hideHeader: Boolean, subtitleData: String?
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -50,6 +67,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         val weather = location?.weather ?: return views
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
+        val speedUnit = settings.speedUnit
 
         val color = WidgetColor(
             context,
@@ -59,29 +77,53 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         )
 
         views.apply {
+            if (hideHeader) {
+                setViewVisibility(R.id.widget_text_date, View.GONE)
+                setViewVisibility(R.id.widget_text_weather, View.GONE)
+                setViewVisibility(R.id.widget_text_temperature, View.GONE)
+            } else {
+                setViewVisibility(R.id.widget_text_date, View.VISIBLE)
+                setViewVisibility(R.id.widget_text_weather, View.VISIBLE)
+                setViewVisibility(R.id.widget_text_temperature, View.VISIBLE)
+                setTextViewText(
+                    R.id.widget_text_weather,
+                    weather.current?.weatherText
+                        ?: context.getString(R.string.null_data_text)
+                )
+                setTextViewText(
+                    R.id.widget_text_temperature,
+                    weather.current?.temperature?.temperature?.let {
+                        temperatureUnit.getShortValueText(context, it)
+                    }
+                )
+                setTextColor(R.id.widget_text_date, color.textColor)
+                setTextColor(R.id.widget_text_weather, color.textColor)
+                setTextColor(R.id.widget_text_temperature, color.textColor)
+            }
             setTextViewText(
-                R.id.widget_text_weather,
-                weather.current?.weatherText
-                    ?: context.getString(R.string.null_data_text)
+                R.id.widget_text_subtitle,
+                getTimeText(
+                    context,
+                    location,
+                    weather,
+                    subtitleData,
+                    temperatureUnit,
+                    speedUnit
+                )
             )
-            setTextViewText(
-                R.id.widget_text_temperature,
-                weather.current?.temperature?.temperature?.let {
-                    temperatureUnit.getShortValueText(context, it)
-                }
-            )
-            setTextColor(R.id.widget_text_date, color.textColor)
-            setTextColor(R.id.widget_text_weather, color.textColor)
-            setTextColor(R.id.widget_text_temperature, color.textColor)
+            setTextColor(R.id.widget_text_subtitle, color.textColor)
         }
         if (textSize != 100) {
             val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
                 .toFloat() * textSize / 100f
             val temperatureSize = context.spToPx(48) * textSize / 100f
             views.apply {
-                setTextViewTextSize(R.id.widget_text_date, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_text_weather, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_text_temperature, TypedValue.COMPLEX_UNIT_PX, temperatureSize)
+                if (!hideHeader) {
+                    setTextViewTextSize(R.id.widget_text_date, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                    setTextViewTextSize(R.id.widget_text_weather, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                    setTextViewTextSize(R.id.widget_text_temperature, TypedValue.COMPLEX_UNIT_PX, temperatureSize)
+                }
+                setTextViewTextSize(R.id.widget_text_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
             }
         }
         setOnClickPendingIntent(context, views, location)
@@ -92,6 +134,33 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         val widgetIds = AppWidgetManager.getInstance(context)
             .getAppWidgetIds(ComponentName(context, WidgetTextProvider::class.java))
         return widgetIds != null && widgetIds.isNotEmpty()
+    }
+
+    private fun getTimeText(
+        context: Context, location: Location, weather: Weather,
+        subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+    ): String? {
+        return when (subtitleData) {
+            "time" -> weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
+            "aqi" -> weather.current?.airQuality?.let { airQuality ->
+                if (airQuality.getIndex() != null
+                    && airQuality.getName(context) != null) {
+                    (airQuality.getName(context, null)
+                            + " ("
+                            + airQuality.getIndex(null)
+                            + ")")
+                } else null
+            }
+            "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
+            "lunar" -> LunarHelper.getLunarDate(Date())
+            "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
+                (context.getString(R.string.temperature_feels_like)
+                        + " "
+                        + temperatureUnit.getValueText(context, it, 0)
+                        )
+            }
+            else -> getCustomSubtitle(context, subtitleData, location, weather)
+        }
     }
 
     private fun setOnClickPendingIntent(context: Context, views: RemoteViews, location: Location) {

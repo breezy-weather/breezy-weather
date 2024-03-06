@@ -58,11 +58,18 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mTextColorContainer?.visibility = View.VISIBLE
         mTextSizeContainer?.visibility = View.VISIBLE
         mAlignEndContainer?.visibility = View.VISIBLE
+        mHideSubtitleContainer?.visibility = View.VISIBLE
+        mHideSubtitleTitle?.text = getString(R.string.widget_label_hide_header)
+        mSubtitleDataContainer?.visibility = View.VISIBLE
     }
 
     override val remoteViews: RemoteViews
         get() {
-            return getRemoteViews(this, locationNow, textColorValueNow, textSize, alignEnd)
+            return getRemoteViews(
+                this, locationNow,
+                textColorValueNow, textSize, alignEnd,
+                hideSubtitle, subtitleDataValueNow
+            )
         }
 
     override val configStoreName: String

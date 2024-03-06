@@ -46,8 +46,11 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
+import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
@@ -295,6 +298,12 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
+                    "\$caqi$",
+                    if (weather.current?.airQuality?.isIndexValid == true) {
+                        weather.current!!.airQuality!!.getIndex().toString() + " (" +
+                                weather.current!!.airQuality!!.getName(context) + ")"
+                    } else context.getString(R.string.null_data_text)
+                ).replace(
                     "\$cuv$",
                     weather.current?.uV?.getShortUVDescription(context)
                         ?: context.getString(R.string.null_data_text)
@@ -448,6 +457,12 @@ abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "nwd$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
+                ).replace(
+                    "$" + i + "aqi$",
+                    if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
+                        weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
+                                weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
+                    } else context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(timeZone, context.is12Hour)

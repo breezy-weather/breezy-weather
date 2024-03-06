@@ -17,8 +17,6 @@
 package org.breezyweather.sources.metie.json
 
 import kotlinx.serialization.Serializable
-import org.breezyweather.common.serializer.DateSerializer
-import java.util.Date
 
 @Serializable
 data class MetIeWarningResult(

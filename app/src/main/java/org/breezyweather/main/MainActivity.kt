@@ -116,6 +116,28 @@ class MainActivity : GeoActivity(),
         viewModel.updateLocation(location, oldLocation)
     }
 
+    fun deleteLocation(location: Location) {
+        if (locationListSize() > 1) {
+            val position: Int = viewModel.validLocationList.value.first.indexOfFirst {
+                it.formattedId == location.formattedId
+            }
+            if (position >= 0) {
+                viewModel.deleteLocation(position)
+                SnackbarHelper.showSnackbar(
+                    this.getString(R.string.location_message_deleted)
+                )
+            }
+        } else {
+            SnackbarHelper.showSnackbar(
+                this.getString(R.string.location_message_list_cannot_be_empty)
+            )
+        }
+    }
+
+    fun locationListSize(): Int {
+        return viewModel.locationListSize()
+    }
+
     private val fragmentsLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
 
         override fun onFragmentViewCreated(

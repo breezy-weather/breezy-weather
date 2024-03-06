@@ -185,14 +185,13 @@ It enables Instant App and bundles Google Network Location Provider (proprietary
 # License
 
 * [GNU Lesser General Public License v3.0](/LICENSE)
-* Logo is not free to re-use
-
-Forks are allowed so long as they abide by the project’s LICENSE.
+* This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+* Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
 
 When creating a fork, remember to:
-
-- To avoid confusion with Breezy Weather app:
+- Respect the project’s LICENSE
+- Avoid confusion with Breezy Weather app:
     - Change the app name
     - Change the app icon
-- To avoid installation conflicts:
+- Avoid installation conflicts:
     - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L19)

@@ -13,8 +13,8 @@ compose-material3 = "1.2.0"
 core-ktx = "1.12.0"
 dagger = "2.51"
 datastore = "1.0.0"
-expandabletextcompose = "4a817cbf7bca2af5c150b334f78fcf1ab492bb11"
-gms-location = "21.1.0"
+expandabletextcompose = "2.0.1"
+gms-location = "21.2.0"
 hilt = "1.2.0"
 javapoet = "1.13.0"
 jjwt = "0.12.5"
@@ -67,7 +67,7 @@ dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compi
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
 dagger-hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
-expandabletextcompose = { group = "com.github.breezy-weather.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }
+expandabletextcompose = { group = "com.github.giangpham96.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }
 gms-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "gms-location" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt" }
@@ -96,6 +96,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+okhttp-tls = { group = "com.squareup.okhttp3", name = "okhttp-tls", version.ref = "okhttp" }
 preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference-ktx" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 retrofit-adapter-rxjava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
@@ -121,7 +122,7 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 
 [bundles]
 lifecycle = ["lifecycle-common-java8", "lifecycle-extensions", "lifecycle-livedata-ktx", "lifecycle-reactivestreams-ktx", "lifecycle-runtime-ktx", "lifecycle-viewmodel-compose", "lifecycle-viewmodel-ktx"]
-okhttp = ["okhttp-core", "okhttp-logging"]
+okhttp = ["okhttp-core", "okhttp-logging", "okhttp-tls"]
 retrofit = ["retrofit-adapter-rxjava3", "retrofit-core"]
 sqldelight = ["sqldelight-android-driver", "sqldelight-coroutines", "sqldelight-android-paging"]
 sqlite = ["sqlite-framework", "sqlite-ktx", "sqlite-android"]

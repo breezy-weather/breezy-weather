@@ -79,6 +79,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var mCardStyleContainer: RelativeLayout? = null
     protected var mCardAlphaContainer: RelativeLayout? = null
     protected var mHideSubtitleContainer: RelativeLayout? = null
+    protected var mHideSubtitleTitle: TextView? = null
     protected var mSubtitleDataContainer: RelativeLayout? = null
     protected var mTextColorContainer: RelativeLayout? = null
     protected var mTextSizeContainer: RelativeLayout? = null
@@ -283,6 +284,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             }
         }
 
+        mHideSubtitleTitle = findViewById<TextView>(R.id.activity_widget_config_hideSubtitleTitle).apply {
+            text = getString(R.string.widget_label_hide_subtitle)
+        }
         mHideSubtitleContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideSubtitleContainer).apply {
             visibility = View.GONE
         }
@@ -494,11 +498,12 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_at)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_at_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_atd)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_atd_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_cwd)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cwd_description)}
+            ${getString(R.string.widget_custom_subtitle_keyword_caqi)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_caqi_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_cuv)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cuv_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_ch)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_ch_description)}
+            ${getString(R.string.widget_custom_subtitle_keyword_cdp)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cdp_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_cps)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cps_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_cv)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cv_description)}
-            ${getString(R.string.widget_custom_subtitle_keyword_cdp)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cdp_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_al)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_al_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_als)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_als_description)}
             
@@ -544,6 +549,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_xnwd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xnwd_description)}
             
+            ${getString(R.string.widget_custom_subtitle_keyword_xaqi)}${getString(R.string.colon_separator)}
+            ${getString(R.string.widget_custom_subtitle_keyword_xaqi_description)}
+
             ${getString(R.string.widget_custom_subtitle_keyword_xsr)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xsr_description)}
             

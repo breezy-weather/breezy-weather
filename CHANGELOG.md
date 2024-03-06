@@ -7,7 +7,12 @@
   - F-Droid: this version removes any non-free weather sources, so you are sure to get a 100% FOSS experience and not connect by mistake to a non-free network. There are plans to add this version to the default F-Droid repository.
 
 **Improvements and fixes**
+- [Widgets] Custom subtitle - A keyword was added for current and daily air quality index
+- [Widgets] Text widget - Add support for custom subtitle
+- [Widgets] Text widget - Add ability to hide header (i.e. only show custom subtitle)
+- Add a second way to delete location from location preferences (Edit button in footer) (will only show if there is at least 2 locations in the list as location list cannot be empty)
 - Better mapping for icons of Chronus icon packs (@min7-i)
+- Fix weather data refresh failure on Android < 7.1.1 for weather sources using Let’s encrypt certificates
 
 **Weather sources**
 - [Israel Meteorological Service] Added as main source

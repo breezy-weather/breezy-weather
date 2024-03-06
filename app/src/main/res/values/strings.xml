@@ -265,6 +265,9 @@
     <string name="location_message_updated">Location updated</string>
     <string name="location_message_already_exists">A location with the same main weather source already exists.</string>
     <string name="location_message_deleted">Location deleted</string>
+    <string name="location_delete_location_dialog_title">Delete location?</string>
+    <string name="location_delete_location_dialog_message">You’re about to delete “%s” from your list of saved locations.</string>
+    <string name="location_delete_location_dialog_message_no_name">You’re about to delete this location from your list of saved locations.</string>
     <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
     <!-- If using an RTL language, change “left” to “right” -->
     <string name="location_swipe_to_delete">You can swipe left to delete this item</string>
@@ -285,7 +288,6 @@
     <string name="location_search_no_results">%1$s can’t find %2$s</string>
     <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another location search source which may produce different results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
-    <!-- Enabled. Hidden when within 20 km of current location. -->
     <!-- To be deprecated -->
     <string name="location_service_native">Native API</string>
     <!-- Actions -->
@@ -314,6 +316,7 @@
     <string name="action_help">Help</string>
     <string name="action_learn_more">Learn more</string>
     <string name="action_continue">Continue</string>
+    <string name="action_confirm">Confirm</string>
     <string name="action_close">Close</string>
     <string name="action_share">Share</string>
     <string name="action_show_errors">Tap to see details</string>
@@ -355,6 +358,7 @@
     <string name="widget_label_show_widget_card">Background color</string>
     <string name="widget_label_show_widget_card_alpha">Opacity</string>
     <string name="widget_label_hide_subtitle">Hide subtitle</string>
+    <string name="widget_label_hide_header">Hide header</string>
     <string name="widget_label_subtitle_data">Subtitle data</string>
     <string name="widget_label_black_text">Text color</string>
     <string name="widget_label_text_size">Text size</string>
@@ -375,6 +379,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Current Feels like Temperature (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Current Feels like Temperature (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Current Wind</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Current Air Quality Index</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Current UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Current Humidity</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Current Pressure</string>
@@ -403,6 +408,7 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Nighttime Precipitation of today, tomorrow, …, 4 days later (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Daytime Wind of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nighttime Wind of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Air Quality Index of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sunrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Sunset of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Moonrise of today, tomorrow, …, 4 days later</string>
@@ -808,11 +814,12 @@
     <string name="widget_custom_subtitle_keyword_at" translatable="false">$at$</string>
     <string name="widget_custom_subtitle_keyword_atd" translatable="false">$atd$</string>
     <string name="widget_custom_subtitle_keyword_cwd" translatable="false">$cwd$</string>
+    <string name="widget_custom_subtitle_keyword_caqi" translatable="false">$caqi$</string>
     <string name="widget_custom_subtitle_keyword_cuv" translatable="false">$cuv$</string>
     <string name="widget_custom_subtitle_keyword_ch" translatable="false">$ch$</string>
+    <string name="widget_custom_subtitle_keyword_cdp" translatable="false">$cdp$</string>
     <string name="widget_custom_subtitle_keyword_cps" translatable="false">$cps$</string>
     <string name="widget_custom_subtitle_keyword_cv" translatable="false">$cv$</string>
-    <string name="widget_custom_subtitle_keyword_cdp" translatable="false">$cdp$</string>
     <string name="widget_custom_subtitle_keyword_al" translatable="false">$al$</string>
     <string name="widget_custom_subtitle_keyword_als" translatable="false">$als$</string>
     <string name="widget_custom_subtitle_keyword_l" translatable="false">$l$</string>
@@ -836,6 +843,7 @@
     <string name="widget_custom_subtitle_keyword_xnp" translatable="false">$0np$, $1np$, …, $4np$</string>
     <string name="widget_custom_subtitle_keyword_xdwd" translatable="false">$0dwd$, $1dwd$, …, $4dwd$</string>
     <string name="widget_custom_subtitle_keyword_xnwd" translatable="false">$0nwd$, $1nwd$, …, $4nwd$</string>
+    <string name="widget_custom_subtitle_keyword_xaqi" translatable="false">$0aqi$, $1aqi$, …, $4aqi$</string>
     <string name="widget_custom_subtitle_keyword_xsr" translatable="false">$0sr$, $1sr$, …, $4sr$</string>
     <string name="widget_custom_subtitle_keyword_xss" translatable="false">$0ss$, $1ss$, …, $4ss$</string>
     <string name="widget_custom_subtitle_keyword_xmr" translatable="false">$0mr$, $1mr$, …, $4mr$</string>

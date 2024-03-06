@@ -216,6 +216,10 @@ class MainActivityViewModel @Inject constructor(
         checkToUpdateCurrentLocation()
     }
 
+    fun locationListSize(): Int {
+        return validLocationList.value.first.size
+    }
+
     /**
      * Called on background thread
      */

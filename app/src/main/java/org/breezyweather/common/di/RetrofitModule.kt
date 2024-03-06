@@ -17,6 +17,7 @@
 package org.breezyweather.common.di
 
 import android.app.Application
+import android.os.Build
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -27,13 +28,18 @@ import okhttp3.Cache
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.tls.HandshakeCertificates
 import org.breezyweather.BreezyWeather
+import org.breezyweather.R
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import java.io.File
+import java.security.cert.CertificateFactory
+import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -41,13 +47,38 @@ class RetrofitModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(app: Application, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
+        val client = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            /**
+             * Add support for Let’s encrypt certificate authority on Android < 7.0
+             */
+            try {
+                val certificateFactory = CertificateFactory.getInstance("X.509")
+                val certificateIsrgRootX1 = certificateFactory
+                    .generateCertificates(app.resources.openRawResource(R.raw.isrg_root_x1))
+                    .single() as X509Certificate
+                val certificateIsrgRootX2 = certificateFactory
+                    .generateCertificates(app.resources.openRawResource(R.raw.isrg_root_x2))
+                    .single() as X509Certificate
+                val certificates = HandshakeCertificates.Builder()
+                    .addTrustedCertificate(certificateIsrgRootX1)
+                    .addTrustedCertificate(certificateIsrgRootX2)
+                    .addPlatformTrustedCertificates()
+                    .build()
+
+                OkHttpClient.Builder()
+                    .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager)
+            } catch (ignored: Exception) {
+                OkHttpClient.Builder()
+            }
+        } else OkHttpClient.Builder()
+
+        return client
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(45, TimeUnit.SECONDS)
             .cache(
                 Cache(
-                    File(app.cacheDir, "http_cache"),  // $0.05 worth of phone storage in 2020
+                    File(app.cacheDir, "http_cache"), // $0.05 worth of phone storage in 2020
                     50L * 1024L * 1024L // 50 MiB
                 )
             )

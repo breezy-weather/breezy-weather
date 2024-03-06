@@ -175,7 +175,8 @@
     <string name="action_set">Définir</string>
     <string name="action_help">Aide</string>
     <string name="action_learn_more">En savoir plus</string>
-    <string name="action_continue">Continue</string>
+    <string name="action_continue">Continuer</string>
+    <string name="action_confirm">Confirmer</string>
     <string name="action_close">Fermer</string>
     <string name="action_share">Partager</string>
 
@@ -229,6 +230,7 @@
     <string name="widget_label_show_widget_card">Couleur d’arrière-plan</string>
     <string name="widget_label_show_widget_card_alpha">Opacité</string>
     <string name="widget_label_hide_subtitle">Masquer le sous-titre</string>
+    <string name="widget_label_hide_header">Masquer l’entête</string>
     <string name="widget_label_subtitle_data">Sous-titre</string>
     <string name="widget_label_black_text">Couleur du texte</string><!-- Texte sombre -->
     <string name="widget_label_text_size">Taille du texte</string>
@@ -243,6 +245,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie actuelle (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actuel</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Indice de Qualité de l’Air actuel</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV actuel</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidité actuelle</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Pression actuelle</string>
@@ -271,6 +274,7 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Précipitations de nuit d’aujourd’hui, demain, …, dans 4 jours (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vent de jour d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vent de nuit d’aujourd’hui, demain, …, dans 4 jours</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de Qualité de l’Air d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Lever du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Coucher du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Lever de lune d’aujourd’hui, demain, …, dans 4 jours</string>
@@ -284,6 +288,9 @@
     <string name="location_message_updated">Emplacement mis à jour</string>
     <string name="location_message_already_exists">Un emplacement avec la même source météo principale existe déjà.</string>
     <string name="location_message_deleted">Emplacement supprimé</string>
+    <string name="location_delete_location_dialog_title">Supprimer l’emplacement ?</string>
+    <string name="location_delete_location_dialog_message">Vous vous apprêtez à supprimer “%s” de votre liste d’emplacements enregistrés.</string>
+    <string name="location_delete_location_dialog_message_no_name">Vous vous apprêtez à supprimer cet emplacement de votre liste d’emplacements enregistrés.</string>
     <string name="location_message_list_cannot_be_empty">La liste de localisation ne peut être vide</string>
 
     <string name="location_search_placeholder">Rechercher une localisation…</string>
@@ -506,7 +513,7 @@
     <string name="settings_widgets_notification_widget_title">Notification widget</string>
     <string name="settings_widgets_notification_persistent_switch">Persistante</string>
     <string name="settings_widgets_notification_style_title">Style</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre de statut</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre d’état</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
     <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="settings_widgets_gadgetbridge_switch">Envoyer les données météo à Gadgetbridge</string>

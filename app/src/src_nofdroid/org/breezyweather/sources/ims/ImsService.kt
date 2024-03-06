@@ -35,7 +35,6 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.sources.metie.convertSecondary
 import retrofit2.Retrofit
 import javax.inject.Inject
 
