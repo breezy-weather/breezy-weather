@@ -652,4 +652,6 @@
     <string name="humidity_short">Páratartalom</string>
     <string name="cloud_cover_short">Felhőtakaró</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
+    <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
+    <string name="settings_weather_source_fdroid_disclaimer">A Breezy Weather F-Droid verzióját használod az F-Droid alapértelmezett tárolójából, amely csak olyan időjárásforrásokhoz nyújt támogatást, amelyek nyilvánosan elérhetőek, saját magad által is üzemeltethető, szabad szoftveres kiszolgáló megoldást használnak. További információkért koppints ide.</string>
 </resources>
