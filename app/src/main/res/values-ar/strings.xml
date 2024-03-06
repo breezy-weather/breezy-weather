@@ -655,4 +655,11 @@
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
     <string name="settings_weather_source_fdroid_disclaimer">أنت تستخدم إصدار Breezy Weather من مستودع F-Droid الافتراضي، والذي يدعم فقط مصادر الطقس التي تستخدم حل خادم برمجي مجاني متاح للعامة ويمكن استضافته ذاتيًا. انقر هنا لمعرفة المزيد.</string>
+    <string name="location_delete_location_dialog_title">هل تريد حذف الموقع؟</string>
+    <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المواقع المحفوظة.</string>
+    <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذا الموقع من لائحة المواقع المحفوظة.</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">مؤشر جودة الهواء الحالي</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لهذا اليوم، للغد،...، لليوم الرابع القادم</string>
+    <string name="action_confirm">تأكيد</string>
+    <string name="widget_label_hide_header">اخفاء العنوان</string>
 </resources>
