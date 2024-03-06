@@ -243,7 +243,7 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">الطقس ليلا اليوم ، غدا ،… ، بعد 4 أيام</string>
     <string name="widget_style_nano">نانو</string>
     <string name="widget_style_vertical">عمودي</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">الطقس نهارا اليوم، غدا،…، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">الطقس نهارا اليوم ، غدا ،…، بعد 4 أيام</string>
     <string name="widget_style_mini">صغير</string>
     <string name="settings_background_updates">تحديثات الخلفية</string>
     <string name="settings_background_updates_battery_optimization">تعطيل تحسين البطارية</string>
@@ -358,10 +358,10 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
     <string name="weather_source_accu_preference_hours_1">1 ساعة</string>
     <string name="weather_source_openweather_version_2_5">الإصدار 2.5</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم, غدا, …, بعد 4 أيام (٪)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم, غدا, …, بعد 4 أيام (٪)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">رياح النهار اليوم ، غدا ، … ، بعد 4 أيام</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">رياح اليل اليوم ، غدا ، … ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم ، غدا ،…، بعد 4 أيام (٪)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم ، غدا ،…، بعد 4 أيام (٪)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">الرياح نهارا اليوم ، غدا ،…، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">الرياح ليلا اليوم ، غدا ،…، بعد 4 أيام</string>
     <string name="widget_week_style_5_days">5 أيام</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">التناظريه</string>
@@ -457,9 +457,9 @@
     <string name="dialog_permissions_notification_content">انقر هنا لتمكين الإشعارات حول تنبيهات الطقس ، أو حدد لاحقا في الإعدادات.</string>
     <string name="precipitation_none">لاتوجد احتمالية هطول</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته عندما لا تتلقى إشعارات أو لا يتم تحديث الأدوات.</string>
+    <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم تكن ايقونات سطح المكتب تتحدث.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات تقتل خدمات الخلفية. لا تقتل تطبيقي! يحتوي موقع الويب على معلومات حول كيفية إصلاحه.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات توقف خدمات الخلفية.يحتوي موقع !Don\'t kill my app على معلومات حول كيفية إصلاحه.</string>
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كموقع.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">تمكين. يتم استخدام كل من شبكة الجهاز وموفري GPS.</string>
@@ -531,7 +531,7 @@
     <string name="dialog_permissions_location_background_content">من أجل السماح للتطبيق بالوصول إلى معلومات الموقع في الخلفية ، حتى نتمكن من إدراك التغييرات في الموقع وتزويدك ببيانات الطقس الصالحة ، يرجى تعيين الوصول إلى الموقع على أنه ”السماح طوال الوقت“.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا اليوم، غدا،…، بعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا اليوم ، غدا ،…، بعد 4 أيام (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">درجة الحرارة ليلا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
     <string name="widget_custom_subtitle_keyword_xss_description">غروب الشمس اليوم ، غدا ، … ، بعد 4 أيام</string>
@@ -630,9 +630,9 @@
     <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">اضغط للفتح</string>
     <string name="notification_channel_crash_logs">سجلات الأعطال</string>
-    <string name="notification_precipitation_starting">هطول الأمطار قريبا</string>
+    <string name="notification_precipitation_starting">ستهطل الأمطار قريبا</string>
     <string name="notification_precipitation_continuing">هطول الأمطار</string>
-    <string name="notification_precipitation_stopping">توقف هطول الأمطار قريبا</string>
+    <string name="notification_precipitation_stopping">سيتوقف هطول الأمطار قريبا</string>
     <string name="notification_precipitation_stopping_desc">من المتوقع أن يتوقف عند %s</string>
     <string name="settings_unavailable_no_background_updates">غير متاح، قم بتمكين تحديثات الخلفية أولاً</string>
     <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %s على الأقل</string>
@@ -659,7 +659,8 @@
     <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المواقع المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذا الموقع من لائحة المواقع المحفوظة.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">مؤشر جودة الهواء الحالي</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لهذا اليوم، للغد،...، لليوم الرابع القادم</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لهذا اليوم ، للغد ،...، لليوم الرابع القادم</string>
     <string name="action_confirm">تأكيد</string>
     <string name="widget_label_hide_header">اخفاء العنوان</string>
+    <string name="weather_message_too_frequent_refreshes">برجاء الانتظار لبضع ثوان قبل اعادة المحاولة…</string>
 </resources>
