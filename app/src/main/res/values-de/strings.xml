@@ -649,7 +649,7 @@
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Sie nutzen die Breezy Weather aus dem F-Droid Repository, weshalb nur Wetterquellen untersützt werden, die öffentlich verfügbare, selbst betreibbare und freie Software benutzen. Klicken sie hier, um mehr zu Erfahren.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Sie nutzen die Version von Breezy Weather aus der Standard-Paketquelle von F-Droid, die nur Wetterquellen unterstützt, die eine öffentlich verfügbare, selbst betreibbare, freie Software-Serverlösung nutzen. Tippen Sie hier, um mehr zu erfahren.</string>
     <string name="location_delete_location_dialog_message">Sie sind gerade dabei, \"%s\" aus ihrer Liste von gespeicherten Orten zu entfernen.</string>
     <string name="location_delete_location_dialog_title">Ort löschen?</string>
     <string name="widget_label_hide_header">Kopfzeile ausblenden</string>
