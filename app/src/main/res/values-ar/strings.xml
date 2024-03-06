@@ -116,8 +116,8 @@
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
     <string name="widget_label_show_widget_card_alpha">التعتيم</string>
-    <string name="widget_label_hide_subtitle">إخفاء العنوان</string>
-    <string name="widget_label_subtitle_data">بيانات العنوان</string>
+    <string name="widget_label_hide_subtitle">‬إخفاء العنوان الفرعي</string>
+    <string name="widget_label_subtitle_data">بيانات العنوان الفرعي</string>
     <string name="widget_label_black_text">لون الخط</string>
     <string name="widget_label_text_size">حجم الخط</string>
     <string name="widget_label_clock_font">خط الساعة</string>
@@ -148,8 +148,8 @@
     <string name="widget_clock_day_vertical">ساعة + يومي (نمط عمودي)</string>
     <string name="widget_clock_day_week">ساعة + يومي + أسبوعي</string>
     <string name="widget_text">نص</string>
-    <string name="widget_trend_daily">مجرى يومي</string>
-    <string name="widget_trend_hourly">مجرى كل ساعة</string>
+    <string name="widget_trend_daily">مخطط يومي</string>
+    <string name="widget_trend_hourly">مخطط لكل ساعة</string>
     <string name="widget_refreshing">الرجاء الإنتظار</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -229,10 +229,10 @@
     <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C / °F)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C° / F)</string>
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
-    <string name="widget_material_you_current">المادة أنت - الحالي</string>
+    <string name="widget_material_you_current">نمط واجهة \"Material You\" - الحالي</string>
     <string name="widget_multi_city">متعدد المدن</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء ، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس ، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
@@ -243,7 +243,7 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">الطقس ليلا اليوم ، غدا ،… ، بعد 4 أيام</string>
     <string name="widget_style_nano">نانو</string>
     <string name="widget_style_vertical">عمودي</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">طقس النهار اليوم وغدا … بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">الطقس نهارا اليوم، غدا،…، بعد 4 أيام</string>
     <string name="widget_style_mini">صغير</string>
     <string name="settings_background_updates">تحديثات الخلفية</string>
     <string name="settings_background_updates_battery_optimization">تعطيل تحسين البطارية</string>
@@ -330,7 +330,7 @@
     <string name="ephemeris_sunset_at">غروب الشمس في %s</string>
     <string name="widget_custom_subtitle_keyword_cw_description">الطقس الحالي</string>
     <string name="action_back">رجوع</string>
-    <string name="widget_material_you_forecast">المواد أنت - التنبؤ</string>
+    <string name="widget_material_you_forecast">نمط واجهة \"Material You\"- التوقعات</string>
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
@@ -530,10 +530,10 @@
     <string name="dialog_permissions_location_content">يحتاج Breezy Weather إلى جمع معلومات موقعك في المقدمة أو الخلفية لتوفير بيانات الطقس لموقعك الحالي. لهذا ، سوف نطلب بعض الأذونات. سيتم استخدام معلومات موقعك فقط للحصول على بيانات الطقس في موقعك الحالي. إذا كنت لا تريد مشاركة معلومات موقعك، يمكنك رفض هذه المتطلبات وتعيين موقعك يدويا في صفحة الإدارة.</string>
     <string name="dialog_permissions_location_background_content">من أجل السماح للتطبيق بالوصول إلى معلومات الموقع في الخلفية ، حتى نتمكن من إدراك التغييرات في الموقع وتزويدك ببيانات الطقس الصالحة ، يرجى تعيين الوصول إلى الموقع على أنه ”السماح طوال الوقت“.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">درجة حرارة النهار اليوم ، غدا ، … ، بعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">درجة حرارة الليل اليوم وغدا … وبعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">درجة حرارة النهار اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">درجة حرارة الليل اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا اليوم، غدا،…، بعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">درجة الحرارة ليلا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
     <string name="widget_custom_subtitle_keyword_xss_description">غروب الشمس اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">طلوع القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">مرحلة القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
@@ -549,7 +549,7 @@
     <string name="wind_strength">قوة الرياح</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>
-    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا ، وفي هذه الحالة ، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة ، يرجى تفريغ سجل التعطل من إعدادات التصحيح ، والإبلاغ عن مشكلة على GitHub.</string>
+    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا ، وفي هذه الحالة ، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة ، يرجى مشاركة سجل التعطل من إعدادات التصحيح ، والإبلاغ عن مشكلة على GitHub.</string>
     <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
     <string name="message_source_not_installed_error_content">لم يعد هذا المصدر متاحا ; يرجى حذف الموقع وإعادة إنشائه من مصدر آخر.</string>
     <string name="settings_source_api_key">مفتاح API</string>
