@@ -667,4 +667,6 @@
     <string name="temperature_feels_like_short">Pocitově</string>
     <string name="ceiling_short">Strop</string>
     <string name="settings_weather_sources_default_source">Výchozí zdroj pro nová umístění</string>
+    <string name="settings_weather_source_unavailable">%s (nedostupný)</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Používáte verzi aplikace Breezy Weather z výchozího repozitáře F-Droid, která podporuje pouze zdroje počasí, které používají veřejně dostupný, svobodný software serveru, který lze hostovat kdekoli. Klepněte sem pro více informací.</string>
 </resources>
