@@ -173,7 +173,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Погледнете го стилот</string>
     <string name="widget_label_show_widget_card">Боја на позадина</string>
-    <string name="widget_label_show_widget_card_alpha">Транспарентност</string>
     <string name="widget_label_hide_subtitle">Сокриј го титлот</string>
     <string name="widget_label_subtitle_data">Податоци за титлови</string>
     <string name="widget_label_black_text">Боја на текстот</string>

@@ -125,7 +125,6 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista “%s”</string>
     <string name="widget_label_view_style">Näytä tyyli</string>
     <string name="widget_label_show_widget_card">Taustaväri</string>
-    <string name="widget_label_show_widget_card_alpha">Läpinäkyvyys</string>
     <string name="widget_label_hide_subtitle">Piilota alaotsikko</string>
     <string name="widget_label_subtitle_data">Alaotsikon tiedot</string>
     <string name="widget_label_black_text">Tekstin väri</string>

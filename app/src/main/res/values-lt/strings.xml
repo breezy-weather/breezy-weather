@@ -326,7 +326,6 @@
     <string name="dialog_permissions_location_content">Breezy Weather turi rinkti informaciją apie jūsų buvimo vietą plane arba fone, kad galėtų pateikti dabartinės jūsų buvimo vietos orų duomenis. Todėl paprašysime tam tikrų leidimų. Informacija apie buvimo vietą bus naudojama tik dabartinės buvimo vietos orų duomenims gauti. Jei nenorite dalytis savo buvimo vietos informacija, galite atsisakyti šių reikalavimų ir rankiniu būdu nustatyti savo buvimo vietą valdymo puslapyje.</string>
     <string name="widget_label_show_widget_card">Fono spalva</string>
     <string name="widget_label_text_size">Teksto dydis</string>
-    <string name="widget_label_show_widget_card_alpha">Skaidrumas</string>
     <string name="widget_label_subtitle_data">Subtitrų duomenys</string>
     <string name="widget_subtitle_data_time">Atnaujinimo laikas</string>
     <string name="widget_custom_subtitle_explanation">Galite įvesti bet ką, tačiau atkreipkite dėmesį į teksto ilgį. Jei norite pacituoti orų duomenis, naudokite $, kad pateiktumėte nuorodą į atitinkamą raktažodį.

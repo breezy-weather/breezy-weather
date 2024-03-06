@@ -138,7 +138,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Skatīt stilu</string>
     <string name="widget_label_show_widget_card">Fona krāsa</string>
-    <string name="widget_label_show_widget_card_alpha">Pārredzamība</string>
     <string name="widget_label_hide_subtitle">Paslēpt subtitrus</string>
     <string name="widget_label_subtitle_data">Subtitru dati</string>
     <string name="widget_label_black_text">Teksta krāsa</string>

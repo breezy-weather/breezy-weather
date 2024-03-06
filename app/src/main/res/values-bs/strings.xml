@@ -481,7 +481,6 @@
     <string name="widget_trend_daily">Kretanje po danu</string>
     <string name="widget_trend_hourly">Kretanje po satu</string>
     <string name="widget_multi_city">Više gradova</string>
-    <string name="widget_label_show_widget_card_alpha">Prozirnost</string>
     <string name="widget_label_align_end">Poravnaj kraj</string>
     <string name="widget_subtitle_data_time">Vrijeme osvježavanja</string>
     <string name="widget_subtitle_data_aqi">Kvaliteta zraka</string>

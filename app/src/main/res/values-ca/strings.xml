@@ -123,7 +123,6 @@
     <string name="dialog_permissions_location_background_content">Per autoritzar que l’aplicació pugui funcionar en segon pla, seleccioneu l’opció “Permet sempre” al diàleg d’autorització d’accés a la ubicació.</string>
     <string name="widget_label_view_style">Estil de vista</string>
     <string name="widget_label_show_widget_card">Fons d’un color</string>
-    <string name="widget_label_show_widget_card_alpha">Transparència</string>
     <string name="widget_label_hide_subtitle">Oculta el subtítol</string>
     <string name="widget_label_subtitle_data">Dades del subtítol</string>
     <string name="widget_label_black_text">Color del text</string>

@@ -166,7 +166,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card">Atzeko kolorea</string>
     <string name="widget_text">Testua</string>
-    <string name="widget_label_show_widget_card_alpha">Gardentasuna</string>
     <string name="widget_label_hide_subtitle">Azpititulua ezkutatu</string>
     <string name="widget_label_black_text">Testuaren kolorea</string>
     <string name="widget_label_text_size">Testuaren tamaina</string>

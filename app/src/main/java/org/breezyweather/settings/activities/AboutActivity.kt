@@ -226,6 +226,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("pl"), "r5jyhte", "https://hosted.weblate.org/user/trewtdj/"),
         TranslatorItem(arrayOf("pt"), "Silvério Santos", "https://github.com/SantosSi"),
         TranslatorItem(arrayOf("pt"), "TiagoAryan", "https://github.com/TiagoAryan"),
+        TranslatorItem(arrayOf("pt", "pt_rBR"), "Kirakaze", "https://github.com/Kirazake"),
         TranslatorItem(arrayOf("pt_rBR"), "Fabio Raitz", "mailto:fabioraitz@outlook.com"),
         TranslatorItem(arrayOf("pt_rBR"), "Washington Luiz Candido dos Santos Neto", "https://hosted.weblate.org/user/Netocon/"),
         TranslatorItem(arrayOf("pt_rBR"), "mf", "https://hosted.weblate.org/user/marfS2/"),

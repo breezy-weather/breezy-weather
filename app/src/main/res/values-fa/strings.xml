@@ -184,7 +184,6 @@
     <string name="widget_clock_day_horizontal">ساعت + روزانه (افقی)</string>
     <string name="widget_text">نویسه</string>
     <string name="widget_multi_city">چند شهره</string>
-    <string name="widget_label_show_widget_card">رنگ پس زمینه</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card_alpha">شفافیت</string>
     <string name="widget_label_clock_font">فونت ساعت</string>

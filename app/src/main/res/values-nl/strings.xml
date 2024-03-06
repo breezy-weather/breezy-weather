@@ -265,7 +265,6 @@
     <string name="common_weather_text_drizzle_heavy">Hevige motregen</string>
     <string name="common_weather_text_snow">Sneeuw</string>
     <string name="action_share">Delen</string>
-    <string name="widget_label_show_widget_card_alpha">Doorzichtigheid</string>
     <string name="widget_label_clock_font">Kloklettertype</string>
     <string name="widget_label_align_end">Einde uitlijnen</string>
     <string name="settings_main_hourly_trends_title">Uurtrends</string>

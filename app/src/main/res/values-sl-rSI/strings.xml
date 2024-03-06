@@ -83,7 +83,6 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Izberite način pridobivanja lokacije</string>
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>
-    <string name="widget_label_show_widget_card_alpha">Transparentnost</string>
     <string name="widget_label_hide_subtitle">Skrij podnapis</string>
     <string name="widget_label_subtitle_data">Vsedina podnapisov</string>
     <string name="widget_label_black_text">Barva besedila</string>

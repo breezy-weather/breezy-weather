@@ -125,7 +125,6 @@
     <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți “%s”</string>
     <string name="widget_label_view_style">Tip vizualizare</string>
     <string name="widget_label_show_widget_card">Culoare fundal</string>
-    <string name="widget_label_show_widget_card_alpha">Transparență</string>
     <string name="widget_label_hide_subtitle">Ascunde subtitlul</string>
     <string name="widget_label_subtitle_data">Date subtitlu</string>
     <string name="widget_label_black_text">Culoare text</string>
