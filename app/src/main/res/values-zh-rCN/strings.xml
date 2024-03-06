@@ -657,4 +657,6 @@
     <string name="pressure_short">气压</string>
     <string name="comma_separator">、</string>
     <string name="settings_weather_sources_default_source">新位置的默认源</string>
+    <string name="settings_weather_source_unavailable">%s (不可用)</string>
+    <string name="settings_weather_source_fdroid_disclaimer">你使用的是 F-Droid 默认存储库版本的 Breezy Weather，该版本只支持特定天气源，这些源需要使用公开可得、可自托管、自由软件服务器解决方案。轻按此处了解更多信息。</string>
 </resources>
