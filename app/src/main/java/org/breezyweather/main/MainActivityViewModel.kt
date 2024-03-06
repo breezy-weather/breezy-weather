@@ -32,10 +32,12 @@ import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.main.utils.StatementManager
 import org.breezyweather.remoteviews.Gadgets
@@ -43,6 +45,7 @@ import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
+import java.util.Date
 import javax.inject.Inject
 
 interface WeatherRequestCallback {
@@ -87,10 +90,6 @@ class MainActivityViewModel @Inject constructor(
     private val _initCompleted = MutableStateFlow(false)
     val initCompleted = _initCompleted.asStateFlow()
     private var updating = false
-
-    companion object {
-        private const val KEY_FORMATTED_ID = "formatted_id"
-    }
 
     // life cycle.
     fun init(formattedId: String? = null) {
@@ -287,10 +286,21 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
+        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
+            _loading.value = true
+            _loading.value = false
+            SnackbarHelper.showSnackbar(
+                getApplication<Application>()
+                    .getString(R.string.weather_message_too_frequent_refreshes)
+            )
+            return
+        }
+
         _loading.value = true
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
             viewModelScope.launch {
                 getWeather(
                     getApplication(),
@@ -311,6 +321,7 @@ class MainActivityViewModel @Inject constructor(
         if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
             viewModelScope.launch {
                 getWeather(
                     getApplication(),
@@ -605,5 +616,10 @@ class MainActivityViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    companion object {
+        private const val KEY_FORMATTED_ID = "formatted_id"
+        private const val DELAY_BEFORE_NEXT_MANUAL_REFRESH = 10 * 1000L // 10 seconds
     }
 }

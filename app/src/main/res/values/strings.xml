@@ -231,6 +231,7 @@
     <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
+    <string name="weather_message_too_frequent_refreshes">Please wait a few seconds before retrying…</string>
     <string name="weather_api_limit_reached_title">API requests limit reached</string>
     <string name="weather_api_limit_reached_content">To workaround the limit, add your own API key.</string>
     <string name="weather_api_unauthorized_title">API access unauthorized</string>

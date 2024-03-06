@@ -95,6 +95,12 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getLong("weather_update_last_timestamp", 0)
 
+    var weatherManualUpdateLastTimestamp: Long
+        set(value) {
+            config.edit().putLong("weather_manual_update_last_timestamp", value).apply()
+        }
+        get() = config.getLong("weather_manual_update_last_timestamp", 0)
+
     // basic.
     var isAlertPushEnabled: Boolean
         set(value) {

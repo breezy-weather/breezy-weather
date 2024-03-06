@@ -13,6 +13,7 @@
 - Add a second way to delete location from location preferences (Edit button in footer) (will only show if there is at least 2 locations in the list as location list cannot be empty)
 - Better mapping for icons of Chronus icon packs (@min7-i)
 - Fix weather data refresh failure on Android < 7.1.1 for weather sources using Let’s encrypt certificates
+- Fix loop issues when manually refreshing and encountering weather refresh failures (will now wait at least 10 seconds before retrying)
 
 **Weather sources**
 - [Israel Meteorological Service] Added as main source
