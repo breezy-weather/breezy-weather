@@ -255,7 +255,7 @@
     <string name="pollen_and_mold">گرده و کپک</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="weather_api_limit_reached_title">سقف محدودیت درخواست API</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">افزودن مکان به صورت دستی و پاک کردن \"%s\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">افزودن مکان به صورت دستی و پاک کردن ”%s“</string>
     <string name="location_service_native">API بومی</string>
     <string name="message_server_timeout">زمان درخواست به پایان رسید</string>
     <string name="message_tap_again_to_exit">لمس دوباره برای خروج</string>

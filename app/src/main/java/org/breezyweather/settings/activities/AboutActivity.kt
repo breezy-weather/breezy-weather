@@ -136,6 +136,7 @@ class AboutActivity : GeoActivity() {
     private val translators = arrayOf(
         TranslatorItem(arrayOf("ar"), "sodqe muhammad", "mailto:sodqe.younes@gmail.com"),
         TranslatorItem(arrayOf("ar"), "Rex_sa", "https://github.com/rex07"),
+        TranslatorItem(arrayOf("ar"), "TomatoScriptCPP", "https://github.com/TomatoScriptCPP"),
         TranslatorItem(arrayOf("bg"), "elgratea", "https://hosted.weblate.org/user/flantito/"),
         TranslatorItem(arrayOf("bg"), "StoyanDimitrov", "https://github.com/StoyanDimitrov"),
         TranslatorItem(arrayOf("bs"), "Erudaro", "https://github.com/Erudaro"),

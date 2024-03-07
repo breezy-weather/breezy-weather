@@ -232,7 +232,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C° / F)</string>
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
-    <string name="widget_material_you_current">نمط واجهة \"Material You\" - الحالي</string>
+    <string name="widget_material_you_current">نمط واجهة ”Material You“ - الحالي</string>
     <string name="widget_multi_city">متعدد المدن</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء ، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس ، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
@@ -330,7 +330,7 @@
     <string name="ephemeris_sunset_at">غروب الشمس في %s</string>
     <string name="widget_custom_subtitle_keyword_cw_description">الطقس الحالي</string>
     <string name="action_back">رجوع</string>
-    <string name="widget_material_you_forecast">نمط واجهة \"Material You\"- التوقعات</string>
+    <string name="widget_material_you_forecast">نمط واجهة ”Material You“- التوقعات</string>
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
@@ -459,7 +459,7 @@
     <string name="air_quality_o3">O₃</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم تكن ايقونات سطح المكتب تتحدث.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات توقف خدمات الخلفية.يحتوي موقع !Don\'t kill my app على معلومات حول كيفية إصلاحه.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات توقف خدمات الخلفية.يحتوي موقع !Don’t kill my app على معلومات حول كيفية إصلاحه.</string>
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كموقع.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">تمكين. يتم استخدام كل من شبكة الجهاز وموفري GPS.</string>
@@ -659,7 +659,7 @@
     <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المواقع المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذا الموقع من لائحة المواقع المحفوظة.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">مؤشر جودة الهواء الحالي</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لهذا اليوم ، للغد ،...، لليوم الرابع القادم</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لهذا اليوم ، للغد ،…، لليوم الرابع القادم</string>
     <string name="action_confirm">تأكيد</string>
     <string name="widget_label_hide_header">اخفاء العنوان</string>
     <string name="weather_message_too_frequent_refreshes">برجاء الانتظار لبضع ثوان قبل اعادة المحاولة…</string>

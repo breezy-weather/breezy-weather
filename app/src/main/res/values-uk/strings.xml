@@ -649,11 +649,11 @@
     <string name="action_confirm">Підтвердити</string>
     <string name="location_delete_location_dialog_title">Видалити місцезнаходження?</string>
     <string name="weather_message_too_frequent_refreshes">Будь ласка, зачекайте кілька секунд, перш ніж повторити спробу…</string>
-    <string name="location_delete_location_dialog_message">Ви збираєтеся видалити \"%s \" зі свого списку збережених місць.</string>
+    <string name="location_delete_location_dialog_message">Ви збираєтеся видалити “%s” зі свого списку збережених місць.</string>
     <string name="location_delete_location_dialog_message_no_name">Ви збираєтеся видалити це місце зі свого списку збережених місць.</string>
     <string name="widget_label_hide_header">Сховати заголовок</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Поточний індекс якості повітря</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря на сьогодні, завтра, ..., через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря на сьогодні, завтра, …, через 4 дні</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
     <string name="settings_weather_source_fdroid_disclaimer">Ви використовуєте версію Breezy Weather із сховища за замовчуванням F-Droid, яка підтримує лише джерела погоди, які використовують загальнодоступне серверне рішення з можливістю самостійного розміщення безкоштовного програмного забезпечення. Натисніть тут, щоб дізнатися більше.</string>
 </resources>
