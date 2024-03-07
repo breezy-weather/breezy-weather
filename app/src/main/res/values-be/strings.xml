@@ -646,4 +646,14 @@
     <string name="cloud_cover_short">Хмарнасць</string>
     <string name="ceiling_short">Мяжа</string>
     <string name="settings_weather_sources_default_source">Крыніца па змаўчанні для новых месцаў</string>
+    <string name="settings_weather_source_unavailable">%s (недаступна)</string>
+    <string name="action_confirm">Пацвердзіць</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Бягучы індэкс якасці паветра</string>
+    <string name="location_delete_location_dialog_message_no_name">Вы збіраецеся выдаліць гэтае месцазнаходжанне з спісу захаваных месцаў.</string>
+    <string name="widget_label_hide_header">Схаваць загаловак</string>
+    <string name="weather_message_too_frequent_refreshes">Калі ласка, пачакайце некалькі секунд, перш чым паўтарыць спробу…</string>
+    <string name="location_delete_location_dialog_title">Выдаліць месцазнаходжанне?</string>
+    <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць \"%s\" з спісу захаваных месцаў.</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, ..., 4 дні праз</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Вы карыстаецеся версію Breezy Weather з рэпазітара па змаўчанні F-Droid, якая падтрымлівае толькі крыніцы надвор\'я, якія выкарыстоўваюць агульнадаступнае сервернае рашэнне з магчымасцю самастойнага размяшчэння бясплатнага праграмнага забеспячэння. Націсніце тут, каб даведацца больш.</string>
 </resources>
