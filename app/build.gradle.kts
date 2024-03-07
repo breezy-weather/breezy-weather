@@ -89,10 +89,16 @@ android {
     }
 
     sourceSets {
-        getByName("basic").java.srcDirs("src/src_nofdroid", "src/src_nogplay")
-        getByName("fdroid").java.srcDirs("src/src_fdroid", "src/src_nogplay")
-        getByName("gplay").java.srcDirs("src/src_nofdroid", "src/src_gplay")
-        getByName("gplay").manifest.srcFile("manifest_gplay/AndroidManifest.xml")
+        getByName("basic") {
+            java.srcDirs("src/src_nofdroid", "src/src_nogplay")
+        }
+        getByName("fdroid") {
+            java.srcDirs("src/src_fdroid", "src/src_nogplay")
+        }
+        getByName("gplay") {
+            java.srcDirs("src/src_nofdroid", "src/src_gplay")
+            manifest.srcFile("manifest_gplay/AndroidManifest.xml")
+        }
     }
 
     packaging {

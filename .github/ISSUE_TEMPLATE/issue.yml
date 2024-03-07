@@ -50,9 +50,9 @@ body:
     id: app-version
     attributes:
       label: Breezy Weather version
-      description: You can find it on Info icon in app settings or from Android settings for the app. We expect a version number here, “Latest” is not a valid answer.
+      description: You can find it on Info icon in app settings or from Android settings for the app. We expect a version number (and optionally the flavor) here, “Latest” is not a valid answer.
       placeholder: |
-        Example: "4.0.0-alpha"
+        Examples: "5.0.4-beta, 5.0.8_fdroid, 5.0.8_gplay"
     validations:
       required: true
 
