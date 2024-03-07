@@ -671,4 +671,12 @@
     <string name="settings_weather_sources_default_source">Sumber bawaan untuk aplikasi baru</string>
     <string name="settings_weather_source_unavailable">%s (tidak tersedia)</string>
     <string name="settings_weather_source_fdroid_disclaimer">Anda sedang menggunakan versi Breezy Weather dari repositori F-Droid bawaan, yang hanya memiliki dukungan untuk sumber cuaca yang menggunakan solusi server perangkat lunak bebas yang tersedia secara umum dan dapat di-host sendiri. Ketuk di sini untuk mempelajari lebih lanjut.</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Indeks Kualitas Udara saat ini</string>
+    <string name="action_confirm">Konfirmasi</string>
+    <string name="widget_label_hide_header">Sembunyikan tajuk</string>
+    <string name="weather_message_too_frequent_refreshes">Silakan menunggu sebelum mencoba lagi…</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks Kualitas Udara hari ini, besok, …, 4 hari kemudian</string>
+    <string name="location_delete_location_dialog_title">Hapus lokasi?</string>
+    <string name="location_delete_location_dialog_message">Anda akan menghapus “%s” dari daftar lokasi tersimpan Anda.</string>
+    <string name="location_delete_location_dialog_message_no_name">Anda akan menghapus lokasi ini dari daftar lokasi tersimpan Anda.</string>
 </resources>
