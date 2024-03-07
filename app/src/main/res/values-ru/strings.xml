@@ -653,4 +653,14 @@
     <string name="settings_weather_sources_default_source">Источник по умолчанию для новых местоположений</string>
     <string name="ceiling_short">Предел</string>
     <string name="temperature_feels_like_short">По ощущениям</string>
+    <string name="weather_message_too_frequent_refreshes">Пожалуйста, подождите несколько секунд, прежде чем повторить попытку…</string>
+    <string name="action_confirm">Подтвердить</string>
+    <string name="widget_label_hide_header">Скрыть заголовок</string>
+    <string name="location_delete_location_dialog_title">Удалить местоположение?</string>
+    <string name="location_delete_location_dialog_message">Вы собираетесь удалить “%s” из своего списка сохраненных местоположений.</string>
+    <string name="location_delete_location_dialog_message_no_name">Вы собираетесь удалить это местоположение из своего списка сохраненных местоположений.</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Текущий индекс качества воздуха</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс качества воздуха на сегодня, завтра, ..., 4 дня спустя</string>
+    <string name="settings_weather_source_unavailable">%s (недоступно)</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Вы используете версию Breezy Weather из репозитория по умолчанию F-Droid, которая поддерживает только источники погоды, использующие общедоступное серверное решение с возможностью самостоятельного размещения бесплатного программного обеспечения. Нажмите здесь, чтобы узнать больше.</string>
 </resources>
