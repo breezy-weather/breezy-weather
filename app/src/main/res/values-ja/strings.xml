@@ -408,8 +408,8 @@
     <string name="pollen_level_3">やや多い</string>
     <string name="pollen_level_4">多い</string>
     <string name="pollen_level_5">非常に多い</string>
-    <string name="ephemeris_sunset_at">%s日の入り</string>
-    <string name="ephemeris_moonrise_at">%s月の出</string>
+    <string name="ephemeris_sunset_at">日の入り%s</string>
+    <string name="ephemeris_moonrise_at">月の出%s</string>
     <string name="ephemeris_moonset_at">%s月の入り</string>
     <string name="weather_pollen_data_by">花粉データ提供：%s</string>
     <string name="weather_air_quality_and_pollen_data_by">空気質と花粉データ提供：%s</string>
@@ -565,7 +565,7 @@
     <string name="weather_minutely_data_by">降水量の毎分データ提供：%s</string>
     <string name="weather_alert_data_by">警報データ提供：%s</string>
     <string name="weather_message_secondary_data_refresh_failed">二次気象情報源の気象データの更新に失敗しました</string>
-    <string name="ephemeris_sunrise_at">%s日の出</string>
+    <string name="ephemeris_sunrise_at">日の出%s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
     <string name="weather_source_accu_preference_hours_12">12時間</string>
