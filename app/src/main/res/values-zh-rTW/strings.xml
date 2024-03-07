@@ -656,4 +656,14 @@
     <string name="location_message_already_exists">已存在與主天氣源相同之位置。</string>
     <string name="location_search_no_results_advice">請確保您的搜索拼寫正確且未過於具體，或您可嘗試使用其他搜索源，也許會得到不同結果。</string>
     <string name="settings_weather_sources_default_source">新位置的默認信息源</string>
+    <string name="settings_weather_source_unavailable">%s（無法使用）</string>
+    <string name="settings_weather_source_fdroid_disclaimer">您正在使用來自 F-Droid 默認倉庫的 Breezy Weather 版本，該版本僅支持使用公開可用、自我託管的免費軟件服務器解決方案的天氣來源。點擊這裡了解更多。</string>
+    <string name="location_delete_location_dialog_title">刪除位置？</string>
+    <string name="location_delete_location_dialog_message_no_name">您即將從已儲存的位置列表中刪除這個位置。</string>
+    <string name="action_confirm">確認</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">當前空氣品質指數</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">今天、明天……以及四天後的空氣品質指數</string>
+    <string name="location_delete_location_dialog_message">您即將從已儲存的位置列表中刪除「%s」。</string>
+    <string name="weather_message_too_frequent_refreshes">請稍候幾秒鐘再試…</string>
+    <string name="widget_label_hide_header">隱藏標題</string>
 </resources>
