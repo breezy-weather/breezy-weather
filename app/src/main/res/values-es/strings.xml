@@ -673,4 +673,14 @@
     <string name="pollen_salix">Sauce</string>
     <string name="pollen_tilia">Tilo</string>
     <string name="pollen_urticaceae">Ortiga/Parietaria</string>
+    <string name="location_delete_location_dialog_title">¿Borrar la ubicación?</string>
+    <string name="location_delete_location_dialog_message_no_name">Estás a punto de eliminar esta ubicación de tu lista de ubicaciones guardadas.</string>
+    <string name="action_confirm">Confirmar</string>
+    <string name="widget_label_hide_header">Ocultar el encabezado</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Índice de calidad del aire (ICA)</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de calidad del aire actual, mañana, …, 4 días después</string>
+    <string name="settings_weather_source_unavailable">%s (no disponible)</string>
+    <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
+    <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de ubicaciones guardadas.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Estás utilizando la versión de Breezy Weather del repositorio predeterminado de F-Droid, que solo admite fuentes meteorológicas que utilizan una solución de servidor público con la capacidad de autohospedar software gratuito. Clic aquí para saber más.</string>
 </resources>
