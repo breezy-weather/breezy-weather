@@ -286,7 +286,8 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
+        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId == locationToCheck.formattedId
+            && SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
             _loading.value = true
             _loading.value = false
             SnackbarHelper.showSnackbar(
@@ -301,6 +302,7 @@ class MainActivityViewModel @Inject constructor(
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
             viewModelScope.launch {
                 getWeather(
                     getApplication(),
@@ -322,6 +324,7 @@ class MainActivityViewModel @Inject constructor(
             // already got all permissions -> request data directly.
             updating = true
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
             viewModelScope.launch {
                 getWeather(
                     getApplication(),
