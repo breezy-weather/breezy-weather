@@ -209,30 +209,6 @@ object IntentHelper {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
-    fun startAppStoreDetailsActivity(context: Context, packageName: String = context.packageName) {
-        val intent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("market://details?id=$packageName")
-        )
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent)
-        } else {
-            SnackbarHelper.showSnackbar("Unavailable AppStore.")
-        }
-    }
-
-    fun startAppStoreSearchActivity(context: Context, query: String) {
-        val intent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("market://search?q=$query")
-        )
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent)
-        } else {
-            SnackbarHelper.showSnackbar("Unavailable AppStore.")
-        }
-    }
-
     fun startWebViewActivity(context: Context, url: String?) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         if (isIntentAvailable(context, intent)) {

@@ -17,8 +17,8 @@ android {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 50004
-        versionName = "5.0.4-beta"
+        versionCode = 50100
+        versionName = "5.1.0-beta"
 
         multiDexEnabled = true
         ndk {

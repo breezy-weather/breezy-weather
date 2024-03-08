@@ -31,9 +31,6 @@ object ResourcesProviderFactory {
         if (packageName == null || DefaultResourceProvider.isDefaultIconProvider(packageName)) {
             return defaultProvider
         }
-        if (PixelResourcesProvider.isPixelIconProvider(packageName)) {
-            return PixelResourcesProvider(defaultProvider)
-        }
         if (IconPackResourcesProvider.isIconPackIconProvider(context, packageName)) {
             return IconPackResourcesProvider(context, packageName, defaultProvider)
         }
@@ -50,9 +47,8 @@ object ResourcesProviderFactory {
         val providerList: MutableList<ResourceProvider> = ArrayList()
         val defaultProvider = DefaultResourceProvider()
         providerList.add(defaultProvider)
-        providerList.add(PixelResourcesProvider(defaultProvider))
 
-        // geometric weather icon provider.
+        // Breezy Weather + Geometric Weather icon providers
         providerList.addAll(IconPackResourcesProvider.getProviderList(context, defaultProvider))
 
         // chronus icon pack.

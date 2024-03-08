@@ -1,10 +1,10 @@
-# Version 5.0.4-beta (not yet released)
+# Version 5.1.0-beta (not yet released)
 
 **New features**
 - Breezy Weather now comes in 3 flavors:
   - Standard: this is the version you used so far
   - Google Play: same as Standard + proprietary Fused location from Google Play Services. Useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
-  - F-Droid: this version removes any non-free weather sources, so you are sure to get a 100% FOSS experience and not connect by mistake to a non-free network. There are plans to add this version to the default F-Droid repository.
+  - F-Droid: this version removes support for any weather sources which are not libre and self-hostable, so you are sure to get a 100% FOSS experience and not connect by mistake to a non-free network. There are plans to add this version to the default F-Droid repository.
 
 **Improvements and fixes**
 - [Widgets] Custom subtitle - A keyword was added for current and daily air quality index
@@ -22,6 +22,16 @@
 - [MET IE] Add warnings as main source in Ireland-only
 - [MET IE] Add warnings as secondary source in Ireland-only
 - [MET IE] Add reverse geocoding in Ireland-only
+- Updated recommendations for new locations (existing locations must be modified manually, or re-added):
+
+| Location                      | Source type | Old         | New                           |
+|-------------------------------|-------------|-------------|-------------------------------|
+| Israel, West Bank, Gaza Strip | Main source | Open-Meteo  | Israel Meteorological Service |
+| Ireland                       | Alerts      | AccuWeather | MET Éireann                   |
+
+**Removed features**
+- Pixel icon pack is no longer bundled. You will have to [download it manually](https://github.com/breezy-weather/pixel-icon-provider/releases).
+- All other non-free assets were replaced/removed
 
 **Translations**
 - Translations updated

@@ -38,7 +38,6 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
-import org.breezyweather.theme.resource.providers.PixelResourcesProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.Locale
 
@@ -172,19 +171,12 @@ class PreviewIconActivity : GeoActivity() {
         toolbar.inflateMenu(R.menu.activity_preview_icon)
         toolbar.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
-                R.id.action_appStore ->
-                if (mProvider is DefaultResourceProvider || mProvider is PixelResourcesProvider) {
-                    IntentHelper.startAppStoreDetailsActivity(this)
-                } else {
-                    IntentHelper.startAppStoreDetailsActivity(this, mProvider!!.packageName)
-                }
-
                 R.id.action_about ->
-                    if (mProvider is DefaultResourceProvider || mProvider is PixelResourcesProvider) {
-                    IntentHelper.startApplicationDetailsActivity(this)
-                } else {
-                    IntentHelper.startApplicationDetailsActivity(this, mProvider!!.packageName)
-                }
+                    if (mProvider is DefaultResourceProvider) {
+                        IntentHelper.startApplicationDetailsActivity(this)
+                    } else {
+                        IntentHelper.startApplicationDetailsActivity(this, mProvider!!.packageName)
+                    }
             }
             true
         }

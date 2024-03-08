@@ -15,7 +15,7 @@ Below, you can find details about the support and implementation status for feat
 |--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|
 | **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None |
 
-| National sources   | China³ | NWS  | Bright Sky | ECCC   | IMS V5.0.4+                   | SMHI   | MET Éireann |
+| National sources   | China³ | NWS  | Bright Sky | ECCC   | IMS V5.1.0+                   | SMHI   | MET Éireann |
 |--------------------|--------|------|------------|--------|-------------------------------|--------|-------------|
 | **API key**        | None   | None | None       | None   | None                          | None   | None        |
 | **Countries**      | China  | USA  | Germany    | Canada | Israel, West Bank, Gaza Strip | Sweden | Ireland     |
@@ -41,7 +41,7 @@ Sources with mandatory API key to use are at the bottom of this page.
 | **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
 | **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
 
-| National sources              | China | NWS    | Bright Sky | ECCC | IMS V5.0.4+   | SMHI | MET Éireann |
+| National sources              | China | NWS    | Bright Sky | ECCC | IMS V5.1.0+   | SMHI | MET Éireann |
 |-------------------------------|-------|--------|------------|------|---------------|------|-------------|
 | **Daily (days)**              | 15    | 7      | 10         | 6    | 6             | 15   | 7           |
 | **Hourly (days)**             | 1     | 7      | 10         | 1    | 6             | 15   | 7           |
@@ -68,12 +68,12 @@ The following features, if not available from your selected source, can be added
 | **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
 | **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
 
-| National sources                   | China   | NWS           | Bright Sky | ECCC   | IMS V5.0.4+ | SMHI    | MET Éireann     |
+| National sources                   | China   | NWS           | Bright Sky | ECCC   | IMS V5.1.0+ | SMHI    | MET Éireann     |
 |------------------------------------|---------|---------------|------------|--------|-------------|---------|-----------------|
 | **Air quality**                    | Current | ❌             | ❌          | ❌      | ❌           | ❌       | ❌               |
 | **Pollen**                         | ❌       | ❌             | ❌          | ❌      | ❌           | ❌       | ❌               |
 | **Precipitation in the next hour** | ✅       | ❌             | ❌          | ❌      | ❌           | ❌       | ❌               |
-| **Alerts**                         | China   | United States | Germany    | Canada | ✅           | ❌       | Ireland V5.0.4+ |
+| **Alerts**                         | China   | United States | Germany    | Canada | ✅           | ❌       | Ireland V5.1.0+ |
 | **Normals**                        | Average | Average       | Average    | ✅      | Average     | Average | Average         |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
@@ -102,7 +102,7 @@ Legend:
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
 | **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
 
-| National sources           | China   | NWS | Bright Sky | ECCC    | IMS V5.0.4+ | SMHI | MET Éireann |
+| National sources           | China   | NWS | Bright Sky | ECCC    | IMS V5.1.0+ | SMHI | MET Éireann |
 |----------------------------|---------|-----|------------|---------|-------------|------|-------------|
 | **Humidity**               | Current | ✅   | ✅          | Current | ✅           | ✅    | ✅           |
 | **Dew point**              | Current | ✅   | ✅          | Current | ✅           | ✅    | ✅           |
@@ -123,7 +123,7 @@ Legend:
 | **Search**            | ✅          | ✅           | Default    | Default     | Default      | Default |
 | **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅       |
 
-| National sources      | China | NWS     | Bright Sky | ECCC    | IMS V5.0.4+ | SMHI    | MET Éireann |
+| National sources      | China | NWS     | Bright Sky | ECCC    | IMS V5.1.0+ | SMHI    | MET Éireann |
 |-----------------------|-------|---------|------------|---------|-------------|---------|-------------|
 | **Search**            | ✅³    | Default | Default    | Default | Default     | Default | Default     |
 | **Reverse geocoding** | ✅³    | ✅       | ❌²         | ✅²      | ✅⁴          | ❌²      | ✅⁵          |
@@ -191,12 +191,12 @@ Legend:
 | **Alerts**                         | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* |
 | **Normals**                        | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             |
 
-| National sources                   | China | NWS           | Bright Sky | ECCC   | IMS V5.0.4+                   | MET Éireann     | ATMO AURA     |
+| National sources                   | China | NWS           | Bright Sky | ECCC   | IMS V5.1.0+                   | MET Éireann     | ATMO AURA     |
 |------------------------------------|-------|---------------|------------|--------|-------------------------------|-----------------|---------------|
 | **Air quality**                    | China | ❌             | ❌          | ❌      | ❌                             | ❌               | France (AuRA) |
 | **Pollen**                         | ❌     | ❌             | ❌          | ❌      | ❌                             | ❌               | ❌             |
 | **Precipitation in the next hour** | China | ❌             | ❌          | ❌      | ❌                             | ❌               | ❌             |
-| **Alerts**                         | China | United States | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland V5.0.4+ | ❌             |
+| **Alerts**                         | China | United States | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland V5.1.0+ | ❌             |
 | **Normals**                        | ❌     | ❌             | ❌          | Canada | ❌                             | ❌               | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing

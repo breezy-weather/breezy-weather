@@ -25,14 +25,11 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView
 import org.breezyweather.R
-import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.load
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class IconProviderAdapter // adapter.
@@ -75,28 +72,19 @@ class IconProviderAdapter // adapter.
     }
 
     private inner class GetMoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val appStore: AppCompatImageView = itemView.findViewById(R.id.item_icon_provider_get_more_appStore)
-        private val gitHub: AppCompatImageView = itemView.findViewById(R.id.item_icon_provider_get_more_gitHub)
-        private val chronus: AppCompatImageView = itemView.findViewById(R.id.item_icon_provider_get_more_chronus)
+        private val mGetMoreContainer = itemView.findViewById<RelativeLayout>(R.id.item_icon_provider_get_more_container)
 
         fun onBindView() {
-            load(appStore, R.drawable.ic_play_store)
-            appStore.setOnClickListener { mListener.onAppStoreItemClicked("Geometric Weather Icon") }
-            load(
-                gitHub,
-                if (itemView.context.isDarkMode) R.drawable.ic_github_light else R.drawable.ic_github_dark
-            )
-            gitHub.setOnClickListener { mListener.onGitHubItemClicked("https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md") }
-            load(chronus, R.drawable.ic_chronus)
-            chronus.setOnClickListener { mListener.onAppStoreItemClicked("Chronus Icon") }
+            mGetMoreContainer.setOnClickListener {
+                mListener.onWebItemClicked("https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md")
+            }
         }
     }
 
     // interface.
     interface OnItemClickedListener {
         fun onItemClicked(provider: ResourceProvider, adapterPosition: Int)
-        fun onAppStoreItemClicked(query: String)
-        fun onGitHubItemClicked(query: String)
+        fun onWebItemClicked(query: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

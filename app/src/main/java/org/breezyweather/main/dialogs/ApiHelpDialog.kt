@@ -53,6 +53,9 @@ object ApiHelpDialog {
         if (BuildConfig.FLAVOR != "fdroid") {
             view.findViewById<View>(R.id.dialog_location_help_providerContainer)
                 .setOnClickListener { IntentHelper.startSelectWeatherProviderActivity(activity) }
+        } else {
+            view.findViewById<View>(R.id.dialog_location_help_providerContainer)
+                .visibility = View.GONE
         }
     }
 }

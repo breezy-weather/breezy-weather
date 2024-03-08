@@ -85,7 +85,7 @@ class AboutActivity : GeoActivity() {
 
     private val contactLinks = arrayOf(
         AboutAppLinkItem(
-            iconId = R.drawable.ic_github,
+            iconId = R.drawable.ic_code,
             titleId = R.string.about_source_code,
         ) {
             IntentHelper.startWebViewActivity(

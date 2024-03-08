@@ -9,7 +9,7 @@ Note that all releases are signed with the same signature, so you can easily swi
 
 ## Flavors
 
-**Breezy Weather** comes in 3 flavors to satisfy everyone’s tastes:
+**Breezy Weather** comes in 3 flavors:
 - **Standard**: this is the recommended version of Breezy Weather. It is fully open source and contains no proprietary components to our knowledge.
 - **Google Play**: this is the same version as Standard, except it also includes the proprietary Fused location component from Google Play Services. This component is useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
 - **F-Droid**: compared to the standard version, it removes support for any weather sources which are not libre and self-hostable. At the moment, only Open-Meteo matches the criteria, but Pirate Weather roadmap indicates they will also become open source at some point.
@@ -20,7 +20,6 @@ Note that all releases are signed with the same signature, so you can easily swi
 | Fused location (Google Play Services) | ❌        | ✅           | ❌        |
 | Weather alerts                        | ✅        | ✅           | Planned¹ |
 | Temperature normals                   | ✅        | ✅           | ❌        |
-| Re-usable logo                        | ❌        | ❌           | Planned  |
 
 | Worldwide weather sources | Standard         | Google Play      | F-Droid  |
 |---------------------------|------------------|------------------|----------|
@@ -66,7 +65,7 @@ Note that all releases are signed with the same signature, so you can easily swi
 | Available flavors | Breezy Weather’s F-Droid repository | Default F-Droid repository | Izzy’s F-Droid repository | Obtainium | GitHub releases |
 |-------------------|-------------------------------------|----------------------------|---------------------------|-----------|-----------------|
 | Standard          | ✅                                   | ❌                          | ✅                         | ✅         | ✅               |
-| Google Play       | ❌                                   | ❌                          | ❌                         | ✅         | ✅               |
-| F-Droid           | ❌                                   | ✅                          | ❌                         | ✅         | ✅               |
+| Google Play       | Planned                             | ❌                          | ❌                         | ✅         | ✅               |
+| F-Droid           | Planned                             | ✅                          | ❌                         | ✅         | ✅               |
 
 What about Google Play Store? It costs money, and we do not [comply with Google Play policy](https://github.com/breezy-weather/breezy-weather/issues/31), so there are no plans to add the app to Google Play Store at the moment.

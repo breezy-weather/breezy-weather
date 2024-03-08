@@ -115,12 +115,7 @@ object ProvidersPreviewerDialog {
                     dialog.dismiss()
                 }
 
-                override fun onAppStoreItemClicked(query: String) {
-                    IntentHelper.startAppStoreSearchActivity(activity, query)
-                    dialog.dismiss()
-                }
-
-                override fun onGitHubItemClicked(query: String) {
+                override fun onWebItemClicked(query: String) {
                     IntentHelper.startWebViewActivity(activity, query)
                     dialog.dismiss()
                 }
