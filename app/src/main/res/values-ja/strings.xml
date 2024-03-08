@@ -424,7 +424,7 @@
     <string name="action_close">閉じる</string>
     <string name="action_show_errors">タップすると詳細が表示されます</string>
     <string name="dialog_permissions_notification_content">ここをタップして気象警報に関する通知を有効にするか、後で設定で決定します。</string>
-    <string name="message_parsing_error_title">気象データの解析に失敗しました</string>
+    <string name="message_parsing_error_title">気象データの解析失敗しました</string>
     <string name="widget_material_you_current">Material You - 現在</string>
     <string name="widget_custom_subtitle_keyword_als_description">警報 (短い)</string>
     <string name="widget_week_style_5_days">5日間</string>
@@ -509,14 +509,14 @@
     <string name="settings_weather_source_main">主要情報源</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">ｷﾛｸﾞﾗﾑ力毎平方ｾﾝﾁﾒｰﾄﾙ</string>
-    <string name="message_network_unavailable">ネットワークが利用できません</string>
+    <string name="message_network_unavailable">ネットワーク利用できません</string>
     <string name="unit_atm_voice">大気圧</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプしてこの項目を削除できます</string>
     <string name="widget_clock_font_sans_serif">サンセリフ</string>
     <string name="settings_background_updates_refresh_never">しない</string>
-    <string name="settings_location_access_background_title">バックグラウンドでの位置情報アクセス</string>
+    <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
     <string name="location_message_search_failed">位置検索に失敗しました</string>
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
@@ -533,12 +533,12 @@
     <string name="air_quality_so2_info_introduction">二酸化硫黄 (SO₂) は、マッチの燃えた臭いの原因となる無色の有毒ガスです。</string>
     <string name="air_quality_so2_info_origin">それは火山活動によって自然に放出され、主に家庭の暖房、工業、発電用の化石燃料の燃焼に由来します。</string>
     <string name="air_quality_co_info_origin">これは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料を、単純なストーブ、たき火、芯ランプ、炉、暖炉で不完全燃焼させることによって生成されます。周囲空気中の主な一酸化炭素 (CO) 発生源は自動車です。</string>
-    <string name="action_help_me_choose">選択を手伝ってください</string>
+    <string name="action_help_me_choose">選択を手伝う</string>
     <string name="weather_normals_data_by">標準温度データ提供：%s</string>
     <string name="weather_api_unauthorized_content">一部の気象データ ソースでは、独自の API キーを指定する必要があります。すでに提供している場合は、提供した API キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">このソースを使用するには、API キーを提供する必要があります。</string>
     <string name="air_quality_co_info_consequences">一酸化炭素は肺組織を通って血流に拡散し、体の細胞が酸素と結合するのを困難にします。この酸素不足は組織や細胞にダメージを与えます。一酸化炭素にさらされると、呼吸困難、疲労感、めまい、その他のインフルエンザのような症状が引き起こされることがあります。高レベルの一酸化炭素にさらされると、死に至る可能性があります。</string>
-    <string name="location_results_by">%s 別の位置情報の結果</string>
+    <string name="location_results_by">位置情報：%s</string>
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
@@ -548,8 +548,8 @@
     <string name="weather_message_invalid_location">場所が無効です。削除して再度追加してください</string>
     <string name="weather_source_openweather_version_2_5">Version 2.5</string>
     <string name="locations">場所</string>
-    <string name="dialog_permissions_location_title">位置情報にアクセスする</string>
-    <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報にアクセス</string>
+    <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
+    <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報をアクセス</string>
     <string name="dialog_permissions_location_background_content">アプリがバックグラウンドで位置情報にアクセスできるようにして、位置の変化を認識し、有効な気象データを提供できるようにするには、位置情報へのアクセスを「常に許可」に設定してください。</string>
     <string name="message_tap_again_to_exit">もう一度タップして終了します</string>
     <string name="widget_style_oreo">オレオ</string>
@@ -570,7 +570,7 @@
     <string name="setting_weather_source_accu_hours">時間</string>
     <string name="weather_source_accu_preference_hours_12">12時間</string>
     <string name="weather_source_accu_preference_hours_24">24時間</string>
-    <string name="location_message_permission_background_missing">バックグラウンドでの位置情報へのアクセス権限がありません</string>
+    <string name="location_message_permission_background_missing">バックグラウンドで位置情報へのアクセス権限がありません</string>
     <string name="action_see_more">続きを見る</string>
     <string name="action_delete">消去</string>
     <string name="widget_label_hide_lunar">旧暦を非表示にする</string>
@@ -613,7 +613,7 @@
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログが保存されました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップして開きます</string>
-    <string name="message_parsing_error_content">アプリを最新バージョンに更新していることを確認してください。サーバーが一時的に利用できない可能性があります。その場合は、しばらくしてからもう一度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュ ログをダンプし、GitHub で問題を報告してください。</string>
+    <string name="message_parsing_error_content">アプリを最新バージョンに更新していることを確認してください。サーバーが一時的に利用できない可能性があります。その場合は、しばらくしてからもう一度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュ ログをダンプし、GitHubで問題を報告してください。</string>
     <string name="message_source_not_installed_error_content">このソースはもう利用できなくなりました。場所を削除し、別のソースから再作成してください。</string>
     <string name="widget_material_you_forecast">Material You - 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
@@ -641,8 +641,8 @@
     <string name="notification_channel_background_services">バックグラウンドサービス</string>
     <string name="notification_precipitation_continuing">降水量</string>
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>
-    <string name="dialog_permissions_location_content">Breezy Weather は、現在地の気象データを提供するために、フォアグラウンドまたはバックグラウンドで位置情報を収集する必要があります。このために、いくつかの権限をリクエストします。位置情報は、現在地の気象データを取得するためにのみ使用されます。位置情報をアプリと共有したくない場合は、これらの要件を拒否し、管理ページで手動で位置情報を設定できます。</string>
-    <string name="message_server_timeout">リクエストはタイムアウトしました</string>
+    <string name="dialog_permissions_location_content">Breezy Weatherは、現在地の気象データを提供するために、フォアグラウンドまたはバックグラウンドで位置情報を収集する必要があります。このために、いくつかの権限をリクエストします。位置情報は、現在地の気象データを取得するためにのみ使用されます。位置情報をアプリと共有したくない場合は、これらの要件を拒否し、管理ページで手動で位置情報を設定できます。</string>
+    <string name="message_server_timeout">リクエストタイムアウトしました</string>
     <string name="temperature_feels_like_short">体感温度</string>
     <string name="dew_point_short">露点</string>
     <string name="cloud_cover_short">雲量</string>
@@ -661,4 +661,14 @@
     <string name="location_search_change_source">場所検索ソースを変更</string>
     <string name="settings_weather_sources_default_source">新しい場所のデフォルトソース</string>
     <string name="metno_weather_text_andthunder">%sと雷</string>
+    <string name="settings_weather_source_unavailable">%s (利用不可)</string>
+    <string name="location_delete_location_dialog_message">保存した位置リストから「%s」を削除します。</string>
+    <string name="location_delete_location_dialog_message_no_name">保存した位置リストからこの場所を削除します。</string>
+    <string name="action_confirm">確認</string>
+    <string name="widget_label_hide_header">ヘッダーを隠す</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">現在の空気質指数</string>
+    <string name="weather_message_too_frequent_refreshes">少々待ってからリトライしてください…</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
+    <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
+    <string name="settings_weather_source_fdroid_disclaimer">F-DroidデフォルトリポジトリバージョンのBreezy Weatherを使用しています。このバージョンでは、公開されている自己ホスト可能なフリーソフトウェアサーバーソリューションを使用する気象情報ソースのみがサポートされています。 ここをタップして詳細を確認してください。</string>
 </resources>
