@@ -205,7 +205,7 @@
     <string name="settings_appearance_dark_mode_title">ダークモード</string>
     <string name="settings_appearance_icon_pack_title">アイコンパック</string>
     <string name="settings_appearance">外観</string>
-    <string name="settings_main_gravity_sensor_switch">重力センサー</string>
+    <string name="settings_main_gravity_sensor_switch">重力センサーの使用</string>
     <string name="settings_appearance_language_title">言語</string>
     <string name="settings_units">単位</string>
     <string name="settings_units_temperature">温度単位</string>
@@ -430,7 +430,7 @@
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
     <string name="widget_clock_font_sans_serif_black">サンセリフブラック</string>
-    <string name="settings_section_general">全般</string>
+    <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall バージョン</string>
@@ -515,7 +515,7 @@
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプしてこの項目を削除できます</string>
     <string name="widget_clock_font_sans_serif">サンセリフ</string>
-    <string name="settings_background_updates_refresh_never">しない</string>
+    <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
     <string name="location_message_search_failed">位置検索に失敗しました</string>
