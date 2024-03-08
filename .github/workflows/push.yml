@@ -132,8 +132,8 @@ jobs:
           sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}-fdroid.apk | awk '{ print $1 }'`
           echo "APK_UNIVERSAL_FDROID_SHA256=$sha256" >> $GITHUB_ENV
           tar -czvf mapping-${{ env.VERSION_TAG }}.tar.gz --directory=app/build/outputs/mapping/basicRelease/ mapping.txt
-          tar -czvf mapping-${{ env.VERSION_TAG }}-fdroid.tar.gz --directory=app/build/outputs/mapping/fdroidRelease/ mapping-fdroid.txt
-          tar -czvf mapping-${{ env.VERSION_TAG }}-gplay.tar.gz --directory=app/build/outputs/mapping/gplayRelease/ mapping-gplay.txt
+          tar -czvf mapping-${{ env.VERSION_TAG }}-fdroid.tar.gz --directory=app/build/outputs/mapping/fdroidRelease/ mapping.txt
+          tar -czvf mapping-${{ env.VERSION_TAG }}-gplay.tar.gz --directory=app/build/outputs/mapping/gplayRelease/ mapping.txt
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
