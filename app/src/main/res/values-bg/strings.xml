@@ -245,7 +245,7 @@
     <string name="hours_of_sun">Слънчеви часове</string>
     <string name="humidity">Влажност</string>
     <string name="humidity_dew_point">Влажност / Точка на оросяване</string>
-    <string name="pressure">налягане</string>
+    <string name="pressure">Налягане</string>
     <string name="visibility">Видимост</string>
     <string name="dew_point">Точка на оросяване</string>
     <string name="cloud_cover">Облачно покритие</string>
@@ -640,10 +640,20 @@
     <string name="wind_short">Вятър</string>
     <string name="uv_index_short">UV индекс</string>
     <string name="visibility_short">Видимост</string>
-    <string name="pressure_short">налягане</string>
+    <string name="pressure_short">Налягане</string>
     <string name="dew_point_short">Точка на оросяване</string>
     <string name="ceiling_short">Облачен Таван</string>
     <string name="temperature_feels_like_short">Усеща се като</string>
     <string name="cloud_cover_short">Облачно покритие</string>
     <string name="settings_weather_sources_default_source">Източник по подразбиране за нови местоположения</string>
+    <string name="location_delete_location_dialog_title">Изтрий местоположението?</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс на качеството на въздуха днес, утре, …, 4 дни по-късно</string>
+    <string name="weather_message_too_frequent_refreshes">Моля, изчакайте няколко секунди, преди да опитате отново…</string>
+    <string name="location_delete_location_dialog_message_no_name">На път сте да изтриете това местоположение от списъка си със запазени местоположения.</string>
+    <string name="widget_label_hide_header">Скриване на заглавието</string>
+    <string name="settings_weather_source_unavailable">%s (недостъпен)</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Използвате версията на Breezy Weather от хранилището по подразбиране на F-Droid, което има поддръжка само за метеорологични източници, които използват публично достъпно, самостоятелно хоствано, безплатно софтуерно сървърно решение. Докоснете тук, за да научите повече.</string>
+    <string name="location_delete_location_dialog_message">На път сте да изтриете \"%s\" от списъка си със запазени местоположения.</string>
+    <string name="action_confirm">Потвърди</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Текущ индекс на качеството на въздуха</string>
 </resources>
