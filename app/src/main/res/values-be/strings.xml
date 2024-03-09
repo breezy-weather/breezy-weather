@@ -656,4 +656,17 @@
     <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць “%s” з спісу захаваных месцаў.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, …, 4 дні праз</string>
     <string name="settings_weather_source_fdroid_disclaimer">Вы карыстаецеся версію Breezy Weather з рэпазітара па змаўчанні F-Droid, якая падтрымлівае толькі крыніцы надвор’я, якія выкарыстоўваюць агульнадаступнае сервернае рашэнне з магчымасцю самастойнага размяшчэння бясплатнага праграмнага забеспячэння. Націсніце тут, каб даведацца больш.</string>
+    <string name="pollen_castanea">Каштан</string>
+    <string name="pollen_corylus">Ляшчына</string>
+    <string name="pollen_cupressaceae_taxaceae">Кіпарыс</string>
+    <string name="pollen_urticaceae">Крапіва</string>
+    <string name="pollen_carpinus">Граб</string>
+    <string name="pollen_fraxinus">Ясень</string>
+    <string name="pollen_populus">Таполя</string>
+    <string name="pollen_plantaginaceae">Трыпутнік</string>
+    <string name="pollen_platanus">Платан</string>
+    <string name="pollen_quercus">Дуб</string>
+    <string name="pollen_rumex">Шчаўе</string>
+    <string name="pollen_salix">Іва</string>
+    <string name="pollen_tilia">Ліпа</string>
 </resources>
