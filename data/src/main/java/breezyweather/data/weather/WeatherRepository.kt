@@ -247,15 +247,28 @@ class WeatherRepository(
                     o3 = daily.airQuality?.o3,
                     co = daily.airQuality?.cO,
 
-                    // pollen. // TODO: Missing pollens
-                    tree = daily.pollen?.tree?.toLong(),
+                    // pollen
                     alder = daily.pollen?.alder?.toLong(),
+                    ash = daily.pollen?.ash?.toLong(),
                     birch = daily.pollen?.birch?.toLong(),
+                    chestnut = daily.pollen?.chestnut?.toLong(),
+                    cypress = daily.pollen?.chestnut?.toLong(),
                     grass = daily.pollen?.grass?.toLong(),
-                    olive = daily.pollen?.olive?.toLong(),
-                    ragweed = daily.pollen?.ragweed?.toLong(),
-                    mugwort = daily.pollen?.mugwort?.toLong(),
+                    hazel = daily.pollen?.chestnut?.toLong(),
+                    hornbeam = daily.pollen?.chestnut?.toLong(),
+                    linden = daily.pollen?.linden?.toLong(),
                     mold = daily.pollen?.mold?.toLong(),
+                    mugwort = daily.pollen?.mugwort?.toLong(),
+                    oak = daily.pollen?.oak?.toLong(),
+                    olive = daily.pollen?.olive?.toLong(),
+                    plane = daily.pollen?.plane?.toLong(),
+                    plantain = daily.pollen?.plantain?.toLong(),
+                    poplar = daily.pollen?.poplar?.toLong(),
+                    ragweed = daily.pollen?.ragweed?.toLong(),
+                    sorrel = daily.pollen?.sorrel?.toLong(),
+                    tree = daily.pollen?.tree?.toLong(),
+                    urticaceae = daily.pollen?.urticaceae?.toLong(),
+                    willow = daily.pollen?.willow?.toLong(),
 
                     // uv.
                     uvIndex = daily.uV?.index,

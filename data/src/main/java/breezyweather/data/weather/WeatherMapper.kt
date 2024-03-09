@@ -114,8 +114,6 @@ object WeatherMapper {
     )
 
     fun mapDaily(
-        _id: Long,
-        locationFormattedId: String,
         date: Long,
         daytimeWeatherText: String?,
         daytimeWeatherPhase: String?,
@@ -186,14 +184,27 @@ object WeatherMapper {
         no2: Double?,
         o3: Double?,
         co: Double?,
-        tree: Long?,
         alder: Long?,
+        ash: Long?,
         birch: Long?,
+        chestnut: Long?,
+        cypress: Long?,
         grass: Long?,
-        olive: Long?,
-        ragweed: Long?,
-        mugwort: Long?,
+        hazel: Long?,
+        hornbeam: Long?,
+        linden: Long?,
         mold: Long?,
+        mugwort: Long?,
+        oak: Long?,
+        olive: Long?,
+        plane: Long?,
+        plantain: Long?,
+        poplar: Long?,
+        ragweed: Long?,
+        sorrel: Long?,
+        tree: Long?,
+        urticaceae: Long?,
+        willow: Long?,
         uvIndex: Double?,
         hoursOfSun: Double?
     ): Daily = Daily(
@@ -289,15 +300,27 @@ object WeatherMapper {
             co
         ),
         Pollen(
-            // TODO: Missing pollens
             alder = alder?.toInt(),
+            ash = ash?.toInt(),
             birch = birch?.toInt(),
+            chestnut = chestnut?.toInt(),
+            cypress = cypress?.toInt(),
             grass = grass?.toInt(),
+            hazel = hazel?.toInt(),
+            hornbeam = hornbeam?.toInt(),
+            linden = linden?.toInt(),
             mugwort = mugwort?.toInt(),
             mold = mold?.toInt(),
+            oak = oak?.toInt(),
             olive = olive?.toInt(),
+            plane = plane?.toInt(),
+            plantain = plantain?.toInt(),
+            poplar = poplar?.toInt(),
             ragweed = ragweed?.toInt(),
-            tree = tree?.toInt()
+            sorrel = sorrel?.toInt(),
+            tree = tree?.toInt(),
+            urticaceae = urticaceae?.toInt(),
+            willow = willow?.toInt()
         ),
         UV(uvIndex),
         hoursOfSun

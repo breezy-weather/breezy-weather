@@ -34,11 +34,12 @@ enum class PollenIndex(
     BIRCH("birch", R.string.pollen_betula, listOf(0, 10, 50, 100, 300)),
     CHESTNUT("chestnut", R.string.pollen_castanea, listOf(0, 1, 2, 3, 4)), // TODO
     //COTTONWOOD("cottonwood", R.string.pollen_cottonwood, listOf(0, 50, 200, 400, 800)),
-    CYPRESS("cypress", R.string.pollen_fraxinus, listOf(0, 3, 11, 19, 39)),
+    CYPRESS("cypress", R.string.pollen_cupressaceae_taxaceae, listOf(0, 1, 2, 3, 4)), // TODO
     //ELM("elm", R.string.pollen_elm, listOf(0, 30, 50, 100, 200)),
     GRASS("grass", R.string.pollen_poaeceae, listOf(0, 5, 25, 50, 100)),
     HAZEL("hazel", R.string.pollen_corylus, listOf(0, 1, 2, 3, 4)), // TODO
     HORNBEAM("hornbeam", R.string.pollen_carpinus, listOf(0, 1, 2, 3, 4)), // TODO
+    //JAPANESE_CYPRESS("cypress", R.string.pollen_japanese_cypress, listOf(0, 3, 11, 19, 39)),
     //JUNIPER("juniper", R.string.pollen_juniper, listOf(0, 10, 50, 140, 280)),
     LINDEN("linden", R.string.pollen_tilia, listOf(0, 1, 2, 3, 4)), // TODO
     //MAPLE("maple", R.string.pollen_maple, listOf(0, 30, 50, 100, 200)),
