@@ -659,7 +659,7 @@
     <string name="location_delete_location_dialog_message_no_name">Bu konumu kayıtlı konumlar listenizden silmek üzeresiniz.</string>
     <string name="action_confirm">Onayla</string>
     <string name="weather_message_too_frequent_refreshes">Lütfen yeniden denemeden önce birkaç saniye bekleyin…</string>
-    <string name="location_delete_location_dialog_message">Kayıtlı konumlar listenizden \"%s\" konumunu silmek üzeresiniz.</string>
+    <string name="location_delete_location_dialog_message">Kayıtlı konumlar listenizden “%s” konumunu silmek üzeresiniz.</string>
     <string name="widget_label_hide_header">Başlığı gizle</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Bugün, yarın, ..., 4 gün sonrasının Hava Kalitesi Göstergesi</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Bugün, yarın, …, 4 gün sonrasının Hava Kalitesi Göstergesi</string>
 </resources>

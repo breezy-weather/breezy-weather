@@ -653,7 +653,7 @@
     <string name="widget_label_hide_header">Скриване на заглавието</string>
     <string name="settings_weather_source_unavailable">%s (недостъпен)</string>
     <string name="settings_weather_source_fdroid_disclaimer">Използвате версията на Breezy Weather от хранилището по подразбиране на F-Droid, което има поддръжка само за метеорологични източници, които използват публично достъпно, самостоятелно хоствано, безплатно софтуерно сървърно решение. Докоснете тук, за да научите повече.</string>
-    <string name="location_delete_location_dialog_message">На път сте да изтриете \"%s\" от списъка си със запазени местоположения.</string>
+    <string name="location_delete_location_dialog_message">На път сте да изтриете “%s” от списъка си със запазени местоположения.</string>
     <string name="action_confirm">Потвърди</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Текущ индекс на качеството на въздуха</string>
 </resources>

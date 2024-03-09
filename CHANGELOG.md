@@ -7,6 +7,9 @@
 - [Recosanté] Add as secondary pollen source for France.
 - [Bright Sky (DWD)] Added to the `fdroid` flavor, since it’s open source.
 
+**Translations**
+- Translations updated
+
 
 # Version 5.1.0-beta (2024-03-08)
 

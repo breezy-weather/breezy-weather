@@ -185,6 +185,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("fi"), "nimxaa", "https://github.com/nimxaa"),
         TranslatorItem(arrayOf("hi"), "Chandra Mohan Jha", "https://hosted.weblate.org/user/imcmjha./"),
         TranslatorItem(arrayOf("hi"), "AJ", "https://github.com/ChAJ07"),
+        TranslatorItem(arrayOf("hi"), "sapatevaibhav", "https://github.com/sapatevaibhav"),
         TranslatorItem(arrayOf("hr"), "Mateo Spajić", "https://github.com/Spajki001"),
         TranslatorItem(arrayOf("hr"), "Milo Ivir", "https://github.com/milotype"),
         TranslatorItem(arrayOf("hu"), "Viktor Blaskó", "https://github.com/blaskoviktor"),
