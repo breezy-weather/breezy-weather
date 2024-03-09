@@ -656,4 +656,17 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря на сьогодні, завтра, …, через 4 дні</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
     <string name="settings_weather_source_fdroid_disclaimer">Ви використовуєте версію Breezy Weather із сховища за замовчуванням F-Droid, яка підтримує лише джерела погоди, які використовують загальнодоступне серверне рішення з можливістю самостійного розміщення безкоштовного програмного забезпечення. Натисніть тут, щоб дізнатися більше.</string>
+    <string name="pollen_castanea">Каштан</string>
+    <string name="pollen_corylus">Ліщина</string>
+    <string name="pollen_fraxinus">Ясень</string>
+    <string name="pollen_plantaginaceae">Подорожник</string>
+    <string name="pollen_platanus">Платан</string>
+    <string name="pollen_populus">Тополя</string>
+    <string name="pollen_salix">Іва</string>
+    <string name="pollen_tilia">Липа</string>
+    <string name="pollen_urticaceae">Кропива</string>
+    <string name="pollen_carpinus">Граб</string>
+    <string name="pollen_quercus">Дуб</string>
+    <string name="pollen_cupressaceae_taxaceae">Кипарис</string>
+    <string name="pollen_rumex">Щавель</string>
 </resources>
