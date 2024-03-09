@@ -28,8 +28,10 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
+import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.main.MainActivity
 import org.breezyweather.main.adapters.HomePollenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
@@ -51,8 +53,9 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     private class DailyPollenPagerAdapter(
         location: Location,
-        pollenIndexSource: PollenIndexSource?
-    ) : HomePollenAdapter(location, pollenIndexSource) {
+        pollenIndexSource: PollenIndexSource?,
+        specificPollens: Set<PollenIndex>
+    ) : HomePollenAdapter(location, pollenIndexSource, specificPollens) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
             holder.itemView.layoutParams = ViewGroup.LayoutParams(
@@ -112,7 +115,10 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 if (!location.pollenSource.isNullOrEmpty()) {
                     location.pollenSource!!
                 } else location.weatherSource
-            )
+            ),
+            location.weather?.dailyForecast?.map { daily ->
+                daily.pollen?.pollensWithConcentration ?: setOf()
+            }?.flatten()?.toSet() ?: setOf()
         )
         mPager.currentItem = 0
         mCallback = DailyPollenPageChangeCallback(activity, location)

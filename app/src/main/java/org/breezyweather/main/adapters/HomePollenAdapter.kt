@@ -27,13 +27,15 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.ui.composables.PollenGrid
 import org.breezyweather.databinding.ItemPollenDailyBinding
+import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
 open class HomePollenAdapter(
     private val location: Location,
-    private val pollenIndexSource: PollenIndexSource?
+    private val pollenIndexSource: PollenIndexSource?,
+    private val specificPollens: Set<PollenIndex>
 ) : RecyclerView.Adapter<HomePollenViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
@@ -48,7 +50,8 @@ open class HomePollenAdapter(
         holder.onBindView(
             location,
             location.weather!!.dailyForecastStartingToday[position],
-            pollenIndexSource
+            pollenIndexSource,
+            specificPollens
         )
     }
 
@@ -63,7 +66,12 @@ class HomePollenViewHolder internal constructor(
     binding.root
 ) {
     @SuppressLint("SetTextI18n", "RestrictedApi")
-    fun onBindView(location: Location, daily: Daily, pollenIndexSource: PollenIndexSource?) {
+    fun onBindView(
+        location: Location,
+        daily: Daily,
+        pollenIndexSource: PollenIndexSource?,
+        specificPollens: Set<PollenIndex>
+    ) {
         val context = itemView.context
 
         binding.title.text = daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_widget_long))
@@ -74,7 +82,8 @@ class HomePollenViewHolder internal constructor(
                 BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                     PollenGrid(
                         pollen = it,
-                        pollenIndexSource = pollenIndexSource
+                        pollenIndexSource = pollenIndexSource,
+                        specificPollens = specificPollens
                     )
                 }
             }

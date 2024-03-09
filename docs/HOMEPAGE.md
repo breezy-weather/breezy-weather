@@ -289,6 +289,8 @@ Both the circle and bars are filled with a different color for each category, so
 
 *Currently show allergens for current day, will be updated in the future to show for the current hour.*
 
+Starting from v5.1.1, only show allergens with at least one day where concentration > 0. The details of supported allergens by the source can be seen by tapping on the card and accessing the pollen details page.
+
 *Will be completed later*
 
 

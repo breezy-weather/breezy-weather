@@ -34,6 +34,36 @@ val Pollen.validPollens: List<PollenIndex>
         ).filter { getConcentration(it) != null }
     }
 
+val Pollen.pollensWithConcentration: List<PollenIndex>
+    get() {
+        return listOf(
+            PollenIndex.ALDER,
+            PollenIndex.ASH,
+            PollenIndex.BIRCH,
+            PollenIndex.CHESTNUT,
+            PollenIndex.CYPRESS,
+            PollenIndex.GRASS,
+            PollenIndex.HAZEL,
+            PollenIndex.HORNBEAM,
+            PollenIndex.LINDEN,
+            PollenIndex.MOLD,
+            PollenIndex.MUGWORT,
+            PollenIndex.OAK,
+            PollenIndex.OLIVE,
+            PollenIndex.PLANE,
+            PollenIndex.PLANTAIN,
+            PollenIndex.POPLAR,
+            PollenIndex.RAGWEED,
+            PollenIndex.SORREL,
+            PollenIndex.TREE,
+            PollenIndex.URTICACEAE,
+            PollenIndex.WILLOW
+        ).filter { pollenIndex ->
+            val concentration = getConcentration(pollenIndex)
+            concentration != null && concentration > 0
+        }
+    }
+
 fun Pollen.getIndex(pollen: PollenIndex? = null): Int? {
     return if (pollen == null) { // Global pollen index
         val pollensIndex: List<Int> = listOfNotNull(

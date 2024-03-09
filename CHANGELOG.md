@@ -1,5 +1,8 @@
 # Version 5.1.1-beta (not yet released)
 
+**Improvements and fixes**
+- Main screen pollen card will now only show pollens with at least one day where concentration > 0. Behavior remains the same on daily page and pollen details page.
+
 **Weather sources**
 - [Recosanté] Add as secondary pollen source for France.
 - [Bright Sky (DWD)] Added to the `fdroid` flavor, since it’s open source.

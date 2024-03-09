@@ -38,6 +38,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import breezyweather.domain.weather.model.Pollen
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getColorFromSource
 import org.breezyweather.domain.weather.model.getConcentration
@@ -49,14 +50,15 @@ import org.breezyweather.theme.compose.DayNightTheme
 @Composable
 fun PollenGrid(
     pollen: Pollen,
-    pollenIndexSource: PollenIndexSource? = null
+    pollenIndexSource: PollenIndexSource? = null,
+    specificPollens: Set<PollenIndex> = setOf()
 ) {
     val context = LocalContext.current
     val unit = PollenUnit.PPCM
     FlowRow(
         maxItemsInEachRow = 2
     ) {
-        pollen.validPollens
+        specificPollens.ifEmpty { pollen.validPollens }
             .sortedBy { va -> context.getString(va.pollenName) }
             .forEach { validPollen ->
                 PollenItem(
