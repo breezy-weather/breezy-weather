@@ -677,4 +677,17 @@
     <string name="widget_label_hide_header">Skrýt záhlaví</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktuální index kvality vzduchu</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Index kvality vzduchu pro dnešek, zítřek, …, za 4 dny</string>
+    <string name="pollen_castanea">Kaštanovník</string>
+    <string name="pollen_corylus">Líska</string>
+    <string name="pollen_cupressaceae_taxaceae">Cypřiš</string>
+    <string name="pollen_fraxinus">Jasan</string>
+    <string name="pollen_platanus">Platan</string>
+    <string name="pollen_populus">Topol</string>
+    <string name="pollen_quercus">Dub</string>
+    <string name="pollen_rumex">Šťovík</string>
+    <string name="pollen_salix">Vrba</string>
+    <string name="pollen_tilia">Lípy</string>
+    <string name="pollen_urticaceae">Kopřiva</string>
+    <string name="pollen_carpinus">Habr</string>
+    <string name="pollen_plantaginaceae">Plantain</string>
 </resources>
