@@ -12,7 +12,7 @@ Note that all releases are signed with the same signature, so you can easily swi
 **Breezy Weather** comes in 3 flavors:
 - **Standard**: this is the recommended version of Breezy Weather. It is fully open source and contains no proprietary components to our knowledge.
 - **Google Play**: this is the same version as Standard, except it also includes the proprietary Fused location component from Google Play Services. This component is useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
-- **F-Droid**: compared to the standard version, it removes support for any weather sources which are not libre and self-hostable. At the moment, only Open-Meteo and Bright Sky (DWD) match the criteria, but Pirate Weather roadmap indicates they will also become open source at some point.
+- **F-Droid**: compared to the standard version, it only includes weather sources which are libre and self-hostable: Open-Meteo, Bright Sky (DWD) and Recosanté. In the future, we expect Pirate Weather to become open source as well.
 
 | Feature                               | Standard | Google Play | F-Droid                                   |
 |---------------------------------------|----------|-------------|-------------------------------------------|
