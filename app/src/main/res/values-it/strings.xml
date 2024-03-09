@@ -80,9 +80,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibbosa calante</string>
     <string name="ephemeris_moon_phase_last_quarter">Ultimo quarto</string>
     <string name="ephemeris_moon_phase_waning_crescent">Luna calante</string>
-    <string name="pollen_grass">Erba</string>
+    <string name="pollen_poaeceae">Erba</string>
     <string name="pollen_mold">Muffa</string>
-    <string name="pollen_ragweed">Ambrosia</string>
+    <string name="pollen_ambrosia">Ambrosia</string>
     <string name="pollen_tree">Alberi</string>
     <string name="daily_forecast">Previsioni giornaliere</string>
     <string name="hourly_forecast">Previsioni ad ore</string>
@@ -535,10 +535,10 @@
     <string name="settings_source_api_key">Chiave API</string>
     <string name="message_server_timeout">Tempo per la richiesta scaduto</string>
     <string name="message_parsing_error_title">Interpretazione dei dati meteo fallita</string>
-    <string name="pollen_birch">Betulla</string>
-    <string name="pollen_mugwort">Artemisia</string>
-    <string name="pollen_alder">Ontano</string>
-    <string name="pollen_olive">Olivo</string>
+    <string name="pollen_betula">Betulla</string>
+    <string name="pollen_artemisia">Artemisia</string>
+    <string name="pollen_alnus">Ontano</string>
+    <string name="pollen_olea">Olivo</string>
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
     <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>

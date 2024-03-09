@@ -55,9 +55,9 @@
     <string name="air_quality_o3_info_title">ئۆزۆنی ئاستی زەوی (O₃)</string>
     <string name="air_quality_so2_info_title">دوانە ئۆکسیدی گۆگرد (SO₂)</string>
     <string name="air_quality_so2_info_introduction">دوانەئۆکسیدی گۆگرد (SO₂) گازێکی ژەهراوی بێ ڕەنگە کە بەرپرسیارە لە بۆنی کبریتی سووتاو.</string>
-    <string name="pollen_grass">گیا</string>
+    <string name="pollen_poaeceae">گیا</string>
     <string name="pollen_mold">مۆڵد</string>
-    <string name="pollen_ragweed">گژوگیا</string>
+    <string name="pollen_ambrosia">گژوگیا</string>
     <string name="pollen_tree">درەخت</string>
     <string name="ephemeris_moon_phase_full_moon">مانگی تەواو</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">سێ چارەکی مانگ</string>

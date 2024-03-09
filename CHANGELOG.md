@@ -1,4 +1,11 @@
-# Version 5.1.0-beta (not yet released)
+# Version 5.1.1-beta (not yet released)
+
+**Weather sources**
+- [Recosanté] Add as secondary pollen source for France. Supports 6/19 pollens at the moment.
+- [Bright Sky (DWD)] Added to the `fdroid` flavor, since it’s open source.
+
+
+# Version 5.1.0-beta (2024-03-08)
 
 **New features**
 - Breezy Weather now comes in 3 flavors:

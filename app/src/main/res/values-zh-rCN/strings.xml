@@ -88,9 +88,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">亏凸月</string>
     <string name="ephemeris_moon_phase_last_quarter">下弦月</string>
     <string name="ephemeris_moon_phase_waning_crescent">残月</string>
-    <string name="pollen_grass">草地花粉</string>
+    <string name="pollen_poaeceae">草地花粉</string>
     <string name="pollen_mold">霉菌</string>
-    <string name="pollen_ragweed">豚草花粉</string>
+    <string name="pollen_ambrosia">豚草花粉</string>
     <string name="pollen_tree">树木花粉</string>
     <string name="uv_index_0_2">低</string>
     <string name="uv_index_3_5">中</string>
@@ -562,10 +562,10 @@
     <string name="message_source_not_installed_error_title">来源不再可用</string>
     <string name="weather_source_accu_preference_hours_240">240小时</string>
     <string name="action_help_me_choose">帮助我选择</string>
-    <string name="pollen_alder">桤木</string>
-    <string name="pollen_birch">桦木</string>
-    <string name="pollen_mugwort">艾蒿</string>
-    <string name="pollen_olive">橄榄</string>
+    <string name="pollen_alnus">桤木</string>
+    <string name="pollen_betula">桦木</string>
+    <string name="pollen_artemisia">艾蒿</string>
+    <string name="pollen_olea">橄榄</string>
     <string name="pollen_level_0">无</string>
     <string name="pollen_level_1">非常低</string>
     <string name="pollen_level_2">低</string>

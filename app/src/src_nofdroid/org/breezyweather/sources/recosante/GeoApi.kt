@@ -14,28 +14,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package org.breezyweather.sources.recosante
 
-import java.io.Serializable
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.recosante.json.GeoCommune
+import org.breezyweather.sources.recosante.json.RecosanteResult
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
- * Pollen (tree, grass, weed) and mold
+ * API Geo
  */
-class Pollen(
-    val alder: Int? = null,
-    val birch: Int? = null,
-    val grass: Int? = null,
-    val mold: Int? = null, // Not a pollen, but probably relevant to put with them
-    val mugwort: Int? = null,
-    val olive: Int? = null,
-    val ragweed: Int? = null,
-    val tree: Int? = null,
-) : Serializable {
-
-    val isMoldValid: Boolean
-        get() = mold != null
-
-    val isValid: Boolean
-        get() = tree != null || alder != null || birch != null || grass != null
-            || olive != null || ragweed != null || mugwort != null || mold != null
+interface GeoApi {
+    @GET("communes?format=json&geometry=centre")
+    fun getCommunes(
+        @Query("lon") lon: Double,
+        @Query("lat") lat: Double,
+        @Query("fields", encoded = true) fields: String = "code,nom"
+    ): Observable<List<GeoCommune>>
 }

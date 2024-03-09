@@ -25,10 +25,12 @@ import androidx.viewpager2.widget.ViewPager2
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
+import org.breezyweather.main.MainActivity
 import org.breezyweather.main.adapters.HomePollenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -47,7 +49,10 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
     private var mCallback: DailyPollenPageChangeCallback? = null
 
-    private class DailyPollenPagerAdapter(location: Location) : HomePollenAdapter(location) {
+    private class DailyPollenPagerAdapter(
+        location: Location,
+        pollenIndexSource: PollenIndexSource?
+    ) : HomePollenAdapter(location, pollenIndexSource) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
             holder.itemView.layoutParams = ViewGroup.LayoutParams(
@@ -101,7 +106,14 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )[0]
         )
         mSubtitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
-        mPager.adapter = DailyPollenPagerAdapter(location)
+        mPager.adapter = DailyPollenPagerAdapter(
+            location,
+            (activity as MainActivity).sourceManager.getPollenIndexSource(
+                if (!location.pollenSource.isNullOrEmpty()) {
+                    location.pollenSource!!
+                } else location.weatherSource
+            )
+        )
         mPager.currentItem = 0
         mCallback = DailyPollenPageChangeCallback(activity, location)
         mPager.registerOnPageChangeCallback(mCallback!!)

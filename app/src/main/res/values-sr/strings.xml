@@ -300,9 +300,9 @@
     <string name="unit_ft">ft</string>
     <string name="unit_hpa_voice">Хектопаскали</string>
     <string name="metno_weather_text_andthunder">%s и грмљавина</string>
-    <string name="pollen_alder">Јова</string>
-    <string name="pollen_birch">Бреза</string>
-    <string name="pollen_mugwort">Црни пелин</string>
+    <string name="pollen_alnus">Јова</string>
+    <string name="pollen_betula">Бреза</string>
+    <string name="pollen_artemisia">Црни пелин</string>
     <string name="pollen_level_4">Високо</string>
     <string name="pollen_level_5">Веома високо</string>
     <string name="ephemeris_moon_phase_new_moon">Млад месец</string>
@@ -334,9 +334,9 @@
     <string name="air_quality_co_voice">Угљен-моноксид</string>
     <string name="air_quality_pm_info_title">Честице (PM2.5 и PM10)</string>
     <string name="air_quality_no2_info_origin">Амбијентални извори NO₂ су резултат сагоревања горива на високим температурама у процесима као што су они који се користе за грејање, транспорт, индустрију и производњу електричне енергије. Домаћински извори азотних оксида (NOₓ) укључују опрему која сагорева горива као што су пећи, камини и гасне пећи и пећнице.</string>
-    <string name="pollen_grass">Трава</string>
-    <string name="pollen_olive">Маслина</string>
-    <string name="pollen_ragweed">Амброзија</string>
+    <string name="pollen_poaeceae">Трава</string>
+    <string name="pollen_olea">Маслина</string>
+    <string name="pollen_ambrosia">Амброзија</string>
     <string name="pollen_mold">Буђ</string>
     <string name="weather_normals_data_by">Подаци о температурним нормама од %s</string>
     <string name="pollen_level_0">Нема</string>

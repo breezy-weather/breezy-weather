@@ -37,15 +37,19 @@ import androidx.compose.ui.text.style.TextOverflow
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import breezyweather.domain.weather.model.Pollen
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getColorFromSource
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
+import org.breezyweather.domain.weather.model.getIndexNameFromSource
 import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.theme.compose.DayNightTheme
 
 @Composable
 fun PollenGrid(
-    pollen: Pollen
+    pollen: Pollen,
+    pollenIndexSource: PollenIndexSource? = null
 ) {
     val context = LocalContext.current
     val unit = PollenUnit.PPCM
@@ -58,12 +62,18 @@ fun PollenGrid(
                 PollenItem(
                     modifier = Modifier.fillMaxWidth(0.5f),
                     title = stringResource(validPollen.pollenName),
-                    subtitle = unit.getValueText(
-                        context,
-                        pollen.getConcentration(validPollen) ?: 0
-                    ) + " - " + pollen.getIndexName(context, validPollen),
+                    subtitle = if (pollenIndexSource != null) {
+                        pollen.getIndexNameFromSource(context, validPollen, pollenIndexSource) ?: ""
+                    } else {
+                        unit.getValueText(
+                            context,
+                            pollen.getConcentration(validPollen) ?: 0
+                        ) + " - " + pollen.getIndexName(context, validPollen)
+                    },
                     tintColor = Color(
-                        pollen.getColor(context, validPollen)
+                        if (pollenIndexSource != null) {
+                            pollen.getColorFromSource(context, validPollen, pollenIndexSource)
+                        } else pollen.getColor(context, validPollen)
                     )
                 )
             }

@@ -44,6 +44,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.domain.weather.model.lunar
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import java.util.TimeZone
 import javax.inject.Inject
@@ -55,11 +56,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DailyWeatherActivity : GeoActivity() {
 
-    @Inject
-    lateinit var locationRepository: LocationRepository
-
-    @Inject
-    lateinit var weatherRepository: WeatherRepository
+    @Inject lateinit var sourceManager: SourceManager
+    @Inject lateinit var locationRepository: LocationRepository
+    @Inject lateinit var weatherRepository: WeatherRepository
 
     private var mToolbar: MaterialToolbar? = null
     private var mTitle: TextView? = null
@@ -139,7 +138,12 @@ class DailyWeatherActivity : GeoActivity() {
                 rv.removeFitSide(FitBothSideBarView.SIDE_TOP)
                 rv.addFitSide(FitBothSideBarView.SIDE_BOTTOM)
                 rv.clipToPadding = false
-                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.timeZone, daily, 3)
+                val pollenIndexSource = sourceManager.getPollenIndexSource(
+                    if (!location.pollenSource.isNullOrEmpty()) {
+                        location.pollenSource!!
+                    } else location.weatherSource
+                )
+                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.timeZone, daily, pollenIndexSource, 3)
                 val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
                 rv.adapter = dailyWeatherAdapter

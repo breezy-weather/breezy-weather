@@ -24,6 +24,7 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationSource
@@ -45,6 +46,7 @@ import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
+import org.breezyweather.sources.recosante.RecosanteService
 import org.breezyweather.sources.smhi.SmhiService
 import javax.inject.Inject
 
@@ -69,6 +71,7 @@ class SourceManager @Inject constructor(
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
+    recosanteService: RecosanteService,
     smhiService: SmhiService
 ) {
     // TODO: Initialize lazily
@@ -107,7 +110,8 @@ class SourceManager @Inject constructor(
         metIeService,
 
         // Secondary weather sources
-        atmoAuraService
+        atmoAuraService,
+        recosanteService
     )
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
@@ -130,6 +134,7 @@ class SourceManager @Inject constructor(
     // Secondary weather
     fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> = sourceList.filterIsInstance<SecondaryWeatherSource>()
     fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources().firstOrNull { it.id == id }
+    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>().firstOrNull { it.id == id }
 
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()

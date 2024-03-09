@@ -60,7 +60,7 @@
     <string name="settings_icon_packs_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_packs_get_more_store">Mehr von Google Play</string>
     <string name="action_set">Festlegen</string>
-    <string name="pollen_grass">Gräser</string>
+    <string name="pollen_poaeceae">Gräser</string>
     <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
@@ -93,7 +93,7 @@
     <string name="precipitation_probability">Niederschlagswahrscheinlichkeit</string>
     <string name="precipitation_intensity_rainstorm">Regensturm</string>
     <string name="pressure">Druck</string>
-    <string name="pollen_ragweed">Ambrosia</string>
+    <string name="pollen_ambrosia">Ambrosia</string>
     <string name="precipitation_rain">Regen</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -554,10 +554,10 @@
     <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar. Bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
     <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: %s</string>
-    <string name="pollen_mugwort">Beifuß</string>
-    <string name="pollen_alder">Erle</string>
-    <string name="pollen_birch">Birke</string>
-    <string name="pollen_olive">Olive</string>
+    <string name="pollen_artemisia">Beifuß</string>
+    <string name="pollen_alnus">Erle</string>
+    <string name="pollen_betula">Birke</string>
+    <string name="pollen_olea">Oelbaum</string>
     <string name="pollen_level_1">Sehr niedrig</string>
     <string name="pollen_level_2">Niedrig</string>
     <string name="pollen_level_3">Mäßig</string>
@@ -658,4 +658,17 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktueller Luftqualitätsindex</string>
     <string name="location_delete_location_dialog_message_no_name">Sie sind dabei, diesen Ort aus Ihrer Liste der gespeicherten Orte zu löschen.</string>
     <string name="weather_message_too_frequent_refreshes">Bitte warten Sie ein paar Sekunden, bevor Sie es erneut versuchen…</string>
+    <string name="pollen_carpinus">Hainbuche</string>
+    <string name="pollen_castanea">Kastanie</string>
+    <string name="pollen_corylus">Hasel-Strauch</string>
+    <string name="pollen_cupressaceae_taxaceae">Zypresse</string>
+    <string name="pollen_fraxinus">Esche</string>
+    <string name="pollen_plantaginaceae">Wegerich</string>
+    <string name="pollen_platanus">Platane</string>
+    <string name="pollen_populus">Pappeln</string>
+    <string name="pollen_quercus">Eichen</string>
+    <string name="pollen_rumex">Sauerampfer</string>
+    <string name="pollen_salix">Weiden</string>
+    <string name="pollen_tilia">Sommerlinde</string>
+    <string name="pollen_urticaceae">Brennessel/Glaskraut</string>
 </resources>

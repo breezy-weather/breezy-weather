@@ -1,8 +1,10 @@
 package org.breezyweather.domain.weather.model
 
 import android.content.Context
+import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.Pollen
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 
 val Pollen.validPollens: List<PollenIndex>
@@ -56,6 +58,16 @@ fun Pollen.getIndexName(context: Context, pollen: PollenIndex? = null): String? 
     }
 }
 
+fun Pollen.getIndexNameFromSource(
+    context: Context,
+    pollen: PollenIndex,
+    source: PollenIndexSource
+): String? {
+    return getConcentration(pollen)?.let {
+        context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
+    }
+}
+
 fun Pollen.getName(context: Context, pollen: PollenIndex): String {
     return context.getString(pollen.pollenName)
 }
@@ -67,6 +79,17 @@ fun Pollen.getColor(context: Context, pollen: PollenIndex? = null): Int {
     } else { // Specific pollen
         pollen.getColor(context, getConcentration(pollen)?.toDouble())
     }
+}
+
+@ColorInt
+fun Pollen.getColorFromSource(
+    context: Context,
+    pollen: PollenIndex,
+    source: PollenIndexSource
+): Int {
+    return getConcentration(pollen)?.let {
+        context.resources.getIntArray(source.pollenColors).getOrElse(it) { Color.TRANSPARENT }
+    } ?: Color.TRANSPARENT
 }
 
 val Pollen.isIndexValid: Boolean

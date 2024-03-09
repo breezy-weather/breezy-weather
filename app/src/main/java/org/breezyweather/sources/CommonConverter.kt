@@ -284,14 +284,14 @@ private fun getDailyPollenFromSecondaryHourlyList(
     if (hourlyList.isEmpty() || hourlyList.size < 18) return null
 
     return Pollen(
-        tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull(),
         alder = hourlyList.mapNotNull { it.value.alder }.maxOrNull(),
         birch = hourlyList.mapNotNull { it.value.birch }.maxOrNull(),
         grass = hourlyList.mapNotNull { it.value.grass }.maxOrNull(),
+        mold = hourlyList.mapNotNull { it.value.mold }.maxOrNull(),
+        mugwort = hourlyList.mapNotNull { it.value.mugwort }.maxOrNull(),
         olive = hourlyList.mapNotNull { it.value.olive }.maxOrNull(),
         ragweed = hourlyList.mapNotNull { it.value.ragweed }.maxOrNull(),
-        mugwort = hourlyList.mapNotNull { it.value.mugwort }.maxOrNull(),
-        mold = hourlyList.mapNotNull { it.value.mold }.maxOrNull()
+        tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull()
     )
 }
 
@@ -1084,14 +1084,14 @@ private fun getDailyPollenFromHourlyList(hourlyList: List<HourlyWrapper>? = null
     if (hourlyListWithPollen.size < 18) return null
 
     return Pollen(
-        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
         alder = hourlyListWithPollen.mapNotNull { it.alder }.maxOrNull(),
         birch = hourlyListWithPollen.mapNotNull { it.birch }.maxOrNull(),
         grass = hourlyListWithPollen.mapNotNull { it.grass }.maxOrNull(),
+        mold = hourlyListWithPollen.mapNotNull { it.mold }.maxOrNull(),
+        mugwort = hourlyListWithPollen.mapNotNull { it.mugwort }.maxOrNull(),
         olive = hourlyListWithPollen.mapNotNull { it.olive }.maxOrNull(),
         ragweed = hourlyListWithPollen.mapNotNull { it.ragweed }.maxOrNull(),
-        mugwort = hourlyListWithPollen.mapNotNull { it.mugwort }.maxOrNull(),
-        mold = hourlyListWithPollen.mapNotNull { it.mold }.maxOrNull()
+        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull()
     )
 }
 

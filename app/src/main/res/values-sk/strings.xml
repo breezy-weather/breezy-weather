@@ -122,11 +122,11 @@
     <string name="air_quality_co_info_title">Oxid uhoľnatý (CO)</string>
     <string name="air_quality_co_info_introduction">Oxid uhoľnatý (CO) je jedovatý, horľavý a bezfarebný plyn, ktorý je bez zápachu, chuti a nie je dráždivý.</string>
     <string name="pollen_tree">Strom</string>
-    <string name="pollen_alder">Jelša</string>
-    <string name="pollen_birch">Breza</string>
-    <string name="pollen_grass">Tráva</string>
-    <string name="pollen_mugwort">Palina</string>
-    <string name="pollen_olive">Oliva</string>
+    <string name="pollen_alnus">Jelša</string>
+    <string name="pollen_betula">Breza</string>
+    <string name="pollen_poaeceae">Tráva</string>
+    <string name="pollen_artemisia">Palina</string>
+    <string name="pollen_olea">Oliva</string>
     <string name="air_quality_no2_info_consequences">Vystavenie oxidu dusičitému môže dráždiť dýchacie cesty a zhoršovať ochorenia dýchacích ciest. Okrem toho je NO₂ dôležitým prekurzorom ozónu, znečisťujúcej látky, ktorá úzko súvisí s astmou a inými ochoreniami dýchacích ciest.</string>
     <string name="air_quality_co_info_origin">Vzniká pri neúplnom spaľovaní uhlíkových palív, ako sú drevo, benzín, uhlie, zemný plyn a petrolej, v jednoduchých kachliach, otvorených ohňoch, knôtových lampách, peciach a krboch. Dominantným zdrojom oxidu uhoľnatého (CO) v okolitom ovzduší sú motorové vozidlá.</string>
     <string name="air_quality_co_info_consequences">Oxid uhoľnatý preniká cez pľúcne tkanivá do krvného obehu a sťažuje väzbu kyslíka na bunky tela. Tento nedostatok kyslíka poškodzuje tkanivá a bunky. Vystavenie oxidu uhoľnatému môže spôsobiť ťažkosti s dýchaním, vyčerpanosť, závraty a iné príznaky podobné chrípke. Vystavenie vysokým hladinám oxidu uhoľnatého môže byť smrteľné.</string>
@@ -151,7 +151,7 @@
     <string name="temperature_normals">Teplotné normy</string>
     <string name="nighttime">Noc</string>
     <string name="notification_channel_forecast">Predpoveď</string>
-    <string name="pollen_ragweed">Ambrózia</string>
+    <string name="pollen_ambrosia">Ambrózia</string>
     <string name="date_format_widget_short">EEE d MMM</string>
     <string name="date_format_long">d. MMM</string>
     <string name="pressure">Tlak</string>

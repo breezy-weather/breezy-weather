@@ -33,7 +33,10 @@ class PollenHolder(
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
         mBinding.composeView.setContent {
             BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                PollenGrid(pollen = (model as DailyPollen).pollen)
+                PollenGrid(
+                    pollen = (model as DailyPollen).pollen,
+                    pollenIndexSource = model.pollenIndexSource
+                )
             }
         }
     }

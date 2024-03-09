@@ -289,14 +289,14 @@ object WeatherMapper {
             co
         ),
         Pollen(
-            tree?.toInt(),
-            alder?.toInt(),
-            birch?.toInt(),
-            grass?.toInt(),
-            olive?.toInt(),
-            ragweed?.toInt(),
-            mugwort?.toInt(),
-            mold?.toInt()
+            alder = alder?.toInt(),
+            birch = birch?.toInt(),
+            grass = grass?.toInt(),
+            mugwort = mugwort?.toInt(),
+            mold = mold?.toInt(),
+            olive = olive?.toInt(),
+            ragweed = ragweed?.toInt(),
+            tree = tree?.toInt()
         ),
         UV(uvIndex),
         hoursOfSun

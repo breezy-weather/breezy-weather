@@ -79,9 +79,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Φθίνων ύβος</string>
     <string name="ephemeris_moon_phase_last_quarter">Τρίτο τέταρτο</string>
     <string name="ephemeris_moon_phase_waning_crescent">Φθίνων μηνίσκος</string>
-    <string name="pollen_grass">Γρασίδι</string>
+    <string name="pollen_poaeceae">Γρασίδι</string>
     <string name="pollen_mold">Μούχλα</string>
-    <string name="pollen_ragweed">Αγριόχορτο</string>
+    <string name="pollen_ambrosia">Αγριόχορτο</string>
     <string name="pollen_tree">Δέντρο</string>
     <string name="daily_forecast">Ημερήσια πρόγνωση</string>
     <string name="hourly_forecast">Ωριαία πρόγνωση</string>
@@ -320,10 +320,10 @@
     <string name="temperature_degree_day_cooling">Μονάδα θερμότητας ψύξης</string>
     <string name="air_quality_co_info_introduction">Το διοξείδιο του άνθρακα (CO) είναι ένα δηλητηριώδες, εύφλεκτο αέριο που είναι άχρωμο, άοσμο, άγευστο και δεν προκαλεί ερεθισμούς.</string>
     <string name="air_quality_co_info_origin">Παράγεται από την ατελής καύση καυσίμων με βάσει τον άνθρακα όπως το ξύλο, πετρέλαιο, άνθρακας, φυσικό αέριο και κηροζίνη σε απλούς φούρνους, ανοιχτά τζάκια, λάμπες πετρελαίου, κλίβανοι, τζάκια. Η κυρία πηγή του διοξειδίου του άνθρακα (CO) στον αέρα από κινητήρες οχημάτων.</string>
-    <string name="pollen_alder">Άλνος</string>
-    <string name="pollen_birch">Σημύδα</string>
-    <string name="pollen_mugwort">Λεβιθόχορτο</string>
-    <string name="pollen_olive">Ελιά</string>
+    <string name="pollen_alnus">Άλνος</string>
+    <string name="pollen_betula">Σημύδα</string>
+    <string name="pollen_artemisia">Λεβιθόχορτο</string>
+    <string name="pollen_olea">Ελιά</string>
     <string name="pollen_level_0">Κανένα</string>
     <string name="pollen_level_1">Πολύ χαμηλή</string>
     <string name="pollen_level_2">Χαμηλή</string>

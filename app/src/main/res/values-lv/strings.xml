@@ -80,9 +80,9 @@
     <string name="air_quality_level_3">Slikts</string>
     <string name="air_quality_o3_info_consequences">Pārmērīga ozona iedarbība var izraisīt elpošanas problēmas, izraisīt astmu, samazināt plaušu darbību un izraisīt plaušu slimības.</string>
     <string name="air_quality_so2_info_title">Sēra dioksīds (SO₂)</string>
-    <string name="pollen_alder">Alksnis</string>
-    <string name="pollen_birch">Bērzs</string>
-    <string name="pollen_grass">Zāle</string>
+    <string name="pollen_alnus">Alksnis</string>
+    <string name="pollen_betula">Bērzs</string>
+    <string name="pollen_poaeceae">Zāle</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Dilstošs Mēness</string>
     <string name="ephemeris_moon_phase_last_quarter">Pēdējais ceturksnis</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dilstošs pusmēness</string>
@@ -208,9 +208,9 @@
     <string name="air_quality_level_4">Neveselīgs</string>
     <string name="air_quality_o3_info_title">Piezemes ozons (O₃)</string>
     <string name="air_quality_so2_info_introduction">Sēra dioksīds (SO₂) ir bezkrāsaina toksiska gāze, kas rada piedegušu sērkociņu smaku.</string>
-    <string name="pollen_mugwort">Vībotne</string>
-    <string name="pollen_olive">Olīva</string>
-    <string name="pollen_ragweed">Ambrozija</string>
+    <string name="pollen_artemisia">Vībotne</string>
+    <string name="pollen_olea">Olīva</string>
+    <string name="pollen_ambrosia">Ambrozija</string>
     <string name="weather_api_unauthorized_content">Dažos laikapstākļu datu avotos jums ir jānorāda sava API atslēga. Ja jau esat to norādījis, lūdzu, vēlreiz pārbaudiet norādīto API atslēgu.</string>
     <string name="setting_weather_source_accu_days">Dienas</string>
     <string name="weather_source_accu_preference_days_1">1 diena</string>

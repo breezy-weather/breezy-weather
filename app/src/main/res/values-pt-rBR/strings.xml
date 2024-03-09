@@ -80,9 +80,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa minguante</string>
     <string name="ephemeris_moon_phase_last_quarter">Quarto minguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Lua minguante</string>
-    <string name="pollen_grass">Grama</string>
+    <string name="pollen_poaeceae">Grama</string>
     <string name="pollen_mold">Mofo</string>
-    <string name="pollen_ragweed">Ambrosia</string>
+    <string name="pollen_ambrosia">Ambrosia</string>
     <string name="pollen_tree">Árvore</string>
     <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
@@ -572,10 +572,10 @@
     <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="message_source_not_installed_error_content">Esta fonte não está mais disponível; apague a localização e a recrie de outra fonte.</string>
     <string name="settings_weather_source_portal">Canal</string>
-    <string name="pollen_alder">Amieiro</string>
-    <string name="pollen_birch">Bétula</string>
-    <string name="pollen_mugwort">Artemísia</string>
-    <string name="pollen_olive">Oliveira</string>
+    <string name="pollen_alnus">Amieiro</string>
+    <string name="pollen_betula">Bétula</string>
+    <string name="pollen_artemisia">Artemísia</string>
+    <string name="pollen_olea">Oliveira</string>
     <string name="pollen_level_1">Muito baixo</string>
     <string name="pollen_level_0">Nenhum</string>
     <string name="pollen_level_2">Baixo</string>

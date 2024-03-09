@@ -264,15 +264,15 @@ fun supportsPollen(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
 private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Pollen? {
     if (list == null) return null
 
-    val tree = list.firstOrNull { it.Name == "Tree" }
     val grass = list.firstOrNull { it.Name == "Grass" }
-    val ragweed = list.firstOrNull { it.Name == "Ragweed" }
     val mold = list.firstOrNull { it.Name == "Mold" }
+    val ragweed = list.firstOrNull { it.Name == "Ragweed" }
+    val tree = list.firstOrNull { it.Name == "Tree" }
     return Pollen(
-        tree = tree?.Value,
         grass = grass?.Value,
-        ragweed = ragweed?.Value,
         mold = mold?.Value,
+        ragweed = ragweed?.Value,
+        tree = tree?.Value
     )
 }
 

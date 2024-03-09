@@ -27,6 +27,8 @@ import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.daily.DailyWeatherActivity
 import org.breezyweather.daily.adapter.holder.*
 import org.breezyweather.daily.adapter.model.*
 import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
@@ -35,8 +37,13 @@ import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
 import java.util.TimeZone
 
-class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, spanCount: Int) :
-    RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder>() {
+class DailyWeatherAdapter(
+    activity: DailyWeatherActivity,
+    timeZone: TimeZone,
+    daily: Daily,
+    pollenIndexSource: PollenIndexSource?,
+    spanCount: Int
+) : RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder>() {
     private val mModelList: MutableList<ViewModel>
     private val mSpanCount: Int = spanCount
 
@@ -59,25 +66,25 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         // model list.
         mModelList = ArrayList()
         daily.day?.let { day ->
-            mModelList.add(LargeTitle(context.getString(R.string.daytime)))
+            mModelList.add(LargeTitle(activity.getString(R.string.daytime)))
             mModelList.add(Overview(day, true))
             day.wind?.let { wind ->
                 if (wind.isValid) {
                     mModelList.add(DailyWind(wind))
                 }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(context, day))
+            mModelList.addAll(getHalfDayOptionalModelList(activity, day))
         }
         daily.night?.let { night ->
             mModelList.add(Line())
-            mModelList.add(LargeTitle(context.getString(R.string.nighttime)))
+            mModelList.add(LargeTitle(activity.getString(R.string.nighttime)))
             mModelList.add(Overview(night, false))
             night.wind?.let { wind ->
                 if (wind.isValid) {
                     mModelList.add(DailyWind(wind))
                 }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(context, night))
+            mModelList.addAll(getHalfDayOptionalModelList(activity, night))
         }
         mModelList.add(Line())
         daily.airQuality?.let { airQuality ->
@@ -85,7 +92,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 mModelList.add(
                     Title(
                         R.drawable.weather_haze_mini_xml,
-                        context.getString(R.string.air_quality)
+                        activity.getString(R.string.air_quality)
                     )
                 )
                 mModelList.add(DailyAirQuality(airQuality))
@@ -96,34 +103,34 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 mModelList.add(
                     Title(
                         R.drawable.ic_allergy,
-                        context.getString(if (pollen.isMoldValid) R.string.pollen_and_mold else R.string.pollen)
+                        activity.getString(if (pollen.isMoldValid) R.string.pollen_and_mold else R.string.pollen)
                     )
                 )
-                mModelList.add(DailyPollen(pollen))
+                mModelList.add(DailyPollen(pollen, pollenIndexSource))
             }
         }
         daily.uV?.let { uV ->
             if (uV.isValid) {
-                mModelList.add(Title(R.drawable.ic_uv, context.getString(R.string.uv_index)))
+                mModelList.add(Title(R.drawable.ic_uv, activity.getString(R.string.uv_index)))
                 mModelList.add(DailyUV(uV))
             }
         }
         if (daily.sun?.isValid == true || daily.moon?.isValid == true || daily.moonPhase?.isValid == true) {
-            mModelList.add(LargeTitle(context.getString(R.string.ephemeris)))
+            mModelList.add(LargeTitle(activity.getString(R.string.ephemeris)))
             mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
         }
         if (daily.degreeDay?.isValid == true || daily.hoursOfSun != null) {
             mModelList.add(Line())
-            mModelList.add(LargeTitle(context.getString(R.string.details)))
+            mModelList.add(LargeTitle(activity.getString(R.string.details)))
             daily.degreeDay?.let { degreeDay ->
                 if (degreeDay.isValid) {
-                    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+                    val temperatureUnit = SettingsManager.getInstance(activity).temperatureUnit
                     if ((degreeDay.heating ?: 0.0) > 0) {
                         mModelList.add(
                             ValueIcon(
-                                context.getString(R.string.temperature_degree_day_heating),
+                                activity.getString(R.string.temperature_degree_day_heating),
                                 temperatureUnit.getDegreeDayValueText(
-                                    context,
+                                    activity,
                                     degreeDay.heating!!
                                 ),
                                 R.drawable.ic_mode_heat
@@ -132,9 +139,9 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                     } else if ((degreeDay.cooling ?: 0.0) > 0) {
                         mModelList.add(
                             ValueIcon(
-                                context.getString(R.string.temperature_degree_day_cooling),
+                                activity.getString(R.string.temperature_degree_day_cooling),
                                 temperatureUnit.getDegreeDayValueText(
-                                    context,
+                                    activity,
                                     degreeDay.cooling!!
                                 ),
                                 R.drawable.ic_mode_cool
@@ -146,8 +153,8 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             daily.hoursOfSun?.let { hoursOfSun ->
                 mModelList.add(
                     ValueIcon(
-                        context.getString(R.string.hours_of_sun),
-                        DurationUnit.H.getValueText(context, hoursOfSun),
+                        activity.getString(R.string.hours_of_sun),
+                        DurationUnit.H.getValueText(activity, hoursOfSun),
                         R.drawable.ic_hours_of_sun
 
                     )

@@ -39,6 +39,13 @@
     <color name="pollenLevel_4">#ffab40</color>
     <color name="pollenLevel_5">#ff3b30</color>
 
+    <color name="pollenRecosanteLevel_0">#31bcf0</color>
+    <color name="pollenRecosanteLevel_1">#21a84c</color>
+    <color name="pollenRecosanteLevel_2">#fdd401</color>
+    <color name="pollenRecosanteLevel_3">#f69321</color>
+    <color name="pollenRecosanteLevel_4">#ee6344</color>
+    <color name="pollenRecosanteLevel_5">#d94049</color>
+
     <color name="weather_source_accu">#ef5823</color>
     <color name="weather_source_china">#5ebb8e</color>
 

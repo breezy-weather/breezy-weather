@@ -80,9 +80,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa minvant</string>
     <string name="ephemeris_moon_phase_last_quarter">Quart minvant</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minvant</string>
-    <string name="pollen_grass">Gramínies</string>
+    <string name="pollen_poaeceae">Gramínies</string>
     <string name="pollen_mold">Floridura</string>
-    <string name="pollen_ragweed">Ambròsia</string>
+    <string name="pollen_ambrosia">Ambròsia</string>
     <string name="pollen_tree">Arbre</string>
     <string name="daily_forecast">Pronòstic diari</string>
     <string name="hourly_forecast">Pronòstic horari</string>
@@ -331,7 +331,7 @@
     <string name="dialog_permissions_notification_title">Manteniu-vos informats</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Diòxid de nitrogen</string>
-    <string name="pollen_mugwort">Altimira</string>
+    <string name="pollen_artemisia">Artemísia</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="action_add_new_location">Afegir una ubicació nova</string>
@@ -466,7 +466,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Altres animacions d’elements</string>
     <string name="settings_widgets_monochrome_icons_title">Icones monocromes</string>
     <string name="settings_background_updates">Actualitzacions en segon pla</string>
-    <string name="pollen_birch">Bedoll</string>
+    <string name="pollen_betula">Bedoll</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Polzades per hora</string>
     <string name="settings_icon_packs_weather_icon_light">Icona clara</string>
@@ -490,7 +490,7 @@
     <string name="action_show_errors">Toca per veure’n els detalls</string>
     <string name="air_quality_co_info_introduction">El monòxid de carboni (CO) és un gas verinós i inflamable que és incolor, inodor, insípid i no irritant.</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="pollen_olive">Olivera</string>
+    <string name="pollen_olea">Olivera</string>
     <string name="action_location_list">Llista d’ubicacions</string>
     <string name="settings_weather_sources_per_location_summary">Personalitzar les fonts de dades meteorològiques d’aquesta ubicació</string>
     <string name="action_back">Enrere</string>
@@ -538,7 +538,7 @@
     <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’optimització de la bateria ja està desactivada.</string>
     <string name="message_network_unavailable">Xarxa no disponible</string>
-    <string name="pollen_alder">Alnus</string>
+    <string name="pollen_alnus">Vern</string>
     <string name="location_none_added_yet_instructions">Encara no s’ha afegit cap ubicació. Toqueu la icona de cerca per afegir manualment una ubicació o afegiu la vostra ubicació actual des del botó flotant.</string>
     <string name="settings_main_hourly_trends_title">Tendències horàries</string>
     <string name="air_quality_co_info_origin">Es produeix per la combustió incompleta de combustibles carbonosos com la llenya, la gasolina, el carbó, el gas natural i el querosè en estufes simples, focs oberts, llums de metxa, forns, xemeneies. La font predominant de monòxid de carboni (CO) en l’aire ambient prové dels vehicles de motor.</string>
@@ -642,4 +642,17 @@
     <string name="uv_index_short">Índex UV</string>
     <string name="visibility_short">Visibilitat</string>
     <string name="pressure_short">Pressió</string>
+    <string name="pollen_carpinus">Carpí</string>
+    <string name="pollen_castanea">Castanyer</string>
+    <string name="pollen_corylus">Avellaner</string>
+    <string name="pollen_cupressaceae_taxaceae">Xiprer-Teix</string>
+    <string name="pollen_fraxinus">Freixe</string>
+    <string name="pollen_plantaginaceae">Plantatge</string>
+    <string name="pollen_platanus">Plàtan d\'ombra</string>
+    <string name="pollen_populus">Pollancre/Xop/Àlber</string>
+    <string name="pollen_quercus">Alzina/Roure/Surera/Garric</string>
+    <string name="pollen_rumex">Rumex/Agrelles</string>
+    <string name="pollen_salix">Salze</string>
+    <string name="pollen_tilia">Til·ler</string>
+    <string name="pollen_urticaceae">Ortigues/Parietària</string>
 </resources>

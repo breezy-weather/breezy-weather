@@ -79,9 +79,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">요월</string>
     <string name="ephemeris_moon_phase_last_quarter">하현달</string>
     <string name="ephemeris_moon_phase_waning_crescent">그믐달</string>
-    <string name="pollen_grass">풀</string>
+    <string name="pollen_poaeceae">풀</string>
     <string name="pollen_mold">양토</string>
-    <string name="pollen_ragweed">돼지풀</string>
+    <string name="pollen_ambrosia">돼지풀</string>
     <string name="pollen_tree">나무</string>
     <string name="daily_forecast">일간 예보</string>
     <string name="hourly_forecast">시간별 예보</string>

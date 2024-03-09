@@ -30,12 +30,12 @@ enum class PollenIndex(
     val thresholds: List<Int>
 ) {
     TREE("tree", R.string.pollen_tree, listOf(0, 10, 50, 100, 300)),
-    ALDER("alder", R.string.pollen_alder, listOf(0, 10, 50, 100, 300)),
-    BIRCH("birch", R.string.pollen_birch, listOf(0, 10, 50, 100, 300)),
-    GRASS("grass", R.string.pollen_grass, listOf(0, 5, 25, 50, 100)),
-    OLIVE("olive", R.string.pollen_olive, listOf(0, 10, 50, 200, 400)),
-    RAGWEED("ragweed", R.string.pollen_ragweed, listOf(0, 5, 11, 23, 50)),
-    MUGWORT("mugwort", R.string.pollen_mugwort, listOf(0, 5, 11, 23, 50)), // TODO: To be checked
+    ALDER("alder", R.string.pollen_alnus, listOf(0, 10, 50, 100, 300)),
+    BIRCH("birch", R.string.pollen_betula, listOf(0, 10, 50, 100, 300)),
+    GRASS("grass", R.string.pollen_poaeceae, listOf(0, 5, 25, 50, 100)),
+    OLIVE("olive", R.string.pollen_olea, listOf(0, 10, 50, 200, 400)),
+    RAGWEED("ragweed", R.string.pollen_ambrosia, listOf(0, 5, 11, 23, 50)),
+    MUGWORT("mugwort", R.string.pollen_artemisia, listOf(0, 5, 11, 23, 50)), // TODO: To be checked
     MOLD("mold", R.string.pollen_mold, listOf(0, 6500, 13000, 50000, 65000, 1000000));
 
     companion object {

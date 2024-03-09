@@ -26,12 +26,14 @@ import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.android.AndroidLocationSource
+import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
     androidLocationSource: AndroidLocationSource,
+    brightSkyService: BrightSkyService,
     naturalEarthService: NaturalEarthService,
     openMeteoService: OpenMeteoService
 ) {
@@ -43,6 +45,9 @@ class SourceManager @Inject constructor(
 
         // Reverse geocoding sources
         naturalEarthService,
+
+        // National-only sources (sorted by population)
+        brightSkyService,
 
         // Weather sources
         openMeteoService

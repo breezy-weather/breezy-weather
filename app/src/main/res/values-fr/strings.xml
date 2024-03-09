@@ -119,12 +119,25 @@
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
     <string name="pollen_tree">Arbres</string>
-    <string name="pollen_alder">Aulne</string>
-    <string name="pollen_birch">Bouleau</string>
-    <string name="pollen_grass">Graminées</string>
-    <string name="pollen_mugwort">Armoises</string>
-    <string name="pollen_olive">Olivier</string>
-    <string name="pollen_ragweed">Ambroisie</string>
+    <string name="pollen_alnus">Aulne</string>
+    <string name="pollen_ambrosia">Ambroisies</string>
+    <string name="pollen_artemisia">Armoises</string>
+    <string name="pollen_betula">Bouleau</string>
+    <string name="pollen_carpinus">Charme</string>
+    <string name="pollen_castanea">Châtaignier</string>
+    <string name="pollen_corylus">Noisetier</string>
+    <string name="pollen_cupressaceae_taxaceae">Cyprès</string>
+    <string name="pollen_fraxinus">Frêne</string>
+    <string name="pollen_olea">Olivier</string>
+    <string name="pollen_plantaginaceae">Plantain</string>
+    <string name="pollen_platanus">Platane</string>
+    <string name="pollen_poaeceae">Graminées</string>
+    <string name="pollen_populus">Peuplier</string>
+    <string name="pollen_quercus">Chêne</string>
+    <string name="pollen_rumex">Oseille</string>
+    <string name="pollen_salix">Saule</string>
+    <string name="pollen_tilia">Tilleul</string>
+    <string name="pollen_urticaceae">Urticacées</string>
     <string name="pollen_mold">Moisissure</string>
     <!-- Pollen level means “Potential risk of allergy” -->
     <string name="pollen_level_0">Aucun</string>

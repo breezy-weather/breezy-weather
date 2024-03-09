@@ -7,7 +7,7 @@
     <string name="precipitation_thunderstorm">Åskväder</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Kvävedioxid</string>
-    <string name="pollen_mugwort">Gråbo</string>
+    <string name="pollen_artemisia">Gråbo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="action_add_new_location">Lägg till ny plats</string>
@@ -149,7 +149,7 @@
     <string name="location_message_list_cannot_be_empty">Platslistan får inte vara tom</string>
     <string name="settings_background_updates_refresh_12h">12 timmar</string>
     <string name="settings_background_updates">Bakgrundsuppdateringar</string>
-    <string name="pollen_birch">Björk</string>
+    <string name="pollen_betula">Björk</string>
     <string name="settings_background_updates_refresh_24h">24 timmar</string>
     <string name="uv_index_3_5">Medelhögt</string>
     <string name="action_refresh">Uppdatera</string>
@@ -162,7 +162,7 @@
     <string name="action_restart">Starta om</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande daggpunkt</string>
     <string name="short_saturday">Lör</string>
-    <string name="pollen_ragweed">Ambrosia</string>
+    <string name="pollen_ambrosia">Ambrosia</string>
     <string name="ephemeris">Solen &amp; månen</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_kind_thunder">Åska</string>
@@ -171,7 +171,7 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_co_info_introduction">Kolmonoxid (CO) är en giftig, icke irriterande, lättantändligt gas som är färg, lukt och smaklös.</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="pollen_olive">Oliv</string>
+    <string name="pollen_olea">Oliv</string>
     <string name="action_location_list">Platslista</string>
     <string name="action_edit">Redigera</string>
     <string name="action_back">Backa</string>
@@ -208,7 +208,7 @@
     <string name="unit_atm_voice">Atmosfärer</string>
     <string name="unit_km">km</string>
     <string name="precipitation_rain">Regn</string>
-    <string name="pollen_alder">Al</string>
+    <string name="pollen_alnus">Al</string>
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
     <string name="short_friday">Fre</string>
@@ -292,7 +292,7 @@
     <string name="notification_channel_crash_logs">Krashloggar</string>
     <string name="location_search_no_results">%1$s kan inte hitta %2$s</string>
     <string name="wind_direction_short_N">N</string>
-    <string name="pollen_grass">Gräs</string>
+    <string name="pollen_poaeceae">Gräs</string>
     <string name="wind_direction_short_E">O</string>
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>

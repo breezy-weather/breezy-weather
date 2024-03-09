@@ -130,11 +130,11 @@
     <string name="air_quality_co_info_origin">Nastaje nepotpunim sagorijevanjem ugljičnih goriva kao što su drvo, benzin, ugalj, prirodni gas i kerozin u jednostavnim pećima, otvorenim vatrama, fitilj lampama, pećima, kaminima. Preovlađujući izvor ugljik-monoksida (CO) u zraku jesu motorna vozila.</string>
     <string name="air_quality_no2_info_origin">Izvori NO₂ su rezultat sagorijevanja goriva na visokim temperaturama u procesima kao što su oni koji se koriste za grijanje, transport, industriju i proizvodnju električne energije. Domaćinski izvori dušikovih oksida (NOₓ) uključuju opremu koja sagorijeva goriva kao što su peći, kamini, plinske peći i obične peći.</string>
     <string name="pollen_tree">Stabla</string>
-    <string name="pollen_alder">Joha</string>
-    <string name="pollen_birch">Breza</string>
-    <string name="pollen_grass">Trava</string>
-    <string name="pollen_mugwort">Pelin</string>
-    <string name="pollen_olive">Maslina</string>
+    <string name="pollen_alnus">Joha</string>
+    <string name="pollen_betula">Breza</string>
+    <string name="pollen_poaeceae">Trava</string>
+    <string name="pollen_artemisia">Pelin</string>
+    <string name="pollen_olea">Maslina</string>
     <string name="pollen_mold">Plijesan</string>
     <string name="pollen_level_0">Nema</string>
     <string name="pollen_level_1">Jako nizak</string>
@@ -616,7 +616,7 @@
     <string name="common_weather_text_rain_showers_heavy">Jaki pljuskovi</string>
     <string name="weather_kind_haze">Izmaglica</string>
     <string name="settings_color_app">Prati aplikaciju</string>
-    <string name="pollen_ragweed">Ambrozija</string>
+    <string name="pollen_ambrosia">Ambrozija</string>
     <string name="location_search_placeholder">Pretražite lokaciju…</string>
     <string name="location_message_permission_background_missing">Dozvola za pristup lokaciji u pozadini nije data</string>
     <string name="message_parsing_error_title">Neuspješno analiziranje vremenskih podataka</string>

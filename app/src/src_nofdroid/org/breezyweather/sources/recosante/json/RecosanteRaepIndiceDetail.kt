@@ -14,19 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.daily.adapter.model
+package org.breezyweather.sources.recosante.json
 
-import breezyweather.domain.weather.model.Pollen
-import org.breezyweather.common.source.PollenIndexSource
-import org.breezyweather.daily.adapter.DailyWeatherAdapter
+import kotlinx.serialization.Serializable
 
-class DailyPollen(
-    val pollen: Pollen,
-    val pollenIndexSource: PollenIndexSource? = null
-) : DailyWeatherAdapter.ViewModel {
-    override val code = 6
-
-    companion object {
-        fun isCode(code: Int) = (code == 6)
-    }
-}
+@Serializable
+data class RecosanteRaepIndiceDetail(
+    val indice: RecosanteRaepIndiceDetailIndice,
+    val label: String
+)

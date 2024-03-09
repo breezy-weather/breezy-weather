@@ -175,7 +175,7 @@
     <string name="common_weather_text_fog">Sis</string>
     <string name="common_weather_text_snow">Kar</string>
     <string name="pollen_tree">Ağaç</string>
-    <string name="pollen_ragweed">Kanarya otu</string>
+    <string name="pollen_ambrosia">Kanarya otu</string>
     <string name="weather_source_accu_preference_days_15">15 günlük</string>
     <string name="weather_source_accu_preference_hours_1">1 saatlik</string>
     <string name="weather_source_accu_preference_hours_12">12 saatlik</string>
@@ -350,11 +350,11 @@
     <string name="air_quality_so2_info_title">Sülfür dioksit (SO₂)</string>
     <string name="air_quality_so2_info_introduction">Kükürt dioksit (SO₂), yanmış kibrit kokusu veren renksiz, zehirli bir gazdır.</string>
     <string name="pollen_level_0">Yok</string>
-    <string name="pollen_grass">Çimen</string>
-    <string name="pollen_alder">Kızılağaç</string>
-    <string name="pollen_birch">Huş ağacı</string>
-    <string name="pollen_mugwort">Pelin</string>
-    <string name="pollen_olive">Zeytin</string>
+    <string name="pollen_poaeceae">Çimen</string>
+    <string name="pollen_alnus">Kızılağaç</string>
+    <string name="pollen_betula">Huş ağacı</string>
+    <string name="pollen_artemisia">Pelin</string>
+    <string name="pollen_olea">Zeytin</string>
     <string name="ephemeris_sunset_at">Gün batımı saati %s</string>
     <string name="location_message_permission_missing">Konum erişimi izni verilmemiş</string>
     <string name="dialog_permissions_location_background_content">Uygulamanın arka planda konum bilgilerine erişmesine izin vermek, böylece konumdaki değişiklikleri algılayabilmemiz ve size geçerli hava durumu verileri sunabilmemiz için lütfen konum erişimini “Her zaman izin ver” olarak ayarlayın.</string>

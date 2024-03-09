@@ -81,9 +81,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Księżyc garbowaty</string>
     <string name="ephemeris_moon_phase_last_quarter">Trzecia kwadra</string>
     <string name="ephemeris_moon_phase_waning_crescent">Sierp</string>
-    <string name="pollen_grass">Trawa</string>
+    <string name="pollen_poaeceae">Trawa</string>
     <string name="pollen_mold">Pleśń</string>
-    <string name="pollen_ragweed">Ambrozja</string>
+    <string name="pollen_ambrosia">Ambrozja</string>
     <string name="pollen_tree">Drzewa</string>
     <string name="daily_forecast">Prognoza dzienna</string>
     <string name="hourly_forecast">Prognoza godzinowa</string>
@@ -455,10 +455,10 @@
     <string name="settings_location_access_switch_summaryOff">Zezwól, jeśli chcesz mieć możliwość dodania swojej bieżącej lokalizacji jako lokalizacji.</string>
     <string name="settings_location_access_background_summaryOn">Włączono. Aplikacja będzie mogła odświeżać dane pogodowe dla Twojej bieżącej lokalizacji w tle.</string>
     <string name="message_server_timeout">Upłynął limit czasu żądania</string>
-    <string name="pollen_alder">Olcha</string>
-    <string name="pollen_birch">Brzoza</string>
-    <string name="pollen_mugwort">Bylica</string>
-    <string name="pollen_olive">Oliwka</string>
+    <string name="pollen_alnus">Olcha</string>
+    <string name="pollen_betula">Brzoza</string>
+    <string name="pollen_artemisia">Bylica</string>
+    <string name="pollen_olea">Oliwka</string>
     <string name="location_message_permission_background_missing">Brak pozwolenia na dostęp do lokalizacji w tle</string>
     <string name="dialog_permissions_notification_content">Dotknij tutaj, aby włączyć powiadomienia o alertach pogodowych, lub zdecyduj później w Ustawieniach.</string>
     <string name="location_results_by">Wyniki lokalizacji według %s</string>

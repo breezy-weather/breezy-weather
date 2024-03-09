@@ -14,7 +14,7 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
-    <string name="pollen_mugwort">Pelin</string>
+    <string name="pollen_artemisia">Pelin</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertikalno</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
@@ -238,7 +238,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Druge animacije elemenata</string>
     <string name="settings_widgets_monochrome_icons_title">Monokromatske ikone</string>
     <string name="settings_background_updates">Ažuriranja u pozadini</string>
-    <string name="pollen_birch">Breza</string>
+    <string name="pollen_betula">Breza</string>
     <string name="settings_background_updates_refresh_24h">24 sata</string>
     <string name="widget_subtitle_data_feels_like">Temperatura osjeta</string>
     <string name="uv_index_3_5">Umjereno</string>
@@ -254,7 +254,7 @@
     <string name="weather_api_unauthorized_content">Za neke izvore vremenskih podataka, morate priložiti svoj vlastiti API ključ. Ako ste već priložili jedan, molimo ponovno provjerite API ključ koji ste priložili.</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Trenutna točka kondenziranja</string>
     <string name="short_saturday">Sub</string>
-    <string name="pollen_ragweed">Ambrozija</string>
+    <string name="pollen_ambrosia">Ambrozija</string>
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="settings_main_summary">Redoslijed kartica, prikazane stavke, animacije</string>
@@ -276,7 +276,7 @@
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="air_quality_co_info_introduction">Ugljikov monoksid (CO) je otrovan, zapaljiv plin koji je bezbojan, nema mirisa, okusa i nije nadražljiv.</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, …, 4 dana kasnije</string>
-    <string name="pollen_olive">Maslina</string>
+    <string name="pollen_olea">Maslina</string>
     <string name="action_location_list">Lista lokacija</string>
     <string name="settings_weather_sources_per_location_summary">Uredite izvore prognoze za ovu lokaciju</string>
     <string name="action_edit">Uredi</string>
@@ -325,7 +325,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">Optimiranje baterije je već onemogućeno.</string>
     <string name="message_network_unavailable">Mreža nedostupna</string>
     <string name="precipitation_rain">Kiša</string>
-    <string name="pollen_alder">Joha</string>
+    <string name="pollen_alnus">Joha</string>
     <string name="location_none_added_yet_instructions">Nema dodanih lokacija. Molimo kliknite ikonu pretraživanja te ručno dodajte lokaciju ili dodajte svoju trenutnu lokaciju pomoću lebdećeg gumba.</string>
     <string name="location_message_deleted">Lokacija obrisana</string>
     <string name="widget_clock_day_vertical">Sat + Dnevno (Okomiti stil)</string>
@@ -448,7 +448,7 @@
     <string name="widget_label_subtitle_data">Podatci podnaslova</string>
     <string name="wind_direction_short_N">S</string>
     <string name="air_quality_level_2_description">Kvaliteta zraka uglavnom je prihvatljiva za većinu osoba. Međutim, osjetljive skupine ljudi mogu osjetiti simptome manje do srednje jačine ako budu dulje izložene.</string>
-    <string name="pollen_grass">Trava</string>
+    <string name="pollen_poaeceae">Trava</string>
     <string name="settings_location_access_switch_summaryOn">Dozvoljeno. Vašu trenutnu lokaciju možete dodati kao lokaciju.</string>
     <string name="wind_direction_short_E">I</string>
     <string name="settings_widgets">Widgeti i žive pozadine</string>

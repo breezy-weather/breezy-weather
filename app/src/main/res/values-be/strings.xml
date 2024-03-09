@@ -7,9 +7,9 @@
     <string name="air_quality_level_6">Небяспечна</string>
     <string name="air_quality_pm10_voice">Дробныя часціцы дзесяць</string>
     <string name="air_quality_co_info_consequences">Угарны газ дыфузіюе праз тканіны лёгкіх і трапляе ў крывацёк, што абцяжарвае звязванне клетак арганізма з кіслародам. Недахоп кіслароду пашкоджвае тканіны і клеткі. Уздзеянне ўгарнага газу можа выклікаць абцяжаранае дыханне, знясіленне, галавакружэнне і іншыя сімптомы грыпу. Уздзеянне высокіх узроўняў угарнага газу можа быць смяротным.</string>
-    <string name="pollen_grass">Трава</string>
-    <string name="pollen_mugwort">Палын</string>
-    <string name="pollen_olive">Аліва</string>
+    <string name="pollen_poaeceae">Трава</string>
+    <string name="pollen_artemisia">Палын</string>
+    <string name="pollen_olea">Аліва</string>
     <string name="pollen_level_0">Не</string>
     <string name="pollen_level_2">Нізкі</string>
     <string name="pollen_level_3">Сярэдні</string>
@@ -60,8 +60,8 @@
     <string name="air_quality_o3_info_title">Прыземны азон(O₃)</string>
     <string name="air_quality_no2_info_title">Двухвокіс азоту (NO₂)</string>
     <string name="pollen_tree">Дрэвы</string>
-    <string name="pollen_alder">Алешына</string>
-    <string name="pollen_birch">Бяроза</string>
+    <string name="pollen_alnus">Алешына</string>
+    <string name="pollen_betula">Бяроза</string>
     <string name="pollen_level_1">Вельмі нізкі</string>
     <string name="humidity_dew_point">Вільготнасць / Кропка расы</string>
     <string name="date_format_short">d-M</string>
@@ -164,7 +164,7 @@
     <string name="air_quality_co_voice">Монааксід вугляроду</string>
     <string name="air_quality_pm_explanations_introduction">Цвёрдыя часціцы або атмасферныя цвёрдыя часціцы ўяўляюць сабой мікраскапічныя часціцы цвёрдага ці вадкага рэчыва, узважаныя ў паветры.</string>
     <string name="air_quality_co_info_title">Вокіс вугляроду (CO)</string>
-    <string name="pollen_ragweed">Амброзія</string>
+    <string name="pollen_ambrosia">Амброзія</string>
     <string name="pollen_mold">Цвіль</string>
     <string name="pollen_level_4">Высокі</string>
     <string name="pollen_level_5">Вельмі высокі</string>

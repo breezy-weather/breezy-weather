@@ -185,7 +185,7 @@
     <string name="action_help">Помощ</string>
     <string name="action_show_errors">Докосни за подробности</string>
     <string name="dialog_permissions_notification_content">Докоснете тук, за да активирате известия за сигнали за времето, или решете по-късно в Настройки.</string>
-    <string name="pollen_grass">Трева</string>
+    <string name="pollen_poaeceae">Трева</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Нарастващ полумесец</string>
     <string name="ephemeris_moon_phase_first_quarter">Първа четвърт</string>
     <string name="air_quality_so2_info_consequences">Излагането на SO₂ е свързано с приемането в болница за астма и посещенията в спешното отделение.</string>
@@ -227,7 +227,7 @@
     <string name="air_quality_co_info_origin">Получава се при непълно изгаряне на въглеродни горива като дърва, бензин, въглища, природен газ и керосин в обикновени печки, открит огън, фитилни лампи, пещи, камини. Преобладаващият източник на въглероден окис (CO) в атмосферния въздух е от моторни превозни средства.</string>
     <string name="air_quality_co_info_consequences">Въглеродният окис се разпространява през белодробните тъкани и в кръвта, което затруднява свързването на клетките на тялото с кислород. Тази липса на кислород уврежда тъканите и клетките. Излагането на въглероден окис може да причини затруднено дишане, изтощение, замаяност и други грипоподобни симптоми. Излагането на високи нива на въглероден окис може да бъде смъртоносно.</string>
     <string name="pollen_mold">Мухъл</string>
-    <string name="pollen_ragweed">Амброзия</string>
+    <string name="pollen_ambrosia">Амброзия</string>
     <string name="pollen_tree">Дърво</string>
     <string name="pollen_tap_to_see_more">Докосни за повече…</string>
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
@@ -552,13 +552,13 @@
     <string name="message_source_not_installed_error_content">Този източник вече не е наличен, моля, изтрийте местоположението и го създайте отново от друг източник.</string>
     <string name="action_help_me_choose">Помогни ми да избера</string>
     <string name="settings_background_updates_worker_info_summary">Последно изпълнение: %s</string>
-    <string name="pollen_birch">Бреза</string>
-    <string name="pollen_mugwort">Пелин</string>
-    <string name="pollen_olive">Маслина</string>
+    <string name="pollen_betula">Бреза</string>
+    <string name="pollen_artemisia">Пелин</string>
+    <string name="pollen_olea">Маслина</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Средно</string>
     <string name="pollen_level_0">Няма</string>
-    <string name="pollen_alder">Елша</string>
+    <string name="pollen_alnus">Елша</string>
     <string name="pollen_level_1">Много ниско</string>
     <string name="pollen_level_4">Високо</string>
     <string name="pollen_level_5">Много високо</string>

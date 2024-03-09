@@ -44,6 +44,7 @@ import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.main.MainActivity
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
 import org.breezyweather.main.layouts.MainLayoutManager
@@ -206,7 +207,7 @@ class HomeFragment : MainModuleFragment() {
             .getInstance(requireContext())
             .isElementsAnimationEnabled
         adapter = MainAdapter(
-            (requireActivity() as GeoActivity),
+            (requireActivity() as MainActivity),
             binding.recyclerView,
             weatherView,
             null,
@@ -322,7 +323,7 @@ class HomeFragment : MainModuleFragment() {
             .getInstance(requireContext())
             .isElementsAnimationEnabled
         adapter!!.update(
-            (requireActivity() as GeoActivity),
+            (requireActivity() as MainActivity),
             binding.recyclerView,
             weatherView,
             location,

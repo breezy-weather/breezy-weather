@@ -14,28 +14,26 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package org.breezyweather.common.source
 
-import java.io.Serializable
+import androidx.annotation.ArrayRes
 
 /**
- * Pollen (tree, grass, weed) and mold
+ * Interface for sources providing pollen data expressed in a scale or level way
+ * (for example 0 to 5)
  */
-class Pollen(
-    val alder: Int? = null,
-    val birch: Int? = null,
-    val grass: Int? = null,
-    val mold: Int? = null, // Not a pollen, but probably relevant to put with them
-    val mugwort: Int? = null,
-    val olive: Int? = null,
-    val ragweed: Int? = null,
-    val tree: Int? = null,
-) : Serializable {
+interface PollenIndexSource : Source {
 
-    val isMoldValid: Boolean
-        get() = mold != null
+    /**
+     * Array containing 0 to max level non-translatable labels
+     * If a data exceed max level, it will fallback to last item
+     */
+    val pollenLabels: Int
 
-    val isValid: Boolean
-        get() = tree != null || alder != null || birch != null || grass != null
-            || olive != null || ragweed != null || mugwort != null || mold != null
+    /**
+     * Array containing 0 to max level colors
+     * If a data exceed max level, it will fallback to last item
+     */
+    val pollenColors: Int
+
 }

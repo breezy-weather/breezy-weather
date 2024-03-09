@@ -284,7 +284,7 @@
     <string name="uv_index_3_5">Умеренный</string>
     <string name="air_quality_level_1">Отлично</string>
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
-    <string name="pollen_grass">Трава</string>
+    <string name="pollen_poaeceae">Трава</string>
     <string name="uv_index_8_10">Очень высокий</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -322,7 +322,7 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <string name="weather_data_by">Данные предоставлены %s</string>
     <string name="uv_index_0_2">Низкий</string>
-    <string name="pollen_ragweed">Амброзия</string>
+    <string name="pollen_ambrosia">Амброзия</string>
     <string name="ephemeris_sunrise_at">Восход солнца в %s</string>
     <string name="settings_main">Главный экран</string>
     <string name="settings_main_summary">Порядок карточек, отображаемые элементы, анимации</string>
@@ -562,12 +562,12 @@
     <string name="pollen_level_0">Нет</string>
     <string name="pollen_level_4">Высокий</string>
     <string name="pollen_level_5">Очень высокий</string>
-    <string name="pollen_mugwort">Полынь</string>
-    <string name="pollen_olive">Олива</string>
-    <string name="pollen_alder">Ольха</string>
+    <string name="pollen_artemisia">Полынь</string>
+    <string name="pollen_olea">Олива</string>
+    <string name="pollen_alnus">Ольха</string>
     <string name="pollen_level_1">Очень низкий</string>
     <string name="pollen_level_2">Низкий</string>
-    <string name="pollen_birch">Берёза</string>
+    <string name="pollen_betula">Берёза</string>
     <string name="pollen_level_3">Средний</string>
     <string name="action_delete">Удалить</string>
     <string name="weather_pollen_data_by">Информация об аллергенах предоставлена %s</string>

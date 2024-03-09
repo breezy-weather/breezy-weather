@@ -81,9 +81,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Menguante convexa</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Menguante cóncava</string>
-    <string name="pollen_grass">Pasto</string>
+    <string name="pollen_poaeceae">Gramíneas</string>
     <string name="pollen_mold">Moho</string>
-    <string name="pollen_ragweed">Ambrosía</string>
+    <string name="pollen_ambrosia">Ambrosía</string>
     <string name="pollen_tree">Árbol</string>
     <string name="daily_forecast">Pronóstico del día</string>
     <string name="hourly_forecast">Pronóstico por hora</string>
@@ -445,9 +445,9 @@
     <string name="wind_gusts">Ráfagas de viento</string>
     <string name="air_quality_no2_info_consequences">La exposición al dióxido de nitrógeno puede irritar las vías respiratorias y agravar las enfermedades respiratorias. Además, el NO₂ es un importante precursor del ozono, un contaminante estrechamente relacionado con el asma y otras afecciones respiratorias.</string>
     <string name="air_quality_co_info_introduction">El monóxido de carbono (CO) es un gas venenoso, inflamable, incoloro, inoloro, insípido y no irritante.</string>
-    <string name="pollen_birch">Abedul</string>
-    <string name="pollen_mugwort">Artemisa</string>
-    <string name="pollen_olive">Olivo</string>
+    <string name="pollen_betula">Abedul</string>
+    <string name="pollen_artemisia">Artemisia</string>
+    <string name="pollen_olea">Olivo</string>
     <string name="pollen_level_0">Ninguno</string>
     <string name="pollen_level_1">Muy bajo</string>
     <string name="pollen_level_2">Bajo</string>
@@ -481,7 +481,7 @@
     <string name="settings_main_background_animation_title">Animación en segundo plano</string>
     <string name="settings_main_background_animation_enabled">Activado</string>
     <string name="settings_notifications_alerts_title">Notificaciones sobre alertas meteorológicas</string>
-    <string name="pollen_alder">Alnus</string>
+    <string name="pollen_alnus">Aliso</string>
     <string name="settings_location_access_background_summaryOn">Activado. La aplicación podrá actualizar los datos meteorológicos de tu ubicación actual en segundo plano.</string>
     <string name="settings_location_access_precise_title">Utilizar el GPS del dispositivo</string>
     <string name="settings_location_access_precise_summaryOn">Activado. Se utilizan tanto la red del dispositivo como los proveedores GPS.</string>
@@ -660,4 +660,17 @@
     <string name="cloud_cover_short">Nubosidad</string>
     <string name="ceiling_short">Techo</string>
     <string name="settings_weather_sources_default_source">Fuente predeterminada para nuevas ubicaciones</string>
+    <string name="pollen_carpinus">Carpe</string>
+    <string name="pollen_castanea">Castaño</string>
+    <string name="pollen_corylus">Avellano</string>
+    <string name="pollen_cupressaceae_taxaceae">Ciprés-Tejo</string>
+    <string name="pollen_fraxinus">Fresno</string>
+    <string name="pollen_plantaginaceae">Plantago/Llantén</string>
+    <string name="pollen_platanus">Plátano de sombra</string>
+    <string name="pollen_populus">Chopo y Álamo</string>
+    <string name="pollen_quercus">Encina/Alcornoque/Roble/Coscoja/Quejigo</string>
+    <string name="pollen_rumex">Rumex/Acederas</string>
+    <string name="pollen_salix">Sauce</string>
+    <string name="pollen_tilia">Tilo</string>
+    <string name="pollen_urticaceae">Ortiga/Parietaria</string>
 </resources>

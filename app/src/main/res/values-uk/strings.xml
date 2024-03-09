@@ -154,11 +154,11 @@
     <string name="short_tuesday">Вт</string>
     <string name="air_quality_co_info_consequences">Монооксид вуглецю поширюється по тканинах легенів і потрапляє в кров, ускладнюючи зв’язок клітин організму з киснем. Нестача кисню пошкоджує тканини та клітини. Вплив монооксиду вуглецю може викликати утруднене дихання, виснаження, запаморочення та інші симптоми, схожі на грип. Вплив високих рівнів чадного газу може бути смертельним.</string>
     <string name="pollen_tree">Дерева</string>
-    <string name="pollen_alder">Вільха</string>
-    <string name="pollen_birch">Береза</string>
-    <string name="pollen_ragweed">Амброзія</string>
+    <string name="pollen_alnus">Вільха</string>
+    <string name="pollen_betula">Береза</string>
+    <string name="pollen_ambrosia">Амброзія</string>
     <string name="pollen_mold">Цвіль</string>
-    <string name="pollen_grass">Трава</string>
+    <string name="pollen_poaeceae">Трава</string>
     <string name="pollen_level_1">Дуже низький</string>
     <string name="pollen_level_0">Немає</string>
     <string name="pollen_level_2">Низький</string>
@@ -226,7 +226,7 @@
     <string name="weather_source_accu_preference_hours_72">72 години</string>
     <string name="weather_source_openweather_version_3_0">Версія 3.0</string>
     <string name="air_quality_so2_info_introduction">Діоксид сірки (SO₂) — це безбарвний токсичний газ, який відповідає за запах згорілих сірників.</string>
-    <string name="pollen_mugwort">Полин</string>
+    <string name="pollen_artemisia">Полин</string>
     <string name="air_quality_so2_info_origin">Він виділяється внаслідок вулканічної активності та спалювання викопного палива для побутового опалення, промисловості та виробництва електроенергії.</string>
     <string name="location_results_by">Результати пошуку надані %s</string>
     <string name="air_quality_so2_info_consequences">Вплив SO₂ пов’язаний з госпіталізацією хворих на астму та відвідуванням відділень швидкої допомоги.</string>
@@ -285,7 +285,7 @@
     <string name="temperature_apparent">За відчуттями</string>
     <string name="wind_direction_short_N">Пн.</string>
     <string name="wind_strength_3">Слабкий</string>
-    <string name="pollen_olive">Олива</string>
+    <string name="pollen_olea">Олива</string>
     <string name="widget_label_show_widget_card_alpha">Прозорість</string>
     <string name="widget_label_hide_subtitle">Приховати підписи</string>
     <string name="widget_label_hide_lunar">Сховати місячний календар</string>

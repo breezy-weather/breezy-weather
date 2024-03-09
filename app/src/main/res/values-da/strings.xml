@@ -84,7 +84,7 @@
     <string name="wind_strength_11">Voldsom storm</string>
     <string name="uv_index_0_2">Lav</string>
     <string name="wind_strength_1">Let luft</string>
-    <string name="pollen_mugwort">Bynke</string>
+    <string name="pollen_artemisia">Bynke</string>
     <string name="pollen_tree">Træ</string>
     <string name="air_quality_so2_info_title">Svovldioxid (SO₂)</string>
     <string name="air_quality_level_4">Usundt</string>
@@ -101,14 +101,14 @@
     <string name="pollen_level_4">Høj</string>
     <string name="air_quality_pm10_voice">PM ti</string>
     <string name="ephemeris_moon_phase_new_moon">NY måne</string>
-    <string name="pollen_birch">Birk</string>
-    <string name="pollen_ragweed">Ambrosie</string>
+    <string name="pollen_betula">Birk</string>
+    <string name="pollen_ambrosia">Ambrosie</string>
     <string name="air_quality_level_3">Dårlig</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="pollen_olive">Oliven</string>
+    <string name="pollen_olea">Oliven</string>
     <string name="pollen_level_1">Meget lavt</string>
     <string name="air_quality_level_6">Farlig</string>
-    <string name="pollen_alder">El</string>
+    <string name="pollen_alnus">El</string>
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_5">Meget høj</string>
     <string name="air_quality_pm25_voice">PM to comma fem</string>
@@ -116,7 +116,7 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="pollen_level_0">Ingen</string>
     <string name="air_quality_level_2_description">Luftkvaliteten er generelt acceptabel for de fleste individer. Følsomme grupper kan dog opleve mindre til moderate symptomer fra langvarig eksponering.</string>
-    <string name="pollen_grass">Græs</string>
+    <string name="pollen_poaeceae">Græs</string>
     <string name="air_quality_level_5_description">Sundhedseffekter vil umiddelbart kunne mærkes af følsomme grupper og bør undgå udendørs aktivitet. Raske personer vil sandsynligvis opleve åndedrætsbesvær og halsirritation; overveje at blive indendørs og omlægge udendørs aktiviteter.</string>
     <string name="air_quality_so2_voice">Svovldioxid</string>
     <string name="air_quality_o3">O₃</string>

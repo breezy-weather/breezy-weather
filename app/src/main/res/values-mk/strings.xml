@@ -109,7 +109,7 @@
     <string name="air_quality_so2_info_origin">Се ослободува природно од вулканска активност и претежно се добива од согорувањето на фосилни горива за домашно греење, индустрии и производство на електрична енергија.</string>
     <string name="air_quality_co_info_title">Јаглерод моноксид (CO)</string>
     <string name="air_quality_co_info_consequences">Јаглерод моноксидот дифузира низ белодробните ткива и во крвотокот, што го отежнува поврзувањето на клетките на телото со кислородот. Овој недостаток на кислород ги оштетува ткивата и клетките. Изложеноста на јаглерод моноксид може да предизвика тешкотии при дишењето, исцрпеност, вртоглавица и други симптоми слични на грип. Изложеноста на високо ниво на јаглерод моноксид може да биде смртоносна.</string>
-    <string name="pollen_ragweed">ајдучка трева</string>
+    <string name="pollen_ambrosia">ајдучка трева</string>
     <string name="pollen_mold">Мувла</string>
     <string name="pollen_level_0">Никој</string>
     <string name="pollen_tap_to_see_more">Допрете за да видите повеќе…</string>
@@ -435,11 +435,11 @@
     <string name="air_quality_co_info_introduction">Јаглерод моноксид (CO) е отровен, запалив гас кој е безбоен, без мирис, без вкус и не иритирачки.</string>
     <string name="air_quality_co_info_origin">Се произведува со нецелосно согорување на јаглеродни горива како дрво, бензин, јаглен, природен гас и керозин во едноставни печки, отворени огнови, фитил светилки, печки, камини. Доминантен извор на јаглерод моноксид (CO) во амбиенталниот воздух е од моторните возила.</string>
     <string name="pollen_tree">Дрво</string>
-    <string name="pollen_alder">Алдер</string>
-    <string name="pollen_birch">Бреза</string>
-    <string name="pollen_grass">Трева</string>
-    <string name="pollen_mugwort">Мугворт</string>
-    <string name="pollen_olive">Маслиново</string>
+    <string name="pollen_alnus">Алдер</string>
+    <string name="pollen_betula">Бреза</string>
+    <string name="pollen_poaeceae">Трева</string>
+    <string name="pollen_artemisia">Мугворт</string>
+    <string name="pollen_olea">Маслиново</string>
     <string name="pollen_level_1">Многу ниско</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Умерено</string>

@@ -53,7 +53,7 @@ fun Date.toCalendarWithTimeZone(zone: TimeZone): Calendar {
  * @return Date
  */
 fun String.toDateNoHour(timeZoneP: TimeZone = TimeZone.getDefault()): Date? {
-    if (this.isEmpty() || this.length != 10) return null
+    if (this.isEmpty() || this.length < 10) return null
     return Calendar.getInstance().also {
         it.timeZone = timeZoneP
         it.set(Calendar.YEAR, this.substring(0, 4).toInt())

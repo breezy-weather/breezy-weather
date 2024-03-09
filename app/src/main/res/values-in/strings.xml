@@ -81,9 +81,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_last_quarter">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-    <string name="pollen_grass">Rumput</string>
+    <string name="pollen_poaeceae">Rumput</string>
     <string name="pollen_mold">Lubang</string>
-    <string name="pollen_ragweed">Ragweed</string>
+    <string name="pollen_ambrosia">Ragweed</string>
     <string name="pollen_tree">Pohon</string>
     <string name="daily_forecast">Prakiraan harian</string>
     <string name="hourly_forecast">Prakiraan per jam</string>
@@ -312,7 +312,7 @@
     <string name="settings_source_api_key">Kunci API</string>
     <string name="dialog_permissions_notification_title">Tetap terinformasi</string>
     <string name="air_quality_no2">NO₂</string>
-    <string name="pollen_mugwort">Mugwort</string>
+    <string name="pollen_artemisia">Mugwort</string>
     <string name="widget_style_mini">Kecil</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="unit_nmi">nmi</string>
@@ -412,7 +412,7 @@
     <string name="widget_week_style_5_days">5 hari</string>
     <string name="settings_widgets_monochrome_icons_title">Ikon monokrom</string>
     <string name="settings_background_updates">Pembaruan latar belakang</string>
-    <string name="pollen_birch">Birch</string>
+    <string name="pollen_betula">Birch</string>
     <string name="settings_background_updates_refresh_24h">24 jam</string>
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
     <string name="unit_fahrenheit">°F</string>
@@ -432,7 +432,7 @@
     <string name="weather_kind_thunderstorm">Hujan badai</string>
     <string name="common_weather_text_rain_light">Hujan ringan</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="pollen_olive">Zaitun</string>
+    <string name="pollen_olea">Zaitun</string>
     <string name="action_location_list">Daftar lokasi</string>
     <string name="common_weather_text_fog">Berkabut</string>
     <string name="weather_air_quality_data_by">Data kualitas udara dari %s</string>
@@ -467,7 +467,7 @@
     <string name="unit_atm_voice">Atmosfer</string>
     <string name="unit_km">km</string>
     <string name="message_network_unavailable">Jaringan tidak tersedia</string>
-    <string name="pollen_alder">Alder</string>
+    <string name="pollen_alnus">Alder</string>
     <string name="weather_kind_wind">Berangin</string>
     <string name="settings_main_hourly_trends_title">Tren setiap jam</string>
     <string name="pollen_level_3">Sedang</string>

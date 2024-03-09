@@ -155,15 +155,46 @@
     <string name="air_quality_co_info_origin">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
     <string name="air_quality_co_info_consequences">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
     <!-- Pollen -->
-    <!-- You can find some translations on the bottom of https://www.pollens.fr/le-reseau/les-pollens -->
     <string name="pollen_tree">Tree</string>
-    <string name="pollen_alder">Alder</string>
-    <string name="pollen_birch">Birch</string>
-    <string name="pollen_grass">Grass</string>
-    <string name="pollen_mugwort">Mugwort</string>
-    <string name="pollen_olive">Olive</string>
-    <string name="pollen_ragweed">Ragweed</string>
     <string name="pollen_mold">Mold</string>
+    <!-- Latin name: Alnus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_alnus">Alder</string>
+    <!-- Latin name: Ambrosia. Use latin (not English!) if no matching translation -->
+    <string name="pollen_ambrosia">Ragweed</string>
+    <!-- Latin name: Artemisia. Use latin (not English!) if no matching translation -->
+    <string name="pollen_artemisia">Mugwort</string>
+    <!-- Latin name: Betula. Use latin (not English!) if no matching translation -->
+    <string name="pollen_betula">Birch</string>
+    <!-- Latin name: Carpinus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_carpinus">Hornbeam</string>
+    <!-- Latin name: Castanea. Use latin (not English!) if no matching translation -->
+    <string name="pollen_castanea">Chestnut tree</string>
+    <!-- Latin name: Corylus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_corylus">Hazel</string>
+    <!-- Latin name: Cupressaceae-Taxaceae. Use latin (not English!) if no matching translation -->
+    <string name="pollen_cupressaceae_taxaceae">Cypress</string>
+    <!-- Latin name: Fraxinus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_fraxinus">Ash</string>
+    <!-- Latin name: Olea. Use latin (not English!) if no matching translation -->
+    <string name="pollen_olea">Olive tree</string>
+    <!-- Latin name: Plantaginaceae. Use latin (not English!) if no matching translation -->
+    <string name="pollen_plantaginaceae">Plantain</string>
+    <!-- Latin name: Platanus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_platanus">Plane-tree</string>
+    <!-- Latin name: Poaeceae. Use latin (not English!) if no matching translation -->
+    <string name="pollen_poaeceae">Grass</string>
+    <!-- Latin name: Populus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_populus">Poplar</string>
+    <!-- Latin name: Quercus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_quercus">Oak</string>
+    <!-- Latin name: Rumex. Use latin (not English!) if no matching translation -->
+    <string name="pollen_rumex">Sorrel</string>
+    <!-- Latin name: Salix. Use latin (not English!) if no matching translation -->
+    <string name="pollen_salix">Willow</string>
+    <!-- Latin name: Tilia. Use latin (not English!) if no matching translation -->
+    <string name="pollen_tilia">Linden</string>
+    <!-- Latin name: Urticaceae. Use latin (not English!) if no matching translation -->
+    <string name="pollen_urticaceae">Nettle/Pellitory</string>
     <!-- Pollen level means “Potential risk of allergy” -->
     <string name="pollen_level_0">None</string>
     <string name="pollen_level_1">Very low</string>

@@ -26,16 +26,17 @@ import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.validAirQuality
+import org.breezyweather.main.MainActivity
 import org.breezyweather.main.adapters.main.holder.*
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 
 class MainAdapter(
-    activity: GeoActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
+    activity: MainActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
     provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
 ) : RecyclerView.Adapter<AbstractMainViewHolder?>() {
-    private lateinit var mActivity: GeoActivity
+    private lateinit var mActivity: MainActivity
     private var mHost: RecyclerView? = null
     private var mWeatherView: WeatherView? = null
     private var mLocation: Location? = null
@@ -52,7 +53,7 @@ class MainAdapter(
     }
 
     fun update(
-        activity: GeoActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
+        activity: MainActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
         provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
     ) {
         mActivity = activity

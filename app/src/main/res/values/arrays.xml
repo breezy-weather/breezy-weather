@@ -412,11 +412,28 @@
         <item>@string/pollen_level_5</item>
     </string-array>
     <integer-array name="pollen_level_colors">
-        <item>@color/aqiLevel_1</item>
-        <item>@color/aqiLevel_2</item>
-        <item>@color/aqiLevel_3</item>
-        <item>@color/aqiLevel_4</item>
-        <item>@color/aqiLevel_5</item>
+        <item>@color/pollenLevel_1</item>
+        <item>@color/pollenLevel_2</item>
+        <item>@color/pollenLevel_3</item>
+        <item>@color/pollenLevel_4</item>
+        <item>@color/pollenLevel_5</item>
+    </integer-array>
+
+    <string-array name="pollen_recosante_levels">
+        <item>Risque nul</item>
+        <item>Très faible</item>
+        <item>Faible</item>
+        <item>Moyen</item>
+        <item>Élevé</item>
+        <item>Très élevé</item>
+    </string-array>
+    <integer-array name="pollen_recosante_level_colors">
+        <item>@color/pollenRecosanteLevel_0</item>
+        <item>@color/pollenRecosanteLevel_1</item>
+        <item>@color/pollenRecosanteLevel_2</item>
+        <item>@color/pollenRecosanteLevel_3</item>
+        <item>@color/pollenRecosanteLevel_4</item>
+        <item>@color/pollenRecosanteLevel_5</item>
     </integer-array>
 
     <!-- speed unit. -->

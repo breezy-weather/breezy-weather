@@ -147,7 +147,7 @@
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="pollen_tree">Bomen</string>
-    <string name="pollen_grass">Gras</string>
+    <string name="pollen_poaeceae">Gras</string>
     <string name="air_quality_co_info_origin">Het wordt geproduceerd door de onvolledige verbranding van koolstofhoudende brandstoffen zoals hout, benzine, kolen, aardgas en kerosine in eenvoudige kachels, open haarden, pitlampen, ovens en open haarden. De belangrijkste bron van koolmonoxide (CO) in de lucht is afkomstig van motorvoertuigen.</string>
     <string name="air_quality_co_info_consequences">Koolmonoxide diffundeert door de longweefsels en in de bloedbaan, waardoor de lichaamscellen moeilijk zuurstof kunnen binden. Dit gebrek aan zuurstof beschadigt weefsels en cellen. Blootstelling aan koolmonoxide kan ademhalingsmoeilijkheden, uitputting, duizeligheid en andere griepachtige symptomen veroorzaken. Blootstelling aan hoge concentraties koolmonoxide kan dodelijk zijn.</string>
     <string name="pollen_mold">Schimmel</string>
@@ -185,7 +185,7 @@
     <string name="settings_notifications_forecast_today_title">Melding voor de dagvoorspelling</string>
     <string name="unit_mb_voice">Millibar</string>
     <string name="notification_channel_background_services">Achtergronddiensten</string>
-    <string name="pollen_mugwort">Bijvoet</string>
+    <string name="pollen_artemisia">Bijvoet</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag- / nachtmodus voor locaties</string>
     <string name="unit_bf_voice">op schaal van Beaufort</string>
     <string name="unit_bf">Bft</string>
@@ -273,7 +273,7 @@
     <string name="precipitation_total">Totaal</string>
     <string name="precipitation_probability">Neerslagkans</string>
     <string name="precipitation_rain">Regen</string>
-    <string name="pollen_birch">Berk</string>
+    <string name="pollen_betula">Berk</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Afnemende maan</string>
     <string name="ephemeris_moon_phase_last_quarter">Laatste kwartaal</string>
     <string name="pressure">Luchtdruk</string>
@@ -291,8 +291,8 @@
     <string name="air_quality_no2_info_origin">Omgevingsbronnen van NO₂ zijn afkomstig van de verbranding bij hoge temperatuur van brandstoffen in processen zoals die voor verwarming, transport, industrie en energieopwekking. Huishoudelijke bronnen van stikstofoxiden (NOₓ) zijn onder andere apparaten die brandstoffen verbranden, zoals ovens, open haarden en gasfornuizen en ovens.</string>
     <string name="air_quality_so2_info_title">Zwaveldioxide (SO₂)</string>
     <string name="air_quality_so2_info_consequences">Blootstelling aan SO₂ wordt in verband gebracht met ziekenhuisopnames voor astma en bezoeken aan de spoedafdeling.</string>
-    <string name="pollen_alder">Els</string>
-    <string name="pollen_olive">Olijf</string>
+    <string name="pollen_alnus">Els</string>
+    <string name="pollen_olea">Olijf</string>
     <string name="ephemeris_sunrise_at">Zonsopgang bij %s</string>
     <string name="ephemeris_sunset_at">Zonsondergang bij %s</string>
     <string name="cloud_cover">Bewolking</string>
@@ -329,7 +329,7 @@
     <string name="unit_inph">inch/u</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lichte tot matige onweersbui</string>
     <string name="metno_weather_text_andthunder">%s en onweer</string>
-    <string name="pollen_ragweed">Ragkruid</string>
+    <string name="pollen_ambrosia">Ragkruid</string>
     <string name="uv_alert_level">Waarschuwing</string>
     <string name="weather_data_by">Gegevens door %s</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Locatiegegevens inschakelen</string>

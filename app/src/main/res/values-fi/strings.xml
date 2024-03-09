@@ -80,9 +80,9 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Vähenevä puolikuu</string>
     <string name="ephemeris_moon_phase_last_quarter">Kolmas neljännes</string>
     <string name="ephemeris_moon_phase_waning_crescent">Vähenevä kuunsirppi</string>
-    <string name="pollen_grass">Heinä</string>
+    <string name="pollen_poaeceae">Heinä</string>
     <string name="pollen_mold">Home</string>
-    <string name="pollen_ragweed">Tuoksukit</string>
+    <string name="pollen_ambrosia">Tuoksukit</string>
     <string name="pollen_tree">Puu</string>
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
@@ -366,7 +366,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Muut animaatiot</string>
     <string name="settings_widgets_monochrome_icons_title">Yksiväriset kuvakkeet</string>
     <string name="settings_background_updates">Taustapäivitykset</string>
-    <string name="pollen_birch">Koivu</string>
+    <string name="pollen_betula">Koivu</string>
     <string name="uv_index_3_5">Kohtalainen</string>
     <string name="settings_notifications">Ilmoitukset</string>
     <string name="weather_api_unauthorized_content">Voidaksesi käyttää joitakin säätietolähteitä, sinun tulee toimittaa oma API-avain. Mikäli olet jo tehnyt niin, tarkista antamasi API-avain.</string>
@@ -378,7 +378,7 @@
     <string name="settings_widgets_summary">Aseta taustakuva, muokkaa widgettejä, ilmoitusalueen widget</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Napauta nähdäksesi lisätietoja</string>
-    <string name="pollen_olive">Oliivi</string>
+    <string name="pollen_olea">Oliivi</string>
     <string name="weather_air_quality_data_by">Ilmanlaatutiedot tarjoaa %s</string>
     <string name="air_quality_o3">O₃</string>
     <string name="unit_mmhg">mmHg</string>
@@ -407,7 +407,7 @@
     <string name="unit_atm_voice">Normaali-ilmakehää</string>
     <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akun käytön optimointi on jo poissa käytöstä.</string>
-    <string name="pollen_alder">Leppä</string>
+    <string name="pollen_alnus">Leppä</string>
     <string name="temperature_degree_day_cooling">Jäähdytystarveluku</string>
     <string name="pollen_level_3">Kohtalaisesti</string>
     <string name="weather_data_by">Tiedot tarjoaa %s</string>
@@ -474,7 +474,7 @@
     <string name="about_contribution_WangDaYeeeeee">Alkuperäisen Geometric Weather -projektin kehittäjä</string>
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Kevyitä sadekuuroja</string>
-    <string name="pollen_mugwort">Pujo</string>
+    <string name="pollen_artemisia">Pujo</string>
     <string name="unit_nmi_voice">Merimailia</string>
     <string name="location_message_reverse_geocoding_failed">Säälähde ei onnistunut löytämään vastaavaa sijaintia</string>
     <string name="metno_weather_text_andthunder">%s ja ukkosta</string>

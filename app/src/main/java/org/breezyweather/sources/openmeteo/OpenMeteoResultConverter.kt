@@ -185,7 +185,7 @@ private fun getHourlyList(
                     sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(airQualityIndex),
                     nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(airQualityIndex),
                     o3 = airQualityResult.hourly.ozone?.getOrNull(airQualityIndex),
-                    cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0),
+                    cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0)
                 ) else null,
                 pollen = if (airQualityIndex != null && airQualityIndex != -1) Pollen(
                     alder = airQualityResult.hourly.alderPollen?.getOrNull(airQualityIndex)?.roundToInt(),
@@ -193,7 +193,7 @@ private fun getHourlyList(
                     grass = airQualityResult.hourly.grassPollen?.getOrNull(airQualityIndex)?.roundToInt(),
                     mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(airQualityIndex)?.roundToInt(),
                     olive = airQualityResult.hourly.olivePollen?.getOrNull(airQualityIndex)?.roundToInt(),
-                    ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(airQualityIndex)?.roundToInt()
                 ) else null,
                 uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                 relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),

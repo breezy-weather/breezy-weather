@@ -52,6 +52,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
@@ -60,11 +61,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PollenActivity : GeoActivity() {
 
-    @Inject
-    lateinit var locationRepository: LocationRepository
-
-    @Inject
-    lateinit var weatherRepository: WeatherRepository
+    @Inject lateinit var sourceManager: SourceManager
+    @Inject lateinit var locationRepository: LocationRepository
+    @Inject lateinit var weatherRepository: WeatherRepository
 
     companion object {
         const val KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID =
@@ -126,6 +125,12 @@ class PollenActivity : GeoActivity() {
                 },
             ) {
                 location.value?.weather?.let { weather ->
+                    val pollenIndexSource = sourceManager.getPollenIndexSource(
+                        if (!location.value!!.pollenSource.isNullOrEmpty()) {
+                            location.value!!.pollenSource!!
+                        } else location.value!!.weatherSource
+                    )
+
                     LazyColumn(
                         modifier = Modifier.fillMaxHeight(),
                         contentPadding = it,
@@ -146,7 +151,10 @@ class PollenActivity : GeoActivity() {
                                             fontWeight = FontWeight.Bold,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
-                                        PollenGrid(pollen = pollen)
+                                        PollenGrid(
+                                            pollen = pollen,
+                                            pollenIndexSource = pollenIndexSource
+                                        )
                                     }
                                 }
                             }
