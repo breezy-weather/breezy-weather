@@ -10,28 +10,54 @@ import org.breezyweather.domain.weather.index.PollenIndex
 val Pollen.validPollens: List<PollenIndex>
     get() {
         return listOf(
-            PollenIndex.TREE,
             PollenIndex.ALDER,
+            PollenIndex.ASH,
             PollenIndex.BIRCH,
+            PollenIndex.CHESTNUT,
+            PollenIndex.CYPRESS,
             PollenIndex.GRASS,
-            PollenIndex.OLIVE,
-            PollenIndex.RAGWEED,
+            PollenIndex.HAZEL,
+            PollenIndex.HORNBEAM,
+            PollenIndex.LINDEN,
+            PollenIndex.MOLD,
             PollenIndex.MUGWORT,
-            PollenIndex.MOLD
+            PollenIndex.OAK,
+            PollenIndex.OLIVE,
+            PollenIndex.PLANE,
+            PollenIndex.PLANTAIN,
+            PollenIndex.POPLAR,
+            PollenIndex.RAGWEED,
+            PollenIndex.SORREL,
+            PollenIndex.TREE,
+            PollenIndex.URTICACEAE,
+            PollenIndex.WILLOW
         ).filter { getConcentration(it) != null }
     }
 
 fun Pollen.getIndex(pollen: PollenIndex? = null): Int? {
     return if (pollen == null) { // Global pollen index
         val pollensIndex: List<Int> = listOfNotNull(
-            getIndex(PollenIndex.TREE),
             getIndex(PollenIndex.ALDER),
+            getIndex(PollenIndex.ASH),
             getIndex(PollenIndex.BIRCH),
+            getIndex(PollenIndex.CHESTNUT),
+            getIndex(PollenIndex.CYPRESS),
             getIndex(PollenIndex.GRASS),
-            getIndex(PollenIndex.OLIVE),
-            getIndex(PollenIndex.RAGWEED),
+            getIndex(PollenIndex.HAZEL),
+            getIndex(PollenIndex.HORNBEAM),
+            getIndex(PollenIndex.LINDEN),
+            getIndex(PollenIndex.MOLD),
             getIndex(PollenIndex.MUGWORT),
-            getIndex(PollenIndex.MOLD)
+            getIndex(PollenIndex.OAK),
+            getIndex(PollenIndex.OLIVE),
+            getIndex(PollenIndex.PLANE),
+            getIndex(PollenIndex.PLANTAIN),
+            getIndex(PollenIndex.POPLAR),
+            getIndex(PollenIndex.RAGWEED),
+            getIndex(PollenIndex.SORREL),
+            getIndex(PollenIndex.TREE),
+            getIndex(PollenIndex.URTICACEAE),
+            getIndex(PollenIndex.WILLOW)
         )
         if (pollensIndex.isNotEmpty()) pollensIndex.max() else null
     } else { // Specific pollen
@@ -40,14 +66,27 @@ fun Pollen.getIndex(pollen: PollenIndex? = null): Int? {
 }
 
 fun Pollen.getConcentration(pollen: PollenIndex) = when (pollen) {
-    PollenIndex.TREE -> tree
+    PollenIndex.ASH -> ash
     PollenIndex.ALDER -> alder
     PollenIndex.BIRCH -> birch
+    PollenIndex.CHESTNUT -> chestnut
+    PollenIndex.CYPRESS -> cypress
     PollenIndex.GRASS -> grass
-    PollenIndex.OLIVE -> olive
-    PollenIndex.RAGWEED -> ragweed
-    PollenIndex.MUGWORT -> mugwort
+    PollenIndex.HAZEL -> hazel
+    PollenIndex.HORNBEAM -> hornbeam
+    PollenIndex.LINDEN -> linden
     PollenIndex.MOLD -> mold
+    PollenIndex.MUGWORT -> mugwort
+    PollenIndex.OAK -> oak
+    PollenIndex.OLIVE -> olive
+    PollenIndex.PLANE -> plane
+    PollenIndex.PLANTAIN -> plantain
+    PollenIndex.POPLAR -> poplar
+    PollenIndex.RAGWEED -> ragweed
+    PollenIndex.SORREL -> sorrel
+    PollenIndex.TREE -> tree
+    PollenIndex.URTICACEAE -> urticaceae
+    PollenIndex.WILLOW -> willow
 }
 
 fun Pollen.getIndexName(context: Context, pollen: PollenIndex? = null): String? {

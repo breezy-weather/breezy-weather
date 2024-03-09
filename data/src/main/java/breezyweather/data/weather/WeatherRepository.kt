@@ -247,7 +247,7 @@ class WeatherRepository(
                     o3 = daily.airQuality?.o3,
                     co = daily.airQuality?.cO,
 
-                    // pollen.
+                    // pollen. // TODO: Missing pollens
                     tree = daily.pollen?.tree?.toLong(),
                     alder = daily.pollen?.alder?.toLong(),
                     birch = daily.pollen?.birch?.toLong(),

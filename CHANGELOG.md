@@ -1,7 +1,7 @@
 # Version 5.1.1-beta (not yet released)
 
 **Weather sources**
-- [Recosanté] Add as secondary pollen source for France. Supports 6/19 pollens at the moment.
+- [Recosanté] Add as secondary pollen source for France.
 - [Bright Sky (DWD)] Added to the `fdroid` flavor, since it’s open source.
 
 

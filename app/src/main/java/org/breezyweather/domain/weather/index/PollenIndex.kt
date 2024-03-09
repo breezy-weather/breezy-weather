@@ -29,14 +29,32 @@ enum class PollenIndex(
     @StringRes val pollenName: Int,
     val thresholds: List<Int>
 ) {
-    TREE("tree", R.string.pollen_tree, listOf(0, 10, 50, 100, 300)),
     ALDER("alder", R.string.pollen_alnus, listOf(0, 10, 50, 100, 300)),
+    ASH("ash", R.string.pollen_fraxinus, listOf(0, 30, 100, 200, 400)),
     BIRCH("birch", R.string.pollen_betula, listOf(0, 10, 50, 100, 300)),
+    CHESTNUT("chestnut", R.string.pollen_castanea, listOf(0, 1, 2, 3, 4)), // TODO
+    //COTTONWOOD("cottonwood", R.string.pollen_cottonwood, listOf(0, 50, 200, 400, 800)),
+    CYPRESS("cypress", R.string.pollen_fraxinus, listOf(0, 3, 11, 19, 39)),
+    //ELM("elm", R.string.pollen_elm, listOf(0, 30, 50, 100, 200)),
     GRASS("grass", R.string.pollen_poaeceae, listOf(0, 5, 25, 50, 100)),
-    OLIVE("olive", R.string.pollen_olea, listOf(0, 10, 50, 200, 400)),
-    RAGWEED("ragweed", R.string.pollen_ambrosia, listOf(0, 5, 11, 23, 50)),
+    HAZEL("hazel", R.string.pollen_corylus, listOf(0, 1, 2, 3, 4)), // TODO
+    HORNBEAM("hornbeam", R.string.pollen_carpinus, listOf(0, 1, 2, 3, 4)), // TODO
+    //JUNIPER("juniper", R.string.pollen_juniper, listOf(0, 10, 50, 140, 280)),
+    LINDEN("linden", R.string.pollen_tilia, listOf(0, 1, 2, 3, 4)), // TODO
+    //MAPLE("maple", R.string.pollen_maple, listOf(0, 30, 50, 100, 200)),
+    MOLD("mold", R.string.pollen_mold, listOf(0, 6500, 13000, 50000, 65000)),
     MUGWORT("mugwort", R.string.pollen_artemisia, listOf(0, 5, 11, 23, 50)), // TODO: To be checked
-    MOLD("mold", R.string.pollen_mold, listOf(0, 6500, 13000, 50000, 65000, 1000000));
+    OAK("oak", R.string.pollen_quercus, listOf(0, 50, 100, 200, 400)),
+    OLIVE("olive", R.string.pollen_olea, listOf(0, 10, 50, 200, 400)),
+    //PINE("pine", R.string.pollen_platanus, listOf(0, 50, 200, 500, 1000)),
+    PLANE("plane", R.string.pollen_platanus, listOf(0, 1, 2, 3, 4)), // TODO
+    PLANTAIN("plantain", R.string.pollen_plantaginaceae, listOf(0, 1, 2, 3, 4)), // TODO
+    POPLAR("poplar", R.string.pollen_populus, listOf(0, 1, 2, 3, 4)), // TODO
+    RAGWEED("ragweed", R.string.pollen_ambrosia, listOf(0, 5, 11, 23, 50)),
+    SORREL("sorrel", R.string.pollen_rumex, listOf(0, 1, 2, 3, 4)), // TODO
+    TREE("tree", R.string.pollen_tree, listOf(0, 10, 50, 100, 300)),
+    URTICACEAE("urticaceae", R.string.pollen_urticaceae, listOf(0, 1, 2, 3, 4)), // TODO
+    WILLOW("willow", R.string.pollen_salix, listOf(0, 1, 2, 3, 4)); // TODO
 
     companion object {
         // No index exists, but let’s make a fake one to help with graphics

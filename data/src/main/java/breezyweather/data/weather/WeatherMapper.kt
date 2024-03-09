@@ -289,6 +289,7 @@ object WeatherMapper {
             co
         ),
         Pollen(
+            // TODO: Missing pollens
             alder = alder?.toInt(),
             birch = birch?.toInt(),
             grass = grass?.toInt(),

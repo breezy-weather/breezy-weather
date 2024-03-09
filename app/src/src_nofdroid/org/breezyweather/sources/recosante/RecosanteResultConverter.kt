@@ -116,23 +116,23 @@ private fun getPollen(details: List<RecosanteRaepIndiceDetail>): Pollen {
 
     return Pollen(
         alder = alder,
-        //ash = ash,
+        ash = ash,
         birch = birch,
-        //chestnut = chestnut,
-        //cypress = cypress,
+        chestnut = chestnut,
+        cypress = cypress,
         grass = grass,
-        //hazel = hazel,
-        //hornbeam = hornbeam,
-        //linden = linden,
+        hazel = hazel,
+        hornbeam = hornbeam,
+        linden = linden,
         mugwort = mugwort,
-        //oak = oak,
+        oak = oak,
         olive = olive,
-        //plane = plane,
-        //plantain = plantain,
-        //poplar = poplar,
+        plane = plane,
+        plantain = plantain,
+        poplar = poplar,
         ragweed = ragweed,
-        //sorrel = sorrel,
-        //urticaceae = urticaceae,
-        //willow = willow
+        sorrel = sorrel,
+        urticaceae = urticaceae,
+        willow = willow
     )
 }

@@ -285,13 +285,26 @@ private fun getDailyPollenFromSecondaryHourlyList(
 
     return Pollen(
         alder = hourlyList.mapNotNull { it.value.alder }.maxOrNull(),
+        ash = hourlyList.mapNotNull { it.value.ash }.maxOrNull(),
         birch = hourlyList.mapNotNull { it.value.birch }.maxOrNull(),
+        chestnut = hourlyList.mapNotNull { it.value.chestnut }.maxOrNull(),
+        cypress = hourlyList.mapNotNull { it.value.cypress }.maxOrNull(),
         grass = hourlyList.mapNotNull { it.value.grass }.maxOrNull(),
+        hazel = hourlyList.mapNotNull { it.value.hazel }.maxOrNull(),
+        hornbeam = hourlyList.mapNotNull { it.value.hornbeam }.maxOrNull(),
+        linden = hourlyList.mapNotNull { it.value.linden }.maxOrNull(),
         mold = hourlyList.mapNotNull { it.value.mold }.maxOrNull(),
         mugwort = hourlyList.mapNotNull { it.value.mugwort }.maxOrNull(),
+        oak = hourlyList.mapNotNull { it.value.oak }.maxOrNull(),
         olive = hourlyList.mapNotNull { it.value.olive }.maxOrNull(),
+        plane = hourlyList.mapNotNull { it.value.plane }.maxOrNull(),
+        plantain = hourlyList.mapNotNull { it.value.plantain }.maxOrNull(),
+        poplar = hourlyList.mapNotNull { it.value.poplar }.maxOrNull(),
         ragweed = hourlyList.mapNotNull { it.value.ragweed }.maxOrNull(),
-        tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull()
+        sorrel = hourlyList.mapNotNull { it.value.sorrel }.maxOrNull(),
+        tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull(),
+        urticaceae = hourlyList.mapNotNull { it.value.urticaceae }.maxOrNull(),
+        willow = hourlyList.mapNotNull { it.value.willow }.maxOrNull(),
     )
 }
 
@@ -1085,13 +1098,25 @@ private fun getDailyPollenFromHourlyList(hourlyList: List<HourlyWrapper>? = null
 
     return Pollen(
         alder = hourlyListWithPollen.mapNotNull { it.alder }.maxOrNull(),
+        ash = hourlyListWithPollen.mapNotNull { it.ash }.maxOrNull(),
         birch = hourlyListWithPollen.mapNotNull { it.birch }.maxOrNull(),
+        chestnut = hourlyListWithPollen.mapNotNull { it.chestnut }.maxOrNull(),
+        cypress = hourlyListWithPollen.mapNotNull { it.cypress }.maxOrNull(),
         grass = hourlyListWithPollen.mapNotNull { it.grass }.maxOrNull(),
+        hazel = hourlyListWithPollen.mapNotNull { it.hazel }.maxOrNull(),
+        hornbeam = hourlyListWithPollen.mapNotNull { it.hornbeam }.maxOrNull(),
+        linden = hourlyListWithPollen.mapNotNull { it.linden }.maxOrNull(),
         mold = hourlyListWithPollen.mapNotNull { it.mold }.maxOrNull(),
         mugwort = hourlyListWithPollen.mapNotNull { it.mugwort }.maxOrNull(),
+        oak = hourlyListWithPollen.mapNotNull { it.oak }.maxOrNull(),
         olive = hourlyListWithPollen.mapNotNull { it.olive }.maxOrNull(),
+        plane = hourlyListWithPollen.mapNotNull { it.plane }.maxOrNull(),
+        plantain = hourlyListWithPollen.mapNotNull { it.plantain }.maxOrNull(),
+        poplar = hourlyListWithPollen.mapNotNull { it.poplar }.maxOrNull(),
         ragweed = hourlyListWithPollen.mapNotNull { it.ragweed }.maxOrNull(),
-        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull()
+        sorrel = hourlyListWithPollen.mapNotNull { it.sorrel }.maxOrNull(),
+        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
+        urticaceae = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
     )
 }
 

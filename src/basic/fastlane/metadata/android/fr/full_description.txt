@@ -46,6 +46,8 @@ Permissions facultatives :<ul>
 <li>Téléphone (READ_PHONE_STATE) : requis par une dépendance de l’application, n’est pas réellement utilisée mais ne peut être enlevée. Elle peut rester désactivée sans problèmes.</li>
 </ul>
 
-Antifonctions : <ul>
-<li>Éléments non libres : les logos qui font partie de marques, tels que les logos des sources météo ou le logo de Breezy Weather ne sont pas libres.</li>
+Licence: <ul>
+<li>GNU Lesser General Public License v3.0</li>
+<li>This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.</li>
+<li>Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.</li>
 </ul>

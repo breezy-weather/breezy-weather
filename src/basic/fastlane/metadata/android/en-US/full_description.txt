@@ -46,6 +46,8 @@ Optional permissions: <ul>
 <li>Read phone state (READ_PHONE_STATE): Required by an app dependency: not actually used, but can't be removed. It's okay to never enable this.</li>
 </ul>
 
-Anti-features: <ul>
-<li>Non-Free Assets: Logos that are part of brandings, such as weather sources logos or Breezy Weather logo are non-free.</li>
+License: <ul>
+<li>GNU Lesser General Public License v3.0</li>
+<li>This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.</li>
+<li>Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.</li>
 </ul>
