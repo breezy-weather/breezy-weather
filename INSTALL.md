@@ -44,6 +44,11 @@ Note that all releases are signed with the same signature, so you can easily swi
 | SMHI                                | ✅                | ✅                | ❌        |
 | MET Éireann                         | ✅                | ✅                | ❌        |
 
+| Secondary weather sources | Standard         | Google Play      | F-Droid  |
+|---------------------------|------------------|------------------|----------|
+| ATMO AURA                 | ✅                | ✅                | ❌        |
+| Recosanté                 | ✅                | ✅                | ✅        |
+
 
 ## Installation methods of Breezy Weather
 

@@ -30,13 +30,15 @@ import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
+import org.breezyweather.sources.recosante.RecosanteService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
     androidLocationSource: AndroidLocationSource,
     brightSkyService: BrightSkyService,
     naturalEarthService: NaturalEarthService,
-    openMeteoService: OpenMeteoService
+    openMeteoService: OpenMeteoService,
+    recosanteService: RecosanteService
 ) {
     // TODO: Initialize lazily
     // The order of this list is preserved in "source chooser" dialogs
@@ -51,7 +53,10 @@ class SourceManager @Inject constructor(
         brightSkyService,
 
         // Weather sources
-        openMeteoService
+        openMeteoService,
+
+        // Secondary weather sources
+        recosanteService
     )
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
