@@ -18,6 +18,7 @@
 package org.breezyweather.common.source
 
 import breezyweather.domain.location.model.Location
+import org.breezyweather.BuildConfig
 import java.util.Locale
 
 /**
@@ -39,6 +40,7 @@ enum class LocationPreset(
     val normals: String? = null
 ) {
     DEFAULT("openmeteo", alert = "accu", normals = "accu"),
+    DEFAULT_FDROID("openmeteo"),
 
     // North America
     CANADA("eccc", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
@@ -47,9 +49,10 @@ enum class LocationPreset(
     // Europe
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    GERMANY_FDROID("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
     FRANCE("mf", airQuality = "openmeteo", pollen = "openmeteo"),
-    IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
 
@@ -61,25 +64,34 @@ enum class LocationPreset(
     companion object {
         fun getLocationPreset(countryCode: String?): LocationPreset {
             if (countryCode.isNullOrEmpty()) return DEFAULT
-            return when (countryCode.uppercase(Locale.ENGLISH)) {
-                // North America
-                "CA" -> CANADA
-                "US", "PR", "VI", "MP", "GU", "FM", "PW", "AS" -> USA
+            return if (BuildConfig.FLAVOR != "fdroid") {
+                when (countryCode.uppercase(Locale.ENGLISH)) {
+                    // North America
+                    "CA" -> CANADA
+                    "US", "PR", "VI", "MP", "GU", "FM", "PW", "AS" -> USA
 
-                // Europe
-                "DE" -> GERMANY
-                "DK" -> DENMARK
-                "FI" -> FINLAND
-                "FR" -> FRANCE
-                "IE" -> IRELAND
-                "NO" -> NORWAY
-                "SE" -> SWEDEN
+                    // Europe
+                    "DE" -> GERMANY
+                    "DK" -> DENMARK
+                    "FI" -> FINLAND
+                    "FR" -> FRANCE
+                    "IE" -> IRELAND
+                    "NO" -> NORWAY
+                    "SE" -> SWEDEN
 
-                // Asia
-                "CN" -> CHINA
-                "IL", "PS" -> ISRAEL
+                    // Asia
+                    "CN" -> CHINA
+                    "IL", "PS" -> ISRAEL
 
-                else -> DEFAULT
+                    else -> DEFAULT
+                }
+            } else {
+                when (countryCode.uppercase(Locale.ENGLISH)) {
+                    // Europe
+                    "DE" -> GERMANY_FDROID
+
+                    else -> DEFAULT_FDROID
+                }
             }
         }
 

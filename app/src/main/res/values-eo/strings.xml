@@ -127,15 +127,27 @@
     <string name="air_quality_so2_info_title">Sulfura dioksido (SO₂)</string>
     <string name="air_quality_co_info_title">Karbona monooksido (CO)</string>
     <!-- Pollen -->
-    <!-- You can find some translations on the bottom of https://www.pollens.fr/le-reseau/les-pollens -->
-    <string name="pollen_tree">Arba</string>
     <string name="pollen_alnus">Alno</string>
-    <string name="pollen_betula">Betulo</string>
-    <string name="pollen_poaeceae">Graminea</string>
-    <string name="pollen_artemisia">Artemizio</string>
-    <string name="pollen_olea">Olivarba</string>
     <string name="pollen_ambrosia">Ambrozio</string>
+    <string name="pollen_artemisia">Artemizio</string>
+    <string name="pollen_betula">Betulo</string>
+    <string name="pollen_carpinus">Karpeno</string>
+    <string name="pollen_castanea">Kaŝtanujo</string>
+    <string name="pollen_corylus">Avelujo</string>
+    <string name="pollen_cupressaceae_taxaceae">Cipreso</string>
+    <string name="pollen_fraxinus">Frakseno</string>
     <string name="pollen_mold">Ŝima</string>
+    <string name="pollen_olea">Olivarba</string>
+    <string name="pollen_plantaginaceae">Plantago</string>
+    <string name="pollen_platanus">Platano</string>
+    <string name="pollen_poaeceae">Graminea</string>
+    <string name="pollen_populus">Poplo</string>
+    <string name="pollen_quercus">Kverko</string>
+    <string name="pollen_rumex">Rumekso</string>
+    <string name="pollen_salix">Saliko</string>
+    <string name="pollen_tilia">Tilio</string>
+    <string name="pollen_tree">Arba</string>
+    <string name="pollen_urticaceae">Urtikacoj</string>
     <!-- Pollen level means “Potential risk of allergy” -->
     <string name="pollen_level_0">Nenio</string>
     <string name="pollen_level_1">Tre malalta</string>
@@ -493,17 +505,4 @@
     <string name="weather_kind_wind">Vento</string>
     <string name="metno_weather_text_andthunder">%s kaj tondro</string>
     <string name="null_data_text">N/A</string>
-    <string name="pollen_carpinus">Karpeno</string>
-    <string name="pollen_castanea">Kaŝtanujo</string>
-    <string name="pollen_corylus">Avelujo</string>
-    <string name="pollen_cupressaceae_taxaceae">Cipreso</string>
-    <string name="pollen_fraxinus">Frakseno</string>
-    <string name="pollen_plantaginaceae">Plantago</string>
-    <string name="pollen_platanus">Platano</string>
-    <string name="pollen_populus">Poplo</string>
-    <string name="pollen_quercus">Kverko</string>
-    <string name="pollen_rumex">Rumekso</string>
-    <string name="pollen_salix">Saliko</string>
-    <string name="pollen_tilia">Tilio</string>
-    <string name="pollen_urticaceae">Urtikacoj</string>
 </resources>

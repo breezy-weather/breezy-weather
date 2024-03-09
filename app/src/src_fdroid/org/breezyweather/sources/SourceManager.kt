@@ -24,6 +24,7 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.brightsky.BrightSkyService
@@ -72,6 +73,7 @@ class SourceManager @Inject constructor(
     // Secondary weather
     fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> = sourceList.filterIsInstance<SecondaryWeatherSource>()
     fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources().firstOrNull { it.id == id }
+    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>().firstOrNull { it.id == id }
 
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()

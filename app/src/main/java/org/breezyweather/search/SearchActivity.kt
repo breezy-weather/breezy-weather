@@ -161,17 +161,24 @@ class SearchActivity : GeoActivity() {
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
                                         val defaultSource = SettingsManager.getInstance(context).defaultWeatherSource
-                                        if (BuildConfig.FLAVOR != "fdroid") {
-                                            selectedLocation = when (defaultSource) {
-                                                "auto" -> LocationPreset.getLocationWithPresetApplied(
-                                                    location
-                                                )
-                                                else -> location.copy(weatherSource = defaultSource)
+
+                                        selectedLocation = when (defaultSource) {
+                                            "auto" -> LocationPreset.getLocationWithPresetApplied(
+                                                location
+                                            )
+                                            else -> {
+                                                val source = sourceManager
+                                                    .getMainWeatherSource(defaultSource)
+                                                if (source == null) {
+                                                    LocationPreset.getLocationWithPresetApplied(
+                                                        location
+                                                    )
+                                                } else {
+                                                    location.copy(weatherSource = source.id)
+                                                }
                                             }
-                                            dialogLocationSourcesOpenState.value = true
-                                        } else {
-                                            finishSelf(location.copy(weatherSource = defaultSource))
                                         }
+                                        dialogLocationSourcesOpenState.value = true
                                     }
                                 )
                             }

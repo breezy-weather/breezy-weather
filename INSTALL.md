@@ -14,12 +14,12 @@ Note that all releases are signed with the same signature, so you can easily swi
 - **Google Play**: this is the same version as Standard, except it also includes the proprietary Fused location component from Google Play Services. This component is useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
 - **F-Droid**: compared to the standard version, it removes support for any weather sources which are not libre and self-hostable. At the moment, only Open-Meteo and Bright Sky (DWD) match the criteria, but Pirate Weather roadmap indicates they will also become open source at some point.
 
-| Feature                               | Standard | Google Play | F-Droid  |
-|---------------------------------------|----------|-------------|----------|
-| Technical name                        | `basic`  | `gplay`     | `fdroid` |
-| Fused location (Google Play Services) | ❌        | ✅           | ❌        |
-| Weather alerts                        | ✅        | ✅           | Planned¹ |
-| Temperature normals                   | ✅        | ✅           | ❌        |
+| Feature                               | Standard | Google Play | F-Droid                                   |
+|---------------------------------------|----------|-------------|-------------------------------------------|
+| Technical name                        | `basic`  | `gplay`     | `fdroid`                                  |
+| Fused location (Google Play Services) | ❌        | ✅           | ❌                                         |
+| Weather alerts                        | ✅        | ✅           | Germany-only with Bright Sky (DWD) source |
+| Temperature normals                   | ✅        | ✅           | ❌                                         |
 
 | Worldwide weather sources | Standard         | Google Play      | F-Droid  |
 |---------------------------|------------------|------------------|----------|

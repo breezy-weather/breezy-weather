@@ -180,17 +180,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     if (validLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
-                                if (BuildConfig.FLAVOR != "fdroid") {
-                                    viewModel.openChooseWeatherSourcesDialog(null)
-                                } else {
-                                    val defaultSource = SettingsManager.getInstance(requireActivity()).defaultWeatherSource
-                                    viewModel.addLocation(
-                                        Location(
-                                            isCurrentPosition = true,
-                                            weatherSource = defaultSource
-                                        )
-                                    )
-                                }
+                                viewModel.openChooseWeatherSourcesDialog(null)
                             },
                         ) {
                             Icon(

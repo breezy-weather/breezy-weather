@@ -86,15 +86,13 @@ fun RootSettingsView(
                 navController.navigate(SettingsScreenRouter.Location.route)
             }
         }
-        if (BuildConfig.FLAVOR != "fdroid") {
-            clickablePreferenceItem(R.string.settings_weather_sources) { id ->
-                PreferenceView(
-                    titleId = id,
-                    iconId = R.drawable.ic_factory,
-                    summaryId = R.string.settings_weather_sources_summary
-                ) {
-                    navController.navigate(SettingsScreenRouter.WeatherProviders.route)
-                }
+        clickablePreferenceItem(R.string.settings_weather_sources) { id ->
+            PreferenceView(
+                titleId = id,
+                iconId = R.drawable.ic_factory,
+                summaryId = R.string.settings_weather_sources_summary
+            ) {
+                navController.navigate(SettingsScreenRouter.WeatherProviders.route)
             }
         }
         clickablePreferenceItem(R.string.settings_debug) { id ->

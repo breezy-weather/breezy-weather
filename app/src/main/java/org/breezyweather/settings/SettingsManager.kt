@@ -169,9 +169,7 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putString("default_weather_source", value).apply()
             notifySettingsChanged()
         }
-        get() = if (BuildConfig.FLAVOR != "fdroid") {
-            config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
-        } else "openmeteo"
+        get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
 
     // unit.
     var temperatureUnit: TemperatureUnit
