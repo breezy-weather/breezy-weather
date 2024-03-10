@@ -140,7 +140,7 @@
     <string name="weather_source_accu_preference_days_15">15 दिन</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">स्थान की जानकारी सक्षम करें</string>
     <string name="location_dialog_failed_to_locate_action_select_source">स्थान सेवा का चयन करें</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">मैन्युअल रूप से स्थान जोड़ें और \"%s\" को हटा दें</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">मैन्युअल रूप से स्थान जोड़ें और “%s” को हटा दें</string>
     <string name="location_search_no_results_advice">सुनिश्चित करें कि आपकी खोज सही ढंग से लिखी गई है और बहुत विशिष्ट नहीं है। वैकल्पिक रूप से, आप किसी अन्य स्थान खोज स्रोत को आज़मा सकते हैं जो भिन्न परिणाम उत्पन्न कर सकता है।</string>
     <string name="location_current_not_found_yet">वर्तमान स्थान अभी तक नहीं मिला …</string>
     <string name="action_search">खोज</string>
@@ -212,7 +212,7 @@
     <string name="location_message_updated">स्थान अद्यतनीत किया गया</string>
     <string name="location_message_already_exists">पहले से ही उसी मुख्य मौसम स्रोत के साथ एक स्थान मौजूद है।।</string>
     <string name="location_delete_location_dialog_title">स्थान हटाएं?</string>
-    <string name="location_delete_location_dialog_message">आप सहेजे गए स्थानों की सूची से \"%s\" को हटा रहे हैं।।</string>
+    <string name="location_delete_location_dialog_message">आप सहेजे गए स्थानों की सूची से “%s” को हटा रहे हैं।।</string>
     <string name="location_message_failed_to_locate">वर्तमान स्थान ढूंढने में विफल</string>
     <string name="action_location_list">स्थान सूची</string>
     <string name="action_preview">पूर्वावलोकन</string>
