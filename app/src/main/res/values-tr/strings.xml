@@ -662,4 +662,17 @@
     <string name="location_delete_location_dialog_message">Kayıtlı konumlar listenizden “%s” konumunu silmek üzeresiniz.</string>
     <string name="widget_label_hide_header">Başlığı gizle</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Bugün, yarın, …, 4 gün sonrasının Hava Kalitesi Göstergesi</string>
+    <string name="pollen_carpinus">Gürgen</string>
+    <string name="pollen_castanea">Kestane ağacı</string>
+    <string name="pollen_corylus">Fındık</string>
+    <string name="pollen_cupressaceae_taxaceae">Selvi</string>
+    <string name="pollen_fraxinus">Dişbudak</string>
+    <string name="pollen_plantaginaceae">Plantaginaceae</string>
+    <string name="pollen_platanus">Çınar</string>
+    <string name="pollen_populus">Kavak</string>
+    <string name="pollen_quercus">Meşe</string>
+    <string name="pollen_rumex">Kuzukulağı</string>
+    <string name="pollen_salix">Söğüt</string>
+    <string name="pollen_tilia">Ihlamur</string>
+    <string name="pollen_urticaceae">Isırgan otu/Urticaceae</string>
 </resources>
