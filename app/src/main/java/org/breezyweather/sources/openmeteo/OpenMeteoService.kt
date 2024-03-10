@@ -102,6 +102,7 @@ class OpenMeteoService @Inject constructor(
             "apparent_temperature_min",
             "sunrise",
             "sunset",
+            "sunshine_duration",
             "uv_index_max"
         )
         val hourly = arrayOf(

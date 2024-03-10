@@ -28,5 +28,6 @@ data class OpenMeteoWeatherDaily(
     @SerialName("apparent_temperature_min") val apparentTemperatureMin: Array<Double?>?,
     val sunrise: Array<Long?>?,
     val sunset: Array<Long?>?,
+    @SerialName("sunshine_duration") val sunshineDuration: Array<Double?>?,
     @SerialName("uv_index_max") val uvIndexMax: Array<Double?>?
 )

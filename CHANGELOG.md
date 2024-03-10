@@ -5,6 +5,8 @@
 
 **Weather sources**
 - [Recosanté] Add as secondary pollen source for France.
+- [Open-Meteo] Replaced “hours of sun” with “sunshine duration” since we have that info in the API
+- [Bright Sky (DWD)] Replaced “hours of sun” with “sunshine duration” since we have that info in the API
 - [Bright Sky (DWD)] Added to the `fdroid` flavor, since it’s open source.
 
 **Translations**

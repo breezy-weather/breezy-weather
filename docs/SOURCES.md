@@ -102,7 +102,7 @@ Legend:
 | **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | ✅   |
 | **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌   |
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
-| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
+| **Hours of sun**           | ✅ Sunshine | ✅ Sunshine  | ✅          | ✅           | ✅            | ✅   |
 
 | National sources           | China   | NWS | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
 |----------------------------|---------|-----|------------|---------|-----|------|-------------|
@@ -113,7 +113,7 @@ Legend:
 | **Visibility**             | Current | ✅   | ✅          | Current | ❌   | ✅    | ❌           |
 | **Ceiling**                | ❌       | ❌   | ❌          | ❌       | ❌   | ❌    | ❌           |
 | **Precipitation duration** | ❌       | ❌   | ❌          | ❌       | ❌   | ❌    | ❌           |
-| **Hours of sun**           | ✅       | ❌   | ✅          | ✅       | ❌   | ❌    | ❌           |
+| **Hours of sun**           | ✅       | ✅   | ✅ Sunshine | ✅       | ✅   | ✅    | ✅           |
 
 ¹ Median from daily forecast
 

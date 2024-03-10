@@ -137,7 +137,8 @@ private fun getHourlyForecast(
             dewPoint = result.dewPoint,
             pressure = result.pressure,
             cloudCover = result.cloudCover,
-            visibility = result.visibility?.toDouble()
+            visibility = result.visibility?.toDouble(),
+            sunshineDuration = result.sunshine?.div(60)
         )
     }
 }

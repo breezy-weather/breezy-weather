@@ -46,7 +46,11 @@ data class HourlyWrapper(
     val dewPoint: Double? = null,
     val pressure: Double? = null,
     val cloudCover: Int? = null,
-    val visibility: Double? = null
+    val visibility: Double? = null,
+    /**
+     * Sunshine duration in hours (ex: 0.5 means 30 min)
+     */
+    val sunshineDuration: Double? = null
 ) {
     fun toHourly(
         isDaylight: Boolean? = null,

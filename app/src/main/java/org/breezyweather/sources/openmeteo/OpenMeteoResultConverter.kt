@@ -140,7 +140,8 @@ private fun getDailyList(
                 riseDate = dailyResult.sunrise?.getOrNull(i)?.times(1000)?.toDate(),
                 setDate = dailyResult.sunset?.getOrNull(i)?.times(1000)?.toDate()
             ),
-            uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i))
+            uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
+            hoursOfSun = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600)
         )
         dailyList.add(daily)
     }
