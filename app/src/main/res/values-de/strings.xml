@@ -56,7 +56,7 @@
     <string name="temperature_feels_like">Gefühlt</string>
     <string name="settings_follow_system">Systemstandard</string>
     <string name="notification_channel_forecast">Vorhersage</string>
-    <string name="settings_icon_packs_get_more">Mehr dazu</string>
+    <string name="settings_icon_packs_get_more">Mehr erhalten</string>
     <string name="settings_icon_packs_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_packs_get_more_store">Mehr von Google Play</string>
     <string name="action_set">Festlegen</string>
@@ -557,7 +557,7 @@
     <string name="pollen_artemisia">Beifuß</string>
     <string name="pollen_alnus">Erle</string>
     <string name="pollen_betula">Birke</string>
-    <string name="pollen_olea">Olivenbaum</string>
+    <string name="pollen_olea">Ölbaum</string>
     <string name="pollen_level_1">Sehr niedrig</string>
     <string name="pollen_level_2">Niedrig</string>
     <string name="pollen_level_3">Mäßig</string>
