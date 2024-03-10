@@ -660,15 +660,15 @@
     <string name="weather_message_too_frequent_refreshes">Bitte warten Sie ein paar Sekunden, bevor Sie es erneut versuchen…</string>
     <string name="pollen_carpinus">Hainbuche</string>
     <string name="pollen_castanea">Kastanie</string>
-    <string name="pollen_corylus">Hasel-Strauch</string>
+    <string name="pollen_corylus">Hasel</string>
     <string name="pollen_cupressaceae_taxaceae">Zypresse</string>
     <string name="pollen_fraxinus">Esche</string>
     <string name="pollen_plantaginaceae">Wegerich</string>
     <string name="pollen_platanus">Platane</string>
-    <string name="pollen_populus">Pappeln</string>
-    <string name="pollen_quercus">Eichen</string>
-    <string name="pollen_rumex">Sauerampfer</string>
-    <string name="pollen_salix">Weiden</string>
-    <string name="pollen_tilia">Sommerlinde</string>
-    <string name="pollen_urticaceae">Brennessel/Glaskraut</string>
+    <string name="pollen_populus">Pappel</string>
+    <string name="pollen_quercus">Eiche</string>
+    <string name="pollen_rumex">Ampfer</string>
+    <string name="pollen_salix">Weide</string>
+    <string name="pollen_tilia">Linde</string>
+    <string name="pollen_urticaceae">Brennnessel/Glaskraut</string>
 </resources>
