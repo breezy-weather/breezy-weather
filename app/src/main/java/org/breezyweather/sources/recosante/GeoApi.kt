@@ -18,7 +18,6 @@ package org.breezyweather.sources.recosante
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.recosante.json.GeoCommune
-import org.breezyweather.sources.recosante.json.RecosanteResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 

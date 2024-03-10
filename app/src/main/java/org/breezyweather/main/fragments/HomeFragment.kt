@@ -34,7 +34,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode

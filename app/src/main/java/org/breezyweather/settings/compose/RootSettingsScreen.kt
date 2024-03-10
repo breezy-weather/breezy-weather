@@ -19,7 +19,6 @@ package org.breezyweather.settings.compose
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem

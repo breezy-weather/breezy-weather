@@ -20,7 +20,6 @@ import android.animation.Animator
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.domain.location.model.isDaylight

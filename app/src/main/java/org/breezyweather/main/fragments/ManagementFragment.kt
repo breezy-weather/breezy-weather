@@ -64,7 +64,6 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle

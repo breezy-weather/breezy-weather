@@ -16,8 +16,6 @@
 
 package org.breezyweather.common.source
 
-import androidx.annotation.ArrayRes
-
 /**
  * Interface for sources providing pollen data expressed in a scale or level way
  * (for example 0 to 5)
