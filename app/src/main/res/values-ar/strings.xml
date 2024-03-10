@@ -663,4 +663,17 @@
     <string name="action_confirm">تأكيد</string>
     <string name="widget_label_hide_header">اخفاء العنوان</string>
     <string name="weather_message_too_frequent_refreshes">برجاء الانتظار لبضع ثوان قبل اعادة المحاولة…</string>
+    <string name="pollen_corylus">بندق</string>
+    <string name="pollen_cupressaceae_taxaceae">السرو</string>
+    <string name="pollen_fraxinus">رماد</string>
+    <string name="pollen_plantaginaceae">لسان الحمل</string>
+    <string name="pollen_populus">حور</string>
+    <string name="pollen_quercus">البلوط</string>
+    <string name="pollen_rumex">حميض</string>
+    <string name="pollen_salix">الصفصاف</string>
+    <string name="pollen_tilia">الزيزفون</string>
+    <string name="pollen_carpinus">شعاع البوق</string>
+    <string name="pollen_castanea">شجرة الكستناء</string>
+    <string name="pollen_platanus">البلتانوس</string>
+    <string name="pollen_urticaceae">نبات القراص / بيلتوري</string>
 </resources>
