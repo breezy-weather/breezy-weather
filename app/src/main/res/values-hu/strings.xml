@@ -662,4 +662,17 @@
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktuális levegőminőségi mutató</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Levegőminőségi mutató ma, holnap, …, 4 nappal később</string>
+    <string name="pollen_castanea">Szelídgesztenyefa</string>
+    <string name="pollen_corylus">Mogyoró</string>
+    <string name="pollen_fraxinus">Kőris</string>
+    <string name="pollen_plantaginaceae">Útifű</string>
+    <string name="pollen_platanus">Platánfa</string>
+    <string name="pollen_populus">Nyárfa</string>
+    <string name="pollen_quercus">Tölgy</string>
+    <string name="pollen_rumex">Sóska</string>
+    <string name="pollen_carpinus">Gyertyán</string>
+    <string name="pollen_cupressaceae_taxaceae">Tiszafa</string>
+    <string name="pollen_salix">Fűz</string>
+    <string name="pollen_urticaceae">Csalán</string>
+    <string name="pollen_tilia">Hárs</string>
 </resources>
