@@ -679,4 +679,17 @@
     <string name="location_delete_location_dialog_title">Hapus lokasi?</string>
     <string name="location_delete_location_dialog_message">Anda akan menghapus “%s” dari daftar lokasi tersimpan Anda.</string>
     <string name="location_delete_location_dialog_message_no_name">Anda akan menghapus lokasi ini dari daftar lokasi tersimpan Anda.</string>
+    <string name="pollen_corylus">Kemiri</string>
+    <string name="pollen_cupressaceae_taxaceae">Cemara</string>
+    <string name="pollen_fraxinus">Fraxinus</string>
+    <string name="pollen_plantaginaceae">Plantaginaceae</string>
+    <string name="pollen_platanus">Platanus</string>
+    <string name="pollen_tilia">Tilia</string>
+    <string name="pollen_urticaceae">Urticaceae</string>
+    <string name="pollen_carpinus">Carpinus</string>
+    <string name="pollen_castanea">Pohon kastanye</string>
+    <string name="pollen_populus">Populus</string>
+    <string name="pollen_quercus">Ek</string>
+    <string name="pollen_rumex">Rumex</string>
+    <string name="pollen_salix">Salix</string>
 </resources>
