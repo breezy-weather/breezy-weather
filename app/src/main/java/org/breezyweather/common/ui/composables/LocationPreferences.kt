@@ -373,7 +373,7 @@ fun SecondarySourcesPreference(
                             minutelySource = if (hasChangedMainSource.value && minutelySource.value == weatherSource.value) "" else minutelySource.value,
                             alertSource = if (hasChangedMainSource.value && alertSource.value == weatherSource.value) "" else alertSource.value,
                             normalsSource = if (hasChangedMainSource.value && normalsSource.value == weatherSource.value) "" else normalsSource.value,
-                            needsGeocodeRefresh = hasChangedMainSource.value,
+                            needsGeocodeRefresh = hasChangedMainSource.value && location.isCurrentPosition,
                             // TODO: Will trigger a full refresh which we should avoid
                             // if we only change a secondary weather source
                             weather = location.weather?.let {

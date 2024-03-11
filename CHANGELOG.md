@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Main screen pollen card will now only show pollens with at least one day where concentration > 0. Behavior remains the same on daily page and pollen details page.
+- App should no longer prank you by changing the name of a location you just added from search
 
 **Weather sources**
 - [Recosanté] Add as secondary pollen source for France.
