@@ -29,7 +29,9 @@ I fornitori di meteo attualmente supportati:<ul>
 <li>Environment and Climate Change Canada</li>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
-<li>MET Éireann</li></ul>
+<li>MET Éireann</li>
+<li>ATMO AURA</li>
+<li>Recosanté</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
 

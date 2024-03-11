@@ -26,10 +26,12 @@ Les fournisseurs de données météo disponibles sont les suivants :<ul>
 <li>Mix de sources pour la Chine</li>
 <li>National Weather Service (NWS)</li>
 <li>Bright Sky (DWD)</li>
-<li>Environment and Climate Change Canada</li>
+<li>Environnement et Changement Climatique Canada</li>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
-<li>MET Éireann</li></ul>
+<li>MET Éireann</li>
+<li>ATMO AURA</li>
+<li>Recosanté</li></ul>
 
 L’application nécessite un certain nombre de permissions ; certaines obligatoires, d’autres facultatives.
 

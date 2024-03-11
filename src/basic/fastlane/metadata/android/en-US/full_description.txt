@@ -29,7 +29,9 @@ Current supported weather sources:<ul>
 <li>Environment and Climate Change Canada</li>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
-<li>MET Éireann</li></ul>
+<li>MET Éireann</li>
+<li>ATMO AURA</li>
+<li>Recosanté</li></ul>
 
 This app requests a number of permissions; some required, some optional.
 
