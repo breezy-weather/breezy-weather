@@ -666,4 +666,17 @@
     <string name="location_delete_location_dialog_message">您即將從已儲存的位置列表中刪除「%s」。</string>
     <string name="weather_message_too_frequent_refreshes">請稍候幾秒鐘再試…</string>
     <string name="widget_label_hide_header">隱藏標題</string>
+    <string name="pollen_castanea">栗樹</string>
+    <string name="pollen_corylus">榛樹</string>
+    <string name="pollen_cupressaceae_taxaceae">柏樹</string>
+    <string name="pollen_plantaginaceae">車前草</string>
+    <string name="pollen_platanus">梧桐</string>
+    <string name="pollen_populus">楊樹</string>
+    <string name="pollen_quercus">橡樹</string>
+    <string name="pollen_salix">柳樹</string>
+    <string name="pollen_tilia">鐵力木</string>
+    <string name="pollen_carpinus">角木</string>
+    <string name="pollen_fraxinus">白蠟樹</string>
+    <string name="pollen_rumex">酸模</string>
+    <string name="pollen_urticaceae">蕁麻/假蕁麻</string>
 </resources>
