@@ -335,7 +335,7 @@
     <string name="about_source_code">Codul sursă</string>
     <string name="about_contribution_WangDaYeeeeee">Dezvoltator al proiectului original Geometric Weather</string>
     <string name="common_weather_text_mainly_clear">Parțial Senin</string>
-    <string name="common_weather_text_overcast">Întunecat</string>
+    <string name="common_weather_text_overcast">Întunecos</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
     <string name="unit_lpsqm">L/m²</string>
@@ -614,8 +614,8 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lapoviță și Ninsoare Torențială</string>
     <string name="common_weather_text_snow_light">Ninsoare Ușoară</string>
     <string name="common_weather_text_snow_moderate">Ninsoare Moderată</string>
-    <string name="common_weather_text_snow_showers_light">Ninsoare Puternică</string>
-    <string name="common_weather_text_snow_showers_heavy">Ninsoare Puternică</string>
+    <string name="common_weather_text_snow_showers_light">Ninsoare Mediocră</string>
+    <string name="common_weather_text_snow_showers_heavy">Ninsoare Extremă</string>
     <string name="common_weather_text_drizzle">Burniță</string>
     <string name="common_weather_text_drizzle_freezing">Chiciură Fină</string>
     <string name="common_weather_text_drizzle_heavy">Burniță Abundentă</string>
