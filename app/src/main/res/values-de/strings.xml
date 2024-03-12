@@ -668,4 +668,5 @@
     <string name="pollen_salix">Weide</string>
     <string name="pollen_tilia">Linde</string>
     <string name="pollen_urticaceae">Brennnessel/Glaskraut</string>
+    <string name="about_open_link_message">%s öffnen?</string>
 </resources>
