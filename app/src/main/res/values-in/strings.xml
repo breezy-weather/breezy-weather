@@ -689,4 +689,7 @@
     <string name="pollen_quercus">Ek</string>
     <string name="pollen_rumex">Rumex</string>
     <string name="pollen_salix">Salix</string>
+    <string name="sunshine">Bersinar</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, 4 hari lagi</string>
+    <string name="about_open_link_message">Buka %s?</string>
 </resources>
