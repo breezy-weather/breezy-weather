@@ -56,7 +56,7 @@ enum class DurationUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = 1,
         rtl = rtl
     )
 
@@ -73,7 +73,7 @@ enum class DurationUnit(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 2,
+        decimalNumber = 1,
         rtl = rtl
     )
 }

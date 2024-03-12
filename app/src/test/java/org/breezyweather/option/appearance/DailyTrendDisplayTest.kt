@@ -28,14 +28,15 @@ import org.junit.jupiter.api.Test
 class DailyTrendDisplayTest {
     @Test
     fun toDailyTrendDisplayList() = runTest {
-        val value = "temperature&air_quality&wind&uv_index&precipitation&feels_like"
+        val value = "temperature&air_quality&wind&uv_index&precipitation&sunshine&feels_like"
         val list = DailyTrendDisplay.toDailyTrendDisplayList(value)
         list[0] shouldBe DailyTrendDisplay.TAG_TEMPERATURE
         list[1] shouldBe DailyTrendDisplay.TAG_AIR_QUALITY
         list[2] shouldBe DailyTrendDisplay.TAG_WIND
         list[3] shouldBe DailyTrendDisplay.TAG_UV_INDEX
         list[4] shouldBe DailyTrendDisplay.TAG_PRECIPITATION
-        list[5] shouldBe DailyTrendDisplay.TAG_FEELS_LIKE
+        list[5] shouldBe DailyTrendDisplay.TAG_SUNSHINE
+        list[6] shouldBe DailyTrendDisplay.TAG_FEELS_LIKE
     }
 
     @Test
@@ -46,9 +47,10 @@ class DailyTrendDisplayTest {
             DailyTrendDisplay.TAG_WIND,
             DailyTrendDisplay.TAG_UV_INDEX,
             DailyTrendDisplay.TAG_PRECIPITATION,
+            DailyTrendDisplay.TAG_SUNSHINE,
             DailyTrendDisplay.TAG_FEELS_LIKE
         )
-        val value = "temperature&air_quality&wind&uv_index&precipitation&feels_like"
+        val value = "temperature&air_quality&wind&uv_index&precipitation&sunshine&feels_like"
         DailyTrendDisplay.toValue(list) shouldBe value
     }
 
@@ -63,9 +65,10 @@ class DailyTrendDisplayTest {
             DailyTrendDisplay.TAG_WIND,
             DailyTrendDisplay.TAG_UV_INDEX,
             DailyTrendDisplay.TAG_PRECIPITATION,
+            DailyTrendDisplay.TAG_SUNSHINE,
             DailyTrendDisplay.TAG_FEELS_LIKE
         )
-        val value = "Name, Name, Name, Name, Name, Name"
+        val value = "Name, Name, Name, Name, Name, Name, Name"
         DailyTrendDisplay.getSummary(context, list) shouldBe value
     }
 }

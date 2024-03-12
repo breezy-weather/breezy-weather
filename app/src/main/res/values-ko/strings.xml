@@ -16,7 +16,7 @@
     <string name="humidity">습도</string>
     <string name="humidity_dew_point">습도 / 이슬점</string>
     <string name="uv_index">자외선 지수</string>
-    <string name="hours_of_sun">일조 시간</string>
+    <string name="sunshine_duration">일조 시간</string>
     <string name="notification_channel_forecast">예보</string>
     <string name="daytime">주간</string>
     <string name="nighttime">야간</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">구름량</string>
     <string name="ceiling">상승 한도</string>
     <string name="settings_icon_packs_get_more">더 찾아보기</string>
-    <string name="settings_icon_packs_get_more_store">앱 스토어에서 더 찾아보기</string>
-    <string name="settings_icon_packs_get_more_github">GitHub에서 더 찾아보기</string>
     <string name="action_refresh">새로고침</string>
     <string name="action_restart">재시작</string>
     <string name="action_edit">편집</string>

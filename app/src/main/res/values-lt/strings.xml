@@ -101,7 +101,7 @@
     <string name="ephemeris_sunset_at">Saulėlydis %s</string>
     <string name="ephemeris_moonrise_at">Mėnulio patekėjimas %s</string>
     <string name="nighttime">Naktis</string>
-    <string name="hours_of_sun">Saulė keliaus dangumi</string>
+    <string name="sunshine_duration">Saulė keliaus dangumi</string>
     <string name="humidity">Drėgmė</string>
     <string name="humidity_dew_point">Drėgmė / Rasos taškas</string>
     <string name="pressure">Slėgis</string>
@@ -394,7 +394,6 @@
     <string name="settings_weather_source_open_weather_one_call_version">OneCall versija</string>
     <string name="settings_icon_packs_weather_icon_dark">Tamsi piktograma</string>
     <string name="settings_icon_packs_get_more">Gauti daugiau</string>
-    <string name="settings_icon_packs_get_more_store">Gaukite daugiau iš programų parduotuvės</string>
     <string name="settings_location_access_permission_already_granted">Leidimas jau suteiktas</string>
     <string name="settings_location_access_switch_summaryOff">Leiskite, jei norite pridėti savo dabartinę vietą kaip vietą.</string>
     <string name="settings_location_access_background_title">Prieiga prie vietos fone</string>
@@ -502,7 +501,6 @@
     <string name="settings_notifications">Pranešimai</string>
     <string name="settings_notifications_summary">Orų perspėjimai, krituliai, prognozės</string>
     <string name="settings_notifications_section_forecast">Prognozė</string>
-    <string name="settings_icon_packs_get_more_github">Gaukite daugiau iš GitHub</string>
     <string name="settings_units">Vienetai</string>
     <string name="settings_main_cards_title">Kortelės</string>
     <string name="settings_main_background_animation_title">Fono animacija</string>

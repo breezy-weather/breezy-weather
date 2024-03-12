@@ -278,7 +278,7 @@
     <string name="app_name">Väder</string>
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="dew_point">Daggpunkt</string>
-    <string name="hours_of_sun">Soltimmar</string>
+    <string name="sunshine_duration">Soltimmar</string>
     <string name="daytime">Dagtid</string>
     <string name="common_weather_text_drizzle_light">Lätt duggregn</string>
     <string name="weather_source_accu_preference_hours_12">12 timmar</string>
@@ -433,7 +433,6 @@
     <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen på dags-/nattemperaturer</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
-    <string name="settings_icon_packs_get_more_store">Hämta fler från appbutik</string>
     <string name="unit_inhg_voice">Tum kvicksilver</string>
     <string name="settings_icon_packs_check_details">Visa detaljer</string>
     <string name="settings_main_gravity_sensor_switch">Gravitationssensor</string>
@@ -541,7 +540,6 @@
     <string name="message_network_unavailable">Inget nätverk</string>
     <string name="location_none_added_yet_instructions">Ingen plats tillagd än. Tryck på sökikonen för att manuellt lägga till plats eller lägg till din nuvarande plats från den flytande knappen.</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
-    <string name="settings_icon_packs_get_more_github">Hämta fler från GitHub</string>
     <string name="air_quality_co_info_origin">Det skapas av ofullständing förbränning av kolhaltiga bränslen så som trä, bensin, kol, naturgas och fotogen i enkla kök, öppna eldar, oljelampor, ugnar och eldstäder. Den vanligaste källan till kolmonoxid (CO) i omgivande luft är från förbränning från fordonsmotorer.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>

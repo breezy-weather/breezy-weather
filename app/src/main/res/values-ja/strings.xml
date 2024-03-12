@@ -16,7 +16,7 @@
     <string name="humidity">湿度</string>
     <string name="humidity_dew_point">湿度 / 露点</string>
     <string name="uv_index">紫外線指数</string>
-    <string name="hours_of_sun">日照時間</string>
+    <string name="sunshine_duration">日照時間</string>
     <string name="notification_channel_forecast">予報</string>
     <string name="daytime">日中</string>
     <string name="nighttime">夜間</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">雲量</string>
     <string name="ceiling">雲高</string>
     <string name="settings_icon_packs_get_more">さらに</string>
-    <string name="settings_icon_packs_get_more_store">ストアから入手</string>
-    <string name="settings_icon_packs_get_more_github">GitHub から入手</string>
     <string name="action_refresh">更新</string>
     <string name="action_restart">再起動</string>
     <string name="action_edit">編集</string>

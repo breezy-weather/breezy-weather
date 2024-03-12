@@ -306,7 +306,6 @@
     <string name="settings_icon_packs_weather_icon_light">Açık renk simge</string>
     <string name="settings_icon_packs_weather_icon_grey">Gri simge</string>
     <string name="settings_main_cards_fade_in_switch">Kartlar belirsin</string>
-    <string name="settings_icon_packs_get_more_github">GitHub’dan daha fazla al</string>
     <string name="action_add_current_location">Geçerli konumu ekle</string>
     <string name="widget_subtitle_data_aqi">Hava kalitesi</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Ay Takvimi</string>
@@ -332,7 +331,6 @@
     <string name="action_close">Kapat</string>
     <string name="action_help_me_choose">Seçmem için bana yardım et</string>
     <string name="widget_label_subtitle_data">Alt yazı verisi</string>
-    <string name="settings_icon_packs_get_more_store">Uygulama mağazasından daha fazla al</string>
     <string name="widget_style_temperature">Sıcaklık</string>
     <string name="widget_live_wallpaper_weather_kind">Hava Durumu</string>
     <string name="widget_style_nano">Nano</string>
@@ -401,7 +399,7 @@
     <string name="settings_appearance">Görünüm</string>
     <string name="settings_units">Birimler</string>
     <string name="settings_units_temperature">Sıcaklık birimi</string>
-    <string name="hours_of_sun">Güneşli saatler</string>
+    <string name="sunshine_duration">Güneşli saatler</string>
     <string name="settings_location_access_permission_already_granted">İzin zaten verildi</string>
     <string name="unit_ppcm_voice">Metreküp</string>
     <string name="notification_channel_alerts">Alarmlar</string>

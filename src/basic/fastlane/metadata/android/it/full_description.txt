@@ -30,7 +30,7 @@ I fornitori di meteo attualmente supportati:<ul>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
 <li>MET Éireann</li>
-<li>ATMO AURA</li>
+<li>ATMO AuRA</li>
 <li>Recosanté</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.

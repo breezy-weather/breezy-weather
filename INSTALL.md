@@ -46,7 +46,7 @@ Note that all releases are signed with the same signature, so you can easily swi
 
 | Secondary weather sources | Standard         | Google Play      | F-Droid  |
 |---------------------------|------------------|------------------|----------|
-| ATMO AURA                 | ✅                | ✅                | ❌        |
+| ATMO AuRA                 | ✅                | ✅                | ❌        |
 | Recosanté                 | ✅                | ✅                | ✅        |
 
 

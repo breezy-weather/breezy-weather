@@ -22,8 +22,7 @@ import retrofit2.http.Query
 import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 
 /**
- * API Atmo AURA
- * Covers Auvergne-Rhône-Alpes
+ * API ATMO Auvergne-Rhône-Alpes
  */
 interface AtmoAuraAirQualityApi {
     @GET("air2go/v3/point?with_list=true")

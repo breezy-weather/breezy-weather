@@ -336,7 +336,7 @@
     <string name="pollen">Allergieën</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_hpa">hPa</string>
-    <string name="hours_of_sun">Zonuren</string>
+    <string name="sunshine_duration">Zonuren</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="action_back">Terug</string>
     <string name="action_help_me_choose">Help mij kiezen</string>
@@ -354,8 +354,6 @@
     <string name="settings_icon_packs_weather_icon_light">Pictogram licht</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogram grijs</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogram donker</string>
-    <string name="settings_icon_packs_get_more_store">Haal meer uit de app store</string>
-    <string name="settings_icon_packs_get_more_github">Haal meer van GitHub</string>
     <string name="settings_units_speed">Snelheidseenheid</string>
     <string name="settings_main_background_animation_enabled">Aan</string>
     <string name="settings_widgets_live_wallpaper_title">Live achtergrond</string>

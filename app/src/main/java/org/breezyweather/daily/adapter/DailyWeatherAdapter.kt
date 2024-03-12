@@ -119,7 +119,7 @@ class DailyWeatherAdapter(
             mModelList.add(LargeTitle(activity.getString(R.string.ephemeris)))
             mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
         }
-        if (daily.degreeDay?.isValid == true || daily.hoursOfSun != null) {
+        if (daily.degreeDay?.isValid == true || daily.sunshineDuration != null) {
             mModelList.add(Line())
             mModelList.add(LargeTitle(activity.getString(R.string.details)))
             daily.degreeDay?.let { degreeDay ->
@@ -150,13 +150,12 @@ class DailyWeatherAdapter(
                     }
                 }
             }
-            daily.hoursOfSun?.let { hoursOfSun ->
+            daily.sunshineDuration?.let { sunshineDuration ->
                 mModelList.add(
                     ValueIcon(
-                        activity.getString(R.string.hours_of_sun),
-                        DurationUnit.H.getValueText(activity, hoursOfSun),
-                        R.drawable.ic_hours_of_sun
-
+                        activity.getString(R.string.sunshine_duration),
+                        DurationUnit.H.getValueText(activity, sunshineDuration),
+                        R.drawable.ic_sunshine_duration
                     )
                 )
             }

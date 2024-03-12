@@ -36,5 +36,6 @@ data class Daily(
     val airQuality: AirQuality? = null,
     val pollen: Pollen? = null,
     val uV: UV? = null,
-    val hoursOfSun: Double? = null
+    // Expressed in hours:
+    val sunshineDuration: Double? = null
 ) : Serializable

@@ -16,7 +16,7 @@
     <string name="humidity">相对湿度</string>
     <string name="humidity_dew_point">相对湿度 / 露点</string>
     <string name="uv_index">紫外线指数</string>
-    <string name="hours_of_sun">日晒时长</string>
+    <string name="sunshine_duration">日晒时长</string>
     <string name="notification_channel_forecast">预报</string>
     <string name="daytime">白天</string>
     <string name="nighttime">夜间</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">云量</string>
     <string name="ceiling">云高</string>
     <string name="settings_icon_packs_get_more">获取更多</string>
-    <string name="settings_icon_packs_get_more_store">从应用商店获取更多</string>
-    <string name="settings_icon_packs_get_more_github">从 GitHub 获取更多</string>
     <string name="action_refresh">刷新</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>

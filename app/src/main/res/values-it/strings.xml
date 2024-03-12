@@ -16,7 +16,7 @@
     <string name="humidity">Umidità</string>
     <string name="humidity_dew_point">Umidità / Punto di rugiada</string>
     <string name="uv_index">Indice UV</string>
-    <string name="hours_of_sun">Ore di sole</string>
+    <string name="sunshine_duration">Ore di sole</string>
     <string name="notification_channel_forecast">Previsioni</string>
     <string name="daytime">Giorno</string>
     <string name="nighttime">Notte</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Copertura nuvolosa</string>
     <string name="ceiling">Base delle nubi</string>
     <string name="settings_icon_packs_get_more">Altro…</string>
-    <string name="settings_icon_packs_get_more_store">Prova altre app dallo Store</string>
-    <string name="settings_icon_packs_get_more_github">Visita GitHub</string>
     <string name="action_refresh">Ricarica</string>
     <string name="action_restart">Riavvia</string>
     <string name="action_edit">Modifica</string>

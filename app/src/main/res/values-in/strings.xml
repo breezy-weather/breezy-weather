@@ -16,7 +16,7 @@
     <string name="humidity">Kelembaban</string>
     <string name="humidity_dew_point">Kelembaban / Titik embun</string>
     <string name="uv_index">Indeks UV</string>
-    <string name="hours_of_sun">Jam matahari</string>
+    <string name="sunshine_duration">Jam matahari</string>
     <string name="notification_channel_forecast">Ramalan</string>
     <string name="daytime">Siang hari</string>
     <string name="nighttime">Malam hari</string>
@@ -30,8 +30,6 @@
     <string name="ceiling">Atap</string>
     <!-- ? -->
     <string name="settings_icon_packs_get_more">Dapatkan lebih banyak</string>
-    <string name="settings_icon_packs_get_more_store">Dapatkan lebih banyak dari app store</string>
-    <string name="settings_icon_packs_get_more_github">Dapatkan lebih banyak dari GitHub</string>
     <string name="action_refresh">Muat ulang</string>
     <string name="action_restart">Mulai ulang</string>
     <string name="action_edit">Ubah</string>

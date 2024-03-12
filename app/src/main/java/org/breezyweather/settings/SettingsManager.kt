@@ -61,6 +61,7 @@ class SettingsManager private constructor(context: Context) {
                 + "&wind"
                 + "&uv_index"
                 + "&precipitation"
+                + "&sunshine"
                 + "&feels_like")
         const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
                 + "&air_quality"

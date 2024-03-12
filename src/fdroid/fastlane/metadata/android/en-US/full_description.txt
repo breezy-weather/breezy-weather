@@ -32,7 +32,7 @@ The following sources are non-free/self-hostable and only available with the sta
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
 <li>MET Éireann</li>
-<li>ATMO AURA</li></ul>
+<li>ATMO AuRA</li></ul>
 
 This app requests a number of permissions; some required, some optional.
 

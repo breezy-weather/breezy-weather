@@ -16,7 +16,7 @@
     <string name="humidity">Vlhkost</string>
     <string name="humidity_dew_point">Vlhkost / Rosný bod</string>
     <string name="uv_index">UV index</string>
-    <string name="hours_of_sun">Hodiny slunce</string>
+    <string name="sunshine_duration">Hodiny slunce</string>
     <string name="notification_channel_forecast">Předpověď</string>
     <string name="daytime">Den</string>
     <string name="nighttime">Noc</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Oblačnost</string>
     <string name="ceiling">Výška mraků</string>
     <string name="settings_icon_packs_get_more">Získat další</string>
-    <string name="settings_icon_packs_get_more_store">Získat další z obchodu s aplikacemi</string>
-    <string name="settings_icon_packs_get_more_github">Získat další z GitHubu</string>
     <string name="action_refresh">Obnovit</string>
     <string name="action_restart">Restartovat</string>
     <string name="action_edit">Upravit</string>

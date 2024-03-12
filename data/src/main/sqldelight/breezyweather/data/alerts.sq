@@ -16,13 +16,13 @@ CREATE TABLE alerts(
 CREATE INDEX alerts_location_formatted_id_index ON alerts(location_formatted_id);
 
 getAlertListByLocationId:
-SELECT *
+SELECT alert_id, start_date, end_date, description, content, priority, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
 ORDER BY priority, start_date;
 
 getCurrentAlertsByLocationId:
-SELECT *
+SELECT alert_id, start_date, end_date, description, content, priority, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
 AND (end_date IS NULL OR end_date > :now)

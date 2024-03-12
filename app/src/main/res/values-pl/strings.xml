@@ -20,7 +20,7 @@
     <string name="humidity">Wilgotność</string>
     <string name="humidity_dew_point">Wilgotność / Punkt rosy</string>
     <string name="uv_index">Indeks UV</string>
-    <string name="hours_of_sun">Godziny słońca</string>
+    <string name="sunshine_duration">Godziny słońca</string>
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="daytime">Dzień</string>
     <string name="nighttime">Noc</string>
@@ -32,8 +32,6 @@
     <string name="cloud_cover">Zachmurzenie</string>
     <string name="ceiling">Najniższa warstwa chmur</string>
     <string name="settings_icon_packs_get_more">Więcej</string>
-    <string name="settings_icon_packs_get_more_store">Uzyskaj więcej ze sklepu z aplikacjami</string>
-    <string name="settings_icon_packs_get_more_github">Uzyskaj więcej ze sklepu z GitHuba</string>
     <string name="action_refresh">Odśwież</string>
     <string name="action_restart">Restartuj</string>
     <string name="action_edit">Edytuj</string>

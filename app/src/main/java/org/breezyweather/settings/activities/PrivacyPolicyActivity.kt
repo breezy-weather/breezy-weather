@@ -31,12 +31,14 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import java.text.Collator
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -82,8 +84,11 @@ class PrivacyPolicyActivity : GeoActivity() {
 
                 items(sourceManager.getHttpSources()
                     .filter { it.privacyPolicyUrl.startsWith("http") }
-                    // Sort by name because there are now a lot of sources
-                    .sortedBy { it.name }) { preferenceSource ->
+                    .sortedWith { s1, s2 -> // Sort by name because there are now a lot of sources
+                        Collator.getInstance(
+                            SettingsManager.getInstance(this@PrivacyPolicyActivity).language.locale
+                        ).compare(s1.name, s2.name)
+                    }) { preferenceSource ->
                     PreferenceView(
                         title = preferenceSource.name,
                         summary = preferenceSource.privacyPolicyUrl

@@ -15,7 +15,7 @@
     <string name="wind_speed">سرعة الرياح</string>
     <string name="humidity">الرطوبة</string>
     <string name="uv_index">مؤشر الأشعة فوق البنفسجية</string>
-    <string name="hours_of_sun">ساعات من الشمس</string>
+    <string name="sunshine_duration">ساعات من الشمس</string>
     <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
@@ -27,8 +27,6 @@
     <string name="cloud_cover">الغطاء السحابي</string>
     <string name="ceiling">الحد الأعلى</string>
     <string name="settings_icon_packs_get_more">أحصل على المزيد</string>
-    <string name="settings_icon_packs_get_more_store">أحصل على المزيد في متجر التطبيقات</string>
-    <string name="settings_icon_packs_get_more_github">أحصل على المزيد من خلال GitHub</string>
     <string name="action_refresh">تحديث</string>
     <string name="action_restart">إعادة التشغيل</string>
     <string name="action_edit">تحرير</string>

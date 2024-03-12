@@ -39,6 +39,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -83,26 +85,6 @@ private class TranslatorItem(
 
 class AboutActivity : GeoActivity() {
 
-    private val contactLinks = arrayOf(
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_code,
-            titleId = R.string.about_source_code,
-        ) {
-            IntentHelper.startWebViewActivity(
-                this@AboutActivity,
-                "https://github.com/breezy-weather/breezy-weather"
-            )
-        },
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_forum,
-            titleId = R.string.about_matrix,
-        ) {
-            IntentHelper.startWebViewActivity(
-                this@AboutActivity,
-                "https://matrix.to/#/#breezy-weather:matrix.org"
-            )
-        },
-    )
     private val aboutAppLinks = arrayOf(
         AboutAppLinkItem(
             iconId = R.drawable.ic_shield_lock,
@@ -288,6 +270,9 @@ class AboutActivity : GeoActivity() {
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
 
+        val linkToOpen = remember { mutableStateOf("") }
+        val dialogLinkOpenState = remember { mutableStateOf(false) }
+
         val locale = SettingsManager.getInstance(this).language.locale
         val language = locale.language
         val languageWithCountry = locale.language + (if(!locale.country.isNullOrEmpty()) "_r" + locale.country else "")
@@ -296,6 +281,23 @@ class AboutActivity : GeoActivity() {
             // No translators found? Language doesn’t exist, so defaulting to English
             filteredTranslators = translators.filter { it.lang.contains("en") }
         }
+
+        val contactLinks = arrayOf(
+            AboutAppLinkItem(
+                iconId = R.drawable.ic_code,
+                titleId = R.string.about_source_code,
+            ) {
+                linkToOpen.value = "https://github.com/breezy-weather/breezy-weather"
+                dialogLinkOpenState.value = true
+            },
+            AboutAppLinkItem(
+                iconId = R.drawable.ic_forum,
+                titleId = R.string.about_matrix,
+            ) {
+                linkToOpen.value = "https://matrix.to/#/#breezy-weather:matrix.org"
+                dialogLinkOpenState.value = true
+            },
+        )
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -336,16 +338,29 @@ class AboutActivity : GeoActivity() {
 
                 item { SectionTitle(stringResource(R.string.about_contributors)) }
                 items(contributors) { item ->
-                    ContributorView(name = item.name, contribution = item.contribution, url = item.url)
+                    ContributorView(name = item.name, contribution = item.contribution) {
+                        linkToOpen.value = item.url
+                        dialogLinkOpenState.value = true
+                    }
                 }
 
                 item { SectionTitle(stringResource(R.string.about_translators)) }
                 items(filteredTranslators) { item ->
-                    ContributorView(name = item.name, url = item.url)
+                    ContributorView(name = item.name) {
+                        linkToOpen.value = item.url
+                        dialogLinkOpenState.value = true
+                    }
                 }
 
                 bottomInsetItem(
                     extraHeight = getCardListItemMarginDp(this@AboutActivity).dp
+                )
+            }
+
+            if (dialogLinkOpenState.value) {
+                AlertDialogLink(
+                    onClose = { dialogLinkOpenState.value = false },
+                    linkToOpen = linkToOpen.value
                 )
             }
         }
@@ -424,7 +439,11 @@ class AboutActivity : GeoActivity() {
     }
 
     @Composable
-    private fun ContributorView(name: String, @StringRes contribution: Int? = null, url: String, flag: String? = null) {
+    private fun ContributorView(
+        name: String,
+        @StringRes contribution: Int? = null,
+        onClick: () -> Unit
+    ) {
         Material3CardListItem {
             Column(
                 modifier = Modifier
@@ -433,7 +452,7 @@ class AboutActivity : GeoActivity() {
                         interactionSource = remember { MutableInteractionSource() },
                         indication = rememberThemeRipple(),
                         onClick = {
-                            IntentHelper.startWebViewActivity(this@AboutActivity, url)
+                            onClick()
                         },
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),
@@ -444,13 +463,6 @@ class AboutActivity : GeoActivity() {
                         color = DayNightTheme.colors.titleColor,
                         style = MaterialTheme.typography.titleMedium,
                     )
-                    if (flag != null) {
-                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                        Text(
-                            text = flag,
-                            style = MaterialTheme.typography.titleMedium,
-                        )
-                    }
                 }
                 if (contribution != null) {
                     Text(

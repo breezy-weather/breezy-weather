@@ -24,6 +24,20 @@ class Astro(
     val setDate: Date? = null
 ) : Serializable {
 
+    // Not made to be used for moon astro, only sun
+    val duration: Double?
+        get() = if (riseDate == null || setDate == null) {
+            // Polar night
+            0.0
+        } else if (riseDate.after(setDate)) {
+            null
+        } else {
+            ((setDate.time - riseDate.time) // get delta millisecond.
+                    / 1000 // second.
+                    / 60 // minutes.
+                    / 60.0 // hours.
+                    )
+        }
     val isValid: Boolean
         get() = riseDate != null && setDate != null
 

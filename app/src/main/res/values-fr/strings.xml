@@ -15,7 +15,8 @@
     <string name="humidity">Humidité</string>
     <string name="humidity_short">Humidité</string>
     <string name="humidity_dew_point">Humidité / Point de rosée</string>
-    <string name="hours_of_sun">Heures d’ensoleillement</string>
+    <string name="sunshine">Ensoleillement</string>
+    <string name="sunshine_duration">Durée d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
@@ -36,8 +37,6 @@
     <string name="ceiling">Plafond nuageux</string>
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
-    <string name="settings_icon_packs_get_more_store">Voir plus dans le magasin d’applications</string>
-    <string name="settings_icon_packs_get_more_github">Voir plus sur GitHub</string>
     <string name="action_refresh">Actualiser</string>
     <string name="action_restart">Redémarrer</string>
     <string name="action_see_more">Voir plus</string>
@@ -289,6 +288,7 @@
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vent de jour d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vent de nuit d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de Qualité de l’Air d’aujourd’hui, demain, …, dans 4 jours</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Résumé des indices de pollen d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Lever du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Coucher du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Lever de lune d’aujourd’hui, demain, …, dans 4 jours</string>
@@ -591,6 +591,7 @@
     <string name="about_contributors">Contributeurs</string>
     <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
     <string name="about_contribution_designer">Concepteur du logo</string>
+    <string name="about_open_link_message">Ouvrir %s ?</string>
     <string name="action_location_list">Liste des emplacements</string>
     <string name="setting_weather_source_accu_days">Jours</string>
     <string name="settings_weather_source_portal">Portail</string>

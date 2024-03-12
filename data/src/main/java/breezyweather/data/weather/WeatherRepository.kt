@@ -273,7 +273,7 @@ class WeatherRepository(
                     // uv.
                     uvIndex = daily.uV?.index,
 
-                    hoursOfSun = daily.hoursOfSun
+                    sunshineDuration = daily.sunshineDuration
                 )
             }
 

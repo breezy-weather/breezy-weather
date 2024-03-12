@@ -38,6 +38,7 @@ import org.breezyweather.settings.preference.editTextPreferenceItem
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
+import java.text.Collator
 
 @Composable
 fun WeatherSourcesSettingsScreen(
@@ -67,7 +68,10 @@ fun WeatherSourcesSettingsScreen(
 
     configurableSources
         .filter { it !is LocationSource } // Exclude location sources configured in its own screen
-        .sortedBy { it.name } // Sort by name because there are now a lot of sources
+        .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+            Collator.getInstance(SettingsManager.getInstance(context).language.locale)
+                .compare(ws1.name, ws2.name)
+        }
         .forEach { preferenceSource ->
             item(key = "header_${preferenceSource.id}") {
                 SectionHeader(title = preferenceSource.name)

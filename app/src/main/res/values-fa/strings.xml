@@ -211,7 +211,7 @@
     <string name="ephemeris_sunset_at">غروب در %s</string>
     <string name="ephemeris_moonrise_at">طلوع ماه در %s</string>
     <string name="ephemeris_moonset_at">غروب ماه در %s</string>
-    <string name="hours_of_sun">ساعات با خورشید</string>
+    <string name="sunshine_duration">ساعات با خورشید</string>
     <string name="humidity">نم</string>
     <string name="humidity_dew_point">نمناکی / نقطه شبنم</string>
     <string name="pressure">فشار</string>
@@ -385,8 +385,6 @@
     <string name="settings_appearance">ظاهر</string>
     <string name="settings_icon_packs_title">نماد ها</string>
     <string name="settings_icon_packs_get_more">دریافت موارد بیشتر</string>
-    <string name="settings_icon_packs_get_more_store">دریافت موارد بیشتر از فروشگاه</string>
-    <string name="settings_icon_packs_get_more_github">دریافت موارد بیشتر از گیت‌هاب</string>
     <string name="settings_units_speed">واحد سرعت</string>
     <string name="settings_units_precipitation">واحد بارش</string>
     <string name="settings_units_pressure">واخد فشار</string>

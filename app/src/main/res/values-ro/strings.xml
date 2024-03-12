@@ -16,7 +16,7 @@
     <string name="humidity">Umiditate</string>
     <string name="humidity_dew_point">Umiditate / Punct de rouă</string>
     <string name="uv_index">Indice UV</string>
-    <string name="hours_of_sun">Ore cu soare</string>
+    <string name="sunshine_duration">Ore cu soare</string>
     <string name="notification_channel_forecast">Prognoză</string>
     <string name="daytime">Ziuă</string>
     <string name="nighttime">Noapte</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Acoperire nori</string>
     <string name="ceiling">Plafon</string>
     <string name="settings_icon_packs_get_more">Obține mai multe</string>
-    <string name="settings_icon_packs_get_more_store">Mai multe din Magazinul de Aplicații</string>
-    <string name="settings_icon_packs_get_more_github">Mai multe pe GitHub</string>
     <string name="action_refresh">Actualizează</string>
     <string name="action_restart">Repornește</string>
     <string name="action_edit">Modifică</string>

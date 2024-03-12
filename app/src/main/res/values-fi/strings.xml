@@ -16,7 +16,7 @@
     <string name="humidity">Ilmankosteus</string>
     <string name="humidity_dew_point">Ilmankosteus / Kastepiste</string>
     <string name="uv_index">UV-indeksi</string>
-    <string name="hours_of_sun">Auringonpaisteen kesto</string>
+    <string name="sunshine_duration">Auringonpaisteen kesto</string>
     <string name="notification_channel_forecast">Ennuste</string>
     <string name="daytime">Päivällä</string>
     <string name="nighttime">Yöllä</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Pilvisyys</string>
     <string name="ceiling">Pilvipeite</string>
     <string name="settings_icon_packs_get_more">Lisää</string>
-    <string name="settings_icon_packs_get_more_store">Lisää sovelluskaupasta</string>
-    <string name="settings_icon_packs_get_more_github">Lisää GitHubista</string>
     <string name="action_refresh">Päivitä</string>
     <string name="action_restart">Uudelleenkäynnistä</string>
     <string name="action_edit">Muokkaa</string>

@@ -170,7 +170,7 @@
     <string name="ephemeris_moonrise_at">Východ mesiaca v %s</string>
     <string name="date_format_short">d.M.</string>
     <string name="dew_point">Rosný bod</string>
-    <string name="hours_of_sun">Hodiny slnka</string>
+    <string name="sunshine_duration">Hodiny slnka</string>
     <string name="daytime">Deň</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_crash_logs">Protokoly o chybách</string>

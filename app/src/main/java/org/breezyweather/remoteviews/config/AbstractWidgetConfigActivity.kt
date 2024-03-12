@@ -545,10 +545,10 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             
             ${getString(R.string.widget_custom_subtitle_keyword_xdwd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdwd_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xnwd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xnwd_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xaqi)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xaqi_description)}
 

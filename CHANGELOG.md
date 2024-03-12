@@ -1,4 +1,18 @@
-# Version 5.1.1-beta (not yet released)
+# Version 5.1.2-beta (not yet released)
+
+**New features**
+- Sunshine duration daily chart (for compatible sources)
+
+**Improvements and fixes**
+- “Hours of sun” was removed and split into:
+  - “Daylight duration” which was moved to Sun section
+  - “Sunshine duration” for compatible sources
+- Icon pack selection dialog was rewritten in Material 3
+- You will now have a confirmation dialog before opening a link
+- [Text widget] Fix custom subtitle being cut if on multiple lines
+
+
+# Version 5.1.1-beta (2024-03-12)
 
 **Improvements and fixes**
 - Main screen pollen card will now only show pollens with at least one day where concentration > 0. Behavior remains the same on daily page and pollen details page.
@@ -487,7 +501,7 @@ Due to a technical change, cached weather data will be cleared on update.
 - [OpenWeather] Fix precipitation probability (@Cod3dDOT)
 - [Pirate Weather] Add minutely and alerts support as secondary source
 - [Météo-France] Add minutely and alerts support as secondary source
-- [Atmo Aura] Is no longer provided as part of Météo-France. Needs to be added as a secondary source for compatible locations.
+- [ATMO AuRA] Is no longer provided as part of Météo-France. Needs to be added as a secondary source for compatible locations.
 
 **Other fixes**
 - Fix location no longer updated when tapped for the first time

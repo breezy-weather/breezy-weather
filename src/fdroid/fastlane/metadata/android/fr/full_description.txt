@@ -32,7 +32,7 @@ Les sources suivantes ne sont pas libres/auto-hébergeables et ne sont disponibl
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
 <li>MET Éireann</li>
-<li>ATMO AURA</li></ul>
+<li>ATMO AuRA</li></ul>
 
 L’application nécessite un certain nombre de permissions ; certaines obligatoires, d’autres facultatives.
 

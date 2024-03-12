@@ -46,8 +46,8 @@
     <color name="pollenRecosanteLevel_4">#ee6344</color>
     <color name="pollenRecosanteLevel_5">#d94049</color>
 
-    <color name="weather_source_accu">#ef5823</color>
-    <color name="weather_source_china">#5ebb8e</color>
+    <!-- Start color of the weather_background_clear_day -->
+    <color name="sunshine">#fdbc4c</color>
 
     <!-- theme. -->
 

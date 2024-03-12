@@ -41,7 +41,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 /**
- * Atmo Aura air quality service.
+ * ATMO Auvergne-Rhône-Alpes air quality service.
  */
 class AtmoAuraService @Inject constructor(
     @ApplicationContext context: Context,
@@ -49,7 +49,7 @@ class AtmoAuraService @Inject constructor(
 ) : HttpSource(), SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "atmoaura"
-    override val name = "Atmo Auvergne-Rhône-Alpes"
+    override val name = "ATMO Auvergne-Rhône-Alpes"
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
     private val mApi by lazy {
@@ -68,7 +68,7 @@ class AtmoAuraService @Inject constructor(
                 && !location.provinceCode.isNullOrEmpty()
                 && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"))
     }
-    override val airQualityAttribution = "Atmo Auvergne-Rhône-Alpes"
+    override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"
     override val pollenAttribution = null
     override val minutelyAttribution = null
     override val alertAttribution = null

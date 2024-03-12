@@ -31,6 +31,7 @@ enum class DailyTrendDisplay(
     TAG_WIND("wind", R.string.wind), 
     TAG_UV_INDEX("uv_index", R.string.uv_index),
     TAG_PRECIPITATION("precipitation", R.string.precipitation),
+    TAG_SUNSHINE("sunshine", R.string.sunshine),
     TAG_FEELS_LIKE("feels_like", R.string.temperature_feels_like);
 
     companion object {
@@ -49,6 +50,7 @@ enum class DailyTrendDisplay(
                     "wind" -> list.add(TAG_WIND)
                     "uv_index" -> list.add(TAG_UV_INDEX)
                     "precipitation" -> list.add(TAG_PRECIPITATION)
+                    "sunshine" -> list.add(TAG_SUNSHINE)
                     "feels_like" -> list.add(TAG_FEELS_LIKE)
                 }
             }

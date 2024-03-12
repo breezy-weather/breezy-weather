@@ -65,7 +65,7 @@
     <string name="ephemeris_moon_phase_waning_gibbous">مانگی تەواوی کەمکردوو</string>
     <string name="ephemeris_moonset_at">مانگ ئاوابوون لە %s</string>
     <string name="nighttime">کاتی شەو</string>
-    <string name="hours_of_sun">کاتژمێرەکانی خۆر</string>
+    <string name="sunshine_duration">کاتژمێرەکانی خۆر</string>
     <string name="humidity">شێداری</string>
     <string name="pressure">پەستانی بەرگەهەوا</string>
     <string name="visibility">بینین</string>

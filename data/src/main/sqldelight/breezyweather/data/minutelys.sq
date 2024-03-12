@@ -13,7 +13,7 @@ CREATE TABLE minutelys(
 CREATE INDEX minutelys_location_formatted_id_index ON minutelys(location_formatted_id);
 
 getMinutelyListByLocationId:
-SELECT *
+SELECT date, minute_interval, precipitation_intensity
 FROM minutelys
 WHERE location_formatted_id = :locationFormattedId
 ORDER BY date;

@@ -70,6 +70,10 @@ class DailyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).precipitationUnit
                 )
+                DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(
+                    activity,
+                    location
+                )
                 DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(
                     activity,
                     location,

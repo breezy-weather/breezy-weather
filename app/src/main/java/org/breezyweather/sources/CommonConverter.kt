@@ -517,7 +517,7 @@ private fun computeWetBulbTemperature(temperature: Double?, relativeHumidity: Do
  * - Air quality
  * - Pollen
  * - UV
- * - Hours of sun
+ * - Sunshine duration
  *
  * @param dailyList daily data
  * @param hourlyList hourly data
@@ -579,10 +579,8 @@ fun completeDailyListFromHourlyList(
             uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
                 hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
-            hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(
-                hourlyListByDay.getOrElse(theDayFormatted) { null },
-                newSun.riseDate,
-                newSun.setDate
+            sunshineDuration = daily.sunshineDuration ?: getSunshineDuration(
+                hourlyListByDay.getOrElse(theDayFormatted) { null }
             )
         )
     }
@@ -1136,37 +1134,19 @@ private fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): U
 }
 
 /**
- * Returns the sunshine duration if present in hourlyList,
- * otherwise fallback to hours of sun using sunrise/set
+ * Returns the sunshine duration if present in hourlyList
  *
  * @param hourlyList hourly list for that day
- * @param sunrise sun rise date for that day
- * @param sunset sun set date for that day
  */
-private fun getHoursOfDay(
-    hourlyList: List<HourlyWrapper>?,
-    sunrise: Date?,
-    sunset: Date?
+private fun getSunshineDuration(
+    hourlyList: List<HourlyWrapper>?
 ): Double? {
-    if (hourlyList != null) {
+    return if (hourlyList != null) {
         val hourlyWithSunshine = hourlyList.filter { it.sunshineDuration != null }
         if (hourlyWithSunshine.isNotEmpty()) {
             return hourlyWithSunshine.sumOf { it.sunshineDuration!! }
-        }
-    }
-
-    return if (sunrise == null || sunset == null) {
-        // Polar night
-        0.0
-    } else if (sunrise.after(sunset)) {
-        null
-    } else {
-        ((sunset.time - sunrise.time) // get delta millisecond.
-                / 1000 // second.
-                / 60 // minutes.
-                / 60.0 // hours.
-                )
-    }
+        } else null
+    } else null
 }
 
 /**

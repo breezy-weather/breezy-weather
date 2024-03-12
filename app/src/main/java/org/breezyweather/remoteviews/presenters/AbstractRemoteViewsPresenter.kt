@@ -50,7 +50,9 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
+import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.isIndexValid
+import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
@@ -462,6 +464,13 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
                         weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
                                 weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
+                    } else context.getString(R.string.null_data_text)
+                ).replace(
+                    "$" + i + "pis$",
+                    if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen?.pollensWithConcentration?.isNotEmpty() == true) {
+                        // TODO #782: Tricky as we need to handle PollenIndexSource when applicable
+                        // TODO #782: Add to AbstractWidgetConfigActivity::subtitleCustomKeywords
+                        weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
                     } else context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",

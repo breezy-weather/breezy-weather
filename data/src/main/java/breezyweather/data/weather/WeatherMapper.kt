@@ -26,8 +26,6 @@ import java.util.Date
 object WeatherMapper {
 
     fun mapWeather(
-        _id: Long,
-        locationFormattedId: String,
         refreshTime: Long?,
         mainUpdateTime: Long?,
         airQualityUpdateTime: Long?,
@@ -206,7 +204,7 @@ object WeatherMapper {
         urticaceae: Long?,
         willow: Long?,
         uvIndex: Double?,
-        hoursOfSun: Double?
+        sunshineDuration: Double?
     ): Daily = Daily(
         Date(date),
         HalfDay(
@@ -323,12 +321,10 @@ object WeatherMapper {
             willow = willow?.toInt()
         ),
         UV(uvIndex),
-        hoursOfSun
+        sunshineDuration
     )
 
     fun mapHourly(
-        _id: Long,
-        locationFormattedId: String,
         date: Long,
         daylight: Boolean,
         weatherText: String?,
@@ -413,8 +409,6 @@ object WeatherMapper {
     )
 
     fun mapAlert(
-        _id: Long,
-        locationFormattedId: String,
         alertId: String,
         startDate: Long?,
         endDate: Long?,
@@ -433,8 +427,6 @@ object WeatherMapper {
     )
 
     fun mapMinutely(
-        _id: Long,
-        locationFormattedId: String,
         date: Long,
         minuteInterval: Long,
         intensity: Double?

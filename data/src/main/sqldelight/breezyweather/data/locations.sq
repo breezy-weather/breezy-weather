@@ -30,23 +30,23 @@ CREATE TABLE locations(
 );
 
 getLocationById:
-SELECT *
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
 FROM locations
 WHERE formatted_id = :formattedId;
 
 getAllLocations:
-SELECT *
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
 FROM locations
 ORDER BY list_order;
 
 getXLocations:
-SELECT *
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
 FROM locations
 ORDER BY list_order
 LIMIT :limit;
 
 getFirstLocation:
-SELECT *
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
 FROM locations
 ORDER BY list_order
 LIMIT 1;

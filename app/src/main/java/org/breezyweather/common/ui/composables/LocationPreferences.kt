@@ -76,8 +76,7 @@ fun LocationPreference(
                 title = stringResource(R.string.settings_location_service),
                 iconId = R.drawable.ic_location,
                 selectedKey = SettingsManager.getInstance(activity).locationSource,
-                sourceList = locationSources.associate { it.id to it.name },
-                helpMeChoose = null
+                sourceList = locationSources.associate { it.id to it.name }
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
                 onClose(null)
@@ -130,6 +129,7 @@ fun SecondarySourcesPreference(
     location: Location,
     onClose: ((location: Location?) -> Unit)
 ) {
+    val dialogLinkOpenState = remember { mutableStateOf(false) }
     val hasChangedMainSource = remember { mutableStateOf(false) }
     val hasChangedASecondarySource = remember { mutableStateOf(false) }
     val weatherSource = remember { mutableStateOf(location.weatherSource) }
@@ -203,7 +203,7 @@ fun SecondarySourcesPreference(
                         surface = MaterialTheme.colorScheme.errorContainer,
                         onSurface = MaterialTheme.colorScheme.onErrorContainer,
                         modifier = Modifier.clickable {
-                            uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md")
+                            dialogLinkOpenState.value = true
                         }
                     ) {
                         Text(
@@ -417,6 +417,13 @@ fun SecondarySourcesPreference(
             }
         }
     )
+
+    if (dialogLinkOpenState.value) {
+        AlertDialogLink(
+            onClose = { dialogLinkOpenState.value = false },
+            linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"
+        )
+    }
 }
 
 @Composable
@@ -426,11 +433,11 @@ fun SourceView(
     selectedKey: String,
     enabled: Boolean = true,
     sourceList: Map<String, String>,
-    helpMeChoose: String? = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md",
     card: Boolean = false,
     onValueChanged: (String) -> Unit
 ) {
-    val uriHandler = LocalUriHandler.current
+    val dialogLinkOpenState = remember { mutableStateOf(false) }
+
     ListPreferenceView(
         title = title,
         iconId = iconId,
@@ -443,20 +450,27 @@ fun SourceView(
         onValueChanged = { sourceId ->
             onValueChanged(sourceId)
         },
-        dismissButton = if (!helpMeChoose.isNullOrEmpty()) {
-            {
-                TextButton(
-                    onClick = { uriHandler.openUri(helpMeChoose) }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_help_me_choose),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
-                    )
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    dialogLinkOpenState.value = true
                 }
+            ) {
+                Text(
+                    text = stringResource(R.string.action_help_me_choose),
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelLarge,
+                )
             }
-        } else null,
+        },
         enabled = enabled,
         card = card
     )
+
+    if (dialogLinkOpenState.value) {
+        AlertDialogLink(
+            onClose = { dialogLinkOpenState.value = false },
+            linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md"
+        )
+    }
 }

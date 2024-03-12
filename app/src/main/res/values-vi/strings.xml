@@ -99,7 +99,6 @@
     <string name="settings_weather_sources_summary">Cài đặt nhà cung cấp thời tiết</string>
     <string name="settings_icon_packs_weather_icon_grey">Biểu tượng xám</string>
     <string name="settings_icon_packs_weather_icon_light">Biểu tượng sáng</string>
-    <string name="settings_icon_packs_get_more_store">Lấy thêm từ cửa hàng ứng dụng</string>
     <string name="settings_main_section_options">Tùy chọn</string>
     <string name="settings_main_background_animation_enabled">Bật</string>
     <string name="settings_main_background_animation_disabled">Tắt</string>
@@ -137,7 +136,7 @@
     <string name="daytime">Ban ngày</string>
     <string name="nighttime">Ban đêm</string>
     <string name="details">Chi tiết</string>
-    <string name="hours_of_sun">Số giờ nắng</string>
+    <string name="sunshine_duration">Số giờ nắng</string>
     <string name="humidity">Độ ẩm</string>
     <string name="humidity_dew_point">Độ ẩm / Điểm sương</string>
     <string name="pressure">Áp suất</string>
@@ -296,7 +295,6 @@
     <string name="settings_icon_packs_title">Gói biểu tượng</string>
     <string name="settings_icon_packs_check_details">Kiểm tra chi tiết</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Biểu tượng thời tiết</string>
-    <string name="settings_icon_packs_get_more_github">Lấy thêm từ GitHub</string>
     <string name="settings_units">Đơn vị</string>
     <string name="settings_units_summary">Nhiệt độ, lượng mưa, khoảng cách, vận tốc, áp suất</string>
     <string name="settings_units_temperature">Đơn vị nhiệt độ</string>

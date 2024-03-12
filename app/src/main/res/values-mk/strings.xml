@@ -360,7 +360,6 @@
     <string name="settings_appearance">Изглед</string>
     <string name="settings_appearance_summary">Јазик, темен режим, пакет со икони, единици</string>
     <string name="settings_icon_packs_weather_icon_light">Светлосна икона</string>
-    <string name="settings_icon_packs_get_more_store">Добијте повеќе од продавницата за апликации</string>
     <string name="settings_units_pressure">Единица за притисок</string>
     <string name="settings_main">Главен екран</string>
     <string name="settings_main_summary">Ред на картички, прикажани ставки, анимации</string>
@@ -455,7 +454,7 @@
     <string name="ephemeris_sunset_at">Зајдисонце во %s</string>
     <string name="ephemeris_moonrise_at">Изгрејсонце за %s</string>
     <string name="ephemeris_moonset_at">Заоѓање на месечината на %s</string>
-    <string name="hours_of_sun">Сончеви часови</string>
+    <string name="sunshine_duration">Сончеви часови</string>
     <string name="humidity">Влажност</string>
     <string name="pressure">Притисок</string>
     <string name="cloud_cover">Покривка на облаци</string>
@@ -623,7 +622,6 @@
     <string name="settings_icon_packs_weather_icon_grey">Сива икона</string>
     <string name="settings_icon_packs_weather_icon_dark">Темна икона</string>
     <string name="settings_icon_packs_get_more">Добијте повеќе</string>
-    <string name="settings_icon_packs_get_more_github">Добијте повеќе од GitHub</string>
     <string name="settings_changes_apply_after_restart">Промените ќе стапат на сила по рестартирањето</string>
     <string name="settings_items_drag_to_sort">Допрете за да ги повлечете ставките од списокот за подредување</string>
     <string name="settings_item_delete">Избришете ја оваа ставка</string>

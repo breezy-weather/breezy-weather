@@ -1,0 +1,72 @@
+Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un fork di Geometric Weather, che aggiunge nuove funzionalità e fonti di dati, modernizza il codice, risolve vari bug, aggiorna le dipendenze per ragioni di sicurezza, eccetera, continuando allo stesso tempo a perseguire l'obbiettivo di un'esperienza fluida per utenti e sviluppatori.
+
+Nell'app troverete:<ul>
+<li>Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)</li>
+<li>Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni, sunshine duration, feels like)</li>
+<li>Hourly details (Humidity / Dew point, Pressure, Cloud cover, Visibility)</li>
+<li>Precipitazioni durante l'ora a venire</li>
+<li>Qualità dell'aria, allergeni e dati sole e luna</li>
+<li>Avvisi di maltempo e di precipitazioni</li></ul>
+
+L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:<ul>
+<li>Tema scuro automatico</li>
+<li>Temi di icone personalizzati</li>
+<li>Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.</li>
+<li>Sfondo animato</li></ul>
+
+<strong>Sources</strong>
+Available worldwide weather sources:<ul>
+<li>Open-Meteo</li>
+<li>AccuWeather¹</li>
+<li>MET Norway¹</li>
+<li>OpenWeatherMap¹²</li>
+<li>Pirate Weather¹³</li>
+<li>HERE¹³</li>
+<li>Météo France¹</li>
+<li>Danmarks Meteorologiske Institut (DMI)¹</li></ul>
+
+Available only-national weather sources:<ul>
+<li>Varie fonti per la Cina¹</li>
+<li>National Weather Service (NWS)¹</li>
+<li>Bright Sky (DWD)</li>
+<li>Environment and Climate Change Canada¹</li>
+<li>Israel Meteorological Service (IMS)¹</li>
+<li>SMHI¹</li>
+<li>MET Éireann¹</li></ul>
+
+Available weather sources:<ul>
+<li>ATMO AuRA¹</li>
+<li>Recosanté</li></ul>
+
+¹ Not included in versions with suffix _fdroid
+² Often rate-limited
+³ Requires an API key
+
+<strong>Versions</strong>
+Depending on your F-Droid repositories, you may be able to download different flavors of Breezy Weather:
+- Versions with no suffix: standard version, fully open source
+- Versions with _gplay suffix: same as standard + includes proprietary Fused location for Google Play Services users
+- Versions with _fdroid suffix: same as standard without all sources that are not libre/self-hostable
+
+<strong>Autorizzazioni</strong>
+Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
+
+Autorizzazioni obbligatorie:<ul>
+<li>Rete (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): consente all'applicazione di ottenere dati meteo da fornitori via Internet</li>
+</ul>
+
+Autorizzazioni facoltative: <ul>
+<li>Aggiornamenti in background (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): consente all'app di aggiornare i dati meteo in background and send today/tomorrow forecast notification</li>
+<li>Ignora le ottimizzazioni  batteria (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): impedisce che l'applicazione venga uccisa in background. Metodo potenzialmente più affidabile per recuperare i dati meteo in background su alcuni dispositivi</li>
+<li>Notification (POST_NOTIFICATIONS): Allows the app to send you optional notifications (alerts, precipitation, today/tomorrow forecast, notification-widget, update progress of background updates, etc)</li>
+<li>Posizione (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): consente all'applicazione di mostrare il meteo nella posizione corrente</li>
+<li>Archiviazione (READ_EXTERNAL_STORAGE, dellaWRITE_EXTERNAL_STORAGE): Consente all'applicazione di impostare lo sfondo e/o i widget del meteo in tempo reale su alcuni dispositivi</li>
+<li>Tile (EXPAND_STATUS_BAR): consente all'app di avviarsi dalle impostazioni rapide</li>
+</ul>
+
+<strong>License</strong>
+<ul>
+<li>GNU Lesser General Public License v3.0</li>
+<li>This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.</li>
+<li>Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.</li>
+</ul>

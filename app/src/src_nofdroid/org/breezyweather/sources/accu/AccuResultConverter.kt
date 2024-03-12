@@ -238,7 +238,7 @@ private fun getDailyList(
             ),
             pollen = if (supportsPollen) getDailyPollen(forecasts.AirAndPollen) else null,
             uV = getDailyUV(forecasts.AirAndPollen),
-            hoursOfSun = forecasts.HoursOfSun
+            sunshineDuration = forecasts.HoursOfSun
         )
     }
 }

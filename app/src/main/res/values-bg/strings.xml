@@ -242,7 +242,7 @@
     <string name="ephemeris_moonset_at">Залез на луната в %s</string>
     <string name="daytime">Дневно</string>
     <string name="nighttime">Нощно</string>
-    <string name="hours_of_sun">Слънчеви часове</string>
+    <string name="sunshine_duration">Слънчеви часове</string>
     <string name="humidity">Влажност</string>
     <string name="humidity_dew_point">Влажност / Точка на оросяване</string>
     <string name="pressure">Налягане</string>
@@ -385,8 +385,6 @@
     <string name="settings_icon_packs_title">Пакети икони</string>
     <string name="settings_appearance_language_title">Език</string>
     <string name="settings_location_access_precise_title">Използване на GPS на устройството</string>
-    <string name="settings_icon_packs_get_more_store">Изтегли още от магазина за приложения</string>
-    <string name="settings_icon_packs_get_more_github">Изтегли още от GitHub</string>
     <string name="settings_units">Мерни Единици</string>
     <string name="settings_main">Начален екран</string>
     <string name="settings_notifications_precipitations_title">Известия за валежи</string>

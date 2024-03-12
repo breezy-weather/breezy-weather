@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.Pollen
+import org.breezyweather.R
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 
@@ -134,6 +135,20 @@ fun Pollen.getIndexNameFromSource(
 ): String? {
     return getConcentration(pollen)?.let {
         context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
+    }
+}
+
+fun Pollen.getSummary(context: Context): String {
+    return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
+        getName(context, it) + context.getString(R.string.colon_separator) +
+                getIndexName(context, it)
+    }
+}
+
+fun Pollen.getSummaryFromSource(context: Context, source: PollenIndexSource): String {
+    return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
+        getName(context, it) + context.getString(R.string.colon_separator) +
+                getIndexNameFromSource(context, it, source)
     }
 }
 

@@ -16,7 +16,7 @@
     <string name="humidity">Humitat</string>
     <string name="humidity_dew_point">Humitat / Punt de rosada</string>
     <string name="uv_index">Índex UV</string>
-    <string name="hours_of_sun">Hores de sol</string>
+    <string name="sunshine_duration">Hores de sol</string>
     <string name="notification_channel_forecast">Pronòstic</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Nit</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Nuvolositat</string>
     <string name="ceiling">Plafó</string>
     <string name="settings_icon_packs_get_more">Obtingues més</string>
-    <string name="settings_icon_packs_get_more_store">Obtenir més a la botiga</string>
-    <string name="settings_icon_packs_get_more_github">Obtenir més a GitHub</string>
     <string name="action_refresh">Actualitza</string>
     <string name="action_restart">Reinicia</string>
     <string name="action_edit">Edita</string>

@@ -65,6 +65,19 @@ object Migrations {
                         }
                     }
                 }
+                if (oldVersion < 50102) {
+                    // V5.1.2 adds daily sunshine chart
+                    try {
+                        val curDailyTrendDisplayList =
+                            DailyTrendDisplay.toValue(SettingsManager.getInstance(context).dailyTrendDisplayList)
+                        if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
+                            SettingsManager.getInstance(context).dailyTrendDisplayList =
+                                DailyTrendDisplay.toDailyTrendDisplayList("${curDailyTrendDisplayList}&sunshine")
+                        }
+                    } catch (ignored: Throwable) {
+                        // ignored
+                    }
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE

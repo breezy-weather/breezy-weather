@@ -1,6 +1,6 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.1.0 or later of Breezy Weather**.
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.1.1 or later of Breezy Weather**.
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features.
 
@@ -102,18 +102,18 @@ Legend:
 | **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | ✅   |
 | **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌   |
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
-| **Hours of sun**           | ✅ Sunshine | ✅ Sunshine  | ✅          | ✅           | ✅            | ✅   |
+| **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   |
 
-| National sources           | China   | NWS | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
-|----------------------------|---------|-----|------------|---------|-----|------|-------------|
-| **Humidity**               | Current | ✅   | ✅          | Current | ✅   | ✅    | ✅           |
-| **Dew point**              | Current | ✅   | ✅          | Current | ✅   | ✅    | ✅           |
-| **Pressure**               | ❌       | ✅   | ✅          | Current | ❌   | ✅    | ✅           |
-| **Cloud cover**            | ❌       | ✅   | ✅          | ❌       | ❌   | ❌    | ❌           |
-| **Visibility**             | Current | ✅   | ✅          | Current | ❌   | ✅    | ❌           |
-| **Ceiling**                | ❌       | ❌   | ❌          | ❌       | ❌   | ❌    | ❌           |
-| **Precipitation duration** | ❌       | ❌   | ❌          | ❌       | ❌   | ❌    | ❌           |
-| **Hours of sun**           | ✅       | ✅   | ✅ Sunshine | ✅       | ✅   | ✅    | ✅           |
+| National sources           | China   | NWS | Bright Sky | ECCC          | IMS | SMHI | MET Éireann |
+|----------------------------|---------|-----|------------|---------------|-----|------|-------------|
+| **Humidity**               | Current | ✅   | ✅          | Current       | ✅   | ✅    | ✅           |
+| **Dew point**              | Current | ✅   | ✅          | Current       | ✅   | ✅    | ✅           |
+| **Pressure**               | ❌       | ✅   | ✅          | Current       | ❌   | ✅    | ✅           |
+| **Cloud cover**            | ❌       | ✅   | ✅          | ❌             | ❌   | ❌    | ❌           |
+| **Visibility**             | Current | ✅   | ✅          | Current       | ❌   | ✅    | ❌           |
+| **Ceiling**                | ❌       | ❌   | ❌          | ❌             | ❌   | ❌    | ❌           |
+| **Precipitation duration** | ❌       | ❌   | ❌          | ❌             | ❌   | ❌    | ❌           |
+| **Sunshine duration**      | ❌       | ❌   | ✅          | *In progress* | ❌   | ❌    | ❌           |
 
 ¹ Median from daily forecast
 
@@ -176,7 +176,7 @@ Legend:
 | **Visibility**             | Current        | ✅    |
 | **Ceiling**                | ❌              | ❌    |
 | **Precipitation duration** | ❌              | ❌    |
-| **Hours of sun**           | ✅              | ✅    |
+| **Sunshine duration**           | ✅              | ✅    |
 | **Search**                 | Default        | ✅    |
 | **Reverse geocoding**      | ❌¹             | ✅    |
 
@@ -193,7 +193,7 @@ Legend:
 | **Alerts**                         | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* |
 | **Normals**                        | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             |
 
-| National sources                   | China | NWS           | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AURA     |
+| National sources                   | China | NWS           | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
 |------------------------------------|-------|---------------|------------|--------|-------------------------------|-------------|---------------|
 | **Air quality**                    | China | ❌             | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
 | **Pollen**                         | ❌     | ❌             | ❌          | ❌      | ❌                             | ❌           | ❌             |

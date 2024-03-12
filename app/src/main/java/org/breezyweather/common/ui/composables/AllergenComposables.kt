@@ -45,7 +45,9 @@ import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
 import org.breezyweather.domain.weather.model.getIndexNameFromSource
 import org.breezyweather.domain.weather.model.validPollens
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
+import java.text.Collator
 
 @Composable
 fun PollenGrid(
@@ -59,7 +61,13 @@ fun PollenGrid(
         maxItemsInEachRow = 2
     ) {
         specificPollens.ifEmpty { pollen.validPollens }
-            .sortedBy { va -> context.getString(va.pollenName) }
+            .sortedWith { va1, va2 ->
+                Collator.getInstance(SettingsManager.getInstance(context).language.locale)
+                    .compare(
+                        context.getString(va1.pollenName),
+                        context.getString(va2.pollenName)
+                    )
+            }
             .forEach { validPollen ->
                 PollenItem(
                     modifier = Modifier.fillMaxWidth(0.5f),

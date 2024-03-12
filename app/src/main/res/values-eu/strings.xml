@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hours_of_sun">Eguzki orduak</string>
+    <string name="sunshine_duration">Eguzki orduak</string>
     <string name="humidity">Hezetasuna</string>
     <string name="humidity_dew_point">Hezetasuna / Ihintz-tenperatura</string>
     <string name="pressure">Presioa</string>
@@ -407,7 +407,6 @@
     <string name="settings_icon_packs_title">Ikono paketeak</string>
     <string name="settings_icon_packs_check_details">Egiaztatu xehetasunak</string>
     <string name="settings_icon_packs_get_more">Gehiago lortu</string>
-    <string name="settings_icon_packs_get_more_github">Lortu gehiago GitHub-etik</string>
     <string name="settings_main_section_options">Aukerak</string>
     <string name="settings_main_threshold_lines_on_charts">Atalase-lerroak grafikoetan</string>
     <string name="settings_main_gravity_sensor_switch">Grabitate sentsorea</string>
@@ -434,7 +433,6 @@
     <string name="settings_icon_packs_weather_icon_light">Ikono argia</string>
     <string name="settings_icon_packs_weather_icon_grey">Ikono grisa</string>
     <string name="settings_icon_packs_weather_icon_dark">Ikono iluna</string>
-    <string name="settings_icon_packs_get_more_store">Lortu gehiago app dendatik</string>
     <string name="settings_units_precipitation">Prezipitazio unitatea</string>
     <string name="settings_units_distance">Distantzia unitatea</string>
     <string name="settings_units_pressure">Presio unitatea</string>

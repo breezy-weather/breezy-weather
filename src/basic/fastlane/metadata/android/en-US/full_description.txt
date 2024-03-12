@@ -30,7 +30,7 @@ Current supported weather sources:<ul>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
 <li>MET Éireann</li>
-<li>ATMO AURA</li>
+<li>ATMO AuRA</li>
 <li>Recosanté</li></ul>
 
 This app requests a number of permissions; some required, some optional.

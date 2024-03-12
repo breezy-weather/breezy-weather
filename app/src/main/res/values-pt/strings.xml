@@ -429,11 +429,10 @@
     <string name="settings_icon_packs_get_more">Obter mais</string>
     <string name="settings_units_precipitation">Unidade de precipitação</string>
     <string name="settings_color_day_night">Dia / Noite</string>
-    <string name="settings_icon_packs_get_more_store">Obtenha mais na Play Store</string>
     <string name="temperature_degree_day">Graus dia</string>
     <string name="wind_direction_short_N">N</string>
     <string name="wind_direction_short_NE">NE</string>
-    <string name="hours_of_sun">Horas de sol</string>
+    <string name="sunshine_duration">Horas de sol</string>
     <string name="weather_kind_haze">Neblina</string>
     <string name="weather_kind_thunderstorm">Trovoada</string>
     <string name="widget_style_mini">Mini</string>
@@ -499,7 +498,6 @@
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para a sua localização atual.</string>
-    <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
     <string name="settings_units_temperature">Unidade de temperatura</string>
     <string name="air_quality_index">Índice de qualidade do ar</string>
     <string name="air_quality_level_3_description">A qualidade do ar atingiu um nível elevado de poluição e está prejudicial para grupos sensíveis. Reduza o tempo gasto ao ar livre se sente sintomas como dificuldade para respirar ou irritação na garganta.</string>

@@ -16,7 +16,7 @@
     <string name="humidity">Umidade</string>
     <string name="humidity_dew_point">Humidade / Ponto de orvalho</string>
     <string name="uv_index">Índice UV</string>
-    <string name="hours_of_sun">Horas de sol</string>
+    <string name="sunshine_duration">Horas de sol</string>
     <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Noite</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Nebulosidade</string>
     <string name="ceiling">Teto de nuvens</string>
     <string name="settings_icon_packs_get_more">Obter mais</string>
-    <string name="settings_icon_packs_get_more_store">Obtenha mais na Play Store</string>
-    <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
     <string name="action_refresh">Atualizar</string>
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>

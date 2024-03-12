@@ -16,7 +16,7 @@
     <string name="humidity">Páratartalom</string>
     <string name="humidity_dew_point">Páratartalom / Harmatpont</string>
     <string name="uv_index">UV-szint</string>
-    <string name="hours_of_sun">Napsütéses órák</string>
+    <string name="sunshine_duration">Napsütéses órák</string>
     <string name="notification_channel_forecast">Előrejelzés</string>
     <string name="daytime">Nappal</string>
     <string name="nighttime">Este</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Felhőtakaró</string>
     <string name="ceiling">Felhőalap</string>
     <string name="settings_icon_packs_get_more">Szerezzen be többet</string>
-    <string name="settings_icon_packs_get_more_store">Szerezzen be többet az alkalmazásboltból</string>
-    <string name="settings_icon_packs_get_more_github">Szerezzen be többet a GitHubról</string>
     <string name="action_refresh">Frissítés</string>
     <string name="action_restart">Újraindítás</string>
     <string name="action_edit">Szerkesztés</string>

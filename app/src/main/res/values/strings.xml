@@ -223,7 +223,8 @@
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
-    <string name="hours_of_sun">Hours of sun</string>
+    <string name="sunshine">Sunshine</string>
+    <string name="sunshine_duration">Sunshine duration</string>
     <string name="humidity">Humidity</string>
     <!-- 10 characters max version of humidity to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="humidity_short">Humidity</string>
@@ -441,6 +442,7 @@
     <string name="widget_custom_subtitle_keyword_xdwd_description">Daytime Wind of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nighttime Wind of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Air Quality Index of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Pollen index summary of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sunrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Sunset of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Moonrise of today, tomorrow, …, 4 days later</string>
@@ -544,8 +546,6 @@
     <string name="settings_icon_packs_weather_icon_dark">Dark icon</string>
     <string name="settings_icon_packs_get_more">Get more</string>
     <string name="settings_icon_providers_app_store" translatable="false">@string/action_app_store</string>
-    <string name="settings_icon_packs_get_more_store">Get more from app store</string>
-    <string name="settings_icon_packs_get_more_github">Get more from GitHub</string>
     <string name="settings_units">Units</string>
     <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure</string>
     <string name="settings_units_temperature">Temperature unit</string>
@@ -724,6 +724,8 @@
     <string name="about_translators">Translators</string>
     <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
     <string name="about_contribution_designer">Logo designer</string>
+    <!-- %s is a link -->
+    <string name="about_open_link_message">Open %s?</string>
     <!-- Weather condition text -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
     <!-- We don’t use all of them currently, but they might come useful some day -->
@@ -876,6 +878,7 @@
     <string name="widget_custom_subtitle_keyword_xdwd" translatable="false">$0dwd$, $1dwd$, …, $4dwd$</string>
     <string name="widget_custom_subtitle_keyword_xnwd" translatable="false">$0nwd$, $1nwd$, …, $4nwd$</string>
     <string name="widget_custom_subtitle_keyword_xaqi" translatable="false">$0aqi$, $1aqi$, …, $4aqi$</string>
+    <string name="widget_custom_subtitle_keyword_xpis" translatable="false">$0pis$, $1pis$, …, $4pis$</string>
     <string name="widget_custom_subtitle_keyword_xsr" translatable="false">$0sr$, $1sr$, …, $4sr$</string>
     <string name="widget_custom_subtitle_keyword_xss" translatable="false">$0ss$, $1ss$, …, $4ss$</string>
     <string name="widget_custom_subtitle_keyword_xmr" translatable="false">$0mr$, $1mr$, …, $4mr$</string>
@@ -914,6 +917,7 @@
     <string name="tag_pressure" translatable="false">@string/pressure</string>
     <string name="tag_cloud_cover" translatable="false">@string/cloud_cover</string>
     <string name="tag_visibility" translatable="false">@string/visibility</string>
+    <string name="tag_sunshine" translatable="false">@string/sunshine</string>
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>

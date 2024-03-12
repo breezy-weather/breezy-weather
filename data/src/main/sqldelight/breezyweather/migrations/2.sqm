@@ -1,0 +1,2 @@
+ALTER TABLE dailys
+RENAME COLUMN hours_of_sun TO sunshine_duration;

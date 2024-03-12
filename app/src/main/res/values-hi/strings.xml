@@ -167,7 +167,7 @@
     <string name="pollen_mold">ढालना</string>
     <string name="daytime">दिन</string>
     <string name="nighttime">रात</string>
-    <string name="hours_of_sun">सूर्य का समय</string>
+    <string name="sunshine_duration">सूर्य का समय</string>
     <string name="ephemeris_moonrise_at">चन्द्रोदय %s पर</string>
     <string name="ephemeris_moonset_at">%s पर चन्द्रास्त</string>
     <string name="pollen_level_0">कोई नहीं</string>

@@ -176,7 +176,7 @@
     <string name="ephemeris_moonset_at">Заход месяца ў %s</string>
     <string name="daytime">Дзень</string>
     <string name="nighttime">Ноч</string>
-    <string name="hours_of_sun">Сонечны гадзіннік</string>
+    <string name="sunshine_duration">Сонечны гадзіннік</string>
     <string name="humidity">Вільготнасць</string>
     <string name="pressure">Ціск</string>
     <string name="visibility">Бачнасць</string>
@@ -420,8 +420,6 @@
     <string name="settings_icon_packs_weather_icon_light">Светлы абразок</string>
     <string name="settings_icon_packs_weather_icon_grey">Шэры абразок</string>
     <string name="settings_icon_packs_weather_icon_dark">Цёмны абразок</string>
-    <string name="settings_icon_packs_get_more_store">Атрымаеце больш у краме прыкладанняў</string>
-    <string name="settings_icon_packs_get_more_github">Атрымайце больш на GitHub</string>
     <string name="settings_units">Адзінкі вымярэння</string>
     <string name="settings_units_summary">Тэмпература, ападкі, адлегласць, хуткасць, ціск</string>
     <string name="settings_units_temperature">Адзінка вымярэння тэмпературы</string>

@@ -86,7 +86,6 @@
     <string name="settings_widgets_day_night_temp_reversed_title">Zamijeni redoslijed temperatura dan/noć</string>
     <string name="settings_icon_packs_title">Paketi ikona</string>
     <string name="widget_day">Dnevno</string>
-    <string name="settings_icon_packs_get_more_store">Preuzmite više iz trgovine aplikacija</string>
     <string name="settings_icon_packs_check_details">Provjerite detalje</string>
     <string name="uv_alert_level">Upozorenje</string>
     <string name="precipitation_intensity_rainstorm">Kišna oluja</string>
@@ -331,7 +330,6 @@
     <string name="widget_clock_day_vertical">Sat + Dnevno (Okomiti stil)</string>
     <string name="short_friday">Pet</string>
     <string name="settings_main_hourly_trends_title">Trendovi po satu</string>
-    <string name="settings_icon_packs_get_more_github">Preuzmite više sa GitHub-a</string>
     <string name="temperature_degree_day_cooling">Temperatura za hlađenje</string>
     <string name="air_quality_co_info_origin">Nastaje nepotpunim izgaranjem ugljičnih goriva kao što su drvo, benzin, ugljen, prirodni plin i kerozin u jednostavnim štednjacima, otvorenim vatrama, fenjerima, pećima, kaminima. Prevladavajući izvor ugljikovog monoksida (CO) u okolnom zraku su motorna vozila.</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
@@ -432,7 +430,7 @@
     <string name="weather_source_openweather_version_3_0">Verzija 3.0</string>
     <string name="weather_api_unauthorized_title">Pristup API-ju nije autoriziran</string>
     <string name="dew_point">Rosište</string>
-    <string name="hours_of_sun">Sati Sunca</string>
+    <string name="sunshine_duration">Sati Sunca</string>
     <string name="daytime">Dan</string>
     <string name="wind_strength_1">Lahor</string>
     <string name="weather_source_accu_preference_hours_12">12 sati</string>

@@ -59,7 +59,7 @@ CREATE TABLE hourlys(
 CREATE INDEX hourlys_location_formatted_id_index ON hourlys(location_formatted_id);
 
 getHourlyListByLocationId:
-SELECT *
+SELECT date, daylight, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility
 FROM hourlys
 WHERE location_formatted_id = :locationFormattedId
 ORDER BY date;

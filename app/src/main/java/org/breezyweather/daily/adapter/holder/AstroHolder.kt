@@ -24,6 +24,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
@@ -66,7 +67,9 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     )
                 )
             mSun.visibility = View.VISIBLE
-            mSunText.text = (model.sun.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.sun.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
+            mSunText.text = (model.sun.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
+                    (model.sun.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
+                    (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
         } else {
             mSun.visibility = View.GONE
         }

@@ -30,7 +30,7 @@ Les fournisseurs de données météo disponibles sont les suivants :<ul>
 <li>Israel Meteorological Service (IMS)</li>
 <li>SMHI</li>
 <li>MET Éireann</li>
-<li>ATMO AURA</li>
+<li>ATMO AuRA</li>
 <li>Recosanté</li></ul>
 
 L’application nécessite un certain nombre de permissions ; certaines obligatoires, d’autres facultatives.

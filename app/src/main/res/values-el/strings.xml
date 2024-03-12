@@ -16,7 +16,7 @@
     <string name="humidity">Υγρασία</string>
     <string name="humidity_dew_point">Υγρασία / Σημείο δρόσου</string>
     <string name="uv_index">Δείκτης UV</string>
-    <string name="hours_of_sun">Ώρες ηλιοφάνειας</string>
+    <string name="sunshine_duration">Ώρες ηλιοφάνειας</string>
     <string name="notification_channel_forecast">Πρόγνωση</string>
     <string name="daytime">Ημέρα</string>
     <string name="nighttime">Νύχτα</string>
@@ -28,8 +28,6 @@
     <string name="cloud_cover">Συννεφιά</string>
     <string name="ceiling">Ανώτατο ύψος κάλυψης νεφών</string>
     <string name="settings_icon_packs_get_more">Περισσότερα</string>
-    <string name="settings_icon_packs_get_more_store">Περισσότερα στο App Store</string>
-    <string name="settings_icon_packs_get_more_github">Περισσότερα στο GitHub</string>
     <string name="action_refresh">Ανανέωση</string>
     <string name="action_restart">Επανεκκίνηση</string>
     <string name="action_edit">Επεξεργασία</string>

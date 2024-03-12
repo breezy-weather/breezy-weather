@@ -122,6 +122,13 @@ If total of all precipitation is 0, it will not be shown.
 If total of all precipitation for all days is 0, precipitation trends will be hidden.
 
 
+#### Sunshine trends
+
+Each column shows the sunshine duration in hours for the day (bar + text) from 00:00 to 23:59.
+
+Bar color is always light orange. It’s filled relative to the maximum daylight duration (from sunrise to sunset) of the daily forecast period. For example, if there are 6 hours of sunshine today, and the maximum daylight duration is 12 hours, the bar will be half-filled (50%).
+
+
 #### Feels like trends
 
 Feels like temperature is the first available data from this list:
@@ -289,7 +296,7 @@ Both the circle and bars are filled with a different color for each category, so
 
 *Currently show allergens for current day, will be updated in the future to show for the current hour.*
 
-Starting from v5.1.1, only show allergens with at least one day where concentration > 0. The details of supported allergens by the source can be seen by tapping on the card and accessing the pollen details page.
+Only show allergens with at least one day where concentration > 0. The details of supported allergens by the source can be seen by tapping on the card and accessing the pollen details page.
 
 *Will be completed later*
 

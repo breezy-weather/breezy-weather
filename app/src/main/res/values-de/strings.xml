@@ -57,13 +57,11 @@
     <string name="settings_follow_system">Systemstandard</string>
     <string name="notification_channel_forecast">Vorhersage</string>
     <string name="settings_icon_packs_get_more">Mehr erhalten</string>
-    <string name="settings_icon_packs_get_more_github">Mehr von GitHub</string>
-    <string name="settings_icon_packs_get_more_store">Mehr von Google Play</string>
     <string name="action_set">Festlegen</string>
     <string name="pollen_poaeceae">Gräser</string>
     <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
-    <string name="hours_of_sun">Sonnenstunden</string>
+    <string name="sunshine_duration">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
     <string name="humidity_dew_point">Luftfeuchte / Taupunkt</string>
     <string name="precipitation_ice">Eis</string>

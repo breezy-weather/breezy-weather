@@ -176,7 +176,8 @@
     <!-- Other weather details vocabulary -->
     <string name="daytime">Tagtempo</string>
     <string name="nighttime">Noktotempo</string>
-    <string name="hours_of_sun">Horoj da suno</string>
+    <string name="sunshine">Sunbrilo</string>
+    <string name="sunshine_duration">Daŭro da sunbrilo</string>
     <string name="humidity">Humideco</string>
     <string name="humidity_short">Humideco</string>
     <string name="humidity_dew_point">Humideco / Rosopunkto</string>

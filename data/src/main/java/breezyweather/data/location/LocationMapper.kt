@@ -6,8 +6,6 @@ import java.util.TimeZone
 object LocationMapper {
 
     fun mapLocation(
-        formattedId: String,
-        listOrder: Long,
         cityId: String?,
         latitude: Double,
         longitude: Double,
