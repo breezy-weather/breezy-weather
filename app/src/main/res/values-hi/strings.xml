@@ -237,7 +237,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">स्थान अनुमतियों की जाँच करें</string>
     <string name="settings_background_updates_refresh_12h">12 घंटे</string>
     <string name="settings_background_updates_dont_kill_my_app_title">निर्माता विशिष्ट निर्देश</string>
-    <string name="settings_location_access_background_summaryOff">कृपया अपने वर्तमान स्थान की पृष्ठभूमि को ताज़ा करने के लिए \"हर समय अनुमति दें\" सक्षम करें।</string>
+    <string name="settings_location_access_background_summaryOff">कृपया अपने वर्तमान स्थान की पृष्ठभूमि को ताज़ा करने के लिए “हर समय अनुमति दें” सक्षम करें।</string>
     <string name="settings_location_access_precise_summaryOn">सक्षम. उपकरण के नेटवर्क और जीपीएस प्रदाता दोनों का उपयोग किया जाता है।</string>
     <string name="settings_background_updates_summary">ताज़ा दर, समस्या निवारण</string>
     <string name="settings_background_updates_refresh_30min">आधा घंटा</string>

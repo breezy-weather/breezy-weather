@@ -11,6 +11,9 @@
 - You will now have a confirmation dialog before opening a link
 - [Text widget] Fix custom subtitle being cut if on multiple lines
 
+**Translations**
+- Translations updated
+
 
 # Version 5.1.1-beta (2024-03-12)
 
