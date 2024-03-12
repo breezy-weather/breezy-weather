@@ -590,7 +590,7 @@
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
     <string name="settings_notifications_summary">気象警報･降水量･予報</string>
     <string name="settings_notifications_precipitations_title">降水量の通知</string>
-    <string name="settings_widgets_summary">壁紙の設定･使用しているウィジェット･通知ウィジェットの設定</string>
+    <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェットの設定</string>
     <string name="settings_widgets_gadgets_title">小道具</string>
     <string name="notification_precipitation_continuing_desc">少なくとも %s まで継続すると予想されます</string>
     <string name="common_weather_text_mainly_clear">ほぼ晴れ</string>
