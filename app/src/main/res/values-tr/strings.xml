@@ -672,4 +672,7 @@
     <string name="pollen_salix">Söğüt</string>
     <string name="pollen_tilia">Ihlamur</string>
     <string name="pollen_urticaceae">Isırgan otu/Urticaceae</string>
+    <string name="about_open_link_message">%s açılsın mı?</string>
+    <string name="sunshine">Güneşli</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Bugün, yarın, …, 4 gün sonrasının polen göstergesi özeti</string>
 </resources>
