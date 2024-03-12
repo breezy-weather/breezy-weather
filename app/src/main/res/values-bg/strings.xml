@@ -552,7 +552,7 @@
     <string name="settings_background_updates_worker_info_summary">Последно изпълнение: %s</string>
     <string name="pollen_betula">Бреза</string>
     <string name="pollen_artemisia">Пелин</string>
-    <string name="pollen_olea">Маслина</string>
+    <string name="pollen_olea">Маслиново дърво</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Средно</string>
     <string name="pollen_level_0">Няма</string>
@@ -654,4 +654,17 @@
     <string name="location_delete_location_dialog_message">На път сте да изтриете “%s” от списъка си със запазени местоположения.</string>
     <string name="action_confirm">Потвърди</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Текущ индекс на качеството на въздуха</string>
+    <string name="pollen_castanea">Кестеново дърво</string>
+    <string name="pollen_cupressaceae_taxaceae">Кипарис</string>
+    <string name="pollen_fraxinus">Ясен</string>
+    <string name="pollen_plantaginaceae">Живовляк</string>
+    <string name="pollen_platanus">Чинар</string>
+    <string name="pollen_populus">Топола</string>
+    <string name="pollen_quercus">Дъб</string>
+    <string name="pollen_rumex">Лапад</string>
+    <string name="pollen_salix">Върба</string>
+    <string name="pollen_tilia">Липа</string>
+    <string name="pollen_urticaceae">Коприва</string>
+    <string name="pollen_corylus">Леска</string>
+    <string name="pollen_carpinus">Габър</string>
 </resources>
