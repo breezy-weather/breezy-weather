@@ -672,4 +672,7 @@
     <string name="pollen_salix">Fűz</string>
     <string name="pollen_urticaceae">Csalán</string>
     <string name="pollen_tilia">Hárs</string>
+    <string name="sunshine">Napsütés</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">A mai, holnapi, ..., 4 nappal későbbi pollenindex összefoglalása</string>
+    <string name="about_open_link_message">%s oldal megnyitása?</string>
 </resources>
