@@ -132,7 +132,7 @@
     <string name="short_wednesday">Ср</string>
     <string name="temperature_wind_chill">Адчуваецца пры ветры</string>
     <string name="temperature_degree_day_cooling">Градуса-дзень ахаладжальнага сезона</string>
-    <string name="temperature_average_short">Медыяна</string>
+    <string name="temperature_average_short">Сярэдзіна</string>
     <string name="temperature_normals">Тэмпературныя нормы</string>
     <string name="precipitation">Ападкі</string>
     <string name="precipitation_probability">Верагоднасць ападкаў</string>
@@ -667,7 +667,7 @@
     <string name="pollen_salix">Іва</string>
     <string name="pollen_tilia">Ліпа</string>
     <string name="settings_per_location_summary">Дадатковыя налады для гэтага месцазнаходжання</string>
-    <string name="settings_weather_source_open_meteo_weather_models_best_match">Лепшае адпаведнасць</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Лепшае супадзенне</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Бясшвовы</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Объеденяет ў сабе лепшыя мадэлі надвор\'я для гэтага месцазнаходжання</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Аб\'ядноўвае ўсе мадэлі надвор\'я ад гэтага пастаўшчыка ў адзіны прагноз</string>
