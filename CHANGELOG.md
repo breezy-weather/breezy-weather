@@ -1,4 +1,4 @@
-# Version 5.1.3-beta (not yet released)
+# Version 5.1.3-beta (2024-03-13)
 
 **New features**
 - Per-location per-source preferences
