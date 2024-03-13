@@ -675,4 +675,6 @@
     <string name="sunshine">Napsütés</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">A mai, holnapi, ..., 4 nappal későbbi pollenindex összefoglalása</string>
     <string name="about_open_link_message">%s oldal megnyitása?</string>
+    <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha a Breezy Weather Standard verziójában adtad hozzá a helyet, majd átváltottál az F-Droid-os verzióra, amely kevesebb időjárási forrást támogat. Ha visszatérsz a Standard verzióra, ez a probléma megoldódhat.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Vagy változtasd meg a helyhez tartozó időjárási forrást, esetleg töröld és add hozzá újra a helyet.</string>
 </resources>
