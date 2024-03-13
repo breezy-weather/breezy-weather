@@ -673,4 +673,9 @@
     <string name="pollen_castanea">شجرة الكستناء</string>
     <string name="pollen_platanus">البلتانوس</string>
     <string name="pollen_urticaceae">نبات القراص / بيلتوري</string>
+    <string name="sunshine">شروق الشمس</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">ملخص مؤشر حبوب اللقاح اليوم، غدا، …، بعد 4 أيام</string>
+    <string name="about_open_link_message">فتح %s ؟</string>
+    <string name="message_source_not_installed_error_content_tip_1">يمكن أن يحدث هذا عند إضافة موقعك في الإصدار القياسي لـ Breezy Weather ثم التبديل إلى إصدار F-Droid الذي يحتوي على مصادر أقل للطقس مدعومة. العودة إلى الإصدار القياسية قد تحل هذه المشكلة.</string>
+    <string name="message_source_not_installed_error_content_tip_2">قم إما بتغيير مصادر الطقس لهذا الموقع أو حذف هذا الموقع وإعادة إضافته.</string>
 </resources>
