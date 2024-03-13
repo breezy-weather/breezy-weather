@@ -677,4 +677,6 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Bugün, yarın, …, 4 gün sonrasının polen göstergesi özeti</string>
     <string name="message_source_not_installed_error_content_tip_1">Bu durum, konumunuzu standart Breezy Weather sürümüne ekledikten sonra daha az hava durumu kaynağının desteklendiği F-Droid sürümüne geçtiğinizde meydana gelebilir. Standart sürüme geri dönmek bu sorunu çözebilir.</string>
     <string name="message_source_not_installed_error_content_tip_2">Bu konum için hava durumu kaynaklarını değiştirin ya da bu konumu silin ve yeniden ekleyin.</string>
+    <string name="settings_per_location_summary">Bu konum için ek özelleştirmeler</string>
+    <string name="settings_per_location">Konum tercihleri</string>
 </resources>
