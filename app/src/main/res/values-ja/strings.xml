@@ -122,7 +122,7 @@
     <string name="widget_label_subtitle_data">サブタイトルデータ</string>
     <string name="widget_label_black_text">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
-    <string name="widget_label_clock_font">時計のフォント</string>
+    <string name="widget_label_clock_font">時計のスタイル</string>
     <string name="widget_custom_subtitle_explanation">何でも入力できますが、テキストの長さを注意してください。天気データを引用したいなら、$を使って対応キーワードを参照してください。
 \n
 \n例えば、「現在の天気＝$cw$」の場合は、「現在の天気＝晴れ」と表示されます。</string>
@@ -427,7 +427,7 @@
     <string name="widget_custom_subtitle_keyword_als_description">警報 (短い)</string>
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
-    <string name="widget_clock_font_sans_serif_black">サンセリフブラック</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
@@ -512,7 +512,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプしてこの項目を削除できます</string>
-    <string name="widget_clock_font_sans_serif">サンセリフ</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
@@ -575,7 +575,7 @@
     <string name="widget_label_align_end">右端に揃える</string>
     <string name="widget_custom_subtitle_keyword_al_description">警報</string>
     <string name="widget_style_temperature">温度</string>
-    <string name="widget_clock_font_sans_serif_light">サンセリフライト</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_weather_sources_summary">気象データ ソースの設定</string>
     <string name="settings_weather_sources_per_location_summary">この場所の気象データ ソースをカスタマイズする</string>
     <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合、許可してください。</string>
