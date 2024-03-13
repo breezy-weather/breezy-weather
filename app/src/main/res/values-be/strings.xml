@@ -122,7 +122,7 @@
     <string name="null_data_text">Недаступна</string>
     <string name="hourly_forecast">Пагадзінны прагноз</string>
     <string name="minutely_forecast">Хвілінны прагноз</string>
-    <string name="app_name">Пагода</string>
+    <string name="app_name">Надвор\'е</string>
     <string name="pollen">Пылок</string>
     <string name="pollen_and_mold">Пылок і цвіль</string>
     <string name="ephemeris">Cонца і месяц</string>
@@ -132,7 +132,7 @@
     <string name="short_wednesday">Ср</string>
     <string name="temperature_wind_chill">Адчуваецца пры ветры</string>
     <string name="temperature_degree_day_cooling">Градуса-дзень ахаладжальнага сезона</string>
-    <string name="temperature_average_short">Сярэдзіна</string>
+    <string name="temperature_average_short">Медыяна</string>
     <string name="temperature_normals">Тэмпературныя нормы</string>
     <string name="precipitation">Ападкі</string>
     <string name="precipitation_probability">Верагоднасць ападкаў</string>
