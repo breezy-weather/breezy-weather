@@ -489,7 +489,7 @@
     <string name="settings_main_daily_trends_title">Evolución diaria</string>
     <string name="settings_units_summary">Temperatura, precipitaciones, distancia, velocidad, presión</string>
     <string name="settings_notifications_precipitations_title">Notificaciones de las precipitaciones</string>
-    <string name="settings_weather_sources_summary">Configuración de las fuentes de los datos meteorológicos</string>
+    <string name="settings_weather_sources_summary">Personalizar las fuentes de datos meteorológicos utilizadas para esta ubicación</string>
     <string name="settings_weather_sources">Fuentes meteorológicas</string>
     <string name="settings_main_summary">Orden de las tarjetas, datos mostrados, animaciones</string>
     <string name="settings_source_api_key">Clave de la API</string>
@@ -684,4 +684,12 @@
     <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de Breezy Weather y luego has cambiado a la versión F-Droid, que soporta menos fuentes meteorológicas. Volver a la versión estándar puede resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Cambie las fuentes meteorológicas de esta ubicación o elimínelas y vuelva a añadirlas.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>
+    <string name="settings_per_location">Ajustes de la ubicación</string>
+    <string name="settings_per_location_summary">Ajustes adicionales para esta ubicación</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Modelos meteorológicos</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Mejor combinación</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Impecable</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina los mejores modelos meteorológicos para este lugar</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos los modelos meteorológicos de este proveedor para una predicción impecable</string>
+    <string name="sunshine">Luz solar</string>
 </resources>
