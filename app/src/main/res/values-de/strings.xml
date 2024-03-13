@@ -8,7 +8,7 @@
     <string name="action_search">Suche</string>
     <string name="action_settings">Einstellungen</string>
     <string name="air_quality">Luftqualität</string>
-    <string name="pollen">Allergene</string>
+    <string name="pollen">Pollen</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
     <string name="action_cancel">Abbrechen</string>
@@ -412,7 +412,7 @@
     <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
-    <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollenflugdaten von %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollendaten von %s</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_packs_title">Symbolpakete</string>
     <string name="settings_main_cards_title">Karten</string>
@@ -565,7 +565,7 @@
     <string name="weather_message_secondary_data_refresh_failed">Aktualisierung der Wetterdaten für sekundäre Wetterquelle fehlgeschlagen</string>
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
     <string name="wind_gusts">Windböen</string>
-    <string name="weather_pollen_data_by">Allergendaten von %s</string>
+    <string name="weather_pollen_data_by">Pollendaten von %s</string>
     <string name="weather_minutely_data_by">Minutengenaue Niederschlagsdaten von %s</string>
     <string name="weather_alert_data_by">Warndaten von %s</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
@@ -669,4 +669,6 @@
     <string name="pollen_tilia">Linde</string>
     <string name="pollen_urticaceae">Brennnessel/Glaskraut</string>
     <string name="about_open_link_message">%s öffnen?</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
+    <string name="sunshine">Sonnenschein</string>
 </resources>
