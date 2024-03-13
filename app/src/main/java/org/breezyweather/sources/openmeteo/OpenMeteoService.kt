@@ -338,7 +338,7 @@ class OpenMeteoService @Inject constructor(
             ?.split(",")
             ?.mapNotNull {
                 OpenMeteoWeatherModel.getInstance(it)
-            }?.toMutableList() ?: listOf(OpenMeteoWeatherModel.BEST_MATCH)
+            } ?: listOf(OpenMeteoWeatherModel.BEST_MATCH)
     }
 
     data class WeatherModelStatus(
