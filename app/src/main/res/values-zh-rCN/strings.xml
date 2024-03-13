@@ -680,4 +680,6 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天…以及四天后的花粉指数概述</string>
     <string name="about_open_link_message">打开 %s？</string>
     <string name="sunshine">日晒</string>
+    <string name="message_source_not_installed_error_content_tip_1">当你在 Standard 版本的 Breezy Weather 中添加了位置，然后切换到支持的天气源较少的 F-Droid 版本的应用时可能会发生这个。切回到 Standard 版本可能会解决这个问题。</string>
+    <string name="message_source_not_installed_error_content_tip_2">要么更改此位置的天气源，要么删除并重新添加此位置。</string>
 </resources>
