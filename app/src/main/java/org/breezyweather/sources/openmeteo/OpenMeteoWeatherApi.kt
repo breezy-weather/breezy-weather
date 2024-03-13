@@ -29,7 +29,7 @@ interface OpenMeteoWeatherApi {
     fun getWeather(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("models") models: String = "best_match",
+        @Query("models") models: String = OpenMeteoWeatherModel.BEST_MATCH.id,
         @Query("daily") daily: String,
         @Query("hourly") hourly: String,
         @Query("minutely_15") minutely15: String,

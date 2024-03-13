@@ -354,6 +354,7 @@ class OpenMeteoService @Inject constructor(
         onSave: (Map<String, String>) -> Unit
     ) {
         val dialogModelsOpenState = remember { mutableStateOf(false) }
+        val changedWeatherModelsState = remember { mutableStateOf(false) }
         val weatherModels = remember {
             mutableStateListOf<WeatherModelStatus>().apply {
                 val cv = getWeatherModels(location)
@@ -433,6 +434,7 @@ class OpenMeteoService @Inject constructor(
                                         }
                                     }
                                 }
+                                changedWeatherModelsState.value = true
                             }
                             if (model.model == OpenMeteoWeatherModel.BEST_MATCH) {
                                 HorizontalDivider()
@@ -443,12 +445,15 @@ class OpenMeteoService @Inject constructor(
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            onSave(
-                                mapOf(
-                                    "weatherModels" to weatherModels.filter { it.enabled }
-                                        .joinToString(",") { it.model.id }
+                            if (changedWeatherModelsState.value) {
+                                onSave(
+                                    mapOf(
+                                        "weatherModels" to weatherModels.filter { it.enabled }
+                                            .joinToString(",") { it.model.id }
+                                            .ifEmpty { OpenMeteoWeatherModel.BEST_MATCH.id }
+                                    )
                                 )
-                            )
+                            }
                             dialogModelsOpenState.value = false
                         }
                     ) {
