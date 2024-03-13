@@ -376,7 +376,7 @@
     <string name="settings_location_access_precise_summaryOn">Активирано. Използват се както мрежата на устройството, така и GPS доставчиците.</string>
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
-    <string name="settings_weather_sources_summary">Настройки на доставчиците на прогноза за времето</string>
+    <string name="settings_weather_sources_summary">Персонализирайте на доставчиците на прогноза за времето , използвани за това местоположение</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
     <string name="settings_appearance">Изглед</string>
@@ -666,4 +666,16 @@
     <string name="pollen_urticaceae">Коприва</string>
     <string name="pollen_corylus">Леска</string>
     <string name="pollen_carpinus">Габър</string>
+    <string name="settings_per_location">Настройки за местоположението</string>
+    <string name="settings_per_location_summary">Допълнителни персонализации за това местоположение</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Метеорологични модели</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Най-добро съвпадение</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Обобщен</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Комбинира всички метеорологични модели от този доставчик в обобщена прогноза</string>
+    <string name="about_open_link_message">Отвари %s?</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Съчетава най-добрите метеорологични модели за това местоположение</string>
+    <string name="message_source_not_installed_error_content_tip_1">Това може да се случи, когато сте добавили местоположението си в стандартния вариант на Breezy Weather и след това сте превключили към F-Droid, който има по-малко поддържани източници за времето. Връщането към стандартния вариант може да реши този проблем.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Или променете метеорологичните източници за това местоположение, или изтрийте и добавете отново това местоположение.</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Обобщение на индексa за алергени за днес, утре, …, 4 дни по-късно</string>
+    <string name="sunshine">Слънчева светлина</string>
 </resources>
