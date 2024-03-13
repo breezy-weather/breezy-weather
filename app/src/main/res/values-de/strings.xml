@@ -671,4 +671,6 @@
     <string name="about_open_link_message">%s öffnen?</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
     <string name="sunshine">Sonnenschein</string>
+    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn sie ihren Ort in der Standardvariante von Breezy Weather hinzugefügt haben und dann zur F-Droid-Variante gewechselt sind, die weniger Wetterquellen unterstützt. Wenn sie zur Standardvariante zurückkehren, könnte das das Problem lösen.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Ändern sie entweder die Wetterquelle für diesen Ort oder entfernen sie ihn und fügen sie ihn dann wieder hinzu.</string>
 </resources>
