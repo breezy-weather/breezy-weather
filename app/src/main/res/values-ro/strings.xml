@@ -505,7 +505,7 @@
     <string name="settings_location_access_background_summaryOff">Te rog să activezi „Permiteți tot timpul” pentru a avea actualizări meteo în fundal pentru locația ta actuală.</string>
     <string name="settings_location_access_precise_title">Utilizarea GPS a dispozitivului</string>
     <string name="settings_weather_sources">Furnizorii vremii</string>
-    <string name="settings_weather_sources_summary">Setările furnizorilor vremii</string>
+    <string name="settings_weather_sources_summary">Personalizează furnizorii vremii utilizați pentru această locație</string>
     <string name="settings_location_access_permission_already_granted">Permisiunea a fost deja acordată</string>
     <string name="settings_location_access_switch_title">Acces la locație</string>
     <string name="settings_location_access_switch_summaryOff">Te rog să permiți dacă dorești să poți adăuga locația ta actuală ca locație.</string>
@@ -684,5 +684,12 @@
     <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reînserezi această locație.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, ... 4 zile mai târziu</string>
     <string name="about_open_link_message">Deschizi %s?</string>
-    <string name="sunshine">Razele Soarelui</string>
+    <string name="sunshine">Ore cu soare</string>
+    <string name="settings_per_location">Preferințele locației</string>
+    <string name="settings_per_location_summary">Personalizări suplimentare pentru această locație</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Cea mai bună potrivire</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Impecabil</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Modele meteo</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combină cele mai bune modele meteo pentru această locație</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combină toate modelele meteo de la acest furnizor într-o predicție impecabilă</string>
 </resources>
