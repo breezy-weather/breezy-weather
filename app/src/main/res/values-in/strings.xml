@@ -692,4 +692,6 @@
     <string name="sunshine">Bersinar</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, 4 hari lagi</string>
     <string name="about_open_link_message">Buka %s?</string>
+    <string name="message_source_not_installed_error_content_tip_1">Ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam versi Breezy Weather yang Standar lalu diubah ke versi F-Droid yang memiliki jumlah sumber cuaca yang lebih sedikit. Mengembalikan ke versi Standar dapat menyelesaikan masalah ini.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca untuk lokasi ini atau hapus dan tambahkan lokasi ini lagi.</string>
 </resources>
