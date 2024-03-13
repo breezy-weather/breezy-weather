@@ -221,7 +221,6 @@
     <string name="widget_style_symmetry">Szimmetrikus</string>
     <string name="location_search_no_results">A(z) %1$s nem találja a következőt: %2$s</string>
     <string name="message_source_not_installed_error_title">A forrás már nem elérhető</string>
-    <string name="message_source_not_installed_error_content">Ez a forrás már nem elérhető; kérjük, törölje a helyet, és adja hozzá újra más forrásból.</string>
     <string name="message_parsing_error_content">Győződjön meg róla, hogy frissítette az alkalmazást a legújabb verzióra. Előfordulhat, hogy a szerver ideiglenesen nem elérhető, ilyen esetben kérjük, próbálja újra később. Ha a probléma továbbra is fennáll, kérjük, rögzítsen egy hibajegyzéket a hibakeresési beállításokból, majd jelentse a problémát GitHubon.</string>
     <string name="action_show_errors">Érintse meg a részletekért</string>
     <string name="dialog_permissions_location_content">A Breezy Weathernek szüksége van arra, hogy előtérben vagy háttérben hozzáférjen a tartózkodási helyéhez, annak érdekében, hogy az aktuális időjárásadatait meg tudja jeleníteni. Ehhez néhány engedélyt fogunk kérni. A tartózkodási helyének adatait csak az aktuális helyénél lévő időjárásadatok beszerzéséhez fogjuk használni. Ha nem szeretné megosztani a tartózkodási helyének adatait, akkor kézzel is megadhatja a helyzetét a kezelési oldalon.</string>

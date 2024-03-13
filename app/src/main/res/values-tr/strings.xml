@@ -251,7 +251,6 @@
     <string name="common_weather_text_partly_cloudy">Parçalı bulutlu</string>
     <string name="null_data_text">Bulunamadı</string>
     <string name="common_weather_text_snow_heavy">Yoğun kar</string>
-    <string name="message_source_not_installed_error_content">Bu kaynak artık mevcut değil; lütfen konumu silin ve başka bir kaynaktan yeniden oluşturun.</string>
     <string name="ephemeris_moonrise_at">Ay doğumu saati %s</string>
     <string name="ephemeris_moonset_at">Ay batımı saati %s</string>
     <string name="dialog_permissions_location_background_title">Arka planda konum erişimi</string>

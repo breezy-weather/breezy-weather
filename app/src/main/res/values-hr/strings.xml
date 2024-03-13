@@ -119,7 +119,6 @@
     <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="air_quality_level_1_description">Kvaliteta zraka savršena je za većinu osoba. Uživajte u uobičajenim aktivnostima na otvorenom.</string>
-    <string name="message_source_not_installed_error_content">Izvor više nije dostupan. Izbrišite lokaciju i stvorite je ponovo iz jednog drugog izvora.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
     <string name="settings_notifications_summary">Vremenska upozorenja, oborine, prognoza</string>
     <string name="widget_clock_font_analog">Analogni</string>

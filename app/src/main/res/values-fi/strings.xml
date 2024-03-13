@@ -491,7 +491,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="common_weather_text_snow_heavy">Rankkaa lumisadetta</string>
     <string name="settings_debug_dump_crash_logs_summary">Tallentaa virhelokit tiedostoon kehittäjille jakamista varten</string>
-    <string name="message_source_not_installed_error_content">Tämä lähde ei ole enää käytettävissä; poista sijainti ja luo se uudelleen toisesta lähteestä.</string>
     <string name="settings_notifications_summary">Säävaroitukset, sadeilmoitukset, ennusteet</string>
     <string name="common_weather_text_rain_freezing_heavy">Jäätävää rankkasadetta</string>
     <string name="location_service_native">Natiivi API</string>

@@ -568,7 +568,6 @@
     <string name="settings_background_updates_worker_info_summary">Última execução: %s</string>
     <string name="temperature_degree_day_cooling">Grau de resfriamento do dia</string>
     <string name="action_help_me_choose">Ajude-me a escolher</string>
-    <string name="message_source_not_installed_error_content">Esta fonte não está mais disponível; apague a localização e a recrie de outra fonte.</string>
     <string name="settings_weather_source_portal">Canal</string>
     <string name="pollen_alnus">Amieiro</string>
     <string name="pollen_betula">Bétula</string>

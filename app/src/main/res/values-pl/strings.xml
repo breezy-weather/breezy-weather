@@ -446,7 +446,6 @@
     <string name="action_add_current_location">Dodaj bieżącą lokalizację</string>
     <string name="action_add_from_map">Dodaj z mapy</string>
     <string name="message_source_not_installed_error_title">Źródło nie jest już dostępne</string>
-    <string name="message_source_not_installed_error_content">To źródło nie jest już dostępne, usuń lokalizację i dodaj ją ponownie z innego źródła.</string>
     <string name="widget_material_you_forecast">Material You - Prognoza</string>
     <string name="settings_background_updates_summary">Częstotliwość odświeżania, rozwiązywanie problemów</string>
     <string name="settings_location_access_switch_summaryOn">Zezwolono. Możesz dodać swoją bieżącą lokalizację jako lokalizację.</string>

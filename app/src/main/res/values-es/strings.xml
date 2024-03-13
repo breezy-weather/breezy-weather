@@ -374,7 +374,6 @@
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">No está la clave API requerida</string>
     <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
-    <string name="message_source_not_installed_error_content">Esta fuente ya no está disponible; por favor, elimina la ubicación y vuelve a crearla a partir de otra fuente.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar cuando la batería esté baja</string>

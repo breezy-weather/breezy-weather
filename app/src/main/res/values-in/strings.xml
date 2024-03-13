@@ -567,7 +567,6 @@
     <string name="settings_widgets_section_widgets_in_use">Widget hang digunakan</string>
     <string name="message_parsing_error_content">Pastikan Anda telah memperbarui aplikasi ke versi yang terbaru. Servernya sementara mungkin tidak tersedia. Dalam hal ini, silakan mencoba lagi. Jika masalahnya masih ada, silakan melakukan pencatatan kemogokan dari pengaturan pengawakutuan dan laporkan masalah di GitHub.</string>
     <string name="settings_debug_dump_crash_logs_summary">Menyimpan catatan kesalahan ke berkas untuk dibagikan dengan pengembang</string>
-    <string name="message_source_not_installed_error_content">Sumber ini tidak lagi tersedia; silakan menghapus lokasi dan buat ulang dari sumber lain.</string>
     <string name="settings_notifications_summary">Peringatan cuaca, curah hujan, prakiraan cuaca</string>
     <string name="common_weather_text_rain_freezing_heavy">Hujan beku berat</string>
     <string name="weather_message_secondary_data_refresh_failed">Penyegaran data cuaca untuk sumber cuaca sekunder gagal</string>

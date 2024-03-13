@@ -254,7 +254,6 @@
     <string name="message_network_unavailable">Мережа недоступна</string>
     <string name="action_show_errors">Натисніть, щоб переглянути деталі</string>
     <string name="dialog_permissions_notification_content">Натисніть тут, щоб увімкнути повідомлення про погодні попередження або вирішіть це пізніше в Налаштуваннях.</string>
-    <string name="message_source_not_installed_error_content">Це джерело більше не доступне; будь ласка, видаліть місцезнаходження та відтворіть його з іншого джерела.</string>
     <string name="dialog_permissions_location_title">Доступ до інформації про місцезнаходження</string>
     <string name="action_app_store">Магазин застосунків</string>
     <string name="wind_strength_11">Жорстокий шторм</string>

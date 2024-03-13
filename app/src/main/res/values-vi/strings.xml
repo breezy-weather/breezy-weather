@@ -490,7 +490,6 @@
     <string name="message_server_timeout">Đã hết thời gian chờ yêu cầu</string>
     <string name="message_parsing_error_content">Hãy đảm bảo bạn đã cập nhật lên phiên bản mới nhất của ứng dụng. Máy chủ có thể tạm thời không khả dụng, trong trường hợp đó, vui lòng thử lại sau. Nếu sự cố vẫn tiếp diễn, hãy xuất nhật ký sự cố từ cài đặt gỡ lỗi, và báo cáo sự cố trên GitHub.</string>
     <string name="message_source_not_installed_error_title">Nguồn không còn nữa</string>
-    <string name="message_source_not_installed_error_content">Nguồn này không còn nữa; vui lòng xóa vị trí và tạo lại từ nguồn khác.</string>
     <string name="message_parsing_error_title">Không thể phân tích cú pháp dữ liệu thời tiết</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>

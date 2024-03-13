@@ -187,7 +187,6 @@
     <string name="settings_debug">Atkļūdošana</string>
     <string name="weather_message_unsupported_feature">Avots neatbalsta vienu no pieprasītajām funkcijām</string>
     <string name="weather_api_key_required_missing_title">Trūkst vajadzīgās API atslēgas</string>
-    <string name="message_source_not_installed_error_content">Šis avots vairs nav pieejams; lūdzu, izdzēsiet atrašanās vietu un izveidojiet to no jauna no cita avota.</string>
     <string name="widget_trend_hourly">Stundu tendence</string>
     <string name="settings_background_updates_summary">Atsvaidzes intensitāte, problēmu novēršana</string>
     <string name="settings_location_summary">Atrašanās vietas pakalpojumu iestatījumi</string>

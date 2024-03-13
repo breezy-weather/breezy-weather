@@ -176,7 +176,6 @@
     <string name="dialog_permissions_notification_title">آگاه بمانید</string>
     <string name="dialog_permissions_location_background_title">دسترسی به مکان در پس زمینه</string>
     <string name="message_source_not_installed_error_title">منبع دیگر در دسترس نیست</string>
-    <string name="message_source_not_installed_error_content">این منبع دیگر در دسترس نیست، خواهشمند است مکان را پاک کرده و آن را از منبع دیگری از نو بسازید.</string>
     <string name="widget_day">روزانه</string>
     <string name="widget_clock_day_details">ساعت + روزانه (جزئیات)</string>
     <string name="widget_week">هفته ها</string>

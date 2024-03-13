@@ -1,4 +1,10 @@
-# Version 5.1.2-beta (not yet released)
+# Version 5.1.3-beta (not yet released)
+
+**Improvements and fixes**
+- Add troubleshooting for “Source no longer available” error
+
+
+# Version 5.1.2-beta (2024-03-13)
 
 **New features**
 - Sunshine duration daily chart (for compatible sources)

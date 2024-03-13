@@ -391,7 +391,6 @@
     <string name="notification_channel_widget">微件</string>
     <string name="action_help_me_choose">幫我選擇</string>
     <string name="message_source_not_installed_error_title">資料來源不再可用</string>
-    <string name="message_source_not_installed_error_content">此資料來源已不可用，請刪除該位置並從其他來源重新建立。</string>
     <string name="widget_style_pixel">Pixel 風格</string>
     <string name="settings_main_summary">卡片順序、顯示的項目、動畫</string>
     <string name="unit_kelvin">K</string>

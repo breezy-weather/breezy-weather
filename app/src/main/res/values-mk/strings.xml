@@ -155,7 +155,6 @@
     <string name="message_parsing_error_title">Не успеа да се анализираат временските податоци</string>
     <string name="message_parsing_error_content">Проверете дали сте ја ажурирале на најновата верзија на апликацијата. Серверот можеби е привремено недостапен, во тој случај, обидете се повторно подоцна. Ако проблемот продолжи, ве молиме исфрлете го дневникот за падови од поставките за отстранување грешки и пријавете проблем на GitHub.</string>
     <string name="message_source_not_installed_error_title">Изворот повеќе не е достапен</string>
-    <string name="message_source_not_installed_error_content">Овој извор повеќе не е достапен; Ве молиме избришете ја локацијата и повторно креирајте ја од друг извор.</string>
     <string name="message_tap_again_to_exit">Допрете повторно за да излезете</string>
     <string name="widget_day">Дневно</string>
     <string name="widget_week">Неделно</string>

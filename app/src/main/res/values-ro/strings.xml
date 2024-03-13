@@ -544,7 +544,6 @@
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: %s</string>
     <string name="action_delete">Șterge</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
-    <string name="message_source_not_installed_error_content">Această sursă nu mai este disponibilă, te rog șterge locația și recreeaz-o din altă sursă.</string>
     <string name="weather_alert_data_by">Alerte furnizate de %s</string>
     <string name="wind_gusts">Rafale de vânt</string>
     <string name="wind_strength">Puterea vântului</string>

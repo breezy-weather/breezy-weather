@@ -596,7 +596,6 @@
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
     <string name="metno_weather_text_andthunder">%s e tuoni</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: %s</string>
-    <string name="message_source_not_installed_error_content">Questa fonte non è più disponibile; elimina la posizione e ricreala da un’altra fonte.</string>
     <string name="notification_update_error">%d aggiornamento/i fallito/i</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Temporale debole o moderato</string>
     <string name="message_parsing_error_content">Assicurati di aver aggiornato l’app alla versione più recente. Il server potrebbe essere temporaneamente non disponibile, in tal caso riprovare più tardi. Se il problema persiste, scarica il registro degli arresti anomali dalle impostazioni di debug e archivia il problema su GitHub.</string>

@@ -122,7 +122,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Regen- en sneeuwbuien</string>
     <string name="weather_pollen_data_by">Allergenengegevens door %s</string>
     <string name="weather_alert_data_by">Waarschuwingsgegevens door %s</string>
-    <string name="message_source_not_installed_error_content">Deze bron is niet langer beschikbaar; verwijder de locatie en maak deze opnieuw aan met een andere bron.</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Negeren als batterij bijna leeg is</string>

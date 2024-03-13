@@ -17,18 +17,30 @@
 package org.breezyweather.settings.compose
 
 import android.content.Context
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.composables.SourceView
+import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
+import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
@@ -38,6 +50,7 @@ import org.breezyweather.settings.preference.editTextPreferenceItem
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
+import org.breezyweather.theme.compose.DayNightTheme
 import java.text.Collator
 
 @Composable
@@ -47,6 +60,33 @@ fun WeatherSourcesSettingsScreen(
     configurableSources: List<ConfigurableSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
+    if (BuildConfig.FLAVOR == "fdroid") {
+        clickablePreferenceItem(R.string.settings_weather_source_fdroid_disclaimer) { id ->
+            val dialogLinkOpenState = remember { mutableStateOf(false) }
+
+            Material3CardListItem(
+                surface = MaterialTheme.colorScheme.errorContainer,
+                onSurface = MaterialTheme.colorScheme.onErrorContainer,
+                modifier = Modifier.clickable {
+                    dialogLinkOpenState.value = true
+                }
+            ) {
+                Text(
+                    text = stringResource(id),
+                    color = DayNightTheme.colors.bodyColor,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
+                )
+            }
+            if (dialogLinkOpenState.value) {
+                AlertDialogLink(
+                    onClose = { dialogLinkOpenState.value = false },
+                    linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"
+                )
+            }
+        }
+    }
+
     sectionHeaderItem(R.string.settings_weather_sources_section_general)
     listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
         val configuredWorldwideSourcesAssociated = configuredWorldwideSources.associate { it.id to it.name }

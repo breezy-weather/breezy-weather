@@ -157,7 +157,6 @@
     <string name="message_network_unavailable">Sarea ez dago erabilgarri</string>
     <string name="message_server_timeout">Eskaera iraungita</string>
     <string name="message_source_not_installed_error_title">Iturria ez dago erabilgarri</string>
-    <string name="message_source_not_installed_error_content">Iturri hau ez dago erabilgarri. Mesedez, ezabatu kokalekua eta sortu berriro beste iturri batetik abiatuta.</string>
     <string name="message_tap_again_to_exit">Irteteko ukitu berriro</string>
     <string name="widget_trend_daily">Eguneko joera</string>
     <string name="widget_trend_hourly">Orduko joera</string>

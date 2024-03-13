@@ -610,7 +610,6 @@
     <string name="message_parsing_error_title">Не ўдалося прааналізаваць дадзеныя аб надвор’і</string>
     <string name="message_parsing_error_content">Пераканайцеся, што вы абнавілі дадатак да апошняй версіі. Сервер можа быць часова недаступны, у гэтым выпадку паспрабуйце пазней. Калі праблема не ўхіленая, стварыце дамп часопіса збояў з налад адладкі і паведаміце аб праблеме на GitHub.</string>
     <string name="message_source_not_installed_error_title">Крыніца больш не даступна</string>
-    <string name="message_source_not_installed_error_content">Гэтая крыніца больш не даступна; калі ласка, выдаліце месцазнаходжанне і стварыце яго зноўку з іншай крыніцы.</string>
     <string name="message_tap_again_to_exit">Націсніце яшчэ раз для выхаду</string>
     <string name="widget_day">Падзённы</string>
     <string name="widget_week">панядзелак</string>

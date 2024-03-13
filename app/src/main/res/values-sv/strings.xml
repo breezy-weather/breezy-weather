@@ -345,7 +345,6 @@
     <string name="widget_day">Daglig</string>
     <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar om vädervarningar, eller bestäm dig senare i Inställningar.</string>
     <string name="ceiling">Tak</string>
-    <string name="message_source_not_installed_error_content">Denna källa är inte längre tillgänglig; vänligen ta bort platsen och återskapa den från en annan källa.</string>
     <string name="widget_text">Text</string>
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats inte funnen än…</string>

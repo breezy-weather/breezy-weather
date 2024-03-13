@@ -394,7 +394,6 @@
     <string name="settings_main">Pantalla principal</string>
     <string name="settings_debug_dump_crash_logs_summary">Desa registres d’error en un fitxer per compartir-los amb els desenvolupadors</string>
     <string name="air_quality_o3_info_title">Ozó a nivell del sòl (O₃)</string>
-    <string name="message_source_not_installed_error_content">Aquesta font ja no està disponible; si us plau, suprimiu la ubicació i torneu-la a crear des d’una altra font.</string>
     <string name="settings_notifications_summary">Alertes meteorològiques, precipitacions, pronòstic</string>
     <string name="common_weather_text_rain_freezing_heavy">Pluja gelada intensa</string>
     <string name="widget_clock_font_analog">Analog</string>

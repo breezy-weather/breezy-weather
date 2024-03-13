@@ -578,7 +578,6 @@
     <string name="pollen_level_0">Žádné</string>
     <string name="pollen_level_2">Nízké</string>
     <string name="pollen_level_1">Velmi nízké</string>
-    <string name="message_source_not_installed_error_content">Tento zdroj již není k dispozici; odstraňte prosím umístění a vytvořte jej znovu z jiného zdroje.</string>
     <string name="about_privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Smíšené dešťové a sněhové přeháňky</string>
     <string name="common_weather_text_snow_light">Lehké sněžení</string>

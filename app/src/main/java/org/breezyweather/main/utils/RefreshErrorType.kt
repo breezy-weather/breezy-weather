@@ -20,6 +20,7 @@ import android.app.Activity
 import androidx.annotation.StringRes
 import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
+import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog
 import org.breezyweather.R
 
 enum class RefreshErrorType(
@@ -76,13 +77,12 @@ enum class RefreshErrorType(
     ),
     SOURCE_NOT_INSTALLED(
         shortMessage = R.string.message_source_not_installed_error_title,
-        /*showDialogAction = { TODO
-            ParsingErrorHelpDialog.show(
+        showDialogAction = {
+            SourceNoLongerAvailableHelpDialog.show(
                 it,
-                R.string.message_source_not_installed_error_title,
-                R.string.message_source_not_installed_error_content
+                R.string.message_source_not_installed_error_title
             )
-        }*/
+        }
     ),
 
     // Location-specific

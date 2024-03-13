@@ -473,7 +473,6 @@
     <string name="dialog_permissions_location_content">Breezy Weather treba prikupiti informacije o vašoj lokaciji u prvom planu ili pozadini kako bi pružio vremenske podatke vaše trenutne lokacije. Zbog toga ćemo zatražiti neke dozvole. Informacije o vašoj lokaciji će se koristiti samo za dobijanje vremenskih podataka na vašoj trenutnoj lokaciji. Ako ne želite dijeliti informacije o svojoj lokaciji, možete odbiti te zahtjeve i ručno postaviti svoju lokaciju na stranici za upravljanje.</string>
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
     <string name="message_source_not_installed_error_title">Izvor više nije dostupan</string>
-    <string name="message_source_not_installed_error_content">Izvor više nije dostupan. Izbrišite lokaciju i napravite je ponovo iz drugog izvora.</string>
     <string name="message_tap_again_to_exit">Ponovite za izlaz</string>
     <string name="widget_clock_day_vertical">Sat + Dnevno (Uspravni stil)</string>
     <string name="widget_clock_day_week">Sat + Dnevno + Sedmično</string>

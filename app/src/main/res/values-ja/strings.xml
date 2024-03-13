@@ -612,7 +612,6 @@
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログが保存されました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップして開きます</string>
     <string name="message_parsing_error_content">アプリを最新バージョンに更新していることを確認してください。サーバーが一時的に利用できない可能性があります。その場合は、しばらくしてからもう一度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュ ログをダンプし、GitHubで問題を報告してください。</string>
-    <string name="message_source_not_installed_error_content">このソースはもう利用できなくなりました。場所を削除し、別のソースから再作成してください。</string>
     <string name="widget_material_you_forecast">Material You - 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">デバイス設定を開けませんでした。</string>

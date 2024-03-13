@@ -200,7 +200,6 @@
     <string name="common_weather_text_snow_showers_heavy">Јаки снежни пљускови</string>
     <string name="common_weather_text_drizzle_light">Слаба росуља</string>
     <string name="common_weather_text_drizzle_moderate">Умерена росуља</string>
-    <string name="message_source_not_installed_error_content">Овај извор више није доступан; избришите локацију и поново је креирајте из другог извора.</string>
     <string name="settings_background_updates_worker_info_summary">Последње покретање: %s</string>
     <string name="settings_notifications_alerts_title">Обавештења о временским упозорењима</string>
     <string name="unit_km_voice">Километри</string>
