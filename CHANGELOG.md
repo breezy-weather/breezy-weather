@@ -9,6 +9,9 @@
 **Improvements and fixes**
 - Add troubleshooting for “Source no longer available” error
 
+**Translations**
+- Translations updated
+
 
 # Version 5.1.2-beta (2024-03-13)
 

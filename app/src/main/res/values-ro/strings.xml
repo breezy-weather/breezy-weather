@@ -680,9 +680,9 @@
     <string name="pollen_tilia">Tei</string>
     <string name="action_save">Salvează</string>
     <string name="location_search_no_results_advice">Asigură-te că numele căutat este scris corect și că nu este prea specific. Alternativ, poți încerca un alt serviciu de căutare a locației, care poate avea rezultate diferite.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla din cauză că ai adăugat locația ta în versiunea standard a Breezy Weather (de pe GitHub) și apoi ai trecut la cea de pe F-Droid, care suportă mai puțini furnizori meteo. Poți rezolva această problemă, revenind la versiunea standard.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla din cauză că ai adăugat locația ta în versiunea standard a Breezy Weather și apoi ai trecut la cea de pe F-Droid, care suportă mai puțini furnizori meteo. Poți rezolva această problemă, revenind la versiunea standard.</string>
     <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reînserezi această locație.</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, ... 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="about_open_link_message">Deschizi %s?</string>
     <string name="sunshine">Ore cu soare</string>
     <string name="settings_per_location">Preferințele locației</string>

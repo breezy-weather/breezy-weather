@@ -680,7 +680,7 @@
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
     <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de ubicaciones guardadas.</string>
     <string name="settings_weather_source_fdroid_disclaimer">Estás utilizando la versión de Breezy Weather del repositorio predeterminado de F-Droid, que solo admite fuentes meteorológicas que utilizan una solución de servidor público con la capacidad de autohospedar software gratuito. Clic aquí para saber más.</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, ..., 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
     <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de Breezy Weather y luego has cambiado a la versión F-Droid, que soporta menos fuentes meteorológicas. Volver a la versión estándar puede resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Cambie las fuentes meteorológicas de esta ubicación o elimínelas y vuelva a añadirlas.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>

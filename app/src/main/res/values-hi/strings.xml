@@ -266,7 +266,7 @@
     <string name="settings_background_updates_battery_optimization">बैटरी अनुकूलन अक्षम करें</string>
     <string name="settings_background_updates_refresh_1h">1 घंटा</string>
     <string name="settings_background_updates_section_troubleshoot">समस्याओं का निवारण</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">कुछ निर्माताओं के पास अतिरिक्त ऐप प्रतिबंध हैं जो पृष्ठभूमि सेवाओं को ख़त्म कर देते हैं. \"The don\'t kill my app\"! वेबसाइट पर इसे ठीक करने की जानकारी है।</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">कुछ निर्माताओं के पास अतिरिक्त ऐप प्रतिबंध हैं जो पृष्ठभूमि सेवाओं को ख़त्म कर देते हैं. “Don’t kill my app!” वेबसाइट पर इसे ठीक करने की जानकारी है।</string>
     <string name="air_quality_pm25">पीएम2.5</string>
     <string name="air_quality_co">सीओ</string>
     <string name="settings_notifications_summary">मौसम चेतावनी, वर्षा, पूर्वानुमान</string>
