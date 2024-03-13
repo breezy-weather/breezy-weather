@@ -562,7 +562,7 @@
     <string name="pollen_alnus">桤木</string>
     <string name="pollen_betula">桦木</string>
     <string name="pollen_artemisia">艾蒿</string>
-    <string name="pollen_olea">橄榄</string>
+    <string name="pollen_olea">橄榄树</string>
     <string name="pollen_level_0">无</string>
     <string name="pollen_level_1">非常低</string>
     <string name="pollen_level_2">低</string>
@@ -677,4 +677,7 @@
     <string name="pollen_carpinus">鹅耳枥属</string>
     <string name="pollen_cupressaceae_taxaceae">柏树</string>
     <string name="pollen_urticaceae">墙草</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天…以及四天后的花粉指数概述</string>
+    <string name="about_open_link_message">打开 %s？</string>
+    <string name="sunshine">日晒</string>
 </resources>
