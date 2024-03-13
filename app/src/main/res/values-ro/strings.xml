@@ -210,7 +210,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Imagine de fundal live</string>
     <string name="settings_location_service">Serviciu locație</string>
-    <string name="settings_appearance_dark_mode_title">Mod întunecat</string>
+    <string name="settings_appearance_dark_mode_title">Temă</string>
     <string name="settings_appearance_icon_pack_title">Pachet de pictograme</string>
     <string name="settings_appearance">Aspect</string>
     <string name="settings_main_gravity_sensor_switch">Senzor de gravitație</string>
@@ -235,9 +235,9 @@
     <string name="settings_background_updates_refresh_12h">12 ore</string>
     <string name="settings_background_updates_refresh_24h">24 de ore</string>
     <string name="settings_automatic">Automat</string>
-    <string name="settings_color_light">Luminos</string>
+    <string name="settings_color_light">Luminoasă</string>
     <string name="settings_color_grey">Gri</string>
-    <string name="settings_color_dark">Întunecat</string>
+    <string name="settings_color_dark">Întunecată</string>
     <string name="settings_color_day_always">Zi</string>
     <string name="settings_color_night_always">Noapte</string>
     <string name="settings_none">Niciunul</string>
@@ -270,7 +270,7 @@
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates_refresh_title">Rata de actualizare</string>
     <string name="settings_background_updates">Actualizări în fundal</string>
-    <string name="settings_appearance_summary">Limbă, mod întunecat, pachet de pictograme și unități</string>
+    <string name="settings_appearance_summary">Limbă, temă, pachet de pictograme și unități</string>
     <string name="settings_notifications">Notificări</string>
     <string name="settings_main_section_animations">Animații</string>
     <string name="settings_main_background_animation_title">Animație de fundal</string>
@@ -680,4 +680,9 @@
     <string name="pollen_tilia">Tei</string>
     <string name="action_save">Salvează</string>
     <string name="location_search_no_results_advice">Asigură-te că numele căutat este scris corect și că nu este prea specific. Alternativ, poți încerca un alt serviciu de căutare a locației, care poate avea rezultate diferite.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla din cauză că ai adăugat locația ta în versiunea standard a Breezy Weather (de pe GitHub) și apoi ai trecut la cea de pe F-Droid, care suportă mai puțini furnizori meteo. Poți rezolva această problemă, revenind la versiunea standard.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reînserezi această locație.</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, ... 4 zile mai târziu</string>
+    <string name="about_open_link_message">Deschizi %s?</string>
+    <string name="sunshine">Razele Soarelui</string>
 </resources>
