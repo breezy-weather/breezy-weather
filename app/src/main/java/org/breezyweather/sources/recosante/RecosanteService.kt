@@ -24,7 +24,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.exceptions.SecondaryWeatherException
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -36,7 +36,7 @@ import javax.inject.Inject
  */
 class RecosanteService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, ParameterizedLocationSource {
+) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource {
 
     override val id = "recosante"
     override val name = "Recosanté"

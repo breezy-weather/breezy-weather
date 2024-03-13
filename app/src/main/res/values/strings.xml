@@ -512,8 +512,11 @@
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
     <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
+    <!-- In other words: "Preferences of the location" -->
+    <string name="settings_per_location">Location preferences</string>
+    <string name="settings_per_location_summary">Additional customizations for this location</string>
     <string name="settings_weather_sources">Weather sources</string>
-    <string name="settings_weather_sources_summary">Weather data sources settings</string>
+    <string name="settings_weather_sources_summary">Customize the weather data sources used for this location</string>
     <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_weather_sources_default_source">Default source for new locations</string>
     <string name="settings_weather_source_main">Main source</string>
@@ -531,6 +534,11 @@
     <string name="settings_weather_provider_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Weather models</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Best match</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combines the best weather models for this location</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Seamless</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combines all weather models from this provider into a seamless prediction</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
     <string name="settings_source_geonames_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_appearance">Appearance</string>

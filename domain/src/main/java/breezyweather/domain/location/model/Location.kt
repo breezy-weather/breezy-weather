@@ -159,6 +159,10 @@ data class Location(
             return false
         }
 
+        if (parameters != other.parameters) {
+            return false
+        }
+
         val thisWeather = weather
         val otherWeather = other.weather
         if (thisWeather == null && otherWeather == null) {

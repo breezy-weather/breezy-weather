@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources
 
+import breezyweather.domain.location.model.Location
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
@@ -25,7 +26,9 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
@@ -97,5 +100,41 @@ class SourceManager @Inject constructor(
 
     // Configurables sources
     fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()
+
+    fun sourcesWithPreferencesScreen(
+        location: Location
+    ): List<PreferencesParametersSource> {
+        val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
+
+        val mainSource = getMainWeatherSource(location.weatherSource)
+        if (mainSource is PreferencesParametersSource
+            && mainSource.hasPreferencesScreen(location, emptyList())) {
+            preferencesScreenSources.add(mainSource)
+        }
+
+        with(location) {
+            listOf(
+                Pair(airQualitySource, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY),
+                Pair(pollenSource, SecondaryWeatherSourceFeature.FEATURE_POLLEN),
+                Pair(minutelySource, SecondaryWeatherSourceFeature.FEATURE_MINUTELY),
+                Pair(alertSource, SecondaryWeatherSourceFeature.FEATURE_ALERT),
+                Pair(normalsSource, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+            ).forEach {
+                val secondarySource = getSecondaryWeatherSource(it.first ?: location.weatherSource)
+                if (secondarySource is PreferencesParametersSource
+                    && secondarySource.hasPreferencesScreen(location, listOf(it.second))
+                    && !preferencesScreenSources.contains(secondarySource)) {
+                    preferencesScreenSources.add(secondarySource)
+                }
+            }
+        }
+
+        return preferencesScreenSources
+        /*.sortedWith { s1, s2 -> // Sort by name because there are now a lot of sources
+            Collator.getInstance(
+                SettingsManager.getInstance(context).language.locale
+            ).compare(s1.name, s2.name)
+        })*/
+    }
 
 }

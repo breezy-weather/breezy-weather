@@ -29,7 +29,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -44,7 +44,7 @@ import javax.inject.Inject
 class ImsService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, ParameterizedLocationSource {
+    ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ims"
     override val name = "Israel Meteorological Service"

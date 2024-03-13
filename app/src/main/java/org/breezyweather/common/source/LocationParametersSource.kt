@@ -26,7 +26,7 @@ import breezyweather.domain.location.model.Location
  * will then give you the ID that needs to be stored
  * ONLY used before fetching main weather OR secondary weather data
  */
-interface ParameterizedLocationSource : Source {
+interface LocationParametersSource : Source {
 
     /**
      * Parameters:

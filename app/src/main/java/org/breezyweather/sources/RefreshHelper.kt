@@ -55,7 +55,7 @@ import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationResult
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
@@ -352,7 +352,7 @@ class RefreshHelper @Inject constructor(
                 location.weather!!.toWeatherWrapper()
             } else {
                 try {
-                    if (service is ParameterizedLocationSource
+                    if (service is LocationParametersSource
                         && service.needsLocationParametersRefresh(location, coordinatesChanged)) {
                         locationParameters[service.id] =
                             (if (locationParameters.getOrElse(service.id) { null } != null) {
@@ -451,7 +451,7 @@ class RefreshHelper @Inject constructor(
                                     }
                                 }
                                 secondarySourceCalls[entry.key] = try {
-                                    if (secondaryService is ParameterizedLocationSource
+                                    if (secondaryService is LocationParametersSource
                                         && secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)) {
                                         locationParameters[secondaryService.id] =
                                             (if (locationParameters.getOrElse(secondaryService.id) { null } != null) {

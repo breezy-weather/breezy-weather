@@ -367,6 +367,72 @@
         <item>240</item>
     </string-array>
 
+    <!-- Open-Meteo models -->
+    <string-array name="open_meteo_weather_models">
+        <item>Best match</item>
+        <item>ECMWF IFS 0.4°</item>
+        <item>ECMWF IFS 0.25°</item>
+        <item>ECMWF AIFS 0.25°</item>
+        <item>CMA GRAPES Global</item>
+        <item>BOM ACCESS Global</item>
+        <item>MET Norway Nordic</item>
+        <item>GFS Seamless</item>
+        <item>GFS Global</item>
+        <item>GFS HRRR</item>
+        <item>JMA Seamless</item>
+        <item>JMA MSM</item>
+        <item>JMA GSM</item>
+        <item>DWD ICON Seamless</item>
+        <item>DWD ICON Global</item>
+        <item>DWD ICON EU</item>
+        <item>DWD ICON D2</item>
+        <item>GEM Seamless</item>
+        <item>GEM Global</item>
+        <item>GEM Regional</item>
+        <item>GEM HRDPS Continental</item>
+        <item>Météo-France Seamless</item>
+        <item>Météo-France ARPEGE World</item>
+        <item>Météo-France ARPEGE Europe</item>
+        <item>Météo-France AROME France</item>
+        <item>Météo-France AROME France HD</item>
+        <item>ARPAE Seamless</item>
+        <item>ARPAE COSMO 2I</item>
+        <item>ARPAE COSMO 2I RUC</item>
+        <item>ARPAE COSMO 5M</item>
+    </string-array>
+    <string-array name="open_meteo_weather_models_values">
+        <item>best_match</item>
+        <item>ecmwf_ifs04</item>
+        <item>ecmwf_ifs025</item>
+        <item>ecmwf_aifs025</item>
+        <item>cma_grapes_global</item>
+        <item>bom_access_global</item>
+        <item>metno_nordic</item>
+        <item>gfs_seamless</item>
+        <item>gfs_global</item>
+        <item>gfs_hrrr</item>
+        <item>jma_seamless</item>
+        <item>jma_msm</item>
+        <item>jma_gsm</item>
+        <item>icon_seamless</item>
+        <item>icon_global</item>
+        <item>icon_eu</item>
+        <item>icon_d2</item>
+        <item>gem_seamless</item>
+        <item>gem_global</item>
+        <item>gem_regional</item>
+        <item>gem_hrdps_continental</item>
+        <item>meteofrance_seamless</item>
+        <item>meteofrance_arpege_world</item>
+        <item>meteofrance_arpege_europe</item>
+        <item>meteofrance_arome_france</item>
+        <item>meteofrance_arome_france_hd</item>
+        <item>arpae_cosmo_seamless</item>
+        <item>arpae_cosmo_2i</item>
+        <item>arpae_cosmo_2i_ruc</item>
+        <item>arpae_cosmo_5m</item>
+    </string-array>
+
     <!-- Open Weather Map One Call version -->
     <string-array name="open_weather_one_call_version">
         <item>@string/weather_source_openweather_version_2_5</item>

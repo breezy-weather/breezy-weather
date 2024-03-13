@@ -37,7 +37,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -63,7 +63,7 @@ class AccuService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     LocationSearchSource, ReverseGeocodingSource,
-    ConfigurableSource, ParameterizedLocationSource {
+    ConfigurableSource, LocationParametersSource {
 
     override val id = "accu"
     override val name = "AccuWeather"

@@ -18,25 +18,47 @@ package org.breezyweather.sources.openmeteo
 
 import android.content.Context
 import android.graphics.Color
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.R
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
+import retrofit2.HttpException
 import retrofit2.Retrofit
+import java.text.Collator
 import javax.inject.Inject
 
 class OpenMeteoService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, LocationSearchSource, SecondaryWeatherSource {
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, LocationSearchSource,
+    PreferencesParametersSource {
 
     override val id = "openmeteo"
     override val name = "Open-Meteo"
@@ -142,6 +164,7 @@ class OpenMeteoService @Inject constructor(
         val weather = mWeatherApi.getWeather(
             location.latitude,
             location.longitude,
+            getWeatherModels(location).joinToString(",") { it.id },
             daily.joinToString(","),
             hourly.joinToString(","),
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -175,8 +198,21 @@ class OpenMeteoService @Inject constructor(
                 emitter.onNext(OpenMeteoAirQualityResult())
             }
         }
-        return Observable.zip(weather, aqi) { openMeteoWeatherResult: OpenMeteoWeatherResult,
-                                              openMeteoAirQualityResult: OpenMeteoAirQualityResult
+        return Observable.zip(
+            weather.onErrorResumeNext {
+                if (it is HttpException &&
+                    it.response()?.errorBody()?.string()
+                        ?.contains("No data is available for this location") == true) {
+                    // Happens when user choose a model that doesn’t cover their location
+                    Observable.error(InvalidLocationException())
+                } else {
+                    Observable.error(it)
+                }
+            },
+            aqi
+        ) {
+            openMeteoWeatherResult: OpenMeteoWeatherResult,
+            openMeteoAirQualityResult: OpenMeteoAirQualityResult
             ->
             convert(
                 context,
@@ -207,6 +243,7 @@ class OpenMeteoService @Inject constructor(
             mWeatherApi.getWeather(
                 location.latitude,
                 location.longitude,
+                getWeatherModels(location).joinToString(",") { it.id },
                 "",
                 "",
                 "",
@@ -239,8 +276,20 @@ class OpenMeteoService @Inject constructor(
             }
         }
 
-        return Observable.zip(weather, aqi) { openMeteoWeatherResult: OpenMeteoWeatherResult,
-                                              openMeteoAirQualityResult: OpenMeteoAirQualityResult
+        return Observable.zip(
+            weather.onErrorResumeNext {
+                if (it is HttpException &&
+                    it.response()?.errorBody()?.string()
+                        ?.contains("No data is available for this location") == true) {
+                    // Happens when user choose a model that doesn’t cover their location
+                    Observable.error(InvalidLocationException())
+                } else {
+                    Observable.error(it)
+                }
+            },
+            aqi
+        ) { openMeteoWeatherResult: OpenMeteoWeatherResult,
+            openMeteoAirQualityResult: OpenMeteoAirQualityResult
             ->
             convertSecondary(
                 openMeteoWeatherResult.minutelyFifteen,
@@ -269,6 +318,176 @@ class OpenMeteoService @Inject constructor(
             results.results.map {
                 convert(it)
             }
+        }
+    }
+
+    // Per-location preferences
+    override fun hasPreferencesScreen(
+        location: Location,
+        features: List<SecondaryWeatherSourceFeature>
+    ): Boolean {
+        return features.isEmpty() ||
+                features.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+    }
+
+    private fun getWeatherModels(
+        location: Location
+    ): List<OpenMeteoWeatherModel> {
+        return location.parameters
+            .getOrElse(id) { null }?.getOrElse("weatherModels") { null }
+            ?.split(",")
+            ?.mapNotNull {
+                OpenMeteoWeatherModel.getInstance(it)
+            }?.toMutableList() ?: listOf(OpenMeteoWeatherModel.BEST_MATCH)
+    }
+
+    data class WeatherModelStatus(
+        val model: OpenMeteoWeatherModel,
+        val enabled: Boolean
+    )
+
+    @Composable
+    override fun PerLocationPreferences(
+        context: Context,
+        location: Location,
+        features: List<SecondaryWeatherSourceFeature>,
+        onSave: (Map<String, String>) -> Unit
+    ) {
+        val dialogModelsOpenState = remember { mutableStateOf(false) }
+        val weatherModels = remember {
+            mutableStateListOf<WeatherModelStatus>().apply {
+                val cv = getWeatherModels(location)
+                addAll(
+                    OpenMeteoWeatherModel.entries.map {
+                        WeatherModelStatus(
+                            model = it,
+                            enabled = cv.contains(it)
+                        )
+                    }
+                )
+            }
+        }
+
+        PreferenceView(
+            title = stringResource(R.string.settings_weather_source_open_meteo_weather_models),
+            summary = weatherModels
+                .filter { it.enabled }
+                .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+                    Collator.getInstance(SettingsManager.getInstance(context).language.locale)
+                        .compare(ws1.model.getName(context), ws2.model.getName(context))
+                }
+                .joinToString(context.getString(R.string.comma_separator)) {
+                    it.model.getName(context)
+                },
+            card = false
+        ) {
+            dialogModelsOpenState.value = true
+        }
+
+        if (dialogModelsOpenState.value) {
+            AlertDialogNoPadding(
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_weather_source_open_meteo_weather_models),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                },
+                text = {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxHeight()
+                    ) {
+                        items(
+                            weatherModels,
+                            { key ->
+                                // Doesn’t update otherwise
+                                key.hashCode()
+                            }
+                        ) { model ->
+                            if (model.model.id.endsWith("_seamless")) {
+                                HorizontalDivider()
+                            }
+                            SwitchPreferenceView(
+                                title = model.model.getName(context),
+                                summary = { context, _ -> model.model.getDescription(context) },
+                                checked = model.enabled,
+                                card = false
+                            ) { checked ->
+                                if (checked) {
+                                    model.model.incompatibleSources.forEach { incompatibleSource ->
+                                        weatherModels.indexOfFirst { it.model.id == incompatibleSource }.let {
+                                            if (it != -1) {
+                                                weatherModels[it] = weatherModels[it].copy(enabled = false)
+                                            }
+                                        }
+                                    }
+                                    weatherModels.indexOfFirst { it.model == model.model }.let {
+                                        if (it != -1) {
+                                            weatherModels[it] = weatherModels[it].copy(enabled = true)
+                                        }
+                                    }
+                                } else {
+                                    weatherModels.indexOfFirst { it.model == model.model }.let {
+                                        if (it != -1) {
+                                            weatherModels[it] = weatherModels[it].copy(enabled = false)
+                                        }
+                                    }
+                                }
+                            }
+                            if (model.model == OpenMeteoWeatherModel.BEST_MATCH) {
+                                HorizontalDivider()
+                            }
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            onSave(
+                                mapOf(
+                                    "weatherModels" to weatherModels.filter { it.enabled }
+                                        .joinToString(",") { it.model.id }
+                                )
+                            )
+                            dialogModelsOpenState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_confirm),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(
+                        onClick = {
+                            val cv = getWeatherModels(location)
+                            weatherModels.forEachIndexed { key, value ->
+                                weatherModels[key] = value.copy(
+                                    enabled = cv.contains(value.model)
+                                )
+                            }
+                            dialogModelsOpenState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_cancel),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                },
+                onDismissRequest = {
+                    val cv = getWeatherModels(location)
+                    weatherModels.forEachIndexed { key, value ->
+                        weatherModels[key] = value.copy(
+                            enabled = cv.contains(value.model)
+                        )
+                    }
+                    dialogModelsOpenState.value = false
+                }
+            )
         }
     }
 

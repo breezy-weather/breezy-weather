@@ -29,9 +29,10 @@ interface OpenMeteoWeatherApi {
     fun getWeather(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
+        @Query("models") models: String = "best_match",
         @Query("daily") daily: String,
         @Query("hourly") hourly: String,
-        @Query("minutely_15") minutely_15: String,
+        @Query("minutely_15") minutely15: String,
         @Query("current") current: String,
         @Query("forecast_days") forecastDays: Int,
         @Query("past_days") pastDays: Int,

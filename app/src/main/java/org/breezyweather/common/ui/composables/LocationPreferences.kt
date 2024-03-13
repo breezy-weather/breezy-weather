@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
@@ -43,6 +42,8 @@ import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.SectionFooter
+import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
 
@@ -54,6 +55,10 @@ fun LocationPreference(
     onClose: ((location: Location?) -> Unit)
 ) {
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
+    val dialogPerLocationSourcesOpenState = remember { mutableStateOf(false) }
+    val sourcesWithPreferencesScreen = remember {
+        activity.sourceManager.sourcesWithPreferencesScreen(location)
+    }
 
     Column(
         modifier = Modifier
@@ -90,6 +95,16 @@ fun LocationPreference(
         ) {
             dialogWeatherSourcesOpenState.value = true
         }
+        if (sourcesWithPreferencesScreen.isNotEmpty()) {
+            PreferenceView(
+                titleId = R.string.settings_per_location,
+                iconId = R.drawable.ic_settings,
+                summaryId = R.string.settings_per_location_summary,
+                card = false
+            ) {
+                dialogPerLocationSourcesOpenState.value = true
+            }
+        }
 
         if (dialogWeatherSourcesOpenState.value) {
             SecondarySourcesPreference(
@@ -119,6 +134,72 @@ fun LocationPreference(
                     onClose(null)
                 }
             }
+        }
+
+        if (dialogPerLocationSourcesOpenState.value) {
+            AlertDialogNoPadding(
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_per_location),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                },
+                text = {
+                    sourcesWithPreferencesScreen.forEach { preferenceSource ->
+                        SectionHeader(title = preferenceSource.name)
+                        preferenceSource.PerLocationPreferences(
+                            context = activity,
+                            location = location,
+                            features = emptyList() // TODO
+                        ) {
+                            val newParameters = location.parameters.toMutableMap()
+                            newParameters[preferenceSource.id] = (if (newParameters.getOrElse(preferenceSource.id) { null } != null) {
+                                newParameters[preferenceSource.id]!!
+                            } else emptyMap()) + it
+                            dialogPerLocationSourcesOpenState.value = false
+                            dialogWeatherSourcesOpenState.value = false
+                            onClose(
+                                location.copy(
+                                    parameters = newParameters,
+                                    // TODO: Will trigger a full refresh which we should avoid
+                                    // if we only change a secondary weather source
+                                    weather = location.weather?.let { weather ->
+                                        weather.copy(
+                                            base = weather.base.copy(
+                                                refreshTime = null,
+                                                mainUpdateTime = null,
+                                                airQualityUpdateTime = null,
+                                                pollenUpdateTime = null,
+                                                minutelyUpdateTime = null,
+                                                alertsUpdateTime = null,
+                                                normalsUpdateTime = null
+                                            )
+                                        )
+                                    }
+                                )
+                            )
+                        }
+                        SectionFooter()
+                    }
+                },
+                onDismissRequest = {
+                    dialogPerLocationSourcesOpenState.value = false
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            dialogPerLocationSourcesOpenState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_close),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                }
+            )
         }
     }
 }
@@ -180,7 +261,6 @@ fun SecondarySourcesPreference(
             SecondaryWeatherSourceFeature.FEATURE_NORMALS, location
         )
     }.associate { it.id to it.name }
-    val uriHandler = LocalUriHandler.current
 
     AlertDialogNoPadding(
         onDismissRequest = {
@@ -376,9 +456,9 @@ fun SecondarySourcesPreference(
                             needsGeocodeRefresh = hasChangedMainSource.value && location.isCurrentPosition,
                             // TODO: Will trigger a full refresh which we should avoid
                             // if we only change a secondary weather source
-                            weather = location.weather?.let {
-                                it.copy(
-                                    base = it.base.copy(
+                            weather = location.weather?.let { weather ->
+                                weather.copy(
+                                    base = weather.base.copy(
                                         refreshTime = null,
                                         mainUpdateTime = null,
                                         airQualityUpdateTime = null,

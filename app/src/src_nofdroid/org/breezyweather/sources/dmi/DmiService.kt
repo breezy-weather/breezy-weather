@@ -26,7 +26,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -38,7 +38,7 @@ import javax.inject.Inject
 class DmiService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, ParameterizedLocationSource {
+    ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "dmi"
     override val name = "Danmarks Meteorologiske Institut (DMI)"

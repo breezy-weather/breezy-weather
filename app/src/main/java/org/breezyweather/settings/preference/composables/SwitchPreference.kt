@@ -22,7 +22,6 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -151,8 +150,7 @@ fun SwitchPreferenceView(
                         onValueChanged(state.value)
                     },
                     enabled = enabled,
-                )
-                .padding(PaddingValues(vertical = 8.dp)),
+                ),
             leadingContent = if (iconId != null) {
                 {
                     Icon(

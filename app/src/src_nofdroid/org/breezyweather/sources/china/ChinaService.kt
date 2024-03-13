@@ -29,7 +29,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.ParameterizedLocationSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.china.json.ChinaForecastResult
@@ -40,7 +40,7 @@ import javax.inject.Inject
 class ChinaService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    LocationSearchSource, ReverseGeocodingSource, ParameterizedLocationSource {
+    LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "china"
     override val name = "中国"

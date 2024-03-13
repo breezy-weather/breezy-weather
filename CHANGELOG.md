@@ -1,5 +1,11 @@
 # Version 5.1.3-beta (not yet released)
 
+**New features**
+- Per-location per-source preferences
+
+**Weather sources**
+- [Open-Meteo] Allow to choose weather models per-location
+
 **Improvements and fixes**
 - Add troubleshooting for “Source no longer available” error
 
