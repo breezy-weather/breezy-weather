@@ -416,7 +416,7 @@
     <string name="action_close">बंद</string>
     <string name="action_share">साझा करे</string>
     <string name="dialog_permissions_location_title">स्थान की जानकारी ले</string>
-    <string name="dialog_permissions_location_background_content">एप्लिकेशन को पृष्ठभूमि में स्थान की जानकारी तक पहुंचने की अनुमति दे, ताकि हम स्थान में बदलाव कर सकें और आपको वैध मौसम डेटा प्रदान कर सकें, कृपया स्थान पहुंच को \"सभी समय की अनुमति दें\" के रूप में सहेजे।।</string>
+    <string name="dialog_permissions_location_background_content">एप्लिकेशन को पृष्ठभूमि में स्थान की जानकारी तक पहुंचने की अनुमति दे, ताकि हम स्थान में बदलाव कर सकें और आपको वैध मौसम डेटा प्रदान कर सकें, कृपया स्थान पहुंच को “सभी समय की अनुमति दें” के रूप में सहेजे।।</string>
     <string name="widget_multi_city">बहु नगरीय</string>
     <string name="message_source_not_installed_error_content_tip_1">ऐसा तब हो सकता है जब आपने ब्रीज़ी वेदर के मानक में अपना स्थान जोड़ा और फिर एफ-ड्रॉयड पर स्विच किया, जिसमें कम मौसम स्रोत समर्थित हैं। मानक पर वापस जाने से यह समस्या हल हो सकती है।</string>
     <string name="message_source_not_installed_error_content_tip_2">या तो इस स्थान के लिए मौसम स्रोत बदलें या इस स्थान को हटा दें और पुनः जोड़ें।</string>

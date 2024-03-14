@@ -683,6 +683,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Объединяет все модели погоды от этого поставщика в единый прогноз</string>
     <string name="message_source_not_installed_error_content_tip_1">Это может произойти, если вы добавили свое местоположение в стандартную версию Breezy Weather, а затем переключились на версию F-Droid, в которой поддерживается меньше поставщиков погоды. Возврат к стандартной версии может решить эту проблему.</string>
     <string name="message_source_not_installed_error_content_tip_2">Либо измените поставщика погоды для этого местоположения, либо удалите и снова добавьте это местоположение.</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, ..., 4 дня спустя</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, …, 4 дня спустя</string>
     <string name="sunshine">Солнечно</string>
 </resources>

@@ -670,12 +670,12 @@
     <string name="settings_per_location">Уподобання за розташуванням</string>
     <string name="settings_weather_source_open_meteo_weather_models">Моделі погоди</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Найкращий збіг</string>
-    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Об\'єднує в собі найкращі моделі погоди для цього розташування</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Об’єднує в собі найкращі моделі погоди для цього розташування</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Безшовна</string>
     <string name="about_open_link_message">Відкрити %s?</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Об\'єднує всі моделі погоди від цього постачальника в єдиний прогноз</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Об’єднує всі моделі погоди від цього постачальника в єдиний прогноз</string>
     <string name="message_source_not_installed_error_content_tip_1">Це може статися, якщо ви додали своє місце розташування в стандартну версію Breezy Weather, а потім переключилися на версію F-Droid, в якій підтримується менше постачальників погоди. Повернення до стандартної версії може вирішити цю проблему.</string>
     <string name="message_source_not_installed_error_content_tip_2">Або змініть постачальника погоди для цього місця розташування, або видаліть і знову додайте це місце розташування.</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Зведення пилкового індексу на сьогодні, завтра, ..., 4 дні потому</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Зведення пилкового індексу на сьогодні, завтра, …, 4 дні потому</string>
     <string name="sunshine">Сонячно</string>
 </resources>
