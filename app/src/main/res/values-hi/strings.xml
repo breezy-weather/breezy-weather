@@ -362,7 +362,6 @@
     <string name="unit_hpa_voice">हेक्टोपास्कल्स</string>
     <string name="null_data_text">एन/ए</string>
     <string name="pressure">दबाव</string>
-    <string name="date_format_long"></string>
     <string name="dialog_permissions_location_background_title">पृष्ठभूमि में स्थान प्राप्त करे</string>
     <string name="message_tap_again_to_exit">बाहर निकलने के लिए फिर से दबाएं</string>
     <string name="widget_trend_daily">दैनिक रुझान</string>
