@@ -458,7 +458,7 @@
     <string name="settings_location_summary">位置服务源设置</string>
     <string name="settings_location_access_precise_title">设备 GPS 的使用情况</string>
     <string name="settings_location_access_precise_summaryOff">如果定位存在问题，请启用“使用确切位置”。</string>
-    <string name="settings_weather_sources_summary">天气数据源设置</string>
+    <string name="settings_weather_sources_summary">定制用于此位置的天气数据源</string>
     <string name="settings_location_access_switch_summaryOn">已允许。你可以添加当前定位作为位置。</string>
     <string name="settings_location_access_background_title">在后台访问位置信息</string>
     <string name="settings_location_access_background_summaryOn">已启用。应用将能够在后台更新你当前位置的天气数据。</string>
@@ -682,4 +682,11 @@
     <string name="sunshine">日晒</string>
     <string name="message_source_not_installed_error_content_tip_1">当你在 Standard 版本的 Breezy Weather 中添加了位置，然后切换到支持的天气源较少的 F-Droid 版本的应用时可能会发生这个。切回到 Standard 版本可能会解决这个问题。</string>
     <string name="message_source_not_installed_error_content_tip_2">要么更改此位置的天气源，要么删除并重新添加此位置。</string>
+    <string name="settings_per_location">位置选项</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">混合此位置的最佳天气模型</string>
+    <string name="settings_per_location_summary">此位置的附加自定义</string>
+    <string name="settings_weather_source_open_meteo_weather_models">天气模型</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">无缝</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">将此提供者的所有天气模型混合进无缝预测</string>
 </resources>
