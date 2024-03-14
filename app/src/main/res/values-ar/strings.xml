@@ -681,4 +681,8 @@
     <string name="settings_per_location">إعدادات الموقع</string>
     <string name="settings_per_location_summary">تخصيصات إضافية لهذا الموقع</string>
     <string name="settings_weather_source_open_meteo_weather_models">نماذج الطقس</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">أفضل مطابقة</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">تجمع أفضل نماذج الطقس لهذا الموقع</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">سلس</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">يجمع جميع نماذج الطقس من هذا المزود في تنبؤ سلس</string>
 </resources>
