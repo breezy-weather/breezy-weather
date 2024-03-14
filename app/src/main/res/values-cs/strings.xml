@@ -330,7 +330,7 @@
     <string name="settings_location_access_background_title">Přístup k poloze na pozadí</string>
     <string name="settings_location_access_switch_summaryOn">Povoleno. Jako umístění můžete přidat svou aktuální polohu.</string>
     <string name="settings_weather_sources">Zdroje počasí</string>
-    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí</string>
+    <string name="settings_weather_sources_summary">Přizpůsobte si zdroje dat o počasí použité pro toto umístění</string>
     <string name="settings_location_access_background_summaryOn">Povoleno. Aplikace bude moci na pozadí obnovovat údaje o počasí pro vaši aktuální polohu.</string>
     <string name="settings_location_access_background_summaryOff">Povolte možnost „Povolit po celou dobu“, chcete-li mít aktualizace na pozadí pro aktuální polohu.</string>
     <string name="settings_location_access_precise_title">Použití zařízení GPS</string>
@@ -395,7 +395,7 @@
     <string name="uv_index_8_10">Velmi vysoký</string>
     <string name="location_results_by">Výsledky polohy podle %s</string>
     <string name="air_quality_level_1">Vynikající</string>
-    <string name="air_quality_level_2_description">Kvalita vzduchu je převážně vhodná pro většinu jedinců. Ovšem, citlivé skupiny lidí mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
+    <string name="air_quality_level_2_description">Kvalita vzduchu je obecně přijatelná pro většinu jedinců. Citlivé skupiny lidí ovšem mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
     <string name="air_quality_no2_info_introduction">Oxid dusičitý (NO₂) je dusivý, jedovatý červenohnědý plyn s charakteristickým štiplavým, ostrým zápachem.</string>
     <string name="action_share">Sdílet</string>
     <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
@@ -692,4 +692,11 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Souhrn indexu pylů pro dnešek, zítřek, …, za 4 dny</string>
     <string name="about_open_link_message">Otevřít %s?</string>
     <string name="sunshine">Slunce</string>
+    <string name="settings_per_location">Nastavení umístění</string>
+    <string name="settings_per_location_summary">Další možnosti přizpůsobení pro toto umístění</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Předpovědní modely</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Nejlepší shoda</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinuje nejlepší předpovědní modely pro toto umístění</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Souhrnné</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinuje všechny předpovědní modely tohoto poskytovatele do souhrnné předpovědi</string>
 </resources>
