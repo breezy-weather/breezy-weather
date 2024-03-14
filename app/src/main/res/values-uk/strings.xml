@@ -669,7 +669,7 @@
     <string name="settings_per_location_summary">Додаткові налаштування для цього розташування</string>
     <string name="settings_per_location">Уподобання за розташуванням</string>
     <string name="settings_weather_source_open_meteo_weather_models">Моделі погоди</string>
-    <string name="settings_weather_source_open_meteo_weather_models_best_match">Найкраща відповідність</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Найкращий збіг</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Об\'єднує в собі найкращі моделі погоди для цього розташування</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Безшовна</string>
     <string name="about_open_link_message">Відкрити %s?</string>
