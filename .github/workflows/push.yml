@@ -39,7 +39,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
           set -e
-          echo "breezy.source.default_weather=accu" >> local.properties
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
           echo "breezy.baiduip.key=$BAIDU_IP_LOCATION_AK" >> local.properties
