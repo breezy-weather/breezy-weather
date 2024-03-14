@@ -46,6 +46,7 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getUriCompat
@@ -61,6 +62,7 @@ import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
+import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import java.io.File
@@ -143,16 +145,28 @@ class WeatherUpdateJob @AssistedInject constructor(
     /**
      * Adds list of locations to be updated.
      *
-     * @param locationFormattedId the ID of the location to update, or null if all locations.
+     * @param locationFormattedId the ID of the location to update, or null if automatic detection.
      */
     private suspend fun addLocationToQueue(locationFormattedId: String?) {
         locationsToUpdate = if (locationFormattedId != null) {
             val location = locationRepository.getLocation(locationFormattedId)
             if (location != null) {
-                listOf(location.copy(weather = weatherRepository.getWeatherByLocationId(location.formattedId)))
+                listOf(
+                    location.copy(
+                        weather = weatherRepository.getWeatherByLocationId(location.formattedId)
+                    )
+                )
             } else emptyList()
         } else {
-            val locationList = locationRepository.getAllLocations().toMutableList()
+            val nbLocations = when {
+                SettingsManager.getInstance(context).isWidgetNotificationEnabled
+                    && SettingsManager.getInstance(context)
+                        .widgetNotificationStyle == NotificationStyle.CITIES -> 4 // TODO: Only show 3 locations in this notification, it should be enough
+                MultiCityWidgetIMP.isInUse(context) -> 3
+                else -> 1
+            }
+
+            val locationList = locationRepository.getXLocations(nbLocations).toMutableList()
             for (i in locationList.indices) {
                 locationList[i] = locationList[i].copy(
                     weather = weatherRepository.getWeatherByLocationId(locationList[i].formattedId)

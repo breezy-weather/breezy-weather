@@ -1,3 +1,9 @@
+# Version 5.1.4-beta (not yet released)
+
+**Improvements and fixes**
+- Background weather update will now only process the first location, unless you have multi cities usage. This makes the process more green and efficient, and other secondary locations will automatically be updated when you open them instead (this means that if you don’t check these locations very often, it will no longer uselessly refresh them in the background). A document has been written to describe in details how the full weather update process work: https://github.com/breezy-weather/breezy-weather/blob/main/docs/UPDATES.md
+
+
 # Version 5.1.3-beta (2024-03-13)
 
 **New features**
