@@ -684,7 +684,7 @@
     <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reînserezi această locație.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="about_open_link_message">Deschizi %s?</string>
-    <string name="sunshine">Ore cu soare</string>
+    <string name="sunshine">Ore Senine</string>
     <string name="settings_per_location">Preferințele locației</string>
     <string name="settings_per_location_summary">Personalizări suplimentare pentru această locație</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Cea mai bună potrivire</string>
