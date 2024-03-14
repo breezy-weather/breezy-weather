@@ -291,7 +291,7 @@
     <string name="unit_km">km</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="common_weather_text_snow_grains">Boabe de Zăpadă</string>
+    <string name="common_weather_text_snow_grains">Ninsoare Fină</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogramă gri</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
