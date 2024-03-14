@@ -1,5 +1,8 @@
 # Version 5.1.4-beta (not yet released)
 
+**New features**
+- We now have our own repo for F-Droid and Google Play flavors of Breezy Weather. If you want to switch from our current repo (Standard flavor) to a different flavor, you should remove the repo for the Standard flavor first to avoid getting updates for the wrong flavor. [Link to Breezy Weather F-Droid repos](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)
+
 **Improvements and fixes**
 - Background weather update will now only process the first location, unless you have multi cities usage. This makes the process more green and efficient, and other secondary locations will automatically be updated when you open them instead (this means that if you don’t check these locations very often, it will no longer uselessly refresh them in the background). A document has been written to describe in details how the full weather update process work: https://github.com/breezy-weather/breezy-weather/blob/main/docs/UPDATES.md
 
