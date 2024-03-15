@@ -14,14 +14,21 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.utils.helpers
+package org.breezyweather.sources.wmosevereweather.json
 
-import android.util.Log
+import kotlinx.serialization.Serializable
 
-object LogHelper {
-    private const val TAG = "BreezyWeather"
-
-    fun log(tag: String? = TAG, msg: String) {
-        Log.d(tag, msg)
-    }
-}
+@Serializable
+data class WmoSevereWeatherAlert(
+    val identifier: String?,
+    val url: String?,
+    val capURL: String?,
+    val effective: String?, // Can’t be parsed automatically
+    val onset: String?, // Can’t be parsed automatically
+    val sent: String?, // Can’t be parsed automatically
+    val expires: String?, // Can’t be parsed automatically
+    val event: String?,
+    val description: String?,
+    val s: Int?,
+    val coord: List<WmoSevereWeatherAlertCoord>
+)

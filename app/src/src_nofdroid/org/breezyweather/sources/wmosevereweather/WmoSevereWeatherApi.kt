@@ -14,14 +14,19 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.utils.helpers
+package org.breezyweather.sources.wmosevereweather
 
-import android.util.Log
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlert
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-object LogHelper {
-    private const val TAG = "BreezyWeather"
-
-    fun log(tag: String? = TAG, msg: String) {
-        Log.d(tag, msg)
-    }
+/**
+ * API World Meteorological Organization
+ */
+interface WmoSevereWeatherApi {
+    @GET("v2/json/{region}.json")
+    fun getAlertsByRegion(
+        @Path("region") region: String
+    ): Observable<List<WmoSevereWeatherAlert>>
 }

@@ -69,7 +69,9 @@ fun convert(
         ),*/
         current = if (oneCallResult.current != null) Current(
             weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                if (it.isLowerCase()) {
+                    it.titlecase(Locale.getDefault())
+                } else it.toString()
             },
             weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
             temperature = Temperature(

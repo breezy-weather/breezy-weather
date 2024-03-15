@@ -51,6 +51,7 @@ import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
 import org.breezyweather.sources.smhi.SmhiService
+import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -75,7 +76,8 @@ class SourceManager @Inject constructor(
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
     recosanteService: RecosanteService,
-    smhiService: SmhiService
+    smhiService: SmhiService,
+    wmoSevereWeatherService: WmoSevereWeatherService
 ) {
     // TODO: Initialize lazily
     // The order of this list is preserved in "source chooser" dialogs
@@ -113,8 +115,9 @@ class SourceManager @Inject constructor(
         metIeService,
 
         // Secondary weather sources
-        atmoAuraService,
-        recosanteService
+        wmoSevereWeatherService,
+        recosanteService,
+        atmoAuraService
     )
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }

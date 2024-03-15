@@ -14,14 +14,13 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.utils.helpers
+package org.breezyweather.sources.wmosevereweather.json
 
-import android.util.Log
+import kotlinx.serialization.Serializable
+import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherGeocodeMultiPolygonSerializer
 
-object LogHelper {
-    private const val TAG = "BreezyWeather"
-
-    fun log(tag: String? = TAG, msg: String) {
-        Log.d(tag, msg)
-    }
-}
+@Serializable(with = WmoSevereWeatherGeocodeMultiPolygonSerializer::class)
+data class WmoSevereWeatherAlertCoordGeocode(
+    val type: String? = null, // Values can be Polygon or MultiPolygon
+    val coordinates: List<List<String>>? = null
+)

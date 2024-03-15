@@ -58,15 +58,22 @@ class NwsService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
+    private val supportedCountries = setOf(
+        "US",
+        "PR", // Puerto Rico
+        "VI", // St Thomas Islands
+        "MP", // Mariana Islands
+        "GU", // Guam
+        "FM", // Palikir
+        "PW", // Melekeok
+        "AS", // Pago Pago
+        "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
+    )
+
     override fun isWeatherSupportedForLocation(location: Location): Boolean {
-        return location.countryCode.equals("US", ignoreCase = true)
-                || location.countryCode.equals("PR", ignoreCase = true) // Puerto Rico
-                || location.countryCode.equals("VI", ignoreCase = true) // St Thomas Islands
-                || location.countryCode.equals("MP", ignoreCase = true) // Mariana Islands
-                || location.countryCode.equals("GU", ignoreCase = true) // Guam
-                || location.countryCode.equals("FM", ignoreCase = true) // Palikir
-                || location.countryCode.equals("PW", ignoreCase = true) // Melekeok
-                || location.countryCode.equals("AS", ignoreCase = true) // Pago Pago
+        return supportedCountries.any {
+            location.countryCode.equals(it, ignoreCase = true)
+        }
     }
 
     override fun requestWeather(

@@ -19,13 +19,16 @@ package org.breezyweather.sources.naturalearth
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import com.google.maps.android.PolyUtil
+import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 import com.google.maps.android.data.geojson.GeoJsonParser
 import com.google.maps.android.data.geojson.GeoJsonPolygon
+import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.settings.SettingsManager
 import org.json.JSONObject
 import javax.inject.Inject
@@ -84,7 +87,26 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         )
 
         if (matchingCountries.size != 1) {
+            if (matchingCountries.isEmpty()) {
+                // Special case: Barbados, we need it for WmoSevereWeatherService
+                if (
+                    SphericalUtil.computeDistanceBetween(
+                        LatLng(location.latitude, location.longitude),
+                        LatLng(13.169629, -59.564438)
+                    ) < 50000 // 50 km around this point
+                ) {
+                    locationList.add(
+                        location.copy(
+                            country = "Barbados",
+                            countryCode = "BB"
+                        )
+                    )
+                    return Observable.just(locationList)
+                }
+            }
+
             locationList.add(location)
+            LogHelper.log(msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results")
             return Observable.just(locationList)
         }
 

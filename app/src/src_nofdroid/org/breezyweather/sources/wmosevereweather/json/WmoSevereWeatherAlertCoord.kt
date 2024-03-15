@@ -14,14 +14,16 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.utils.helpers
+package org.breezyweather.sources.wmosevereweather.json
 
-import android.util.Log
+import kotlinx.serialization.Serializable
 
-object LogHelper {
-    private const val TAG = "BreezyWeather"
-
-    fun log(tag: String? = TAG, msg: String) {
-        Log.d(tag, msg)
-    }
-}
+@Serializable
+data class WmoSevereWeatherAlertCoord(
+    // Used by MeteoAlarmV2:
+    val geocode: List<List<WmoSevereWeatherAlertCoordGeocode>>?, // Encoded by https://developers.google.com/maps/documentation/utilities/polylinealgorithm
+    val polygon: List<List<String>>?,
+    //val geojson: /* TODO */?,
+    val marker: String?,
+    //val circle: List<WmoAlertCoordCircle>? // Not sure if actually used
+)

@@ -189,22 +189,24 @@ class RefreshHelper @Inject constructor(
                     throw LocationException()
                 }
             return LocationResult(
-                location.copy(
-                    latitude = result.latitude,
-                    longitude = result.longitude,
-                    /*
-                     * Don’t keep old data as the user can have changed position
-                     * It avoids keeping old data from a reverse geocoding-compatible weather source
-                     * onto a weather source without reverse geocoding
-                     */
-                    timeZone = result.timeZone ?: TimeZone.getDefault(),
-                    country = result.country ?: "",
-                    countryCode = result.countryCode ?: "",
-                    province = result.province ?: "",
-                    provinceCode = result.provinceCode ?: "",
-                    city = result.city ?: "",
-                    district = result.district ?: ""
-                )
+                if (result.latitude != location.latitude || result.longitude != location.longitude) {
+                    location.copy(
+                        latitude = result.latitude,
+                        longitude = result.longitude,
+                        /*
+                         * Don’t keep old data as the user can have changed position
+                         * It avoids keeping old data from a reverse geocoding-compatible weather source
+                         * onto a weather source without reverse geocoding
+                         */
+                        timeZone = result.timeZone ?: TimeZone.getDefault(),
+                        country = result.country ?: "",
+                        countryCode = result.countryCode ?: "",
+                        province = result.province ?: "",
+                        provinceCode = result.provinceCode ?: "",
+                        city = result.city ?: "",
+                        district = result.district ?: ""
+                    )
+                } else location // Return as-is without overwriting reverse geocoding info
             )
         } catch (e: Throwable) {
             LocationResult(
