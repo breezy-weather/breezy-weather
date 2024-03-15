@@ -51,7 +51,8 @@ enum class LocationPreset(
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FDROID("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
-    FRANCE("mf", airQuality = "openmeteo", pollen = "openmeteo"),
+    FRANCE("mf", airQuality = "openmeteo", pollen = "recosante"),
+    FRANCE_FDROID("openmeteo", pollen = "recosante"),
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
@@ -89,6 +90,7 @@ enum class LocationPreset(
                 when (countryCode.uppercase(Locale.ENGLISH)) {
                     // Europe
                     "DE" -> GERMANY_FDROID
+                    "FR" -> FRANCE_FDROID
 
                     else -> DEFAULT_FDROID
                 }

@@ -30,14 +30,20 @@ import java.util.Date
 import java.util.TimeZone
 
 fun convert(timeZone: TimeZone, result: RecosanteResult): SecondaryWeatherWrapper {
-    if (result.raep?.indice?.details.isNullOrEmpty()) {
+    if (result.raep == null) {
         throw SecondaryWeatherException()
+    }
+    if (result.raep.indice?.details.isNullOrEmpty()) {
+        // Don’t throw an error if empty or null
+        // This can happen when the weekly bulletin has not been emitted yet on Friday
+        // See also bug #804
+        return SecondaryWeatherWrapper()
     }
 
     val dayList = mutableListOf<Date>()
-    if (result.raep!!.validity?.start != null && result.raep.validity?.end != null) {
-        var startDate = result.raep.validity.start!!.toDateNoHour(timeZone)
-        val endDate = result.raep.validity.end!!.toDateNoHour(timeZone)
+    if (result.raep.validity?.start != null && result.raep.validity.end != null) {
+        var startDate = result.raep.validity.start.toDateNoHour(timeZone)
+        val endDate = result.raep.validity.end.toDateNoHour(timeZone)
         if (startDate != null && endDate != null) {
             var i = 0
             while (true) {

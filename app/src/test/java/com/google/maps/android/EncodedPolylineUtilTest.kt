@@ -12,8 +12,6 @@ class EncodedPolylineUtilTest {
         val encoded = "_p~iF~ps|U_ulLnnqC_mqNvxq`@"
         val decodedLatLng = EncodedPolylineUtil.decode(encoded)
 
-        println(decodedLatLng.toString())
-
         decodedLatLng.size shouldBe 3
         decodedLatLng[0] shouldBe LatLng(38.5, -120.2)
         decodedLatLng[1] shouldBe LatLng(40.7, -120.95)

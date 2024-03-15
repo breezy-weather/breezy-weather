@@ -5,6 +5,12 @@
 
 **Weather sources**
 - [World Meteorological Organization (WMO) Severe Weather] Added experimental support as secondary alert source. Translations are not supported (yet). Please report as soon as possible if you encounter a refresh error, making sure you mention the country of your location in the issue.
+- [Recosanté] Fix refresh error on Friday
+- Updated recommendations for new locations (existing locations must be modified manually, or re-added):
+
+| Location | Source type | Old         | New         |
+|----------|-------------|-------------|-------------|
+| France   | Pollen      | Open-Meteo  | Recosanté   |
 
 **Improvements and fixes**
 - Background weather update will now only process the first location, unless you have multi cities usage. This makes the process more green and efficient, and other secondary locations will automatically be updated when you open them instead (this means that if you don’t check these locations very often, it will no longer uselessly refresh them in the background). A document has been written to describe in details how the full weather update process work: https://github.com/breezy-weather/breezy-weather/blob/main/docs/UPDATES.md
