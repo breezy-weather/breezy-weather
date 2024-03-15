@@ -516,7 +516,7 @@
     <string name="settings_per_location">Location preferences</string>
     <string name="settings_per_location_summary">Additional customizations for this location</string>
     <string name="settings_weather_sources">Weather sources</string>
-    <string name="settings_weather_sources_summary">Weather data sources settings</string>
+    <string name="settings_weather_sources_summary">Default weather source for new locations, custom API keys, other source settings</string>
     <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_weather_sources_default_source">Default source for new locations</string>
     <string name="settings_weather_source_main">Main source</string>
