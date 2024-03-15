@@ -361,13 +361,13 @@
     <string name="settings_per_location">Préférences de l’emplacement</string>
     <string name="settings_per_location_summary">Personnalisations supplémentaires pour cet emplacement</string>
     <string name="settings_weather_sources">Sources météo</string>
-    <string name="settings_weather_sources_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
+    <string name="settings_weather_sources_summary">Paramètres des sources de données météo</string>
     <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
     <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_none">Aucune</string>
     <string name="settings_weather_source_fdroid_disclaimer">Vous utilisez la version de Breezy Weather du dépôt par défaut de F-Droid, qui ne prend en charge que les sources météorologiques qui utilisent une solution de serveur disponible publiquement, auto-hébergeable et libre. Appuyez ici pour en savoir plus.</string>
-    <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo pour cet emplacement</string>
+    <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_weather_models">Modèles météo</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Meilleure combinaison</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combine les meilleurs modèles météo pour cet emplacement</string>

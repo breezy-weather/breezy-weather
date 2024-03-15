@@ -669,9 +669,9 @@
     <string name="notification_channel_background_services">خدمات پس‌زمینه</string>
     <string name="notification_channel_crash_logs">گزارش خرابی</string>
     <string name="notification_running_in_background">در حال اجرا در پس‌زمینه برای به روز ماندن</string>
-    <string name="message_source_not_installed_error_content_tip_1">این می تواند زمانی اتفاق بیفتد که شما مکان خود را در نسخه عادی Breezy Weath اضافه کنید و سپس به F-Droid که منابع آب و هوایی کمتری دارد، تغییر دهید. بازگشت به نسخه عادی ممکن است این مشکل را حل کند.</string>
+    <string name="message_source_not_installed_error_content_tip_1">این می تواند زمانی اتفاق بیفتد که شما مکان خود را در نسخه عادی Breezy Weather اضافه کنید و سپس به F-Droid که منابع آب و هوایی کمتری دارد، تغییر دهید. بازگشت به نسخه عادی ممکن است این مشکل را حل کند.</string>
     <string name="message_source_not_installed_error_content_tip_2">یا منابع آب و هوا را برای این مکان تغییر دهید یا این مکان را حذف و دوباره بیافزایید.</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">خلاصه شاخص گرده امروز، فردا، ...، 4 روز بعد</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">خلاصه شاخص گرده امروز، فردا، …، 4 روز بعد</string>
     <string name="common_weather_text_rain_freezing">باران یخ زده</string>
     <string name="common_weather_text_rain_showers">رگبار کوتاه</string>
     <string name="common_weather_text_rain_showers_heavy">رگبار شدید باران</string>
