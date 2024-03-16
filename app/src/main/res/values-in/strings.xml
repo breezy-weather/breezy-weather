@@ -578,7 +578,7 @@
     <string name="message_parsing_error_title">Gagal mengurai data cuaca</string>
     <string name="weather_message_invalid_location">Lokasi tidak valid, silakan hapus dan tambahkan lagi</string>
     <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca</string>
-    <string name="settings_weather_sources_summary">Pengaturan sumber data cuaca</string>
+    <string name="settings_weather_sources_summary">Sumber cuaca bawaan untuk lokasi baru, kunci API khusus, pengaturan sumber lainnya</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Petunjuk spesifik pabrikan</string>
     <string name="settings_notifications_forecast_time_today_title">Waktu notifikasi untuk perkiraan hari itu</string>
     <string name="location_results_by">Hasil lokasi oleh %s</string>
@@ -595,7 +595,7 @@
     <string name="settings_location_access_precise_summaryOff">Aktifkan “Gunakan lokasi persis” jika Anda mengalami masalah mendapatkan lokasi.</string>
     <string name="settings_widgets_summary">Tetapkan latar belakang, atur widget yang digunakan, widget notifikasi</string>
     <string name="action_show_errors">Ketuk untuk melihat detail</string>
-    <string name="settings_weather_sources_per_location_summary">Ubah sumber data cuaca untuk lokasi ini</string>
+    <string name="settings_weather_sources_per_location_summary">Ubah sumber data cuaca digunakan untuk lokasi ini</string>
     <string name="settings_widgets_gadgetbridge_switch">Kirim data cuaca ke Gadgetbridge</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode pagi/malam untuk lokasi</string>
     <string name="common_weather_text_snow_showers_heavy">Hujan salju berat</string>
@@ -696,4 +696,9 @@
     <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca untuk lokasi ini atau hapus dan tambahkan lokasi ini lagi.</string>
     <string name="settings_per_location">Preferensi lokasi</string>
     <string name="settings_per_location_summary">Kustomisasi tambahan untuk lokasi ini</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Pencocokan terbaik</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Model cuaca</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Menggabungkan model cuaca terbaik untuk lokasi ini</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Mulus</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Menggabungkan semua model cuaca dari penyedia ini menjadi prediksi yang mulus</string>
 </resources>
