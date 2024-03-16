@@ -71,3 +71,7 @@
 
 # suncalc
 -dontwarn edu.umd.cs.findbugs.annotations.Nullable
+
+# Remove non-deterministic R8 optimizations to allow for reproducible builds
+-keep class kotlinx.coroutines.CoroutineExceptionHandler
+-keep class kotlinx.coroutines.internal.MainDispatcherFactory

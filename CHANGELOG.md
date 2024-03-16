@@ -1,4 +1,4 @@
-# Version 5.1.4-beta (not yet released)
+# Version 5.1.4-beta (2024-03-16)
 
 **New features**
 - We now have our own repo for F-Droid and Google Play flavors of Breezy Weather. If you want to switch from our current repo (Standard flavor) to a different flavor, you should remove the repo for the Standard flavor first to avoid getting updates for the wrong flavor. [Link to Breezy Weather F-Droid repos](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)

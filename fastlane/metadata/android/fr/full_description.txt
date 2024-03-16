@@ -35,8 +35,9 @@ Sources météo uniquement nationales disponibles :<ul>
 <li>MET Éireann¹</li></ul>
 
 Sources météo secondaires disponibles :<ul>
-<li>ATMO AuRA¹</li>
-<li>Recosanté</li></ul>
+<li>Organisation Météorologique Mondiale (OMM) Severe Weather¹</li>
+<li>Recosanté</li>
+<li>ATMO AuRA¹</li></ul>
 
 ¹ Non inclus dans les versions avec suffixe _fdroid
 ² Usage souvent limité

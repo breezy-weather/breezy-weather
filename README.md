@@ -104,8 +104,9 @@ alt="Get it on Obtainium" align="center" height="54" />
   - Israel Meteorological Service (IMS)
   - SMHI
   - MET Éireann
-  - ATMO AuRA
+  - World Meteorological Organization (WMO) Severe Weather
   - Recosanté
+  - ATMO AuRA
 </details>
 
 - Large selection of home screen widgets for at-a-glance information

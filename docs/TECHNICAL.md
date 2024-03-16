@@ -32,7 +32,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOGS.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v5.1.4-beta -m "Version 5.1.4-beta"`).
+7) Tag version beginning with a `v` (example: `git tag v5.1.5 -m "Version 5.1.5"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
@@ -42,7 +42,7 @@ You can omit any of the following properties to let the user configure their own
 # Decode crash logs from users
 
 1) Save crash log in a text file `stacktrace.txt` and remove things like `2023-08-14 21:28:58.229 12804-12804 View org.breezyweather.debug` if they are present.
-2) Download mapping-vX.X.X-beta.tar.gz from release page.
+2) From the release page, download mapping-vX.X.X-standard.tar.gz, mapping-vX.X.X-fdroid.tar.gz or mapping-vX.X.X-gplay.tar.gz depending on the version used by the user.
 3) Unzip `mapping.txt`.
 4) `~/Android/Sdk/tools/proguard/bin/retrace.sh mapping.txt stacktrace.txt`
 

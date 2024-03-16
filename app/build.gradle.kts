@@ -17,8 +17,8 @@ android {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 50104
-        versionName = "5.1.4-beta"
+        versionCode = 50105
+        versionName = "5.1.5-beta"
 
         multiDexEnabled = true
         ndk {
@@ -161,6 +161,9 @@ aboutLibraries {
     // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
     // Warning: Please do not use the parent folder of a module as path, as this can result in issues. More details: https://github.com/mikepenz/AboutLibraries/issues/936
     configPath = "config"
+
+    // Remove the "generated" timestamp to allow for reproducible builds
+    excludeFields = arrayOf("generated")
 }
 
 dependencies {

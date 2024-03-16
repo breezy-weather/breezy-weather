@@ -35,8 +35,9 @@ Available only-national weather sources:<ul>
 <li>MET Éireann¹</li></ul>
 
 Available secondary weather sources:<ul>
-<li>ATMO AuRA¹</li>
-<li>Recosanté</li></ul>
+<li>World Meteorological Organization (WMO) Severe Weather¹</li>
+<li>Recosanté</li>
+<li>ATMO AuRA¹</li></ul>
 
 ¹ Not included in versions with suffix _fdroid
 ² Often rate-limited
