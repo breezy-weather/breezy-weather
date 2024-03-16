@@ -23,6 +23,7 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 import com.google.maps.android.data.geojson.GeoJsonParser
+import com.google.maps.android.data.geojson.GeoJsonPoint
 import com.google.maps.android.data.geojson.GeoJsonPolygon
 import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
@@ -37,15 +38,16 @@ import javax.inject.Inject
  * Natural Earth reverse geocoding
  *
  * Offline source, based on public domain data
- * 1:110m Cultural Vectors files downloaded from:
- * https://www.naturalearthdata.com/downloads/110m-cultural-vectors/
+ * 1:50m Cultural Vectors files downloaded from:
+ * https://www.naturalearthdata.com/downloads/50m-cultural-vectors/
+ * We can’t take 1:110m files because they don’t include all small islands/countries
  *
  * Latest updates used:
- * ne_110m_admin_0_countries.shp v5.1.1
+ * ne_50m_admin_0_countries.shp v5.1.1
  *
- * https://mapshaper.org/ was used to convert to GeoJSON, then manually edited to remove
- * Antarctica because we have issues with it
- * It would be best to make our own converter so that we can exclude features we don’t want
+ * https://mapshaper.org/ was used to convert to GeoJSON
+ * It would be best to make our own converter so that we can exclude features we don’t want and
+ * make the geojson file more lightweight
  */
 class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
 
@@ -69,6 +71,10 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
                         PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
                     }
                 }
+                is GeoJsonPoint -> SphericalUtil.computeDistanceBetween(
+                    LatLng(location.latitude, location.longitude),
+                    (feature.geometry as GeoJsonPoint).coordinates
+                ) < 50000 // 50 km circle around center point, it’s arbitrary and may need to be adjusted
                 else -> false
             }
         }
@@ -83,28 +89,10 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
 
         // Countries
         val matchingCountries = getMatchingFeaturesForLocation(
-            context, R.raw.ne_110m_admin_0_countries, location
+            context, R.raw.ne_50m_admin_0_countries, location
         )
 
         if (matchingCountries.size != 1) {
-            if (matchingCountries.isEmpty()) {
-                // Special case: Barbados, we need it for WmoSevereWeatherService
-                if (
-                    SphericalUtil.computeDistanceBetween(
-                        LatLng(location.latitude, location.longitude),
-                        LatLng(13.169629, -59.564438)
-                    ) < 50000 // 50 km around this point
-                ) {
-                    locationList.add(
-                        location.copy(
-                            country = "Barbados",
-                            countryCode = "BB"
-                        )
-                    )
-                    return Observable.just(locationList)
-                }
-            }
-
             locationList.add(location)
             LogHelper.log(msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results")
             return Observable.just(locationList)
@@ -115,16 +103,16 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
                 country = matchingCountries[0].getProperty("NAME_$languageCode")
                     ?: matchingCountries[0].getProperty("NAME")
                     ?: matchingCountries[0].getProperty("NAME_EN")
-                    ?: matchingCountries[0].getProperty("ISO_A2")
+                    ?: matchingCountries[0].getProperty("ISO_A2").takeIf {
+                        it != "-99"
+                    } ?: matchingCountries[0].getProperty("ISO_A2_EH")
                     ?: "",
-                countryCode = matchingCountries[0].getProperty("ISO_A2")
+                countryCode = matchingCountries[0].getProperty("ISO_A2").takeIf {
+                    it != "-99"
+                } ?: matchingCountries[0].getProperty("ISO_A2_EH")
             )
         )
         return Observable.just(locationList)
     }
-
-    // CONFIG
-    // Implement setting to switch between de facto vs de jure boundaries
-    //private val config = SourceConfigStore(context, id)
 
 }
