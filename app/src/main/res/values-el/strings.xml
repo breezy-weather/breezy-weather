@@ -638,4 +638,32 @@
     <string name="wind_short">Άνεμος</string>
     <string name="visibility_short">Ορατότητα</string>
     <string name="pressure_short">Πίεση</string>
+    <string name="uv_index_short">Δείκτης UV</string>
+    <string name="location_delete_location_dialog_message">Πρόκειται να διαγράψεις τη «%s» από την λίστα των αποθηκευμένων τοποθεσιών.</string>
+    <string name="location_delete_location_dialog_message_no_name">Πρόκειται να διαγράψεις αυτή τη τοποθεσία από τη λίστα των αποθηκευμένων τοποθεσιών σου.</string>
+    <string name="ceiling_short">Πάνω όριο</string>
+    <string name="pollen_carpinus">Γαύρος</string>
+    <string name="pollen_castanea">Καστανιά</string>
+    <string name="pollen_corylus">Φουντούκι</string>
+    <string name="pollen_cupressaceae_taxaceae">Κυπαρίσσι</string>
+    <string name="pollen_fraxinus">Φλαμουριά</string>
+    <string name="pollen_plantaginaceae">Αρνόγλωσσο</string>
+    <string name="pollen_platanus">Πλάτανος</string>
+    <string name="pollen_populus">Λεύκα</string>
+    <string name="pollen_quercus">Δρυς</string>
+    <string name="pollen_rumex">Οξαλίδα</string>
+    <string name="pollen_salix">Ιτιά</string>
+    <string name="pollen_tilia">Φιλύρα</string>
+    <string name="pollen_urticaceae">Τσουκνίδα</string>
+    <string name="location_search_source">Πηγή αναζήτησης τοποθεσίας</string>
+    <string name="location_search_change_source">Αλλαγή πηγής αναζήτησης τοποθεσίας</string>
+    <string name="sunshine">Λιακάδα</string>
+    <string name="dew_point_short">Σημείο δρόσου</string>
+    <string name="weather_message_too_frequent_refreshes">Παρακαλώ περίμενε μερικά δευτερόλεπτα πριν ξαναπροσπαθήσεις…</string>
+    <string name="location_message_updated">Η τοποθεσία ενημερώθηκε</string>
+    <string name="location_message_already_exists">Μια τοποθεσία με την ίδια πηγή καιρού υπάρχει ήδη.</string>
+    <string name="location_delete_location_dialog_title">Διαγραφή τοποθεσίας;</string>
+    <string name="action_confirm">Επιβεβαίωση</string>
+    <string name="location_search_no_results_advice">Σιγουρέψου ότι η αναζήτησή σου είναι γραμμένη σωστά και όχι πολύ συγκεκριμένη.
+\nΕναλλακτικά, δοκίμασε μια άλλη πηγή αναζήτησης τοποθεσίας που ίσως δώσει διαφορετικά αποτελέσματα.</string>
 </resources>
