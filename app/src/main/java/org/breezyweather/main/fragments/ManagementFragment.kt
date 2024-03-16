@@ -64,6 +64,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
@@ -207,6 +208,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 ) {
                     if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown
                         && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                        && !requireActivity().hasPermission(Manifest.permission.POST_NOTIFICATIONS)
                         && !notificationDismissed
                     ) {
                         NotificationCard(
