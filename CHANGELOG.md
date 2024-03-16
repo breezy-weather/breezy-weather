@@ -16,6 +16,7 @@
 **Improvements and fixes**
 - Background weather update will now only process the first location, unless you have multi cities usage. This makes the process more green and efficient, and other secondary locations will automatically be updated when you open them instead (this means that if you don’t check these locations very often, it will no longer uselessly refresh them in the background). A document has been written to describe in details how the full weather update process work: https://github.com/breezy-weather/breezy-weather/blob/main/docs/UPDATES.md
 - Fix AccuWeather being the default weather source instead of automatic recommendations
+- Fix "Please wait a few seconds before retrying" when adding a location
 - Fix some sources not being available for current location if current location didn’t change
 - Fix notification-widget not being restored on reboot
 

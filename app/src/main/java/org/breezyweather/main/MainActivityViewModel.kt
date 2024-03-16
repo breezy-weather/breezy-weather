@@ -378,17 +378,20 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun setLocation(formattedId: String) {
-        cancelRequest()
+        val oldFormattedId = currentLocation.value?.location?.formattedId ?: ""
+        if (formattedId != oldFormattedId) {
+            cancelRequest()
 
-        validLocationList.value.first.let { locationList ->
-            val index = locationList.indexOfFirst { it.formattedId == formattedId }
+            validLocationList.value.first.let { locationList ->
+                val index = locationList.indexOfFirst { it.formattedId == formattedId }
 
-            if (index >= 0) {
-                setCurrentLocation(locationList[index])
+                if (index >= 0) {
+                    setCurrentLocation(locationList[index])
 
-                _indicator.value = Indicator(total = locationList.size, index = index)
+                    _indicator.value = Indicator(total = locationList.size, index = index)
 
-                _validLocationList.value = Pair(validLocationList.value.first, formattedId)
+                    _validLocationList.value = Pair(validLocationList.value.first, formattedId)
+                }
             }
         }
     }
