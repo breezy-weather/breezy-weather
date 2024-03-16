@@ -175,7 +175,8 @@ private fun getDailyForecast(
                             precipitationProbability = PrecipitationProbability(
                                 total = nighttime.precip?.toDoubleOrNull()
                             )
-                        )
+                        ),
+                        sunshineDuration = daytime?.sun?.value?.toDoubleOrNull()
                     )
                 )
             }

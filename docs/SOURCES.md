@@ -104,16 +104,16 @@ Legend:
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
 | **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   |
 
-| National sources           | China   | NWS | Bright Sky | ECCC          | IMS | SMHI | MET Éireann |
-|----------------------------|---------|-----|------------|---------------|-----|------|-------------|
-| **Humidity**               | Current | ✅   | ✅          | Current       | ✅   | ✅    | ✅           |
-| **Dew point**              | Current | ✅   | ✅          | Current       | ✅   | ✅    | ✅           |
-| **Pressure**               | ❌       | ✅   | ✅          | Current       | ❌   | ✅    | ✅           |
-| **Cloud cover**            | ❌       | ✅   | ✅          | ❌             | ❌   | ❌    | ❌           |
-| **Visibility**             | Current | ✅   | ✅          | Current       | ❌   | ✅    | ❌           |
-| **Ceiling**                | ❌       | ❌   | ❌          | ❌             | ❌   | ❌    | ❌           |
-| **Precipitation duration** | ❌       | ❌   | ❌          | ❌             | ❌   | ❌    | ❌           |
-| **Sunshine duration**      | ❌       | ❌   | ✅          | *In progress* | ❌   | ❌    | ❌           |
+| National sources           | China   | NWS | Bright Sky | ECCC     | IMS | SMHI | MET Éireann |
+|----------------------------|---------|-----|------------|----------|-----|------|-------------|
+| **Humidity**               | Current | ✅   | ✅          | Current  | ✅   | ✅    | ✅           |
+| **Dew point**              | Current | ✅   | ✅          | Current  | ✅   | ✅    | ✅           |
+| **Pressure**               | ❌       | ✅   | ✅          | Current  | ❌   | ✅    | ✅           |
+| **Cloud cover**            | ❌       | ✅   | ✅          | ❌        | ❌   | ❌    | ❌           |
+| **Visibility**             | Current | ✅   | ✅          | Current  | ❌   | ✅    | ❌           |
+| **Ceiling**                | ❌       | ❌   | ❌          | ❌        | ❌   | ❌    | ❌           |
+| **Precipitation duration** | ❌       | ❌   | ❌          | ❌        | ❌   | ❌    | ❌           |
+| **Sunshine duration**      | ❌       | ❌   | ✅          | ✅ V5.1.4 | ❌   | ❌    | ❌           |
 
 ¹ Median from daily forecast
 
@@ -176,7 +176,7 @@ Legend:
 | **Visibility**             | Current        | ✅    |
 | **Ceiling**                | ❌              | ❌    |
 | **Precipitation duration** | ❌              | ❌    |
-| **Sunshine duration**           | ✅              | ✅    |
+| **Sunshine duration**      | ❌              | ❌    |
 | **Search**                 | Default        | ✅    |
 | **Reverse geocoding**      | ❌¹             | ✅    |
 
@@ -185,13 +185,13 @@ Legend:
 
 # Combinable sources
 
-| Worldwide sources                  | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Pirate Weather | Météo-France | DMI           |
-|------------------------------------|------------|-------------|---------------|-------------|----------------|--------------|---------------|
-| **Air quality**                    | ✅          | ✅           | Norway        | ✅           | ❌              | ❌            | ❌             |
-| **Pollen**                         | ✅²         | ✅           | ❌             | ❌           | ❌              | ❌            | ❌             |
-| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area   | ✅           | ✅              | France       | ❌             |
-| **Alerts**                         | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* |
-| **Normals**                        | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             |
+| Worldwide sources                  | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Pirate Weather | Météo-France | DMI           | WMO Severe Weather |
+|------------------------------------|------------|-------------|---------------|-------------|----------------|--------------|---------------|--------------------|
+| **Air quality**                    | ✅          | ✅           | Norway        | ✅           | ❌              | ❌            | ❌             | ❌                  |
+| **Pollen**                         | ✅²         | ✅           | ❌             | ❌           | ❌              | ❌            | ❌             | ❌                  |
+| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area   | ✅           | ✅              | France       | ❌             | ❌                  |
+| **Alerts**                         | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* | ✅ V5.1.4           |
+| **Normals**                        | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             | ❌                  |
 
 | National sources                   | China | NWS           | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
 |------------------------------------|-------|---------------|------------|--------|-------------------------------|-------------|---------------|

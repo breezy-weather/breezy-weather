@@ -5,6 +5,7 @@
 
 **Weather sources**
 - [World Meteorological Organization (WMO) Severe Weather] Added experimental support as secondary alert source. Translations are not supported (yet). Please report as soon as possible if you encounter a refresh error, making sure you mention the country of your location in the issue.
+- [ECCC] Add sunshine duration
 - [Recosanté] Fix refresh error on Friday
 - Updated recommendations for new locations (existing locations must be modified manually, or re-added):
 
