@@ -36,19 +36,13 @@ import java.util.TimeZone
 fun convert(location: Location, alertsResult: List<WmoSevereWeatherAlert>): List<Alert> {
     return alertsResult
         .filter {
-            isAlertForLocation(location, it.coord)
+            (it.expires == null || it.expires > Date()) && isAlertForLocation(location, it.coord)
         }.map {
             WmoSevereWeatherAlertWrapper(
                 alert = Alert(
                     alertId = (it.identifier ?: it.capURL ?: it.url)!!,
-                    startDate = parseDate(
-                        if (it.onset.isNullOrEmpty()) {
-                            if (it.effective.isNullOrEmpty()) {
-                                it.sent
-                            } else it.effective
-                        } else it.onset
-                    ),
-                    endDate = parseDate(it.expires),
+                    startDate = it.onset ?: it.effective ?: it.sent,
+                    endDate = it.expires,
                     description = it.event?.replaceFirstChar { firstChar ->
                         if (firstChar.isLowerCase()) {
                             firstChar.titlecase(Locale.getDefault())
@@ -86,7 +80,7 @@ fun isAlertForLocation(location: Location, coords: List<WmoSevereWeatherAlertCoo
                         location.latitude,
                         location.longitude,
                         it.map { latLng ->
-                            parseCoordinate(latLng)
+                            latLng
                         },
                         true
                     )) {
@@ -118,7 +112,7 @@ fun isAlertForLocation(location: Location, coords: List<WmoSevereWeatherAlertCoo
             if (
                 SphericalUtil.computeDistanceBetween(
                     LatLng(location.latitude, location.longitude),
-                    parseCoordinate(coord.marker)
+                    coord.marker
                 ) < WmoSevereWeatherService.WMO_MARKER_RADIUS
             ) {
                 return true
@@ -129,36 +123,4 @@ fun isAlertForLocation(location: Location, coords: List<WmoSevereWeatherAlertCoo
     }
 
     return false
-}
-
-private fun parseCoordinate(coordinates: String): LatLng {
-    val coordArr = coordinates.split(",")
-
-    if (coordArr.size != 2) {
-        throw ParsingException()
-    }
-
-    val lon = coordArr[0].trim().toDoubleOrNull()
-    val lat = coordArr[1].trim().toDoubleOrNull()
-
-    if (lon == null || lat == null || (lon == 0.0 && lat == 0.0)) {
-        throw ParsingException()
-    }
-    return LatLng(lon, lat)
-}
-
-private fun parseDate(jsonValue: String?): Date? {
-    return if (jsonValue.isNullOrEmpty() || jsonValue.length < 16
-        || !jsonValue.matches(
-            // Supports dates from 2020 to 2099
-            Regex("20[2-9][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])[ T]([0-1][0-9]|2[0-3]):[0-5][0-9](.*)")
-        )) {
-        null
-    } else {
-        val timeZone = TimeZone.getTimeZone("UTC")
-        jsonValue.toDateNoHour(timeZone)?.toCalendarWithTimeZone(timeZone)?.apply {
-            set(Calendar.HOUR_OF_DAY, jsonValue.substring(11, 13).toInt())
-            set(Calendar.MINUTE, jsonValue.substring(14, 16).toInt())
-        }?.time
-    }
 }

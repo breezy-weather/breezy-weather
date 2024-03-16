@@ -16,14 +16,16 @@
 
 package org.breezyweather.sources.wmosevereweather.json
 
+import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
+import org.breezyweather.common.serializer.LatLngSerializer
 
 @Serializable
 data class WmoSevereWeatherAlertCoord(
     // Used by MeteoAlarmV2:
     val geocode: List<List<WmoSevereWeatherAlertCoordGeocode>>?, // Encoded by https://developers.google.com/maps/documentation/utilities/polylinealgorithm
-    val polygon: List<List<String>>?,
+    val polygon: List<List<@Serializable(LatLngSerializer::class) LatLng>>?,
     //val geojson: /* TODO */?,
-    val marker: String?,
-    //val circle: List<WmoAlertCoordCircle>? // Not sure if actually used
+    @Serializable(LatLngSerializer::class) val marker: LatLng?,
+    //val circle: List<WmoAlertCoordCircle>?
 )
