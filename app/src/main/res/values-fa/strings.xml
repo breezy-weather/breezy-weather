@@ -85,7 +85,7 @@
     <string name="wind_strength_10">طوفان</string>
     <string name="wind_strength_11">طوفان سهمگین</string>
     <string name="wind_strength_12">توفند</string>
-    <string name="uv_index">ضزیب اشعه UV</string>
+    <string name="uv_index">ضریب اشعه UV</string>
     <string name="uv_index_0_2">کم</string>
     <string name="wind_strength_8">تندباد</string>
     <string name="uv_index_3_5">معتدل</string>
@@ -369,7 +369,7 @@
     <string name="settings_background_updates_worker_info_title">داده های مقدماتی</string>
     <string name="settings_location_access_switch_summaryOff">اگر می خواهید بتوانید مکان فعلی خود را به عنوان مکان بیافزایید، لطفاً اجازه دهید.</string>
     <string name="settings_location_access_precise_title">استفاده از GPS دستگاه</string>
-    <string name="settings_weather_sources_summary">پیکربندی منبع داده های هواشناسی برای این مکان</string>
+    <string name="settings_weather_sources_summary">منبع آب و هوای پیش‌فرض برای مکان‌های جدید، کلیدهای API سفارشی، پیکربندی منابع دیگر</string>
     <string name="settings_weather_sources">منابع آب و هوا</string>
     <string name="settings_source_api_key">کلید API</string>
     <string name="settings_source_default_value">پیشفرض(بدون تغییر)</string>
@@ -386,7 +386,7 @@
     <string name="settings_icon_packs_get_more">دریافت موارد بیشتر</string>
     <string name="settings_units_speed">واحد سرعت</string>
     <string name="settings_units_precipitation">واحد بارش</string>
-    <string name="settings_units_pressure">واخد فشار</string>
+    <string name="settings_units_pressure">واحد فشار</string>
     <string name="settings_main_hourly_trends_title">روند ساعتی</string>
     <string name="settings_main_header_details_title">داده های سربرگ</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">کیفیت هوای کنونی</string>
@@ -424,7 +424,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">شاخص کیفیت هوای امروز، فردا، …، 4 روز دیگر</string>
     <string name="settings_weather_source_unavailable">%s (خارج از دسترسی)</string>
     <string name="settings_weather_source_fdroid_disclaimer">شما از نسخه Breezy Weather از مخزن پیش‌فرض F-Droid استفاده می‌کنید که فقط از منابع آب‌وهوا که از راه‌حل سرور نرم‌افزار رایگان در دسترس عموم، خود میزبانی و رایگان استفاده می‌کنند، پشتیبانی می‌کند. برای کسب اطلاعات بیشتر اینجا را لمس کنید.</string>
-    <string name="settings_weather_sources_per_location_summary">منابع داده آب و هوا را برای این مکان سفارشی کنید</string>
+    <string name="settings_weather_sources_per_location_summary">منابع آب و هوا استفاده شده برای این مکان را سفارشی کنید</string>
     <string name="settings_weather_source_open_weather_one_call_version">نسخه OneCall</string>
     <string name="settings_appearance_language_title">زبان</string>
     <string name="settings_appearance_dark_mode_locations_title">حالت تیره/روشن برای مکان ها</string>
@@ -546,7 +546,7 @@
     <string name="unit_inph_voice">اینچ بر ساعت</string>
     <string name="about_matrix">اتاق ماتریک</string>
     <string name="unit_kph">km/h</string>
-    <string name="unit_in">اینچ</string>
+    <string name="unit_in">inch</string>
     <string name="unit_mph">mph</string>
     <string name="settings_notifications_section_forecast">پیش‌بین­ی</string>
     <string name="unit_mps_voice">متر بر ثانیه</string>
@@ -677,4 +677,5 @@
     <string name="common_weather_text_rain_showers_heavy">رگبار شدید باران</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">رعد و برق همراه با تگرگ شدید</string>
     <string name="sunshine">تابش آفتاب</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">مه یخ های ریز</string>
 </resources>
