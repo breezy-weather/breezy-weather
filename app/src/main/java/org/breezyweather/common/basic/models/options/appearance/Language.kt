@@ -147,55 +147,9 @@ enum class Language(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "bosnian" -> BOSNIAN
-            "catalan" -> CATALAN
-            "czech" -> CZECH
-            "danish" -> DANISH
-            "german" -> GERMAN
-            "english_australia" -> ENGLISH_AU
-            "english_britain" -> ENGLISH_UK
-            "english_america" -> ENGLISH_US
-            "spanish" -> SPANISH
-            "esperanto" -> ESPERANTO
-            "basque" -> BASQUE
-            "french" -> FRENCH
-            "croatian" -> CROATIAN
-            "indonesian" -> INDONESIAN
-            "italian" -> ITALIAN
-            "latvian" -> LATVIAN
-            "lithuanian" -> LITHUANIAN
-            "hungarian" -> HUNGARIAN
-            "dutch" -> DUTCH
-            "norwegian_bokmal" -> NORWEGIAN_BOKMAL
-            "polish" -> POLISH
-            "portuguese" -> PORTUGUESE
-            "portuguese_brazilian" -> PORTUGUESE_BR
-            "romanian" -> ROMANIAN
-            "slovak" -> SLOVAK
-            "slovenian" -> SLOVENIAN
-            "finnish" -> FINNISH
-            "swedish" -> SWEDISH
-            "kabyle" -> KABYLE
-            "vietnamese" -> VIETNAMESE
-            "turkish" -> TURKISH
-            "greek" -> GREEK
-            "belarussian" -> BELARUSSIAN
-            "bulgarian" -> BULGARIAN
-            "macedonian" -> MACEDONIAN
-            "russian" -> RUSSIAN
-            "serbian" -> SERBIAN
-            "ukrainian" -> UKRAINIAN
-            "arabic" -> ARABIC
-            "persian" -> PERSIAN
-            "kurdish_sorani" -> KURDISH_SORANI
-            "hindi" -> HINDI
-            "korean" -> KOREAN
-            "japanese" -> JAPANESE
-            "chinese" -> CHINESE
-            "unsimplified_chinese" -> UNSIMPLIFIED_CHINESE
-            else -> FOLLOW_SYSTEM
-        }
+        ) = Language.entries.firstOrNull {
+            it.id == value
+        } ?: FOLLOW_SYSTEM
     }
 
     override val valueArrayId = R.array.language_values

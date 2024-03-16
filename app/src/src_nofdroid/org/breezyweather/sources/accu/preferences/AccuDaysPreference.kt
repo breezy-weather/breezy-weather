@@ -34,12 +34,9 @@ enum class AccuDaysPreference(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "1" -> ONE
-            "5" -> FIVE
-            "10" -> TEN
-            else -> FIFTEEN
-        }
+        ) = AccuDaysPreference.entries.firstOrNull {
+            it.id == value
+        } ?: FIFTEEN
     }
 
     override val valueArrayId = R.array.accu_preference_day_values

@@ -32,11 +32,9 @@ enum class OpenWeatherOneCallVersion(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "2.5" -> VERSION_25
-            "3.0" -> VERSION_30
-            else -> VERSION_25
-        }
+        ) = OpenWeatherOneCallVersion.entries.firstOrNull {
+            it.id == value
+        } ?: VERSION_25
     }
 
     override val valueArrayId = R.array.open_weather_one_call_version_values

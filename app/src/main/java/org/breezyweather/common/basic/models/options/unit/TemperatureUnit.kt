@@ -36,11 +36,9 @@ enum class TemperatureUnit(
     companion object {
         fun getInstance(
             value: String
-        ) = when (value) {
-            "f" -> F
-            "k" -> K
-            else -> C
-        }
+        ) = TemperatureUnit.entries.firstOrNull {
+            it.id == value
+        } ?: C
     }
 
     override val valueArrayId = R.array.temperature_unit_values

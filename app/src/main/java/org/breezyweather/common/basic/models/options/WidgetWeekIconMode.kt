@@ -33,11 +33,9 @@ enum class WidgetWeekIconMode(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "day" -> DAY
-            "night" -> NIGHT
-            else -> AUTO
-        }
+        ) = WidgetWeekIconMode.entries.firstOrNull {
+            it.id == value
+        } ?: AUTO
     }
 
     override val valueArrayId = R.array.week_icon_mode_values

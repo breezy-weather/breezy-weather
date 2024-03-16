@@ -33,11 +33,9 @@ enum class DarkMode(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "light" -> LIGHT
-            "dark" -> DARK
-            else -> SYSTEM
-        }
+        ) = DarkMode.entries.firstOrNull {
+            it.id == value
+        } ?: SYSTEM
     }
 
     override val valueArrayId = R.array.dark_mode_values

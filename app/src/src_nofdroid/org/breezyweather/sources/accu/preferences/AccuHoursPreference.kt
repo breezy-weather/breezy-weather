@@ -36,14 +36,9 @@ enum class AccuHoursPreference(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "1" -> ONE
-            "12" -> TWELVE
-            "24" -> TWENTY_FOUR
-            "72" -> SEVENTY_TWO
-            "120" -> HUNDRED_TWENTY
-            else -> TWO_HUNDRED_FORTY
-        }
+        ) = AccuHoursPreference.entries.firstOrNull {
+            it.id == value
+        } ?: TWO_HUNDRED_FORTY
     }
 
     override val valueArrayId = R.array.accu_preference_hour_values

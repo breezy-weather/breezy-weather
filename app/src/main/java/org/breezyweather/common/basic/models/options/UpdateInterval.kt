@@ -40,17 +40,9 @@ enum class UpdateInterval(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "never" -> INTERVAL_NEVER
-            "0:30" -> INTERVAL_0_30
-            "1:00" -> INTERVAL_1_00
-            "2:00" -> INTERVAL_2_00
-            "3:00" -> INTERVAL_3_00
-            "6:00" -> INTERVAL_6_00
-            "12:00" -> INTERVAL_12_00
-            "24:00" -> INTERVAL_24_00
-            else -> INTERVAL_1_30
-        }
+        ) = UpdateInterval.entries.firstOrNull {
+            it.id == value
+        } ?: INTERVAL_1_30
     }
 
     override val valueArrayId = R.array.automatic_refresh_rate_values

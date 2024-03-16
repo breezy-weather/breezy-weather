@@ -57,46 +57,8 @@ enum class OpenMeteoWeatherModel(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "best_match" -> BEST_MATCH
-
-            "ecmwf_ifs04" -> ECMWF_IFS04
-            "ecmwf_ifs025" -> ECMWF_IFS025
-            "ecmwf_aifs025" -> ECMWF_AIFS025
-            "cma_grapes_global" -> CMA_GRAPES_GLOBAL
-            "bom_access_global" -> BOM_ACCESS_GLOBAL
-            "metno_nordic" -> MET_NO_NORDIC
-
-            "gfs_seamless" -> GFS_SEAMLESS
-            "gfs_global" -> GFS_GLOBAL
-            "gfs_hrrr" -> GFS_HRRR
-
-            "jma_seamless" -> JMA_SEAMLESS
-            "jma_msm" -> JMA_MSM
-            "jma_gsm" -> JMA_GSM
-
-            "icon_seamless" -> ICON_SEAMLESS
-            "icon_global" -> ICON_GLOBAL
-            "icon_eu" -> ICON_EU
-            "icon_d2" -> ICON_D2
-
-            "gem_seamless" -> GEM_SEAMLESS
-            "gem_global" -> GEM_GLOBAL
-            "gem_regional" -> GEM_REGIONAL
-            "gem_hrdps_continental" -> GEM_HRDPS_CONTINENTAL
-
-            "meteofrance_seamless" -> METEO_FRANCE_SEAMLESS
-            "meteofrance_arpege_world" -> METEO_FRANCE_ARPEGE_WORLD
-            "meteofrance_arpege_europe" -> METEO_FRANCE_ARPEGE_EUROPE
-            "meteofrance_arome_france" -> METEO_FRANCE_AROME_FRANCE
-            "meteofrance_arome_france_hd" -> METEO_FRANCE_AROME_FRANCE_HD
-
-            "arpae_cosmo_seamless" -> ARPAE_COSMO_SEAMLESS
-            "arpae_cosmo_2i" -> ARPAE_COSMO_2I
-            "arpae_cosmo_2i_ruc" -> ARPAE_COSMO_2I_RUC
-            "arpae_cosmo_5m" -> ARPAE_COSMO_5M
-
-            else -> null
+        ) = OpenMeteoWeatherModel.entries.firstOrNull {
+            it.id == value
         }
     }
 

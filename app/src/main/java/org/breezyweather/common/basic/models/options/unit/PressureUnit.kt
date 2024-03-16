@@ -43,15 +43,9 @@ enum class PressureUnit(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "kpa" -> KPA
-            "hpa" -> HPA
-            "atm" -> ATM
-            "mmhg" -> MMHG
-            "inhg" -> INHG
-            "kgfpsqcm" -> KGFPSQCM
-            else -> MB
-        }
+        ) = PressureUnit.entries.firstOrNull {
+            it.id == value
+        } ?: MB
     }
 
     override val valueArrayId = R.array.pressure_unit_values

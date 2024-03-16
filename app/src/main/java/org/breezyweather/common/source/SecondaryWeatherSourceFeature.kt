@@ -29,13 +29,8 @@ enum class SecondaryWeatherSourceFeature(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "airQuality" -> FEATURE_AIR_QUALITY
-            "pollen" -> FEATURE_POLLEN
-            "minutely" -> FEATURE_MINUTELY
-            "alert" -> FEATURE_ALERT
-            "normals" -> FEATURE_NORMALS
-            else -> null
+        ) = SecondaryWeatherSourceFeature.entries.firstOrNull {
+            it.id == value
         }
     }
 }

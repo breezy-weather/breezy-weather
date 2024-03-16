@@ -32,10 +32,9 @@ enum class AccuPortalPreference(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "developer" -> DEVELOPER
-            else -> ENTERPRISE
-        }
+        ) = AccuPortalPreference.entries.firstOrNull {
+            it.id == value
+        } ?: ENTERPRISE
     }
 
     override val valueArrayId = R.array.accu_preference_portal_values

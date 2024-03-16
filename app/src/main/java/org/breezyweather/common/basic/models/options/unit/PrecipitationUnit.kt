@@ -38,12 +38,9 @@ enum class PrecipitationUnit(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "cm" -> CM
-            "in" -> IN
-            "lpsqm" -> LPSQM
-            else -> MM
-        }
+        ) = PrecipitationUnit.entries.firstOrNull {
+            it.id == value
+        } ?: MM
     }
 
     override val valueArrayId = R.array.precipitation_unit_values
@@ -111,12 +108,9 @@ enum class PrecipitationIntensityUnit(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "cmph" -> CMPH
-            "inph" -> INPH
-            "lpsqmph" -> LPSQMPH
-            else -> MMPH
-        }
+        ) = PrecipitationIntensityUnit.entries.firstOrNull {
+            it.id == value
+        } ?: MMPH
     }
 
     override val valueArrayId = R.array.precipitation_intensity_unit_values

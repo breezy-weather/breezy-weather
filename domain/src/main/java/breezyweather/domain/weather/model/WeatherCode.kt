@@ -35,22 +35,8 @@ enum class WeatherCode(val id: String) {
 
         fun getInstance(
             value: String?
-        ): WeatherCode? = with (value) {
-            when {
-                equals("partly_cloudy", ignoreCase = true) -> PARTLY_CLOUDY
-                equals("cloudy", ignoreCase = true) -> CLOUDY
-                equals("rain", ignoreCase = true) -> RAIN
-                equals("snow", ignoreCase = true) -> SNOW
-                equals("wind", ignoreCase = true) -> WIND
-                equals("fog", ignoreCase = true) -> FOG
-                equals("haze", ignoreCase = true) -> HAZE
-                equals("sleet", ignoreCase = true) -> SLEET
-                equals("hail", ignoreCase = true) -> HAIL
-                equals("thunderstorm", ignoreCase = true) -> THUNDERSTORM
-                equals("thunder", ignoreCase = true) -> THUNDER
-                equals("clear", ignoreCase = true) -> CLEAR
-                else -> null
-            }
+        ): WeatherCode? = WeatherCode.entries.firstOrNull {
+            it.id == value
         }
     }
 }

@@ -33,11 +33,9 @@ enum class BackgroundAnimationMode(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "enabled" -> ENABLED
-            "disabled" -> DISABLED
-            else -> SYSTEM
-        }
+        ) = BackgroundAnimationMode.entries.firstOrNull {
+            it.id == value
+        } ?: SYSTEM
     }
 
     override val valueArrayId = R.array.background_animation_values

@@ -55,14 +55,9 @@ enum class SpeedUnit(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "kph" -> KPH
-            "kn" -> KN
-            "mph" -> MPH
-            "ftps" -> FTPS
-            "bf" -> BF
-            else -> MPS
-        }
+        ) = SpeedUnit.entries.firstOrNull {
+            it.id == value
+        } ?: MPS
     }
 
     override val valueArrayId = R.array.speed_unit_values

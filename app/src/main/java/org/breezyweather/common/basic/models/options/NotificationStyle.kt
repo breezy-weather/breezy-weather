@@ -34,12 +34,9 @@ enum class NotificationStyle(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "native" -> NATIVE
-            "cities" -> CITIES
-            "daily" -> DAILY
-            else -> HOURLY
-        }
+        ) = NotificationStyle.entries.firstOrNull {
+            it.id == value
+        } ?: DAILY
     }
 
     override val valueArrayId = R.array.notification_style_values

@@ -39,13 +39,9 @@ enum class DistanceUnit(
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "km" -> KM
-            "mi" -> MI
-            "nmi" -> NMI
-            "ft" -> FT
-            else -> M
-        }
+        ) = DistanceUnit.entries.firstOrNull {
+            it.id == value
+        } ?: M
     }
 
     override val valueArrayId = R.array.distance_unit_values

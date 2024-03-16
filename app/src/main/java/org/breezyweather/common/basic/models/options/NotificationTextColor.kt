@@ -17,30 +17,25 @@
 package org.breezyweather.common.basic.models.options
 
 import android.content.Context
-import androidx.annotation.ColorRes
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 
 enum class NotificationTextColor(
-    override val id: String,
-    @ColorRes val mainTextColorResId: Int,
-    @ColorRes val subTextColorResId: Int
+    override val id: String
 ): BaseEnum {
 
-    DARK("dark", R.color.colorTextDark, R.color.colorTextDark2nd),
-    GREY("grey", R.color.colorTextGrey, R.color.colorTextGrey2nd),
-    LIGHT("light", R.color.colorTextLight, R.color.colorTextLight2nd);
+    DARK("dark"),
+    GREY("grey"),
+    LIGHT("light");
 
     companion object {
 
         fun getInstance(
             value: String
-        ) = when (value) {
-            "light" -> LIGHT
-            "grey" -> GREY
-            else -> DARK
-        }
+        ) = NotificationTextColor.entries.firstOrNull {
+            it.id == value
+        } ?: DARK
     }
 
     override val valueArrayId = R.array.notification_text_color_values
