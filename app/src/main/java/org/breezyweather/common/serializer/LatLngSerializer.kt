@@ -24,7 +24,6 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import java.text.ParseException
 
 object LatLngSerializer : KSerializer<LatLng> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("LatLng", PrimitiveKind.STRING)
@@ -36,20 +35,8 @@ object LatLngSerializer : KSerializer<LatLng> {
     override fun deserialize(decoder: Decoder): LatLng {
         val jsonValue = decoder.decodeString()
         try {
-            val coordArr = jsonValue.split(",")
-
-            if (coordArr.size != 2) {
-                throw SerializationException("Failed parsing '$jsonValue' as LatLng")
-            }
-
-            val lon = coordArr[0].trim().toDoubleOrNull()
-            val lat = coordArr[1].trim().toDoubleOrNull()
-
-            if (lon == null || lat == null || (lon == 0.0 && lat == 0.0)) {
-                throw SerializationException("Failed parsing '$jsonValue' as LatLng")
-            }
-            return LatLng(lon, lat)
-        } catch (e: ParseException) {
+            return LatLng.parse(jsonValue)
+        } catch (e: Exception) {
             throw SerializationException("Failed parsing '$jsonValue' as LatLng")
         }
     }

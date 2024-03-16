@@ -32,6 +32,9 @@ import javax.inject.Inject
 /**
  * World Meteorological Organization
  * Supports severe weather from 134 issuing organizations
+ *
+ * Note for technical maintenance: saudiArabia is a good country for performance tests as they have
+ * huge polygons and they keep expired alerts
  */
 class WmoSevereWeatherService @Inject constructor(
     client: Retrofit.Builder
@@ -67,7 +70,7 @@ class WmoSevereWeatherService @Inject constructor(
 
         // TODO: Remove debug
         if (BreezyWeather.instance.debugMode) {
-            // TODO Untested countries: hk, myanmar, spain, newzealand, png, jamaica, australia, macao, algeria, trinidadAndTobago, thailand
+            // TODO Untested countries: hk, myanmar, spain, newzealand, png, jamaica, macao, algeria, trinidadAndTobago, thailand
             // TODO And generic needs further testing: all, others
             LogHelper.log(msg = "Country code: ${location.countryCode}")
         }
@@ -94,6 +97,6 @@ class WmoSevereWeatherService @Inject constructor(
         private const val WMO_ALERTS_BASE_URL = "https://severeweather.wmo.int/"
         const val WMO_ALERTS_CAP_URL_BASE_URL = "https://8xieiqdnye.execute-api.us-west-2.amazonaws.com/swic/capUrl/"
         const val WMO_ALERTS_URL_BASE_URL = "https://cvzxdcwxid.execute-api.us-west-2.amazonaws.com/swic/url/"
-        const val WMO_MARKER_RADIUS = 50000 // in meters
+        const val WMO_MARKER_RADIUS = 50000 // in meters, I only found it in Barbados so far
     }
 }

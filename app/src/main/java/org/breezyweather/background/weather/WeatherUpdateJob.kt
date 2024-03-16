@@ -159,9 +159,10 @@ class WeatherUpdateJob @AssistedInject constructor(
             } else emptyList()
         } else {
             val nbLocations = when {
+                // TODO: Only refresh once a day 2nd to 4th location as we only use the daily info in widgets/notifications
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled
                     && SettingsManager.getInstance(context)
-                        .widgetNotificationStyle == NotificationStyle.CITIES -> 4 // TODO: Only show 3 locations in this notification, it should be enough
+                        .widgetNotificationStyle == NotificationStyle.CITIES -> 4
                 MultiCityWidgetIMP.isInUse(context) -> 3
                 else -> 1
             }

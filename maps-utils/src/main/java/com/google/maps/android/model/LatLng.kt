@@ -1,5 +1,6 @@
 package com.google.maps.android.model
 
+import java.text.ParseException
 import kotlin.math.max
 import kotlin.math.min
 
@@ -28,6 +29,25 @@ class LatLng(
     }
 
     override fun toString(): String {
-        return "LatLng: [latitude=$latitude, longitude=$longitude]"
+        return "$latitude,$longitude"
+    }
+
+    companion object {
+        @Throws(ParseException::class)
+        fun parse(value: String): LatLng {
+            val coordArr = value.split(",")
+
+            if (coordArr.size != 2) {
+                throw ParseException("Failed parsing '$value' as LatLng", 0)
+            }
+
+            val lon = coordArr[0].trim().toDoubleOrNull()
+            val lat = coordArr[1].trim().toDoubleOrNull()
+
+            if (lon == null || lat == null || (lon == 0.0 && lat == 0.0)) {
+                throw ParseException("Failed parsing '$value' as LatLng", 0)
+            }
+            return LatLng(lon, lat)
+        }
     }
 }

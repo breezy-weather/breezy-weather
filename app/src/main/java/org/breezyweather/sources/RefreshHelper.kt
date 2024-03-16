@@ -75,6 +75,7 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.text.ParseException
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -629,7 +630,8 @@ class RefreshHelper @Inject constructor(
             is MissingPermissionLocationBackgroundException -> RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
             is ReverseGeocodingException -> RefreshErrorType.REVERSE_GEOCODING_FAILED
             is SecondaryWeatherException -> RefreshErrorType.SECONDARY_WEATHER_FAILED
-            is MissingFieldException, is SerializationException, is ParsingException -> {
+            is MissingFieldException, is SerializationException, is ParsingException,
+            is ParseException -> {
                 e.printStackTrace()
                 RefreshErrorType.PARSING_ERROR
             }

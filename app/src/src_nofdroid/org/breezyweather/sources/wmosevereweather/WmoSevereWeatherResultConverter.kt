@@ -24,14 +24,10 @@ import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.common.exceptions.ParsingException
-import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlert
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertCoord
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 fun convert(location: Location, alertsResult: List<WmoSevereWeatherAlert>): List<Alert> {
     return alertsResult
@@ -80,7 +76,7 @@ fun isAlertForLocation(location: Location, coords: List<WmoSevereWeatherAlertCoo
                         location.latitude,
                         location.longitude,
                         it.map { latLng ->
-                            latLng
+                            LatLng.parse(latLng)
                         },
                         true
                     )) {
@@ -112,7 +108,7 @@ fun isAlertForLocation(location: Location, coords: List<WmoSevereWeatherAlertCoo
             if (
                 SphericalUtil.computeDistanceBetween(
                     LatLng(location.latitude, location.longitude),
-                    coord.marker
+                    LatLng.parse(coord.marker)
                 ) < WmoSevereWeatherService.WMO_MARKER_RADIUS
             ) {
                 return true

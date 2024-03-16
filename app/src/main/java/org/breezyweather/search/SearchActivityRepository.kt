@@ -37,6 +37,7 @@ import org.breezyweather.sources.RefreshHelper
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.text.ParseException
 import javax.inject.Inject
 
 class SearchActivityRepository @Inject internal constructor(
@@ -76,7 +77,8 @@ class SearchActivityRepository @Inject internal constructor(
                         is ApiLimitReachedException -> RefreshErrorType.API_LIMIT_REACHED
                         is SocketTimeoutException -> RefreshErrorType.SERVER_TIMEOUT
                         is ApiKeyMissingException -> RefreshErrorType.API_KEY_REQUIRED_MISSING
-                        is MissingFieldException, is SerializationException, is ParsingException -> {
+                        is MissingFieldException, is SerializationException, is ParsingException,
+                        is ParseException -> {
                             e.printStackTrace()
                             RefreshErrorType.PARSING_ERROR
                         }

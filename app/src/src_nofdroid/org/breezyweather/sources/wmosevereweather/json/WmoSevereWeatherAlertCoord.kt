@@ -16,16 +16,19 @@
 
 package org.breezyweather.sources.wmosevereweather.json
 
-import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
-import org.breezyweather.common.serializer.LatLngSerializer
 
+/**
+ * IMPORTANT: Don’t use the LatLngSerializer here!
+ * This can lead to important performance issues as we don’t want to deserialize huge polygons
+ * of expired alerts (which will be filtered out later)!
+ */
 @Serializable
 data class WmoSevereWeatherAlertCoord(
     // Used by MeteoAlarmV2:
     val geocode: List<List<WmoSevereWeatherAlertCoordGeocode>>?, // Encoded by https://developers.google.com/maps/documentation/utilities/polylinealgorithm
-    val polygon: List<List<@Serializable(LatLngSerializer::class) LatLng>>?,
+    val polygon: List<List<String>>?,
     //val geojson: /* TODO */?,
-    @Serializable(LatLngSerializer::class) val marker: LatLng?,
+    val marker: String?,
     //val circle: List<WmoAlertCoordCircle>?
 )
