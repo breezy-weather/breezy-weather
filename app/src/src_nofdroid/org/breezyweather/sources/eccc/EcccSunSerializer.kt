@@ -11,11 +11,11 @@ import org.breezyweather.sources.eccc.json.EcccSun
 @Serializer(forClass = EcccSun::class)
 object EcccSunSerializer : KSerializer<EcccSun?> {
     override fun deserialize(decoder: Decoder): EcccSun? {
-        try {
+        return try {
             val json = ((decoder as JsonDecoder).decodeJsonElement() as JsonObject)
-            return EcccSun(value = Json.decodeFromString(json["value"].toString()))
+            EcccSun(value = Json.decodeFromString(json["value"].toString()))
         } catch (ignored: Exception) {
-            return null
+            null
         }
     }
 }

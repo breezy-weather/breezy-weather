@@ -1,1 +1,0 @@
-A powerful, open-source Material Design weather app.
