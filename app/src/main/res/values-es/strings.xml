@@ -483,13 +483,13 @@
     <string name="settings_location_access_precise_title">Utilizar el GPS del dispositivo</string>
     <string name="settings_location_access_precise_summaryOn">Activado. Se utilizan tanto la red del dispositivo como los proveedores GPS.</string>
     <string name="settings_weather_source_main">Fuente principal</string>
-    <string name="settings_weather_sources_per_location_summary">Personalizar las fuentes de los datos meteorológicos para esta ubicación</string>
+    <string name="settings_weather_sources_per_location_summary">Personalizar las fuentes de datos meteorológicos utilizadas para esta ubicación</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo día/noche para las ubicaciones</string>
     <string name="settings_main_cards_other_element_animations_switch">Otras animaciones para los elementos</string>
     <string name="settings_main_daily_trends_title">Evolución diaria</string>
     <string name="settings_units_summary">Temperatura, precipitaciones, distancia, velocidad, presión</string>
     <string name="settings_notifications_precipitations_title">Notificaciones de las precipitaciones</string>
-    <string name="settings_weather_sources_summary">Personalizar las fuentes de datos meteorológicos utilizadas para esta ubicación</string>
+    <string name="settings_weather_sources_summary">Fuente meteorológica predeterminada para nuevas ubicaciones, claves API personalizadas, otros ajustes de fuente</string>
     <string name="settings_weather_sources">Fuentes meteorológicas</string>
     <string name="settings_main_summary">Orden de las tarjetas, datos mostrados, animaciones</string>
     <string name="settings_source_api_key">Clave de la API</string>
