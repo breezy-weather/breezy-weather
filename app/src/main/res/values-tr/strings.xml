@@ -406,7 +406,7 @@
     <string name="common_weather_text_drizzle_heavy">Şiddetli çiseleme</string>
     <string name="widget_clock_day_details">Saat + Günlük (Detaylar)</string>
     <string name="settings_weather_source_main">Ana kaynak</string>
-    <string name="settings_weather_sources_per_location_summary">Bu konum için hava durumu kaynaklarını yapılandırın</string>
+    <string name="settings_weather_sources_per_location_summary">Bu konum için kullanılan hava durumu kaynaklarını yapılandırın</string>
     <string name="unit_cm">cm</string>
     <string name="notification_style_cities">Şehirler</string>
     <string name="common_weather_text_snow_showers_heavy">Şiddetli kar yağışı</string>
@@ -588,7 +588,7 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="settings_weather_sources_summary">Bu konum için kullanılan hava durumu veri kaynaklarını özelleştirin</string>
+    <string name="settings_weather_sources_summary">Yeni konumlar için öntanımlı hava durumu kaynağı, özel API anahtarları, diğer kaynak ayarları</string>
     <string name="weather_alert_data_by">%s tarafından sağlanan alarm verileri</string>
     <string name="air_quality_no2_info_origin">Ortamdaki NO₂ ısıtma, ulaşım, endüstri ve güç üretimi sırasında yakılan yakıtların yüksek sıcaklıkta yanmasıyla oluşur. Evlerdeki nitrojen oksit (NOₓ) kaynakları arasında fırınlar, şömineler, gaz sobaları ve fırınları gibi yakıtla çalışan ekipmanlar yer alır.</string>
     <string name="air_quality_co_info_consequences">Karbon monoksit akciğer dokuları ve kan dolaşımına yayılarak vücut hücrelerinin oksijene bağlanmasını zorlaştırır ve bu da dokulara ve hücrelere zarar verir. Karbon monoksite maruz kalmak solunum zorluğuna, bitkinliğe, baş dönmelerine ve diğer grip benzeri belirtilere neden olabilirken yüksek düzeyde karbon monoksite maruz kalmak ölümcül olabilir.</string>
