@@ -679,7 +679,7 @@ class RefreshHelper @Inject constructor(
 
     suspend fun updateNotificationIfNecessary(context: Context) {
         if (WidgetNotificationIMP.isEnabled(context)) {
-            val locationList = locationRepository.getXLocations(5, withParameters = false).toMutableList()
+            val locationList = locationRepository.getXLocations(4, withParameters = false).toMutableList()
             for (i in locationList.indices) {
                 locationList[i] = locationList[i].copy(
                     weather = weatherRepository.getWeatherByLocationId(
