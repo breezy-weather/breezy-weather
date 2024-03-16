@@ -618,7 +618,7 @@
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="location_service_native">API native</string>
     <string name="settings_automatic">Automatique</string>
-    <string name="notification_style_native">Native</string>
+    <string name="notification_style_native">Natif</string>
     <string name="notification_style_cities">Villes</string>
     <string name="widget_style_rectangle">Rectangle</string>
     <string name="widget_style_symmetry">Symétrie</string>
