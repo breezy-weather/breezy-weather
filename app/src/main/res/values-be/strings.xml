@@ -393,9 +393,9 @@
     <string name="settings_location_access_precise_summaryOn">Уключана. Выкарыстоўваюцца як сетка прылады, так і крыніцы GPS.</string>
     <string name="settings_location_access_precise_summaryOff">Уключыце «Выкарыстоўваць дакладнае месцазнаходжанне», калі ў вас узніклі праблемы з вызначэннем месцазнаходжання.</string>
     <string name="settings_weather_sources">Крыніцы надвор’я</string>
-    <string name="settings_weather_sources_summary">Пастаўшчыкі надвор\'я па змаўчанні для новых месцазнаходжанне, прыстасаваныя ключы API і іншыя налады пастаўшчыкоў</string>
+    <string name="settings_weather_sources_summary">Пастаўшчыкі надвор’я па змаўчанні для новых месцазнаходжанне, прыстасаваныя ключы API і іншыя налады пастаўшчыкоў</string>
     <string name="settings_weather_source_main">Асноўная крыніца</string>
-    <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор\'і выкарыстоўваюцца для гэтага месцазнаходжання</string>
+    <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор’і выкарыстоўваюцца для гэтага месцазнаходжання</string>
     <string name="settings_source_default_value">Па змаўчанні</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версія OneCall</string>
