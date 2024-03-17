@@ -384,7 +384,7 @@
     <string name="settings_location_access_background_summaryOn">Увімкнено. Застосунок зможе оновлювати погодні дані для вашого поточного місцезнаходження у фоновому режимі.</string>
     <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
-    <string name="settings_weather_sources_summary">Налаштування постачальників інформації про погоду для цього розташування</string>
+    <string name="settings_weather_sources_summary">Постачальники погоди за замовчуванням для нових розташуваннь, користувацьких ключів API та інших налаштувань ростачальників</string>
     <string name="settings_weather_source_open_weather_one_call_version">Версія OneCall</string>
     <string name="settings_appearance_summary">Мова, тема, пакети значків, одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
@@ -413,7 +413,7 @@
     <string name="settings_location_access_precise_title">Використання GPS пристроєм</string>
     <string name="settings_location_access_precise_summaryOn">Увімкнено. Використовуються як мережа пристрою, і джерела GPS.</string>
     <string name="settings_weather_source_main">Основне джерело</string>
-    <string name="settings_weather_sources_per_location_summary">Налаштуйте джерела інформації про погоду для цього місцезнаходження</string>
+    <string name="settings_weather_sources_per_location_summary">Налаштування джерел інформації про погоду, які використовуються для цього розташування</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Вигляд</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Час повідомлень про прогноз на наступний день</string>
