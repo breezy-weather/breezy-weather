@@ -30,7 +30,7 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 /**
- * World Meteorological Organization
+ * World Meteorological Organization Severe Weather Information Centre (WMO SWIC)
  * Supports severe weather from 134 issuing organizations
  *
  * Note for technical maintenance: saudiArabia is a good country for performance tests as they have
@@ -41,7 +41,7 @@ class WmoSevereWeatherService @Inject constructor(
 ) : HttpSource(), SecondaryWeatherSource {
 
     override val id = "wmosevereweather"
-    override val name = "World Meteorological Organization (WMO) Severe Weather"
+    override val name = "WMO Severe Weather Information Centre"
     override val privacyPolicyUrl = "https://severeweather.wmo.int/v2/privacy.html"
 
     private val mAlertsApi by lazy {
@@ -56,7 +56,7 @@ class WmoSevereWeatherService @Inject constructor(
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
-    override val alertAttribution = "Hong Kong Observatory on behalf of World Meteorological Organization (WMO) + 134 issuing organizations https://severeweather.wmo.int/v2/sources.html"
+    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 134 issuing organizations https://severeweather.wmo.int/v2/sources.html"
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
