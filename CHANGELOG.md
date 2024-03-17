@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Allow to enable Gadgetbridge if Smartspacer generic weather plugin is installed
+- Fix cypress, hazel and hornbeam pollen not correctly saved to database
 
 **Translations**
 - Translations updated
