@@ -14,7 +14,7 @@ L’application met l’accent sur l’esthétique, avec une expérience utilisa
 - Une large sélection de widgets pour l’écran d’accueil pour disposer de l’information en un coup d’œil
 - Fond d’écrans animés
 
-<strong>Sources</strong>
+<b>Sources</b>
 Sources météo mondiales disponibles :
 - Open-Meteo
 - AccuWeather¹
@@ -43,13 +43,13 @@ Sources météo secondaires disponibles :
 ² Usage souvent limité
 ³ Nécessite une clé API
 
-<strong>Versions</strong>
+<b>Versions</b>
 Selon vos dépôts F-Droid, vous avez la possibilité de télécharger différentes variantes de Breezy Weather :
 - Versions sans suffixe : version standard, entièrement open source
 - Versions avec suffixe _gplay : version standard + composant Fused location propriétaire inclus pour les utilisateurs des Google Play Services
 - Versions avec suffixe _fdroid : version standard sans toutes les sources qui ne sont pas libres/auto-hébergeables
 
-<strong>Permissions</strong>
+<b>Permissions</b>
 
 Obligatoires :
 - Réseau (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) : permet à l’application de récupérer des données météo depuis des fournisseurs sur Internet
@@ -63,7 +63,7 @@ Facultatives :
 - Icône système (EXPAND_STATUS_BAR) : permet à l’application de se lancer depuis les paramètres rapides
 
 
-<strong>Licence</strong>
+<b>Licence</b>
 
 - GNU Lesser General Public License v3.0
 - This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.

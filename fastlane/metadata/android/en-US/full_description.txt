@@ -14,7 +14,7 @@ The app has a strong focus on design, with a simple, clean UX, smooth animations
 - Large selection of home screen widgets for at-a-glance information
 - Live wallpaper
 
-<strong>Sources</strong>
+<b>Sources</b>
 Available worldwide weather sources:
 - Open-Meteo
 - AccuWeather¹
@@ -43,13 +43,13 @@ Available secondary weather sources:
 ² Often rate-limited
 ³ Requires an API key
 
-<strong>Versions</strong>
+<b>Versions</b>
 Depending on your F-Droid repositories, you may be able to download different flavors of Breezy Weather:
 - Versions with no suffix: standard version, fully open source
 - Versions with _gplay suffix: same as standard + includes proprietary Fused location for Google Play Services users
 - Versions with _fdroid suffix: same as standard without all sources that are not libre/self-hostable
 
-<strong>Permissions</strong>
+<b>Permissions</b>
 Required:
 - Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): Allows the app to fetch weather data from sources over the Internet
 
@@ -61,7 +61,7 @@ Optional:
 - Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): Allows the app to set the live weather wallpaper and/or widgets on some devices
 - Tile (EXPAND_STATUS_BAR): Allows the app to launch itself from Quick Settings
 
-<strong>License</strong>
+<b>License</b>
 - GNU Lesser General Public License v3.0
 - This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
 - Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
