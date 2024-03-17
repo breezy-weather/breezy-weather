@@ -50,6 +50,7 @@ object GadgetBridgeService {
     private const val GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE = "$GB_INTENT_PACKAGE.nightly_nopebble"
     private const val GB_INTENT_PACKAGE_BANGLEJS = "com.espruino.gadgetbridge.banglejs"
     private const val GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY = "$GB_INTENT_PACKAGE_BANGLEJS.nightly"
+    private const val GB_INTENT_PACKAGE_SMARTSPACER = "nodomain.pacjo.smartspacer.plugin.genericweather"
     private const val GB_INTENT_ACTION = "$GB_INTENT_PACKAGE.ACTION_GENERIC_WEATHER"
 
     fun sendWeatherBroadcast(context: Context, location: Location) {
@@ -79,7 +80,8 @@ object GadgetBridgeService {
                 isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY) ||
                 isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE) ||
                 isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY)
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY) ||
+                isPackageAvailable(pm, GB_INTENT_PACKAGE_SMARTSPACER)
     }
 
     private fun isPackageAvailable(pm: PackageManager, name: String): Boolean {

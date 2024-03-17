@@ -1,5 +1,8 @@
 # Version 5.1.6 (not yet released)
 
+**Improvements and fixes**
+- Allow to enable Gadgetbridge if Smartspacer generic weather plugin is installed
+
 **Translations**
 - Translations updated
 - Date formatting was improved on Android 7.0+ for many languages, including languages not currently supported. On lower Android versions, it will fallback to ISO 8601 formatting for short format, and weekday / day / month / year for long format.

@@ -65,6 +65,7 @@
         <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly_nopebble" />
         <package android:name="com.espruino.gadgetbridge.banglejs" />
         <package android:name="com.espruino.gadgetbridge.banglejs.nightly" />
+        <package android:name="nodomain.pacjo.smartspacer.plugin.genericweather" />
     </queries>
 
     <application
