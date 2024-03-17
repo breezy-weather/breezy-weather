@@ -11,11 +11,6 @@
     <string name="alerts_to_follow">Nadchádzajúce výstrahy zobrazíte ťuknutím sem.</string>
     <string name="short_today">Dnes</string>
     <string name="short_tomorrow">Zaj</string>
-    <string name="short_monday">Po</string>
-    <string name="short_wednesday">St</string>
-    <string name="short_thursday">Št</string>
-    <string name="short_friday">Pi</string>
-    <string name="short_saturday">So</string>
     <string name="of_clock">:00</string>
     <string name="temperature">Teplota</string>
     <string name="temperature_feels_like">Pocitová teplota</string>
@@ -94,8 +89,6 @@
     <string name="app_name">Počasie</string>
     <string name="daily_forecast">Denná predpoveď</string>
     <string name="hourly_forecast">Hodinová predpoveď</string>
-    <string name="short_tuesday">Ut</string>
-    <string name="short_sunday">Ne</string>
     <string name="precipitation_snow">Sneh</string>
     <string name="wind_speed">Rýchlosť vetra</string>
     <string name="wind_strength_9">Víchrica</string>

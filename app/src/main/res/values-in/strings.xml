@@ -37,13 +37,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Kmrn</string>
     <string name="short_tomorrow">Bsk</string>
-    <string name="short_monday">Sen</string>
-    <string name="short_tuesday">Sel</string>
-    <string name="short_wednesday">Rab</string>
-    <string name="short_thursday">Kam</string>
-    <string name="short_friday">Jum</string>
-    <string name="short_saturday">Sab</string>
-    <string name="short_sunday">Min</string>
     <string name="temperature_apparent">Tampak</string>
     <string name="temperature_wind_chill">Angin dingin</string>
     <string name="temperature_wet_bulb">Bohlam basah</string>

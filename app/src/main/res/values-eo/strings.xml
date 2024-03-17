@@ -22,13 +22,6 @@
     <string name="short_yesterday">Hie</string>
     <string name="short_today">Hod</string>
     <string name="short_tomorrow">Mor</string>
-    <string name="short_monday">Lun</string>
-    <string name="short_tuesday">Mar</string>
-    <string name="short_wednesday">Mer</string>
-    <string name="short_thursday">Ĵaŭ</string>
-    <string name="short_friday">Ven</string>
-    <string name="short_saturday">Sab</string>
-    <string name="short_sunday">Dim</string>
     <string name="of_clock">:00</string>
     <!-- Temperature -->
     <string name="temperature">Temperaturo</string>

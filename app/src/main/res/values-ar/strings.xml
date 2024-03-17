@@ -33,13 +33,6 @@
     <string name="of_clock">‌</string>
     <string name="short_yesterday">أمس</string>
     <string name="short_tomorrow">غداً</string>
-    <string name="short_monday">الإثنين</string>
-    <string name="short_tuesday">الثلاثاء</string>
-    <string name="short_wednesday">الأربعاء</string>
-    <string name="short_thursday">الخميس</string>
-    <string name="short_friday">الجمعة</string>
-    <string name="short_saturday">السبت</string>
-    <string name="short_sunday">الأحد</string>
     <string name="temperature_real_feel">الشعور الحقيقي</string>
     <string name="temperature_real_feel_shade">االشعور الحقيقي في الظل</string>
     <string name="temperature_apparent">ظاهر</string>

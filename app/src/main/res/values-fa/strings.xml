@@ -4,10 +4,6 @@
     <string name="hourly_forecast">پیش بینی ساعتی</string>
     <string name="precipitation_forecast">پیش بینی بارش</string>
     <string name="pollen">گرده</string>
-    <string name="short_thursday">پنج شنبه</string>
-    <string name="short_friday">آدینه</string>
-    <string name="short_saturday">شنبه</string>
-    <string name="short_sunday">یک شنبه</string>
     <string name="of_clock">:۰۰</string>
     <string name="temperature">دما</string>
     <string name="temperature_feels_like">احساس می شود</string>
@@ -22,9 +18,6 @@
     <string name="short_yesterday">دیروز</string>
     <string name="short_today">امروز</string>
     <string name="short_tomorrow">فردا</string>
-    <string name="short_monday">دوشنبه</string>
-    <string name="short_tuesday">سه شنبه</string>
-    <string name="short_wednesday">چهار شنبه</string>
     <string name="air_quality_level_1">عالی</string>
     <string name="air_quality_level_2">متوسط</string>
     <string name="air_quality_level_5">بسیار ناسالم</string>

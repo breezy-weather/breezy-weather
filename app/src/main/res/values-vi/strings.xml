@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="short_today">Hnay</string>
-    <string name="short_sunday">CN</string>
-    <string name="short_tuesday">Th 3</string>
     <string name="ephemeris">Mặt trời &amp; mặt trăng</string>
     <string name="pollen">Dị ứng phấn hoa</string>
     <string name="alerts">Cảnh báo</string>
@@ -317,13 +315,8 @@
     <string name="settings_notifications_summary">Cảnh báo thời tiết, lượng mưa, dự báo</string>
     <string name="settings_notifications_alerts_title">Thông báo về cảnh báo thời tiết</string>
     <string name="short_yesterday">Hqua</string>
-    <string name="short_monday">Th 2</string>
     <string name="daily_forecast">Dự báo hàng ngày</string>
     <string name="short_tomorrow">Nmai</string>
-    <string name="short_wednesday">Th 4</string>
-    <string name="short_thursday">Th 5</string>
-    <string name="short_friday">Th 6</string>
-    <string name="short_saturday">Th 7</string>
     <string name="temperature">Nhiệt độ</string>
     <string name="temperature_feels_like">Cảm giác như</string>
     <string name="temperature_wind_chill">Gió lạnh</string>

@@ -7,9 +7,6 @@
     <string name="short_yesterday">Вчр</string>
     <string name="short_today">Ден</string>
     <string name="short_tomorrow">Утр</string>
-    <string name="short_friday">Пет</string>
-    <string name="short_monday">Пон</string>
-    <string name="short_tuesday">Вто</string>
     <string name="temperature_feels_like">Се чувствува како</string>
     <string name="temperature_normal_short">Нормална</string>
     <string name="temperature_normals">Нормали на температура</string>
@@ -78,10 +75,6 @@
     <string name="ephemeris">Сонце и месечина</string>
     <string name="alerts">Тревоги</string>
     <string name="alerts_to_follow">Идни тревоги, допрете за да ги погледнете.</string>
-    <string name="short_wednesday">Сре</string>
-    <string name="short_thursday">Чет</string>
-    <string name="short_saturday">Саб</string>
-    <string name="short_sunday">Нед</string>
     <string name="temperature">Температура</string>
     <string name="of_clock">:00</string>
     <string name="temperature_apparent">Видно</string>

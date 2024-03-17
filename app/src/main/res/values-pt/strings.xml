@@ -23,13 +23,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ontem</string>
     <string name="short_tomorrow">Amanhã</string>
-    <string name="short_monday">Seg</string>
-    <string name="short_tuesday">Ter</string>
-    <string name="short_wednesday">Qua</string>
-    <string name="short_thursday">Qui</string>
-    <string name="short_friday">Sex</string>
-    <string name="short_saturday">Sab</string>
-    <string name="short_sunday">Dom</string>
     <string name="wind_strength_0">Calmo</string>
     <string name="wind_strength_1">Fresco</string>
     <string name="wind_strength_2">Brisa Leve</string>

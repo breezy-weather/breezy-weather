@@ -34,13 +34,6 @@
     <string name="of_clock">時</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
-    <string name="short_monday">週一</string>
-    <string name="short_tuesday">週二</string>
-    <string name="short_wednesday">週三</string>
-    <string name="short_thursday">週四</string>
-    <string name="short_friday">週五</string>
-    <string name="short_saturday">週六</string>
-    <string name="short_sunday">週日</string>
     <string name="temperature_real_feel">真實感受溫度®</string>
     <string name="temperature_real_feel_shade">陰影處的真實感受溫度™</string>
     <string name="temperature_apparent">明顯溫度</string>

@@ -14,9 +14,6 @@
     <string name="details">ووردەکاریەکان</string>
     <string name="alerts">ئاگادارکردنەوەکان</string>
     <string name="short_yesterday">دوێنێ</string>
-    <string name="short_monday">دووشەممە</string>
-    <string name="short_tuesday">سێشەممە</string>
-    <string name="short_friday">هەینی</string>
     <string name="temperature_feels_like">هەست دەکەیت وەک</string>
     <string name="temperature_real_feel">بەڕاستی هەست دەکەیت وەک</string>
     <string name="temperature_real_feel_shade">لە ژێر سێبەردا بەڕاستی هەست دەکەیت وەک</string>
@@ -87,13 +84,9 @@
     <string name="widget_custom_subtitle_keyword_xdt_description">پلەی گەرمای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">پلەی گەرمای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">پلەی گەرمای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°)</string>
-    <string name="short_saturday">شەممە</string>
     <string name="temperature_degree_day">پلەی ڕۆژ</string>
     <string name="alerts_to_follow">ئاگادارکردنەوە بۆ بەدواداچوون، کلیک لێرە بکە بۆ بینینیان.</string>
-    <string name="short_wednesday">چوارشەممە</string>
     <string name="short_tomorrow">سبەینێ</string>
-    <string name="short_thursday">پێنج شەممە</string>
-    <string name="short_sunday">یەکشەممە</string>
     <string name="precipitation">باران بارین</string>
     <string name="of_clock">:٠٠</string>
     <string name="temperature">پلەی گەرمی</string>

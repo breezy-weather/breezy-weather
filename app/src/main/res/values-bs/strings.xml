@@ -22,15 +22,12 @@
     <string name="precipitation_intensity_middle">Kiša</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="hourly_forecast">Satna prognoza</string>
-    <string name="short_thursday">Čet</string>
     <string name="wind_strength_0">Tišina</string>
     <string name="temperature_normals">Normale temperature</string>
     <string name="pollen">Polen</string>
     <string name="precipitation_intensity_light">Rosa</string>
-    <string name="short_wednesday">Sri</string>
     <string name="precipitation">Padavine</string>
     <string name="temperature_feels_like">Osjeti se kao</string>
-    <string name="short_saturday">Sub</string>
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_normal_short">Normala</string>
@@ -39,11 +36,8 @@
     <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje/duljina padavina</string>
     <string name="temperature_degree_day_heating">Stepen grijanja dana</string>
-    <string name="short_monday">Pon</string>
     <string name="precipitation_rain">Kiša</string>
-    <string name="short_friday">Pet</string>
     <string name="temperature_degree_day_cooling">Stepen hlađenja dana</string>
-    <string name="short_tuesday">Uto</string>
     <string name="alerts_to_follow">Predstojeća ili nadolazeća upozorenja, dodirnite ovdje da biste ih prikazali.</string>
     <string name="temperature_wind_chill">Hladnoća vjetra</string>
     <string name="wind_direction_short_variable">Promjenjiv</string>
@@ -62,7 +56,6 @@
     <string name="wind_direction_short_E">I</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="precipitation_between_time">Padavine između %1$s i %2$s</string>
-    <string name="short_sunday">Ned</string>
     <string name="wind">Vjetar</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="minutely_forecast">Minutna prognoza</string>

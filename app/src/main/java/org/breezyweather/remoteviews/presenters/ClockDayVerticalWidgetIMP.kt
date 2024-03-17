@@ -31,6 +31,7 @@ import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
 import org.breezyweather.common.utils.helpers.LunarHelper
@@ -326,12 +327,12 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
-                "symmetry" -> (Widgets.getWeek(context, location.timeZone)
+                "symmetry" -> (Date().getWeek(context, location.timeZone)
                         + " "
                         + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Widgets.getWeek(context, location.timeZone)
+                        + " " + Date().getWeek(context, location.timeZone)
                         + " " + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
 
                 else -> null
@@ -350,12 +351,12 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
-                "symmetry" -> (Widgets.getWeek(context, location.timeZone)
+                "symmetry" -> (Date().getWeek(context, location.timeZone)
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Widgets.getWeek(context, location.timeZone)
+                        + " " + Date().getWeek(context, location.timeZone)
                         + " " + LunarHelper.getLunarDate(Date()))
 
                 else -> null

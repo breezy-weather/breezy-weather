@@ -6,7 +6,6 @@
     <string name="pressure">Presioa</string>
     <string name="nighttime">Gaua</string>
     <string name="app_name">Eguraldia</string>
-    <string name="short_wednesday">Az.</string>
     <string name="daily_forecast">Egunkako iragarpena</string>
     <string name="hourly_forecast">Ordukako iragarpena</string>
     <string name="minutely_forecast">Iragarpen zehatza</string>
@@ -17,9 +16,6 @@
     <string name="details">Xehetasunak</string>
     <string name="ephemeris">Eguzkia eta ilargia</string>
     <string name="alerts">Alertak</string>
-    <string name="short_monday">Al.</string>
-    <string name="short_tuesday">Ar.</string>
-    <string name="short_friday">Ol.</string>
     <string name="short_today">Gaur</string>
     <string name="short_tomorrow">Bihar</string>
     <string name="short_yesterday">Atzo</string>
@@ -107,9 +103,6 @@
     <string name="ephemeris_moon_phase_new_moon">Ilargi berria</string>
     <string name="ephemeris_moon_phase_full_moon">Ilargi betea</string>
     <string name="ephemeris_sunrise_at">Egunsentia %s(e)tan</string>
-    <string name="short_saturday">Lr.</string>
-    <string name="short_sunday">Ig.</string>
-    <string name="short_thursday">Og.</string>
     <string name="temperature_apparent">Sentsazio termikoa</string>
     <string name="temperature_feels_like">Hautematen dena</string>
     <string name="precipitation_thunderstorm">Ekaitza</string>

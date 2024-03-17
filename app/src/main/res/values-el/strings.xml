@@ -34,13 +34,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Χθες</string>
     <string name="short_tomorrow">Αύριο</string>
-    <string name="short_monday">Δευτ</string>
-    <string name="short_tuesday">Τρί</string>
-    <string name="short_wednesday">Τετ</string>
-    <string name="short_thursday">Πέμ</string>
-    <string name="short_friday">Παρ</string>
-    <string name="short_saturday">Σάβ</string>
-    <string name="short_sunday">Κυρ</string>
     <string name="temperature_real_feel">Πραγματική Αίσθηση</string>
     <string name="temperature_real_feel_shade">Πραγματική Αίσθηση υπό Σκιά</string>
     <string name="temperature_apparent">Αίσθηση</string>

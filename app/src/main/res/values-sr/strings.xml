@@ -19,13 +19,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Јуче</string>
     <string name="short_tomorrow">Сутра</string>
-    <string name="short_monday">Пон</string>
-    <string name="short_tuesday">Уто</string>
-    <string name="short_wednesday">Сре</string>
-    <string name="short_thursday">Чет</string>
-    <string name="short_friday">Пет</string>
-    <string name="short_saturday">Суб</string>
-    <string name="short_sunday">Нед</string>
     <string name="wind_strength_0">Мирно</string>
     <string name="wind_strength_1">Слаб ветар</string>
     <string name="wind_strength_2">Поветарац</string>

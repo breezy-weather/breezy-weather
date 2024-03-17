@@ -23,13 +23,6 @@
     <string name="short_yesterday">Yda</string>
     <string name="short_today">Today</string>
     <string name="short_tomorrow">Tmw</string>
-    <string name="short_monday">Mon</string>
-    <string name="short_tuesday">Tue</string>
-    <string name="short_wednesday">Wed</string>
-    <string name="short_thursday">Thu</string>
-    <string name="short_friday">Fri</string>
-    <string name="short_saturday">Sat</string>
-    <string name="short_sunday">Sun</string>
     <string name="of_clock">:00</string>
     <!-- Temperature -->
     <string name="temperature">Temperature</string>

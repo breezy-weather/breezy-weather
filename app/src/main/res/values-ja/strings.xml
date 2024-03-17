@@ -35,13 +35,6 @@
     <string name="of_clock">時</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
-    <string name="short_monday">月曜日</string>
-    <string name="short_tuesday">火曜日</string>
-    <string name="short_wednesday">水曜日</string>
-    <string name="short_thursday">木曜日</string>
-    <string name="short_friday">金曜日</string>
-    <string name="short_saturday">土曜日</string>
-    <string name="short_sunday">日曜日</string>
     <string name="temperature_apparent">地表温度</string>
     <string name="temperature_wind_chill">風冷指数</string>
     <string name="temperature_wet_bulb">湿球温度</string>

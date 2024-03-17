@@ -188,7 +188,6 @@
     <string name="action_add_from_map">Dodajte sa mape</string>
     <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
-    <string name="short_thursday">Čet</string>
     <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>
     <string name="dialog_permissions_location_content">Breezy Weather mora prikupiti vaše informacije o lokaciji u prvom planu ili pozadini kako bi vam dostavio vremenske podatke za vašu trenutnu lokaciju. Zbog toga ćemo od vas zatražiti neke dozvole. Informacije o vašoj lokaciji će se koristiti samo za dohvaćanje vremenskih podataka za vašu trenutnu lokaciju. Ako ne želite dijeliti vašu lokaciju, možete odbiti te zahtjeve i ručno postaviti vašu lokaciju na stranici upravljanja.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja dnevne prognoze</string>
@@ -219,7 +218,6 @@
     <string name="action_preview">Pregled</string>
     <string name="location_search_no_results_advice">Provjerite da ste pravilno napisali izraz pretrage te da niste previše specifični. Alternativno možete pokušati jedan drugi izvor pretraživanja lokacije koji će možda prikazati drukčije rezultate.</string>
     <string name="nighttime">Noć</string>
-    <string name="short_wednesday">Sri</string>
     <string name="precipitation">Oborine</string>
     <string name="location_message_permission_background_missing">Nedostaje dozvola za pristup lokaciji u pozadini</string>
     <string name="air_quality_pm10_voice">PM deset</string>
@@ -251,7 +249,6 @@
     <string name="wind_strength_11">Jak orkanski vjetar</string>
     <string name="weather_api_unauthorized_content">Za neke izvore vremenskih podataka, morate priložiti svoj vlastiti API ključ. Ako ste već priložili jedan, molimo ponovno provjerite API ključ koji ste priložili.</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Trenutna točka kondenziranja</string>
-    <string name="short_saturday">Sub</string>
     <string name="pollen_ambrosia">Ambrozija</string>
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -318,7 +315,6 @@
     <string name="weather_source_accu_preference_hours_120">120 sati</string>
     <string name="settings_appearance_summary">Jezik, tamni način, paketi ikona, mjerne jedinice</string>
     <string name="settings_widgets_section_notification_widget">Widget u obavijestima</string>
-    <string name="short_monday">Pon</string>
     <string name="settings_appearance_dark_mode_title">Tamni način</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimiranje baterije je već onemogućeno.</string>
     <string name="message_network_unavailable">Mreža nedostupna</string>
@@ -327,7 +323,6 @@
     <string name="location_none_added_yet_instructions">Nema dodanih lokacija. Molimo kliknite ikonu pretraživanja te ručno dodajte lokaciju ili dodajte svoju trenutnu lokaciju pomoću lebdećeg gumba.</string>
     <string name="location_message_deleted">Lokacija obrisana</string>
     <string name="widget_clock_day_vertical">Sat + Dnevno (Okomiti stil)</string>
-    <string name="short_friday">Pet</string>
     <string name="settings_main_hourly_trends_title">Trendovi po satu</string>
     <string name="temperature_degree_day_cooling">Temperatura za hlađenje</string>
     <string name="air_quality_co_info_origin">Nastaje nepotpunim izgaranjem ugljičnih goriva kao što su drvo, benzin, ugljen, prirodni plin i kerozin u jednostavnim štednjacima, otvorenim vatrama, fenjerima, pećima, kaminima. Prevladavajući izvor ugljikovog monoksida (CO) u okolnom zraku su motorna vozila.</string>
@@ -335,7 +330,6 @@
     <string name="pollen_level_3">Umjereno</string>
     <string name="weather_data_by">Podatci od %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Trenutni tlak</string>
-    <string name="short_tuesday">Uto</string>
     <string name="pollen_level_5">Jako visoko</string>
     <string name="weather_source_accu_preference_days_1">1 dan</string>
     <string name="alerts_to_follow">Nadolazeća upozorenja, dodirnite za prikaz.</string>
@@ -456,7 +450,6 @@
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
     <string name="precipitation_between_time">Oborine između %1$s i %2$s</string>
     <string name="settings_main_threshold_lines_on_charts">Linije praga na grafikonima</string>
-    <string name="short_sunday">Ned</string>
     <string name="ephemeris_moon_phase_last_quarter">Posljednja četvrt</string>
     <string name="wind">Vjetar</string>
     <string name="wind_strength_5">Umjereno jak vjetar</string>

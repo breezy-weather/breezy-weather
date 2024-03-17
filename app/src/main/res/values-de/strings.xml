@@ -125,13 +125,6 @@
     <string name="uv_index">UV Index</string>
     <string name="visibility">Sicht</string>
     <string name="widget_refreshing">Aktualisiere</string>
-    <string name="short_monday">Mo</string>
-    <string name="short_tuesday">Di</string>
-    <string name="short_wednesday">Mi</string>
-    <string name="short_thursday">Do</string>
-    <string name="short_friday">Fr</string>
-    <string name="short_saturday">Sa</string>
-    <string name="short_sunday">So</string>
     <string name="temperature_wet_bulb">Feuchtkugeltemperatur</string>
     <string name="widget_clock_day_details">Uhr + Tag (Details)</string>
     <string name="widget_clock_day_horizontal">Uhr + Tag (Horizontal)</string>

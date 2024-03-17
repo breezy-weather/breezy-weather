@@ -35,13 +35,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ieri</string>
     <string name="short_tomorrow">Domani</string>
-    <string name="short_monday">Lun</string>
-    <string name="short_tuesday">Mar</string>
-    <string name="short_wednesday">Mer</string>
-    <string name="short_thursday">Gio</string>
-    <string name="short_friday">Ven</string>
-    <string name="short_saturday">Sab</string>
-    <string name="short_sunday">Dom</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparente</string>

@@ -150,8 +150,6 @@
     <string name="wind_strength_6">Сильний</string>
     <string name="wind_strength_10">Сильний шторм</string>
     <string name="short_tomorrow">Завтра</string>
-    <string name="short_saturday">Сб</string>
-    <string name="short_tuesday">Вт</string>
     <string name="air_quality_co_info_consequences">Монооксид вуглецю поширюється по тканинах легенів і потрапляє в кров, ускладнюючи зв’язок клітин організму з киснем. Нестача кисню пошкоджує тканини та клітини. Вплив монооксиду вуглецю може викликати утруднене дихання, виснаження, запаморочення та інші симптоми, схожі на грип. Вплив високих рівнів чадного газу може бути смертельним.</string>
     <string name="pollen_tree">Дерева</string>
     <string name="pollen_alnus">Вільха</string>
@@ -181,8 +179,6 @@
     <string name="sunshine_duration">Годин Сонця</string>
     <string name="pressure">Тиск</string>
     <string name="visibility">Видимість</string>
-    <string name="short_wednesday">Ср</string>
-    <string name="short_monday">Пн</string>
     <string name="dew_point">Точка роси</string>
     <string name="cloud_cover">Хмарність</string>
     <string name="ceiling">Висота хмар</string>
@@ -245,10 +241,7 @@
     <string name="location_current_not_found_yet">Поточне місцезнаходження поки що не знайдено…</string>
     <string name="action_back">Назад</string>
     <string name="action_continue">Продовжити</string>
-    <string name="short_thursday">Чт</string>
     <string name="wind_direction_short_NW">Пн. Зх.</string>
-    <string name="short_sunday">Нд</string>
-    <string name="short_friday">Пт</string>
     <string name="action_add_new_location">Додати нове місце</string>
     <string name="action_share">Поділитися</string>
     <string name="message_network_unavailable">Мережа недоступна</string>

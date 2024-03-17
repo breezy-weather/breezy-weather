@@ -46,13 +46,6 @@
     <string name="of_clock"> h</string>
     <string name="short_yesterday">Hier</string>
     <string name="short_tomorrow">Dem.</string>
-    <string name="short_monday">Lun.</string>
-    <string name="short_tuesday">Mar.</string>
-    <string name="short_wednesday">Mer.</string>
-    <string name="short_thursday">Jeu.</string>
-    <string name="short_friday">Ven.</string>
-    <string name="short_saturday">Sam.</string>
-    <string name="short_sunday">Dim.</string>
 
     <string name="temperature">Température</string>
     <string name="temperature_real_feel">RealFeel®</string>

@@ -22,8 +22,10 @@ import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.remoteviews.presenters.*
 import java.util.Calendar
+import java.util.Date
 import java.util.TimeZone
 
 object Widgets {
@@ -207,20 +209,5 @@ object Widgets {
             texts[0] + "\n" + texts[1],
             texts[2] + "\n" + texts[3]
         )
-    }
-
-    // TODO: Missing TimeZone
-    fun getWeek(context: Context, timeZone: TimeZone?): String? {
-        val c = Calendar.getInstance()
-        return when (c[Calendar.DAY_OF_WEEK]) {
-            Calendar.SUNDAY -> context.getString(R.string.short_sunday)
-            Calendar.MONDAY -> context.getString(R.string.short_monday)
-            Calendar.TUESDAY -> context.getString(R.string.short_tuesday)
-            Calendar.WEDNESDAY -> context.getString(R.string.short_wednesday)
-            Calendar.THURSDAY -> context.getString(R.string.short_thursday)
-            Calendar.FRIDAY -> context.getString(R.string.short_friday)
-            Calendar.SATURDAY -> context.getString(R.string.short_saturday)
-            else -> null
-        }
     }
 }

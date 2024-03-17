@@ -34,13 +34,6 @@
     <string name="of_clock">:00</string>
     <string name="short_yesterday">T</string>
     <string name="short_tomorrow">H</string>
-    <string name="short_monday">Hét</string>
-    <string name="short_tuesday">Ked</string>
-    <string name="short_wednesday">Sze</string>
-    <string name="short_thursday">Csü</string>
-    <string name="short_friday">Pén</string>
-    <string name="short_saturday">Szo</string>
-    <string name="short_sunday">Vas</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Hőérzet</string>

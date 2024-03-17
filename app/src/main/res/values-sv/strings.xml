@@ -126,7 +126,6 @@
     <string name="action_add_from_map">Lägg till från karta</string>
     <string name="air_quality_index">Luftkvalitetsindex</string>
     <string name="unit_kn_voice">Knop</string>
-    <string name="short_thursday">Tor</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="air_quality_no2_info_title">Kvävedioxid (NO₂)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
@@ -140,7 +139,6 @@
     <string name="action_preview">Förhandsvisning</string>
     <string name="location_search_no_results_advice">Se till att din sökning är rättstavad och inte för specifik. Alternativt kan du prova en annan platssökningskälla som kan ge andra resultat.</string>
     <string name="nighttime">Nattetid</string>
-    <string name="short_wednesday">Ons</string>
     <string name="precipitation">Nederbörd</string>
     <string name="location_message_permission_background_missing">Behörighet till platsåtkomst i bakgrunden saknas</string>
     <string name="air_quality_pm10_voice">PM tio</string>
@@ -161,7 +159,6 @@
     <string name="widget_style_rectangle">Rektangel</string>
     <string name="action_restart">Starta om</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande daggpunkt</string>
-    <string name="short_saturday">Lör</string>
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="ephemeris">Solen &amp; månen</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -203,7 +200,6 @@
     <string name="unit_in_voice">Tum</string>
     <string name="location_message_search_failed">Platssök misslyckades</string>
     <string name="weather_source_accu_preference_hours_120">120 timmar</string>
-    <string name="short_monday">Mån</string>
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_atm_voice">Atmosfärer</string>
     <string name="unit_km">km</string>
@@ -211,12 +207,10 @@
     <string name="pollen_alnus">Al</string>
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
-    <string name="short_friday">Fre</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera behörigheterna för platsåtkomst</string>
     <string name="pollen_level_3">Medelhög</string>
     <string name="weather_data_by">Data från %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande lufttryck</string>
-    <string name="short_tuesday">Tis</string>
     <string name="pollen_level_5">Mycket hög</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="alerts_to_follow">Kommande varningar, tryck här för att visa dem.</string>
@@ -300,7 +294,6 @@
     <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
     <string name="precipitation_between_time">Nederbörd mellan %1$s och %2$s</string>
-    <string name="short_sunday">Sön</string>
     <string name="wind">Vind</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="temperature_real_feel">RealFeel®</string>
