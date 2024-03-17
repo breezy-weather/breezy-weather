@@ -1,8 +1,0 @@
-Due to length limit on this text, please check release notes on GitHub:
-https://github.com/breezy-weather/breezy-weather/releases
-
-If your store supports Markdown or HTML, a clickable link should appear below:
-
-<a href="https://github.com/breezy-weather/breezy-weather/releases">Link to GitHub release notes</a>
-
-[Link to GitHub release notes](https://github.com/breezy-weather/breezy-weather/releases)

@@ -147,40 +147,42 @@ fun LocationPreference(
                 },
                 text = {
                     sourcesWithPreferencesScreen.forEach { preferenceSource ->
-                        SectionHeader(title = preferenceSource.name)
-                        preferenceSource.PerLocationPreferences(
-                            context = activity,
-                            location = location,
-                            features = emptyList() // TODO
-                        ) {
-                            val newParameters = location.parameters.toMutableMap()
-                            newParameters[preferenceSource.id] = (if (newParameters.getOrElse(preferenceSource.id) { null } != null) {
-                                newParameters[preferenceSource.id]!!
-                            } else emptyMap()) + it
-                            dialogPerLocationSourcesOpenState.value = false
-                            dialogWeatherSourcesOpenState.value = false
-                            onClose(
-                                location.copy(
-                                    parameters = newParameters,
-                                    // TODO: Will trigger a full refresh which we should avoid
-                                    // if we only change a secondary weather source
-                                    weather = location.weather?.let { weather ->
-                                        weather.copy(
-                                            base = weather.base.copy(
-                                                refreshTime = null,
-                                                mainUpdateTime = null,
-                                                airQualityUpdateTime = null,
-                                                pollenUpdateTime = null,
-                                                minutelyUpdateTime = null,
-                                                alertsUpdateTime = null,
-                                                normalsUpdateTime = null
+                        Column {
+                            SectionHeader(title = preferenceSource.name)
+                            preferenceSource.PerLocationPreferences(
+                                context = activity,
+                                location = location,
+                                features = emptyList() // TODO
+                            ) {
+                                val newParameters = location.parameters.toMutableMap()
+                                newParameters[preferenceSource.id] = (if (newParameters.getOrElse(preferenceSource.id) { null } != null) {
+                                    newParameters[preferenceSource.id]!!
+                                } else emptyMap()) + it
+                                dialogPerLocationSourcesOpenState.value = false
+                                dialogWeatherSourcesOpenState.value = false
+                                onClose(
+                                    location.copy(
+                                        parameters = newParameters,
+                                        // TODO: Will trigger a full refresh which we should avoid
+                                        // if we only change a secondary weather source
+                                        weather = location.weather?.let { weather ->
+                                            weather.copy(
+                                                base = weather.base.copy(
+                                                    refreshTime = null,
+                                                    mainUpdateTime = null,
+                                                    airQualityUpdateTime = null,
+                                                    pollenUpdateTime = null,
+                                                    minutelyUpdateTime = null,
+                                                    alertsUpdateTime = null,
+                                                    normalsUpdateTime = null
+                                                )
                                             )
-                                        )
-                                    }
+                                        }
+                                    )
                                 )
-                            )
+                            }
+                            SectionFooter()
                         }
-                        SectionFooter()
                     }
                 },
                 onDismissRequest = {
