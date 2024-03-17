@@ -51,15 +51,15 @@ Depending on your F-Droid repositories, you may be able to download different fl
 
 <b>Permissions</b>
 Required:
-- Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): Allows the app to fetch weather data from sources over the Internet
+- Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): fetch weather data from sources over the Internet
 
 Optional:
-- Background updates (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): Allows the app to refresh weather data in the background and send today/tomorrow forecast notification
-- Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): Prevents the app from being killed in the background. Potentially more reliable method for fetching background weather data on some devices
-- Notification (POST_NOTIFICATIONS): Allows the app to send you optional notifications (alerts, precipitation, today/tomorrow forecast, notification-widget, update progress of background updates, etc)
-- Location (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Allows the app to show weather in your current location
-- Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): Allows the app to set the live weather wallpaper and/or widgets on some devices
-- Tile (EXPAND_STATUS_BAR): Allows the app to launch itself from Quick Settings
+- Background services (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): weather updates in the background and scheduled forecast notifications
+- Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): help preventing the app from being killed on some devices
+- Send notifications (POST_NOTIFICATIONS): alerts, precipitation, today/tomorrow forecast, notification-widget, update progress of background updates, etc
+- Location (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): to show weather in your current location
+- Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): helps setting the live weather wallpaper and/or widgets on some devices
+- Tile (EXPAND_STATUS_BAR): allow to launch the app from Quick Settings
 
 <b>License</b>
 - GNU Lesser General Public License v3.0

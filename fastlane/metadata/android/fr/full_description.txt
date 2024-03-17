@@ -52,16 +52,15 @@ Selon vos dépôts F-Droid, vous avez la possibilité de télécharger différen
 <b>Permissions</b>
 
 Obligatoires :
-- Réseau (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) : permet à l’application de récupérer des données météo depuis des fournisseurs sur Internet
+- Réseau (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) : récupérer des données météo depuis des sources sur Internet
 
 Facultatives :
-- Mises à jour en arrière-plan (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE) : permet à l’application de rafraîchir les données météo en arrière-plan et d’envoyer une notification des prévisions du jour/lendemain
-- Ignorer l’optimisation de la batterie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) : empêche l’application d’être tuée en arrière-plan. Méthode potentiellement plus fiable pour récupérer les mises à jour de données météo sur certains appareils
-- Notification (POST_NOTIFICATIONS) : permet à l’application de vous envoyer des notifications facultatives (vigilances, précipitations, prévisions du jour/lendemain, notification-widget, avancement des mises à jour en arrière-plan, etc)
-- Localisation (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) : permet à l’application d’afficher la météo pour votre position actuelle
+- Services en arrière-plan (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE) : mises à jour météo en arrière-plan et notifications programmées des prévisions
+- Ignorer l’optimisation de la batterie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) : aide à empêcher l’application d’être tuée en arrière-plan sur certains appareils
+- Envoyer des notification (POST_NOTIFICATIONS) : vigilances, précipitations, prévisions du jour/lendemain, notification-widget, avancement des mises à jour en arrière-plan, etc
+- Localisation (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) : pour afficher la météo pour votre position actuelle
 - Stockage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) : permet à l’application de définir le fond d’écran animé et/ou les widgets sur certains appareils
-- Icône système (EXPAND_STATUS_BAR) : permet à l’application de se lancer depuis les paramètres rapides
-
+- Icône système (EXPAND_STATUS_BAR) : permet de lancer l’application depuis les paramètres rapides
 
 <b>Licence</b>
 
