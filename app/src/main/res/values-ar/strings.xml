@@ -91,8 +91,6 @@
     <string name="action_learn_more">التعرف على المزيد</string>
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
-    <string name="date_format_short">d - M</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>

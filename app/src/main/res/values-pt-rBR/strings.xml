@@ -98,8 +98,6 @@
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_short">dd/MM</string>
-    <string name="date_format_long">d\' de \'MMM</string>
     <string name="date_format_widget_short">EEE, dd/MM</string>
     <string name="date_format_widget_long">EEEE, d\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d\' de \'MMM｜</string>

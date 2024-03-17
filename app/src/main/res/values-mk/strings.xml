@@ -569,9 +569,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Невреме со грмотевици со силен град</string>
     <string name="metno_weather_text_andthunder">%s и гром</string>
     <string name="null_data_text">N/A</string>
-    <string name="date_format_long">MMM d</string>
     <string name="humidity_dew_point">Влажност / Точка на росење</string>
-    <string name="date_format_short">M-d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_air_quality_data_by">Податоци за квалитетот на воздухот за %s</string>

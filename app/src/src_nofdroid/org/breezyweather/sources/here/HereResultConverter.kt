@@ -35,7 +35,6 @@ import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 /**

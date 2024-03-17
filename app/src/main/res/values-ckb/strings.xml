@@ -157,7 +157,6 @@
     <string name="daytime">کاتی ڕۆژ</string>
     <string name="weather_kind_hail">تەرزە</string>
     <string name="common_weather_text_fog">تەم</string>
-    <string name="date_format_short">M-d</string>
     <string name="weather_kind_thunderstorm">هەورەتریشقە</string>
     <string name="short_today">ئەمڕۆ</string>
     <string name="air_quality_so2_info_consequences">بەرکەوتن بە SO₂ پەیوەندی هەیە بە وەرگرتنی نەخۆشخانەی ڕەگ و سەردانی ژووری فریاکەوتن.</string>

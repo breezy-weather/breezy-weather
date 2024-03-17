@@ -58,8 +58,6 @@
     <string name="action_help">Ajuda</string>
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_translators">Tradutores</string>
-    <string name="date_format_short">dd/MM</string>
-    <string name="date_format_long">dd\' de \'MMM</string>
     <string name="date_format_widget_short">EEEE, dd/MM</string>
     <string name="date_format_widget_long">EEEE, dd\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │</string>

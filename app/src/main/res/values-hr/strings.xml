@@ -266,7 +266,6 @@
     <string name="date_format_widget_short">EEE, d. MMM</string>
     <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
     <string name="widget_multi_city">Više gradova</string>
-    <string name="date_format_long">d. MMM</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="air_quality_co_info_introduction">Ugljikov monoksid (CO) je otrovan, zapaljiv plin koji je bezbojan, nema mirisa, okusa i nije nadražljiv.</string>
@@ -415,7 +414,6 @@
     <string name="settings_units_distance">Jedinica za udaljenost</string>
     <string name="settings_location_access_permission_already_granted">Dozvola je već odobrena</string>
     <string name="ephemeris_moonrise_at">Izlazak Mjeseca u %s</string>
-    <string name="date_format_short">d. M.</string>
     <string name="wind_direction_short_SE">JI</string>
     <string name="weather_message_data_refresh_failed">Osvježavanje vremenskih podataka neuspješno</string>
     <string name="app_name">Vrijeme</string>

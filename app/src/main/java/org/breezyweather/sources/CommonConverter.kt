@@ -531,9 +531,9 @@ fun completeDailyListFromHourlyList(
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.javaTimeZone)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location, "yyyy-MM-dd", Locale.ENGLISH) }
     return dailyList.map { daily ->
-        val theDayFormatted = daily.date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH)
+        val theDayFormatted = daily.date.getFormattedDate(location, "yyyy-MM-dd", Locale.ENGLISH)
         val newDay = completeHalfDayFromHourlyList(
             initialHalfDay = daily.day,
             halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("day"),

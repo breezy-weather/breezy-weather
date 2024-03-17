@@ -25,7 +25,7 @@ import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.ui.widgets.AnimatableIconView
 import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.settings.SettingsManager
@@ -43,7 +43,10 @@ object HourlyWeatherDialog {
             .setTitle(
                 hourly.getHour(activity, location.javaTimeZone)
                         + " - "
-                        + hourly.date.getFormattedDate(location.javaTimeZone, activity.getString(R.string.date_format_long))
+                        + hourly.date.getFormattedMediumDayAndMonth(
+                            location,
+                            SettingsManager.getInstance(activity).language.locale
+                        )
             )
             .setView(view)
             .show()

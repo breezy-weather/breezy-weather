@@ -38,6 +38,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.is12Hour
@@ -337,16 +338,19 @@ abstract class AbstractRemoteViewsPresenter {
                 .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: context.getString(R.string.null_data_text))
                 .replace(
                     "\$d$",
-                    Date().getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_long))
+                    Date().getFormattedMediumDayAndMonth(
+                        location,
+                        SettingsManager.getInstance(context).language.locale
+                    )
                 ).replace(
                     "\$lc$",
                     LunarHelper.getLunarDate(Date()) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
-                    Date().getFormattedDate(location.javaTimeZone, "EEEE")
+                    Date().getFormattedDate(location, "EEEE")
                 ).replace(
                     "\$ws$",
-                    Date().getFormattedDate(location.javaTimeZone, "EEE")
+                    Date().getFormattedDate(location, "EEE")
                 ).replace(
                     "\$dd$",
                     weather.current?.dailyForecast
@@ -356,7 +360,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.hourlyForecast
                         ?: context.getString(R.string.null_data_text)
                 ).replace("\$enter$", "\n")
-            subtitle = replaceAlerts(context, subtitle, weather, location.javaTimeZone)
+            subtitle = replaceAlerts(context, subtitle, location, weather)
             subtitle = replaceDailyWeatherSubtitle(
                 context, subtitle, weather, location.javaTimeZone, temperatureUnit, speedUnit
             )
@@ -364,7 +368,7 @@ abstract class AbstractRemoteViewsPresenter {
         }
 
         private fun replaceAlerts(
-            context: Context, subtitle: String, weather: Weather, timeZone: TimeZone
+            context: Context, subtitle: String, location: Location, weather: Weather
         ): String {
             val defaultBuilder = StringBuilder()
             val shortBuilder = StringBuilder()
@@ -378,23 +382,25 @@ abstract class AbstractRemoteViewsPresenter {
                 }
                 defaultBuilder.append(currentAlert.description)
                 currentAlert.startDate?.let { startDate ->
-                    val startDateDay = startDate.getFormattedDate(
-                        timeZone, context.getString(R.string.date_format_long)
+                    val startDateDay = startDate.getFormattedMediumDayAndMonth(
+                        location,
+                        SettingsManager.getInstance(context).language.locale
                     )
                     defaultBuilder.append(context.getString(R.string.comma_separator))
                         .append(startDateDay)
                         .append(context.getString(R.string.comma_separator))
-                        .append(startDate.getFormattedTime(timeZone, context.is12Hour))
+                        .append(startDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                     currentAlert.endDate?.let { endDate ->
                         defaultBuilder.append("-")
-                        val endDateDay = endDate.getFormattedDate(
-                            timeZone, context.getString(R.string.date_format_long)
+                        val endDateDay = endDate.getFormattedMediumDayAndMonth(
+                            location,
+                            SettingsManager.getInstance(context).language.locale
                         )
                         if (startDateDay != endDateDay) {
                             defaultBuilder.append(endDateDay)
                                 .append(context.getString(R.string.comma_separator))
                         }
-                        defaultBuilder.append(endDate.getFormattedTime(timeZone, context.is12Hour))
+                        defaultBuilder.append(endDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                     }
                 }
                 shortBuilder.append(currentAlert.description)

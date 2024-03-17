@@ -55,12 +55,12 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.R
 import breezyweather.domain.weather.model.Alert
 import dagger.hilt.android.AndroidEntryPoint
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.main.utils.MainThemeColorProvider
-import java.util.TimeZone
+import org.breezyweather.settings.SettingsManager
 import javax.inject.Inject
 
 // TODO: Consider moving this activity as a fragment of MainActivity, so we don't have to query the database twice
@@ -86,24 +86,26 @@ class AlertActivity : GeoActivity() {
         }
     }
 
-    private fun getAlertDate(context: Context, alert: Alert, timeZone: TimeZone): String {
+    private fun getAlertDate(context: Context, alert: Alert, location: Location): String {
         val builder = StringBuilder()
         alert.startDate?.let { startDate ->
-            val startDateDay = startDate.getFormattedDate(
-                timeZone, context.getString(R.string.date_format_long)
+            val startDateDay = startDate.getFormattedMediumDayAndMonth(
+                location,
+                SettingsManager.getInstance(context).language.locale
             )
             builder.append(startDateDay)
                 .append(context.getString(R.string.comma_separator))
-                .append(startDate.getFormattedTime(timeZone, context.is12Hour))
+                .append(startDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
             alert.endDate?.let { endDate ->
                 builder.append(" — ")
-                val endDateDay = endDate.getFormattedDate(
-                    timeZone, context.getString(R.string.date_format_long)
+                val endDateDay = endDate.getFormattedMediumDayAndMonth(
+                    location,
+                    SettingsManager.getInstance(context).language.locale
                 )
                 if (startDateDay != endDateDay) {
                     builder.append(endDateDay).append(context.getString(R.string.comma_separator))
                 }
-                builder.append(endDate.getFormattedTime(timeZone, context.is12Hour))
+                builder.append(endDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
             }
         }
         return builder.toString()
@@ -191,7 +193,7 @@ class AlertActivity : GeoActivity() {
                                             style = MaterialTheme.typography.titleMedium,
                                         )
                                         Text(
-                                            text = getAlertDate(context, alert, location.value!!.javaTimeZone),
+                                            text = getAlertDate(context, alert, location.value!!),
                                             color = DayNightTheme.colors.captionColor,
                                             style = MaterialTheme.typography.labelMedium,
                                         )

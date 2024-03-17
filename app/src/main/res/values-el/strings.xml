@@ -92,8 +92,6 @@
     <string name="action_learn_more">Μάθε περισσότερα</string>
     <string name="about_app">Σχετικά</string>
     <string name="about_translators">Μεταφραστές</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>

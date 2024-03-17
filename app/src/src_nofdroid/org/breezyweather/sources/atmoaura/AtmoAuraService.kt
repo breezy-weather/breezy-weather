@@ -98,7 +98,7 @@ class AtmoAuraService @Inject constructor(
             getApiKeyOrDefault(),
             location.longitude,
             location.latitude, // Tomorrow because it gives access to D-1 and D+1
-            calendar.time.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH)
+            calendar.time.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH)
         ).map {
             convert(it)
         }

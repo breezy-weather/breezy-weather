@@ -60,8 +60,6 @@
     <string name="action_learn_more">NauČi se veČ</string>
     <string name="about_app">O applikaciji</string>
     <string name="about_translators">Prevajalci</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>

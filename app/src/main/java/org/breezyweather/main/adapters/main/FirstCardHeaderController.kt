@@ -38,12 +38,13 @@ import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
@@ -133,8 +134,9 @@ class FirstCardHeaderController(
                         supportingContent = currentAlert.startDate?.let { startDate ->
                             {
                                 val builder = StringBuilder()
-                                val startDateDay = startDate.getFormattedDate(
-                                    location.javaTimeZone, mActivity.getString(R.string.date_format_long)
+                                val startDateDay = startDate.getFormattedMediumDayAndMonth(
+                                    location,
+                                    SettingsManager.getInstance(mActivity).language.locale
                                 )
                                 builder.append(startDateDay)
                                     .append(stringResource(R.string.comma_separator))
@@ -146,9 +148,9 @@ class FirstCardHeaderController(
                                     )
                                 currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
-                                    val endDateDay = endDate.getFormattedDate(
-                                        location.javaTimeZone,
-                                        mActivity.getString(R.string.date_format_long)
+                                    val endDateDay = endDate.getFormattedMediumDayAndMonth(
+                                        location,
+                                        SettingsManager.getInstance(mActivity).language.locale
                                     )
                                     if (startDateDay != endDateDay) {
                                         builder.append(endDateDay)

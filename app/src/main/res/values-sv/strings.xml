@@ -501,7 +501,6 @@
     <string name="air_quality_no2_info_consequences">Exponering mot kvävedioxid kan irritera luftvägarna och förvärra lungsjukdomar. NO₂ är ett viktigt försteg till ozonbildning, en förorening som är starkt koplad till astma och lungsjukdomar.</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="widget_multi_city">Flera orter</string>
-    <string name="date_format_long">MMM d</string>
     <string name="weather_kind_thunderstorm">Åskstorm</string>
     <string name="common_weather_text_rain_light">Lätt regn</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Solnedgång för i dag, i morgon, …, 4 dagar senare</string>
@@ -568,7 +567,6 @@
     <string name="common_weather_text_rain_showers">Regnskurar</string>
     <string name="unit_kgfpsqcm_voice">Kilogram kraft per kvadratcentimeter</string>
     <string name="settings_location_access_permission_already_granted">Behörighet tillåts redan</string>
-    <string name="date_format_short">M-d</string>
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>
     <string name="weather_api_unauthorized_title">Obehörig API-tillgång</string>

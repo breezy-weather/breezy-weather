@@ -23,7 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
+import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.DailyTrendItemView
@@ -31,6 +32,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.settings.SettingsManager
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Location) :
@@ -58,8 +60,18 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
                 dailyItem.setWeekText(daily.getWeek(context, location))
             }
             talkBackBuilder.append(context.getString(R.string.comma_separator))
-                .append(daily.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_long)))
-            dailyItem.setDateText(daily.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_short)))
+                .append(
+                    daily.date.getFormattedMediumDayAndMonth(
+                        location,
+                        SettingsManager.getInstance(context).language.locale
+                    )
+                )
+            dailyItem.setDateText(
+                daily.date.getFormattedShortDayAndMonth(
+                    location,
+                    SettingsManager.getInstance(context).language.locale
+                )
+            )
             val useAccentColorForDate = daily.isToday(timeZone) || daily.date > Date()
             dailyItem.setTextColor(
                 MainThemeColorProvider.getColor(

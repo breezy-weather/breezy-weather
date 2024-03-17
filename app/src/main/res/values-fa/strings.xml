@@ -122,7 +122,6 @@
     <string name="ephemeris_moon_phase_waning_crescent">کمان رو به محاق</string>
     <string name="ephemeris_sunrise_at">پگاه در %s</string>
     <string name="nighttime">شب</string>
-    <string name="date_format_short">M-d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_pollen_data_by">داده گردوخاک از %s</string>
@@ -578,7 +577,6 @@
     <string name="common_weather_text_rain_moderate">بارش متوسط</string>
     <string name="common_weather_text_rain_heavy">بارش سنگین</string>
     <string name="null_data_text">بی پاسخ</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_lpsqm_voice">لیتر بر‌ متر مکعب</string>

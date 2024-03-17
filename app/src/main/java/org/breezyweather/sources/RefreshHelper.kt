@@ -406,7 +406,7 @@ class RefreshHelper @Inject constructor(
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
-                .getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH)
+                .getFormattedDate(location, "yyyy-MM-dd", Locale.ENGLISH)
                 .toDateNoHour(location.javaTimeZone)!!
             val mainWeatherCompleted = completeMainWeatherWithPreviousData(
                 mainWeather,

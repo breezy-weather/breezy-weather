@@ -115,8 +115,6 @@
     <string name="about_app">关于App</string>
     <string name="about_contributors">贡献者</string>
     <string name="about_translators">译者</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">M月d日</string>
     <string name="date_format_widget_short">MM-dd EEE</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │</string>

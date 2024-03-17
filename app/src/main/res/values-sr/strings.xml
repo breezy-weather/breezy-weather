@@ -488,7 +488,6 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_co_info_title">Угљен-моноксид (CO)</string>
-    <string name="date_format_long">d MMM</string>
     <string name="action_close">Затвори</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_24h">24 сата</string>
@@ -564,7 +563,6 @@
     <string name="precipitation_thunderstorm">Олуја са грмљавином</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Умерено</string>
-    <string name="date_format_short">d-M</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_message_secondary_data_refresh_failed">Освежавање података о времену за секундарни извор времена није успело</string>

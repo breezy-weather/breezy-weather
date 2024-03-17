@@ -17,6 +17,7 @@
 package org.breezyweather.common.extensions
 
 import android.content.Context
+import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.text.format.DateFormat
@@ -24,6 +25,7 @@ import android.text.format.DateUtils
 import breezyweather.domain.location.model.Location
 import org.breezyweather.settings.SettingsManager
 import java.util.Date
+import java.util.Locale
 
 val Context.is12Hour: Boolean
     get() = !DateFormat.is24HourFormat(this)
@@ -41,6 +43,40 @@ val Date.relativeTime: String
 // Makes the code more readable by not having to do a null check condition
 fun Long.toDate(): Date {
     return Date(this)
+}
+
+fun Date.getFormattedDate(
+    location: Location,
+    pattern: String,
+    locale: Locale = Locale.getDefault(),
+    withBestPattern: Boolean = false
+): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        SimpleDateFormat(
+            if (withBestPattern) {
+                DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
+            } else pattern,
+            locale
+        )
+            .apply {
+                timeZone = location.icuTimeZone
+            }
+            .format(this)
+    } else this.getFormattedDate(location.javaTimeZone, pattern, locale)
+}
+
+fun Date.getFormattedShortDayAndMonth(
+    location: Location,
+    locale: Locale = Locale.getDefault()
+): String {
+    return this.getFormattedDate(location, "MM-dd", locale, withBestPattern = true)
+}
+
+fun Date.getFormattedMediumDayAndMonth(
+    location: Location,
+    locale: Locale = Locale.getDefault()
+): String {
+    return this.getFormattedDate(location, "d MMM", locale, withBestPattern = true)
 }
 
 fun Date.getWeek(context: Context, location: Location): String {

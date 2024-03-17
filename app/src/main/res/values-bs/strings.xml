@@ -413,9 +413,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Grmljavina s jakim gradom</string>
     <string name="metno_weather_text_andthunder">%s i grmljavina</string>
     <string name="null_data_text">/</string>
-    <string name="date_format_long">d MMM</string>
     <string name="humidity_dew_point">Vlažnost / Tačka rose</string>
-    <string name="date_format_short">d-M</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>

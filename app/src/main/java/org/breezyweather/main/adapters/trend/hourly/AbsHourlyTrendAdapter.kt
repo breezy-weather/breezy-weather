@@ -22,7 +22,8 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
+import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
@@ -30,6 +31,7 @@ import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.domain.weather.model.getHourIn24Format
 import org.breezyweather.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.settings.SettingsManager
 
 abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Location) :
     TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>(location) {
@@ -44,10 +46,20 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             val context = itemView.context
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            hourlyItem.setDayText(hourly.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_short)))
+            hourlyItem.setDayText(
+                hourly.date.getFormattedShortDayAndMonth(
+                    location,
+                    SettingsManager.getInstance(context).language.locale
+                )
+            )
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
-                .append(hourly.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_long)))
+                .append(
+                    hourly.date.getFormattedMediumDayAndMonth(
+                        location,
+                        SettingsManager.getInstance(context).language.locale
+                    )
+                )
                 .append(context.getString(R.string.comma_separator))
                 .append(hourly.getHour(activity, location.javaTimeZone))
             hourlyItem.setHourText(hourly.getHour(context, location.javaTimeZone))

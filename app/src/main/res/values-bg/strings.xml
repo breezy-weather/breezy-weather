@@ -253,8 +253,6 @@
     <string name="weather_kind_thunder">Гръмотевици</string>
     <string name="weather_kind_thunderstorm">Гръмотевична буря</string>
     <string name="weather_kind_wind">Вятър</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>

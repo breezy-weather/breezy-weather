@@ -92,8 +92,6 @@
     <string name="action_learn_more">더 알아보기</string>
     <string name="about_app">앱 정보</string>
     <string name="about_translators">번역해 주신 분들</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMMM d</string>
     <string name="date_format_widget_short">MMM d, EEEE</string>
     <string name="date_format_widget_long">MMM d, EEEE</string>
     <string name="date_format_widget_oreo_style">MMM d, EEEE│</string>

@@ -146,7 +146,6 @@
     <string name="notification_channel_forecast">Predpoveď</string>
     <string name="pollen_ambrosia">Ambrózia</string>
     <string name="date_format_widget_short">EEE d MMM</string>
-    <string name="date_format_long">d. MMM</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normálna</string>
     <string name="weather_air_quality_data_by">Údaje o kvalite ovzdušia od %s</string>
@@ -161,7 +160,6 @@
     <string name="humidity_dew_point">Vlhkosť / Rosný bod</string>
     <string name="ephemeris_moonset_at">Západ mesiaca v %s</string>
     <string name="ephemeris_moonrise_at">Východ mesiaca v %s</string>
-    <string name="date_format_short">d.M.</string>
     <string name="dew_point">Rosný bod</string>
     <string name="sunshine_duration">Hodiny slnka</string>
     <string name="daytime">Deň</string>

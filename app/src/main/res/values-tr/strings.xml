@@ -356,8 +356,6 @@
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
-    <string name="date_format_short">d M</string>
-    <string name="date_format_long">d MMM</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
     <string name="dialog_permissions_location_content">Breezy Weather, geçerli konumunuzun hava durumu verilerini sağlamak için konum bilgilerinizi ön planda veya arka planda toplamalıdır. Bunun için bazı izinler isteyeceğiz. Konum bilgileriniz yalnızca geçerli konumunuzdaki hava durumu verilerini elde etmek için kullanılacaktır. Konum bilgilerinizi paylaşmak istemiyorsanız, bu gereksinimleri reddedebilir ve yönetim sayfasında konumunuzu manuel olarak ayarlayabilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (Kısa)</string>

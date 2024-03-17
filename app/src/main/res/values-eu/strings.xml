@@ -584,7 +584,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Trumoi-ekaitza txingorra gogorrarekin</string>
     <string name="metno_weather_text_andthunder">%s eta trumoia</string>
     <string name="ephemeris_moonset_at">Ilargia %s-tan</string>
-    <string name="date_format_long">MMM d</string>
     <string name="settings_weather_source_portal">Ataria</string>
     <string name="dialog_permissions_location_content">Breezy Weather zure kokapenari buruzko informazioa lehen planoan edo atzeko planoan bildu behar du zure uneko kokapenaren eguraldi datuak emateko. Horretarako, baimen batzuk eskatuko ditugu. Zure kokapenari buruzko informazioa zure uneko kokapenean eguraldi datuak lortzeko soilik erabiliko da. Ez baduzu zure kokapenari buruzko informazioa partekatu nahi, eskakizun horiek ukatu eta zure kokapena eskuz ezar dezakezu kudeaketa orrian.</string>
     <string name="dialog_permissions_location_background_content">Aplikazioari kokapen-informazioa atzeko planoan sartzeko aukera izan dezan, kokapen-aldaketak hauteman ahal izateko eta baliozko eguraldi-datuak eskaintzeko, ezarri kokapenerako sarbidea Baimendu denbora guztian gisa.</string>
@@ -594,7 +593,6 @@
     <string name="widget_live_wallpaper_day_night_type">Denbora</string>
     <string name="settings_widgets_live_wallpaper_error">Ezin izan da abiarazi horma-paper-hautatzailea. Breezy Weather horma-irudia gaitu dezakezu hasierako pantailako horma-paper-hautatzailean Live Wallpaper aukeratuz.</string>
     <string name="settings_items_drag_to_sort">Ukitu zerrendako elementuak ordenatzeko arrastatu</string>
-    <string name="date_format_short">M-d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>

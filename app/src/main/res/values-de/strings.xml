@@ -16,8 +16,6 @@
     <string name="cloud_cover">Bewölkung</string>
     <string name="location_current">Aktueller Standort</string>
     <string name="daily_forecast">Die nächsten Tage</string>
-    <string name="date_format_long">d. MMM</string>
-    <string name="date_format_short">d.M.</string>
     <string name="date_format_widget_long">EEEE, d. MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d. MMM│</string>
     <string name="date_format_widget_short">EEE, d. MMM</string>

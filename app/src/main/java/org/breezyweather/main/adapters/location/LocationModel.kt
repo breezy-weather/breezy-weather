@@ -21,11 +21,12 @@ import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.WeatherCode
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.settings.SettingsManager
 
 class LocationModel(
     context: Context,
@@ -53,8 +54,9 @@ class LocationModel(
                     }
                     builder.append(alert.description)
                     alert.startDate?.let { startDate ->
-                        val startDateDay = startDate.getFormattedDate(
-                            location.javaTimeZone, context.getString(R.string.date_format_short)
+                        val startDateDay = startDate.getFormattedShortDayAndMonth(
+                            location,
+                            SettingsManager.getInstance(context).language.locale
                         )
                         builder.append(context.getString(R.string.comma_separator))
                             .append(startDateDay)
@@ -62,8 +64,9 @@ class LocationModel(
                             .append(startDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                         alert.endDate?.let { endDate ->
                             builder.append("-")
-                            val endDateDay = endDate.getFormattedDate(
-                                location.javaTimeZone, context.getString(R.string.date_format_short)
+                            val endDateDay = endDate.getFormattedShortDayAndMonth(
+                                location,
+                                SettingsManager.getInstance(context).language.locale
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)

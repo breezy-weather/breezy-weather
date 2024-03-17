@@ -44,8 +44,6 @@
     <string name="settings_disabled">Uit</string>
     <string name="about_app">Over de app</string>
     <string name="about_translators">Vertalers</string>
-    <string name="date_format_short">d-M</string>
-    <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>

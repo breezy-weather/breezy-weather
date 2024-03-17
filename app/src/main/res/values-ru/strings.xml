@@ -271,7 +271,6 @@
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
-    <string name="date_format_short">d-M</string>
     <string name="uv_index_3_5">Умеренный</string>
     <string name="air_quality_level_1">Отлично</string>
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
@@ -307,7 +306,6 @@
     <string name="ephemeris_moonrise_at">Восход луны в %s</string>
     <string name="ephemeris_moonset_at">Заход луны в %s</string>
     <string name="ephemeris_sunset_at">Закат солнца в %s</string>
-    <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>

@@ -34,7 +34,7 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.domain.location.model.isDaylight
@@ -190,7 +190,10 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     } else daily.getWeek(context, location)
                 )
                 widgetItemView.setSubtitleText(
-                    daily.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_short))
+                    daily.date.getFormattedShortDayAndMonth(
+                        location,
+                        SettingsManager.getInstance(context).language.locale
+                    )
                 )
                 daily.day?.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(

@@ -80,7 +80,11 @@ fun Date.getFormattedDate(
     pattern: String,
     locale: Locale = Locale.getDefault()
 ): String {
-    return SimpleDateFormat(pattern, locale).format(this.toTimezone(timeZone))
+    return SimpleDateFormat(pattern, locale)
+        .apply {
+            setTimeZone(timeZone)
+        }
+        .format(this)
 }
 
 fun Date.getFormattedTime(timeZone: TimeZone, twelveHour: Boolean): String {

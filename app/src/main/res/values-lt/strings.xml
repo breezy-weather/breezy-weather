@@ -111,8 +111,6 @@
     <string name="weather_kind_thunder">Žaibai</string>
     <string name="weather_kind_thunderstorm">Perkūnija</string>
     <string name="weather_kind_wind">Vėjas</string>
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_data_by">Duomenys iš %s</string>

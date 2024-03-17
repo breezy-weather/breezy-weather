@@ -83,8 +83,8 @@ class BrightSkyService @Inject constructor(
         val weather = mApi.getWeather(
             location.latitude,
             location.longitude,
-            date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH),
-            lastDate.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+            date.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH),
+            lastDate.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
         )
 
         val currentWeather = mApi.getCurrentWeather(

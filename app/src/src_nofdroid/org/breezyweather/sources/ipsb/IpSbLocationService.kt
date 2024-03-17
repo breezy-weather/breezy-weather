@@ -24,7 +24,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import retrofit2.Retrofit
-import java.util.TimeZone
 import javax.inject.Inject
 
 class IpSbLocationService @Inject constructor(

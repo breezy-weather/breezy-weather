@@ -1,3 +1,10 @@
+# Version 5.1.6 (not yet released)
+
+**Translations**
+- Translations updated
+- Date formatting was improved on Android 7.0+ for many languages, including languages not currently supported. On lower Android versions, it will fallback to ISO 8601 formatting for short format, and weekday / day / month / year for long format.
+
+
 # Version 5.1.5 (2024-03-16)
 
 *Just a re-release of v5.1.4 to include some technical build adjustments to prepare for release in default F-Droid repo.*

@@ -74,7 +74,7 @@ class HomePollenViewHolder internal constructor(
     ) {
         val context = itemView.context
 
-        binding.title.text = daily.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_widget_long))
+        binding.title.text = daily.date.getFormattedDate(location, context.getString(R.string.date_format_widget_long))
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         daily.pollen?.let {

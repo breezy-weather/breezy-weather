@@ -61,7 +61,6 @@
     <string name="pollen_betula">Бяроза</string>
     <string name="pollen_level_1">Вельмі нізкі</string>
     <string name="humidity_dew_point">Вільготнасць / Кропка расы</string>
-    <string name="date_format_short">d-M</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM|</string>
     <string name="weather_data_by">Дадзеныя прадастаўлены %s</string>
     <string name="weather_air_quality_data_by">Інфармацыя аб якасці паветра прадастаўлена %s</string>
@@ -178,7 +177,6 @@
     <string name="dew_point">Кропка расы</string>
     <string name="cloud_cover">Воблачнасць</string>
     <string name="ceiling">Вышыня хмарнага покрыва</string>
-    <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_pollen_data_by">Інфармацыя аб алергенах прадастаўлена %s</string>
