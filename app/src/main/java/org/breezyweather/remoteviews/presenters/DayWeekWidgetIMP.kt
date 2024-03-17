@@ -94,9 +94,9 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
                 views.setTextViewText(
                     dailyId[0],
-                    if (it.isToday(location.timeZone)) {
+                    if (it.isToday(location.javaTimeZone)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(context, location.timeZone)
+                    } else it.getWeek(context, location)
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
@@ -306,15 +306,15 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                         + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
+                        + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
 
-                "symmetry" -> (Date().getWeek(context, location.timeZone)
+                "symmetry" -> (Date().getWeek(context, location)
                         + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
+                        + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Date().getWeek(context, location.timeZone)
-                        + " " + (weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: ""))
+                        + " " + Date().getWeek(context, location)
+                        + " " + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
 
                 else -> null
             }
@@ -333,13 +333,13 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
-                "symmetry" -> (Date().getWeek(context, location.timeZone)
+                "symmetry" -> (Date().getWeek(context, location)
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
                 "tile" -> (location.getPlace(context)
                         + " "
-                        + Date().getWeek(context, location.timeZone)
+                        + Date().getWeek(context, location)
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 

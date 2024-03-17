@@ -1,7 +1,6 @@
 package breezyweather.data.location
 
 import breezyweather.domain.location.model.Location
-import java.util.TimeZone
 
 object LocationMapper {
 
@@ -9,7 +8,7 @@ object LocationMapper {
         cityId: String?,
         latitude: Double,
         longitude: Double,
-        timeZone: TimeZone,
+        timeZone: String,
         country: String,
         countryCode: String?,
         province: String?,

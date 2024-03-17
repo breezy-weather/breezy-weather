@@ -49,20 +49,12 @@ fun convert(
     location: Location,
     locationProperties: NwsPointProperties
 ): Location {
-    return Location(
-        latitude = locationProperties.relativeLocation?.geometry?.coordinates?.getOrNull(1) ?: location.latitude,
-        longitude = locationProperties.relativeLocation?.geometry?.coordinates?.getOrNull(0) ?: location.longitude,
-        timeZone = TimeZone.getTimeZone(locationProperties.timeZone),
+    return location.copy(
+        timeZone = locationProperties.timeZone ?: location.timeZone,
         countryCode = "US",
         province = locationProperties.relativeLocation?.properties?.state,
         provinceCode = locationProperties.relativeLocation?.properties?.state,
-        city = locationProperties.relativeLocation?.properties?.city ?: "",
-        weatherSource = "nws",
-        airQualitySource = location.airQualitySource,
-        pollenSource = location.pollenSource,
-        minutelySource = location.minutelySource,
-        alertSource = location.alertSource,
-        normalsSource = location.normalsSource
+        city = locationProperties.relativeLocation?.properties?.city ?: ""
     )
 }
 

@@ -308,8 +308,8 @@ object Notifications {
                             else -> R.string.notification_precipitation_continuing_desc
                         },
                         when (case) {
-                            1 -> minutely.first { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
-                            else -> minutely.last { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.timeZone, context.is12Hour)
+                            1 -> minutely.first { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.javaTimeZone, context.is12Hour)
+                            else -> minutely.last { (it.dbz ?: 0) > 0 }.date.getFormattedTime(location.javaTimeZone, context.is12Hour)
                         }
                     ),
                     PendingIntent.getActivity(

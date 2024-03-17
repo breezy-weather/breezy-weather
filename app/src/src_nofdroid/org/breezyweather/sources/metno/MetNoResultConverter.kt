@@ -88,7 +88,7 @@ fun convert(
             cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.roundToInt()
         ) else null,
         dailyForecast = getDailyList(
-            location.timeZone,
+            location.javaTimeZone,
             sunResult.properties,
             moonResult.properties,
             forecastResult.properties.timeseries

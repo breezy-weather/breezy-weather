@@ -18,15 +18,10 @@ package org.breezyweather.remoteviews
 
 import android.content.Context
 import android.text.TextPaint
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
-import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.remoteviews.presenters.*
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
 
 object Widgets {
 

@@ -50,7 +50,6 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherMinutely
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Date
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
@@ -60,7 +59,7 @@ fun convert(
         cityId = result.id.toString(),
         latitude = result.latitude,
         longitude = result.longitude,
-        timeZone = TimeZone.getTimeZone(result.timezone),
+        timeZone = result.timezone,
         country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
         countryCode = result.countryCode,
         province = if (result.admin2.isNullOrEmpty()) {

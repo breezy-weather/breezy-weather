@@ -60,24 +60,15 @@ fun convert(location: Location, result: MfForecastResult): Location {
     return if (result.properties == null) {
         location
     } else {
-        Location(
-            cityId = null,
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timeZone = TimeZone.getTimeZone(result.properties.timezone),
+        location.copy(
+            timeZone = result.properties.timezone ?: location.timeZone,
             country = result.properties.country,
             countryCode = result.properties.country.substring(0, 2),
             province = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
                 getFrenchDepartmentName(result.properties.frenchDepartment)
             } else null, // Département
             provinceCode = result.properties.frenchDepartment, // Département
-            city = result.properties.name,
-            weatherSource = "mf",
-            airQualitySource = location.airQualitySource,
-            pollenSource = location.pollenSource,
-            minutelySource = location.minutelySource,
-            alertSource = location.alertSource,
-            normalsSource = location.normalsSource
+            city = result.properties.name
         )
     }
 }
@@ -111,9 +102,9 @@ fun convert(
                 speed = currentResult.properties.gridded.windSpeed
             ) else null
         ),
-        normals = getNormals(location.timeZone, normalsResult),
+        normals = getNormals(location.javaTimeZone, normalsResult),
         dailyForecast = getDailyList(
-            location.timeZone,
+            location.javaTimeZone,
             forecastResult.properties.dailyForecast,
             ephemerisResult.properties?.ephemeris
         ),
@@ -521,7 +512,7 @@ fun convertSecondary(
             getWarningsList(alertResultList)
         } else null,
         normals = if (normalsResult != null) {
-            getNormals(location.timeZone, normalsResult)
+            getNormals(location.javaTimeZone, normalsResult)
         } else null
     )
 }

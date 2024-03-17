@@ -185,12 +185,12 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         widgetItemViews.forEachIndexed { i, widgetItemView ->
             weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                 widgetItemView.setTitleText(
-                    if (daily.isToday(location.timeZone)) {
+                    if (daily.isToday(location.javaTimeZone)) {
                         context.getString(R.string.short_today)
-                    } else daily.getWeek(context, location.timeZone)
+                    } else daily.getWeek(context, location)
                 )
                 widgetItemView.setSubtitleText(
-                    daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short))
+                    daily.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_short))
                 )
                 daily.day?.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(

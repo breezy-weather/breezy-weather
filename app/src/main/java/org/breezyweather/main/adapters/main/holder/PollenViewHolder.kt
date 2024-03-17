@@ -72,7 +72,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) : ViewPager2.OnPageChangeCallback() {
         @SuppressLint("SetTextI18n")
         override fun onPageSelected(position: Int) {
-            val timeZone = mLocation.timeZone
+            val timeZone = mLocation.javaTimeZone
             val daily = mLocation.weather!!.dailyForecastStartingToday[position]
             if (daily.isToday(timeZone)) {
                 mIndicator.text = mContext.getString(R.string.short_today)

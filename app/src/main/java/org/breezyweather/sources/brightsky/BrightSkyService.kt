@@ -70,12 +70,12 @@ class BrightSkyService @Inject constructor(
         context: Context, location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        val initialDate = Date().toTimezoneNoHour(location.timeZone)
-        val date = initialDate!!.toCalendarWithTimeZone(location.timeZone).apply {
+        val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
+        val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, -1)
             set(Calendar.HOUR_OF_DAY, 0)
         }.time
-        val lastDate = initialDate!!.toCalendarWithTimeZone(location.timeZone).apply {
+        val lastDate = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, 12)
             set(Calendar.HOUR_OF_DAY, 0)
         }.time
@@ -83,8 +83,8 @@ class BrightSkyService @Inject constructor(
         val weather = mApi.getWeather(
             location.latitude,
             location.longitude,
-            date.getFormattedDate(location.timeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH),
-            lastDate.getFormattedDate(location.timeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+            date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH),
+            lastDate.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
         )
 
         val currentWeather = mApi.getCurrentWeather(
@@ -117,7 +117,7 @@ class BrightSkyService @Inject constructor(
                 brightSkyWeather,
                 brightSkyCurrentWeather,
                 brightSkyAlerts,
-                location.timeZone,
+                location.javaTimeZone,
                 languageCode
             )
         }

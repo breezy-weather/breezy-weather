@@ -114,7 +114,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
         mTitle.setTextColor(themeColors[0])
         val talkBackBuilder = StringBuilder(mTitle.text)
-        ensureTime(mWeather!!, location.timeZone)
+        ensureTime(mWeather!!, location.javaTimeZone)
         ensurePhaseAngle(mWeather!!)
         mWeather?.today?.moonPhase?.let { moonPhase ->
             if (moonPhase.isValid) {
@@ -171,8 +171,8 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         mWeather?.today?.sun?.let { sun ->
             if (sun.isValid) {
-                val sunriseTime = sun.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
-                val sunsetTime = sun.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
+                val sunriseTime = sun.riseDate!!.getFormattedTime(location.javaTimeZone, context.is12Hour)
+                val sunsetTime = sun.setDate!!.getFormattedTime(location.javaTimeZone, context.is12Hour)
                 mSunContainer.visibility = View.VISIBLE
                 mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓"
                 talkBackBuilder
@@ -189,8 +189,8 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         mWeather?.today?.moon?.let { moon ->
             if (moon.isValid) {
-                val moonriseTime = moon.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
-                val moonsetTime = moon.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
+                val moonriseTime = moon.riseDate!!.getFormattedTime(location.javaTimeZone, context.is12Hour)
+                val moonsetTime = moon.setDate!!.getFormattedTime(location.javaTimeZone, context.is12Hour)
                 mMoonContainer.visibility = View.VISIBLE
                 mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓"
                 talkBackBuilder

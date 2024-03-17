@@ -43,7 +43,7 @@ fun convert(
     result: ImsLocation
 ): Location {
     return location.copy(
-        timeZone = TimeZone.getTimeZone("Asia/Jerusalem"),
+        timeZone = "Asia/Jerusalem",
         country = "", // We don’t put any country name to avoid political issues
         countryCode = "IL", // but we need to identify the location as being part of the coverage of IMS
         city = result.name
@@ -59,8 +59,8 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(location.timeZone, weatherResult!!.data!!),
-        hourlyForecast = getHourlyForecast(location.timeZone, weatherResult.data!!),
+        dailyForecast = getDailyForecast(location.javaTimeZone, weatherResult!!.data!!),
+        hourlyForecast = getHourlyForecast(location.javaTimeZone, weatherResult.data!!),
         current = getCurrent(weatherResult.data),
         alertList = getAlerts(weatherResult.data)
     )

@@ -48,25 +48,20 @@ import java.util.Objects
 import java.util.TimeZone
 
 fun convert(
-    location: Location?,
+    location: Location?, // Null if location search, current location if reverse geocoding
     result: ChinaLocationResult
 ): Location {
-    return Location(
-        cityId = result.locationKey!!.replace("weathercn:", ""),
-        latitude = location?.latitude ?: result.latitude!!.toDouble(),
-        longitude = location?.longitude ?: result.longitude!!.toDouble(),
-        timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
-        country = "",
-        countryCode = "CN",
-        province = result.affiliation,
-        city = result.name!!,
-        weatherSource = "china",
-        airQualitySource = location?.airQualitySource,
-        pollenSource = location?.pollenSource,
-        minutelySource = location?.minutelySource,
-        alertSource = location?.alertSource,
-        normalsSource = location?.normalsSource
-    )
+    return (location ?: Location())
+        .copy(
+            cityId = result.locationKey!!.replace("weathercn:", ""),
+            latitude = location?.latitude ?: result.latitude!!.toDouble(),
+            longitude = location?.longitude ?: result.longitude!!.toDouble(),
+            timeZone = "Asia/Shanghai",
+            country = "",
+            countryCode = "CN",
+            province = result.affiliation,
+            city = result.name ?: ""
+        )
 }
 
 fun convert(
@@ -119,16 +114,16 @@ fun convert(
         ),
         dailyForecast = getDailyList(
             forecastResult.current.pubTime,
-            location.timeZone,
+            location.javaTimeZone,
             forecastResult.forecastDaily
         ),
         hourlyForecast = getHourlyList(
             forecastResult.current.pubTime,
-            location.timeZone,
+            location.javaTimeZone,
             forecastResult.forecastHourly
         ),
         minutelyForecast = getMinutelyList(
-            location.timeZone,
+            location.javaTimeZone,
             minutelyResult
         ),
         alertList = getAlertList(forecastResult)
@@ -295,7 +290,7 @@ fun convertSecondary(
                 )
             )
         },
-        minutelyForecast = getMinutelyList(location.timeZone, minutelyResult),
+        minutelyForecast = getMinutelyList(location.javaTimeZone, minutelyResult),
         alertList = getAlertList(forecastResult),
     )
 }

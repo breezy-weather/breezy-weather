@@ -8,7 +8,7 @@ CREATE TABLE locations(
     city_id TEXT,
     latitude REAL NOT NULL,
     longitude REAL NOT NULL,
-    timezone TEXT AS TimeZone NOT NULL,
+    timezone TEXT NOT NULL,
     country TEXT NOT NULL,
     country_code TEXT,
     province TEXT,

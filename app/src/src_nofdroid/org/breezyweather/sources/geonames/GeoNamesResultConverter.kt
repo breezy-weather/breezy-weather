@@ -18,7 +18,6 @@ package org.breezyweather.sources.geonames
 
 import breezyweather.domain.location.model.Location
 import org.breezyweather.sources.geonames.json.GeoNamesLocation
-import java.util.TimeZone
 
 fun convert(
     result: GeoNamesLocation,
@@ -31,7 +30,7 @@ fun convert(
         cityId = result.geonameId.toString(),
         latitude = result.lat,
         longitude = result.lng,
-        timeZone = TimeZone.getTimeZone(result.timezone?.timeZoneId),
+        timeZone = result.timezone!!.timeZoneId!!,
         country = result.countryName ?: "",
         countryCode = result.countryCode ?: "",
         province = if (result.adminName2.isNullOrEmpty()) {

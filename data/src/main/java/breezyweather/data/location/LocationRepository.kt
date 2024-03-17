@@ -196,7 +196,7 @@ class LocationRepository(
                     cityId = location.cityId,
                     latitude = location.latitude,
                     longitude = location.longitude,
-                    timezone = location.timeZone.id,
+                    timezone = location.javaTimeZone.id,
                     country = location.country,
                     countryCode = location.countryCode,
                     province = location.province,

@@ -41,9 +41,9 @@ object HourlyWeatherDialog {
         initWidget(view, hourly)
         MaterialAlertDialogBuilder(activity)
             .setTitle(
-                hourly.getHour(activity, location.timeZone)
+                hourly.getHour(activity, location.javaTimeZone)
                         + " - "
-                        + hourly.date.getFormattedDate(location.timeZone, activity.getString(R.string.date_format_long))
+                        + hourly.date.getFormattedDate(location.javaTimeZone, activity.getString(R.string.date_format_long))
             )
             .setView(view)
             .show()

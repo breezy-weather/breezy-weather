@@ -68,7 +68,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 subtitle.append(context.getString(R.string.comma_separator))
                     .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
-                    .append(it.getFormattedTime(location.timeZone, context.is12Hour))
+                    .append(it.getFormattedTime(location.javaTimeZone, context.is12Hour))
             }
         }
 

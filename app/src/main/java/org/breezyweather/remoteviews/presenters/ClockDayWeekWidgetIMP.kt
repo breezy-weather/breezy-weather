@@ -102,9 +102,9 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
                 views.setTextViewText(
                     dailyId[0],
-                    if (it.isToday(location.timeZone)) {
+                    if (it.isToday(location.javaTimeZone)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(context, location.timeZone)
+                    } else it.getWeek(context, location)
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(

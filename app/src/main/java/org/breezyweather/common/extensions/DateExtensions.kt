@@ -17,11 +17,11 @@
 package org.breezyweather.common.extensions
 
 import android.content.Context
-import android.icu.util.TimeZone
+import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
-import androidx.annotation.RequiresApi
+import breezyweather.domain.location.model.Location
 import org.breezyweather.settings.SettingsManager
 import java.util.Date
 
@@ -43,17 +43,18 @@ fun Long.toDate(): Date {
     return Date(this)
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
-fun Date.getWeek(context: Context, timeZone: TimeZone): String {
+fun Date.getWeek(context: Context, location: Location): String {
     val locale = SettingsManager.getInstance(context).language.locale
-    return android.icu.text.SimpleDateFormat("E", locale)
-        .apply {
-            setTimeZone(timeZone)
-        }
-        .format(this)
-        .replaceFirstChar { firstChar ->
-            if (firstChar.isLowerCase()) {
-                firstChar.titlecase(locale)
-            } else firstChar.toString()
-        }
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        SimpleDateFormat("E", locale)
+            .apply {
+                timeZone = location.icuTimeZone
+            }
+            .format(this)
+            .replaceFirstChar { firstChar ->
+                if (firstChar.isLowerCase()) {
+                    firstChar.titlecase(locale)
+                } else firstChar.toString()
+            }
+    } else this.getWeek(locale, location.javaTimeZone)
 }

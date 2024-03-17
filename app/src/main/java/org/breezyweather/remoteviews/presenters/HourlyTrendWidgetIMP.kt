@@ -157,7 +157,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         widgetItemViews.forEachIndexed { i, widgetItemView ->
             weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
-                widgetItemView.setTitleText(hourly.getHour(context, location.timeZone))
+                widgetItemView.setTitleText(hourly.getHour(context, location.javaTimeZone))
                 widgetItemView.setSubtitleText(null)
                 hourly.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(

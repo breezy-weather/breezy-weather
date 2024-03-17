@@ -117,7 +117,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
             mTime.text = if (isDaily) {
                 context.getString(R.string.short_today)
-            } else location.weather!!.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
+            } else location.weather!!.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour)
             if (itemAnimationEnabled) {
                 mProgress.apply {
                     progress = 0f

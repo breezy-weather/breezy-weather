@@ -50,21 +50,12 @@ fun convert(
     location: Location,
     result: EcccResult
 ): Location {
-    return Location(
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getDefault(), // Assumed device timezone
+    return location.copy(
         country = "Canada",
         countryCode = "CA",
         province = "",
         provinceCode = "",
-        city = result.displayName ?: "",
-        weatherSource = "eccc",
-        airQualitySource = location.airQualitySource,
-        pollenSource = location.pollenSource,
-        minutelySource = location.minutelySource,
-        alertSource = location.alertSource,
-        normalsSource = location.normalsSource
+        city = result.displayName ?: ""
     )
 }
 

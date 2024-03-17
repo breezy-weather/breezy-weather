@@ -242,9 +242,9 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                     val weatherCode = if (weekIconDaytime) daily.day?.weatherCode else daily.night?.weatherCode
                     views.apply {
-                        setTextViewText(viewId.first, if (daily.isToday(location.timeZone)) {
+                        setTextViewText(viewId.first, if (daily.isToday(location.javaTimeZone)) {
                             context.getString(R.string.short_today)
-                        } else daily.getWeek(context, location.timeZone))
+                        } else daily.getWeek(context, location))
                         setTextViewText(
                             viewId.second,
                             daily.getTrendTemperature(context, temperatureUnit)
@@ -269,7 +269,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             viewIds.forEachIndexed { i, viewId ->
                 weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
                     views.apply {
-                        setTextViewText(viewId.first, hourly.getHour(context, location.timeZone))
+                        setTextViewText(viewId.first, hourly.getHour(context, location.javaTimeZone))
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,

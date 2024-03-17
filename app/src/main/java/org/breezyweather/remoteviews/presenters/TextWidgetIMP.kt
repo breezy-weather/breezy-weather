@@ -141,7 +141,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
     ): String? {
         return when (subtitleData) {
-            "time" -> weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour)
+            "time" -> weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour)
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null
                     && airQuality.getName(context) != null) {

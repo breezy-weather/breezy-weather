@@ -144,7 +144,7 @@ class PollenActivity : GeoActivity() {
                                         Text(
                                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
                                             text = daily.date.getFormattedDate(
-                                                location.value!!.timeZone,
+                                                location.value!!.javaTimeZone,
                                                 stringResource(R.string.date_format_widget_long)
                                             ),
                                             color = DayNightTheme.colors.titleColor,

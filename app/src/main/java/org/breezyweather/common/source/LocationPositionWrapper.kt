@@ -16,13 +16,11 @@
 
 package org.breezyweather.common.source
 
-import java.util.TimeZone
-
 // location.
 data class LocationPositionWrapper(
     val latitude: Double,
     val longitude: Double,
-    val timeZone: TimeZone? = null,
+    val timeZone: String? = null,
     val country: String? = null,
     val countryCode: String? = null,
     val province: String? = null,

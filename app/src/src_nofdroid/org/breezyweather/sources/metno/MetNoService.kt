@@ -71,7 +71,7 @@ class MetNoService @Inject constructor(
             location.longitude
         )
 
-        val formattedDate = Date().getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
+        val formattedDate = Date().getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH)
         val sun = mApi.getSun(
             userAgent,
             location.latitude,

@@ -41,22 +41,14 @@ fun convert(
     location: Location,
     result: DmiResult
 ): Location {
-    return Location(
+    return location.copy(
         cityId = result.id,
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getTimeZone(result.timezone),
+        timeZone = result.timezone,
         country = result.country ?: location.country,
         countryCode = result.country,
         province = "",
         provinceCode = "",
-        city = result.city ?: "",
-        weatherSource = "dmi",
-        airQualitySource = location.airQualitySource,
-        pollenSource = location.pollenSource,
-        minutelySource = location.minutelySource,
-        alertSource = location.alertSource,
-        normalsSource = location.normalsSource
+        city = result.city ?: ""
     )
 }
 

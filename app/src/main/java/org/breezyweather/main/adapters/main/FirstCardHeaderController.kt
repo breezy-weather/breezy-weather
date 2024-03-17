@@ -134,20 +134,20 @@ class FirstCardHeaderController(
                             {
                                 val builder = StringBuilder()
                                 val startDateDay = startDate.getFormattedDate(
-                                    location.timeZone, mActivity.getString(R.string.date_format_long)
+                                    location.javaTimeZone, mActivity.getString(R.string.date_format_long)
                                 )
                                 builder.append(startDateDay)
                                     .append(stringResource(R.string.comma_separator))
                                     .append(
                                         startDate.getFormattedTime(
-                                            location.timeZone,
+                                            location.javaTimeZone,
                                             mActivity.is12Hour
                                         )
                                     )
                                 currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
                                     val endDateDay = endDate.getFormattedDate(
-                                        location.timeZone,
+                                        location.javaTimeZone,
                                         mActivity.getString(R.string.date_format_long)
                                     )
                                     if (startDateDay != endDateDay) {
@@ -156,7 +156,7 @@ class FirstCardHeaderController(
                                     }
                                     builder.append(
                                         endDate.getFormattedTime(
-                                            location.timeZone,
+                                            location.javaTimeZone,
                                             mActivity.is12Hour
                                         )
                                     )

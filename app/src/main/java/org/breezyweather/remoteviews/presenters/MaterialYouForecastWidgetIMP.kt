@@ -187,7 +187,7 @@ private fun buildRemoteViews(
     )
     // Loop through next 6 hours
     hourlyIds.forEachIndexed { i, hourlyId ->
-        views.setTextViewText(hourlyId[0], weather.nextHourlyForecast.getOrNull(i)?.getHour(context, location.timeZone))
+        views.setTextViewText(hourlyId[0], weather.nextHourlyForecast.getOrNull(i)?.getHour(context, location.javaTimeZone))
         weather.nextHourlyForecast.getOrNull(i)?.weatherCode?.let {
             views.setViewVisibility(hourlyId[1], View.VISIBLE)
             views.setImageViewUri(
@@ -252,9 +252,9 @@ private fun buildRemoteViews(
         weather.dailyForecastStartingToday.getOrNull(i)?.let {
             views.setTextViewText(
                 dailyId[0],
-                if (it.isToday(location.timeZone)) {
+                if (it.isToday(location.javaTimeZone)) {
                     context.getString(R.string.short_today)
-                } else it.getWeek(context, location.timeZone)
+                } else it.getWeek(context, location)
             )
         } ?: views.setTextViewText(dailyId[0], null)
         weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {

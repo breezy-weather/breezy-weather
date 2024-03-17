@@ -59,7 +59,7 @@ class SmhiService @Inject constructor(
             location.longitude,
             location.latitude
         ).map {
-            convert(it, location.timeZone)
+            convert(it, location.javaTimeZone)
         }
     }
 

@@ -44,14 +44,14 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             val context = itemView.context
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            hourlyItem.setDayText(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
+            hourlyItem.setDayText(hourly.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_short)))
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
-                .append(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
+                .append(hourly.date.getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_long)))
                 .append(context.getString(R.string.comma_separator))
-                .append(hourly.getHour(activity, location.timeZone))
-            hourlyItem.setHourText(hourly.getHour(context, location.timeZone))
-            val useAccentColorForDate = position == 0 || hourly.getHourIn24Format(location.timeZone) == 0
+                .append(hourly.getHour(activity, location.javaTimeZone))
+            hourlyItem.setHourText(hourly.getHour(context, location.javaTimeZone))
+            val useAccentColorForDate = position == 0 || hourly.getHourIn24Format(location.javaTimeZone) == 0
             hourlyItem.setTextColor(
                 MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                 MainThemeColorProvider.getColor(

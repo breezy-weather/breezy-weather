@@ -191,7 +191,7 @@ class AlertActivity : GeoActivity() {
                                             style = MaterialTheme.typography.titleMedium,
                                         )
                                         Text(
-                                            text = getAlertDate(context, alert, location.value!!.timeZone),
+                                            text = getAlertDate(context, alert, location.value!!.javaTimeZone),
                                             color = DayNightTheme.colors.captionColor,
                                             style = MaterialTheme.typography.labelMedium,
                                         )

@@ -46,24 +46,20 @@ fun convert(
     results: List<HereGeocodingData>
 ): List<Location> {
     return results.map { item ->
-        Location(
-            cityId = item.id,
-            latitude = location?.latitude ?: item.position.lat,
-            longitude = location?.longitude ?: item.position.lng,
-            timeZone = TimeZone.getTimeZone(item.timeZone.name),
-            country = item.address.countryName,
-            countryCode = item.address.countryCode,
-            province = item.address.state,
-            provinceCode = item.address.stateCode,
-            district = item.address.county,
-            city = item.address.city,
-            weatherSource = "here",
-            airQualitySource = location?.airQualitySource,
-            pollenSource = location?.pollenSource,
-            minutelySource = location?.minutelySource,
-            alertSource = location?.alertSource,
-            normalsSource = location?.normalsSource
-        )
+        val newLocation = (location ?: Location())
+        newLocation
+            .copy(
+                cityId = item.id,
+                latitude = location?.latitude ?: item.position.lat,
+                longitude = location?.longitude ?: item.position.lng,
+                timeZone = item.timeZone.name,
+                country = item.address.countryName,
+                countryCode = item.address.countryCode,
+                province = item.address.state,
+                provinceCode = item.address.stateCode,
+                district = item.address.county,
+                city = item.address.city
+            )
     }
 }
 

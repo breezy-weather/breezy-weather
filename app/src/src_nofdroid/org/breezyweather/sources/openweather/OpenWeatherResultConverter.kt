@@ -90,7 +90,7 @@ fun convert(
             cloudCover = oneCallResult.current.clouds,
             visibility = oneCallResult.current.visibility?.toDouble()
         ) else null,
-        dailyForecast = getDailyList(oneCallResult.daily, hourlyAirQuality, location.timeZone),
+        dailyForecast = getDailyList(oneCallResult.daily, hourlyAirQuality, location.javaTimeZone),
         hourlyForecast = getHourlyList(oneCallResult.hourly, hourlyAirQuality),
         minutelyForecast = getMinutelyList(oneCallResult.minutely),
         alertList = getAlertList(oneCallResult.alerts)

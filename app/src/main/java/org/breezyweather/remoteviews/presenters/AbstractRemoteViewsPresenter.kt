@@ -334,19 +334,19 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
-                .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(location.timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text))
+                .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: context.getString(R.string.null_data_text))
                 .replace(
                     "\$d$",
-                    Date().getFormattedDate(location.timeZone, context.getString(R.string.date_format_long))
+                    Date().getFormattedDate(location.javaTimeZone, context.getString(R.string.date_format_long))
                 ).replace(
                     "\$lc$",
                     LunarHelper.getLunarDate(Date()) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
-                    Date().getFormattedDate(location.timeZone, "EEEE")
+                    Date().getFormattedDate(location.javaTimeZone, "EEEE")
                 ).replace(
                     "\$ws$",
-                    Date().getFormattedDate(location.timeZone, "EEE")
+                    Date().getFormattedDate(location.javaTimeZone, "EEE")
                 ).replace(
                     "\$dd$",
                     weather.current?.dailyForecast
@@ -356,9 +356,9 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.hourlyForecast
                         ?: context.getString(R.string.null_data_text)
                 ).replace("\$enter$", "\n")
-            subtitle = replaceAlerts(context, subtitle, weather, location.timeZone)
+            subtitle = replaceAlerts(context, subtitle, weather, location.javaTimeZone)
             subtitle = replaceDailyWeatherSubtitle(
-                context, subtitle, weather, location.timeZone, temperatureUnit, speedUnit
+                context, subtitle, weather, location.javaTimeZone, temperatureUnit, speedUnit
             )
             return subtitle
         }

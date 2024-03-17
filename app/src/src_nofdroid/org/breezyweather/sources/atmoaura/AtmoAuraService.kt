@@ -86,7 +86,7 @@ class AtmoAuraService @Inject constructor(
             return Observable.error(SecondaryWeatherException())
         }
 
-        val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
+        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, 1)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
@@ -98,7 +98,7 @@ class AtmoAuraService @Inject constructor(
             getApiKeyOrDefault(),
             location.longitude,
             location.latitude, // Tomorrow because it gives access to D-1 and D+1
-            calendar.time.getFormattedDate(location.timeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH)
+            calendar.time.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH)
         ).map {
             convert(it)
         }

@@ -79,7 +79,6 @@ import java.text.ParseException
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import javax.inject.Inject
 import kotlin.math.min
 
@@ -194,12 +193,12 @@ class RefreshHelper @Inject constructor(
                     location.copy(
                         latitude = result.latitude,
                         longitude = result.longitude,
+                        timeZone = result.timeZone ?: location.timeZone,
                         /*
                          * Don’t keep old data as the user can have changed position
                          * It avoids keeping old data from a reverse geocoding-compatible weather source
                          * onto a weather source without reverse geocoding
                          */
-                        timeZone = result.timeZone ?: TimeZone.getDefault(),
                         country = result.country ?: "",
                         countryCode = result.countryCode ?: "",
                         province = result.province ?: "",
@@ -407,8 +406,8 @@ class RefreshHelper @Inject constructor(
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
-                .getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
-                .toDateNoHour(location.timeZone)!!
+                .getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH)
+                .toDateNoHour(location.javaTimeZone)!!
             val mainWeatherCompleted = completeMainWeatherWithPreviousData(
                 mainWeather,
                 location.weather,
@@ -534,7 +533,7 @@ class RefreshHelper @Inject constructor(
              * For this reason, we complete missing data earlier for the secondary data
              */
             val secondaryWeatherWrapperCompleted = completeMissingSecondaryWeatherDailyData(
-                secondaryWeatherWrapper, location.timeZone
+                secondaryWeatherWrapper, location.javaTimeZone
             )
 
             val hourlyMissingComputed = computeMissingHourlyData(
@@ -552,7 +551,7 @@ class RefreshHelper @Inject constructor(
             val hourlyForecast = completeHourlyListFromDailyList(
                 hourlyMissingComputed,
                 dailyForecast,
-                location.timeZone
+                location.javaTimeZone
             )
 
             // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
@@ -578,7 +577,7 @@ class RefreshHelper @Inject constructor(
                     currentHour,
                     currentDay,
                     secondaryWeatherWrapperCompleted?.airQuality?.current,
-                    location.timeZone
+                    location.javaTimeZone
                 ),
                 normals = secondaryWeatherWrapper?.normals
                     ?: completeNormalsFromDaily(mainWeatherCompleted.normals, dailyForecast),
@@ -822,7 +821,7 @@ class RefreshHelper @Inject constructor(
                     )
                 } else {
                     if (location.weather!!.normals?.month == null) return false
-                    val cal = Date().toCalendarWithTimeZone(location.timeZone)
+                    val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
                     return location.weather!!.normals!!.month == cal[Calendar.MONTH]
                 }
             }

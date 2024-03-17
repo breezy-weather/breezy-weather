@@ -42,7 +42,7 @@ fun convert(
     result: MetIeLocationResult
 ): Location {
     return location.copy(
-        timeZone = TimeZone.getTimeZone("Europe/Dublin"),
+        timeZone = "Europe/Dublin",
         country = "Ireland",
         countryCode = "IE",
         province = result.county,
@@ -60,7 +60,7 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(location.timeZone, hourlyResult),
+        dailyForecast = getDailyForecast(location.javaTimeZone, hourlyResult),
         hourlyForecast = getHourlyForecast(hourlyResult),
         alertList = getAlertList(location, warningsResult?.warnings?.national)
     )

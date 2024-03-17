@@ -21,7 +21,7 @@ val Location.isDaylight: Boolean
     get() {
         val sunRiseProgress = getRiseProgress(
             astro = this.weather?.today?.sun,
-            timeZone = this.timeZone
+            timeZone = this.javaTimeZone
         )
         return 0 < sunRiseProgress && sunRiseProgress < 1
     }

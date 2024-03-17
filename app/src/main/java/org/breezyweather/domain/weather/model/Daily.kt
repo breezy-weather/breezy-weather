@@ -1,22 +1,15 @@
 package org.breezyweather.domain.weather.model
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.utils.helpers.LunarHelper
 import java.util.Calendar
 
-@Deprecated("Use ICU functions instead")
-fun Daily.getWeek(context: Context, timeZone: java.util.TimeZone): String {
-    return date.getWeek(context, timeZone)
-}
-
-@RequiresApi(Build.VERSION_CODES.N)
-fun Daily.getWeek(context: Context, timeZone: android.icu.util.TimeZone): String {
-    return date.getWeek(context, timeZone)
+fun Daily.getWeek(context: Context, location: Location): String {
+    return date.getWeek(context, location)
 }
 
 val Daily.lunar: String?

@@ -91,7 +91,7 @@ class DmiService @Inject constructor(
         ) { weatherResult: DmiResult,
             alertsResult: DmiWarningResult
             ->
-            convert(weatherResult, alertsResult, location.timeZone)
+            convert(weatherResult, alertsResult, location.javaTimeZone)
         }
     }
 

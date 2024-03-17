@@ -54,22 +54,22 @@ class LocationModel(
                     builder.append(alert.description)
                     alert.startDate?.let { startDate ->
                         val startDateDay = startDate.getFormattedDate(
-                            location.timeZone, context.getString(R.string.date_format_short)
+                            location.javaTimeZone, context.getString(R.string.date_format_short)
                         )
                         builder.append(context.getString(R.string.comma_separator))
                             .append(startDateDay)
                             .append(context.getString(R.string.comma_separator))
-                            .append(startDate.getFormattedTime(location.timeZone, context.is12Hour))
+                            .append(startDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                         alert.endDate?.let { endDate ->
                             builder.append("-")
                             val endDateDay = endDate.getFormattedDate(
-                                location.timeZone, context.getString(R.string.date_format_short)
+                                location.javaTimeZone, context.getString(R.string.date_format_short)
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(context.getString(R.string.comma_separator))
                             }
-                            builder.append(endDate.getFormattedTime(location.timeZone, context.is12Hour))
+                            builder.append(endDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                         }
                     }
                 }

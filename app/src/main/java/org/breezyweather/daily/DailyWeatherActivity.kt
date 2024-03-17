@@ -127,7 +127,7 @@ class DailyWeatherActivity : GeoActivity() {
             }
             selectPage(
                 weather.dailyForecast[mPosition],
-                location.timeZone,
+                location.javaTimeZone,
                 mPosition,
                 weather.dailyForecast.size
             )
@@ -143,7 +143,7 @@ class DailyWeatherActivity : GeoActivity() {
                         location.pollenSource!!
                     } else location.weatherSource
                 )
-                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.timeZone, daily, pollenIndexSource, 3)
+                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.javaTimeZone, daily, pollenIndexSource, 3)
                 val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
                 rv.adapter = dailyWeatherAdapter
@@ -169,7 +169,7 @@ class DailyWeatherActivity : GeoActivity() {
                 override fun onPageSelected(position: Int) {
                     selectPage(
                         weather.dailyForecast[position],
-                        location.timeZone,
+                        location.javaTimeZone,
                         position,
                         weather.dailyForecast.size
                     )

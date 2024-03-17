@@ -183,7 +183,7 @@ fun getNormalsFromWeather(
     location: Location
 ): Normals? {
     return location.weather?.normals?.let { normals ->
-        val cal = Date().toCalendarWithTimeZone(location.timeZone)
+        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
         if (normals.month == cal[Calendar.MONTH]) {
             normals
         } else null
@@ -530,10 +530,10 @@ fun completeDailyListFromHourlyList(
 ): List<Daily> {
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
-    val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.timeZone)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.javaTimeZone)
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH) }
     return dailyList.map { daily ->
-        val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd", Locale.ENGLISH)
+        val theDayFormatted = daily.date.getFormattedDate(location.javaTimeZone, "yyyy-MM-dd", Locale.ENGLISH)
         val newDay = completeHalfDayFromHourlyList(
             initialHalfDay = daily.day,
             halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("day"),

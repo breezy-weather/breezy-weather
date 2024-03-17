@@ -23,7 +23,7 @@ data class DmiResult(
     val id: String?,
     val city: String?,
     val country: String?,
-    val timezone: String?,
+    val timezone: String,
     val sunrise: String?,
     val sunset: String?,
     val timeserie: List<DmiTimeserie>?

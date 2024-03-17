@@ -198,7 +198,7 @@ class AccuService @Inject constructor(
             }
         }
         // TODO: Only call once a month, unless it’s current position
-        val cal = Date().toCalendarWithTimeZone(location.timeZone)
+        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
         val climoSummary = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
             && mApi is AccuEnterpriseApi) {
             mApi.getClimoSummary(
@@ -359,7 +359,7 @@ class AccuService @Inject constructor(
         }
 
         // TODO: Only call once a month, unless it’s current position
-        val cal = Date().toCalendarWithTimeZone(location.timeZone)
+        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
         val climoSummary = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             if (portal != AccuPortalPreference.ENTERPRISE) {
                 return Observable.error(SecondaryWeatherException())
@@ -398,7 +398,7 @@ class AccuService @Inject constructor(
             accuClimoResult: AccuClimoSummaryResult
             ->
             convertSecondary(
-                location.timeZone,
+                location.javaTimeZone,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     accuAirQualityResult
                 } else null,

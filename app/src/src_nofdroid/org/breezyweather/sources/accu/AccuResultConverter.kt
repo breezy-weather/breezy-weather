@@ -60,26 +60,23 @@ import java.util.Date
 import java.util.TimeZone
 
 fun convert(
-    location: Location?,
+    location: Location?, // Null if location search, current location if reverse geocoding
     result: AccuLocationResult
 ): Location {
-    return Location(
-        cityId = result.Key,
-        latitude = location?.latitude ?: result.GeoPosition.Latitude,
-        longitude = location?.longitude ?: result.GeoPosition.Longitude,
-        timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
-        country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
-        countryCode = result.Country.ID,
-        province = result.AdministrativeArea?.LocalizedName?.ifEmpty { result.AdministrativeArea.EnglishName },
-        provinceCode = result.AdministrativeArea?.ID,
-        city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
-        weatherSource = "accu",
-        airQualitySource = location?.airQualitySource,
-        pollenSource = location?.pollenSource,
-        minutelySource = location?.minutelySource,
-        alertSource = location?.alertSource,
-        normalsSource = location?.normalsSource
-    )
+    return (location ?: Location())
+        .copy(
+            cityId = result.Key,
+            latitude = location?.latitude ?: result.GeoPosition.Latitude,
+            longitude = location?.longitude ?: result.GeoPosition.Longitude,
+            timeZone = result.TimeZone.Name,
+            country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
+            countryCode = result.Country.ID,
+            province = result.AdministrativeArea?.LocalizedName?.ifEmpty {
+                result.AdministrativeArea.EnglishName
+            },
+            provinceCode = result.AdministrativeArea?.ID,
+            city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
+        )
 }
 
 fun convert(
@@ -135,7 +132,7 @@ fun convert(
                 nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value
             )
         } else null,
-        dailyForecast = getDailyList(dailyResult.DailyForecasts, location.timeZone),
+        dailyForecast = getDailyList(dailyResult.DailyForecasts, location.javaTimeZone),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)

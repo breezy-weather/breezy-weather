@@ -16,8 +16,7 @@
 
 package org.breezyweather.common.extensions
 
-import android.content.Context
-import org.breezyweather.settings.SettingsManager
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -81,7 +80,7 @@ fun Date.getFormattedDate(
     pattern: String,
     locale: Locale = Locale.getDefault()
 ): String {
-    return java.text.SimpleDateFormat(pattern, locale).format(this.toTimezone(timeZone))
+    return SimpleDateFormat(pattern, locale).format(this.toTimezone(timeZone))
 }
 
 fun Date.getFormattedTime(timeZone: TimeZone, twelveHour: Boolean): String {
@@ -92,10 +91,8 @@ fun Date.getFormattedTime(timeZone: TimeZone, twelveHour: Boolean): String {
     }
 }
 
-@Deprecated("Use ICU functions instead")
-fun Date.getWeek(context: Context, timeZone: TimeZone): String {
-    val locale = SettingsManager.getInstance(context).language.locale
-    return java.text.SimpleDateFormat("E", locale)
+fun Date.getWeek(locale: Locale, timeZone: TimeZone): String {
+    return SimpleDateFormat("E", locale)
         .apply {
             setTimeZone(timeZone)
         }

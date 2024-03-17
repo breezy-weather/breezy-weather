@@ -52,7 +52,7 @@ class IpSbLocationService @Inject constructor(
                 LocationPositionWrapper(
                     latitude = t.latitude,
                     longitude = t.longitude,
-                    timeZone = if (!t.timezone.isNullOrEmpty()) TimeZone.getTimeZone(t.timezone) else null,
+                    timeZone = t.timezone,
                     country = t.country,
                     countryCode = t.countryCode,
                     province = t.region,
