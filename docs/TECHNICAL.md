@@ -73,6 +73,8 @@ Gradle must always be updated that way (replace with new version number):
 ./gradlew wrapper --gradle-version=8.6
 ```
 
+Update `distributionSha256Sum` in `gradle/wrapper/gradle-wrapper.properties`. You can find it on https://services.gradle.org/distributions/
+
 
 ____
 
