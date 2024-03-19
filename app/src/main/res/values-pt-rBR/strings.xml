@@ -663,14 +663,14 @@
     <string name="settings_per_location_summary">Personalizações adicionais para este local</string>
     <string name="location_delete_location_dialog_message_no_name">Você está prestes a excluir este local da sua lista de locais salvos.</string>
     <string name="about_open_link_message">Abrir %s?</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, ..., 4 dias depois</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, …, 4 dias depois</string>
     <string name="settings_weather_source_open_meteo_weather_models">Modelos meteorológicos</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina os melhores modelos meteorológicos para este local</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Melhor possível</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Índice de Qualidade do Ar atual</string>
     <string name="location_delete_location_dialog_title">Excluir local?</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de Qualidade do Ar de hoje, amanhã, ..., 4 dias depois</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de Qualidade do Ar de hoje, amanhã, …, 4 dias depois</string>
     <string name="pollen_carpinus">Cárpino</string>
     <string name="pollen_castanea">Castanheiro</string>
     <string name="pollen_corylus">Avelã</string>

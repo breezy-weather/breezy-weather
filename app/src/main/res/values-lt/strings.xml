@@ -630,10 +630,10 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Subendrina geriausius šios vietovės orų modelius</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Subendrina visus šio paslaugų teikėjo orų modelius į vientisą prognozę</string>
     <string name="uv_index_short">UV indeksas</string>
-    <string name="location_delete_location_dialog_message">Jūs ketinate ištrinti \"%s\" iš savo išsaugotų vietų sąrašo.</string>
+    <string name="location_delete_location_dialog_message">Jūs ketinate ištrinti “%s” iš savo išsaugotų vietų sąrašo.</string>
     <string name="action_confirm">Patvirtinti</string>
     <string name="widget_label_show_widget_card_alpha">Permatomumas</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Jūs naudojate \"Breezy Weather\" versiją iš \"F-Droid\" numatytojoje saugykloje, kuri palaiko tik tuos orų šaltinius, kurie naudoja viešai prieinamą, savarankiškai prieinamą, nemokamos programinės įrangos serverio sprendimą. Norėdami sužinoti daugiau, spauskite čia.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Jūs naudojate “Breezy Weather” versiją iš “F-Droid” numatytojoje saugykloje, kuri palaiko tik tuos orų šaltinius, kurie naudoja viešai prieinamą, savarankiškai prieinamą, nemokamos programinės įrangos serverio sprendimą. Norėdami sužinoti daugiau, spauskite čia.</string>
     <string name="location_search_no_results_advice">Įsitikinkite, kad paieška parašyta teisingai ir nėra pernelyg konkreti. Taip pat galite išbandyti kitą vietovės paieškos šaltinį, kuris gali duoti kitokių rezultatų.</string>
     <string name="weather_message_too_frequent_refreshes">Prašome palaukti kelias sekundes prieš bandant dar kartą…</string>
     <string name="location_delete_location_dialog_title">Ištrinti vietovę?</string>
@@ -662,10 +662,10 @@
     <string name="pollen_tilia">Liepa</string>
     <string name="pollen_urticaceae">Dilgėlė</string>
     <string name="settings_weather_sources_default_source">Numatytasis naujų vietų šaltinis</string>
-    <string name="message_source_not_installed_error_content_tip_1">Taip gali nutikti, kai savo vietą įtraukėte į standartinę \"Breezy Weather\" versiją, o paskui perėjote į \"F-Droid\", kurioje palaikoma mažiau orų šaltinių. Šią problemą gali išspręsti grįžimas į standartinę versiją.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Taip gali nutikti, kai savo vietą įtraukėte į standartinę “Breezy Weather” versiją, o paskui perėjote į “F-Droid”, kurioje palaikoma mažiau orų šaltinių. Šią problemą gali išspręsti grįžimas į standartinę versiją.</string>
     <string name="message_source_not_installed_error_content_tip_2">Pakeiskite šios vietos orų šaltinius arba ištrinkite ir vėl pridėkite šią vietą.</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Oro kokybės indeksas šiandien, rytoj, ..., po 4 dienų</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Žiedadulkių indekso suvestinė šiandien, rytoj, ..., po 4 dienų</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Oro kokybės indeksas šiandien, rytoj, …, po 4 dienų</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Žiedadulkių indekso suvestinė šiandien, rytoj, …, po 4 dienų</string>
     <string name="sunshine">Saulės šviesa</string>
     <string name="widget_label_hide_header">Paslėpti antraštę</string>
     <string name="cloud_cover_short">Debesuotumas</string>

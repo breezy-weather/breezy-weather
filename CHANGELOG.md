@@ -11,6 +11,7 @@
 
 **Translations**
 - Translations updated
+- Added Interlingua (very limited support at the moment) (thanks @softinterlingua)
 - Date formatting was improved on Android 7.0+ for many languages, including languages not currently supported. On lower Android versions, it will fallback to ISO 8601 formatting for short format, and weekday / day / month / year for long format. More improvements will come in later versions (mostly on widgets).
 
 
