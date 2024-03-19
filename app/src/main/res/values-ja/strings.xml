@@ -95,7 +95,7 @@
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">MM-dd EEE</string>
+    <string name="date_format_widget_short">M月d日(EEE)</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │</string>
     <!-- feedback. -->
@@ -160,13 +160,13 @@
     <string name="widget_live_wallpaper_day_night_type">時間</string>
     <string name="location_message_added">場所を追加しました</string>
     <string name="location_message_deleted">場所を削除しました</string>
-    <string name="location_message_list_cannot_be_empty">すべての場所を削除することはできません</string>
+    <string name="location_message_list_cannot_be_empty">全ての場所を削除することはできません</string>
     <string name="location_search_placeholder">場所を検索…</string>
     <string name="location_current_not_found_yet">現在地がまだ見つかりません…</string>
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新しています</string>
     <string name="notification_updating_weather_data">気象データを更新しています (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">さらに見るにはタップしてください…</string>
+    <string name="pollen_tap_to_see_more">タップして詳細を表示…</string>
     <!-- action -->
     <string name="alerts">警報</string>
     <string name="action_search">検索</string>
@@ -263,7 +263,7 @@
     <string name="uv_index_3_5">並</string>
     <string name="uv_index_6_7">強い</string>
     <string name="precipitation_between_time">%1$s～%2$sの間の降水状況</string>
-    <string name="uv_alert_level">警報レベル</string>
+    <string name="uv_alert_level">警報</string>
     <string name="uv_index_8_10">非常に強い</string>
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
     <string name="uv_index_11">極端に強い</string>
@@ -275,7 +275,7 @@
     <string name="wind_direction_short_NW">北西</string>
     <string name="wind_direction_short_E">東</string>
     <string name="wind_direction_short_SE">南東</string>
-    <string name="alerts_to_follow">ここをクリックし、複数の警報を確認してください。</string>
+    <string name="alerts_to_follow">ここから複数の警報を確認してください。</string>
     <string name="air_quality_level_1">優良</string>
     <string name="air_quality_level_3_description">大気汚染が高いレベルに達しており、敏感な人々に健康被害が生じる場合があります。呼吸困難やのどの痛みなどの症状を感じている場合は、屋外で過ごす時間を減らしてください。</string>
     <string name="air_quality_level_4">健康被害あり</string>
@@ -433,7 +433,7 @@
     <string name="weather_source_accu_preference_hours_72">72時間</string>
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
-    <string name="message_source_not_installed_error_title">ソースは利用できなくなりました</string>
+    <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
     <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
     <string name="settings_widgets_day_night_temp_reversed_title">昼夜の気温の順序を逆転させる</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
@@ -474,17 +474,17 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="null_data_text">データなし</string>
     <string name="settings_color_app">アプリ設定に合わせる</string>
-    <string name="weather_api_key_required_missing_title">必要な API キーが欠かれています</string>
+    <string name="weather_api_key_required_missing_title">必要なAPIキーが欠かれています</string>
     <string name="dialog_permissions_notification_title">最新情報を入手</string>
     <string name="notification_update_error">%d 件のアップデート失敗しました</string>
-    <string name="location_search_weather_source">気象データソース</string>
+    <string name="location_search_weather_source">気象情報源</string>
     <string name="settings_location_access_permission_already_granted">許可はすでに与えられています</string>
     <string name="settings_location_access_switch_summaryOn">許可されました。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
     <string name="location_none_added_yet_instructions">まだ場所は追加されていません。検索アイコンをタップして手動で場所を追加するか、フローティング ボタンから現在地を追加してください。</string>
     <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、Breezy Weather の壁紙を有効にすることができます。</string>
-    <string name="weather_message_unsupported_feature">ソースは要求された機能の一つをサポートしていません</string>
+    <string name="weather_message_unsupported_feature">情報源は要求された機能の一つをサポートしていません</string>
     <string name="unit_mmph_voice">ﾐﾘﾒｰﾄﾙ毎時</string>
     <string name="settings_location_access_background_summaryOn">有効されました。アプリはバックグラウンドで現在地の気象データを更新できます。</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天気アイコン</string>
@@ -524,8 +524,8 @@
     <string name="air_quality_co_info_origin">これは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料を、単純なストーブ、たき火、芯ランプ、炉、暖炉で不完全燃焼させることによって生成されます。周囲空気中の主な一酸化炭素 (CO) 発生源は自動車です。</string>
     <string name="action_help_me_choose">選択を手伝う</string>
     <string name="weather_normals_data_by">標準温度データ提供：%s</string>
-    <string name="weather_api_unauthorized_content">一部の気象データ ソースでは、独自の API キーを指定する必要があります。すでに提供している場合は、提供した API キーを再確認してください。</string>
-    <string name="weather_api_key_required_missing_content">このソースを使用するには、API キーを提供する必要があります。</string>
+    <string name="weather_api_unauthorized_content">一部の気象情報源では、独自の API キーを指定する必要があります。既に提供した合は、提供した API キーを再確認してください。</string>
+    <string name="weather_api_key_required_missing_content">この情報源を使用するには、APIキーを提供する必要があります。</string>
     <string name="air_quality_co_info_consequences">一酸化炭素は肺組織を通って血流に拡散し、体の細胞が酸素と結合するのを困難にします。この酸素不足は組織や細胞にダメージを与えます。一酸化炭素にさらされると、呼吸困難、疲労感、めまい、その他のインフルエンザのような症状が引き起こされることがあります。高レベルの一酸化炭素にさらされると、死に至る可能性があります。</string>
     <string name="location_results_by">位置情報：%s</string>
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
@@ -567,8 +567,8 @@
     <string name="widget_custom_subtitle_keyword_al_description">警報</string>
     <string name="widget_style_temperature">温度</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_weather_sources_summary">気象データ ソースの設定</string>
-    <string name="settings_weather_sources_per_location_summary">この場所の気象データ ソースをカスタマイズする</string>
+    <string name="settings_weather_sources_summary">デフォルト天気情報源の新しい場所、カスタム API キー、その他の情報源設定</string>
+    <string name="settings_weather_sources_per_location_summary">この場所の気象情報源をカスタマイズする</string>
     <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合、許可してください。</string>
     <string name="settings_weather_sources">気象情報源</string>
     <string name="settings_source_default_value">デフォルト（変更なし）</string>
@@ -596,9 +596,9 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">わずかまたは中程度の雷雨</string>
     <string name="air_quality_co_info_introduction">一酸化炭素 (CO) は、無色、無臭、無味、非刺激性の有毒な可燃性ガスです。</string>
     <string name="weather_api_limit_reached_title">API リクエストの制限に達しました</string>
-    <string name="weather_api_limit_reached_content">この制限を回避するには、独自の API キーを追加します。</string>
+    <string name="weather_api_limit_reached_content">この制限を回避するには、自分の API キーを追加してください。</string>
     <string name="weather_api_unauthorized_title">APIアクセスが許可されていません</string>
-    <string name="about_contact">接触</string>
+    <string name="about_contact">連絡</string>
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログが保存されました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップして開きます</string>
@@ -643,11 +643,11 @@
     <string name="comma_separator">、</string>
     <string name="location_message_updated">場所は更新されました</string>
     <string name="location_message_already_exists">同じ天気情報源の場所は既に存在しました。</string>
-    <string name="location_search_no_results_advice">検索した内容を確認して、或いは他の検索ソースに切り替えてください。</string>
+    <string name="location_search_no_results_advice">検索した内容を確認して、或いは他の検索源に切り替えてください。</string>
     <string name="settings_weather_source_none">なし</string>
-    <string name="location_search_source">場所検索ソース</string>
-    <string name="location_search_change_source">場所検索ソースを変更</string>
-    <string name="settings_weather_sources_default_source">新しい場所のデフォルトソース</string>
+    <string name="location_search_source">場所検索源</string>
+    <string name="location_search_change_source">場所検索源を変更</string>
+    <string name="settings_weather_sources_default_source">新しい場所のデフォルト情報源</string>
     <string name="metno_weather_text_andthunder">%sと雷</string>
     <string name="settings_weather_source_unavailable">%s (利用不可)</string>
     <string name="location_delete_location_dialog_message">保存した位置リストから「%s」を削除します。</string>
@@ -658,5 +658,30 @@
     <string name="weather_message_too_frequent_refreshes">少々待ってからリトライしてください…</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
-    <string name="settings_weather_source_fdroid_disclaimer">F-DroidデフォルトリポジトリバージョンのBreezy Weatherを使用しています。このバージョンでは、公開されている自己ホスト可能なフリーソフトウェアサーバーソリューションを使用する気象情報ソースのみがサポートされています。 ここをタップして詳細を確認してください。</string>
+    <string name="settings_weather_source_fdroid_disclaimer">F-DroidデフォルトリポジトリバージョンのBreezy Weatherを使用しています。このバージョンでは、公開されている自己ホスト可能なフリーソフトウェアサーバーソリューションを使用する気象情報源のみがサポートされています。 ここをタップして詳細を確認してください。</string>
+    <string name="pollen_urticaceae">蕁麻花粉</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4日後の花粉指数まとめ</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">この場所に最適な天気モデルを組み合わせる</string>
+    <string name="settings_per_location">場所設定</string>
+    <string name="settings_per_location_summary">この場所の追加カスタマイズ</string>
+    <string name="settings_weather_source_open_meteo_weather_models">天気モデル</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">ベストマッチ</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">縫い目のない</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">このプロバイダーの気象モデルを全てシームレスな予測に組み合わせる</string>
+    <string name="pollen_carpinus">椣木花粉</string>
+    <string name="pollen_castanea">栗木花粉</string>
+    <string name="pollen_corylus">西洋榛木花粉</string>
+    <string name="pollen_cupressaceae_taxaceae">檜木花粉</string>
+    <string name="pollen_fraxinus">梣木花粉</string>
+    <string name="pollen_plantaginaceae">車前草花粉</string>
+    <string name="pollen_platanus">鈴懸木花粉</string>
+    <string name="pollen_populus">白楊花粉</string>
+    <string name="pollen_quercus">楢木花粉</string>
+    <string name="pollen_rumex">酸葉花粉</string>
+    <string name="message_source_not_installed_error_content_tip_1">Breezy Weatherスタンダードバージョンで現在地を追加した後、サポートされる天気情報源がより少ないF-Droidバージョンに切り替えたときにこの状況が発生する可能性があります。スタンダードバージョンに戻すと、この問題が解決される可能性があります。</string>
+    <string name="message_source_not_installed_error_content_tip_2">この場所の天気情報源を変更するか、この場所を削除して再度追加してください。</string>
+    <string name="about_open_link_message">%s を開きますか？</string>
+    <string name="sunshine">日照</string>
+    <string name="pollen_salix">柳木花粉</string>
+    <string name="pollen_tilia">科木花粉</string>
 </resources>
