@@ -206,14 +206,14 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
             alertId = Objects.hash(alert.title, alert.severity, alert.start).toString(),
             startDate = Date(alert.start.times(1000)),
             endDate = Date(alert.end.times(1000)),
-            description = alert.title ?: "",
-            content = alert.description,
-            priority = when (alert.severity) {
-                "Extreme" -> 1
-                "Severe" -> 2
-                "Moderate" -> 3
-                "Minor" -> 4
-                else -> 5
+            headline = alert.title,
+            description = alert.description,
+            severity = when (alert.severity) {
+                "Extreme" -> 4
+                "Severe" -> 3
+                "Moderate" -> 2
+                "Minor" -> 1
+                else -> 0
             }
         )
     }

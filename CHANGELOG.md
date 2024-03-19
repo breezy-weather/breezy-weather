@@ -4,9 +4,14 @@
 - Allow to enable Gadgetbridge if Smartspacer generic weather plugin is installed
 - Fix cypress, hazel and hornbeam pollen not correctly saved to database
 
+**Weather sources**
+- [Open-Meteo] Added ability to choose your own self-hosted instance in the settings
+- [Bright Sky (DWD)] Added ability to choose your own self-hosted instance in the settings
+- [Recosanté] Added ability to choose your own self-hosted instance in the settings
+
 **Translations**
 - Translations updated
-- Date formatting was improved on Android 7.0+ for many languages, including languages not currently supported. On lower Android versions, it will fallback to ISO 8601 formatting for short format, and weekday / day / month / year for long format.
+- Date formatting was improved on Android 7.0+ for many languages, including languages not currently supported. On lower Android versions, it will fallback to ISO 8601 formatting for short format, and weekday / day / month / year for long format. More improvements will come in later versions (mostly on widgets).
 
 
 # Version 5.1.5 (2024-03-16)

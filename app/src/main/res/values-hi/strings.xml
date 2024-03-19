@@ -397,7 +397,7 @@
     <string name="widget_label_show_widget_card">पृष्ठभूमि रंग</string>
     <string name="widget_label_hide_subtitle">उपशीर्षक छिपाएँ</string>
     <string name="widget_label_subtitle_data">उपशीर्षक माहिती</string>
-    <string name="widget_label_black_text">पाठ का रंग</string>
+    <string name="widget_label_text_color">पाठ का रंग</string>
     <string name="widget_label_text_size">पाठ का आकार</string>
     <string name="widget_label_clock_font">घड़ी का पाठ</string>
     <string name="widget_label_hide_lunar">चंद्र दिनदर्शिका छिपाएँ</string>

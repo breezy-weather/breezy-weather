@@ -339,7 +339,7 @@
     <string name="settings_section_general">Bendra</string>
     <string name="settings_background_updates_battery_optimization_summary">Tai pirmas dalykas, kurį reikia išbandyti, kai negaunate pranešimų arba valdikliai neatnaujinami.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Konkretaus gamintojo instrukcijos</string>
-    <string name="widget_label_black_text">Teksto spalva</string>
+    <string name="widget_label_text_color">Teksto spalva</string>
     <string name="settings_background_updates_refresh_24h">24 valandos</string>
     <string name="settings_background_updates_section_troubleshoot">Trikčių šalinimas</string>
     <string name="settings_background_updates_refresh_title">Atnaujinimo dažnis</string>

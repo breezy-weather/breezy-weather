@@ -1,0 +1,14 @@
+ALTER TABLE alerts
+DROP COLUMN description;
+
+ALTER TABLE alerts
+ADD COLUMN headline TEXT;
+
+ALTER TABLE alerts
+RENAME COLUMN content TO description;
+
+ALTER TABLE alerts
+ADD COLUMN instruction TEXT;
+
+ALTER TABLE alerts
+RENAME COLUMN priority TO severity;

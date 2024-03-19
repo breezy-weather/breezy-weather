@@ -236,7 +236,7 @@
     <string name="widget_label_hide_subtitle">Masquer le sous-titre</string>
     <string name="widget_label_hide_header">Masquer l’entête</string>
     <string name="widget_label_subtitle_data">Sous-titre</string>
-    <string name="widget_label_black_text">Couleur du texte</string><!-- Texte sombre -->
+    <string name="widget_label_text_color">Couleur du texte</string><!-- Texte sombre -->
     <string name="widget_label_text_size">Taille du texte</string>
     <string name="widget_label_clock_font">Police de l’horloge</string>
     <string name="widget_label_hide_lunar">Masquer le calendrier lunaire</string>
@@ -338,6 +338,8 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_back">Retour</string>
     <string name="settings_source_api_key">Clé API</string>
+    <string name="settings_source_instance">Instance</string>
+    <string name="settings_source_instance_geocoding">Instance de géocodage</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
     <string name="settings_location_access_permission_already_granted">Permission déjà accordée</string>
     <string name="settings_location_access_switch_title">Accès à la position</string>
@@ -359,6 +361,8 @@
     <string name="settings_weather_source_none">Aucune</string>
     <string name="settings_weather_source_fdroid_disclaimer">Vous utilisez la version de Breezy Weather du dépôt par défaut de F-Droid, qui ne prend en charge que les sources météorologiques qui utilisent une solution de serveur disponible publiquement, auto-hébergeable et libre. Appuyez ici pour en savoir plus.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Instance de qualité de l’air</string>
     <string name="settings_weather_source_open_meteo_weather_models">Modèles météo</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Meilleure combinaison</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combine les meilleurs modèles météo pour cet emplacement</string>
@@ -423,6 +427,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Icône sombre</string>
 
     <!-- action -->
+    <string name="alert">Vigilance</string>
     <string name="alerts">Vigilances</string>
     <string name="uv_alert_level">Vigilance</string>
     <string name="action_search">Recherche</string>

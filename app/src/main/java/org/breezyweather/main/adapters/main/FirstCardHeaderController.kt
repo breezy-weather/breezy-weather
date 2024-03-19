@@ -126,7 +126,9 @@ class FirstCardHeaderController(
                         ),
                         headlineContent = {
                             Text(
-                                currentAlert.description,
+                                currentAlert.headline?.ifEmpty {
+                                    stringResource(R.string.alert)
+                                } ?: stringResource(R.string.alert),
                                 color = DayNightTheme.colors.titleColor,
                                 style = MaterialTheme.typography.titleMedium
                             )
@@ -172,7 +174,9 @@ class FirstCardHeaderController(
                         leadingContent = {
                             Icon(
                                 painterResource(R.drawable.ic_alert),
-                                contentDescription = currentAlert.description,
+                                contentDescription = currentAlert.headline?.ifEmpty {
+                                    stringResource(R.string.alert)
+                                } ?: stringResource(R.string.alert),
                                 tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
                             )
                         }

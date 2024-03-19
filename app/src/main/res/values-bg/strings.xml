@@ -208,7 +208,7 @@
     <string name="widget_multi_city">Мулти Град</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Преглед на стил</string>
-    <string name="widget_label_black_text">Цвят на текста</string>
+    <string name="widget_label_text_color">Цвят на текста</string>
     <string name="widget_label_hide_lunar">Скриване на лунния календар</string>
     <string name="air_quality_no2_info_origin">Околните източници на NO₂ са резултат от високотемпературно изгаряне на горива в процеси като тези, използвани за отопление, транспорт, промишленост и производство на електроенергия. Домакинските източници на азотни оксиди (NOₓ) включват оборудване, което изгаря горива като пещи, камини и газови печки и фурни.</string>
     <string name="air_quality_no2_info_consequences">Излагането на азотен диоксид може да раздразни дихателните пътища и да влоши респираторните заболявания. Освен това NO₂ е важен прекурсор на озона, замърсител, тясно свързан с астма и други дихателни заболявания.</string>

@@ -456,9 +456,15 @@ private fun getAlertList(
             endDate = result.Area?.getOrNull(0)?.let { area ->
                 area.EpochEndTime?.times(1000)?.let { Date(it) }
             },
-            description = result.Description?.Localized ?: "",
-            content = result.Area?.getOrNull(0)?.Text,
-            priority = result.Priority,
+            headline = result.Description?.Localized,
+            description = result.Area?.getOrNull(0)?.Text,
+            severity = when (result.Priority) {
+                1 -> 4
+                2 -> 3
+                3 -> 2
+                4 -> 1
+                else -> 0
+            },
             color = result.Color?.let { Color.rgb(it.Red, it.Green, it.Blue) }
         )
     }

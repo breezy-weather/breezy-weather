@@ -380,7 +380,11 @@ abstract class AbstractRemoteViewsPresenter {
                 if (shortBuilder.toString().isNotEmpty()) {
                     shortBuilder.append("\n")
                 }
-                defaultBuilder.append(currentAlert.description)
+                defaultBuilder.append(
+                    currentAlert.headline?.ifEmpty {
+                        context.getString(R.string.alert)
+                    } ?: context.getString(R.string.alert)
+                )
                 currentAlert.startDate?.let { startDate ->
                     val startDateDay = startDate.getFormattedMediumDayAndMonth(
                         location,
@@ -403,7 +407,11 @@ abstract class AbstractRemoteViewsPresenter {
                         defaultBuilder.append(endDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
                     }
                 }
-                shortBuilder.append(currentAlert.description)
+                shortBuilder.append(
+                    currentAlert.headline?.ifEmpty {
+                        context.getString(R.string.alert)
+                    } ?: context.getString(R.string.alert)
+                )
             }
             return subtitle.replace("\$al$", defaultBuilder.toString())
                 .replace("\$als$", shortBuilder.toString())

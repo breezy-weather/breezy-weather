@@ -214,7 +214,7 @@
     <string name="widget_label_show_widget_card">Boja pozadine</string>
     <string name="widget_label_hide_subtitle">Sakrij podnaslov</string>
     <string name="widget_label_subtitle_data">Podaci podnaslova</string>
-    <string name="widget_label_black_text">Boja teksta</string>
+    <string name="widget_label_text_color">Boja teksta</string>
     <string name="widget_label_text_size">Veličina teksta</string>
     <string name="widget_label_hide_lunar">Sakrij lunarni kalendar</string>
     <string name="widget_subtitle_data_lunar">Lunarni kalendar</string>

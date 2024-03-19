@@ -114,7 +114,7 @@
     <string name="widget_label_show_widget_card">Fons d’un color</string>
     <string name="widget_label_hide_subtitle">Oculta el subtítol</string>
     <string name="widget_label_subtitle_data">Dades del subtítol</string>
-    <string name="widget_label_black_text">Color del text</string>
+    <string name="widget_label_text_color">Color del text</string>
     <string name="widget_label_text_size">Mida del text</string>
     <string name="widget_label_clock_font">Font del rellotge</string>
     <string name="widget_label_hide_lunar">Oculta el calendari lunar</string>

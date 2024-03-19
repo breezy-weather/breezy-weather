@@ -393,7 +393,7 @@
     <string name="about_contribution_WangDaYeeeeee">Utvecklare av det ursprungliga projektet Geometric Weather</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Kunde inte öppna enhetens inställningar.</string>
     <string name="settings_source_api_key">API-nyckel</string>
-    <string name="widget_label_black_text">Textfärg</string>
+    <string name="widget_label_text_color">Textfärg</string>
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
     <string name="air_quality_so2_info_consequences">Exponering mot SO₂ förknippas med astma, sjukhusvistelse och besök hos akutmottagning.</string>

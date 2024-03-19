@@ -213,13 +213,13 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             alertId = alert.alertId ?: Objects.hash(alert.alertBannerText, alert.issueTime).toString(),
             startDate = alert.issueTime,
             endDate = alert.expiryTime,
-            description = alert.alertBannerText ?: "",
-            content = alert.text,
-            priority = when (alert.type) {
-                "warning" -> 1
+            headline = alert.alertBannerText,
+            description = alert.text,
+            severity = when (alert.type) {
+                "warning" -> 3
                 "watch" -> 2
-                "statement" -> 3
-                else -> 4
+                "statement" -> 1
+                else -> 0
             },
             color = if (!alert.bannerColour.isNullOrEmpty()
                 && alert.bannerColour.startsWith("#")) {

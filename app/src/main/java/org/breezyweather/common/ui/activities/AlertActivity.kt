@@ -181,13 +181,17 @@ class AlertActivity : GeoActivity() {
                                 ) {
                                     Icon(
                                         painterResource(R.drawable.ic_alert),
-                                        contentDescription = alert.description,
+                                        contentDescription = alert.headline?.ifEmpty {
+                                            stringResource(R.string.alert)
+                                        } ?: stringResource(R.string.alert),
                                         tint = Color(ColorUtils.getDarkerColor(alert.color))
                                     )
                                     Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
                                     Column {
                                         Text(
-                                            text = alert.description,
+                                            text = alert.headline?.ifEmpty {
+                                                stringResource(R.string.alert)
+                                            } ?: stringResource(R.string.alert),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,
                                             style = MaterialTheme.typography.titleMedium,
@@ -199,7 +203,7 @@ class AlertActivity : GeoActivity() {
                                         )
                                     }
                                 }
-                                alert.content?.let { content ->
+                                alert.description?.let { content ->
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
                                         text = content,

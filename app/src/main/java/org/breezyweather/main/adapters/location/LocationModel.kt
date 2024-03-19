@@ -52,7 +52,11 @@ class LocationModel(
                     if (builder.toString().isNotEmpty()) {
                         builder.append("\n")
                     }
-                    builder.append(alert.description)
+                    builder.append(
+                        alert.headline?.ifEmpty {
+                            context.getString(R.string.alert)
+                        } ?: context.getString(R.string.alert)
+                    )
                     alert.startDate?.let { startDate ->
                         val startDateDay = startDate.getFormattedShortDayAndMonth(
                             location,

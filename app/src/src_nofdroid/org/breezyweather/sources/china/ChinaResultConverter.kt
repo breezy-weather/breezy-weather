@@ -263,9 +263,9 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
             // Create unique ID from: title, level, start time
             alertId = Objects.hash(alert.title, alert.level, alert.pubTime?.time ?: System.currentTimeMillis()).toString(),
             startDate = alert.pubTime,
-            description = alert.title ?: "",
-            content = alert.detail,
-            priority = getAlertPriority(alert.level),
+            headline = alert.title,
+            description = alert.detail,
+            severity = getAlertPriority(alert.level),
             color = getAlertColor(alert.level)
         )
     }
@@ -358,10 +358,10 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 private fun getAlertPriority(color: String?): Int {
     if (color.isNullOrEmpty()) return 0
     return when (color) {
-        "蓝", "蓝色" -> 1
-        "黄", "黄色" -> 2
-        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> 3
-        "红", "红色" -> 4
+        "蓝", "蓝色" -> 4
+        "黄", "黄色" -> 3
+        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> 2
+        "红", "红色" -> 1
         else -> 0
     }
 }

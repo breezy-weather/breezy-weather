@@ -116,7 +116,7 @@
     <string name="widget_label_show_widget_card_alpha">Opacidad</string>
     <string name="widget_label_hide_subtitle">Ocultar subtítulo</string>
     <string name="widget_label_subtitle_data">Datos del subtítulo</string>
-    <string name="widget_label_black_text">Color del texto</string>
+    <string name="widget_label_text_color">Color del texto</string>
     <string name="widget_label_text_size">Tamaño del texto</string>
     <string name="widget_label_clock_font">Fuente del reloj</string>
     <string name="widget_label_hide_lunar">Ocultar calendario lunar</string>

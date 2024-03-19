@@ -20,14 +20,19 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -35,25 +40,29 @@ import javax.inject.Inject
  * Recosanté pollen service.
  */
 class RecosanteService @Inject constructor(
-    client: Retrofit.Builder
-) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource {
+    @ApplicationContext context: Context,
+    val client: Retrofit.Builder
+) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource,
+    ConfigurableSource {
 
     override val id = "recosante"
     override val name = "Recosanté"
     override val privacyPolicyUrl = "https://recosante.beta.gouv.fr/donnees-personnelles/"
 
-    private val mGeoApi by lazy {
-        client
-            .baseUrl(GEO_BASE_URL)
-            .build()
-            .create(GeoApi::class.java)
-    }
-    private val mPollenApi by lazy {
-        client
-            .baseUrl(RECOSANTE_BASE_URL)
-            .build()
-            .create(RecosanteApi::class.java)
-    }
+    private val mGeoApi: GeoApi
+        get() {
+            return client
+                .baseUrl(geocodingInstance)
+                .build()
+                .create(GeoApi::class.java)
+        }
+    private val mPollenApi: RecosanteApi
+        get() {
+            return client
+                .baseUrl(instance)
+                .build()
+                .create(RecosanteApi::class.java)
+        }
 
     override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
     override fun isFeatureSupportedForLocation(
@@ -114,6 +123,55 @@ class RecosanteService @Inject constructor(
                     throw InvalidLocationException()
                 }
             }
+    }
+
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    override val isConfigured = true
+    override val isRestricted = false
+    private var instance: String
+        set(value) {
+            config.edit().putString("instance", value).apply()
+        }
+        get() = config.getString("instance", null) ?: RECOSANTE_BASE_URL
+    private var geocodingInstance: String
+        set(value) {
+            config.edit().putString("geocoding_instance", value).apply()
+        }
+        get() = config.getString("geocoding_instance", null) ?: GEO_BASE_URL
+
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            // TODO: Add error popup in case the value isn't valid
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_recosante_instance,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        RECOSANTE_BASE_URL
+                    }
+                },
+                content = instance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        instance = it
+                    }
+                }
+            ),
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_recosante_instance_geocoding,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        GEO_BASE_URL
+                    }
+                },
+                content = geocodingInstance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        geocodingInstance = it
+                    }
+                }
+            )
+        )
     }
 
     override val pollenLabels = R.array.pollen_recosante_levels

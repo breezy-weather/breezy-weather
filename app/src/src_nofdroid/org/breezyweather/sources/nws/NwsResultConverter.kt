@@ -176,14 +176,14 @@ fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
             alertId = it.properties!!.id,
             startDate = it.properties.onset,
             endDate = it.properties.expires,
-            description = it.properties.event ?: it.properties.headline ?: "Alert",
-            content = it.properties.description + "\n\n" + it.properties.instruction,
-            priority = when (it.properties.severity) {
-                "Extreme" -> 1
-                "Severe" -> 2
-                "Moderate" -> 3
-                "Minor" -> 4
-                else -> 5
+            headline = it.properties.event ?: it.properties.headline,
+            description = it.properties.description + "\n\n" + it.properties.instruction,
+            severity = when (it.properties.severity) {
+                "Extreme" -> 4
+                "Severe" -> 3
+                "Moderate" -> 2
+                "Minor" -> 1
+                else -> 0
             },
             color = getAlertColor(it.properties.event)
         )

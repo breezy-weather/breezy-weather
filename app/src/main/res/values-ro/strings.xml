@@ -116,7 +116,7 @@
     <string name="widget_label_show_widget_card">Culoare de fundal</string>
     <string name="widget_label_hide_subtitle">Ascunde subtitlul</string>
     <string name="widget_label_subtitle_data">Date subtitlu</string>
-    <string name="widget_label_black_text">Culoare text</string>
+    <string name="widget_label_text_color">Culoare text</string>
     <string name="widget_label_text_size">Mărime text</string>
     <string name="widget_label_clock_font">Font ceas</string>
     <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>

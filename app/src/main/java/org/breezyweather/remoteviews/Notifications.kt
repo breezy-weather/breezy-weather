@@ -174,11 +174,19 @@ object Notifications {
             val desSet: MutableSet<String> = HashSet()
             for (alert in oldResult.alertList) {
                 idSet.add(alert.alertId)
-                desSet.add(alert.description)
+                desSet.add(
+                    alert.headline?.ifEmpty {
+                        context.getString(R.string.alert)
+                    } ?: context.getString(R.string.alert)
+                )
             }
             for (alert in weather.alertList) {
                 if (!idSet.contains(alert.alertId)
-                    && !desSet.contains(alert.description)
+                    && !desSet.contains(
+                        alert.headline?.ifEmpty {
+                            context.getString(R.string.alert)
+                        } ?: context.getString(R.string.alert)
+                    )
                 ) {
                     alertList.add(alert)
                 }
@@ -217,9 +225,11 @@ object Notifications {
         val builder = getNotificationBuilder(
             context,
             R.drawable.ic_alert,
-            alert.description,
+            alert.headline?.ifEmpty {
+                context.getString(R.string.alert)
+            } ?: context.getString(R.string.alert),
             time,
-            alert.content,
+            alert.description,
             PendingIntent.getActivity(
                 context,
                 notificationId,
@@ -228,9 +238,13 @@ object Notifications {
             )
         ).setStyle(
             NotificationCompat.BigTextStyle()
-                .setBigContentTitle(alert.description)
+                .setBigContentTitle(
+                    alert.headline?.ifEmpty {
+                        context.getString(R.string.alert)
+                    } ?: context.getString(R.string.alert)
+                )
                 .setSummaryText(time)
-                .bigText(alert.content)
+                .bigText(alert.description)
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(ALERT_GROUP_KEY)
@@ -244,7 +258,11 @@ object Notifications {
     ): Notification {
         return context.notificationBuilder(CHANNEL_ALERT).apply {
             setSmallIcon(R.drawable.ic_alert)
-            setContentTitle(alert.description)
+            setContentTitle(
+                alert.headline?.ifEmpty {
+                    context.getString(R.string.alert)
+                } ?: context.getString(R.string.alert)
+            )
             setGroup(ALERT_GROUP_KEY)
             color = getColor(context, location)
             setGroupSummary(true)

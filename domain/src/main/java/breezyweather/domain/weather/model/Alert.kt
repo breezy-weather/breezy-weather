@@ -34,20 +34,21 @@ class Alert(
     val alertId: String,
     val startDate: Date? = null,
     val endDate: Date? = null,
-    val description: String,
-    val content: String? = null,
+    val headline: String? = null,
+    val description: String? = null,
+    val instruction: String? = null,
     /**
-     * Priority.
-     * The higher the number, the lower it will be in the list.
-     * Number can be negative if necessary.
-     * Example:
-     * 1 => Very high priority
-     * 2 => High
-     * 3 => Medium
-     * 4 => Low
-     * 5 => Very low
+     * Severity
+     * The higher the number, the higher it will be listed.
+     * Please try to use that scale as much as possible:
+     * 4 => Extreme / Very high priority
+     * 3 => Severe / High
+     * 2 => Moderate / Medium
+     * 1 => Minor / Low
+     * 0 => Unknown / Very low
+     * TODO: Create an enum class for this
      */
-    val priority: Int,
+    val severity: Int,
     @ColorInt color: Int? = null
 ) : Serializable {
 

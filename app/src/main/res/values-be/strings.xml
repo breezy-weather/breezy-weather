@@ -297,7 +297,7 @@
     <string name="widget_label_show_widget_card_alpha">Празрыстасць</string>
     <string name="widget_label_hide_subtitle">Схаваць подпісы</string>
     <string name="widget_label_subtitle_data">Змест подпісу</string>
-    <string name="widget_label_black_text">Колер тэксту</string>
+    <string name="widget_label_text_color">Колер тэксту</string>
     <string name="widget_label_text_size">Памер тэксту</string>
     <string name="widget_label_clock_font">Шрыфт гадзін</string>
     <string name="widget_label_hide_lunar">Схаваць месяцовы каляндар</string>

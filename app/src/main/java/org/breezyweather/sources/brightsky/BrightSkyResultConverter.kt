@@ -153,10 +153,10 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
             alertId = alert.id.toString(),
             startDate = alert.onset,
             endDate = alert.expires,
+            headline = if (languageCode == "de") {
+                alert.headlineDe
+            } else alert.headlineEn,
             description = if (languageCode == "de") {
-                alert.headlineDe ?: "Warnung"
-            } else alert.headlineEn ?: "Alert",
-            content = if (languageCode == "de") {
                 if (!alert.instructionDe.isNullOrEmpty()) {
                     alert.descriptionDe + "\n\n" + alert.instructionDe
                 } else alert.descriptionDe
@@ -165,12 +165,12 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
                     alert.descriptionEn + "\n\n" + alert.instructionEn
                 } else alert.descriptionEn
             },
-            priority = when (alert.severity?.lowercase()) {
-                "extreme" -> 1
-                "severe" -> 2
-                "moderate" -> 3
-                "minor" -> 4
-                else -> 5
+            severity = when (alert.severity?.lowercase()) {
+                "extreme" -> 4
+                "severe" -> 3
+                "moderate" -> 2
+                "minor" -> 1
+                else -> 0
             },
             color = when (alert.severity?.lowercase()) {
                 "extreme" -> Color.rgb(241, 48, 255)

@@ -4,7 +4,7 @@
     <string name="settings_source_api_key">API ključ</string>
     <string name="short_yesterday">Jučer</string>
     <string name="widget_refreshing">Osvježavanje</string>
-    <string name="widget_label_black_text">Boja teksta</string>
+    <string name="widget_label_text_color">Boja teksta</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
     <string name="wind_strength_6">Jak vjetar</string>
     <string name="air_quality_so2_info_consequences">Izloženost SO₂ je povezana sa bolničkim liječenjima i posjetima hitnom prijemu zbog astme.</string>

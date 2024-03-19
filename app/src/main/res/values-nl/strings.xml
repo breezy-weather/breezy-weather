@@ -54,7 +54,7 @@
     <string name="widget_label_show_widget_card">Achtergrondkleur</string>
     <string name="widget_label_hide_subtitle">Ondertitel verbergen</string>
     <string name="widget_label_subtitle_data">Ondertiteldata</string>
-    <string name="widget_label_black_text">Kleur tekst</string>
+    <string name="widget_label_text_color">Kleur tekst</string>
     <string name="location_message_added">Locatie toegevoegd</string>
     <string name="location_message_deleted">Locatie verwijderd</string>
     <string name="location_message_list_cannot_be_empty">Locatielijst kan niet leeg zijn</string>

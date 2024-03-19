@@ -49,7 +49,7 @@
     <string name="weather_message_data_refresh_failed">Hava durumu bilgisi yenileme başarısız</string>
     <string name="widget_label_view_style">Görüntüleme şekli</string>
     <string name="widget_label_show_widget_card">Arka plan rengi</string>
-    <string name="widget_label_black_text">Yazı rengi</string>
+    <string name="widget_label_text_color">Yazı rengi</string>
     <string name="location_message_added">Konum eklendi</string>
     <string name="location_message_deleted">Konum kaldırıldı</string>
     <string name="location_message_list_cannot_be_empty">Konum listesi boş olamaz</string>

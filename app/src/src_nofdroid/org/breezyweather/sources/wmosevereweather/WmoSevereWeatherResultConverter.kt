@@ -34,37 +34,31 @@ fun convert(location: Location, alertsResult: List<WmoSevereWeatherAlert>): List
         .filter {
             (it.expires == null || it.expires > Date()) && isAlertForLocation(location, it.coord)
         }.map {
-            WmoSevereWeatherAlertWrapper(
-                alert = Alert(
-                    alertId = (it.identifier ?: it.capURL ?: it.url)!!,
-                    startDate = it.onset ?: it.effective ?: it.sent,
-                    endDate = it.expires,
-                    description = it.event?.replaceFirstChar { firstChar ->
-                        if (firstChar.isLowerCase()) {
-                            firstChar.titlecase(Locale.getDefault())
-                        } else firstChar.toString()
-                    } ?: "",
-                    content = it.description,
-                    priority = it.s ?: 5,
-                    color = when (it.s) {
-                        4 -> Color.rgb(215, 46, 41)
-                        3 -> Color.rgb(254, 153, 0)
-                        2 -> Color.rgb(255, 255, 1)
-                        1 -> Color.rgb(0, 255, 255)
-                        0 -> Color.rgb(51, 102, 255)
-                        else -> null
-                    }
-                ),
-                url = it.url?.let { url ->
-                    WmoSevereWeatherService.WMO_ALERTS_URL_BASE_URL + url
-                } ?: it.capURL?.let { capURL ->
-                    WmoSevereWeatherService.WMO_ALERTS_CAP_URL_BASE_URL + capURL
+            Alert(
+                alertId = (it.identifier ?: it.capURL ?: it.url)!!,
+                startDate = it.onset ?: it.effective ?: it.sent,
+                endDate = it.expires,
+                headline = it.event?.replaceFirstChar { firstChar ->
+                    if (firstChar.isLowerCase()) {
+                        firstChar.titlecase(Locale.getDefault())
+                    } else firstChar.toString()
+                },
+                description = it.description,
+                severity = it.s ?: 0,
+                color = when (it.s) {
+                    4 -> Color.rgb(215, 46, 41)
+                    3 -> Color.rgb(254, 153, 0)
+                    2 -> Color.rgb(255, 255, 1)
+                    1 -> Color.rgb(0, 255, 255)
+                    else -> Color.rgb(51, 102, 255)
                 }
             )
-        }.map {
-            // TODO: Load URLs to allow translation and instructions section.
-            // If fails, fallback to already generated alert
-            it.alert
+            // TODO: Use URL to get more info (description, instruction, translations)
+            /*val url = it.url?.let { url ->
+                WmoSevereWeatherService.WMO_ALERTS_URL_BASE_URL + url
+            } ?: it.capURL?.let { capURL ->
+                WmoSevereWeatherService.WMO_ALERTS_CAP_URL_BASE_URL + capURL
+            }*/
         }
 }
 

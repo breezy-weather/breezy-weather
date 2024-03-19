@@ -46,7 +46,7 @@ import javax.inject.Inject
  * ne_50m_admin_0_countries.shp v5.1.1
  *
  * https://mapshaper.org/ was used to convert to GeoJSON
- * It would be best to make our own converter so that we can exclude features we don’t want and
+ * TODO: It would be best to make our own converter so that we can exclude features we don’t want and
  * make the geojson file more lightweight
  */
 class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {

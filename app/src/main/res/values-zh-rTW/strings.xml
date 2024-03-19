@@ -113,7 +113,7 @@
     <string name="widget_label_show_widget_card_alpha">卡片不透明度</string>
     <string name="widget_label_hide_subtitle">隱藏副標題</string>
     <string name="widget_label_subtitle_data">副標題資料</string>
-    <string name="widget_label_black_text">文字顔色</string>
+    <string name="widget_label_text_color">文字顔色</string>
     <string name="widget_label_text_size">文字尺寸</string>
     <string name="widget_label_clock_font">時鐘字體</string>
     <string name="widget_label_hide_lunar">隱藏陰曆</string>

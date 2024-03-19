@@ -133,9 +133,9 @@ private fun getAlertList(
             alertId = Objects.hash(it.warningTitle, it.validFrom).toString(),
             startDate = it.validFrom,
             endDate = it.validTo,
-            description = it.warningTitle ?: "Varsel",
-            content = it.warningText + "\n\n" + it.additionalText,
-            priority = 5, // TODO
+            headline = it.warningTitle,
+            description = it.warningText + "\n\n" + it.additionalText,
+            severity = 2, // TODO
         )
     }
 }

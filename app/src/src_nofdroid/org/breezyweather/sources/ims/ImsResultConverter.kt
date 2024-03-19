@@ -156,11 +156,11 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
             alertId = warningEntry.value.alertId,
             startDate = warningEntry.value.validFromUnix?.let { Date(it.times(1000L)) },
             // TODO: endDate = warningEntry.value.validTo, // TimeZone-dependant
-            description = warningEntry.value.warningTypeId?.let {
+            headline = warningEntry.value.warningTypeId?.let {
                 data.warningsMetadata?.imsWarningType?.getOrElse(it) { null }?.name
-            } ?: "Alert",
-            content = warningEntry.value.text,
-            priority = warningEntry.value.severityId?.toIntOrNull()?.times(-1) ?: 0, // Priorities are reversed
+            },
+            description = warningEntry.value.text,
+            severity = warningEntry.value.severityId?.toIntOrNull() ?: 0, // Priorities are reversed
             color = warningEntry.value.severityId?.let { severityId ->
                 data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.let {
                     Color.parseColor(it)

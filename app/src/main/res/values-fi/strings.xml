@@ -116,7 +116,7 @@
     <string name="widget_label_show_widget_card">Taustaväri</string>
     <string name="widget_label_hide_subtitle">Piilota alaotsikko</string>
     <string name="widget_label_subtitle_data">Alaotsikon tiedot</string>
-    <string name="widget_label_black_text">Tekstin väri</string>
+    <string name="widget_label_text_color">Tekstin väri</string>
     <string name="widget_label_text_size">Tekstin koko</string>
     <string name="widget_label_clock_font">Kellon fontti</string>
     <string name="widget_label_hide_lunar">Piilota kuukalenteri</string>

@@ -286,7 +286,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Стиль</string>
     <string name="widget_label_show_widget_card">Колір тла</string>
-    <string name="widget_label_black_text">Колір тексту</string>
+    <string name="widget_label_text_color">Колір тексту</string>
     <string name="widget_label_align_end">Вирівняти кінець</string>
     <string name="widget_subtitle_data_time">Час оновлення</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Поточна погода</string>

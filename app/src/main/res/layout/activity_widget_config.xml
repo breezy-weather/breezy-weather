@@ -189,7 +189,7 @@
                         android:id="@+id/activity_widget_config_blackTextTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/widget_label_black_text"
+                        android:text="@string/widget_label_text_color"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 

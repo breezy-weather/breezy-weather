@@ -178,7 +178,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card_alpha">شفافیت</string>
     <string name="widget_label_clock_font">فونت ساعت</string>
-    <string name="widget_label_black_text">رنگ نویسه</string>
+    <string name="widget_label_text_color">رنگ نویسه</string>
     <string name="widget_label_text_size">اندازه متن</string>
     <string name="temperature_normals">دمای معمول</string>
     <string name="air_quality_co">CO</string>

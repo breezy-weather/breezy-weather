@@ -118,7 +118,7 @@
     <string name="widget_label_show_widget_card_alpha">Transparência</string>
     <string name="widget_label_hide_subtitle">Ocultar subtítulo</string>
     <string name="widget_label_subtitle_data">Dados do subtítulo</string>
-    <string name="widget_label_black_text">Cor do texto</string>
+    <string name="widget_label_text_color">Cor do texto</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
     <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>

@@ -35,9 +35,13 @@ import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationSearchException
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -46,6 +50,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
@@ -56,9 +61,10 @@ import java.text.Collator
 import javax.inject.Inject
 
 class OpenMeteoService @Inject constructor(
-    client: Retrofit.Builder
+    @ApplicationContext context: Context,
+    val client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, LocationSearchSource,
-    PreferencesParametersSource {
+    ConfigurableSource, PreferencesParametersSource {
 
     override val id = "openmeteo"
     override val name = "Open-Meteo"
@@ -68,24 +74,27 @@ class OpenMeteoService @Inject constructor(
     override val weatherAttribution = "Open-Meteo (CC BY 4.0)"
     override val locationSearchAttribution = "Open-Meteo (CC BY 4.0) / GeoNames"
 
-    private val mWeatherApi by lazy {
-        client
-            .baseUrl(OPEN_METEO_WEATHER_BASE_URL)
-            .build()
-            .create(OpenMeteoWeatherApi::class.java)
-    }
-    private val mGeocodingApi by lazy {
-        client
-            .baseUrl(OPEN_METEO_GEOCODING_BASE_URL)
-            .build()
-            .create(OpenMeteoGeocodingApi::class.java)
-    }
-    private val mAirQualityApi by lazy {
-        client
-            .baseUrl(OPEN_METEO_AIR_QUALITY_BASE_URL)
-            .build()
-            .create(OpenMeteoAirQualityApi::class.java)
-    }
+    private val mForecastApi: OpenMeteoForecastApi
+        get() {
+            return client
+                .baseUrl(forecastInstance)
+                .build()
+                .create(OpenMeteoForecastApi::class.java)
+        }
+    private val mGeocodingApi: OpenMeteoGeocodingApi
+        get() {
+            return client
+                .baseUrl(geocodingInstance)
+                .build()
+                .create(OpenMeteoGeocodingApi::class.java)
+        }
+    private val mAirQualityApi: OpenMeteoAirQualityApi
+        get() {
+            return client
+                .baseUrl(airQualityInstance)
+                .build()
+                .create(OpenMeteoAirQualityApi::class.java)
+        }
 
     val airQualityHourly = arrayOf(
         "pm10",
@@ -161,7 +170,7 @@ class OpenMeteoService @Inject constructor(
             "cloudcover",
             "visibility"
         )
-        val weather = mWeatherApi.getWeather(
+        val weather = mForecastApi.getWeather(
             location.latitude,
             location.longitude,
             getWeatherModels(location).joinToString(",") { it.id },
@@ -240,7 +249,7 @@ class OpenMeteoService @Inject constructor(
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
         val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
-            mWeatherApi.getWeather(
+            mForecastApi.getWeather(
                 location.latitude,
                 location.longitude,
                 getWeatherModels(location).joinToString(",") { it.id },
@@ -319,6 +328,74 @@ class OpenMeteoService @Inject constructor(
                 convert(it)
             }
         }
+    }
+
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    override val isConfigured = true
+    override val isRestricted = false
+    private var forecastInstance: String
+        set(value) {
+            config.edit().putString("forecast_instance", value).apply()
+        }
+        get() = config.getString("forecast_instance", null) ?: OPEN_METEO_FORECAST_BASE_URL
+    private var airQualityInstance: String
+        set(value) {
+            config.edit().putString("air_quality_instance", value).apply()
+        }
+        get() = config.getString("air_quality_instance", null) ?: OPEN_METEO_AIR_QUALITY_BASE_URL
+    private var geocodingInstance: String
+        set(value) {
+            config.edit().putString("geocoding_instance", value).apply()
+        }
+        get() = config.getString("geocoding_instance", null) ?: OPEN_METEO_GEOCODING_BASE_URL
+
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            // TODO: Add error popup in case the value isn't valid
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_open_meteo_instance_forecast,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        OPEN_METEO_FORECAST_BASE_URL
+                    }
+                },
+                content = forecastInstance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        forecastInstance = it
+                    }
+                }
+            ),
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_open_meteo_instance_air_quality,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        OPEN_METEO_AIR_QUALITY_BASE_URL
+                    }
+                },
+                content = airQualityInstance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        airQualityInstance = it
+                    }
+                }
+            ),
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_open_meteo_instance_geocoding,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        OPEN_METEO_GEOCODING_BASE_URL
+                    }
+                },
+                content = geocodingInstance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        geocodingInstance = it
+                    }
+                }
+            )
+        )
     }
 
     // Per-location preferences
@@ -500,6 +577,6 @@ class OpenMeteoService @Inject constructor(
         private const val OPEN_METEO_AIR_QUALITY_BASE_URL =
             "https://air-quality-api.open-meteo.com/"
         private const val OPEN_METEO_GEOCODING_BASE_URL = "https://geocoding-api.open-meteo.com/"
-        private const val OPEN_METEO_WEATHER_BASE_URL = "https://api.open-meteo.com/"
+        private const val OPEN_METEO_FORECAST_BASE_URL = "https://api.open-meteo.com/"
     }
 }

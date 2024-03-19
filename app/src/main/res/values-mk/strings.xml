@@ -167,7 +167,7 @@
     <string name="widget_label_show_widget_card">Боја на позадина</string>
     <string name="widget_label_hide_subtitle">Сокриј го титлот</string>
     <string name="widget_label_subtitle_data">Податоци за титлови</string>
-    <string name="widget_label_black_text">Боја на текстот</string>
+    <string name="widget_label_text_color">Боја на текстот</string>
     <string name="widget_label_text_size">Големина на текстот</string>
     <string name="widget_label_clock_font">Фонт на часовникот</string>
     <string name="widget_label_hide_lunar">Сокриј го лунарниот календар</string>

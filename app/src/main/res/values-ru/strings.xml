@@ -101,7 +101,7 @@
     <string name="widget_label_show_widget_card_alpha">Прозрачность</string>
     <string name="widget_label_hide_subtitle">Скрыть подписи</string>
     <string name="widget_label_subtitle_data">Содержание подписи</string>
-    <string name="widget_label_black_text">Цвет текста</string>
+    <string name="widget_label_text_color">Цвет текста</string>
     <string name="widget_label_text_size">Размер текста</string>
     <string name="widget_label_clock_font">Шрифт чаcов</string>
     <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>

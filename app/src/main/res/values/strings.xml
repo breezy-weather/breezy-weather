@@ -16,6 +16,7 @@
     <string name="ephemeris">Sun &amp; moon</string>
     <string name="details">Details</string>
     <!-- Alerts -->
+    <string name="alert">Alert</string>
     <string name="alerts">Alerts</string>
     <!-- Ex: 4 weather alerts -->
     <string name="alerts_to_follow">Upcoming alerts, tap here to see them.</string>
@@ -372,9 +373,9 @@
     <string name="widget_clock_day_vertical">Clock + Daily (Vertical style)</string>
     <string name="widget_clock_day_week">Clock + Daily + Weekly</string>
     <string name="widget_text">Text</string>
-    <string name="widget_trend_daily">Daily Trend</string>
-    <string name="widget_trend_hourly">Hourly Trend</string>
-    <string name="widget_multi_city">Multi City</string>
+    <string name="widget_trend_daily">Daily trend</string>
+    <string name="widget_trend_hourly">Hourly trend</string>
+    <string name="widget_multi_city">Multi city</string>
     <string name="widget_material_you_forecast">Material You - Forecast</string>
     <string name="widget_material_you_current">Material You - Current</string>
     <string name="widget_refreshing">Refreshing</string>
@@ -385,7 +386,7 @@
     <string name="widget_label_hide_subtitle">Hide subtitle</string>
     <string name="widget_label_hide_header">Hide header</string>
     <string name="widget_label_subtitle_data">Subtitle data</string>
-    <string name="widget_label_black_text">Text color</string>
+    <string name="widget_label_text_color">Text color</string>
     <string name="widget_label_text_size">Text size</string>
     <string name="widget_label_clock_font">Clock font</string>
     <string name="widget_label_hide_lunar">Hide lunar calendar</string>
@@ -517,14 +518,22 @@
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources used for this location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>
     <string name="settings_source_api_key">API key</string>
-    <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_accu_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_here_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_location_source_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_accu_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_here_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_source_instance">Instance</string>
+    <string name="settings_source_instance_geocoding">Geocoding instance</string>
+    <string name="settings_weather_source_bright_sky_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_recosante_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_recosante_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Forecast instance</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Air quality instance</string>
+    <string name="settings_weather_source_open_meteo_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
     <string name="settings_weather_source_open_meteo_weather_models">Weather models</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Best match</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combines the best weather models for this location</string>

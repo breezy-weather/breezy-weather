@@ -107,7 +107,7 @@
     <string name="widget_label_show_widget_card">배경색</string>
     <string name="widget_label_hide_subtitle">부제 숨기기</string>
     <string name="widget_label_subtitle_data">부제 데이터</string>
-    <string name="widget_label_black_text">글씨 색</string>
+    <string name="widget_label_text_color">글씨 색</string>
     <string name="widget_label_text_size">글씨 크기</string>
     <string name="widget_label_clock_font">시계 글꼴</string>
     <string name="widget_custom_subtitle_explanation">무엇이든 입력할 수 있지만, 텍스트 길이에 주의해야 합니다. 키워드를 $ 기호로 둘러싸면 날씨 데이터를 가져올 수 있습니다.

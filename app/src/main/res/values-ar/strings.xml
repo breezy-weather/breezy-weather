@@ -107,7 +107,7 @@
     <string name="widget_label_show_widget_card_alpha">التعتيم</string>
     <string name="widget_label_hide_subtitle">‬إخفاء العنوان الفرعي</string>
     <string name="widget_label_subtitle_data">بيانات العنوان الفرعي</string>
-    <string name="widget_label_black_text">لون الخط</string>
+    <string name="widget_label_text_color">لون الخط</string>
     <string name="widget_label_text_size">حجم الخط</string>
     <string name="widget_label_clock_font">خط الساعة</string>
     <string name="widget_live_wallpaper_weather_kind">الطقس</string>

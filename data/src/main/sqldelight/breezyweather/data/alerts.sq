@@ -4,9 +4,10 @@ CREATE TABLE alerts(
     alert_id TEXT NOT NULL,
     start_date INTEGER,
     end_date INTEGER,
-    description TEXT NOT NULL,
-    content TEXT,
-    priority INTEGER NOT NULL,
+    headline TEXT,
+    description TEXT,
+    instruction TEXT,
+    severity INTEGER NOT NULL,
     color INTEGER NOT NULL,
 
     FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
@@ -16,21 +17,21 @@ CREATE TABLE alerts(
 CREATE INDEX alerts_location_formatted_id_index ON alerts(location_formatted_id);
 
 getAlertListByLocationId:
-SELECT alert_id, start_date, end_date, description, content, priority, color
+SELECT alert_id, start_date, end_date, headline, description, instruction, severity, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
-ORDER BY priority, start_date;
+ORDER BY severity DESC, start_date ASC;
 
 getCurrentAlertsByLocationId:
-SELECT alert_id, start_date, end_date, description, content, priority, color
+SELECT alert_id, start_date, end_date, headline, description, instruction, severity, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
 AND (end_date IS NULL OR end_date > :now)
-ORDER BY priority, start_date;
+ORDER BY severity DESC, start_date ASC;
 
 insert:
-INSERT INTO alerts(location_formatted_id, alert_id, start_date, end_date, description, content, priority, color)
-VALUES (:locationFormattedId, :alertId, :startDate, :endDate, :description, :content, :priority, :color);
+INSERT INTO alerts(location_formatted_id, alert_id, start_date, end_date, headline, description, instruction, severity, color)
+VALUES (:locationFormattedId, :alertId, :startDate, :endDate, :headline, :description, :instruction, :severity, :color);
 
 deleteAlertListForLocationId:
 DELETE FROM alerts

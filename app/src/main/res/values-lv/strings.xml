@@ -133,7 +133,7 @@
     <string name="widget_label_show_widget_card">Fona krāsa</string>
     <string name="widget_label_hide_subtitle">Paslēpt subtitrus</string>
     <string name="widget_label_subtitle_data">Subtitru dati</string>
-    <string name="widget_label_black_text">Teksta krāsa</string>
+    <string name="widget_label_text_color">Teksta krāsa</string>
     <string name="widget_label_text_size">Teksta lielums</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Stundu apraksts</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Jaunā rinda</string>

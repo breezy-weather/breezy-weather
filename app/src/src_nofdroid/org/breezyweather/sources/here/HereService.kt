@@ -190,7 +190,7 @@ class HereService @Inject constructor(
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             EditTextPreference(
-                titleId = R.string.settings_weather_provider_here_api_key,
+                titleId = R.string.settings_weather_source_here_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
                         c.getString(R.string.settings_source_default_value)

@@ -412,18 +412,20 @@ object WeatherMapper {
         alertId: String,
         startDate: Long?,
         endDate: Long?,
-        description: String,
-        content: String?,
-        priority: Long,
+        headline: String?,
+        description: String?,
+        instruction: String?,
+        severity: Long,
         color: Long
     ): Alert = Alert(
-        alertId,
-        startDate?.let { Date(it) },
-        endDate?.let { Date(it) },
-        description,
-        content,
-        priority.toInt(),
-        color.toInt()
+        alertId = alertId,
+        startDate = startDate?.let { Date(it) },
+        endDate = endDate?.let { Date(it) },
+        headline = headline,
+        description = description,
+        instruction = instruction,
+        severity = severity.toInt(),
+        color = color.toInt()
     )
 
     fun mapMinutely(

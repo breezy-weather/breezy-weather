@@ -218,7 +218,7 @@
     <string name="widget_label_show_widget_card_alpha">Độ mờ</string>
     <string name="widget_label_hide_subtitle">Ẩn phụ đề</string>
     <string name="widget_label_subtitle_data">Dữ liệu phụ đề</string>
-    <string name="widget_label_black_text">Màu chữ</string>
+    <string name="widget_label_text_color">Màu chữ</string>
     <string name="widget_text">Chữ</string>
     <string name="widget_label_text_size">Cỡ chữ</string>
     <string name="widget_label_clock_font">Phông đồng hồ</string>

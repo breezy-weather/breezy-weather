@@ -26,7 +26,7 @@
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „%s“ löschen</string>
-    <string name="widget_label_black_text">Schriftfarbe</string>
+    <string name="widget_label_text_color">Schriftfarbe</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigungen prüfen</string>
     <string name="pollen_tap_to_see_more">Mehr…</string>
     <string name="widget_label_clock_font">Font der Uhr</string>

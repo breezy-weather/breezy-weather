@@ -517,7 +517,7 @@ class AccuService @Inject constructor(
                 },
             ),
             EditTextPreference(
-                titleId = R.string.settings_weather_provider_accu_api_key,
+                titleId = R.string.settings_weather_source_accu_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
                         c.getString(R.string.settings_source_default_value)

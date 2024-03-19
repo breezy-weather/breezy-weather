@@ -22,14 +22,20 @@ import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
+import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
@@ -40,8 +46,9 @@ import java.util.Locale
 import javax.inject.Inject
 
 class BrightSkyService @Inject constructor(
-    client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
+    @ApplicationContext context: Context,
+    val client: Retrofit.Builder
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "brightsky"
     override val name = "Bright Sky (DWD)"
@@ -51,12 +58,13 @@ class BrightSkyService @Inject constructor(
     // Mandatory mentions from DWD terms:
     override val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
 
-    private val mApi by lazy {
-        client
-            .baseUrl(BRIGHT_SKY_BASE_URL)
-            .build()
-            .create(BrightSkyApi::class.java)
-    }
+    private val mApi: BrightSkyApi
+        get() {
+            return client
+                .baseUrl(instance)
+                .build()
+                .create(BrightSkyApi::class.java)
+        }
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
@@ -149,6 +157,34 @@ class BrightSkyService @Inject constructor(
             val languageCode = SettingsManager.getInstance(context).language.code
             convertSecondary(it, languageCode)
         }
+    }
+
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    override val isConfigured = true
+    override val isRestricted = false
+    private var instance: String
+        set(value) {
+            config.edit().putString("instance", value).apply()
+        }
+        get() = config.getString("instance", null) ?: BRIGHT_SKY_BASE_URL
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_bright_sky_instance,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        BRIGHT_SKY_BASE_URL
+                    }
+                },
+                content = instance,
+                onValueChanged = {
+                    if (it.startsWith("https://") && it.endsWith("/")) {
+                        instance = it
+                    }
+                }
+            )
+        )
     }
 
     companion object {

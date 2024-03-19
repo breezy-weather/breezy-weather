@@ -49,7 +49,7 @@
     <string name="weather_message_data_refresh_failed">Освежавање података о времену није успело</string>
     <string name="widget_label_view_style">Стил приказа</string>
     <string name="widget_label_show_widget_card">Боја позадине</string>
-    <string name="widget_label_black_text">Боја текста</string>
+    <string name="widget_label_text_color">Боја текста</string>
     <string name="location_message_added">Локација је додата</string>
     <string name="location_message_deleted">Локација је избрисана</string>
     <string name="location_message_list_cannot_be_empty">Листа локација не може бити празна</string>

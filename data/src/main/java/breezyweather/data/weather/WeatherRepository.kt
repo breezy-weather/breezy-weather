@@ -349,9 +349,10 @@ class WeatherRepository(
                     alertId = alert.alertId,
                     startDate = alert.startDate?.time,
                     endDate = alert.endDate?.time,
+                    headline = alert.headline,
                     description = alert.description,
-                    content = alert.content,
-                    priority = alert.priority.toLong(),
+                    instruction = alert.instruction,
+                    severity = alert.severity.toLong(),
                     color = alert.color.toLong()
                 )
             }

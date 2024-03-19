@@ -110,7 +110,7 @@
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
     <string name="widget_label_hide_subtitle">Felirat elrejtése</string>
     <string name="widget_label_subtitle_data">Feliratadatok</string>
-    <string name="widget_label_black_text">Szövegszín</string>
+    <string name="widget_label_text_color">Szövegszín</string>
     <string name="widget_label_text_size">Szövegméret</string>
     <string name="widget_label_clock_font">Óra betűtípusa</string>
     <string name="widget_label_hide_lunar">Holdnaptár elrejtése</string>

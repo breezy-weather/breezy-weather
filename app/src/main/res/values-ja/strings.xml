@@ -111,7 +111,7 @@
     <string name="widget_label_show_widget_card_alpha">不透明度</string>
     <string name="widget_label_hide_subtitle">サブタイトルを隠す</string>
     <string name="widget_label_subtitle_data">サブタイトルデータ</string>
-    <string name="widget_label_black_text">文字の色</string>
+    <string name="widget_label_text_color">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時計のスタイル</string>
     <string name="widget_custom_subtitle_explanation">何でも入力できますが、テキストの長さを注意してください。天気データを引用したいなら、$を使って対応キーワードを参照してください。

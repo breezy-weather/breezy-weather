@@ -131,14 +131,14 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
                 alertId = alert.id,
                 startDate = alert.onset,
                 endDate = alert.expiry,
-                description = alert.headline ?: "Alert",
-                content = alert.description,
-                priority = when (alert.severity?.lowercase()) {
-                    "extreme" -> 1
-                    "severe" -> 2
-                    "moderate" -> 3
-                    "minor" -> 4
-                    else -> 5
+                headline = alert.headline,
+                description = alert.description,
+                severity = when (alert.severity?.lowercase()) {
+                    "extreme" -> 4
+                    "severe" -> 3
+                    "moderate" -> 2
+                    "minor" -> 1
+                    else -> 0
                 },
                 color = when (alert.level?.lowercase()) {
                     "red" -> Color.rgb(224, 0, 0)

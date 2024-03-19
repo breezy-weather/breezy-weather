@@ -224,9 +224,9 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
                 alertId = Objects.hash(result.event, result.start).toString(),
                 startDate = Date(result.start.times(1000)),
                 endDate = Date(result.end.times(1000)),
-                description = result.event ?: "",
-                content = result.description,
-                priority = 1 // Does not exist
+                headline = result.event,
+                description = result.description,
+                severity = 2 // Does not exist
             )
         }
     } else {

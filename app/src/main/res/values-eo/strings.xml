@@ -15,6 +15,7 @@
     <string name="ephemeris">Suno &amp; luno</string>
     <string name="details">Detaloj</string>
     <!-- Alerts -->
+    <string name="alert">Atentigo</string>
     <string name="alerts">Atentigoj</string>
     <!-- $ = alert count. -->
     <string name="alerts_to_follow">Venontaj atentigoj, tuŝeti ĉi tie por vidi ilin.</string>
@@ -222,7 +223,9 @@
     <string name="location_results_by">Rezultoj de lokaĵoj de %s</string>
     <!-- $ = location source -->
     <string name="location_message_added">Loko aldonita</string>
+    <string name="location_message_updated">Loko aktualiga</string>
     <string name="location_message_deleted">Loko forigita</string>
+    <string name="location_delete_location_dialog_title">Forigi la lokon?</string>
     <string name="location_search_placeholder">Serĉi lokon…</string>
     <!-- Actions -->
     <string name="action_location_list">Listo de lokoj</string>
@@ -249,10 +252,29 @@
     <string name="action_help">Helpo</string>
     <string name="action_learn_more">Ekscii pli</string>
     <string name="action_continue">Daŭrigi</string>
+    <string name="action_confirm">Konfirmi</string>
     <string name="action_close">Fermi</string>
     <string name="action_share">Komuni</string>
     <string name="action_show_errors">Tuŝeti por vidi detaloj</string>
+    <!-- Widgets -->
+    <string name="widget_day">Ĉiutage</string>
+    <string name="widget_week">Ĉiusemajne</string>
+    <string name="widget_day_week">Ĉiutage + Ĉiusemajne</string>
+    <string name="widget_clock_day_week">Horloĝo + Ĉiutage + Ĉiusemajne</string>
+    <string name="widget_text">Teksto</string>
+    <string name="widget_trend_daily">Ĉiutaga tendenco</string>
+    <string name="widget_trend_hourly">Ĉiuhora tendenco</string>
+    <string name="widget_material_you_forecast">Material You - Prognozo</string>
+    <string name="widget_material_you_current">Material You - Nune</string>
+    <string name="widget_refreshing">Refreŝigante</string>
     <string name="widget_ellipsis">…</string>
+    <string name="widget_label_show_widget_card">Fonkoloro</string>
+    <string name="widget_label_show_widget_card_alpha">Opakeco</string>
+    <string name="widget_label_hide_subtitle">Kaŝi subtekston</string>
+    <string name="widget_label_hide_header">Kaŝi kapon</string>
+    <string name="widget_label_text_color">Tekstokoloro</string>
+    <string name="widget_label_text_size">Tekstogrando</string>
+    <string name="widget_label_clock_font">Horloĝa tiparo</string>
     <string name="widget_subtitle_data_aqi">Aerkvalito</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sentotemperaturo</string>
@@ -309,6 +331,11 @@
     <string name="settings_weather_source_main">Ĉefa fonto</string>
     <string name="settings_source_default_value">Defaŭlte (neŝanĝita)</string>
     <string name="settings_source_api_key">API ŝlosilo</string>
+    <string name="settings_source_instance">Servilo</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Prognoza servilo</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Aerkvalita servilo</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Veteraj modeloj</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Plej bona kongruo</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall versio</string>
     <string name="settings_appearance">Aspketo</string>
     <string name="settings_appearance_summary">Lingvo, malhela reĝimo, pakoj de bildsimboloj, unuoj</string>

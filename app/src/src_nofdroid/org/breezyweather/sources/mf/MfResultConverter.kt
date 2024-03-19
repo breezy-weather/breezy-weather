@@ -324,9 +324,9 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         alertId = Objects.hash(title, color, warningsResult.updateTime).toString(),
                         startDate = warningsResult.updateTime,
                         endDate = warningsResult.endValidityTime,
-                        description = title,
-                        content = getWarningContent(null, warningsResult),
-                        priority = -5, // Let’s put it on top
+                        headline = title,
+                        description = getWarningContent(null, warningsResult),
+                        severity = 5, // Let’s put it on top
                         color = color
                     )
                 )
@@ -343,17 +343,17 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time).toString(),
                         startDate = timelapsItem.beginTime,
                         endDate = timelapsItem.endTime,
-                        description = getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
-                        content = if (timelapsItem.colorId >= 3) getWarningContent(
+                        headline = getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
+                        description = if (timelapsItem.colorId >= 3) getWarningContent(
                             timelaps.phenomenonId, warningsResult
                         ) else null,
-                        priority = timelapsItem.colorId.times(-1), // Reverse, as lower is better
+                        severity = timelapsItem.colorId, // Reverse, as lower is better
                         color = getWarningColor(timelapsItem.colorId)
                     )
                 )
             }
     }
-    return alertList.sortedWith(compareBy({ it.priority }, { it.startDate }))
+    return alertList
 }
 
 fun getNormals(timeZone: TimeZone, normalsResult: MfNormalsResult): Normals? {

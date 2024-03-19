@@ -118,7 +118,7 @@
     <string name="widget_label_show_widget_card_alpha">Neprůhlednost</string>
     <string name="widget_label_hide_subtitle">Skrýt popis</string>
     <string name="widget_label_subtitle_data">Data popisu</string>
-    <string name="widget_label_black_text">Barva písma</string>
+    <string name="widget_label_text_color">Barva písma</string>
     <string name="widget_label_text_size">Velikost písma</string>
     <string name="widget_label_clock_font">Písmo hodin</string>
     <string name="widget_label_hide_lunar">Skrýt lunární kalendář</string>

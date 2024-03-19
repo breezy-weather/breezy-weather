@@ -110,7 +110,7 @@
     <string name="widget_label_show_widget_card_alpha">Przezroczystość</string>
     <string name="widget_label_hide_subtitle">Ukryj tekst dodatkowy</string>
     <string name="widget_label_subtitle_data">Tekst dodatkowy</string>
-    <string name="widget_label_black_text">Kolor czcionki</string>
+    <string name="widget_label_text_color">Kolor czcionki</string>
     <string name="widget_label_text_size">Wielkość czcionki</string>
     <string name="widget_label_clock_font">Czcionka zegara</string>
     <string name="widget_custom_subtitle_explanation">Możesz wpisać wszystko, ale zwróć uwagę na długość tekstu. Jeśli chcesz odwołać się do danych pogodowych, proszę użyj $ aby odwołać się do odpowiedniego słowa kluczowego.

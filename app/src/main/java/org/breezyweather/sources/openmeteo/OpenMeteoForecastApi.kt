@@ -24,7 +24,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 /**
  * Open-Meteo API
  */
-interface OpenMeteoWeatherApi {
+interface OpenMeteoForecastApi {
     @GET("v1/forecast?timezone=auto&timeformat=unixtime")
     fun getWeather(
         @Query("latitude") latitude: Double,
