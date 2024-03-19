@@ -675,7 +675,9 @@
     <string name="settings_weather_source_open_meteo_weather_models">Időjárás modellek</string>
     <string name="settings_per_location_summary">További beállítások ehhez a helyszínhez</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinálja a legjobb időjárási modelleket ehhez a helyszínhez</string>
-    <string name="settings_source_instance">Példány</string>
+    <string name="settings_source_instance">Forrás</string>
     <string name="alert">Riasztás</string>
-    <string name="settings_source_instance_geocoding">Geokódolási példány</string>
+    <string name="settings_source_instance_geocoding">Geokódolás forrása</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzés forrása</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettség forrása</string>
 </resources>
