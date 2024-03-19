@@ -498,8 +498,8 @@
     <string name="common_weather_text_rain_showers_light">Hafif yağmurlar</string>
     <string name="common_weather_text_rain_showers">Sağanak yağmurlar</string>
     <string name="unit_kpa">kPa</string>
-    <string name="widget_trend_daily">Günlük Akım</string>
-    <string name="widget_trend_hourly">Saatlik Akım</string>
+    <string name="widget_trend_daily">Günlük akım</string>
+    <string name="widget_trend_hourly">Saatlik akım</string>
     <string name="widget_material_you_forecast">Material You - Tahminler</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Yeni Satır</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Günlük Açıklama</string>
@@ -676,4 +676,8 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Bu konum için en iyi hava durumu modellerini birleştirir</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Bu sağlayıcıdan tüm hava durumu modellerini sorunsuz bir tahmine dönüştürür</string>
     <string name="alert">Uyarı</string>
+    <string name="settings_source_instance">Sunucu</string>
+    <string name="settings_source_instance_geocoding">Coğrafi kodlama sunucusu</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Hava tahmini sunucusu</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Hava kalitesi sunucusu</string>
 </resources>
