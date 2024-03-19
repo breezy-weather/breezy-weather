@@ -229,8 +229,8 @@
     <string name="widget_clock_day_week">Jam + Harian + Mingguan</string>
     <string name="widget_text">Teks</string>
     <string name="widget_trend_daily">Tren harian</string>
-    <string name="widget_trend_hourly">Tren per-jam</string>
-    <string name="widget_multi_city">Multi Kota</string>
+    <string name="widget_trend_hourly">Tren per jam</string>
+    <string name="widget_multi_city">Multi-kota</string>
     <string name="widget_material_you_forecast">Material You - Ramalan</string>
     <string name="widget_material_you_current">Material You - Saat ini</string>
     <string name="widget_refreshing">menunggu</string>
@@ -692,4 +692,9 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Menggabungkan model cuaca terbaik untuk lokasi ini</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Mulus</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Menggabungkan semua model cuaca dari penyedia ini menjadi prediksi yang mulus</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Server prakiraan</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Server kualitas udara</string>
+    <string name="alert">Peringatan</string>
+    <string name="settings_source_instance">Server</string>
+    <string name="settings_source_instance_geocoding">Server geokode</string>
 </resources>
