@@ -675,4 +675,5 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sorunsuz</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Bu konum için en iyi hava durumu modellerini birleştirir</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Bu sağlayıcıdan tüm hava durumu modellerini sorunsuz bir tahmine dönüştürür</string>
+    <string name="alert">Uyarı</string>
 </resources>
