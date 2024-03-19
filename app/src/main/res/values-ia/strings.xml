@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="short_tomorrow">Dmn</string>
+    <string name="of_clock">:00</string>
+    <string name="temperature">Temperatura</string>
+    <string name="nighttime">Nocte</string>
+    <string name="visibility_short">Visibilitate</string>
+    <string name="widget_week_style_5_days">5 dies</string>
+    <string name="settings_section_general">General</string>
+    <string name="settings_background_updates_refresh_1h">1 hora</string>
+    <string name="settings_background_updates_refresh_1h_30min">1.5 horas</string>
+    <string name="settings_background_updates_refresh_3h">3 horas</string>
+    <string name="settings_background_updates_refresh_6h">6 horas</string>
+    <string name="settings_background_updates_refresh_12h">12 horas</string>
+    <string name="settings_background_updates_refresh_24h">24 horas</string>
+    <string name="app_name">Tempore</string>
+    <string name="details">Detalios</string>
+    <string name="short_yesterday">Heri</string>
+    <string name="short_today">Hodie</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
+    <string name="precipitation_total">Total</string>
+    <string name="pollen_tap_to_see_more">Tocca pro vider plus…</string>
+    <string name="daytime">Die</string>
+    <string name="visibility">Visibilitate</string>
+    <string name="widget_style_temperature">Temperatura</string>
+    <string name="widget_week_style_3_days">3 dies</string>
+    <string name="widget_live_wallpaper_day_night_type">Hora</string>
+    <string name="settings_background_updates">Actualisationes de secunde plano</string>
+    <string name="settings_background_updates_refresh_never">Nunquam</string>
+    <string name="settings_background_updates_refresh_2h">2 horas</string>
+</resources>
