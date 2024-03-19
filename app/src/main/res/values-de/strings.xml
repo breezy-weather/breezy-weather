@@ -671,4 +671,9 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Beste Kombination</string>
     <string name="settings_weather_source_open_meteo_weather_models">Wettermodelle</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombiniert alle Wettermodelle von diesem Anbieter zu einer nahtlosen Vorhersage</string>
+    <string name="alert">Warnung</string>
+    <string name="settings_source_instance">Instanz</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Luftqualitätsinstanz</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Vorhersageninstanz</string>
+    <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
 </resources>
