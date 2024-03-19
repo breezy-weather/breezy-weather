@@ -247,7 +247,7 @@
     <string name="weather_kind_wind">風</string>
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
-    <string name="settings_background_updates_battery_optimization_summary">通知を受信できない･ウィジェットが更新されない場合、まずこちらをお試してください。</string>
+    <string name="settings_background_updates_battery_optimization_summary">通知を受信できない･ウィジェットが更新されない場合に試すことをおすすめします。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>
     <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10日</string>
@@ -286,12 +286,13 @@
     <string name="air_quality_level_5">大きな健康被害あり</string>
     <string name="air_quality_level_2_description">大気の質はほとんどの人にとって一般的な許容範囲にあります。ただし、長期間さらされると敏感な人々に軽度から中程度の症状が発生する場合があります。</string>
     <string name="air_quality_level_3">悪い</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池残量が少ない場合無効にする</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池残量が少ない場合に一時停止する</string>
     <string name="settings_main_header_details_title">ヘッダーに表示する情報</string>
     <string name="settings_main_section_displayed_data">表示するデータ</string>
-    <string name="settings_background_updates_summary">更新間隔･自動更新の問題対処</string>
+    <string name="settings_background_updates_summary">更新間隔･自動更新の問題の対処</string>
     <string name="settings_background_updates">バックグラウンドでの自動更新</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。Don’t kill my app! HPでその対処方法が掲載されています。</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。
+\nDon’t kill my app! にはその対処方法が掲載されています。</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_main">メイン画面</string>
     <string name="settings_main_hourly_trends_title">毎時予報</string>
@@ -310,12 +311,12 @@
     <string name="about_matrix">Matrixルーム</string>
     <string name="settings_appearance_summary">言語･ダークモード･アイコンパック･単位</string>
     <string name="settings_main_background_animation_enabled">有効</string>
-    <string name="settings_background_updates_section_troubleshoot">トラブル対処</string>
+    <string name="settings_background_updates_section_troubleshoot">問題の対処</string>
     <string name="about_source_code">ソースコード</string>
     <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
     <string name="settings_main_daily_trends_title">日時予報</string>
     <string name="about_contributors">貢献者</string>
-    <string name="settings_background_updates_dont_kill_my_app_title">メーカーごとの特別説明</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">端末のメーカーごとの特別な説明</string>
     <string name="minutely_precipitations">毎分降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定する</string>
@@ -486,7 +487,7 @@
     <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、Breezy Weather の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">情報源は要求された機能の一つをサポートしていません</string>
     <string name="unit_mmph_voice">ﾐﾘﾒｰﾄﾙ毎時</string>
-    <string name="settings_location_access_background_summaryOn">有効されました。アプリはバックグラウンドで現在地の気象データを更新できます。</string>
+    <string name="settings_location_access_background_summaryOn">有効です。バックグラウンドで現在地の気象データを更新できます。</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天気アイコン</string>
     <string name="temperature_normal_short">普通</string>
     <string name="temperature_normals">温度標準値</string>
@@ -508,7 +509,7 @@
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
     <string name="location_message_search_failed">位置検索に失敗しました</string>
-    <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
+    <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効です。</string>
     <string name="settings_debug_dump_crash_logs_summary">開発者と共有するためにエラー ログをファイルに保存します</string>
     <string name="settings_items_drag_to_sort">並べ替えるリスト項目をタップしてドラッグします</string>
     <string name="unit_mph_voice">ﾏｲﾙ毎時</string>
@@ -581,7 +582,7 @@
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
     <string name="settings_notifications_summary">気象警報･降水量･予報</string>
     <string name="settings_notifications_precipitations_title">降水量の通知</string>
-    <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェットの設定</string>
+    <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
     <string name="settings_widgets_gadgets_title">小道具</string>
     <string name="notification_precipitation_continuing_desc">少なくとも %s まで継続すると予想されます</string>
     <string name="common_weather_text_mainly_clear">ほぼ晴れ</string>
@@ -606,9 +607,9 @@
     <string name="widget_material_you_forecast">Material You - 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">デバイス設定を開けませんでした。</string>
-    <string name="settings_location_summary">位置情報サービスの設定</string>
+    <string name="settings_location_summary">位置情報サービス</string>
     <string name="settings_location_access_switch_title">位置情報へのアクセス</string>
-    <string name="settings_location_access_background_summaryOff">現在地をバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
+    <string name="settings_location_access_background_summaryOff">現在地の気象データをバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
     <string name="settings_debug">デバッグ</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">気象庁風力階級</string>
@@ -655,7 +656,7 @@
     <string name="action_confirm">確認</string>
     <string name="widget_label_hide_header">ヘッダーを隠す</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">現在の空気質指数</string>
-    <string name="weather_message_too_frequent_refreshes">少々待ってからリトライしてください…</string>
+    <string name="weather_message_too_frequent_refreshes">更新は時間を空けて行ってください。</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
     <string name="settings_weather_source_fdroid_disclaimer">F-DroidデフォルトリポジトリバージョンのBreezy Weatherを使用しています。このバージョンでは、公開されている自己ホスト可能なフリーソフトウェアサーバーソリューションを使用する気象情報源のみがサポートされています。 ここをタップして詳細を確認してください。</string>
