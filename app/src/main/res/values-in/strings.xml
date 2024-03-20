@@ -174,7 +174,7 @@
     <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai-ulang</string>
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Klik untuk melihat lebih banyak…</string>
+    <string name="pollen_tap_to_see_more">Ketuk untuk melihat lebih banyak…</string>
     <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
     <!-- content description -->
     <string name="action_back">Kembali</string>
@@ -255,7 +255,7 @@
     <string name="wind_direction_short_variable">Variabel</string>
     <string name="wind_direction_short_N">U</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Badai petir dengan hujan es lebat</string>
-    <string name="settings_background_updates_refresh_30min">Setengah jam</string>
+    <string name="settings_background_updates_refresh_30min">30 menit</string>
     <string name="settings_background_updates_refresh_2h">2 jam</string>
     <string name="settings_background_updates_refresh_3h">3 jam</string>
     <string name="settings_background_updates_refresh_6h">6 jam</string>
@@ -520,7 +520,7 @@
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif dan harus menghindari aktivitas di luar ruangan. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan; pertimbangkan untuk menetap di dalam ruangan dan menjadwal ulang aktivitas di luar ruangan.</string>
     <string name="air_quality_so2_info_consequences">Paparan SO2 dikaitkan dengan kunjungan rumah sakit dan kunjungan ruang darurat karena asma.</string>
-    <string name="weather_minutely_data_by">Data Curah hujan per menit oleh %s</string>
+    <string name="weather_minutely_data_by">Data curah hujan per menit oleh %s</string>
     <string name="weather_pollen_data_by">Data serbuk sari oleh %s</string>
     <string name="air_quality_so2_info_origin">Dilepaskan secara alami oleh aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk pemanasan domestik, industri dan pembangkit listrik.</string>
     <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari oleh %s</string>
@@ -651,7 +651,7 @@
     <string name="location_search_change_source">Ubah sumber pencarian lokasi</string>
     <string name="settings_weather_sources_default_source">Sumber bawaan untuk aplikasi baru</string>
     <string name="settings_weather_source_unavailable">%s (tidak tersedia)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Anda sedang menggunakan versi Breezy Weather dari repositori F-Droid bawaan, yang hanya memiliki dukungan untuk sumber cuaca yang menggunakan solusi server perangkat lunak bebas yang tersedia secara umum dan dapat di-host sendiri. Ketuk di sini untuk mempelajari lebih lanjut.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Sumber cuaca tambahan tersedia dari versi Breezy Weather yang lain. Ketuk di sini untuk mempelajari lebih lanjut.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Indeks Kualitas Udara saat ini</string>
     <string name="action_confirm">Konfirmasi</string>
     <string name="widget_label_hide_header">Sembunyikan tajuk</string>
@@ -690,4 +690,6 @@
     <string name="alert">Peringatan</string>
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Server geokode</string>
+    <string name="settings_widgets_broadcast_switch">Siarkan data cuaca saya ke aplikasi lain</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Opsi ini memungkinkan aplikasi APA PUN di perangkat Anda untuk memiliki akses ke nama lokasi dan data cuaca. Hanya lanjutkan jika Anda benar-benar mengerti risiko dan penyalahgunaan yang dapat terjadi dari opsi ini.</string>
 </resources>
