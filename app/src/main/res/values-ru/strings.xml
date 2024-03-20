@@ -174,8 +174,8 @@
     <string name="widget_clock_day_vertical">Время + Подневный (Вертикальный)</string>
     <string name="widget_clock_day_week">Время + Подневный + Понедельный</string>
     <string name="widget_text">Текст</string>
-    <string name="widget_trend_daily">Подневный прогноз</string>
-    <string name="widget_trend_hourly">Почасовой прогноз</string>
+    <string name="widget_trend_daily">Подневная динамика</string>
+    <string name="widget_trend_hourly">Почасовая динамика</string>
     <string name="widget_multi_city">Несколько городов</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
     <string name="widget_material_you_current">Material You - Текущая</string>
@@ -676,4 +676,9 @@
     <string name="message_source_not_installed_error_content_tip_2">Либо измените поставщика погоды для этого местоположения, либо удалите и снова добавьте это местоположение.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, …, 4 дня спустя</string>
     <string name="sunshine">Солнечно</string>
+    <string name="alert">Оповещения</string>
+    <string name="settings_source_instance_geocoding">Пример геокодирования</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Пример качества воздуха</string>
+    <string name="settings_source_instance">Пример</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Пример прогноза</string>
 </resources>
