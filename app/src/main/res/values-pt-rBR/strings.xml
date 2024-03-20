@@ -689,4 +689,5 @@
     <string name="sunshine">Luz do sol</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere alguns segundos antes de voltar…</string>
     <string name="action_confirm">Confirmar</string>
+    <string name="alert">Alerta</string>
 </resources>
