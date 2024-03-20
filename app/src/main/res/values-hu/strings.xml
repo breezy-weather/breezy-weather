@@ -379,7 +379,7 @@
     <string name="action_continue">Folytatás</string>
     <string name="widget_style_rectangle">Téglalap</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="settings_background_updates_refresh_30min">Fél óra</string>
+    <string name="settings_background_updates_refresh_30min">30 perc</string>
     <string name="settings_background_updates_refresh_1h">1 óra</string>
     <string name="settings_background_updates_refresh_12h">12 óra</string>
     <string name="settings_units_summary">Hőmérséklet, csapadék, távolság, sebesség, légnyomás</string>
