@@ -18,6 +18,7 @@ package org.breezyweather.sources.brightsky
 
 import android.graphics.Color
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
@@ -157,20 +158,17 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
                 alert.headlineDe
             } else alert.headlineEn,
             description = if (languageCode == "de") {
-                if (!alert.instructionDe.isNullOrEmpty()) {
-                    alert.descriptionDe + "\n\n" + alert.instructionDe
-                } else alert.descriptionDe
-            } else {
-                if (!alert.instructionEn.isNullOrEmpty()) {
-                    alert.descriptionEn + "\n\n" + alert.instructionEn
-                } else alert.descriptionEn
-            },
+                alert.descriptionDe
+            } else alert.descriptionEn,
+            instruction = if (languageCode == "de") {
+                alert.instructionDe
+            } else alert.instructionEn,
             severity = when (alert.severity?.lowercase()) {
-                "extreme" -> 4
-                "severe" -> 3
-                "moderate" -> 2
-                "minor" -> 1
-                else -> 0
+                "extreme" -> AlertSeverity.EXTREME
+                "severe" -> AlertSeverity.SEVERE
+                "moderate" -> AlertSeverity.MODERATE
+                "minor" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
             },
             color = when (alert.severity?.lowercase()) {
                 "extreme" -> Color.rgb(241, 48, 255)

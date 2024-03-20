@@ -17,6 +17,7 @@
 package org.breezyweather.sources.pirateweather
 
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -208,12 +209,12 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
             endDate = Date(alert.end.times(1000)),
             headline = alert.title,
             description = alert.description,
-            severity = when (alert.severity) {
-                "Extreme" -> 4
-                "Severe" -> 3
-                "Moderate" -> 2
-                "Minor" -> 1
-                else -> 0
+            severity = when (alert.severity?.lowercase()) {
+                "extreme" -> AlertSeverity.EXTREME
+                "severe" -> AlertSeverity.SEVERE
+                "moderate" -> AlertSeverity.MODERATE
+                "minor" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
             }
         )
     }

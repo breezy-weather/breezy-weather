@@ -20,6 +20,7 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -326,7 +327,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         endDate = warningsResult.endValidityTime,
                         headline = title,
                         description = getWarningContent(null, warningsResult),
-                        severity = 5, // Let’s put it on top
+                        severity = AlertSeverity.EXTREME, // Let’s put it on top
                         color = color
                     )
                 )
@@ -347,7 +348,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         description = if (timelapsItem.colorId >= 3) getWarningContent(
                             timelaps.phenomenonId, warningsResult
                         ) else null,
-                        severity = timelapsItem.colorId, // Reverse, as lower is better
+                        severity = AlertSeverity.getInstance(timelapsItem.colorId),
                         color = getWarningColor(timelapsItem.colorId)
                     )
                 )

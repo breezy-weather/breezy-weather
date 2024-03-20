@@ -1,3 +1,5 @@
+import breezyweather.domain.weather.model.AlertSeverity;
+
 CREATE TABLE alerts(
     _id INTEGER NOT NULL PRIMARY KEY,
     location_formatted_id TEXT NOT NULL,
@@ -7,7 +9,7 @@ CREATE TABLE alerts(
     headline TEXT,
     description TEXT,
     instruction TEXT,
-    severity INTEGER NOT NULL,
+    severity INTEGER AS AlertSeverity NOT NULL,
     color INTEGER NOT NULL,
 
     FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)

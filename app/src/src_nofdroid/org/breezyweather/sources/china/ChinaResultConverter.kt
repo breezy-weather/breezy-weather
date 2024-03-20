@@ -21,6 +21,7 @@ import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -354,15 +355,14 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     }
 }
 
-@ColorInt
-private fun getAlertPriority(color: String?): Int {
-    if (color.isNullOrEmpty()) return 0
+private fun getAlertPriority(color: String?): AlertSeverity {
+    if (color.isNullOrEmpty()) return AlertSeverity.UNKNOWN
     return when (color) {
-        "蓝", "蓝色" -> 4
-        "黄", "黄色" -> 3
-        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> 2
-        "红", "红色" -> 1
-        else -> 0
+        "蓝", "蓝色" -> AlertSeverity.EXTREME
+        "黄", "黄色" -> AlertSeverity.SEVERE
+        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> AlertSeverity.MODERATE
+        "红", "红色" -> AlertSeverity.MINOR
+        else -> AlertSeverity.UNKNOWN
     }
 }
 

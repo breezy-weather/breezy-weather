@@ -18,6 +18,7 @@ package org.breezyweather.sources.dmi
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
@@ -135,7 +136,7 @@ private fun getAlertList(
             endDate = it.validTo,
             headline = it.warningTitle,
             description = it.warningText + "\n\n" + it.additionalText,
-            severity = 2, // TODO
+            severity = AlertSeverity.UNKNOWN // TODO
         )
     }
 }

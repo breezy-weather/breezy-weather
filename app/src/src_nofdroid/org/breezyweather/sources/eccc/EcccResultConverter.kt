@@ -19,6 +19,7 @@ package org.breezyweather.sources.eccc
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
@@ -216,10 +217,10 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             headline = alert.alertBannerText,
             description = alert.text,
             severity = when (alert.type) {
-                "warning" -> 3
-                "watch" -> 2
-                "statement" -> 1
-                else -> 0
+                "warning" -> AlertSeverity.SEVERE
+                "watch" -> AlertSeverity.MODERATE
+                "statement" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
             },
             color = if (!alert.bannerColour.isNullOrEmpty()
                 && alert.bannerColour.startsWith("#")) {

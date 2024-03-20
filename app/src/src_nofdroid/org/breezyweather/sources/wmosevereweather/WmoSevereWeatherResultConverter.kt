@@ -19,6 +19,7 @@ package org.breezyweather.sources.wmosevereweather
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import com.google.maps.android.EncodedPolylineUtil
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
@@ -34,6 +35,7 @@ fun convert(location: Location, alertsResult: List<WmoSevereWeatherAlert>): List
         .filter {
             (it.expires == null || it.expires > Date()) && isAlertForLocation(location, it.coord)
         }.map {
+            val severity = AlertSeverity.getInstance(it.s)
             Alert(
                 alertId = (it.identifier ?: it.capURL ?: it.url)!!,
                 startDate = it.onset ?: it.effective ?: it.sent,
@@ -44,12 +46,12 @@ fun convert(location: Location, alertsResult: List<WmoSevereWeatherAlert>): List
                     } else firstChar.toString()
                 },
                 description = it.description,
-                severity = it.s ?: 0,
-                color = when (it.s) {
-                    4 -> Color.rgb(215, 46, 41)
-                    3 -> Color.rgb(254, 153, 0)
-                    2 -> Color.rgb(255, 255, 1)
-                    1 -> Color.rgb(0, 255, 255)
+                severity = AlertSeverity.getInstance(it.s),
+                color = when (severity) {
+                    AlertSeverity.EXTREME -> Color.rgb(215, 46, 41)
+                    AlertSeverity.SEVERE -> Color.rgb(254, 153, 0)
+                    AlertSeverity.MODERATE -> Color.rgb(255, 255, 1)
+                    AlertSeverity.MINOR -> Color.rgb(0, 255, 255)
                     else -> Color.rgb(51, 102, 255)
                 }
             )

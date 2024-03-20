@@ -20,6 +20,7 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
@@ -459,11 +460,11 @@ private fun getAlertList(
             headline = result.Description?.Localized,
             description = result.Area?.getOrNull(0)?.Text,
             severity = when (result.Priority) {
-                1 -> 4
-                2 -> 3
-                3 -> 2
-                4 -> 1
-                else -> 0
+                1 -> AlertSeverity.EXTREME
+                2 -> AlertSeverity.SEVERE
+                3 -> AlertSeverity.MODERATE
+                4, 5 -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
             },
             color = result.Color?.let { Color.rgb(it.Red, it.Green, it.Blue) }
         )

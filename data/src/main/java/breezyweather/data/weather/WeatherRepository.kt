@@ -352,7 +352,7 @@ class WeatherRepository(
                     headline = alert.headline,
                     description = alert.description,
                     instruction = alert.instruction,
-                    severity = alert.severity.toLong(),
+                    severity = alert.severity,
                     color = alert.color.toLong()
                 )
             }

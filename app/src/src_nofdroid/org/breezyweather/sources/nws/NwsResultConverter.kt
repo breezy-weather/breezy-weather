@@ -19,6 +19,7 @@ package org.breezyweather.sources.nws
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -178,12 +179,12 @@ fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
             endDate = it.properties.expires,
             headline = it.properties.event ?: it.properties.headline,
             description = it.properties.description + "\n\n" + it.properties.instruction,
-            severity = when (it.properties.severity) {
-                "Extreme" -> 4
-                "Severe" -> 3
-                "Moderate" -> 2
-                "Minor" -> 1
-                else -> 0
+            severity = when (it.properties.severity?.lowercase()) {
+                "extreme" -> AlertSeverity.EXTREME
+                "severe" -> AlertSeverity.SEVERE
+                "moderate" -> AlertSeverity.MODERATE
+                "minor" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
             },
             color = getAlertColor(it.properties.event)
         )

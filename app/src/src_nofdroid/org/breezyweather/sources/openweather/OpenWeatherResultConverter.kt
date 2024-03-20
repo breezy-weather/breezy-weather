@@ -19,6 +19,7 @@ package org.breezyweather.sources.openweather
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -226,7 +227,7 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
                 endDate = Date(result.end.times(1000)),
                 headline = result.event,
                 description = result.description,
-                severity = 2 // Does not exist
+                severity = AlertSeverity.UNKNOWN // Does not exist
             )
         }
     } else {

@@ -19,6 +19,7 @@ package org.breezyweather.sources.metie
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
@@ -134,11 +135,11 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
                 headline = alert.headline,
                 description = alert.description,
                 severity = when (alert.severity?.lowercase()) {
-                    "extreme" -> 4
-                    "severe" -> 3
-                    "moderate" -> 2
-                    "minor" -> 1
-                    else -> 0
+                    "extreme" -> AlertSeverity.EXTREME
+                    "severe" -> AlertSeverity.SEVERE
+                    "moderate" -> AlertSeverity.MODERATE
+                    "minor" -> AlertSeverity.MINOR
+                    else -> AlertSeverity.UNKNOWN
                 },
                 color = when (alert.level?.lowercase()) {
                     "red" -> Color.rgb(224, 0, 0)

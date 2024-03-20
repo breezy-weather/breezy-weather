@@ -18,6 +18,7 @@
 package breezyweather.data
 
 import app.cash.sqldelight.ColumnAdapter
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.WeatherCode
 import java.util.Date
 import java.util.TimeZone
@@ -45,8 +46,8 @@ object WeatherCodeColumnAdapter : ColumnAdapter<WeatherCode, String> {
     override fun encode(value: WeatherCode): String = value.id
 }
 
-object TimeZoneColumnAdapter : ColumnAdapter<TimeZone, String> {
-    override fun decode(databaseValue: String): TimeZone = TimeZone.getTimeZone(databaseValue)
+object AlertSeverityColumnAdapter : ColumnAdapter<AlertSeverity, Long> {
+    override fun decode(databaseValue: Long): AlertSeverity = AlertSeverity.getInstance(databaseValue.toInt())
 
-    override fun encode(value: TimeZone): String = value.id
+    override fun encode(value: AlertSeverity): Long = value.id.toLong()
 }

@@ -1,4 +1,13 @@
-# Version 5.1.6 (not yet released)
+# Version 5.1.7 (not yet released)
+
+**Improvements and fixes**
+- For sources not providing colors, we now make the color of the alert dynamic based on severity instead of always orange. This scale is the same as the one used by World Meteorological Organization and may differ with colors usually provided by your national provider. For sources without severity, this will fallback to Unknown color.
+
+**Translations**
+- Translations updated
+
+
+# Version 5.1.6 (2024-03-19)
 
 **Improvements and fixes**
 - Allow to enable Gadgetbridge if Smartspacer generic weather plugin is installed

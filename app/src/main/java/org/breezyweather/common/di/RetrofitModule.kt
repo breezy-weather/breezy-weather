@@ -38,6 +38,7 @@ import java.io.File
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -102,6 +103,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
+    @Named("JsonSerializer")
     fun provideKotlinxSerializationConverterFactory(): Converter.Factory {
         val contentType = "application/json".toMediaType()
         val json = Json {
@@ -115,12 +117,12 @@ class RetrofitModule {
     @Provides
     fun provideRetrofitBuilder(
         client: OkHttpClient,
-        converterFactory: Converter.Factory,
+        @Named("JsonSerializer") jsonConverterFactory: Converter.Factory,
         callAdapterFactory: RxJava3CallAdapterFactory
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(client)
-            .addConverterFactory(converterFactory)
+            .addConverterFactory(jsonConverterFactory)
             // TODO: We should probably migrate to suspend
             // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
             .addCallAdapterFactory(callAdapterFactory)

@@ -37,22 +37,17 @@ class Alert(
     val headline: String? = null,
     val description: String? = null,
     val instruction: String? = null,
-    /**
-     * Severity
-     * The higher the number, the higher it will be listed.
-     * Please try to use that scale as much as possible:
-     * 4 => Extreme / Very high priority
-     * 3 => Severe / High
-     * 2 => Moderate / Medium
-     * 1 => Minor / Low
-     * 0 => Unknown / Very low
-     * TODO: Create an enum class for this
-     */
-    val severity: Int,
+    val severity: AlertSeverity = AlertSeverity.UNKNOWN,
     @ColorInt color: Int? = null
 ) : Serializable {
 
     @ColorInt
-    val color: Int = color ?: Color.rgb(255, 184, 43)
+    val color: Int = color ?: when (severity) {
+        AlertSeverity.EXTREME -> Color.rgb(215, 46, 41)
+        AlertSeverity.SEVERE -> Color.rgb(254, 153, 0)
+        AlertSeverity.MODERATE -> Color.rgb(255, 255, 1)
+        AlertSeverity.MINOR -> Color.rgb(0, 255, 255)
+        else -> Color.rgb(51, 102, 255)
+    }
 
 }

@@ -22,6 +22,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import breezyweather.data.AlertSeverityColumnAdapter
+import breezyweather.data.Alerts
 import breezyweather.data.AndroidDatabaseHandler
 import breezyweather.data.Dailys
 import breezyweather.data.Database
@@ -87,6 +89,9 @@ class DbModule {
             ),
             hourlysAdapter = Hourlys.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter
+            ),
+            alertsAdapter = Alerts.Adapter(
+                severityAdapter = AlertSeverityColumnAdapter
             )
         )
     }

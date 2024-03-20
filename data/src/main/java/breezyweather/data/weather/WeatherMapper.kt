@@ -2,6 +2,7 @@ package breezyweather.data.weather
 
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Current
@@ -415,7 +416,7 @@ object WeatherMapper {
         headline: String?,
         description: String?,
         instruction: String?,
-        severity: Long,
+        severity: AlertSeverity,
         color: Long
     ): Alert = Alert(
         alertId = alertId,
@@ -424,7 +425,7 @@ object WeatherMapper {
         headline = headline,
         description = description,
         instruction = instruction,
-        severity = severity.toInt(),
+        severity = severity,
         color = color.toInt()
     )
 

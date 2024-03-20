@@ -19,6 +19,7 @@ package org.breezyweather.sources.ims
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -160,7 +161,13 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
                 data.warningsMetadata?.imsWarningType?.getOrElse(it) { null }?.name
             },
             description = warningEntry.value.text,
-            severity = warningEntry.value.severityId?.toIntOrNull() ?: 0, // Priorities are reversed
+            severity = when (warningEntry.value.severityId) {
+                "6" -> AlertSeverity.EXTREME
+                "4", "5" -> AlertSeverity.SEVERE
+                "2", "3" -> AlertSeverity.MODERATE
+                "0", "1" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
+            },
             color = warningEntry.value.severityId?.let { severityId ->
                 data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.let {
                     Color.parseColor(it)
