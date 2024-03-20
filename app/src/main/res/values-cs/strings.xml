@@ -256,7 +256,7 @@
     <string name="settings_color_light">Světlý</string>
     <string name="settings_color_grey">Šedý</string>
     <string name="settings_color_dark">Tmavý</string>
-    <string name="settings_background_updates_refresh_30min">Půl hodiny</string>
+    <string name="settings_background_updates_refresh_30min">30 minut</string>
     <string name="settings_background_updates_refresh_1h">1 hodina</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 hodiny</string>
     <string name="settings_background_updates_refresh_2h">2 hodiny</string>
