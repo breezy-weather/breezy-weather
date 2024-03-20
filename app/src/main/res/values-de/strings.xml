@@ -673,4 +673,5 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftqualitätsinstanz</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Vorhersageninstanz</string>
     <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
+    <string name="settings_widgets_broadcast_switch">Meine Wetterdaten mit anderen Apps teilen</string>
 </resources>
