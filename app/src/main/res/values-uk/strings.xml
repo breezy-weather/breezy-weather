@@ -262,7 +262,7 @@
     <string name="widget_clock_day_week">Годинник + щоденний + щотижневий</string>
     <string name="widget_clock_day_details">Годинник + щоденний (з деталями)</string>
     <string name="widget_trend_hourly">Погодинна динаміка</string>
-    <string name="widget_trend_daily">Щоденна динаміка</string>
+    <string name="widget_trend_daily">Подневна динаміка</string>
     <string name="air_quality_level_5">Дуже шкідливий</string>
     <string name="air_quality_level_5_description">Чутливі люди миттєво відчують вплив на здоров’я, тому їм потрібно уникати діяльності на вулиці. Здорові люди, ймовірно, відчують утруднене дихання та подразнення горла; подумайте про те, щоб залишатися вдома та перенести заходи на свіжому повітрі.</string>
     <string name="air_quality_level_1_description">Якість повітря ідеально підходить для більшості людей; насолоджуйтеся своїми звичайними заняттями на свіжому повітрі.</string>
@@ -669,4 +669,9 @@
     <string name="message_source_not_installed_error_content_tip_2">Або змініть постачальника погоди для цього місця розташування, або видаліть і знову додайте це місце розташування.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Зведення пилкового індексу на сьогодні, завтра, …, 4 дні потому</string>
     <string name="sunshine">Сонячно</string>
+    <string name="alert">Оповіщення</string>
+    <string name="settings_source_instance_geocoding">Приклад геокодування</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Приклад прогнозу</string>
+    <string name="settings_source_instance">Приклад</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Приклад якості повітря</string>
 </resources>
