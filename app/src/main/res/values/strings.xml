@@ -526,12 +526,16 @@
     <string name="settings_weather_source_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
+    <!-- Synonym of instance: Server -->
     <string name="settings_source_instance">Instance</string>
+    <!-- Synonym of instance: Server -->
     <string name="settings_source_instance_geocoding">Geocoding instance</string>
     <string name="settings_weather_source_bright_sky_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
+    <!-- Synonym of instance: Server -->
     <string name="settings_weather_source_open_meteo_instance_forecast">Forecast instance</string>
+    <!-- Synonym of instance: Server -->
     <string name="settings_weather_source_open_meteo_instance_air_quality">Air quality instance</string>
     <string name="settings_weather_source_open_meteo_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
     <string name="settings_weather_source_open_meteo_weather_models">Weather models</string>
