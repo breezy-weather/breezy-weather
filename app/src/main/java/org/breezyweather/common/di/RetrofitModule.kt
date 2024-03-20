@@ -18,7 +18,6 @@ package org.breezyweather.common.di
 
 import android.app.Application
 import android.os.Build
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +33,7 @@ import org.breezyweather.R
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.io.File
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate

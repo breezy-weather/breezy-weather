@@ -23,7 +23,6 @@ kotest-assertions = "5.8.1"
 kotlin = "1.9.22"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
-kotlinx-serialization-retrofitconverter = "1.0.0"
 leakcanary = "2.13"
 lifecycle = "2.7.0"
 lifecycle-extensions = "2.2.0"
@@ -81,7 +80,6 @@ kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coro
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
-kotlinx-serialization-retrofitconverter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-serialization-retrofitconverter" }
 leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }
@@ -100,6 +98,7 @@ okhttp-tls = { group = "com.squareup.okhttp3", name = "okhttp-tls", version.ref 
 preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference-ktx" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 retrofit-adapter-rxjava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
+retrofit-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
@@ -123,7 +122,7 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 [bundles]
 lifecycle = ["lifecycle-common-java8", "lifecycle-extensions", "lifecycle-livedata-ktx", "lifecycle-reactivestreams-ktx", "lifecycle-runtime-ktx", "lifecycle-viewmodel-compose", "lifecycle-viewmodel-ktx"]
 okhttp = ["okhttp-core", "okhttp-logging", "okhttp-tls"]
-retrofit = ["retrofit-adapter-rxjava3", "retrofit-core"]
+retrofit = ["retrofit-adapter-rxjava3", "retrofit-converter-kotlinx-serialization", "retrofit-core"]
 sqldelight = ["sqldelight-android-driver", "sqldelight-coroutines", "sqldelight-android-paging"]
 sqlite = ["sqlite-framework", "sqlite-ktx", "sqlite-android"]
 test = ["junit", "kotest-assertions", "kotlinx-coroutines-test", "mockk"]

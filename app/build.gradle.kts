@@ -220,7 +220,6 @@ dependencies {
     // HTTP
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
-    implementation(libs.kotlinx.serialization.retrofitconverter)
     implementation(libs.kotlinx.serialization.json)
 
     // data store
