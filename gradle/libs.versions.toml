@@ -6,7 +6,6 @@ adaptiveiconview = "v0.0.3"
 agp = "8.3.1"
 appcompat = "1.6.1"
 cardview = "1.0.0"
-coil = "2.6.0"
 compose = "1.6.3"
 compose-compiler = "1.5.9"
 compose-material3 = "1.2.1"
@@ -23,6 +22,7 @@ kotest-assertions = "5.8.1"
 kotlin = "1.9.22"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
+kotlinx-serialization-xml = "3980721899b8a990d9e5df170459e17b81fbc34d"
 leakcanary = "2.13"
 lifecycle = "2.7.0"
 lifecycle-extensions = "2.2.0"
@@ -53,7 +53,6 @@ adaptiveiconview = { group = "com.github.breezy-weather", name = "AdaptiveIconVi
 android-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
-coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
@@ -80,6 +79,7 @@ kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coro
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-serialization-xml = { group = "com.github.rharter", name = "kotlinx-serialization-xml", version.ref = "kotlinx-serialization-xml" }
 leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }

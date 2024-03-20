@@ -214,21 +214,24 @@ dependencies {
     // gms.
     "gplayImplementation"(libs.gms.location)
 
-    // coil
-    implementation(libs.coil)
-
     // HTTP
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
     implementation(libs.kotlinx.serialization.json)
+    //implementation(libs.kotlinx.serialization.xml)
 
     // data store
     //implementation(libs.datastore)
 
-    // jwt
-    implementation(libs.jjwt.api)
-    runtimeOnly(libs.jjwt.impl)
-    runtimeOnly(libs.jjwt.orgjson) {
+    // jwt - Only used by MF at the moment
+    "basicImplementation"(libs.jjwt.api)
+    "basicRuntimeOnly"(libs.jjwt.impl)
+    "basicRuntimeOnly"(libs.jjwt.orgjson) {
+        exclude("org.json", "json") //provided by Android natively
+    }
+    "gplayImplementation"(libs.jjwt.api)
+    "gplayRuntimeOnly"(libs.jjwt.impl)
+    "gplayRuntimeOnly"(libs.jjwt.orgjson) {
         exclude("org.json", "json") //provided by Android natively
     }
 
@@ -244,7 +247,7 @@ dependencies {
 
     // utils.
     implementation(libs.suncalc)
-    implementation(libs.lunarcalendar)
+    implementation(libs.lunarcalendar) // TODO: Replace with native ChineseCalendar
     implementation(libs.aboutLibraries)
 
     // debugImplementation because LeakCanary should only run in debug builds.

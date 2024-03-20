@@ -104,7 +104,7 @@ class RetrofitModule {
     @Provides
     @Singleton
     @Named("JsonSerializer")
-    fun provideKotlinxSerializationConverterFactory(): Converter.Factory {
+    fun provideKotlinxJsonSerializationConverterFactory(): Converter.Factory {
         val contentType = "application/json".toMediaType()
         val json = Json {
             ignoreUnknownKeys = true
@@ -113,6 +113,19 @@ class RetrofitModule {
         }
         return json.asConverterFactory(contentType)
     }
+
+    /*@Provides
+    @Singleton
+    @Named("XmlSerializer")
+    fun provideKotlinxXmlSerializationConverterFactory(): Converter.Factory {
+        val contentType = "application/xml".toMediaType()
+        val xml = Xml {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+            isLenient = !BreezyWeather.instance.debugMode
+        }
+        return xml.asConverterFactory(contentType)
+    }*/
 
     @Provides
     fun provideRetrofitBuilder(
