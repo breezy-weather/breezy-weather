@@ -465,7 +465,7 @@
     <string name="settings_background_updates_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_background_updates_refresh_title">Refresh rate</string>
     <string name="settings_background_updates_refresh_never">Never</string>
-    <string name="settings_background_updates_refresh_30min">Half an hour</string>
+    <string name="settings_background_updates_refresh_30min">30 minutes</string>
     <string name="settings_background_updates_refresh_1h">1 hour</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 hours</string>
     <string name="settings_background_updates_refresh_2h">2 hours</string>
