@@ -656,7 +656,7 @@
     <string name="ceiling_short">Strop</string>
     <string name="settings_weather_sources_default_source">Výchozí zdroj pro nová umístění</string>
     <string name="settings_weather_source_unavailable">%s (nedostupný)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Používáte verzi aplikace Breezy Weather z výchozího repozitáře F-Droid, která podporuje pouze zdroje počasí, které používají veřejně dostupný, svobodný software serveru, který lze hostovat kdekoli. Klepněte sem pro více informací.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Další zdroje počasí jsou dostupné v dalších verzích aplikace Breezy Weather. Klepněte sem pro více informací.</string>
     <string name="location_delete_location_dialog_message_no_name">Chystáte se odstranit toto umístění z vašeho seznamu uložených umístění.</string>
     <string name="action_confirm">Potvrdit</string>
     <string name="weather_message_too_frequent_refreshes">Počkejte prosím několik vteřin před opětovným pokusem…</string>
