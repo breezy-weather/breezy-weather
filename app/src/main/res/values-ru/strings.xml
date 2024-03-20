@@ -647,7 +647,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Текущий индекс качества воздуха</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс качества воздуха на сегодня, завтра, …, 4 дня спустя</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Вы используете версию Breezy Weather из репозитория по умолчанию F-Droid, которая поддерживает только источники погоды, использующие общедоступное серверное решение с возможностью самостоятельного размещения бесплатного программного обеспечения. Нажмите здесь, чтобы узнать больше.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Дополнительные поставщики погоды доступны в других версиях Breezy Weather. Нажмите здесь, чтобы узнать больше.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_plantaginaceae">Подорожник</string>
     <string name="pollen_platanus">Платан</string>
@@ -678,4 +678,6 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Пример качества воздуха</string>
     <string name="settings_source_instance">Пример</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Пример прогноза</string>
+    <string name="settings_widgets_broadcast_switch">Передавать мои данные о погоде в другие приложения</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Эта опция позволяет ЛЮБОМУ приложению на вашем устройстве иметь доступ к названию вашего местоположения и данным о погоде. Продолжайте только в том случае, если вы полностью понимаете потенциальные риски неправильного использования другими приложениями, которые могут возникнуть в результате этого.</string>
 </resources>
