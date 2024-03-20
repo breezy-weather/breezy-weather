@@ -28,7 +28,7 @@ import java.util.Locale
  * - Air quality: national weather source or Open-Meteo
  * - Pollen: Open-Meteo
  * - Minutely: national weather source or Open-Meteo
- * - Alerts: national weather source or AccuWeather
+ * - Alerts: national weather source or AccuWeather (or WMO if Accu is broken, but should be avoided as it is a very slow source)
  * - Normals: national weather source or AccuWeather
  */
 enum class LocationPreset(
@@ -60,6 +60,7 @@ enum class LocationPreset(
     // Asia
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     CHINA("china"),
+    HONG_KONG("openmeteo", alert = "wmosevereweather", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
 
     companion object {
@@ -82,6 +83,7 @@ enum class LocationPreset(
 
                     // Asia
                     "CN" -> CHINA
+                    "HK" -> HONG_KONG
                     "IL", "PS" -> ISRAEL
 
                     else -> DEFAULT

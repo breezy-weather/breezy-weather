@@ -3,6 +3,13 @@
 **Improvements and fixes**
 - For sources not providing colors, we now make the color of the alert dynamic based on severity instead of always orange. This scale is the same as the one used by World Meteorological Organization and may differ with colors usually provided by your national provider. For sources without severity, this will fallback to Unknown color.
 
+**Weather sources**
+- Updated recommendations for new locations (existing locations must be modified manually, or re-added):
+
+| Location  | Source type | Old         | New                |
+|-----------|-------------|-------------|--------------------|
+| Hong Kong | Alert       | AccuWeather | WMO Severe Weather |
+
 **Translations**
 - Translations updated
 
