@@ -16,7 +16,7 @@
     <string name="humidity">Kelembaban</string>
     <string name="humidity_dew_point">Kelembaban / Titik embun</string>
     <string name="uv_index">Indeks UV</string>
-    <string name="sunshine_duration">Jam matahari</string>
+    <string name="sunshine_duration">Durasi sinar matahari</string>
     <string name="notification_channel_forecast">Ramalan</string>
     <string name="daytime">Siang hari</string>
     <string name="nighttime">Malam hari</string>
@@ -25,9 +25,9 @@
     <string name="pressure">Tekanan</string>
     <string name="visibility">Visibilitas</string>
     <string name="dew_point">Titik embun</string>
-    <string name="cloud_cover">Cover awan</string>
+    <string name="cloud_cover">Tutupan awan</string>
     <!-- ? -->
-    <string name="ceiling">Atap</string>
+    <string name="ceiling">Tinggi awan</string>
     <!-- ? -->
     <string name="settings_icon_packs_get_more">Dapatkan lebih banyak</string>
     <string name="action_refresh">Muat ulang</string>
@@ -59,21 +59,21 @@
     <string name="wind_strength_9">Badai kuat</string>
     <string name="wind_strength_10">Petir</string>
     <string name="wind_strength_11">Petir kencang</string>
-    <string name="wind_strength_12">Badai</string>
+    <string name="wind_strength_12">Angin puting beliung</string>
     <string name="precipitation_intensity_light">Gerimis</string>
     <string name="precipitation_intensity_middle">Hujan</string>
     <string name="precipitation_intensity_heavy">Hujan deras</string>
     <string name="precipitation_intensity_rainstorm">Hujan badai</string>
     <string name="ephemeris_moon_phase_new_moon">Bulan Baru</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Waxing cresent</string>
-    <string name="ephemeris_moon_phase_first_quarter">Kuarter pertama</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Waxing gibbous</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Bulan sabit muda</string>
+    <string name="ephemeris_moon_phase_first_quarter">Kuartal pertama</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Cembung awal</string>
     <string name="ephemeris_moon_phase_full_moon">Bulan purnama</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
-    <string name="ephemeris_moon_phase_last_quarter">Third quarter</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Cembung akhir</string>
+    <string name="ephemeris_moon_phase_last_quarter">Seperempat terakhir</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Bulan sabit akhir</string>
     <string name="pollen_poaeceae">Rumput</string>
-    <string name="pollen_mold">Lubang</string>
+    <string name="pollen_mold">Jamur</string>
     <string name="pollen_ambrosia">Ragweed</string>
     <string name="pollen_tree">Pohon</string>
     <string name="daily_forecast">Prakiraan harian</string>
@@ -105,7 +105,7 @@
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
     <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
-    <string name="dialog_permissions_location_background_title">Akses lokasi di latar-belakang</string>
+    <string name="dialog_permissions_location_background_title">Akses lokasi di latar belakang</string>
     <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai “Izinkan sepanjang waktu”.</string>
     <string name="location_message_failed_to_locate">Lokasi gagal</string>
     <string name="weather_message_data_refresh_failed">permintaan data cuaca gagal</string>
@@ -173,7 +173,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase bulan Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_live_wallpaper_weather_kind">Cuaca</string>
     <string name="widget_live_wallpaper_day_night_type">Waktu</string>
-    <string name="location_message_added">Berhasil menambahkan lokasi</string>
+    <string name="location_message_added">Lokasi telah ditambahkan</string>
     <string name="location_message_deleted">Berhasil menghapus lokasi</string>
     <string name="location_message_list_cannot_be_empty">Daftar lokasi tidak bisa kosong</string>
     <string name="location_search_placeholder">Cari lokasi…</string>
@@ -181,7 +181,7 @@
     <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai-ulang</string>
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
+    <string name="pollen_tap_to_see_more">Klik untuk melihat lebih banyak…</string>
     <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
     <!-- content description -->
     <string name="action_back">Kembali</string>
@@ -268,7 +268,7 @@
     <string name="settings_background_updates_refresh_6h">6 jam</string>
     <string name="settings_background_updates_refresh_12h">12 jam</string>
     <string name="minutely_precipitations">Curah hujan menit demi menit</string>
-    <string name="temperature_degree_day_heating">Hari derajat pemanasan</string>
+    <string name="temperature_degree_day_heating">Derajat pemanasan hari</string>
     <string name="temperature_degree_day_cooling">Tingkat pendinginan hari</string>
     <string name="wind_direction_short_E">T</string>
     <string name="uv_index_0_2">Rendah</string>
@@ -289,7 +289,7 @@
     <string name="uv_alert_level">Waspada</string>
     <string name="air_quality_level_3">Buruk</string>
     <string name="wind_gusts">Hembusan angin</string>
-    <string name="wind_direction_short_S">U</string>
+    <string name="wind_direction_short_S">S</string>
     <string name="air_quality_index">Indeks Kualitas Udara</string>
     <string name="air_quality_level_3_description">Udara telah mencapai tingkat polusi yang tinggi dan tidak sehat untuk kelompok sensitif. Kurangi waktu yang dihabiskan di luar ruangan jika Anda merasakan gejala seperti kesulitan bernapas atau iritasi tenggorokan.</string>
     <string name="wind_direction_short_NE">TL</string>
@@ -314,7 +314,7 @@
     <string name="settings_widgets_notification_style_title">Gaya</string>
     <string name="settings_background_updates_refresh_title">Kecepatan penyegaran</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
-    <string name="air_quality_so2_info_title">Sulfur dioksida</string>
+    <string name="air_quality_so2_info_title">Sulfur dioksida (SO₂)</string>
     <string name="common_weather_text_snow">Salju</string>
     <string name="pollen_and_mold">Serbuk sari &amp; jamur</string>
     <string name="air_quality_pm_info_title">Partikulat (PM2.5 &amp; PM10)</string>
@@ -414,7 +414,7 @@
     <string name="settings_main_section_options">Opsi</string>
     <string name="weather_kind_haze">Berkabut</string>
     <string name="settings_main_section_animations">Animasi</string>
-    <string name="air_quality_pm_explanations_origin">Beberapa partikulat terjadi secara alami, berasal dari gunung berapi, badai debu, kebakaran hutan dan padang rumput, tumbuh-tumbuhan hidup, dan semprotan air laut. Aktivitas manusia juga menghasilkan partikulat dalam jumlah besar, seperti lalu lintas dan transportasi, aktivitas industri, pembangkit listrik, lokasi konstruksi, pembakaran limbah, atau ladang.</string>
+    <string name="air_quality_pm_explanations_origin">Beberapa partikulat terjadi secara alami, berasal dari gunung berapi, badai debu, kebakaran hutan dan padang rumput, tumbuh-tumbuhan hidup, dan semprotan air laut. Aktivitas manusia juga menghasilkan partikulat dalam jumlah besar, seperti lalu lintas dan transportasi, aktivitas industri, pembangkit listrik, kegiatan konstruksi, pembakaran limbah, atau ladang.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Milimeter per jam</string>
     <string name="air_quality_so2">SO₂</string>
@@ -500,7 +500,7 @@
     <string name="settings_debug">Awakutu</string>
     <string name="air_quality_level_4_description">Dampak kesehatan dapat langsung dirasakan oleh kelompok sensitif. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan jika terpapar dalam waktu lama. Batasi aktivitas di luar ruangan.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_info_title">Karbon monoksida</string>
+    <string name="air_quality_co_info_title">Karbon monoksida (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 jam</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>
@@ -527,10 +527,10 @@
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif dan harus menghindari aktivitas di luar ruangan. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan; pertimbangkan untuk menetap di dalam ruangan dan menjadwal ulang aktivitas di luar ruangan.</string>
     <string name="air_quality_so2_info_consequences">Paparan SO2 dikaitkan dengan kunjungan rumah sakit dan kunjungan ruang darurat karena asma.</string>
-    <string name="weather_minutely_data_by">Data Curah hujan menit demi menit by %s</string>
+    <string name="weather_minutely_data_by">Data Curah hujan per menit oleh %s</string>
     <string name="weather_pollen_data_by">Data serbuk sari oleh %s</string>
     <string name="air_quality_so2_info_origin">Dilepaskan secara alami oleh aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk pemanasan domestik, industri dan pembangkit listrik.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Kualitas udara dan data serbuk sari oleh %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari oleh %s</string>
     <string name="air_quality_no2_info_consequences">Paparan nitrogen dioksida dapat mengiritasi dan memperburuk penyakit pernapasan. Selain itu, NO2 adalah prekursor ozon penting, polutan terkait erat dengan asma dan kondisi pernapasan lainnya.</string>
     <string name="air_quality_co_info_introduction">Karbon monoksida (CO) adalah gas beracun, mudah terbakar yang tidak berwarna, tidak berbau, tidak berasa, dan tidak iritasi.</string>
     <string name="air_quality_so2_info_introduction">Sulfur dioksida (SO2) adalah gas beracun tanpa warna yang bertanggung jawab atas bau kecokan terbakar.</string>
@@ -633,8 +633,8 @@
     <string name="common_weather_text_snow_showers_light">Hujan salju ringan</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Waktu notifikasi untuk perkiraan hari berikutnya</string>
     <string name="about_contribution_WangDaYeeeeee">Pengembang proyek Geometric Weather yang asli</string>
-    <string name="cloud_cover_short">Cover awan</string>
-    <string name="ceiling_short">Atap</string>
+    <string name="cloud_cover_short">Awan</string>
+    <string name="ceiling_short">Batas awan</string>
     <string name="wind_short">Angin</string>
     <string name="uv_index_short">Indeks UV</string>
     <string name="visibility_short">Visibilitas</string>
@@ -646,7 +646,7 @@
     <string name="notification_precipitation_continuing_desc">Diperkirakan akan lanjut sampai setidaknya %s</string>
     <string name="notification_precipitation_stopping_desc">Diperkirakan akan berhenti pada %s</string>
     <string name="notification_precipitation_stopping">Hujan segera berhenti</string>
-    <string name="location_message_updated">Lokasi diperbarui</string>
+    <string name="location_message_updated">Lokasi telah diperbarui</string>
     <string name="location_message_already_exists">Sebuah lokasi dengan sumber cuaca utama yang sama sudah ada.</string>
     <string name="location_search_no_results_advice">Pastikan pencarian Anda dieja dengan benar dan tidak terlalu spesifik. Secara alternatif, Anda dapat mencoba sumber pencarian lokasi lain yang dapat menimbulkan hasil yang beda.</string>
     <string name="settings_color_app">Ikuti aplikasi</string>
@@ -680,7 +680,7 @@
     <string name="pollen_quercus">Ek</string>
     <string name="pollen_rumex">Rumex</string>
     <string name="pollen_salix">Salix</string>
-    <string name="sunshine">Bersinar</string>
+    <string name="sunshine">Sinar matahari</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, 4 hari lagi</string>
     <string name="about_open_link_message">Buka %s?</string>
     <string name="message_source_not_installed_error_content_tip_1">Ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam versi Breezy Weather yang Standar lalu diubah ke versi F-Droid yang memiliki jumlah sumber cuaca yang lebih sedikit. Mengembalikan ke versi Standar dapat menyelesaikan masalah ini.</string>
