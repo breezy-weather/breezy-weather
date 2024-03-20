@@ -361,7 +361,7 @@
     <string name="settings_background_updates">Фонавыя абнаўленні</string>
     <string name="settings_background_updates_summary">Частата абнаўлення, адладка</string>
     <string name="settings_background_updates_refresh_title">Частата абнаўлення</string>
-    <string name="settings_background_updates_refresh_30min">Паўгадзіны</string>
+    <string name="settings_background_updates_refresh_30min">30 хвілін</string>
     <string name="settings_background_updates_refresh_1h">1 час</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
     <string name="settings_background_updates_refresh_2h">2 часа</string>
