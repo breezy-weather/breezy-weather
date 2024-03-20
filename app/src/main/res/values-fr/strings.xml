@@ -359,7 +359,7 @@
     <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_none">Aucune</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Vous utilisez la version de Breezy Weather du dépôt par défaut de F-Droid, qui ne prend en charge que les sources météorologiques qui utilisent une solution de serveur disponible publiquement, auto-hébergeable et libre. Appuyez ici pour en savoir plus.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">D’autres sources sont disponibles à partir d’autres versions de Breezy Weather. Appuyez ici pour en savoir plus.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance de qualité de l’air</string>

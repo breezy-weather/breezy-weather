@@ -65,8 +65,6 @@ fun WeatherSourcesSettingsScreen(
             val dialogLinkOpenState = remember { mutableStateOf(false) }
 
             Material3CardListItem(
-                surface = MaterialTheme.colorScheme.errorContainer,
-                onSurface = MaterialTheme.colorScheme.onErrorContainer,
                 modifier = Modifier.clickable {
                     dialogLinkOpenState.value = true
                 }

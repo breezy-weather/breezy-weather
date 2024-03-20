@@ -282,8 +282,6 @@ fun SecondarySourcesPreference(
             ) {
                 if (BuildConfig.FLAVOR == "fdroid") {
                     Material3CardListItem(
-                        surface = MaterialTheme.colorScheme.errorContainer,
-                        onSurface = MaterialTheme.colorScheme.onErrorContainer,
                         modifier = Modifier.clickable {
                             dialogLinkOpenState.value = true
                         }
