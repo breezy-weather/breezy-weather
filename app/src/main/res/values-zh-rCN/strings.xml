@@ -680,4 +680,9 @@
     <string name="settings_weather_source_open_meteo_weather_models">天气模型</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">无缝</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">将此提供者的所有天气模型混合进无缝预测</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">预报实例</string>
+    <string name="alert">警报</string>
+    <string name="settings_source_instance">实例</string>
+    <string name="settings_source_instance_geocoding">地理编码距离</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">空气质量实例</string>
 </resources>
