@@ -534,6 +534,8 @@
     <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre d’état</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
     <string name="settings_widgets_gadgets_title">Gadgets</string>
+    <string name="settings_widgets_broadcast_switch">Diffuser mes données météo à d’autres applications</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Cette option permet à N’IMPORTE QUELLE application sur votre appareil d’avoir accès à l’intitulé de votre emplacement et à vos données météorologiques. Ne poursuivez que si vous comprenez parfaitement les risques potentiels d’utilisation abusive par d’autres applications qui pourraient en résulter.</string>
     <string name="settings_widgets_gadgetbridge_switch">Envoyer les données météo à Gadgetbridge</string>
     <string name="about_privacy_policy">Politique de confidentialité</string>
     <string name="settings_debug">Débogage</string>

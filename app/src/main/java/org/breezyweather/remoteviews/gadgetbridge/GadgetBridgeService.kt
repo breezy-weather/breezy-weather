@@ -70,7 +70,7 @@ object GadgetBridgeService {
     }
 
     fun isEnabled(context: Context): Boolean {
-        return SettingsManager.getInstance(context).isGadgetBridgeSupportEnabled &&
+        return SettingsManager.getInstance(context).isBroadcastWeatherDataEnabled &&
                 isAvailable(context)
     }
 
@@ -132,10 +132,6 @@ object GadgetBridgeService {
             moonRise = today?.moon?.riseDate?.time?.div(1000)?.toInt(),
             moonSet = today?.moon?.setDate?.time?.div(1000)?.toInt(),
             moonPhase = today?.moonPhase?.angle,
-
-            latitude = location.latitude.toFloat(),
-            longitude = location.longitude.toFloat(),
-            isCurrentLocation = if (location.isCurrentPosition) 1 else 0,
 
             airQuality = getAirQuality(current?.airQuality),
 

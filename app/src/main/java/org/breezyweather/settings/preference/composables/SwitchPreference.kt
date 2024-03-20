@@ -58,6 +58,7 @@ fun SwitchPreferenceView(
     @StringRes summaryOnId: Int,
     @StringRes summaryOffId: Int,
     checked: Boolean,
+    withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
     onValueChanged: (Boolean) -> Unit,
@@ -68,6 +69,7 @@ fun SwitchPreferenceView(
         context.getString(if (it) summaryOnId else summaryOffId)
     },
     checked = checked,
+    withState = withState,
     enabled = enabled,
     card = card,
     onValueChanged = onValueChanged,
@@ -79,12 +81,13 @@ fun SwitchPreferenceView(
     @DrawableRes iconId: Int? = null,
     summary: (Context, Boolean) -> String?,
     checked: Boolean,
+    withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
     onValueChanged: (Boolean) -> Unit,
 ) {
     val state = remember { mutableStateOf(checked) }
-    val currentSummary = summary(LocalContext.current, state.value)
+    val currentSummary = summary(LocalContext.current, if (withState) state.value else checked)
 
     // TODO: Redundancy
     if (card) {
@@ -128,7 +131,9 @@ fun SwitchPreferenceView(
                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
                 Switch(
                     enabled = enabled,
-                    checked = state.value,
+                    checked = if (withState) {
+                        state.value
+                    } else checked,
                     onCheckedChange = {
                         state.value = it
                         onValueChanged(it)
@@ -192,7 +197,9 @@ fun SwitchPreferenceView(
             trailingContent = {
                 Switch(
                     enabled = enabled,
-                    checked = state.value,
+                    checked = if (withState) {
+                        state.value
+                    } else checked,
                     onCheckedChange = {
                         state.value = it
                         onValueChanged(it)

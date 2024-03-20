@@ -23,19 +23,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.*
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.wallpaper.MaterialLiveWallpaperService
 
 @Composable
@@ -309,25 +315,81 @@ fun WidgetsSettingsScreen(
     }
     sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 
-    if (GadgetBridgeService.isAvailable(context)) {
+    if (/*GadgetBridgeService.isAvailable(context)*/true) {
         sectionHeaderItem(R.string.settings_widgets_gadgets_title)
-        switchPreferenceItem(R.string.settings_widgets_gadgetbridge_switch) { id ->
+        switchPreferenceItem(R.string.settings_widgets_broadcast_switch) { id ->
+            val isBroadcastWeatherDataEnabled = remember {
+                mutableStateOf(
+                    SettingsManager
+                        .getInstance(context)
+                        .isBroadcastWeatherDataEnabled
+                )
+            }
+            val dialogConfirmRisksOpenState = remember { mutableStateOf(false) }
+
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.settings_enabled,
                 summaryOffId = R.string.settings_disabled,
-                checked = SettingsManager
-                    .getInstance(context)
-                    .isGadgetBridgeSupportEnabled,
+                checked = isBroadcastWeatherDataEnabled.value,
+                withState = false,
                 onValueChanged = {
-                    SettingsManager
-                        .getInstance(context)
-                        .isGadgetBridgeSupportEnabled = it
                     if (it) {
-                        updateGadgetIfNecessary(context)
+                        dialogConfirmRisksOpenState.value = true
+                    } else {
+                        SettingsManager
+                            .getInstance(context)
+                            .isBroadcastWeatherDataEnabled = false
+                        isBroadcastWeatherDataEnabled.value = false
                     }
                 }
             )
+
+            if (dialogConfirmRisksOpenState.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        dialogConfirmRisksOpenState.value = false
+                    },
+                    dismissButton = {
+                        TextButton(
+                            onClick = {
+                                dialogConfirmRisksOpenState.value = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_cancel),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                SettingsManager
+                                    .getInstance(context)
+                                    .isBroadcastWeatherDataEnabled = true
+                                updateGadgetIfNecessary(context)
+                                isBroadcastWeatherDataEnabled.value = true
+                                dialogConfirmRisksOpenState.value = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_continue),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            text = stringResource(R.string.settings_widgets_broadcast_switch_dialog),
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                )
+            }
         }
         sectionFooterItem(R.string.settings_widgets_gadgets_title)
     }

@@ -449,12 +449,12 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
 
-    var isGadgetBridgeSupportEnabled: Boolean
+    var isBroadcastWeatherDataEnabled: Boolean
         set(value) {
-            config.edit().putBoolean("gadgetbridge_support_switch", value).apply()
+            config.edit().putBoolean("broadcast_weather_data_switch", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("gadgetbridge_support_switch", false)
+        get() = config.getBoolean("broadcast_weather_data_switch", false)
 
     private fun notifySettingsChanged() {
         EventBus

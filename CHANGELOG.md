@@ -1,6 +1,9 @@
 # Version 5.1.7 (not yet released)
 
 **Improvements and fixes**
+- [Privacy] If you enabled sending data to Gadgetbridge, Breezy Weather will no longer share your longitude, latitude and if your location is your current position with Gadgetbridge or any other app.
+- [Privacy] The “Send weather data to Gadgetbridge” option was renamed “Broadcast my weather data to other apps” as any app can “pretend to be Gadgetbridge”. A confirmation dialog will appear to make the user confirm they fully understand the risks.
+- [Privacy] The “Send weather data to Gadgetbridge” (which is off by default, unless you enabled it) will be turned off on all devices on update to let users decide if they still want to enable it.
 - For sources not providing colors, we now make the color of the alert dynamic based on severity instead of always orange. This scale is the same as the one used by World Meteorological Organization and may differ with colors usually provided by your national provider. For sources without severity, this will fallback to Unknown color.
 
 **Weather sources**
