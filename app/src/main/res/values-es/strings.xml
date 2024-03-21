@@ -683,4 +683,5 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Servidor de pronóstico del tiempo</string>
     <string name="settings_widgets_broadcast_switch">Compartir mis datos meteorológicos con otras aplicaciones</string>
     <string name="settings_widgets_broadcast_switch_dialog">Esta opción permite que CUALQUIER aplicación en su dispositivo tenga acceso al nombre de su ubicación y a los datos meteorológicos. Continúe solo si comprende completamente los riesgos potenciales de uso indebido por parte de otras aplicaciones que podrían derivarse de ello.</string>
+    <string name="message_invalid_incomplete_data">Datos recibidos del servidor, no válidos o incompletos</string>
 </resources>
