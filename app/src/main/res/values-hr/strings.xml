@@ -631,4 +631,5 @@
     <string name="ceiling_short">Visina oblaka</string>
     <string name="settings_weather_sources_default_source">Zadani izvor za nove lokacije</string>
     <string name="dew_point_short">Rosište</string>
+    <string name="alert">Upozorenje</string>
 </resources>
