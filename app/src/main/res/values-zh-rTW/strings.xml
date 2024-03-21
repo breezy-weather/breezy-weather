@@ -509,7 +509,7 @@
     <string name="air_quality_pm_explanations_origin">自然來源包括火山、沙塵暴、森林和草地火災，以及海浪噴霧。人為活動，例如交通運輸、工業活動、發電廠、建築工地和垃圾焚燒，也會產生大量細懸浮微粒。</string>
     <string name="air_quality_o3_info_introduction">地表臭氧（O₃）是煙霧的主要成分，與保護地球免受過多紫外線的同一分子不同，對人體有害。</string>
     <string name="location_message_search_failed">位置搜尋失敗</string>
-    <string name="settings_weather_sources_summary">天氣資料來源設定</string>
+    <string name="settings_weather_sources_summary">預設的天氣來源適用於新地點、自訂 API 金鑰、其他來源設定</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
@@ -566,7 +566,7 @@
     <string name="about_dependencies">依賴項</string>
     <string name="minutely_precipitations">每分鐘降水量</string>
     <string name="action_save">儲存</string>
-    <string name="settings_weather_sources_per_location_summary">自定義該位置的天氣資料來源</string>
+    <string name="settings_weather_sources_per_location_summary">自訂此地點使用的天氣數據來源</string>
     <string name="settings_weather_source_main">主要資料來源</string>
     <string name="about_privacy_policy">隱私政策</string>
     <string name="about_contact">聯絡</string>
@@ -642,7 +642,7 @@
     <string name="location_search_no_results_advice">請確保您的搜索拼寫正確且未過於具體，或您可嘗試使用其他搜索源，也許會得到不同結果。</string>
     <string name="settings_weather_sources_default_source">新位置的默認信息源</string>
     <string name="settings_weather_source_unavailable">%s（無法使用）</string>
-    <string name="settings_weather_source_fdroid_disclaimer">您正在使用來自 F-Droid 默認倉庫的 Breezy Weather 版本，該版本僅支持使用公開可用、自我託管的免費軟件服務器解決方案的天氣來源。點擊這裡了解更多。</string>
+    <string name="settings_weather_source_fdroid_disclaimer">更多天氣來源可以在 Breezy Weather 的其他版本中找到。點擊這裡了解更多。</string>
     <string name="location_delete_location_dialog_title">刪除位置？</string>
     <string name="location_delete_location_dialog_message_no_name">您即將從已儲存的位置列表中刪除這個位置。</string>
     <string name="action_confirm">確認</string>
@@ -669,4 +669,8 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天……至4天後的花粉指數摘要</string>
     <string name="sunshine">陽光</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>
+    <string name="settings_widgets_broadcast_switch">將我的天氣數據廣播給其他應用程式</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">結合此地點最佳的天氣模型</string>
+    <string name="settings_widgets_broadcast_switch_dialog">此選項允許您裝置上的任何應用程式訪問您的位置名稱和天氣資料。只有在您完全理解其他應用程式可能濫用這些資料而導致的潛在風險時，才繼續進行。</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">將此提供者的所有天氣模型結合成無縫的預測</string>
 </resources>
