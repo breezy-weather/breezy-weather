@@ -634,7 +634,7 @@
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Sie nutzen die Version von Breezy Weather aus der Standard-Paketquelle von F-Droid, die nur Wetterquellen unterstützt, die eine öffentlich verfügbare, selbst betreibbare, freie Software-Serverlösung nutzen. Tippen Sie hier, um mehr zu erfahren.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Mehr Wetterquellen sind in den anderen Varianten von Breezy Weather verfügbar. Tippen Sie hier, um mehr zu erfahren.</string>
     <string name="location_delete_location_dialog_message">Sie sind dabei, „%s“ aus Ihrer Liste der gespeicherten Orte zu löschen.</string>
     <string name="location_delete_location_dialog_title">Ort löschen?</string>
     <string name="widget_label_hide_header">Kopfzeile ausblenden</string>
@@ -674,4 +674,6 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Vorhersageninstanz</string>
     <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
     <string name="settings_widgets_broadcast_switch">Meine Wetterdaten mit anderen Apps teilen</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Diese Option ermöglicht JEDER App auf Ihrem Gerät den Zugriff auf Ihren Ortsnamen und Ihre Wetterdaten. Fahren Sie nur fort, wenn Sie sich der potenziellen Risiken eines Missbrauchs durch andere Apps bewusst sind.</string>
+    <string name="message_invalid_incomplete_data">Ungültige oder unvollständige Daten vom Server empfangen</string>
 </resources>
