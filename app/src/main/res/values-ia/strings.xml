@@ -29,4 +29,9 @@
     <string name="settings_background_updates">Actualisationes de secunde plano</string>
     <string name="settings_background_updates_refresh_never">Nunquam</string>
     <string name="settings_background_updates_refresh_2h">2 horas</string>
+    <string name="settings_appearance_language_title">Lingua</string>
+    <string name="about_app">A proposito del app</string>
+    <string name="settings_appearance_summary">Lingua, modo obscur, pacchettos de icone, unitates</string>
+    <string name="about_contact">Contacto</string>
+    <string name="about_open_link_message">Aperir %s?</string>
 </resources>
