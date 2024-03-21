@@ -575,7 +575,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>
-    <string name="alerts_to_follow">Közelgő riasztások, koppints ide, ha látni szeretnéd őket.</string>
+    <string name="alerts_to_follow">Közelgő riasztások, koppintson ide, ha látni szeretné őket.</string>
     <string name="settings_color_light">Világos</string>
     <string name="unit_mph">mph</string>
     <string name="unit_cm_voice">Centiméter</string>
@@ -638,7 +638,7 @@
     <string name="cloud_cover_short">Felhőtakaró</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
     <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">További időjárási források állnak rendelkezésre a Breezy Weather egyéb kiadási változataiból. További információkért koppints ide.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">További időjárási források állnak rendelkezésre a Breezy Weather egyéb kiadási változataiból. További információkért koppintson ide.</string>
     <string name="weather_message_too_frequent_refreshes">Várjon néhány másodpercet mielőtt újrapróbálkozna…</string>
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
     <string name="location_delete_location_dialog_message">A(z) “%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
@@ -677,4 +677,6 @@
     <string name="settings_source_instance_geocoding">Geokódolási példány</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzés példány</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Levegőminőség példány</string>
+    <string name="settings_widgets_broadcast_switch">Időjárás adatok továbbítása más alkalmazásoknak</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Ez a beállítás lehetővé teszi, hogy az eszközén lévő MINDEN alkalmazás hozzáférjen a beállított helyszíneihez és az időjárás adataihoz. Csak akkor folytassa, ha teljes mértékben tisztában van a más alkalmazások által történő visszaélés lehetséges kockázataival, amelyek ebből eredhetnek.</string>
 </resources>
