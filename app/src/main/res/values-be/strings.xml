@@ -673,4 +673,5 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Прыклад якасці паветра</string>
     <string name="settings_widgets_broadcast_switch">Перадаваць мае дадзеныя аб надвор\'і ў іншыя прыкладання</string>
     <string name="settings_widgets_broadcast_switch_dialog">Гэтая опцыя дазваляе любому з дадаткам на вашым прыладзе мець доступ да назвы вашага месцазнаходжання і дадзеных аб надвор\'і. Працягвайце толькі, калі вы цалкам разумееце патэнцыйныя рызыкі няправільнага выкарыстання іншымі прыкладаннямі, якія могуць узнікнуць у выніку гэтага.</string>
+    <string name="message_invalid_incomplete_data">З сервера атрыманы няслушныя або няпоўныя дадзеныя</string>
 </resources>
