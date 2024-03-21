@@ -28,8 +28,8 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.ParsingException
-import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
@@ -64,9 +64,11 @@ fun convert(
     alertResult: NwsAlertsResult,
     timeZone: TimeZone
 ): WeatherWrapper {
+    throw InvalidOrIncompleteDataException()
+
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.properties == null) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     //val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)

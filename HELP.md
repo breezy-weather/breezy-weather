@@ -2,9 +2,9 @@
 
 ## Troubleshooting errors
 
-### “Location search failed” / “Weather data refresh failed” / “Weather data refresh for a secondary weather source failed”
+### “Invalid or incomplete data received from server” / “Location search failed” / “Weather data refresh failed” / “Weather data refresh for a secondary weather source failed”
 
-The source may be temporarily unavailable, please retry a few hours later. If the problem persists, please open an issue on GitHub, and mention when the problem first appeared (mandatory, or your issue will be closed).
+The source may be temporarily unavailable, please retry a few hours later. If the problem persists, please open an issue on GitHub.
 
 
 ### “Request timed out”
@@ -31,7 +31,9 @@ This error should be reported as soon as possible to GitHub, mentioning the sour
 
 ### “Source no longer available”
 
-This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location.
+This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard or `gplay` flavor of Breezy Weather to `fdroid` one which has less sources supported.
+
+
 
 
 ## Sources

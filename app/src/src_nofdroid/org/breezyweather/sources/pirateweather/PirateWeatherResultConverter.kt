@@ -33,7 +33,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
@@ -54,7 +54,7 @@ fun convert(
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.daily?.data.isNullOrEmpty() || forecastResult.hourly?.data.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     return WeatherWrapper(

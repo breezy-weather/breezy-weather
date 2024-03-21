@@ -37,7 +37,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.mf.json.MfCurrentResult
@@ -86,7 +86,7 @@ fun convert(
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
         || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
         /*base = Base(

@@ -35,7 +35,7 @@ import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
@@ -63,7 +63,7 @@ fun convert(
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null
         || forecastResult.properties.timeseries.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     val currentTimeseries = nowcastResult.properties?.timeseries?.getOrNull(0)?.data

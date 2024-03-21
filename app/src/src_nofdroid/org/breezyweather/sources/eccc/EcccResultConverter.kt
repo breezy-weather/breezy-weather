@@ -31,7 +31,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -71,7 +71,7 @@ fun convert(
     if (ecccResult.dailyFcst?.daily.isNullOrEmpty()
         || ecccResult.dailyFcst?.dailyIssuedTimeEpoch.isNullOrEmpty()
         || ecccResult.hourlyFcst?.hourly.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     return WeatherWrapper(

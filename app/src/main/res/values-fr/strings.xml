@@ -309,6 +309,7 @@
 
     <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
     <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
+    <string name="message_invalid_incomplete_data">Données invalides ou incomplètes reçues du serveur</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_server_timeout">Délai imparti dépassé</string>
     <string name="message_parsing_error_title">Échec d’analyse des données météo</string>

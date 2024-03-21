@@ -26,6 +26,7 @@ import org.breezyweather.BuildConfig
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
@@ -83,6 +84,7 @@ class SearchActivityRepository @Inject internal constructor(
                             RefreshErrorType.PARSING_ERROR
                         }
                         is LocationSearchException -> RefreshErrorType.LOCATION_SEARCH_FAILED
+                        is InvalidOrIncompleteDataException -> RefreshErrorType.INVALID_INCOMPLETE_DATA
                         else -> {
                             e.printStackTrace()
                             RefreshErrorType.LOCATION_SEARCH_FAILED

@@ -36,6 +36,7 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
@@ -636,6 +637,7 @@ class RefreshHelper @Inject constructor(
             }
             is SourceNotInstalledException -> RefreshErrorType.SOURCE_NOT_INSTALLED
             is LocationSearchException -> RefreshErrorType.LOCATION_SEARCH_FAILED
+            is InvalidOrIncompleteDataException -> RefreshErrorType.INVALID_INCOMPLETE_DATA
             is WeatherException -> RefreshErrorType.WEATHER_REQ_FAILED
             else -> {
                 e.printStackTrace()

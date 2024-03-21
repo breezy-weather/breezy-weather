@@ -29,7 +29,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
@@ -69,7 +69,7 @@ fun convert(
     hereWeatherForecastResult: HereWeatherForecastResult
 ): WeatherWrapper {
     if (hereWeatherForecastResult.places.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     val dailySimpleForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
@@ -80,7 +80,7 @@ fun convert(
     }
 
     if (dailySimpleForecasts.isNullOrEmpty() || hourlyForecasts.isNullOrEmpty()) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     val currentForecast = hereWeatherForecastResult.places.firstNotNullOfOrNull {

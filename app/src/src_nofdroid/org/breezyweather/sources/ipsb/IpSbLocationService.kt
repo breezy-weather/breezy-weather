@@ -18,7 +18,7 @@ package org.breezyweather.sources.ipsb
 
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationPositionWrapper
@@ -46,7 +46,7 @@ class IpSbLocationService @Inject constructor(
             .compose(SchedulerTransformer.create())
             .map { t ->
                 if (t.longitude == 0.0 && t.latitude == 0.0) {
-                    throw LocationException()
+                    throw InvalidOrIncompleteDataException()
                 }
                 LocationPositionWrapper(
                     latitude = t.latitude,

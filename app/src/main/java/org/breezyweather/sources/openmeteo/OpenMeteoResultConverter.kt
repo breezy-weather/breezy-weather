@@ -37,7 +37,7 @@ import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -85,7 +85,7 @@ fun convert(
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (weatherResult.hourly == null || weatherResult.daily == null) {
-        throw WeatherException()
+        throw InvalidOrIncompleteDataException()
     }
 
     return WeatherWrapper(

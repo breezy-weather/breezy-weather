@@ -1,4 +1,10 @@
-# Version 5.1.7 (not yet released)
+# Version 5.1.8 (not yet released)
+
+**Improvements and fixes**
+- A new error type “Invalid or incomplete data received from server” was added
+
+
+# Version 5.1.7 (2024-03-20)
 
 **Improvements and fixes**
 - [Privacy] If you enabled sending data to Gadgetbridge, Breezy Weather will no longer share your longitude, latitude and if your location is your current position with Gadgetbridge or any other app.

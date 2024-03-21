@@ -355,6 +355,7 @@
     <string name="dialog_permissions_location_background_title">Access location in background</string>
     <string name="dialog_permissions_location_background_content">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
     <!-- Miscellaneous messages -->
+    <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
     <string name="message_parsing_error_title">Failed to parse weather data</string>

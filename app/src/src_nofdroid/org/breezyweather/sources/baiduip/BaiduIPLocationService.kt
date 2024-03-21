@@ -23,6 +23,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -72,7 +73,7 @@ class BaiduIPLocationService @Inject constructor(
                     || t.content.point.y.isNullOrEmpty()
                     || t.content.point.x.isNullOrEmpty()
                 ) {
-                    throw LocationException()
+                    throw InvalidOrIncompleteDataException()
                 } else {
                     try {
                         LocationPositionWrapper(
