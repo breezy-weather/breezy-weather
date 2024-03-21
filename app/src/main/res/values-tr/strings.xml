@@ -677,4 +677,7 @@
     <string name="settings_source_instance_geocoding">Coğrafi kodlama sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Hava tahmini sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Hava kalitesi sunucusu</string>
+    <string name="settings_widgets_broadcast_switch">Hava durumu verilerimi diğer uygulamalara yayınla</string>
+    <string name="message_invalid_incomplete_data">Sunucudan geçersiz veya eksik veri alındı</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Bu seçenek, aygıtınızdaki HERHANGİ BİR uygulamanın konum adınıza ve hava durumu verilerinize erişmesine izin verir. Yalnızca diğer uygulamalar tarafından kötüye kullanımın neden olabileceği olası riskleri tam olarak anlıyorsanız devam edin.</string>
 </resources>
