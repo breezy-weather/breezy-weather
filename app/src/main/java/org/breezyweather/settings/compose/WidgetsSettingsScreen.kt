@@ -36,6 +36,7 @@ import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.config.*
+import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.presenters.*
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
@@ -315,7 +316,7 @@ fun WidgetsSettingsScreen(
     }
     sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 
-    if (/*GadgetBridgeService.isAvailable(context)*/true) {
+    if (GadgetBridgeService.isAvailable(context)) {
         sectionHeaderItem(R.string.settings_widgets_gadgets_title)
         switchPreferenceItem(R.string.settings_widgets_broadcast_switch) { id ->
             val isBroadcastWeatherDataEnabled = remember {
