@@ -680,4 +680,5 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Пример прогноза</string>
     <string name="settings_widgets_broadcast_switch">Передавать мои данные о погоде в другие приложения</string>
     <string name="settings_widgets_broadcast_switch_dialog">Эта опция позволяет ЛЮБОМУ приложению на вашем устройстве иметь доступ к названию вашего местоположения и данным о погоде. Продолжайте только в том случае, если вы полностью понимаете потенциальные риски неправильного использования другими приложениями, которые могут возникнуть в результате этого.</string>
+    <string name="message_invalid_incomplete_data">С сервера получены неверные или неполные данные</string>
 </resources>
