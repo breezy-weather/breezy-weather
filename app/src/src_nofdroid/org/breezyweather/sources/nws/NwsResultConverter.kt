@@ -64,8 +64,6 @@ fun convert(
     alertResult: NwsAlertsResult,
     timeZone: TimeZone
 ): WeatherWrapper {
-    throw InvalidOrIncompleteDataException()
-
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.properties == null) {
         throw InvalidOrIncompleteDataException()
