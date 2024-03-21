@@ -690,4 +690,5 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance kvality vzduchu</string>
     <string name="settings_widgets_broadcast_switch">Posílat data o počasí ostatním aplikacím</string>
     <string name="settings_widgets_broadcast_switch_dialog">Tato možnost umožňuje KTERÉKOLI aplikaci na vašem zařízení získat přístup k názvu vašeho umístění a datům o počasí. Pokračujte pouze, pokud jste si plně vědomi potenciálních rizik zneužití ostatními aplikacemi.</string>
+    <string name="message_invalid_incomplete_data">Ze serveru byla obdržena neplatná nebo neúplná data</string>
 </resources>
