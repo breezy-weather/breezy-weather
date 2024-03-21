@@ -162,7 +162,7 @@
     <string name="settings_color_light">فاتح</string>
     <string name="settings_color_grey">رمادي</string>
     <string name="settings_color_dark">داكن</string>
-    <string name="settings_background_updates_refresh_30min">كل ٣٠ دقيقة</string>
+    <string name="settings_background_updates_refresh_30min">30 دقيقة</string>
     <string name="settings_background_updates_refresh_1h">كل ساعة</string>
     <string name="settings_background_updates_refresh_1h_30min">كل ساعة ونصف</string>
     <string name="settings_background_updates_refresh_2h">كل ساعتان</string>
@@ -219,7 +219,7 @@
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
     <string name="widget_material_you_current">نمط واجهة ”Material You“ - الحالي</string>
-    <string name="widget_multi_city">متعدد المدن</string>
+    <string name="widget_multi_city">مدينة متعددة</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء ، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس ، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
 \nعلى سبيل المثال ، سيتم عرض “الطقس الحالي هو: $cw$.” ك “الطقس الحالي هو: يوم صاف.”.</string>
@@ -639,7 +639,7 @@
     <string name="cloud_cover_short">الغطاء</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">أنت تستخدم إصدار Breezy Weather من مستودع F-Droid الافتراضي، والذي يدعم فقط مصادر الطقس التي تستخدم حل خادم برمجي مجاني متاح للعامة ويمكن استضافته ذاتيًا. انقر هنا لمعرفة المزيد.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">تتوفر المزيد من مصادر الطقس من النكهات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
     <string name="location_delete_location_dialog_title">هل تريد حذف المنطقة؟</string>
     <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المناطق المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المناطق المحفوظة.</string>
@@ -673,4 +673,11 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">تجمع أفضل نماذج الطقس لهذا الموقع</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">سلس</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">يجمع جميع نماذج الطقس من هذا المزود في تنبؤ سلس</string>
+    <string name="alert">تنبيه</string>
+    <string name="settings_source_instance">الخادم</string>
+    <string name="settings_source_instance_geocoding">خادم الترميز الجغرافي</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">خادم جودة الهواء</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">خادم التوقعات</string>
+    <string name="settings_widgets_broadcast_switch">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
+    <string name="settings_widgets_broadcast_switch_dialog">يتيح هذا الخيار لأي تطبيق على جهازك الوصول إلى موقعك وبيانات الطقس. لا يمكنك المتابعة إلا إذا كنت تفهم تمامًا المخاطر المحتملة لسوء الاستخدام من قبل التطبيقات الأخرى التي قد تصدر عن ذلك.</string>
 </resources>
