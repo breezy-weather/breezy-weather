@@ -679,4 +679,5 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Levegőminőség példány</string>
     <string name="settings_widgets_broadcast_switch">Időjárás adatok továbbítása más alkalmazásoknak</string>
     <string name="settings_widgets_broadcast_switch_dialog">Ez a beállítás lehetővé teszi, hogy az eszközén lévő MINDEN alkalmazás hozzáférjen a beállított helyszíneihez és az időjárás adataihoz. Csak akkor folytassa, ha teljes mértékben tisztában van a más alkalmazások által történő visszaélés lehetséges kockázataival, amelyek ebből eredhetnek.</string>
+    <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
 </resources>
