@@ -692,4 +692,5 @@
     <string name="settings_source_instance_geocoding">Server geokode</string>
     <string name="settings_widgets_broadcast_switch">Siarkan data cuaca saya ke aplikasi lain</string>
     <string name="settings_widgets_broadcast_switch_dialog">Opsi ini memungkinkan aplikasi APA PUN di perangkat Anda untuk memiliki akses ke nama lokasi dan data cuaca. Hanya lanjutkan jika Anda benar-benar mengerti risiko dan penyalahgunaan yang dapat terjadi dari opsi ini.</string>
+    <string name="message_invalid_incomplete_data">Data yang diterima dari server tidak valid atau tidak lengkap</string>
 </resources>
