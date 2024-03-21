@@ -643,7 +643,7 @@
     <string name="comma_separator">、</string>
     <string name="settings_weather_sources_default_source">新位置的默认源</string>
     <string name="settings_weather_source_unavailable">%s (不可用)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">你使用的是 F-Droid 默认存储库版本的 Breezy Weather，该版本只支持特定天气源，这些源需要使用公开可得、可自托管、自由软件服务器解决方案。轻按此处了解更多信息。</string>
+    <string name="settings_weather_source_fdroid_disclaimer">其他版本的 Breezy Weather 有更多天气数据源。轻按此处了解更多信息。</string>
     <string name="location_delete_location_dialog_title">是否要删除此位置？</string>
     <string name="location_delete_location_dialog_message">您即将从已储存的位置列表中删除“%s”。</string>
     <string name="location_delete_location_dialog_message_no_name">您即将从已储存的位置列表中删除这个位置。</string>
@@ -682,4 +682,6 @@
     <string name="settings_source_instance">实例</string>
     <string name="settings_source_instance_geocoding">地理编码距离</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空气质量实例</string>
+    <string name="settings_widgets_broadcast_switch">广播我的天气数据给其他应用</string>
+    <string name="settings_widgets_broadcast_switch_dialog">此选项允许你设备上的任何应用访问你的位置名称和天气数据。请只在你充分理解由于启用该选项而可能导致的其他应用的潜在滥用风险的情况下才继续。</string>
 </resources>
