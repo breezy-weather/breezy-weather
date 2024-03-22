@@ -189,10 +189,10 @@
     <string name="weather_api_key_required_missing_content">Каб скарыстацца гэтай крыніцай, дадайце свой API-ключ.</string>
     <string name="setting_weather_source_accu_days">Дні</string>
     <string name="weather_api_unauthorized_content">Для некаторых крыніц надвор’я неабходна выкарыстоўваць свой уласны API-ключ. Калі вы ўжо дадалі яго, калі ласка, пераправерце правільнасць API-ключ.</string>
-    <string name="weather_source_accu_preference_days_1">1 день</string>
-    <string name="weather_source_accu_preference_days_5">5 дзён</string>
-    <string name="weather_source_accu_preference_days_10">10 дзён</string>
-    <string name="weather_source_accu_preference_days_15">15 дзён</string>
+    <string name="weather_source_accu_preference_days_1">1 дзень</string>
+    <string name="weather_source_accu_preference_days_5">5 дзён</string>
+    <string name="weather_source_accu_preference_days_10">10 дзён</string>
+    <string name="weather_source_accu_preference_days_15">15 дзён</string>
     <string name="setting_weather_source_accu_hours">Гадзіны</string>
     <string name="weather_source_accu_preference_hours_1">1 гадзіна</string>
     <string name="weather_source_accu_preference_hours_12">12 гадзін</string>
@@ -349,7 +349,7 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_temperature">Тэмпература</string>
     <string name="widget_week_style_5_days">5 дней</string>
-    <string name="widget_week_style_3_days">3 дня</string>
+    <string name="widget_week_style_3_days">3 дня</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
@@ -674,4 +674,7 @@
     <string name="settings_widgets_broadcast_switch">Перадаваць мае дадзеныя аб надвор’і ў іншыя прыкладання</string>
     <string name="settings_widgets_broadcast_switch_dialog">Гэтая опцыя дазваляе любому з дадаткам на вашым прыладзе мець доступ да назвы вашага месцазнаходжання і дадзеных аб надвор’і. Працягвайце толькі, калі вы цалкам разумееце патэнцыйныя рызыкі няправільнага выкарыстання іншымі прыкладаннямі, якія могуць узнікнуць у выніку гэтага.</string>
     <string name="message_invalid_incomplete_data">З сервера атрыманы няслушныя або няпоўныя дадзеныя</string>
+    <string name="settings_per_location_theme">Тэма</string>
+    <string name="settings_invalid_syntax">Няправільны сінтаксіс</string>
+    <string name="settings_source_instance_invalid">Павінен быць URL-адрас https, які сканчаецца на /</string>
 </resources>
