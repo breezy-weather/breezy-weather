@@ -47,8 +47,6 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunProperties
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
@@ -88,7 +86,7 @@ fun convert(
             cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.roundToInt()
         ) else null,
         dailyForecast = getDailyList(
-            location.javaTimeZone,
+            location,
             sunResult.properties,
             moonResult.properties,
             forecastResult.properties.timeseries
@@ -151,15 +149,17 @@ private fun getHourlyList(
 }
 
 private fun getDailyList(
-    timeZone: TimeZone,
+    location: Location,
     sunResult: MetNoSunProperties?,
     moonResult: MetNoMoonProperties?,
     forecastTimeseries: List<MetNoForecastTimeseries>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = forecastTimeseries.groupBy { it.time.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = forecastTimeseries.groupBy {
+        it.time.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

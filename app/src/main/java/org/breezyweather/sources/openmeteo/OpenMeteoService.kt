@@ -352,7 +352,6 @@ class OpenMeteoService @Inject constructor(
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
-            // TODO: Add error popup in case the value isn't valid
             EditTextPreference(
                 titleId = R.string.settings_weather_source_open_meteo_instance_forecast,
                 summary = { _, content ->
@@ -361,10 +360,10 @@ class OpenMeteoService @Inject constructor(
                     }
                 },
                 content = forecastInstance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        forecastInstance = it
-                    }
+                    forecastInstance = it
                 }
             ),
             EditTextPreference(
@@ -375,10 +374,10 @@ class OpenMeteoService @Inject constructor(
                     }
                 },
                 content = airQualityInstance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        airQualityInstance = it
-                    }
+                    airQualityInstance = it
                 }
             ),
             EditTextPreference(
@@ -389,10 +388,10 @@ class OpenMeteoService @Inject constructor(
                     }
                 },
                 content = geocodingInstance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        geocodingInstance = it
-                    }
+                    geocodingInstance = it
                 }
             )
         )

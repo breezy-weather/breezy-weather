@@ -306,9 +306,6 @@
     <string name="ephemeris_moonrise_at">Восход луны в %s</string>
     <string name="ephemeris_moonset_at">Заход луны в %s</string>
     <string name="ephemeris_sunset_at">Закат солнца в %s</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <string name="weather_data_by">Данные предоставлены %s</string>
     <string name="uv_index_0_2">Низкий</string>
     <string name="pollen_ambrosia">Амброзия</string>

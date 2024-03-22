@@ -37,7 +37,6 @@ import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -98,7 +97,7 @@ class AtmoAuraService @Inject constructor(
             getApiKeyOrDefault(),
             location.longitude,
             location.latitude, // Tomorrow because it gives access to D-1 and D+1
-            calendar.time.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH)
+            calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
         ).map {
             convert(it)
         }

@@ -94,9 +94,6 @@
     <string name="action_learn_more">Dowiedz się więcej</string>
     <string name="about_app">O aplikacji</string>
     <string name="about_translators">Tłumacze</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Nie udało się znaleźć bieżącej lokalizacji</string>
     <string name="weather_message_data_refresh_failed">Pobranie danych pogodowych nie powiodło się</string>

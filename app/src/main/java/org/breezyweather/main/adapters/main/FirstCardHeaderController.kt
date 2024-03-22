@@ -136,23 +136,21 @@ class FirstCardHeaderController(
                         supportingContent = currentAlert.startDate?.let { startDate ->
                             {
                                 val builder = StringBuilder()
+                                val language = SettingsManager.getInstance(mActivity).language
                                 val startDateDay = startDate.getFormattedMediumDayAndMonth(
-                                    location,
-                                    SettingsManager.getInstance(mActivity).language.locale
+                                    location, language
                                 )
                                 builder.append(startDateDay)
                                     .append(stringResource(R.string.comma_separator))
                                     .append(
                                         startDate.getFormattedTime(
-                                            location.javaTimeZone,
-                                            mActivity.is12Hour
+                                            location, language, mActivity.is12Hour
                                         )
                                     )
                                 currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
                                     val endDateDay = endDate.getFormattedMediumDayAndMonth(
-                                        location,
-                                        SettingsManager.getInstance(mActivity).language.locale
+                                        location, language
                                     )
                                     if (startDateDay != endDateDay) {
                                         builder.append(endDateDay)
@@ -160,8 +158,7 @@ class FirstCardHeaderController(
                                     }
                                     builder.append(
                                         endDate.getFormattedTime(
-                                            location.javaTimeZone,
-                                            mActivity.is12Hour
+                                            location, language, mActivity.is12Hour
                                         )
                                     )
                                 }

@@ -93,13 +93,6 @@
     <string name="action_learn_more">Lue lisää</string>
     <string name="about_app">Tietoja sovelluksesta</string>
     <string name="about_translators">Kääntäjät</string>
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
     <string name="dialog_permissions_location_content">Breezy Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>

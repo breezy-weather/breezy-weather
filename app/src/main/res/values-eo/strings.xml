@@ -185,13 +185,6 @@
     <string name="cloud_cover_short">Nubkovro</string>
     <string name="ceiling">Nubplafono</string>
     <string name="ceiling_short">Nubplafono</string>
-    <!-- Date format strings -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEE d MMM</string>
-    <string name="date_format_widget_long">EEEE d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Datumoj de %s</string>
     <string name="weather_air_quality_data_by">Aerkvalito datumoj de %s</string>

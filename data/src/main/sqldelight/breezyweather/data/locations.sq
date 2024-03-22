@@ -26,34 +26,37 @@ CREATE TABLE locations(
 
     current_position INTEGER AS Boolean NOT NULL DEFAULT 0,
 
-    needs_geocode_refresh INTEGER AS Boolean NOT NULL DEFAULT 0
+    needs_geocode_refresh INTEGER AS Boolean NOT NULL DEFAULT 0,
+
+    background_weather_kind TEXT,
+    background_day_night_type TEXT
 );
 
 getLocationById:
-SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 WHERE formatted_id = :formattedId;
 
 getAllLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order;
 
 getXLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT :limit;
 
 getFirstLocation:
-SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh
+SELECT city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT 1;
 
 insert:
-INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh)
-VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :province, :provinceCode, :city, :district, :weatherSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh)
+INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, province, province_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type)
+VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :province, :provinceCode, :city, :district, :weatherSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh, :backgroundWeatherKind, :backgroundDayNightType)
 ON CONFLICT(formatted_id) DO UPDATE SET
     list_order = coalesce(:listOrder, list_order),
     city_id = coalesce(:cityId, city_id),
@@ -73,7 +76,9 @@ ON CONFLICT(formatted_id) DO UPDATE SET
     alert_source = coalesce(:alertSource, alert_source),
     normals_source = coalesce(:normalsSource, normals_source),
     current_position = coalesce(:currentPosition, current_position),
-    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh);
+    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh),
+    background_weather_kind = coalesce(:backgroundWeatherKind, background_weather_kind),
+    background_day_night_type = coalesce(:backgroundDayNightType, background_day_night_type);
 
 updateFormattedId:
 UPDATE locations
@@ -99,7 +104,9 @@ SET city_id = coalesce(:cityId, city_id),
     alert_source = coalesce(:alertSource, alert_source),
     normals_source = coalesce(:normalsSource, normals_source),
     current_position = coalesce(:currentPosition, current_position),
-    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh)
+    needs_geocode_refresh = coalesce(:needsGeocodeRefresh, needs_geocode_refresh),
+    background_weather_kind = coalesce(:backgroundWeatherKind, background_weather_kind),
+    background_day_night_type = coalesce(:backgroundDayNightType, background_day_night_type)
 WHERE formatted_id = coalesce(:formattedId, formatted_id);
 
 deleteLocation:

@@ -24,10 +24,8 @@
             android:shadowDy="1"
             android:shadowRadius="1"
             android:maxLines="1"
-            android:format24Hour="@string/date_format_widget_long"
-            android:format12Hour="@string/date_format_widget_long"
             android:textColor="?android:attr/textColorPrimary"
-            tools:text="12月29日 星期四" />
+            tools:text="Sunday, 29 December" />
 
         <TextView
             android:id="@+id/widget_text_weather"

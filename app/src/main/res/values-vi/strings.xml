@@ -36,7 +36,6 @@
     <string name="ephemeris_moon_phase_full_moon">Trăng tròn</string>
     <string name="ephemeris_moon_phase_waning_crescent">Trăng lưỡi liềm cuối tháng</string>
     <string name="location_message_deleted">Đã xóa vị trí</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <string name="weather_data_by">Dữ liệu từ %s</string>
     <string name="weather_api_unauthorized_content">Tại một số nguồn dữ liệu, bạn cần phải cung cấp khóa API của bạn. Nếu bạn đã nhập, vui lòng kiểm tra lại khóa API đã nhập.</string>
     <string name="weather_api_key_required_missing_title">Thiếu khóa API cần thiết</string>
@@ -151,8 +150,6 @@
     <string name="weather_kind_thunder">Sấm</string>
     <string name="weather_kind_thunderstorm">Giông bão</string>
     <string name="weather_kind_wind">Gió</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_air_quality_and_pollen_data_by">Dữ liệu chất lượng không khí và ô nhiễm từ %s</string>
     <string name="weather_message_data_refresh_failed">Làm mới dữ liệu thời tiết thất bại</string>
     <string name="weather_api_limit_reached_title">Đã đạt giới hạn gọi API</string>

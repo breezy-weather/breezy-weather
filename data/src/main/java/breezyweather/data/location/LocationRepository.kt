@@ -129,7 +129,9 @@ class LocationRepository(
                         alertSource = location.alertSource,
                         normalsSource = location.normalsSource,
                         currentPosition = location.isCurrentPosition,
-                        needsGeocodeRefresh = location.needsGeocodeRefresh
+                        needsGeocodeRefresh = location.needsGeocodeRefresh,
+                        backgroundWeatherKind = location.backgroundWeatherKind,
+                        backgroundDayNightType = location.backgroundDayNightType
                     )
 
                     // 3. Update location parameters
@@ -210,7 +212,9 @@ class LocationRepository(
                     alertSource = location.alertSource,
                     normalsSource = location.normalsSource,
                     currentPosition = location.isCurrentPosition,
-                    needsGeocodeRefresh = location.needsGeocodeRefresh
+                    needsGeocodeRefresh = location.needsGeocodeRefresh,
+                    backgroundWeatherKind = location.backgroundWeatherKind,
+                    backgroundDayNightType = location.backgroundDayNightType
                 )
             }
             true

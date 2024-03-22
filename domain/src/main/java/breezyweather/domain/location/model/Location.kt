@@ -59,6 +59,9 @@ data class Location(
 
     val needsGeocodeRefresh: Boolean = false,
 
+    val backgroundWeatherKind: String? = null,
+    val backgroundDayNightType: String? = null,
+
     /**
      * "accu": {"cityId": "230"}
      * "nws": {"gridId": "8", "gridX": "20", "gridY": "30"}
@@ -104,6 +107,8 @@ data class Location(
         parcel.writeString(normalsSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (needsGeocodeRefresh) 1 else 0)
+        parcel.writeString(backgroundWeatherKind)
+        parcel.writeString(backgroundDayNightType)
     }
 
     override fun describeContents() = 0
@@ -126,7 +131,9 @@ data class Location(
         alertSource = parcel.readString(),
         normalsSource = parcel.readString(),
         isCurrentPosition = parcel.readByte() != 0.toByte(),
-        needsGeocodeRefresh = parcel.readByte() != 0.toByte()
+        needsGeocodeRefresh = parcel.readByte() != 0.toByte(),
+        backgroundWeatherKind = parcel.readString(),
+        backgroundDayNightType = parcel.readString()
     )
 
     override fun equals(other: Any?): Boolean {
@@ -166,6 +173,14 @@ data class Location(
         }
 
         if (needsGeocodeRefresh != other.needsGeocodeRefresh) {
+            return false
+        }
+
+        if (backgroundWeatherKind != other.backgroundWeatherKind) {
+            return false
+        }
+
+        if (backgroundDayNightType != other.backgroundDayNightType) {
             return false
         }
 

@@ -33,10 +33,10 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.trend.TrendLinearLayout
 import org.breezyweather.remoteviews.trend.WidgetItemView
@@ -146,7 +146,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
-            context, WeatherViewController.getWeatherKind(weather), location.isDaylight
+            context,
+            WeatherViewController.getWeatherKind(location),
+            WeatherViewController.isDaylight(location)
         )
         val widgetItemViews: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_hourly_item_1),
@@ -157,7 +159,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         widgetItemViews.forEachIndexed { i, widgetItemView ->
             weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
-                widgetItemView.setTitleText(hourly.getHour(context, location.javaTimeZone))
+                widgetItemView.setTitleText(hourly.date.getHour(location, context))
                 widgetItemView.setSubtitleText(null)
                 hourly.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(

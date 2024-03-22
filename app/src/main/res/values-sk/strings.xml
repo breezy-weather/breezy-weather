@@ -134,7 +134,6 @@
     <string name="ephemeris_moon_phase_new_moon">Nový mesiac</string>
     <string name="ephemeris_moon_phase_full_moon">Úplnok</string>
     <string name="pollen_and_mold">Peľ a pleseň</string>
-    <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="visibility">Viditeľnosť</string>
     <string name="ceiling">Výška mrakov</string>
     <string name="unit_ppcm">/m³</string>
@@ -145,7 +144,6 @@
     <string name="nighttime">Noc</string>
     <string name="notification_channel_forecast">Predpoveď</string>
     <string name="pollen_ambrosia">Ambrózia</string>
-    <string name="date_format_widget_short">EEE d MMM</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normálna</string>
     <string name="weather_air_quality_data_by">Údaje o kvalite ovzdušia od %s</string>
@@ -155,7 +153,6 @@
     <string name="cloud_cover">Oblačnosť</string>
     <string name="ephemeris_sunrise_at">Východ slnka v %s</string>
     <string name="null_data_text">N/A</string>
-    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <string name="humidity">Vlhkosť</string>
     <string name="humidity_dew_point">Vlhkosť / Rosný bod</string>
     <string name="ephemeris_moonset_at">Západ mesiaca v %s</string>

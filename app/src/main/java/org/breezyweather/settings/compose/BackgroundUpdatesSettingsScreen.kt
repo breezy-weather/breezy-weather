@@ -119,7 +119,8 @@ fun BackgroundSettingsScreen(
                 summary = if (SettingsManager.getInstance(context).weatherUpdateLastTimestamp > 0) {
                     context.getString(
                         R.string.settings_background_updates_worker_info_summary,
-                        Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp).getFormattedDate(pattern = "yyyy-MM-dd HH:mm")
+                        Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp)
+                            .getFormattedDate("yyyy-MM-dd HH:mm")
                     )
                 } else null
             ) {

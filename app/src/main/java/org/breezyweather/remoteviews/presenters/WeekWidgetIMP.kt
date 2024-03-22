@@ -99,9 +99,9 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
                 views.setTextViewText(
                     dailyId[0],
-                    if (it.isToday(location.javaTimeZone)) {
+                    if (it.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(context, location)
+                    } else it.getWeek(location, SettingsManager.getInstance(context).language)
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
@@ -117,7 +117,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                            provider, it, dayTime = true, minimalIcon, color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -127,7 +127,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                            provider, it, dayTime = false, minimalIcon, color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)

@@ -525,9 +525,6 @@
     <string name="common_weather_text_drizzle_light">Neliels smidzinošs lietus</string>
     <string name="common_weather_text_drizzle_heavy">Spēcīgs smidzinošs lietus</string>
     <string name="metno_weather_text_andthunder">%s un pērkons</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="settings_items_drag_to_sort">Pieskarieties, lai vilktu saraksta vienumus kārtošanai</string>
     <string name="settings_item_delete">Dzēst šo vienumu</string>
     <string name="settings_enabled">Iespējots</string>

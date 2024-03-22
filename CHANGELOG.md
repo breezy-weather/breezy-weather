@@ -1,7 +1,20 @@
 # Version 5.1.8 (not yet released)
 
+**New features**
+- Added ability to change the background weather and time for each location
+
 **Improvements and fixes**
+- Fix live wallpaper non-auto weather kind
 - A new error type “Invalid or incomplete data received from server” was added
+- Fix display issue when changing main source sometimes resulted in empty value for secondary sources
+- Add error handling to “change instance URL” feature of self-hostable sources
+- [Widgets] Fix clock and dates didn’t honor timezone of the location (used system timezone instead)
+- [Widgets] Fix clock font preference reset every time configuration screen was enteredFget
+
+**Translations**
+- Translations updated
+- Basic support added for British English (supports a few spelling differences), also added to Australian English and Canadian English (new)
+- Improved date formatting work for Android 7.0+ is now complete
 
 
 # Version 5.1.7 (2024-03-20)

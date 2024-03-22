@@ -158,10 +158,8 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                android:format24Hour="@string/date_format_widget_short"
-                android:format12Hour="@string/date_format_widget_short"
                 style="@style/widget_text_clock"
-                tools:text="11-04 周五"
+                tools:text="Sun 4 Nov"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

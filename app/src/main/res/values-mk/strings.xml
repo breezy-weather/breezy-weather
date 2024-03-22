@@ -291,7 +291,6 @@
     <string name="weather_kind_thunderstorm">Невреме со грмотевици</string>
     <string name="weather_kind_wind">Ветер</string>
     <string name="weather_source_accu_preference_days_1">1 ден</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <string name="unit_kpa">кПа</string>
     <string name="weather_source_accu_preference_days_5">5 дена</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
@@ -570,8 +569,6 @@
     <string name="metno_weather_text_andthunder">%s и гром</string>
     <string name="null_data_text">N/A</string>
     <string name="humidity_dew_point">Влажност / Точка на росење</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_air_quality_data_by">Податоци за квалитетот на воздухот за %s</string>
     <string name="settings_weather_source_portal">Портал</string>
     <string name="action_search">Пребарување</string>

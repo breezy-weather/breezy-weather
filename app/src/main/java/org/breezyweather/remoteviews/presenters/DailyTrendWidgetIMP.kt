@@ -173,7 +173,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
-            context, WeatherViewController.getWeatherKind(weather), location.isDaylight
+            context,
+            WeatherViewController.getWeatherKind(location),
+            WeatherViewController.isDaylight(location)
         )
         val widgetItemViews: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_daily_item_1),
@@ -185,14 +187,13 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         widgetItemViews.forEachIndexed { i, widgetItemView ->
             weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                 widgetItemView.setTitleText(
-                    if (daily.isToday(location.javaTimeZone)) {
+                    if (daily.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else daily.getWeek(context, location)
+                    } else daily.getWeek(location, SettingsManager.getInstance(context).language)
                 )
                 widgetItemView.setSubtitleText(
                     daily.date.getFormattedShortDayAndMonth(
-                        location,
-                        SettingsManager.getInstance(context).language.locale
+                        location, SettingsManager.getInstance(context).language
                     )
                 )
                 daily.day?.weatherCode?.let {

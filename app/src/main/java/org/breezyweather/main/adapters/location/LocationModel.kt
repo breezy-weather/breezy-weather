@@ -46,6 +46,7 @@ class LocationModel(
         location.weather?.let { weather ->
             weatherCode = weather.current?.weatherCode
             weatherText = weather.current?.weatherText
+            val language = SettingsManager.getInstance(context).language
             if (weather.currentAlertList.isNotEmpty()) {
                 val builder = StringBuilder()
                 weather.currentAlertList.forEach { alert ->
@@ -59,24 +60,26 @@ class LocationModel(
                     )
                     alert.startDate?.let { startDate ->
                         val startDateDay = startDate.getFormattedShortDayAndMonth(
-                            location,
-                            SettingsManager.getInstance(context).language.locale
+                            location, language
                         )
                         builder.append(context.getString(R.string.comma_separator))
                             .append(startDateDay)
                             .append(context.getString(R.string.comma_separator))
-                            .append(startDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
+                            .append(
+                                startDate.getFormattedTime(location, language, context.is12Hour)
+                            )
                         alert.endDate?.let { endDate ->
                             builder.append("-")
                             val endDateDay = endDate.getFormattedShortDayAndMonth(
-                                location,
-                                SettingsManager.getInstance(context).language.locale
+                                location, language
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(context.getString(R.string.comma_separator))
                             }
-                            builder.append(endDate.getFormattedTime(location.javaTimeZone, context.is12Hour))
+                            builder.append(
+                                endDate.getFormattedTime(location, language, context.is12Hour)
+                            )
                         }
                     }
                 }

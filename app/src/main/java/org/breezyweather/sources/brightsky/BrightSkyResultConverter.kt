@@ -17,6 +17,7 @@
 package org.breezyweather.sources.brightsky
 
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Current
@@ -38,18 +39,16 @@ import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
-import java.util.Locale
-import java.util.TimeZone
 
 
 /**
- * Converts PirateWeather result into a forecast
+ * Converts Bright Sky result into a forecast
  */
 fun convert(
     weatherResult: BrightSkyWeatherResult,
     currentWeatherResult: BrightSkyCurrentWeatherResult,
     alertsResult: BrightSkyAlertsResult,
-    timeZone: TimeZone,
+    location: Location,
     languageCode: String
 ): WeatherWrapper {
     // If the API doesn’t return weather, consider data as garbage and keep cached data
@@ -59,7 +58,7 @@ fun convert(
 
     return WeatherWrapper(
         current = getCurrent(currentWeatherResult.weather),
-        dailyForecast = getDailyForecast(timeZone, weatherResult.weather),
+        dailyForecast = getDailyForecast(location, weatherResult.weather),
         hourlyForecast = getHourlyForecast(weatherResult.weather),
         alertList = getAlertList(alertsResult.alerts, languageCode)
     )
@@ -92,13 +91,15 @@ private fun getCurrent(result: BrightSkyCurrentWeather?): Current? {
  * Generate empty daily days from hourly weather since daily doesn't exist in API
  */
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     weatherResult: List<BrightSkyWeather>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = weatherResult.groupBy { it.timestamp.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = weatherResult.groupBy {
+        it.timestamp.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

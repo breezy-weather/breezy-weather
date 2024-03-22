@@ -26,6 +26,7 @@
         <item>Dansk</item>
         <item>Deutsch</item>
         <item>English (Australia)</item>
+        <item>English (Canada)</item>
         <item>English (United Kingdom)</item>
         <item>English (United States)</item>
         <item>Español</item>
@@ -77,6 +78,7 @@
         <item>german</item>
         <item>english_australia</item>
         <item>english_britain</item>
+        <item>english_canada</item>
         <item>english_america</item>
         <item>spanish</item>
         <item>esperanto</item>

@@ -93,13 +93,6 @@
     <string name="action_learn_more">Află mai multe</string>
     <string name="about_app">Despre aplicație</string>
     <string name="about_translators">Traducători</string>
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">d MMM, EEE</string>
-    <string name="date_format_widget_long">d MMM, EEEE</string>
-    <string name="date_format_widget_oreo_style">d MMM, EEEE│</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Accesează informații despre locație</string>
     <string name="dialog_permissions_location_content">Breezy Weather trebuie să colecteze informațiile despre locație în prim plan sau în fundal pentru a furniza datele meteo ale locației actuale. Pentru aceasta, se vor solicita niște permisiuni. Informațiile despre locație vor fi folosite numai pentru a obține date meteo în locația curentă. Dacă nu dorești să împărtășești informațiile despre locație, poți refuza aceste cerințe și poți seta manual locația în pagina de gestionare.</string>

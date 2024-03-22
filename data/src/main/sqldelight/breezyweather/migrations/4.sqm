@@ -1,0 +1,5 @@
+ALTER TABLE locations
+ADD COLUMN background_weather_kind TEXT;
+
+ALTER TABLE locations
+ADD COLUMN background_day_night_type TEXT;

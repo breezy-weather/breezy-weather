@@ -16,13 +16,13 @@
 
 package org.breezyweather.daily.adapter.model
 
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.MoonPhase
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
-import java.util.TimeZone
 
 class DailyAstro(
-    val timeZone: TimeZone,
+    val location: Location,
     val sun: Astro?,
     val moon: Astro?,
     val moonPhase: MoonPhase?

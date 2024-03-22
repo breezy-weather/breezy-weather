@@ -193,14 +193,6 @@
     <string name="about_contact">Contact</string>
     <string name="about_translators">Traducteurs</string>
 
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEEE d MMM</string>
-    <string name="date_format_widget_long">EEEE d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
-
     <!-- feedback. -->
     <string name="dialog_permissions_notification_title">Restez informés</string>
     <string name="dialog_permissions_notification_content">Appuyez ici pour activer les notifications de vigilances météo, ou décidez plus tard depuis les paramètres.</string>
@@ -287,7 +279,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Phase lunaire d’aujourd’hui, demain, …, dans 4 jours</string>
 
     <string name="widget_live_wallpaper_weather_kind">Météo</string>
-    <string name="widget_live_wallpaper_day_night_type">Heure</string>
+    <string name="widget_live_wallpaper_day_night_type">Période</string>
 
     <string name="location_message_added">Emplacement ajouté</string>
     <string name="location_message_updated">Emplacement mis à jour</string>
@@ -340,6 +332,7 @@
     <string name="action_back">Retour</string>
     <string name="settings_source_api_key">Clé API</string>
     <string name="settings_source_instance">Instance</string>
+    <string name="settings_source_instance_invalid">Doit être une URL https se terminant par un /</string>
     <string name="settings_source_instance_geocoding">Instance de géocodage</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
     <string name="settings_location_access_permission_already_granted">Permission déjà accordée</string>
@@ -354,6 +347,7 @@
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
     <string name="settings_per_location">Préférences de l’emplacement</string>
     <string name="settings_per_location_summary">Personnalisations supplémentaires pour cet emplacement</string>
+    <string name="settings_per_location_theme">Thème</string>
     <string name="settings_weather_sources">Sources météo</string>
     <string name="settings_weather_sources_summary">Source météo par défaut pour les nouveaux emplacements, clés API personnalisées, autres paramètres de source</string>
     <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
@@ -592,6 +586,7 @@
     <string name="settings_color_light">Clair</string>
     <string name="settings_color_grey">Gris</string>
     <string name="settings_color_dark">Sombre</string>
+    <string name="settings_invalid_syntax">Syntaxe invalide</string>
 
     <string name="about_source_code">Code source</string>
     <string name="about_dependencies">Dépendences</string>

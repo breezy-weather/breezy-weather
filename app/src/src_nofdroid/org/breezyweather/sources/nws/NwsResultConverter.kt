@@ -42,8 +42,6 @@ import org.breezyweather.sources.nws.json.NwsValueDoubleContainer
 import org.breezyweather.sources.nws.json.NwsValueIntContainer
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 import kotlin.time.Duration.Companion.parseIsoString
 
 fun convert(
@@ -62,7 +60,7 @@ fun convert(
 fun convert(
     forecastResult: NwsGridPointResult,
     alertResult: NwsAlertsResult,
-    timeZone: TimeZone
+    location: Location
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.properties == null) {
@@ -71,30 +69,30 @@ fun convert(
 
     //val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)
 
-    val temperatureForecastList = getDoubleForecast(forecastResult.properties.temperature, false, timeZone)
-    val apparentTemperatureForecastList = getDoubleForecast(forecastResult.properties.apparentTemperature, false, timeZone)
-    val wetBulbGlobeTemperatureForecastList = getDoubleForecast(forecastResult.properties.wetBulbGlobeTemperature, false, timeZone)
+    val temperatureForecastList = getDoubleForecast(forecastResult.properties.temperature, false, location)
+    val apparentTemperatureForecastList = getDoubleForecast(forecastResult.properties.apparentTemperature, false, location)
+    val wetBulbGlobeTemperatureForecastList = getDoubleForecast(forecastResult.properties.wetBulbGlobeTemperature, false, location)
     //val heatIndexForecastList = getDoubleForecast(forecastResult.properties.heatIndex, false, timeZone)
-    val windChillForecastList = getDoubleForecast(forecastResult.properties.windChill, false, timeZone)
+    val windChillForecastList = getDoubleForecast(forecastResult.properties.windChill, false, location)
 
-    val dewpointForecastList = getDoubleForecast(forecastResult.properties.dewpoint, false, timeZone)
-    val relativeHumidityList = getIntForecast(forecastResult.properties.relativeHumidity, timeZone)
+    val dewpointForecastList = getDoubleForecast(forecastResult.properties.dewpoint, false, location)
+    val relativeHumidityList = getIntForecast(forecastResult.properties.relativeHumidity, location)
 
-    val quantitativePrecipitationForecastList = getDoubleForecast(forecastResult.properties.quantitativePrecipitation, true, timeZone)
-    val snowfallAmountForecastList = getDoubleForecast(forecastResult.properties.snowfallAmount, true, timeZone)
-    val iceAccumulationForecastList = getDoubleForecast(forecastResult.properties.iceAccumulation, true, timeZone)
+    val quantitativePrecipitationForecastList = getDoubleForecast(forecastResult.properties.quantitativePrecipitation, true, location)
+    val snowfallAmountForecastList = getDoubleForecast(forecastResult.properties.snowfallAmount, true, location)
+    val iceAccumulationForecastList = getDoubleForecast(forecastResult.properties.iceAccumulation, true, location)
 
-    val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, timeZone)
-    val probabilityOfThunderForecastList = getIntForecast(forecastResult.properties.probabilityOfThunder, timeZone)
+    val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, location)
+    val probabilityOfThunderForecastList = getIntForecast(forecastResult.properties.probabilityOfThunder, location)
 
-    val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, timeZone)
-    val windSpeedForecastList = getDoubleForecast(forecastResult.properties.windSpeed, false, timeZone)
-    val windGustForecastList = getDoubleForecast(forecastResult.properties.windGust, false, timeZone)
+    val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, location)
+    val windSpeedForecastList = getDoubleForecast(forecastResult.properties.windSpeed, false, location)
+    val windGustForecastList = getDoubleForecast(forecastResult.properties.windGust, false, location)
 
-    val pressureForecastList = getDoubleForecast(forecastResult.properties.pressure, false, timeZone)
+    val pressureForecastList = getDoubleForecast(forecastResult.properties.pressure, false, location)
 
-    val skyCoverForecastList = getIntForecast(forecastResult.properties.skyCover, timeZone)
-    val visibilityForecastList = getDoubleForecast(forecastResult.properties.visibility, false, timeZone)
+    val skyCoverForecastList = getIntForecast(forecastResult.properties.skyCover, location)
+    val visibilityForecastList = getDoubleForecast(forecastResult.properties.visibility, false, location)
     //val ceilingHeightForecastList = getDoubleForecast(forecastResult.properties.ceilingHeight, false, timeZone)
 
     val uniqueDates = (temperatureForecastList.keys + dewpointForecastList.keys +
@@ -110,7 +108,7 @@ fun convert(
             probabilityOfThunderForecastList.keys).sorted()
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(timeZone, uniqueDates),
+        dailyForecast = getDailyForecast(location, uniqueDates),
         hourlyForecast = uniqueDates.map {
             //val weather = weatherForecastList.getOrElse(it) { null }
 
@@ -152,13 +150,15 @@ fun convert(
 }
 
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     uniqueDates: List<Date>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = uniqueDates.groupBy { it.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = uniqueDates.groupBy {
+        it.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(
@@ -203,7 +203,7 @@ fun convertSecondary(
 private fun getDoubleForecast(
     doubleProperties: NwsValueDoubleContainer?,
     multipleHoursAreDivided: Boolean = false,
-    timeZone: TimeZone
+    location: Location
 ): Map<Date, Double> {
     if (doubleProperties?.values == null) return emptyMap()
 
@@ -221,7 +221,7 @@ private fun getDoubleForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(timeZone).apply {
+                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else date
@@ -237,7 +237,7 @@ private fun getDoubleForecast(
 
 private fun getIntForecast(
     intProperties: NwsValueIntContainer?,
-    timeZone: TimeZone
+    location: Location
 ): Map<Date, Int> {
     if (intProperties?.values == null) return emptyMap()
 
@@ -255,7 +255,7 @@ private fun getIntForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(timeZone).apply {
+                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else date
@@ -269,7 +269,7 @@ private fun getIntForecast(
 
 /*private fun getWeatherForecast(
     weatherProperties: NwsValueWeatherContainer?,
-    timeZone: TimeZone
+    location: Location
 ): Map<Date, String> {
     if (weatherProperties?.values == null) return emptyMap()
 
@@ -287,7 +287,7 @@ private fun getIntForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(timeZone).apply {
+                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else date

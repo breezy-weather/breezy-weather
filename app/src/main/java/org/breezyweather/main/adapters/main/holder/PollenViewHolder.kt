@@ -27,7 +27,6 @@ import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
@@ -72,9 +71,8 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) : ViewPager2.OnPageChangeCallback() {
         @SuppressLint("SetTextI18n")
         override fun onPageSelected(position: Int) {
-            val timeZone = mLocation.javaTimeZone
             val daily = mLocation.weather!!.dailyForecastStartingToday[position]
-            if (daily.isToday(timeZone)) {
+            if (daily.isToday(mLocation)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
                 mIndicator.text = (position + 1).toString() + "/" + mLocation.weather!!.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
@@ -104,8 +102,8 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 .weatherThemeDelegate
                 .getThemeColors(
                     context,
-                    WeatherViewController.getWeatherKind(location.weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )[0]
         )
         mSubtitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))

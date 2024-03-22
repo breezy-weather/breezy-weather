@@ -66,6 +66,7 @@ fun ListPreferenceView(
     @ArrayRes summaryArrayId: Int? = null,
     selectedKey: String,
     enabled: Boolean = true,
+    card: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
     val values = stringArrayResource(valueArrayId)
@@ -79,6 +80,7 @@ fun ListPreferenceView(
         valueArray = values,
         nameArray = names,
         enabled = enabled,
+        card = card,
         onValueChanged = onValueChanged,
     )
 }
@@ -93,12 +95,13 @@ fun ListPreferenceView(
     nameArray: Array<String>,
     enabled: Boolean = true,
     card: Boolean = true,
+    withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
     onValueChanged: (String) -> Unit,
 ) {
     val listSelectedState = remember { mutableStateOf(selectedKey) }
     val dialogOpenState = remember { mutableStateOf(false) }
-    val currentSummary = summary(LocalContext.current, listSelectedState.value)
+    val currentSummary = summary(LocalContext.current, if (withState) listSelectedState.value else selectedKey)
 
     // TODO: Redundancy
     if (card) {
@@ -227,9 +230,13 @@ fun ListPreferenceView(
                 ) {
                     items(valueArray.zip(nameArray)) {
                         RadioButton(
-                            selected = listSelectedState.value == it.first,
+                            selected = if (withState) {
+                                listSelectedState.value == it.first
+                            } else selectedKey == it.first,
                             onClick = {
-                                listSelectedState.value = it.first
+                                if (withState) {
+                                    listSelectedState.value = it.first
+                                }
                                 dialogOpenState.value = false
                                 onValueChanged(it.first)
                             },

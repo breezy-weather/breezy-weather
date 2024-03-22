@@ -236,13 +236,6 @@
     <string name="ceiling">Ceiling</string>
     <!-- 10 characters max version of ceiling to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="ceiling_short">Ceiling</string>
-    <!-- Date format strings -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Data by %s</string>
     <string name="weather_air_quality_data_by">Air quality data by %s</string>
@@ -266,17 +259,17 @@
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
     <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
     <string name="setting_weather_source_accu_days">Days</string>
-    <string name="weather_source_accu_preference_days_1">1 day</string>
-    <string name="weather_source_accu_preference_days_5">5 days</string>
-    <string name="weather_source_accu_preference_days_10">10 days</string>
-    <string name="weather_source_accu_preference_days_15">15 days</string>
+    <string name="weather_source_accu_preference_days_1">1 day</string>
+    <string name="weather_source_accu_preference_days_5">5 days</string>
+    <string name="weather_source_accu_preference_days_10">10 days</string>
+    <string name="weather_source_accu_preference_days_15">15 days</string>
     <string name="setting_weather_source_accu_hours">Hours</string>
     <string name="weather_source_accu_preference_hours_1">1 hour</string>
     <string name="weather_source_accu_preference_hours_12">12 hours</string>
     <string name="weather_source_accu_preference_hours_24">24 hours</string>
-    <string name="weather_source_accu_preference_hours_72">72 hours</string>
-    <string name="weather_source_accu_preference_hours_120">120 hours</string>
-    <string name="weather_source_accu_preference_hours_240">240 hours</string>
+    <string name="weather_source_accu_preference_hours_72">72 hours</string>
+    <string name="weather_source_accu_preference_hours_120">120 hours</string>
+    <string name="weather_source_accu_preference_hours_240">240 hours</string>
     <string name="weather_source_openweather_version_2_5">Version 2.5</string>
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <!-- Location -->
@@ -451,13 +444,14 @@
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_temperature">Temperature</string>
-    <string name="widget_week_style_5_days">5 days</string>
-    <string name="widget_week_style_3_days">3 days</string>
+    <string name="widget_week_style_5_days">5 days</string>
+    <string name="widget_week_style_3_days">3 days</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="widget_live_wallpaper_weather_kind">Weather</string>
+    <!-- Time as in “daytime” / “nighttime” -->
     <string name="widget_live_wallpaper_day_night_type">Time</string>
     <!-- Settings (new design) -->
     <string name="settings_section_general">General</string>
@@ -508,6 +502,7 @@
     <!-- In other words: "Preferences of the location" -->
     <string name="settings_per_location">Location preferences</string>
     <string name="settings_per_location_summary">Additional customizations for this location</string>
+    <string name="settings_per_location_theme">Theme</string>
     <string name="settings_weather_sources">Weather sources</string>
     <string name="settings_weather_sources_summary">Default weather source for new locations, custom API keys, other source settings</string>
     <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
@@ -529,6 +524,7 @@
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
     <!-- Synonym of instance: Server -->
     <string name="settings_source_instance">Instance</string>
+    <string name="settings_source_instance_invalid">Must be an https URL ending with a /</string>
     <!-- Synonym of instance: Server -->
     <string name="settings_source_instance_geocoding">Geocoding instance</string>
     <string name="settings_weather_source_bright_sky_instance" translatable="false">@string/settings_source_instance</string>
@@ -642,6 +638,7 @@
     <string name="settings_color_light">Light</string>
     <string name="settings_color_grey">Grey</string>
     <string name="settings_color_dark">Dark</string>
+    <string name="settings_invalid_syntax">Invalid syntax</string>
     <!-- Units -->
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">on Beaufort scale</string>

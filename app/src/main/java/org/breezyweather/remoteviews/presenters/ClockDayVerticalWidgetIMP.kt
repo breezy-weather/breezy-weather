@@ -31,6 +31,7 @@ import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
@@ -101,6 +102,105 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         )
         val weather = location?.weather ?: return views
+
+        // Clock
+        views.setString(
+            R.id.widget_clock_day_clock_1_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_2_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_1_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_2_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_1_black,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_2_black,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_black,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_black,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_analog_auto,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_analog_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_analog_dark,
+            "setTimeZone",
+            location.timeZone
+        )
+
+        if (viewStyle == "temp") {
+            // Date
+            val dateFormat = getShortWeekdayDayMonth(
+                SettingsManager.getInstance(context).language
+            )
+            views.setString(
+                R.id.widget_clock_day_date,
+                "setTimeZone",
+                location.timeZone
+            )
+            views.setCharSequence(
+                R.id.widget_clock_day_date,
+                "setFormat12Hour",
+                dateFormat
+            )
+            views.setCharSequence(
+                R.id.widget_clock_day_date,
+                "setFormat24Hour",
+                dateFormat
+            )
+        }
 
         val provider = ResourcesProviderFactory.newInstance
         weather.current?.weatherCode?.let {
@@ -321,19 +421,20 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
     ): String? {
         val weather = location.weather ?: return null
+        val language = SettingsManager.getInstance(context).language
         return when (subtitleData) {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                         + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
+                        + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
-                "symmetry" -> (Date().getWeek(context, location)
+                "symmetry" -> (Date().getWeek(location, language)
                         + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
+                        + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Date().getWeek(context, location)
-                        + " " + (weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour) ?: ""))
+                        + " " + Date().getWeek(location, language)
+                        + " " + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
                 else -> null
             }
@@ -351,12 +452,12 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
-                "symmetry" -> (Date().getWeek(context, location)
+                "symmetry" -> (Date().getWeek(location, language)
                         + " "
                         + LunarHelper.getLunarDate(Date()))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Date().getWeek(context, location)
+                        + " " + Date().getWeek(location, language)
                         + " " + LunarHelper.getLunarDate(Date()))
 
                 else -> null

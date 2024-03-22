@@ -43,6 +43,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.ui.composables.PollenGrid
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
@@ -52,6 +53,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -82,6 +84,7 @@ class PollenActivity : GeoActivity() {
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
         val location = remember { mutableStateOf<Location?>(null) }
+        val language = SettingsManager.getInstance(this).language
 
         LaunchedEffect(formattedId) {
             var locationC: Location? = null
@@ -144,8 +147,9 @@ class PollenActivity : GeoActivity() {
                                         Text(
                                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
                                             text = daily.date.getFormattedDate(
+                                                getLongWeekdayDayMonth(language),
                                                 location.value!!,
-                                                stringResource(R.string.date_format_widget_long)
+                                                language
                                             ),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,

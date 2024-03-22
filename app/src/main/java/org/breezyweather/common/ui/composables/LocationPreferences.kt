@@ -55,10 +55,7 @@ fun LocationPreference(
     onClose: ((location: Location?) -> Unit)
 ) {
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
-    val dialogPerLocationSourcesOpenState = remember { mutableStateOf(false) }
-    val sourcesWithPreferencesScreen = remember {
-        activity.sourceManager.sourcesWithPreferencesScreen(location)
-    }
+    val dialogAdditionalLocationPreferencesOpenState = remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -95,15 +92,13 @@ fun LocationPreference(
         ) {
             dialogWeatherSourcesOpenState.value = true
         }
-        if (sourcesWithPreferencesScreen.isNotEmpty()) {
-            PreferenceView(
-                titleId = R.string.settings_per_location,
-                iconId = R.drawable.ic_settings,
-                summaryId = R.string.settings_per_location_summary,
-                card = false
-            ) {
-                dialogPerLocationSourcesOpenState.value = true
-            }
+        PreferenceView(
+            titleId = R.string.settings_per_location,
+            iconId = R.drawable.ic_settings,
+            summaryId = R.string.settings_per_location_summary,
+            card = false
+        ) {
+            dialogAdditionalLocationPreferencesOpenState.value = true
         }
 
         if (dialogWeatherSourcesOpenState.value) {
@@ -136,7 +131,17 @@ fun LocationPreference(
             }
         }
 
-        if (dialogPerLocationSourcesOpenState.value) {
+        if (dialogAdditionalLocationPreferencesOpenState.value) {
+            val hasChangedBackground = remember { mutableStateOf(false) }
+            val backgroundWeatherKind = remember {
+                mutableStateOf(location.backgroundWeatherKind ?: "auto")
+            }
+            val backgroundDayNightType = remember {
+                mutableStateOf(location.backgroundDayNightType ?: "auto")
+            }
+            val sourcesWithPreferencesScreen = remember {
+                activity.sourceManager.sourcesWithPreferencesScreen(location)
+            }
             AlertDialogNoPadding(
                 title = {
                     Text(
@@ -146,8 +151,35 @@ fun LocationPreference(
                     )
                 },
                 text = {
-                    sourcesWithPreferencesScreen.forEach { preferenceSource ->
-                        Column {
+                    Column {
+                        SectionHeader(title = stringResource(R.string.settings_per_location_theme))
+                        ListPreferenceView(
+                            titleId = R.string.widget_live_wallpaper_weather_kind,
+                            selectedKey = backgroundWeatherKind.value,
+                            nameArrayId = R.array.live_wallpaper_weather_kinds,
+                            valueArrayId = R.array.live_wallpaper_weather_kind_values,
+                            card = false
+                        ) { newValue ->
+                            if (newValue != backgroundWeatherKind.value) {
+                                backgroundWeatherKind.value = newValue
+                                hasChangedBackground.value = true
+                            }
+                        }
+                        ListPreferenceView(
+                            titleId = R.string.widget_live_wallpaper_day_night_type,
+                            selectedKey = backgroundDayNightType.value,
+                            nameArrayId = R.array.live_wallpaper_day_night_types,
+                            valueArrayId = R.array.live_wallpaper_day_night_type_values,
+                            card = false
+                        ) { newValue ->
+                            if (newValue != backgroundDayNightType.value) {
+                                backgroundDayNightType.value = newValue
+                                hasChangedBackground.value = true
+                            }
+                        }
+                        SectionFooter()
+
+                        sourcesWithPreferencesScreen.forEach { preferenceSource ->
                             SectionHeader(title = preferenceSource.name)
                             preferenceSource.PerLocationPreferences(
                                 context = activity,
@@ -158,7 +190,7 @@ fun LocationPreference(
                                 newParameters[preferenceSource.id] = (if (newParameters.getOrElse(preferenceSource.id) { null } != null) {
                                     newParameters[preferenceSource.id]!!
                                 } else emptyMap()) + it
-                                dialogPerLocationSourcesOpenState.value = false
+                                dialogAdditionalLocationPreferencesOpenState.value = false
                                 dialogWeatherSourcesOpenState.value = false
                                 onClose(
                                     location.copy(
@@ -186,12 +218,23 @@ fun LocationPreference(
                     }
                 },
                 onDismissRequest = {
-                    dialogPerLocationSourcesOpenState.value = false
+                    dialogAdditionalLocationPreferencesOpenState.value = false
                 },
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            dialogPerLocationSourcesOpenState.value = false
+                            if (hasChangedBackground.value) {
+                                dialogAdditionalLocationPreferencesOpenState.value = false
+                                dialogWeatherSourcesOpenState.value = false
+                                onClose(
+                                    location.copy(
+                                        backgroundWeatherKind = backgroundWeatherKind.value,
+                                        backgroundDayNightType = backgroundDayNightType.value
+                                    )
+                                )
+                            } else {
+                                dialogAdditionalLocationPreferencesOpenState.value = false
+                            }
                         }
                     ) {
                         Text(
@@ -303,6 +346,7 @@ fun SecondarySourcesPreference(
                             weatherSource.value
                         )) + weatherSources
                     } else weatherSources,
+                    withState = false
                 ) { sourceId ->
                     if (airQualitySource.value == sourceId) {
                         airQualitySource.value = ""
@@ -340,7 +384,8 @@ fun SecondarySourcesPreference(
                             ) {
                                 stringResource(R.string.settings_weather_source_main)
                             } else stringResource(R.string.settings_weather_source_none)
-                    ) + compatibleAirQualitySources
+                    ) + compatibleAirQualitySources,
+                    withState = false
                 ) { sourceId ->
                     airQualitySource.value = sourceId
                     hasChangedASecondarySource.value = true
@@ -363,7 +408,8 @@ fun SecondarySourcesPreference(
                         ) {
                             stringResource(R.string.settings_weather_source_main)
                         } else stringResource(R.string.settings_weather_source_none)
-                    ) + compatiblePollenSources
+                    ) + compatiblePollenSources,
+                    withState = false
                 ) { sourceId ->
                     pollenSource.value = sourceId
                     hasChangedASecondarySource.value = true
@@ -386,7 +432,8 @@ fun SecondarySourcesPreference(
                         ) {
                             stringResource(R.string.settings_weather_source_main)
                         } else stringResource(R.string.settings_weather_source_none)
-                    ) + compatibleMinutelySources
+                    ) + compatibleMinutelySources,
+                    withState = false
                 ) { sourceId ->
                     minutelySource.value = sourceId
                     hasChangedASecondarySource.value = true
@@ -409,7 +456,8 @@ fun SecondarySourcesPreference(
                         ) {
                             stringResource(R.string.settings_weather_source_main)
                         } else stringResource(R.string.settings_weather_source_none)
-                    ) + compatibleAlertSources
+                    ) + compatibleAlertSources,
+                    withState = false
                 ) { sourceId ->
                     alertSource.value = sourceId
                     hasChangedASecondarySource.value = true
@@ -432,7 +480,8 @@ fun SecondarySourcesPreference(
                         ) {
                             stringResource(R.string.settings_weather_source_main)
                         } else stringResource(R.string.settings_weather_source_none)
-                    ) + compatibleNormalsSources
+                    ) + compatibleNormalsSources,
+                    withState = false
                 ) { sourceId ->
                     normalsSource.value = sourceId
                     hasChangedASecondarySource.value = true
@@ -514,6 +563,7 @@ fun SourceView(
     enabled: Boolean = true,
     sourceList: Map<String, String>,
     card: Boolean = false,
+    withState: Boolean = true,
     onValueChanged: (String) -> Unit
 ) {
     val dialogLinkOpenState = remember { mutableStateOf(false) }
@@ -544,7 +594,8 @@ fun SourceView(
             }
         },
         enabled = enabled,
-        card = card
+        card = card,
+        withState = withState
     )
 
     if (dialogLinkOpenState.value) {

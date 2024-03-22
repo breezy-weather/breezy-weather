@@ -120,7 +120,7 @@ class NwsService @Inject constructor(
             forecastResult,
             alertResult
             ->
-            convert(forecastResult, alertResult, location.javaTimeZone)
+            convert(forecastResult, alertResult, location)
         }
     }
 

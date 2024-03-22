@@ -29,7 +29,6 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.weatherView.WeatherViewController
@@ -94,8 +93,8 @@ class DailySunshineAdapter(
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    WeatherViewController.getWeatherKind(location.weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme)

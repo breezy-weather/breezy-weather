@@ -583,8 +583,6 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="notification_precipitation_stopping_desc">%s पर रुकने की उम्मीद है</string>
     <string name="metno_weather_text_andthunder">%s और गड़गड़ाहट</string>
-    <string name="date_format_widget_long">EEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="settings_debug_dump_crash_logs_summary">डेवलपर्स के साथ साझा करने के लिए त्रुटि अभिलेख को फ़ाइल में सहेजता है</string>
     <string name="settings_debug_dump_crash_logs_saved">अकस्मात गिरने के अभिलेख सहेजे गए</string>
     <string name="notification_precipitation_continuing">वर्षण</string>
@@ -637,5 +635,4 @@
     <string name="common_weather_text_rain_showers_heavy">वर्षा की भारी बौछार</string>
     <string name="common_weather_text_rain_freezing">हिमीकरण बारिश</string>
     <string name="common_weather_text_rain_freezing_light">हल्की बर्फ़ीली बारिश</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
 </resources>

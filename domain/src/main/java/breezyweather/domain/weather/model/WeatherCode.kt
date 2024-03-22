@@ -36,7 +36,7 @@ enum class WeatherCode(val id: String) {
         fun getInstance(
             value: String?
         ): WeatherCode? = WeatherCode.entries.firstOrNull {
-            it.id == value
+            it.id.equals(value, ignoreCase = true)
         }
     }
 }

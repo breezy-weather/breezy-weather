@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.smhi
 
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -29,13 +30,11 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.smhi.json.SmhiForecastResult
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
-import java.util.Locale
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
     forecastResult: SmhiForecastResult,
-    timeZone: TimeZone
+    location: Location
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.timeSeries.isNullOrEmpty()) {
@@ -43,19 +42,21 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(timeZone, forecastResult.timeSeries),
+        dailyForecast = getDailyForecast(location, forecastResult.timeSeries),
         hourlyForecast = getHourlyForecast(forecastResult.timeSeries)
     )
 }
 
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     forecastResult: List<SmhiTimeSeries>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = forecastResult.groupBy { it.validTime.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = forecastResult.groupBy {
+        it.validTime.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

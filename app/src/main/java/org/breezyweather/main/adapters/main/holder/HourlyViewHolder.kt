@@ -35,7 +35,6 @@ import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -99,8 +98,8 @@ class HourlyViewHolder(
             .weatherThemeDelegate
             .getThemeColors(
                 context,
-                WeatherViewController.getWeatherKind(weather),
-                location.isDaylight
+                WeatherViewController.getWeatherKind(location),
+                WeatherViewController.isDaylight(location)
             )
 
         title.setTextColor(colors[0])
@@ -183,14 +182,15 @@ class HourlyViewHolder(
             }
 
             val size = minutelyList.size
-            minutelyStartText.text = minutelyList[0].date.getFormattedTime(location.javaTimeZone, context.is12Hour)
-            minutelyCenterText.text = minutelyList[(size - 1) / 2].date.getFormattedTime(location.javaTimeZone, context.is12Hour)
-            minutelyEndText.text = minutelyList[size - 1].date.getFormattedTime(location.javaTimeZone, context.is12Hour)
+            val language = SettingsManager.getInstance(context).language
+            minutelyStartText.text = minutelyList[0].date.getFormattedTime(location, language, context.is12Hour)
+            minutelyCenterText.text = minutelyList[(size - 1) / 2].date.getFormattedTime(location, language, context.is12Hour)
+            minutelyEndText.text = minutelyList[size - 1].date.getFormattedTime(location, language, context.is12Hour)
             minutelyContainer.contentDescription =
                 activity.getString(
                     R.string.precipitation_between_time,
-                    minutelyList[0].date.getFormattedTime(location.javaTimeZone, context.is12Hour),
-                    minutelyList[size - 1].date.getFormattedTime(location.javaTimeZone, context.is12Hour)
+                    minutelyList[0].date.getFormattedTime(location, language, context.is12Hour),
+                    minutelyList[size - 1].date.getFormattedTime(location, language, context.is12Hour)
                 )
         } else {
             minutelyContainer.visibility = View.GONE
@@ -203,8 +203,8 @@ class HourlyViewHolder(
             .weatherThemeDelegate
             .getThemeColors(
                 context,
-                WeatherViewController.getWeatherKind(weather),
-                location.isDaylight
+                WeatherViewController.getWeatherKind(location),
+                WeatherViewController.isDaylight(location)
             )[0]
         precipitationBar.subLineColor = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
         precipitationBar.highlightColor = MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)

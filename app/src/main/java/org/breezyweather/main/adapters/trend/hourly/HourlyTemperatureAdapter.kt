@@ -28,7 +28,6 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -109,8 +108,8 @@ class HourlyTemperatureAdapter(
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    WeatherViewController.getWeatherKind(location.weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(

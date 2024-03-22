@@ -30,7 +30,6 @@ import org.breezyweather.common.extensions.format
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -82,8 +81,8 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    WeatherViewController.getWeatherKind(location.weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(

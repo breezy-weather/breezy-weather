@@ -184,10 +184,8 @@
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:layout_centerVertical="true"
-                    android:format12Hour="@string/date_format_widget_short"
-                    android:format24Hour="@string/date_format_widget_short"
                     style="@style/widget_content_text"
-                    tools:text="11-14 星期六"
+                    tools:text="Sun 4 Nov"
                     tools:ignore="RelativeOverlap,RtlHardcoded" />
 
                 <TextView

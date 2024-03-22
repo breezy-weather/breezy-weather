@@ -53,6 +53,8 @@ fun EditTextPreferenceView(
     summary: ((Context, String) -> String?)? = null,
     content: String,
     enabled: Boolean = true,
+    regex: Regex? = null,
+    regexError: String? = null,
     onValueChanged: (String) -> Unit,
 ) = EditTextPreferenceView(
     title = stringResource(titleId),
@@ -61,6 +63,8 @@ fun EditTextPreferenceView(
     },
     content = content,
     enabled = enabled,
+    regex = regex,
+    regexError = regexError,
     onValueChanged = onValueChanged,
 )
 
@@ -70,6 +74,8 @@ fun EditTextPreferenceView(
     summary: (Context, String) -> String?, // content -> summary.
     content: String,
     enabled: Boolean = true,
+    regex: Regex? = null,
+    regexError: String? = null,
     onValueChanged: (String) -> Unit,
 ) {
     val contentState = remember { mutableStateOf(content) }
@@ -130,6 +136,18 @@ fun EditTextPreferenceView(
                     readOnly = false,
                     enabled = true,
                     singleLine = true,
+                    isError = regex != null && !inputState.value.matches(regex),
+                    supportingText = {
+                        if (regex != null && !inputState.value.matches(regex)) {
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = if (!regexError.isNullOrEmpty()) {
+                                    regexError
+                                } else stringResource(R.string.settings_invalid_syntax),
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
+                    },
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = MaterialTheme.colorScheme.onSurface,
                         cursorColor = MaterialTheme.colorScheme.primary,
@@ -145,6 +163,7 @@ fun EditTextPreferenceView(
             },
             confirmButton = {
                 TextButton(
+                    enabled = regex == null || inputState.value.matches(regex),
                     onClick = {
                         contentState.value = inputState.value
                         dialogOpenState.value = false
@@ -154,7 +173,7 @@ fun EditTextPreferenceView(
                     Text(
                         text = stringResource(R.string.action_done),
                         color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
+                        style = MaterialTheme.typography.labelLarge
                     )
                 }
             },

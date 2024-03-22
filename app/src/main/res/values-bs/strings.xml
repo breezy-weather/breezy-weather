@@ -414,9 +414,6 @@
     <string name="metno_weather_text_andthunder">%s i grmljavina</string>
     <string name="null_data_text">/</string>
     <string name="humidity_dew_point">Vlažnost / Tačka rose</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
     <string name="weather_data_by">Izvor podataka: %s</string>
     <string name="weather_air_quality_data_by">Podaci o kvaliteti zraka: %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Kvaliteta zraka i podaci o alergenima: %s</string>

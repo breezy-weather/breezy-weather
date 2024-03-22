@@ -42,7 +42,6 @@
     <string name="settings_units_precipitation">Jedinica za oborine</string>
     <string name="pollen_and_mold">Pelud i plijesan</string>
     <string name="wind_strength_9">Jak olujni vjetar</string>
-    <string name="date_format_widget_long">EEEE, d. MMM</string>
     <string name="wind_speed">Brzina vjetra</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Pun Mjesec</string>
@@ -263,7 +262,6 @@
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
     <string name="air_quality_pm_explanations_origin">Neke čestice nastaju prirodno, nastaju iz vulkana, pješčanih oluja, šuma i šumskih požara, žive vegetacije i morskog špricanja. Ljudske aktivnosti također stvaraju značajne količine čestica, kao što su promet i prijevoz, industrijske aktivnosti, elektrane, gradilišta, spalionice otpada ili polja.</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="date_format_widget_short">EEE, d. MMM</string>
     <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
     <string name="widget_multi_city">Više gradova</string>
     <string name="air_quality_so2">SO₂</string>
@@ -371,7 +369,6 @@
     <string name="wind_direction">Smjer vjetra</string>
     <string name="air_quality_o3_info_introduction">Prizemni ozon (O₃) je važna komponenta smoga. Iako su iste molekule, prizemni ozon može biti štetan za ljudsko zdravlje, za razliku od stratosferskog ozona koji štiti Zemlju od viška UV zračenja.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Trenutni UV</string>
-    <string name="date_format_widget_oreo_style">EEEE, d. MMM |</string>
     <string name="settings_background_updates_refresh_3h">3 sata</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
     <string name="widget_material_you_current">Material You – Trenutno</string>

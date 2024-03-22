@@ -349,7 +349,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         findViewById<AppCompatSpinner>(R.id.activity_widget_config_clockFontSpinner).also {
             it.onItemSelectedListener = ClockFontSpinnerSelectedListener()
             it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
-            it.setSelection(indexValue(clockFontValues, cardStyleValueNow), true)
+            it.setSelection(indexValue(clockFontValues, clockFontValueNow), true)
         }
 
         mHideLunarContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideLunarContainer).apply {

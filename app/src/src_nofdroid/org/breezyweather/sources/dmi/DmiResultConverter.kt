@@ -34,9 +34,7 @@ import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
 import org.breezyweather.sources.dmi.json.DmiWarningResult
-import java.util.Locale
 import java.util.Objects
-import java.util.TimeZone
 
 fun convert(
     location: Location,
@@ -59,7 +57,7 @@ fun convert(
 fun convert(
     dmiResult: DmiResult,
     dmiWarningResult: DmiWarningResult,
-    timeZone: TimeZone
+    location: Location
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
     if (dmiResult.timeserie.isNullOrEmpty()) {
@@ -67,7 +65,7 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(timeZone, dmiResult.timeserie),
+        dailyForecast = getDailyForecast(location, dmiResult.timeserie),
         hourlyForecast = getHourlyForecast(dmiResult.timeserie),
         alertList = getAlertList(dmiWarningResult.locationWarnings)
     )
@@ -78,13 +76,15 @@ fun convert(
  * Will be completed with hourly forecast data later
  */
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     dailyResult: List<DmiTimeserie>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = dailyResult.groupBy { it.localTimeIso.getFormattedDate(timeZone, "yyyy-MM-dd", Locale.ENGLISH) }
+    val hourlyListByDay = dailyResult.groupBy {
+        it.localTimeIso.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

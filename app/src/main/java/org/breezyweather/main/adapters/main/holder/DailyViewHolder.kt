@@ -31,7 +31,6 @@ import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -83,8 +82,8 @@ class DailyViewHolder(
                 .weatherThemeDelegate
                 .getThemeColors(
                     context,
-                    WeatherViewController.getWeatherKind(weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )
 
             title.setTextColor(colors[0])

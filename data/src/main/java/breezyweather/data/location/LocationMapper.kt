@@ -22,7 +22,9 @@ object LocationMapper {
         alertSource: String?,
         normalsSource: String?,
         isCurrentPosition: Boolean,
-        needsGeocodeRefresh: Boolean
+        needsGeocodeRefresh: Boolean,
+        backgroundWeatherKind: String?,
+        backgroundDayNightType: String?
     ): Location = Location(
         cityId = cityId,
         latitude = latitude,
@@ -41,7 +43,9 @@ object LocationMapper {
         alertSource = alertSource,
         normalsSource = normalsSource,
         isCurrentPosition = isCurrentPosition,
-        needsGeocodeRefresh = needsGeocodeRefresh
+        needsGeocodeRefresh = needsGeocodeRefresh,
+        backgroundWeatherKind = backgroundWeatherKind,
+        backgroundDayNightType = backgroundDayNightType
     )
 
 }

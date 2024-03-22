@@ -170,6 +170,8 @@ fun LocationSettingsScreen(
                             titleId = id,
                             summary = preference.summary,
                             content = preference.content,
+                            regex = preference.regex,
+                            regexError = preference.regexError,
                             onValueChanged = preference.onValueChanged
                         )
                     }

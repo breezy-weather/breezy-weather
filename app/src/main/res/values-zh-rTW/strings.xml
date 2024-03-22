@@ -93,9 +93,6 @@
     <string name="about_app">關於</string>
     <string name="about_contributors">貢獻者</string>
     <string name="about_translators">譯者</string>
-    <string name="date_format_widget_short">MM-dd EEE</string>
-    <string name="date_format_widget_long">M 月 d 日 EEEE</string>
-    <string name="date_format_widget_oreo_style">M 月 d 日EEEE │</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">取得位置資訊</string>
     <string name="dialog_permissions_location_content">為了提供您所在地的天氣資料，「Breezy Weather」需要在前景或背景收集您的位置信息。此操作需要您授予某些權限。您的位置資訊僅用於取得您當前所在地的天氣數據。若您不願分享位置資訊，您可以拒絕這些權限並在管理頁面中手動設定位置。</string>

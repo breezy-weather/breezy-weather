@@ -35,6 +35,7 @@ import breezyweather.domain.weather.model.Daily
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
@@ -46,7 +47,6 @@ import org.breezyweather.domain.weather.model.lunar
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
-import java.util.TimeZone
 import javax.inject.Inject
 
 /**
@@ -127,7 +127,7 @@ class DailyWeatherActivity : GeoActivity() {
             }
             selectPage(
                 weather.dailyForecast[mPosition],
-                location.javaTimeZone,
+                location,
                 mPosition,
                 weather.dailyForecast.size
             )
@@ -143,7 +143,7 @@ class DailyWeatherActivity : GeoActivity() {
                         location.pollenSource!!
                     } else location.weatherSource
                 )
-                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location.javaTimeZone, daily, pollenIndexSource, 3)
+                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location, daily, pollenIndexSource, 3)
                 val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
                 rv.adapter = dailyWeatherAdapter
@@ -169,7 +169,7 @@ class DailyWeatherActivity : GeoActivity() {
                 override fun onPageSelected(position: Int) {
                     selectPage(
                         weather.dailyForecast[position],
-                        location.javaTimeZone,
+                        location,
                         position,
                         weather.dailyForecast.size
                     )
@@ -183,11 +183,16 @@ class DailyWeatherActivity : GeoActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun selectPage(daily: Daily, timeZone: TimeZone, position: Int, size: Int) {
-        mTitle?.text = daily.date.getFormattedDate(timeZone, getString(R.string.date_format_widget_long))
+    private fun selectPage(daily: Daily, location: Location, position: Int, size: Int) {
+        val language = SettingsManager.getInstance(this).language
+        mTitle?.text = daily.date.getFormattedDate(
+            getLongWeekdayDayMonth(language),
+            location,
+            language
+        )
         mSubtitle?.text = daily.lunar
         mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
-        mIndicator?.text = if (daily.isToday(timeZone)) {
+        mIndicator?.text = if (daily.isToday(location)) {
             getString(R.string.short_today)
         } else (position + 1).toString() + "/" + size
     }

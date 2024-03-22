@@ -93,13 +93,6 @@
     <string name="action_learn_more">Saber-ne més</string>
     <string name="about_app">Quant a l’app</string>
     <string name="about_translators">Traductors</string>
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Ha fallat l’accés a la ubicació</string>
     <string name="weather_message_data_refresh_failed">Ha fallat l’accés a les dades de l’oratge</string>

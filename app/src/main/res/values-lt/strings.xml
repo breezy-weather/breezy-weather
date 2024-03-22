@@ -111,8 +111,6 @@
     <string name="weather_kind_thunder">Žaibai</string>
     <string name="weather_kind_thunderstorm">Perkūnija</string>
     <string name="weather_kind_wind">Vėjas</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_data_by">Duomenys iš %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Oro kokybės ir žiedadulkių duomenys iš %s</string>
     <string name="weather_message_data_refresh_failed">Orų duomenų atnaujinimas nepavyko</string>
@@ -178,7 +176,6 @@
     <string name="ephemeris_moonset_at">Mėnulio nusileidimas %s</string>
     <string name="daytime">Diena</string>
     <string name="common_weather_text_snow">Sniegas</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="weather_source_accu_preference_hours_12">12 valandų</string>
     <string name="weather_api_limit_reached_content">Jei norite padidinti limitą, pridėkite savo API raktą.</string>
     <string name="setting_weather_source_accu_days">Dienos</string>

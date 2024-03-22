@@ -28,9 +28,9 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastProvider
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.common.extensions.getHour
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getWeek
@@ -187,7 +187,7 @@ private fun buildRemoteViews(
     )
     // Loop through next 6 hours
     hourlyIds.forEachIndexed { i, hourlyId ->
-        views.setTextViewText(hourlyId[0], weather.nextHourlyForecast.getOrNull(i)?.getHour(context, location.javaTimeZone))
+        views.setTextViewText(hourlyId[0], weather.nextHourlyForecast.getOrNull(i)?.date?.getHour(location, context))
         weather.nextHourlyForecast.getOrNull(i)?.weatherCode?.let {
             views.setViewVisibility(hourlyId[1], View.VISIBLE)
             views.setImageViewUri(
@@ -252,9 +252,9 @@ private fun buildRemoteViews(
         weather.dailyForecastStartingToday.getOrNull(i)?.let {
             views.setTextViewText(
                 dailyId[0],
-                if (it.isToday(location.javaTimeZone)) {
+                if (it.isToday(location)) {
                     context.getString(R.string.short_today)
-                } else it.getWeek(context, location)
+                } else it.getWeek(location, SettingsManager.getInstance(context).language)
             )
         } ?: views.setTextViewText(dailyId[0], null)
         weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {
@@ -262,7 +262,7 @@ private fun buildRemoteViews(
             views.setImageViewUri(
                 dailyId[1],
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, true, false, NotificationTextColor.LIGHT
+                    provider, it, dayTime = true, minimal = false, NotificationTextColor.LIGHT
                 )
             )
         } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
@@ -283,7 +283,7 @@ private fun buildRemoteViews(
             views.setImageViewUri(
                 dailyId[4],
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, false, false, NotificationTextColor.LIGHT
+                    provider, it, dayTime = false, minimal = false, NotificationTextColor.LIGHT
                 )
             )
         } ?: views.setViewVisibility(dailyId[4], View.INVISIBLE)

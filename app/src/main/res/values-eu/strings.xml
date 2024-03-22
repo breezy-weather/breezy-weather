@@ -593,9 +593,6 @@
     <string name="widget_live_wallpaper_day_night_type">Denbora</string>
     <string name="settings_widgets_live_wallpaper_error">Ezin izan da abiarazi horma-paper-hautatzailea. Breezy Weather horma-irudia gaitu dezakezu hasierako pantailako horma-paper-hautatzailean Live Wallpaper aukeratuz.</string>
     <string name="settings_items_drag_to_sort">Ukitu zerrendako elementuak ordenatzeko arrastatu</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Eguneko haizea gaurko, bihar, …, 4 egun geroago</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Gaurko gaueko haizea, bihar, …, 4 egun geroago</string>
     <string name="widget_style_tile">Teila</string>

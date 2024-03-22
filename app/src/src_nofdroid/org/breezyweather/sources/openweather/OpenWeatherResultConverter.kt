@@ -49,7 +49,6 @@ import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import java.util.Date
 import java.util.Locale
 import java.util.Objects
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
@@ -91,7 +90,7 @@ fun convert(
             cloudCover = oneCallResult.current.clouds,
             visibility = oneCallResult.current.visibility?.toDouble()
         ) else null,
-        dailyForecast = getDailyList(oneCallResult.daily, hourlyAirQuality, location.javaTimeZone),
+        dailyForecast = getDailyList(oneCallResult.daily, hourlyAirQuality, location),
         hourlyForecast = getHourlyList(oneCallResult.hourly, hourlyAirQuality),
         minutelyForecast = getMinutelyList(oneCallResult.minutely),
         alertList = getAlertList(oneCallResult.alerts)
@@ -101,13 +100,13 @@ fun convert(
 private fun getDailyList(
     dailyResult: List<OpenWeatherOneCallDaily>,
     hourlyAirQuality: MutableMap<Date, AirQuality>,
-    timeZone: TimeZone
+    location: Location
 ): List<Daily> {
-    val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, timeZone)
+    val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, location)
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
     for (i in 0 until dailyResult.size - 1) {
         val dailyForecast = dailyResult[i]
-        val theDay = Date(dailyForecast.dt.times(1000)).toTimezoneNoHour(timeZone)!!
+        val theDay = Date(dailyForecast.dt.times(1000)).toTimezoneNoHour(location.javaTimeZone)!!
         dailyList.add(
             Daily(
                 date = theDay,

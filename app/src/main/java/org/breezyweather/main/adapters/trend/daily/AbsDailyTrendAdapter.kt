@@ -48,31 +48,31 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
         ) {
             val context = itemView.context
             val weather = location.weather
-            val timeZone = location.javaTimeZone
             val daily = weather!!.dailyForecast[position]
-            if (daily.isToday(timeZone)) {
+            if (daily.isToday(location)) {
                 talkBackBuilder.append(context.getString(R.string.comma_separator))
                     .append(context.getString(R.string.short_today))
                 dailyItem.setWeekText(context.getString(R.string.short_today))
             } else {
+                val language = SettingsManager.getInstance(context).language
                 talkBackBuilder.append(context.getString(R.string.comma_separator))
-                    .append(daily.getWeek(context, location))
-                dailyItem.setWeekText(daily.getWeek(context, location))
+                    .append(daily.getWeek(location, language))
+                dailyItem.setWeekText(daily.getWeek(location, language))
             }
             talkBackBuilder.append(context.getString(R.string.comma_separator))
                 .append(
                     daily.date.getFormattedMediumDayAndMonth(
                         location,
-                        SettingsManager.getInstance(context).language.locale
+                        SettingsManager.getInstance(context).language
                     )
                 )
             dailyItem.setDateText(
                 daily.date.getFormattedShortDayAndMonth(
                     location,
-                    SettingsManager.getInstance(context).language.locale
+                    SettingsManager.getInstance(context).language
                 )
             )
-            val useAccentColorForDate = daily.isToday(timeZone) || daily.date > Date()
+            val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(
                 MainThemeColorProvider.getColor(
                     location,

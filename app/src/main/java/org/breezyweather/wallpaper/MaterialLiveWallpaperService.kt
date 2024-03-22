@@ -46,6 +46,7 @@ import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.weatherView.WeatherView
@@ -372,18 +373,20 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 }
             } else null
             val weatherKind = when (configManager.weatherKind) {
-                "auto" -> location?.weather?.current?.weatherCode?.id
-                else -> configManager.weatherKind
+                "auto" -> location?.weather?.current?.weatherCode
+                else -> WeatherCode.getInstance(configManager.weatherKind)
             }
-            var daytime = location?.isDaylight ?: true
-            when (configManager.dayNightType) {
-                "day" -> daytime = true
-                "night" -> daytime = false
+            val daytime = when (configManager.dayNightType) {
+                "day" -> true
+                "night" -> false
+                else -> location?.isDaylight ?: true
+            }
+            if (BreezyWeather.instance.debugMode) {
+                LogHelper.log(msg = "weatherKind: ${configManager.weatherKind} -> $weatherKind")
+                LogHelper.log(msg = "daytime: ${configManager.dayNightType} -> $daytime")
             }
             setWeather(
-                WeatherViewController.getWeatherKind(
-                    WeatherCode.getInstance(weatherKind)
-                ),
+                WeatherViewController.getWeatherKind(weatherKind),
                 daytime
             )
 

@@ -29,6 +29,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
 import org.breezyweather.common.utils.helpers.LunarHelper
@@ -82,6 +83,24 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 setViewVisibility(R.id.widget_text_weather, View.GONE)
                 setViewVisibility(R.id.widget_text_temperature, View.GONE)
             } else {
+                val dateFormat = getLongWeekdayDayMonth(
+                    SettingsManager.getInstance(context).language
+                )
+                views.setString(
+                    R.id.widget_text_date,
+                    "setTimeZone",
+                    location.timeZone
+                )
+                views.setCharSequence(
+                    R.id.widget_text_date,
+                    "setFormat12Hour",
+                    dateFormat
+                )
+                views.setCharSequence(
+                    R.id.widget_text_date,
+                    "setFormat24Hour",
+                    dateFormat
+                )
                 setViewVisibility(R.id.widget_text_date, View.VISIBLE)
                 setViewVisibility(R.id.widget_text_weather, View.VISIBLE)
                 setViewVisibility(R.id.widget_text_temperature, View.VISIBLE)
@@ -141,7 +160,9 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
     ): String? {
         return when (subtitleData) {
-            "time" -> weather.base.refreshTime?.getFormattedTime(location.javaTimeZone, context.is12Hour)
+            "time" -> weather.base.refreshTime?.getFormattedTime(
+                location, SettingsManager.getInstance(context).language, context.is12Hour
+            )
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null
                     && airQuality.getName(context) != null) {

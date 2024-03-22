@@ -563,10 +563,7 @@
     <string name="precipitation_thunderstorm">Олуја са грмљавином</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Умерено</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_message_secondary_data_refresh_failed">Освежавање података о времену за секундарни извор времена није успело</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM |</string>
     <string name="weather_data_by">Подаци од %s</string>
     <string name="weather_message_invalid_location">Неважећа локација, избришите је и поново додајте</string>
     <string name="action_see_more">Види више</string>

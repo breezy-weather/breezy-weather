@@ -23,9 +23,10 @@ import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.settings.SettingsManager
 import java.util.Date
-import java.util.Locale
 
 val Context.is12Hour: Boolean
     get() = !DateFormat.is24HourFormat(this)
@@ -46,51 +47,75 @@ fun Long.toDate(): Date {
 }
 
 fun Date.getFormattedDate(
-    location: Location,
     pattern: String,
-    locale: Locale = Locale.getDefault(),
+    location: Location = Location(),
+    language: Language = Language.ENGLISH_US,
     withBestPattern: Boolean = false
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat(
             if (withBestPattern) {
-                DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
+                DateTimePatternGenerator.getInstance(language.locale).getBestPattern(pattern)
             } else pattern,
-            locale
-        )
-            .apply {
-                timeZone = location.icuTimeZone
-            }
-            .format(this)
-    } else this.getFormattedDate(location.javaTimeZone, pattern, locale)
+            language.locale
+        ).apply {
+            timeZone = location.icuTimeZone
+        }.format(this)
+    } else this.getFormattedDate(pattern, location.javaTimeZone, language.locale)
+}
+
+fun Date.getFormattedTime(
+    location: Location,
+    language: Language,
+    twelveHour: Boolean
+): String {
+    return if (twelveHour) {
+        this.getFormattedDate("h:mm aa", location, language)
+    } else this.getFormattedDate("HH:mm", location, language)
 }
 
 fun Date.getFormattedShortDayAndMonth(
     location: Location,
-    locale: Locale = Locale.getDefault()
+    language: Language
 ): String {
-    return this.getFormattedDate(location, "MM-dd", locale, withBestPattern = true)
+    return this.getFormattedDate("MM-dd", location, language, withBestPattern = true)
 }
 
 fun Date.getFormattedMediumDayAndMonth(
     location: Location,
-    locale: Locale = Locale.getDefault()
+    language: Language
 ): String {
-    return this.getFormattedDate(location, "d MMM", locale, withBestPattern = true)
+    return this.getFormattedDate("d MMM", location, language, withBestPattern = true)
 }
 
-fun Date.getWeek(context: Context, location: Location): String {
-    val locale = SettingsManager.getInstance(context).language.locale
+fun getShortWeekdayDayMonth(
+    language: Language
+): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        SimpleDateFormat("E", locale)
-            .apply {
-                timeZone = location.icuTimeZone
-            }
-            .format(this)
-            .replaceFirstChar { firstChar ->
-                if (firstChar.isLowerCase()) {
-                    firstChar.titlecase(locale)
-                } else firstChar.toString()
-            }
-    } else this.getWeek(locale, location.javaTimeZone)
+        DateTimePatternGenerator.getInstance(language.locale).getBestPattern("EEE d MMM")
+    } else "EEE d MMM"
+}
+
+fun getLongWeekdayDayMonth(
+    language: Language
+): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        DateTimePatternGenerator.getInstance(language.locale).getBestPattern("EEEE d MMMM")
+    } else "EEEE d MMMM"
+}
+
+fun Date.getWeek(location: Location, language: Language): String {
+    return getFormattedDate("E", location, language)
+}
+
+fun Date.getHour(location: Location, context: Context): String {
+    return getFormattedDate(
+        if (context.is12Hour) "h aa" else "H",
+        location,
+        SettingsManager.getInstance(context).language
+    ) + if (!context.is12Hour) context.getString(R.string.of_clock) else ""
+}
+
+fun Date.getHourIn24Format(location: Location): String {
+    return getFormattedDate("H", location)
 }

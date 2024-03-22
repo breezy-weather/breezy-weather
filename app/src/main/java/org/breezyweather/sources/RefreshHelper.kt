@@ -79,7 +79,6 @@ import java.net.UnknownHostException
 import java.text.ParseException
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.min
 
@@ -407,7 +406,7 @@ class RefreshHelper @Inject constructor(
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
-                .getFormattedDate(location, "yyyy-MM-dd", Locale.ENGLISH)
+                .getFormattedDate("yyyy-MM-dd", location)
                 .toDateNoHour(location.javaTimeZone)!!
             val mainWeatherCompleted = completeMainWeatherWithPreviousData(
                 mainWeather,
@@ -534,7 +533,7 @@ class RefreshHelper @Inject constructor(
              * For this reason, we complete missing data earlier for the secondary data
              */
             val secondaryWeatherWrapperCompleted = completeMissingSecondaryWeatherDailyData(
-                secondaryWeatherWrapper, location.javaTimeZone
+                secondaryWeatherWrapper, location
             )
 
             val hourlyMissingComputed = computeMissingHourlyData(
@@ -552,7 +551,7 @@ class RefreshHelper @Inject constructor(
             val hourlyForecast = completeHourlyListFromDailyList(
                 hourlyMissingComputed,
                 dailyForecast,
-                location.javaTimeZone
+                location
             )
 
             // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00

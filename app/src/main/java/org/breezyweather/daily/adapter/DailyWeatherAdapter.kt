@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import breezyweather.domain.weather.model.Daily
@@ -35,11 +36,10 @@ import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
-import java.util.TimeZone
 
 class DailyWeatherAdapter(
     activity: DailyWeatherActivity,
-    timeZone: TimeZone,
+    location: Location,
     daily: Daily,
     pollenIndexSource: PollenIndexSource?,
     spanCount: Int
@@ -117,7 +117,7 @@ class DailyWeatherAdapter(
         }
         if (daily.sun?.isValid == true || daily.moon?.isValid == true || daily.moonPhase?.isValid == true) {
             mModelList.add(LargeTitle(activity.getString(R.string.ephemeris)))
-            mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
+            mModelList.add(DailyAstro(location, daily.sun, daily.moon, daily.moonPhase))
         }
         if (daily.degreeDay?.isValid == true || daily.sunshineDuration != null) {
             mModelList.add(Line())

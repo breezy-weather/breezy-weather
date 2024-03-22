@@ -31,6 +31,7 @@ import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyAstro
 import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 
 class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
@@ -48,7 +49,8 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     @SuppressLint("SetTextI18n")
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
         val context = itemView.context
-        val timeZone = (model as DailyAstro).timeZone
+        val language = SettingsManager.getInstance(context).language
+        val location = (model as DailyAstro).location
         val talkBackBuilder = StringBuilder(context.getString(R.string.ephemeris))
         if (model.sun != null && model.sun.isValid) {
             talkBackBuilder
@@ -56,19 +58,23 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 .append(
                     context.getString(
                         R.string.ephemeris_sunrise_at,
-                        model.sun.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.sun.riseDate?.getFormattedTime(
+                            location, language, context.is12Hour
+                        ) ?: context.getString(R.string.null_data_text)
                     )
                 )
                 .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_sunset_at,
-                        model.sun.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.sun.setDate?.getFormattedTime(
+                            location, language, context.is12Hour
+                        ) ?: context.getString(R.string.null_data_text)
                     )
                 )
             mSun.visibility = View.VISIBLE
-            mSunText.text = (model.sun.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
-                    (model.sun.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
+            mSunText.text = (model.sun.riseDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
+                    (model.sun.setDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
                     (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
         } else {
             mSun.visibility = View.GONE
@@ -79,18 +85,18 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 .append(
                     context.getString(
                         R.string.ephemeris_moonrise_at,
-                        model.moon.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.moon.riseDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)
                     )
                 )
                 .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_moonset_at,
-                        model.moon.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.moon.setDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)
                     )
                 )
             mMoon.visibility = View.VISIBLE
-            mMoonText.text = (model.moon.riseDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedTime(timeZone, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
+            mMoonText.text = (model.moon.riseDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
         } else {
             mMoon.visibility = View.GONE
         }

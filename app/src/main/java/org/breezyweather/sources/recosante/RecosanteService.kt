@@ -142,7 +142,6 @@ class RecosanteService @Inject constructor(
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
-            // TODO: Add error popup in case the value isn't valid
             EditTextPreference(
                 titleId = R.string.settings_weather_source_recosante_instance,
                 summary = { _, content ->
@@ -151,10 +150,10 @@ class RecosanteService @Inject constructor(
                     }
                 },
                 content = instance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        instance = it
-                    }
+                    instance = it
                 }
             ),
             EditTextPreference(
@@ -165,10 +164,10 @@ class RecosanteService @Inject constructor(
                     }
                 },
                 content = geocodingInstance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        geocodingInstance = it
-                    }
+                    geocodingInstance = it
                 }
             )
         )

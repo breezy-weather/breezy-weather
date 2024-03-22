@@ -35,7 +35,6 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import retrofit2.Retrofit
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 class MetNoService @Inject constructor(
@@ -71,7 +70,7 @@ class MetNoService @Inject constructor(
             location.longitude
         )
 
-        val formattedDate = Date().getFormattedDate(location, "yyyy-MM-dd", Locale.ENGLISH)
+        val formattedDate = Date().getFormattedDate("yyyy-MM-dd", location)
         val sun = mApi.getSun(
             userAgent,
             location.latitude,

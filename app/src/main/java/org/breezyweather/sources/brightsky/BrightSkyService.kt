@@ -42,7 +42,6 @@ import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 class BrightSkyService @Inject constructor(
@@ -91,8 +90,8 @@ class BrightSkyService @Inject constructor(
         val weather = mApi.getWeather(
             location.latitude,
             location.longitude,
-            date.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH),
-            lastDate.getFormattedDate(location, "yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+            date.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location),
+            lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
         )
 
         val currentWeather = mApi.getCurrentWeather(
@@ -125,7 +124,7 @@ class BrightSkyService @Inject constructor(
                 brightSkyWeather,
                 brightSkyCurrentWeather,
                 brightSkyAlerts,
-                location.javaTimeZone,
+                location,
                 languageCode
             )
         }
@@ -178,10 +177,10 @@ class BrightSkyService @Inject constructor(
                     }
                 },
                 content = instance,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    if (it.startsWith("https://") && it.endsWith("/")) {
-                        instance = it
-                    }
+                    instance = it
                 }
             )
         )

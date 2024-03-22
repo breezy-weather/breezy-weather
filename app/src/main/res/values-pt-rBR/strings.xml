@@ -94,13 +94,6 @@
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_contributors">Contribuidores</string>
     <string name="about_translators">Tradutores</string>
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEE, dd/MM</string>
-    <string name="date_format_widget_long">EEEE, d\' de \'MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d\' de \'MMM｜</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
     <string name="dialog_permissions_location_content">Breezy Weather precisa coletar suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. Suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se você não quiser que obtenhamos suas informações de localização, você pode negar esses requisitos e definir manualmente seu local na página de gerenciamento.</string>

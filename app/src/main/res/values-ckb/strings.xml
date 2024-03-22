@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="widget_custom_subtitle_keyword_w_description">MMM d</string>
     <string name="widget_custom_subtitle_keyword_enter_description">هێڵی نوێ</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">پلەی گەرمای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (℃/℉)</string>
     <string name="app_name">کەش و هەوا</string>

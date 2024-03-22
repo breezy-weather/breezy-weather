@@ -21,7 +21,6 @@ import app.cash.sqldelight.ColumnAdapter
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.WeatherCode
 import java.util.Date
-import java.util.TimeZone
 
 object DateColumnAdapter : ColumnAdapter<Date, Long> {
     override fun decode(databaseValue: Long): Date = Date(databaseValue)

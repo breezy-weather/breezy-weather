@@ -27,7 +27,6 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
 import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
 import org.breezyweather.domain.weather.model.getCloudCoverColor
@@ -91,8 +90,8 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    WeatherViewController.getWeatherKind(location.weather),
-                    location.isDaylight
+                    WeatherViewController.getWeatherKind(location),
+                    WeatherViewController.isDaylight(location)
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(

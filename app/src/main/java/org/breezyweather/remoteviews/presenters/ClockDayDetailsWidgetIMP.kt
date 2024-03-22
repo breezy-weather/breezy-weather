@@ -28,6 +28,7 @@ import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvide
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
@@ -71,6 +72,59 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
+
+        // Clock
+        views.setString(
+            R.id.widget_clock_day_clock_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_black,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_light,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_normal,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setString(
+            R.id.widget_clock_day_clock_aa_black,
+            "setTimeZone",
+            location.timeZone
+        )
+
+        // Date
+        val dateFormat = getShortWeekdayDayMonth(
+            SettingsManager.getInstance(context).language
+        )
+        views.setString(
+            R.id.widget_clock_day_title,
+            "setTimeZone",
+            location.timeZone
+        )
+        views.setCharSequence(
+            R.id.widget_clock_day_title,
+            "setFormat12Hour",
+            dateFormat
+        )
+        views.setCharSequence(
+            R.id.widget_clock_day_title,
+            "setFormat24Hour",
+            dateFormat
+        )
+
         weather.current?.weatherCode?.let {
             views.setViewVisibility(R.id.widget_clock_day_icon, View.VISIBLE)
             views.setImageViewUri(

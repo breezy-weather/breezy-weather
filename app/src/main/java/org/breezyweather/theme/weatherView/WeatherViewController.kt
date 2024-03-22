@@ -16,10 +16,11 @@
 
 package org.breezyweather.theme.weatherView
 
+import breezyweather.domain.location.model.Location
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 
 object WeatherViewController {
@@ -42,7 +43,18 @@ object WeatherViewController {
     }
 
     @WeatherKindRule
-    fun getWeatherKind(weather: Weather?): Int = getWeatherKind(weather?.current?.weatherCode)
+    fun getWeatherKind(location: Location?): Int = getWeatherKind(
+        when (location?.backgroundWeatherKind ?: "auto") {
+            "auto" -> location?.weather?.current?.weatherCode
+            else -> WeatherCode.getInstance(location!!.backgroundWeatherKind)
+        }
+    )
+
+    fun isDaylight(location: Location?): Boolean = when (location?.backgroundDayNightType ?: "auto") {
+        "day" -> true
+        "night" -> false
+        else -> location?.isDaylight ?: true
+    }
 
     @WeatherKindRule
     fun getWeatherKind(weatherCode: WeatherCode?): Int = when (weatherCode) {

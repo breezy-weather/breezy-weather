@@ -94,13 +94,6 @@
     <string name="about_app">O aplikaci</string>
     <string name="about_contributors">Přispěvatelé</string>
     <string name="about_translators">Překladatelé</string>
-    <!-- Date format strings. -->
-    <!-- Month : MMM(long) / M(short). -->
-    <!-- Day   : dd(long) / d(short). -->
-    <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_widget_short">EEE d MMM</string>
-    <string name="date_format_widget_long">EEEE d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
     <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>

@@ -55,12 +55,10 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"
-            android:format24Hour="@string/date_format_widget_long"
-            android:format12Hour="@string/date_format_widget_long"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/widget_day_weather"
             style="@style/widget_text_clock"
-            tools:text="12月29日 星期四"
+            tools:text="Sunday, 29 December"
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>

@@ -1,8 +1,28 @@
 <resources>
 
-    <!-- keyword. -->
-    <string name="date_format_widget_short">EEEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
+    <string name="pollen_and_mold">Pollen &amp; mould</string>
+    <string name="pollen_mold">Mould</string>
+
+    <string name="settings_color_grey">Grey</string>
+
+    <string name="widget_label_show_widget_card">Background colour</string>
+    <string name="widget_label_text_color">Text colour</string>
+    <string name="widget_clock_font_analog">Analogue</string>
+
+    <string name="unit_mps_voice">Metres per second</string>
+    <string name="unit_kph_voice">Kilometres per hour</string>
+    <string name="unit_mm_voice">Millimetres</string>
+    <string name="unit_cm_voice">Centimetres</string>
+    <string name="unit_lpsqm_voice">Litres per square metre</string>
+    <string name="unit_mmph_voice">Millimetres per hour</string>
+    <string name="unit_cmph_voice">Centimetres per hour</string>
+    <string name="unit_lpsqmph_voice">Litres per square metre per hour</string>
+    <string name="unit_km_voice">Kilometres</string>
+    <string name="unit_m_voice">Metres</string>
+    <string name="unit_mmhg_voice">Millimetres of mercury</string>
+    <string name="unit_kgfpsqcm_voice">Kilogram force per square centimetre</string>
+    <string name="unit_mugpcum_voice">Micrograms per cubic metre</string>
+    <string name="unit_mgpcum_voice">Milligrams per cubic metre</string>
+    <string name="unit_ppcm_voice">Per cubic metre</string>
 
 </resources>

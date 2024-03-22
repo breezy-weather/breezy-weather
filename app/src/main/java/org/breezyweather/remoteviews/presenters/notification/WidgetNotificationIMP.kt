@@ -30,11 +30,11 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.domain.weather.model.getHour
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getTrendTemperature
@@ -242,9 +242,14 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                     val weatherCode = if (weekIconDaytime) daily.day?.weatherCode else daily.night?.weatherCode
                     views.apply {
-                        setTextViewText(viewId.first, if (daily.isToday(location.javaTimeZone)) {
-                            context.getString(R.string.short_today)
-                        } else daily.getWeek(context, location))
+                        setTextViewText(
+                            viewId.first,
+                            if (daily.isToday(location)) {
+                                context.getString(R.string.short_today)
+                            } else daily.getWeek(
+                                location, SettingsManager.getInstance(context).language
+                            )
+                        )
                         setTextViewText(
                             viewId.second,
                             daily.getTrendTemperature(context, temperatureUnit)
@@ -269,7 +274,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             viewIds.forEachIndexed { i, viewId ->
                 weather.nextHourlyForecast.getOrNull(i)?.let { hourly ->
                     views.apply {
-                        setTextViewText(viewId.first, hourly.getHour(context, location.javaTimeZone))
+                        setTextViewText(viewId.first, hourly.date.getHour(location, context))
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,

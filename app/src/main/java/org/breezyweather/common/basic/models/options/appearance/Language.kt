@@ -43,6 +43,7 @@ enum class Language(
     DANISH("danish", Locale("da")),
     GERMAN("german", Locale("de")),
     ENGLISH_AU("english_australia", Locale("en", "AU")),
+    ENGLISH_CA("english_canada", Locale("en", "CA")),
     ENGLISH_UK("english_britain", Locale("en", "GB")),
     ENGLISH_US("english_america", Locale("en", "US")),
     SPANISH("spanish", Locale("es")),

@@ -36,8 +36,8 @@ fun Date.toCalendarWithTimeZone(zone: TimeZone): Calendar {
 
 /**
  * Get a date at midnight on a specific timezone from a formatted date
- * @param timeZone
- * @param formattedDate in yyyy-MM-dd format
+ * @this formattedDate in yyyy-MM-dd format
+ * @param timeZoneP
  * @return Date
  */
 fun String.toDateNoHour(timeZoneP: TimeZone = TimeZone.getDefault()): Date? {
@@ -54,6 +54,7 @@ fun String.toDateNoHour(timeZoneP: TimeZone = TimeZone.getDefault()): Date? {
     }.time
 }
 
+@Deprecated("Makes no sense, must be replaced")
 fun Date.toTimezone(timeZone: TimeZone = TimeZone.getDefault()): Date {
     val calendarWithTimeZone = this.toCalendarWithTimeZone(timeZone)
     return Date(
@@ -75,35 +76,15 @@ fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date? {
     }.time
 }
 
+@Deprecated("Use ICU functions instead")
 fun Date.getFormattedDate(
-    timeZone: TimeZone = TimeZone.getDefault(),
     pattern: String,
-    locale: Locale = Locale.getDefault()
+    timeZone: TimeZone,
+    locale: Locale
 ): String {
-    return SimpleDateFormat(pattern, locale)
-        .apply {
-            setTimeZone(timeZone)
-        }
-        .format(this)
-}
-
-fun Date.getFormattedTime(timeZone: TimeZone, twelveHour: Boolean): String {
-    return if (twelveHour) {
-        this.getFormattedDate(timeZone, "h:mm aa")
-    } else {
-        this.getFormattedDate(timeZone, "HH:mm")
-    }
-}
-
-fun Date.getWeek(locale: Locale, timeZone: TimeZone): String {
-    return SimpleDateFormat("E", locale)
-        .apply {
-            setTimeZone(timeZone)
-        }
-        .format(this)
-        .replaceFirstChar { firstChar ->
-            if (firstChar.isLowerCase()) {
-                firstChar.titlecase(locale)
-            } else firstChar.toString()
-        }
+    return SimpleDateFormat(
+        pattern, locale
+    ).apply {
+        setTimeZone(timeZone)
+    }.format(this)
 }

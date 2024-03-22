@@ -91,9 +91,6 @@
     <string name="action_learn_more">التعرف على المزيد</string>
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
     <string name="weather_message_data_refresh_failed">فشل في الحصول على بيانات الطقس</string>

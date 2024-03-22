@@ -183,7 +183,7 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
                 if (workInfo.state == WorkInfo.State.ENQUEUED) {
                     appendLine(
                         "Next scheduled run: ${workInfo.nextScheduleTimeMillis.toDate()
-                            .getFormattedDate(pattern = "yyyy-MM-dd HH:mm")}",
+                            .getFormattedDate("yyyy-MM-dd HH:mm")}",
                     )
                     appendLine("Attempt #${workInfo.runAttemptCount + 1}")
                 }

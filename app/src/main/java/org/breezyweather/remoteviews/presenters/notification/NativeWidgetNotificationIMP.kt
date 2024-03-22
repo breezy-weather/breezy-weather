@@ -51,7 +51,8 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     ) {
         val current = location.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
-        context.setLanguage(SettingsManager.getInstance(context).language.locale)
+        val language = SettingsManager.getInstance(context).language
+        context.setLanguage(language.locale)
 
         val tempFeelsLikeOrAir = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
@@ -68,7 +69,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 subtitle.append(context.getString(R.string.comma_separator))
                     .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
-                    .append(it.getFormattedTime(location.javaTimeZone, context.is12Hour))
+                    .append(it.getFormattedTime(location, language, context.is12Hour))
             }
         }
 

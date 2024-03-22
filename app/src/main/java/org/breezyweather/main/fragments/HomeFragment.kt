@@ -42,7 +42,6 @@ import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.MainActivity
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
@@ -356,8 +355,8 @@ class HomeFragment : MainModuleFragment() {
 
     private fun updatePreviewSubviews() {
         val location = viewModel.getValidLocation(previewOffset.value)
-        val daylight = location?.isDaylight ?: true
-        val weatherKind = WeatherViewController.getWeatherKind(location?.weather)
+        val daylight = WeatherViewController.isDaylight(location)
+        val weatherKind = WeatherViewController.getWeatherKind(location)
 
         // Show "current position" icon:
         // - On the left on mobile because it might not be visible on small displays otherwise

@@ -353,8 +353,6 @@
     <string name="widget_label_show_widget_card_alpha">Matlık</string>
     <string name="widget_subtitle_data_time">Yenileme zamanı</string>
     <string name="ceiling">Tavan</string>
-    <string name="date_format_widget_short">EEE, d MMM</string>
-    <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
     <string name="dialog_permissions_location_content">Breezy Weather, geçerli konumunuzun hava durumu verilerini sağlamak için konum bilgilerinizi ön planda veya arka planda toplamalıdır. Bunun için bazı izinler isteyeceğiz. Konum bilgileriniz yalnızca geçerli konumunuzdaki hava durumu verilerini elde etmek için kullanılacaktır. Konum bilgilerinizi paylaşmak istemiyorsanız, bu gereksinimleri reddedebilir ve yönetim sayfasında konumunuzu manuel olarak ayarlayabilirsiniz.</string>
@@ -520,7 +518,6 @@
     <string name="unit_atm_voice">Atmosfer</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_m">m</string>
-    <string name="date_format_widget_oreo_style">dd MMM EEEE |</string>
     <string name="unit_mm">mm</string>
     <string name="weather_source_openweather_version_2_5">Sürüm 2.5</string>
     <string name="unit_h_voice">saat</string>

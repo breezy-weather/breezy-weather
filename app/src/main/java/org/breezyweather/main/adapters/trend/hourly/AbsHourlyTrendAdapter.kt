@@ -24,11 +24,11 @@ import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
+import org.breezyweather.common.extensions.getHour
+import org.breezyweather.common.extensions.getHourIn24Format
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
-import org.breezyweather.domain.weather.model.getHour
-import org.breezyweather.domain.weather.model.getHourIn24Format
 import org.breezyweather.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
@@ -48,22 +48,20 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             val hourly = weather.nextHourlyForecast[position]
             hourlyItem.setDayText(
                 hourly.date.getFormattedShortDayAndMonth(
-                    location,
-                    SettingsManager.getInstance(context).language.locale
+                    location, SettingsManager.getInstance(context).language
                 )
             )
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
                 .append(
                     hourly.date.getFormattedMediumDayAndMonth(
-                        location,
-                        SettingsManager.getInstance(context).language.locale
+                        location, SettingsManager.getInstance(context).language
                     )
                 )
                 .append(context.getString(R.string.comma_separator))
-                .append(hourly.getHour(activity, location.javaTimeZone))
-            hourlyItem.setHourText(hourly.getHour(context, location.javaTimeZone))
-            val useAccentColorForDate = position == 0 || hourly.getHourIn24Format(location.javaTimeZone) == 0
+                .append(hourly.date.getHour(location, activity))
+            hourlyItem.setHourText(hourly.date.getHour(location, activity))
+            val useAccentColorForDate = position == 0 || hourly.date.getHourIn24Format(location) == "0"
             hourlyItem.setTextColor(
                 MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                 MainThemeColorProvider.getColor(
