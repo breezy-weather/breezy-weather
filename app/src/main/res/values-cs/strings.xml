@@ -264,8 +264,8 @@
     <string name="widget_style_tile">Dlaždice</string>
     <string name="widget_style_vertical">Vertikální</string>
     <string name="widget_style_temperature">Teplota</string>
-    <string name="widget_week_style_5_days">5 dní</string>
-    <string name="widget_week_style_3_days">3 dny</string>
+    <string name="widget_week_style_5_days">5 dní</string>
+    <string name="widget_week_style_3_days">3 dny</string>
     <string name="widget_subtitle_data_time">Čas obnovení</string>
     <string name="widget_subtitle_data_wind">Vítr</string>
     <string name="widget_subtitle_data_feels_like">Znatelná teplota</string>
@@ -691,4 +691,7 @@
     <string name="settings_widgets_broadcast_switch">Posílat data o počasí ostatním aplikacím</string>
     <string name="settings_widgets_broadcast_switch_dialog">Tato možnost umožňuje KTERÉKOLI aplikaci na vašem zařízení získat přístup k názvu vašeho umístění a datům o počasí. Pokračujte pouze, pokud jste si plně vědomi potenciálních rizik zneužití ostatními aplikacemi.</string>
     <string name="message_invalid_incomplete_data">Ze serveru byla obdržena neplatná nebo neúplná data</string>
+    <string name="settings_per_location_theme">Motiv</string>
+    <string name="settings_source_instance_invalid">V poli se musí nacházet https URL končící znakem /</string>
+    <string name="settings_invalid_syntax">Neplatná syntaxe</string>
 </resources>
