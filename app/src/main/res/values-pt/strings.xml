@@ -630,7 +630,6 @@
     <string name="location_search_no_results_advice">Certifique-se de que sua busca esteja escrita corretamente e não seja muito específica. Como alternativa, você pode tentar outra fonte para pesquisa de local, que pode produzir resultados diferentes.</string>
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
     <string name="settings_weather_source_none">Nenhum</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Você está usando a versão do Breezy Weather do repositório padrão do F-Droid, que só tem suporte para fontes meteorológicas que usam uma solução de servidor de software livre disponível publicamente, auto-hospedável. Toque aqui para saber mais.</string>
     <string name="notification_precipitation_starting_desc">Início previsto para %s</string>
     <string name="location_message_updated">Localização atualizada</string>
     <string name="location_message_already_exists">Já existe um local com a mesma fonte meteorológica principal.</string>

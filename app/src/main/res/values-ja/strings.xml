@@ -652,7 +652,6 @@
     <string name="weather_message_too_frequent_refreshes">更新は時間を空けて行ってください。</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
-    <string name="settings_weather_source_fdroid_disclaimer">F-DroidデフォルトリポジトリバージョンのBreezy Weatherを使用しています。このバージョンでは、公開されている自己ホスト可能なフリーソフトウェアサーバーソリューションを使用する気象情報源のみがサポートされています。 ここをタップして詳細を確認してください。</string>
     <string name="pollen_urticaceae">蕁麻花粉</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4日後の花粉指数まとめ</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">この場所に最適な天気モデルを組み合わせる</string>

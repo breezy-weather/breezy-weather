@@ -630,7 +630,6 @@
     <string name="location_delete_location_dialog_message">Jūs ketinate ištrinti “%s” iš savo išsaugotų vietų sąrašo.</string>
     <string name="action_confirm">Patvirtinti</string>
     <string name="widget_label_show_widget_card_alpha">Permatomumas</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Jūs naudojate “Breezy Weather” versiją iš “F-Droid” numatytojoje saugykloje, kuri palaiko tik tuos orų šaltinius, kurie naudoja viešai prieinamą, savarankiškai prieinamą, nemokamos programinės įrangos serverio sprendimą. Norėdami sužinoti daugiau, spauskite čia.</string>
     <string name="location_search_no_results_advice">Įsitikinkite, kad paieška parašyta teisingai ir nėra pernelyg konkreti. Taip pat galite išbandyti kitą vietovės paieškos šaltinį, kuris gali duoti kitokių rezultatų.</string>
     <string name="weather_message_too_frequent_refreshes">Prašome palaukti kelias sekundes prieš bandant dar kartą…</string>
     <string name="location_delete_location_dialog_title">Ištrinti vietovę?</string>

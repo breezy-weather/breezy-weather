@@ -413,7 +413,6 @@
     <string name="widget_custom_subtitle_keyword_xntd_description">دمای امشب، فردا شب، …، 4 شب دیگر (°)</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">شاخص کیفیت هوای امروز، فردا، …، 4 روز دیگر</string>
     <string name="settings_weather_source_unavailable">%s (خارج از دسترسی)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">شما از نسخه Breezy Weather از مخزن پیش‌فرض F-Droid استفاده می‌کنید که فقط از منابع آب‌وهوا که از راه‌حل سرور نرم‌افزار رایگان در دسترس عموم، خود میزبانی و رایگان استفاده می‌کنند، پشتیبانی می‌کند. برای کسب اطلاعات بیشتر اینجا را لمس کنید.</string>
     <string name="settings_weather_sources_per_location_summary">منابع آب و هوا استفاده شده برای این مکان را سفارشی کنید</string>
     <string name="settings_weather_source_open_weather_one_call_version">نسخه OneCall</string>
     <string name="settings_appearance_language_title">زبان</string>

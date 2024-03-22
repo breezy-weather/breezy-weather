@@ -437,7 +437,6 @@
     <string name="settings_per_location_summary">इस स्थान के लिए अतिरिक्त अनुकूलन</string>
     <string name="settings_weather_source_unavailable">%s (अनुपलब्ध)</string>
     <string name="settings_weather_source_none">कुछ नहीं</string>
-    <string name="settings_weather_source_fdroid_disclaimer">आप F-Droid डिफ़ॉल्ट रिपॉजिटरी से ब्रीज़ी वेदर के संस्करण का उपयोग कर रहे हैं, जिसमें केवल मौसम स्रोतों के लिए समर्थन है जो सार्वजनिक रूप से उपलब्ध, स्व-होस्टेबल, मुफ्त सॉफ़्टवेयर सर्वर समाधान का उपयोग करते हैं। अधिक जानने के लिए यहां टैप करें।</string>
     <string name="settings_weather_sources_per_location_summary">इस स्थान के लिए उपयोग किए गए मौसम डेटा स्रोतों को अनुकूलित करें</string>
     <string name="widget_style_tile">भाग</string>
     <string name="widget_style_mini">लघु</string>
