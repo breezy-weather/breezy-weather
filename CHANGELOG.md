@@ -9,7 +9,7 @@
 - Fix display issue when changing main source sometimes resulted in empty value for secondary sources
 - Add error handling to “change instance URL” feature of self-hostable sources
 - [Widgets] Fix clock and dates didn’t honor timezone of the location (used system timezone instead)
-- [Widgets] Fix clock font preference reset every time configuration screen was enteredFget
+- [Widgets] Fix clock font preference reset every time configuration screen was entered
 
 **Translations**
 - Translations updated

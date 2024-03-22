@@ -640,7 +640,7 @@
     <string name="location_delete_location_dialog_title">Выдаліць месцазнаходжанне?</string>
     <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць “%s” з спісу захаваных месцаў.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, …, 4 дні праз</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Дадатковыя пастаўшчыкі надвор\'я даступныя ў іншых версіях Breezy Weather. Націсніце тут, каб даведацца больш.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Дадатковыя пастаўшчыкі надвор’я даступныя ў іншых версіях Breezy Weather. Націсніце тут, каб даведацца больш.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ляшчына</string>
     <string name="pollen_cupressaceae_taxaceae">Кіпарыс</string>
@@ -671,7 +671,7 @@
     <string name="settings_source_instance_geocoding">Прыклад геокодирования</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Прыклад прагнозу</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Прыклад якасці паветра</string>
-    <string name="settings_widgets_broadcast_switch">Перадаваць мае дадзеныя аб надвор\'і ў іншыя прыкладання</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Гэтая опцыя дазваляе любому з дадаткам на вашым прыладзе мець доступ да назвы вашага месцазнаходжання і дадзеных аб надвор\'і. Працягвайце толькі, калі вы цалкам разумееце патэнцыйныя рызыкі няправільнага выкарыстання іншымі прыкладаннямі, якія могуць узнікнуць у выніку гэтага.</string>
+    <string name="settings_widgets_broadcast_switch">Перадаваць мае дадзеныя аб надвор’і ў іншыя прыкладання</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Гэтая опцыя дазваляе любому з дадаткам на вашым прыладзе мець доступ да назвы вашага месцазнаходжання і дадзеных аб надвор’і. Працягвайце толькі, калі вы цалкам разумееце патэнцыйныя рызыкі няправільнага выкарыстання іншымі прыкладаннямі, якія могуць узнікнуць у выніку гэтага.</string>
     <string name="message_invalid_incomplete_data">З сервера атрыманы няслушныя або няпоўныя дадзеныя</string>
 </resources>
