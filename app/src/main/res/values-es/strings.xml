@@ -228,7 +228,7 @@
     <string name="widget_style_tile">Mosaico</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_week_style_5_days">5 días</string>
-    <string name="widget_week_style_3_days">3 días</string>
+    <string name="widget_week_style_3_days">3 días</string>
     <string name="widget_subtitle_data_time">Tiempo de refresco</string>
     <string name="widget_subtitle_data_wind">Viento</string>
     <string name="widget_subtitle_data_feels_like">Sensación térmica</string>
@@ -684,4 +684,7 @@
     <string name="settings_widgets_broadcast_switch">Compartir mis datos meteorológicos con otras aplicaciones</string>
     <string name="settings_widgets_broadcast_switch_dialog">Esta opción permite que CUALQUIER aplicación en su dispositivo tenga acceso al nombre de su ubicación y a los datos meteorológicos. Continúe solo si comprende completamente los riesgos potenciales de uso indebido por parte de otras aplicaciones que podrían derivarse de ello.</string>
     <string name="message_invalid_incomplete_data">Datos recibidos del servidor, no válidos o incompletos</string>
+    <string name="settings_per_location_theme">Tema</string>
+    <string name="settings_source_instance_invalid">Debe ser una dirección https que acaba en /</string>
+    <string name="settings_invalid_syntax">Error de sintaxis</string>
 </resources>
