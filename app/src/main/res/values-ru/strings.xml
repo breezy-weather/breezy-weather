@@ -223,8 +223,8 @@
     <string name="widget_style_nano">Нано</string>
     <string name="widget_style_vertical">Вертикальный</string>
     <string name="widget_style_temperature">Температура</string>
-    <string name="widget_week_style_5_days">5 дней</string>
-    <string name="widget_week_style_3_days">3 дня</string>
+    <string name="widget_week_style_5_days">5 дней</string>
+    <string name="widget_week_style_3_days">3 дня</string>
     <string name="widget_subtitle_data_time">Время обновления</string>
     <string name="widget_subtitle_data_aqi">Качество воздуха</string>
     <string name="widget_subtitle_data_wind">Ветер</string>
@@ -316,17 +316,17 @@
     <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_daily_trends_title">Подневный прогноз</string>
-    <string name="weather_source_accu_preference_hours_72">72 часа</string>
-    <string name="weather_source_accu_preference_hours_120">120 часов</string>
-    <string name="weather_source_accu_preference_hours_240">240 часов</string>
+    <string name="weather_source_accu_preference_hours_72">72 часа</string>
+    <string name="weather_source_accu_preference_hours_120">120 часов</string>
+    <string name="weather_source_accu_preference_hours_240">240 часов</string>
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим источником, добавьте свой API-ключ.</string>
-    <string name="weather_source_accu_preference_days_1">1 день</string>
-    <string name="weather_source_accu_preference_days_5">5 дней</string>
-    <string name="weather_source_accu_preference_days_15">15 дней</string>
+    <string name="weather_source_accu_preference_days_1">1 день</string>
+    <string name="weather_source_accu_preference_days_5">5 дней</string>
+    <string name="weather_source_accu_preference_days_15">15 дней</string>
     <string name="weather_source_accu_preference_hours_1">1 час</string>
-    <string name="weather_source_accu_preference_days_10">10 дней</string>
+    <string name="weather_source_accu_preference_days_10">10 дней</string>
     <string name="weather_api_limit_reached_content">Чтобы обойти ограничение, используйте свой API-ключ.</string>
     <string name="air_quality_no2_voice">Диоксид азота</string>
     <string name="settings_main_cards_title">Карточки</string>
@@ -681,4 +681,7 @@
     <string name="settings_widgets_broadcast_switch">Передавать мои данные о погоде в другие приложения</string>
     <string name="settings_widgets_broadcast_switch_dialog">Эта опция позволяет ЛЮБОМУ приложению на вашем устройстве иметь доступ к названию вашего местоположения и данным о погоде. Продолжайте только в том случае, если вы полностью понимаете потенциальные риски неправильного использования другими приложениями, которые могут возникнуть в результате этого.</string>
     <string name="message_invalid_incomplete_data">С сервера получены неверные или неполные данные</string>
+    <string name="settings_per_location_theme">Тема</string>
+    <string name="settings_source_instance_invalid">Должен быть URL-адрес https, заканчивающийся на /</string>
+    <string name="settings_invalid_syntax">Неверный синтаксис</string>
 </resources>
