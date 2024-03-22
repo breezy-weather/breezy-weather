@@ -684,4 +684,5 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">空气质量实例</string>
     <string name="settings_widgets_broadcast_switch">广播我的天气数据给其他应用</string>
     <string name="settings_widgets_broadcast_switch_dialog">此选项允许你设备上的任何应用访问你的位置名称和天气数据。请只在你充分理解由于启用该选项而可能导致的其他应用的潜在滥用风险的情况下才继续。</string>
+    <string name="message_invalid_incomplete_data">从服务器接收到的数据无效或不完整</string>
 </resources>
