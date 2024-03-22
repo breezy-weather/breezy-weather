@@ -27,7 +27,7 @@
     <string name="dew_point">Titik embun</string>
     <string name="cloud_cover">Tutupan awan</string>
     <!-- ? -->
-    <string name="ceiling">Tinggi awan</string>
+    <string name="ceiling">Tinggi dasar awan</string>
     <!-- ? -->
     <string name="settings_icon_packs_get_more">Dapatkan lebih banyak</string>
     <string name="action_refresh">Muat ulang</string>
@@ -643,7 +643,7 @@
     <string name="location_message_already_exists">Sebuah lokasi dengan sumber cuaca utama yang sama sudah ada.</string>
     <string name="location_search_no_results_advice">Pastikan pencarian Anda dieja dengan benar dan tidak terlalu spesifik. Secara alternatif, Anda dapat mencoba sumber pencarian lokasi lain yang dapat menimbulkan hasil yang beda.</string>
     <string name="settings_color_app">Ikuti aplikasi</string>
-    <string name="temperature_feels_like_short">Terasa seperti</string>
+    <string name="temperature_feels_like_short">Terasa spt</string>
     <string name="humidity_short">Kelembapan</string>
     <string name="dew_point_short">Titik embun</string>
     <string name="settings_weather_source_none">Tidak ada</string>
