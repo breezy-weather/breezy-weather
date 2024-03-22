@@ -674,4 +674,7 @@
     <string name="settings_widgets_broadcast_switch">Передавати мої дані про погоду в інші додатки</string>
     <string name="settings_widgets_broadcast_switch_dialog">Ця опція дозволяє БУДЬ-ЯКОМУ додатку на вашому пристрої мати доступ до назви вашого місцезнаходження та даних про погоду. Продовжуйте лише в тому випадку, якщо ви повністю розумієте потенційні ризики неправильного використання іншими додаткамі, які можуть виникнути внаслідок цього.</string>
     <string name="message_invalid_incomplete_data">З сервера отримані невірні або неповні дані</string>
+    <string name="settings_per_location_theme">Тема</string>
+    <string name="settings_source_instance_invalid">Має бути URL-адреса https, що закінчується на /</string>
+    <string name="settings_invalid_syntax">Неправильний синтаксис</string>
 </resources>
