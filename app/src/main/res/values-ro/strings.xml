@@ -186,8 +186,8 @@
     <string name="widget_clock_day_vertical">Ceas + Zilnic (Vertical)</string>
     <string name="widget_clock_day_week">Ceas + Zilnic + Săptămânal</string>
     <string name="widget_text">Text</string>
-    <string name="widget_trend_daily">Tendință Zilnică</string>
-    <string name="widget_trend_hourly">Tendință Orară</string>
+    <string name="widget_trend_daily">Tendință zilnică</string>
+    <string name="widget_trend_hourly">Tendință orară</string>
     <string name="widget_multi_city">Locații multiple</string>
     <string name="widget_refreshing">Actualizare</string>
     <string name="widget_ellipsis">…</string>
@@ -319,7 +319,7 @@
     <string name="about_source_code">Codul sursă</string>
     <string name="about_contribution_WangDaYeeeeee">Dezvoltator al proiectului original Geometric Weather</string>
     <string name="common_weather_text_mainly_clear">Parțial Senin</string>
-    <string name="common_weather_text_overcast">Întunecos</string>
+    <string name="common_weather_text_overcast">Înnorat</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
     <string name="unit_lpsqm">L/m²</string>
@@ -643,7 +643,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Calitatea Aerului de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="settings_weather_source_unavailable">%s (indisponibil)</string>
     <string name="settings_weather_source_none">Niciunul</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Folosești versiunea Breezy Weather din depozitul implicit F-Droid, care acceptă doar furnizorii meteo care utilizează o soluție de server de software disponibilă public, self-hostable și gratuită. Apasă aici pentru a afla mai multe.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Mai mulți furnizori meteo sunt disponibili în alte variante Breezy Weather. Apasă aici pentru a afla mai multe.</string>
     <string name="settings_main_threshold_lines_on_charts">Linii pe diagramă</string>
     <string name="notification_channel_crash_logs">Jurnal de incidente</string>
     <string name="common_weather_text_rain_light">Ploaie Ușoară</string>
@@ -676,4 +676,12 @@
     <string name="settings_weather_source_open_meteo_weather_models">Modele meteo</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combină cele mai bune modele meteo pentru această locație</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combină toate modelele meteo de la acest furnizor într-o predicție impecabilă</string>
+    <string name="alert">Alerte</string>
+    <string name="settings_source_instance_geocoding">Server geocodare</string>
+    <string name="message_invalid_incomplete_data">Date invalide sau incomplete primite de la server</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoză</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Server calitatea aerului</string>
+    <string name="settings_source_instance">Server</string>
+    <string name="settings_widgets_broadcast_switch">Transmite date meteo către alte aplicații</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Această opțiune permite ca orice aplicație de pe dispozitivul tău să aibă acces la numele locației tale și la datele meteo. Continuă numai dacă înțelegi, pe deplin, riscurile cauzate de potențiala utilizare abuzivă a altor aplicații.</string>
 </resources>
