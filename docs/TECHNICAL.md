@@ -70,10 +70,10 @@ Add the new enum and language technical name in `app/src/main/java/org/breezywea
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=8.6
+./gradlew wrapper --gradle-version=8.7 --gradle-distribution-sha256-sum=544c35d6bd849ae8a5ed0bcea39ba677dc40f49df7d1835561582da2009b961d
 ```
 
-Update `distributionSha256Sum` in `gradle/wrapper/gradle-wrapper.properties`. You can find it on https://services.gradle.org/distributions/
+You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
 
 
 ____

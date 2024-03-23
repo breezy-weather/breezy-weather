@@ -70,7 +70,7 @@ class WmoSevereWeatherService @Inject constructor(
 
         // TODO: Remove debug
         if (BreezyWeather.instance.debugMode) {
-            // TODO Untested countries: myanmar, newzealand, png, (jamaica), macao, trinidadAndTobago
+            // TODO Untested countries: myanmar, png, (jamaica), macao, trinidadAndTobago
             // TODO And generic needs further testing: all, others
             LogHelper.log(msg = "Country code: ${location.countryCode}")
         }

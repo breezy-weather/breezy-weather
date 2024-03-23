@@ -7,7 +7,7 @@ agp = "8.3.1"
 appcompat = "1.6.1"
 cardview = "1.0.0"
 compose = "1.6.4"
-compose-compiler = "1.5.9"
+compose-compiler = "1.5.11"
 compose-material3 = "1.2.1"
 core-ktx = "1.12.0"
 dagger = "2.51"
@@ -19,7 +19,7 @@ javapoet = "1.13.0"
 jjwt = "0.12.5"
 junit = "5.10.2"
 kotest-assertions = "5.8.1"
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-serialization-xml = "3980721899b8a990d9e5df170459e17b81fbc34d"
@@ -54,6 +54,7 @@ android-gradle = { group = "com.android.tools.build", name = "gradle", version.r
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
+compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose" }
