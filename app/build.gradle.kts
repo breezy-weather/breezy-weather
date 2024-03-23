@@ -111,7 +111,7 @@ android {
                 "META-INF/README.md",
                 "META-INF/NOTICE",
                 "META-INF/*.kotlin_module"
-            ),
+            )
         )
     }
 
@@ -187,6 +187,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons)
     implementation(libs.navigation.compose)
+    lintChecks(libs.compose.lint.checks)
 
     implementation(libs.accompanist.permissions)
 
@@ -227,12 +228,12 @@ dependencies {
     "basicImplementation"(libs.jjwt.api)
     "basicRuntimeOnly"(libs.jjwt.impl)
     "basicRuntimeOnly"(libs.jjwt.orgjson) {
-        exclude("org.json", "json") //provided by Android natively
+        exclude("org.json", "json") // provided by Android natively
     }
     "gplayImplementation"(libs.jjwt.api)
     "gplayRuntimeOnly"(libs.jjwt.impl)
     "gplayRuntimeOnly"(libs.jjwt.orgjson) {
-        exclude("org.json", "json") //provided by Android natively
+        exclude("org.json", "json") // provided by Android natively
     }
 
     // rx java.

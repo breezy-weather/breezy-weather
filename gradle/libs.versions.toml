@@ -8,6 +8,7 @@ appcompat = "1.6.1"
 cardview = "1.0.0"
 compose = "1.6.4"
 compose-compiler = "1.5.11"
+compose-lint-checks = "1.2.0"
 compose-material3 = "1.2.1"
 core-ktx = "1.12.0"
 dagger = "2.51"
@@ -23,6 +24,7 @@ kotlin = "1.9.23"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-serialization-xml = "3980721899b8a990d9e5df170459e17b81fbc34d"
+ktlint = "12.0.3"
 leakcanary = "2.13"
 lifecycle = "2.7.0"
 lifecycle-extensions = "2.2.0"
@@ -56,6 +58,7 @@ cardview = { group = "androidx.cardview", name = "cardview", version.ref = "card
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
+compose-lint-checks = { group = "com.slack.lint.compose", name = "compose-lint-checks", version.ref = "compose-lint-checks" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
@@ -81,6 +84,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-serialization-xml = { group = "com.github.rharter", name = "kotlinx-serialization-xml", version.ref = "kotlinx-serialization-xml" }
+ktlint = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }

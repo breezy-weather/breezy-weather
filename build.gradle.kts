@@ -30,6 +30,7 @@ subprojects {
     }
 
     plugins.withType<BasePlugin> {
+        plugins.apply("breezy.lint")
         configure<BaseExtension> {
             compileSdkVersion(AndroidConfig.compileSdk)
             defaultConfig {

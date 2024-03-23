@@ -37,11 +37,11 @@ import androidx.core.content.res.ResourcesCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
-import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import breezyweather.domain.weather.model.WeatherCode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
+import org.breezyweather.BreezyWeather
+import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
@@ -161,7 +161,9 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         mImplementor!!.draw(
                             mAdaptiveSize,
                             canvas,
-                            0f, mRotators!![0].rotation.toFloat(), mRotators!![1].rotation.toFloat()
+                            0f,
+                            mRotators!![0].rotation.toFloat(),
+                            mRotators!![1].rotation.toFloat()
                         )
                         canvas.restore()
                     }
