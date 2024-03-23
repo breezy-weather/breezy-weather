@@ -169,7 +169,7 @@
     <string name="common_weather_text_snow">Kar</string>
     <string name="pollen_tree">Ağaç</string>
     <string name="pollen_ambrosia">Kanarya otu</string>
-    <string name="weather_source_accu_preference_days_15">15 günlük</string>
+    <string name="weather_source_accu_preference_days_15">15 günlük</string>
     <string name="weather_source_accu_preference_hours_1">1 saatlik</string>
     <string name="weather_source_accu_preference_hours_12">12 saatlik</string>
     <string name="locations">Konumlar</string>
@@ -216,7 +216,7 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
     <string name="settings_background_updates_refresh_title">Yenileme sıklığı</string>
     <string name="settings_background_updates_refresh_2h">2 saat</string>
-    <string name="weather_source_accu_preference_days_1">1 günlük</string>
+    <string name="weather_source_accu_preference_days_1">1 günlük</string>
     <string name="weather_api_key_required_missing_content">Bu kaynağı kullanmak için bir API anahtarı sağlamanız gerekir.</string>
     <string name="location_search_no_results">%1$s, %2$s konumunu bulamadı</string>
     <string name="action_undo">Geri al</string>
@@ -234,7 +234,7 @@
     <string name="widget_label_text_size">Metin boyutu</string>
     <string name="widget_style_vertical">Dikey</string>
     <string name="settings_appearance_icon_pack_title">Simge paketi</string>
-    <string name="weather_source_accu_preference_hours_72">72 saatlik</string>
+    <string name="weather_source_accu_preference_hours_72">72 saatlik</string>
     <string name="message_source_not_installed_error_title">Kaynak artık mevcut değil</string>
     <string name="widget_subtitle_data_wind">Rüzgar</string>
     <string name="settings_background_updates_section_troubleshoot">Sorun giderme</string>
@@ -247,7 +247,7 @@
     <string name="ephemeris_moonrise_at">Ay doğumu saati %s</string>
     <string name="ephemeris_moonset_at">Ay batımı saati %s</string>
     <string name="dialog_permissions_location_background_title">Arka planda konum erişimi</string>
-    <string name="weather_source_accu_preference_hours_120">120 saatlik</string>
+    <string name="weather_source_accu_preference_hours_120">120 saatlik</string>
     <string name="action_continue">Devam et</string>
     <string name="action_share">Paylaş</string>
     <string name="settings_background_updates_refresh_1h">1 saat</string>
@@ -285,9 +285,9 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Büyüyen hilal</string>
     <string name="visibility">Görüş mesafesi</string>
     <string name="cloud_cover">Bulutluluk</string>
-    <string name="weather_source_accu_preference_days_5">5 günlük</string>
-    <string name="weather_source_accu_preference_hours_240">240 saatlik</string>
-    <string name="weather_source_accu_preference_days_10">10 günlük</string>
+    <string name="weather_source_accu_preference_days_5">5 günlük</string>
+    <string name="weather_source_accu_preference_hours_240">240 saatlik</string>
+    <string name="weather_source_accu_preference_days_10">10 günlük</string>
     <string name="location_message_reverse_geocoding_failed">Hava durumu kaynağı eşleşen bir konum bulamadı</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Konum izinlerini kontrol edin</string>
     <string name="location_message_permission_background_missing">Arkaplanda konum erişimi izni yok</string>
@@ -680,4 +680,7 @@
     <string name="settings_widgets_broadcast_switch">Hava durumu verilerimi diğer uygulamalara yayınla</string>
     <string name="message_invalid_incomplete_data">Sunucudan geçersiz veya eksik veri alındı</string>
     <string name="settings_widgets_broadcast_switch_dialog">Bu seçenek, aygıtınızdaki HERHANGİ BİR uygulamanın konum adınıza ve hava durumu verilerinize erişmesine izin verir. Yalnızca diğer uygulamalar tarafından kötüye kullanımın neden olabileceği olası riskleri tam olarak anlıyorsanız devam edin.</string>
+    <string name="settings_per_location_theme">Tema</string>
+    <string name="settings_source_instance_invalid">/ ile biten bir https URL olmalıdır</string>
+    <string name="settings_invalid_syntax">Geçersiz söz dizimi</string>
 </resources>
