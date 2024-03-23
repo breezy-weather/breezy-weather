@@ -227,7 +227,7 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Ikona vremena</string>
     <string name="settings_background_updates_refresh_12h">12 sati</string>
     <string name="wind_strength_8">Olujni vjetar</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Neki proizvođači imaju dodatna ograničenja aplikacija koji ubiju pozadinske usluge. Don’t kill my app! web stranica ima upute za popravljanje toga.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Neki proizvođači imaju dodatna ograničenja aplikacija koji prekidaju pozadinske usluge. Web stranica „Don’t kill my app!” sadrži upute za popravljanje.</string>
     <string name="settings_widgets_configure_widget_summary">Podesite ovaj widget</string>
     <string name="widget_label_view_style">Način prikaza</string>
     <string name="settings_main_cards_other_element_animations_switch">Druge animacije elemenata</string>
@@ -273,7 +273,7 @@
     <string name="settings_weather_sources_per_location_summary">Prilagodite izvore vremenskih podataka za ovu lokaciju</string>
     <string name="action_edit">Uredi</string>
     <string name="action_back">Nazad</string>
-    <string name="message_tap_again_to_exit">Kliknite opet za izlaz</string>
+    <string name="message_tap_again_to_exit">Dodirnite ponovo za prekid</string>
     <string name="settings_widgets_gadgetbridge_switch">Pošaljite vremenske podatke na Gadgetbridge</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
@@ -517,7 +517,7 @@
     <string name="unit_h_voice">sati</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="notification_running_in_background">Radi u pozadini za ažuriranje</string>
+    <string name="notification_running_in_background">Radi u pozadini za redovno ažuriranje</string>
     <string name="common_weather_text_drizzle_freezing">Ledena kišica</string>
     <string name="unit_kn_voice">Čvorova</string>
     <string name="unit_km_voice">Kilometara</string>
@@ -591,7 +591,7 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="common_weather_text_rain_showers">Pljuskovi</string>
     <string name="unit_kgfpsqcm_voice">Kilograma sile po centimetru kvadratnom</string>
-    <string name="notification_update_error">%d nadogradnja/e neuspjela</string>
+    <string name="notification_update_error">%d ažuriranje/a neuspjelo</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="common_weather_text_drizzle_light">Blaga kišica</string>
@@ -675,4 +675,6 @@
     <string name="weather_message_too_frequent_refreshes">Pričekajte par sekundi prije ponovnog pokušaja…</string>
     <string name="location_delete_location_dialog_title">Izbrisati lokaciju?</string>
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
+    <string name="settings_widgets_broadcast_switch_dialog">Ova opcija omogućuje SVAKOJ aplikaciji na vašem uređaju pristup imenu vaše lokacije i vremenskim podacima. Nastavite samo ako u potpunosti razumijete potencijalne rizike zlouporabe drugih aplikacija koji bi mogli nastati zbog toga.</string>
+    <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu Breezy Weathera, a zatim se prebacite na F-Droid koji ima manje podržanih izvora vremena. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
 </resources>
