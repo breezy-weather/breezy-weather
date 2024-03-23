@@ -286,8 +286,8 @@
     <string name="widget_style_vertical">竖版</string>
     <string name="widget_style_oreo">Oreo风格</string>
     <string name="widget_style_temperature">仅温度</string>
-    <string name="widget_week_style_5_days">五天</string>
-    <string name="widget_week_style_3_days">三天</string>
+    <string name="widget_week_style_5_days">5天</string>
+    <string name="widget_week_style_3_days">3天</string>
     <string name="widget_subtitle_data_time">更新时间</string>
     <string name="widget_subtitle_data_aqi">空气质量</string>
     <string name="widget_subtitle_data_wind">风况</string>
@@ -685,4 +685,7 @@
     <string name="settings_widgets_broadcast_switch">广播我的天气数据给其他应用</string>
     <string name="settings_widgets_broadcast_switch_dialog">此选项允许你设备上的任何应用访问你的位置名称和天气数据。请只在你充分理解由于启用该选项而可能导致的其他应用的潜在滥用风险的情况下才继续。</string>
     <string name="message_invalid_incomplete_data">从服务器接收到的数据无效或不完整</string>
+    <string name="settings_per_location_theme">主题</string>
+    <string name="settings_source_instance_invalid">必须是以 / 结尾的 https URL</string>
+    <string name="settings_invalid_syntax">无效格式</string>
 </resources>
