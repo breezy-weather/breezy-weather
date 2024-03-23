@@ -681,4 +681,7 @@
     <string name="settings_widgets_broadcast_switch">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
     <string name="settings_widgets_broadcast_switch_dialog">يتيح هذا الخيار لأي تطبيق على جهازك الوصول إلى موقعك وبيانات الطقس. لا يمكنك المتابعة إلا إذا كنت تفهم تمامًا المخاطر المحتملة لسوء الاستخدام من قبل التطبيقات الأخرى التي قد تصدر عن ذلك.</string>
     <string name="message_invalid_incomplete_data">تم تلقي بيانات غير صالحة أو غير كاملة من الخادم</string>
+    <string name="settings_per_location_theme">السمة</string>
+    <string name="settings_source_instance_invalid">يجب أن يكون عنوان URL https وينتهي بـ /</string>
+    <string name="settings_invalid_syntax">صيغة غير صالحة</string>
 </resources>
