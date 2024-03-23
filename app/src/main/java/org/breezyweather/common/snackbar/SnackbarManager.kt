@@ -58,8 +58,8 @@ internal class SnackbarManager private constructor() {
                 // Else, we need to create a new record and queue it
                 mNextRecord = SnackbarRecord(duration, callback)
             }
-            if (mCurrentRecord != null
-                && cancelSnackbarLocked(mCurrentRecord, Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE)
+            if (mCurrentRecord != null &&
+                cancelSnackbarLocked(mCurrentRecord, Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE)
             ) {
                 // If we currently have a Snackbar, try and cancel it and wait in line
                 return

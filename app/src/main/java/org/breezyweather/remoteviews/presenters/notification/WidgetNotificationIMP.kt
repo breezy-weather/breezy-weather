@@ -23,14 +23,14 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import org.breezyweather.common.extensions.notificationBuilder
-import org.breezyweather.common.extensions.notify
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getHour
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace

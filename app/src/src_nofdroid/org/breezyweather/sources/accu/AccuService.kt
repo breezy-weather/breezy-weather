@@ -18,14 +18,14 @@ package org.breezyweather.sources.accu
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
@@ -35,9 +35,9 @@ import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -95,8 +95,7 @@ class AccuService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -133,8 +132,8 @@ class AccuService @Inject constructor(
             details = true,
             metric = metric
         )
-        val minute = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
-            && mApi is AccuEnterpriseApi
+        val minute = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
+            mApi is AccuEnterpriseApi
         ) {
             mApi.getMinutely(
                 apiKey,
@@ -180,8 +179,10 @@ class AccuService @Inject constructor(
                 emitter.onNext(ArrayList())
             }
         }
-        val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            && mApi is AccuEnterpriseApi) {
+        val airQuality = if (
+            !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+            mApi is AccuEnterpriseApi
+        ) {
             mApi.getAirQuality(
                 locationKey,
                 apiKey,
@@ -199,8 +200,10 @@ class AccuService @Inject constructor(
         }
         // TODO: Only call once a month, unless it’s current position
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-        val climoSummary = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
-            && mApi is AccuEnterpriseApi) {
+        val climoSummary = if (
+            !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
+            mApi is AccuEnterpriseApi
+        ) {
             mApi.getClimoSummary(
                 cal[Calendar.YEAR],
                 cal[Calendar.MONTH] + 1,
@@ -557,17 +560,14 @@ class AccuService @Inject constructor(
     ): Boolean {
         if (coordinatesChanged) return true
 
-        if (features.isEmpty()
-            || features.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || features.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
-            || features.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        return if (features.isEmpty() ||
+            features.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            features.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) ||
+            features.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             val currentLocationKey = location.parameters
                 .getOrElse(id) { null }?.getOrElse("locationKey") { null }
-            return currentLocationKey.isNullOrEmpty()
-        } else {
-            // If we request alerts or minutely, we don't need locationKey
-            return false
-        }
+            currentLocationKey.isNullOrEmpty()
+        } else false // If we request alerts or minutely, we don't need locationKey
     }
 
     override fun requestLocationParameters(

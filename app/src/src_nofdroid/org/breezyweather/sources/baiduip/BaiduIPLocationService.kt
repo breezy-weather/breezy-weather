@@ -69,9 +69,9 @@ class BaiduIPLocationService @Inject constructor(
                     // Don’t know about other cases, doing != 0 for safety
                     throw LocationException()
                 }
-                if (t.content?.point == null
-                    || t.content.point.y.isNullOrEmpty()
-                    || t.content.point.x.isNullOrEmpty()
+                if (t.content?.point == null ||
+                    t.content.point.y.isNullOrEmpty() ||
+                    t.content.point.x.isNullOrEmpty()
                 ) {
                     throw InvalidOrIncompleteDataException()
                 } else {

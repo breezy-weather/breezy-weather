@@ -191,8 +191,10 @@ private fun getDailyList(
 }
 
 private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int): Double? {
-    if (forecast.precipitationProbability == null
-        || forecast.precipitationProbability.value.isNullOrEmpty()) return null
+    if (forecast.precipitationProbability == null ||
+        forecast.precipitationProbability.value.isNullOrEmpty()) {
+        return null
+    }
 
     return forecast.precipitationProbability.value.getOrNull(index)?.toDoubleOrNull()
 }

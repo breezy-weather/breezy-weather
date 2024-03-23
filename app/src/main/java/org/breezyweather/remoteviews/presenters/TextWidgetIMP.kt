@@ -22,10 +22,10 @@ import android.content.Context
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import org.breezyweather.R
-import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.R
+import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedTime
@@ -164,21 +164,21 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 location, SettingsManager.getInstance(context).language, context.is12Hour
             )
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
-                if (airQuality.getIndex() != null
-                    && airQuality.getName(context) != null) {
+                if (airQuality.getIndex() != null &&
+                    airQuality.getName(context) != null) {
                     (airQuality.getName(context, null)
-                            + " ("
-                            + airQuality.getIndex(null)
-                            + ")")
+                        + " ("
+                        + airQuality.getIndex(null)
+                        + ")")
                 } else null
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> LunarHelper.getLunarDate(Date())
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 (context.getString(R.string.temperature_feels_like)
-                        + " "
-                        + temperatureUnit.getValueText(context, it, 0)
-                        )
+                    + " "
+                    + temperatureUnit.getValueText(context, it, 0)
+                )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather)
         }

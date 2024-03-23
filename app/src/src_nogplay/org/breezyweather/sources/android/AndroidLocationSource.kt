@@ -14,8 +14,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.source.LocationPositionWrapper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.utils.helpers.LogHelper
 import javax.inject.Inject
 
 // static.
@@ -27,8 +27,8 @@ private fun isLocationEnabled(
 ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
     manager.isLocationEnabled
 } else {
-    manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-            || manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
+        manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 }
 
 private fun getBestProvider(locationManager: LocationManager): String {
@@ -65,10 +65,10 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
             locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
             currentProvider = locationManager?.let { getBestProvider(it) } ?: currentProvider
-            if (locationManager == null
-                || !hasPermissions(context)
-                || !isLocationEnabled(locationManager!!)
-                || currentProvider.isEmpty()
+            if (locationManager == null ||
+                !hasPermissions(context) ||
+                !isLocationEnabled(locationManager!!) ||
+                currentProvider.isEmpty()
             ) {
                 LogHelper.log(msg = "Location manager not ready, no permissions, no location enabled or no provider available")
                 throw LocationException()
@@ -114,7 +114,6 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION
         )
-
 
     // location listener.
     override fun onLocationChanged(location: Location) {

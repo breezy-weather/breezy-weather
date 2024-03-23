@@ -20,9 +20,9 @@ import android.view.View
 import android.widget.RemoteViews
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
+import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import javax.inject.Inject
 

@@ -84,8 +84,9 @@ fun convert(
     normalsResult: MfNormalsResult
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
-        || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
+    if (forecastResult.properties == null ||
+        forecastResult.properties.forecast.isNullOrEmpty() ||
+        forecastResult.properties.dailyForecast.isNullOrEmpty()) {
         throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
@@ -173,7 +174,6 @@ private fun getDailyList(
     }
     return dailyList
 }
-
 
 private fun getHourlyList(
     hourlyForecastList: List<MfForecastHourly>,
@@ -301,8 +301,8 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     val alertList: MutableList<Alert> = arrayListOf()
     warningsResult.text?.let {
         if (warningsResult.updateTime != null) {
-            val textBlocs = it.textBlocItems?.filter {
-                textBlocItem -> textBlocItem.textItems?.any { textItem -> textItem.hazardCode == null } == true
+            val textBlocs = it.textBlocItems?.filter { textBlocItem ->
+                textBlocItem.textItems?.any { textItem -> textItem.hazardCode == null } == true
             }
             if (!textBlocs.isNullOrEmpty()) {
                 val colors = mutableListOf<String>()
@@ -415,8 +415,8 @@ private fun getWarningColor(colorId: Int): Int? = when (colorId) {
 }
 
 private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsResult): String? {
-    val textBlocs = warningsResult.text?.textBlocItems?.filter {
-        textBlocItem -> textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
+    val textBlocs = warningsResult.text?.textBlocItems?.filter { textBlocItem ->
+        textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
     }
     val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }?.textConsequence?.replace("<br>", "\n")
     val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }?.textAdvice?.replace("<br>", "\n")
@@ -469,24 +469,24 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     } else with (icon) {
         when {
             // We need to take care of two-digits first
-            startsWith("p32") || startsWith("p33")
-                    || startsWith("p34") -> WeatherCode.WIND
+            startsWith("p32") || startsWith("p33") ||
+                startsWith("p34") -> WeatherCode.WIND
             startsWith("p31") -> null // What is this?
-            startsWith("p26") || startsWith("p27") || startsWith("p28")
-                    || startsWith("p29") -> WeatherCode.THUNDER
-            startsWith("p26") || startsWith("p27") || startsWith("p28")
-                    || startsWith("p29") -> WeatherCode.THUNDER
-            startsWith("p21") || startsWith("p22")
-                    || startsWith("p23") -> WeatherCode.SNOW
+            startsWith("p26") || startsWith("p27") || startsWith("p28") ||
+                startsWith("p29") -> WeatherCode.THUNDER
+            startsWith("p26") || startsWith("p27") || startsWith("p28") ||
+                startsWith("p29") -> WeatherCode.THUNDER
+            startsWith("p21") || startsWith("p22") ||
+                startsWith("p23") -> WeatherCode.SNOW
             startsWith("p19") || startsWith("p20") -> WeatherCode.HAIL
             startsWith("p17") || startsWith("p18") -> WeatherCode.SLEET
-            startsWith("p16") || startsWith("p24")
-                    || startsWith("p25") || startsWith("p30") -> WeatherCode.THUNDERSTORM
-            startsWith("p9") || startsWith("p10") || startsWith("p11")
-                    || startsWith("p12") || startsWith("p13")
-                    || startsWith("p14") || startsWith("p15") -> WeatherCode.RAIN
-            startsWith("p6") || startsWith("p7")
-                    || startsWith("p8") -> WeatherCode.FOG
+            startsWith("p16") || startsWith("p24") || startsWith("p25") ||
+                startsWith("p30") -> WeatherCode.THUNDERSTORM
+            startsWith("p9") || startsWith("p10") || startsWith("p11") ||
+                startsWith("p12") || startsWith("p13") || startsWith("p14") ||
+                startsWith("p15") -> WeatherCode.RAIN
+            startsWith("p6") || startsWith("p7") ||
+                startsWith("p8") -> WeatherCode.FOG
             startsWith("p4") || startsWith("p5") -> WeatherCode.HAZE
             startsWith("p3") -> WeatherCode.CLOUDY
             startsWith("p2") -> WeatherCode.PARTLY_CLOUDY

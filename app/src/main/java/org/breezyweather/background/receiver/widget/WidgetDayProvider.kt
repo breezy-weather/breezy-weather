@@ -61,4 +61,3 @@ class WidgetDayProvider : AppWidgetProvider() {
         }
     }
 }
-

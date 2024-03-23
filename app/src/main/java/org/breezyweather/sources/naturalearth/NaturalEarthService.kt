@@ -114,5 +114,4 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         )
         return Observable.just(locationList)
     }
-
 }

@@ -22,9 +22,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollenIndex

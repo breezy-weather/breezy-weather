@@ -104,13 +104,13 @@ enum class TemperatureUnit(
             .getInstance()
             .unicodeWrap(
                 Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
-            )
-                + "\u202f"
-                + Utils.getName(context, this))
+            ) + "\u202f" + Utils.getName(context, this)
+        )
     } else {
-        (Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
-                + "\u202f"
-                + Utils.getName(context, this))
+        (Utils.formatDouble(
+            getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+            + "\u202f" + Utils.getName(context, this)
+        )
     }
 
     fun getDegreeDayValueText(
@@ -143,14 +143,12 @@ enum class TemperatureUnit(
                     getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
-            )
-                + getShortName(context))
+            ) + getShortName(context))
     } else {
         (Utils.formatDouble(
             getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
-        )
-                + getShortName(context))
+        ) + getShortName(context))
     }
 
     override fun getValueVoice(

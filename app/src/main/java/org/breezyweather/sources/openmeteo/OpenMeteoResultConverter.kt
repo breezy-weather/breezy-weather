@@ -17,15 +17,14 @@
 package org.breezyweather.sources.openmeteo
 
 import android.content.Context
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -33,10 +32,11 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
-import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
@@ -220,8 +220,8 @@ fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>?
             Minutely(
                 date = time.times(1000).toDate(),
                 minuteInterval = 15,
-                precipitationIntensity = /*if (precipitationProbabilityMinutely?.getOrNull(i) != null
-                    && precipitationProbabilityMinutely[i]!! > 30) {*/
+                precipitationIntensity = /*if (precipitationProbabilityMinutely?.getOrNull(i) != null &&
+                    precipitationProbabilityMinutely[i]!! > 30) {*/
                     precipitationMinutely?.getOrNull(i)?.toDouble()
                 //} else null
             )

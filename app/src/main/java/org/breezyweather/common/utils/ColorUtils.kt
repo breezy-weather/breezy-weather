@@ -59,10 +59,10 @@ object ColorUtils {
         val dcr = Color.red(background)
         val dcg = Color.green(background)
         val dcb = Color.blue(background)
-        val color_r = dcr * (0xff - sa) / 0xff + scr * sa / 0xff
-        val color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff
-        val color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff
-        return (color_r shl 16) + (color_g shl 8) + color_b or -0x1000000
+        val colorR = dcr * (0xff - sa) / 0xff + scr * sa / 0xff
+        val colorG = dcg * (0xff - sa) / 0xff + scg * sa / 0xff
+        val colorB = dcb * (0xff - sa) / 0xff + scb * sa / 0xff
+        return (colorR shl 16) + (colorG shl 8) + colorB or -0x1000000
     }
 
     @ColorInt

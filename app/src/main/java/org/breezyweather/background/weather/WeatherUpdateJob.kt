@@ -35,6 +35,7 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CancellationException
@@ -45,7 +46,6 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
@@ -84,7 +84,6 @@ class WeatherUpdateJob @AssistedInject constructor(
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository
 ) : CoroutineWorker(context, workerParams) {
-
 
     private val notifier = WeatherUpdateNotifier(context)
 
@@ -160,8 +159,8 @@ class WeatherUpdateJob @AssistedInject constructor(
         } else {
             val nbLocations = when {
                 // TODO: Only refresh once a day 2nd to 4th location as we only use the daily info in widgets/notifications
-                SettingsManager.getInstance(context).isWidgetNotificationEnabled
-                    && SettingsManager.getInstance(context)
+                SettingsManager.getInstance(context).isWidgetNotificationEnabled &&
+                    SettingsManager.getInstance(context)
                         .widgetNotificationStyle == NotificationStyle.CITIES -> 4
                 MultiCityWidgetIMP.isInUse(context) -> 3
                 else -> 1
@@ -217,26 +216,26 @@ class WeatherUpdateJob @AssistedInject constructor(
                                             val shortMessage = if (!it.source.isNullOrEmpty()) {
                                                 "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
                                             } else context.getString(it.error.shortMessage)
-                                            if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE
-                                                && it.error != RefreshErrorType.SERVER_TIMEOUT
-                                                && it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
+                                            if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
+                                                it.error != RefreshErrorType.SERVER_TIMEOUT &&
+                                                it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
                                                 failedUpdates.add(locationResult.location to shortMessage)
                                             } else {
                                                 // Report this error only if we can’t refresh weather data
-                                                if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-                                                    && !locationResult.location.isUsable) {
+                                                if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
+                                                    !locationResult.location.isUsable) {
                                                     failedUpdates.add(locationResult.location to shortMessage)
                                                 } else {
                                                     skippedUpdates.add(locationResult.location to shortMessage)
                                                 }
                                             }
                                         }
-                                        if (locationResult.location.isUsable
-                                            && !locationResult.location.needsGeocodeRefresh) {
+                                        if (locationResult.location.isUsable &&
+                                            !locationResult.location.needsGeocodeRefresh) {
                                             val weatherResult = updateWeather(
                                                 locationResult.location,
-                                                location.longitude != locationResult.location.longitude
-                                                        || location.latitude != locationResult.location.latitude
+                                                location.longitude != locationResult.location.longitude ||
+                                                    location.latitude != locationResult.location.latitude
                                             )
                                             newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
                                             weatherResult.errors.forEach {

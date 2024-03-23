@@ -158,10 +158,10 @@ class PrecipitationBar @JvmOverloads constructor(
             MeasureSpec.makeMeasureSpec(touchLineWidth.toInt(), MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(
                 (measuredHeight
-                        - paddingTop
-                        + backgroundView.polylineWidth / 2F
-                        + indicatorMargin
-                        + indicator.measuredHeight / 2F).toInt(),
+                    - paddingTop
+                    + backgroundView.polylineWidth / 2F
+                    + indicatorMargin
+                    + indicator.measuredHeight / 2F).toInt(),
                 MeasureSpec.EXACTLY
             )
         )
@@ -171,9 +171,9 @@ class PrecipitationBar @JvmOverloads constructor(
 
     override fun onLayout(b: Boolean, i: Int, i1: Int, i2: Int, i3: Int) {
         val indicatorTop = (paddingTop
-                - backgroundView.polylineWidth / 2.0F
-                - indicatorMargin
-                - indicator.measuredHeight).toInt()
+            - backgroundView.polylineWidth / 2.0F
+            - indicatorMargin
+            - indicator.measuredHeight).toInt()
         indicator.layout(0, indicatorTop, indicator.measuredWidth, indicatorTop + indicator.measuredHeight)
         indicatorGenerator?.getIndicatorContent(precipitationIntensities[highlightIndex]).let {
             if (indicator.text != it) {
@@ -318,9 +318,9 @@ class PrecipitationBar @JvmOverloads constructor(
 
     private fun indexPolylineKeyPoint(x: Float): Int? {
         val keyPointWidth = (
-                measuredWidth - paddingLeft - paddingRight
+            measuredWidth - paddingLeft - paddingRight
         ).toFloat() / (
-                backgroundView.polylineKeyPoints.size - 1
+            backgroundView.polylineKeyPoints.size - 1
         )
 
         for ((index, keyPoint) in backgroundView.polylineKeyPoints.withIndex()) {

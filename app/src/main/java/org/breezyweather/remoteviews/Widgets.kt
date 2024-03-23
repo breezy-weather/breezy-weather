@@ -19,9 +19,21 @@ package org.breezyweather.remoteviews
 import android.content.Context
 import android.text.TextPaint
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.Weather
-import org.breezyweather.remoteviews.presenters.*
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayWeekWidgetIMP
+import org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP
+import org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP
+import org.breezyweather.remoteviews.presenters.DayWidgetIMP
+import org.breezyweather.remoteviews.presenters.HourlyTrendWidgetIMP
+import org.breezyweather.remoteviews.presenters.MaterialYouCurrentWidgetIMP
+import org.breezyweather.remoteviews.presenters.MaterialYouForecastWidgetIMP
+import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
+import org.breezyweather.remoteviews.presenters.TextWidgetIMP
+import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 
 object Widgets {
 

@@ -17,7 +17,6 @@
 package breezyweather.domain.weather.model
 
 enum class AlertSeverity(val id: Int) {
-
     EXTREME(4),
     SEVERE(3),
     MODERATE(2),
@@ -25,7 +24,6 @@ enum class AlertSeverity(val id: Int) {
     UNKNOWN(0);
 
     companion object {
-
         fun getInstance(
             value: Int?
         ): AlertSeverity = AlertSeverity.entries.firstOrNull {

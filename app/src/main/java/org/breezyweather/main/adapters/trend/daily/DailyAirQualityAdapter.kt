@@ -22,12 +22,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
-import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName

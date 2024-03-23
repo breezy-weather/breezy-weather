@@ -22,14 +22,14 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.WeatherCode
+import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
-import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import breezyweather.domain.weather.model.Daily
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.domain.location.model.isDaylight
@@ -151,15 +151,15 @@ class ForecastNotificationNotifier(private val context: Context) {
 
     private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.daytime) +
-                " " + daily.day?.weatherText +
-                " " + daily.day?.temperature?.temperature?.let {
-                    temperatureUnit.getValueText(context, it, 0)
-                }
+            " " + daily.day?.weatherText +
+            " " + daily.day?.temperature?.temperature?.let {
+                temperatureUnit.getValueText(context, it, 0)
+            }
 
     private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.nighttime) +
-                " " + daily.night?.weatherText +
-                " " + daily.night?.temperature?.temperature?.let {
-                    temperatureUnit.getValueText(context, it, 0)
-                }
+            " " + daily.night?.weatherText +
+            " " + daily.night?.temperature?.temperature?.let {
+                temperatureUnit.getValueText(context, it, 0)
+            }
 }

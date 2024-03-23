@@ -21,12 +21,12 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
-import org.breezyweather.common.extensions.notificationBuilder
-import org.breezyweather.common.extensions.notify
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.utils.helpers.LunarHelper
@@ -101,7 +101,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 setLargeIcon(
                     ResourceHelper.getWidgetNotificationIcon(
                         provider, weatherCode,
-                        daytime, false, false
+                        daytime, minimal = false, darkText = false
                     ).toBitmap()
                 )
             }

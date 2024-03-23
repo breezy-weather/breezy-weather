@@ -30,15 +30,20 @@ import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.powerManager
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.activities.WorkerInfoActivity
-import org.breezyweather.settings.preference.*
+import org.breezyweather.settings.preference.bottomInsetItem
+import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
-import org.breezyweather.common.extensions.powerManager
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.settings.preference.sectionFooterItem
+import org.breezyweather.settings.preference.sectionHeaderItem
+import org.breezyweather.settings.preference.switchPreferenceItem
 import java.util.Date
 
 @Composable

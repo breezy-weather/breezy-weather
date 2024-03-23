@@ -18,16 +18,16 @@ package org.breezyweather.sources.nws
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.BuildConfig
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -77,8 +77,7 @@ class NwsService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val gridId = location.parameters
             .getOrElse(id) { null }?.getOrElse("gridId") { null }
@@ -92,7 +91,7 @@ class NwsService @Inject constructor(
         }
 
         val nwsForecastResult = mApi.getForecast(
-            userAgent,
+            USER_AGENT,
             gridId,
             gridX.toInt(),
             gridY.toInt()
@@ -100,7 +99,7 @@ class NwsService @Inject constructor(
 
         val nwsAlertsResult = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getActiveAlerts(
-                userAgent,
+                USER_AGENT,
                 "${location.latitude},${location.longitude}"
             ).onErrorResumeNext {
                 Observable.create { emitter ->
@@ -116,10 +115,7 @@ class NwsService @Inject constructor(
         return Observable.zip(
             nwsForecastResult,
             nwsAlertsResult
-        ) {
-            forecastResult,
-            alertResult
-            ->
+        ) { forecastResult, alertResult ->
             convert(forecastResult, alertResult, location)
         }
     }
@@ -140,8 +136,7 @@ class NwsService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
         if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_ALERT, location)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
@@ -149,7 +144,7 @@ class NwsService @Inject constructor(
         }
 
         return mApi.getActiveAlerts(
-            userAgent,
+            USER_AGENT,
             "${location.latitude},${location.longitude}"
         ).map {
             convertSecondary(it)
@@ -158,11 +153,10 @@ class NwsService @Inject constructor(
 
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
-        context: Context,
-        location: Location
+        context: Context, location: Location
     ): Observable<List<Location>> {
         return mApi.getPoints(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude
         ).map {
@@ -192,15 +186,16 @@ class NwsService @Inject constructor(
         val currentGridY = location.parameters
             .getOrElse(id) { null }?.getOrElse("gridY") { null }
 
-        return currentGridId.isNullOrEmpty() || currentGridX.isNullOrEmpty()
-                || currentGridY.isNullOrEmpty()
+        return currentGridId.isNullOrEmpty() ||
+            currentGridX.isNullOrEmpty() ||
+            currentGridY.isNullOrEmpty()
     }
 
     override fun requestLocationParameters(
         context: Context, location: Location
     ): Observable<Map<String, String>> {
         return mApi.getPoints(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude
         ).map {
@@ -217,7 +212,7 @@ class NwsService @Inject constructor(
 
     companion object {
         private const val NWS_BASE_URL = "https://api.weather.gov/"
-        private const val userAgent =
+        private const val USER_AGENT =
             "(BreezyWeather/${BuildConfig.VERSION_NAME}, github.com/breezy-weather/breezy-weather/issues)"
     }
 }

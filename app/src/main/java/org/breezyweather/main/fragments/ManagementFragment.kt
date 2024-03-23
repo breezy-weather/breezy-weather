@@ -60,10 +60,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
@@ -206,10 +206,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         .fillMaxHeight()
                         .padding(paddings)
                 ) {
-                    if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown
-                        && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                        && !requireActivity().hasPermission(Manifest.permission.POST_NOTIFICATIONS)
-                        && !notificationDismissed
+                    if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&
+                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                        !requireActivity().hasPermission(Manifest.permission.POST_NOTIFICATIONS) &&
+                        !notificationDismissed
                     ) {
                         NotificationCard(
                             title = stringResource(R.string.dialog_permissions_notification_title),
@@ -251,8 +251,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         .fillMaxWidth()
                         .padding(
                             paddings
-                                    + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
-                                    + PaddingValues(top = dimensionResource(R.dimen.large_margin))
+                                + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                                + PaddingValues(top = dimensionResource(R.dimen.large_margin))
                         ),
                 ) {
                     Text(
@@ -404,9 +404,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         )
     }
 
-    private fun updateAppBarColor() {
-
-    }
+    private fun updateAppBarColor() {}
 
     fun prepareReenterTransition() {
         // TODO

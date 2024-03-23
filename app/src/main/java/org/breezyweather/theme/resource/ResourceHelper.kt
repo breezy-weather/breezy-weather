@@ -31,9 +31,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider

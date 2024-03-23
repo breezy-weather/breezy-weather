@@ -43,8 +43,11 @@ class DayNightShaderWrapper @JvmOverloads constructor(
         targetWidth: Int, targetHeight: Int,
         lightTheme: Boolean, colors: IntArray
     ): Boolean {
-        if (shader == null || this.targetWidth != targetWidth || this.targetHeight != targetHeight
-            || isLightTheme != lightTheme || mColors.size != colors.size) {
+        if (shader == null ||
+            this.targetWidth != targetWidth ||
+            this.targetHeight != targetHeight ||
+            isLightTheme != lightTheme ||
+            mColors.size != colors.size) {
             return true
         }
         for (i in colors.indices) {

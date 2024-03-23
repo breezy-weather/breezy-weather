@@ -18,9 +18,9 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import androidx.annotation.ColorInt
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Weather service.
@@ -60,8 +60,6 @@ interface MainWeatherSource : Source {
      * additional API endpoint), as they will be overwritten later anyway
      */
     fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper>
-
 }

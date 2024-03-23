@@ -32,10 +32,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
@@ -243,8 +243,8 @@ class HomeFragment : MainModuleFragment() {
                 viewModel.indicator.collect {
                     binding.switchLayout.isEnabled = it.total > 1
 
-                    if (binding.switchLayout.totalCount != it.total
-                        || binding.switchLayout.position != it.index
+                    if (binding.switchLayout.totalCount != it.total ||
+                        binding.switchLayout.position != it.index
                     ) {
                         binding.switchLayout.setData(it.index, it.total)
                         binding.indicator.setSwitchView(binding.switchLayout)
@@ -299,8 +299,8 @@ class HomeFragment : MainModuleFragment() {
             adapter!!.setNullWeather()
             adapter!!.notifyDataSetChanged()
             binding.recyclerView.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN
-                    && !binding.refreshLayout.isRefreshing
+                if (event.action == MotionEvent.ACTION_DOWN &&
+                    !binding.refreshLayout.isRefreshing
                 ) {
                     viewModel.updateWithUpdatingChecking(
                         triggeredByUser = true,
@@ -488,10 +488,10 @@ class HomeFragment : MainModuleFragment() {
                 } else if (mScrollY < adapter!!.headerTop) {
                     // Make the app bar disappear when we reach top of temperature
                     binding.appBar.translationY = (
-                            adapter!!.headerTop
-                                    - binding.appBar.measuredHeight
-                                    - mScrollY
-                            ).toFloat()
+                        adapter!!.headerTop
+                            - binding.appBar.measuredHeight
+                            - mScrollY
+                        ).toFloat()
                 } else {
                     // Make appbar completely disappear in other cases
                     binding.appBar.translationY = -binding.appBar.measuredHeight.toFloat()

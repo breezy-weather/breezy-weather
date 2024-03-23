@@ -29,8 +29,8 @@ import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
-import org.breezyweather.R
 import breezyweather.domain.weather.model.WeatherCode
+import org.breezyweather.R
 import org.breezyweather.theme.resource.utils.Config
 import org.breezyweather.theme.resource.utils.Constants
 import org.breezyweather.theme.resource.utils.XmlHelper
@@ -510,22 +510,22 @@ open class IconPackResourcesProvider(
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {
             return (Constants.getResourcesName(code)
-                    + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
         private fun innerGetWeatherAnimatorName(code: WeatherCode?, daytime: Boolean): String {
             return (Constants.getResourcesName(code)
-                    + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
         private fun innerGetMiniIconName(code: WeatherCode?, daytime: Boolean): String {
             return (innerGetWeatherIconName(code, daytime)
-                    + Constants.SEPARATOR + Constants.MINI)
+                + Constants.SEPARATOR + Constants.MINI)
         }
 
         private fun innerGetShortcutsIconName(code: WeatherCode?, daytime: Boolean): String {
             return (Constants.getShortcutsName(code)
-                    + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
     }
 }

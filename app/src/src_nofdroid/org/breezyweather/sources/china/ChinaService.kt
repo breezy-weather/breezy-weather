@@ -18,20 +18,20 @@ package org.breezyweather.sources.china
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.ReverseGeocodingSource
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.LocationSearchSource
+import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
@@ -68,8 +68,7 @@ class ChinaService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val locationKey = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationKey") { null }
@@ -86,7 +85,7 @@ class ChinaService @Inject constructor(
             location.latitude,
             location.longitude,
             location.isCurrentPosition,
-            locationKey = "weathercn%3A" + locationKey,
+            locationKey = "weathercn%3A$locationKey",
             days = 15,
             appKey = CHINA_APP_KEY,
             sign = CHINA_SIGN,
@@ -100,7 +99,7 @@ class ChinaService @Inject constructor(
                 SettingsManager.getInstance(context).language.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
-                locationKey = "weathercn%3A" + locationKey,
+                locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
             )
         } else {
@@ -152,13 +151,13 @@ class ChinaService @Inject constructor(
             }
         }
 
-        val mainly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val mainly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getForecastWeather(
                 location.latitude,
                 location.longitude,
                 location.isCurrentPosition,
-                locationKey = "weathercn%3A" + locationKey,
+                locationKey = "weathercn%3A$locationKey",
                 days = 15,
                 appKey = CHINA_APP_KEY,
                 sign = CHINA_SIGN,
@@ -178,7 +177,7 @@ class ChinaService @Inject constructor(
                 SettingsManager.getInstance(context).language.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
-                locationKey = "weathercn%3A" + locationKey,
+                locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
             )
         } else {
@@ -209,8 +208,7 @@ class ChinaService @Inject constructor(
             .map { results ->
                 val locationList: MutableList<Location> = ArrayList()
                 results.forEach {
-                    if (it.locationKey?.startsWith("weathercn:") == true
-                        && it.status == 0) {
+                    if (it.locationKey?.startsWith("weathercn:") == true && it.status == 0) {
                         locationList.add(convert(null, it))
                     }
                 }
@@ -229,8 +227,8 @@ class ChinaService @Inject constructor(
         )
             .map {
                 val locationList: MutableList<Location> = ArrayList()
-                if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true
-                    && it[0].status == 0) {
+                if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
+                    it[0].status == 0) {
                     locationList.add(convert(location, it[0]))
                 }
                 locationList
@@ -259,8 +257,8 @@ class ChinaService @Inject constructor(
             location.longitude,
             SettingsManager.getInstance(context).language.code
         ).map {
-            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true
-                && it[0].status == 0) {
+            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
+                it[0].status == 0) {
                 mapOf(
                     "locationKey" to it[0].locationKey!!.replace("weathercn:", "")
                 )

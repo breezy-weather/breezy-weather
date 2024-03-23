@@ -23,9 +23,9 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayHorizontalProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace

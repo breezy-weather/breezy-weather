@@ -41,9 +41,7 @@ class FitSystemBarSwipeRefreshLayout @JvmOverloads constructor(
     private fun fitSystemBar() {
         val startPosition = mHelper.top() + resources.getDimensionPixelSize(R.dimen.normal_margin)
         val endPosition = (startPosition + 64 * resources.displayMetrics.density).toInt()
-        if (startPosition != progressViewStartOffset
-            || endPosition != progressViewEndOffset
-        ) {
+        if (startPosition != progressViewStartOffset || endPosition != progressViewEndOffset) {
             setProgressViewOffset(false, startPosition, endPosition)
         }
     }

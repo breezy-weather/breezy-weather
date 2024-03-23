@@ -8,7 +8,6 @@ import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 
-
 @ColorInt
 fun Wind.getColor(context: Context): Int {
     if (speed == null) return Color.TRANSPARENT

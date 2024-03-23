@@ -18,11 +18,11 @@ package org.breezyweather.sources.metno
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.BuildConfig
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -61,24 +61,23 @@ class MetNoService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude
         )
 
         val formattedDate = Date().getFormattedDate("yyyy-MM-dd", location)
         val sun = mApi.getSun(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             formattedDate
         )
         val moon = mApi.getMoon(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             formattedDate
@@ -88,13 +87,13 @@ class MetNoService @Inject constructor(
         // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
         // but safer to limit to guaranteed countries
         // Even if minutely is in "ignoredFeatures", we keep it as it also contains "current"
-        val nowcast = if (!location.countryCode.isNullOrEmpty()
-            && arrayOf("NO", "SE", "FI", "DK").any {
+        val nowcast = if (!location.countryCode.isNullOrEmpty() &&
+            arrayOf("NO", "SE", "FI", "DK").any {
                 it.equals(location.countryCode, ignoreCase = true)
             }
         ) {
             mApi.getNowcast(
-                userAgent,
+                USER_AGENT,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
@@ -110,12 +109,12 @@ class MetNoService @Inject constructor(
 
         // Air quality only for Norway
         val airQuality =
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-                && !location.countryCode.isNullOrEmpty()
-                && location.countryCode.equals("NO", ignoreCase = true)
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
             ) {
                 mApi.getAirQuality(
-                    userAgent,
+                    USER_AGENT,
                     location.latitude,
                     location.longitude
                 ).onErrorResumeNext {
@@ -161,17 +160,15 @@ class MetNoService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return (
-                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
-                        && !location.countryCode.isNullOrEmpty()
-                        && arrayOf("NO", "SE", "FI", "DK").any {
+        return (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+                !location.countryCode.isNullOrEmpty() &&
+                arrayOf("NO", "SE", "FI", "DK").any {
                     it.equals(location.countryCode, ignoreCase = true)
                 }
-                ) || (
-                feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
-                        && !location.countryCode.isNullOrEmpty()
-                        && location.countryCode.equals("NO", ignoreCase = true)
-                )
+            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
+            )
     }
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
@@ -186,7 +183,7 @@ class MetNoService @Inject constructor(
         val nowcast =
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 mApi.getNowcast(
-                    userAgent,
+                    USER_AGENT,
                     location.latitude,
                     location.longitude
                 )
@@ -199,7 +196,7 @@ class MetNoService @Inject constructor(
         val airQuality =
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                 mApi.getAirQuality(
-                    userAgent,
+                    USER_AGENT,
                     location.latitude,
                     location.longitude
                 )
@@ -225,7 +222,7 @@ class MetNoService @Inject constructor(
 
     companion object {
         private const val METNO_BASE_URL = "https://api.met.no/weatherapi/"
-        private const val userAgent =
+        private const val USER_AGENT =
             "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
     }
 }

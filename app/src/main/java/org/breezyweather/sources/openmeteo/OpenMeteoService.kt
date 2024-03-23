@@ -31,11 +31,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationSearchException
@@ -123,8 +123,7 @@ class OpenMeteoService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val daily = arrayOf(
             "temperature_2m_max",
@@ -185,8 +184,8 @@ class OpenMeteoService @Inject constructor(
             windspeedUnit = "ms"
         )
 
-        val aqi = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+        val aqi = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
         ) {
             val airQualityPollenHourly =
                 (if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -267,11 +266,11 @@ class OpenMeteoService @Inject constructor(
             }
         }
 
-        val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+        val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
             val airQualityPollenHourly =
                 (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
-                        (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) pollenHourly else emptyArray())
+                    (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) pollenHourly else emptyArray())
             mAirQualityApi.getAirQuality(
                 location.latitude,
                 location.longitude,

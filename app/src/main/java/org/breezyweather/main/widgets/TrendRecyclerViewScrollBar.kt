@@ -24,8 +24,8 @@ import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
 import org.breezyweather.main.utils.MainThemeColorProvider
 
 class TrendRecyclerViewScrollBar : ItemDecoration() {

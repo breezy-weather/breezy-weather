@@ -103,7 +103,6 @@ fun FitStatusBarTopAppBar(
     scrollBehavior = scrollBehavior,
 )
 
-
 @Composable
 fun BWCenterAlignedTopAppBar(
     title: String,

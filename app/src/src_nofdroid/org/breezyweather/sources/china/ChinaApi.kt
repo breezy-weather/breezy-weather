@@ -17,11 +17,11 @@
 package org.breezyweather.sources.china
 
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.http.GET
-import retrofit2.http.Query
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ChinaApi {
     @GET("location/city/search")

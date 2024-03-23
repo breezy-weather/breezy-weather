@@ -68,9 +68,9 @@ fun convert(
     timeZone: TimeZone
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (ecccResult.dailyFcst?.daily.isNullOrEmpty()
-        || ecccResult.dailyFcst?.dailyIssuedTimeEpoch.isNullOrEmpty()
-        || ecccResult.hourlyFcst?.hourly.isNullOrEmpty()) {
+    if (ecccResult.dailyFcst?.daily.isNullOrEmpty() ||
+        ecccResult.dailyFcst?.dailyIssuedTimeEpoch.isNullOrEmpty() ||
+        ecccResult.hourlyFcst?.hourly.isNullOrEmpty()) {
         throw InvalidOrIncompleteDataException()
     }
 
@@ -132,8 +132,8 @@ private fun getDailyForecast(
                 dailyResult.daily.getOrNull((i * 2) + 1)
             } else dailyResult.daily.getOrNull(i * 2)
 
-            if ((daytime != null && nighttime != null)
-                || (firstDayIsNight && i == 0 && nighttime != null)) {
+            if ((daytime != null && nighttime != null) ||
+                (firstDayIsNight && i == 0 && nighttime != null)) {
                 val currentDay = if (i != 0) {
                     val cal = Calendar.getInstance()
                     cal.setTime(dailyFirstDay)
@@ -222,8 +222,8 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
                 "statement" -> AlertSeverity.MINOR
                 else -> AlertSeverity.UNKNOWN
             },
-            color = if (!alert.bannerColour.isNullOrEmpty()
-                && alert.bannerColour.startsWith("#")) {
+            color = if (!alert.bannerColour.isNullOrEmpty() &&
+                alert.bannerColour.startsWith("#")) {
                 Color.parseColor(alert.bannerColour)
             } else null
         )
@@ -244,8 +244,8 @@ private fun getNormals(timeZone:  TimeZone, normals: EcccRegionalNormalsMetric?)
 }
 
 private fun getNonEmptyMetric(ecccUnit: EcccUnit?): Double? {
-    if (ecccUnit == null
-        || (ecccUnit.metric.isNullOrEmpty() && ecccUnit.metricUnrounded.isNullOrEmpty())) {
+    if (ecccUnit == null ||
+        (ecccUnit.metric.isNullOrEmpty() && ecccUnit.metricUnrounded.isNullOrEmpty())) {
         return null
     }
     return if (!ecccUnit.metricUnrounded.isNullOrEmpty()) {

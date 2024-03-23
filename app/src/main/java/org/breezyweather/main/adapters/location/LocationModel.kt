@@ -17,10 +17,10 @@
 package org.breezyweather.main.adapters.location
 
 import android.content.Context
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.WeatherCode
+import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour

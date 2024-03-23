@@ -18,10 +18,10 @@ package org.breezyweather.main.utils
 
 import android.app.Activity
 import androidx.annotation.StringRes
+import org.breezyweather.R
 import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
 import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog
-import org.breezyweather.R
 
 enum class RefreshErrorType(
     @StringRes val shortMessage: Int,

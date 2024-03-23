@@ -22,10 +22,10 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
+import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.format
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView

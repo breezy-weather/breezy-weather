@@ -18,14 +18,14 @@ package org.breezyweather.sources.pirateweather
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -64,8 +64,7 @@ class PirateWeatherService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

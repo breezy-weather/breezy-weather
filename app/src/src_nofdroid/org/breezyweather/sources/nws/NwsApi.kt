@@ -16,11 +16,11 @@
 
 package org.breezyweather.sources.nws
 
-import retrofit2.http.GET
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsGridPointResult
 import org.breezyweather.sources.nws.json.NwsPointResult
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -49,5 +49,4 @@ interface NwsApi {
          */
         @Query("point") point: String
     ): Observable<NwsAlertsResult>
-
 }

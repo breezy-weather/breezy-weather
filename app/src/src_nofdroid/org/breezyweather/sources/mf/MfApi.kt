@@ -17,7 +17,12 @@
 package org.breezyweather.sources.mf
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.mf.json.*
+import org.breezyweather.sources.mf.json.MfCurrentResult
+import org.breezyweather.sources.mf.json.MfEphemerisResult
+import org.breezyweather.sources.mf.json.MfForecastResult
+import org.breezyweather.sources.mf.json.MfNormalsResult
+import org.breezyweather.sources.mf.json.MfRainResult
+import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

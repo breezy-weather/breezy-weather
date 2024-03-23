@@ -18,21 +18,21 @@ package org.breezyweather.sources.here
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
@@ -81,8 +81,7 @@ class HereService @Inject constructor(
      * Returns weather
      */
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

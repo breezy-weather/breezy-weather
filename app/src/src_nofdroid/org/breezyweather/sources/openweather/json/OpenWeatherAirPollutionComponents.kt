@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.openweather.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -25,7 +26,7 @@ data class OpenWeatherAirPollutionComponents(
     val no2: Double?,
     val o3: Double?,
     val so2: Double?,
-    val pm2_5: Double?,
+    @SerialName("pm2_5") val pm25: Double?,
     val pm10: Double?,
     val nh3: Double?
 )

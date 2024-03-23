@@ -19,8 +19,8 @@ package breezyweather.domain.weather.wrappers
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
-import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.Normals
 
 /**
  * Wrapper very similar to the object in database.

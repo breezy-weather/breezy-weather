@@ -24,13 +24,13 @@ import android.view.View
 import androidx.core.graphics.ColorUtils
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.databinding.ItemLocationCardBinding
-import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.R
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class LocationHolder(

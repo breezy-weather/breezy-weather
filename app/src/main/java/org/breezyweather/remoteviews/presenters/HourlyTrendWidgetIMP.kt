@@ -30,9 +30,9 @@ import android.widget.RemoteViews
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -127,8 +127,10 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_hourly, null, false)
         weather.normals?.let { normals ->
-            if (normals.daytimeTemperature != null && normals.nighttimeTemperature != null
-                && highestTemperature != null && lowestTemperature != null) {
+            if (normals.daytimeTemperature != null &&
+                normals.nighttimeTemperature != null &&
+                highestTemperature != null &&
+                lowestTemperature != null) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
                 trendParent.normals = normals.month != null
                 trendParent.setData(

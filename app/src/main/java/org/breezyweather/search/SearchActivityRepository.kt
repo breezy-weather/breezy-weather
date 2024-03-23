@@ -17,13 +17,13 @@
 package org.breezyweather.search
 
 import android.content.Context
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.BuildConfig
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException

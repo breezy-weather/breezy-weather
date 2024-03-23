@@ -44,6 +44,6 @@ class UVHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         )
         mTitle.text = uv.getUVDescription(context)
         itemView.contentDescription = context.getString(R.string.uv_index) +
-                context.getString(R.string.comma_separator) + mTitle.text
+            context.getString(R.string.comma_separator) + mTitle.text
     }
 }

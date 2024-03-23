@@ -26,9 +26,15 @@ import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
-import org.breezyweather.theme.weatherView.materialWeatherView.implementor.*
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.HailImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.SnowImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.SunImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.WindImplementor
 
-class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
+class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
 
     companion object {
 
@@ -113,7 +119,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
     }
 
     override fun getHeaderTopMargin(context: Context): Int = (
-            context.resources.displayMetrics.heightPixels * 0.25 // 0.66
+        context.resources.displayMetrics.heightPixels * 0.25 // 0.66
     ).toInt()
 
     override fun getHeaderTextColor(context: Context): Int {

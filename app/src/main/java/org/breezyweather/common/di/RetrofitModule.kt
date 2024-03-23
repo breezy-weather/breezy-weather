@@ -41,7 +41,6 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 @InstallIn(SingletonComponent::class)
 @Module
 class RetrofitModule {

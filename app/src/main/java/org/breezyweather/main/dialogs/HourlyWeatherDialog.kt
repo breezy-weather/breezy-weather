@@ -20,10 +20,10 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getHour
@@ -42,10 +42,10 @@ object HourlyWeatherDialog {
         MaterialAlertDialogBuilder(activity)
             .setTitle(
                 hourly.date.getHour(location, activity)
-                        + " - "
-                        + hourly.date.getFormattedMediumDayAndMonth(
-                            location, SettingsManager.getInstance(activity).language
-                        )
+                    + " - "
+                    + hourly.date.getFormattedMediumDayAndMonth(
+                        location, SettingsManager.getInstance(activity).language
+                    )
             )
             .setView(view)
             .show()

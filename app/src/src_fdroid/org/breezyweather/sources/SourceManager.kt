@@ -22,13 +22,13 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.PreferencesParametersSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.common.source.Source
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
@@ -107,8 +107,8 @@ class SourceManager @Inject constructor(
         val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
 
         val mainSource = getMainWeatherSource(location.weatherSource)
-        if (mainSource is PreferencesParametersSource
-            && mainSource.hasPreferencesScreen(location, emptyList())) {
+        if (mainSource is PreferencesParametersSource &&
+            mainSource.hasPreferencesScreen(location, emptyList())) {
             preferencesScreenSources.add(mainSource)
         }
 
@@ -121,9 +121,9 @@ class SourceManager @Inject constructor(
                 Pair(normalsSource, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
             ).forEach {
                 val secondarySource = getSecondaryWeatherSource(it.first ?: location.weatherSource)
-                if (secondarySource is PreferencesParametersSource
-                    && secondarySource.hasPreferencesScreen(location, listOf(it.second))
-                    && !preferencesScreenSources.contains(secondarySource)) {
+                if (secondarySource is PreferencesParametersSource &&
+                    secondarySource.hasPreferencesScreen(location, listOf(it.second)) &&
+                    !preferencesScreenSources.contains(secondarySource)) {
                     preferencesScreenSources.add(secondarySource)
                 }
             }
@@ -136,5 +136,4 @@ class SourceManager @Inject constructor(
             ).compare(s1.name, s2.name)
         })*/
     }
-
 }

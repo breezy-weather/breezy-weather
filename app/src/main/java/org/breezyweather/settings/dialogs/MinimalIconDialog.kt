@@ -21,9 +21,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
+import breezyweather.domain.weather.model.WeatherCode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
 

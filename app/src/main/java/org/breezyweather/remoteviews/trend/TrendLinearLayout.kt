@@ -159,8 +159,8 @@ class TrendLinearLayout @JvmOverloads constructor(
             TREND_ITEM_HEIGHT = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X.toFloat())
             BOTTOM_MARGIN = context.dpToPx(
                 (WidgetItemView.ICON_SIZE_DIP
-                        + WidgetItemView.ICON_MARGIN_DIP
-                        + WidgetItemView.MARGIN_VERTICAL_DIP).toFloat()
+                    + WidgetItemView.ICON_MARGIN_DIP
+                    + WidgetItemView.MARGIN_VERTICAL_DIP).toFloat()
             )
         } else {
             TREND_ITEM_HEIGHT = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_1X.toFloat())

@@ -23,10 +23,10 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import org.breezyweather.R
-import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.R
+import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.utils.helpers.LunarHelper
@@ -155,8 +155,8 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setTextViewText(
                 R.id.widget_clock_day_feelsLikeTemp,
                 context.getString(R.string.temperature_feels_like)
-                        + " "
-                        + temperatureUnit.getValueText(context, it, 0)
+                    + " "
+                    + temperatureUnit.getValueText(context, it, 0)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_clock_day_feelsLikeTemp, null)
@@ -208,7 +208,6 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_clock_day_aqiHumidity, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_wind, TypedValue.COMPLEX_UNIT_PX, contentSize)
             }
-
         }
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color))
@@ -248,20 +247,20 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getAQIHumidityTempText(context: Context, weather: Weather): String? {
-        return if (weather.current?.airQuality?.getIndex() != null
-            && weather.current!!.airQuality!!.getName(context) != null
+        return if (weather.current?.airQuality?.getIndex() != null &&
+            weather.current!!.airQuality!!.getName(context) != null
         ) {
             (context.getString(R.string.air_quality) + " "
-                    + weather.current!!.airQuality!!.getIndex()
-                    + " ("
-                    + weather.current!!.airQuality!!.getName(context)
-                    + ")")
+                + weather.current!!.airQuality!!.getIndex()
+                + " ("
+                + weather.current!!.airQuality!!.getName(context)
+                + ")")
         } else weather.current?.relativeHumidity?.let {
             (context.getString(R.string.humidity)
-                    + " "
-                    + NumberFormat.getPercentInstance(context.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(it.div(100.0))
+                + " "
+                + NumberFormat.getPercentInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(it.div(100.0))
             )
         }
     }

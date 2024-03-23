@@ -39,7 +39,7 @@ data class Minutely(
                 200.0 * Math.pow(intensity, 8.0 / 5.0)
             )).toInt()
         }
-        fun DBZtoPrecipitationIntensity(dbz: Double?): Double? {
+        fun dbzToPrecipitationIntensity(dbz: Double?): Double? {
             return if (dbz == null) {
                 null
             } else {

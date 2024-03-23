@@ -69,8 +69,7 @@ class BreezyWeather : Application(),
         private set
 
     val debugMode: Boolean by lazy {
-        applicationInfo != null
-                && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        applicationInfo != null && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     }
 
     @Inject lateinit var workerFactory: HiltWorkerFactory

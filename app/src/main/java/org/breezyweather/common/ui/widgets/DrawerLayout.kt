@@ -75,7 +75,7 @@ class DrawerLayout @JvmOverloads constructor(
             var width = lp.width
             if (width == LayoutParams.WRAP_CONTENT) {
                 width = (measuredWidth
-                        - context.getTabletListAdaptiveWidth(measuredWidth))
+                    - context.getTabletListAdaptiveWidth(measuredWidth))
                 if (width == 0) {
                     width = LayoutParams.MATCH_PARENT
                 } else {

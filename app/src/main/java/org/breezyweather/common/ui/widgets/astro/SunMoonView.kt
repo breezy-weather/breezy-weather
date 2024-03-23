@@ -323,7 +323,7 @@ class SunMoonView @JvmOverloads constructor(
             mPaint.setXfermode(mClearXfermode)
             canvas.drawRect(
                 (mRectF.centerX() + mRectF.width() / 2
-                        * cos((360 - progressEndAngle) * Math.PI / 180)).toFloat(),
+                    * cos((360 - progressEndAngle) * Math.PI / 180)).toFloat(),
                 mRectF.top,
                 mRectF.right,
                 mRectF.top + mRectF.height() / 2,

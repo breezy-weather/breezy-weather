@@ -21,15 +21,15 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
-import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
+import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -92,7 +92,7 @@ fun convert(
     currentMonth: Int
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (dailyResult.DailyForecasts == null || dailyResult.DailyForecasts.isEmpty() || hourlyResultList.isEmpty()) {
+    if (dailyResult.DailyForecasts.isNullOrEmpty() || hourlyResultList.isEmpty()) {
         throw InvalidOrIncompleteDataException()
     }
 
@@ -439,7 +439,7 @@ private fun getMinutelyList(
         Minutely(
             date = Date(interval.StartEpochDateTime),
             minuteInterval = interval.Minute,
-            precipitationIntensity = Minutely.DBZtoPrecipitationIntensity(interval.Dbz)
+            precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)
         )
     }
 }

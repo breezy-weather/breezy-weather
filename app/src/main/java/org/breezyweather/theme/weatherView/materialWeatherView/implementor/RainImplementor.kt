@@ -102,10 +102,10 @@ class RainImplementor(
 
         fun move(interval: Long, deltaRotation3D: Float) {
             y += (speed * interval
-                    * (scale.toDouble().pow(1.5)
-                    - 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(8 * Math.PI / 180.0))).toFloat()
+                * (scale.toDouble().pow(1.5)
+                - 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(8 * Math.PI / 180.0))).toFloat()
             x -= (speed * interval
-                    * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(8 * Math.PI / 180.0)).toFloat()
+                * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(8 * Math.PI / 180.0)).toFloat()
             if (y >= mCanvasSize) {
                 init(false)
             } else {

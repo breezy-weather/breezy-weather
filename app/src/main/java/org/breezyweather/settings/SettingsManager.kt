@@ -20,8 +20,16 @@ import android.content.Context
 import androidx.core.text.util.LocalePreferences
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.basic.models.options.*
-import org.breezyweather.common.basic.models.options.appearance.*
+import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.basic.models.options.NotificationStyle
+import org.breezyweather.common.basic.models.options.UpdateInterval
+import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
+import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
+import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
@@ -51,32 +59,32 @@ class SettingsManager private constructor(context: Context) {
         }
 
         private const val DEFAULT_CARD_DISPLAY = ("daily_overview"
-                + "&hourly_overview"
-                + "&air_quality"
-                + "&pollen"
-                + "&sunrise_sunset"
-                + "&live")
+            + "&hourly_overview"
+            + "&air_quality"
+            + "&pollen"
+            + "&sunrise_sunset"
+            + "&live")
         const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
-                + "&air_quality"
-                + "&wind"
-                + "&uv_index"
-                + "&precipitation"
-                + "&sunshine"
-                + "&feels_like")
+            + "&air_quality"
+            + "&wind"
+            + "&uv_index"
+            + "&precipitation"
+            + "&sunshine"
+            + "&feels_like")
         const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
-                + "&air_quality"
-                + "&wind"
-                + "&uv_index"
-                + "&precipitation"
-                + "&feels_like"
-                + "&humidity"
-                + "&pressure"
-                + "&cloud_cover"
-                + "&visibility")
+            + "&air_quality"
+            + "&wind"
+            + "&uv_index"
+            + "&precipitation"
+            + "&feels_like"
+            + "&humidity"
+            + "&pressure"
+            + "&cloud_cover"
+            + "&visibility")
         private const val DEFAULT_DETAILS_DISPLAY = ("feels_like"
-                + "&wind"
-                + "&uv_index"
-                + "&humidity")
+            + "&wind"
+            + "&uv_index"
+            + "&humidity")
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"

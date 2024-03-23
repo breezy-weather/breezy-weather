@@ -17,9 +17,9 @@
 package org.breezyweather.sources.atmoaura
 
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 import retrofit2.http.GET
 import retrofit2.http.Query
-import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 
 /**
  * API ATMO Auvergne-Rhône-Alpes

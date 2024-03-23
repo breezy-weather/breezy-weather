@@ -21,8 +21,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import org.breezyweather.BuildConfig.APPLICATION_ID as ID
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.BuildConfig.APPLICATION_ID as ID
 
 /**
  * Taken partially from Mihon

@@ -23,9 +23,9 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetWeekProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.domain.weather.model.getWeek

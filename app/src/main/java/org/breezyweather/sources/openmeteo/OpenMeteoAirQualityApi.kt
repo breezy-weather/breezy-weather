@@ -17,9 +17,9 @@
 package org.breezyweather.sources.openmeteo
 
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import retrofit2.http.GET
 import retrofit2.http.Query
-import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 
 /**
  * Open-Meteo API

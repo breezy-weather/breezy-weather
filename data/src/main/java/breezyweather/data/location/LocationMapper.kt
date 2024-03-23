@@ -47,5 +47,4 @@ object LocationMapper {
         backgroundWeatherKind = backgroundWeatherKind,
         backgroundDayNightType = backgroundDayNightType
     )
-
 }

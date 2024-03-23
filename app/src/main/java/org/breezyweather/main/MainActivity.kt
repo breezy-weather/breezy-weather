@@ -31,13 +31,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import breezyweather.domain.location.model.Location
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.breezyweather.Migrations
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
@@ -90,8 +90,8 @@ class MainActivity : GeoActivity(),
             viewModel.updateLocationFromBackground(it)
 
             // TODO: Leads to annoying popup, disabling for now
-            /*if (isActivityStarted
-                && it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
+            /*if (isActivityStarted &&
+                it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
                 SnackbarHelper.showSnackbar(getString(R.string.message_updated_in_background))
             }*/
         }
@@ -322,10 +322,10 @@ class MainActivity : GeoActivity(),
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.locationPermissionsRequest.collect {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                        && it != null
-                        && it.permissionList.isNotEmpty()
-                        && it.consume()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                        it != null &&
+                        it.permissionList.isNotEmpty() &&
+                        it.consume()
                     ) {
                         // only show dialog if we need request basic location permissions.
                         var showLocationPermissionDialog = false
@@ -346,9 +346,9 @@ class MainActivity : GeoActivity(),
                                     viewModel.statementManager.setLocationPermissionDialogAlreadyShown()
 
                                     val request = viewModel.locationPermissionsRequest.value
-                                    if (request != null
-                                        && request.permissionList.isNotEmpty()
-                                        && request.target != null
+                                    if (request != null &&
+                                        request.permissionList.isNotEmpty() &&
+                                        request.target != null
                                     ) {
                                         requestPermissions(
                                             request.permissionList.toTypedArray(),
@@ -390,16 +390,13 @@ class MainActivity : GeoActivity(),
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         val request = viewModel.locationPermissionsRequest.value
-        if (request == null
-            || request.permissionList.isEmpty()
-            || request.target == null
-        ) {
+        if (request == null || request.permissionList.isEmpty() || request.target == null) {
             return
         }
 
         grantResults.zip(permissions).firstOrNull { // result, permission
-            it.first != PackageManager.PERMISSION_GRANTED
-                    && isEssentialLocationPermission(permission = it.second)
+            it.first != PackageManager.PERMISSION_GRANTED &&
+                isEssentialLocationPermission(permission = it.second)
         }?.let {
             // if the user denied an essential location permissions.
             if (request.target.isUsable || isLocationPermissionsGranted) {
@@ -415,9 +412,9 @@ class MainActivity : GeoActivity(),
         }
 
         // check background location permissions.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-            && !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown
-            && this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+            !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown &&
+            this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.dialog_permissions_location_background_title)
@@ -443,20 +440,18 @@ class MainActivity : GeoActivity(),
     private fun isLocationPermission(
         permission: String
     ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        permission == Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                || isEssentialLocationPermission(permission)
-    } else {
-        isEssentialLocationPermission(permission)
-    }
+        permission == Manifest.permission.ACCESS_BACKGROUND_LOCATION ||
+            isEssentialLocationPermission(permission)
+    } else isEssentialLocationPermission(permission)
 
     private fun isEssentialLocationPermission(permission: String): Boolean {
-        return permission == Manifest.permission.ACCESS_COARSE_LOCATION
-                || permission == Manifest.permission.ACCESS_FINE_LOCATION
+        return permission == Manifest.permission.ACCESS_COARSE_LOCATION ||
+            permission == Manifest.permission.ACCESS_FINE_LOCATION
     }
 
     private val isLocationPermissionsGranted: Boolean
-        get() = this.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                || this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+        get() = this.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) ||
+            this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 
     val isDaylight: Boolean
         get() = viewModel.currentLocation.value?.daylight ?: true

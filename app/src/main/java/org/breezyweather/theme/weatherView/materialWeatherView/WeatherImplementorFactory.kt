@@ -22,7 +22,13 @@ import org.breezyweather.R
 import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
-import org.breezyweather.theme.weatherView.materialWeatherView.implementor.*
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.HailImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.SnowImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.SunImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.WindImplementor
 
 object WeatherImplementorFactory {
 
@@ -191,8 +197,7 @@ object WeatherImplementorFactory {
             R.drawable.weather_background_snow_night
         }
 
-        WeatherView.WEATHER_KIND_THUNDER,
-        WeatherView.WEATHER_KIND_THUNDERSTORM -> if (daylight) {
+        WeatherView.WEATHER_KIND_THUNDER, WeatherView.WEATHER_KIND_THUNDERSTORM -> if (daylight) {
             R.drawable.weather_background_thunder_day
         } else {
             R.drawable.weather_background_thunder_night

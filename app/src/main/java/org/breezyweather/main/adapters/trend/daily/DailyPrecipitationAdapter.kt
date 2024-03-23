@@ -22,11 +22,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView
 import org.breezyweather.domain.weather.model.getPrecipitationColor
@@ -64,8 +64,8 @@ class DailyPrecipitationAdapter(
             val daily = weather.dailyForecast[position]
             val daytimePrecipitation = daily.day?.precipitation?.total
             val nighttimePrecipitation = daily.night?.precipitation?.total
-            if ((daytimePrecipitation != null && daytimePrecipitation > 0f)
-                || (nighttimePrecipitation != null && nighttimePrecipitation > 0f)) {
+            if ((daytimePrecipitation != null && daytimePrecipitation > 0f) ||
+                (nighttimePrecipitation != null && nighttimePrecipitation > 0f)) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))

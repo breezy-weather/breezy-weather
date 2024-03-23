@@ -110,10 +110,10 @@ class MeteorShowerImplementor(
 
         private fun move(interval: Long, deltaRotation3D: Float) {
             x -= (speed * interval * 5
-                    * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0)).toFloat()
+                * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0)).toFloat()
             y += (speed * interval
-                    * (scale.toDouble().pow(0.5)
-                    - 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(60 * Math.PI / 180.0))).toFloat()
+                * (scale.toDouble().pow(0.5)
+                - 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(60 * Math.PI / 180.0))).toFloat()
         }
     }
 

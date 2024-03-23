@@ -17,7 +17,6 @@
 package org.breezyweather.sources.metno
 
 import android.content.Context
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Astro
@@ -35,6 +34,7 @@ import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
@@ -59,8 +59,8 @@ fun convert(
     airQualityResult: MetNoAirQualityResult
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
-    if (forecastResult.properties == null
-        || forecastResult.properties.timeseries.isNullOrEmpty()) {
+    if (forecastResult.properties == null ||
+        forecastResult.properties.timeseries.isNullOrEmpty()) {
         throw InvalidOrIncompleteDataException()
     }
 

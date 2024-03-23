@@ -19,7 +19,6 @@ package org.breezyweather.sources
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -29,6 +28,7 @@ import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -37,8 +37,8 @@ import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
-import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
@@ -86,8 +86,8 @@ fun completeMainWeatherWithPreviousData(
     oldWeather: Weather?,
     startDate: Date
 ): WeatherWrapper {
-    if (oldWeather == null
-        || (oldWeather.dailyForecast.isEmpty() && oldWeather.hourlyForecast.isEmpty())) {
+    if (oldWeather == null ||
+        (oldWeather.dailyForecast.isEmpty() && oldWeather.hourlyForecast.isEmpty())) {
         return newWeather
     }
 
@@ -218,19 +218,19 @@ fun completeMissingSecondaryWeatherDailyData(
 ): SecondaryWeatherWrapper? {
     if (initialSecondaryWeatherWrapper == null) return null
 
-    return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
-        && initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty())
-        || (!initialSecondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty()
-                && initialSecondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
-        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null
-            && initialSecondaryWeatherWrapper.airQuality!!.dailyForecast.isNullOrEmpty()) {
+    return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
+            initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) ||
+        (!initialSecondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty() &&
+            initialSecondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
+        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null &&
+            initialSecondaryWeatherWrapper.airQuality!!.dailyForecast.isNullOrEmpty()) {
             getDailyAirQualityFromHourly(
                 initialSecondaryWeatherWrapper.airQuality!!.hourlyForecast, location
             )
         } else initialSecondaryWeatherWrapper.airQuality?.dailyForecast
 
-        val dailyPollen: Map<Date, Pollen>? = if (initialSecondaryWeatherWrapper.pollen != null
-            && initialSecondaryWeatherWrapper.pollen!!.dailyForecast.isNullOrEmpty()) {
+        val dailyPollen: Map<Date, Pollen>? = if (initialSecondaryWeatherWrapper.pollen != null &&
+            initialSecondaryWeatherWrapper.pollen!!.dailyForecast.isNullOrEmpty()) {
             val dailyPollenMap: MutableMap<Date, Pollen> = mutableMapOf()
             initialSecondaryWeatherWrapper.pollen!!.hourlyForecast?.entries?.groupBy {
                 it.key.getFormattedDate("yyyy-MM-dd", location)
@@ -319,9 +319,10 @@ fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
     mainHourlyList: List<HourlyWrapper>?,
     secondaryWeatherWrapper: SecondaryWeatherWrapper?
 ): List<HourlyWrapper> {
-    if (mainHourlyList.isNullOrEmpty() || secondaryWeatherWrapper == null
-        || (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
-        && secondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
+    if (mainHourlyList.isNullOrEmpty() ||
+        secondaryWeatherWrapper == null ||
+        (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
+            secondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
         return mainHourlyList ?: emptyList()
     }
 
@@ -356,9 +357,10 @@ fun mergeSecondaryWeatherDataIntoDailyList(
     mainDailyList: List<Daily>?,
     secondaryWeatherWrapper: SecondaryWeatherWrapper?
 ): List<Daily> {
-    if (mainDailyList.isNullOrEmpty() || secondaryWeatherWrapper == null
-        || (secondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()
-                && secondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
+    if (mainDailyList.isNullOrEmpty() ||
+        secondaryWeatherWrapper == null ||
+        (secondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty() &&
+            secondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
         return mainDailyList ?: emptyList()
     }
 
@@ -397,10 +399,12 @@ fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>
 ): List<HourlyWrapper> {
     return hourlyList.map { hourly ->
-        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null
-            || hourly.temperature!!.wetBulbTemperature == null
-            || hourly.weatherCode == null || hourly.weatherText.isNullOrEmpty()) {
-
+        if (hourly.dewPoint == null ||
+            hourly.temperature?.windChillTemperature == null ||
+            hourly.temperature!!.wetBulbTemperature == null ||
+            hourly.weatherCode == null ||
+            hourly.weatherText.isNullOrEmpty()
+        ) {
             val weatherCode = hourly.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
                 listOf(hourly),
                 hourly.precipitation,
@@ -747,10 +751,10 @@ private fun completeHalfDayFromHourlyList(
 
     val newHalfDay = initialHalfDay ?: HalfDay()
 
-    val extremeTemperature = if (newHalfDay.temperature?.temperature == null
-        || newHalfDay.temperature!!.apparentTemperature == null
-        || newHalfDay.temperature!!.windChillTemperature == null
-        || newHalfDay.temperature!!.wetBulbTemperature == null) {
+    val extremeTemperature = if (newHalfDay.temperature?.temperature == null ||
+        newHalfDay.temperature!!.apparentTemperature == null ||
+        newHalfDay.temperature!!.windChillTemperature == null ||
+        newHalfDay.temperature!!.wetBulbTemperature == null) {
         getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
     } else newHalfDay.temperature
 
@@ -1301,8 +1305,8 @@ fun completeCurrentFromSecondaryData(
         newWind?.speed,
         newRelativeHumidity
     )
-    val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null
-        || newCurrent.temperature?.temperature != null) {
+    val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null ||
+        newCurrent.temperature?.temperature != null) {
         // If current data is available, we compute this over hourly dewpoint
         computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
     } else hourly.dewPoint // Already calculated earlier

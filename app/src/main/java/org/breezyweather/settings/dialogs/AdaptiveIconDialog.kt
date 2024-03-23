@@ -22,11 +22,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import breezyweather.domain.weather.model.WeatherCode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView
 import org.breezyweather.R
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.Random

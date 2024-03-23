@@ -25,5 +25,4 @@ class EncodedPolylineUtilTest {
             decodedLatLng[2].longitude shouldBe -126.453
          */
     }
-
 }

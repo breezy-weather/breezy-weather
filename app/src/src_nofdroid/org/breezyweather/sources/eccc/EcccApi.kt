@@ -16,9 +16,9 @@
 
 package org.breezyweather.sources.eccc
 
-import retrofit2.http.GET
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.eccc.json.EcccResult
+import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface EcccApi {

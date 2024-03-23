@@ -300,7 +300,7 @@ internal fun AlertDialogNoPaddingFlowRow(
             sequences.fastForEachIndexed { i, placeables ->
                 val childrenMainAxisSizes = IntArray(placeables.size) { j ->
                     placeables[j].width +
-                            if (j < placeables.lastIndex) mainAxisSpacing.roundToPx() else 0
+                        if (j < placeables.lastIndex) mainAxisSpacing.roundToPx() else 0
                 }
                 val arrangement = Arrangement.End
                 val mainAxisPositions = IntArray(childrenMainAxisSizes.size) { 0 }

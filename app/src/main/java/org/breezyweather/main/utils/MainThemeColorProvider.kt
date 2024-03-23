@@ -23,8 +23,8 @@ import androidx.annotation.AttrRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.domain.location.model.isDaylight
@@ -121,8 +121,9 @@ class MainThemeColorProvider(
         fun isLightTheme(
             context: Context,
             daylight: Boolean?,
-        ): Boolean = if (SettingsManager.getInstance(context).dayNightModeForLocations
-            && instance?.host?.isDaylight != null && daylight != null) {
+        ): Boolean = if (SettingsManager.getInstance(context).dayNightModeForLocations &&
+            instance?.host?.isDaylight != null &&
+            daylight != null) {
             daylight
         } else {
             when (SettingsManager.getInstance(context).darkMode) {

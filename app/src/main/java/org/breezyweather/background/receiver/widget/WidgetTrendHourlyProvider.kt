@@ -61,4 +61,3 @@ class WidgetTrendHourlyProvider : AppWidgetProvider() {
         }
     }
 }
-

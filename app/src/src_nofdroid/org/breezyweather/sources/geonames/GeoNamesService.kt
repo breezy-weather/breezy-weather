@@ -17,11 +17,11 @@
 package org.breezyweather.sources.geonames
 
 import android.content.Context
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationSearchException

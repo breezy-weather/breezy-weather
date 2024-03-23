@@ -16,9 +16,9 @@
 
 package org.breezyweather.sources.smhi
 
-import retrofit2.http.GET
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.smhi.json.SmhiForecastResult
+import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface SmhiApi {

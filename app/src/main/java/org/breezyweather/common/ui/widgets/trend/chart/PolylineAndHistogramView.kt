@@ -369,7 +369,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             mHistogramValueStr ?: "",
             (measuredWidth / 2.0).toFloat(),
             ((measuredHeight - marginBottom - mPaint.fontMetrics.top)
-                    + 2.0 * mTextMargin + mPolylineTextSize).toFloat(),
+                + 2.0 * mTextMargin + mPolylineTextSize).toFloat(),
             mPaint
         )
         mPaint.alpha = 255
@@ -499,8 +499,8 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         min: Float
     ): Int {
         return ((measuredHeight
-                - marginBottom
-                - (canvasHeight * (value - min) / (max - min)))).toInt()
+            - marginBottom
+            - (canvasHeight * (value - min) / (max - min)))).toInt()
     }
 
     private fun getRTLCompactX(x: Float): Float {

@@ -57,8 +57,8 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
 
 class LiveWallpaperConfigActivity : GeoActivity() {

@@ -18,7 +18,12 @@ package org.breezyweather.common.ui.widgets.precipitationBar
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Shader
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Size

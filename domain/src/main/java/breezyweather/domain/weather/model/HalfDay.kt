@@ -31,4 +31,4 @@ data class HalfDay(
     val precipitationDuration: PrecipitationDuration? = null,
     val wind: Wind? = null,
     val cloudCover: Int? = null
-) : Serializable 
+) : Serializable

@@ -34,8 +34,8 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.settings.compose.WeatherSourcesSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
+import org.breezyweather.settings.compose.WeatherSourcesSettingsScreen
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject

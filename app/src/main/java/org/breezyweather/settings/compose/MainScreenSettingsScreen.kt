@@ -27,14 +27,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.*
+import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
+import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.settings.preference.*
+import org.breezyweather.settings.preference.bottomInsetItem
+import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.settings.preference.sectionFooterItem
+import org.breezyweather.settings.preference.sectionHeaderItem
+import org.breezyweather.settings.preference.switchPreferenceItem
 
 @Composable
 fun MainScreenSettingsScreen(

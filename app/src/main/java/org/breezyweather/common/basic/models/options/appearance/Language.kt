@@ -91,13 +91,12 @@ enum class Language(
             val locale = locale
             val language = locale.language
             val country = locale.country
-            return if (!country.isNullOrEmpty()
-                && (country.equals("tw", ignoreCase = true) || country.equals("hk", ignoreCase = true))
+            return if (!country.isNullOrEmpty() &&
+                (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
             ) {
                 language.lowercase() + "-" + country.lowercase()
-            } else {
-                language.lowercase()
-            }
+            } else language.lowercase()
         }
 
     val codeWithCountry: String
@@ -118,8 +117,9 @@ enum class Language(
             val locale = locale
             val language = locale.language
             val country = locale.country
-            return if (!country.isNullOrEmpty()
-                && (country.equals("tw", ignoreCase = true) || country.equals("hk", ignoreCase = true))
+            return if (!country.isNullOrEmpty() &&
+                (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
             ) {
                 language.lowercase() + "-Hant"
             } else {
@@ -133,13 +133,12 @@ enum class Language(
             val locale = locale
             val language = locale.language
             val country = locale.country
-            return if (!country.isNullOrEmpty()
-                && (country.equals("tw", ignoreCase = true) || country.equals("hk", ignoreCase = true))
+            return if (!country.isNullOrEmpty() &&
+                (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
             ) {
                 language.uppercase() + "T"
-            } else {
-                language.uppercase()
-            }
+            } else language.uppercase()
         }
 
     val isChinese: Boolean

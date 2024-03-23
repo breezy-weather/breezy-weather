@@ -33,5 +33,4 @@ interface PollenIndexSource : Source {
      * If a data exceed max level, it will fallback to last item
      */
     val pollenColors: Int
-
 }

@@ -20,7 +20,9 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,6 +50,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
@@ -55,7 +58,6 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
-import org.breezyweather.common.extensions.workManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
@@ -187,8 +189,8 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
                     )
                     appendLine("Attempt #${workInfo.runAttemptCount + 1}")
                 }
-                if (workInfo.state == WorkInfo.State.CANCELLED
-                    || workInfo.state == WorkInfo.State.FAILED) {
+                if (workInfo.state == WorkInfo.State.CANCELLED ||
+                    workInfo.state == WorkInfo.State.FAILED) {
                     appendLine(
                         "Stop reason code: ${workInfo.stopReason}",
                     )

@@ -31,11 +31,11 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
-import breezyweather.domain.weather.model.Current
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
@@ -152,7 +152,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             } else HeaderViewHolder.NB_CURRENT_ITEMS_PORTRAIT
             return if (detailsInHeaderNotNullList.size > nbMaxInHeader) {
                 detailsInHeaderNotNullList.subList(nbMaxInHeader, detailsInHeaderNotNullList.size) +
-                        detailsNotInHeaderNotNullList
+                    detailsNotInHeaderNotNullList
             } else {
                 detailsNotInHeaderNotNullList
             }

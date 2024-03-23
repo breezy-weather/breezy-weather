@@ -19,7 +19,10 @@ package org.breezyweather.theme.resource
 import android.content.Context
 import org.breezyweather.BreezyWeather
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.providers.*
+import org.breezyweather.theme.resource.providers.ChronusResourceProvider
+import org.breezyweather.theme.resource.providers.DefaultResourceProvider
+import org.breezyweather.theme.resource.providers.IconPackResourcesProvider
+import org.breezyweather.theme.resource.providers.ResourceProvider
 
 object ResourcesProviderFactory {
     val newInstance: ResourceProvider

@@ -20,9 +20,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
+import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.source.PollenIndexSource

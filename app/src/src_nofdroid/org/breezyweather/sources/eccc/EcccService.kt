@@ -18,10 +18,10 @@ package org.breezyweather.sources.eccc
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -60,8 +60,7 @@ class EcccService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val languageCode = SettingsManager.getInstance(context).language.code
 

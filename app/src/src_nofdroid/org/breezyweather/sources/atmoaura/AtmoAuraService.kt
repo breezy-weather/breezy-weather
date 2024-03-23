@@ -17,20 +17,20 @@
 package org.breezyweather.sources.atmoaura
 
 import android.content.Context
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
@@ -62,10 +62,14 @@ class AtmoAuraService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
-                && (!location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true))
-                && !location.provinceCode.isNullOrEmpty()
-                && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"))
+        return (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+            !location.countryCode.isNullOrEmpty() &&
+            location.countryCode.equals("FR", ignoreCase = true) &&
+            !location.provinceCode.isNullOrEmpty() &&
+            location.provinceCode in arrayOf(
+                "01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"
+            )
+        )
     }
     override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"
     override val pollenAttribution = null

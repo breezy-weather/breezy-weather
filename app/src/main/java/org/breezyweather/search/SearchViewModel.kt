@@ -17,12 +17,12 @@
 package org.breezyweather.search
 
 import android.app.Application
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.GeoViewModel
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import javax.inject.Inject

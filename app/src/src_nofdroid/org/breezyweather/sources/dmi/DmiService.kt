@@ -18,15 +18,15 @@ package org.breezyweather.sources.dmi
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -59,8 +59,7 @@ class DmiService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val weather = mApi.getWeather(
             location.latitude,
@@ -94,7 +93,6 @@ class DmiService @Inject constructor(
             convert(weatherResult, alertsResult, location)
         }
     }
-
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeatures = listOf(
@@ -153,9 +151,10 @@ class DmiService @Inject constructor(
     ): Boolean {
         // If we are in Denmark, we need location parameters (update it if coordinates changes,
         // OR if we didn't have it yet)
-        return location.countryCode.equals("DK", ignoreCase = true)
-                && (coordinatesChanged || location.parameters
-                    .getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty())
+        return location.countryCode.equals("DK", ignoreCase = true) &&
+            (coordinatesChanged ||
+                location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty()
+            )
     }
 
     override fun requestLocationParameters(

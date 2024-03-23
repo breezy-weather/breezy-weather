@@ -22,9 +22,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter

@@ -25,11 +25,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
-import breezyweather.domain.weather.model.Wind
 import org.breezyweather.common.ui.images.RotateDrawable
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView

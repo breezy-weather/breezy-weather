@@ -17,9 +17,9 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Initial implementation of secondary weather source
@@ -53,5 +53,4 @@ interface SecondaryWeatherSource : Source {
         location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper>
-
 }

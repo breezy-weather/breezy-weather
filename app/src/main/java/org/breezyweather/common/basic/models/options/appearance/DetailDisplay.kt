@@ -19,9 +19,9 @@ package org.breezyweather.common.basic.models.options.appearance
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.BaseEnum
-import breezyweather.domain.weather.model.Current
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription

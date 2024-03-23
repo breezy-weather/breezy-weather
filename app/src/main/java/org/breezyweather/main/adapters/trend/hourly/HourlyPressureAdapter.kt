@@ -21,9 +21,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Size
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
@@ -178,8 +178,10 @@ class HourlyPressureAdapter(
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return mHighestPressure != null && mLowestPressure != null
-                && mHighestPressure != PressureUnit.NORMAL.toFloat() && mLowestPressure != PressureUnit.NORMAL.toFloat()
+        return mHighestPressure != null &&
+            mLowestPressure != null &&
+            mHighestPressure != PressureUnit.NORMAL.toFloat() &&
+            mLowestPressure != PressureUnit.NORMAL.toFloat()
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)

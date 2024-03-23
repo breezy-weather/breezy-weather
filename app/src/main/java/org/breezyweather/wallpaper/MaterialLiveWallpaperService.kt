@@ -116,11 +116,11 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mHandler: Handler? = null
         private val mDrawableRunnable = Runnable {
             // Commented because not updating on rotate otherwise
-            /*if (mIntervalComputer == null
-                    || mImplementor == null
-                    || mBackground == null
-                    || mRotators == null
-                    || mHandler == null) {
+            /*if (mIntervalComputer == null ||
+                mImplementor == null ||
+                mBackground == null ||
+                mRotators == null ||
+                mHandler == null) {
                 return;
             }*/
             mIntervalComputer?.invalidate()

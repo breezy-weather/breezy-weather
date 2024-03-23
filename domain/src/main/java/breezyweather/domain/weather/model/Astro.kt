@@ -40,5 +40,4 @@ class Astro(
         }
     val isValid: Boolean
         get() = riseDate != null && setDate != null
-
 }

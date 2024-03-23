@@ -29,14 +29,14 @@ import android.provider.CalendarContract
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Weather
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import breezyweather.domain.weather.model.Weather
-import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
@@ -479,7 +479,7 @@ abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "aqi$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
                         weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
-                                weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
+                            weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
                     } else context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "pis$",

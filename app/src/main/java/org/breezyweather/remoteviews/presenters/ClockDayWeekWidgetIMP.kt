@@ -23,9 +23,9 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
@@ -213,7 +213,6 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextColor(R.id.widget_clock_day_week_temp_4, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_temp_5, color.textColor)
             }
-
         }
         if (textSize != 100) {
             val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
@@ -280,7 +279,6 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             .getAppWidgetIds(ComponentName(context, WidgetClockDayWeekProvider::class.java))
         return widgetIds != null && widgetIds.isNotEmpty()
     }
-
 
     private fun setOnClickPendingIntent(context: Context, views: RemoteViews, location: Location) {
         // weather.

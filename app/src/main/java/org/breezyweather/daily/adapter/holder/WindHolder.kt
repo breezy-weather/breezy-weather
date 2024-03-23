@@ -64,7 +64,7 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     mDirectionText.text = wind.getDirection(itemView.context)
                 } else {
                     mDirectionText.text = (wind.getDirection(itemView.context)
-                            + " (" + (degree % 360).toInt() + "°)")
+                        + " (" + (degree % 360).toInt() + "°)")
                 }
             }
             if ((wind.speed ?: 0.0) > 0) {

@@ -250,10 +250,7 @@ class MaterialPainterView(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        if (intervalComputer == null
-            || rotators == null
-            || impl == null
-        ) {
+        if (intervalComputer == null || rotators == null || impl == null) {
             return
         }
 

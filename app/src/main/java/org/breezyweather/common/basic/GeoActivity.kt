@@ -26,9 +26,9 @@ import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.setSystemBarStyle
+import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.settings.SettingsManager
 
 abstract class GeoActivity : AppCompatActivity() {

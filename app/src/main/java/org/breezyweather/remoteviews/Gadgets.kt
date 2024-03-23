@@ -27,5 +27,4 @@ object Gadgets {
             GadgetBridgeService.sendWeatherBroadcast(context, location);
         }
     }
-
 }

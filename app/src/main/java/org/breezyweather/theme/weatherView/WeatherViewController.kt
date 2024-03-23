@@ -17,9 +17,9 @@
 package org.breezyweather.theme.weatherView
 
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 

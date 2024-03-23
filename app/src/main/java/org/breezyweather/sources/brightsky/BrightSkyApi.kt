@@ -16,12 +16,12 @@
 
 package org.breezyweather.sources.brightsky
 
-import retrofit2.http.GET
-import retrofit2.http.Query
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface BrightSkyApi {
     @GET("weather")

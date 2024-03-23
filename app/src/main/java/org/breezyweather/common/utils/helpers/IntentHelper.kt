@@ -33,15 +33,15 @@ import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.activities.AboutActivity
 import org.breezyweather.settings.activities.CardDisplayManageActivity
 import org.breezyweather.settings.activities.DailyTrendDisplayManageActivity
+import org.breezyweather.settings.activities.DependenciesActivity
 import org.breezyweather.settings.activities.DetailDisplayManageActivity
 import org.breezyweather.settings.activities.HourlyTrendDisplayManageActivity
 import org.breezyweather.settings.activities.MainScreenSettingsActivity
 import org.breezyweather.settings.activities.PreviewIconActivity
+import org.breezyweather.settings.activities.PrivacyPolicyActivity
 import org.breezyweather.settings.activities.SelectLocationProviderActivity
 import org.breezyweather.settings.activities.SelectWeatherProviderActivity
 import org.breezyweather.settings.activities.SettingsActivity
-import org.breezyweather.settings.activities.DependenciesActivity
-import org.breezyweather.settings.activities.PrivacyPolicyActivity
 
 /**
  * Intent helper.

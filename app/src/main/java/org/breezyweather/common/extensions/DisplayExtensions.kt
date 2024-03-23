@@ -48,7 +48,7 @@ const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
 
 val Context.isTabletDevice: Boolean
     get() = (this.resources.configuration.screenLayout
-            and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE
+        and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE
 
 val Context.isLandscape: Boolean
     get() = this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -58,7 +58,7 @@ val Context.isRtl: Boolean
 
 val Context.isDarkMode: Boolean
     get() = (this.resources.configuration.uiMode
-            and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
 val Context.isMotionReduced: Boolean
     get() {
@@ -68,7 +68,6 @@ val Context.isMotionReduced: Boolean
             false
         }
     }
-
 
 fun Context.dpToPx(dp: Float): Float {
     return dp * (this.resources.displayMetrics.densityDpi / 160f)
@@ -112,8 +111,8 @@ fun Window.setSystemBarStyle(
     var navigationShader = navigationShaderP
     var lightNavigation = lightNavigationP
     var visibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
 
     // status bar.
     if (lightStatus) {
@@ -169,7 +168,6 @@ fun Drawable.toBitmap(): Bitmap {
     this.draw(canvas)
     return bitmap
 }
-
 
 // translationY, scaleX, scaleY
 @Size(3)

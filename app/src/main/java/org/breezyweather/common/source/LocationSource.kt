@@ -21,7 +21,6 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.hasPermission
 
-
 interface LocationSource : Source {
 
     fun requestLocation(context: Context): Observable<LocationPositionWrapper>

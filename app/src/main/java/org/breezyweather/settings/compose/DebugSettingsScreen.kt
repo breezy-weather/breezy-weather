@@ -26,7 +26,8 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.utils.CrashLogUtils
-import org.breezyweather.settings.preference.*
+import org.breezyweather.settings.preference.bottomInsetItem
+import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 

@@ -19,11 +19,18 @@ package org.breezyweather.main.adapters.trend
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.main.adapters.trend.daily.*
+import org.breezyweather.main.adapters.trend.daily.AbsDailyTrendAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyAirQualityAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyFeelsLikeAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyPrecipitationAdapter
+import org.breezyweather.main.adapters.trend.daily.DailySunshineAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyTemperatureAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyUVAdapter
+import org.breezyweather.main.adapters.trend.daily.DailyWindAdapter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 

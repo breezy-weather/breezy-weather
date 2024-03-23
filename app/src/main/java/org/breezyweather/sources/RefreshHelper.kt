@@ -23,16 +23,16 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
-import io.reactivex.rxjava3.core.Observable
-import kotlinx.coroutines.rx3.awaitFirstOrElse
-import kotlinx.serialization.MissingFieldException
-import kotlinx.serialization.SerializationException
-import org.breezyweather.BreezyWeather
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.rx3.awaitFirstOrElse
+import kotlinx.serialization.MissingFieldException
+import kotlinx.serialization.SerializationException
+import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -55,8 +55,8 @@ import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
@@ -165,14 +165,14 @@ class RefreshHelper @Inject constructor(
         }
         if (locationService.permissions.isNotEmpty()) {
             // if needs any location permission.
-            if (!context.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                && !context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+            if (!context.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) &&
+                !context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             ) {
                 errors.add(RefreshError(RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING))
             }
             if (background) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                    && !context.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                    !context.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 ) {
                     errors.add(RefreshError(RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING))
                 }
@@ -245,8 +245,7 @@ class RefreshHelper @Inject constructor(
         context: Context, location: Location, coordinatesChanged: Boolean
     ): WeatherResult {
         try {
-            if (!location.isUsable
-                || location.needsGeocodeRefresh) {
+            if (!location.isUsable || location.needsGeocodeRefresh) {
                 return WeatherResult(
                     location.weather,
                     listOf(RefreshError(RefreshErrorType.INVALID_LOCATION))
@@ -307,9 +306,9 @@ class RefreshHelper @Inject constructor(
             if (location.weather?.base != null) {
                 isMainDataValid = isWeatherDataStillValid(
                     location,
-                    isRestricted = !BreezyWeather.instance.debugMode
-                            && service is ConfigurableSource
-                            && service.isRestricted,
+                    isRestricted = !BreezyWeather.instance.debugMode &&
+                        service is ConfigurableSource &&
+                        service.isRestricted,
                     minimumTime = languageUpdateTime
                 )
                 // If main data is still valid, let’s check if there are features inside main
@@ -322,9 +321,9 @@ class RefreshHelper @Inject constructor(
                                 !isWeatherDataStillValid(
                                     location,
                                     it,
-                                    isRestricted = !BreezyWeather.instance.debugMode
-                                            && service is ConfigurableSource
-                                            && service.isRestricted,
+                                    isRestricted = !BreezyWeather.instance.debugMode &&
+                                        service is ConfigurableSource &&
+                                        service.isRestricted,
                                     minimumTime = languageUpdateTime
                                 )
                             ) {
@@ -354,8 +353,8 @@ class RefreshHelper @Inject constructor(
                 location.weather!!.toWeatherWrapper()
             } else {
                 try {
-                    if (service is LocationParametersSource
-                        && service.needsLocationParametersRefresh(location, coordinatesChanged)) {
+                    if (service is LocationParametersSource &&
+                        service.needsLocationParametersRefresh(location, coordinatesChanged)) {
                         locationParameters[service.id] =
                             (if (locationParameters.getOrElse(service.id) { null } != null) {
                                 locationParameters[service.id]!!
@@ -382,24 +381,24 @@ class RefreshHelper @Inject constructor(
                     )
                 }
             }
-            var airQualityUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            var airQualityUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                 Date()
             } else base.airQualityUpdateTime
-            var pollenUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            var pollenUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
                 Date()
             } else base.pollenUpdateTime
-            var minutelyUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            var minutelyUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 Date()
             } else base.minutelyUpdateTime
-            var alertsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            var alertsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                 Date()
             } else base.alertsUpdateTime
-            var normalsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
-                && !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            var normalsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                 Date()
             } else base.normalsUpdateTime
 
@@ -428,9 +427,9 @@ class RefreshHelper @Inject constructor(
                                 !isWeatherDataStillValid(
                                     location,
                                     it,
-                                    isRestricted = !BreezyWeather.instance.debugMode
-                                            && secondaryService is ConfigurableSource
-                                            && secondaryService.isRestricted,
+                                    isRestricted = !BreezyWeather.instance.debugMode &&
+                                        secondaryService is ConfigurableSource &&
+                                        secondaryService.isRestricted,
                                     minimumTime = languageUpdateTime
                                 )
                             }
@@ -453,8 +452,8 @@ class RefreshHelper @Inject constructor(
                                     }
                                 }
                                 secondarySourceCalls[entry.key] = try {
-                                    if (secondaryService is LocationParametersSource
-                                        && secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)) {
+                                    if (secondaryService is LocationParametersSource &&
+                                        secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)) {
                                         locationParameters[secondaryService.id] =
                                             (if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
                                                 locationParameters[secondaryService.id]!!
@@ -845,8 +844,7 @@ class RefreshHelper @Inject constructor(
 
         val currentTime = System.currentTimeMillis()
 
-        return (currentTime >= updateTime.time
-                && currentTime - updateTime.time < wait * 60 * 1000)
+        return currentTime >= updateTime.time && currentTime - updateTime.time < wait * 60 * 1000
     }
 
     companion object {

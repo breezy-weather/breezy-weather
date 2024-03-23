@@ -113,5 +113,4 @@ class DbModule {
     fun provideWeatherRepository(databaseHandler: DatabaseHandler): WeatherRepository {
         return WeatherRepository(databaseHandler)
     }
-
 }

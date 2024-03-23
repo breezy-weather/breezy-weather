@@ -74,8 +74,8 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 )
             mSun.visibility = View.VISIBLE
             mSunText.text = (model.sun.riseDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
-                    (model.sun.setDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
-                    (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+                (model.sun.setDate?.getFormattedTime(location, language, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
+                (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
         } else {
             mSun.visibility = View.GONE
         }

@@ -48,7 +48,7 @@ import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
-import org.breezyweather.common.basic.models.options.appearance.*
+import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
@@ -202,9 +202,7 @@ fun AppearanceSettingsScreen(
                     text = {
                         // 3 columns: icon / name / search icon
                         LazyColumn(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                /*.fillMaxHeight()*/,
+                            modifier = Modifier.fillMaxWidth()/*.fillMaxHeight()*/,
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             items(listProviderState.value) {

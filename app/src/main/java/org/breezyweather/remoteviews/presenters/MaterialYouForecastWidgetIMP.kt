@@ -24,9 +24,9 @@ import android.util.SizeF
 import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.domain.location.model.getPlace

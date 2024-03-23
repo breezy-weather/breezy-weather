@@ -2,8 +2,8 @@ package org.breezyweather.domain.location.model
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import org.breezyweather.domain.weather.model.getRiseProgress
 import org.breezyweather.R
+import org.breezyweather.domain.weather.model.getRiseProgress
 
 fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean = false): String {
     if (showCurrentPositionInPriority && isCurrentPosition) {

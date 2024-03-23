@@ -17,8 +17,8 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
-import org.breezyweather.R
 import breezyweather.domain.weather.model.Wind
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl

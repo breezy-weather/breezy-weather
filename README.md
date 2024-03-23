@@ -1,6 +1,6 @@
 <div align="center">
 <br />
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" />
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Logo" />
 </div>
 
 <h1 align="center">Breezy Weather</h1>

@@ -40,7 +40,6 @@ import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 
-
 /**
  * Converts Bright Sky result into a forecast
  */

@@ -55,8 +55,8 @@ import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 // TODO: Consider moving this activity as a fragment of MainActivity, so we don't have to query the database twice

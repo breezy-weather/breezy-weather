@@ -30,7 +30,6 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 
-
 class ThemeManager private constructor(
     val weatherThemeDelegate: WeatherThemeDelegate,
     var darkMode: DarkMode,

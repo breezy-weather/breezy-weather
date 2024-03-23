@@ -31,10 +31,10 @@ import android.widget.TextView
 import androidx.annotation.Size
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
@@ -305,8 +305,8 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private fun getPathAnimatorDuration(index: Int): Long {
         val duration = max(
             1000 + 3000.0
-                    * (mCurrentTimes[index] - mStartTimes[index])
-                    / (mEndTimes[index] - mStartTimes[index]),
+                * (mCurrentTimes[index] - mStartTimes[index])
+                / (mEndTimes[index] - mStartTimes[index]),
             0.0
         ).toLong()
         return min(duration, 4000)

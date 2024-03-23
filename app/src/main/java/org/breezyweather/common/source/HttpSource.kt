@@ -25,5 +25,4 @@ abstract class HttpSource : Source {
      * TODO: Implement this in UI
      */
     abstract val privacyPolicyUrl: String
-
 }

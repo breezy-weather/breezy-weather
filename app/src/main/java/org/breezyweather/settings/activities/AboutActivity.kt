@@ -61,8 +61,8 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
 
 private class AboutAppLinkItem(

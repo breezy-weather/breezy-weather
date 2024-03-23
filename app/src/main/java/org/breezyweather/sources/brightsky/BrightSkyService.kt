@@ -18,11 +18,11 @@ package org.breezyweather.sources.brightsky
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -74,15 +74,14 @@ class BrightSkyService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
         val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, -1)
             set(Calendar.HOUR_OF_DAY, 0)
         }.time
-        val lastDate = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val lastDate = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, 12)
             set(Calendar.HOUR_OF_DAY, 0)
         }.time
@@ -111,14 +110,8 @@ class BrightSkyService @Inject constructor(
         }
 
         return Observable.zip(
-            weather,
-            currentWeather,
-            alerts
-        ) {
-            brightSkyWeather: BrightSkyWeatherResult,
-            brightSkyCurrentWeather: BrightSkyCurrentWeatherResult,
-            brightSkyAlerts: BrightSkyAlertsResult
-            ->
+            weather, currentWeather, alerts
+        ) { brightSkyWeather, brightSkyCurrentWeather, brightSkyAlerts ->
             val languageCode = SettingsManager.getInstance(context).language.code
             convert(
                 brightSkyWeather,

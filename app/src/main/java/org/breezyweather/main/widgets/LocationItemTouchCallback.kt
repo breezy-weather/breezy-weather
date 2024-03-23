@@ -22,9 +22,9 @@ import androidx.annotation.Px
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivityViewModel

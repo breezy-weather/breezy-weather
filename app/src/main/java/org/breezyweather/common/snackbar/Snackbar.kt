@@ -380,9 +380,9 @@ class Snackbar private constructor(
             )
             var lp = child.layoutParams as MarginLayoutParams
             width = (child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin
-                    + paddingLeft + paddingRight)
+                + paddingLeft + paddingRight)
             height = (child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin
-                    + paddingTop + paddingBottom)
+                + paddingTop + paddingBottom)
             if (mMaxWidth > 0 && width > mMaxWidth) {
                 widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.EXACTLY)
                 measureChildWithMargins(
@@ -394,9 +394,9 @@ class Snackbar private constructor(
                 )
                 lp = child.layoutParams as MarginLayoutParams
                 width = (child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin
-                        + paddingLeft + paddingRight)
+                    + paddingLeft + paddingRight)
                 height = (child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin
-                        + paddingTop + paddingBottom)
+                    + paddingTop + paddingBottom)
             }
             setMeasuredDimension(width, height)
         }

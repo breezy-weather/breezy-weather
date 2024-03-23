@@ -19,13 +19,13 @@ package org.breezyweather.background.weather
 import android.content.Context
 import android.net.Uri
 import androidx.core.app.NotificationCompat
+import breezyweather.domain.location.model.Location
+import org.breezyweather.R
+import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.chop
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
-import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import org.breezyweather.common.extensions.chop
-import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.remoteviews.Notifications
 
 /**

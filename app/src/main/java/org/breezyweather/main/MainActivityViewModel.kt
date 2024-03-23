@@ -25,14 +25,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.breezyweather.R
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
-import breezyweather.domain.location.model.Location
-import org.breezyweather.R
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError
@@ -286,8 +286,8 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId == locationToCheck.formattedId
-            && SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
+        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId == locationToCheck.formattedId &&
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
             _loading.value = true
             _loading.value = false
             SnackbarHelper.showSnackbar(
@@ -577,13 +577,12 @@ class MainActivityViewModel @Inject constructor(
                 context, location, false
             )
 
-            if (locationResult.location.isUsable
-                && !locationResult.location.needsGeocodeRefresh) {
+            if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
                 val weatherResult = refreshHelper.getWeather(
                     context,
                     locationResult.location,
-                    location.longitude != locationResult.location.longitude
-                            || location.latitude != locationResult.location.latitude
+                    location.longitude != locationResult.location.longitude ||
+                        location.latitude != locationResult.location.latitude
                 )
                 callback.onCompleted(
                     locationResult.location.copy(weather = weatherResult.weather),

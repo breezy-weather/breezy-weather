@@ -48,8 +48,8 @@ fun Context.notify(
 
 fun Context.notify(id: Int, notification: Notification) {
     if (
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-        && PermissionChecker.checkSelfPermission(
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+        PermissionChecker.checkSelfPermission(
             this,
             Manifest.permission.POST_NOTIFICATIONS
         ) != PermissionChecker.PERMISSION_GRANTED

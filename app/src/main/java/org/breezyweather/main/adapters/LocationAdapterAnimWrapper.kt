@@ -16,7 +16,11 @@
 
 package org.breezyweather.main.adapters
 
-import android.animation.*
+import android.animation.Animator
+import android.animation.AnimatorInflater
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
 import org.breezyweather.R

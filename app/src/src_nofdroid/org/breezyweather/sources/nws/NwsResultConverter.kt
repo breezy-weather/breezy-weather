@@ -96,16 +96,16 @@ fun convert(
     //val ceilingHeightForecastList = getDoubleForecast(forecastResult.properties.ceilingHeight, false, timeZone)
 
     val uniqueDates = (temperatureForecastList.keys + dewpointForecastList.keys +
-            relativeHumidityList.keys + apparentTemperatureForecastList.keys +
-            wetBulbGlobeTemperatureForecastList.keys + //heatIndexForecastList.keys +
-            windChillForecastList.keys + skyCoverForecastList.keys +
-            windDirectionForecastList.keys + windSpeedForecastList.keys +
-            windGustForecastList.keys + //weatherForecastList.keys +
-            probabilityOfPrecipitationForecastList.keys +
-            quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
-            snowfallAmountForecastList.keys + //ceilingHeightForecastList.keys +
-            visibilityForecastList.keys + pressureForecastList.keys +
-            probabilityOfThunderForecastList.keys).sorted()
+        relativeHumidityList.keys + apparentTemperatureForecastList.keys +
+        wetBulbGlobeTemperatureForecastList.keys + //heatIndexForecastList.keys +
+        windChillForecastList.keys + skyCoverForecastList.keys +
+        windDirectionForecastList.keys + windSpeedForecastList.keys +
+        windGustForecastList.keys + //weatherForecastList.keys +
+        probabilityOfPrecipitationForecastList.keys +
+        quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
+        snowfallAmountForecastList.keys + //ceilingHeightForecastList.keys +
+        visibilityForecastList.keys + pressureForecastList.keys +
+        probabilityOfThunderForecastList.keys).sorted()
 
     return WeatherWrapper(
         dailyForecast = getDailyForecast(location, uniqueDates),

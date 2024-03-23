@@ -92,10 +92,10 @@ class WindImplementor(
 
         fun move(interval: Long, deltaRotation3D: Float) {
             x += (speed * interval
-                    * (scale.toDouble().pow(1.5)
-                    + 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(16 * Math.PI / 180.0))).toFloat()
+                * (scale.toDouble().pow(1.5)
+                + 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(16 * Math.PI / 180.0))).toFloat()
             y -= (speed * interval
-                    * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(16 * Math.PI / 180.0)).toFloat()
+                * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(16 * Math.PI / 180.0)).toFloat()
             if (x >= mCanvasSize) {
                 init(false)
             } else {
@@ -127,8 +127,10 @@ class WindImplementor(
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float
     ) {
         for (w in mWinds) {
             w.move(interval, if (mLastRotation3D == INITIAL_ROTATION_3D) 0f else rotation3D - mLastRotation3D)
@@ -137,8 +139,11 @@ class WindImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float
     ) {
         var rotation2Dc = rotation2D
         if (scrollRate < 1) {

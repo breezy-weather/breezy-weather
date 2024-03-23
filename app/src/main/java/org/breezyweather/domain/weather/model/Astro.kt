@@ -22,7 +22,7 @@ fun getRiseProgress(
 
     val timezoneCalendar = Calendar.getInstance(location.javaTimeZone)
     val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY]
-            * 60 + timezoneCalendar[Calendar.MINUTE]) * 60 * 1000
+        * 60 + timezoneCalendar[Calendar.MINUTE]) * 60 * 1000
 
     val riseTime = astro?.riseDate?.toTimezone(location.javaTimeZone)?.time
     val setTime = astro?.setDate?.toTimezone(location.javaTimeZone)?.time
@@ -34,12 +34,12 @@ fun getRiseProgress(
             return -1.0
         }
         return (currentTime - riseHourMinuteTime).toDouble() / (
-                setHourMinuteTime - riseHourMinuteTime).toDouble()
+            setHourMinuteTime - riseHourMinuteTime).toDouble()
     }
 
     val riseCalendar = Calendar.getInstance().apply { time = Date(riseTime) }
     val riseHourMinuteTime = (riseCalendar[Calendar.HOUR_OF_DAY]
-            * 60 + riseCalendar[Calendar.MINUTE]) * 60 * 1000
+        * 60 + riseCalendar[Calendar.MINUTE]) * 60 * 1000
 
     var safeSetTime = setTime
     while (safeSetTime <= riseTime) {
@@ -48,5 +48,5 @@ fun getRiseProgress(
     val setHourMinuteTime = riseHourMinuteTime + (safeSetTime - riseTime)
 
     return (currentTime - riseHourMinuteTime).toDouble() / (
-            setHourMinuteTime - riseHourMinuteTime).toDouble()
+        setHourMinuteTime - riseHourMinuteTime).toDouble()
 }

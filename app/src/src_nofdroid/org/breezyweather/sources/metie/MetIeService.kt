@@ -18,14 +18,14 @@ package org.breezyweather.sources.metie
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -66,8 +66,7 @@ class MetIeService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             location.latitude,
@@ -152,9 +151,9 @@ class MetIeService @Inject constructor(
             location.latitude,
             location.longitude
         ).map {
-            if (it.city != "NO LOCATION SELECTED"
-                && !it.county.isNullOrEmpty()
-                && regionsMapping.containsKey(it.county)) {
+            if (it.city != "NO LOCATION SELECTED" &&
+                !it.county.isNullOrEmpty() &&
+                regionsMapping.containsKey(it.county)) {
                 mapOf("region" to it.county)
             } else {
                 throw InvalidLocationException()

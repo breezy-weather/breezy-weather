@@ -34,9 +34,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import breezyweather.domain.weather.model.Pollen
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
-import breezyweather.domain.weather.model.Pollen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor

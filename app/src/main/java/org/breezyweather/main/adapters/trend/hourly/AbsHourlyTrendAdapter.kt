@@ -19,9 +19,9 @@ package org.breezyweather.main.adapters.trend.hourly
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getHour

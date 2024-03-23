@@ -23,13 +23,13 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
@@ -398,9 +398,9 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (!current.weatherText.isNullOrEmpty()) {
                     stringBuilder.append(current.weatherText)
                 }
-                if (weather.dailyForecast.isNotEmpty()
-                    && weather.today?.day?.temperature?.temperature != null
-                    && weather.today?.night?.temperature?.temperature != null) {
+                if (weather.dailyForecast.isNotEmpty() &&
+                    weather.today?.day?.temperature?.temperature != null &&
+                    weather.today?.night?.temperature?.temperature != null) {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
@@ -425,47 +425,47 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
-                        + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + " "
+                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
                 "symmetry" -> (Date().getWeek(location, language)
-                        + " "
-                        + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + " "
+                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Date().getWeek(location, language)
-                        + " " + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + " " + Date().getWeek(location, language)
+                    + " " + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
 
                 else -> null
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
                     (airQuality.getName(context)
-                            + " ("
-                            + airQuality.getIndex()
-                            + ")")
+                        + " ("
+                        + airQuality.getIndex()
+                        + ")")
                 } else null
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
-                        + " "
-                        + LunarHelper.getLunarDate(Date()))
+                    + " "
+                    + LunarHelper.getLunarDate(Date()))
 
                 "symmetry" -> (Date().getWeek(location, language)
-                        + " "
-                        + LunarHelper.getLunarDate(Date()))
+                    + " "
+                    + LunarHelper.getLunarDate(Date()))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                        + " " + Date().getWeek(location, language)
-                        + " " + LunarHelper.getLunarDate(Date()))
+                    + " " + Date().getWeek(location, language)
+                    + " " + LunarHelper.getLunarDate(Date()))
 
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 (context.getString(R.string.temperature_feels_like)
-                        + " "
-                        + temperatureUnit.getValueText(context, it, 0))
+                    + " "
+                    + temperatureUnit.getValueText(context, it, 0))
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather)
         }

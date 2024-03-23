@@ -22,9 +22,9 @@ import android.content.Context
 import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Widgets

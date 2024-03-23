@@ -46,14 +46,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
 import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import org.breezyweather.common.ui.widgets.RoundProgress
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.validAirQuality
@@ -287,8 +287,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_pm25),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_pm25_voice)
-                                + context.getString(R.string.comma_separator)
-                                + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                            + context.getString(R.string.comma_separator)
+                            + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -303,8 +303,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_pm10),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_pm10_voice) +
-                                context.getString(R.string.comma_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                            context.getString(R.string.comma_separator) +
+                            AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -319,8 +319,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_o3),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_o3_voice) +
-                                context.getString(R.string.comma_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                            context.getString(R.string.comma_separator) +
+                            AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -335,8 +335,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_no2),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
                         context.getString(R.string.air_quality_no2_voice) +
-                                context.getString(R.string.comma_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                            context.getString(R.string.comma_separator) +
+                            AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )
@@ -351,8 +351,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_so2),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2!!),
                         context.getString(R.string.air_quality_so2_voice) +
-                                context.getString(R.string.comma_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
+                            context.getString(R.string.comma_separator) +
+                            AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
                         executeAnimation
                     )
                 )
@@ -367,8 +367,8 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         context.getString(R.string.air_quality_co),
                         AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO!!),
                         context.getString(R.string.air_quality_co_voice) +
-                                context.getString(R.string.comma_separator) +
-                                AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
+                            context.getString(R.string.comma_separator) +
+                            AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
                         executeAnimation
                     )
                 )

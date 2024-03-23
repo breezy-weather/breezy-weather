@@ -36,17 +36,13 @@ class BusLiveData<T>(
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         runOnMainThread {
-            innerObserver(owner,
-                    MyObserverWrapper(this, observer, version)
-            )
+            innerObserver(owner, MyObserverWrapper(this, observer, version))
         }
     }
 
     fun observeStickily(owner: LifecycleOwner, observer: Observer<in T>) {
         runOnMainThread {
-            innerObserver(owner,
-                    MyObserverWrapper(this, observer, START_VERSION)
-            )
+            innerObserver(owner, MyObserverWrapper(this, observer, START_VERSION))
         }
     }
 
@@ -57,17 +53,13 @@ class BusLiveData<T>(
 
     override fun observeForever(observer: Observer<in T>) {
         runOnMainThread {
-            innerObserverForever(
-                    MyObserverWrapper(this, observer, version)
-            )
+            innerObserverForever(MyObserverWrapper(this, observer, version))
         }
     }
 
     fun observeStickilyForever(observer: Observer<in T>) {
         runOnMainThread {
-            innerObserverForever(
-                    MyObserverWrapper(this, observer, START_VERSION)
-            )
+            innerObserverForever(MyObserverWrapper(this, observer, START_VERSION))
         }
     }
 

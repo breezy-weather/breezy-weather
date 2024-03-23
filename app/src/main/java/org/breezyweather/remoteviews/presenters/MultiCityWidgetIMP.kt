@@ -25,9 +25,9 @@ import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.IdRes
 import androidx.annotation.IntRange
+import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMultiCityProvider
-import breezyweather.domain.location.model.Location
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getTrendTemperature

@@ -100,16 +100,12 @@ object Utils {
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
-            )
-                + "\u202f"
-                + getName(context, enum))
+            ) + "\u202f" + getName(context, enum))
     } else {
         (formatDouble(
             enum.getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
-        )
-                + "\u202f"
-                + getName(context, enum))
+        ) + "\u202f" + getName(context, enum))
     }
 
     fun getValueText(
@@ -124,15 +120,11 @@ object Utils {
                 formatInt(
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                 )
-            )
-                + "\u202f"
-                + getName(context, enum))
+            ) + "\u202f" + getName(context, enum))
     } else {
         (formatInt(
             enum.getValueWithoutUnit(valueInDefaultUnit),
-        )
-                + "\u202f"
-                + getName(context, enum))
+        ) + "\u202f" + getName(context, enum))
     }
 
     fun getVoiceText(
@@ -149,16 +141,12 @@ object Utils {
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
-            )
-                + "\u202f"
-                + getVoice(context, enum))
+            ) + "\u202f" + getVoice(context, enum))
     } else {
         (formatDouble(
             enum.getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
-        )
-                + "\u202f"
-                + getVoice(context, enum))
+        ) + "\u202f" + getVoice(context, enum))
     }
 
     fun getVoiceText(
@@ -173,15 +161,11 @@ object Utils {
                 formatInt(
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                 )
-            )
-                + "\u202f"
-                + getVoice(context, enum))
+            ) + "\u202f" + getVoice(context, enum))
     } else {
         (formatInt(
             enum.getValueWithoutUnit(valueInDefaultUnit),
-        )
-                + "\u202f"
-                + getVoice(context, enum))
+        ) + "\u202f" + getVoice(context, enum))
     }
 
     fun formatDouble(value: Double, decimalNumber: Int = 2): String {

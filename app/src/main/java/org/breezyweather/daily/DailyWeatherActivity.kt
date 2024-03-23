@@ -26,13 +26,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager.widget.ViewPager
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.insets.FitBothSideBarView
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Daily
-import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth

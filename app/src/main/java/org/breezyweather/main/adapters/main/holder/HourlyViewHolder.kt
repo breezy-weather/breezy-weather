@@ -22,10 +22,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Minutely
+import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -50,9 +50,9 @@ private fun needToShowMinutelyForecast(minutelyList: List<Minutely>) =
 class HourlyViewHolder(
     parent: ViewGroup
 ) : AbstractMainCardViewHolder(
-        LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.container_main_hourly_trend_card, parent, false)
+    LayoutInflater
+        .from(parent.context)
+        .inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
     private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
     private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)

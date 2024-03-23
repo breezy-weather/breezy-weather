@@ -19,11 +19,21 @@ package org.breezyweather.main.adapters.trend
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.breezyweather.common.basic.GeoActivity
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.main.adapters.trend.hourly.*
+import org.breezyweather.main.adapters.trend.hourly.AbsHourlyTrendAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyAirQualityAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyCloudCoverAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyFeelsLikeAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyHumidityAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyPrecipitationAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyPressureAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyTemperatureAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyUVAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyVisibilityAdapter
+import org.breezyweather.main.adapters.trend.hourly.HourlyWindAdapter
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 

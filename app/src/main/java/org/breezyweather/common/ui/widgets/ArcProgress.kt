@@ -284,8 +284,8 @@ class ArcProgress @JvmOverloads constructor(
             mBottomTextPaint.color = mBottomTextColor
             mBottomTextPaint.textSize = mBottomTextSize
             val bottomTextBaseline = (height
-                    + (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2
-                    - mProgressWidth * 0.33f)
+                + (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2
+                - mProgressWidth * 0.33f)
             canvas.drawText(
                 mBottomText!!,
                 (width - mBottomTextPaint.measureText(mBottomText)) / 2.0f,

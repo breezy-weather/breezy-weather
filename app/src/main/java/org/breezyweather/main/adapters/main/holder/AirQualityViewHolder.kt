@@ -48,17 +48,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.AirQuality
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.location.model.Location
-import org.breezyweather.domain.weather.index.PollutantIndex
-import breezyweather.domain.weather.model.AirQuality
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.ArcProgress
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
@@ -159,7 +159,6 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
-
 
     @Composable
     private fun AirQualityDialogView(airQuality: AirQuality) {

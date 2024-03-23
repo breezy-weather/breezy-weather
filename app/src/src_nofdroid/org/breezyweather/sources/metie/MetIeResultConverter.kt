@@ -169,14 +169,18 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
             startsWith("03") -> WeatherCode.PARTLY_CLOUDY
             startsWith("04") -> WeatherCode.CLOUDY
             startsWith("05") || startsWith("09") || startsWith("10") ||
-            startsWith("40") || startsWith("41") || startsWith("46") -> WeatherCode.RAIN
+                startsWith("40") || startsWith("41") ||
+                startsWith("46") -> WeatherCode.RAIN
             startsWith("06") || startsWith("11") || startsWith("14") ||
-            startsWith("2")  || startsWith("30") || startsWith("31") ||
-            startsWith("32") || startsWith("33") || startsWith("34") -> WeatherCode.THUNDERSTORM
+                startsWith("2")  || startsWith("30") || startsWith("31") ||
+                startsWith("32") || startsWith("33") ||
+                startsWith("34") -> WeatherCode.THUNDERSTORM
             startsWith("07") || startsWith("12") || startsWith("42") ||
-            startsWith("43") || startsWith("47") || startsWith("48") -> WeatherCode.SLEET
+                startsWith("43") || startsWith("47") ||
+                startsWith("48") -> WeatherCode.SLEET
             startsWith("08") || startsWith("13") || startsWith("44") ||
-            startsWith("45") || startsWith("49") || startsWith("50") -> WeatherCode.SNOW
+                startsWith("45") || startsWith("49") ||
+                startsWith("50") -> WeatherCode.SNOW
             startsWith("15") -> WeatherCode.FOG
             startsWith("51") || startsWith("52") -> WeatherCode.HAIL
             else -> null

@@ -45,7 +45,6 @@ import java.util.Date
 import java.util.Objects
 import kotlin.math.roundToInt
 
-
 /**
  * Converts PirateWeather result into a forecast
  */

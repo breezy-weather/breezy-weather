@@ -150,7 +150,6 @@ private fun getDailyList(
     return dailyList
 }
 
-
 private fun getHourlyList(
     hourlyResult: List<OpenWeatherOneCallHourly>,
     hourlyAirQuality: MutableMap<Date, AirQuality>
@@ -263,7 +262,7 @@ private fun getHourlyAirQuality(
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
     airPollutionResultList?.forEach {
         airQualityHourly[it.dt.times(1000).toDate()] = AirQuality(
-            pM25 = it.components?.pm2_5,
+            pM25 = it.components?.pm25,
             pM10 = it.components?.pm10,
             sO2 = it.components?.so2,
             nO2 = it.components?.no2,

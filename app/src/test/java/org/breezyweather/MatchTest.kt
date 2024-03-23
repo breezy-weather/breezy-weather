@@ -33,5 +33,4 @@ class MatchTest {
         println(Utils.formatDouble(7.00646, 2))
         println(Utils.formatDouble(7.00246, 2))
     }
-
 }

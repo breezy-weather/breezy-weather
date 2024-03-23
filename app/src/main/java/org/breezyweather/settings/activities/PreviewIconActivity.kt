@@ -22,10 +22,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.weather.model.WeatherCode
 import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.utils.ColorUtils

@@ -206,14 +206,10 @@ data class Location(
 
     override fun toString(): String {
         val builder = StringBuilder("$country $province")
-        if (province != city
-            && city.isNotEmpty()
-        ) {
+        if (province != city && city.isNotEmpty()) {
             builder.append(" ").append(city)
         }
-        if (city != district
-            && !district.isNullOrEmpty()
-        ) {
+        if (city != district && !district.isNullOrEmpty()) {
             builder.append(" ").append(district)
         }
         return builder.toString()
@@ -252,13 +248,11 @@ data class Location(
         if (cityId == location.cityId) {
             return true
         }
-        if (isEquals(province, location.province)
-            && isEquals(city, location.city)
-        ) {
+        if (isEquals(province, location.province) && isEquals(city, location.city)) {
             return true
         }
-        return if (isEquals(province, location.province)
-            && cityAndDistrict == location.cityAndDistrict
+        return if (isEquals(province, location.province) &&
+            cityAndDistrict == location.cityAndDistrict
         ) {
             true
         } else {
@@ -322,7 +316,7 @@ data class Location(
             lat1: Double, lon1: Double,
             lat2: Double, lon2: Double
         ): Double {
-            val R = 6371 // Radius of the earth
+            val r = 6371 // Radius of the earth
 
             val latDistance = Math.toRadians(lat2 - lat1)
             val lonDistance = Math.toRadians(lon2 - lon1)
@@ -330,7 +324,7 @@ data class Location(
                     + (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2))
                     * sin(lonDistance / 2) * sin(lonDistance / 2)))
             val c = 2 * atan2(sqrt(a), sqrt(1 - a))
-            var distance = R * c * 1000 // convert to meters
+            var distance = r * c * 1000 // convert to meters
 
             distance = distance.pow(2.0)
 

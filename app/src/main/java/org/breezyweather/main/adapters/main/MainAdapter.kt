@@ -26,7 +26,16 @@ import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.MainActivity
-import org.breezyweather.main.adapters.main.holder.*
+import org.breezyweather.main.adapters.main.holder.AbstractMainCardViewHolder
+import org.breezyweather.main.adapters.main.holder.AbstractMainViewHolder
+import org.breezyweather.main.adapters.main.holder.AirQualityViewHolder
+import org.breezyweather.main.adapters.main.holder.AstroViewHolder
+import org.breezyweather.main.adapters.main.holder.DailyViewHolder
+import org.breezyweather.main.adapters.main.holder.DetailsViewHolder
+import org.breezyweather.main.adapters.main.holder.FooterViewHolder
+import org.breezyweather.main.adapters.main.holder.HeaderViewHolder
+import org.breezyweather.main.adapters.main.holder.HourlyViewHolder
+import org.breezyweather.main.adapters.main.holder.PollenViewHolder
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
@@ -73,27 +82,27 @@ class MainAdapter(
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }
-                if (c === CardDisplay.CARD_POLLEN
-                    && (weather.dailyForecast.isEmpty() || weather.today?.pollen?.isIndexValid != true)
+                if (c === CardDisplay.CARD_POLLEN &&
+                    (weather.dailyForecast.isEmpty() || weather.today?.pollen?.isIndexValid != true)
                 ) {
                     continue
                 }
-                if (c === CardDisplay.CARD_SUNRISE_SUNSET
-                    && (weather.dailyForecast.isEmpty() || weather.today?.sun?.isValid != true)
+                if (c === CardDisplay.CARD_SUNRISE_SUNSET &&
+                    (weather.dailyForecast.isEmpty() || weather.today?.sun?.isValid != true)
                 ) {
                     continue
                 }
-                if (c === CardDisplay.CARD_LIVE
-                    && (weather.current == null
-                            || (
-                            DetailsViewHolder.availableDetails(
-                                activity,
-                                SettingsManager.getInstance(activity).detailDisplayList,
-                                SettingsManager.getInstance(activity).detailDisplayUnlisted,
-                                weather.current!!,
-                                location.isDaylight
-                            )).isEmpty()
-                    )) {
+                if (c === CardDisplay.CARD_LIVE &&
+                    (weather.current == null ||
+                        (DetailsViewHolder.availableDetails(
+                            activity,
+                            SettingsManager.getInstance(activity).detailDisplayList,
+                            SettingsManager.getInstance(activity).detailDisplayUnlisted,
+                            weather.current!!,
+                            location.isDaylight
+                        )).isEmpty()
+                    )
+                ) {
                     continue
                 }
                 mViewTypeList.add(getViewType(c))
@@ -150,8 +159,7 @@ class MainAdapter(
         mFirstCardPosition = null
         for (i in 0 until itemCount) {
             val type = getItemViewType(i)
-            if (type == ViewType.DAILY || type == ViewType.HOURLY || type == ViewType.AIR_QUALITY
-                || type == ViewType.POLLEN || type == ViewType.ASTRO || type == ViewType.LIVE) {
+            if (setOf(ViewType.DAILY, ViewType.HOURLY, ViewType.AIR_QUALITY, ViewType.POLLEN, ViewType.ASTRO, ViewType.LIVE).contains(type)) {
                 mFirstCardPosition = i
                 return
             }

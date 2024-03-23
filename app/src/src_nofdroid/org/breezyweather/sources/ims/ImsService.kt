@@ -18,18 +18,18 @@ package org.breezyweather.sources.ims
 
 import android.content.Context
 import android.graphics.Color
-import io.reactivex.rxjava3.core.Observable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.LocationParametersSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -65,13 +65,12 @@ class ImsService @Inject constructor(
     )
 
     override fun isWeatherSupportedForLocation(location: Location): Boolean {
-        return location.countryCode.equals("IL", ignoreCase = true) // Israel
-            || location.countryCode.equals("PS", ignoreCase = true) // West Bank + Gaza Strip
+        return location.countryCode.equals("IL", ignoreCase = true) || // Israel
+            location.countryCode.equals("PS", ignoreCase = true) // West Bank + Gaza Strip
     }
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val locationId = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationId") { null }

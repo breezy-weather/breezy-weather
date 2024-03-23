@@ -17,10 +17,14 @@
 package org.breezyweather.sources.accu
 
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.accu.json.AccuAlertResult
+import org.breezyweather.sources.accu.json.AccuCurrentResult
+import org.breezyweather.sources.accu.json.AccuForecastDailyResult
+import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
+import org.breezyweather.sources.accu.json.AccuLocationResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import org.breezyweather.sources.accu.json.*
 
 /**
  * Accu api.

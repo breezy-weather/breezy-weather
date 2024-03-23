@@ -16,10 +16,10 @@
 
 package org.breezyweather.sources.dmi
 
-import retrofit2.http.GET
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiWarningResult
+import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 

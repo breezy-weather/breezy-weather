@@ -41,9 +41,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import breezyweather.domain.location.model.Location
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.Source
@@ -88,24 +88,24 @@ class FooterViewHolder(
         credits["weather"] = if (distinctSources[location.weatherSource] is MainWeatherSource) {
             (distinctSources[location.weatherSource] as MainWeatherSource).weatherAttribution
         } else null
-        credits["minutely"] = if (distinctSources[location.minutelySourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
+        credits["minutely"] = if (distinctSources[location.minutelySourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
             (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution
         } else null
-        credits["alert"] = if (distinctSources[location.alertSourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution != credits["weather"]) {
+        credits["alert"] = if (distinctSources[location.alertSourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution != credits["weather"]) {
             (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution
         } else null
-        credits["airQuality"] = if (distinctSources[location.airQualitySourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
+        credits["airQuality"] = if (distinctSources[location.airQualitySourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution != credits["weather"]) {
             (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution
         } else null
-        credits["pollen"] = if (distinctSources[location.pollenSourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution != credits["weather"]) {
+        credits["pollen"] = if (distinctSources[location.pollenSourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution != credits["weather"]) {
             (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution
         } else null
-        credits["normals"] = if (distinctSources[location.normalsSourceNotNull] is SecondaryWeatherSource
-            && (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution != credits["weather"]) {
+        credits["normals"] = if (distinctSources[location.normalsSourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution != credits["weather"]) {
             (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution
         } else null
 
@@ -117,15 +117,15 @@ class FooterViewHolder(
                     credits["weather"] ?: context.getString(R.string.null_data_text)
                 )
             )
-            if (weather.minutelyForecast.isNotEmpty()
-                && !credits["minutely"].isNullOrEmpty()) {
+            if (weather.minutelyForecast.isNotEmpty() &&
+                !credits["minutely"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
                     context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
                 )
             }
-            if (weather.alertList.isNotEmpty()
-                && !credits["alert"].isNullOrEmpty()) {
+            if (weather.alertList.isNotEmpty() &&
+                !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
                             context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
@@ -168,8 +168,7 @@ class FooterViewHolder(
                     )
                 }
             }
-            if (weather.normals?.month != null
-                && !credits["normals"].isNullOrEmpty()) {
+            if (weather.normals?.month != null && !credits["normals"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
                 )
@@ -184,7 +183,9 @@ class FooterViewHolder(
     }
 
     @Composable
-    fun ComposeView(activity: MainActivity, location: Location, creditsText: String, cardMarginsVertical: Int) {
+    fun ComposeView(
+        activity: MainActivity, location: Location, creditsText: String, cardMarginsVertical: Int
+    ) {
         var expand by remember { mutableStateOf(false) }
         var dialogOpenState by remember { mutableStateOf(false) }
 

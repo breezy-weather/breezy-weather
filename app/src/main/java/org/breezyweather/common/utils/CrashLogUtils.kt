@@ -19,16 +19,16 @@ package org.breezyweather.common.utils
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import org.breezyweather.common.extensions.cancelNotification
-import org.breezyweather.common.extensions.notify
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.receiver.NotificationReceiver
-import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getUriCompat
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.withNonCancellableContext
 import org.breezyweather.common.extensions.withUIContext
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.Notifications
 
 /**

@@ -187,8 +187,8 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         val progress = abs(realDistance) / triggerDistance
         mTarget?.alpha = 1 - progress
         mTarget?.translationX = (swipeDirection * translateRatio * triggerDistance
-                * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
-                ).toFloat()
+            * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
+            ).toFloat()
         mSwitchListener?.onSwiped(swipeDirection, progress)
         mPageSwipeListener?.let {
             if (mSwipeDistance > 0) {
@@ -275,13 +275,12 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         if (!mIsBeingNestedScrolling) {
             mIsBeingNestedScrolling = true
             mNestedScrollingDistance =
-                if (!target.canScrollHorizontally(-1) && !target.canScrollHorizontally(1)
-                    || mSwipeDistance != 0
+                if (!target.canScrollHorizontally(-1) &&
+                    !target.canScrollHorizontally(1) ||
+                    mSwipeDistance != 0
                 ) {
                     mNestedScrollingTrigger
-                } else {
-                    0f
-                }
+                } else 0f
         }
     }
 

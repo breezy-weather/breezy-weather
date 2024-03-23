@@ -20,30 +20,49 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import dagger.hilt.android.AndroidEntryPoint
-import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.theme.compose.BreezyWeatherTheme
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Tune
-import androidx.compose.material3.*
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SearchBarDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import breezyweather.domain.location.model.Location
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
@@ -53,6 +72,7 @@ import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
 
@@ -201,8 +221,8 @@ class SearchActivity : GeoActivity() {
                                 .fillMaxHeight()
                                 .padding(dimensionResource(R.dimen.normal_margin))
                         ) {
-                            if (latestTextSearch.isNotEmpty()
-                                && listResourceState.value.second == LoadableLocationStatus.SUCCESS
+                            if (latestTextSearch.isNotEmpty() &&
+                                listResourceState.value.second == LoadableLocationStatus.SUCCESS
                             ) {
                                 Text(
                                     text = stringResource(

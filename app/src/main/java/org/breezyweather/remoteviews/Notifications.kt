@@ -30,16 +30,16 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_MIN
 import androidx.core.content.ContextCompat
-import org.breezyweather.common.extensions.buildNotificationChannel
-import org.breezyweather.common.extensions.buildNotificationChannelGroup
-import org.breezyweather.common.extensions.notificationBuilder
-import org.breezyweather.common.extensions.notify
-import org.breezyweather.R
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Weather
+import org.breezyweather.R
+import org.breezyweather.common.extensions.buildNotificationChannel
+import org.breezyweather.common.extensions.buildNotificationChannelGroup
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.notificationBuilder
+import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
@@ -181,8 +181,8 @@ object Notifications {
                 )
             }
             for (alert in weather.alertList) {
-                if (!idSet.contains(alert.alertId)
-                    && !desSet.contains(
+                if (!idSet.contains(alert.alertId) &&
+                    !desSet.contains(
                         alert.headline?.ifEmpty {
                             context.getString(R.string.alert)
                         } ?: context.getString(R.string.alert)
@@ -292,8 +292,10 @@ object Notifications {
 
     // precipitation.
     fun checkAndSendPrecipitation(context: Context, location: Location) {
-        if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled
-            || location.weather?.minutelyForecast.isNullOrEmpty()) return
+        if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled ||
+            location.weather?.minutelyForecast.isNullOrEmpty()) {
+            return
+        }
         //val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
         //val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
 

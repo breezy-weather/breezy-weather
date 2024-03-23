@@ -16,11 +16,11 @@
 
 package org.breezyweather.sources.pirateweather
 
-import retrofit2.http.GET
-import retrofit2.http.Query
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
+import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * See https://docs.pirateweather.net/en/latest/Specification/

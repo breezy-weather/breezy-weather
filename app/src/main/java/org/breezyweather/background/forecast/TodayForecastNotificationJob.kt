@@ -27,9 +27,9 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
-import org.breezyweather.common.extensions.cancelNotification
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.workManager

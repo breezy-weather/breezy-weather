@@ -21,19 +21,19 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PackageInfoFlags
 import android.os.Build
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import breezyweather.domain.location.model.Location
-import org.breezyweather.domain.weather.index.PollutantIndex
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.WeatherCode
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeAirQuality
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeDailyForecast
@@ -41,7 +41,6 @@ import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeData
 import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeHourlyForecast
 import org.breezyweather.settings.SettingsManager
 import kotlin.math.roundToInt
-
 
 object GadgetBridgeService {
     private const val GB_INTENT_EXTRA = "WeatherJson"
@@ -77,11 +76,11 @@ object GadgetBridgeService {
     fun isAvailable(context: Context): Boolean {
         val pm = context.packageManager
         return isPackageAvailable(pm, GB_INTENT_PACKAGE) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY) ||
-                isPackageAvailable(pm, GB_INTENT_PACKAGE_SMARTSPACER)
+            isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY) ||
+            isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE) ||
+            isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS) ||
+            isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY) ||
+            isPackageAvailable(pm, GB_INTENT_PACKAGE_SMARTSPACER)
     }
 
     private fun isPackageAvailable(pm: PackageManager, name: String): Boolean {

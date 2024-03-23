@@ -18,7 +18,6 @@ package org.breezyweather.remoteviews.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 
-
 /**
  * Refer to
  * https://codeberg.org/Freeyourgadget/Gadgetbridge/src/branch/master/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/WeatherSpec.java

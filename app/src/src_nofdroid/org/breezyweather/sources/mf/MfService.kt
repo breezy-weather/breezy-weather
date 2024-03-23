@@ -18,27 +18,32 @@ package org.breezyweather.sources.mf
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.mf.json.*
+import org.breezyweather.sources.mf.json.MfCurrentResult
+import org.breezyweather.sources.mf.json.MfEphemerisResult
+import org.breezyweather.sources.mf.json.MfForecastResult
+import org.breezyweather.sources.mf.json.MfNormalsResult
+import org.breezyweather.sources.mf.json.MfRainResult
+import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Date
@@ -76,8 +81,7 @@ class MfService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -85,7 +89,7 @@ class MfService @Inject constructor(
         val languageCode = SettingsManager.getInstance(context).language.code
         val token = getToken()
         val current = mApi.getCurrent(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             languageCode,
@@ -93,14 +97,14 @@ class MfService @Inject constructor(
             token
         )
         val forecast = mApi.getForecast(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             "iso",
             token
         )
         val ephemeris = mApi.getEphemeris(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             "en", // English required to convert moon phase
@@ -109,7 +113,7 @@ class MfService @Inject constructor(
         )
         val rain = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
-                userAgent,
+                USER_AGENT,
                 location.latitude,
                 location.longitude,
                 languageCode,
@@ -125,13 +129,13 @@ class MfService @Inject constructor(
                 emitter.onNext(MfRainResult())
             }
         }
-        val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            && !location.countryCode.isNullOrEmpty()
-            && location.countryCode.equals("FR", ignoreCase = true)
-            && !location.provinceCode.isNullOrEmpty()
+        val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            !location.countryCode.isNullOrEmpty() &&
+            location.countryCode.equals("FR", ignoreCase = true) &&
+            !location.provinceCode.isNullOrEmpty()
         ) {
             mApi.getWarnings(
-                userAgent,
+                USER_AGENT,
                 location.provinceCode!!,
                 "iso",
                 token
@@ -149,7 +153,7 @@ class MfService @Inject constructor(
         // TODO: Only call once a month, unless it’s current position
         val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
-                userAgent,
+                USER_AGENT,
                 location.latitude,
                 location.longitude,
                 token
@@ -198,16 +202,15 @@ class MfService @Inject constructor(
     override fun isFeatureSupportedForLocation(
         feature: SecondaryWeatherSourceFeature, location: Location
     ): Boolean {
-        return isConfigured && (
-                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
-                        && !location.countryCode.isNullOrEmpty()
-                        && location.countryCode.equals("FR", ignoreCase = true)
-                ) || (
-                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT
-                        && !location.countryCode.isNullOrEmpty()
-                        && location.countryCode.equals("FR", ignoreCase = true)
-                        && !location.provinceCode.isNullOrEmpty()
-                ) || feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        return isConfigured &&
+            (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true)
+            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                !location.provinceCode.isNullOrEmpty()
+            ) || feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null
@@ -227,7 +230,7 @@ class MfService @Inject constructor(
 
         val rain = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
-                userAgent,
+                USER_AGENT,
                 location.latitude,
                 location.longitude,
                 languageCode,
@@ -240,13 +243,14 @@ class MfService @Inject constructor(
             }
         }
 
-        val warnings = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            && !location.countryCode.isNullOrEmpty()
-            && location.countryCode.equals("FR", ignoreCase = true)
-            && !location.provinceCode.isNullOrEmpty()
+        val warnings = if (
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            !location.countryCode.isNullOrEmpty() &&
+            location.countryCode.equals("FR", ignoreCase = true) &&
+            !location.provinceCode.isNullOrEmpty()
         ) {
             mApi.getWarnings(
-                userAgent,
+                USER_AGENT,
                 location.provinceCode!!,
                 "iso",
                 token
@@ -259,7 +263,7 @@ class MfService @Inject constructor(
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
-                userAgent,
+                USER_AGENT,
                 location.latitude,
                 location.longitude,
                 token
@@ -301,7 +305,7 @@ class MfService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         return mApi.getForecast(
-            userAgent,
+            USER_AGENT,
             location.latitude,
             location.longitude,
             "iso",
@@ -345,7 +349,8 @@ class MfService @Inject constructor(
                             BuildConfig.MF_WSFT_JWT_KEY.toByteArray(
                                 StandardCharsets.UTF_8
                             )
-                        ), Jwts.SIG.HS256
+                        ),
+                        Jwts.SIG.HS256
                     )
                 }.compact()
             } catch (ignored: Exception) {
@@ -373,6 +378,6 @@ class MfService @Inject constructor(
 
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"
-        private const val userAgent = "okhttp/4.9.2"
+        private const val USER_AGENT = "okhttp/4.9.2"
     }
 }
