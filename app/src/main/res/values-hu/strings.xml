@@ -157,7 +157,7 @@
     <string name="settings_changes_apply_after_restart">A módosítások újraindítás után lépnek életbe</string>
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Koppints a további részletekért…</string>
+    <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
     <string name="message_tap_again_to_exit">Koppintson újra a kilépéshez</string>
     <!-- action -->
     <string name="alerts">Riasztások</string>
@@ -614,7 +614,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Az összeomlási napló elmentve</string>
     <string name="settings_color_app">Kövesse az alkalmazás beállításait</string>
     <string name="notification_channel_crash_logs">Összeomlási naplók</string>
-    <string name="settings_debug_dump_crash_logs_tap_to_open">Koppints a megnyitáshoz</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Koppintson a megnyitáshoz</string>
     <string name="settings_unavailable_no_background_updates">Nem elérhető, először engedélyezd a háttérfrissítéseket</string>
     <string name="notification_precipitation_starting">Hamarosan csapadék várható</string>
     <string name="notification_precipitation_continuing">Csapadék</string>
@@ -680,4 +680,7 @@
     <string name="settings_widgets_broadcast_switch">Időjárás adatok továbbítása más alkalmazásoknak</string>
     <string name="settings_widgets_broadcast_switch_dialog">Ez a beállítás lehetővé teszi, hogy az eszközén lévő MINDEN alkalmazás hozzáférjen a beállított helyszíneihez és az időjárás adataihoz. Csak akkor folytassa, ha teljes mértékben tisztában van a más alkalmazások által történő visszaélés lehetséges kockázataival, amelyek ebből eredhetnek.</string>
     <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
+    <string name="settings_per_location_theme">Téma</string>
+    <string name="settings_source_instance_invalid">Egy https URL címnek kell lennie, amely /-re végződik</string>
+    <string name="settings_invalid_syntax">Érvénytelen szintaxis</string>
 </resources>
