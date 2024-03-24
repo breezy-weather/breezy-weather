@@ -4,6 +4,7 @@
 - Added ability to change the background weather and time for each location
 
 **Improvements and fixes**
+- Fix crash on Android < 7.0
 - Fix live wallpaper non-auto weather kind
 - A new error type “Invalid or incomplete data received from server” was added
 - Fix display issue when changing main source sometimes resulted in empty value for secondary sources
