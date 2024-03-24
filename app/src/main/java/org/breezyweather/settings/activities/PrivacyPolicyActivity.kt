@@ -28,10 +28,10 @@ import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
@@ -86,7 +86,7 @@ class PrivacyPolicyActivity : GeoActivity() {
                     .filter { it.privacyPolicyUrl.startsWith("http") }
                     .sortedWith { s1, s2 -> // Sort by name because there are now a lot of sources
                         Collator.getInstance(
-                            SettingsManager.getInstance(this@PrivacyPolicyActivity).language.locale
+                            this@PrivacyPolicyActivity.currentLocale
                         ).compare(s1.name, s2.name)
                     }) { preferenceSource ->
                     PreferenceView(

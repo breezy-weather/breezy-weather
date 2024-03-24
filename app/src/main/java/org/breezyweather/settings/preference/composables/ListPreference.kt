@@ -20,6 +20,7 @@ import android.content.Context
 import androidx.annotation.ArrayRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -38,9 +39,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -50,12 +49,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
+import java.util.Date
 
 @Composable
 fun ListPreferenceView(
@@ -290,5 +293,34 @@ internal fun RadioButton(
             color = DayNightTheme.colors.titleColor,
             style = MaterialTheme.typography.titleMedium,
         )
+    }
+}
+
+
+@Composable
+fun LanguagePreferenceView(
+    @StringRes titleId: Int,
+) {
+    val context = LocalContext.current
+
+    val langs = remember { LocaleHelper.getLangs(context) }
+    val currentLanguage by remember {
+        mutableStateOf(AppCompatDelegate.getApplicationLocales().get(0)?.toLanguageTag() ?: "")
+    }
+
+    ListPreferenceView(
+        title = stringResource(titleId),
+        summary = { _, value -> langs.firstOrNull { value == it.langTag }?.displayName ?: "" },
+        selectedKey = langs.firstOrNull { currentLanguage == it.langTag }?.langTag ?: "",
+        valueArray = langs.map { it.langTag }.toTypedArray(),
+        nameArray = langs.map { it.displayName }.toTypedArray()
+    ) {
+        val locale = if (it.isEmpty()) {
+            LocaleListCompat.getEmptyLocaleList()
+        } else {
+            LocaleListCompat.forLanguageTags(it)
+        }
+        AppCompatDelegate.setApplicationLocales(locale)
+        SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
     }
 }

@@ -41,7 +41,6 @@ import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.common.ui.widgets.astro.SunMoonView
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -169,11 +168,10 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mPhaseView.setSurfaceAngle(mPhaseAngle.toFloat())
         }
 
-        val language = SettingsManager.getInstance(context).language
         mWeather?.today?.sun?.let { sun ->
             if (sun.isValid) {
-                val sunriseTime = sun.riseDate!!.getFormattedTime(location, language, context.is12Hour)
-                val sunsetTime = sun.setDate!!.getFormattedTime(location, language, context.is12Hour)
+                val sunriseTime = sun.riseDate!!.getFormattedTime(location, context, context.is12Hour)
+                val sunsetTime = sun.setDate!!.getFormattedTime(location, context, context.is12Hour)
                 mSunContainer.visibility = View.VISIBLE
                 mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓"
                 talkBackBuilder
@@ -190,8 +188,8 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         mWeather?.today?.moon?.let { moon ->
             if (moon.isValid) {
-                val moonriseTime = moon.riseDate!!.getFormattedTime(location, language, context.is12Hour)
-                val moonsetTime = moon.setDate!!.getFormattedTime(location, language, context.is12Hour)
+                val moonriseTime = moon.riseDate!!.getFormattedTime(location, context, context.is12Hour)
+                val moonsetTime = moon.setDate!!.getFormattedTime(location, context, context.is12Hour)
                 mMoonContainer.visibility = View.VISIBLE
                 mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓"
                 talkBackBuilder

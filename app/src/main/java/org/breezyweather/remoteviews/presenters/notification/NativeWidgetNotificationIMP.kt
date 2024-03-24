@@ -23,11 +23,12 @@ import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
-import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
@@ -51,8 +52,6 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     ) {
         val current = location.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
-        val language = SettingsManager.getInstance(context).language
-        context.setLanguage(language.locale)
 
         val tempFeelsLikeOrAir = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
@@ -61,7 +60,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val subtitle = StringBuilder()
         subtitle.append(location.getPlace(context))
-        if (SettingsManager.getInstance(context).language.isChinese) {
+        if (context.currentLocale.isChinese) {
             subtitle.append(context.getString(R.string.comma_separator))
                 .append(LunarHelper.getLunarDate(Date()))
         } else {
@@ -69,7 +68,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 subtitle.append(context.getString(R.string.comma_separator))
                     .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
-                    .append(it.getFormattedTime(location, language, context.is12Hour))
+                    .append(it.getFormattedTime(location, context, context.is12Hour))
             }
         }
 

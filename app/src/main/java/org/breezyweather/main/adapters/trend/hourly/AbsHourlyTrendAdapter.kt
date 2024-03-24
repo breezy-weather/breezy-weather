@@ -31,7 +31,6 @@ import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
 import org.breezyweather.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 
 abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Location) :
     TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>(location) {
@@ -47,17 +46,11 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourlyItem.setDayText(
-                hourly.date.getFormattedShortDayAndMonth(
-                    location, SettingsManager.getInstance(context).language
-                )
+                hourly.date.getFormattedShortDayAndMonth(location, context)
             )
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
-                .append(
-                    hourly.date.getFormattedMediumDayAndMonth(
-                        location, SettingsManager.getInstance(context).language
-                    )
-                )
+                .append(hourly.date.getFormattedMediumDayAndMonth(location, context))
                 .append(context.getString(R.string.comma_separator))
                 .append(hourly.date.getHour(location, activity))
             hourlyItem.setHourText(hourly.date.getHour(location, activity))

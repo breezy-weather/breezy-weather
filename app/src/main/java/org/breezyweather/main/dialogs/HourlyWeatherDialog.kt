@@ -43,9 +43,7 @@ object HourlyWeatherDialog {
             .setTitle(
                 hourly.date.getHour(location, activity)
                     + " - "
-                    + hourly.date.getFormattedMediumDayAndMonth(
-                        location, SettingsManager.getInstance(activity).language
-                    )
+                    + hourly.date.getFormattedMediumDayAndMonth(location, activity)
             )
             .setView(view)
             .show()

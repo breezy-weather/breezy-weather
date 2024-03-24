@@ -26,6 +26,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -34,7 +36,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
@@ -74,7 +75,7 @@ class OpenWeatherService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val oneCall = mApi.getOneCall(
             oneCallVersion.id,
             apiKey,
@@ -131,7 +132,7 @@ class OpenWeatherService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val oneCall = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getOneCall(

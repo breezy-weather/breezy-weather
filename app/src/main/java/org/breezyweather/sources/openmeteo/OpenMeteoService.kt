@@ -39,6 +39,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationSearchException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -49,7 +51,6 @@ import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
@@ -312,12 +313,10 @@ class OpenMeteoService @Inject constructor(
         context: Context,
         query: String
     ): Observable<List<Location>> {
-        val languageCode = SettingsManager.getInstance(context).language.code
-
         return mGeocodingApi.getWeatherLocation(
             query,
             count = 20,
-            languageCode
+            context.currentLocale.code
         ).map { results ->
             if (results.results == null) {
                 throw LocationSearchException()
@@ -449,8 +448,9 @@ class OpenMeteoService @Inject constructor(
             summary = weatherModels
                 .filter { it.enabled }
                 .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
-                    Collator.getInstance(SettingsManager.getInstance(context).language.locale)
-                        .compare(ws1.model.getName(context), ws2.model.getName(context))
+                    Collator.getInstance(
+                        context.currentLocale
+                    ).compare(ws1.model.getName(context), ws2.model.getName(context))
                 }
                 .joinToString(context.getString(R.string.comma_separator)) {
                     it.model.getName(context)

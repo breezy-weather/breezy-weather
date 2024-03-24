@@ -83,9 +83,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 setViewVisibility(R.id.widget_text_weather, View.GONE)
                 setViewVisibility(R.id.widget_text_temperature, View.GONE)
             } else {
-                val dateFormat = getLongWeekdayDayMonth(
-                    SettingsManager.getInstance(context).language
-                )
+                val dateFormat = getLongWeekdayDayMonth(context)
                 views.setString(
                     R.id.widget_text_date,
                     "setTimeZone",
@@ -161,7 +159,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     ): String? {
         return when (subtitleData) {
             "time" -> weather.base.refreshTime?.getFormattedTime(
-                location, SettingsManager.getInstance(context).language, context.is12Hour
+                location, context, context.is12Hour
             )
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null &&

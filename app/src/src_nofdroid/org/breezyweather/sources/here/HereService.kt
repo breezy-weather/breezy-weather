@@ -27,6 +27,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.extensions.codeWithCountry
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -34,7 +36,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -88,7 +89,6 @@ class HereService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.codeWithCountry
         val products = listOf(
             "observation",
             "forecast7daysSimple",
@@ -101,7 +101,7 @@ class HereService @Inject constructor(
             products.joinToString(separator = ","),
             "${location.latitude},${location.longitude}",
             "metric",
-            languageCode,
+            context.currentLocale.codeWithCountry,
             oneObservation = true
         ).map {
             convert(it)
@@ -150,14 +150,13 @@ class HereService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.codeWithCountry
 
         return mRevGeocodingApi.revGeoCode(
             apiKey,
             "${location.latitude},${location.longitude}",
             types = "city",
             limit = 20,
-            languageCode,
+            context.currentLocale.codeWithCountry,
             show = "tz"
         ).map {
             if (it.items == null) {

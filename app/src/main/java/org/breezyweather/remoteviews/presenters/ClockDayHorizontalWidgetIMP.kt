@@ -26,7 +26,9 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayHorizontalProvider
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
@@ -99,9 +101,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         )
 
         // Date
-        val dateFormat = getShortWeekdayDayMonth(
-            SettingsManager.getInstance(context).language
-        )
+        val dateFormat = getShortWeekdayDayMonth(context)
         views.setString(
             R.id.widget_clock_day_title,
             "setTimeZone",
@@ -129,7 +129,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         } ?: views.setViewVisibility(R.id.widget_clock_day_icon, View.INVISIBLE)
         views.setTextViewText(
             R.id.widget_clock_day_lunar,
-            if (settings.language.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
+            if (context.currentLocale.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))

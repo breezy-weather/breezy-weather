@@ -191,12 +191,10 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.setTitleText(
                     if (daily.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else daily.getWeek(location, SettingsManager.getInstance(context).language)
+                    } else daily.getWeek(location, context)
                 )
                 widgetItemView.setSubtitleText(
-                    daily.date.getFormattedShortDayAndMonth(
-                        location, SettingsManager.getInstance(context).language
-                    )
+                    daily.date.getFormattedShortDayAndMonth(location, context)
                 )
                 daily.day?.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(

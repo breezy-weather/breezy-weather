@@ -254,7 +254,7 @@ private fun buildRemoteViews(
                 dailyId[0],
                 if (it.isToday(location)) {
                     context.getString(R.string.short_today)
-                } else it.getWeek(location, SettingsManager.getInstance(context).language)
+                } else it.getWeek(location, context)
             )
         } ?: views.setTextViewText(dailyId[0], null)
         weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {

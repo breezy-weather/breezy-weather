@@ -34,7 +34,6 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
@@ -271,7 +270,6 @@ abstract class AbstractRemoteViewsPresenter {
             val pressureUnit = SettingsManager.getInstance(context).pressureUnit
             val distanceUnit = SettingsManager.getInstance(context).distanceUnit
             val speedUnit = SettingsManager.getInstance(context).speedUnit
-            val language = SettingsManager.getInstance(context).language
             var subtitle = subtitleP
                 .replace(
                     "\$cw$",
@@ -337,20 +335,20 @@ abstract class AbstractRemoteViewsPresenter {
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
                 .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(
-                    location, language, context.is12Hour
+                    location, context, context.is12Hour
                 ) ?: context.getString(R.string.null_data_text))
                 .replace(
                     "\$d$",
-                    Date().getFormattedMediumDayAndMonth(location, language)
+                    Date().getFormattedMediumDayAndMonth(location, context)
                 ).replace(
                     "\$lc$",
                     LunarHelper.getLunarDate(Date()) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
-                    Date().getFormattedDate("EEEE", location, language)
+                    Date().getFormattedDate("EEEE", location, context)
                 ).replace(
                     "\$ws$",
-                    Date().getFormattedDate("EEE", location, language)
+                    Date().getFormattedDate("EEE", location, context)
                 ).replace(
                     "\$dd$",
                     weather.current?.dailyForecast
@@ -360,15 +358,15 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.hourlyForecast
                         ?: context.getString(R.string.null_data_text)
                 ).replace("\$enter$", "\n")
-            subtitle = replaceAlerts(context, language, subtitle, location, weather)
+            subtitle = replaceAlerts(context, subtitle, location, weather)
             subtitle = replaceDailyWeatherSubtitle(
-                context, subtitle, location, weather, language, temperatureUnit, speedUnit
+                context, subtitle, location, weather, temperatureUnit, speedUnit
             )
             return subtitle
         }
 
         private fun replaceAlerts(
-            context: Context, language: Language, subtitle: String, location: Location, weather: Weather
+            context: Context, subtitle: String, location: Location, weather: Weather
         ): String {
             val defaultBuilder = StringBuilder()
             val shortBuilder = StringBuilder()
@@ -386,26 +384,20 @@ abstract class AbstractRemoteViewsPresenter {
                     } ?: context.getString(R.string.alert)
                 )
                 currentAlert.startDate?.let { startDate ->
-                    val startDateDay = startDate.getFormattedMediumDayAndMonth(
-                        location,
-                        language
-                    )
+                    val startDateDay = startDate.getFormattedMediumDayAndMonth(location, context)
                     defaultBuilder.append(context.getString(R.string.comma_separator))
                         .append(startDateDay)
                         .append(context.getString(R.string.comma_separator))
-                        .append(startDate.getFormattedTime(location, language, context.is12Hour))
+                        .append(startDate.getFormattedTime(location, context, context.is12Hour))
                     currentAlert.endDate?.let { endDate ->
                         defaultBuilder.append("-")
-                        val endDateDay = endDate.getFormattedMediumDayAndMonth(
-                            location,
-                            language
-                        )
+                        val endDateDay = endDate.getFormattedMediumDayAndMonth(location, context)
                         if (startDateDay != endDateDay) {
                             defaultBuilder.append(endDateDay)
                                 .append(context.getString(R.string.comma_separator))
                         }
                         defaultBuilder.append(
-                            endDate.getFormattedTime(location, language, context.is12Hour)
+                            endDate.getFormattedTime(location, context, context.is12Hour)
                         )
                     }
                 }
@@ -421,7 +413,7 @@ abstract class AbstractRemoteViewsPresenter {
 
         private fun replaceDailyWeatherSubtitle(
             context: Context, subtitleP: String, location: Location, weather: Weather,
-            language: Language, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+            temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
         ): String {
             var subtitle = subtitleP
             for (i in 0 until SUBTITLE_DAILY_ITEM_LENGTH) {
@@ -490,19 +482,19 @@ abstract class AbstractRemoteViewsPresenter {
                     } else context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(location, language, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(location, context, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ss$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.setDate?.getFormattedTime(location, language, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.setDate?.getFormattedTime(location, context, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mr$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.riseDate?.getFormattedTime(location, language, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.riseDate?.getFormattedTime(location, context, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ms$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.setDate?.getFormattedTime(location, language, context.is12Hour)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.setDate?.getFormattedTime(location, context, context.is12Hour)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mp$",

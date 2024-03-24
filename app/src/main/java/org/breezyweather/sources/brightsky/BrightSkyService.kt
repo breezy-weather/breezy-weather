@@ -24,6 +24,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -34,11 +36,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
-import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
-import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -112,7 +111,7 @@ class BrightSkyService @Inject constructor(
         return Observable.zip(
             weather, currentWeather, alerts
         ) { brightSkyWeather, brightSkyCurrentWeather, brightSkyAlerts ->
-            val languageCode = SettingsManager.getInstance(context).language.code
+            val languageCode = context.currentLocale.code
             convert(
                 brightSkyWeather,
                 brightSkyCurrentWeather,
@@ -146,7 +145,7 @@ class BrightSkyService @Inject constructor(
             location.latitude,
             location.longitude
         ).map {
-            val languageCode = SettingsManager.getInstance(context).language.code
+            val languageCode = context.currentLocale.code
             convertSecondary(it, languageCode)
         }
     }

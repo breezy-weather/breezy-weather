@@ -23,12 +23,13 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -62,10 +63,8 @@ class EcccService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        val languageCode = SettingsManager.getInstance(context).language.code
-
         return mApi.getForecast(
-            languageCode,
+            context.currentLocale.code,
             location.latitude,
             location.longitude
         ).map {
@@ -98,10 +97,8 @@ class EcccService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val languageCode = SettingsManager.getInstance(context).language.code
-
         return mApi.getForecast(
-            languageCode,
+            context.currentLocale.code,
             location.latitude,
             location.longitude
         ).map {
@@ -118,10 +115,8 @@ class EcccService @Inject constructor(
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        val languageCode = SettingsManager.getInstance(context).language.code
-
         return mApi.getForecast(
-            languageCode,
+            context.currentLocale.code,
             location.latitude,
             location.longitude
         ).map {

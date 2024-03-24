@@ -1,5 +1,7 @@
 # Version 5.1.8 (not yet released)
 
+Due to a technical change, if you set up a different language than your system language, you will have to set it again on update.
+
 **New features**
 - Added ability to change the background weather and time for each location
 
@@ -16,6 +18,7 @@
 - Translations updated
 - Basic support added for British English (supports a few spelling differences), also added to Australian English and Canadian English (new)
 - Improved date formatting work for Android 7.0+ is now complete
+- Chinese is now handled as Simplified Chinese and Traditional Chinese to ease the work of translators
 
 
 # Version 5.1.7 (2024-03-20)

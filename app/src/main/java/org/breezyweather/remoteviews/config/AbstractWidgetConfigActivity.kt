@@ -56,6 +56,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -71,7 +72,6 @@ import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.settings.ConfigStore
-import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
@@ -195,7 +195,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         subtitleDataValueNow = "time"
         val data = res.getStringArray(R.array.widget_subtitle_data)
         val dataValues = res.getStringArray(R.array.widget_subtitle_data_values)
-        if (SettingsManager.getInstance(this).language.isChinese) {
+        if (this.currentLocale.isChinese) {
             subtitleData = arrayOf(
                 data[0], data[1], data[2], data[3], data[4], data[5]
             )
@@ -578,7 +578,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_xmp_description)}
             """.trimIndent()
     protected val isHideLunarContainerVisible: Int
-        get() = if (SettingsManager.getInstance(this).language.isChinese) View.VISIBLE else View.GONE
+        get() = if (this.currentLocale.isChinese) View.VISIBLE else View.GONE
 
     @SuppressLint("MissingPermission")
     private fun bindWallpaper(checkPermissions: Boolean) {

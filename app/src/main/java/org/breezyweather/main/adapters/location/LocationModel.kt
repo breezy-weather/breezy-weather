@@ -26,7 +26,6 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.domain.location.model.getPlace
-import org.breezyweather.settings.SettingsManager
 
 class LocationModel(
     context: Context,
@@ -46,7 +45,6 @@ class LocationModel(
         location.weather?.let { weather ->
             weatherCode = weather.current?.weatherCode
             weatherText = weather.current?.weatherText
-            val language = SettingsManager.getInstance(context).language
             if (weather.currentAlertList.isNotEmpty()) {
                 val builder = StringBuilder()
                 weather.currentAlertList.forEach { alert ->
@@ -60,25 +58,25 @@ class LocationModel(
                     )
                     alert.startDate?.let { startDate ->
                         val startDateDay = startDate.getFormattedShortDayAndMonth(
-                            location, language
+                            location, context
                         )
                         builder.append(context.getString(R.string.comma_separator))
                             .append(startDateDay)
                             .append(context.getString(R.string.comma_separator))
                             .append(
-                                startDate.getFormattedTime(location, language, context.is12Hour)
+                                startDate.getFormattedTime(location, context, context.is12Hour)
                             )
                         alert.endDate?.let { endDate ->
                             builder.append("-")
                             val endDateDay = endDate.getFormattedShortDayAndMonth(
-                                location, language
+                                location, context
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(context.getString(R.string.comma_separator))
                             }
                             builder.append(
-                                endDate.getFormattedTime(location, language, context.is12Hour)
+                                endDate.getFormattedTime(location, context, context.is12Hour)
                             )
                         }
                     }

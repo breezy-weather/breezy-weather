@@ -31,7 +31,6 @@ import org.breezyweather.databinding.ItemPollenDailyBinding
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
 open class HomePollenAdapter(
@@ -76,11 +75,8 @@ class HomePollenViewHolder internal constructor(
     ) {
         val context = itemView.context
 
-        val language = SettingsManager.getInstance(context).language
         binding.title.text = daily.date.getFormattedDate(
-            getLongWeekdayDayMonth(language),
-            location,
-            language
+            getLongWeekdayDayMonth(context), location, context
         )
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 

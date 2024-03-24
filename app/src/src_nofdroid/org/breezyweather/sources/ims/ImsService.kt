@@ -27,6 +27,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -34,7 +36,6 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.settings.SettingsManager
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -79,7 +80,7 @@ class ImsService @Inject constructor(
             throw InvalidLocationException()
         }
 
-        val languageCode = when (SettingsManager.getInstance(context).language.code) {
+        val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
             "he" -> "he"
             else -> "en"
@@ -117,7 +118,7 @@ class ImsService @Inject constructor(
             throw InvalidLocationException()
         }
 
-        val languageCode = when (SettingsManager.getInstance(context).language.code) {
+        val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
             "he" -> "he"
             else -> "en"
@@ -133,7 +134,7 @@ class ImsService @Inject constructor(
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        val languageCode = when (SettingsManager.getInstance(context).language.code) {
+        val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
             "he" -> "he"
             else -> "en"
@@ -192,7 +193,7 @@ class ImsService @Inject constructor(
     override fun requestLocationParameters(
         context: Context, location: Location
     ): Observable<Map<String, String>> {
-        val languageCode = when (SettingsManager.getInstance(context).language.code) {
+        val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
             "he" -> "he"
             else -> "en"

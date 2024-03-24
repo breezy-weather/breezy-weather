@@ -27,6 +27,8 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -34,7 +36,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -71,14 +72,13 @@ class PirateWeatherService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
 
         return mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
             "si", // represents metric,
-            languageCode,
+            context.currentLocale.code,
             null,
             "hourly"
         ).map {
@@ -106,7 +106,6 @@ class PirateWeatherService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
         val exclude = mutableListOf("currently", "hourly", "daily")
         if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             exclude.add("alerts")
@@ -120,7 +119,7 @@ class PirateWeatherService @Inject constructor(
             location.latitude,
             location.longitude,
             "si", // represents metric,
-            languageCode,
+            context.currentLocale.code,
             exclude.joinToString(","),
             null
         ).map {

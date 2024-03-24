@@ -66,7 +66,6 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
@@ -96,19 +95,18 @@ class AlertActivity : GeoActivity() {
 
     private fun getAlertDate(context: Context, alert: Alert, location: Location): String {
         val builder = StringBuilder()
-        val language = SettingsManager.getInstance(context).language
         alert.startDate?.let { startDate ->
-            val startDateDay = startDate.getFormattedMediumDayAndMonth(location, language)
+            val startDateDay = startDate.getFormattedMediumDayAndMonth(location, context)
             builder.append(startDateDay)
                 .append(context.getString(R.string.comma_separator))
-                .append(startDate.getFormattedTime(location, language, context.is12Hour))
+                .append(startDate.getFormattedTime(location, context, context.is12Hour))
             alert.endDate?.let { endDate ->
                 builder.append(" — ")
-                val endDateDay = endDate.getFormattedMediumDayAndMonth(location, language)
+                val endDateDay = endDate.getFormattedMediumDayAndMonth(location, context)
                 if (startDateDay != endDateDay) {
                     builder.append(endDateDay).append(context.getString(R.string.comma_separator))
                 }
-                builder.append(endDate.getFormattedTime(location, language, context.is12Hour))
+                builder.append(endDate.getFormattedTime(location, context, context.is12Hour))
             }
         }
         return builder.toString()

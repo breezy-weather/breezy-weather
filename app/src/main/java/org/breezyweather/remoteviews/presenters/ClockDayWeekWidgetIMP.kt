@@ -26,7 +26,9 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
@@ -103,9 +105,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         )
 
         // Date
-        val dateFormat = getShortWeekdayDayMonth(
-            SettingsManager.getInstance(context).language
-        )
+        val dateFormat = getShortWeekdayDayMonth(context)
         views.setString(
             R.id.widget_clock_day_week_title,
             "setTimeZone",
@@ -133,7 +133,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         } ?: views.setViewVisibility(R.id.widget_clock_day_week_icon, View.INVISIBLE)
         views.setTextViewText(
             R.id.widget_clock_day_week_lunar,
-            if (settings.language.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
+            if (context.currentLocale.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
@@ -158,7 +158,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     dailyId[0],
                     if (it.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(location, SettingsManager.getInstance(context).language)
+                    } else it.getWeek(location, context)
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(

@@ -30,7 +30,6 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
-import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Notifications
@@ -75,7 +74,6 @@ class ForecastNotificationNotifier(private val context: Context) {
         val daily = (if (today) weather.today else weather.tomorrow) ?: return
 
         val provider = ResourcesProviderFactory.newInstance
-        context.setLanguage(SettingsManager.getInstance(context).language.locale)
 
         val daytime: Boolean = if (today) location.isDaylight else true
         val weatherCode: WeatherCode? = if (today) {

@@ -44,7 +44,6 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
@@ -136,21 +135,20 @@ class FirstCardHeaderController(
                         supportingContent = currentAlert.startDate?.let { startDate ->
                             {
                                 val builder = StringBuilder()
-                                val language = SettingsManager.getInstance(mActivity).language
                                 val startDateDay = startDate.getFormattedMediumDayAndMonth(
-                                    location, language
+                                    location, mActivity
                                 )
                                 builder.append(startDateDay)
                                     .append(stringResource(R.string.comma_separator))
                                     .append(
                                         startDate.getFormattedTime(
-                                            location, language, mActivity.is12Hour
+                                            location, mActivity, mActivity.is12Hour
                                         )
                                     )
                                 currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
                                     val endDateDay = endDate.getFormattedMediumDayAndMonth(
-                                        location, language
+                                        location, mActivity
                                     )
                                     if (startDateDay != endDateDay) {
                                         builder.append(endDateDay)
@@ -158,7 +156,7 @@ class FirstCardHeaderController(
                                     }
                                     builder.append(
                                         endDate.getFormattedTime(
-                                            location, language, mActivity.is12Hour
+                                            location, mActivity, mActivity.is12Hour
                                         )
                                     )
                                 }

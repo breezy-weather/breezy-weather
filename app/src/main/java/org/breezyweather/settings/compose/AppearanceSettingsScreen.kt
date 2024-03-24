@@ -48,16 +48,15 @@ import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
-import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
+import org.breezyweather.settings.preference.composables.LanguagePreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
@@ -67,7 +66,6 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.Date
 
 @Composable
 fun AppearanceSettingsScreen(
@@ -82,22 +80,8 @@ fun AppearanceSettingsScreen(
         contentPadding = paddingValues,
     ) {
         listPreferenceItem(R.string.settings_appearance_language_title) { id ->
-            ListPreferenceView(
-                titleId = id,
-                valueArrayId = R.array.language_values,
-                nameArrayId = R.array.languages,
-                selectedKey = SettingsManager.getInstance(context).language.id,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).language = Language.getInstance(it)
-                    SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
-
-                    SnackbarHelper.showSnackbar(
-                        content = context.getString(R.string.settings_changes_apply_after_restart),
-                        action = context.getString(R.string.action_restart)
-                    ) {
-                        BreezyWeather.instance.recreateAllActivities()
-                    }
-                },
+            LanguagePreferenceView(
+                titleId = id
             )
         }
         listPreferenceItem(R.string.settings_appearance_dark_mode_title) { id ->

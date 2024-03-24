@@ -329,17 +329,9 @@ object Notifications {
                         },
                         when (case) {
                             1 -> minutely.first { (it.dbz ?: 0) > 0 }.date
-                                .getFormattedTime(
-                                    location,
-                                    SettingsManager.getInstance(context).language,
-                                    context.is12Hour
-                                )
+                                .getFormattedTime(location, context, context.is12Hour)
                             else -> minutely.last { (it.dbz ?: 0) > 0 }.date
-                                .getFormattedTime(
-                                    location,
-                                    SettingsManager.getInstance(context).language,
-                                    context.is12Hour
-                                )
+                                .getFormattedTime(location, context, context.is12Hour)
                         }
                     ),
                     PendingIntent.getActivity(

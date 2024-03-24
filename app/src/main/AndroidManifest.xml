@@ -74,6 +74,7 @@
         android:name=".BreezyWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
+        android:localeConfig="@xml/locales_config"
         android:theme="@style/BreezyWeatherTheme"
         android:enableOnBackInvokedCallback="true"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -528,6 +529,15 @@
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
 
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"

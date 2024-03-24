@@ -19,27 +19,57 @@ package org.breezyweather.common.extensions
 import android.content.Context
 import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
+import android.icu.util.TimeZone
 import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import breezyweather.domain.location.model.Location
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.Language
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.common.utils.helpers.LogHelper
+import org.chickenhook.restrictionbypass.RestrictionBypass
+import java.lang.reflect.Method
 import java.util.Date
+import java.util.Locale
 
 val Context.is12Hour: Boolean
     get() = !DateFormat.is24HourFormat(this)
 
-val Date.relativeTime: String
-    get() {
-        return (DateUtils.getRelativeTimeSpanString(
+fun Date.getRelativeTime(context: Context): String {
+    try {
+        // Reflection allows us to specify the locale
+        // If we don't, we always have system locale instead of per-app language preference
+        val getRelativeTimeSpanStringMethod: Method = RestrictionBypass.getMethod(
+            Class.forName("android.text.format.RelativeDateTimeFormatter"),
+            "getRelativeTimeSpanString",
+            Locale::class.java,
+            java.util.TimeZone::class.java,
+            Long::class.javaPrimitiveType,
+            Long::class.javaPrimitiveType,
+            Long::class.javaPrimitiveType,
+            Int::class.javaPrimitiveType,
+        )
+        return getRelativeTimeSpanStringMethod.invoke(
+            null,
+            context.currentLocale,
+            java.util.TimeZone.getDefault(),
             this.time,
             Date().time,
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.FORMAT_ABBREV_RELATIVE
-        ) as String)
+        ) as String
+    } catch (ignored: Exception) {
+        if (BreezyWeather.instance.debugMode) {
+            LogHelper.log(msg = "Reflection of relative time failed")
+        }
+        return DateUtils.getRelativeTimeSpanString(
+            this.time,
+            Date().time,
+            DateUtils.MINUTE_IN_MILLIS,
+            DateUtils.FORMAT_ABBREV_RELATIVE
+        ) as String
     }
+}
 
 // Makes the code more readable by not having to do a null check condition
 fun Long.toDate(): Date {
@@ -49,70 +79,73 @@ fun Long.toDate(): Date {
 fun Date.getFormattedDate(
     pattern: String,
     location: Location = Location(),
-    language: Language = Language.ENGLISH_US,
+    context: Context? = null,
     withBestPattern: Boolean = false
 ): String {
+    val locale = context?.currentLocale ?: Locale("en", "001")
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat(
             if (withBestPattern) {
-                DateTimePatternGenerator.getInstance(language.locale).getBestPattern(pattern)
+                DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
             } else pattern,
-            language.locale
+            locale
         ).apply {
-            timeZone = android.icu.util.TimeZone.getTimeZone(location.timeZone)
+            timeZone = TimeZone.getTimeZone(location.timeZone)
         }.format(this)
-    } else this.getFormattedDate(pattern, location.javaTimeZone, language.locale)
+    } else this.getFormattedDate(pattern, location.javaTimeZone, locale)
 }
 
 fun Date.getFormattedTime(
     location: Location,
-    language: Language,
+    context: Context?,
     twelveHour: Boolean
 ): String {
     return if (twelveHour) {
-        this.getFormattedDate("h:mm aa", location, language)
-    } else this.getFormattedDate("HH:mm", location, language)
+        this.getFormattedDate("h:mm aa", location, context)
+    } else this.getFormattedDate("HH:mm", location, context)
 }
 
 fun Date.getFormattedShortDayAndMonth(
     location: Location,
-    language: Language
+    context: Context?
 ): String {
-    return this.getFormattedDate("MM-dd", location, language, withBestPattern = true)
+    return this.getFormattedDate("MM-dd", location, context, withBestPattern = true)
 }
 
 fun Date.getFormattedMediumDayAndMonth(
     location: Location,
-    language: Language
+    context: Context?
 ): String {
-    return this.getFormattedDate("d MMM", location, language, withBestPattern = true)
+    return this.getFormattedDate("d MMM", location, context, withBestPattern = true)
 }
 
 fun getShortWeekdayDayMonth(
-    language: Language
+    context: Context?
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        DateTimePatternGenerator.getInstance(language.locale).getBestPattern("EEE d MMM")
+        DateTimePatternGenerator.getInstance(
+            context?.currentLocale ?: Locale("en", "001")
+        ).getBestPattern("EEE d MMM")
     } else "EEE d MMM"
 }
 
 fun getLongWeekdayDayMonth(
-    language: Language
+    context: Context?
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        DateTimePatternGenerator.getInstance(language.locale).getBestPattern("EEEE d MMMM")
+        DateTimePatternGenerator.getInstance(
+            context?.currentLocale ?: Locale("en", "001")
+        ).getBestPattern("EEEE d MMMM")
     } else "EEEE d MMMM"
 }
 
-fun Date.getWeek(location: Location, language: Language): String {
-    return getFormattedDate("E", location, language)
+fun Date.getWeek(location: Location, context: Context?): String {
+    return getFormattedDate("E", location, context)
 }
 
 fun Date.getHour(location: Location, context: Context): String {
     return getFormattedDate(
-        if (context.is12Hour) "h aa" else "H",
-        location,
-        SettingsManager.getInstance(context).language
+        if (context.is12Hour) "h aa" else "H", location, context
     ) + if (!context.is12Hour) context.getString(R.string.of_clock) else ""
 }
 

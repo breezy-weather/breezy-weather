@@ -3,14 +3,13 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
-import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.utils.helpers.LunarHelper
 import java.util.Calendar
 
-fun Daily.getWeek(location: Location, language: Language): String {
-    return date.getWeek(location, language)
+fun Daily.getWeek(location: Location, context: Context?): String {
+    return date.getWeek(location, context)
 }
 
 val Daily.lunar: String?

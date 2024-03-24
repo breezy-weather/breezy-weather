@@ -125,9 +125,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         } ?: views.setViewVisibility(R.id.widget_day_icon, View.INVISIBLE)
 
         if (viewStyle == "pixel") {
-            val dateFormat = getLongWeekdayDayMonth(
-                SettingsManager.getInstance(context).language
-            )
+            val dateFormat = getLongWeekdayDayMonth(context)
             views.setString(
                 R.id.widget_day_time,
                 "setTimeZone",
@@ -147,7 +145,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
         if (viewStyle == "oreo" || viewStyle == "oreo_google_sans") {
             val dateFormat = (if (context.isRtl) " | " else "") +
-                    getLongWeekdayDayMonth(SettingsManager.getInstance(context).language) +
+                    getLongWeekdayDayMonth(context) +
                     (if (!context.isRtl) " | " else "")
             views.setString(
                 R.id.widget_day_title,
@@ -297,20 +295,19 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, location: Location, weather: Weather,
         viewStyle: String?, subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
     ): String? {
-        val language = SettingsManager.getInstance(context).language
         return when (subtitleData) {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                     + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
-                "symmetry" -> (Date().getWeek(location, language)
+                "symmetry" -> (Date().getWeek(location, context)
                     + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, language)
-                    + " " + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + " " + Date().getWeek(location, context)
+                    + " " + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
                 else -> null
             }
@@ -328,12 +325,12 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     + " "
                     + LunarHelper.getLunarDate(Date()))
 
-                "symmetry" -> (Date().getWeek(location, language)
+                "symmetry" -> (Date().getWeek(location, context)
                     + " "
                     + LunarHelper.getLunarDate(Date()))
 
                 "tile", "mini", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, language)
+                    + " " + Date().getWeek(location, context)
                     + " " + LunarHelper.getLunarDate(Date()))
 
                 else -> null

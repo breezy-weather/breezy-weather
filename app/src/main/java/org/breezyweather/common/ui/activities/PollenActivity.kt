@@ -53,7 +53,6 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
@@ -84,7 +83,6 @@ class PollenActivity : GeoActivity() {
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
         val location = remember { mutableStateOf<Location?>(null) }
-        val language = SettingsManager.getInstance(this).language
 
         LaunchedEffect(formattedId) {
             var locationC: Location? = null
@@ -147,9 +145,9 @@ class PollenActivity : GeoActivity() {
                                         Text(
                                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
                                             text = daily.date.getFormattedDate(
-                                                getLongWeekdayDayMonth(language),
+                                                getLongWeekdayDayMonth(this@PollenActivity),
                                                 location.value!!,
-                                                language
+                                                this@PollenActivity
                                             ),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,

@@ -32,7 +32,6 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Location) :
@@ -54,23 +53,16 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
                     .append(context.getString(R.string.short_today))
                 dailyItem.setWeekText(context.getString(R.string.short_today))
             } else {
-                val language = SettingsManager.getInstance(context).language
                 talkBackBuilder.append(context.getString(R.string.comma_separator))
-                    .append(daily.getWeek(location, language))
-                dailyItem.setWeekText(daily.getWeek(location, language))
+                    .append(daily.getWeek(location, context))
+                dailyItem.setWeekText(daily.getWeek(location, context))
             }
             talkBackBuilder.append(context.getString(R.string.comma_separator))
                 .append(
-                    daily.date.getFormattedMediumDayAndMonth(
-                        location,
-                        SettingsManager.getInstance(context).language
-                    )
+                    daily.date.getFormattedMediumDayAndMonth(location, context)
                 )
             dailyItem.setDateText(
-                daily.date.getFormattedShortDayAndMonth(
-                    location,
-                    SettingsManager.getInstance(context).language
-                )
+                daily.date.getFormattedShortDayAndMonth(location, context)
             )
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(

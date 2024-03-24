@@ -24,6 +24,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
@@ -31,7 +33,6 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
@@ -90,13 +91,13 @@ class ChinaService @Inject constructor(
             appKey = CHINA_APP_KEY,
             sign = CHINA_SIGN,
             isGlobal = false,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val minutely = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getMinutelyWeather(
                 location.latitude,
                 location.longitude,
-                SettingsManager.getInstance(context).language.code,
+                context.currentLocale.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
@@ -162,7 +163,7 @@ class ChinaService @Inject constructor(
                 appKey = CHINA_APP_KEY,
                 sign = CHINA_SIGN,
                 isGlobal = false,
-                SettingsManager.getInstance(context).language.code
+                context.currentLocale.code
             )
         } else {
             Observable.create { emitter ->
@@ -174,7 +175,7 @@ class ChinaService @Inject constructor(
             mApi.getMinutelyWeather(
                 location.latitude,
                 location.longitude,
-                SettingsManager.getInstance(context).language.code,
+                context.currentLocale.code,
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
@@ -203,7 +204,7 @@ class ChinaService @Inject constructor(
     ): Observable<List<Location>> {
         return mApi.getLocationSearch(
             query,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
             .map { results ->
                 val locationList: MutableList<Location> = ArrayList()
@@ -223,7 +224,7 @@ class ChinaService @Inject constructor(
         return mApi.getLocationByGeoPosition(
             location.latitude,
             location.longitude,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
             .map {
                 val locationList: MutableList<Location> = ArrayList()
@@ -255,7 +256,7 @@ class ChinaService @Inject constructor(
         return mApi.getLocationByGeoPosition(
             location.latitude,
             location.longitude,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         ).map {
             if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
                 it[0].status == 0) {

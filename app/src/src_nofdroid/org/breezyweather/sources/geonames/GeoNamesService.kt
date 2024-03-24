@@ -25,12 +25,13 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationSearchException
+import org.breezyweather.common.extensions.codeForGeonames
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -61,7 +62,7 @@ class GeoNamesService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.codeForGeonames
+        val languageCode = context.currentLocale.codeForGeonames
         return mApi.getLocation(
             query,
             fuzzy = 0.8,

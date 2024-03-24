@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
@@ -60,7 +61,6 @@ import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
@@ -281,10 +281,12 @@ class AboutActivity : GeoActivity() {
         val linkToOpen = remember { mutableStateOf("") }
         val dialogLinkOpenState = remember { mutableStateOf(false) }
 
-        val locale = SettingsManager.getInstance(this).language.locale
+        val locale = this.currentLocale
         val language = locale.language
         val languageWithCountry = locale.language + (if(!locale.country.isNullOrEmpty()) "_r" + locale.country else "")
-        var filteredTranslators = translators.filter { it.lang.contains(language) || it.lang.contains(languageWithCountry) }
+        var filteredTranslators = translators.filter {
+            it.lang.contains(language) || it.lang.contains(languageWithCountry)
+        }
         if (filteredTranslators.isEmpty()) {
             // No translators found? Language doesn’t exist, so defaulting to English
             filteredTranslators = translators.filter { it.lang.contains("en") }

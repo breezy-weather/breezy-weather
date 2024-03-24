@@ -18,26 +18,72 @@ package org.breezyweather.common.extensions
 
 import android.content.Context
 import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 
 val Context.currentLocale: Locale
     get() {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            this.resources.configuration.locales[0]
+        return AppCompatDelegate.getApplicationLocales().get(0)
+            ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                this.resources.configuration.locales[0]
+            } else {
+                this.resources.configuration.locale
+            }
+    }
+
+val Locale.code: String
+    get() {
+        val language = language
+        val country = country
+        return if (!country.isNullOrEmpty() &&
+            (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
+        ) {
+            language.lowercase() + "-" + country.lowercase()
+        } else language.lowercase()
+    }
+
+val Locale.codeWithCountry: String
+    get() {
+        val language = language
+        val country = country
+        return if (!country.isNullOrEmpty()) {
+            language.lowercase() + "-" + country.lowercase()
         } else {
-            this.resources.configuration.locale
+            language.lowercase()
         }
     }
 
-fun Context.setLanguage(locale: Locale) {
-    if (this.currentLocale != locale) {
-        val resources = this.resources
-        val configuration = resources.configuration
-        val metrics = resources.displayMetrics
-        configuration.setLocale(locale)
-        resources.updateConfiguration(configuration, metrics)
+// Accepts "Hant" for traditional chinese but no country code otherwise
+val Locale.codeForGeonames: String
+    get() {
+        val language = language
+        val country = country
+        return if (!country.isNullOrEmpty() &&
+            (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
+        ) {
+            language.lowercase() + "-Hant"
+        } else {
+            language.lowercase()
+        }
     }
-}
+
+// Everything in uppercase + "ZHT" for traditional Chinese
+val Locale.codeForNaturalEarthService: String
+    get() {
+        val language = language
+        val country = country
+        return if (!country.isNullOrEmpty() &&
+            (country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true))
+        ) {
+            language.uppercase() + "T"
+        } else language.uppercase()
+    }
+
+val Locale.isChinese: Boolean
+    get() = code.startsWith("zh")
 
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.

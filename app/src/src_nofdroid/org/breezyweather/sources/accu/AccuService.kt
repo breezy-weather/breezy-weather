@@ -29,6 +29,8 @@ import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
@@ -108,7 +110,7 @@ class AccuService @Inject constructor(
         val apiKey = getApiKeyOrDefault()
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
 
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
         val current = mApi.getCurrent(
             locationKey,
@@ -280,7 +282,7 @@ class AccuService @Inject constructor(
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
 
         val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -430,7 +432,7 @@ class AccuService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocation(
             apiKey,
@@ -453,7 +455,7 @@ class AccuService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
             apiKey,
@@ -577,7 +579,7 @@ class AccuService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = context.currentLocale.code
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
             apiKey,

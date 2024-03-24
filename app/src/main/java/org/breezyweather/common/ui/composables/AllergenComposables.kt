@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import breezyweather.domain.weather.model.Pollen
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor
@@ -45,7 +46,6 @@ import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
 import org.breezyweather.domain.weather.model.getIndexNameFromSource
 import org.breezyweather.domain.weather.model.validPollens
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
 import java.text.Collator
 
@@ -62,7 +62,7 @@ fun PollenGrid(
     ) {
         specificPollens.ifEmpty { pollen.validPollens }
             .sortedWith { va1, va2 ->
-                Collator.getInstance(SettingsManager.getInstance(context).language.locale)
+                Collator.getInstance(context.currentLocale)
                     .compare(
                         context.getString(va1.pollenName),
                         context.getString(va2.pollenName)

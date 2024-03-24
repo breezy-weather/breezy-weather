@@ -67,7 +67,6 @@ import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.adapters.AqiAdapter
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
@@ -119,9 +118,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mTime.text = if (isDaily) {
                 context.getString(R.string.short_today)
             } else location.weather!!.base.refreshTime?.getFormattedTime(
-                location,
-                SettingsManager.getInstance(context).language,
-                context.is12Hour
+                location, context, context.is12Hour
             )
             if (itemAnimationEnabled) {
                 mProgress.apply {

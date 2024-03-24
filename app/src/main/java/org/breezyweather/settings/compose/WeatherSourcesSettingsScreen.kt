@@ -30,6 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
@@ -107,8 +108,7 @@ fun WeatherSourcesSettingsScreen(
     configurableSources
         .filter { it !is LocationSource } // Exclude location sources configured in its own screen
         .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
-            Collator.getInstance(SettingsManager.getInstance(context).language.locale)
-                .compare(ws1.name, ws2.name)
+            Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
         }
         .forEach { preferenceSource ->
             item(key = "header_${preferenceSource.id}") {

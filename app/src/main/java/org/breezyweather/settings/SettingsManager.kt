@@ -29,7 +29,6 @@ import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
@@ -192,7 +191,7 @@ class SettingsManager private constructor(context: Context) {
 
     private val defaultTemperatureUnit: String
         get() {
-            return when (LocalePreferences.getTemperatureUnit(language.locale)) {
+            return when (LocalePreferences.getTemperatureUnit()) {
                 LocalePreferences.TemperatureUnit.FAHRENHEIT -> "f"
                 LocalePreferences.TemperatureUnit.KELVIN -> "k"
                 else -> "c"
@@ -352,15 +351,6 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("item_animation_switch", true)
 
-    var language: Language
-        set(value) {
-            config.edit().putString("language", value.id).apply()
-            notifySettingsChanged()
-        }
-        get() = Language.getInstance(
-            config.getString("language", "follow_system") ?: ""
-        )
-
     var languageUpdateLastTimestamp: Long
         set(value) {
             config.edit().putLong("language_update_last_timestamp", value).apply()
@@ -368,7 +358,6 @@ class SettingsManager private constructor(context: Context) {
         get() = config.getLong("language_update_last_timestamp", 0)
 
     // forecast.
-
     var isTodayForecastEnabled: Boolean
         set(value) {
             config.edit().putBoolean("timing_forecast_switch_today", value).apply()

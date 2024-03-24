@@ -33,9 +33,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.insets.FitBothSideBarView
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
@@ -44,7 +46,6 @@ import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.domain.weather.model.lunar
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import javax.inject.Inject
@@ -94,7 +95,7 @@ class DailyWeatherActivity : GeoActivity() {
         }
         mTitle = findViewById(R.id.activity_weather_daily_title)
         mSubtitle = findViewById<TextView>(R.id.activity_weather_daily_subtitle).also {
-            it.visibility = if (SettingsManager.getInstance(this).language.isChinese) View.VISIBLE else View.GONE
+            it.visibility = if (this.currentLocale.isChinese) View.VISIBLE else View.GONE
         }
         mIndicator = findViewById(R.id.activity_weather_daily_indicator)
         val formattedId = mFormattedId
@@ -184,11 +185,8 @@ class DailyWeatherActivity : GeoActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun selectPage(daily: Daily, location: Location, position: Int, size: Int) {
-        val language = SettingsManager.getInstance(this).language
         mTitle?.text = daily.date.getFormattedDate(
-            getLongWeekdayDayMonth(language),
-            location,
-            language
+            getLongWeekdayDayMonth(this), location, this
         )
         mSubtitle?.text = daily.lunar
         mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text

@@ -133,6 +133,7 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
+        disable.addAll(listOf("MissingTranslation", "ExtraTranslation"))
     }
 
     composeOptions {
@@ -251,11 +252,20 @@ dependencies {
     implementation(libs.lunarcalendar) // TODO: Replace with native ChineseCalendar
     implementation(libs.aboutLibraries)
 
+    // Allows reflection of the relative time class to pass Locale as parameter
+    implementation(libs.restrictionBypass)
+
     // debugImplementation because LeakCanary should only run in debug builds.
     //debugImplementation(libs.leakcanary)
 }
 
 tasks {
+    val localesConfigTask = registerLocalesConfigTask(project)
+
+    preBuild {
+        dependsOn(localesConfigTask)
+    }
+
     // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api(-markers)
     withType<KotlinCompile> {
         kotlinOptions.freeCompilerArgs += listOf(

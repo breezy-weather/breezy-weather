@@ -182,9 +182,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
 
         if (viewStyle == "temp") {
             // Date
-            val dateFormat = getShortWeekdayDayMonth(
-                SettingsManager.getInstance(context).language
-            )
+            val dateFormat = getShortWeekdayDayMonth(context)
             views.setString(
                 R.id.widget_clock_day_date,
                 "setTimeZone",
@@ -421,20 +419,19 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
     ): String? {
         val weather = location.weather ?: return null
-        val language = SettingsManager.getInstance(context).language
         return when (subtitleData) {
             "time" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                     + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
-                "symmetry" -> (Date().getWeek(location, language)
+                "symmetry" -> (Date().getWeek(location, context)
                     + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, language)
-                    + " " + (weather.base.refreshTime?.getFormattedTime(location, language, context.is12Hour) ?: ""))
+                    + " " + Date().getWeek(location, context)
+                    + " " + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
 
                 else -> null
             }
@@ -452,12 +449,12 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     + " "
                     + LunarHelper.getLunarDate(Date()))
 
-                "symmetry" -> (Date().getWeek(location, language)
+                "symmetry" -> (Date().getWeek(location, context)
                     + " "
                     + LunarHelper.getLunarDate(Date()))
 
                 "tile", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, language)
+                    + " " + Date().getWeek(location, context)
                     + " " + LunarHelper.getLunarDate(Date()))
 
                 else -> null
