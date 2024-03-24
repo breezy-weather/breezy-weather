@@ -19,6 +19,7 @@ Due to a technical change, if you set up a different language than your system l
 - Basic support added for British English (supports a few spelling differences), also added to Australian English and Canadian English (new)
 - Improved date formatting work for Android 7.0+ is now complete
 - Chinese is now handled as Simplified Chinese and Traditional Chinese to ease the work of translators
+- Fix - All non-weather-related texts are now properly updated on language change (weather-related texts still requires a refresh of locations)
 
 
 # Version 5.1.7 (2024-03-20)
