@@ -81,7 +81,7 @@
     <string name="pollen">花粉</string>
     <string name="details">詳細情報</string>
     <string name="ephemeris">太陽と月</string>
-    <string name="action_next">次</string>
+    <string name="action_next">次へ</string>
     <string name="action_done">終了</string>
     <string name="action_cancel">キャンセル</string>
     <string name="settings_enabled">有効</string>
@@ -159,7 +159,7 @@
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新しています</string>
     <string name="notification_updating_weather_data">気象データを更新しています (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">タップして詳細を表示…</string>
+    <string name="pollen_tap_to_see_more">タップして詳細を表示します…</string>
     <!-- action -->
     <string name="alerts">警報</string>
     <string name="action_search">検索</string>
@@ -176,8 +176,8 @@
     <string name="widget_clock_day_vertical">時計 + 毎日 (垂直)</string>
     <string name="widget_clock_day_week">時計 + 毎日 + 毎週</string>
     <string name="widget_text">テキスト</string>
-    <string name="widget_trend_daily">毎日の動き</string>
-    <string name="widget_trend_hourly">毎時の動き</string>
+    <string name="widget_trend_daily">毎日の傾向</string>
+    <string name="widget_trend_hourly">毎時の傾向</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新を待っています</string>
     <string name="widget_ellipsis">…</string>
@@ -255,7 +255,7 @@
     <string name="uv_index_0_2">弱い</string>
     <string name="uv_index_3_5">並</string>
     <string name="uv_index_6_7">強い</string>
-    <string name="precipitation_between_time">%1$s～%2$sの間の降水状況</string>
+    <string name="precipitation_between_time">%1$s～%2$sの降水状況</string>
     <string name="uv_alert_level">警報</string>
     <string name="uv_index_8_10">非常に強い</string>
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
@@ -284,8 +284,7 @@
     <string name="settings_main_section_displayed_data">表示するデータ</string>
     <string name="settings_background_updates_summary">更新間隔･自動更新の問題の対処</string>
     <string name="settings_background_updates">バックグラウンドでの自動更新</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。
-\nDon’t kill my app! にはその対処方法が掲載されています。</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーはバックグラウンドでの動作を独自設定で制限しています。Don’t kill my app!のHPにはその対処方法が掲載されています。</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_main">メイン画面</string>
     <string name="settings_main_hourly_trends_title">毎時予報</string>
@@ -412,7 +411,7 @@
     <string name="widget_custom_subtitle_keyword_als_description">警報 (短い)</string>
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">サンセリフ体（太字）</string>
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
@@ -434,10 +433,10 @@
     <string name="settings_notifications_alerts_title">気象警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">使用感の温度</string>
     <string name="unit_kn">kn</string>
-    <string name="notification_precipitation_starting">まもなく降水</string>
-    <string name="notification_precipitation_starting_desc">%s から開始予定</string>
-    <string name="notification_precipitation_stopping">降水はもうすぐ止む</string>
-    <string name="notification_precipitation_stopping_desc">%sまで停止予定</string>
+    <string name="notification_precipitation_starting">まもなく降水が始めます</string>
+    <string name="notification_precipitation_starting_desc">%s 頃に始めます</string>
+    <string name="notification_precipitation_stopping">もうすぐ降水が止みます</string>
+    <string name="notification_precipitation_stopping_desc">%s頃に降水が止みます</string>
     <string name="notification_style_native">ネイティブ</string>
     <string name="notification_style_cities">都市</string>
     <string name="common_weather_text_clear_sky">晴れ</string>
@@ -497,7 +496,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプしてこの項目を削除できます</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">サンセリフ体</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
@@ -560,7 +559,7 @@
     <string name="widget_label_align_end">右端に揃える</string>
     <string name="widget_custom_subtitle_keyword_al_description">警報</string>
     <string name="widget_style_temperature">温度</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">サンセリフ体（細字）</string>
     <string name="settings_weather_sources_summary">デフォルト天気情報源の新しい場所、カスタム API キー、その他の情報源設定</string>
     <string name="settings_weather_sources_per_location_summary">この場所の気象情報源をカスタマイズする</string>
     <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合、許可してください。</string>
@@ -577,7 +576,7 @@
     <string name="settings_notifications_precipitations_title">降水量の通知</string>
     <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
     <string name="settings_widgets_gadgets_title">小道具</string>
-    <string name="notification_precipitation_continuing_desc">少なくとも %s まで継続すると予想されます</string>
+    <string name="notification_precipitation_continuing_desc">最低でも%sまで続きます</string>
     <string name="common_weather_text_mainly_clear">ほぼ晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
     <string name="common_weather_text_rain_showers">にわか雨</string>
@@ -649,17 +648,17 @@
     <string name="action_confirm">確認</string>
     <string name="widget_label_hide_header">ヘッダーを隠す</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">現在の空気質指数</string>
-    <string name="weather_message_too_frequent_refreshes">更新は時間を空けて行ってください。</string>
+    <string name="weather_message_too_frequent_refreshes">数秒お待ってから再試行してください…</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
     <string name="pollen_urticaceae">蕁麻花粉</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4日後の花粉指数まとめ</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">今日の花粉指数まとめ, 明日, …, 4日目</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">この場所に最適な天気モデルを組み合わせる</string>
     <string name="settings_per_location">場所設定</string>
     <string name="settings_per_location_summary">この場所の追加カスタマイズ</string>
     <string name="settings_weather_source_open_meteo_weather_models">天気モデル</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">ベストマッチ</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless">縫い目のない</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">シームレス</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">このプロバイダーの気象モデルを全てシームレスな予測に組み合わせる</string>
     <string name="pollen_carpinus">椣木花粉</string>
     <string name="pollen_castanea">栗木花粉</string>
@@ -673,8 +672,20 @@
     <string name="pollen_rumex">酸葉花粉</string>
     <string name="message_source_not_installed_error_content_tip_1">Breezy Weatherスタンダードバージョンで現在地を追加した後、サポートされる天気情報源がより少ないF-Droidバージョンに切り替えたときにこの状況が発生する可能性があります。スタンダードバージョンに戻すと、この問題が解決される可能性があります。</string>
     <string name="message_source_not_installed_error_content_tip_2">この場所の天気情報源を変更するか、この場所を削除して再度追加してください。</string>
-    <string name="about_open_link_message">%s を開きますか？</string>
+    <string name="about_open_link_message">%sをアクセスしますか？</string>
     <string name="sunshine">日照</string>
     <string name="pollen_salix">柳木花粉</string>
     <string name="pollen_tilia">科木花粉</string>
+    <string name="alert">警報</string>
+    <string name="settings_source_instance">実例</string>
+    <string name="settings_source_instance_invalid">必ず / で終わるhttps URLであること</string>
+    <string name="message_invalid_incomplete_data">サーバーから無効または不完全なデータを受信しました</string>
+    <string name="settings_per_location_theme">テーマ</string>
+    <string name="settings_source_instance_geocoding">ジオコーディング実例</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">予報実例</string>
+    <string name="settings_weather_source_fdroid_disclaimer">Breezy Weatherの他バージョンからもっと天気情報源を利用できます。ここから詳細を確認します。</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">空気質実例</string>
+    <string name="settings_widgets_broadcast_switch">天気データを他のアプリにブロードキャストする</string>
+    <string name="settings_invalid_syntax">無効な構文</string>
+    <string name="settings_widgets_broadcast_switch_dialog">このオプションを選択すると、デバイス上の全てのアプリが位置情報と天気データにアクセスできるようになります。これにより他のアプリによる悪用が発生する潜在的なリスクを十分に理解した上、続行してください。</string>
 </resources>
