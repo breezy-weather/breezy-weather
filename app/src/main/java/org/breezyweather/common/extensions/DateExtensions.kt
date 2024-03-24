@@ -59,7 +59,7 @@ fun Date.getFormattedDate(
             } else pattern,
             language.locale
         ).apply {
-            timeZone = location.icuTimeZone
+            timeZone = android.icu.util.TimeZone.getTimeZone(location.timeZone)
         }.format(this)
     } else this.getFormattedDate(pattern, location.javaTimeZone, language.locale)
 }
