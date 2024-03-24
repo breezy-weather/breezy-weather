@@ -20,7 +20,6 @@ package breezyweather.domain.location.model
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.annotation.RequiresApi
 import breezyweather.domain.weather.model.Weather
 import java.util.Locale
 import kotlin.math.atan2
@@ -71,9 +70,6 @@ data class Location(
 ) : Parcelable {
 
     val javaTimeZone: java.util.TimeZone = java.util.TimeZone.getTimeZone(timeZone)
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    val icuTimeZone: android.icu.util.TimeZone = android.icu.util.TimeZone.getTimeZone(timeZone)
 
     val formattedId: String
         get() = if (isCurrentPosition) {
