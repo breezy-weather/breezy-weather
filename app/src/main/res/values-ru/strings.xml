@@ -559,7 +559,7 @@
     <string name="weather_message_invalid_location">Неверное местоположение, удалите его и добавьте заново</string>
     <string name="weather_air_quality_data_by">Информация о качестве воздуха предоставлена %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Не удалось обновить данные о погоде для дополнительного источника погоды</string>
-    <string name="weather_minutely_data_by">Поминутные данные об осадках предоставлены %s</string>
+    <string name="weather_minutely_data_by">Данные прогноза осадков предоставлены %s</string>
     <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="precipitation_nowcasting">Поминутные осадки</string>
