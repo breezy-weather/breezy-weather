@@ -138,6 +138,7 @@ class AccuService @Inject constructor(
             mApi is AccuEnterpriseApi
         ) {
             mApi.getMinutely(
+                minutes = 1,
                 apiKey,
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,
@@ -327,6 +328,7 @@ class AccuService @Inject constructor(
                 return Observable.error(SecondaryWeatherException())
             }
             mEnterpriseApi.getMinutely(
+                minutes = 1,
                 apiKey,
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,

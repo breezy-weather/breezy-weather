@@ -59,6 +59,7 @@ import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.json.AccuValue
 import java.util.Date
 import java.util.TimeZone
+import kotlin.math.roundToInt
 
 fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
@@ -435,10 +436,14 @@ private fun getMinutelyList(
 ): List<Minutely>? {
     if (minuteResult == null) return null
     if (minuteResult.Intervals.isNullOrEmpty()) return emptyList()
-    return minuteResult.Intervals.map { interval ->
+    return minuteResult.Intervals.mapIndexed { i, interval ->
         Minutely(
             date = Date(interval.StartEpochDateTime),
-            minuteInterval = interval.Minute,
+            minuteInterval = if (i < minuteResult.Intervals.size - 1) {
+                ((minuteResult.Intervals[i + 1].Minute - interval.Minute) / (60 * 1000)).toDouble()
+                    .roundToInt()
+            } else ((interval.Minute - minuteResult.Intervals[i - 1].Minute) / (60 * 1000)).toDouble()
+                .roundToInt(),
             precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)
         )
     }

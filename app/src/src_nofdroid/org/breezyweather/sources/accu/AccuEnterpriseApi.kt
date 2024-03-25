@@ -30,8 +30,9 @@ import retrofit2.http.Query
  */
 interface AccuEnterpriseApi : AccuDeveloperApi {
 
-    @GET("forecasts/v1/minute/1minute")
+    @GET("forecasts/v1/minute/{minutes}minute")
     fun getMinutely(
+        @Path("minutes") minutes: Int,
         @Query("apikey") apikey: String,
         @Query("q") q: String,
         @Query("language") language: String,
