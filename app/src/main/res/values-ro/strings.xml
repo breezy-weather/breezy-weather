@@ -684,4 +684,7 @@
     <string name="settings_source_instance">Server</string>
     <string name="settings_widgets_broadcast_switch">Transmite date meteo către alte aplicații</string>
     <string name="settings_widgets_broadcast_switch_dialog">Această opțiune permite ca orice aplicație de pe dispozitivul tău să aibă acces la numele locației tale și la datele meteo. Continuă numai dacă înțelegi, pe deplin, riscurile cauzate de potențiala utilizare abuzivă a altor aplicații.</string>
+    <string name="settings_per_location_theme">Temă</string>
+    <string name="settings_source_instance_invalid">Trebuie să fie un URL https cu / la sfârșit</string>
+    <string name="settings_invalid_syntax">Sintaxă incorectă</string>
 </resources>
