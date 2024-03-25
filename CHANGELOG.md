@@ -1,6 +1,6 @@
 # Version 5.1.8 (not yet released)
 
-Due to a technical change, if you set up a different language than your system language, you will have to set it again on update.
+Due to a technical change, if you had set up a different language than your system language, you will have to set it again on update.
 
 **New features**
 - Added ability to change the background weather and time for each location
