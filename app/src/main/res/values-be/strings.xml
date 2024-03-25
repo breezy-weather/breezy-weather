@@ -177,7 +177,7 @@
     <string name="ceiling">Вышыня хмарнага покрыва</string>
     <string name="weather_pollen_data_by">Інфармацыя аб алергенах прадастаўлена %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Дадзеныя аб якасці паветра прадастаўлены %s</string>
-    <string name="weather_minutely_data_by">Пахвілінныя дадзеныя аб ападках прадастаўлены %s</string>
+    <string name="weather_minutely_data_by">Дадзеныя прагнозу ападкаў прадастаўлены %s</string>
     <string name="weather_alert_data_by">Абвесткі аб надвор’і прадастаўлены %s</string>
     <string name="weather_normals_data_by">Дадзеныя аб тэмпературных нормах прадастаўлены %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Не атрымалася абнавіць дадзеныя аб надвор’і для дадатковай крыніцы надвор’я</string>
