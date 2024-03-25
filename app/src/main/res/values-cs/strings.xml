@@ -553,7 +553,7 @@
     <string name="pollen_level_4">Vysoké</string>
     <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od %s</string>
     <string name="weather_pollen_data_by">Údaje o alergenech od %s</string>
-    <string name="weather_minutely_data_by">Údaje o minutových srážkách od %s</string>
+    <string name="weather_minutely_data_by">Krátkodobá předpověď srážek od služby %s</string>
     <string name="precipitation_nowcasting">Minutové srážky</string>
     <string name="pollen_betula">Bříza</string>
     <string name="pollen_artemisia">Pelyněk</string>
