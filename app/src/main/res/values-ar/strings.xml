@@ -555,7 +555,7 @@
     <string name="action_delete">حذف</string>
     <string name="weather_air_quality_data_by">بيانات جودة الهواء بواسطة %s</string>
     <string name="weather_pollen_data_by">بيانات مسببات الحساسية بواسطة %s</string>
-    <string name="weather_minutely_data_by">بيانات التساقطات دقيقة بدقيقة بواسطة %s</string>
+    <string name="weather_minutely_data_by">بيانات التنبؤ بهطول الأمطار بواسطة %s</string>
     <string name="weather_message_invalid_location">الموقع غير صالح ، يرجى حذفه وإعادة إضافته</string>
     <string name="weather_alert_data_by">بيانات التنبيه حسب %s</string>
     <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
