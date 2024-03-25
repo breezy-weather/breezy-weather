@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="precipitation_forecast">Прогноза за валежи</string>
     <string name="air_quality">Качество на въздуха</string>
     <string name="pollen">Алергени</string>
     <string name="alerts_to_follow">Предстоящи сигнали, докоснете тук, за да ги видите.</string>
@@ -555,7 +554,7 @@
     <string name="weather_minutely_data_by">Поминутни данни за валежите от %s</string>
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от %s</string>
     <string name="wind_gusts">Пориви вятър</string>
-    <string name="minutely_precipitations">Валежи поминутно</string>
+    <string name="precipitation_nowcasting">Валежи поминутно</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
     <string name="unit_bf">Bf</string>

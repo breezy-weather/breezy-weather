@@ -5,10 +5,9 @@
     <string name="wind_direction_short_S">J</string>
     <string name="pollen_and_mold">Polen i plijesan/buđ</string>
     <string name="wind_speed">Brzina vjetra</string>
-    <string name="precipitation_forecast">Prognoza padavina</string>
     <string name="temperature">Temperatura</string>
     <string name="precipitation_ice">Led</string>
-    <string name="minutely_precipitations">Padavine iz minute u minutu</string>
+    <string name="precipitation_nowcasting">Padavine iz minute u minutu</string>
     <string name="temperature_wet_bulb">Mokrina termosijalice</string>
     <string name="short_tomorrow">Sutra</string>
     <string name="air_quality">Kvalitet zraka</string>

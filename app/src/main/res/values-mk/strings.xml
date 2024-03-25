@@ -403,8 +403,7 @@
     <string name="common_weather_text_snow">Снег</string>
     <string name="common_weather_text_snow_light">Слаб снег</string>
     <string name="common_weather_text_drizzle_heavy">Силен дожд</string>
-    <string name="precipitation_forecast">Прогноза за врнежи</string>
-    <string name="minutely_precipitations">Врнежи од минута во минута</string>
+    <string name="precipitation_nowcasting">Врнежи од минута во минута</string>
     <string name="temperature_wind_chill">Заладување на ветерот</string>
     <string name="temperature_wet_bulb">Влажна сијалица</string>
     <string name="temperature_degree_day_heating">Степен ден за греење</string>

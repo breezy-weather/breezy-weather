@@ -395,7 +395,6 @@
     <string name="unit_kpa_voice">Килопаскали</string>
     <string name="weather_kind_hail">Град</string>
     <string name="air_quality_pm25_voice">PM два тачка пет</string>
-    <string name="precipitation_forecast">Прогноза падавина</string>
     <string name="unit_atm_voice">Атмосфере</string>
     <string name="cloud_cover">Облачност</string>
     <string name="widget_subtitle_data_wind">Ветар</string>
@@ -555,7 +554,7 @@
     <string name="temperature_wind_chill">Хладан ветар</string>
     <string name="temperature_wet_bulb">Влажно</string>
     <string name="temperature_degree_day_cooling">Степен дан хлађења</string>
-    <string name="minutely_precipitations">Падавине из минута у минут</string>
+    <string name="precipitation_nowcasting">Падавине из минута у минут</string>
     <string name="temperature">Температура</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_probability">Вероватноћа падавина</string>

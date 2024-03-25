@@ -35,6 +35,8 @@ import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
+import org.breezyweather.domain.weather.model.getMinutelyDescription
+import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -61,6 +63,7 @@ class HourlyViewHolder(
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
     private val minutelyContainer: LinearLayout = itemView.findViewById(R.id.container_main_hourly_trend_card_minutely)
     private val minutelyTitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyTitle)
+    private val minutelySubtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelySubtitle)
     private val precipitationBar: PrecipitationBar = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyBar)
     private val minutelyStartText: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartText)
     private val minutelyCenterText: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyCenterText)
@@ -196,6 +199,8 @@ class HourlyViewHolder(
         }
 
         minutelyTitle.setTextColor(colors[0])
+        minutelyTitle.text = weather.getMinutelyTitle(context)
+        minutelySubtitle.text = weather.getMinutelyDescription(context, location)
 
         precipitationBar.precipitationColor = ThemeManager
             .getInstance(context)

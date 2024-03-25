@@ -143,7 +143,6 @@
     <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="minutely_forecast">Previsão por minuto</string>
-    <string name="precipitation_forecast">Previsão de precipitação</string>
     <string name="precipitation_probability">Probabilidade de precipitação</string>
     <string name="precipitation_duration">Duração de precipitação</string>
     <string name="wind_speed">Velocidade do vento</string>
@@ -565,7 +564,7 @@
     <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
     <string name="metno_weather_text_andthunder">%s com trovoadas</string>
-    <string name="minutely_precipitations">Precipitação minuto a minuto</string>
+    <string name="precipitation_nowcasting">Precipitação minuto a minuto</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>
     <string name="about_contact">Contato</string>
     <string name="common_weather_text_drizzle">Garoa</string>

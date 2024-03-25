@@ -7,8 +7,8 @@
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
     <string name="minutely_forecast">Minutely forecast</string>
-    <string name="precipitation_forecast">Precipitation forecast</string>
-    <string name="minutely_precipitations">Precipitation minute by minute</string>
+    <!-- Nowcasting is a FORECAST of the next 2-3 hours, also called "immediate forecast" -->
+    <string name="precipitation_nowcasting">Precipitation nowcasting</string>
     <string name="air_quality">Air quality</string>
     <!-- We use it singular in English as in “Grass pollen” -->
     <string name="pollen">Pollen</string>
@@ -241,7 +241,7 @@
     <string name="weather_air_quality_data_by">Air quality data by %s</string>
     <string name="weather_pollen_data_by">Pollen data by %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by %s</string>
-    <string name="weather_minutely_data_by">Precipitation minute by minute data by %s</string>
+    <string name="weather_minutely_data_by">Precipitation nowcasting data by %s</string>
     <string name="weather_alert_data_by">Alert data by %s</string>
     <string name="weather_normals_data_by">Temperature normals data by %s</string>
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>

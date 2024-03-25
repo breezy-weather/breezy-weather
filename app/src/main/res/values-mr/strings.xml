@@ -43,8 +43,7 @@
     <string name="daily_forecast">दैनिक अंदाज</string>
     <string name="hourly_forecast">प्रति तास अंदाज</string>
     <string name="minutely_forecast">सूक्ष्म अंदाज</string>
-    <string name="precipitation_forecast">पर्जन्यवृष्टीचा अंदाज</string>
-    <string name="minutely_precipitations">मिनिटा मिनिटाला पर्जन्य</string>
+    <string name="precipitation_nowcasting">मिनिटा मिनिटाला पर्जन्य</string>
     <string name="pollen">परागकण</string>
     <string name="ephemeris">सूर्य आणि चंद्र</string>
     <string name="pollen_and_mold">परागकण आणि साचा</string>

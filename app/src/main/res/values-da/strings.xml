@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="precipitation_forecast">Nedbør prognose</string>
     <string name="temperature">Temperatur</string>
-    <string name="minutely_precipitations">Nedbør minut for minut</string>
+    <string name="precipitation_nowcasting">Nedbør minut for minut</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="daily_forecast">Daglig prognose</string>
     <string name="pollen">Pollen</string>

@@ -78,7 +78,6 @@
     <string name="daily_forecast">Denní předpověď</string>
     <string name="hourly_forecast">Hodinová předpověď</string>
     <string name="minutely_forecast">Minutová předpověď</string>
-    <string name="precipitation_forecast">Předpověď srážek</string>
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="pollen">Alergeny</string>
     <string name="details">Podrobnosti</string>
@@ -555,7 +554,7 @@
     <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od %s</string>
     <string name="weather_pollen_data_by">Údaje o alergenech od %s</string>
     <string name="weather_minutely_data_by">Údaje o minutových srážkách od %s</string>
-    <string name="minutely_precipitations">Minutové srážky</string>
+    <string name="precipitation_nowcasting">Minutové srážky</string>
     <string name="pollen_betula">Bříza</string>
     <string name="pollen_artemisia">Pelyněk</string>
     <string name="pollen_olea">Oliva</string>

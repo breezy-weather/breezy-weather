@@ -78,7 +78,6 @@
     <string name="daily_forecast">Pronòstic diari</string>
     <string name="hourly_forecast">Pronòstic horari</string>
     <string name="minutely_forecast">Pronòstic del minut</string>
-    <string name="precipitation_forecast">Pronòstic per precipitació</string>
     <string name="air_quality">Qualitat de l’aire</string>
     <string name="pollen">Pol·len</string>
     <string name="details">Detalls</string>
@@ -304,7 +303,7 @@
     <string name="air_quality_level_2">Moderat</string>
     <string name="air_quality_level_2_description">La qualitat de l’aire és generalment acceptable per a la majoria d’individus. No obstant, els grups més sensibles poden sentir símptomes moderats en cas d’estar exposats durant molta estona.</string>
     <string name="air_quality_level_3">Baix</string>
-    <string name="minutely_precipitations">Precipitació minut a minut</string>
+    <string name="precipitation_nowcasting">Precipitació minut a minut</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">No s’ha pogut obrir la configuració del dispositiu.</string>
     <string name="unit_celsius_short">°</string>
     <string name="settings_source_api_key">Clau API</string>

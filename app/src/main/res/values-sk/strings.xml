@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="minutely_forecast">Minutová predpoveď</string>
-    <string name="precipitation_forecast">Predpoveď zrážok</string>
-    <string name="minutely_precipitations">Zrážky po minútach</string>
+    <string name="precipitation_nowcasting">Zrážky po minútach</string>
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="pollen">Alergény</string>
     <string name="ephemeris">Slnko a mesiac</string>

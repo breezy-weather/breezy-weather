@@ -50,11 +50,20 @@
 
             <TextView
                 android:id="@+id/container_main_hourly_trend_card_minutelyTitle"
-                android:text="@string/precipitation_forecast"
+                android:text="@string/precipitation"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginTop="2dp"
                 style="@style/title_text"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_hourly_trend_card_minutelySubtitle"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                style="@style/content_text"
+                tools:text="星期日天气宜人"
                 tools:ignore="RtlHardcoded" />
 
             <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar

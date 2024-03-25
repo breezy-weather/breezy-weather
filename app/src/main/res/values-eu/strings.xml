@@ -11,8 +11,7 @@
     <string name="minutely_forecast">Iragarpen zehatza</string>
     <string name="air_quality">Airearen kalitatea</string>
     <string name="pollen">Polena</string>
-    <string name="precipitation_forecast">Prezipitazio iragarpena</string>
-    <string name="minutely_precipitations">Prezipitazioa minutuz minutu</string>
+    <string name="precipitation_nowcasting">Prezipitazioa minutuz minutu</string>
     <string name="details">Xehetasunak</string>
     <string name="ephemeris">Eguzkia eta ilargia</string>
     <string name="alerts">Alertak</string>

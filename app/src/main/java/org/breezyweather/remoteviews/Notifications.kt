@@ -36,13 +36,14 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.extensions.buildNotificationChannel
 import org.breezyweather.common.extensions.buildNotificationChannelGroup
-import org.breezyweather.common.extensions.getFormattedTime
-import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.getMinutelyDescription
+import org.breezyweather.domain.weather.model.getMinutelyTitle
+import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
@@ -299,41 +300,15 @@ object Notifications {
         //val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
         //val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
 
-        val minutely = location.weather!!.minutelyForecast
-        if (minutely.any { (it.dbz ?: 0) > 0 }) {
-            // 1 = soon, 2 = continue, 3 = end
-            val case = if (minutely.first().dbz != null && minutely.first().dbz!! > 0) {
-                if (minutely.last().dbz != null && minutely.last().dbz!! > 0) 2 else 3
-            } else 1
-
+        if (location.weather!!.hasMinutelyPrecipitation) {
             context.notify(
                 ID_PRECIPITATION,
                 getNotificationBuilder(
                     context,
                     R.drawable.ic_precipitation,
-                    context.getString(
-                        when (case) {
-                            1 -> R.string.notification_precipitation_starting
-                            2 -> R.string.notification_precipitation_continuing
-                            3 -> R.string.notification_precipitation_stopping
-                            else -> R.string.notification_precipitation_continuing
-                        }
-                    ),
+                    location.weather!!.getMinutelyTitle(context),
                     location.getPlace(context),
-                    context.getString(
-                        when (case) {
-                            1 -> R.string.notification_precipitation_starting_desc
-                            2 -> R.string.notification_precipitation_continuing_desc
-                            3 -> R.string.notification_precipitation_stopping_desc
-                            else -> R.string.notification_precipitation_continuing_desc
-                        },
-                        when (case) {
-                            1 -> minutely.first { (it.dbz ?: 0) > 0 }.date
-                                .getFormattedTime(location, context, context.is12Hour)
-                            else -> minutely.last { (it.dbz ?: 0) > 0 }.date
-                                .getFormattedTime(location, context, context.is12Hour)
-                        }
-                    ),
+                    location.weather!!.getMinutelyDescription(context, location),
                     PendingIntent.getActivity(
                         context,
                         ID_PRECIPITATION,

@@ -77,7 +77,6 @@
     <string name="daily_forecast">Ημερήσια πρόγνωση</string>
     <string name="hourly_forecast">Ωριαία πρόγνωση</string>
     <string name="minutely_forecast">Πρόγνωση ανά λεπτό</string>
-    <string name="precipitation_forecast">Πρόγνωση βροχοπτώσεων</string>
     <string name="air_quality">Ποιότητα αέρα</string>
     <string name="pollen">Αλλεργίες</string>
     <string name="details">Λεπτομέρειες</string>
@@ -284,7 +283,7 @@
     <string name="wind_direction_short_E">Α</string>
     <string name="temperature_average_short">Μέσος Όρος</string>
     <string name="precipitation_between_time">Βροχοπτωση ανάμεσα σε %1$s και %2$s</string>
-    <string name="minutely_precipitations">Βροχόπτωση λεπτό προς λεπτό</string>
+    <string name="precipitation_nowcasting">Βροχόπτωση λεπτό προς λεπτό</string>
     <string name="air_quality_level_1">Εξαιρετικός</string>
     <string name="air_quality_level_1_description">Η ποιότητα του αέρα είναι ιδανική για τους περισσότερους ανθρώπους. Απολαύστε τις συνήθεις εξωτερικές δραστηριότητές σας.</string>
     <string name="air_quality_level_2">Καλή</string>

@@ -415,7 +415,7 @@ fun SecondarySourcesPreference(
                     hasChangedASecondarySource.value = true
                 }
                 SourceView(
-                    title = stringResource(R.string.minutely_precipitations),
+                    title = stringResource(R.string.precipitation_nowcasting),
                     selectedKey = minutelySource.value,
                     sourceList = (if (minutelySource.value.isNotEmpty() &&
                         !compatibleMinutelySources.contains(minutelySource.value)) {

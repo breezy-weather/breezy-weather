@@ -45,7 +45,6 @@
     <string name="wind_speed">Brzina vjetra</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Puni mjesec</string>
-    <string name="precipitation_forecast">Prognoza oborina</string>
     <string name="air_quality_pm_info_title">Čestice (PM2.5 i PM10)</string>
     <string name="location_message_reverse_geocoding_failed">Izvor vremena nije uspio pronaći jednu odgovarajuću lokaciju</string>
     <string name="air_quality_pm_explanations_consequences">Čestice su najštetniji oblik zagađenja zraka zbog njihove mogućnosti probijanja duboko u pluća i mozak iz krvotoka, stvarajući zdravstvene probleme kao što su bolesti srca, bolesti pluća i prijevremena smrt.</string>
@@ -73,7 +72,7 @@
     <string name="settings_background_updates_refresh_2h">2 sata</string>
     <string name="settings_section_general">Općenito</string>
     <string name="settings_notifications_forecast_today_title">Obavijest za dnevnu prognozu</string>
-    <string name="minutely_precipitations">Oborine iz minute u minutu</string>
+    <string name="precipitation_nowcasting">Oborine iz minute u minutu</string>
     <string name="temperature_wet_bulb">Mokar termometar</string>
     <string name="short_tomorrow">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>

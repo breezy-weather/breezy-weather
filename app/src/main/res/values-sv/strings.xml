@@ -28,7 +28,6 @@
     <string name="wind_speed">Vindhastighet</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
-    <string name="precipitation_forecast">Nederbördsprognos</string>
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades att hitta en matchande plats</string>
@@ -50,7 +49,7 @@
     <string name="location_message_failed_to_locate">Misslyckades att hitta nuvarande plats</string>
     <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
-    <string name="minutely_precipitations">Nederbörd minut för minut</string>
+    <string name="precipitation_nowcasting">Nederbörd minut för minut</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
     <string name="short_tomorrow">Imrn</string>
     <string name="air_quality">Luftkvalitet</string>

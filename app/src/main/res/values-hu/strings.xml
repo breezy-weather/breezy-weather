@@ -77,7 +77,6 @@
     <string name="daily_forecast">Napi előrejelzés</string>
     <string name="hourly_forecast">Óránkénti előrejelzés</string>
     <string name="minutely_forecast">Percenkénti előrejelzés</string>
-    <string name="precipitation_forecast">Csapadék előrejelzés</string>
     <string name="air_quality">Levegőminőség</string>
     <string name="pollen">Pollen</string>
     <string name="details">Részletek</string>
@@ -608,7 +607,7 @@
     <string name="common_weather_text_rain_snow_mixed">Havas eső</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Záporos, intenzív havas eső</string>
     <string name="unit_mps">m/s</string>
-    <string name="minutely_precipitations">Csapadék percről percre</string>
+    <string name="precipitation_nowcasting">Csapadék percről percre</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Zivatar, heves jégesővel</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Zivatar, enyhe jégesővel</string>
     <string name="settings_debug_dump_crash_logs_saved">Az összeomlási napló elmentve</string>

@@ -103,7 +103,6 @@
     <string name="hourly_forecast">Dự báo hàng giờ</string>
     <string name="air_quality">Chất lượng không khí</string>
     <string name="app_name">Thời tiết</string>
-    <string name="precipitation_forecast">Dự báo lượng mưa</string>
     <string name="uv_alert_level">Mức độ cảnh báo</string>
     <string name="air_quality_level_1">Tuyệt vời</string>
     <string name="air_quality_level_1_description">Chất lượng không khí này là lý tưởng cho hầu hết cá nhân; hãy tận hưởng các hoạt động bình thường ngoài trời.</string>
@@ -538,7 +537,7 @@
     <string name="action_delete">Xoá</string>
     <string name="wind_gusts">Gió mạnh</string>
     <string name="pollen_betula">Bạch dương</string>
-    <string name="minutely_precipitations">Lượng mưa từng phút</string>
+    <string name="precipitation_nowcasting">Lượng mưa từng phút</string>
     <string name="pollen_artemisia">Ngải cứu</string>
     <string name="pollen_olea">Ô liu</string>
     <string name="weather_pollen_data_by">Dữ liệu chất gây dị ứng bởi %s</string>

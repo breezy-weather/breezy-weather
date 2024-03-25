@@ -142,7 +142,6 @@
     <string name="app_name">Orai</string>
     <string name="alerts">Perspėjimai</string>
     <string name="daily_forecast">Orai artimiausiomis dienomis</string>
-    <string name="precipitation_forecast">Lietaus prognozė</string>
     <string name="ephemeris">Saulė ir Mėnulis</string>
     <string name="details">Išsamesnė informacija</string>
     <string name="temperature_apparent">Numanoma temperatūra</string>
@@ -529,7 +528,7 @@
     <string name="settings_main_gravity_sensor_switch">Gravitacijos jutiklis</string>
     <string name="settings_widgets_live_wallpaper_summary">Nustatykite orų animaciją kaip ekrano užsklandą</string>
     <string name="settings_widgets_monochrome_icons_title">Vienspalvės piktogramos</string>
-    <string name="minutely_precipitations">Kritulių kiekis minutėmis</string>
+    <string name="precipitation_nowcasting">Kritulių kiekis minutėmis</string>
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>
     <string name="pollen_and_mold">Žiedadulkės ir pelėsis</string>
     <string name="settings_main_threshold_lines_on_charts">Ribinės linijos diagramose</string>

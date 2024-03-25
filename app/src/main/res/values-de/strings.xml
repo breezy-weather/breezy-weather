@@ -82,7 +82,6 @@
     <string name="precipitation_intensity_heavy">Starkregen</string>
     <string name="precipitation_intensity_light">Nieselregen</string>
     <string name="precipitation_intensity_middle">Regen</string>
-    <string name="precipitation_forecast">Niederschlagsvorhersage</string>
     <string name="precipitation_probability">Niederschlagswahrscheinlichkeit</string>
     <string name="precipitation_intensity_rainstorm">Regensturm</string>
     <string name="pressure">Druck</string>
@@ -560,7 +559,7 @@
     <string name="action_save">Speichern</string>
     <string name="settings_weather_source_main">Hauptquelle</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
-    <string name="minutely_precipitations">Minutengenaue Niederschläge</string>
+    <string name="precipitation_nowcasting">Minutengenaue Niederschläge</string>
     <string name="about_dependencies">Abhängigkeiten</string>
     <string name="about_privacy_policy">Datenschutzerklärung</string>
     <string name="about_contact">Kontakt</string>

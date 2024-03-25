@@ -78,7 +78,6 @@
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
     <string name="minutely_forecast">Minuuttikohtainen ennuste</string>
-    <string name="precipitation_forecast">Sade-ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
     <string name="pollen">Allergeenit</string>
     <string name="details">Lisätietoja</string>
@@ -299,7 +298,7 @@
     <string name="unit_cm">cm</string>
     <string name="settings_section_general">Yleiset</string>
     <string name="settings_notifications_forecast_today_title">Ilmoitus päivän ennusteesta</string>
-    <string name="minutely_precipitations">Sademäärä minuutti minuutilta</string>
+    <string name="precipitation_nowcasting">Sademäärä minuutti minuutilta</string>
     <string name="weather_api_key_required_missing_title">Vaadittu API-avain puuttuu</string>
     <string name="unit_cm_voice">Senttimetriä</string>
     <string name="settings_background_updates_refresh_never">Ei koskaan</string>

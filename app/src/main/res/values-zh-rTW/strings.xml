@@ -77,7 +77,6 @@
     <string name="daily_forecast">每日預報</string>
     <string name="hourly_forecast">每小時預報</string>
     <string name="minutely_forecast">每分鐘預報</string>
-    <string name="precipitation_forecast">降水預報</string>
     <string name="air_quality">空氣品質</string>
     <string name="pollen">花粉濃度資訊</string>
     <string name="details">詳細資訊</string>
@@ -564,7 +563,7 @@
     <string name="settings_location_summary">位置服務設定</string>
     <string name="settings_location_access_precise_title">設備的 GPS 使用狀況</string>
     <string name="about_dependencies">依賴項</string>
-    <string name="minutely_precipitations">每分鐘降水量</string>
+    <string name="precipitation_nowcasting">每分鐘降水量</string>
     <string name="action_save">儲存</string>
     <string name="settings_weather_sources_per_location_summary">自訂此地點使用的天氣數據來源</string>
     <string name="settings_weather_source_main">主要資料來源</string>

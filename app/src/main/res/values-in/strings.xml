@@ -79,7 +79,6 @@
     <string name="daily_forecast">Prakiraan harian</string>
     <string name="hourly_forecast">Prakiraan per jam</string>
     <string name="minutely_forecast">Prakiraan per menit</string>
-    <string name="precipitation_forecast">Prakiraan presipitasi</string>
     <string name="air_quality">Kualitas udara</string>
     <string name="pollen">Allergen</string>
     <string name="details">Detail</string>
@@ -260,7 +259,7 @@
     <string name="settings_background_updates_refresh_3h">3 jam</string>
     <string name="settings_background_updates_refresh_6h">6 jam</string>
     <string name="settings_background_updates_refresh_12h">12 jam</string>
-    <string name="minutely_precipitations">Curah hujan menit demi menit</string>
+    <string name="precipitation_nowcasting">Curah hujan menit demi menit</string>
     <string name="temperature_degree_day_heating">Derajat pemanasan hari</string>
     <string name="temperature_degree_day_cooling">Tingkat pendinginan hari</string>
     <string name="wind_direction_short_E">T</string>

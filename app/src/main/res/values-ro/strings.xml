@@ -78,7 +78,6 @@
     <string name="daily_forecast">Prognoza zilnică</string>
     <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="minutely_forecast">Prognoza pe minut</string>
-    <string name="precipitation_forecast">Prognoza precipitațiilor</string>
     <string name="air_quality">Calitatea aerului</string>
     <string name="pollen">Polen</string>
     <string name="details">Detalii</string>
@@ -572,7 +571,7 @@
     <string name="pressure_short">Presiune</string>
     <string name="pollen_and_mold">Polen și alergeni</string>
     <string name="temperature_normal_short">Normal</string>
-    <string name="minutely_precipitations">Precipitații din minut în minut</string>
+    <string name="precipitation_nowcasting">Precipitații din minut în minut</string>
     <string name="temperature_average_short">Mediu</string>
     <string name="temperature_normals">Norme de temperatură</string>
     <string name="about_privacy_policy">Politica de confidențialitate</string>

@@ -80,7 +80,6 @@
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
     <string name="minutely_forecast">Anlık tahmin</string>
-    <string name="precipitation_forecast">Yağış tahmini</string>
     <string name="pollen">Polen</string>
     <string name="alerts_to_follow">Yaklaşan uyarıları görmek için buraya dokunun.</string>
     <string name="precipitation_none">Yağış yok</string>
@@ -149,7 +148,7 @@
     <string name="air_quality_o3_info_title">Yer seviyesinde ozon (O₃)</string>
     <string name="air_quality_o3_info_introduction">Yer seviyesindeki ozon (O₃), sisin ana bileşenidir. Aynı molekül olmasına rağmen yer seviyesindeki ozon, dünyayı aşırı UV radyasyonundan koruyan stratosferik ozonun aksine insan sağlığına zararlı olabilir.</string>
     <string name="air_quality_o3_info_origin">Araçlardan ve endüstriden yayılan uçucu organik bileşikler, karbonmonoksit ve azot oksitler (NOₓ) gibi kirleticilerle fotokimyasal tepkimelerden oluşur. Fotokimyasal doğası gereği, en yüksek ozon seviyeleri güneşli havalarda görülür.</string>
-    <string name="minutely_precipitations">Dakika dakika yağışlar</string>
+    <string name="precipitation_nowcasting">Dakika dakika yağışlar</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">İki nokta beş PM</string>
     <string name="air_quality_pm10">PM10</string>

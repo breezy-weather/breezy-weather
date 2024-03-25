@@ -4,7 +4,6 @@
     <string name="daily_forecast">Dienas prognoze</string>
     <string name="hourly_forecast">Stundu prognoze</string>
     <string name="minutely_forecast">Minūtes prognoze</string>
-    <string name="precipitation_forecast">Nokrišņu prognoze</string>
     <string name="air_quality">Gaisa kvalitāte</string>
     <string name="pollen">Ziedputekšņi</string>
     <string name="ephemeris">Saule un Mēness</string>
@@ -51,7 +50,7 @@
     <string name="wind_direction_short_SW">DR</string>
     <string name="wind_direction_short_W">R</string>
     <string name="wind_direction_short_NW">ZR</string>
-    <string name="minutely_precipitations">Nokrišņi minūti pēc minūtes</string>
+    <string name="precipitation_nowcasting">Nokrišņi minūti pēc minūtes</string>
     <string name="wind_direction_short_variable">Mainīgs</string>
     <string name="wind_strength">Vēja stiprums</string>
     <string name="wind_strength_2">Viegla plūsma</string>

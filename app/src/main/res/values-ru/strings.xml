@@ -71,7 +71,6 @@
     <string name="daily_forecast">Подневный прогноз</string>
     <string name="hourly_forecast">Почасовой прогноз</string>
     <string name="minutely_forecast">Поминутный прогноз</string>
-    <string name="precipitation_forecast">Прогноз осадков</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="pollen">Аллергены</string>
     <string name="details">Подробно</string>
@@ -563,7 +562,7 @@
     <string name="weather_minutely_data_by">Поминутные данные об осадках предоставлены %s</string>
     <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
-    <string name="minutely_precipitations">Поминутные осадки</string>
+    <string name="precipitation_nowcasting">Поминутные осадки</string>
     <string name="action_save">Сохранить</string>
     <string name="settings_weather_source_main">Основной источник</string>
     <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде использующиеся для этого местоположения</string>

@@ -76,7 +76,6 @@
     <string name="daily_forecast">日時予報</string>
     <string name="hourly_forecast">毎時予報</string>
     <string name="minutely_forecast">毎分予報</string>
-    <string name="precipitation_forecast">降水量予報</string>
     <string name="air_quality">空気質</string>
     <string name="pollen">花粉</string>
     <string name="details">詳細情報</string>
@@ -309,7 +308,7 @@
     <string name="settings_main_daily_trends_title">日時予報</string>
     <string name="about_contributors">貢献者</string>
     <string name="settings_background_updates_dont_kill_my_app_title">端末のメーカーごとの特別な説明</string>
-    <string name="minutely_precipitations">毎分降水量</string>
+    <string name="precipitation_nowcasting">毎分降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定する</string>
     <string name="about_privacy_policy">個人情報保護方針</string>

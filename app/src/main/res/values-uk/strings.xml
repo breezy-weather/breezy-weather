@@ -123,8 +123,7 @@
     <string name="daily_forecast">Щоденний прогноз</string>
     <string name="hourly_forecast">Щогодинний прогноз</string>
     <string name="minutely_forecast">Щохвилинний прогноз</string>
-    <string name="precipitation_forecast">Прогноз опадів</string>
-    <string name="minutely_precipitations">Опади щохвилини</string>
+    <string name="precipitation_nowcasting">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
     <string name="ephemeris">Сонце та Місяць</string>
     <string name="temperature_feels_like">За відчуттями</string>
