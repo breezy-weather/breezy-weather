@@ -414,7 +414,7 @@
     <string name="temperature_average_short">Ort</string>
     <string name="temperature_normals">Sıcaklık normalleri</string>
     <string name="air_quality_no2_info_consequences">Nitrojen dioksite maruz kalmak solunum yollarını tahriş edip solunum yolu hastalıklarını ağırlaştırabilir. Ayrıca NO₂ astım gibi solunum rahatsızlıklarıyla yakından ilişkili bir kirletici olan önemli bir ozon öncüsüdür.</string>
-    <string name="weather_minutely_data_by">%s tarafından dakika dakika yağış verileri</string>
+    <string name="weather_minutely_data_by">%s tarafından bugünlük yağış verileri</string>
     <string name="weather_api_limit_reached_title">API istek limitine ulaşıldı</string>
     <string name="weather_api_unauthorized_title">API erişimi reddedildi</string>
     <string name="location_results_by">%s tarafından sağlanan konum bilgileri</string>
