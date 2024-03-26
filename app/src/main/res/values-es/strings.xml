@@ -447,7 +447,7 @@
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
     <string name="weather_pollen_data_by">Polen por %s</string>
     <string name="weather_air_quality_data_by">Datos sobre la calidad del aire por %s</string>
-    <string name="weather_minutely_data_by">Previsión de las precipitaciones por %s</string>
+    <string name="weather_minutely_data_by">Predicción inmediata de las precipitaciones por %s</string>
     <string name="weather_alert_data_by">Alerta por %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Fallo en la actualización de los datos meteorológicos desde una fuente meteorológica secundaria</string>
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
