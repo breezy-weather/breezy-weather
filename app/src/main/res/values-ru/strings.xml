@@ -70,7 +70,6 @@
     <string name="ephemeris_moon_phase_waning_crescent">Старая луна</string>
     <string name="daily_forecast">Подневный прогноз</string>
     <string name="hourly_forecast">Почасовой прогноз</string>
-    <string name="minutely_forecast">Поминутный прогноз</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="pollen">Аллергены</string>
     <string name="details">Подробно</string>

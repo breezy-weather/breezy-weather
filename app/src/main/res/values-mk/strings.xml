@@ -2,7 +2,6 @@
 <resources>
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Часовна прогноза</string>
-    <string name="minutely_forecast">Минутна прогноза</string>
     <string name="details">Детаљи</string>
     <string name="short_yesterday">Вчр</string>
     <string name="short_today">Ден</string>

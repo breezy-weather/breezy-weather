@@ -77,7 +77,6 @@
     <string name="pollen_tree">Pyl</string>
     <string name="daily_forecast">Denní předpověď</string>
     <string name="hourly_forecast">Hodinová předpověď</string>
-    <string name="minutely_forecast">Minutová předpověď</string>
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="pollen">Alergeny</string>
     <string name="details">Podrobnosti</string>

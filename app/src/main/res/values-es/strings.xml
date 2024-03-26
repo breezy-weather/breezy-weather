@@ -78,7 +78,6 @@
     <string name="pollen_tree">Árbol</string>
     <string name="daily_forecast">Pronóstico del día</string>
     <string name="hourly_forecast">Pronóstico por hora</string>
-    <string name="minutely_forecast">Pronóstico por minuto</string>
     <string name="air_quality">Calidad del aire</string>
     <string name="pollen">Polen</string>
     <string name="details">Detalles</string>

@@ -453,7 +453,6 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Vrijeme obavještenja za prognozu za sljedeći dan</string>
     <string name="air_quality_level_5_description">Osjetljive skupine odmah će osjetiti zdravstvene učinke, pa trebaju izbjegavati aktivnosti na otvorenom. Zdrave osobe vjerojatno će otežano disati i osjetiti iritaciju grla. Preporučujemo da ostanete u zatvorenom prostoru i odgodite aktivnosti na otvorenom.</string>
-    <string name="minutely_forecast">Prognoza po minuti</string>
     <string name="widget_clock_day_week">Sat + Dnevno + Tjedno</string>
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Blagi pljuskovi</string>

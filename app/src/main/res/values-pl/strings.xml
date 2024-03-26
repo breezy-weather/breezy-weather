@@ -78,7 +78,6 @@
     <string name="pollen_tree">Drzewa</string>
     <string name="daily_forecast">Prognoza dzienna</string>
     <string name="hourly_forecast">Prognoza godzinowa</string>
-    <string name="minutely_forecast">Prognoza minutowa</string>
     <string name="air_quality">Jakość powietrza</string>
     <string name="pollen">Pyłki</string>
     <string name="details">Szczegóły</string>

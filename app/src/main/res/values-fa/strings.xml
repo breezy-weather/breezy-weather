@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="minutely_forecast">پیش بینی دقیقه ای</string>
     <string name="hourly_forecast">پیش بینی ساعتی</string>
     <string name="pollen">گرده</string>
     <string name="of_clock">:۰۰</string>

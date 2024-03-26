@@ -78,7 +78,6 @@
     <string name="pollen_tree">Pohon</string>
     <string name="daily_forecast">Prakiraan harian</string>
     <string name="hourly_forecast">Prakiraan per jam</string>
-    <string name="minutely_forecast">Prakiraan per menit</string>
     <string name="air_quality">Kualitas udara</string>
     <string name="pollen">Allergen</string>
     <string name="details">Detail</string>

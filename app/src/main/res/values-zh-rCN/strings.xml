@@ -90,7 +90,6 @@
     <string name="uv_index_11">极高</string>
     <string name="daily_forecast">每日预报</string>
     <string name="hourly_forecast">小时预报</string>
-    <string name="minutely_forecast">分钟预报</string>
     <string name="air_quality">空气质量</string>
     <string name="pollen">花粉</string>
     <string name="details">详细数据</string>

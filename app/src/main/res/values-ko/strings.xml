@@ -76,7 +76,6 @@
     <string name="pollen_tree">나무</string>
     <string name="daily_forecast">일간 예보</string>
     <string name="hourly_forecast">시간별 예보</string>
-    <string name="minutely_forecast">분간 예보</string>
     <string name="air_quality">대기질</string>
     <string name="pollen">알레르기</string>
     <string name="details">세부 사항</string>

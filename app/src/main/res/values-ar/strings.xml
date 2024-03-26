@@ -75,7 +75,6 @@
     <string name="pollen_tree">حبوب لقاح الشجر</string>
     <string name="daily_forecast">النشرة اليومية</string>
     <string name="hourly_forecast">توقعات كل ساعة</string>
-    <string name="minutely_forecast">توقعات كل دقيقة</string>
     <string name="air_quality">جودة الهواء</string>
     <string name="pollen">مسببات الحساسية</string>
     <string name="details">تفاصيل</string>

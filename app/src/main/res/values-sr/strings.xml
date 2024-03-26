@@ -400,7 +400,6 @@
     <string name="widget_subtitle_data_wind">Ветар</string>
     <string name="precipitation_intensity_heavy">Јака киша</string>
     <string name="widget_text">Текст</string>
-    <string name="minutely_forecast">Минутна прогноза</string>
     <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да бисте их видели.</string>
     <string name="precipitation_total">Укупно</string>
     <string name="temperature_degree_day">Степен дана</string>

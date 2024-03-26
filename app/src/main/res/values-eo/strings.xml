@@ -5,7 +5,6 @@
     <!-- Card names -->
     <string name="daily_forecast">Ĉiutagaj prognozoj</string>
     <string name="hourly_forecast">Ĉiuhoraj prognozoj</string>
-    <string name="minutely_forecast">Ĉiuminutaj prognozoj</string>
     <string name="precipitation_nowcasting">Ĉiuminutaj precipitaĵoj</string>
     <string name="air_quality">Aerkvalito</string>
     <!-- We use it singular in English as in “Grass pollen” -->

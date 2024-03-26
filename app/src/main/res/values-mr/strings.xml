@@ -42,7 +42,6 @@
     <string name="app_name">हवामान</string>
     <string name="daily_forecast">दैनिक अंदाज</string>
     <string name="hourly_forecast">प्रति तास अंदाज</string>
-    <string name="minutely_forecast">सूक्ष्म अंदाज</string>
     <string name="precipitation_nowcasting">मिनिटा मिनिटाला पर्जन्य</string>
     <string name="pollen">परागकण</string>
     <string name="ephemeris">सूर्य आणि चंद्र</string>

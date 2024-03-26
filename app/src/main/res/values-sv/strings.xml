@@ -297,7 +297,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="notification_channel_alerts">Varningar</string>
-    <string name="minutely_forecast">Minutprognos</string>
     <string name="wind_strength_0">Lugnt</string>
     <string name="wind_strength_1">Svag vind</string>
     <string name="wind_strength_2">Svag vind</string>

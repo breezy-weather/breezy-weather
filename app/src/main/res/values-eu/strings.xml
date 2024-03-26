@@ -8,7 +8,6 @@
     <string name="app_name">Eguraldia</string>
     <string name="daily_forecast">Egunkako iragarpena</string>
     <string name="hourly_forecast">Ordukako iragarpena</string>
-    <string name="minutely_forecast">Iragarpen zehatza</string>
     <string name="air_quality">Airearen kalitatea</string>
     <string name="pollen">Polena</string>
     <string name="precipitation_nowcasting">Prezipitazioa minutuz minutu</string>

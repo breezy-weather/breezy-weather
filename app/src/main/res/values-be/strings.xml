@@ -115,7 +115,6 @@
     <string name="weather_kind_haze">Дымка</string>
     <string name="null_data_text">Недаступна</string>
     <string name="hourly_forecast">Пагадзінны прагноз</string>
-    <string name="minutely_forecast">Хвілінны прагноз</string>
     <string name="app_name">Надвор’е</string>
     <string name="pollen">Пылок</string>
     <string name="pollen_and_mold">Пылок і цвіль</string>

@@ -57,7 +57,6 @@
     <string name="precipitation_between_time">Padavine između %1$s i %2$s</string>
     <string name="wind">Vjetar</string>
     <string name="temperature_real_feel">RealFeel®</string>
-    <string name="minutely_forecast">Minutna prognoza</string>
     <string name="wind_strength_2">Povjetarac</string>
     <string name="wind_strength_4">Umjereni vjetar</string>
     <string name="wind_strength_5">Umjereno jaki vjetar</string>

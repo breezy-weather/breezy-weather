@@ -76,7 +76,6 @@
     <string name="pollen_tree">Δέντρο</string>
     <string name="daily_forecast">Ημερήσια πρόγνωση</string>
     <string name="hourly_forecast">Ωριαία πρόγνωση</string>
-    <string name="minutely_forecast">Πρόγνωση ανά λεπτό</string>
     <string name="air_quality">Ποιότητα αέρα</string>
     <string name="pollen">Αλλεργίες</string>
     <string name="details">Λεπτομέρειες</string>

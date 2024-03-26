@@ -99,7 +99,6 @@
     <string name="settings_main_background_animation_enabled">Bật</string>
     <string name="settings_main_background_animation_disabled">Tắt</string>
     <string name="settings_main_section_animations">Hình động</string>
-    <string name="minutely_forecast">Dự báo chi tiết</string>
     <string name="hourly_forecast">Dự báo hàng giờ</string>
     <string name="air_quality">Chất lượng không khí</string>
     <string name="app_name">Thời tiết</string>

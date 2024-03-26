@@ -150,7 +150,6 @@
 
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
-    <string name="minutely_forecast">Prévisions minute par minute</string>
     <string name="precipitation_nowcasting">Prévisions immédiates de précipitations</string>
     <string name="air_quality">Qualité de l’air</string>
     <string name="pollen">Pollen</string>

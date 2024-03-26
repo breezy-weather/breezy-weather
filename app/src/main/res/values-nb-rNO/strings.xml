@@ -27,7 +27,6 @@
     <string name="daily_forecast">Daglig prognose</string>
     <string name="alerts">Varsler</string>
     <string name="hourly_forecast">Timevarsel</string>
-    <string name="minutely_forecast">Minuttvarsel</string>
     <string name="of_clock">:00</string>
     <string name="temperature">Temperatur</string>
     <string name="precipitation_nowcasting">Nedbør minutt for minutt</string>

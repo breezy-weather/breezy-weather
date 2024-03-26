@@ -142,7 +142,6 @@
     <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
     <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
-    <string name="minutely_forecast">Previsão por minuto</string>
     <string name="precipitation_probability">Probabilidade de precipitação</string>
     <string name="precipitation_duration">Duração de precipitação</string>
     <string name="wind_speed">Velocidade do vento</string>

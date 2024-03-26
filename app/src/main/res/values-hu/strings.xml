@@ -76,7 +76,6 @@
     <string name="pollen_tree">Fa</string>
     <string name="daily_forecast">Napi előrejelzés</string>
     <string name="hourly_forecast">Óránkénti előrejelzés</string>
-    <string name="minutely_forecast">Percenkénti előrejelzés</string>
     <string name="air_quality">Levegőminőség</string>
     <string name="pollen">Pollen</string>
     <string name="details">Részletek</string>

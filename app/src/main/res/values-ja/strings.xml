@@ -75,7 +75,6 @@
     <string name="pollen_tree">木類花粉</string>
     <string name="daily_forecast">日時予報</string>
     <string name="hourly_forecast">毎時予報</string>
-    <string name="minutely_forecast">毎分予報</string>
     <string name="air_quality">空気質</string>
     <string name="pollen">花粉</string>
     <string name="details">詳細情報</string>

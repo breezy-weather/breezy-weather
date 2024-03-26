@@ -83,7 +83,6 @@
     <string name="wind">हवा</string>
     <string name="wind_strength_5">सबल समीर</string>
     <string name="air_quality_level_5_description">स्वास्थ्य प्रभाव तुरंत संवेदनशील समूहों द्वारा महसूस किया जाएगा और बाहरी गतिविधि से बचना चाहिए। स्वस्थ व्यक्तियों को साँस लेने और गले की जलन का अनुभव होने की संभावना है; घर के अंदर रहने और बाहरी गतिविधियों को फिर से निर्धारित करने पर विचार करें।।</string>
-    <string name="minutely_forecast">न्यूनतम पूर्वानुमान</string>
     <string name="app_name">मौसम</string>
     <string name="precipitation_nowcasting">मिनट दर मिनट वर्षा</string>
     <string name="temperature_feels_like_short">जैसा लगना</string>

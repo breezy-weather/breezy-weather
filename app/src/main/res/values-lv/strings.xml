@@ -3,7 +3,6 @@
     <string name="app_name">Laikapstākļi</string>
     <string name="daily_forecast">Dienas prognoze</string>
     <string name="hourly_forecast">Stundu prognoze</string>
-    <string name="minutely_forecast">Minūtes prognoze</string>
     <string name="air_quality">Gaisa kvalitāte</string>
     <string name="pollen">Ziedputekšņi</string>
     <string name="ephemeris">Saule un Mēness</string>

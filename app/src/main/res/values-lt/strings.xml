@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="hourly_forecast">Orai artimiausiomis valandomis</string>
-    <string name="minutely_forecast">Orai artimiausiomis minutėmis</string>
     <string name="air_quality">Oro kokybė</string>
     <string name="pollen">Alergenai</string>
     <string name="short_yesterday">Vakar</string>

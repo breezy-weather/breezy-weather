@@ -56,7 +56,6 @@
     <string name="precipitation_between_time">Nedbør imellem %1$s og %2$s</string>
     <string name="wind">Vind</string>
     <string name="temperature_real_feel">RealFeel®</string>
-    <string name="minutely_forecast">Minutter prognose</string>
     <string name="wind_strength_6">Kraftigt brise</string>
     <string name="wind_strength_3">Mild brise</string>
     <string name="wind_strength_4">Moderate brise</string>

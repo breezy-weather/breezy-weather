@@ -122,7 +122,6 @@
     <string name="app_name">Погода</string>
     <string name="daily_forecast">Щоденний прогноз</string>
     <string name="hourly_forecast">Щогодинний прогноз</string>
-    <string name="minutely_forecast">Щохвилинний прогноз</string>
     <string name="precipitation_nowcasting">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
     <string name="ephemeris">Сонце та Місяць</string>

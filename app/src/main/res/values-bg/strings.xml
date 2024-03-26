@@ -33,7 +33,6 @@
     <string name="wind_direction_short_variable">Променливо</string>
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Часова прогноза</string>
-    <string name="minutely_forecast">Минутна прогноза</string>
     <string name="ephemeris">Слънце и луна</string>
     <string name="details">Подробности</string>
     <string name="alerts">Сигнали</string>

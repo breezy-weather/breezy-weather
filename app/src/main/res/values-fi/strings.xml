@@ -77,7 +77,6 @@
     <string name="pollen_tree">Puu</string>
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
-    <string name="minutely_forecast">Minuuttikohtainen ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
     <string name="pollen">Allergeenit</string>
     <string name="details">Lisätietoja</string>

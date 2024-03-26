@@ -79,7 +79,6 @@
     <string name="settings_color_light">Açık</string>
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
-    <string name="minutely_forecast">Anlık tahmin</string>
     <string name="pollen">Polen</string>
     <string name="alerts_to_follow">Yaklaşan uyarıları görmek için buraya dokunun.</string>
     <string name="precipitation_none">Yağış yok</string>
