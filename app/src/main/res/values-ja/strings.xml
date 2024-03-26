@@ -576,7 +576,7 @@
     <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
     <string name="settings_widgets_gadgets_title">小道具</string>
     <string name="notification_precipitation_continuing_desc">最低でも%sまで続きます</string>
-    <string name="common_weather_text_mainly_clear">ほぼ晴れ</string>
+    <string name="common_weather_text_mainly_clear">おおむね晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
     <string name="common_weather_text_rain_showers">にわか雨</string>
     <string name="common_weather_text_rain_showers_light">時々小雨</string>
