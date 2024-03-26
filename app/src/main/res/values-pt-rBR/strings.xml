@@ -77,7 +77,7 @@
     <string name="pollen_tree">Árvore</string>
     <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
-    <string name="minutely_forecast">Previsão por minuto</string>
+    <string name="minutely_forecast">Previsão minuciosa</string>
     <string name="air_quality">Qualidade do ar</string>
     <string name="pollen">Pólen</string>
     <string name="details">Detalhes</string>
@@ -262,8 +262,8 @@
     <string name="widget_style_symmetry">Simétrico</string>
     <string name="widget_style_tile">Bloco</string>
     <string name="widget_style_temperature">Temperatura</string>
-    <string name="widget_week_style_5_days">5 dias</string>
-    <string name="widget_week_style_3_days">3 dias</string>
+    <string name="widget_week_style_5_days">5 dias</string>
+    <string name="widget_week_style_3_days">3 dias</string>
     <string name="widget_subtitle_data_time">Tempo de atualização</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sensação térmica</string>
@@ -565,7 +565,7 @@
     <string name="action_delete">Excluir</string>
     <string name="weather_air_quality_data_by">Dados de qualidade do ar por %s</string>
     <string name="weather_pollen_data_by">Dados de alergênicos por %s</string>
-    <string name="weather_minutely_data_by">Dados de precipitação por minuto por %s</string>
+    <string name="weather_minutely_data_by">Dados de previsão imediata por %s</string>
     <string name="weather_alert_data_by">Dados de alerta por %s</string>
     <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
     <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
@@ -580,7 +580,7 @@
     <string name="action_save">Salvar</string>
     <string name="settings_weather_source_main">Fonte principal</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos usadas para este local</string>
-    <string name="precipitation_nowcasting">Precipitação minuto a minuto</string>
+    <string name="precipitation_nowcasting">Previsão imediata de precipitação</string>
     <string name="about_privacy_policy">Política de privacidade</string>
     <string name="temperature_normals">Normais de temperatura</string>
     <string name="temperature_normal_short">Normal</string>
@@ -690,4 +690,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instância de qualidade do ar</string>
     <string name="settings_widgets_broadcast_switch_dialog">Esta opção permite que qualquer app no seu dispositivo tenha acesso a sua localização e dados meteorológicos. Só prossiga se você entende completamente os riscos potenciais de uso indevido por outros apps que podem resultar do mesmo.</string>
     <string name="message_invalid_incomplete_data">Dados recebidos do servidor inválidos ou incompletos</string>
+    <string name="settings_per_location_theme">Tema</string>
+    <string name="settings_invalid_syntax">Sintaxe inválida</string>
+    <string name="settings_source_instance_invalid">Deve ser uma URL https terminada com uma /</string>
 </resources>
