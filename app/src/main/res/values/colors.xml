@@ -71,7 +71,7 @@
 
     <color name="colorWidgetRoot">@color/md_theme_surface</color>
     <color name="colorWidgetM3Root">@color/md_theme_surface</color>
-    <color name="colorWidgetM3TextPrimary">@android:color/black</color>
+    <color name="colorWidgetM3TextPrimary">@color/material_grey_800</color>
     <color name="colorWidgetM3TextSecondary">@color/md_theme_onSurface</color>
     <color name="colorWidgetTextShadow">#99000000</color>
 

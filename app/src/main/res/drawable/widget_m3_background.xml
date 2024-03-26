@@ -6,6 +6,6 @@
         android:color="@color/colorWidgetM3Root" />
 
     <corners
-        android:radius="@dimen/material3_widget_corner_radius" />
+        android:radius="28dp" />
 
 </shape>

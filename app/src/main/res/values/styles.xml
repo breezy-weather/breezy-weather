@@ -97,6 +97,11 @@
         <item name="android:foreground">@drawable/selectable_item_background</item>
     </style>
 
+    <style name="BreezyWeather.Widget.Background" parent="@android:style/Widget">
+        <item name="android:background">@drawable/widget_m3_background</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
     <style name="widget_background_card">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

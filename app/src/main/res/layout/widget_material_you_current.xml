@@ -1,52 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:theme="@style/BreezyWeatherAndroidSWidget"
-    style="@android:style/Widget">
+    android:background="@drawable/widget_m3_current_background"
+    android:padding="0dp"
+    android:layout_width="182dp"
+    android:layout_height="182dp"
+    android:layout_margin="0dp"
+    style="@style/BreezyWeather.Widget.Background">
 
-    <RelativeLayout
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_centerInParent="true">
+    <TextView
+        android:id="@+id/widget_material_you_current_currentTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/widget_material_you_current_currentIcon"
+        android:layout_alignParentEnd="true"
+        android:text="@string/widget_ellipsis"
+        android:textSize="70dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:gravity="center"
+        tools:text="26°" />
 
-        <ImageView
-            android:id="@android:id/background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/widget_m3_current_background"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/widget_material_you_current_currentTemperature"
-            style="@style/widget_large_title_text"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_marginRight="24dp"
-            android:includeFontPadding="false"
-            android:gravity="right"
-            android:text="@string/widget_ellipsis"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="42dp"
-            android:textStyle="bold"
-            android:textAlignment="gravity"
-            android:singleLine="true"
-            android:translationY="-16dp"
-            tools:ignore="RtlHardcoded,SpUsage"
-            tools:text="-1217°" />
-
-        <ImageView
-            android:id="@+id/widget_material_you_current_currentIcon"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:src="@drawable/weather_cloudy"
-            android:layout_centerInParent="true"
-            android:translationX="-16dp"
-            android:translationY="16dp"
-            tools:ignore="ContentDescription" />
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/widget_material_you_current_currentIcon"
+        android:layout_gravity="start"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:importantForAccessibility="no"
+        android:src="@drawable/weather_cloudy" />
 
 </RelativeLayout>
