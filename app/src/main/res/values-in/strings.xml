@@ -314,7 +314,7 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_m_voice">Meter</string>
     <string name="setting_weather_source_accu_days">Hari</string>
-    <string name="weather_source_accu_preference_days_5">5 hari</string>
+    <string name="weather_source_accu_preference_days_5">5 hari</string>
     <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Kota</string>
     <string name="unit_cm">cm</string>
@@ -343,7 +343,7 @@
     <string name="about_contribution_designer">Perancang logo</string>
     <string name="common_weather_text_snow_heavy">Salju berat</string>
     <string name="settings_weather_source_main">Sumber utama</string>
-    <string name="widget_week_style_3_days">3 hari</string>
+    <string name="widget_week_style_3_days">3 hari</string>
     <string name="widget_subtitle_data_time">Waktu pemuatan ulang</string>
     <string name="settings_main">Layar utama</string>
     <string name="air_quality_o3_info_title">Ozon permukaan tanah (O₃)</string>
@@ -351,7 +351,7 @@
     <string name="location_service_native">API Asli</string>
     <string name="common_weather_text_snow_light">Salju ringan</string>
     <string name="settings_color_light">Terang</string>
-    <string name="weather_source_accu_preference_days_10">10 hari</string>
+    <string name="weather_source_accu_preference_days_10">10 hari</string>
     <string name="pollen_level_2">Rendah</string>
     <string name="common_weather_text_rain">Hujan</string>
     <string name="widget_subtitle_data_custom">Kustom</string>
@@ -360,7 +360,7 @@
     <string name="unit_in">inci</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Pagi / Malam</string>
-    <string name="weather_source_accu_preference_hours_72">72 jam</string>
+    <string name="weather_source_accu_preference_hours_72">72 jam</string>
     <string name="air_quality_co">CO</string>
     <string name="unit_ftps_voice">Kaki per detik</string>
     <string name="settings_weather_source_portal">Portal</string>
@@ -389,7 +389,7 @@
     <string name="pollen_level_4">Tinggi</string>
     <string name="widget_style_temperature">Suhu</string>
     <string name="settings_automatic">Otomatis</string>
-    <string name="widget_week_style_5_days">5 hari</string>
+    <string name="widget_week_style_5_days">5 hari</string>
     <string name="settings_widgets_monochrome_icons_title">Ikon monokrom</string>
     <string name="settings_background_updates">Pembaruan latar belakang</string>
     <string name="pollen_betula">Birch</string>
@@ -440,7 +440,7 @@
     <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Inci</string>
     <string name="location_message_search_failed">Pencarian lokasi gagal</string>
-    <string name="weather_source_accu_preference_hours_120">120 jam</string>
+    <string name="weather_source_accu_preference_hours_120">120 jam</string>
     <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Widget notifikasi</string>
     <string name="unit_kpa_voice">Kilopascal</string>
@@ -453,7 +453,7 @@
     <string name="pollen_level_3">Sedang</string>
     <string name="weather_data_by">Data dari %s</string>
     <string name="pollen_level_5">Sangat tinggi</string>
-    <string name="weather_source_accu_preference_days_1">1 hari</string>
+    <string name="weather_source_accu_preference_days_1">1 hari</string>
     <string name="notification_channel_background_services">Layanan latar belakang</string>
     <string name="settings_debug_summary">Catatan kemogokan</string>
     <string name="about_privacy_policy">Kebijakan privasi</string>
@@ -492,7 +492,7 @@
     <string name="air_quality_level_4_description">Dampak kesehatan dapat langsung dirasakan oleh kelompok sensitif. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan jika terpapar dalam waktu lama. Batasi aktivitas di luar ruangan.</string>
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_info_title">Karbon monoksida (CO)</string>
-    <string name="weather_source_accu_preference_hours_240">240 jam</string>
+    <string name="weather_source_accu_preference_hours_240">240 jam</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="common_weather_text_rain_showers">Gerimis</string>
@@ -504,7 +504,7 @@
     <string name="common_weather_text_drizzle_light">Gerimis ringan</string>
     <string name="weather_source_accu_preference_hours_12">12 jam</string>
     <string name="weather_source_accu_preference_hours_1">1 jam</string>
-    <string name="weather_source_accu_preference_days_15">15 hari</string>
+    <string name="weather_source_accu_preference_days_15">15 hari</string>
     <string name="weather_source_accu_preference_hours_24">24 jam</string>
     <string name="action_continue">Lanjutkan</string>
     <string name="unit_mmhg_voice">Milimeter air raksa</string>
@@ -518,7 +518,7 @@
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif dan harus menghindari aktivitas di luar ruangan. Orang yang sehat mungkin mengalami kesulitan bernapas dan iritasi tenggorokan; pertimbangkan untuk menetap di dalam ruangan dan menjadwal ulang aktivitas di luar ruangan.</string>
     <string name="air_quality_so2_info_consequences">Paparan SO2 dikaitkan dengan kunjungan rumah sakit dan kunjungan ruang darurat karena asma.</string>
-    <string name="weather_minutely_data_by">Data curah hujan per menit oleh %s</string>
+    <string name="weather_minutely_data_by">Data prakiraan langsung oleh %s</string>
     <string name="weather_pollen_data_by">Data serbuk sari oleh %s</string>
     <string name="air_quality_so2_info_origin">Dilepaskan secara alami oleh aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk pemanasan domestik, industri dan pembangkit listrik.</string>
     <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari oleh %s</string>
