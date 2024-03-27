@@ -268,7 +268,7 @@
     <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerer Exposition zu Atembeschwerden und Hustenreiz kommen. Schränken Sie Aktivitäten im Freien ein.</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Leichtes bis mäßiges Gewitter</string>
     <string name="widget_style_temperature">Temperatur</string>
-    <string name="widget_week_style_3_days">3 Tage</string>
+    <string name="widget_week_style_3_days">3 Tage</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Gewitter mit starkem Hagel</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Aktueller Luftdruck</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
@@ -345,7 +345,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikal</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_week_style_5_days">5 Tage</string>
+    <string name="widget_week_style_5_days">5 Tage</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_analog">Analog</string>
@@ -431,7 +431,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
     <string name="weather_api_key_required_missing_content">Um diese Quelle nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
-    <string name="weather_source_accu_preference_days_1">1 Tag</string>
+    <string name="weather_source_accu_preference_days_1">1 Tag</string>
     <string name="settings_debug_summary">Absturzprotokolle</string>
     <string name="settings_debug_dump_crash_logs_title">Absturzprotokolle teilen</string>
     <string name="settings_debug_dump_crash_logs_summary">Speichert Absturzprotokolle in einer Datei, um sie mit den Entwicklern zu teilen</string>
@@ -674,4 +674,7 @@
     <string name="settings_widgets_broadcast_switch">Meine Wetterdaten mit anderen Apps teilen</string>
     <string name="settings_widgets_broadcast_switch_dialog">Diese Option ermöglicht JEDER App auf Ihrem Gerät den Zugriff auf Ihren Ortsnamen und Ihre Wetterdaten. Fahren Sie nur fort, wenn Sie sich der potenziellen Risiken eines Missbrauchs durch andere Apps bewusst sind.</string>
     <string name="message_invalid_incomplete_data">Ungültige oder unvollständige Daten vom Server empfangen</string>
+    <string name="settings_per_location_theme">Thema</string>
+    <string name="settings_source_instance_invalid">Muss eine https-URL sein, die mit einem / endet</string>
+    <string name="settings_invalid_syntax">Ungültige Syntax</string>
 </resources>
