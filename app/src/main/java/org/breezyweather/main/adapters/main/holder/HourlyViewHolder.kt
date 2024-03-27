@@ -37,6 +37,7 @@ import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
+import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -45,9 +46,6 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
-
-private fun needToShowMinutelyForecast(minutelyList: List<Minutely>) =
-    minutelyList.firstOrNull { (it.precipitationIntensity ?: 0.0) > 0.0 } != null
 
 class HourlyViewHolder(
     parent: ViewGroup
@@ -171,7 +169,7 @@ class HourlyViewHolder(
         scrollBar.resetColor(location)
 
         val minutelyList = weather.minutelyForecast
-        if (minutelyList.size >= 3 && needToShowMinutelyForecast(minutelyList)) {
+        if (minutelyList.size >= 3 && weather.hasMinutelyPrecipitation) {
             minutelyContainer.visibility = View.VISIBLE
             precipitationBar.precipitationIntensities = minutelyList.map {
                 it.precipitationIntensity ?: 0.0
