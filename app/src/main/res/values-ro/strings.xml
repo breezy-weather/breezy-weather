@@ -542,7 +542,7 @@
     <string name="pollen_level_1">Foarte scăzut</string>
     <string name="pollen_level_2">Scăzut</string>
     <string name="weather_pollen_data_by">Polen furnizat de %s</string>
-    <string name="weather_minutely_data_by">Precipitațiile minut cu minut furnizate de %s</string>
+    <string name="weather_minutely_data_by">Precipitațiile curente furnizate de %s</string>
     <string name="weather_message_invalid_location">Locație nevalidă, șterge-o și introdu-o din nou</string>
     <string name="about_dependencies">Dependențe</string>
     <string name="air_quality_index">Indicele Calității Aerului</string>
