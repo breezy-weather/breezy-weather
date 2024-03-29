@@ -17,10 +17,8 @@
 package org.breezyweather.sources.wmosevereweather.json
 
 import kotlinx.serialization.Serializable
-import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherGeocodeMultiPolygonSerializer
 
-@Serializable(with = WmoSevereWeatherGeocodeMultiPolygonSerializer::class)
-data class WmoSevereWeatherAlertCoordGeocode(
-    val type: String? = null, // Values can be Polygon or MultiPolygon
-    val coordinates: List<List<String>>? = null
+@Serializable
+data class WmoSevereWeatherAlertResult(
+    val features: List<WmoSevereWeatherAlertFeatures>?
 )

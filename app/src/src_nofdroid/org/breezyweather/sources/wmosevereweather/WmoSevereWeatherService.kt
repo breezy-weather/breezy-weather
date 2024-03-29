@@ -20,12 +20,10 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.common.utils.helpers.LogHelper
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -33,8 +31,7 @@ import javax.inject.Inject
  * World Meteorological Organization Severe Weather Information Centre (WMO SWIC)
  * Supports severe weather from 134 issuing organizations
  *
- * Note for technical maintenance: saudiArabia is a good country for performance tests as they have
- * huge polygons and they keep expired alerts
+ * Based on WFS from SWIC v3.0 that was released on 2024-03-29
  */
 class WmoSevereWeatherService @Inject constructor(
     client: Retrofit.Builder
@@ -42,7 +39,7 @@ class WmoSevereWeatherService @Inject constructor(
 
     override val id = "wmosevereweather"
     override val name = "WMO Severe Weather Information Centre"
-    override val privacyPolicyUrl = "https://severeweather.wmo.int/v2/privacy.html"
+    override val privacyPolicyUrl = "https://wmo.int/privacy-policy"
 
     private val mAlertsApi by lazy {
         client
@@ -56,7 +53,7 @@ class WmoSevereWeatherService @Inject constructor(
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
-    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 134 issuing organizations https://severeweather.wmo.int/v2/sources.html"
+    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 134 issuing organizations https://severeweather.wmo.int/sources.html"
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
@@ -68,35 +65,18 @@ class WmoSevereWeatherService @Inject constructor(
             return Observable.error(SecondaryWeatherException())
         }
 
-        // TODO: Remove debug
-        if (BreezyWeather.instance.debugMode) {
-            // TODO Untested countries: myanmar, png, (jamaica), macao, trinidadAndTobago
-            // TODO And generic needs further testing: all, others
-            LogHelper.log(msg = "Country code: ${location.countryCode}")
+        return mAlertsApi.getAlerts(
+            typeName = "local_postgis:postgis_geojsons",
+            //cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"
+            cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND row_type NEQ 'BOUNDARY'"
+        ).map {
+            convert(it)
         }
-
-        val alertRequests = WmoSevereWeatherAlertLibrary
-            .getLibrariesForLocation(location)
-            .map {
-                mAlertsApi.getAlertsByRegion(it)
-            }
-
-        return Observable.concat(alertRequests)
-            .toList()
-            .toObservable()
-            .map { results ->
-                SecondaryWeatherWrapper(
-                    alertList = results.map {
-                        convert(location, it)
-                    }.flatten()
-                )
-            }
     }
 
     companion object {
         private const val WMO_ALERTS_BASE_URL = "https://severeweather.wmo.int/"
         const val WMO_ALERTS_CAP_URL_BASE_URL = "https://8xieiqdnye.execute-api.us-west-2.amazonaws.com/swic/capUrl/"
         const val WMO_ALERTS_URL_BASE_URL = "https://cvzxdcwxid.execute-api.us-west-2.amazonaws.com/swic/url/"
-        const val WMO_MARKER_RADIUS = 50000 // in meters, I only found it in Barbados so far
     }
 }

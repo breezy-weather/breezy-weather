@@ -17,16 +17,20 @@
 package org.breezyweather.sources.wmosevereweather
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlert
+import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * API World Meteorological Organization
  */
 interface WmoSevereWeatherApi {
-    @GET("v2/json/{region}.json")
-    fun getAlertsByRegion(
-        @Path("region") region: String
-    ): Observable<List<WmoSevereWeatherAlert>>
+    @GET("f/wfs")
+    fun getAlerts(
+        @Query("request") request: String = "GetFeature",
+        @Query("version") version: String = "1.1.0",
+        @Query("typeName", encoded = true) typeName: String,
+        @Query("cql_filter", encoded = true) cqlFilter: String,
+        @Query("outputFormat") outputFormat: String = "json"
+    ): Observable<WmoSevereWeatherAlertResult>
 }

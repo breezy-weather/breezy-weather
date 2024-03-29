@@ -2,10 +2,14 @@
 
 **Important notes**
 - Due to a technical change, if you had set up a different language than your system language, you will have to set it again on update.
-- You will now only be able to switch to a different flavor within one version in this order `fdroid` -> `standard` -> `gplay` or `fdroid` -> `gplay`. This will prevent most users with multiple F-Droid repos to have the wrong flavor installed from the auto-update mechanism. If you want to go the other way around, for example going back from `standard` version to `fdroid`, you will have to wait for next version or uninstall and install again.
+- You will now only be able to switch to a different flavor within one version in this order `fdroid` -> `standard` -> `gplay` or `fdroid` -> `gplay`. This will prevent most users with multiple F-Droid repos to have the wrong flavor installed from the auto-update mechanism. If you want to go the other way around, for example going back from `standard` version to `fdroid`, you will have to wait for next version or uninstall and install again (no backup/migration provided).
 
 **New features**
 - Added ability to change the background weather and time for each location
+
+**Weather sources**
+- [WMO SWIC] Switch to newer v3.0 endpoint for alerts, should be more reliable and much faster
+- [WMO SWIC] Updated alert colors to v3.0
 
 **Improvements and fixes**
 - Fix crash on Android < 7.0

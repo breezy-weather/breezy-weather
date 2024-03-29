@@ -17,20 +17,19 @@
 package org.breezyweather.sources.wmosevereweather.json
 
 import kotlinx.serialization.Serializable
-import org.breezyweather.common.serializer.DateUtcSerializer
+import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
 @Serializable
-data class WmoSevereWeatherAlert(
+data class WmoSevereWeatherAlertProperties(
+    val capurl: String?,
     val identifier: String?,
-    val url: String?,
-    val capURL: String?,
-    @Serializable(DateUtcSerializer::class) val sent: Date?,
-    @Serializable(DateUtcSerializer::class) val effective: Date?,
-    @Serializable(DateUtcSerializer::class) val onset: Date?,
-    @Serializable(DateUtcSerializer::class) val expires: Date?,
-    val event: String?,
+    @Serializable(DateSerializer::class) val sent: Date?,
     val description: String?,
+    val event: String?,
     val s: Int?,
-    val coord: List<WmoSevereWeatherAlertCoord>
+    @Serializable(DateSerializer::class) val effective: Date?,
+    @Serializable(DateSerializer::class) val onset: Date?,
+    val url: String?,
+    @Serializable(DateSerializer::class) val expires: Date?
 )
