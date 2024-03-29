@@ -140,7 +140,6 @@ fun convert(
                 alertId = it.id,
                 headline = it.title,
                 description = it.text,
-                severity = 2,
                 startDate = it.startTime,
                 endDate = it.endTime
             )

@@ -10,6 +10,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -36,12 +38,12 @@ class QWeatherService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), LocationSearchSource, ConfigurableSource, MainWeatherSource, ReverseGeocodingSource {
     override val id = "qweather"
-    override val name = "QWeather"
+    override val name = "和风天气"
 
-    override val privacyPolicyUrl = "https://www.qweather.com/terms/tos"
+    override val privacyPolicyUrl = "https://www.qweather.com/terms/privacy"
 
     override val color = Color.rgb(202, 240, 255)
-    override val weatherAttribution = "QWeather"
+    override val weatherAttribution = "和风天气 CC BY-SA 4.0"
     override val locationSearchAttribution = weatherAttribution
 
     override val supportedFeaturesInMain = listOf(
@@ -63,32 +65,32 @@ class QWeatherService @Inject constructor(
         val currentweather = mApi.getCurrentWeather(
             location.cityId!!,
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val currentaqi = mApi.getCurrentAQI(
             location.cityId!!,
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val alerts = mApi.getCurrentAlerts(
             location.cityId!!,
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val hourlyweather = mApi.getHourlyWeather(
             location.cityId!!,
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val dailyweather = mApi.getDailyWeather(
             location.cityId!!,
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val minutelyprecipitation = mApi.getMinutelyPrecipitation(
             "${location.longitude},${location.latitude}",
             getApiKeyOrDefault(),
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         return Observable.zip(currentweather, currentaqi, alerts, hourlyweather, dailyweather, minutelyprecipitation) {
                 currweather: QWeatherCurrentWeatherResult,
@@ -117,28 +119,28 @@ class QWeatherService @Inject constructor(
             query,
             getApiKeyOrDefault(),
             5,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val poiscenicsearchresults = localeApi.getPoiSearch(
             query,
             "scenic",
             getApiKeyOrDefault(),
             5,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val poicstasearchresults = localeApi.getPoiSearch(
             query,
             "CSTA",
             getApiKeyOrDefault(),
             2,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         val poitstasearchresults = localeApi.getPoiSearch(
             query,
             "TSTA",
             getApiKeyOrDefault(),
             2,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         )
         return Observable.zip(citysearchresults, poiscenicsearchresults, poicstasearchresults, poitstasearchresults) {
                 citysearch: QWeatherLocationCityResult,
@@ -170,7 +172,7 @@ class QWeatherService @Inject constructor(
             "${location.longitude},${location.latitude}",
             getApiKeyOrDefault(),
             1,
-            SettingsManager.getInstance(context).language.code
+            context.currentLocale.code
         ).map { results ->
             val locationList: MutableList<Location> = ArrayList()
             results.location?.forEach {

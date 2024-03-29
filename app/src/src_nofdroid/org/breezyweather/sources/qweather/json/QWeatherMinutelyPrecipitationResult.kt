@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class QWeatherMinutelyPrecipitationResult(
     val code: String?,
     val summary: String?,
-    val minutely: List<QWeatherMinuelyPrecipitationProperties>?
+    val minutely: List<QWeatherMinutelyPrecipitationProperties>?
 )

@@ -5,7 +5,7 @@ import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
 @Serializable
-data class QWeatherMinuelyPrecipitationProperties(
+data class QWeatherMinutelyPrecipitationProperties(
     @Serializable(DateSerializer::class) val fxTime: Date,
     val precip: String?,
     val type: String?
