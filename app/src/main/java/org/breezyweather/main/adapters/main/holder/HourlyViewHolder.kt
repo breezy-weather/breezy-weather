@@ -19,24 +19,17 @@ package org.breezyweather.main.adapters.main.holder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
-import org.breezyweather.common.extensions.getFormattedTime
-import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
-import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.domain.weather.model.getMinutelyDescription
-import org.breezyweather.domain.weather.model.getMinutelyTitle
-import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -58,21 +51,10 @@ class HourlyViewHolder(
     private val tagView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
-    private val minutelyContainer: LinearLayout = itemView.findViewById(R.id.container_main_hourly_trend_card_minutely)
-    private val minutelyTitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyTitle)
-    private val minutelySubtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelySubtitle)
-    private val precipitationBar: PrecipitationBar = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyBar)
-    private val minutelyStartText: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartText)
-    private val minutelyCenterText: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyCenterText)
-    private val minutelyEndText: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndText)
-    private val minutelyStartLine: View = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyStartLine)
-    private val minutelyEndLine: View = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndLine)
 
     init {
         trendRecyclerView.setHasFixedSize(true)
         trendRecyclerView.addItemDecoration(scrollBar)
-
-        minutelyContainer.setOnClickListener { /* do nothing. */ }
     }
 
     override fun onBindView(
@@ -166,57 +148,5 @@ class HourlyViewHolder(
         )
 
         scrollBar.resetColor(location)
-
-        val minutelyList = weather.minutelyForecast
-        if (minutelyList.size >= 3 && weather.hasMinutelyPrecipitation) {
-            minutelyContainer.visibility = View.VISIBLE
-            precipitationBar.precipitationIntensities = minutelyList.map {
-                it.precipitationIntensity ?: 0.0
-            }.toTypedArray()
-            precipitationBar.indicatorGenerator = object : PrecipitationBar.IndicatorGenerator {
-                override fun getIndicatorContent(precipitation: Double) =
-                    SettingsManager
-                        .getInstance(activity)
-                        .precipitationIntensityUnit
-                        .getValueText(activity, precipitation)
-            }
-
-            val size = minutelyList.size
-            minutelyStartText.text = minutelyList[0].date.getFormattedTime(location, context, context.is12Hour)
-            minutelyCenterText.text = minutelyList[(size - 1) / 2].date.getFormattedTime(location, context, context.is12Hour)
-            minutelyEndText.text = minutelyList[size - 1].date.getFormattedTime(location, context, context.is12Hour)
-            minutelyContainer.contentDescription =
-                activity.getString(
-                    R.string.precipitation_between_time,
-                    minutelyList[0].date.getFormattedTime(location, context, context.is12Hour),
-                    minutelyList[size - 1].date.getFormattedTime(location, context, context.is12Hour)
-                )
-        } else {
-            minutelyContainer.visibility = View.GONE
-        }
-
-        minutelyTitle.setTextColor(colors[0])
-        minutelyTitle.text = weather.getMinutelyTitle(context)
-        minutelySubtitle.text = weather.getMinutelyDescription(context, location)
-
-        precipitationBar.precipitationColor = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )[0]
-        precipitationBar.subLineColor = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-        precipitationBar.highlightColor = MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)
-        precipitationBar.textColor = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary)
-        precipitationBar.setShadowColors(colors[0], colors[1], MainThemeColorProvider.isLightTheme(itemView.context, location))
-
-        minutelyStartText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-        minutelyCenterText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-        minutelyEndText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-
-        minutelyStartLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
-        minutelyEndLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
     }
 }

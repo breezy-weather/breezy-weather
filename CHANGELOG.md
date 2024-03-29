@@ -12,6 +12,7 @@
 - [WMO SWIC] Updated alert colors to v3.0
 
 **Improvements and fixes**
+- Precipitation nowcast is now a dedicated card
 - Fix crash on Android < 7.0
 - Fix live wallpaper non-auto weather kind
 - A new error type “Invalid or incomplete data received from server” was added

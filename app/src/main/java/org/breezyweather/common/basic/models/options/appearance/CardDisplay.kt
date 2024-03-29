@@ -26,6 +26,7 @@ enum class CardDisplay(
     @StringRes private val nameId: Int
 ): BaseEnum {
 
+    CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),
     CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
     CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_forecast),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
@@ -44,6 +45,7 @@ enum class CardDisplay(
             val list = ArrayList<CardDisplay>()
             for (card in cards) {
                 when (card) {
+                    "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)
                     "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
                     "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
                     "air_quality" -> list.add(CARD_AIR_QUALITY)

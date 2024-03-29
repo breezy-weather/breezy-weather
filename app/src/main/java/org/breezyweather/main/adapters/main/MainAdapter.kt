@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.main.MainActivity
@@ -36,6 +37,7 @@ import org.breezyweather.main.adapters.main.holder.FooterViewHolder
 import org.breezyweather.main.adapters.main.holder.HeaderViewHolder
 import org.breezyweather.main.adapters.main.holder.HourlyViewHolder
 import org.breezyweather.main.adapters.main.holder.PollenViewHolder
+import org.breezyweather.main.adapters.main.holder.PrecipitationNowcastViewHolder
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
@@ -79,6 +81,11 @@ class MainAdapter(
             val cardDisplayList = SettingsManager.getInstance(activity).cardDisplayList
             mViewTypeList.add(ViewType.HEADER)
             for (c in cardDisplayList) {
+                if (c === CardDisplay.CARD_PRECIPITATION_NOWCAST &&
+                    (!weather.hasMinutelyPrecipitation || weather.minutelyForecast.size < 3)
+                ) {
+                    continue
+                }
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }
@@ -119,6 +126,7 @@ class MainAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder = when (viewType) {
         ViewType.HEADER -> HeaderViewHolder(parent, mWeatherView!!)
+        ViewType.PRECIPITATION_NOWCAST -> PrecipitationNowcastViewHolder(parent)
         ViewType.DAILY -> DailyViewHolder(parent)
         ViewType.HOURLY -> HourlyViewHolder(parent)
         ViewType.AIR_QUALITY -> AirQualityViewHolder(parent)
@@ -159,7 +167,7 @@ class MainAdapter(
         mFirstCardPosition = null
         for (i in 0 until itemCount) {
             val type = getItemViewType(i)
-            if (setOf(ViewType.DAILY, ViewType.HOURLY, ViewType.AIR_QUALITY, ViewType.POLLEN, ViewType.ASTRO, ViewType.LIVE).contains(type)) {
+            if (setOf(ViewType.PRECIPITATION_NOWCAST, ViewType.DAILY, ViewType.HOURLY, ViewType.AIR_QUALITY, ViewType.POLLEN, ViewType.ASTRO, ViewType.LIVE).contains(type)) {
                 mFirstCardPosition = i
                 return
             }
@@ -187,6 +195,7 @@ class MainAdapter(
 
     companion object {
         private fun getViewType(cardDisplay: CardDisplay): Int = when (cardDisplay) {
+            CardDisplay.CARD_PRECIPITATION_NOWCAST -> ViewType.PRECIPITATION_NOWCAST
             CardDisplay.CARD_DAILY_OVERVIEW -> ViewType.DAILY
             CardDisplay.CARD_HOURLY_OVERVIEW -> ViewType.HOURLY
             CardDisplay.CARD_AIR_QUALITY -> ViewType.AIR_QUALITY

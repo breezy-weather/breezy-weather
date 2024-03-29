@@ -20,6 +20,7 @@ import android.content.Context
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.settings.SettingsManager
@@ -86,6 +87,18 @@ object Migrations {
                  * - 501082 on release-standard version
                  * - 501083 on release-gplay version
                  */
+                /*if (oldVersion < 501080) {
+                    try {
+                        val curCardDisplayList =
+                            CardDisplay.toValue(SettingsManager.getInstance(context).cardDisplayList)
+                        if (curCardDisplayList != SettingsManager.DEFAULT_CARD_DISPLAY) {
+                            SettingsManager.getInstance(context).cardDisplayList =
+                                CardDisplay.toCardDisplayList("precipitation_nowcast&${curCardDisplayList}")
+                        }
+                    } catch (ignored: Throwable) {
+                        // ignored
+                    }
+                }*/
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE

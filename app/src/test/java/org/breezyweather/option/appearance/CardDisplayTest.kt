@@ -29,19 +29,21 @@ class CardDisplayTest {
 
     @Test
     fun toCardDisplayList() = runTest {
-        val value = "daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
+        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
         val list = CardDisplay.toCardDisplayList(value)
-        list[0] shouldBe CardDisplay.CARD_DAILY_OVERVIEW
-        list[1] shouldBe CardDisplay.CARD_HOURLY_OVERVIEW
-        list[2] shouldBe CardDisplay.CARD_AIR_QUALITY
-        list[3] shouldBe CardDisplay.CARD_POLLEN
-        list[4] shouldBe CardDisplay.CARD_SUNRISE_SUNSET
-        list[5] shouldBe CardDisplay.CARD_LIVE
+        list[0] shouldBe CardDisplay.CARD_PRECIPITATION_NOWCAST
+        list[1] shouldBe CardDisplay.CARD_DAILY_OVERVIEW
+        list[2] shouldBe CardDisplay.CARD_HOURLY_OVERVIEW
+        list[3] shouldBe CardDisplay.CARD_AIR_QUALITY
+        list[4] shouldBe CardDisplay.CARD_POLLEN
+        list[5] shouldBe CardDisplay.CARD_SUNRISE_SUNSET
+        list[6] shouldBe CardDisplay.CARD_LIVE
     }
 
     @Test
     fun toValue() = runTest {
         val list = arrayListOf(
+            CardDisplay.CARD_PRECIPITATION_NOWCAST,
             CardDisplay.CARD_DAILY_OVERVIEW,
             CardDisplay.CARD_HOURLY_OVERVIEW,
             CardDisplay.CARD_AIR_QUALITY,
@@ -49,7 +51,7 @@ class CardDisplayTest {
             CardDisplay.CARD_SUNRISE_SUNSET,
             CardDisplay.CARD_LIVE
         )
-        val value = "daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
+        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
         CardDisplay.toValue(list) shouldBe value
     }
 
