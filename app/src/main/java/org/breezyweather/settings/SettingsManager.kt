@@ -58,7 +58,7 @@ class SettingsManager private constructor(context: Context) {
         }
 
        const val DEFAULT_CARD_DISPLAY = ("precipitation_nowcast"
-            + "daily_overview"
+            + "&daily_overview"
             + "&hourly_overview"
             + "&air_quality"
             + "&pollen"
