@@ -80,7 +80,8 @@ object Migrations {
                     }
                 }
 
-                /*if (oldVersion < 501080) {
+                if (oldVersion < 50108) {
+                    // V5.1.8 adds precipitation nowcast as a dedicated card
                     try {
                         val curCardDisplayList =
                             CardDisplay.toValue(SettingsManager.getInstance(context).cardDisplayList)
@@ -91,7 +92,7 @@ object Migrations {
                     } catch (ignored: Throwable) {
                         // ignored
                     }
-                }*/
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
