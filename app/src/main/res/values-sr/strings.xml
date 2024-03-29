@@ -572,7 +572,7 @@
     <string name="weather_air_quality_data_by">Подаци о квалитету ваздуха од %s</string>
     <string name="weather_pollen_data_by">Подаци о алергенима од %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Подаци о квалитету ваздуха и алергенима од %s</string>
-    <string name="weather_minutely_data_by">Падавине из минута у минут од %s</string>
+    <string name="weather_minutely_data_by">Подаци о тренутној количини падавина од %s</string>
     <string name="weather_alert_data_by">Подаци упозорења од %s</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Миље на сат</string>
@@ -677,4 +677,8 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Инстанца квалитета ваздуха</string>
     <string name="settings_widgets_broadcast_switch">Емитуј моје податке о времену у друге апликације</string>
     <string name="settings_widgets_broadcast_switch_dialog">Ова опција омогућава БИЛО КОЈОЈ апликацији на вашем уређају да има приступ називу ваше локације и подацима о времену. Наставите само ако у потпуности разумете потенцијалне ризике злоупотребе од стране других апликација које би могле да проистекну из тога.</string>
+    <string name="settings_per_location_theme">Тема</string>
+    <string name="message_invalid_incomplete_data">Неважећи или непотпуни подаци примљени са сервера</string>
+    <string name="settings_source_instance_invalid">Мора да буде https URL који се завршава с /</string>
+    <string name="settings_invalid_syntax">Неважећа синтакса</string>
 </resources>
