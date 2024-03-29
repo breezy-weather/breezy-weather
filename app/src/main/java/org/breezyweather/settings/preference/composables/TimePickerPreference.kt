@@ -16,38 +16,65 @@
 
 package org.breezyweather.settings.preference.composables
 
-import android.content.Context
-import android.widget.TimePicker
+import android.text.format.DateFormat
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material3.AlertDialog
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Keyboard
+import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimeInput
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.isContainer
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.zIndex
 import org.breezyweather.R
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun TimePickerPreferenceView(
@@ -57,23 +84,23 @@ fun TimePickerPreferenceView(
     onValueChanged: (String) -> Unit,
 ) = TimePickerPreferenceView(
     title = stringResource(titleId),
-    summary = { _, it -> it },
     currentTime = currentTime,
     enabled = enabled,
     onValueChanged = onValueChanged,
 )
 
 @Composable
-fun TimePickerPreferenceView(
+private fun TimePickerPreferenceView(
     title: String,
-    summary: (Context, String) -> String?, // currentTime (xx:xx) -> summary.
     currentTime: String,
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
-
+    var showTimePicker by remember { mutableStateOf(false) }
     val currentTimeState = remember { mutableStateOf(currentTime) }
-    val dialogOpenState = remember { mutableStateOf(false) }
+    val showingPicker = remember { mutableStateOf(true) }
+    val configuration = LocalConfiguration.current
+    val is12Hour = LocalContext.current.is12Hour
 
     Material3CardListItem(
         elevation = if (enabled) defaultCardListItemElevation else 0.dp
@@ -85,7 +112,7 @@ fun TimePickerPreferenceView(
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberThemeRipple(),
-                    onClick = { dialogOpenState.value = true },
+                    onClick = { showTimePicker = true },
                     enabled = enabled,
                 )
                 .padding(dimensionResource(R.dimen.normal_margin)),
@@ -97,8 +124,12 @@ fun TimePickerPreferenceView(
                     color = DayNightTheme.colors.titleColor,
                     style = MaterialTheme.typography.titleMedium,
                 )
-                val currentSummary = summary(LocalContext.current, currentTimeState.value)
-                if (currentSummary?.isNotEmpty() == true) {
+                val currentSummary = if (is12Hour) {
+                    stringIn12HourFormat(currentTimeState.value)
+                } else {
+                    currentTimeState.value
+                }
+                if (currentSummary.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                     Text(
                         text = currentSummary,
@@ -110,89 +141,173 @@ fun TimePickerPreferenceView(
         }
     }
 
-    if (dialogOpenState.value) {
-        val timePickerState = remember { mutableStateOf(currentTimeState.value) }
+    if (showTimePicker) {
+        val time = stringToTime(currentTimeState.value)
+        val calendar = Calendar.getInstance()
+        if (time != null) {
+            calendar.setTime(time)
+        }
 
-        AlertDialog(
-            onDismissRequest = { dialogOpenState.value = false },
-            title = {
-                Text(
-                    text = title,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.headlineSmall,
-                )
+        val timePickerState = rememberTimePickerState(
+            initialHour = calendar[Calendar.HOUR_OF_DAY],
+            initialMinute = calendar[Calendar.MINUTE],
+            is24Hour = !is12Hour
+        )
+
+        TimePickerDialog(
+            title = if (showingPicker.value) {
+                stringResource(R.string.dialog_time_picker_select_time)
+            } else {
+                stringResource(R.string.dialog_time_picker_input_time)
             },
-            text = {
-                AndroidView(
-                    factory = { context ->
-                        val timePicker = TimePicker(
-                            context,
-                            null,
-                            com.google.android.material.R.style.Widget_Material3_MaterialTimePicker
-                        )
-                        timePicker.setIs24HourView(true)
-                        timePicker.setOnTimeChangedListener { _, hour, minute ->
-                            timePickerState.value = timeToString(hour = hour, minute = minute)
+            onCancel = { showTimePicker = false },
+            onConfirm = {
+                currentTimeState.value = timeToString(
+                    hour = timePickerState.hour,
+                    minute = timePickerState.minute
+                )
+                showTimePicker = false
+                onValueChanged(currentTimeState.value)
+            },
+            toggle = {
+                if (configuration.screenHeightDp > 400) {
+                    // Make this take the entire viewport. This will guarantee that Screen readers
+                    // focus the toggle first.
+                    Box(
+                        Modifier
+                            .fillMaxSize()
+                            .semantics {
+                                @Suppress("DEPRECATION")
+                                isContainer = true
+                            }
+                    ) {
+                        IconButton(
+                            modifier = Modifier
+                                // This is a workaround so that the Icon comes up first
+                                // in the talkback traversal order. So that users of a11y
+                                // services can use the text input. When talkback traversal
+                                // order is customizable we can remove this.
+                                .size(64.dp, 72.dp)
+                                .align(Alignment.BottomStart)
+                                .zIndex(5f),
+                            onClick = { showingPicker.value = !showingPicker.value }) {
+                            val icon = if (showingPicker.value) {
+                                Icons.Outlined.Keyboard
+                            } else {
+                                Icons.Outlined.Schedule
+                            }
+                            Icon(
+                                icon,
+                                contentDescription = if (showingPicker.value) {
+                                    stringResource(R.string.dialog_time_picker_toggle_text_input_voice)
+                                } else {
+                                    stringResource(R.string.dialog_time_picker_toggle_touch_input_voice)
+                                }
+                            )
                         }
-
-                        val time = stringToTime(currentTimeState.value)
-                        timePicker.currentHour = time.elementAtOrNull(0) ?: 0
-                        timePicker.currentMinute = time.elementAtOrNull(1) ?: 0
-                        timePickerState.value = timeToString(
-                            hour = timePicker.currentHour,
-                            minute = timePicker.currentMinute
-                        )
-
-                        timePicker
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(Alignment.CenterHorizontally)
-                )
-            },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        currentTimeState.value = timePickerState.value
-                        dialogOpenState.value = false
-                        onValueChanged(currentTimeState.value)
                     }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_done),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
-                    )
-                }
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = { dialogOpenState.value = false }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_cancel),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
-                    )
                 }
             }
-        )
+        ) {
+            if (showingPicker.value && configuration.screenHeightDp > 400) {
+                TimePicker(state = timePickerState)
+            } else {
+                TimeInput(state = timePickerState)
+            }
+        }
     }
 }
 
 private fun timeToString(
     hour: Int,
     minute: Int
-) = when {
-    hour == 0 -> "00"
-    hour < 10 -> "0$hour"
-    else -> hour.toString()
-} + ":" + when {
-    minute == 0 -> "00"
-    minute < 10 -> "0$minute"
-    else -> minute.toString()
+): String {
+    val time = Calendar.getInstance().also {
+        it.set(Calendar.HOUR_OF_DAY, hour)
+        it.set(Calendar.MINUTE, minute)
+    }.time
+
+    return DateFormat.format("HH:mm", time).toString()
 }
 
 private fun stringToTime(
     time: String
-) = time.split(":").map { it.toIntOrNull() ?: 0 }
+): Date? {
+    return SimpleDateFormat("HH:mm", Locale.US).parse(time)
+}
+
+private fun stringIn12HourFormat(
+    time: String
+): String {
+    return DateFormat.format("h:mm aa", stringToTime(time)).toString()
+}
+
+// The TimePickerDialog is not provided by compose material 3. So we need to add it manually.
+// Source: https://cs.android.com/androidx/platform/tools/dokka-devsite-plugin/+/master:testData/compose/samples/material3/samples/TimePickerSamples.kt;l=230;drc=03ca30d22e6ee3483142f2e4048db459cb5afb79
+@Composable
+private fun TimePickerDialog(
+    onCancel: () -> Unit,
+    onConfirm: () -> Unit,
+    title: String = stringResource(R.string.dialog_time_picker_select_time),
+    toggle: @Composable () -> Unit = {},
+    content: @Composable () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onCancel,
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false
+        ),
+    ) {
+        Surface(
+            shape = MaterialTheme.shapes.extraLarge,
+            tonalElevation = 6.dp,
+            modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .height(IntrinsicSize.Min)
+                .background(
+                    shape = MaterialTheme.shapes.extraLarge,
+                    color = MaterialTheme.colorScheme.surface
+                ),
+        ) {
+            toggle()
+            Column(
+                modifier = Modifier.padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 20.dp),
+                    text = title,
+                    style = MaterialTheme.typography.labelMedium
+                )
+                content()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(Alignment.CenterVertically),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        onClick = onCancel
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_cancel),
+                            overflow = TextOverflow.Clip,
+                            maxLines = 1
+                        )
+                    }
+                    TextButton(
+                        onClick = onConfirm
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_confirm),
+                            overflow = TextOverflow.Clip,
+                            maxLines = 1
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
