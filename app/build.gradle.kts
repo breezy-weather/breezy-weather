@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.util.Locale
 import java.util.Properties
 
 plugins {
@@ -18,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 501080 // Must always end with a 0 for versionCode management of flavors
+        versionCode = 50108
         versionName = "5.1.8"
 
         multiDexEnabled = true
@@ -78,29 +77,14 @@ android {
     productFlavors {
         create("basic") {
             dimension = "default"
-            if (project.gradle.startParameter.taskNames.any {
-                it.lowercase(Locale.getDefault()).contains("release")
-            }) {
-                versionCode = (android.defaultConfig.versionCode ?: 0) + 2
-            }
         }
         create("fdroid") {
             dimension = "default"
             versionNameSuffix = "_fdroid"
-            if (project.gradle.startParameter.taskNames.any {
-                    it.lowercase(Locale.getDefault()).contains("release")
-                }) {
-                versionCode = (android.defaultConfig.versionCode ?: 0) + 1
-            }
         }
         create("gplay") {
             dimension = "default"
             versionNameSuffix = "_gplay"
-            if (project.gradle.startParameter.taskNames.any {
-                    it.lowercase(Locale.getDefault()).contains("release")
-                }) {
-                versionCode = (android.defaultConfig.versionCode ?: 0) + 3
-            }
         }
     }
 

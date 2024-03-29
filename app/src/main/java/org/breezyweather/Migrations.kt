@@ -80,13 +80,6 @@ object Migrations {
                     }
                 }
 
-                /**
-                 * Be careful, starting from v5.1.8, versions code are named:
-                 * - 501080 on debug version
-                 * - 501081 on release-fdroid version
-                 * - 501082 on release-standard version
-                 * - 501083 on release-gplay version
-                 */
                 /*if (oldVersion < 501080) {
                     try {
                         val curCardDisplayList =
