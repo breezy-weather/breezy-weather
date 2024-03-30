@@ -34,11 +34,18 @@ data class Minutely(
         get() = precipitationIntensityToDBZ(precipitationIntensity)
 
     companion object {
+
+        // TODO: Check these values
+        const val PRECIPITATION_LIGHT = 2.5
+        const val PRECIPITATION_MEDIUM = 5.0
+        const val PRECIPITATION_HEAVY = 7.5
+
         private fun precipitationIntensityToDBZ(intensity: Double?): Int? {
             return if (intensity == null) null else (10.0 * log10(
                 200.0 * Math.pow(intensity, 8.0 / 5.0)
             )).toInt()
         }
+
         fun dbzToPrecipitationIntensity(dbz: Double?): Double? {
             return if (dbz == null) {
                 null
