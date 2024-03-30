@@ -370,9 +370,9 @@ fun getNormals(timeZone: TimeZone, normalsResult: MfNormalsResult): Normals? {
 }
 
 private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
-    4 -> 10.0
-    3 -> 5.5
-    2 -> 2.0
+    4 -> Minutely.PRECIPITATION_HEAVY
+    3 -> Minutely.PRECIPITATION_MEDIUM
+    2 -> Minutely.PRECIPITATION_LIGHT
     else -> 0.0
 }
 
