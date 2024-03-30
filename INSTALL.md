@@ -1,6 +1,8 @@
 # Simple instructions
 
-Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases) and download the file with the following format `breezy-weather-vX.Y.Z_standard.apk`. Install it and you’re done!
+Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases) and download the file with the following format `breezy-weather-vX.Y.Z_standard.apk`.
+
+Install it and you’re done!
 
 
 # Detailed instructions
@@ -34,7 +36,7 @@ Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases)
 | Pre-releases            | Optional        | Optional                      | ❌                      |
 | Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC |
 | APK matches source code | ✅               | ✅                             | ✅                      |
-| Independently managed   | ❌               | ❌                             | ✅                      |
+| Independently reviewed  | ❌               | ❌                             | ✅                      |
 
 ### Other not supported well-known sources
 
@@ -55,6 +57,7 @@ Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases)
 #### Getting updates from standard flavor of the Izzy repo
 
 In the “Add App” screen, just add the following URL as App Source URL: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
+
 Tap the “Add” button at the very top, and you’re done!
 
 #### Getting updates from GitHub releases
