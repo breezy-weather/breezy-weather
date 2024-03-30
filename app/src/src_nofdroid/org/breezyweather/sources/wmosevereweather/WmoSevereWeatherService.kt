@@ -29,7 +29,7 @@ import javax.inject.Inject
 
 /**
  * World Meteorological Organization Severe Weather Information Centre (WMO SWIC)
- * Supports severe weather from 134 issuing organizations
+ * Supports severe weather from many issuing organizations
  *
  * Based on WFS from SWIC v3.0 that was released on 2024-03-29
  */
@@ -53,7 +53,7 @@ class WmoSevereWeatherService @Inject constructor(
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
-    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 134 issuing organizations https://severeweather.wmo.int/sources.html"
+    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 136 issuing organizations https://severeweather.wmo.int/sources.html"
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
