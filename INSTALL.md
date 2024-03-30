@@ -66,9 +66,9 @@ In the “Add App” screen:
 1. Add the following URL: https://github.com/breezy-weather/breezy-weather
 2. To receive updates for prereleases, enable “Include prereleases”
 3. In the “Filter APKs by Regular Expression”, input the following depending on the flavor you want:
-    - Standard: standard
-    - F-Droid: fdroid
-    - Google Play: gplay
+    - Standard: `standard`
+    - F-Droid: `fdroid`
+    - Google Play: `gplay`
 4. Tap the “Add” button at the very top, and you’re done!
 
 
