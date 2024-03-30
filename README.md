@@ -43,7 +43,7 @@ alt="Get it on IzzyOnDroid" align="center" height="80" /></a>
 <img src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png"
 alt="Get it on GitHub" align="center" height="80" /></a>
 
-<a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22org.breezyweather%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fbreezy-weather%2Fbreezy-weather%22%2C%22author%22%3A%22breezy-weather%22%2C%22name%22%3A%22Breezy%20Weather%22%2C%22preferredApkIndex%22%3A0%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Afalse%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22dontSortReleasesList%5C%22%3Afalse%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22Breezy%20Weather%20is%20a%20weather%20app%20with%20a%20strong%20focus%20on%20design%2C%20with%20a%20simple%2C%20clean%20UX%2C%20smooth%20animations%2C%20and%20Material%20Design%20all%20over%2C%20plus%20lots%20of%20customizability.%5C%22%7D%22%7D">
+<a href="https://github.com/breezy-weather/breezy-weather/INSTALL.md">
 <img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png"
 alt="Get it on Obtainium" align="center" height="54" />
 </a>
@@ -170,18 +170,12 @@ English (and regional variants) and French translations are maintained by repo m
 
 These are time-consuming features and help is always appreciated. A fresh look to help maintain code quality can also be of great help! Please join the [Matrix channel](https://matrix.to/#/#breezy-weather:matrix.org) for that purpose.
 
-| ID                                                                                                                                     | Feature                            | Status                | Note                                                                                                                                     |
-|----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress      | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
-| [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do         | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
-|                                                                                                                                        | Widgets redesign                   | Mockups in progress   | No widgets improvements will be done until completed                                                                                     |
-| [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on   | We already have a dark mode                                                                                                              |
-
-
-# Build flavors
-
-A flavor called `gplay` is available and may be distributed on Google Play Store in the future.
-It enables Instant App and bundles Google Network Location Provider (proprietary).
+| ID                                                                                                                                     | Feature                            | Status                       | Note                                                                                                                                     |
+|----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress             | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
+| [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do, on hold       | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
+|                                                                                                                                        | Widgets redesign                   | Mockups in progress, on hold | No widgets improvements will be done until completed                                                                                     |
+| [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on          | We already have a dark mode                                                                                                              |
 
 
 # License
