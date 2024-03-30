@@ -1,80 +1,82 @@
-*This page is still work-in-progress while we work on adding Breezy Weather to F-Droid default repository*
+# Simple instructions
 
-Breezy Weather team recommends you install the **standard** flavor of the Breezy Weather app from our own F-Droid repo for the best experience. [Install instructions](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)
+Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases) and download the file with the following format `breezy-weather-vX.Y.Z_standard.apk`. Install it and you’re done!
 
-Below you will find details about available flavors and installation methods.
 
-Note that all releases are signed with the same signature, so you can easily switch between flavors or installation methods at any time.
-
+# Detailed instructions
 
 ## Flavors
 
-**Breezy Weather** comes in 3 flavors:
+**Breezy Weather** comes in 3 flavors that are always signed with the same signature, so you can easily switch at any time:
 - **Standard**: this is the recommended version of Breezy Weather. It is fully open source and contains no proprietary components to our knowledge.
-- **Google Play**: this is the same version as Standard, except it also includes the proprietary Fused location component from Google Play Services. This component is useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
-- **F-Droid**: compared to the standard version, it only includes weather sources which are libre and self-hostable: Open-Meteo, Bright Sky (DWD) and Recosanté. In the future, we expect Pirate Weather to become open source as well.
+- **Google Play**: this is the same version as Standard, except it also includes the proprietary Fused location component from Google Play Services. This component can be useful if you use “Current location” feature AND have Google Play Services installed on your device. Otherwise, you should use the standard version.
+- **F-Droid**: compared to the standard version, it only includes weather sources which are libre and self-hostable: Open-Meteo, Bright Sky (DWD) and Recosanté. In the future, we expect [Pirate Weather to become open source as well](https://docs.pirateweather.net/en/latest/roadmap/).
 
-| Feature                               | Standard | Google Play | F-Droid                                   |
-|---------------------------------------|----------|-------------|-------------------------------------------|
-| Technical name                        | `basic`  | `gplay`     | `fdroid`                                  |
-| Fused location (Google Play Services) | ❌        | ✅           | ❌                                         |
-| Weather alerts                        | ✅        | ✅           | Germany-only with Bright Sky (DWD) source |
-| Temperature normals                   | ✅        | ✅           | ❌                                         |
-
-| Worldwide weather sources | Standard         | Google Play      | F-Droid  |
-|---------------------------|------------------|------------------|----------|
-| Open-Meteo                | ✅                | ✅                | ✅        |
-| AccuWeather               | ✅                | ✅                | ❌        |
-| MET Norway                | ✅                | ✅                | ❌        |
-| OpenWeather               | ✅                | ✅                | ❌        |
-| Pirate Weather            | Requires API key | Requires API key | Planned¹ |
-| HERE                      | Requires API key | Requires API key | ❌        |
-| Météo-France              | ✅                | ✅                | ❌        |
-| DMI                       | ✅                | ✅                | ❌        |
-
-¹ As per Pirate Weather #1 priority in roadmap: https://docs.pirateweather.net/en/latest/roadmap/
-
-| National weather sources            | Standard         | Google Play      | F-Droid  |
-|-------------------------------------|------------------|------------------|----------|
-| China                               | ✅                | ✅                | ❌        |
-| National Weather Service (NWS)      | ✅                | ✅                | ❌        |
-| Bright Sky (DWD)                    | ✅                | ✅                | ✅        |
-| ECCC                                | ✅                | ✅                | ❌        |
-| Israel Meteorological Service (IMS) | ✅                | ✅                | ❌        |
-| SMHI                                | ✅                | ✅                | ❌        |
-| MET Éireann                         | ✅                | ✅                | ❌        |
-
-| Secondary weather sources | Standard         | Google Play      | F-Droid  |
-|---------------------------|------------------|------------------|----------|
-| ATMO AuRA                 | ✅                | ✅                | ❌        |
-| Recosanté                 | ✅                | ✅                | ✅        |
+| Feature                                 | Standard | Google Play | F-Droid                                   |
+|-----------------------------------------|----------|-------------|-------------------------------------------|
+| Technical name                          | `basic`  | `gplay`     | `fdroid`                                  |
+| Fused location (Google Play Services)   | ❌        | ✅           | ❌                                         |
+| Weather alerts                          | ✅        | ✅           | Germany-only with Bright Sky (DWD) source |
+| Temperature normals                     | ✅        | ✅           | ❌                                         |
+| Non-self hostable/libre network sources | ✅        | ✅           | ❌                                         |
 
 
-## Installation methods of Breezy Weather
+## Sources to get Breezy Weather from
 
-**Important note**: if you want to receive updates from F-Droid repos, and you use multiple repos, we recommend using a client that allows you to pin which repo you want to get updates from to avoid cross-updates of flavors. Such clients include Obtainium or official F-Droid client nightly build (no stable release yet).
+**Breezy Weather** releases are available from the following sources:
+- **[GitHub releases](https://github.com/breezy-weather/breezy-weather/releases)** is where all 3 flavors built by GitHub are published under APK format. Any Android device can install APK files without needing any particular app. If you have a GitHub account, you can subscribe to be notified of updates, however it’s more convenient to use a store app to track updates.
+- **[Breezy Weather’s F-Droid repositories](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)** are maintained by Breezy Weather developers and allows you to choose from the 3 flavors from a F-Droid client that doesn’t support receiving updates from GitHub.
+- **[Izzy F-Droid repository](https://apt.izzysoft.de/fdroid/index/info)** offers the Standard flavor which is our recommended choice if you would like someone to independently review the app before it gets published. Updates are fast (less than 24 hours).
 
-**Breezy Weather** releases are available to install from:
-- **Breezy Weather’s F-Droid repository** allows updates for Breezy Weather to be available faster than on the default F-Droid repository. All 3 flavors of Breezy Weather are available to choose from our repos. This is the recommended way of installing Breezy Weather if you use a F-Droid-compatible app. To do this, you will need to [add our repo to your favorite F-Droid app](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md).
-- **Izzy F-Droid repository** offers the Standard flavor which is our 2nd recommended choice, if you prefer to have an independent review of the app. Updates are fast (less than 24 hours).
-- **Default F-Droid repository** *(not yet available)* offers the F-Droid flavor which is great for people who wants to be sure the app doesn’t by mistake connect to non-free network sources. However, there is usually an important delay in delivering our updates (about a week) which is why, for the F-Droid flavor, we recommend to use our F-Droid flavor repo to get updates faster.
-- **Obtainium** is an app that allows you to install and update apps directly from their releases pages, and receive notifications when new releases are made available. You can also choose F-Droid repos as your source of update. [Link to Obtainium page](https://github.com/ImranR98/Obtainium/blob/main/README.md)
-- **GitHub releases** is where releases are published and then pushed to other installation methods. If you have a GitHub account, you can subscribe to be notified of updates, however it’s more convenient to use an app which is compatible with F-Droid repositories to track updates.
+| Differences             | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    |
+|-------------------------|-----------------|-------------------------------|------------------------|
+| Available flavors       | All             | All                           | Standard               |
+| Pre-releases            | Optional        | Optional                      | ❌                      |
+| Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC |
+| APK matches source code | ✅               | ✅                             | ✅                      |
+| Independently managed   | ❌               | ❌                             | ✅                      |
 
-| Differences              | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    | [F-Droid repo] Default repo | Obtainium | GitHub releases |
-|--------------------------|-------------------------------|------------------------|-----------------------------|-----------|-----------------|
-| Pre-releases             | Optional                      | ❌                      | ❌                           | Optional  | Optional        |
-| Delay for updates        | Immediate                     | Every day at 18:00 UTC | Usually about a week        | Immediate | Immediate       |
-| APK matches source code¹ | ✅                             | ✅                      | ✅                           | ✅         | ✅               |
-| Independently managed    | ❌                             | ✅                      | ✅                           | ✅²        | ❌               |
+### Other not supported well-known sources
 
-¹ APK are automatically generated by a [GitHub action](https://github.com/breezy-weather/breezy-weather/blob/main/.github/workflows/push.yml). For default F-Droid repository, there is a second check with the [reproducible build](https://f-droid.org/en/docs/Reproducible_Builds/) mechanism from F-Droid team.
-² Only if you choose F-Droid default repo or Izzy repo as your source of update
+- Google Play Store:
+  - Costs money
+  - Is privacy invasive for the developer (requires sending your ID and giving your phone number)
+  - We don’t [comply with Google Play policy](https://github.com/breezy-weather/breezy-weather/issues/31)
+- F-Droid default repo: work is in progress!
+- Accrescent: waiting for it to become stable (no ETA announced by upstream)
 
-| Available flavors | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy | [F-Droid repo] Default repo | Obtainium | GitHub releases |
-|-------------------|-------------------------------|---------------------|-----------------------------|-----------|-----------------|
-| Standard          | ✅                             | ✅                   | ❌                           | ✅         | ✅               |
-| Google Play       | ✅                             | ❌                   | ❌                           | ✅         | ✅               |
-| F-Droid           | ✅                             | ❌                   | ✅                           | ✅         | ✅               |
 
-What about Google Play Store? It costs money, and we do not [comply with Google Play policy](https://github.com/breezy-weather/breezy-weather/issues/31), so there are no plans to add the app to Google Play Store at the moment.
+## Client configuration instructions
+
+### Obtainium
+
+[Link to Obtainium page](https://github.com/ImranR98/Obtainium/blob/main/README.md)
+
+#### Getting updates from standard flavor of the Izzy repo
+
+In the “Add App” screen, just add the following URL as App Source URL: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
+Tap the “Add” button at the very top, and you’re done!
+
+#### Getting updates from GitHub releases
+
+In the “Add App” screen:
+1. Add the following URL: https://github.com/breezy-weather/breezy-weather
+2. To receive updates for prereleases, enable “Include prereleases”
+3. In the “Filter APKs by Regular Expression”, input the following depending on the flavor you want:
+    - Standard: standard
+    - F-Droid: fdroid
+    - Google Play: gplay
+4. Tap the “Add” button at the very top, and you’re done!
+
+
+### F-Droid clients
+
+Look for the Repositories option from your favorite client and add a new repository depending on the source you want to use:
+   - Standard flavor from Izzy repo: https://apt.izzysoft.de/fdroid/repo
+   - Standard flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid/repo
+   - F-Droid flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo
+   - Google Play flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/gplay-version/fdroid/repo
+
+You should now be able to install Breezy Weather from your client.
+
+Important note: If you add the F-Droid or Google Play flavor from our repos but you also have the Izzy repo installed, you should use a F-Droid client that supports pinning which repo you want to get updates from to avoid getting unexpected updates for the Standard flavor from the Izzy repo. To our knowledge, only the nightly build of the official F-Droid client currently supports it.
