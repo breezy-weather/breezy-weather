@@ -8,6 +8,7 @@ Due to a technical change, if you had set up a different language than your syst
 **Weather sources**
 - [WMO SWIC] Switch to newer v3.0 endpoint for alerts, should be more reliable and much faster
 - [WMO SWIC] Updated alert colors to v3.0
+- Default alert colors for sources not providing colors (DMI, ECCC, OpenWeather, Pirate Weather) were also updated to match alert colors of WMO SWIC v3.0
 
 **Improvements and fixes**
 - Precipitation nowcast is now a dedicated card

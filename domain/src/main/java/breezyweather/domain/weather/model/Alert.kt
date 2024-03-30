@@ -43,11 +43,11 @@ class Alert(
 
     @ColorInt
     val color: Int = color ?: when (severity) {
-        AlertSeverity.EXTREME -> Color.rgb(215, 46, 41)
-        AlertSeverity.SEVERE -> Color.rgb(254, 153, 0)
-        AlertSeverity.MODERATE -> Color.rgb(255, 255, 1)
-        AlertSeverity.MINOR -> Color.rgb(0, 255, 255)
-        else -> Color.rgb(51, 102, 255)
+        AlertSeverity.EXTREME -> Color.rgb(212, 45, 65)
+        AlertSeverity.SEVERE -> Color.rgb(240, 140, 17)
+        AlertSeverity.MODERATE -> Color.rgb(244, 207, 0)
+        AlertSeverity.MINOR -> Color.rgb(57, 156, 199)
+        else -> Color.rgb(130, 168, 223)
     }
 
 }
