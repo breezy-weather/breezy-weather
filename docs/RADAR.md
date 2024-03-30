@@ -103,15 +103,22 @@ Websites below often offer closed source apps as well, but adding a bookmark to 
             </ul>
         </td>
     </tr>
+    <tr>
+        <td><a href="https://severeweather.wmo.int/">WMO Severe Weather Information Centre</a></td>
+        <td>Free</td>
+        <td>N/A</td>
+        <td><a href="https://severeweather.wmo.int/sources.html">136 issuing organizations</a></td>
+    </tr>
 </tbody>
 </table>
 
 
 ## Features
 
-| Name                                                                 | Precipitation | Temperature | Wind | Clouds | Pressure | Waves | Air quality | Other                                                                            |
-|----------------------------------------------------------------------|---------------|-------------|------|--------|----------|-------|-------------|----------------------------------------------------------------------------------|
-| [OsmAnd](https://osmand.net/)                                        | ✅             | ✅           | ✅    | ✅      | ✅        | ❌     | ❌           |                                                                                  |
-| [RainViewer](https://www.rainviewer.com/weather-radar-map-live.html) | ✅             | ❌           | ❌    | ❌      | ❌        | ❌     | ❌           |                                                                                  |
-| [Ventusky](https://www.ventusky.com/)                                | ✅             | ✅           | ✅    | ✅      | ✅        | ✅     | ✅           |                                                                                  |
-| [Windy.com](https://www.windy.com/)                                  | ✅             | ✅           | ✅    | ✅      | ✅        | ✅     | ✅           | Extreme forecast, Weather warnings, Outdoor map, Drought monitoring, Fire danger |
+| Name                                                                    | Precipitation | Temperature | Wind | Clouds | Pressure | Waves | Air quality | Other                                                                            |
+|-------------------------------------------------------------------------|---------------|-------------|------|--------|----------|-------|-------------|----------------------------------------------------------------------------------|
+| [OsmAnd](https://osmand.net/)                                           | ✅             | ✅           | ✅    | ✅      | ✅        | ❌     | ❌           |                                                                                  |
+| [RainViewer](https://www.rainviewer.com/weather-radar-map-live.html)    | ✅             | ❌           | ❌    | ❌      | ❌        | ❌     | ❌           |                                                                                  |
+| [Ventusky](https://www.ventusky.com/)                                   | ✅             | ✅           | ✅    | ✅      | ✅        | ✅     | ✅           |                                                                                  |
+| [Windy.com](https://www.windy.com/)                                     | ✅             | ✅           | ✅    | ✅      | ✅        | ✅     | ✅           | Extreme forecast, Weather warnings, Outdoor map, Drought monitoring, Fire danger |
+| [WMO Severe Weather Information Centre](https://severeweather.wmo.int/) | ❌             | ❌           | ❌    | ❌      | ❌        | ❌     | ❌           | Severe Weather                                                                   |
