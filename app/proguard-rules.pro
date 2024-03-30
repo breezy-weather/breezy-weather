@@ -66,3 +66,6 @@
 
 # suncalc
 -dontwarn edu.umd.cs.findbugs.annotations.Nullable
+
+# RestrictionBypass
+-keep class org.chickenhook.restrictionbypass.** { *; }
