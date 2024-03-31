@@ -107,7 +107,7 @@ class MainActivity : GeoActivity(),
         // If we don't find the formattedId in the current list, it means main source was changed
         // for currently focused location
         // TODO: This shouldn't be the case anymore, as only WeatherUpdateJob comes here
-        val oldLocation = viewModel.validLocationList.value.first.firstOrNull {
+        val oldLocation = viewModel.validLocationList.value.firstOrNull {
             it.formattedId == location.formattedId
         } ?: viewModel.currentLocation.value?.location
 
@@ -119,7 +119,7 @@ class MainActivity : GeoActivity(),
 
     fun deleteLocation(location: Location) {
         if (locationListSize() > 1) {
-            val position: Int = viewModel.validLocationList.value.first.indexOfFirst {
+            val position: Int = viewModel.validLocationList.value.indexOfFirst {
                 it.formattedId == location.formattedId
             }
             if (position >= 0) {
@@ -186,14 +186,7 @@ class MainActivity : GeoActivity(),
 
             findHomeFragment()?.updateViews()
 
-            // update notification immediately.
-            AsyncHelper.runOnIO {
-                Notifications.updateNotificationIfNecessary(
-                    this,
-                    viewModel.validLocationList.value.first
-                )
-            }
-            refreshBackgroundViews(viewModel.validLocationList.value.first)
+            refreshBackgroundViews(viewModel.validLocationList.value)
         }
         EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
             updateSystemBarStyle()
@@ -295,28 +288,10 @@ class MainActivity : GeoActivity(),
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
                 viewModel.validLocationList.collect {
-                    // update notification immediately.
-                    AsyncHelper.runOnIO {
-                        Notifications.updateNotificationIfNecessary(context, it.first)
+                    if (it.isEmpty()) {
+                        setManagementFragmentVisibility(true)
                     }
-                    refreshBackgroundViews(it.first)
-                }
-            }
-        }
-        lifecycleScope.launch {
-            // repeatOnLifecycle launches the block in a new coroutine every time the
-            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Trigger the flow and start listening for values.
-                // Note that this happens when lifecycle is STARTED and stops
-                // collecting when the lifecycle is STOPPED
-                viewModel.initCompleted.collect {
-                    if (it) {
-                        if (viewModel.validLocationList.value.first.isEmpty()) {
-                            // FIXME DB rewrite: Replace with a OnboardingCompleted property instead
-                            setManagementFragmentVisibility(true)
-                        }
-                    }
+                    refreshBackgroundViews(it)
                 }
             }
         }

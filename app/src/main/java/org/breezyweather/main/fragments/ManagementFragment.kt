@@ -177,7 +177,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             },
             floatingActionButton = {
                 Column {
-                    if (validLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
+                    if (validLocationListState.value.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
                                 viewModel.openChooseWeatherSourcesDialog(null)
@@ -199,7 +199,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 }
             }
         ) { paddings ->
-            if (validLocationListState.value.first.isNotEmpty()) {
+            if (validLocationListState.value.isNotEmpty()) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -376,6 +376,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // Start a coroutine in the lifecycle scope
+        // FIXME: Race condition
         lifecycleScope.launch {
             // repeatOnLifecycle launches the block in a new coroutine every time the
             // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
@@ -385,7 +386,20 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 // collecting when the lifecycle is STOPPED
                 viewModel.validLocationList.collect {
                     // New value received
-                    adapter.update(it.first, it.second)
+                    adapter.update(it, viewModel.currentLocation.value?.location?.formattedId)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            // repeatOnLifecycle launches the block in a new coroutine every time the
+            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Trigger the flow and start listening for values.
+                // Note that this happens when lifecycle is STARTED and stops
+                // collecting when the lifecycle is STOPPED
+                viewModel.currentLocation.collect {
+                    // New value received
+                    adapter.update(viewModel.validLocationList.value, it?.location?.formattedId)
                 }
             }
         }

@@ -69,7 +69,7 @@ class MainActivityViewModel @Inject constructor(
     // flow
     private val _currentLocation: MutableStateFlow<DayNightLocation?> = MutableStateFlow(null)
     val currentLocation = _currentLocation.asStateFlow()
-    private val _validLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
+    private val _validLocationList = MutableStateFlow<List<Location>>(emptyList())
     val validLocationList = _validLocationList.asStateFlow()
 
     private val _dialogChooseWeatherSourcesOpen = MutableStateFlow(false)
@@ -96,19 +96,17 @@ class MainActivityViewModel @Inject constructor(
     fun init(formattedId: String? = null) {
         onCleared()
 
-        var id = formattedId ?: savedStateHandle[KEY_FORMATTED_ID]
-
         // init live data.
         runBlocking { // TODO: Not doing that causes blinking, to be investigated
             val validList = initLocations()
 
-            id = formattedId ?: validList.getOrNull(0)?.formattedId
+            val id = formattedId ?: validList.getOrNull(0)?.formattedId
             val current = validList.firstOrNull { item -> item.formattedId == id }
 
             current?.let {
                 _currentLocation.value = DayNightLocation(location = it)
             }
-            _validLocationList.value = Pair(validList, id)
+            _validLocationList.value = validList
 
             _loading.value = false
             _indicator.value = Indicator(
@@ -125,7 +123,7 @@ class MainActivityViewModel @Inject constructor(
 
     // update inner data.
     private fun updateInnerData(location: Location, oldLocation: Location? = null) {
-        val valid = ArrayList(validLocationList.value.first)
+        val valid = validLocationList.value.toMutableList()
 
         for (i in valid.indices) {
             if (valid[i].formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
@@ -153,8 +151,8 @@ class MainActivityViewModel @Inject constructor(
     private fun updateInnerData(newValid: List<Location>) {
         // get valid locations and current index.
         var index: Int? = null
-        if (newValid.size != validLocationList.value.first.size) {
-            if (newValid.size > validLocationList.value.first.size) {
+        if (newValid.size != validLocationList.value.size) {
+            if (newValid.size > validLocationList.value.size) {
                 // New location added case
                 index = newValid.size - 1
             } else {
@@ -179,8 +177,8 @@ class MainActivityViewModel @Inject constructor(
             // If we didn't find it, it means formattedId changed (main weather source was changed)!
             // In that case, pick up latest known index for that location
             if (index == null) {
-                for (i in validLocationList.value.first.indices) {
-                    if (validLocationList.value.first[i].formattedId == currentLocation.value?.location?.formattedId) {
+                for (i in validLocationList.value.indices) {
+                    if (validLocationList.value[i].formattedId == currentLocation.value?.location?.formattedId) {
                         index = i
                         break
                     }
@@ -192,13 +190,16 @@ class MainActivityViewModel @Inject constructor(
 
         _indicator.value = Indicator(total = newValid.size, index = index)
 
-        // update current location.
-        setCurrentLocation(newValid[index])
-
         // check difference in valid locations.
-        val diffInValidLocations = validLocationList.value.first != newValid
-        if (diffInValidLocations || validLocationList.value.second != newValid[index].formattedId) {
-            _validLocationList.value = Pair(newValid, newValid[index].formattedId)
+        val diffInValidLocations = validLocationList.value != newValid
+        if (diffInValidLocations || (currentLocation.value?.location?.formattedId ?: "") != newValid[index].formattedId) {
+            // update current location.
+            setCurrentLocation(newValid[index])
+
+            _validLocationList.value = newValid
+        } else {
+            // update current location.
+            setCurrentLocation(newValid[index])
         }
     }
 
@@ -210,7 +211,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun locationListSize(): Int {
-        return validLocationList.value.first.size
+        return validLocationList.value.size
     }
 
     /**
@@ -353,7 +354,7 @@ class MainActivityViewModel @Inject constructor(
         // Only updates are coming here (no location added or deleted)
         // If we don't find the formattedId in the current list, it means main source was changed
         // for currently focused location
-        val oldLocation = validLocationList.value.first.firstOrNull {
+        val oldLocation = validLocationList.value.firstOrNull {
             it.formattedId == location.formattedId
         } ?: currentLocation.value?.location
 
@@ -364,27 +365,18 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // set location.
-
-    fun setLocation(index: Int) {
-        validLocationList.value.first.let {
-            setLocation(it[index].formattedId)
-        }
-    }
-
     fun setLocation(formattedId: String) {
         val oldFormattedId = currentLocation.value?.location?.formattedId ?: ""
         if (formattedId != oldFormattedId) {
             cancelRequest()
 
-            validLocationList.value.first.let { locationList ->
+            validLocationList.value.let { locationList ->
                 val index = locationList.indexOfFirst { it.formattedId == formattedId }
 
                 if (index >= 0) {
                     setCurrentLocation(locationList[index])
 
                     _indicator.value = Indicator(total = locationList.size, index = index)
-
-                    _validLocationList.value = Pair(validLocationList.value.first, formattedId)
                 }
             }
         }
@@ -398,7 +390,7 @@ class MainActivityViewModel @Inject constructor(
 
         // ensure current index.
         var index = 0
-        validLocationList.value.first.let {
+        validLocationList.value.let {
             for (i in it.indices) {
                 if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
@@ -408,14 +400,12 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // update index.
-        index = (index + offset + (validLocationList.value.first.size)) % (validLocationList.value.first.size)
+        index = (index + offset + (validLocationList.value.size)) % (validLocationList.value.size)
 
         // update location.
-        setCurrentLocation(validLocationList.value.first[index])
+        setCurrentLocation(validLocationList.value[index])
 
-        _indicator.value = Indicator(total = validLocationList.value.first.size, index = index)
-
-        _validLocationList.value = Pair(validLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
+        _indicator.value = Indicator(total = validLocationList.value.size, index = index)
 
         return currentLocation.value?.location?.formattedId != oldFormattedId
     }
@@ -428,13 +418,13 @@ class MainActivityViewModel @Inject constructor(
         index: Int? = null,
     ): Boolean {
         // do not add an existing location.
-        if (validLocationList.value.first.firstOrNull {
+        if (validLocationList.value.firstOrNull {
             it.formattedId == location.formattedId
         } != null) {
             return false
         }
 
-        val valid = ArrayList(validLocationList.value.first)
+        val valid = validLocationList.value.toMutableList()
         valid.add(index ?: valid.size, location)
 
         updateInnerData(valid)
@@ -455,21 +445,21 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        val valid = ArrayList(validLocationList.value.first)
+        val valid = validLocationList.value.toMutableList()
         valid.add(to, valid.removeAt(from))
 
         updateInnerData(valid)
 
-        writeLocationList(locationList = validLocationList.value.first)
+        writeLocationList(locationList = validLocationList.value)
     }
 
     fun updateLocation(newLocation: Location, oldLocation: Location?) {
         updateInnerData(newLocation, oldLocation)
-        writeLocationList(locationList = validLocationList.value.first)
+        writeLocationList(locationList = validLocationList.value)
     }
 
     fun locationExists(location: Location): Boolean {
-        return validLocationList.value.first
+        return validLocationList.value
             .firstOrNull { item ->
                 item.longitude == location.longitude &&
                 item.latitude == location.latitude &&
@@ -478,7 +468,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun deleteLocation(position: Int): Location {
-        val valid = ArrayList(validLocationList.value.first)
+        val valid = validLocationList.value.toMutableList()
         val location = valid.removeAt(position)
 
         updateInnerData(valid)
@@ -492,7 +482,7 @@ class MainActivityViewModel @Inject constructor(
         if (offset == null) return null
         // ensure current index.
         var index: Int? = null
-        validLocationList.value.first.let {
+        validLocationList.value.let {
             for (i in it.indices) {
                 if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
@@ -502,7 +492,7 @@ class MainActivityViewModel @Inject constructor(
         }
 
         return index?.let {
-            return validLocationList.value.first.getOrNull((it + offset + validLocationList.value.first.size) % validLocationList.value.first.size)
+            return validLocationList.value.getOrNull((it + offset + validLocationList.value.size) % validLocationList.value.size)
         }
     }
 
