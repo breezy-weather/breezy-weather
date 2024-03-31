@@ -78,7 +78,7 @@ fun Long.toDate(): Date {
 
 fun Date.getFormattedDate(
     pattern: String,
-    location: Location = Location(),
+    location: Location? = null,
     context: Context? = null,
     withBestPattern: Boolean = false
 ): String {
@@ -90,13 +90,17 @@ fun Date.getFormattedDate(
             } else pattern,
             locale
         ).apply {
-            timeZone = TimeZone.getTimeZone(location.timeZone)
+            timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         }.format(this)
-    } else this.getFormattedDate(pattern, location.javaTimeZone, locale)
+    } else {
+        this.getFormattedDate(
+            pattern, location?.javaTimeZone ?: java.util.TimeZone.getDefault(), locale
+        )
+    }
 }
 
 fun Date.getFormattedTime(
-    location: Location,
+    location: Location? = null,
     context: Context?,
     twelveHour: Boolean
 ): String {
