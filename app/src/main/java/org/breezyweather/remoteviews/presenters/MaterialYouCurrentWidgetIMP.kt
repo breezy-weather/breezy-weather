@@ -90,7 +90,7 @@ private fun buildRemoteViews(
 
     // pending intent.
     views.setOnClickPendingIntent(
-        android.R.id.background,
+        R.id.widget_material_you_current,
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
             context,
             location,
