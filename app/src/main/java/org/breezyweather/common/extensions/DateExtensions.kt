@@ -94,7 +94,7 @@ fun Date.getFormattedDate(
         }.format(this)
     } else {
         this.getFormattedDate(
-            pattern, location?.javaTimeZone ?: java.util.TimeZone.getDefault(), locale
+            pattern, location?.javaTimeZone, locale
         )
     }
 }

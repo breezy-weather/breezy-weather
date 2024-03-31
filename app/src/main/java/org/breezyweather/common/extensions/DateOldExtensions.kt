@@ -79,12 +79,12 @@ fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date? {
 @Deprecated("Use ICU functions instead")
 fun Date.getFormattedDate(
     pattern: String,
-    timeZone: TimeZone,
+    timeZone: TimeZone?,
     locale: Locale
 ): String {
     return SimpleDateFormat(
         pattern, locale
     ).apply {
-        setTimeZone(timeZone)
+        setTimeZone(timeZone ?: TimeZone.getDefault())
     }.format(this)
 }
