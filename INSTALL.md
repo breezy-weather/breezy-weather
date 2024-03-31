@@ -82,4 +82,4 @@ Look for the Repositories option from your favorite client and add a new reposit
 
 You should now be able to install Breezy Weather from your client.
 
-Important note: If you add the F-Droid or Google Play flavor from our repos but you also have the Izzy repo installed, you should use a F-Droid client that supports pinning which repo you want to get updates from to avoid getting unexpected updates for the Standard flavor from the Izzy repo. To our knowledge, only the nightly build of the official F-Droid client currently supports it.
+**Important note:** If you add the F-Droid or Google Play flavor from our repos but you also have the Izzy repo installed, you should use a F-Droid client that supports setting which repo you want to get updates from, to avoid getting unexpected updates for the Standard flavor from the Izzy repo. This feature is called “preferred repo” in the official F-Droid client (v1.20.0 and later).
