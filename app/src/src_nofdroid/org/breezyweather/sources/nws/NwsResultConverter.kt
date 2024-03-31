@@ -49,7 +49,7 @@ fun convert(
     locationProperties: NwsPointProperties
 ): Location {
     return location.copy(
-        timeZone = locationProperties.timeZone ?: location.timeZone,
+        timeZone = locationProperties.timeZone,
         countryCode = "US",
         province = locationProperties.relativeLocation?.properties?.state,
         provinceCode = locationProperties.relativeLocation?.properties?.state,

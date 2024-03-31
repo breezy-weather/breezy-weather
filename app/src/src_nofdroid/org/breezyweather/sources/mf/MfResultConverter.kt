@@ -62,7 +62,7 @@ fun convert(location: Location, result: MfForecastResult): Location {
         location
     } else {
         location.copy(
-            timeZone = result.properties.timezone ?: location.timeZone,
+            timeZone = result.properties.timezone,
             country = result.properties.country,
             countryCode = result.properties.country.substring(0, 2),
             province = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
@@ -104,9 +104,9 @@ fun convert(
                 speed = currentResult.properties.gridded.windSpeed
             ) else null
         ),
-        normals = getNormals(location.javaTimeZone, normalsResult),
+        normals = getNormals(location, normalsResult),
         dailyForecast = getDailyList(
-            location.javaTimeZone,
+            location,
             forecastResult.properties.dailyForecast,
             ephemerisResult.properties?.ephemeris
         ),
@@ -120,7 +120,7 @@ fun convert(
 }
 
 private fun getDailyList(
-    timeZone: TimeZone,
+    location: Location,
     dailyForecasts: List<MfForecastDaily>,
     ephemerisResult: MfEphemeris?
 ): List<Daily> {
@@ -129,7 +129,7 @@ private fun getDailyList(
         val dailyForecast = dailyForecasts[i]
         // Given as UTC, we need to convert in the correct timezone at 00:00
         val dayInUTCCalendar = dailyForecast.time.toCalendarWithTimeZone(TimeZone.getTimeZone("UTC"))
-        val dayInLocalCalendar = Calendar.getInstance(timeZone).apply {
+        val dayInLocalCalendar = Calendar.getInstance(location.javaTimeZone).apply {
             set(Calendar.YEAR, dayInUTCCalendar[Calendar.YEAR])
             set(Calendar.MONTH, dayInUTCCalendar[Calendar.MONTH])
             set(Calendar.DAY_OF_MONTH, dayInUTCCalendar[Calendar.DAY_OF_MONTH])
@@ -357,8 +357,8 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     return alertList
 }
 
-fun getNormals(timeZone: TimeZone, normalsResult: MfNormalsResult): Normals? {
-    val currentMonth = Date().toCalendarWithTimeZone(timeZone)[Calendar.MONTH]
+fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
+    val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
     val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
     return if (normalsStats != null) {
         Normals(
@@ -513,7 +513,7 @@ fun convertSecondary(
             getWarningsList(alertResultList)
         } else null,
         normals = if (normalsResult != null) {
-            getNormals(location.javaTimeZone, normalsResult)
+            getNormals(location, normalsResult)
         } else null
     )
 }

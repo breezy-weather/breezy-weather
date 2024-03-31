@@ -73,7 +73,7 @@ class EcccService @Inject constructor(
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }
-            convert(it[0], location.javaTimeZone)
+            convert(it[0], location)
         }
     }
 
@@ -107,7 +107,7 @@ class EcccService @Inject constructor(
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }
-            convertSecondary(it[0], location.javaTimeZone)
+            convertSecondary(it[0], location)
         }
     }
 

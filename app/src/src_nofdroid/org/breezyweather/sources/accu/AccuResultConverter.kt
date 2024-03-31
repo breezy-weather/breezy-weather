@@ -58,7 +58,6 @@ import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.json.AccuValue
 import java.util.Date
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
@@ -134,7 +133,7 @@ fun convert(
                 nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value
             )
         } else null,
-        dailyForecast = getDailyList(dailyResult.DailyForecasts, location.javaTimeZone),
+        dailyForecast = getDailyList(dailyResult.DailyForecasts, location),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)
@@ -143,13 +142,13 @@ fun convert(
 
 private fun getDailyList(
     dailyForecasts: List<AccuForecastDailyForecast>,
-    timeZone: TimeZone
+    location: Location
 ): List<Daily> {
     val supportsPollen = supportsPollen(dailyForecasts)
 
     return dailyForecasts.map { forecasts ->
         Daily(
-            date = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!,
+            date = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(location.javaTimeZone)!!,
             day = HalfDay(
                 weatherText = forecasts.Day?.LongPhrase,
                 weatherPhase = forecasts.Day?.ShortPhrase,
@@ -412,7 +411,7 @@ fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): Air
  */
 fun getPollenWrapper(
     dailyPollenResult: List<AccuForecastDailyForecast>?,
-    timeZone: TimeZone
+    location: Location
 ): PollenWrapper? {
     if (dailyPollenResult.isNullOrEmpty()) return null
     if (!supportsPollen(dailyPollenResult)) return null
@@ -422,7 +421,7 @@ fun getPollenWrapper(
         .forEach {
             val dailyPollen = getDailyPollen(it.AirAndPollen)
             if (dailyPollen != null) {
-                pollenDaily[Date(it.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!] = dailyPollen
+                pollenDaily[Date(it.EpochDate.times(1000)).toTimezoneNoHour(location.javaTimeZone)!!] = dailyPollen
             }
         }
 
@@ -498,7 +497,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  * Secondary convert
  */
 fun convertSecondary(
-    timeZone: TimeZone,
+    location: Location,
     airQualityHourlyResult: AccuAirQualityResult?,
     dailyPollenResult: AccuForecastDailyResult?,
     minuteResult: AccuMinutelyResult?,
@@ -508,7 +507,7 @@ fun convertSecondary(
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         airQuality = getAirQualityWrapper(airQualityHourlyResult?.data),
-        pollen = getPollenWrapper(dailyPollenResult?.DailyForecasts, timeZone),
+        pollen = getPollenWrapper(dailyPollenResult?.DailyForecasts, location),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList),
         normals = if (climoSummaryResult?.Normals?.Temperatures != null) {

@@ -37,7 +37,6 @@ import org.breezyweather.sources.ims.json.ImsWeatherData
 import org.breezyweather.sources.ims.json.ImsWeatherResult
 import java.util.Calendar
 import java.util.Date
-import java.util.TimeZone
 
 fun convert(
     location: Location,
@@ -60,19 +59,19 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(location.javaTimeZone, weatherResult!!.data!!),
-        hourlyForecast = getHourlyForecast(location.javaTimeZone, weatherResult.data!!),
+        dailyForecast = getDailyForecast(location, weatherResult!!.data!!),
+        hourlyForecast = getHourlyForecast(location, weatherResult.data!!),
         current = getCurrent(weatherResult.data),
         alertList = getAlerts(weatherResult.data)
     )
 }
 
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     data: ImsWeatherData
 ): List<Daily> {
     return data.forecastData!!.keys.mapNotNull {
-        it.toDateNoHour(timeZone)?.let { dayDate ->
+        it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
             Daily(
                 date = dayDate,
                 uV = data.forecastData[it]!!.daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
@@ -84,14 +83,14 @@ private fun getDailyForecast(
 }
 
 private fun getHourlyForecast(
-    timeZone: TimeZone,
+    location: Location,
     data: ImsWeatherData
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     data.forecastData!!.keys.forEach {
-        it.toDateNoHour(timeZone)?.let { dayDate ->
+        it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
             data.forecastData[it]!!.hourly?.forEach { hourlyResult ->
-                val hourlyDate = dayDate.toCalendarWithTimeZone(timeZone).apply {
+                val hourlyDate = dayDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
                     set(Calendar.HOUR_OF_DAY, hourlyResult.value.hour.toInt())
                 }.time
 
