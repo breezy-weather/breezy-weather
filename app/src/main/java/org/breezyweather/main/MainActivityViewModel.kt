@@ -30,6 +30,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
@@ -98,8 +99,8 @@ class MainActivityViewModel @Inject constructor(
         var id = formattedId ?: savedStateHandle[KEY_FORMATTED_ID]
 
         // init live data.
-        viewModelScope.launch {
-            val validList = initLocations(formattedId = id)
+        runBlocking { // TODO: Not doing that causes blinking, to be investigated
+            val validList = initLocations()
 
             id = formattedId ?: validList.getOrNull(0)?.formattedId
             val current = validList.firstOrNull { item -> item.formattedId == id }
@@ -118,14 +119,7 @@ class MainActivityViewModel @Inject constructor(
             locationPermissionsRequest.value = null
             snackbarError.setValue(null)
 
-            // read weather caches.
-            val newList = getWeatherCacheForLocations(
-                oldList = validList,
-                ignoredFormattedId = id,
-            )
-
             _initCompleted.value = true
-            if (newList.isNotEmpty()) { updateInnerData(newList) }
         }
     }
 
@@ -519,34 +513,11 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // Repository
-    suspend fun initLocations(formattedId: String?): List<Location> {
-        val list = locationRepository.getAllLocations().toMutableList()
-        if (list.size == 0) return list
+    suspend fun initLocations(): List<Location> {
+        val list = locationRepository.getAllLocations()
 
-        if (formattedId != null) {
-            for (i in list.indices) {
-                if (list[i].formattedId == formattedId) {
-                    list[i] = list[i].copy(weather = weatherRepository.getWeatherByLocationId(list[i].formattedId))
-                    break
-                }
-            }
-        } else {
-            list[0] = list[0].copy(weather = weatherRepository.getWeatherByLocationId(list[0].formattedId))
-        }
-
-        return list
-    }
-
-    suspend fun getWeatherCacheForLocations(
-        oldList: List<Location>,
-        ignoredFormattedId: String?
-    ): List<Location> {
-        return oldList.map {
-            if (it.formattedId == ignoredFormattedId) {
-                it
-            } else {
-                it.copy(weather = weatherRepository.getWeatherByLocationId(it.formattedId))
-            }
+        return list.map {
+            it.copy(weather = weatherRepository.getWeatherByLocationId(it.formattedId))
         }
     }
 
