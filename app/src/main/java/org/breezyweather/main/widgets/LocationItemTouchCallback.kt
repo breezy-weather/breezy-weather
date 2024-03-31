@@ -72,14 +72,14 @@ class LocationItemTouchCallback(
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.bindingAdapterPosition
-        var location = mViewModel.validLocationList.value.first[position]
+        var location = mViewModel.validLocationList.value[position]
         when (direction) {
             ItemTouchHelper.START -> {
                 viewHolder.bindingAdapter!!.notifyItemChanged(position)
                 mViewModel.openChooseWeatherSourcesDialog(location)
             }
 
-            ItemTouchHelper.END -> if (mViewModel.validLocationList.value.first.size <= 1) {
+            ItemTouchHelper.END -> if (mViewModel.validLocationList.value.size <= 1) {
                 viewHolder.bindingAdapter!!.notifyItemChanged(position)
                 SnackbarHelper.showSnackbar(
                     mActivity.getString(R.string.location_message_list_cannot_be_empty)
