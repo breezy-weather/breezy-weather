@@ -225,6 +225,7 @@ class OpenMeteoService @Inject constructor(
             ->
             convert(
                 context,
+                location,
                 openMeteoWeatherResult,
                 openMeteoAirQualityResult
             )
