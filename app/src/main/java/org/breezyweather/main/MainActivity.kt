@@ -42,9 +42,7 @@ import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
 import org.breezyweather.main.fragments.HomeFragment
@@ -52,7 +50,6 @@ import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
