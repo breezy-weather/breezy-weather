@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.recosante
 
+import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
@@ -27,9 +28,8 @@ import org.breezyweather.sources.recosante.json.RecosanteRaepIndiceDetail
 import org.breezyweather.sources.recosante.json.RecosanteResult
 import java.util.Calendar
 import java.util.Date
-import java.util.TimeZone
 
-fun convert(timeZone: TimeZone, result: RecosanteResult): SecondaryWeatherWrapper {
+fun convert(location: Location, result: RecosanteResult): SecondaryWeatherWrapper {
     if (result.raep == null) {
         throw SecondaryWeatherException()
     }
@@ -42,8 +42,8 @@ fun convert(timeZone: TimeZone, result: RecosanteResult): SecondaryWeatherWrappe
 
     val dayList = mutableListOf<Date>()
     if (result.raep.validity?.start != null && result.raep.validity.end != null) {
-        var startDate = result.raep.validity.start.toDateNoHour(timeZone)
-        val endDate = result.raep.validity.end.toDateNoHour(timeZone)
+        var startDate = result.raep.validity.start.toDateNoHour(location.javaTimeZone)
+        val endDate = result.raep.validity.end.toDateNoHour(location.javaTimeZone)
         if (startDate != null && endDate != null) {
             var i = 0
             while (true) {
@@ -53,16 +53,16 @@ fun convert(timeZone: TimeZone, result: RecosanteResult): SecondaryWeatherWrappe
                     break
                 } else {
                     dayList.add(startDate!!)
-                    startDate = startDate.toCalendarWithTimeZone(timeZone).apply {
+                    startDate = startDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.DAY_OF_MONTH, 1)
                     }.time
                 }
             }
         } else {
-            dayList.add(Date().toTimezoneNoHour(timeZone)!!)
+            dayList.add(Date().toTimezoneNoHour(location.javaTimeZone)!!)
         }
     } else {
-        dayList.add(Date().toTimezoneNoHour(timeZone)!!)
+        dayList.add(Date().toTimezoneNoHour(location.javaTimeZone)!!)
     }
 
     return SecondaryWeatherWrapper(

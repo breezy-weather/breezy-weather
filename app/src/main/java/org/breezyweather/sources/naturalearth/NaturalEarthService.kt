@@ -17,6 +17,7 @@
 package org.breezyweather.sources.naturalearth
 
 import android.content.Context
+import android.os.Build
 import breezyweather.domain.location.model.Location
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
@@ -110,7 +111,13 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
                     ?: "",
                 countryCode = matchingCountries[0].getProperty("ISO_A2").takeIf {
                     it != "-99"
-                } ?: matchingCountries[0].getProperty("ISO_A2_EH")
+                } ?: matchingCountries[0].getProperty("ISO_A2_EH"),
+                // Make sure to update TimeZone, especially useful on current location
+                timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    android.icu.util.TimeZone.getDefault().id
+                } else {
+                    java.util.TimeZone.getDefault().id
+                }
             )
         )
         return Observable.just(locationList)

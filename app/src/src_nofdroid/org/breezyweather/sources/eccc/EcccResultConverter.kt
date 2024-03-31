@@ -17,6 +17,7 @@
 package org.breezyweather.sources.eccc
 
 import android.graphics.Color
+import android.os.Build
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -45,7 +46,6 @@ import org.breezyweather.sources.eccc.json.EcccUnit
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
-import java.util.TimeZone
 
 fun convert(
     location: Location,
@@ -56,7 +56,13 @@ fun convert(
         countryCode = "CA",
         province = "",
         provinceCode = "",
-        city = result.displayName ?: ""
+        city = result.displayName ?: "",
+        // Make sure to update TimeZone, especially useful on current location
+        timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            android.icu.util.TimeZone.getDefault().id
+        } else {
+            java.util.TimeZone.getDefault().id
+        }
     )
 }
 
@@ -65,7 +71,7 @@ fun convert(
  */
 fun convert(
     ecccResult: EcccResult,
-    timeZone: TimeZone
+    location: Location
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (ecccResult.dailyFcst?.daily.isNullOrEmpty() ||
@@ -76,10 +82,10 @@ fun convert(
 
     return WeatherWrapper(
         current = getCurrent(ecccResult.observation),
-        dailyForecast = getDailyForecast(timeZone, ecccResult.dailyFcst!!),
+        dailyForecast = getDailyForecast(location, ecccResult.dailyFcst!!),
         hourlyForecast = getHourlyForecast(ecccResult.hourlyFcst!!.hourly!!),
         alertList = getAlertList(ecccResult.alert?.alerts),
-        normals = getNormals(timeZone, ecccResult.dailyFcst.regionalNormals?.metric)
+        normals = getNormals(location, ecccResult.dailyFcst.regionalNormals?.metric)
     )
 }
 
@@ -113,10 +119,10 @@ private fun getCurrent(result: EcccObservation?): Current? {
  * making the parsing a bit more complex than other sources
  */
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     dailyResult: EcccDailyFcst
 ): List<Daily> {
-    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().times(1000).toDate().toTimezoneNoHour(timeZone)
+    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().times(1000).toDate().toTimezoneNoHour(location.javaTimeZone)
     val dailyList: MutableList<Daily> = ArrayList()
     if (dailyFirstDay != null) {
         val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null
@@ -233,9 +239,9 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
 /**
  * Returns normals
  */
-private fun getNormals(timeZone:  TimeZone, normals: EcccRegionalNormalsMetric?): Normals? {
+private fun getNormals(location: Location, normals: EcccRegionalNormalsMetric?): Normals? {
     if (normals?.highTemp == null || normals.lowTemp == null) return null
-    val currentMonth = Date().toCalendarWithTimeZone(timeZone)[Calendar.MONTH]
+    val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
     return Normals(
         month = currentMonth,
         daytimeTemperature = normals.highTemp.toDouble(),
@@ -287,11 +293,11 @@ private fun getWindDegree(direction: String?): Double? {
 
 fun convertSecondary(
     ecccResult: EcccResult,
-    timeZone: TimeZone
+    location: Location
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
         alertList = getAlertList(ecccResult.alert?.alerts),
-        normals = getNormals(timeZone, ecccResult.dailyFcst?.regionalNormals?.metric)
+        normals = getNormals(location, ecccResult.dailyFcst?.regionalNormals?.metric)
     )
 }

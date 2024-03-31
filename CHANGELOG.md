@@ -1,6 +1,7 @@
 # Version 5.1.9 (not yet released)
 
 **Improvements and fixes**
+- Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - [Widgets] Tap on “Material You - Current” now works again
 
 

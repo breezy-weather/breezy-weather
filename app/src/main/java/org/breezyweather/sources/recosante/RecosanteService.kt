@@ -94,7 +94,7 @@ class RecosanteService @Inject constructor(
             true,
             insee
         ).map {
-            convert(location.javaTimeZone, it)
+            convert(location, it)
         }
     }
 

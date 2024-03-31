@@ -46,7 +46,6 @@ import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
-import java.util.TimeZone
 
 fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
@@ -115,16 +114,16 @@ fun convert(
         ),
         dailyForecast = getDailyList(
             forecastResult.current.pubTime,
-            location.javaTimeZone,
+            location,
             forecastResult.forecastDaily
         ),
         hourlyForecast = getHourlyList(
             forecastResult.current.pubTime,
-            location.javaTimeZone,
+            location,
             forecastResult.forecastHourly
         ),
         minutelyForecast = getMinutelyList(
-            location.javaTimeZone,
+            location,
             minutelyResult
         ),
         alertList = getAlertList(forecastResult)
@@ -133,15 +132,15 @@ fun convert(
 
 private fun getDailyList(
     publishDate: Date,
-    timeZone: TimeZone,
+    location: Location,
     dailyForecast: ChinaForecastDaily
 ): List<Daily> {
     if (dailyForecast.weather == null || dailyForecast.weather.value.isNullOrEmpty()) return emptyList()
 
     val dailyList: MutableList<Daily> = ArrayList(dailyForecast.weather.value.size)
     dailyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
-            add(Calendar.DAY_OF_YEAR, index) // FIXME: Wrong TimeZone for the first item
+        val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            add(Calendar.DAY_OF_YEAR, index)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
@@ -200,14 +199,15 @@ private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int
 }
 
 private fun getHourlyList(
-    publishDate: Date, timeZone: TimeZone,
+    publishDate: Date,
+    location: Location,
     hourlyForecast: ChinaForecastHourly
 ): List<HourlyWrapper> {
     if (hourlyForecast.weather == null || hourlyForecast.weather.value.isNullOrEmpty()) return emptyList()
 
     val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
+        val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
@@ -233,7 +233,7 @@ private fun getHourlyList(
 }
 
 private fun getMinutelyList(
-    timeZone: TimeZone,
+    location: Location,
     minutelyResult: ChinaMinutelyResult
 ): List<Minutely> {
     if (minutelyResult.precipitation == null || minutelyResult.precipitation.value.isNullOrEmpty()) return emptyList()
@@ -242,7 +242,7 @@ private fun getMinutelyList(
     val minutelyList: MutableList<Minutely> = ArrayList(minutelyResult.precipitation.value.size)
 
     minutelyResult.precipitation.value.forEachIndexed { minute, precipitation ->
-        val calendar = current.toCalendarWithTimeZone(timeZone).apply {
+        val calendar = current.toCalendarWithTimeZone(location.javaTimeZone).apply {
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
             add(Calendar.MINUTE, minute)
@@ -293,7 +293,7 @@ fun convertSecondary(
                 )
             )
         },
-        minutelyForecast = getMinutelyList(location.javaTimeZone, minutelyResult),
+        minutelyForecast = getMinutelyList(location, minutelyResult),
         alertList = getAlertList(forecastResult),
     )
 }

@@ -576,7 +576,7 @@ class RefreshHelper @Inject constructor(
                     currentHour,
                     currentDay,
                     secondaryWeatherWrapperCompleted?.airQuality?.current,
-                    location.javaTimeZone
+                    location
                 ),
                 normals = secondaryWeatherWrapper?.normals
                     ?: completeNormalsFromDaily(mainWeatherCompleted.normals, dailyForecast),

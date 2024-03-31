@@ -61,20 +61,20 @@ fun convert(
     }
 
     return WeatherWrapper(
-        dailyForecast = getDailyForecast(location.javaTimeZone, hourlyResult),
+        dailyForecast = getDailyForecast(location, hourlyResult),
         hourlyForecast = getHourlyForecast(hourlyResult),
         alertList = getAlertList(location, warningsResult?.warnings?.national)
     )
 }
 
 private fun getDailyForecast(
-    timeZone: TimeZone,
+    location: Location,
     hourlyResult: List<MetIeHourly>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
     val hourlyListByDay = hourlyResult.groupBy { it.date }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

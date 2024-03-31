@@ -405,7 +405,7 @@ class AccuService @Inject constructor(
             accuClimoResult: AccuClimoSummaryResult
             ->
             convertSecondary(
-                location.javaTimeZone,
+                location,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     accuAirQualityResult
                 } else null,
