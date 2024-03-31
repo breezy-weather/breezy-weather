@@ -171,6 +171,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("fr"), "Nam", github = "ldmpub"),
         TranslatorItem(arrayOf("fi"), "huuhaa", github = "huuhaa"),
         TranslatorItem(arrayOf("fi"), "nimxaa", github = "nimxaa"),
+        TranslatorItem(arrayOf("fi"), "MillionsToOne", github = "MillionsToOne"),
         TranslatorItem(arrayOf("hi", "mr"), "sapatevaibhav", github = "sapatevaibhav"),
         TranslatorItem(arrayOf("hi"), "Chandra Mohan Jha", github = "ChAJ07"),
         TranslatorItem(arrayOf("hr"), "Mateo Spajić", github = "Spajki001"),
