@@ -573,7 +573,7 @@ class MainActivityViewModel @Inject constructor(
                         Widgets.updateWidgetIfNecessary(context, it[0])
                         Notifications.updateNotificationIfNecessary(context, it)
                         Widgets.updateWidgetIfNecessary(context, it)
-                        Gadgets.updateGadgetIfNecessary(context, it[0])
+                        Gadgets.updateGadgetIfNecessary(context, it)
                     }, 1000)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

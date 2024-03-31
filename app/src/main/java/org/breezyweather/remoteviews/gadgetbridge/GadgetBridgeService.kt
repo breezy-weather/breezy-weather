@@ -43,7 +43,8 @@ import org.breezyweather.settings.SettingsManager
 import kotlin.math.roundToInt
 
 object GadgetBridgeService {
-    private const val GB_INTENT_EXTRA = "WeatherJson"
+    private const val GB_INTENT_EXTRA_PRIMARY = "WeatherJson"
+    private const val GB_INTENT_EXTRA_SECONDARY = "WeatherSecondaryJson"
     private const val GB_INTENT_PACKAGE = "nodomain.freeyourgadget.gadgetbridge"
     private const val GB_INTENT_PACKAGE_NIGHTLY = "$GB_INTENT_PACKAGE.nightly"
     private const val GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE = "$GB_INTENT_PACKAGE.nightly_nopebble"
@@ -52,17 +53,24 @@ object GadgetBridgeService {
     private const val GB_INTENT_PACKAGE_SMARTSPACER = "nodomain.pacjo.smartspacer.plugin.genericweather"
     private const val GB_INTENT_ACTION = "$GB_INTENT_PACKAGE.ACTION_GENERIC_WEATHER"
 
-    fun sendWeatherBroadcast(context: Context, location: Location) {
-        if (location.weather?.current == null) {
+    fun sendWeatherBroadcast(context: Context, locations: List<Location>) {
+        if (locations[0].weather?.current == null) {
             LogHelper.log(msg = "Not sending GadgetBridge data, current weather is null")
             return
         }
 
-        val weatherData = getWeatherData(context, location)
+        val nonNullLocations = locations.filter { it.weather?.current != null }
+
+        LogHelper.log(msg = "Sending GadgetBridge data for ${nonNullLocations.size} locations (out of ${locations.size})")
+
+        val weatherData = getWeatherData(context, nonNullLocations[0])
         val encoded = Json.encodeToString(weatherData)
+        val secondaryLocations = nonNullLocations.drop(1).map { getWeatherData(context, it) }
+        val encodedSecondary = Json.encodeToString(secondaryLocations)
 
         val intent = Intent(GB_INTENT_ACTION)
-            .putExtra(GB_INTENT_EXTRA, encoded)
+            .putExtra(GB_INTENT_EXTRA_PRIMARY, encoded)
+            .putExtra(GB_INTENT_EXTRA_SECONDARY, encodedSecondary)
             .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
 
         context.sendBroadcast(intent)

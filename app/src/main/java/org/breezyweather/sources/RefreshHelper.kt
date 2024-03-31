@@ -699,19 +699,21 @@ class RefreshHelper @Inject constructor(
     suspend fun updateGadgetIfNecessary(context: Context) {
         if (GadgetBridgeService.isEnabled(context)) {
             val locationList =
-                locationRepository.getXLocations(1, withParameters = false)//.toMutableList()
+                locationRepository.getAllLocations(withParameters = false)//.toMutableList()
             if (locationList.isNotEmpty()) {
                 Gadgets.updateGadgetIfNecessary(
                     context,
-                    locationList[0].copy(
-                        weather = weatherRepository.getWeatherByLocationId(
-                            locationList[0].formattedId,
-                            withDaily = true,
-                            withHourly = true,
-                            withMinutely = false,
-                            withAlerts = false
+                    locationList.map {
+                        it.copy(
+                            weather = weatherRepository.getWeatherByLocationId(
+                                it.formattedId,
+                                withDaily = true,
+                                withHourly = true,
+                                withMinutely = false,
+                                withAlerts = false
+                            )
                         )
-                    )
+                    }
                 )
             }
         }

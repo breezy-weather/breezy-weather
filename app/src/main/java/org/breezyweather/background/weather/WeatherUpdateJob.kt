@@ -291,8 +291,9 @@ class WeatherUpdateJob @AssistedInject constructor(
                 // TODO: We only send alert and precipitation forecast for first location for historical reason, but this should be reworked
                 Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
                 Notifications.checkAndSendPrecipitation(applicationContext, location)
-                Gadgets.updateGadgetIfNecessary(context, location)
             }
+
+            Gadgets.updateGadgetIfNecessary(context, locationList)
 
             // Inform main activity that we updated location
             newUpdates.forEach {

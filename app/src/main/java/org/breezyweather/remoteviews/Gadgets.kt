@@ -22,9 +22,9 @@ import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 
 object Gadgets {
 
-    fun updateGadgetIfNecessary(context: Context, location: Location) {
+    fun updateGadgetIfNecessary(context: Context, locations: List<Location>) {
         if (GadgetBridgeService.isEnabled(context)) {
-            GadgetBridgeService.sendWeatherBroadcast(context, location);
+            GadgetBridgeService.sendWeatherBroadcast(context, locations);
         }
     }
 }
