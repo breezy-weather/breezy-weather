@@ -107,7 +107,7 @@
     <string name="widget_label_clock_font">時計のスタイル</string>
     <string name="widget_custom_subtitle_explanation">何でも入力できますが、テキストの長さを注意してください。天気データを引用したいなら、$を使って対応キーワードを参照してください。
 \n
-\n例えば、「現在の天気＝$cw$」の場合は、「現在の天気＝晴れ」と表示されます。</string>
+\n例えば、「現在の天気＝$cw$」の場合は、「現在の天気：晴れ」と表示されます。</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">現在の天気</string>
@@ -130,7 +130,7 @@
     <string name="widget_custom_subtitle_keyword_w_description">曜日</string>
     <string name="widget_custom_subtitle_keyword_ws_description">曜日 (短い)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">毎日の説明</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">時間ごとの説明</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">毎時間説明</string>
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日の昼間天気, 明日, …, 4日目</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日の夜間天気, 明日, …, 4日目</string>
@@ -177,7 +177,7 @@
     <string name="widget_trend_daily">毎日の傾向</string>
     <string name="widget_trend_hourly">毎時の傾向</string>
     <string name="widget_multi_city">複数の都市</string>
-    <string name="widget_refreshing">更新を待っています</string>
+    <string name="widget_refreshing">更新中</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">ライブ壁紙</string>
@@ -238,7 +238,7 @@
     <string name="weather_kind_wind">風</string>
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
-    <string name="settings_background_updates_battery_optimization_summary">通知を受信できない･ウィジェットが更新されない場合に試すことをおすすめします。</string>
+    <string name="settings_background_updates_battery_optimization_summary">通知が受信できない･ウィジェットが更新されない場合、まずこちらを試してください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>
     <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10日</string>
@@ -306,7 +306,7 @@
     <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
     <string name="settings_main_daily_trends_title">日時予報</string>
     <string name="about_contributors">貢献者</string>
-    <string name="settings_background_updates_dont_kill_my_app_title">端末のメーカーごとの特別な説明</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別特別説明</string>
     <string name="precipitation_nowcasting">毎分降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定する</string>
@@ -469,7 +469,7 @@
     <string name="dialog_permissions_notification_title">最新情報を入手</string>
     <string name="notification_update_error">%d件の更新に失敗しました</string>
     <string name="location_search_weather_source">気象情報ソース</string>
-    <string name="settings_location_access_permission_already_granted">許可はすでに与えられています</string>
+    <string name="settings_location_access_permission_already_granted">許可はすでに与えられました</string>
     <string name="settings_location_access_switch_summaryOn">許可されました。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
@@ -477,7 +477,7 @@
     <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、Breezy Weather の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">ソースは要求された機能の一部に対応していません</string>
     <string name="unit_mmph_voice">ﾐﾘﾒｰﾄﾙ毎時</string>
-    <string name="settings_location_access_background_summaryOn">有効です。バックグラウンドで現在地の気象データを更新できます。</string>
+    <string name="settings_location_access_background_summaryOn">有効されました。バックグラウンドで現在地の気象データを更新できます。</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天気アイコン</string>
     <string name="temperature_normal_short">普通</string>
     <string name="temperature_normals">温度標準値</string>
@@ -513,7 +513,7 @@
     <string name="air_quality_so2_info_introduction">二酸化硫黄 (SO₂) は、マッチの燃えた臭いの原因となる無色の有毒ガスです。</string>
     <string name="air_quality_so2_info_origin">それは火山活動によって自然に放出され、主に家庭の暖房、工業、発電用の化石燃料の燃焼に由来します。</string>
     <string name="air_quality_co_info_origin">これは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料を、単純なストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼させることによって生成されます。周囲空気中の主な一酸化炭素 (CO) 発生源は自動車です。</string>
-    <string name="action_help_me_choose">選択を手伝う</string>
+    <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_normals_data_by">標準温度データ提供：%s</string>
     <string name="weather_api_unauthorized_content">一部のソースには、独自の API キーを使用する必要があります。既に使用している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">このソースを利用するには、API キーを使用する必要があります。</string>
