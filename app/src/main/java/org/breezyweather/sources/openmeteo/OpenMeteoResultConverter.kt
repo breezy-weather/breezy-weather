@@ -39,6 +39,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
@@ -49,6 +50,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherDaily
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherMinutely
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
+import java.util.Calendar
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -80,6 +82,7 @@ fun convert(
 
 fun convert(
     context: Context,
+    location: Location,
     weatherResult: OpenMeteoWeatherResult,
     airQualityResult: OpenMeteoAirQualityResult
 ): WeatherWrapper {
@@ -108,20 +111,26 @@ fun convert(
             cloudCover = weatherResult.current?.cloudCover,
             visibility = weatherResult.current?.visibility
         ),
-        dailyForecast = getDailyList(weatherResult.daily),
+        dailyForecast = getDailyList(weatherResult.daily, location),
         hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult),
         minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
     )
 }
 
 private fun getDailyList(
-    dailyResult: OpenMeteoWeatherDaily
+    dailyResult: OpenMeteoWeatherDaily,
+    location: Location
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     for (i in 0 until dailyResult.time.size - 1) {
-        val theDay = dailyResult.time[i].times(1000).toDate()
+        val theDayWithDstFixed = dailyResult.time[i].times(1000).toDate()
+            .toCalendarWithTimeZone(location.javaTimeZone)
+            .apply {
+                add(Calendar.HOUR_OF_DAY, 1)
+                set(Calendar.HOUR_OF_DAY, 0)
+            }.time
         val daily = Daily(
-            date = theDay,
+            date = theDayWithDstFixed,
             day = HalfDay(
                 temperature = Temperature(
                     temperature = dailyResult.temperatureMax?.getOrNull(i),
