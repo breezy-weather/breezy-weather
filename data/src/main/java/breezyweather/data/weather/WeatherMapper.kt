@@ -416,6 +416,7 @@ object WeatherMapper {
         headline: String?,
         description: String?,
         instruction: String?,
+        source: String?,
         severity: AlertSeverity,
         color: Long
     ): Alert = Alert(
@@ -425,6 +426,7 @@ object WeatherMapper {
         headline = headline,
         description = description,
         instruction = instruction,
+        source = source,
         severity = severity,
         color = color.toInt()
     )

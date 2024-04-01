@@ -225,6 +225,7 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
                 endDate = Date(result.end.times(1000)),
                 headline = result.event,
                 description = result.description,
+                source = result.senderName,
                 severity = AlertSeverity.UNKNOWN // Does not exist
             )
         }

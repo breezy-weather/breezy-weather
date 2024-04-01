@@ -222,6 +222,7 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             endDate = alert.expiryTime,
             headline = alert.alertBannerText,
             description = alert.text,
+            source = alert.specialText?.firstOrNull { it.type == "email" }?.link,
             severity = when (alert.type) {
                 "warning" -> AlertSeverity.SEVERE
                 "watch" -> AlertSeverity.MODERATE

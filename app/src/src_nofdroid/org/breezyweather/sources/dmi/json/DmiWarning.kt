@@ -26,5 +26,6 @@ data class DmiWarning(
     @Serializable(DateSerializer::class) val validTo: Date?,
     val warningTitle: String?,
     val warningText: String?,
-    val additionalText: String?
+    val additionalText: String?,
+    val formattedCategory: Int? // Severity
 )

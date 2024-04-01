@@ -19,6 +19,7 @@
     <string name="alerts">Alerts</string>
     <!-- Ex: 4 weather alerts -->
     <string name="alerts_to_follow">Upcoming alerts, tap here to see them.</string>
+    <string name="alert_source">Source: %s</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Yda</string>
     <string name="short_today">Today</string>

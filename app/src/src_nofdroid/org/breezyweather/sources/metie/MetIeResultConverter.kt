@@ -134,6 +134,7 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
                 endDate = alert.expiry,
                 headline = alert.headline,
                 description = alert.description,
+                source = "MET Éireann",
                 severity = when (alert.severity?.lowercase()) {
                     "extreme" -> AlertSeverity.EXTREME
                     "severe" -> AlertSeverity.SEVERE

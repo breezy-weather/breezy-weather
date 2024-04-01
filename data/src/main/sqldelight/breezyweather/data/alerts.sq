@@ -9,6 +9,7 @@ CREATE TABLE alerts(
     headline TEXT,
     description TEXT,
     instruction TEXT,
+    source TEXT,
     severity INTEGER AS AlertSeverity NOT NULL,
     color INTEGER NOT NULL,
 
@@ -19,21 +20,21 @@ CREATE TABLE alerts(
 CREATE INDEX alerts_location_formatted_id_index ON alerts(location_formatted_id);
 
 getAlertListByLocationId:
-SELECT alert_id, start_date, end_date, headline, description, instruction, severity, color
+SELECT alert_id, start_date, end_date, headline, description, instruction, source, severity, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
 ORDER BY severity DESC, start_date ASC;
 
 getCurrentAlertsByLocationId:
-SELECT alert_id, start_date, end_date, headline, description, instruction, severity, color
+SELECT alert_id, start_date, end_date, headline, description, instruction, source, severity, color
 FROM alerts
 WHERE location_formatted_id = :locationFormattedId
 AND (end_date IS NULL OR end_date > :now)
 ORDER BY severity DESC, start_date ASC;
 
 insert:
-INSERT INTO alerts(location_formatted_id, alert_id, start_date, end_date, headline, description, instruction, severity, color)
-VALUES (:locationFormattedId, :alertId, :startDate, :endDate, :headline, :description, :instruction, :severity, :color);
+INSERT INTO alerts(location_formatted_id, alert_id, start_date, end_date, headline, description, instruction, source, severity, color)
+VALUES (:locationFormattedId, :alertId, :startDate, :endDate, :headline, :description, :instruction, :source, :severity, :color);
 
 deleteAlertListForLocationId:
 DELETE FROM alerts

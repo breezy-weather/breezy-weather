@@ -214,12 +214,24 @@ class AlertActivity : GeoActivity() {
                                 }
                                 if (!alert.instruction.isNullOrBlank()) {
                                     if (!alert.description.isNullOrBlank()) {
-                                        HorizontalDivider()
-                                    } else {
                                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                        HorizontalDivider()
                                     }
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
                                         text = alert.instruction!!,
+                                        color = DayNightTheme.colors.bodyColor,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                    )
+                                }
+                                if (!alert.source.isNullOrBlank()) {
+                                    if (!alert.description.isNullOrBlank() || !alert.instruction.isNullOrBlank()) {
+                                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                        HorizontalDivider()
+                                    }
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Text(
+                                        text = stringResource(R.string.alert_source, alert.source!!),
                                         color = DayNightTheme.colors.bodyColor,
                                         style = MaterialTheme.typography.bodyMedium,
                                     )

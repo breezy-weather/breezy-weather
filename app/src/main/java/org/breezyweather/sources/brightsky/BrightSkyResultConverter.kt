@@ -163,6 +163,7 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
             instruction = if (languageCode == "de") {
                 alert.instructionDe
             } else alert.instructionEn,
+            source = "Deutscher Wetterdienst",
             severity = when (alert.severity?.lowercase()) {
                 "extreme" -> AlertSeverity.EXTREME
                 "severe" -> AlertSeverity.SEVERE
