@@ -675,4 +675,5 @@
     <string name="settings_per_location_theme">Тэма</string>
     <string name="settings_invalid_syntax">Няправільны сінтаксіс</string>
     <string name="settings_source_instance_invalid">Павінен быць URL-адрас https, які сканчаецца на /</string>
+    <string name="alert_source">Крыніца: %s</string>
 </resources>
