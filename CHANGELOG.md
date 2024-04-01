@@ -1,6 +1,7 @@
 # Version 5.1.9 (not yet released)
 
 **Weather sources**
+- [Geosphere Austria] Added as worldwide source (only basic hourly forecast for now)
 - [Open-Meteo] Fix issues related to DST
 - [DMI] Add severity/colors to alerts
 
