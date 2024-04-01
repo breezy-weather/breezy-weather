@@ -21,13 +21,13 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.sources.geosphereat.json.GeosphereAtHourlyResult
+import org.breezyweather.sources.geosphereat.json.GeoSphereAtHourlyResult
 
 /**
  * Converts DMI result into a forecast
  */
 fun convert(
-    hourlyResult: GeosphereAtHourlyResult,
+    hourlyResult: GeoSphereAtHourlyResult,
     location: Location
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
@@ -44,7 +44,7 @@ fun convert(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: GeosphereAtHourlyResult
+    hourlyResult: GeoSphereAtHourlyResult
 ): List<HourlyWrapper> {
     return hourlyResult.timestamps!!.mapIndexed { i, date ->
         HourlyWrapper(
