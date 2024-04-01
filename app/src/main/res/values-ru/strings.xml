@@ -682,4 +682,5 @@
     <string name="settings_per_location_theme">Тема</string>
     <string name="settings_source_instance_invalid">Должен быть URL-адрес https, заканчивающийся на /</string>
     <string name="settings_invalid_syntax">Неверный синтаксис</string>
+    <string name="alert_source">Источник: %s</string>
 </resources>
