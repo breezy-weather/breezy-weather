@@ -22,6 +22,7 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtHourlyResult
+import kotlin.math.roundToInt
 
 /**
  * Converts DMI result into a forecast
@@ -49,9 +50,14 @@ private fun getHourlyForecast(
     return hourlyResult.timestamps!!.mapIndexed { i, date ->
         HourlyWrapper(
             date = date,
+            //weatherCode = , // TODO
             temperature = Temperature(
                 temperature = hourlyResult.features!![0].properties!!.parameters!!.t2m?.data?.getOrNull(i)
-            )
+            ),
+            //wind = ,// TODO
+            relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i),
+            pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.div(100),
+            cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)?.roundToInt()
         )
     }
 }
