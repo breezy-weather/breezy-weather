@@ -19,6 +19,6 @@ package org.breezyweather.sources.geosphereat.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GeosphereAtHourlyParameters(
-    val t2m: GeosphereAtHourlyDoubleParameter?
+data class GeoSphereAtHourlyDoubleParameter(
+    val data: Array<Double?>?
 )

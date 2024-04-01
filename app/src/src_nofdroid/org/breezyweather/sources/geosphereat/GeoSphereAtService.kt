@@ -27,7 +27,7 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class GeosphereAtService @Inject constructor(
+class GeoSphereAtService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource {
 
@@ -42,7 +42,7 @@ class GeosphereAtService @Inject constructor(
         client
             .baseUrl(GEOSPHERE_AT_BASE_URL)
             .build()
-            .create(GeosphereAtApi::class.java)
+            .create(GeoSphereAtApi::class.java)
     }
 
     override val supportedFeaturesInMain = emptyList<SecondaryWeatherSourceFeature>()

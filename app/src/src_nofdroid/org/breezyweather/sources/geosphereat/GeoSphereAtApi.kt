@@ -17,15 +17,15 @@
 package org.breezyweather.sources.geosphereat
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.geosphereat.json.GeosphereAtHourlyResult
+import org.breezyweather.sources.geosphereat.json.GeoSphereAtHourlyResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GeosphereAtApi {
+interface GeoSphereAtApi {
     @GET("v1/timeseries/forecast/nwp-v1-1h-2500m")
     fun getHourlyForecast(
         @Query("lat_lon", encoded = true) latLon: String,
         @Query("parameters", encoded = true) parameters: String
-    ): Observable<GeosphereAtHourlyResult>
+    ): Observable<GeoSphereAtHourlyResult>
 
 }
