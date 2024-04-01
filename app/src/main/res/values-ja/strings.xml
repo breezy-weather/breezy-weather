@@ -429,7 +429,7 @@
     <string name="settings_widgets_day_night_temp_reversed_title">昼夜の気温の順序を逆転させる</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">気象警報の通知</string>
-    <string name="settings_widgets_notification_feels_like_switch">使用感の温度</string>
+    <string name="settings_widgets_notification_feels_like_switch">体感温度を使う</string>
     <string name="unit_kn">kn</string>
     <string name="notification_precipitation_starting">まもなく降水が始めます</string>
     <string name="notification_precipitation_starting_desc">%s頃に始めます</string>
