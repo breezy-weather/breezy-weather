@@ -8,7 +8,7 @@
 - [Widgets] Tap on “Material You - Current” now works again
 
 
-# Version 5.1.8 (2023-03-30)
+# Version 5.1.8 (2024-03-30)
 
 Due to a technical change, if you had set up a different language than your system language, you will have to set it again on update.
 
