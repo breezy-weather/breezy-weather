@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.dmi
 
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -135,8 +136,23 @@ private fun getAlertList(
             startDate = it.validFrom,
             endDate = it.validTo,
             headline = it.warningTitle,
-            description = it.warningText + "\n\n" + it.additionalText,
-            severity = AlertSeverity.UNKNOWN // TODO
+            description = it.warningText,
+            instruction = it.additionalText,
+            source = "DMI",
+            severity = when (it.formattedCategory) {
+                3 -> AlertSeverity.EXTREME
+                2 -> AlertSeverity.SEVERE
+                1 -> AlertSeverity.MODERATE
+                0 -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
+            },
+            color = when (it.formattedCategory) {
+                3 -> Color.rgb(204, 31, 31)
+                2 -> Color.rgb(254, 142, 82)
+                1 -> Color.rgb(255, 217, 3)
+                0 -> Color.rgb(146, 208, 245)
+                else -> null
+            }
         )
     }
 }

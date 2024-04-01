@@ -37,6 +37,7 @@ class Alert(
     val headline: String? = null,
     val description: String? = null,
     val instruction: String? = null,
+    val source: String? = null,
     val severity: AlertSeverity = AlertSeverity.UNKNOWN,
     @ColorInt color: Int? = null
 ) : Serializable {

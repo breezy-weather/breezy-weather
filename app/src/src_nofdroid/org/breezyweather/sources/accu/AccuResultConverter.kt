@@ -463,6 +463,7 @@ private fun getAlertList(
             },
             headline = result.Description?.Localized,
             description = result.Area?.getOrNull(0)?.Text,
+            source = result.Source,
             severity = when (result.Priority) {
                 1 -> AlertSeverity.EXTREME
                 2 -> AlertSeverity.SEVERE

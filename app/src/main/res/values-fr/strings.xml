@@ -8,6 +8,7 @@
     <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
+    <string name="alert_source">Source : %s</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
     <string name="precipitation_duration">Durée des précipitations</string>

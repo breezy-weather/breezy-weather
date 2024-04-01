@@ -327,6 +327,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         endDate = warningsResult.endValidityTime,
                         headline = title,
                         description = getWarningContent(null, warningsResult),
+                        source = "Météo-France",
                         severity = AlertSeverity.EXTREME, // Let’s put it on top
                         color = color
                     )
@@ -348,6 +349,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         description = if (timelapsItem.colorId >= 3) getWarningContent(
                             timelaps.phenomenonId, warningsResult
                         ) else null,
+                        source = "Météo-France",
                         severity = AlertSeverity.getInstance(timelapsItem.colorId),
                         color = getWarningColor(timelapsItem.colorId)
                     )

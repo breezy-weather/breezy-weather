@@ -27,7 +27,7 @@ import breezyweather.domain.weather.model.Weather
 import java.util.Date
 
 class WeatherRepository(
-    private val handler: DatabaseHandler,
+    private val handler: DatabaseHandler
 ) {
 
     suspend fun getWeatherByLocationId(
@@ -352,6 +352,7 @@ class WeatherRepository(
                     headline = alert.headline,
                     description = alert.description,
                     instruction = alert.instruction,
+                    source = alert.source,
                     severity = alert.severity,
                     color = alert.color.toLong()
                 )

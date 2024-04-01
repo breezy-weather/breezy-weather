@@ -208,6 +208,7 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
             endDate = Date(alert.end.times(1000)),
             headline = alert.title,
             description = alert.description,
+            source = alert.uri,
             severity = when (alert.severity?.lowercase()) {
                 "extreme" -> AlertSeverity.EXTREME
                 "severe" -> AlertSeverity.SEVERE

@@ -179,6 +179,7 @@ fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
             endDate = it.properties.expires,
             headline = it.properties.event ?: it.properties.headline,
             description = it.properties.description + "\n\n" + it.properties.instruction,
+            source = it.properties.senderName?.ifEmpty { null } ?: it.properties.sender ?: "NWS",
             severity = when (it.properties.severity?.lowercase()) {
                 "extreme" -> AlertSeverity.EXTREME
                 "severe" -> AlertSeverity.SEVERE

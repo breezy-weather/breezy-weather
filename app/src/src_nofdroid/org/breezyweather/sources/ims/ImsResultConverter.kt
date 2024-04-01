@@ -160,6 +160,7 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
                 data.warningsMetadata?.imsWarningType?.getOrElse(it) { null }?.name
             },
             description = warningEntry.value.text,
+            source = "Israel Meteorological Service",
             severity = when (warningEntry.value.severityId) {
                 "6" -> AlertSeverity.EXTREME
                 "4", "5" -> AlertSeverity.SEVERE

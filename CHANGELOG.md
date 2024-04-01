@@ -2,10 +2,12 @@
 
 **Weather sources**
 - [Open-Meteo] Fix issues related to DST
+- [DMI] Add severity/colors to alerts
 
 **Improvements and fixes**
-- Fix current location keeping old timezone on some sources, when travelling to a different timezone
+- Added source for each alert for compatible sources
 - [Widgets] Tap on “Material You - Current” now works again
+- Fix current location keeping old timezone on some sources, when travelling to a different timezone
 
 
 # Version 5.1.8 (2024-03-30)
