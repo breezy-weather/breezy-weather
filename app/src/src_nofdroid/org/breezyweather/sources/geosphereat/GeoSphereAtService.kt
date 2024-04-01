@@ -20,6 +20,8 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
+import com.google.maps.android.model.LatLngBounds
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -78,5 +80,9 @@ class GeoSphereAtService @Inject constructor(
     companion object {
         private const val GEOSPHERE_AT_BASE_URL = "https://dataset.api.hub.geosphere.at/"
         private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://openapi.hub.geosphere.at/"
+
+        val airQuality12KmBbox = LatLngBounds(LatLng(-59.21, 17.65), LatLng(83.21, 76.49))
+        val airQuality4KmBbox = LatLngBounds(LatLng(4.31, 41.72), LatLng(18.99, 50.15))
+        val nowcastBbox = LatLngBounds(LatLng(8.1, 45.5), LatLng(17.74, 49.48))
     }
 }
