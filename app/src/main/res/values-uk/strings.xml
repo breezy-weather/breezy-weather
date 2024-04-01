@@ -675,4 +675,5 @@
     <string name="settings_per_location_theme">Тема</string>
     <string name="settings_source_instance_invalid">Має бути URL-адреса https, що закінчується на /</string>
     <string name="settings_invalid_syntax">Неправильний синтаксис</string>
+    <string name="alert_source">Джерело: %s</string>
 </resources>
