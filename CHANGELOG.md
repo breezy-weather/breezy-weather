@@ -1,7 +1,9 @@
 # Version 5.1.9 (not yet released)
 
 **Weather sources**
-- [GeoSphere Austria] Added as worldwide source (only basic hourly forecast for now)
+- [GeoSphere Austria] Added as worldwide main source (not yet available: hourly weather code, alerts)
+- [GeoSphere Austria] Added as secondary source for air quality in Europe and nearby
+- [GeoSphere Austria] Added as secondary source for precipitation nowcasting in Austria and nearby
 - [Open-Meteo] Fix issues related to DST
 - [DMI] Add severity/colors to alerts
 

@@ -47,6 +47,7 @@ enum class LocationPreset(
     USA("nws", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
 
     // Europe
+    //AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat", alert = "geosphereat", normals = "geosphereat"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FDROID("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),

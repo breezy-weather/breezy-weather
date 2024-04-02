@@ -153,12 +153,13 @@ class MetNoService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override val supportedFeatures = listOf(
+    override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
-    override fun isFeatureSupportedForLocation(
-        feature: SecondaryWeatherSourceFeature, location: Location
+    override fun isFeatureSupportedInSecondaryForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature
     ): Boolean {
         return (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
                 !location.countryCode.isNullOrEmpty() &&

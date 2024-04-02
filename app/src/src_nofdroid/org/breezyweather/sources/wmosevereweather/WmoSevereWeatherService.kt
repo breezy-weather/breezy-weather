@@ -20,7 +20,6 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
@@ -48,7 +47,7 @@ class WmoSevereWeatherService @Inject constructor(
             .create(WmoSevereWeatherApi::class.java)
     }
 
-    override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_ALERT)
 
     override val airQualityAttribution = null
     override val pollenAttribution = null
@@ -60,11 +59,6 @@ class WmoSevereWeatherService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_ALERT, location)) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
         return mAlertsApi.getAlerts(
             typeName = "local_postgis:postgis_geojsons",
             //cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"

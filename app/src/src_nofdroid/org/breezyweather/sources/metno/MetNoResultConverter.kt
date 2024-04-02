@@ -154,7 +154,7 @@ private fun getDailyList(
     moonResult: MetNoMoonProperties?,
     forecastTimeseries: List<MetNoForecastTimeseries>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = forecastTimeseries.groupBy {
         it.time.getFormattedDate("yyyy-MM-dd", location)
     }

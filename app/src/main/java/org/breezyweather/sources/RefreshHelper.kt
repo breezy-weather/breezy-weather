@@ -442,7 +442,7 @@ class RefreshHelper @Inject constructor(
                                     // We could also check for isFeatureSupportedForLocation
                                     // but it’s probably best to let the source decide if it wants
                                     // to throw the error itself
-                                    if (!secondaryService.supportedFeatures.contains(it)) {
+                                    if (!secondaryService.supportedFeaturesInSecondary.contains(it)) {
                                         errors.add(
                                             RefreshError(
                                                 RefreshErrorType.UNSUPPORTED_FEATURE,

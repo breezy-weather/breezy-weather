@@ -47,7 +47,10 @@ class SmhiService @Inject constructor(
 
     override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
 
-    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+    override fun isFeatureSupportedInMainForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature?
+    ): Boolean {
         return location.countryCode.equals("SE", ignoreCase = true)
     }
 

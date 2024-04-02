@@ -70,7 +70,10 @@ class NwsService @Inject constructor(
         "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
     )
 
-    override fun isWeatherSupportedForLocation(location: Location): Boolean {
+    override fun isFeatureSupportedInMainForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature?
+    ): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
         }
@@ -121,13 +124,14 @@ class NwsService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override val supportedFeatures = listOf(
+    override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
-    override fun isFeatureSupportedForLocation(
-        feature: SecondaryWeatherSourceFeature, location: Location
+    override fun isFeatureSupportedInSecondaryForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature
     ): Boolean {
-        return isWeatherSupportedForLocation(location)
+        return isFeatureSupportedInMainForLocation(location, feature)
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null
@@ -138,7 +142,7 @@ class NwsService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context, location: Location, requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_ALERT, location)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }

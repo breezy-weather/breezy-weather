@@ -21,6 +21,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GeoSphereAtHourlyParameters(
+    // Hourly
     val sy: GeoSphereAtHourlyDoubleParameter?, // Always integer but formatted as a double
     val t2m: GeoSphereAtHourlyDoubleParameter?,
     @SerialName("rr_acc") val rrAcc: GeoSphereAtHourlyDoubleParameter?, // kg m²
@@ -33,4 +34,13 @@ data class GeoSphereAtHourlyParameters(
     val rh2m: GeoSphereAtHourlyDoubleParameter?, // %
     val tcc: GeoSphereAtHourlyDoubleParameter?, // to be multiplied by 100
     val sp: GeoSphereAtHourlyDoubleParameter?, // Pa
+
+    // Nowcast
+    val rr: GeoSphereAtHourlyDoubleParameter?, // kg m²
+
+    // Air quality
+    val pm25surf: GeoSphereAtHourlyDoubleParameter?, // ug m-3
+    val pm10surf: GeoSphereAtHourlyDoubleParameter?, // ug m-3
+    val no2surf: GeoSphereAtHourlyDoubleParameter?, // ug m-3
+    val o3surf: GeoSphereAtHourlyDoubleParameter?, // ug m-3
 )

@@ -13,9 +13,9 @@ Below, you can find details about the support and implementation status for feat
 
 ## Status
 
-| Worldwide sources² | Open-Meteo | AccuWeather | MET Norway | OpenWeather   | Pirate Weather | HERE     | Météo-France | DMI  |
-|--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|
-| **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None |
+| Worldwide sources² | Open-Meteo | AccuWeather | MET Norway | OpenWeather   | Pirate Weather | HERE     | Météo-France | DMI  | GeoSphere Austria V5.1.9 |
+|--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|--------------------------|
+| **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None | None                     |
 
 | National sources   | China³ | NWS  | Bright Sky | ECCC   | IMS                           | SMHI   | MET Éireann |
 |--------------------|--------|------|------------|--------|-------------------------------|--------|-------------|
@@ -31,17 +31,17 @@ Below, you can find details about the support and implementation status for feat
 
 Sources with mandatory API key to use are at the bottom of this page.
 
-| Worldwide sources             | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI |
-|-------------------------------|------------|-------------|------------|-------------|--------------|-----|
-| **Daily (days)**              | 15         | 15          | ~10        | 7 or 8      | 14           | 10  |
-| **Hourly (days)**             | 16         | 10          | ~10        | 2           | 15           | 10  |
-| **Weather**                   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
-| **Temperature**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
-| **Precipitation**             | ✅          | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ✅   |
-| **Precipitation probability** | ✅          | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | ❌   |
-| **Wind**                      | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
-| **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
-| **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
+| Worldwide sources             | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI | GeoSphere Austria V5.1.9 |
+|-------------------------------|------------|-------------|------------|-------------|--------------|-----|--------------------------|
+| **Daily (days)**              | 15         | 15          | ~10        | 7 or 8      | 14           | 10  | 2.5                      |
+| **Hourly (days)**             | 16         | 10          | ~10        | 2           | 15           | 10  | 2.5                      |
+| **Weather**                   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | *In progress*            |
+| **Temperature**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ✅                        |
+| **Precipitation**             | ✅          | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ✅   | ✅                        |
+| **Precipitation probability** | ✅          | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | ❌   | ❌                        |
+| **Wind**                      | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ✅                        |
+| **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   | ❌                        |
+| **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ✅                        |
 
 | National sources              | China | NWS    | Bright Sky | ECCC | IMS           | SMHI | MET Éireann |
 |-------------------------------|-------|--------|------------|------|---------------|------|-------------|
@@ -62,21 +62,21 @@ Note that no forecast above 7 days is reliable, so you should not decide based o
 
 The following features, if not available from your selected source, can be added from another source.
 
-| Worldwide sources                  | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI     |
-|------------------------------------|------------|---------------|---------------|-------------|--------------|---------|
-| **Air quality**                    | ✅          | ✅             | Norway        | ✅           | ❌            | ❌       |
-| **Pollen**                         | ✅          | North America | ❌             | ❌           | ❌            | ❌       |
-| **Precipitation in the next hour** | ✅²         | ✅             | Nordic area   | ✅           | France       | ❌       |
-| **Alerts**                         | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
-| **Normals**                        | Average    | ✅             | Average       | Average     | ✅            | Average |
+| Worldwide sources            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI     | GeoSphere Austria V5.1.9 |
+|------------------------------|------------|---------------|---------------|-------------|--------------|---------|--------------------------|
+| **Air quality**              | ✅          | ✅             | Norway        | ✅           | ❌            | ❌       | Europe and nearby        |
+| **Pollen**                   | ✅          | North America | ❌             | ❌           | ❌            | ❌       | ❌                        |
+| **Precipitation nowcasting** | ✅²         | ✅             | Nordic area   | ✅           | France       | ❌       | Austria and nearby       |
+| **Alerts**                   | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark | *In progress*            |
+| **Normals**                  | Average    | ✅             | Average       | Average     | ✅            | Average | *In progress*            |
 
-| National sources                   | China   | NWS           | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
-|------------------------------------|---------|---------------|------------|--------|---------|---------|-------------|
-| **Air quality**                    | Current | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Pollen**                         | ❌       | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Precipitation in the next hour** | ✅       | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Alerts**                         | China   | United States | Germany    | Canada | ✅       | ❌       | Ireland     |
-| **Normals**                        | Average | Average       | Average    | ✅      | Average | Average | Average     |
+| National sources             | China   | NWS           | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
+|------------------------------|---------|---------------|------------|--------|---------|---------|-------------|
+| **Air quality**              | Current | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
+| **Pollen**                   | ❌       | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
+| **Precipitation nowcasting** | ✅       | ❌             | ❌          | ❌      | ❌       | ❌       | ❌           |
+| **Alerts**                   | China   | United States | Germany    | Canada | ✅       | ❌       | Ireland     |
+| **Normals**                  | Average | Average       | Average    | ✅      | Average | Average | Average     |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Works best in Europe at the moment
@@ -93,16 +93,16 @@ Legend:
 
 ## Other weather data
 
-| Worldwide sources          | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI |
-|----------------------------|------------|-------------|------------|-------------|--------------|-----|
-| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
-| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
-| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ✅   |
-| **Cloud cover**            | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
-| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | ✅   |
-| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌   |
-| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
-| **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   |
+| Worldwide sources          | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI | GeoSphere Austria V5.1.9 |
+|----------------------------|------------|-------------|------------|-------------|--------------|-----|--------------------------|
+| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ✅                        |
+| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ✅                        |
+| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ✅   | ✅                        |
+| **Cloud cover**            | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   | ✅                        |
+| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | ✅   | ❌                        |
+| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌   | ❌                        |
+| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   | ❌                        |
+| **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   | ❌                        |
 
 | National sources           | China   | NWS | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
 |----------------------------|---------|-----|------------|---------|-----|------|-------------|
@@ -120,10 +120,10 @@ Legend:
 
 ## Location
 
-| Worldwide sources     | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI     |
-|-----------------------|------------|-------------|------------|-------------|--------------|---------|
-| **Search**            | ✅          | ✅           | Default    | Default     | Default      | Default |
-| **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅       |
+| Worldwide sources     | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | DMI     | GeoSphere Austria V5.1.9 |
+|-----------------------|------------|-------------|------------|-------------|--------------|---------|--------------------------|
+| **Search**            | ✅          | ✅           | Default    | Default     | Default      | Default | Default                  |
+| **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅       | ❌²                       |
 
 | National sources      | China | NWS     | Bright Sky | ECCC    | IMS     | SMHI    | MET Éireann |
 |-----------------------|-------|---------|------------|---------|---------|---------|-------------|
@@ -155,13 +155,13 @@ Legend:
 
 ## Features that can be added from other sources
 
-| Worldwide sources                  | Pirate Weather | HERE     |
-|------------------------------------|----------------|----------|
-| **Air quality**                    | ❌              | ❌        |
-| **Pollen**                         | ❌              | ❌        |
-| **Precipitation in the next hour** | ✅              | ❌        |
-| **Alerts**                         | ✅              | ❌        |
-| **Normals**                        | Average¹       | Average¹ |
+| Worldwide sources            | Pirate Weather | HERE     |
+|------------------------------|----------------|----------|
+| **Air quality**              | ❌              | ❌        |
+| **Pollen**                   | ❌              | ❌        |
+| **Precipitation nowcasting** | ✅              | ❌        |
+| **Alerts**                   | ✅              | ❌        |
+| **Normals**                  | Average¹       | Average¹ |
 
 ¹ Median from daily forecast
 
@@ -185,21 +185,21 @@ Legend:
 
 # Combinable sources
 
-| Worldwide sources                  | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Pirate Weather | Météo-France | DMI           | WMO Severe Weather |
-|------------------------------------|------------|-------------|---------------|-------------|----------------|--------------|---------------|--------------------|
-| **Air quality**                    | ✅          | ✅           | Norway        | ✅           | ❌              | ❌            | ❌             | ❌                  |
-| **Pollen**                         | ✅²         | ✅           | ❌             | ❌           | ❌              | ❌            | ❌             | ❌                  |
-| **Precipitation in the next hour** | ✅³         | ✅           | Nordic area   | ✅           | ✅              | France       | ❌             | ❌                  |
-| **Alerts**                         | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* | ✅                  |
-| **Normals**                        | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             | ❌                  |
+| Worldwide sources            | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Pirate Weather | Météo-France | DMI           | GeoSphere Austria V5.1.9 | WMO Severe Weather |
+|------------------------------|------------|-------------|---------------|-------------|----------------|--------------|---------------|--------------------------|--------------------|
+| **Air quality**              | ✅          | ✅           | Norway        | ✅           | ❌              | ❌            | ❌             | Europe and nearby        | ❌                  |
+| **Pollen**                   | ✅²         | ✅           | ❌             | ❌           | ❌              | ❌            | ❌             | ❌                        | ❌                  |
+| **Precipitation nowcasting** | ✅³         | ✅           | Nordic area   | ✅           | ✅              | France       | ❌             | Austria and nearby       | ❌                  |
+| **Alerts**                   | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* | *In progress*            | ✅                  |
+| **Normals**                  | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             | *In progress*            | ❌                  |
 
-| National sources                   | China | NWS           | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
-|------------------------------------|-------|---------------|------------|--------|-------------------------------|-------------|---------------|
-| **Air quality**                    | China | ❌             | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
-| **Pollen**                         | ❌     | ❌             | ❌          | ❌      | ❌                             | ❌           | ❌             |
-| **Precipitation in the next hour** | China | ❌             | ❌          | ❌      | ❌                             | ❌           | ❌             |
-| **Alerts**                         | China | United States | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
-| **Normals**                        | ❌     | ❌             | ❌          | Canada | ❌                             | ❌           | ❌             |
+| National sources             | China | NWS           | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
+|------------------------------|-------|---------------|------------|--------|-------------------------------|-------------|---------------|
+| **Air quality**              | China | ❌             | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
+| **Pollen**                   | ❌     | ❌             | ❌          | ❌      | ❌                             | ❌           | ❌             |
+| **Precipitation nowcasting** | China | ❌             | ❌          | ❌      | ❌                             | ❌           | ❌             |
+| **Alerts**                   | China | United States | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
+| **Normals**                  | ❌     | ❌             | ❌          | Canada | ❌                             | ❌           | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe

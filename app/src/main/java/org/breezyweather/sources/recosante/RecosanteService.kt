@@ -64,11 +64,13 @@ class RecosanteService @Inject constructor(
                 .create(RecosanteApi::class.java)
         }
 
-    override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
-    override fun isFeatureSupportedForLocation(
-        feature: SecondaryWeatherSourceFeature, location: Location
+    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+    override fun isFeatureSupportedInSecondaryForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature
     ): Boolean {
-        return !location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true)
+        return !location.countryCode.isNullOrEmpty()
+            && location.countryCode.equals("FR", ignoreCase = true)
     }
     override val airQualityAttribution = null
     override val pollenAttribution = "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
@@ -80,7 +82,7 @@ class RecosanteService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_POLLEN, location)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }

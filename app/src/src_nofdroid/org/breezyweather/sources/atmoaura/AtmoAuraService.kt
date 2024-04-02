@@ -58,9 +58,10 @@ class AtmoAuraService @Inject constructor(
             .create(AtmoAuraAirQualityApi::class.java)
     }
 
-    override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-    override fun isFeatureSupportedForLocation(
-        feature: SecondaryWeatherSourceFeature, location: Location
+    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+    override fun isFeatureSupportedInSecondaryForLocation(
+        location: Location,
+        feature: SecondaryWeatherSourceFeature
     ): Boolean {
         return (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
@@ -84,7 +85,7 @@ class AtmoAuraService @Inject constructor(
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
-        if (!isFeatureSupportedForLocation(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, location)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }

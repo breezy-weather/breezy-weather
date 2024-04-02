@@ -330,7 +330,7 @@ class SettingsActivity : GeoActivity() {
                         context = this@SettingsActivity,
                         configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
                             .filter {
-                                it.isWeatherSupportedForLocation(Location())
+                                it.isFeatureSupportedInMainForLocation(Location())
                             },
                         configurableSources = sourceManager.getConfigurableSources(),
                         paddingValues = paddings,

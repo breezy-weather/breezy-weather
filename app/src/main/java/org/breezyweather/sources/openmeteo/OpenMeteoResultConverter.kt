@@ -300,8 +300,8 @@ fun convertSecondary(
     hourlyAirQualityResult: OpenMeteoAirQualityHourly?,
     requestedFeatures: List<SecondaryWeatherSourceFeature>
 ): SecondaryWeatherWrapper {
-    val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
-    val pollenHourly: MutableMap<Date, Pollen> = mutableMapOf()
+    val airQualityHourly = mutableMapOf<Date, AirQuality>()
+    val pollenHourly = mutableMapOf<Date, Pollen>()
 
     if (hourlyAirQualityResult != null) {
         for (i in hourlyAirQualityResult.time.indices) {
