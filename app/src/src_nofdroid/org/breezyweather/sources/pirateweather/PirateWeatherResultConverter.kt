@@ -178,7 +178,7 @@ private fun getHourlyForecast(
  */
 private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely>? {
     if (minutelyResult.isNullOrEmpty()) return null
-    val minutelyList: MutableList<Minutely> = arrayListOf()
+    val minutelyList = mutableListOf<Minutely>()
     minutelyResult.forEachIndexed { i, minutelyForecast ->
         minutelyList.add(
             Minutely(

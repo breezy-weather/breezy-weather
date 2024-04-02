@@ -105,8 +105,8 @@ class SourceManager @Inject constructor(
 
         // National sources supporting worldwide
         mfService,
-        geoSphereAtService,
         dmiService,
+        geoSphereAtService, // Only 2.5 days of forecast, so sorting last
 
         // National-only sources (sorted by population)
         chinaService,

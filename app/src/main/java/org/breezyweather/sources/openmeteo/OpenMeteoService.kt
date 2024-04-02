@@ -233,7 +233,7 @@ class OpenMeteoService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override val supportedFeatures = listOf(
+    override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY

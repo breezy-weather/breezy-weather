@@ -21,7 +21,7 @@ import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
 @Serializable
-data class GeoSphereAtHourlyResult(
-    val timestamps: List<@Serializable(DateSerializer::class) Date>?,
-    val features: List<GeoSphereAtHourlyFeature>?
+data class GeoSphereAtTimeseriesResult(
+    val timestamps: List<@Serializable(DateSerializer::class) Date>? = null,
+    val features: List<GeoSphereAtHourlyFeature>? = null
 )

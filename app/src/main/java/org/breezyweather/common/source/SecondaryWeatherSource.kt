@@ -26,9 +26,11 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface SecondaryWeatherSource : Source {
 
-    val supportedFeatures: List<SecondaryWeatherSourceFeature>
+    val supportedFeaturesInSecondary: List<SecondaryWeatherSourceFeature>
 
-    fun isFeatureSupportedForLocation(feature: SecondaryWeatherSourceFeature, location: Location): Boolean = true
+    fun isFeatureSupportedInSecondaryForLocation(
+        location: Location, feature: SecondaryWeatherSourceFeature
+    ): Boolean = true
 
     // TODO: Improve
     val airQualityAttribution: String?
