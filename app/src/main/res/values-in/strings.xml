@@ -694,4 +694,5 @@
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance_invalid">Harus merupakan URL HTTPS berakhiran dengan /</string>
     <string name="settings_invalid_syntax">Sintaks tidak valid</string>
+    <string name="alert_source">Sumber: %s</string>
 </resources>
