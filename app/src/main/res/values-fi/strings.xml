@@ -642,4 +642,18 @@
     <string name="pressure_short">Ilmanpaine</string>
     <string name="alert">Varoitus</string>
     <string name="weather_message_too_frequent_refreshes">Odota muutama sekunti ennen kuin yrität uudelleen…</string>
+    <string name="alert_source">Lähde: %s</string>
+    <string name="settings_invalid_syntax">Virheellinen syntaksi</string>
+    <string name="pollen_quercus">Tammi</string>
+    <string name="humidity_short">Kosteus</string>
+    <string name="settings_weather_sources_default_source">Oletuslähde uusille sijainneille</string>
+    <string name="about_open_link_message">Avaa %s?</string>
+    <string name="settings_per_location_theme">Teema</string>
+    <string name="temperature_feels_like_short">Tuntuu kuin</string>
+    <string name="pollen_carpinus">Valkopyökki</string>
+    <string name="pollen_castanea">Kastanja</string>
+    <string name="sunshine">Auringonpaiste</string>
+    <string name="pollen_salix">Paju</string>
+    <string name="pollen_tilia">Lehmus</string>
+    <string name="location_delete_location_dialog_title">Poista sijainti?</string>
 </resources>
