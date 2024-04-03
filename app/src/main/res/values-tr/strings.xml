@@ -204,7 +204,7 @@
     <string name="common_weather_text_clear_sky">Açık hava</string>
     <string name="common_weather_text_rain_freezing">Dondurucu yağmur</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="settings_notifications_summary">Hava durumu uyarıları, yağışlar, hava durumu tahmini</string>
+    <string name="settings_notifications_summary">İlk konum için hava durumu uyarıları, yağışlar veya hava tahmini bildirimleri</string>
     <string name="settings_widgets_live_wallpaper_summary">Bir hava durumu animasyonunu duvar kağıdı olarak ayarla</string>
     <string name="settings_widgets_live_wallpaper_title">Canlı duvar kağıdı</string>
     <string name="location_message_search_failed">Konum arama yapılamadı</string>
