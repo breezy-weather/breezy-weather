@@ -15,6 +15,9 @@
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 
+**Translations**
+- Translations updated
+
 
 # Version 5.1.8 (2024-03-30)
 
