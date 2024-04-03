@@ -391,8 +391,8 @@
     <string name="ephemeris_sunset_at">日の入り%s</string>
     <string name="ephemeris_moonrise_at">月の出%s</string>
     <string name="ephemeris_moonset_at">月の入り%s</string>
-    <string name="weather_pollen_data_by">花粉データ提供：%s</string>
-    <string name="weather_air_quality_and_pollen_data_by">空気質と花粉データ提供：%s</string>
+    <string name="weather_pollen_data_by">花粉データ提供: %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">空気質と花粉データ提供: %s</string>
     <string name="settings_weather_source_portal">ポータル</string>
     <string name="location_message_reverse_geocoding_failed">情報源が一致する場所を見つけられませんでした</string>
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
@@ -514,7 +514,7 @@
     <string name="air_quality_so2_info_origin">それは火山活動によって自然に放出され、主に家庭の暖房、工業、発電用の化石燃料の燃焼に由来します。</string>
     <string name="air_quality_co_info_origin">これは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料を、単純なストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼させることによって生成されます。周囲空気中の主な一酸化炭素 (CO) 発生源は自動車です。</string>
     <string name="action_help_me_choose">ヘルプ</string>
-    <string name="weather_normals_data_by">標準温度データ提供：%s</string>
+    <string name="weather_normals_data_by">標準温度データ提供: %s</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、独自の API キーを使用する必要があります。既に使用している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">この情報源を利用するには、API キーを使用する必要があります。</string>
     <string name="air_quality_co_info_consequences">一酸化炭素は肺組織を通って血流に拡散し、体の細胞が酸素と結合するのを困難にします。この酸素不足は組織や細胞にダメージを与えます。一酸化炭素にさらされると、呼吸困難、疲労感、めまい、その他のインフルエンザのような症状が引き起こされることがあります。高レベルの一酸化炭素にさらされると、死に至る可能性があります。</string>
@@ -540,10 +540,10 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_mmhg_voice">水銀柱ﾐﾘﾒｰﾄﾙ</string>
     <string name="wind_gusts">突風</string>
-    <string name="weather_data_by">データ提供：%s</string>
-    <string name="weather_air_quality_data_by">空気質データ提供：%s</string>
-    <string name="weather_minutely_data_by">降水量予報データ提供：%s</string>
-    <string name="weather_alert_data_by">警報データ提供：%s</string>
+    <string name="weather_data_by">データ提供: %s</string>
+    <string name="weather_air_quality_data_by">空気質データ提供: %s</string>
+    <string name="weather_minutely_data_by">降水量予報データ提供: %s</string>
+    <string name="weather_alert_data_by">警報データ提供: %s</string>
     <string name="weather_message_secondary_data_refresh_failed">二次情報源の更新が失敗しました</string>
     <string name="ephemeris_sunrise_at">日の出%s</string>
     <string name="unit_cmph">cm/h</string>
