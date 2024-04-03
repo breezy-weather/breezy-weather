@@ -588,7 +588,7 @@
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast notifications for the first location</string>
+    <string name="settings_notifications_summary">Notifications of weather alerts, precipitations or forecast for the first location</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_notifications_alerts_title">Notifications of weather alerts</string>
     <string name="settings_notifications_precipitations_title">Notifications of precipitations</string>
