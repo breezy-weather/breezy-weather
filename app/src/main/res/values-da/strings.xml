@@ -123,4 +123,6 @@
     <string name="temperature_feels_like_short">Føles som</string>
     <string name="wind_short">Vind</string>
     <string name="uv_index_short">UV indeks</string>
+    <string name="alert">Advarsel</string>
+    <string name="alert_source">Kilde: %s</string>
 </resources>
