@@ -427,7 +427,7 @@
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
-    <string name="settings_notifications_summary">Оповещения о погоде, осадки, прогноз</string>
+    <string name="settings_notifications_summary">Оповещения о погоде, осадках или прогнозе для первого местоположения</string>
     <string name="settings_notifications_precipitations_title">Уведомления об осадках</string>
     <string name="settings_notifications_alerts_title">Уведомления о погоде</string>
     <string name="settings_notifications_forecast_today_title">Уведомление о дневном прогнозе</string>
