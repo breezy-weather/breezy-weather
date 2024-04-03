@@ -160,7 +160,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Dnešní fáze měsíce, zítra, …, o 4 dny později</string>
     <string name="widget_live_wallpaper_weather_kind">Počasí</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
-    <string name="location_message_added">Poloha úspěšně přidána</string>
+    <string name="location_message_added">Lokalita úspěšně přidána</string>
     <string name="location_message_deleted">Poloha úspěšně odstraněna</string>
     <string name="location_message_list_cannot_be_empty">Seznam poloh nemůže být prázdný</string>
     <string name="location_search_placeholder">Vyhledat polohu…</string>
@@ -530,7 +530,7 @@
     <string name="null_data_text">N/A</string>
     <string name="action_see_more">Zobrazit více</string>
     <string name="settings_main_background_animation_disabled">Zakázano</string>
-    <string name="settings_notifications_summary">Výstrahy, srážky, předpověď počasí</string>
+    <string name="settings_notifications_summary">Upozornění na výstrahy, srážky nebo předpověď počasí pro první lokalitu</string>
     <string name="settings_notifications_alerts_title">Upozornění na meteorologické výstrahy</string>
     <string name="unit_cm">cm</string>
     <string name="message_network_unavailable">Síť není k dispozici</string>
@@ -634,7 +634,7 @@
     <string name="location_search_source">Zdroj vyhledávání lokace</string>
     <string name="location_search_change_source">Změnit zdroj vyhledávání lokace</string>
     <string name="settings_weather_source_none">Žádný</string>
-    <string name="location_message_updated">Poloha aktualizována</string>
+    <string name="location_message_updated">Lokalita aktualizována</string>
     <string name="location_message_already_exists">Poloha se stejným hlavním zdrojem počasí již existuje.</string>
     <string name="dew_point_short">Rosný bod</string>
     <string name="cloud_cover_short">Oblačnost</string>
