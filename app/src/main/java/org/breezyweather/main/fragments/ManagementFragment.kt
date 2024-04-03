@@ -61,10 +61,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
@@ -208,33 +209,35 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 ) {
                     if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&
                         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                        !requireActivity().hasPermission(Manifest.permission.POST_NOTIFICATIONS) &&
                         !notificationDismissed
                     ) {
-                        NotificationCard(
-                            title = stringResource(R.string.dialog_permissions_notification_title),
-                            summary = stringResource(R.string.dialog_permissions_notification_content),
-                            onClick = {
-                                viewModel.statementManager.setPostNotificationDialogAlreadyShown()
-                                notificationDismissed = true
-                                requireActivity().requestPermissions(
-                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                    0
-                                )
-                            },
-                            onClose = {
-                                viewModel.statementManager.setPostNotificationDialogAlreadyShown()
-                                notificationDismissed = true
-                                /*
-                                 * We could turn off alert notification from SettingsManager, but
-                                 * it’s best not to, as the user can still enable notification
-                                 * permission again from Android settings, and there is a
-                                 * permission check before sending any notification even if
-                                 * preference is enabled.
-                                 */
-                            }
-                        )
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        val notificationPermissionState = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+                        if (notificationPermissionState.status != PermissionStatus.Granted) {
+                            NotificationCard(
+                                title = stringResource(R.string.dialog_permissions_notification_title),
+                                summary = stringResource(R.string.dialog_permissions_notification_content),
+                                onClick = {
+                                    viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                    notificationDismissed = true
+                                    requireActivity().requestPermissions(
+                                        arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                        0
+                                    )
+                                },
+                                onClose = {
+                                    viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                    notificationDismissed = true
+                                    /*
+                                     * We could turn off alert notification from SettingsManager, but
+                                     * it’s best not to, as the user can still enable notification
+                                     * permission again from Android settings, and there is a
+                                     * permission check before sending any notification even if
+                                     * preference is enabled.
+                                     */
+                                }
+                            )
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        }
                     }
                     AndroidView(
                         modifier = Modifier

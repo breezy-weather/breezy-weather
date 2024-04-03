@@ -40,7 +40,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="San Francisco\n21℃"
+                tools:text="San Francisco\n21 °C"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="Partly Could\n17°/23°"
+                tools:text="Partly cloudy\n23°/17°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -117,7 +117,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="今日" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_1"
@@ -143,7 +143,7 @@
                     android:layout_below="@id/widget_day_week_icon_1"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -164,7 +164,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周三" />
+                    tools:text="Wed" />
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_2"
@@ -190,7 +190,7 @@
                     android:layout_below="@id/widget_day_week_icon_2"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -211,7 +211,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周四" />
+                    tools:text="Thu" />
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_3"
@@ -237,7 +237,7 @@
                     android:layout_below="@id/widget_day_week_icon_3"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -258,7 +258,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周五" />
+                    tools:text="Fri" />
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_4"
@@ -284,7 +284,7 @@
                     android:layout_below="@id/widget_day_week_icon_4"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -305,7 +305,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周六" />
+                    tools:text="Sat" />
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_5"
@@ -332,7 +332,7 @@
                     android:layout_below="@id/widget_day_week_icon_5"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 

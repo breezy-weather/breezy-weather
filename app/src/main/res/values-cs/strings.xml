@@ -120,9 +120,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Současné počasí</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Současná teplota (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Současná teplota (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Současná teplota (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Pocitová teplota (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Pocitová teplota (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Pocitová teplota (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Současná vítr</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Současné UV</string>
@@ -145,8 +145,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Enter</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dnešní denní počasí, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Dnešní noční počasí, zítra, …, o 4 dny později</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dnešní denní teplota, zítra, …, o 4 dny později (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Dnešní noční teplota, zítra, …, o 4 dny později (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dnešní denní teplota, zítra, …, o 4 dny později (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Dnešní noční teplota, zítra, …, o 4 dny později (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dnešní denní teplota, zítra, …, o 4 dny později (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Dnešní noční teplota, zítra, …, o 4 dny později (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Dnešní denní srážky, zítra, …, o 4 dny později (%)</string>

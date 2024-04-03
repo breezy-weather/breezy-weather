@@ -287,7 +287,7 @@
     <string name="action_see_more">Bekijk meer</string>
     <string name="action_preview">Voorbeeld</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Huidig weer</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_als_description">Waarschuwingen (Kort)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Zwart</string>
@@ -359,7 +359,7 @@
     <string name="widget_custom_subtitle_explanation">U kunt alles invoeren, maar let wel op de lengte van de tekst. Als je weergegevens wilt citeren, gebruik dan $ om naar het overeenkomstige sleutelwoord te verwijzen.
 \n
 \nBijvoorbeeld, “Het huidige weer is: $cw$.” zal worden weergegeven als “Het huidige weer is: Helder weer.”.</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Gevoelstemperatuur (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Gevoelstemperatuur (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Gevoelstemperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_al_description">Waarschuwingen</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nieuwe regel</string>
@@ -423,8 +423,8 @@
     <string name="widget_custom_subtitle_keyword_lc_description">Maankalender</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Week (Kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
     <string name="settings_none">Geen</string>

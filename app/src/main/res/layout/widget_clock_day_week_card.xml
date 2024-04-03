@@ -163,7 +163,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Surabaya 8 °C"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -188,7 +188,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周二" />
+                    tools:text="Today" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_1"
@@ -210,7 +210,7 @@
                     android:layout_below="@id/widget_clock_day_week_icon_1"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -227,7 +227,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周三" />
+                    tools:text="Thu" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_2"
@@ -249,7 +249,7 @@
                     android:layout_below="@id/widget_clock_day_week_icon_2"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -266,7 +266,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周四" />
+                    tools:text="Fri" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_3"
@@ -288,7 +288,7 @@
                     android:layout_below="@id/widget_clock_day_week_icon_3"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -305,7 +305,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周五" />
+                    tools:text="Sat" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_4"
@@ -327,7 +327,7 @@
                     android:layout_below="@id/widget_clock_day_week_icon_4"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -344,7 +344,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周六" />
+                    tools:text="Sun" />
 
                 <ImageView
                     android:id="@+id/widget_clock_day_week_icon_5"
@@ -367,7 +367,7 @@
                     android:layout_below="@id/widget_clock_day_week_icon_5"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 

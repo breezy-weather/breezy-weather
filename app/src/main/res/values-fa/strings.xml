@@ -260,7 +260,7 @@
     <string name="widget_custom_subtitle_keyword_cw_description">آب و هوای الآن</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">دمای فعلی (درجه)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">باد اینگاه</string>
-    <string name="widget_custom_subtitle_keyword_at_description">دمای حس شونده (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">دمای حس شونده (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">پرتو UV اینگاه</string>
     <string name="widget_custom_subtitle_keyword_atd_description">دمای حس شونده (درجه)</string>
     <string name="widget_custom_subtitle_keyword_al_description">هشدار ها</string>
@@ -307,7 +307,7 @@
     <string name="widget_custom_subtitle_keyword_xms_description">غروب ماه امروز، فردا، …، ۴ روز آینده</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">طلوع ماه امروز، فردا، …، ۴ روز آینده</string>
     <string name="settings_background_updates">به روز رسانی های پس زمینه</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">دمای فعلی (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">دمای فعلی (°C/°F)</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_message_secondary_data_refresh_failed">تازه سازی داده آب و هوا برای منبع آب و هوایی دوم انجام نشد</string>
     <string name="weather_message_unsupported_feature">منبع از یکی از ویژگی های درخواست شده پشتیبانی نمی کند</string>
@@ -424,8 +424,8 @@
     <string name="location_search_no_results_advice">مطمئن شوید که املای جستجوی شما درست است و خیلی خاص نیست. از طرف دیگر، می توانید منبع جستجوی مکان دیگری را امتحان کنید که ممکن است نتایج متفاوتی ایجاد کند.</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">هوای امروز، فردا، …، 4 روز دیگر</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">هوای امشب، فردا شب، …، 4 شب دیگر</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">دمای امروز، فردا، …، 4 روز دیگر (℃℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">دمای امشب، فردا شب، …، 4 شب دیگر (℃℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">دمای امروز، فردا، …، 4 روز دیگر (°C°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">دمای امشب، فردا شب، …، 4 شب دیگر (°C°F)</string>
     <string name="settings_background_updates_battery_optimization_summary">این اولین چیزی است که وقتی آگاه‌ساز دریافت نمی کنید یا ابزارک ها به روز نمی شوند، امتحان کنید.</string>
     <string name="settings_weather_source_none">هیچکدام</string>
     <string name="settings_weather_sources_default_source">منبع انتخابی برای‌ مکان های تازه</string>

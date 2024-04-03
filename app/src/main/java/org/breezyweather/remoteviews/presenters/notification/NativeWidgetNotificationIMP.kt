@@ -24,13 +24,13 @@ import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.toBitmap
-import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
@@ -62,7 +62,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         subtitle.append(location.getPlace(context))
         if (context.currentLocale.isChinese) {
             subtitle.append(context.getString(R.string.comma_separator))
-                .append(LunarHelper.getLunarDate(Date()))
+                .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         } else {
             location.weather!!.base.refreshTime?.let {
                 subtitle.append(context.getString(R.string.comma_separator))

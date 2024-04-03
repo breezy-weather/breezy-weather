@@ -352,7 +352,7 @@
     <string name="settings_background_updates_section_troubleshoot">استكشاف الاخطاء</string>
     <string name="weather_data_by">البيانات بواسطة %s</string>
     <string name="widget_custom_subtitle_keyword_atd_description">الشعور الحالي لدرجة الحرارة (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">الشعور الحالي لدرجة الحرارة (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">الشعور الحالي لدرجة الحرارة (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">الرياح الحالية</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">الأشعة فوق البنفسجية الحالية</string>
     <string name="widget_custom_subtitle_keyword_ch_description">الرطوبة الحالية</string>
@@ -514,8 +514,8 @@
     <string name="dialog_permissions_location_content">يحتاج Breezy Weather إلى جمع معلومات موقعك في المقدمة أو الخلفية لتوفير بيانات الطقس لموقعك الحالي. لهذا ، سوف نطلب بعض الأذونات. سيتم استخدام معلومات موقعك فقط للحصول على بيانات حالة طقس موقعك الحالي. إذا كنت لا تريد مشاركة معلومات موقعك، يمكنك رفض هذه المتطلبات وتعيين موقعك يدويا في صفحة الإدارة.</string>
     <string name="dialog_permissions_location_background_content">من أجل السماح للتطبيق بالوصول إلى معلومات الموقع في الخلفية ، حتى نتمكن من إدراك التغييرات في الموقع وتزويدك ببيانات الطقس الصالحة ، يرجى تعيين الوصول إلى الموقع على أنه ”السماح طوال الوقت“.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا اليوم ، غدا ،…، بعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا اليوم ، غدا ،…، بعد 4 أيام (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">درجة الحرارة نهارا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">درجة الحرارة ليلا اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
     <string name="widget_custom_subtitle_keyword_xss_description">غروب الشمس اليوم ، غدا ، … ، بعد 4 أيام</string>

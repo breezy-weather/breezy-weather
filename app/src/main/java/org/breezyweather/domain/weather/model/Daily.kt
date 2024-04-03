@@ -5,15 +5,11 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getWeek
-import org.breezyweather.common.utils.helpers.LunarHelper
 import java.util.Calendar
 
 fun Daily.getWeek(location: Location, context: Context?): String {
     return date.getWeek(location, context)
 }
-
-val Daily.lunar: String?
-    get() = LunarHelper.getLunarDate(date)
 
 fun Daily.isToday(location: Location): Boolean {
     val current = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU

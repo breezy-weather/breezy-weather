@@ -27,7 +27,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             style="@style/content_text"
-            tools:text="星期日天气宜人"
+            tools:text="Rain Wednesday evening"
             tools:ignore="RtlHardcoded" />
 
         <androidx.recyclerview.widget.RecyclerView

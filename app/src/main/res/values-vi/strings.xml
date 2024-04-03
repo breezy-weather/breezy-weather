@@ -226,7 +226,7 @@
     <string name="widget_subtitle_data_custom">Tùy chỉnh</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Thời tiết hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nhiệt độ hiện tại (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Nhiệt độ cảm nhận hiện tại (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Nhiệt độ cảm nhận hiện tại (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Nhiệt độ cảm nhận hiện tại (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Gió hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Độ ẩm hiện tại</string>

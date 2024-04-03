@@ -32,7 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Today" />
 
             <TextView
                 android:id="@+id/notification_big_temp_1"
@@ -41,7 +41,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="3/9°" />
+                tools:text="9°/3°" />
 
             <ImageView
                 android:id="@+id/notification_big_icon_1"
@@ -68,7 +68,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Thu" />
 
             <TextView
                 android:id="@+id/notification_big_temp_2"
@@ -77,7 +77,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="3/9°" />
+                tools:text="9°/3°" />
 
             <ImageView
                 android:id="@+id/notification_big_icon_2"
@@ -104,7 +104,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Fri" />
 
             <TextView
                 android:id="@+id/notification_big_temp_3"
@@ -113,7 +113,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="3/9°" />
+                tools:text="9°/3°" />
 
             <ImageView
                 android:id="@+id/notification_big_icon_3"
@@ -140,7 +140,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Sat" />
 
             <TextView
                 android:id="@+id/notification_big_temp_4"
@@ -149,7 +149,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="3/9°" />
+                tools:text="9°/3°" />
 
             <ImageView
                 android:id="@+id/notification_big_icon_4"
@@ -176,7 +176,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="周二" />
+                tools:text="Sun" />
 
             <TextView
                 android:id="@+id/notification_big_temp_5"
@@ -185,7 +185,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingBottom="@dimen/little_margin"
                 style="@style/notification_content_text"
-                tools:text="3/9°" />
+                tools:text="9°/3°" />
 
             <ImageView
                 android:id="@+id/notification_big_icon_5"

@@ -202,7 +202,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Surabaya 8 °C"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

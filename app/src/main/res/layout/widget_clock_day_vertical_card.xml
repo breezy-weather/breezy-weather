@@ -188,7 +188,7 @@
                 android:layout_below="@id/widget_clock_day_icon"
                 android:layout_marginTop="2dp"
                 style="@style/widget_content_text"
-                tools:text="Overcast 23℃"
+                tools:text="Overcast 23 °C"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

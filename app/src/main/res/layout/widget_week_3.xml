@@ -70,7 +70,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周三" />
+                    tools:text="Wed" />
 
                 <ImageView
                     android:id="@+id/widget_week_icon_1"
@@ -96,7 +96,7 @@
                     android:layout_below="@id/widget_week_icon_1"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周四" />
+                    tools:text="Thu" />
 
                 <ImageView
                     android:id="@+id/widget_week_icon_2"
@@ -143,7 +143,7 @@
                     android:layout_below="@id/widget_week_icon_2"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 
@@ -164,7 +164,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="周五" />
+                    tools:text="Fri" />
 
                 <ImageView
                     android:id="@+id/widget_week_icon_3"
@@ -190,7 +190,7 @@
                     android:layout_below="@id/widget_week_icon_3"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
-                    tools:text="4/9°" />
+                    tools:text="9°/4°" />
 
             </RelativeLayout>
 

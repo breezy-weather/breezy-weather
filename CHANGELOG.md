@@ -4,6 +4,8 @@
 - [GeoSphere Austria] Added as worldwide main source (not yet available: hourly weather code, alerts)
 - [GeoSphere Austria] Added as secondary source for air quality in Europe and nearby
 - [GeoSphere Austria] Added as secondary source for precipitation nowcasting in Austria and nearby
+- [AccuWeather] Fix fail to refresh when using a language not supported by AccuWeather (noticed on Central Kurdish, Esperanto and Interlingua), now fallbacks to English
+- [Open-Meteo] Fix workaround location search issue when result list is empty (will show instructions instead of an error)
 - [Open-Meteo] Fix issues related to DST
 - [DMI] Add severity/colors to alerts
 
@@ -11,6 +13,7 @@
 - Added source for each alert for compatible sources
 - [Widgets] Tap on “Material You - Current” now works again
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
+- Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 
 
 # Version 5.1.8 (2024-03-30)

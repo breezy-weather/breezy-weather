@@ -143,9 +143,9 @@
 \n
 \n例如：若输入“天气为$cw$”，副标题将显示为“天气为晴”。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">当前天气</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">当前温度 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">当前温度 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">当前温度 (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">当前体感温度（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">当前体感温度（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_atd_description">当前体感温度（°）</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">当前风况</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">当前紫外线</string>
@@ -168,8 +168,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">换行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日白天天气，明日，……，4天后</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日夜间天气，明日，……，4天后</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">今日白天温度，明日，……，4天后（℃/℉）</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">今日夜间温度，明日，……，4天后（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">今日白天温度，明日，……，4天后（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">今日夜间温度，明日，……，4天后（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">今日白天温度，明日，……，4天后（°）</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">今日夜间温度，明日，……，4天后（°）</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">今日白天降水概率，明日，……，4天后（%）</string>

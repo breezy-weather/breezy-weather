@@ -111,9 +111,9 @@
 \n
 \nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = giorno sereno”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Meteo attuale</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura attuale (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura attuale (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura attuale (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura apparente (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura apparente (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Temperatura apparente (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vento attuale</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV attuale</string>
@@ -136,8 +136,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Inserisci</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Meteo diurno di oggi, domani, …, 4 giorni dopo</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Meteo norrurno di oggi, domani, …, 4 giorni dopo</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diurna di oggi, domani, …, 4 giorni dopo (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura notturna di oggi, domani, …, 4 giorni dopo (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diurna di oggi, domani, …, 4 giorni dopo (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura notturna di oggi, domani, …, 4 giorni dopo (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura diurna di oggi, domani, …, 4 giorni dopo (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura notturna di oggi, domani, …, 4 giorni dopo (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Precipitazioni diurne di oggi, domani, …, 4 giorni dopo (%)</string>

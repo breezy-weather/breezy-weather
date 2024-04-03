@@ -137,7 +137,7 @@
     <string name="widget_custom_subtitle_explanation">Можете да унесете било шта, али обратите пажњу на дужину текста. Ако желите да цитирате податке о времену, користите $ за референцу на одговарајућу кључну реч.
 \n
 \nНа пример, „Тренутно време је: $cw$.“ биће приказано као „Тренутно време је: Ведар дан.“.</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Ноћна температура - данас, сутра, …, 4 дана касније (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Ноћна температура - данас, сутра, …, 4 дана касније (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Залазак месеца - данас, сутра, …, 4 дана касније</string>
     <string name="settings_notifications_forecast_tomorrow_title">Обавештење за прогнозу за следећи дан</string>
     <string name="common_weather_text_rain">Киша</string>
@@ -151,7 +151,7 @@
     <string name="weather_kind_wind">Ветар</string>
     <string name="common_weather_text_snow_grains">Снежна зрна</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Тренутна температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Тренутна „Осећа се као“ температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Тренутна „Осећа се као“ температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Тренутно УВ</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недеља</string>
     <string name="settings_debug_dump_crash_logs_summary">Чува евиденције грешака у фајл за дељење са програмерима</string>
@@ -246,7 +246,7 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Тренутна видљивост</string>
     <string name="widget_custom_subtitle_keyword_als_description">Упозорења (кратка)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Локација</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Дневна температура - данас, сутра, …, 4 дана касније (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Дневна температура - данас, сутра, …, 4 дана касније (°C/°F)</string>
     <string name="settings_source_default_value">Подразумевано (непромењено)</string>
     <string name="settings_source_api_key">API кључ</string>
     <string name="settings_icon_packs_get_more">Преузми више</string>
@@ -474,7 +474,7 @@
     <string name="weather_api_limit_reached_title">Достигнуто је ограничење API захтева</string>
     <string name="settings_units_pressure">Јединица за притисак</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Тренутно време</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Тренутна температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Тренутна температура (°C/°F)</string>
     <string name="settings_background_updates_refresh_1h">1 сат</string>
     <string name="settings_background_updates_refresh_6h">6 сати</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорисати, када је батерија празна</string>

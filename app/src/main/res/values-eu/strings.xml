@@ -162,7 +162,7 @@
     <string name="widget_subtitle_data_aqi">Airearen kalitatea</string>
     <string name="widget_label_clock_font">Erlojuaren iturria</string>
     <string name="widget_label_hide_lunar">Ezkutatu ilargi-egutegia</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Egungo tenperatura (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Egungo tenperatura (°C/°F)</string>
     <string name="pollen_and_mold">Polena eta lizuna</string>
     <string name="alerts_to_follow">Hurrengo alertak, ukitu hemen ikusteko.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Ilgora</string>
@@ -253,7 +253,7 @@
     <string name="widget_clock_day_week">Erlojua + Egunerokoa + Asterokoa</string>
     <string name="widget_refreshing">Eguneratzen</string>
     <string name="widget_subtitle_data_time">Eguneratze denbora</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Sentsazio termiko tenperatura (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Sentsazio termiko tenperatura (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Sentsazio termiko tenperatura (°)</string>
     <string name="settings_background_updates">Atzeko planoko eguneraketak</string>
     <string name="settings_background_updates_summary">Eguneratze-tasa, arazoak konpontzea</string>
@@ -532,7 +532,7 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Lerro berria</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Gaueko eguraldia gaur, bihar, …, 4 egun geroago</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Eguneko eguraldia gaur, bihar, …, 4 egun geroago</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Gaueko tenperatura gaur, bihar, …, 4 egun geroago (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Gaueko tenperatura gaur, bihar, …, 4 egun geroago (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Eguneko Tenperatura gaurko, bihar, …, 4 egun geroago (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Gaueko Tenperatura gaurko, bihar, …, 4 egun geroago (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Eguneko prezipitazioak gaur, bihar, …, 4 egun geroago (%)</string>
@@ -585,7 +585,7 @@
     <string name="settings_weather_source_portal">Ataria</string>
     <string name="dialog_permissions_location_content">Breezy Weather zure kokapenari buruzko informazioa lehen planoan edo atzeko planoan bildu behar du zure uneko kokapenaren eguraldi datuak emateko. Horretarako, baimen batzuk eskatuko ditugu. Zure kokapenari buruzko informazioa zure uneko kokapenean eguraldi datuak lortzeko soilik erabiliko da. Ez baduzu zure kokapenari buruzko informazioa partekatu nahi, eskakizun horiek ukatu eta zure kokapena eskuz ezar dezakezu kudeaketa orrian.</string>
     <string name="dialog_permissions_location_background_content">Aplikazioari kokapen-informazioa atzeko planoan sartzeko aukera izan dezan, kokapen-aldaketak hauteman ahal izateko eta baliozko eguraldi-datuak eskaintzeko, ezarri kokapenerako sarbidea Baimendu denbora guztian gisa.</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Eguneko tenperatura gaurko, bihar, …, 4 egun geroago (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Eguneko tenperatura gaurko, bihar, …, 4 egun geroago (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Gaur egun, bihar, …, 4 egun geroago</string>
     <string name="settings_section_general">Orokorra</string>
     <string name="widget_live_wallpaper_day_night_type">Denbora</string>

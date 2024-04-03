@@ -316,16 +316,16 @@
     <string name="widget_custom_subtitle_explanation">Galite įvesti bet ką, tačiau atkreipkite dėmesį į teksto ilgį. Jei norite pacituoti orų duomenis, naudokite $, kad pateiktumėte nuorodą į atitinkamą raktažodį.
 \n
 \nPavyzdžiui, “Dabartinis oras yra: $cw$.” bus rodomas kaip “Dabartinis oras yra: Giedra diena.”.</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Dabartinė temperatūra (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Dabartinė temperatūra (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Dabartinė temperatūra (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Dabartinė jutiminė temperatūra (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Dabartinė jutiminė temperatūra (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Mėnulio kalendorius</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Dabartinis vėjas</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Dabartinis slėgis</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Dabartinis UV</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dienos temperatūra šiandien, rytoj, …, po 4 dienų (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nakties temperatūra šiąnakt, rytoj, …, po 4 dienų (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dienos temperatūra šiandien, rytoj, …, po 4 dienų (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nakties temperatūra šiąnakt, rytoj, …, po 4 dienų (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Nakties temperatūra šiąnakt, rytoj, …, po 4 dienų (°)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nakties kritulių kiekis šiąnakt, rytoj, …, po 4 dienų (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dienos vėjas šiandien, rytoj, …, po 4 dienų</string>

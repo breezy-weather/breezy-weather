@@ -26,7 +26,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             style="@style/content_text"
-            tools:text="星期日天气宜人"
+            tools:text="No precipitation for at least 120 min"
             tools:ignore="RtlHardcoded" />
 
         <androidx.recyclerview.widget.RecyclerView

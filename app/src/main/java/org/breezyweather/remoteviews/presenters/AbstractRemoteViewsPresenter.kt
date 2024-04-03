@@ -39,12 +39,12 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
@@ -342,7 +342,7 @@ abstract class AbstractRemoteViewsPresenter {
                     Date().getFormattedMediumDayAndMonth(location, context)
                 ).replace(
                     "\$lc$",
-                    LunarHelper.getLunarDate(Date()) ?: context.getString(R.string.null_data_text)
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
                     Date().getFormattedDate("EEEE", location, context)

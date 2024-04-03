@@ -171,7 +171,7 @@
                 android:ellipsize="start"
                 android:singleLine="true"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Surabaya 8 °C"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

@@ -109,9 +109,9 @@
 \n
 \n예를 들어 “현재 날씨 = $cw$” 는 “현재 날씨 = 맑음” 으로 표시됩니다.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">현재 날씨</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">현재 온도 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">현재 온도 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">현재 온도 (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">피상 온도 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">피상 온도 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">피상 온도 (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">현재 바람</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">현재 자외선</string>
@@ -132,8 +132,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">들어가기</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">오늘의 주간 날씨, 내일, …, 4일 후</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">오늘의 야간 날씨, 내일, …, 4일 후</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">오늘의 주간 온도, 내일, …, 4일 후 (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">오늘의 야간 온도, 내일, …, 4일 후 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">오늘의 주간 온도, 내일, …, 4일 후 (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">오늘의 야간 온도, 내일, …, 4일 후 (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">오늘의 주간 강수 확률, 내일, …, 4일 후 (%)</string>

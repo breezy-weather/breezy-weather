@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="widget_custom_subtitle_keyword_enter_description">هێڵی نوێ</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">پلەی گەرمای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">پلەی گەرمای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°C/°F)</string>
     <string name="app_name">کەش و هەوا</string>
     <string name="daily_forecast">پێشبینی ڕۆژانە</string>
     <string name="hourly_forecast">پێشبینی کاتژمێری</string>
@@ -78,7 +78,7 @@
     <string name="widget_custom_subtitle_keyword_hd_description">وەسفی کاتژمێر</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">کەش و هەوای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">کەش و هەوای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">پلەی گەرمای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">پلەی گەرمای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">پلەی گەرمای ڕۆژانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">پلەی گەرمای شەوانەی ئەمڕۆ، سبەینێ، ٤ ڕۆژ دواتر (°)</string>
     <string name="temperature_degree_day">پلەی ڕۆژ</string>

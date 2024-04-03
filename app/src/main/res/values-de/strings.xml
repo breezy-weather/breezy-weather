@@ -230,7 +230,7 @@
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle Temperatur (°C/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle Temperatur (°C/°F)</string>
     <string name="widget_custom_subtitle_explanation">Sie können alles eingeben, aber achten Sie bitte auf die Länge des Textes. Wenn Sie Wetterdaten nutzen möchten, verwenden Sie bitte $, um auf das entsprechende Stichwort zu verweisen.
 \n
 \nZum Beispiel: „Aktuell: $cw$.“ wird angezeigt als „Aktuell: Klar.“.</string>
@@ -324,7 +324,7 @@
     <string name="widget_subtitle_data_lunar">Mondkalender</string>
     <string name="widget_subtitle_data_custom">Benutzerdefiniert</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Aktuelle Temperatur (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Aktuelle gefühlte Temperatur (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Aktuelle gefühlte Temperatur (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Aktueller Wind</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Aktueller Taupunkt</string>
     <string name="widget_custom_subtitle_keyword_al_description">Warnungen</string>
@@ -332,8 +332,8 @@
     <string name="widget_custom_subtitle_keyword_lc_description">Mondkalender</string>
     <string name="widget_custom_subtitle_keyword_w_description">Woche</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Wetter tagsüber heute, morgen, …, in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nachts heute, morgen, …, in 4 Tagen (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nachts heute, morgen, …, in 4 Tagen (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Niederschlag tagsüber heute, morgen, …, in 4 Tagen (%)</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sonnenaufgang heute, morgen, …, in 4 Tagen</string>

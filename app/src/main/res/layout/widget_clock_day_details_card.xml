@@ -165,7 +165,7 @@
                 android:ellipsize="start"
                 android:singleLine="true"
                 style="@style/widget_content_text"
-                tools:text="青岛 8℃"
+                tools:text="Surabaya 8 °C"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
@@ -183,7 +183,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="Today 7/13°"
+                tools:text="Today 13°/7°"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -195,7 +195,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="Feels like 10℃"
+                tools:text="Feels like 10 °C"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -208,7 +208,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="AQI 46 (Fresh air)"
+                tools:text="Air quality 44 (Fair)"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

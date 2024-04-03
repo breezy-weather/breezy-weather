@@ -316,8 +316,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Новий рядок</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Погода вдень сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Погода вночі сьогодні, завтра, …, на 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Температура вдень сьогодні, завтра, …, на 4 дні (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Температура вночі сьогодні, завтра, …, на 4 дні (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Температура вдень сьогодні, завтра, …, на 4 дні (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Температура вночі сьогодні, завтра, …, на 4 дні (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Температура вдень сьогодні, завтра, …, на 4 дні (°)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Вітер вдень сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Опади вночі сьогодні, завтра, …, на 4 дні (%)</string>
@@ -369,9 +369,9 @@
     <string name="widget_custom_subtitle_explanation">Ви можете ввести що завгодно, але зверніть увагу на довжину тексту. Якщо ви хочете відобразити погодні дані, використовуйте $ для посилання на відповідне ключове слово.
 \n
 \nНаприклад, “Поточна погода: $cw$.” буде відображено як “Поточна погода: Ясний день.”.</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Поточна температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Поточна температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Поточна температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Відчувається як (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Відчувається як (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Відчувається як (°)</string>
     <string name="settings_location">Місцезнаходження</string>
     <string name="settings_location_service">Сервіс визначення місцезнаходження</string>

@@ -26,7 +26,7 @@ import retrofit2.http.Query
  */
 interface OpenMeteoGeocodingApi {
     @GET("v1/search?format=json")
-    fun getWeatherLocation(
+    fun getLocations(
         @Query("name") name: String,
         @Query("count") count: Int,
         @Query("language") language: String

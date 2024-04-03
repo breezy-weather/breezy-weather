@@ -22,6 +22,6 @@
         android:layout_marginBottom="@dimen/little_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         style="@style/title_text"
-        tools:text="3 / 弱" />
+        tools:text="1 Low" />
 
 </LinearLayout>

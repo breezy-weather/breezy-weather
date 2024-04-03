@@ -235,9 +235,9 @@
     <string name="widget_custom_subtitle_explanation">Vous pouvez saisir ce que vous voulez, mais faites attention à la longueur du texte. Si vous voulez citer des données météo, veuillez utiliser $ pour référencer le mot-clé correspond.\n\nPar example, « La météo actuelle est : $cw$. » s’affichera « La météo actuelle est : Ensoleillé. ».</string>
     <!-- keep those content with the format "$xxx$". -->
     <string name="widget_custom_subtitle_keyword_cw_description">Météo actuelle</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Température actuelle (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Température actuelle (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Température actuelle (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie actuelle (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actuel</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Indice de Qualité de l’Air actuel</string>
@@ -261,8 +261,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Retour à la ligne</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Météo de jour d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Météo de nuit d’aujourd’hui, demain, …, dans 4 jours</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Température de jour d’aujourd’hui, demain, …, dans 4 jours (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Température de nuit d’aujourd’hui, demain, …, dans 4 jours (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Température de jour d’aujourd’hui, demain, …, dans 4 jours (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Température de nuit d’aujourd’hui, demain, …, dans 4 jours (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Température de jour d’aujourd’hui, demain, …, dans 4 jours (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Température de nuit d’aujourd’hui, demain, …, dans 4 jours (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Précipitations de jour d’aujourd’hui, demain, …, dans 4 jours (%)</string>
@@ -501,7 +501,7 @@
     <string name="settings_units">Unités</string>
     <string name="settings_units_summary">Température, précipitation, distance, vitesse, pression</string>
     <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_summary">Vigilances météo, précipitations, prévisions</string>
+    <string name="settings_notifications_summary">Notifications de vigilances météo, précipitations, prévisions pour le premier emplacement</string>
     <string name="settings_notifications_alerts_title">Notifications de vigilances</string>
     <string name="settings_notifications_precipitations_title">Notifications de précipitations</string>
     <string name="settings_notifications_section_forecast">Prévisions</string>

@@ -24,7 +24,7 @@
         android:textAlignment="gravity"
         android:textStyle="bold"
         style="@style/title_text"
-        tools:text="晴 2℃"
+        tools:text="Mostly cloudy, 2 °C"
         tools:ignore="RtlHardcoded" />
 
 </LinearLayout>

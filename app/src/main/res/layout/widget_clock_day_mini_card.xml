@@ -173,7 +173,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/little_margin"
                     style="@style/widget_content_text"
-                    tools:text="Partly Cloud"
+                    tools:text="@string/weather_kind_partly_cloudy"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
@@ -185,7 +185,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/little_margin"
                     style="@style/widget_content_text"
-                    tools:text="21℃"
+                    tools:text="21 °C"
                     tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>

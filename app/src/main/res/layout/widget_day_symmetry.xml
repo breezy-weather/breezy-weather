@@ -40,7 +40,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="San Francisco\n21℃"
+                tools:text="San Francisco\n21° C"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="Partly Could\n17/23°"
+                tools:text="Partly cloudy\n23°/17°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

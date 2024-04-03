@@ -109,9 +109,9 @@
 \n
 \nΓια παράδειγμα, “Ο καιρός τώρα = $cw$” θα εμφανιστεί ως “Ο καιρός τώρα = Καθαρή ημέρα”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Ο καιρός τώρα</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Τρέχουσα θερμοκρασία (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Τρέχουσα θερμοκρασία (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Τρέχουσα θερμοκρασία (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Θερμοκρασία Τρέχουσας Αίσθησης (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Θερμοκρασία Τρέχουσας Αίσθησης (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Τρέχουσα Αίσθηση Θερμοκρασίας (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Άνεμος</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Δείκτης UV</string>
@@ -132,8 +132,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Καταχώρηση</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Ο καιρός σήμερα, αύριο …, για 4 ημέρες</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Ο καιρός τη νύχτα σήμερα, αύριο, …, για 4 ημέρες</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Ο καιρός την ημέρα σήμερα, αύριο, …, για 4 ημέρες (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Θερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Ο καιρός την ημέρα σήμερα, αύριο, …, για 4 ημέρες (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Θερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Θερμοκρασία ημέρας σήμερα, αύριο, …, για 4 ημέρες (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Θερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Βροχόπτωση ημέρας σήμερα, αύριο, …, για 4 ημέρες (%)</string>

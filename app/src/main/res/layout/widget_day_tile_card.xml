@@ -41,7 +41,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text="Partly Cloud 21℃"
+                tools:text="Partly cloudy 21 °C"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -51,7 +51,7 @@
                 android:maxLines="1"
                 android:textAlignment="viewEnd"
                 style="@style/widget_content_text"
-                tools:text="17/23°"
+                tools:text="23°/17°"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
