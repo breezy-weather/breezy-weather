@@ -16,7 +16,7 @@
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
     <string name="pollen_artemisia">Pelin</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="widget_style_vertical">Vertikalno</string>
+    <string name="widget_style_vertical">Okomito</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
     <string name="wind_strength_3">Slab vjetar</string>
     <string name="widget_label_show_widget_card">Boja pozadine</string>
@@ -56,7 +56,7 @@
     <string name="setting_weather_source_accu_days">Dani</string>
     <string name="air_quality_level_4">Nezdravo</string>
     <string name="action_about">O</string>
-    <string name="weather_minutely_data_by">Oborine iz minute u minutu od %s</string>
+    <string name="weather_minutely_data_by">Podatci o aktualnim oborinama od %s</string>
     <string name="weather_source_accu_preference_days_5">5 dana</string>
     <string name="air_quality_level_1">Izvrsno</string>
     <string name="widget_label_show_widget_card_alpha">Neprozirnost</string>
@@ -118,7 +118,7 @@
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="air_quality_level_1_description">Kvaliteta zraka savršena je za većinu osoba. Uživajte u uobičajenim aktivnostima na otvorenom.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
-    <string name="settings_notifications_summary">Vremenska upozorenja, oborine, prognoza</string>
+    <string name="settings_notifications_summary">Vremenska upozorenja, oborine ili prognoza za prvu lokaciju</string>
     <string name="widget_clock_font_analog">Analogni</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="ephemeris_sunset_at">Zalazak sunca u %s</string>
@@ -344,7 +344,7 @@
     <string name="settings_widgets_live_wallpaper_error">Neuspjelo pokretanje biranja pozadine. Pozadinu za „Breezy Weather” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_appearance">Izgled</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Trenutna temperatura (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Trenutačna temperatura (°C/°F)</string>
     <string name="action_help">Pomoć</string>
     <string name="message_server_timeout">Vrijeme zahtjeva je isteklo</string>
     <string name="action_search">Pretražite</string>
@@ -675,4 +675,5 @@
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
     <string name="settings_widgets_broadcast_switch_dialog">Ova opcija omogućuje SVAKOJ aplikaciji na vašem uređaju pristup imenu vaše lokacije i vremenskim podacima. Nastavite samo ako u potpunosti razumijete potencijalne rizike zlouporabe drugih aplikacija koji bi mogli nastati zbog toga.</string>
     <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu Breezy Weathera, a zatim se prebacite na F-Droid koji ima manje podržanih izvora vremena. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
+    <string name="alert_source">Izvor: %s</string>
 </resources>
