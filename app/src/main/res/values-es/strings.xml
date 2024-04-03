@@ -291,7 +291,7 @@
     <string name="uv_index_11">Extremo</string>
     <string name="uv_alert_level">Alerta</string>
     <string name="air_quality_level_2">Bueno</string>
-    <string name="air_quality_level_4">Insalubre</string>
+    <string name="air_quality_level_4">Poco saludable</string>
     <string name="air_quality_level_3_description">El aire ha alcanzado un alto nivel de contaminación y es insalubre para los grupos sensibles. Reduzca el tiempo que pasa al aire libre si siente síntomas como dificultad para respirar o irritación de garganta.</string>
     <string name="air_quality_level_5_description">Los grupos sensibles sentirán efectos perjudiciales sobre su salud inmediatamente. Es probable que las personas sanas experimenten dificultad para respirar e irritación de garganta; considere permanecer en interiores y reprogramar las actividades al aire libre.</string>
     <string name="air_quality_index">Índice de calidad del aire</string>
@@ -446,11 +446,11 @@
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
     <string name="weather_pollen_data_by">Polen por %s</string>
     <string name="weather_air_quality_data_by">Datos sobre la calidad del aire por %s</string>
-    <string name="weather_minutely_data_by">Predicción inmediata de las precipitaciones por %s</string>
+    <string name="weather_minutely_data_by">Previsión de las precipitaciones por %s</string>
     <string name="weather_alert_data_by">Alerta por %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Fallo en la actualización de los datos meteorológicos desde una fuente meteorológica secundaria</string>
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
-    <string name="ephemeris_moonrise_at">Salida de la luna a las %s</string>
+    <string name="ephemeris_moonrise_at">Anochece a las %s</string>
     <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como los compuestos orgánicos volátiles, el monóxido de carbono y los óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a su naturaleza fotoquímica, los niveles más altos de ozono se observan durante los periodos de tiempo soleado.</string>
     <string name="precipitation_nowcasting">Precipitaciones minuto a minuto</string>
     <string name="settings_main_section_animations">Animaciones</string>
@@ -493,7 +493,7 @@
     <string name="settings_location_access_precise_summaryOff">Activa “Usar la ubicación precisa” si tienes problemas para obtener una ubicación.</string>
     <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de Breezy Weather seleccionando “Fondo de pantalla animado” en el selector de fondos de la pantalla de inicio.</string>
     <string name="settings_widgets_week_icon_mode_title">Icono para mostrar en las vistas semanales</string>
-    <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, notificaciones del pronóstico para la primera ubicación</string>
+    <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, notificaciones del pronóstico para la ubicación principal</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora de notificación de la previsión para el día siguiente</string>
     <string name="settings_widgets">Complementos y fondos de pantalla animados</string>
     <string name="settings_widgets_section_widgets_in_use">Complementos utilizados</string>
@@ -513,7 +513,7 @@
     <string name="action_save">Guardar</string>
     <string name="about_privacy_policy">Política de privacidad</string>
     <string name="settings_debug_dump_crash_logs_summary">Guarda los registros de errores en un archivo para compartirlos con los desarrolladores</string>
-    <string name="settings_item_delete">Eliminar este elemento</string>
+    <string name="settings_item_delete">Elimine este elemento</string>
     <string name="settings_debug_dump_crash_logs_title">Compartir registros de fallos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_main_cards_fade_in_switch">Las cartas se difuminan</string>
@@ -527,7 +527,7 @@
     <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Llovizna moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Fuertes lluvias y nieve</string>
-    <string name="settings_items_drag_to_sort">Pulsa para arrastrar los elementos de la lista y ordenarlos</string>
+    <string name="settings_items_drag_to_sort">Toque para arrastrar los elementos de la lista para ordenarlos</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_mph">mph</string>
     <string name="unit_cm">cm</string>
