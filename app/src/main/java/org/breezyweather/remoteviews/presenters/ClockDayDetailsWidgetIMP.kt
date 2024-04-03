@@ -28,9 +28,9 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.extensions.isChinese
-import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
@@ -135,7 +135,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         } ?: views.setViewVisibility(R.id.widget_clock_day_icon, View.INVISIBLE)
         views.setTextViewText(
             R.id.widget_clock_day_lunar,
-            if (context.currentLocale.isChinese && !hideLunar) " - " + LunarHelper.getLunarDate(Date()) else ""
+            if (context.currentLocale.isChinese && !hideLunar) " - " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context) else ""
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))

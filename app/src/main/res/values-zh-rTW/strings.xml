@@ -117,9 +117,9 @@
 \n
 \n例如，「目前的天氣是：$cw$。」將會顯示為「目前的天氣是：晴天。」。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_atd_description">目前體感溫度（°）</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">當前風況</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">當前紫外線</string>
@@ -142,8 +142,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">換行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日白天天氣，明日，……，4天後</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日夜間天氣，明日，……，4天後</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">今日白天溫度，明日，……，4天後（℃/℉）</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">今日夜間溫度，明日，……，4天後（℃/℉）</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">今日白天溫度，明日，……，4天後（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">今日夜間溫度，明日，……，4天後（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">今日白天溫度，明日，……，4天後（°）</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">今日夜間溫度，明日，……，4天後（°）</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">今日白天降水概率，明日，……，4天後（%）</string>

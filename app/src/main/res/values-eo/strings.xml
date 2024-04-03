@@ -273,9 +273,9 @@
     <string name="widget_subtitle_data_custom">Propa</string>
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_keyword_cw_description">Nuna veterkondiĉo</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Nuna temperaturo (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Nuna temperaturo (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Nuna temperaturo (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Nuna sentotemperaturo (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Nuna sentotemperaturo (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Nuna sentotemperaturo (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuna vento</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuna UV</string>
@@ -363,7 +363,7 @@
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Efectoj de aliaj elementoj</string>
     <string name="settings_notifications">Sciigoj</string>
-    <string name="settings_notifications_summary">Veteraj atentigoj, precipitaĵo, prognozoj</string>
+    <string name="settings_notifications_summary">Sciigoj de veteraj atentigoj, precipitaĵo, prognozoj por la unua loko</string>
     <string name="settings_notifications_alerts_title">Sciigo de veteraj atentigoj</string>
     <string name="settings_notifications_precipitations_title">Sciigo de precipitaĵo</string>
     <string name="settings_notifications_section_forecast">Prognozoj</string>

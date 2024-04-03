@@ -48,7 +48,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/notification_title_text"
-            tools:text="Partly Cloudy" />
+            tools:text="@string/weather_kind_partly_cloudy" />
 
         <TextView
             android:id="@+id/notification_base_aqiAndWind"
@@ -59,7 +59,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/notification_content_text"
-            tools:text="Air Quality - Fresh Air" />
+            tools:text="Air quality - Fair" />
 
         <TextView
             android:id="@+id/notification_base_time"
@@ -70,7 +70,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/notification_subtitle_text"
-            tools:text="青岛, 更新于 周三 10:00 正月初二"
+            tools:text="Prague"
             tools:ignore="RtlHardcoded,SmallSp" />
 
     </LinearLayout>

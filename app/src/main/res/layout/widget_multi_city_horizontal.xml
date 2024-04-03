@@ -32,7 +32,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Guayaquil" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_1"
@@ -52,7 +52,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
-                tools:text="1°/9°" />
+                tools:text="9°/1°" />
 
         </LinearLayout>
 
@@ -74,7 +74,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Quayaquil" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_2"
@@ -94,7 +94,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
-                tools:text="1°/9°" />
+                tools:text="9°/1°" />
 
         </LinearLayout>
 
@@ -116,7 +116,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
-                tools:text="青岛" />
+                tools:text="Quayaquil" />
 
             <ImageView
                 android:id="@+id/widget_multi_city_horizontal_icon_3"
@@ -136,7 +136,7 @@
                 android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
-                tools:text="1°/9°" />
+                tools:text="9°/1°" />
 
         </LinearLayout>
 

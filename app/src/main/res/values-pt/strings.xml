@@ -301,7 +301,7 @@
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Descrição por hora</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linha</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temp. do dia de hoje, amanhã, …, 4 dias depois (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temp. do dia de hoje, amanhã, …, 4 dias depois (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Precip. do dia de hoje, amanhã, …, 4 dias depois (%)</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_style_vertical">Vertical</string>
@@ -351,9 +351,9 @@
     <string name="widget_material_you_forecast">Material You - Previsão</string>
     <string name="widget_material_you_current">Material You - Atual</string>
     <string name="widget_label_align_end">Alinhar até o final</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura atual (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura aparente (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura aparente (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Temperatura aparente (°)</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Ponto de orvalho atual</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temp. do dia de hoje, amanhã, …, 4 dias depois (°)</string>
@@ -531,7 +531,7 @@
     <string name="action_continue">Continuar</string>
     <string name="dialog_permissions_location_content">Breezy Weather precisa coletar as suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. As suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se não quiser que obtenhamos as suas informações de localização, pode negar esses requisitos e definir o seu local manualmente na página de gestão.</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Clima da noite de hoje, amanhã, …, 4 dias depois</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temp. da noite de hoje, amanhã, …, 4 dias depois (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temp. da noite de hoje, amanhã, …, 4 dias depois (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Pôr do sol de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Tempo de atualização</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Clima atual</string>

@@ -111,9 +111,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">現在の天気</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">現在の気温 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">現在の気温 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">現在の気温 (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">現在の体感温度 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">現在の体感温度 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">現在の体感温度 (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">現在の風況</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">現在の紫外線</string>
@@ -134,8 +134,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日の昼間天気, 明日, …, 4日目</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日の夜間天気, 明日, …, 4日目</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">日中の気温, 明日, …, 4日目 (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">今日の夜間気温, 明日, …, 4日目 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">日中の気温, 明日, …, 4日目 (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">今日の夜間気温, 明日, …, 4日目 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">今日の昼間気温, 明日, …, 4日目 (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">今日の夜間気温, 明日, …, 4日目 (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">今日の昼間降水量, 明日, …, 4日目 (%)</string>

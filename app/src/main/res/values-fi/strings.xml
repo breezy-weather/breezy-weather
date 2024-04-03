@@ -118,9 +118,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Tämänhetkinen sää</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Tämänhetkinen lämpötila (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Tämänhetkinen lämpötila (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Tämänhetkinen lämpötila (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Näenäinen lämpötila (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Näenäinen lämpötila (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Näennäinen lämpötila (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Tämänhetkinen tuuli</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Tämänhetkinen UV</string>
@@ -143,8 +143,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Uusi rivi</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Sää tänään päivällä, huomenna, …, 4:n päivän päästä</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Sää tänään yöllä, huomenna, …, 4:n päivän päästä</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Sateen todennäköisyys tänään päivällä, huomenna, …, 4:n päivän päästä (%)</string>

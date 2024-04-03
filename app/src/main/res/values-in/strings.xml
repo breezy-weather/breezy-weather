@@ -124,9 +124,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Cuaca saat ini</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Suhu saat ini (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Suhu saat ini (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Suhu saat ini (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Suhu terasa saat ini (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Suhu terasa saat ini (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Suhu terasa saat ini (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Angin saat ini</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV saat ini</string>
@@ -149,8 +149,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Enter</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Siang hari Cuaca Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Malam hari Cuaca Hari ini, Bsk, …, 4 hari kemudian</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Siang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Malam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Siang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Malam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Siang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Malam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Siang hari Presipitasi Hari ini, Bsk, …, 4 hari kemudian (%)</string>

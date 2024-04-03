@@ -117,7 +117,7 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Clima Actual</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actual (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura Actual (°)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Sensación térmica actual (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Viento Actual</string>
@@ -141,8 +141,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Entrar</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Clima del Día de Hoy, Tmw, …, 4 días después</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Clima de la Noche de Hoy, Tmw, …, 4 días después</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura del Día de Hoy, Tmw, …, 4 días después (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura de la Noche de Hoy, Tmw, …, 4 días después (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura del Día de Hoy, Tmw, …, 4 días después (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura de la Noche de Hoy, Tmw, …, 4 días después (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura del Día de Hoy, Tmw, …, 4 días después (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura de la Noche de Hoy, Tmw, …, 4 días después (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Precipitación del Día de Hoy, Tmw, …, 4 días después (%)</string>
@@ -624,7 +624,7 @@
     <string name="notification_precipitation_stopping_desc">Escampará a las %s</string>
     <string name="notification_precipitation_continuing">Precipitación</string>
     <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %s</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (°C/°F)</string>
     <string name="location_search_source">Fuente para encontrar la ubicación</string>
     <string name="location_search_change_source">Cambiar la fuente para la ubicación</string>
     <string name="settings_weather_source_none">Ninguna</string>

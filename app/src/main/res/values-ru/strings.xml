@@ -107,9 +107,9 @@
 \n
 \nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясный День”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текущая температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">По ощущениям (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">По ощущениям (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">По ощущениям (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Ветер</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Текущий УФ-индекс</string>
@@ -131,8 +131,8 @@
     <string name="widget_custom_subtitle_keyword_hd_description">Почасовой подробный</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Погода сегодня днём, завтра, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Погода сегодня ночью, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Дневная температура сегодня, завтра, …, на 4 дня (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Ночная температура сегодня, завтра, …, на 4 дня (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Дневная температура сегодня, завтра, …, на 4 дня (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Ночная температура сегодня, завтра, …, на 4 дня (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дневная температура сегодня, завтра, …, на 4 дня (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Ночная температура сегодня, завтра, …, на 4 дня (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Осадки днём, завтра, …, на 4 дня (%)</string>

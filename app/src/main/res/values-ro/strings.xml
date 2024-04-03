@@ -118,9 +118,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Vremea Actuală</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actuală (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actuală (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura Actuală (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura Resimțită Actuală (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura Resimțită Actuală (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Temperatura Resimțită Actuală (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vântul Actual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV Actual</string>
@@ -143,8 +143,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Selectează</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Vremea de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vremea la Noapte, de Mâine, …, 4 nopți mai târziu</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura de Azi, Mâine, …, 4 zile mai târziu (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura la Noapte, de Mâine, …, 4 nopți mai târziu (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura de Azi, Mâine, …, 4 zile mai târziu (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura la Noapte, de Mâine, …, 4 nopți mai târziu (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura de Azi, Mâine, …, 4 zile mai târziu (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura la Noapte, de Mâine, …, 4 nopți mai târziu (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Precipitațiile de Azi, Mâine, …, 4 zile mai târziu (%)</string>

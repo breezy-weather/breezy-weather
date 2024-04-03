@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.openmeteo.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -23,5 +24,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenMeteoLocationResults(
-    val results: List<OpenMeteoLocationResult>?
+    val results: List<OpenMeteoLocationResult>?,
+    @SerialName("generationtime_ms") val generationtimeMs: Double?
 )

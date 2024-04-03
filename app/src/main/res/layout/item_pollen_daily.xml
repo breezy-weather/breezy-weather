@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:importantForAccessibility="no"
         style="@style/title_text"
-        tools:text="11月8日 星期五" />
+        tools:text="Wednesday, 3 April" />
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/composeView"

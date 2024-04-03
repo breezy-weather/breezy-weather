@@ -36,6 +36,7 @@ import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.launchUI
@@ -45,7 +46,6 @@ import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.domain.weather.model.isToday
-import org.breezyweather.domain.weather.model.lunar
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
 import javax.inject.Inject
@@ -188,7 +188,7 @@ class DailyWeatherActivity : GeoActivity() {
         mTitle?.text = daily.date.getFormattedDate(
             getLongWeekdayDayMonth(this), location, this
         )
-        mSubtitle?.text = daily.lunar
+        mSubtitle?.text = daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, this)
         mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
         mIndicator?.text = if (daily.isToday(location)) {
             getString(R.string.short_today)

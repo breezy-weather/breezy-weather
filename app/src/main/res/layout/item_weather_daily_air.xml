@@ -29,6 +29,6 @@
         android:ellipsize="end"
         android:layout_gravity="end"
         style="@style/content_text"
-        tools:text="3 / 强"/>
+        tools:text="43 / Fair"/>
 
 </LinearLayout>

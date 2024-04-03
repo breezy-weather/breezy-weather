@@ -29,10 +29,10 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetDayWeekProvider
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
@@ -331,17 +331,17 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "lunar" -> when (viewStyle) {
                 "rectangle" -> (location.getPlace(context)
                     + " "
-                    + LunarHelper.getLunarDate(Date()))
+                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
 
                 "symmetry" -> (Date().getWeek(location, context)
                     + " "
-                    + LunarHelper.getLunarDate(Date()))
+                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
 
                 "tile" -> (location.getPlace(context)
                     + " "
                     + Date().getWeek(location, context)
                     + " "
-                    + LunarHelper.getLunarDate(Date()))
+                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
 
                 else -> null
             }

@@ -28,10 +28,10 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
-import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getName
@@ -136,7 +136,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         timeStr.append(location.getPlace(context))
         if (context.currentLocale.isChinese) {
             timeStr.append(context.getString(R.string.comma_separator))
-                .append(LunarHelper.getLunarDate(Date()))
+                .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         }
 
         views.apply {

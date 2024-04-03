@@ -196,7 +196,7 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Нова линија</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Времето во текот на денот денес, утре, …, 4 дена подоцна</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Ноќно време денес, утре, …, 4 дена подоцна</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Дневна температура од денес, утре, …, 4 дена подоцна (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Дневна температура од денес, утре, …, 4 дена подоцна (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Ноќен ветер од денес, утре, …, 4 дена подоцна</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Изгрејсонце од денес, утре, …, 4 дена подоцна</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Месечината фаза од денес, утре, …, 4 дена подоцна</string>
@@ -321,7 +321,7 @@
     <string name="widget_custom_subtitle_keyword_d_description">Датум</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Месечев календар</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недела</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Ноќна температура од денес, утре, …, 4 дена подоцна (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Ноќна температура од денес, утре, …, 4 дена подоцна (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дневна температура од денес, утре, …, 4 дена подоцна (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Ноќна температура од денес, утре, …, 4 дена подоцна (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Дневни врнежи од денес, утре, …, 4 дена подоцна (%)</string>
@@ -587,9 +587,9 @@
     <string name="action_continue">Продолжи</string>
     <string name="action_close">Затвори</string>
     <string name="dialog_permissions_location_background_title">Пристапете до локацијата во заднина</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Тековна температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Тековна температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Тековна температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Привидна температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Привидна температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Привидна температура (°)</string>
     <string name="widget_clock_font_analog">Аналогни</string>
     <string name="widget_live_wallpaper_weather_kind">Времето</string>

@@ -314,17 +314,21 @@ class OpenMeteoService @Inject constructor(
         context: Context,
         query: String
     ): Observable<List<Location>> {
-        return mGeocodingApi.getWeatherLocation(
+        return mGeocodingApi.getLocations(
             query,
             count = 20,
             context.currentLocale.code
         ).map { results ->
             if (results.results == null) {
-                throw LocationSearchException()
-            }
-
-            results.results.map {
-                convert(it)
+                if (results.generationtimeMs != null && results.generationtimeMs > 0.0) {
+                    emptyList()
+                } else {
+                    throw LocationSearchException()
+                }
+            } else {
+                results.results.map {
+                    convert(it)
+                }
             }
         }
     }

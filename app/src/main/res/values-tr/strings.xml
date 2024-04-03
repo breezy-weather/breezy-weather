@@ -255,12 +255,12 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Konum hizmetini seçin</string>
     <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok özel olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Şu Anki Sıcaklık (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Hissedilen sıcaklık (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Hissedilen sıcaklık (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Hissedilen sıcaklık (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Şu Anki Rüzgar</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Şu Anki Basınç</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Şu Anki UV</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Şu Anki Sıcaklık (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Şu Anki Sıcaklık (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Konum</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Güncelleme Zamanı</string>
     <string name="widget_custom_subtitle_keyword_d_description">Tarih</string>

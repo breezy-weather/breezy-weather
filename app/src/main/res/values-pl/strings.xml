@@ -112,9 +112,9 @@
 \n
 \nNa przykład, “current weather = $cw$” wyświetli się jako “current weather = Clear Day”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Obecna pogodar</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Obecna temperatura (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Obecna temperatura (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Obecna temperatura (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura pozorna (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura pozorna (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Temperatura pozorna (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Obecny wiatr</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Obecny indeks UV</string>
@@ -135,8 +135,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Wprowadź</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dzisiejsza pogoda w ciągu dnia, Tmw, …, 4 dni później</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Dzisiejsza pogoda w ciągu nocy, Tmw, …, 4 dni później</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Dzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Dzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dzisiejsza temperatura w ciągu dnia, Tmw, …, 4 dni później°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Dzisiejsza temperatura w ciągu nocy, Tmw, …, 4 dni później°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Dzisiejsze opady w ciągu dnia, Tmw, …, 4 dni później%)</string>

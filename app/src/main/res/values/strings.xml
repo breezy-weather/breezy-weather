@@ -400,9 +400,9 @@
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Current Temperature (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Current Feels like Temperature (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Current Feels like Temperature (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Current Feels like Temperature (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Current Wind</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Current Air Quality Index</string>
@@ -426,8 +426,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Newline</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Daytime Weather of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Nighttime Weather of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Daytime Temperature of today, tomorrow, …, 4 days later (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nighttime Temperature of today, tomorrow, …, 4 days later (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Daytime Temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nighttime Temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Daytime Temperature of today, tomorrow, …, 4 days later (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Nighttime Temperature of today, tomorrow, …, 4 days later (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Daytime Precipitation of today, tomorrow, …, 4 days later (%)</string>
@@ -588,7 +588,7 @@
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast</string>
+    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast notifications for the first location</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_notifications_alerts_title">Notifications of weather alerts</string>
     <string name="settings_notifications_precipitations_title">Notifications of precipitations</string>

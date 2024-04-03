@@ -100,7 +100,7 @@
                     android:ellipsize="end"
                     android:textAlignment="viewStart"
                     style="@style/subtitle_text"
-                    tools:text="Data by 彩云天气"
+                    tools:text="Data by Open-Meteo"
                     tools:ignore="RtlHardcoded,SmallSp" />
 
             </LinearLayout>

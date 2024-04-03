@@ -115,9 +115,9 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Oratge actual</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura actual (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura actual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura actual (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Sensació tèrmica (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Sensació tèrmica (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Sensació tèrmica (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV actual</string>
@@ -140,8 +140,8 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Canvi de línia</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Oratge diürn d’avui, demà, …, d’aquí a 4 dies</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Oratge nocturn d’avui, demà, …, d’aquí a 4 dies</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diürna d’avui, demà, …, d’aquí a 4 dies (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura nocturna d’avui, demà, …, 4 dies després (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diürna d’avui, demà, …, d’aquí a 4 dies (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura nocturna d’avui, demà, …, 4 dies després (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura diürna d’avui, demà, …, 4 dies després (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura nocturna d’avui, demà, …, 4 dies després (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Precipitació diürna d’avui, demà, …, 4 dies després (%)</string>
