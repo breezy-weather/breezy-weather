@@ -425,7 +425,7 @@
     <string name="settings_main_gravity_sensor_switch">Датчик сили тяжіння</string>
     <string name="settings_main_cards_fade_in_switch">Поява карток</string>
     <string name="settings_main_cards_other_element_animations_switch">Інші анімації</string>
-    <string name="settings_notifications_summary">Погодні попередження, опади, прогноз</string>
+    <string name="settings_notifications_summary">Сповіщення про погоду, опади або прогноз для першого місця</string>
     <string name="settings_notifications_forecast_today_title">Повідомлення про прогноз на день</string>
     <string name="settings_widgets_summary">Встановлення шпалер, налаштування використовуваних віджетів, віджет повідомлень</string>
     <string name="settings_widgets_section_notification_widget">Віджет повідомлень</string>
