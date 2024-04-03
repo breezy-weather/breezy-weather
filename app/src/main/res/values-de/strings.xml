@@ -410,7 +410,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
     <string name="settings_appearance_summary">Sprache, dunkler Modus, Symbolpaket, Einheiten</string>
-    <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage</string>
+    <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersagen für den ersten Ort</string>
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
     <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
