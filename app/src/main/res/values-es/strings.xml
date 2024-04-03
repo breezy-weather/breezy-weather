@@ -610,7 +610,7 @@
     <string name="about_contribution_WangDaYeeeeee">Desarrollador del proyecto original de Geometric Weather</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Niebla por depósito de escarcha</string>
     <string name="common_weather_text_drizzle_freezing_light">Llovizna helada ligera</string>
-    <string name="metno_weather_text_andthunder">%s con truenos</string>
+    <string name="metno_weather_text_andthunder">%s y truenos</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tormenta con granizo ligero</string>
     <string name="common_weather_text_drizzle_freezing">Llovizna helada</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tormenta ligera o moderada</string>
