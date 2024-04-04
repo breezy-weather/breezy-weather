@@ -213,7 +213,7 @@
     <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C° / F)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (درجة مئوية/درجة فهرنهايت)</string>
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
     <string name="widget_material_you_current">نمط واجهة ”Material You“ - الحالي</string>
@@ -459,7 +459,7 @@
     <string name="settings_main_background_animation_disabled">معطل</string>
     <string name="settings_main_cards_fade_in_switch">البطاقات تتلاشى لداخل</string>
     <string name="settings_main_cards_other_element_animations_switch">الرسوم المتحركة للعناصر الأخرى</string>
-    <string name="settings_notifications_summary">تنبيهات الطقس ، هطول الأمطار ، التوقعات</string>
+    <string name="settings_notifications_summary">إخطارات تنبيهات الطقس أو هطول الأمطار أو التوقعات للموقع الأول</string>
     <string name="settings_notifications_alerts_title">إخطارات تنبيهات الطقس</string>
     <string name="settings_notifications_precipitations_title">إشعارات التساقطات</string>
     <string name="settings_notifications_forecast_today_title">إشعار لتوقعات اليوم</string>
