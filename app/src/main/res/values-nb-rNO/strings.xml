@@ -210,4 +210,9 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
+    <string name="unit_atm">atm</string>
+    <string name="unit_inhg">inHg</string>
+    <string name="unit_mmhg_voice">Millimeter kvikksølv</string>
+    <string name="unit_mmhg">mmHg</string>
+    <string name="unit_atm_voice">Standard atmosfære</string>
 </resources>
