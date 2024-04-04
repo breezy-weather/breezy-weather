@@ -634,7 +634,7 @@
     <string name="comma_separator">、</string>
     <string name="location_message_updated">場所は更新されました</string>
     <string name="location_message_already_exists">同じ情報源の同じ場所が既に存在しました。</string>
-    <string name="location_search_no_results_advice">内容が正しいかの確認･ローマ字での検索･情報源の切り替えをお試しください。</string>
+    <string name="location_search_no_results_advice">検索した内容を確認して、スペルをチェック或いは他の検索情報源に切り替えて試してください。</string>
     <string name="settings_weather_source_none">なし</string>
     <string name="location_search_source">場所検索源</string>
     <string name="location_search_change_source">場所検索源を変更</string>
