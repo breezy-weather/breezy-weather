@@ -530,7 +530,7 @@
     <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
     <string name="settings_notifications_precipitations_title">Értesítések csapadékról</string>
     <string name="settings_notifications_forecast_time_today_title">Értesítési idő a napi előrejelzéshez</string>
-    <string name="settings_notifications_summary">Időjárás-riasztások, csapadék, előrejelzés</string>
+    <string name="settings_notifications_summary">Értesítések az első helyszínre vonatkozó időjárási riasztásokról, csapadékról vagy előrejelzésekről</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Értesítési idő a másnapi előrejelzéshez</string>
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
     <string name="unit_celsius_short">°</string>
