@@ -11,7 +11,8 @@
 
 **Improvements and fixes**
 - Added source for each alert for compatible sources
-- [Widgets] Tap on “Material You - Current” now works again
+- [Widgets] “Material You - Current” Tap to open app now works again
+- [Widgets] “Material You - Current” add preview
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 

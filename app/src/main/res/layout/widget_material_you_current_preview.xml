@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_material_you_current"
+    android:theme="@style/BreezyWeatherAndroidSWidget"
+    android:background="@null"
+    android:padding="0dp"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_margin="0dp"
+    style="@style/BreezyWeather.Widget.Background">
+
+    <ImageView
+        android:id="@id/widget_material_you_current_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/widget_m3_current_background"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/widget_material_you_current_currentTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/widget_material_you_current_currentIcon"
+        android:layout_alignTop="@id/widget_material_you_current_background"
+        android:layout_alignEnd="@+id/widget_material_you_current_background"
+        android:text="26°"
+        android:textSize="62sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:gravity="center"
+        tools:text="26°" />
+
+    <ImageView
+        android:id="@+id/widget_material_you_current_currentIcon"
+        android:layout_gravity="start"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:importantForAccessibility="no"
+        android:src="@drawable/weather_partly_cloudy_day"
+        android:scaleType="centerInside"
+        android:layout_alignStart="@id/widget_material_you_current_background"
+        android:layout_alignBottom="@+id/widget_material_you_current_background" />
+
+</RelativeLayout>
