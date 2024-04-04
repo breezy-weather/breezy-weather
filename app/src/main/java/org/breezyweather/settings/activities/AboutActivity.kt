@@ -162,6 +162,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("es"), "Hin Weisner", weblate = "Hinweis"),
         TranslatorItem(arrayOf("es"), "gallegonovato", weblate = "gallegonovato"),
         TranslatorItem(arrayOf("es"), "Jose", github = "AzagraMac"),
+        TranslatorItem(arrayOf("es"), "Yayi23", github = "Yayi23"),
         TranslatorItem(arrayOf("eu"), "Dabid", github = "desertorea"),
         TranslatorItem(arrayOf("fa"), "Aspen", weblate = "olden"),
         TranslatorItem(arrayOf("fa"), "Armin Bashizade", github = "arminbashizade"),

@@ -673,7 +673,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerar alla vädermodeller från denna leverantör, till en sömlös prognos</string>
     <string name="settings_widgets_broadcast_switch_dialog">Detta val ger vilken app som helst på denna enhet tillgång till namnet på din plats och väderdata. Försätt endast om du begriper de eventuella riskerna som detta medför i och med att andra appar kan använda dessa data.</string>
     <string name="settings_weather_source_open_meteo_weather_models">Väderprognosmodeller</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för idag, imorgon, ..., om 4 dagar</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för idag, imorgon, …, om 4 dagar</string>
     <string name="settings_source_instance_invalid">Måste vara en HTTPS-URL som slutar med /</string>
     <string name="settings_invalid_syntax">Ogiltig syntax</string>
 </resources>
