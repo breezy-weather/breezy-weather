@@ -5,8 +5,8 @@
     android:theme="@style/BreezyWeatherAndroidSWidget"
     android:background="@drawable/widget_m3_current_background"
     android:padding="0dp"
-    android:layout_width="182dp"
-    android:layout_height="182dp"
+    android:layout_width="@dimen/widget_material_you_default_size"
+    android:layout_height="@dimen/widget_material_you_default_size"
     android:layout_margin="0dp"
     style="@style/BreezyWeather.Widget.Background">
 

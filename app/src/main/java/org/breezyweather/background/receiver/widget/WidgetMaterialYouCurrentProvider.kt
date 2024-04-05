@@ -19,6 +19,7 @@ package org.breezyweather.background.receiver.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.os.Bundle
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +38,9 @@ class WidgetMaterialYouCurrentProvider : AppWidgetProvider() {
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    override fun onUpdate(
+        context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         if (MaterialYouCurrentWidgetIMP.isEnabled(context)) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -56,5 +59,11 @@ class WidgetMaterialYouCurrentProvider : AppWidgetProvider() {
                 )
             }
         }
+    }
+
+    override fun onAppWidgetOptionsChanged(
+        context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle
+    ) {
+        onUpdate(context, appWidgetManager, intArrayOf(appWidgetId))
     }
 }

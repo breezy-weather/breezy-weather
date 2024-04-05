@@ -382,7 +382,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_material_you_current" />
             <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_OPTIONS_CHANGED" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE_OPTIONS" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
         </receiver>
