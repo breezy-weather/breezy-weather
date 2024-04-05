@@ -68,7 +68,7 @@
     <string name="settings_weather_source_portal">Канал</string>
     <string name="weather_source_accu_preference_hours_72">72 гадзіны</string>
     <string name="locations">Месцазнаходжання</string>
-    <string name="location_current">Бягучы месцазнаходжанне</string>
+    <string name="location_current">Бягучае месцазнаходжанне</string>
     <string name="action_continue">Працягнуць</string>
     <string name="message_network_unavailable">Сетка недаступная</string>
     <string name="message_server_timeout">Скончыўся час запыту</string>
