@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Tune
@@ -104,8 +105,8 @@ class SearchActivity : GeoActivity() {
         val locationSearchSource = sourceManager.getLocationSearchSourceOrDefault(locationSearchSourceState.value)
 
         Material3Scaffold(
+            modifier = Modifier.imePadding(),
             bottomBar = {
-                // Known padding issue when IME is open: https://issuetracker.google.com/issues/249727298
                 BottomAppBar(
                     actions = {
                         Box(
@@ -145,7 +146,6 @@ class SearchActivity : GeoActivity() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(
-                    // Known padding issue when IME is open: https://issuetracker.google.com/issues/249727298
                     modifier = Modifier.padding(paddings)
                 ) {
                     Material3SearchBarInputField(

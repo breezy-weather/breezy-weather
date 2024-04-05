@@ -33,53 +33,6 @@ abstract class GeoActivity : AppCompatActivity() {
 
     lateinit var fitHorizontalSystemBarRootLayout: FitHorizontalSystemBarRootLayout
 
-    private class KeyboardResizeBugWorkaround private constructor(activity: GeoActivity) {
-        private val root = activity.fitHorizontalSystemBarRootLayout
-        private val rootParams: ViewGroup.LayoutParams
-        private var usableHeightPrevious = 0
-
-        private fun possiblyResizeChildOfContent() {
-            val usableHeightNow = computeUsableHeight()
-
-            if (usableHeightNow != usableHeightPrevious) {
-                val screenHeight = root.rootView.height
-                val keyboardExpanded: Boolean
-
-                if (screenHeight - usableHeightNow > screenHeight / 5) {
-                    // keyboard probably just became visible.
-                    keyboardExpanded = true
-                    rootParams.height = usableHeightNow
-                } else {
-                    // keyboard probably just became hidden.
-                    keyboardExpanded = false
-                    rootParams.height = screenHeight
-                }
-
-                usableHeightPrevious = usableHeightNow
-                root.setFitKeyboardExpanded(keyboardExpanded)
-            }
-        }
-
-        private fun computeUsableHeight(): Int {
-            val r = Rect()
-            root.getWindowVisibleDisplayFrame(r)
-            return r.bottom // - r.top --> Do not reduce the height of status bar.
-        }
-
-        companion object {
-            // For more information, see https://issuetracker.google.com/issues/36911528
-            // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
-            fun assistActivity(activity: GeoActivity) {
-                KeyboardResizeBugWorkaround(activity)
-            }
-        }
-
-        init {
-            root.viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
-            rootParams = root.layoutParams
-        }
-    }
-
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,8 +61,6 @@ abstract class GeoActivity : AppCompatActivity() {
 
         fitHorizontalSystemBarRootLayout.removeAllViews()
         fitHorizontalSystemBarRootLayout.addView(decorChild)
-
-        KeyboardResizeBugWorkaround.assistActivity(this)
     }
 
     override fun onNewIntent(intent: Intent) {
