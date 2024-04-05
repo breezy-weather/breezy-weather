@@ -18,6 +18,7 @@ package org.breezyweather.remoteviews.config
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.WallpaperManager
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -30,6 +31,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.AdapterView
@@ -126,50 +128,60 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     private var mLastBackPressedTime: Long = -1
 
     // Workaround to properly resize layout and keep text input field visible when IME is open
-    // For more information, see https://issuetracker.google.com/issues/36911528
-    private class KeyboardResizeBugWorkaround private constructor(activity: GeoActivity) {
-        private val root = activity.fitHorizontalSystemBarRootLayout
-        private val rootParams: ViewGroup.LayoutParams
+    // For more information, see https://issuetracker.google.com/issues/36911528#comment100
+    private class KeyboardResizeBugWorkaround private constructor(activity: Activity) {
+
+        private val mChildOfContent: View
         private var usableHeightPrevious = 0
+        private val frameLayoutParams: FrameLayout.LayoutParams
+
+        init {
+            val content = activity.findViewById<View>(android.R.id.content) as FrameLayout
+            mChildOfContent = content.getChildAt(0)
+            mChildOfContent.viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
+            frameLayoutParams = mChildOfContent.layoutParams as FrameLayout.LayoutParams
+        }
 
         private fun possiblyResizeChildOfContent() {
             val usableHeightNow = computeUsableHeight()
-
             if (usableHeightNow != usableHeightPrevious) {
-                val screenHeight = root.rootView.height
-                val keyboardExpanded: Boolean
-
-                if (screenHeight - usableHeightNow > screenHeight / 5) {
-                    // keyboard probably just became visible.
-                    keyboardExpanded = true
-                    rootParams.height = usableHeightNow
+                val usableHeightSansKeyboard = mChildOfContent.rootView.height
+                val heightDifference = usableHeightSansKeyboard - usableHeightNow
+                if (heightDifference > usableHeightSansKeyboard / 4) {
+                    // keyboard probably just became visible
+                    frameLayoutParams.height = usableHeightSansKeyboard - heightDifference
                 } else {
-                    // keyboard probably just became hidden.
-                    keyboardExpanded = false
-                    rootParams.height = screenHeight
+                    // keyboard probably just became hidden
+                    frameLayoutParams.height = usableHeightSansKeyboard - getNavigationBarHeight(mChildOfContent.context)
                 }
-
+                mChildOfContent.requestLayout()
                 usableHeightPrevious = usableHeightNow
-                root.setFitKeyboardExpanded(keyboardExpanded)
             }
         }
 
         private fun computeUsableHeight(): Int {
             val r = Rect()
-            root.getWindowVisibleDisplayFrame(r)
-            return r.bottom // - r.top --> Do not reduce the height of status bar.
+            mChildOfContent.getWindowVisibleDisplayFrame(r)
+            return r.bottom
+        }
+
+        private fun getNavigationBarHeight(context: Context): Int {
+            val hasMenuKey = ViewConfiguration.get(context).hasPermanentMenuKey()
+            if (!hasMenuKey) {
+                // This device has a navigation bar
+                val resourceId = context.resources.getIdentifier("navigation_bar_height", "dimen", "android")
+                return if (resourceId > 0) {
+                    context.resources.getDimensionPixelSize(resourceId)
+                } else 0
+            }
+            return 0
         }
 
         companion object {
             // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
-            fun assistActivity(activity: GeoActivity) {
+            fun assistActivity(activity: Activity) {
                 KeyboardResizeBugWorkaround(activity)
             }
-        }
-
-        init {
-            root.viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
-            rootParams = root.layoutParams
         }
     }
 

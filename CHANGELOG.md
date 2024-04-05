@@ -16,6 +16,7 @@
 - [Widgets] “Material You - Current” add preview
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
+- Fix extra padding on bottom of keyboard on location search (@min7-i)
 
 **Translations**
 - Translations updated
