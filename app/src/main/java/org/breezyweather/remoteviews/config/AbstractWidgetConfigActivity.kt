@@ -23,6 +23,7 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -124,6 +125,54 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var alignEnd = false
     private var mLastBackPressedTime: Long = -1
 
+    // Workaround to properly resize layout and keep text input field visible when IME is open
+    // For more information, see https://issuetracker.google.com/issues/36911528
+    private class KeyboardResizeBugWorkaround private constructor(activity: GeoActivity) {
+        private val root = activity.fitHorizontalSystemBarRootLayout
+        private val rootParams: ViewGroup.LayoutParams
+        private var usableHeightPrevious = 0
+
+        private fun possiblyResizeChildOfContent() {
+            val usableHeightNow = computeUsableHeight()
+
+            if (usableHeightNow != usableHeightPrevious) {
+                val screenHeight = root.rootView.height
+                val keyboardExpanded: Boolean
+
+                if (screenHeight - usableHeightNow > screenHeight / 5) {
+                    // keyboard probably just became visible.
+                    keyboardExpanded = true
+                    rootParams.height = usableHeightNow
+                } else {
+                    // keyboard probably just became hidden.
+                    keyboardExpanded = false
+                    rootParams.height = screenHeight
+                }
+
+                usableHeightPrevious = usableHeightNow
+                root.setFitKeyboardExpanded(keyboardExpanded)
+            }
+        }
+
+        private fun computeUsableHeight(): Int {
+            val r = Rect()
+            root.getWindowVisibleDisplayFrame(r)
+            return r.bottom // - r.top --> Do not reduce the height of status bar.
+        }
+
+        companion object {
+            // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
+            fun assistActivity(activity: GeoActivity) {
+                KeyboardResizeBugWorkaround(activity)
+            }
+        }
+
+        init {
+            root.viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
+            rootParams = root.layoutParams
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_widget_config)
@@ -134,6 +183,12 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             initView()
             updateHostView()
         }
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+
+        KeyboardResizeBugWorkaround.assistActivity(this)
     }
 
     @Deprecated("Deprecated in Java")
