@@ -347,6 +347,10 @@
     <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>
     <string name="dialog_permissions_location_background_content">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
+    <string name="dialog_time_picker_select_time">Select time</string>
+    <string name="dialog_time_picker_input_time">Input time</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Switch to Text Input</string>
     <!-- Miscellaneous messages -->
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>
