@@ -10,6 +10,7 @@
 - [DMI] Add severity/colors to alerts
 
 **Improvements and fixes**
+- Fix wrong number displayed on the daily feels like chart
 - Added source for each alert for compatible sources
 - [Widgets] “Material You - Current” Tap to open app now works again
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12

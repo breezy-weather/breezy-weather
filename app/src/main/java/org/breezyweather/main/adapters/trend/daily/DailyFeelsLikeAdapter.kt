@@ -86,10 +86,14 @@ class DailyFeelsLikeAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
-                daily.day?.temperature?.temperature?.let {
+                daily.day?.temperature?.feelsLikeTemperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                } ?: daily.day?.temperature?.temperature?.let {
                     mTemperatureUnit.getShortValueText(activity, it)
                 },
-                daily.night?.temperature?.temperature?.let {
+                daily.night?.temperature?.feelsLikeTemperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
+                } ?: daily.night?.temperature?.temperature?.let {
                     mTemperatureUnit.getShortValueText(activity, it)
                 },
                 mHighestTemperature,
