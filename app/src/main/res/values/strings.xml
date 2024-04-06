@@ -351,8 +351,6 @@
     <string name="dialog_time_picker_input_time">Input time</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Switch to Text Input</string>
-    <string name="m3c_time_picker_am" tools:override="true">AM</string>
-    <string name="m3c_time_picker_pm" tools:override="true">PM</string>
     <!-- Miscellaneous messages -->
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>

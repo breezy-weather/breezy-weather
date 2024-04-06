@@ -16,7 +16,6 @@
 
 package org.breezyweather.settings.preference.composables
 
-import android.text.format.DateFormat
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -66,6 +65,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.zIndex
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
@@ -73,7 +73,6 @@ import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 @Composable
@@ -101,6 +100,7 @@ private fun TimePickerPreferenceView(
     val showingPicker = remember { mutableStateOf(true) }
     val configuration = LocalConfiguration.current
     val is12Hour = LocalContext.current.is12Hour
+    val time = SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(currentTimeState.value)
 
     Material3CardListItem(
         elevation = if (enabled) defaultCardListItemElevation else 0.dp
@@ -124,12 +124,8 @@ private fun TimePickerPreferenceView(
                     color = DayNightTheme.colors.titleColor,
                     style = MaterialTheme.typography.titleMedium,
                 )
-                val currentSummary = if (is12Hour) {
-                    stringIn12HourFormat(currentTimeState.value)
-                } else {
-                    currentTimeState.value
-                }
-                if (currentSummary.isNotEmpty()) {
+                val currentSummary = time?.getFormattedTime(null, LocalContext.current, is12Hour)
+                if (currentSummary?.isNotEmpty() == true) {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                     Text(
                         text = currentSummary,
@@ -142,15 +138,12 @@ private fun TimePickerPreferenceView(
     }
 
     if (showTimePicker) {
-        val time = stringToTime(currentTimeState.value)
-        val calendar = Calendar.getInstance()
-        if (time != null) {
-            calendar.setTime(time)
-        }
+        val cal = Calendar.getInstance()
+        time?.let { cal.setTime(it) }
 
         val timePickerState = rememberTimePickerState(
-            initialHour = calendar[Calendar.HOUR_OF_DAY],
-            initialMinute = calendar[Calendar.MINUTE],
+            initialHour = cal[Calendar.HOUR_OF_DAY],
+            initialMinute = cal[Calendar.MINUTE],
             is24Hour = !is12Hour
         )
 
@@ -222,24 +215,13 @@ private fun timeToString(
     hour: Int,
     minute: Int
 ): String {
-    val time = Calendar.getInstance().also {
-        it.set(Calendar.HOUR_OF_DAY, hour)
-        it.set(Calendar.MINUTE, minute)
-    }.time
-
-    return DateFormat.format("HH:mm", time).toString()
-}
-
-private fun stringToTime(
-    time: String
-): Date? {
-    return SimpleDateFormat("HH:mm", Locale.US).parse(time)
-}
-
-private fun stringIn12HourFormat(
-    time: String
-): String {
-    return DateFormat.format("h:mm aa", stringToTime(time)).toString()
+    return Calendar.getInstance()
+        .also {
+            it.set(Calendar.HOUR_OF_DAY, hour)
+            it.set(Calendar.MINUTE, minute)
+        }
+        .time
+        .getFormattedTime(null, null, false)
 }
 
 // The TimePickerDialog is not provided by compose material 3. So we need to add it manually.
