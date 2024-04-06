@@ -349,7 +349,7 @@
     <string name="settings_main_section_animations">Animasjoner</string>
     <string name="settings_main_section_options">Alternativer</string>
     <string name="settings_notifications_alerts_title">Varslinger for farevarsler</string>
-    <string name="settings_widgets_live_wallpaper_error">Kunne ikke åpne bakgrunnsvelger. Du kan fortsatt aktivere Breezy Weather bakgrunn ved å velge \"Live Wallpaper\" i bakgrunnsvelgeren for startskjermen.</string>
+    <string name="settings_widgets_live_wallpaper_error">Kunne ikke åpne bakgrunnsvelger. Du kan fortsatt aktivere Breezy Weather bakgrunn ved å velge “Live Wallpaper” i bakgrunnsvelgeren for startskjermen.</string>
     <string name="settings_widgets_summary">Angi bakgrunn, konfigurer moduler, varselmoduler</string>
     <string name="settings_notifications_precipitations_title">Varsler for nedbør</string>
     <string name="settings_widgets_notification_feels_like_switch">Bruk følt temperatur</string>
