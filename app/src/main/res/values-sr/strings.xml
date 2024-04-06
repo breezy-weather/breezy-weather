@@ -254,7 +254,7 @@
     <string name="settings_main_daily_trends_title">Дневни трендови</string>
     <string name="settings_main_section_animations">Анимације</string>
     <string name="settings_main_background_animation_title">Позадинска анимација</string>
-    <string name="settings_notifications_summary">Упозорења о времену, падавине, прогноза</string>
+    <string name="settings_notifications_summary">Обавештења о упозорењима о времену, падавинама или прогнози за прву локацију</string>
     <string name="settings_widgets_live_wallpaper_summary">Поставите анимацију времена као позадину</string>
     <string name="settings_widgets_live_wallpaper_error">Покретање бирача позадине није успело. Још увек можете да омогућите позадину Breezy Weather тако што ћете изабрати „Жива позадина“ у бирачу позадине на вашем почетном екрану.</string>
     <string name="settings_icon_packs_weather_icon_grey">Сива иконица</string>
