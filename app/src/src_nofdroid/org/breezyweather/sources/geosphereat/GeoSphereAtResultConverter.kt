@@ -119,7 +119,7 @@ private fun getHourlyForecast(
 
         HourlyWrapper(
             date = date,
-            //weatherCode = getWeatherCode(hourlyResult.features!![0].properties!!.parameters!!.sy?.data?.getOrNull(i)), // TODO
+            weatherCode = getWeatherCode(hourlyResult.features[0].properties!!.parameters!!.sy?.data?.getOrNull(i)),
             temperature = Temperature(
                 temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)
             ),
@@ -200,12 +200,19 @@ fun convertSecondary(
 }
 
 /**
- * TODO
+ * From https://www.zamg.ac.at/cms/en/topmenu/infopoint/legend/weather_symbols
  */
 private fun getWeatherCode(icon: Double?): WeatherCode? {
     if (icon == null) return null
-    return when (icon) {
-        1.0 -> WeatherCode.CLEAR
+    return when (icon.roundToInt()) {
+        1, 2 -> WeatherCode.CLEAR
+        3 -> WeatherCode.PARTLY_CLOUDY
+        4, 5 -> WeatherCode.CLOUDY
+        65, 68, 66, 69, 63 -> WeatherCode.RAIN
+        75, 78, 73, 76, 79 -> WeatherCode.SNOW
+        85, 86 -> WeatherCode.SLEET
+        49, 42 -> WeatherCode.FOG
+        92, 93, 99, 97, 98 -> WeatherCode.THUNDERSTORM
         else -> null
     }
 }

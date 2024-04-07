@@ -60,12 +60,9 @@ class GeoSphereAtService @Inject constructor(
         location: Location,
         feature: SecondaryWeatherSourceFeature?
     ): Boolean {
-        if (feature == null) {
-            return true // hourlyBbox.contains(latLng) // seems supported worldwide actually
-        }
-
         val latLng = LatLng(location.latitude, location.longitude)
         return when (feature) {
+            null -> hourlyBbox.contains(latLng)
             SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY -> airQuality12KmBbox.contains(latLng)
             SecondaryWeatherSourceFeature.FEATURE_MINUTELY -> nowcastBbox.contains(latLng)
             SecondaryWeatherSourceFeature.FEATURE_ALERT -> location.countryCode.equals("AT", ignoreCase = true)
@@ -204,7 +201,7 @@ class GeoSphereAtService @Inject constructor(
         private const val GEOSPHERE_AT_BASE_URL = "https://dataset.api.hub.geosphere.at/"
         private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://openapi.hub.geosphere.at/"
 
-        val hourlyBbox = LatLngBounds.parse(west = 5.49, south = 42.98, east = 22.1, north = 51.82) // Not used??
+        val hourlyBbox = LatLngBounds.parse(west = 5.49, south = 42.98, east = 22.1, north = 51.82)
         val airQuality12KmBbox = LatLngBounds.parse(west = -59.21, south = 17.65, east = 83.21, north = 76.49)
         val airQuality4KmBbox = LatLngBounds.parse(west = 4.31, south = 41.72, east = 18.99, north = 50.15)
         val nowcastBbox = LatLngBounds.parse(west = 8.1, south = 45.5, east = 17.74, north = 49.48)
