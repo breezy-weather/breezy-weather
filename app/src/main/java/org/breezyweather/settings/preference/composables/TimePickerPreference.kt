@@ -225,7 +225,8 @@ private fun timeToString(
 }
 
 // The TimePickerDialog is not provided by compose material 3. So we need to add it manually.
-// Source: https://cs.android.com/androidx/platform/tools/dokka-devsite-plugin/+/master:testData/compose/samples/material3/samples/TimePickerSamples.kt;l=230;drc=03ca30d22e6ee3483142f2e4048db459cb5afb79
+// See https://issuetracker.google.com/issues/288311426 for more details.
+// Source for dialog: https://cs.android.com/androidx/platform/tools/dokka-devsite-plugin/+/master:testData/compose/samples/material3/samples/TimePickerSamples.kt;l=230;drc=03ca30d22e6ee3483142f2e4048db459cb5afb79
 @Composable
 private fun TimePickerDialog(
     onCancel: () -> Unit,
