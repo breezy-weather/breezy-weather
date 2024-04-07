@@ -49,6 +49,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getUriCompat
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.isRunning
@@ -158,7 +159,6 @@ class WeatherUpdateJob @AssistedInject constructor(
             } else emptyList()
         } else {
             val nbLocations = when {
-                // TODO: Only refresh once a day 2nd to 4th location as we only use the daily info in widgets/notifications
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled &&
                     SettingsManager.getInstance(context)
                         .widgetNotificationStyle == NotificationStyle.CITIES -> 4
@@ -166,13 +166,19 @@ class WeatherUpdateJob @AssistedInject constructor(
                 else -> 1
             }
 
-            val locationList = locationRepository.getXLocations(nbLocations).toMutableList()
-            for (i in locationList.indices) {
-                locationList[i] = locationList[i].copy(
-                    weather = weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
-                )
-            }
-            locationList
+            locationRepository
+                .getXLocations(nbLocations)
+                .map {
+                    it.copy(
+                        weather = weatherRepository.getWeatherByLocationId(it.formattedId)
+                    )
+                }
+                .filterIndexed { i, location ->
+                    // Only refresh secondary locations once a day as we only need daily info
+                    i == 0 || location.weather?.base?.refreshTime == null ||
+                        location.weather!!.base.refreshTime!!.getFormattedDate("yyyy-MM-dd", location) < Date().getFormattedDate("yyyy-MM-dd")
+                }
+                .toMutableList()
         }
     }
 

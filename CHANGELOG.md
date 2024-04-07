@@ -15,6 +15,7 @@
 - [Widgets] “Material You - Current” Tap to open app now works again
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12
 - [Widgets] “Material You - Current” add preview
+- Background updates: secondary locations (when used) are now refreshed once a day
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 - Fix extra padding on bottom of keyboard on location search (@min7-i)
