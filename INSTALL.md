@@ -4,6 +4,8 @@ Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases)
 
 Install it and you’re done!
 
+(Update from the app itself is not yet available)
+
 
 # Detailed instructions
 
@@ -29,14 +31,15 @@ Install it and you’re done!
 - **[GitHub releases](https://github.com/breezy-weather/breezy-weather/releases)** is where all 3 flavors built by GitHub are published under APK format. Any Android device can install APK files without needing any particular app. If you have a GitHub account, you can subscribe to be notified of updates, however it’s more convenient to use a store app to track updates.
 - **[Breezy Weather’s F-Droid repositories](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)** are maintained by Breezy Weather developers and allows you to choose from the 3 flavors from a F-Droid client that doesn’t support receiving updates from GitHub.
 - **[Izzy F-Droid repository](https://apt.izzysoft.de/fdroid/index/info)** offers the Standard flavor which is our recommended choice if you would like someone to independently review the app before it gets published. Updates are fast (less than 24 hours).
+- **[F-Droid default repository](https://apt.izzysoft.de/fdroid/index/info)** offers the F-Droid flavor. Updates are slow (usually about a week). If you decide to use this source and you want to report an issue, you will be asked to update to the latest version before making the report.
 
-| Differences             | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    |
-|-------------------------|-----------------|-------------------------------|------------------------|
-| Available flavors       | All             | All                           | Standard               |
-| Pre-releases            | Optional        | Optional                      | ❌                      |
-| Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC |
-| APK matches source code | ✅               | ✅                             | ✅                      |
-| Independently reviewed  | ❌               | ❌                             | ✅                      |
+| Differences             | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    | [F-Droid repo] Default |
+|-------------------------|-----------------|-------------------------------|------------------------|------------------------|
+| Available flavors       | All             | All                           | Standard               | F-Droid                |
+| Pre-releases            | Optional        | Optional                      | ❌                      | ❌                      |
+| Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC | About a week           |
+| APK matches source code | ✅               | ✅                             | ✅                      | ✅                      |
+| Independently reviewed  | ❌               | ❌                             | ✅                      | ✅                      |
 
 ### Other not supported well-known sources
 
@@ -44,7 +47,6 @@ Install it and you’re done!
   - Costs money
   - Is privacy invasive for the developer (requires sending your ID and giving your phone number)
   - We don’t [comply with Google Play policy](https://github.com/breezy-weather/breezy-weather/issues/31)
-- F-Droid default repo: work is in progress!
 - Accrescent: waiting for it to become stable (no ETA announced by upstream)
 
 
@@ -71,15 +73,21 @@ In the “Add App” screen:
     - Google Play: `gplay`
 4. Tap the “Add” button at the very top, and you’re done!
 
+#### Getting updates from F-Droid flavor of the default F-Droid repo
 
-### F-Droid clients
+In the “Add App” screen, just add the following URL as App Source URL: https://f-droid.org/packages/org.breezyweather/
 
-Look for the Repositories option from your favorite client and add a new repository depending on the source you want to use:
+Tap the “Add” button at the very top, and you’re done!
+
+
+### F-Droid client
+
+1) Look for the Repositories option from your F-Droid client and add a new repository depending on the source you want to use:
    - Standard flavor from Izzy repo: https://apt.izzysoft.de/fdroid/repo
    - Standard flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid/repo
    - F-Droid flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo
    - Google Play flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/gplay-version/fdroid/repo
+   - F-Droid flavor from default F-Droid repo: should already be enabled by default on your F-Droid client
 
-You should now be able to install Breezy Weather from your client.
-
-**Important note:** If you add the F-Droid or Google Play flavor from our repos but you also have the Izzy repo installed, you should use a F-Droid client that supports setting which repo you want to get updates from, to avoid getting unexpected updates for the Standard flavor from the Izzy repo. This feature is called “preferred repo” in the official F-Droid client (v1.20.0 and later).
+2) After adding the app, go to the app details and make sure to select which repo you want to get updates from to avoid cross-updates between flavors and repos. On version 1.20.0 and later, this is how you do it:
+![F-Droid preferred repo feature](docs/fdroid_client_config.png)
