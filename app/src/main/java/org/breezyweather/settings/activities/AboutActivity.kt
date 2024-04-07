@@ -68,7 +68,7 @@ import org.breezyweather.theme.compose.rememberThemeRipple
 private class AboutAppLinkItem(
     @DrawableRes val iconId: Int,
     @StringRes val titleId: Int,
-    val onClick: () -> Unit,
+    val onClick: () -> Unit
 )
 
 private class ContributorItem(
@@ -103,18 +103,18 @@ class AboutActivity : GeoActivity() {
             titleId = R.string.about_dependencies
         ) {
             IntentHelper.startDependenciesActivity(this@AboutActivity)
-        },
+        }
     )
 
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", github = "papjul"),
         ContributorItem("WangDaYeeeeee", github = "WangDaYeeeeee", contribution = R.string.about_contribution_WangDaYeeeeee),
         ContributorItem("Cod3d.", github = "Cod3dDOT"),
+        ContributorItem("min7-i", github = "min7-i"),
         ContributorItem("Romain Théry", github = "rthery"),
         ContributorItem("danielzhang130", github = "danielzhang130"),
         ContributorItem("majjejjam", github = "majjejjam"),
         ContributorItem("Mark Bestavros", github = "mbestavros"),
-        ContributorItem("min7-i", github = "min7-i"),
         ContributorItem("Anthony Dégrange", url = "https://anthony-degrange-design.fr/", contribution = R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
@@ -204,8 +204,8 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("lv"), "Niks Rodžers", weblate = "niks.rodzers.auzins"),
         TranslatorItem(arrayOf("lv"), "Eduards Lusts", weblate = "eduardslu"),
         TranslatorItem(arrayOf("mk"), "ikocevski7", github = "ikocevski7"),
-        TranslatorItem(arrayOf("nb_rNO"), "Visnes", github = "Visnes"),
         TranslatorItem(arrayOf("nb_rNO"), "Even Bull-Tornøe", github = "bt0rne"),
+        TranslatorItem(arrayOf("nb_rNO"), "Visnes", github = "Visnes"),
         TranslatorItem(arrayOf("nl"), "BabyBenefactor", github = "BabyBenefactor"),
         TranslatorItem(arrayOf("nl"), "Jurre Tas", mail = "jurretas@gmail.com"),
         TranslatorItem(arrayOf("nl"), "trend", github = "trend-1"),
@@ -265,7 +265,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", github = "abc0922001"),
         TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", weblate = "hamburger2048"),
         TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rHK", "zh_rTW"), "天ツ風", github = "Yibuki"),
-        TranslatorItem(arrayOf("zh_rHK", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25"),
+        TranslatorItem(arrayOf("zh_rHK", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -310,7 +310,7 @@ class AboutActivity : GeoActivity() {
             ) {
                 linkToOpen.value = "https://matrix.to/#/#breezy-weather:matrix.org"
                 dialogLinkOpenState.value = true
-            },
+            }
         )
 
         Material3Scaffold(
@@ -321,7 +321,7 @@ class AboutActivity : GeoActivity() {
                     onBackPressed = { finish() },
                     scrollBehavior = scrollBehavior,
                 )
-            },
+            }
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
@@ -485,7 +485,7 @@ class AboutActivity : GeoActivity() {
                             onClick()
                         },
                     )
-                    .padding(dimensionResource(R.dimen.normal_margin)),
+                    .padding(dimensionResource(R.dimen.normal_margin))
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
