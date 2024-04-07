@@ -48,11 +48,11 @@ alt="Get it on Obtainium" align="center" height="54" />
 alt="Get it on F-Droid" align="center" height="80" /></a>
 </div>
 
-<hr />
-
 <div align="center">
     <a href="https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"><strong>All installation methods</strong></a>
 </div>
+
+<hr />
 
 <div align="center">
     <img src="docs/FullHomepageScreenshot.png" alt="" style="width: 300px" />
