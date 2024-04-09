@@ -202,7 +202,10 @@ fun MultiListPreferenceView(
     if (dialogOpenState.value) {
         AlertDialogNoPadding(
             onDismissRequest = {
-                onValueChanged(selectedKeys)
+                listSelectedState.apply {
+                    clear()
+                    addAll(selectedKeys)
+                }
                 dialogOpenState.value = false
             },
             title = {
@@ -250,7 +253,10 @@ fun MultiListPreferenceView(
             dismissButton = {
                 TextButton(
                     onClick = {
-                        onValueChanged(selectedKeys)
+                        listSelectedState.apply {
+                            clear()
+                            addAll(selectedKeys)
+                        }
                         dialogOpenState.value = false
                     }
                 ) {
