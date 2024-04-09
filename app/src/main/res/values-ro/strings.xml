@@ -110,7 +110,6 @@
     <string name="widget_label_text_color">Culoare text</string>
     <string name="widget_label_text_size">Mărime text</string>
     <string name="widget_label_clock_font">Font ceas</string>
-    <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>
     <string name="widget_label_align_end">Aliniază la Sfârșit</string>
     <string name="widget_custom_subtitle_explanation">Poți introduce orice, dar te rog să fii atent la lungimea textului. Dacă dorești să citezi date meteo, te rog să utilizezi $ pentru a face referire la cuvântul cheie corespunzător.
 \n
@@ -135,7 +134,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudine</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Timpul de Actualizare</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Calendar Lunar</string>
     <string name="widget_custom_subtitle_keyword_w_description">Săptămână</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Săptămână (Scurt)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrieri Zilnice</string>
@@ -234,7 +232,6 @@
     <string name="widget_subtitle_data_aqi">Calitatea Aerului</string>
     <string name="widget_subtitle_data_wind">Vânt</string>
     <string name="widget_subtitle_data_feels_like">Temp. resimțită</string>
-    <string name="widget_subtitle_data_lunar">Calendar lunar</string>
     <string name="widget_subtitle_data_custom">Personalizat</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Parțial Noros</string>

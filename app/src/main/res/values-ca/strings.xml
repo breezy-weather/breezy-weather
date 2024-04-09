@@ -108,7 +108,6 @@
     <string name="widget_label_text_color">Color del text</string>
     <string name="widget_label_text_size">Mida del text</string>
     <string name="widget_label_clock_font">Font del rellotge</string>
-    <string name="widget_label_hide_lunar">Oculta el calendari lunar</string>
     <string name="widget_custom_subtitle_explanation">Pots escriure-hi el que vulguis, però si us plau para atenció a la longitud del text. Si vols incloure-hi dades de l’oratge, si us plau empra $ per a referenciar la paraula clau corresponent.
 \n
 \nPer exemple, “oratge actual = $cw$” es mostrarà com a “oratge actual = Cel clar”.</string>
@@ -132,7 +131,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitud</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Freqüència d’actualització</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Calendari lunar</string>
     <string name="widget_custom_subtitle_keyword_w_description">Setmana</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Setmanal (versió breu)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descripció per dia</string>
@@ -229,7 +227,6 @@
     <string name="widget_subtitle_data_aqi">Qualitat de l’aire</string>
     <string name="widget_subtitle_data_wind">Vent</string>
     <string name="widget_subtitle_data_feels_like">Sensació tèrmica</string>
-    <string name="widget_subtitle_data_lunar">Calendari lunar</string>
     <string name="widget_subtitle_data_custom">Personalitzat</string>
     <string name="settings_none">Cap</string>
     <!-- Weather kind -->

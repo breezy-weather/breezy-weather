@@ -127,7 +127,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Długość geograficzna</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Czas aktualizacji</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Kalendarz księżycowy</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tydzień</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tydzień (krótki)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Opis dzienny</string>
@@ -220,7 +219,6 @@
     <string name="widget_subtitle_data_time">Czas odświeżenia</string>
     <string name="widget_subtitle_data_wind">Wiatr</string>
     <string name="widget_subtitle_data_feels_like">Temperatura odczuwalna</string>
-    <string name="widget_subtitle_data_lunar">Kalendarz księżycowy</string>
     <string name="widget_subtitle_data_custom">Inny</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Częściowe zachmurzenie</string>
@@ -446,7 +444,6 @@
     <string name="dialog_permissions_notification_content">Dotknij tutaj, aby włączyć powiadomienia o alertach pogodowych, lub zdecyduj później w Ustawieniach.</string>
     <string name="location_results_by">Wyniki lokalizacji według %s</string>
     <string name="location_swipe_to_delete">Możesz przesunąć w lewo, aby usunąć ten element</string>
-    <string name="widget_label_hide_lunar">Ukryj kalendarz księżycowy</string>
     <string name="action_delete">Usuń</string>
     <string name="settings_background_updates_worker_info_summary">Ostatnie uruchomienie: %s</string>
     <string name="settings_location_access_permission_already_granted">Uprawnienie już udzielone</string>

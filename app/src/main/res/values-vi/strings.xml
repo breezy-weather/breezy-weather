@@ -62,7 +62,6 @@
     <string name="widget_custom_subtitle_keyword_w_description">Tuần</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Mô tả hàng ngày</string>
     <string name="widget_custom_subtitle_keyword_al_description">Cảnh báo</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Âm lịch</string>
     <string name="widget_custom_subtitle_keyword_d_description">Ngày</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tuần (Ngắn)</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Thời tiết ban đêm của hôm nay, ngày mai, …, 4 ngày sau</string>
@@ -217,12 +216,10 @@
     <string name="widget_text">Chữ</string>
     <string name="widget_label_text_size">Cỡ chữ</string>
     <string name="widget_label_clock_font">Phông đồng hồ</string>
-    <string name="widget_label_hide_lunar">Ẩn lịch âm</string>
     <string name="widget_subtitle_data_time">Thời gian làm mới</string>
     <string name="widget_subtitle_data_aqi">Chất lượng không khí</string>
     <string name="widget_subtitle_data_wind">Gió</string>
     <string name="widget_subtitle_data_feels_like">Nhiệt độ cảm nhận</string>
-    <string name="widget_subtitle_data_lunar">Âm lịch</string>
     <string name="widget_subtitle_data_custom">Tùy chỉnh</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Thời tiết hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nhiệt độ hiện tại (°C/°F)</string>

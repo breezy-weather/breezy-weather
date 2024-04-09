@@ -398,8 +398,6 @@
     <string name="widget_label_text_color">पाठ का रंग</string>
     <string name="widget_label_text_size">पाठ का आकार</string>
     <string name="widget_label_clock_font">घड़ी का पाठ</string>
-    <string name="widget_label_hide_lunar">चंद्र दिनदर्शिका छिपाएँ</string>
-    <string name="widget_subtitle_data_lunar">चंद्र दिनदर्शिका</string>
     <string name="widget_subtitle_data_custom">रिवाज़</string>
     <string name="action_continue">जारी रखे</string>
     <string name="action_confirm">पुष्टि</string>
@@ -455,7 +453,6 @@
     <string name="widget_custom_subtitle_keyword_al_description">चेतावनी</string>
     <string name="widget_custom_subtitle_keyword_als_description">चेतावनी (लघु)</string>
     <string name="widget_custom_subtitle_keyword_d_description">तारीख</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">चंद्र दिनदर्शिका</string>
     <string name="widget_custom_subtitle_keyword_w_description">सप्ताह</string>
     <string name="widget_custom_subtitle_keyword_ws_description">सप्ताह (लघु)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">आज, कल, …, 4 दिन बाद का दिन का तापमान (°)</string>

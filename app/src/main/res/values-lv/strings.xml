@@ -386,12 +386,10 @@
     <string name="widget_material_you_current">Materiāls Tu — pašreizējais</string>
     <string name="widget_refreshing">Atsvaidzinoš</string>
     <string name="widget_label_clock_font">Pulksteņa fonts</string>
-    <string name="widget_label_hide_lunar">Slēpt Mēness kalendāru</string>
     <string name="widget_label_align_end">Izlīdzināt beigas</string>
     <string name="widget_subtitle_data_time">Atsvaidzināt laiku</string>
     <string name="widget_subtitle_data_aqi">Gaisa kvalitāte</string>
     <string name="widget_subtitle_data_feels_like">Jūtamā temperatūra</string>
-    <string name="widget_subtitle_data_lunar">Mēness kalendārs</string>
     <string name="widget_subtitle_data_custom">Pielāgots</string>
     <string name="widget_custom_subtitle_keyword_at_description">Šķietamā temperatūra (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Šķietamā temperatūra (°)</string>
@@ -403,7 +401,6 @@
     <string name="widget_custom_subtitle_keyword_d_description">Datums</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Garuma grāds</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Atjaunināšanas laiks</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Mēness Kalendārs</string>
     <string name="widget_custom_subtitle_keyword_w_description">Nedēļa</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dienas temperatūra šodien, rīt, …, 4 dienas vēlāk (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dienas laikapstākļi šodien, rīt, …, 4 dienas vēlāk</string>

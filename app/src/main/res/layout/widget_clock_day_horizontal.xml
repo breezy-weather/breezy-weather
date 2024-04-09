@@ -169,7 +169,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/widget_clock_day_lunar"
+                android:id="@+id/widget_clock_day_alternate_calendar"
                 android:layout_toEndOf="@id/widget_clock_day_title"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="2dp"
@@ -187,7 +187,7 @@
 
             <TextView
                 android:id="@+id/widget_clock_day_subtitle"
-                android:layout_toEndOf="@id/widget_clock_day_lunar"
+                android:layout_toEndOf="@id/widget_clock_day_alternate_calendar"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/large_margin"

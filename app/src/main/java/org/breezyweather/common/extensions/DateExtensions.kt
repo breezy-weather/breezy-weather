@@ -25,13 +25,12 @@ import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import breezyweather.domain.location.model.Location
-import com.xhinliang.lunarcalendar.LunarCalendar
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.chickenhook.restrictionbypass.RestrictionBypass
 import java.lang.reflect.Method
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -161,41 +160,22 @@ fun Date.getHourIn24Format(location: Location): String {
 }
 
 /**
- * Currently only handles Chinese calendar
+ * See CalendarHelper.supportedCalendars for full list of supported calendars
  */
 fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
     location: Location? = null, context: Context
 ): String? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        //val calendar = SettingsManager.getInstance(context).additionalCalendar
-        //if (calendar.isNullOrEmpty()) return null
-        //if (calendar == "auto") {  } // TODO
-        val locale = context.currentLocale
-        val uLocale = ULocale("${locale.toLanguageTag()}@calendar=chinese")
-        SimpleDateFormat(
-            DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM"),
-            uLocale
-        ).apply {
-            timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
-        }.format(this)
-    } else {
-        val cal = Calendar.getInstance().apply {
-            time = this@getFormattedMediumDayAndMonthInAdditionalCalendar
-            timeZone = location?.timeZone?.let { java.util.TimeZone.getTimeZone(it) } ?: java.util.TimeZone.getDefault()
-        }
-        return try {
-            val lunarCalendar = LunarCalendar.obtainCalendar(
-                cal[Calendar.YEAR],
-                cal[Calendar.MONTH] + 1,
-                cal[Calendar.DAY_OF_MONTH]
-            )
-            lunarCalendar.fullLunarStr.split("年".toRegex()).dropLastWhile { it.isEmpty() }
-                .toTypedArray()[1]
-                .replace("廿十", "二十")
-                .replace("卅十", "三十")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
-        }
-    }
+        val calendar = CalendarHelper.getAlternateCalendarSetting(context)
+        if (calendar != null) {
+            val locale = context.currentLocale
+            val uLocale = ULocale("${locale.toLanguageTag()}@calendar=${calendar}")
+            SimpleDateFormat(
+                DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM"),
+                uLocale
+            ).apply {
+                timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
+            }.format(this)
+        } else null
+    } else null
 }

@@ -214,8 +214,6 @@
     <string name="widget_label_subtitle_data">Podaci podnaslova</string>
     <string name="widget_label_text_color">Boja teksta</string>
     <string name="widget_label_text_size">Veličina teksta</string>
-    <string name="widget_label_hide_lunar">Sakrij lunarni kalendar</string>
-    <string name="widget_subtitle_data_lunar">Lunarni kalendar</string>
     <string name="widget_subtitle_data_custom">Prilagođeno</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Trenutna temperatura (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Trenutno vrijeme</string>
@@ -230,7 +228,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Geografska dužina</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme ažuriranja</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Lunarni kalendar</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Sedmica (kratko)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Opis po satima</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vrijeme tokom noći za danas, sutra, …, 4 dana kasnije</string>

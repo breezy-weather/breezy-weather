@@ -119,7 +119,7 @@
         <item>@string/widget_subtitle_data_aqi</item>
         <item>@string/widget_subtitle_data_wind</item>
         <item>@string/widget_subtitle_data_feels_like</item>
-        <item>@string/widget_subtitle_data_lunar</item>
+        <item>@string/widget_subtitle_data_alternate_calendar</item>
         <item>@string/widget_subtitle_data_custom</item>
     </string-array>
     <string-array name="widget_subtitle_data_values">
@@ -127,7 +127,7 @@
         <item>aqi</item>
         <item>wind</item>
         <item>feels_like</item>
-        <item>lunar</item>
+        <item>lunar</item><!-- Alternate calendar, keep the old name for compatibility reasons -->
         <item>custom</item>
     </string-array>
 

@@ -1,7 +1,7 @@
 # Version 5.1.9 (not yet released)
 
 **New feature**
-- Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps. **If you were using this feature, you will have to go back to settings and enable which apps you want to send it to.**
+- Alternate calendars (from `Settings` > `Appearance`) for Android >= 7.0. Currently supported: Chinese, Dangi, Indian National, Islamic and Persian.
 
 **Weather sources**
 - [GeoSphere Austria] Added as main source in Austria and nearby
@@ -14,6 +14,7 @@
 - [DMI] Add severity/colors to alerts
 
 **Improvements and fixes**
+- Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps. As a consequence, **if you were using this feature, you will have to go back to settings and enable which apps you want to send it to.**
 - Fix wrong number displayed on the daily feels like chart
 - Added source for each alert for compatible sources
 - [Widgets] “Material You - Current” Tap to open app now works again
@@ -27,7 +28,9 @@
 
 **Translations**
 - Translations updated
-- Replaced Lunar calendar with native Android `ChineseCalendar` on Android >= 7.0
+
+**Removed features**
+- Lunar calendar on Android < 7.0
 
 
 # Version 5.1.8 (2024-03-30)

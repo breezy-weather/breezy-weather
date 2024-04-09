@@ -17,8 +17,10 @@
 package org.breezyweather.settings.preference.composables
 
 import android.content.Context
+import android.os.Build
 import androidx.annotation.ArrayRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
@@ -51,6 +53,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.widgets.Material3CardListItem
@@ -323,3 +326,27 @@ fun LanguagePreferenceView(
         SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
     }
 }
+
+@RequiresApi(Build.VERSION_CODES.N)
+@Composable
+fun CalendarPreferenceView(
+    @StringRes titleId: Int,
+) {
+    val context = LocalContext.current
+
+    val calendars = remember { CalendarHelper.getCalendars(context) }
+    val currentCalendar by remember {
+        mutableStateOf(SettingsManager.getInstance(context).alternateCalendar)
+    }
+
+    ListPreferenceView(
+        title = stringResource(titleId),
+        summary = { _, value -> calendars.firstOrNull { value == it.id }?.displayName ?: "" },
+        selectedKey = calendars.firstOrNull { currentCalendar == it.id }?.id ?: "",
+        valueArray = calendars.map { it.id }.toTypedArray(),
+        nameArray = calendars.map { it.displayName }.toTypedArray()
+    ) {
+        SettingsManager.getInstance(context).alternateCalendar = it
+    }
+}
+

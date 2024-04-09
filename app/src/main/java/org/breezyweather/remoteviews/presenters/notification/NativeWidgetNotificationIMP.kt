@@ -23,11 +23,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.toBitmap
@@ -60,7 +59,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val subtitle = StringBuilder()
         subtitle.append(location.getPlace(context))
-        if (context.currentLocale.isChinese) {
+        if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
             subtitle.append(context.getString(R.string.comma_separator))
                 .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         } else {

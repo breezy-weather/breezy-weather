@@ -116,7 +116,6 @@
     <string name="widget_label_text_color">Warna teks</string>
     <string name="widget_label_text_size">Ukuran teks</string>
     <string name="widget_label_clock_font">Font jam</string>
-    <string name="widget_label_hide_lunar">Sembunyikan kalender bulan</string>
     <string name="widget_label_align_end">Align end</string>
     <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.
 \n
@@ -141,7 +140,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Garis bujur</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Waktu Pembaruan</string>
     <string name="widget_custom_subtitle_keyword_d_description">Tanggal</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Kalender Bulan</string>
     <string name="widget_custom_subtitle_keyword_w_description">Minggu</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Minggu (Pendek)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Deskripsi Harian</string>
@@ -478,7 +476,6 @@
     <string name="unit_ft_voice">Kaki</string>
     <string name="unit_celsius">°C</string>
     <string name="widget_style_tile">Ubin</string>
-    <string name="widget_subtitle_data_lunar">Kalender lunar</string>
     <string name="unit_kn">kn</string>
     <string name="weather_source_openweather_version_2_5">Versi 2.5</string>
     <string name="common_weather_text_drizzle_heavy">Gerimis berat</string>

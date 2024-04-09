@@ -27,11 +27,10 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getHour
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.domain.location.model.getPlace
@@ -169,7 +168,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         } else current.temperature?.temperature
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
-        if (context.currentLocale.isChinese) {
+        if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
             timeStr.append(context.getString(R.string.comma_separator))
                 .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         }

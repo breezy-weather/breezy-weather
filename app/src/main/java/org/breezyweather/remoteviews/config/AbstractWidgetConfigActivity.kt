@@ -57,9 +57,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -97,7 +97,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var mTextColorContainer: RelativeLayout? = null
     protected var mTextSizeContainer: RelativeLayout? = null
     protected var mClockFontContainer: RelativeLayout? = null
-    protected var mHideLunarContainer: RelativeLayout? = null
+    protected var mHideAlternateCalendarContainer: RelativeLayout? = null
     protected var mAlignEndContainer: RelativeLayout? = null
     private var mBottomSheetBehavior: BottomSheetBehavior<*>? = null
     private var mBottomSheetScrollView: FitSystemBarNestedScrollView? = null
@@ -123,7 +123,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var clockFontValueNow: String? = null
     protected var clockFonts: Array<String> = emptyArray()
     protected var clockFontValues: Array<String> = emptyArray()
-    protected var hideLunar = false
+    protected var hideAlternateCalendar = false
     protected var alignEnd = false
     private var mLastBackPressedTime: Long = -1
 
@@ -262,7 +262,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         subtitleDataValueNow = "time"
         val data = res.getStringArray(R.array.widget_subtitle_data)
         val dataValues = res.getStringArray(R.array.widget_subtitle_data_values)
-        if (this.currentLocale.isChinese) {
+        if (CalendarHelper.getAlternateCalendarSetting(this) != null) {
             subtitleData = arrayOf(
                 data[0], data[1], data[2], data[3], data[4], data[5]
             )
@@ -284,7 +284,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         clockFontValueNow = "light"
         clockFonts = res.getStringArray(R.array.widget_clock_fonts)
         clockFontValues = res.getStringArray(R.array.widget_clock_font_values)
-        hideLunar = false
+        hideAlternateCalendar = false
         alignEnd = false
     }
 
@@ -298,7 +298,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         textColorValueNow = config.getString(getString(R.string.key_text_color), textColorValueNow)
         textSize = config.getInt(getString(R.string.key_text_size), textSize)
         clockFontValueNow = config.getString(getString(R.string.key_clock_font), clockFontValueNow)
-        hideLunar = config.getBoolean(getString(R.string.key_hide_lunar), hideLunar)
+        hideAlternateCalendar = config.getBoolean(getString(R.string.key_hide_alternate_calendar), hideAlternateCalendar)
         alignEnd = config.getBoolean(getString(R.string.key_align_end), alignEnd)
     }
 
@@ -429,12 +429,12 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             it.setSelection(indexValue(clockFontValues, clockFontValueNow), true)
         }
 
-        mHideLunarContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideLunarContainer).apply {
+        mHideAlternateCalendarContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideAlternateCalendarContainer).apply {
             visibility = View.GONE
         }
-        findViewById<Switch>(R.id.activity_widget_config_hideLunarSwitch).apply {
-            setOnCheckedChangeListener(HideLunarSwitchCheckListener())
-            isChecked = hideLunar
+        findViewById<Switch>(R.id.activity_widget_config_hideAlternateCalendarSwitch).apply {
+            setOnCheckedChangeListener(HideAlternateCalendarSwitchCheckListener())
+            isChecked = hideAlternateCalendar
         }
 
         mAlignEndContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_alignEndContainer).apply {
@@ -457,7 +457,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                 .putString(getString(R.string.key_text_color), textColorValueNow)
                 .putInt(getString(R.string.key_text_size), textSize)
                 .putString(getString(R.string.key_clock_font), clockFontValueNow)
-                .putBoolean(getString(R.string.key_hide_lunar), hideLunar)
+                .putBoolean(getString(R.string.key_hide_alternate_calendar), hideAlternateCalendar)
                 .putBoolean(getString(R.string.key_align_end), alignEnd)
                 .apply()
             val intent = intent
@@ -644,8 +644,10 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_xmp)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xmp_description)}
             """.trimIndent()
-    protected val isHideLunarContainerVisible: Int
-        get() = if (this.currentLocale.isChinese) View.VISIBLE else View.GONE
+    protected val isHideAlternateCalendarContainerVisible: Int
+        get() = if (CalendarHelper.getAlternateCalendarSetting(this) != null) {
+            View.VISIBLE
+        } else View.GONE
 
     @SuppressLint("MissingPermission")
     private fun bindWallpaper(checkPermissions: Boolean) {
@@ -706,9 +708,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         }
     }
 
-    private inner class HideLunarSwitchCheckListener : CompoundButton.OnCheckedChangeListener {
+    private inner class HideAlternateCalendarSwitchCheckListener : CompoundButton.OnCheckedChangeListener {
         override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-            hideLunar = isChecked
+            hideAlternateCalendar = isChecked
             updateHostView()
         }
     }

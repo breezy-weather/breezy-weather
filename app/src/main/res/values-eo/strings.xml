@@ -269,7 +269,6 @@
     <string name="widget_subtitle_data_aqi">Aerkvalito</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sentotemperaturo</string>
-    <string name="widget_subtitle_data_lunar">Ĉina kalendaro</string>
     <string name="widget_subtitle_data_custom">Propa</string>
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_keyword_cw_description">Nuna veterkondiĉo</string>
@@ -290,7 +289,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudo</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Aktualigtempo</string>
     <string name="widget_custom_subtitle_keyword_d_description">Dato</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Ĉina kalendaro</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semajntago</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Semajntago (mallonga)</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Liniorompo</string>

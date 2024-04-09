@@ -69,14 +69,14 @@ class ClockDayDetailsWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mTextColorContainer?.visibility = View.VISIBLE
         mTextSizeContainer?.visibility = View.VISIBLE
         mClockFontContainer?.visibility = View.VISIBLE
-        mHideLunarContainer?.visibility = isHideLunarContainerVisible
+        mHideAlternateCalendarContainer?.visibility = isHideAlternateCalendarContainerVisible
     }
 
     override val remoteViews: RemoteViews
         get() {
             return ClockDayDetailsWidgetIMP.getRemoteViews(
                 this, locationNow,
-                cardStyleValueNow, cardAlpha, textColorValueNow, textSize, clockFontValueNow, hideLunar
+                cardStyleValueNow, cardAlpha, textColorValueNow, textSize, clockFontValueNow, hideAlternateCalendar
             )
         }
 

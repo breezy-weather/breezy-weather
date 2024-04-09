@@ -477,7 +477,6 @@
     <string name="widget_custom_subtitle_keyword_l_description">Lokasjon</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Daglig beskrivelse</string>
     <string name="widget_custom_subtitle_keyword_w_description">Uke</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Månekalender</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Oppdateringstidspunkt</string>
     <string name="pressure">Trykk</string>
     <string name="widget_label_view_style">Visningsstil</string>
@@ -496,7 +495,6 @@
     <string name="widget_day">Daglig</string>
     <string name="message_tap_again_to_exit">Trykk igjen for å avslutte</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Nåværende temperatur (°)</string>
-    <string name="widget_label_hide_lunar">Skjul månekalender</string>
     <string name="widget_label_clock_font">Skrifttype for klokke</string>
     <string name="widget_label_text_size">Tekststørrelse</string>
     <string name="widget_clock_day_details">Klokke + Daglig (Detaljer)</string>
@@ -516,7 +514,6 @@
     <string name="widget_label_show_widget_card_alpha">Opasitet</string>
     <string name="message_source_not_installed_error_content_tip_2">Bytt værkilder for denne lokasjonen, eller slett den og legg den til på nytt.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Nåværende luftkvalitetsindeks</string>
-    <string name="widget_subtitle_data_lunar">Månekalender</string>
     <string name="widget_label_hide_subtitle">Skjul undertekst</string>
     <string name="widget_refreshing">Oppdaterer</string>
     <string name="widget_material_you_current">Material You - Nåværende</string>

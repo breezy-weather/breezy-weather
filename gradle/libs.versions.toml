@@ -28,7 +28,6 @@ ktlint = "12.1.0"
 leakcanary = "2.13"
 lifecycle = "2.7.0"
 lifecycle-extensions = "2.2.0"
-lunarcalendar = "4.0.7"
 material = "1.11.0"
 mockk = "1.13.10"
 navigation-compose = "2.7.7"
@@ -94,7 +93,6 @@ lifecycle-reactivestreams-ktx = { group = "androidx.lifecycle", name = "lifecycl
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-lunarcalendar = { group = "com.xhinliang", name = "LunarCalendar", version.ref = "lunarcalendar" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }

@@ -124,7 +124,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Γεωγραφικό μήκος</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Ώρα ενημέρωσης</string>
     <string name="widget_custom_subtitle_keyword_d_description">Ημερομηνία</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Σεληνιακό ημερολόγιο</string>
     <string name="widget_custom_subtitle_keyword_w_description">Εβδομάδα</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Εβδομάδα (σύντομη)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Ημερήσια περιγραφή</string>
@@ -218,7 +217,6 @@
     <string name="widget_subtitle_data_time">Χρόνος ενημέρωσης</string>
     <string name="widget_subtitle_data_wind">Άνεμος</string>
     <string name="widget_subtitle_data_feels_like">Αισθητή θερμοκρασία</string>
-    <string name="widget_subtitle_data_lunar">Σεληνιακό ημερολόγιο</string>
     <string name="widget_subtitle_data_custom">Προσαρμογή</string>
     <string name="common_weather_text_partly_cloudy">Μερικώς νεφελώδης</string>
     <string name="common_weather_text_cloudy">Συννεφιασμένος</string>
@@ -366,7 +364,6 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Αγνόηση αν η μπαταρία είναι χαμηλή</string>
     <string name="settings_location_access_background_title">Πρόσβαση τοποθεσίας στο παρασκήνιο</string>
     <string name="message_source_not_installed_error_title">Η πηγή δεν είναι πια διαθέσιμη</string>
-    <string name="widget_label_hide_lunar">Απόκρυψη σεληνιακού ημερολογίου</string>
     <string name="setting_weather_source_accu_hours">Ώρες</string>
     <string name="settings_weather_sources_summary">Ρυθμίσεις πηγών δεδομένων καιρού</string>
     <string name="widget_custom_subtitle_keyword_al_description">Προειδοποιήσεις</string>

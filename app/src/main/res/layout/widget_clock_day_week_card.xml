@@ -141,7 +141,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/widget_clock_day_week_lunar"
+                android:id="@+id/widget_clock_day_week_alternate_calendar"
                 android:layout_toEndOf="@id/widget_clock_day_week_title"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="2dp"

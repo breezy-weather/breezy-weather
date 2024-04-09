@@ -161,7 +161,6 @@
     <string name="widget_label_text_size">Testuaren tamaina</string>
     <string name="widget_subtitle_data_aqi">Airearen kalitatea</string>
     <string name="widget_label_clock_font">Erlojuaren iturria</string>
-    <string name="widget_label_hide_lunar">Ezkutatu ilargi-egutegia</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Egungo tenperatura (°C/°F)</string>
     <string name="pollen_and_mold">Polena eta lizuna</string>
     <string name="alerts_to_follow">Hurrengo alertak, ukitu hemen ikusteko.</string>
@@ -232,7 +231,6 @@
     <string name="dialog_permissions_notification_content">Ukitu hemen eguraldi alertei buruzko jakinarazpenak aktibatzeko, edo erabaki gero Ezarpenetan.</string>
     <string name="widget_subtitle_data_wind">Haizea</string>
     <string name="widget_subtitle_data_feels_like">Sentsazio termikoa</string>
-    <string name="widget_subtitle_data_lunar">Ilargi egutegia</string>
     <string name="widget_subtitle_data_custom">Pertsonalizatua</string>
     <string name="dew_point">Ihintz-tenperatura</string>
     <string name="cloud_cover">Hodeitza</string>
@@ -524,7 +522,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Luzera</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Eguneratu ordua</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Ilargi Egutegia</string>
     <string name="widget_custom_subtitle_keyword_w_description">Astea</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Astea (Laburra)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Eguneko deskribapena</string>

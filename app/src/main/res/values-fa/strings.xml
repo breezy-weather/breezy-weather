@@ -250,12 +250,10 @@
     <string name="widget_material_you_forecast">Material You - پیش بینی</string>
     <string name="widget_trend_hourly">روند بر اساس ساعت</string>
     <string name="widget_label_view_style">سبک نمایش</string>
-    <string name="widget_label_hide_lunar">پنهان کردن گاهشمار قمری</string>
     <string name="widget_subtitle_data_time">زمان تازه سازی</string>
     <string name="widget_subtitle_data_aqi">کیفیت هوا</string>
     <string name="widget_subtitle_data_wind">باد</string>
     <string name="widget_subtitle_data_feels_like">دمایی که احساس می شود</string>
-    <string name="widget_subtitle_data_lunar">گاهشمار قمری</string>
     <string name="widget_subtitle_data_custom">سفارشی</string>
     <string name="widget_custom_subtitle_keyword_cw_description">آب و هوای الآن</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">دمای فعلی (درجه)</string>
@@ -328,7 +326,6 @@
     <string name="widget_custom_subtitle_keyword_cps_description">فشار اینگاه</string>
     <string name="widget_custom_subtitle_keyword_l_description">موقعیت مکانی</string>
     <string name="widget_custom_subtitle_keyword_lat_description">عرض جغرافیایی</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">گاهشمار قمری</string>
     <string name="widget_custom_subtitle_keyword_w_description">هفته</string>
     <string name="widget_custom_subtitle_keyword_xss_description">غروب آفتاب امروز، فردا، …، ۴ روز آینده</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">گام‌های ماه برای امروز، فردا، …، ۴ روز آینده</string>

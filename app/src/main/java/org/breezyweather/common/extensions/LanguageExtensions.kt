@@ -85,6 +85,9 @@ val Locale.codeForNaturalEarthService: String
 val Locale.isChinese: Boolean
     get() = code.startsWith("zh")
 
+val Locale.isIndian: Boolean
+    get() = code.startsWith("hi") || code.startsWith("mr")
+
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.
  * If [replacement] is longer than [count] an exception will be thrown when `length > count`.

@@ -112,7 +112,6 @@
     <string name="widget_label_text_color">Cor do texto</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
-    <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>
     <string name="widget_label_align_end">Alinhar até o final</string>
     <string name="widget_custom_subtitle_explanation">Você pode inserir qualquer coisa, mas por favor preste atenção ao comprimento do texto. Se você quiser citar dados meteorológicos, use $ para fazer referência à palavra-chave correspondente.
 \n
@@ -137,7 +136,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Tempo de atualização</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Calendário lunar</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semana</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Semana (Curto)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
@@ -266,7 +264,6 @@
     <string name="widget_subtitle_data_time">Tempo de atualização</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sensação térmica</string>
-    <string name="widget_subtitle_data_lunar">Calendário lunar</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Parcialmente nublado</string>

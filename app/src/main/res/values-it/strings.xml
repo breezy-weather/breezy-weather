@@ -105,7 +105,6 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Seleziona il servizio di localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “%s”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
-    <string name="widget_label_hide_lunar">Nascondi il calendario lunare</string>
     <string name="widget_label_align_end">Allinea alla fine</string>
     <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.
 \n
@@ -128,7 +127,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudine</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Tempo di aggiornamento</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Calendario lunare</string>
     <string name="widget_custom_subtitle_keyword_w_description">Settimama</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Settimana (breve)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrizione giornaliera</string>
@@ -261,7 +259,6 @@
     <string name="widget_subtitle_data_aqi">Qualità aria</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Temperatura percepita</string>
-    <string name="widget_subtitle_data_lunar">Calendario lunare</string>
     <string name="widget_subtitle_data_custom">Personalizzato</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Parzialmente nuvoloso</string>

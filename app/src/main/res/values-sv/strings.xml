@@ -54,7 +54,6 @@
     <string name="short_tomorrow">Imrn</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Månkalender</string>
     <string name="unit_cm_voice">Centimeter</string>
     <string name="settings_background_updates_refresh_never">Aldrig</string>
     <string name="unit_inph">inch/h</string>
@@ -244,7 +243,6 @@
     <string name="unit_celsius">°C</string>
     <string name="action_next">Nästa</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuvarande vind</string>
-    <string name="widget_subtitle_data_lunar">Månkalender</string>
     <string name="wind_direction_short_NW">NV</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
@@ -431,7 +429,6 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°C/°F)</string>
     <string name="common_weather_text_drizzle">Duggregn</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nederbörd dagtid för i dag, i morgon, …, 4 dagar senare (%)</string>
-    <string name="widget_label_hide_lunar">Dölj månkalender</string>
     <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som t.ex. de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>

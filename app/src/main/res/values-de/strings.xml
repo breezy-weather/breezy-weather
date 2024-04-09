@@ -226,7 +226,6 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
     <string name="dialog_permissions_location_background_content">Um Standortveränderungen erkennen und Ihnen gültige Wetterdaten liefern zu können, muss die App im Hintergrund auf Standortinformationen zugreifen können. Bitte stellen Sie dafür den Standortzugriff auf „Immer zulassen“.</string>
-    <string name="widget_label_hide_lunar">Mondkalender ausblenden</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>
@@ -321,7 +320,6 @@
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="action_back">Zurück</string>
     <string name="widget_material_you_forecast">Material You - Vorhersage</string>
-    <string name="widget_subtitle_data_lunar">Mondkalender</string>
     <string name="widget_subtitle_data_custom">Benutzerdefiniert</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Aktuelle Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Aktuelle gefühlte Temperatur (°C/°F)</string>
@@ -329,7 +327,6 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Aktueller Taupunkt</string>
     <string name="widget_custom_subtitle_keyword_al_description">Warnungen</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Aktualisierungszeit</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Mondkalender</string>
     <string name="widget_custom_subtitle_keyword_w_description">Woche</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Wetter tagsüber heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (°C/°F)</string>

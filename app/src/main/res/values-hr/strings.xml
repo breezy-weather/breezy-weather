@@ -76,7 +76,6 @@
     <string name="temperature_wet_bulb">Mokar termometar</string>
     <string name="short_tomorrow">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Lunarni kalendar</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
     <string name="action_help_me_choose">Pomoć pri izboru</string>
@@ -100,7 +99,6 @@
     <string name="widget_custom_subtitle_keyword_xdp_description">Dnevne oborine danas, sutra, …, 4 dana kasnije (%)</string>
     <string name="daily_forecast">Dnevna prognoza</string>
     <string name="action_share">Podijeli</string>
-    <string name="widget_label_hide_lunar">Sakrij lunarni kalendar</string>
     <string name="dialog_permissions_notification_content">Dodirnite ovdje da omogućite obavijesti o vremenskim upozorenjima ili odlučite kasnije u postavkama.</string>
     <string name="location_message_added">Lokacija dodana</string>
     <string name="settings_background_updates_refresh_1h">1 sat</string>
@@ -378,7 +376,6 @@
     <string name="settings_units_summary">Temperatura, oborine, udaljenost, brzina, tlak</string>
     <string name="widget_style_tile">Pločica</string>
     <string name="widget_clock_day_details">Sat + Dnevno (Detalji)</string>
-    <string name="widget_subtitle_data_lunar">Lunarni kalendar</string>
     <string name="wind_direction_short_NW">SZ</string>
     <string name="settings_icon_packs_get_more">Preuzmi više</string>
     <string name="temperature_degree_day">Temperatura za grijanje ili hlađenje</string>

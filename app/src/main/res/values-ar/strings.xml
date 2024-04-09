@@ -172,7 +172,6 @@
     <string name="widget_subtitle_data_aqi">جودة الهواء</string>
     <string name="widget_subtitle_data_wind">الرياح</string>
     <string name="widget_subtitle_data_feels_like">درجة الحرارة المحسوسة</string>
-    <string name="widget_subtitle_data_lunar">تقويم قمري</string>
     <string name="widget_subtitle_data_custom">مخصص</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">غائم جزئياً</string>
@@ -222,7 +221,6 @@
 \n
 \nعلى سبيل المثال ، سيتم عرض “الطقس الحالي هو: $cw$.” ك “الطقس الحالي هو: يوم صاف.”.</string>
     <string name="widget_custom_subtitle_keyword_w_description">أسبوع</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">تقويم قمري</string>
     <string name="widget_custom_subtitle_keyword_dd_description">الوصف اليومي</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">الطقس ليلا اليوم ، غدا ،… ، بعد 4 أيام</string>
     <string name="widget_style_nano">نانو</string>
@@ -406,7 +404,6 @@
     <string name="location_message_reverse_geocoding_failed">فشل مصدر الطقس في العثور على موقع مطابق</string>
     <string name="action_close">اغلاق</string>
     <string name="null_data_text">غير متوفر</string>
-    <string name="widget_label_hide_lunar">إخفاء التقويم القمري</string>
     <string name="widget_label_align_end">محاذاة النهاية</string>
     <string name="widget_custom_subtitle_keyword_cps_description">الضغط الحالي</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>

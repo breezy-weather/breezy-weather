@@ -359,6 +359,12 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getLong("language_update_last_timestamp", 0)
 
+    var alternateCalendar: String
+        set(value) {
+            config.edit().putString("calendar_alternate", value).apply()
+        }
+        get() = config.getString("calendar_alternate", null) ?: ""
+
     // forecast.
     var isTodayForecastEnabled: Boolean
         set(value) {

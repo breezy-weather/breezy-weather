@@ -219,7 +219,6 @@
     <string name="location_search_no_results">%1$s, %2$s konumunu bulamadı</string>
     <string name="action_undo">Geri al</string>
     <string name="action_add_from_map">Haritadan ekle</string>
-    <string name="widget_label_hide_lunar">Ay takvimini gizle</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Pil düşükse yoksay</string>
     <string name="settings_icon_packs_title">Simge paketleri</string>
     <string name="settings_notifications">Bildirimler</string>
@@ -298,7 +297,6 @@
     <string name="settings_main_cards_fade_in_switch">Kartlar belirsin</string>
     <string name="action_add_current_location">Geçerli konumu ekle</string>
     <string name="widget_subtitle_data_aqi">Hava kalitesi</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Ay Takvimi</string>
     <string name="widget_custom_subtitle_keyword_w_description">Hafta</string>
     <string name="location_swipe_to_delete">Bu öğeyi silmek için sola kaydırabilirsiniz</string>
     <string name="action_help">Yardım</string>
@@ -311,7 +309,6 @@
     <string name="action_set">Ayarla</string>
     <string name="widget_label_hide_subtitle">Alt yazıyı gizle</string>
     <string name="widget_subtitle_data_feels_like">Hissedilen sıcaklık</string>
-    <string name="widget_subtitle_data_lunar">Ay takvimi</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Şu Anki Hava Durumu</string>
     <string name="widget_label_clock_font">Saat yazı tipi</string>
     <string name="action_add_new_location">Yeni bir konum ekle</string>

@@ -102,7 +102,6 @@
     <string name="widget_label_text_color">Цвет текста</string>
     <string name="widget_label_text_size">Размер текста</string>
     <string name="widget_label_clock_font">Шрифт чаcов</string>
-    <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>
     <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
 \n
 \nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясный День”.</string>
@@ -124,7 +123,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Долгота</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Время обновления</string>
     <string name="widget_custom_subtitle_keyword_d_description">Дата</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Лунный календарь</string>
     <string name="widget_custom_subtitle_keyword_w_description">Неделя</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Неделя (Кратко)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Дневной подробный</string>
@@ -227,7 +225,6 @@
     <string name="widget_subtitle_data_aqi">Качество воздуха</string>
     <string name="widget_subtitle_data_wind">Ветер</string>
     <string name="widget_subtitle_data_feels_like">Температура по ощущениям</string>
-    <string name="widget_subtitle_data_lunar">Лунный календарь</string>
     <string name="widget_subtitle_data_custom">Пользовательский</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Переменная облачность</string>

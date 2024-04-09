@@ -169,11 +169,9 @@
     <string name="widget_label_text_color">Боја на текстот</string>
     <string name="widget_label_text_size">Големина на текстот</string>
     <string name="widget_label_clock_font">Фонт на часовникот</string>
-    <string name="widget_label_hide_lunar">Сокриј го лунарниот календар</string>
     <string name="widget_subtitle_data_time">Време за освежување</string>
     <string name="widget_subtitle_data_aqi">Квалитет на воздухот</string>
     <string name="widget_subtitle_data_feels_like">Се чувствува како температура</string>
-    <string name="widget_subtitle_data_lunar">Месечев календар</string>
     <string name="widget_subtitle_data_custom">Прилагодено</string>
     <string name="widget_custom_subtitle_explanation">Можете да внесете што било, но ве молиме внимавајте на должината на текстот. Ако сакате да цитирате податоци за времето, ве молиме користете $ за да го повикате соодветниот клучен збор.
 \n
@@ -318,7 +316,6 @@
     <string name="widget_subtitle_data_wind">Ветер</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Тековно време</string>
     <string name="widget_custom_subtitle_keyword_d_description">Датум</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Месечев календар</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недела</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Ноќна температура од денес, утре, …, 4 дена подоцна (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дневна температура од денес, утре, …, 4 дена подоцна (°)</string>

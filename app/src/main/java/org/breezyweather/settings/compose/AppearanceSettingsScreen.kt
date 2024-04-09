@@ -18,6 +18,7 @@ package org.breezyweather.settings.compose
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -56,6 +57,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
+import org.breezyweather.settings.preference.composables.CalendarPreferenceView
 import org.breezyweather.settings.preference.composables.LanguagePreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
@@ -246,6 +248,13 @@ fun AppearanceSettingsScreen(
                 summaryId = R.string.settings_units_summary
             ) {
                 navController.navigate(SettingsScreenRouter.Unit.route)
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            listPreferenceItem(R.string.settings_appearance_calendar_title) { id ->
+                CalendarPreferenceView(
+                    titleId = id
+                )
             }
         }
 

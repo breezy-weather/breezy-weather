@@ -110,7 +110,6 @@
     <string name="widget_label_text_color">Tekstin väri</string>
     <string name="widget_label_text_size">Tekstin koko</string>
     <string name="widget_label_clock_font">Kellon fontti</string>
-    <string name="widget_label_hide_lunar">Piilota kuukalenteri</string>
     <string name="widget_label_align_end">Kohdista loppuun</string>
     <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.
 \n
@@ -135,7 +134,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Pituusaste</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Päivitysaika</string>
     <string name="widget_custom_subtitle_keyword_d_description">Päiväys</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Kuukalenteri</string>
     <string name="widget_custom_subtitle_keyword_w_description">Viikko</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Viikko (Lyhyt)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Päivittäinen kuvaus</string>
@@ -262,7 +260,6 @@
     <string name="widget_subtitle_data_time">Päivitetty</string>
     <string name="widget_subtitle_data_wind">Tuuli</string>
     <string name="widget_subtitle_data_feels_like">Lämpötila tuntuu kuin</string>
-    <string name="widget_subtitle_data_lunar">Kuukalenteri</string>
     <string name="widget_subtitle_data_custom">Mukautettu</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Osittain pilvistä</string>

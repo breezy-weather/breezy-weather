@@ -295,12 +295,10 @@
     <string name="widget_label_text_color">Колер тэксту</string>
     <string name="widget_label_text_size">Памер тэксту</string>
     <string name="widget_label_clock_font">Шрыфт гадзін</string>
-    <string name="widget_label_hide_lunar">Схаваць месяцовы каляндар</string>
     <string name="widget_label_align_end">Параўнаць канец</string>
     <string name="widget_subtitle_data_time">Час абнаўлення</string>
     <string name="widget_subtitle_data_aqi">Якасць паветра</string>
     <string name="widget_subtitle_data_wind">Вецер</string>
-    <string name="widget_subtitle_data_lunar">Месяцовы каляндар</string>
     <string name="widget_subtitle_data_custom">Карыстацкі</string>
     <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
 \n
@@ -319,7 +317,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">даўгата</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Час абнаўлення</string>
     <string name="widget_custom_subtitle_keyword_d_description">Дата</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Месяцовы каляндар</string>
     <string name="widget_custom_subtitle_keyword_w_description">Тыдзень</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Тыдзень (Каротка)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Дзённы падрабязны</string>

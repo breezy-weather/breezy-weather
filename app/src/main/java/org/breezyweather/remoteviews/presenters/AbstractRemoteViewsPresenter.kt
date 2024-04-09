@@ -70,7 +70,7 @@ abstract class AbstractRemoteViewsPresenter {
         var hideSubtitle = false
         var subtitleData: String? = null
         var clockFont: String? = null
-        var hideLunar = false
+        var hideAlternateCalendar = false
         var alignEnd = false
     }
 
@@ -168,8 +168,8 @@ abstract class AbstractRemoteViewsPresenter {
                 context.getString(R.string.key_clock_font),
                 "light"
             )
-            widgetConfig.hideLunar = configStore.getBoolean(
-                context.getString(R.string.key_hide_lunar),
+            widgetConfig.hideAlternateCalendar = configStore.getBoolean(
+                context.getString(R.string.key_hide_alternate_calendar),
                 false
             )
             widgetConfig.alignEnd = configStore.getBoolean(

@@ -33,12 +33,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.insets.FitBothSideBarView
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
@@ -95,7 +94,9 @@ class DailyWeatherActivity : GeoActivity() {
         }
         mTitle = findViewById(R.id.activity_weather_daily_title)
         mSubtitle = findViewById<TextView>(R.id.activity_weather_daily_subtitle).also {
-            it.visibility = if (this.currentLocale.isChinese) View.VISIBLE else View.GONE
+            it.visibility = if (CalendarHelper.getAlternateCalendarSetting(this@DailyWeatherActivity) != null) {
+                View.VISIBLE
+            } else View.GONE
         }
         mIndicator = findViewById(R.id.activity_weather_daily_indicator)
         val formattedId = mFormattedId

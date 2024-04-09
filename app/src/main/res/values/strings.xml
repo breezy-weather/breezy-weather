@@ -387,13 +387,13 @@
     <string name="widget_label_text_color">Text color</string>
     <string name="widget_label_text_size">Text size</string>
     <string name="widget_label_clock_font">Clock font</string>
-    <string name="widget_label_hide_lunar">Hide lunar calendar</string>
+    <string name="widget_label_hide_alternate_calendar">Hide alternate calendar</string>
     <string name="widget_label_align_end">Align End</string>
     <string name="widget_subtitle_data_time">Refresh time</string>
     <string name="widget_subtitle_data_aqi">Air quality</string>
     <string name="widget_subtitle_data_wind">Wind</string>
     <string name="widget_subtitle_data_feels_like">Feels like temperature</string>
-    <string name="widget_subtitle_data_lunar">Lunar calendar</string>
+    <string name="widget_subtitle_data_alternate_calendar" translatable="false">@string/settings_appearance_calendar_title</string>
     <string name="widget_subtitle_data_custom">Custom</string>
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
@@ -416,7 +416,7 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Update Time</string>
     <string name="widget_custom_subtitle_keyword_d_description">Date</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Lunar Calendar</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Alternate calendar</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Week (Short)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Daily Description</string>
@@ -549,6 +549,7 @@
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>
+    <string name="settings_appearance_calendar_title">Alternate calendar</string>
     <string name="settings_appearance_dark_mode_title">Dark mode</string>
     <string name="settings_appearance_dark_mode_locations_title">Day / Night mode for locations</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
@@ -920,7 +921,8 @@
     <string name="key_text_color" translatable="false">text_color</string>
     <string name="key_text_size" translatable="false">text_size</string>
     <string name="key_clock_font" translatable="false">clock_font</string>
-    <string name="key_hide_lunar" translatable="false">hide_lunar</string>
+    <!-- Alternate calendar, keep the old name for compatibility reasons -->
+    <string name="key_hide_alternate_calendar" translatable="false">hide_lunar</string>
     <string name="key_align_end" translatable="false">align_end</string>
     <!-- Tags -->
     <string name="tag_temperature" translatable="false">@string/temperature</string>

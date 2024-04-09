@@ -124,7 +124,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">경도</string>
     <string name="widget_custom_subtitle_keyword_ut_description">업데이트 시간</string>
     <string name="widget_custom_subtitle_keyword_d_description">날짜</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">음력</string>
     <string name="widget_custom_subtitle_keyword_w_description">주</string>
     <string name="widget_custom_subtitle_keyword_ws_description">주 (짧은)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">오늘의 서술</string>
@@ -221,7 +220,6 @@
     <string name="widget_subtitle_data_time">새로고침 시간</string>
     <string name="widget_subtitle_data_wind">바람</string>
     <string name="widget_subtitle_data_feels_like">체감 온도</string>
-    <string name="widget_subtitle_data_lunar">음력</string>
     <string name="widget_subtitle_data_custom">사용자 정의</string>
     <string name="widget_clock_font_sans_serif_light">얇은 산 세리프(고딕)</string>
     <string name="widget_clock_font_sans_serif">산 세리프(고딕)</string>
@@ -239,7 +237,6 @@
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
     <string name="action_undo">실행 취소</string>
-    <string name="widget_label_hide_lunar">음력 숨기기</string>
     <string name="settings_background_updates_refresh_never">없음</string>
     <string name="settings_background_updates_battery_optimization">배터리 최적화 끄기</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">기기 설정을 열 수 없습니다.</string>

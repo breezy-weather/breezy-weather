@@ -26,10 +26,9 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getTrendTemperature
@@ -47,7 +46,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_week_setting))
         val views = getRemoteViews(
             context, location,
-            config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont, config.hideLunar
+            config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont, config.hideAlternateCalendar
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetClockDayWeekProvider::class.java),
@@ -57,7 +56,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
     fun getRemoteViews(
         context: Context, location: Location?,
-        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideLunar: Boolean
+        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideAlternateCalendar: Boolean
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
@@ -132,8 +131,10 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             )
         } ?: views.setViewVisibility(R.id.widget_clock_day_week_icon, View.INVISIBLE)
         views.setTextViewText(
-            R.id.widget_clock_day_week_lunar,
-            if (context.currentLocale.isChinese && !hideLunar) " - ${Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)}" else ""
+            R.id.widget_clock_day_week_alternate_calendar,
+            if (CalendarHelper.getAlternateCalendarSetting(context) != null && !hideAlternateCalendar) {
+                " - ${Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)}"
+            } else ""
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
@@ -200,7 +201,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextColor(R.id.widget_clock_day_week_clock_aa_normal, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_clock_aa_black, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_title, color.textColor)
-                setTextColor(R.id.widget_clock_day_week_lunar, color.textColor)
+                setTextColor(R.id.widget_clock_day_week_alternate_calendar, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_subtitle, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_week_1, color.textColor)
                 setTextColor(R.id.widget_clock_day_week_week_2, color.textColor)
@@ -229,7 +230,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_normal, TypedValue.COMPLEX_UNIT_PX, clockAASize)
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_black, TypedValue.COMPLEX_UNIT_PX, clockAASize)
                 setTextViewTextSize(R.id.widget_clock_day_week_title, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_clock_day_week_lunar, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                setTextViewTextSize(R.id.widget_clock_day_week_alternate_calendar, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize)

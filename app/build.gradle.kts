@@ -249,7 +249,6 @@ dependencies {
 
     // utils.
     implementation(libs.suncalc)
-    implementation(libs.lunarcalendar) // TODO: Replace with native ChineseCalendar
     implementation(libs.aboutLibraries)
 
     // Allows reflection of the relative time class to pass Locale as parameter

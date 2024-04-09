@@ -108,7 +108,6 @@
     <string name="widget_label_text_color">Szövegszín</string>
     <string name="widget_label_text_size">Szövegméret</string>
     <string name="widget_label_clock_font">Óra betűtípusa</string>
-    <string name="widget_label_hide_lunar">Holdnaptár elrejtése</string>
     <string name="widget_custom_subtitle_explanation">Akármit beírhat, de figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, használja a $ jelet a kulcsszóra való hivatkozáshoz.
 \n
 \nPéldául, „Jelenlegi időjárás: $cw$” így fog megjelenni: „Jelenlegi időjárás: Napos”.</string>
@@ -124,7 +123,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Magasság</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Frissítési idő</string>
     <string name="widget_custom_subtitle_keyword_d_description">Dátum</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Holdnaptár</string>
     <string name="widget_custom_subtitle_keyword_w_description">Hét</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Hét (Rövid)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Napi leírás</string>
@@ -392,7 +390,6 @@
     <string name="weather_air_quality_and_pollen_data_by">Légszennyezettség- és pollenadatok: %s</string>
     <string name="weather_minutely_data_by">Csapadék percről percre adatok: %s</string>
     <string name="settings_background_updates_section_troubleshoot">Hibaelhárítás</string>
-    <string name="widget_subtitle_data_lunar">Holdnaptár</string>
     <string name="settings_section_general">Általános</string>
     <string name="settings_background_updates_refresh_24h">24 óra</string>
     <string name="air_quality_so2_info_introduction">A kén-dioxid (SO₂) színtelen, mérgező gáz, amely az égett gyufa szagáért felelős.</string>

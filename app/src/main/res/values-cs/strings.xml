@@ -112,7 +112,6 @@
     <string name="widget_label_text_color">Barva písma</string>
     <string name="widget_label_text_size">Velikost písma</string>
     <string name="widget_label_clock_font">Písmo hodin</string>
-    <string name="widget_label_hide_lunar">Skrýt lunární kalendář</string>
     <string name="widget_label_align_end">Zarovnat konec</string>
     <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.
 \n
@@ -137,7 +136,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Zeměpisná délka</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Čas aktualizace</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Lunářní kalendář</string>
     <string name="widget_custom_subtitle_keyword_w_description">Týden</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Týden (krátký)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Denní popis</string>
@@ -267,7 +265,6 @@
     <string name="widget_subtitle_data_time">Čas obnovení</string>
     <string name="widget_subtitle_data_wind">Vítr</string>
     <string name="widget_subtitle_data_feels_like">Znatelná teplota</string>
-    <string name="widget_subtitle_data_lunar">Lunární kalendář</string>
     <string name="widget_subtitle_data_custom">Vlastní</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Polojasno</string>

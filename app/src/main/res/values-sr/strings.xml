@@ -241,7 +241,6 @@
     <string name="action_add_current_location">Додај тренутну локацију</string>
     <string name="location_message_permission_background_missing">Недостаје дозвола за приступ локацији у позадини</string>
     <string name="widget_label_text_size">Величина текста</string>
-    <string name="widget_label_hide_lunar">Сакриј лунарни календар</string>
     <string name="widget_label_align_end">Поравнај крај</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Тренутна видљивост</string>
     <string name="widget_custom_subtitle_keyword_als_description">Упозорења (кратка)</string>
@@ -351,7 +350,6 @@
     <string name="widget_subtitle_data_custom">Прилагођено</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Време ажурирања</string>
     <string name="widget_custom_subtitle_keyword_d_description">Датум</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Лунарни календар</string>
     <string name="settings_main_threshold_lines_on_charts">Линије прага на графиконима</string>
     <string name="settings_debug_dump_crash_logs_title">Дели евиденције отказивања</string>
     <string name="settings_color_day_always">Увек дан</string>
@@ -577,7 +575,6 @@
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Миље на сат</string>
     <string name="unit_ftps_voice">Стопе у секунди</string>
-    <string name="widget_subtitle_data_lunar">Лунарни календар</string>
     <string name="settings_weather_source_main">Главни извор</string>
     <string name="settings_weather_sources_per_location_summary">Прилагодите изворе података о времену коришћене за ову локацију</string>
     <string name="settings_main_background_animation_disabled">Онемогућено</string>
