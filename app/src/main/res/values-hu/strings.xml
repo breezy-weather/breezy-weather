@@ -677,4 +677,8 @@
     <string name="settings_source_instance_invalid">Egy https URL címnek kell lennie, amely /-re végződik</string>
     <string name="settings_invalid_syntax">Érvénytelen szintaxis</string>
     <string name="alert_source">Forrás: %s</string>
+    <string name="dialog_time_picker_input_time">Idő bevitele</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Váltás érintéses bevitelre</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Váltás szöveges bevitelre</string>
+    <string name="dialog_time_picker_select_time">Idő kiválasztása</string>
 </resources>
