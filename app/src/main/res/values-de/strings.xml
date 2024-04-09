@@ -673,4 +673,11 @@
     <string name="settings_source_instance_invalid">Muss eine https-URL sein, die mit einem / endet</string>
     <string name="settings_invalid_syntax">Ungültige Syntax</string>
     <string name="alert_source">Quelle: %s</string>
+    <string name="dialog_time_picker_select_time">Uhrzeit auswählen</string>
+    <string name="dialog_time_picker_input_time">Uhrzeit eingeben</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Zur Texteingabe wechseln</string>
+    <string name="widget_label_hide_alternate_calendar">Alternativen Kalender ausblenden</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Alternativer Kalender</string>
+    <string name="settings_appearance_calendar_title">Alternativer Kalender</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Zur Toucheingabe wechseln</string>
 </resources>
