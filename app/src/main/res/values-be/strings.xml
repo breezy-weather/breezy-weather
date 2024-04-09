@@ -671,4 +671,10 @@
     <string name="settings_invalid_syntax">Няправільны сінтаксіс</string>
     <string name="settings_source_instance_invalid">Павінен быць URL-адрас https, які сканчаецца на /</string>
     <string name="alert_source">Крыніца: %s</string>
+    <string name="dialog_time_picker_select_time">Выбраць час</string>
+    <string name="dialog_time_picker_input_time">Ўвесці час</string>
+    <string name="widget_label_hide_alternate_calendar">Схаваць альтэрнатыўны каляндар</string>
+    <string name="settings_appearance_calendar_title">Альтэрнатыўны каляндар</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Пераключыцца на сэнсарны ўвод</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Пераключыцца на тэкставы ўвод</string>
 </resources>
