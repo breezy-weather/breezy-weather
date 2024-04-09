@@ -677,7 +677,6 @@
     <string name="dialog_time_picker_input_time">Uhrzeit eingeben</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Zur Texteingabe wechseln</string>
     <string name="widget_label_hide_alternate_calendar">Alternativen Kalender ausblenden</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Alternativer Kalender</string>
     <string name="settings_appearance_calendar_title">Alternativer Kalender</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Zur Toucheingabe wechseln</string>
 </resources>

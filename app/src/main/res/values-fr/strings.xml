@@ -257,7 +257,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Heure d’actualisation</string>
     <string name="widget_custom_subtitle_keyword_d_description">Date</string>
-    <string name="widget_custom_subtitle_keyword_lc_description">Calendar alternatif</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semaine</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Semaine (court)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Description du jour</string>
