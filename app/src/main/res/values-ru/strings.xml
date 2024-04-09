@@ -678,4 +678,10 @@
     <string name="settings_source_instance_invalid">Должен быть URL-адрес https, заканчивающийся на /</string>
     <string name="settings_invalid_syntax">Неверный синтаксис</string>
     <string name="alert_source">Источник: %s</string>
+    <string name="widget_label_hide_alternate_calendar">Скрыть альтернативный календарь</string>
+    <string name="dialog_time_picker_input_time">Ввести время</string>
+    <string name="dialog_time_picker_select_time">Выбрать время</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Переключиться на сенсорный ввод</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Переключиться на текстовый ввод</string>
+    <string name="settings_appearance_calendar_title">Альтернативный календарь</string>
 </resources>
