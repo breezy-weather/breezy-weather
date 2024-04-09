@@ -578,12 +578,11 @@
     <string name="common_weather_text_rain_freezing">Chuva congelante</string>
     <string name="common_weather_text_rain_snow_mixed_light">Chuva leve com neve</string>
     <string name="temperature_normals">Normais de temperatura</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="settings_color_app">Siga o app</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Pancadas de chuva com neve</string>
     <string name="common_weather_text_rain_light">Chuva leve</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos para este local</string>
-    <string name="settings_widgets_gadgetbridge_switch">Enviar dados meteorológicos para Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="common_weather_text_snow_showers_heavy">Nevasca forte</string>

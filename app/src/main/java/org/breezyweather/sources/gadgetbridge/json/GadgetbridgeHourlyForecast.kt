@@ -1,9 +1,9 @@
-package org.breezyweather.remoteviews.gadgetbridge.json
+package org.breezyweather.sources.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GadgetBridgeHourlyForecast(
+data class GadgetbridgeHourlyForecast(
     val timestamp: Int? = null,
     val temp: Int? = null,
     val conditionCode: Int? = null,

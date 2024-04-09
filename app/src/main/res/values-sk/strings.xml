@@ -211,7 +211,6 @@
     <string name="settings_widgets_notification_feels_like_switch">Použitie Pocitovej teploty</string>
     <string name="common_weather_text_rain_freezing">Mrznúci dážď</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
-    <string name="settings_widgets_gadgets_title">Pomôcky</string>
     <string name="settings_background_updates_refresh_12h">12 hodín</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Niektorí výrobcovia majú ďalšie obmedzenia aplikácií, ktoré vypínajú služby na pozadí. Na webovej stránke Don’t kill my app! nájdete informácie o tom, ako to napraviť.</string>
     <string name="settings_widgets_configure_widget_summary">Nastavenie tohto widgetu</string>
@@ -225,7 +224,7 @@
     <string name="about_contributors">Prispievatelia</string>
     <string name="weather_kind_thunderstorm">Búrka</string>
     <string name="common_weather_text_rain_light">Slabý dážď</string>
-    <string name="settings_widgets_gadgetbridge_switch">Posielať údaje o počasí do Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Posielať údaje o počasí do %s</string>
     <string name="common_weather_text_fog">Hmla</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="common_weather_text_snow_showers_heavy">Silné snehové prehánky</string>

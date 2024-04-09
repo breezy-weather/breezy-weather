@@ -16,8 +16,10 @@
 
 package org.breezyweather.sources
 
+import android.content.Context
 import breezyweather.domain.location.model.Location
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
@@ -29,8 +31,10 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.Source
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.brightsky.BrightSkyService
+import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.recosante.RecosanteService
@@ -39,9 +43,10 @@ import javax.inject.Inject
 class SourceManager @Inject constructor(
     androidLocationSource: AndroidLocationSource,
     brightSkyService: BrightSkyService,
+    gadgetbridgeService: GadgetbridgeService,
     naturalEarthService: NaturalEarthService,
     openMeteoService: OpenMeteoService,
-    recosanteService: RecosanteService
+    recosanteService: RecosanteService,
 ) {
     // TODO: Initialize lazily
     // The order of this list is preserved in "source chooser" dialogs
@@ -59,7 +64,10 @@ class SourceManager @Inject constructor(
         openMeteoService,
 
         // Secondary weather sources
-        recosanteService
+        recosanteService,
+
+        // Broadcast sources
+        gadgetbridgeService
     )
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
@@ -97,6 +105,14 @@ class SourceManager @Inject constructor(
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
     fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
         ?: getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!
+
+    // Broadcast
+    fun getBroadcastSources(): List<BroadcastSource> = sourceList.filterIsInstance<BroadcastSource>()
+    fun isBroadcastSourcesEnabled(context: Context): Boolean {
+        return getBroadcastSources().any {
+            (SourceConfigStore(context, it.id).getString("packages", null) ?: "").isNotEmpty()
+        }
+    }
 
     // Configurables sources
     fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()

@@ -448,13 +448,6 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
 
-    var isBroadcastWeatherDataEnabled: Boolean
-        set(value) {
-            config.edit().putBoolean("broadcast_weather_data_switch", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getBoolean("broadcast_weather_data_switch", false)
-
     private fun notifySettingsChanged() {
         EventBus
             .instance

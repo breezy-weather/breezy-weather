@@ -462,7 +462,7 @@
     <string name="settings_widgets_section_widgets_in_use">ابزارک های در حال استفاده</string>
     <string name="settings_widgets_notification_style_title">حالت</string>
     <string name="settings_widgets_notification_temp_icon_switch">نماد دما در نوار وضعیت</string>
-    <string name="settings_widgets_gadgetbridge_switch">ارسال داده های هواشناسی به Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">ارسال داده های هواشناسی به %s</string>
     <string name="about_privacy_policy">سیاست حفظ حریم خصوصی</string>
     <string name="settings_debug_dump_crash_logs_saved">گزارش خرابی‌ نگه‌داری شد</string>
     <string name="settings_items_drag_to_sort">برای ترتیب دهی به گزینه های‌‌ فهرست ضربه بزنید و بکشید</string>
@@ -528,7 +528,6 @@
     <string name="settings_notifications_forecast_today_title">آگاه‌سازی پیش‌بینی روز</string>
     <string name="settings_notifications_forecast_tomorrow_title">آگاه‌سازی پیش‌بینی فردا</string>
     <string name="settings_widgets_summary">تنظیم تصویر زمینه، پیکربندی ابزارک های مورد استفاده، ابزارک آگاه‌سازی</string>
-    <string name="settings_widgets_gadgets_title">ابزار</string>
     <string name="settings_main_section_animations">پویانمایی ها</string>
     <string name="unit_inph_voice">اینچ بر ساعت</string>
     <string name="about_matrix">اتاق ماتریک</string>

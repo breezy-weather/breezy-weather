@@ -610,8 +610,7 @@
     <string name="temperature_average_short">平均气温</string>
     <string name="temperature_normals">气温正常值</string>
     <string name="temperature_normal_short">正常气温</string>
-    <string name="settings_widgets_gadgets_title">小部件</string>
-    <string name="settings_widgets_gadgetbridge_switch">发送天气数据到 Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">发送天气数据到 %s</string>
     <string name="pollen_and_mold">花粉和霉菌</string>
     <string name="settings_color_app">跟随应用设置</string>
     <string name="settings_debug_dump_crash_logs_saved">已保存崩溃日志</string>
@@ -680,8 +679,7 @@
     <string name="settings_source_instance">实例</string>
     <string name="settings_source_instance_geocoding">地理编码距离</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空气质量实例</string>
-    <string name="settings_widgets_broadcast_switch">广播我的天气数据给其他应用</string>
-    <string name="settings_widgets_broadcast_switch_dialog">此选项允许你设备上的任何应用访问你的位置名称和天气数据。请只在你充分理解由于启用该选项而可能导致的其他应用的潜在滥用风险的情况下才继续。</string>
+    <string name="settings_widgets_broadcast_title">广播我的天气数据给其他应用</string>
     <string name="message_invalid_incomplete_data">从服务器接收到的数据无效或不完整</string>
     <string name="settings_per_location_theme">主题</string>
     <string name="settings_source_instance_invalid">必须是以 / 结尾的 https URL</string>

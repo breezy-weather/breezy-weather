@@ -261,8 +261,7 @@
     <string name="settings_widgets_notification_style_title">Стил</string>
     <string name="settings_widgets_notification_temp_icon_switch">Температура како икона на лентата за статус</string>
     <string name="settings_widgets_notification_feels_like_switch">Употреба Се чувствува како температура</string>
-    <string name="settings_widgets_gadgets_title">Гаџети</string>
-    <string name="settings_widgets_gadgetbridge_switch">Испратете податоци за времето до Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Испратете податоци за времето до %s</string>
     <string name="about_privacy_policy">Политика за приватност</string>
     <string name="settings_debug_dump_crash_logs_saved">Дневниците на падовите се зачувани</string>
     <string name="unit_mph_voice">Милји на час</string>

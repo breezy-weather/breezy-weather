@@ -283,8 +283,7 @@
     <string name="settings_widgets_day_night_temp_reversed_title">Zamijeni redoslijed temperatura dan/noć</string>
     <string name="settings_widgets_section_widgets_in_use">Widgeti u upotrebi</string>
     <string name="settings_widgets_notification_persistent_switch">Stalni</string>
-    <string name="settings_widgets_gadgets_title">Gadgeti</string>
-    <string name="settings_widgets_gadgetbridge_switch">Pošaljite prognozu na Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Pošaljite prognozu na %s</string>
     <string name="about_privacy_policy">Politika privatnosti</string>
     <string name="settings_debug_dump_crash_logs_title">Podijeli zapisnike o padu aplikacije</string>
     <string name="settings_debug_summary">Zapisnici o padu aplikacije</string>

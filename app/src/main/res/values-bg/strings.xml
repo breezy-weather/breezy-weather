@@ -600,8 +600,7 @@
     <string name="temperature_normal_short">Нормална</string>
     <string name="settings_main_threshold_lines_on_charts">Прагови линии на диаграмите</string>
     <string name="temperature_normals">Температурни норми</string>
-    <string name="settings_widgets_gadgetbridge_switch">Изпращайте данни за времето до Gadgetbridge</string>
-    <string name="settings_widgets_gadgets_title">Джаджи</string>
+    <string name="settings_widgets_broadcast_send_data_title">Изпращайте данни за времето до %s</string>
     <string name="pollen_and_mold">Прашец и плесен</string>
     <string name="settings_color_app">Следвай приложението</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналите за сривове са запазени</string>

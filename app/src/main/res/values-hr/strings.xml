@@ -206,7 +206,6 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
     <string name="widget_material_you_forecast">Material You – Prognoza</string>
     <string name="settings_location_access_background_summaryOff">Omogućite „Dozvoli uvijek” za pozadinska osvježenja za vašu trenutnu lokaciju.</string>
-    <string name="settings_widgets_gadgets_title">Programčići</string>
     <string name="pollen_level_4">Visoko</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_custom_subtitle_keyword_at_description">Trenutačni osjećaj temperature (°C/°F)</string>
@@ -273,7 +272,7 @@
     <string name="action_edit">Uredi</string>
     <string name="action_back">Nazad</string>
     <string name="message_tap_again_to_exit">Dodirnite ponovo za prekid</string>
-    <string name="settings_widgets_gadgetbridge_switch">Pošaljite vremenske podatke na Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Pošaljite vremenske podatke na %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
     <string name="weather_air_quality_data_by">Podatci o kvaliteti zraka od %s</string>
@@ -646,7 +645,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Bezprijekorno</string>
     <string name="settings_source_instance_invalid">Mora biti https URL adresa koja završava s kosom crtom (/)</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoze</string>
-    <string name="settings_widgets_broadcast_switch">Emitiraj moje vremenske podatke drugim aplikacijama</string>
+    <string name="settings_widgets_broadcast_title">Emitiraj moje vremenske podatke drugim aplikacijama</string>
     <string name="about_open_link_message">Otvoriti %s?</string>
     <string name="settings_invalid_syntax">Neispravna sintaksa</string>
     <string name="settings_weather_source_unavailable">%s (nedostupno)</string>
@@ -673,7 +672,6 @@
     <string name="weather_message_too_frequent_refreshes">Pričekajte par sekundi prije ponovnog pokušaja…</string>
     <string name="location_delete_location_dialog_title">Izbrisati lokaciju?</string>
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Ova opcija omogućuje SVAKOJ aplikaciji na vašem uređaju pristup imenu vaše lokacije i vremenskim podacima. Nastavite samo ako u potpunosti razumijete potencijalne rizike zlouporabe drugih aplikacija koji bi mogli nastati zbog toga.</string>
     <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu Breezy Weathera, a zatim se prebacite na F-Droid koji ima manje podržanih izvora vremena. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
     <string name="alert_source">Izvor: %s</string>
 </resources>

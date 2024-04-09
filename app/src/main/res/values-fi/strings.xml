@@ -582,14 +582,13 @@
     <string name="common_weather_text_rain_snow_mixed_light">Kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="widget_material_you_forecast">Material You - Ennuste</string>
     <string name="settings_location_access_background_summaryOff">Ota käyttöön “Salli koko ajan”, jos haluat taustapäivityksiä nykyisen sijaintisi osalta.</string>
-    <string name="settings_widgets_gadgets_title">Gadgetit</string>
     <string name="settings_color_app">Seuraa sovellusta</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Kuurottaista vesisateen ja lumen sekoitusta</string>
     <string name="common_weather_text_overcast">Pilvinen</string>
     <string name="settings_location_access_precise_summaryOff">Ota käyttöön “Käytä tarkkaa sijaintia”, jos sijainnin määrittämisessä on ongelmia.</string>
     <string name="common_weather_text_rain_light">Kevyttä sadetta</string>
     <string name="settings_weather_sources_per_location_summary">Mukauta tämän sijainnin säätietolähteitä</string>
-    <string name="settings_widgets_gadgetbridge_switch">Lähetä säätietoja Gadgetbridgeen</string>
+    <string name="settings_widgets_broadcast_send_data_title">Lähetä säätietoja %s</string>
     <string name="settings_appearance_dark_mode_locations_title">Päivä-/yötila sijainteja varten</string>
     <string name="settings_main_daily_trends_title">Päiväkohtaiset suuntaukset</string>
     <string name="common_weather_text_snow_showers_heavy">Kuurottaista rankkaa lumisadetta</string>

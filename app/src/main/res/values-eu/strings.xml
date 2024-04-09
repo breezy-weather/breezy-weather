@@ -304,7 +304,7 @@
     <string name="settings_widgets_section_notification_widget">Jakinarazpen trepeta</string>
     <string name="settings_widgets_notification_widget_title">Jakinarazpen trepeta</string>
     <string name="settings_widgets_notification_temp_icon_switch">Tenperatura ikono gisa egoera-barran</string>
-    <string name="settings_widgets_gadgetbridge_switch">Bidali eguraldiaren datuak Gadgetbridge-ra</string>
+    <string name="settings_widgets_broadcast_send_data_title">Bidali eguraldiaren datuak %s-ra</string>
     <string name="about_privacy_policy">Pribatutasun politika</string>
     <string name="settings_debug_summary">Kraskatze logak</string>
     <string name="settings_debug_dump_crash_logs_title">Partekatu kraskatze logak</string>
@@ -598,7 +598,6 @@
     <string name="settings_location_access_precise_title">Gailuaren GPS erabilera</string>
     <string name="settings_main_cards_fade_in_switch">Txartelak desagertzen dira</string>
     <string name="settings_widgets_notification_feels_like_switch">Erabili Tenperatura bezala sentitzen da</string>
-    <string name="settings_widgets_gadgets_title">Gadgetak</string>
     <string name="settings_color_app">Jarraitu aplikazioa</string>
     <string name="notification_precipitation_continuing">Prezipitazioa</string>
     <string name="notification_precipitation_continuing_desc">Gutxienez %s arte jarraitzea espero da</string>

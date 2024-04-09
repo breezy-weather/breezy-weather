@@ -23,17 +23,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity
 import org.breezyweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity
@@ -46,7 +42,6 @@ import org.breezyweather.remoteviews.config.HourlyTrendWidgetConfigActivity
 import org.breezyweather.remoteviews.config.MultiCityWidgetConfigActivity
 import org.breezyweather.remoteviews.config.TextWidgetConfigActivity
 import org.breezyweather.remoteviews.config.WeekWidgetConfigActivity
-import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
 import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
 import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
@@ -60,9 +55,11 @@ import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.PackagePreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
@@ -70,8 +67,8 @@ import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
 import org.breezyweather.settings.preference.switchPreferenceItem
-import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.wallpaper.MaterialLiveWallpaperService
+import java.text.Collator
 
 @Composable
 fun WidgetsSettingsScreen(
@@ -82,7 +79,8 @@ fun WidgetsSettingsScreen(
     postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
     updateWidgetIfNecessary: (Context) -> Unit,
     updateNotificationIfNecessary: (Context) -> Unit,
-    updateGadgetIfNecessary: (Context) -> Unit,
+    broadcastDataIfNecessary: (Context, String) -> Unit,
+    broadcastSources: List<BroadcastSource>
 ) = PreferenceScreen(paddingValues = paddingValues) {
     // widget.
     sectionHeaderItem(R.string.settings_widgets_section_general)
@@ -344,84 +342,30 @@ fun WidgetsSettingsScreen(
     }
     sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 
-    if (GadgetBridgeService.isAvailable(context)) {
-        sectionHeaderItem(R.string.settings_widgets_gadgets_title)
-        switchPreferenceItem(R.string.settings_widgets_broadcast_switch) { id ->
-            val isBroadcastWeatherDataEnabled = remember {
-                mutableStateOf(
-                    SettingsManager
-                        .getInstance(context)
-                        .isBroadcastWeatherDataEnabled
-                )
-            }
-            val dialogConfirmRisksOpenState = remember { mutableStateOf(false) }
-
-            SwitchPreferenceView(
-                titleId = id,
-                summaryOnId = R.string.settings_enabled,
-                summaryOffId = R.string.settings_disabled,
-                checked = isBroadcastWeatherDataEnabled.value,
-                withState = false,
-                onValueChanged = {
-                    if (it) {
-                        dialogConfirmRisksOpenState.value = true
-                    } else {
-                        SettingsManager
-                            .getInstance(context)
-                            .isBroadcastWeatherDataEnabled = false
-                        isBroadcastWeatherDataEnabled.value = false
-                    }
+    sectionHeaderItem(R.string.settings_widgets_broadcast_title)
+    broadcastSources
+        .sortedWith { ws1, ws2 ->
+            Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
+        }
+        .forEach { broadcastSource ->
+            item(key = broadcastSource.id) {
+                val config = SourceConfigStore(context, broadcastSource.id)
+                val enabledPackages = (config.getString("packages", null) ?: "").let {
+                    if (it.isNotEmpty()) {
+                        it.split(",")
+                    } else emptyList()
                 }
-            )
-
-            if (dialogConfirmRisksOpenState.value) {
-                AlertDialog(
-                    onDismissRequest = {
-                        dialogConfirmRisksOpenState.value = false
-                    },
-                    dismissButton = {
-                        TextButton(
-                            onClick = {
-                                dialogConfirmRisksOpenState.value = false
-                            }
-                        ) {
-                            Text(
-                                text = stringResource(R.string.action_cancel),
-                                color = MaterialTheme.colorScheme.primary,
-                                style = MaterialTheme.typography.labelLarge,
-                            )
-                        }
-                    },
-                    confirmButton = {
-                        TextButton(
-                            onClick = {
-                                SettingsManager
-                                    .getInstance(context)
-                                    .isBroadcastWeatherDataEnabled = true
-                                updateGadgetIfNecessary(context)
-                                isBroadcastWeatherDataEnabled.value = true
-                                dialogConfirmRisksOpenState.value = false
-                            }
-                        ) {
-                            Text(
-                                text = stringResource(R.string.action_continue),
-                                color = MaterialTheme.colorScheme.primary,
-                                style = MaterialTheme.typography.labelLarge,
-                            )
-                        }
-                    },
-                    text = {
-                        Text(
-                            text = stringResource(R.string.settings_widgets_broadcast_switch_dialog),
-                            color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
-                )
+                PackagePreferenceView(
+                    title = stringResource(R.string.settings_widgets_broadcast_send_data_title, broadcastSource.name),
+                    intent = broadcastSource.intentAction,
+                    selectedKeys = enabledPackages
+                ) {
+                    config.edit().putString("packages", it.joinToString(",")).apply()
+                    broadcastDataIfNecessary(context, broadcastSource.id)
+                }
             }
         }
-        sectionFooterItem(R.string.settings_widgets_gadgets_title)
-    }
+    sectionFooterItem(R.string.settings_widgets_broadcast_title)
 
     bottomInsetItem()
 }

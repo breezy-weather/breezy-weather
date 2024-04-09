@@ -607,8 +607,7 @@
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
     <string name="weather_normals_data_by">Данные о температурных нормах предоставлены %s</string>
-    <string name="settings_widgets_gadgets_title">Гаджеты</string>
-    <string name="settings_widgets_gadgetbridge_switch">Отправить данные о погоде в Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Отправить данные о погоде в %s</string>
     <string name="pollen_and_mold">Пыльца и плесень</string>
     <string name="settings_color_app">Как в приложении</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналы аварийных закрытий сохранены</string>
@@ -676,8 +675,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Пример качества воздуха</string>
     <string name="settings_source_instance">Пример</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Пример прогноза</string>
-    <string name="settings_widgets_broadcast_switch">Передавать мои данные о погоде в другие приложения</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Эта опция позволяет ЛЮБОМУ приложению на вашем устройстве иметь доступ к названию вашего местоположения и данным о погоде. Продолжайте только в том случае, если вы полностью понимаете потенциальные риски неправильного использования другими приложениями, которые могут возникнуть в результате этого.</string>
+    <string name="settings_widgets_broadcast_title">Передавать мои данные о погоде в другие приложения</string>
     <string name="message_invalid_incomplete_data">С сервера получены неверные или неполные данные</string>
     <string name="settings_per_location_theme">Тема</string>
     <string name="settings_source_instance_invalid">Должен быть URL-адрес https, заканчивающийся на /</string>

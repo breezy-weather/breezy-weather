@@ -444,7 +444,6 @@
     <string name="settings_widgets_monochrome_icons_title">Monokróm ikonok</string>
     <string name="settings_widgets">Modulok és élő háttérkép</string>
     <string name="settings_widgets_section_notification_widget">Értesítési modul</string>
-    <string name="settings_widgets_gadgets_title">Eszközök</string>
     <string name="settings_debug">Hibakeresés</string>
     <string name="settings_debug_dump_crash_logs_title">Hibanapló megosztása</string>
     <string name="unit_bf">Bf</string>
@@ -597,7 +596,7 @@
     <string name="null_data_text">N/A</string>
     <string name="settings_main_daily_trends_title">Napi trendek</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Fordított nappali/éjszakai hőmérsékletsorrend</string>
-    <string name="settings_widgets_gadgetbridge_switch">Időjárásadatok elküldése a Gadgetbridge számára</string>
+    <string name="settings_widgets_broadcast_send_data_title">Időjárásadatok elküldése a %s számára</string>
     <string name="settings_color_dark">Sötét</string>
     <string name="unit_mi_voice">Mérföld</string>
     <string name="notification_channel_background_services">Háttérszolgáltatások</string>
@@ -675,8 +674,7 @@
     <string name="settings_source_instance_geocoding">Geokódolási példány</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzés példány</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettség példány</string>
-    <string name="settings_widgets_broadcast_switch">Időjárás adatok továbbítása más alkalmazásoknak</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Ez a beállítás lehetővé teszi, hogy az eszközén lévő MINDEN alkalmazás hozzáférjen a beállított helyszíneihez és az időjárás adataihoz. Csak akkor folytassa, ha teljes mértékben tisztában van a más alkalmazások által történő visszaélés lehetséges kockázataival, amelyek ebből eredhetnek.</string>
+    <string name="settings_widgets_broadcast_title">Időjárás adatok továbbítása más alkalmazásoknak</string>
     <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
     <string name="settings_per_location_theme">Téma</string>
     <string name="settings_source_instance_invalid">Egy https URL címnek kell lennie, amely /-re végződik</string>

@@ -1,9 +1,9 @@
-package org.breezyweather.remoteviews.gadgetbridge.json
+package org.breezyweather.sources.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GadgetBridgeAirQuality(
+data class GadgetbridgeAirQuality(
     val aqi: Int? = null,
     val co: Float? = null,
     val no2: Float? = null,

@@ -507,7 +507,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Licht-ijzelende motregen</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Hevig-ijzelende motregen</string>
     <string name="dialog_permissions_location_content">Breezy Weather moet uw locatie-informatie op de voorgrond of achtergrond verzamelen om de weergegevens van uw huidige locatie te verschaffen. Hiervoor vragen we enkele toestemmingen. Uw locatiegegevens worden alleen gebruikt voor het verkrijgen van weergegevens op uw huidige locatie. Als u uw locatiegegevens niet wilt delen, kunt u deze vereisten weigeren en uw locatie handmatig instellen op de beheerpagina.</string>
-    <string name="settings_widgets_gadgetbridge_switch">Stuur weergegevens naar Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Stuur weergegevens naar %s</string>
     <string name="settings_location_access_permission_already_granted">Reeds verleende toestemming</string>
     <string name="settings_location_access_switch_summaryOff">Geef toestemming als je je huidige locatie wilt kunnen toevoegen als locatie.</string>
     <string name="settings_location_access_background_summaryOn">Ingeschakeld. De app kan de weergegevens voor je huidige locatie op de achtergrond verversen.</string>
@@ -591,7 +591,6 @@
     <string name="settings_location">Locatie</string>
     <string name="settings_location_summary">Instellingen voor locatieservices</string>
     <string name="about_contribution_designer">Logo ontwerper</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="unit_inph_voice">Inches per uur</string>
     <string name="unit_hpa_voice">Hectopascal</string>
     <string name="unit_atm">atm</string>

@@ -606,8 +606,7 @@
     <string name="temperature_normals">معايير درجة الحرارة</string>
     <string name="weather_normals_data_by">بيانات درجة الحرارة العادية بواسطة %s</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
-    <string name="settings_widgets_gadgets_title">الأدوات</string>
-    <string name="settings_widgets_gadgetbridge_switch">إرسال بيانات الطقس إلى GadgetBridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="pollen_and_mold">حبوب اللقاح والعفن</string>
     <string name="settings_color_app">اتبع التطبيق</string>
     <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
@@ -676,8 +675,7 @@
     <string name="settings_source_instance_geocoding">خادم الترميز الجغرافي</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">خادم جودة الهواء</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">خادم التوقعات</string>
-    <string name="settings_widgets_broadcast_switch">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
-    <string name="settings_widgets_broadcast_switch_dialog">يتيح هذا الخيار لأي تطبيق على جهازك الوصول إلى موقعك وبيانات الطقس. لا يمكنك المتابعة إلا إذا كنت تفهم تمامًا المخاطر المحتملة لسوء الاستخدام من قبل التطبيقات الأخرى التي قد تصدر عن ذلك.</string>
+    <string name="settings_widgets_broadcast_title">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
     <string name="message_invalid_incomplete_data">تم تلقي بيانات غير صالحة أو غير كاملة من الخادم</string>
     <string name="settings_per_location_theme">السمة</string>
     <string name="settings_source_instance_invalid">يجب أن يكون عنوان URL https وينتهي بـ /</string>

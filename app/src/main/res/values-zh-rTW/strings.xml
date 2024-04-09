@@ -608,8 +608,7 @@
     <string name="temperature_normals">常態溫度範圍</string>
     <string name="weather_normals_data_by">常態溫度數據由 %s 提供</string>
     <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
-    <string name="settings_widgets_gadgetbridge_switch">傳送天氣資料到 Gadgetbridge</string>
-    <string name="settings_widgets_gadgets_title">小工具</string>
+    <string name="settings_widgets_broadcast_send_data_title">傳送天氣資料到 %s</string>
     <string name="pollen_and_mold">花粉與黴菌濃度</string>
     <string name="settings_color_app">自動</string>
     <string name="settings_debug_dump_crash_logs_saved">崩潰日誌已保存</string>
@@ -667,8 +666,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天……至4天後的花粉指數摘要</string>
     <string name="sunshine">陽光</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>
-    <string name="settings_widgets_broadcast_switch">將我的天氣數據廣播給其他應用程式</string>
+    <string name="settings_widgets_broadcast_title">將我的天氣數據廣播給其他應用程式</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">結合此地點最佳的天氣模型</string>
-    <string name="settings_widgets_broadcast_switch_dialog">此選項允許您裝置上的任何應用程式訪問您的位置名稱和天氣資料。只有在您完全理解其他應用程式可能濫用這些資料而導致的潛在風險時，才繼續進行。</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">將此提供者的所有天氣模型結合成無縫的預測</string>
 </resources>

@@ -606,10 +606,9 @@
     <string name="temperature_average_short">Media</string>
     <string name="weather_normals_data_by">I dati sulle norme di temperatura forniti da %s</string>
     <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
-    <string name="settings_widgets_gadgetbridge_switch">Invia dati meteo a Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Invia dati meteo a %s</string>
     <string name="pollen_and_mold">Polline e muffa</string>
     <string name="about_contribution_designer">Designer del logo</string>
-    <string name="settings_widgets_gadgets_title">Accessori</string>
     <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
     <string name="notification_channel_crash_logs">Crash log</string>

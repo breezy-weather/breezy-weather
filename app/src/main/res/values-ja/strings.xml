@@ -414,7 +414,7 @@
     <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall バージョン</string>
-    <string name="settings_widgets_gadgetbridge_switch">気象データをGadgetbridgeに送信する</string>
+    <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信する</string>
     <string name="settings_debug_summary">クラッシュログ</string>
     <string name="settings_debug_dump_crash_logs_title">クラッシュログを共有する</string>
     <string name="settings_item_delete">この項目を削除する</string>
@@ -573,7 +573,6 @@
     <string name="settings_notifications_summary">気象警報･降水量･予報</string>
     <string name="settings_notifications_precipitations_title">降水量の通知</string>
     <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
-    <string name="settings_widgets_gadgets_title">小道具</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで続くでしょう</string>
     <string name="common_weather_text_mainly_clear">おおむね晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
@@ -683,8 +682,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">予報実例</string>
     <string name="settings_weather_source_fdroid_disclaimer">Breezy Weather の他バージョンはもっと情報源を利用できます。ここをタップして詳細を表示します。</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空気質実例</string>
-    <string name="settings_widgets_broadcast_switch">天気データを他のアプリにブロードキャストする</string>
+    <string name="settings_widgets_broadcast_title">天気データを他のアプリにブロードキャストする</string>
     <string name="settings_invalid_syntax">無効な構文</string>
-    <string name="settings_widgets_broadcast_switch_dialog">このオプションを選択すると、デバイス上の全てのアプリが位置情報と天気データにアクセスできるようになります。これにより他のアプリによる悪用が発生する潜在的なリスクを十分に理解した上、続行してください。</string>
     <string name="alert_source">情報提供：%s</string>
 </resources>

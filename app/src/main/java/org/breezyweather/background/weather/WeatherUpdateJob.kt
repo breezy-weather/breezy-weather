@@ -60,12 +60,12 @@ import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.main.utils.RefreshErrorType
-import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
+import org.breezyweather.sources.SourceManager
 import java.io.File
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
@@ -138,7 +138,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
             } else {
                 0
-            },
+            }
         )
     }
 
@@ -158,16 +158,15 @@ class WeatherUpdateJob @AssistedInject constructor(
                 )
             } else emptyList()
         } else {
-            val nbLocations = when {
+            val locationList = when {
+                refreshHelper.isBroadcastSourcesEnabled(context) -> locationRepository.getAllLocations()
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled &&
-                    SettingsManager.getInstance(context)
-                        .widgetNotificationStyle == NotificationStyle.CITIES -> 4
-                MultiCityWidgetIMP.isInUse(context) -> 3
-                else -> 1
+                    SettingsManager.getInstance(context).widgetNotificationStyle == NotificationStyle.CITIES -> locationRepository.getXLocations(4)
+                MultiCityWidgetIMP.isInUse(context) -> locationRepository.getXLocations(3)
+                else -> locationRepository.getXLocations(1)
             }
 
-            locationRepository
-                .getXLocations(nbLocations)
+            locationList
                 .map {
                     it.copy(
                         weather = weatherRepository.getWeatherByLocationId(it.formattedId)
@@ -297,8 +296,9 @@ class WeatherUpdateJob @AssistedInject constructor(
                 // TODO: We only send alert and precipitation forecast for first location for historical reason, but this should be reworked
                 Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
                 Notifications.checkAndSendPrecipitation(applicationContext, location)
-                Gadgets.updateGadgetIfNecessary(context, location)
             }
+
+            refreshHelper.broadcastDataIfNecessary(context, locationList)
 
             // Inform main activity that we updated location
             newUpdates.forEach {

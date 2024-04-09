@@ -308,11 +308,12 @@ class SettingsActivity : GeoActivity() {
                                 refreshHelper.updateNotificationIfNecessary(context)
                             }
                         },
-                        updateGadgetIfNecessary = { context: Context ->
+                        broadcastDataIfNecessary = { context: Context, sourceId: String ->
                             scope.launch {
-                                refreshHelper.updateGadgetIfNecessary(context)
+                                refreshHelper.broadcastDataIfNecessary(context, sourceId)
                             }
-                        }
+                        },
+                        broadcastSources = sourceManager.getBroadcastSources(),
                     )
                 }
                 composable(SettingsScreenRouter.Location.route) {

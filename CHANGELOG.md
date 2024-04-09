@@ -1,9 +1,13 @@
 # Version 5.1.9 (not yet released)
 
+**New feature**
+- Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps. **If you were using this feature, you will have to go back to settings and enable which apps you want to send it to.**
+
 **Weather sources**
 - [GeoSphere Austria] Added as main source in Austria and nearby
 - [GeoSphere Austria] Added as secondary source for air quality in Europe and nearby
 - [GeoSphere Austria] Added as secondary source for precipitation nowcasting in Austria and nearby
+- [GeoSphere Austria] Added as secondary source for alerts in Austria
 - [AccuWeather] Fix fail to refresh when using a language not supported by AccuWeather (noticed on Central Kurdish, Esperanto and Interlingua), now fallbacks to English
 - [Open-Meteo] Fix workaround location search issue when result list is empty (will show instructions instead of an error)
 - [Open-Meteo] Fix issues related to DST

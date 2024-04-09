@@ -599,8 +599,7 @@
     <string name="pollen_and_mold">Ziedputekšņi un pelējums</string>
     <string name="pollen_tree">Koks</string>
     <string name="about_matrix">Matricas istaba</string>
-    <string name="settings_widgets_gadgets_title">Sīkrīki</string>
-    <string name="settings_widgets_gadgetbridge_switch">Nosūtiet laikapstākļu datus uz Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Nosūtiet laikapstākļu datus uz %s</string>
     <string name="settings_color_app">Sekot lietotnei</string>
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Pieskarieties, lai atvērtu</string>

@@ -601,7 +601,7 @@
     <string name="common_weather_text_rain_freezing">Marznący deszcz</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lekki deszcz ze śniegiem</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Przelotne opady deszczu ze śniegiem</string>
-    <string name="settings_widgets_gadgetbridge_switch">Wyślij dane pogodowe do Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Wyślij dane pogodowe do %s</string>
     <string name="common_weather_text_snow_showers_heavy">Silne przelotne opady śniegu</string>
     <string name="common_weather_text_snow_showers">Przelotne opady śniegu</string>
     <string name="settings_debug_dump_crash_logs_saved">Log błędu zapisany</string>
@@ -615,7 +615,6 @@
     <string name="common_weather_text_rain_freezing_light">Lekki marznący deszcz</string>
     <string name="common_weather_text_snow_moderate">Umiarkowane opady śniegu</string>
     <string name="common_weather_text_snow_showers_light">Lekkie przelotne opady śniegu</string>
-    <string name="settings_widgets_gadgets_title">Narzędzia</string>
     <string name="settings_color_app">Podążaj za nami</string>
     <string name="settings_unavailable_no_background_updates">Niedostępne, najpierw włącz aktualizacje w tle</string>
     <string name="notification_precipitation_starting">Wkrótce opady</string>

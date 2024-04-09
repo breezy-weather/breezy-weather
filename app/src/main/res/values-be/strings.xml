@@ -450,8 +450,7 @@
     <string name="settings_widgets_notification_style_title">Стыль</string>
     <string name="settings_widgets_notification_temp_icon_switch">Паказваць тэмпературу ў радку стану</string>
     <string name="settings_widgets_notification_feels_like_switch">Выкарыстоўваць тэмпературу Па адчуваннях</string>
-    <string name="settings_widgets_gadgets_title">Гаджэты</string>
-    <string name="settings_widgets_gadgetbridge_switch">Адправіць дадзеныя аб надвор’і ў Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Адправіць дадзеныя аб надвор’і ў %s</string>
     <string name="about_privacy_policy">Палітыка прыватнасці</string>
     <string name="settings_debug">Адладка</string>
     <string name="settings_debug_summary">Журналы памылак</string>
@@ -669,8 +668,7 @@
     <string name="settings_source_instance_geocoding">Прыклад геокодирования</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Прыклад прагнозу</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Прыклад якасці паветра</string>
-    <string name="settings_widgets_broadcast_switch">Перадаваць мае дадзеныя аб надвор’і ў іншыя прыкладання</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Гэтая опцыя дазваляе любому з дадаткам на вашым прыладзе мець доступ да назвы вашага месцазнаходжання і дадзеных аб надвор’і. Працягвайце толькі, калі вы цалкам разумееце патэнцыйныя рызыкі няправільнага выкарыстання іншымі прыкладаннямі, якія могуць узнікнуць у выніку гэтага.</string>
+    <string name="settings_widgets_broadcast_title">Перадаваць мае дадзеныя аб надвор’і ў іншыя прыкладання</string>
     <string name="message_invalid_incomplete_data">З сервера атрыманы няслушныя або няпоўныя дадзеныя</string>
     <string name="settings_per_location_theme">Тэма</string>
     <string name="settings_invalid_syntax">Няправільны сінтаксіс</string>

@@ -41,7 +41,6 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.main.utils.StatementManager
-import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
@@ -573,7 +572,7 @@ class MainActivityViewModel @Inject constructor(
                         Widgets.updateWidgetIfNecessary(context, it[0])
                         Notifications.updateNotificationIfNecessary(context, it)
                         Widgets.updateWidgetIfNecessary(context, it)
-                        Gadgets.updateGadgetIfNecessary(context, it[0])
+                        refreshHelper.broadcastDataIfNecessary(context, it)
                     }, 1000)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

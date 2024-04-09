@@ -25,11 +25,14 @@ import com.google.maps.android.model.LatLng
 import com.google.maps.android.model.LatLngBounds
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
+import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -50,10 +53,17 @@ class GeoSphereAtService @Inject constructor(
             .build()
             .create(GeoSphereAtApi::class.java)
     }
+    private val mWarningApi by lazy {
+        client
+            .baseUrl(GEOSPHERE_AT_WARNINGS_BASE_URL)
+            .build()
+            .create(GeoSphereAtWarningApi::class.java)
+    }
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
     override fun isFeatureSupportedInMainForLocation(
@@ -126,17 +136,31 @@ class GeoSphereAtService @Inject constructor(
             }
         }
 
+        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+            && isFeatureSupportedInMainForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mWarningApi.getWarningsForCoords(
+                location.longitude,
+                location.latitude,
+                if (context.currentLocale.code == "de") "de" else "en"
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(GeoSphereAtWarningsResult())
+            }
+        }
+
         return Observable.zip(
-            hourly, airQuality, nowcast
-        ) { hourlyResult, airQualityResult, nowcastResult ->
-            convert(hourlyResult, airQualityResult, nowcastResult, location)
+            hourly, airQuality, nowcast, alerts
+        ) { hourlyResult, airQualityResult, nowcastResult, alertsResult ->
+            convert(hourlyResult, airQualityResult, nowcastResult, alertsResult, location)
         }
     }
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
@@ -147,7 +171,7 @@ class GeoSphereAtService @Inject constructor(
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = null
+    override val alertAttribution = weatherAttribution
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
@@ -162,6 +186,11 @@ class GeoSphereAtService @Inject constructor(
         }
         if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
             && !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
+            return Observable.error(SecondaryWeatherException())
+        }
+        if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+            && !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -190,16 +219,28 @@ class GeoSphereAtService @Inject constructor(
             }
         }
 
+        val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mWarningApi.getWarningsForCoords(
+                location.longitude,
+                location.latitude,
+                if (context.currentLocale.code == "de") "de" else "en"
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(GeoSphereAtWarningsResult())
+            }
+        }
+
         return Observable.zip(
-            airQuality, nowcast
-        ) { airQualityResult, nowcastResult ->
-            convertSecondary(airQualityResult, nowcastResult)
+            airQuality, nowcast, alerts
+        ) { airQualityResult, nowcastResult, alertsResult ->
+            convertSecondary(airQualityResult, nowcastResult, alertsResult)
         }
     }
 
     companion object {
         private const val GEOSPHERE_AT_BASE_URL = "https://dataset.api.hub.geosphere.at/"
-        private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://openapi.hub.geosphere.at/"
+        private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://warnungen.zamg.at/wsapp/api/"
 
         val hourlyBbox = LatLngBounds.parse(west = 5.49, south = 42.98, east = 22.1, north = 51.82)
         val airQuality12KmBbox = LatLngBounds.parse(west = -59.21, south = 17.65, east = 83.21, north = 76.49)

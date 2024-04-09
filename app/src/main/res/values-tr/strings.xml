@@ -437,9 +437,8 @@
     <string name="settings_widgets_week_icon_mode_title">Haftalık görünümlerde gösterilecek simge</string>
     <string name="settings_widgets_section_notification_widget">Bildirim widget’ı</string>
     <string name="settings_widgets_notification_temp_icon_switch">Durum çubuğu simgesinde dereceyi göster</string>
-    <string name="settings_widgets_gadgets_title">Araçlar</string>
     <string name="unit_kn">kn</string>
-    <string name="settings_widgets_gadgetbridge_switch">Gadgetbridge’e hava durumu bilgisini gönder</string>
+    <string name="settings_widgets_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
     <string name="unit_bf">Bf</string>
@@ -675,9 +674,8 @@
     <string name="settings_source_instance_geocoding">Coğrafi kodlama sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Hava tahmini sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Hava kalitesi sunucusu</string>
-    <string name="settings_widgets_broadcast_switch">Hava durumu verilerimi diğer uygulamalara yayınla</string>
+    <string name="settings_widgets_broadcast_title">Hava durumu verilerimi diğer uygulamalara yayınla</string>
     <string name="message_invalid_incomplete_data">Sunucudan geçersiz veya eksik veri alındı</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Bu seçenek, aygıtınızdaki HERHANGİ BİR uygulamanın konum adınıza ve hava durumu verilerinize erişmesine izin verir. Yalnızca diğer uygulamalar tarafından kötüye kullanımın neden olabileceği olası riskleri tam olarak anlıyorsanız devam edin.</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance_invalid">/ ile biten bir https URL olmalıdır</string>
     <string name="settings_invalid_syntax">Geçersiz söz dizimi</string>

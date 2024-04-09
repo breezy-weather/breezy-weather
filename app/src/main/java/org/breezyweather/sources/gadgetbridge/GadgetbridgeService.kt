@@ -14,13 +14,9 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.remoteviews.gadgetbridge
+package org.breezyweather.sources.gadgetbridge
 
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.PackageManager.PackageInfoFlags
-import android.os.Build
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Daily
@@ -31,79 +27,44 @@ import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.roundDecimals
+import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getIndex
-import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeAirQuality
-import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeDailyForecast
-import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeData
-import org.breezyweather.remoteviews.gadgetbridge.json.GadgetBridgeHourlyForecast
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.gadgetbridge.json.GadgetbridgeAirQuality
+import org.breezyweather.sources.gadgetbridge.json.GadgetbridgeDailyForecast
+import org.breezyweather.sources.gadgetbridge.json.GadgetbridgeData
+import org.breezyweather.sources.gadgetbridge.json.GadgetbridgeHourlyForecast
+import javax.inject.Inject
 import kotlin.math.roundToInt
 
-object GadgetBridgeService {
-    private const val GB_INTENT_EXTRA = "WeatherJson"
-    private const val GB_INTENT_PACKAGE = "nodomain.freeyourgadget.gadgetbridge"
-    private const val GB_INTENT_PACKAGE_NIGHTLY = "$GB_INTENT_PACKAGE.nightly"
-    private const val GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE = "$GB_INTENT_PACKAGE.nightly_nopebble"
-    private const val GB_INTENT_PACKAGE_BANGLEJS = "com.espruino.gadgetbridge.banglejs"
-    private const val GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY = "$GB_INTENT_PACKAGE_BANGLEJS.nightly"
-    private const val GB_INTENT_PACKAGE_SMARTSPACER = "nodomain.pacjo.smartspacer.plugin.genericweather"
-    private const val GB_INTENT_ACTION = "$GB_INTENT_PACKAGE.ACTION_GENERIC_WEATHER"
+class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
-    fun sendWeatherBroadcast(context: Context, location: Location) {
-        if (location.weather?.current == null) {
+    override val id = "gadgetbridge"
+    override val name = "Gadgetbridge"
+
+    override val intentAction = "nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER"
+    override val intentExtra = "WeatherJson"
+
+    override fun getData(context: Context, locations: List<Location>): String? {
+        if (locations.isEmpty() || locations[0].weather?.current == null) {
             LogHelper.log(msg = "Not sending GadgetBridge data, current weather is null")
-            return
+            return null
         }
 
-        val weatherData = getWeatherData(context, location)
-        val encoded = Json.encodeToString(weatherData)
-
-        val intent = Intent(GB_INTENT_ACTION)
-            .putExtra(GB_INTENT_EXTRA, encoded)
-            .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-
-        context.sendBroadcast(intent)
-    }
-
-    fun isEnabled(context: Context): Boolean {
-        return SettingsManager.getInstance(context).isBroadcastWeatherDataEnabled &&
-                isAvailable(context)
-    }
-
-    fun isAvailable(context: Context): Boolean {
-        val pm = context.packageManager
-        return isPackageAvailable(pm, GB_INTENT_PACKAGE) ||
-            isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY) ||
-            isPackageAvailable(pm, GB_INTENT_PACKAGE_NIGHTLY_NOPEBBLE) ||
-            isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS) ||
-            isPackageAvailable(pm, GB_INTENT_PACKAGE_BANGLEJS_NIGHTLY) ||
-            isPackageAvailable(pm, GB_INTENT_PACKAGE_SMARTSPACER)
-    }
-
-    private fun isPackageAvailable(pm: PackageManager, name: String): Boolean {
-        return try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                pm.getPackageInfo(name, PackageInfoFlags.of(PackageManager.GET_META_DATA.toLong()))
-            } else {
-                pm.getPackageInfo(name, PackageManager.GET_META_DATA)
-            }
-            true
-        } catch (exc: PackageManager.NameNotFoundException) {
-            false
-        }
+        val weatherData = getWeatherData(context, locations[0])
+        return Json.encodeToString(weatherData)
     }
 
     private fun getWeatherData(
         context: Context,
         location: Location
-    ): GadgetBridgeData {
+    ): GadgetbridgeData {
         val current = location.weather?.current
         val today = location.weather?.today
 
-        return GadgetBridgeData(
+        return GadgetbridgeData(
             timestamp = location.weather?.base?.mainUpdateTime?.time?.div(1000)?.toInt(),
             location = location.getPlace(context),
             currentTemp = current?.temperature?.temperature?.roundCelsiusToKelvin(),
@@ -139,11 +100,11 @@ object GadgetBridgeService {
         )
     }
 
-    private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetBridgeDailyForecast>? {
+    private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetbridgeDailyForecast>? {
         if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
 
         return dailyForecast.slice(1 until dailyForecast.size).map { day ->
-            GadgetBridgeDailyForecast(
+            GadgetbridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
                 minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
@@ -159,11 +120,11 @@ object GadgetBridgeService {
         }
     }
 
-    private fun getAirQuality(airQuality: AirQuality?): GadgetBridgeAirQuality? {
+    private fun getAirQuality(airQuality: AirQuality?): GadgetbridgeAirQuality? {
         if (airQuality == null) return null
         val aqi = airQuality.getIndex() ?: return null
 
-        return GadgetBridgeAirQuality(
+        return GadgetbridgeAirQuality(
             aqi = aqi,
             co = airQuality.cO?.roundDecimals(2)?.toFloat(),
             no2 = airQuality.nO2?.roundDecimals(2)?.toFloat(),
@@ -180,11 +141,11 @@ object GadgetBridgeService {
         )
     }
 
-    private fun getHourlyForecasts(dailyForecast: List<Hourly>?): List<GadgetBridgeHourlyForecast>? {
+    private fun getHourlyForecasts(dailyForecast: List<Hourly>?): List<GadgetbridgeHourlyForecast>? {
         if (dailyForecast.isNullOrEmpty()) return null
 
         return dailyForecast.map { hour ->
-            GadgetBridgeHourlyForecast(
+            GadgetbridgeHourlyForecast(
                 timestamp = hour.date.time.div(1000).toInt(),
                 temp = hour.temperature?.temperature?.roundCelsiusToKelvin(),
                 conditionCode = getWeatherCode(hour.weatherCode),
@@ -214,8 +175,10 @@ object GadgetBridgeService {
             else -> 3200
         }
     }
-}
 
-internal fun Double.roundCelsiusToKelvin(): Int {
-    return TemperatureUnit.K.convertUnit(this).roundToInt()
+    companion object {
+        fun Double.roundCelsiusToKelvin(): Int {
+            return TemperatureUnit.K.convertUnit(this).roundToInt()
+        }
+    }
 }

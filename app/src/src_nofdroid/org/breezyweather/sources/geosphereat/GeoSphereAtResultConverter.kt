@@ -16,8 +16,11 @@
 
 package org.breezyweather.sources.geosphereat
 
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
@@ -30,8 +33,10 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
+import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import java.util.Date
 import kotlin.math.atan2
 import kotlin.math.pow
@@ -45,6 +50,7 @@ fun convert(
     hourlyResult: GeoSphereAtTimeseriesResult,
     airQualityResult: GeoSphereAtTimeseriesResult,
     nowcastResult: GeoSphereAtTimeseriesResult,
+    alertsResult: GeoSphereAtWarningsResult,
     location: Location
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
@@ -55,7 +61,8 @@ fun convert(
     return WeatherWrapper(
         dailyForecast = getDailyForecast(hourlyResult, location),
         hourlyForecast = getHourlyForecast(hourlyResult, airQualityResult),
-        minutelyForecast = getMinutelyForecast(nowcastResult)
+        minutelyForecast = getMinutelyForecast(nowcastResult),
+        alertList = getAlerts(alertsResult)
     )
 }
 
@@ -173,9 +180,41 @@ private fun getMinutelyForecast(
     }
 }
 
+fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
+    if (alertsResult.properties?.warnings == null) return null
+    return alertsResult.properties.warnings.map { result ->
+        Alert(
+            alertId = result.properties.warnid.toString(),
+            startDate = result.properties.rawInfo?.start?.toLongOrNull()?.times(1000)?.toDate(),
+            endDate = result.properties.rawInfo?.end?.toLongOrNull()?.times(1000)?.toDate(),
+            headline = result.properties.text,
+            description = "${result.properties.meteotext.let {
+                if (!it.isNullOrEmpty()) {
+                    it + "\n\n"
+                } else ""
+            }}${result.properties.consequences}",
+            instruction = result.properties.instructions,
+            source = "GeoSphere Austria",
+            severity = when (result.properties.rawInfo?.wlevel) {
+                3 -> AlertSeverity.EXTREME
+                2 -> AlertSeverity.SEVERE
+                1 -> AlertSeverity.MODERATE
+                else -> AlertSeverity.UNKNOWN
+            },
+            color = when (result.properties.rawInfo?.wlevel) {
+                3 -> Color.rgb(255, 0, 0)
+                2 -> Color.rgb(255, 196, 0)
+                1 -> Color.rgb(255, 255, 0)
+                else -> null
+            }
+        )
+    }
+}
+
 fun convertSecondary(
     airQualityResult: GeoSphereAtTimeseriesResult,
-    nowcastResult: GeoSphereAtTimeseriesResult
+    nowcastResult: GeoSphereAtTimeseriesResult,
+    alertsResult: GeoSphereAtWarningsResult
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
 
@@ -195,12 +234,13 @@ fun convertSecondary(
         airQuality = if (airQualityHourly.isNotEmpty()) {
             AirQualityWrapper(hourlyForecast = airQualityHourly)
         } else null,
-        minutelyForecast = getMinutelyForecast(nowcastResult)
+        minutelyForecast = getMinutelyForecast(nowcastResult),
+        alertList = getAlerts(alertsResult)
     )
 }
 
 /**
- * From https://www.zamg.ac.at/cms/en/topmenu/infopoint/legend/weather_symbols
+ * From https://github.com/breezy-weather/breezy-weather/issues/763#issuecomment-2044440950
  */
 private fun getWeatherCode(icon: Double?): WeatherCode? {
     if (icon == null) return null
@@ -208,11 +248,11 @@ private fun getWeatherCode(icon: Double?): WeatherCode? {
         1, 2 -> WeatherCode.CLEAR
         3 -> WeatherCode.PARTLY_CLOUDY
         4, 5 -> WeatherCode.CLOUDY
-        65, 68, 66, 69, 63 -> WeatherCode.RAIN
-        75, 78, 73, 76, 79 -> WeatherCode.SNOW
-        85, 86 -> WeatherCode.SLEET
-        49, 42 -> WeatherCode.FOG
-        92, 93, 99, 97, 98 -> WeatherCode.THUNDERSTORM
+        6, 7 -> WeatherCode.FOG
+        8, 9, 10, 17, 18, 19 -> WeatherCode.RAIN
+        11, 12, 13, 20, 21, 22 -> WeatherCode.SLEET
+        14, 15, 16, 23, 24, 25 -> WeatherCode.SNOW
+        26, 27, 28, 29, 30, 31, 32 -> WeatherCode.THUNDERSTORM
         else -> null
     }
 }

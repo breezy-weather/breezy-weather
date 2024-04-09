@@ -434,7 +434,6 @@
     <string name="message_source_not_installed_error_title">La font ja no està disponible</string>
     <string name="widget_material_you_forecast">Material You - Pronòstic</string>
     <string name="settings_location_access_background_summaryOff">Activeu «Permet tot el temps» per tenir actualitzacions en sego pla per a la vostra ubicació actual.</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="pollen_level_4">Alt</string>
     <string name="settings_source_default_value">Per defecte (sense canvis)</string>
     <string name="location_message_permission_background_missing">Falta la ubicació amb permís en segon pla</string>
@@ -473,7 +472,7 @@
     <string name="action_location_list">Llista d’ubicacions</string>
     <string name="settings_weather_sources_per_location_summary">Personalitzar les fonts de dades meteorològiques d’aquesta ubicació</string>
     <string name="action_back">Enrere</string>
-    <string name="settings_widgets_gadgetbridge_switch">Enviar dades meteorològiques a Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Enviar dades meteorològiques a %s</string>
     <string name="weather_air_quality_data_by">Dades de qualitat de l’aire per %s</string>
     <string name="air_quality_so2_info_introduction">El diòxid de sofre (SO₂) és un gas tòxic incolor responsable de l’olor dels llumins cremats.</string>
     <string name="unit_lpsqmph">L/m²/h</string>
@@ -656,8 +655,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">Models meteorològics</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instància de previsió meteorológica</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instància de qualitat de l’aire</string>
-    <string name="settings_widgets_broadcast_switch">Transmet les meves dades meteorològiques a altres aplicacions</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Aquesta opció permet que QUALSEVOL aplicació del vostre dispositiu tingui accés al nom de la vostra ubicació i a les dades meteorològiques. Continueu només si enteneu completament els riscos potencials d’ús indegut per part d’altres aplicacions que en podrien derivar.</string>
+    <string name="settings_widgets_broadcast_title">Transmet les meves dades meteorològiques a altres aplicacions</string>
     <string name="notification_precipitation_starting_desc">S’espera que comenci a les %s</string>
     <string name="about_open_link_message">Obre %s?</string>
     <string name="location_search_no_results_advice">Assegureu-vos que la cerca estigui escrita correctament i no massa específica. Alternativament, podeu provar una altra font de cerca d’ubicacions que pot produir resultats diferents.</string>

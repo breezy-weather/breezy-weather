@@ -555,7 +555,6 @@
     <string name="settings_widgets_notification_feels_like_switch">Utilizar la sensación térmica</string>
     <string name="common_weather_text_rain_freezing">Lluvia gélida</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lluvia ligera y nieve</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="settings_color_app">Seguir a la aplicación</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Chubascos mixtos de lluvia y nieve</string>
@@ -563,7 +562,7 @@
     <string name="about_contributors">Colaboradores</string>
     <string name="common_weather_text_rain_light">Lluvia fina</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="settings_widgets_gadgetbridge_switch">Enviar los datos meteorológicos a Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Enviar los datos meteorológicos a %s</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="common_weather_text_clear_sky">Cielo despejado</string>
     <string name="common_weather_text_snow_showers_heavy">Fuertes nevadas</string>
@@ -679,8 +678,7 @@
     <string name="settings_source_instance">Servidor</string>
     <string name="settings_source_instance_geocoding">Geocodificación</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Servidor de pronóstico del tiempo</string>
-    <string name="settings_widgets_broadcast_switch">Compartir mis datos meteorológicos con otras aplicaciones</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Esta opción permite que CUALQUIER aplicación en su dispositivo tenga acceso al nombre de su ubicación y a los datos meteorológicos. Continúe solo si comprende completamente los riesgos potenciales de uso indebido por parte de otras aplicaciones que podrían derivarse de ello.</string>
+    <string name="settings_widgets_broadcast_title">Compartir mis datos meteorológicos con otras aplicaciones</string>
     <string name="message_invalid_incomplete_data">Datos recibidos del servidor, no válidos o incompletos</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance_invalid">Debe ser una dirección https que acaba en /</string>

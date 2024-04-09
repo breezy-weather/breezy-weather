@@ -603,8 +603,7 @@
     <string name="settings_location_summary">Подешавања услуга за локацију</string>
     <string name="settings_location_access_background_title">Приступ локацији у позадини</string>
     <string name="settings_location_access_precise_title">Употреба GPS-а на уређају</string>
-    <string name="settings_widgets_gadgets_title">Гаџети</string>
-    <string name="settings_widgets_gadgetbridge_switch">Пошаљи податке о времену на Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Пошаљи податке о времену на %s</string>
     <string name="about_matrix">Matrix соба</string>
     <string name="pollen">Алергени</string>
     <string name="pollen_tree">Дрво</string>
@@ -675,8 +674,7 @@
     <string name="settings_source_instance_geocoding">Инстанца геокодирања</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Инстанца прогнозе</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Инстанца квалитета ваздуха</string>
-    <string name="settings_widgets_broadcast_switch">Емитуј моје податке о времену у друге апликације</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Ова опција омогућава БИЛО КОЈОЈ апликацији на вашем уређају да има приступ називу ваше локације и подацима о времену. Наставите само ако у потпуности разумете потенцијалне ризике злоупотребе од стране других апликација које би могле да проистекну из тога.</string>
+    <string name="settings_widgets_broadcast_title">Емитуј моје податке о времену у друге апликације</string>
     <string name="settings_per_location_theme">Тема</string>
     <string name="message_invalid_incomplete_data">Неважећи или непотпуни подаци примљени са сервера</string>
     <string name="settings_source_instance_invalid">Мора да буде https URL који се завршава с /</string>

@@ -587,8 +587,7 @@
     <string name="weather_normals_data_by">Normais de temperatura por %s</string>
     <string name="settings_main_threshold_lines_on_charts">Linhas de limite em gráficos</string>
     <string name="pollen_and_mold">Pólen e mofo</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
-    <string name="settings_widgets_gadgetbridge_switch">Enviar dados meteorológicos para Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva fraca</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
@@ -683,11 +682,10 @@
     <string name="alert">Alerta</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Integração perfeita</string>
     <string name="settings_source_instance">Instância</string>
-    <string name="settings_widgets_broadcast_switch">Transmitir meus dados meteorológicos para outros apps</string>
+    <string name="settings_widgets_broadcast_title">Transmitir meus dados meteorológicos para outros apps</string>
     <string name="settings_source_instance_geocoding">Instância de geocodificação</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instância de previsão</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instância de qualidade do ar</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Esta opção permite que qualquer app no seu dispositivo tenha acesso a sua localização e dados meteorológicos. Só prossiga se você entende completamente os riscos potenciais de uso indevido por outros apps que podem resultar do mesmo.</string>
     <string name="message_invalid_incomplete_data">Dados recebidos do servidor inválidos ou incompletos</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_invalid_syntax">Sintaxe inválida</string>

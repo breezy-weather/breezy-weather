@@ -608,10 +608,9 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
     <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
-    <string name="settings_widgets_broadcast_switch">Broadcast my weather data to other apps</string>
-    <string name="settings_widgets_broadcast_switch_dialog">This option allows ANY app on your device to have access to your location name and weather data. Only proceed if you fully understand the potential risks of misuse by other apps that could result from it.</string>
-    <string name="settings_widgets_gadgetbridge_switch">Send weather data to Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_title">Data sharing</string>
+    <!-- %s is for example Gadgetbridge, as in "Send data of type Gadgetbridge" -->
+    <string name="settings_widgets_broadcast_send_data_title">Send %s data</string>
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_debug_summary">Crash logs</string>

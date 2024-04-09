@@ -577,7 +577,6 @@
     <string name="unit_bf">bf</string>
     <string name="weather_normals_data_by">Normalele temperaturii furnizate de %s</string>
     <string name="widget_label_show_widget_card_alpha">Opacitate</string>
-    <string name="settings_widgets_gadgets_title">Gadget-uri</string>
     <string name="common_weather_text_rain_freezing_heavy">Chiciură Abundentă</string>
     <string name="notification_precipitation_starting">Precipitații în curând</string>
     <string name="notification_precipitation_starting_desc">Așteptate să înceapă la %s</string>
@@ -606,7 +605,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Jurnal de incidente salvat</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Lapoviță și Ninsoare Torențială</string>
     <string name="settings_weather_sources_per_location_summary">Personalizează furnizorii meteo pentru această locație</string>
-    <string name="settings_widgets_gadgetbridge_switch">Trimite date meteo către Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Trimite date meteo către %s</string>
     <string name="settings_weather_source_main">Furnizorul principal</string>
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
@@ -680,8 +679,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoză</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Server calitatea aerului</string>
     <string name="settings_source_instance">Server</string>
-    <string name="settings_widgets_broadcast_switch">Transmite date meteo către alte aplicații</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Această opțiune permite ca orice aplicație de pe dispozitivul tău să aibă acces la numele locației tale și la datele meteo. Continuă numai dacă înțelegi, pe deplin, riscurile cauzate de potențiala utilizare abuzivă a altor aplicații.</string>
+    <string name="settings_widgets_broadcast_title">Transmite date meteo către alte aplicații</string>
     <string name="settings_per_location_theme">Temă</string>
     <string name="settings_source_instance_invalid">Trebuie să fie un URL https cu / la sfârșit</string>
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>

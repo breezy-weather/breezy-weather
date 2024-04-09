@@ -20,7 +20,6 @@ import android.content.Context
 import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
-import android.icu.util.ULocale
 import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
@@ -29,7 +28,6 @@ import com.xhinliang.lunarcalendar.LunarCalendar
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.settings.SettingsManager
 import org.chickenhook.restrictionbypass.RestrictionBypass
 import java.lang.reflect.Method
 import java.util.Calendar

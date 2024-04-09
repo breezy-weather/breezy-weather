@@ -18,6 +18,8 @@ package org.breezyweather.sources
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -66,12 +68,11 @@ import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.RefreshErrorType
-import org.breezyweather.remoteviews.Gadgets
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -696,25 +697,79 @@ class RefreshHelper @Inject constructor(
         }
     }
 
-    suspend fun updateGadgetIfNecessary(context: Context) {
-        if (GadgetBridgeService.isEnabled(context)) {
-            val locationList =
-                locationRepository.getXLocations(1, withParameters = false)//.toMutableList()
-            if (locationList.isNotEmpty()) {
-                Gadgets.updateGadgetIfNecessary(
-                    context,
-                    locationList[0].copy(
-                        weather = weatherRepository.getWeatherByLocationId(
-                            locationList[0].formattedId,
-                            withDaily = true,
-                            withHourly = true,
-                            withMinutely = false,
-                            withAlerts = false
-                        )
+    /**
+     * @param context
+     * @param sourceId if you only want to send data for a specific source
+     */
+    suspend fun broadcastDataIfNecessary(
+        context: Context, sourceId: String? = null
+    ) {
+        val locationList = locationRepository.getAllLocations(withParameters = false)
+            .map {
+                it.copy(
+                    weather = weatherRepository.getWeatherByLocationId(
+                        it.formattedId
                     )
                 )
             }
-        }
+        return broadcastDataIfNecessary(context, locationList, sourceId)
+    }
+
+    fun isBroadcastSourcesEnabled(context: Context): Boolean {
+        return sourceManager.isBroadcastSourcesEnabled(context)
+    }
+
+    /**
+     * @param context
+     * @param locationList
+     * @param sourceId if you only want to send data for a specific source
+     */
+    fun broadcastDataIfNecessary(
+        context: Context, locationList: List<Location>, sourceId: String? = null
+    ) {
+        sourceManager.getBroadcastSources()
+            .filter { sourceId == null || sourceId == it.id }
+            .forEach { source ->
+                val config = SourceConfigStore(context, source.id)
+                val enabledPackages = (config.getString("packages", null) ?: "").let {
+                    if (it.isNotEmpty()) {
+                        it.split(",")
+                    } else emptyList()
+                }
+
+                if (enabledPackages.isNotEmpty()) {
+                    val packageInfoList = context.packageManager.queryBroadcastReceivers(
+                        Intent(source.intentAction), PackageManager.GET_RESOLVED_FILTER
+                    )
+                    val enabledAndAvailablePackages = enabledPackages
+                        .filter { enabledPackage ->
+                            packageInfoList.any { it.activityInfo.applicationInfo.packageName == enabledPackage }
+                        }
+                    if (enabledPackages.size != enabledAndAvailablePackages.size) {
+                        LogHelper.log(msg = "[${source.name}] Updating packages setting as some packages are no longer available")
+                        // Update to remove unavailable packages
+                        config.edit().putString("packages", enabledAndAvailablePackages.joinToString(",")).apply()
+                        // Don't notify settings changed, we are already sending data!
+                    }
+
+                    if (enabledAndAvailablePackages.isNotEmpty()) {
+                        val data = source.getData(context, locationList)
+                        if (data != null) {
+                            enabledAndAvailablePackages.forEach {
+                                if (BreezyWeather.instance.debugMode) {
+                                    LogHelper.log(msg = "[${source.name}] Sending data to $it")
+                                }
+                                context.sendBroadcast(
+                                    Intent(source.intentAction)
+                                        .setPackage(it)
+                                        .putExtra(source.intentExtra, data)
+                                        .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)

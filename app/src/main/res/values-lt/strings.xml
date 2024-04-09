@@ -531,8 +531,7 @@
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>
     <string name="pollen_and_mold">Žiedadulkės ir pelėsis</string>
     <string name="settings_main_threshold_lines_on_charts">Ribinės linijos diagramose</string>
-    <string name="settings_widgets_gadgets_title">Prietaisai</string>
-    <string name="settings_widgets_gadgetbridge_switch">Orų duomenų siuntimas į Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Orų duomenų siuntimas į %s</string>
     <string name="about_privacy_policy">Privatumo politika</string>
     <string name="settings_debug">Derinimas</string>
     <string name="settings_items_drag_to_sort">Bakstelėkite, kad vilktumėte sąrašo elementus rūšiavimui</string>

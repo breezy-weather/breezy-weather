@@ -618,8 +618,7 @@
     <string name="metno_weather_text_andthunder">%s a hrom</string>
     <string name="action_save">Uložit</string>
     <string name="pollen_and_mold">Alergeny a plísně</string>
-    <string name="settings_widgets_gadgets_title">Příslušenství</string>
-    <string name="settings_widgets_gadgetbridge_switch">Posílat data o počasí do Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Posílat data o počasí do %s</string>
     <string name="settings_debug_dump_crash_logs_saved">Protokoly o chybách uloženy</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Klepnutím otevřete</string>
     <string name="notification_channel_crash_logs">Protokoly o chybách</string>
@@ -686,8 +685,7 @@
     <string name="settings_source_instance">Instance</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance předpovědi</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance kvality vzduchu</string>
-    <string name="settings_widgets_broadcast_switch">Posílat data o počasí ostatním aplikacím</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Tato možnost umožňuje KTERÉKOLI aplikaci na vašem zařízení získat přístup k názvu vašeho umístění a datům o počasí. Pokračujte pouze, pokud jste si plně vědomi potenciálních rizik zneužití ostatními aplikacemi.</string>
+    <string name="settings_widgets_broadcast_title">Posílat data o počasí ostatním aplikacím</string>
     <string name="message_invalid_incomplete_data">Ze serveru byla obdržena neplatná nebo neúplná data</string>
     <string name="settings_per_location_theme">Motiv</string>
     <string name="settings_source_instance_invalid">V poli se musí nacházet https URL končící znakem /</string>

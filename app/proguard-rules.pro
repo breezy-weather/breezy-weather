@@ -24,7 +24,6 @@
 -keep class org.breezyweather.db.entities.** { *; }
 -keep interface org.breezyweather.sources.**.* { *; }
 -keep class org.breezyweather.sources.**.json.** { *; }
--keep class org.breezyweather.remoteviews.gadgetbridge.json.** { *; }
 
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver

@@ -511,7 +511,6 @@
     <string name="settings_widgets_monochrome_icons_title">Μονόχρωμα εικονίδια</string>
     <string name="settings_widgets_section_notification_widget">Γραφικό στοιχείο ειδοποίησης</string>
     <string name="settings_widgets_notification_style_title">Στυλ</string>
-    <string name="settings_widgets_gadgets_title">Συσκευές</string>
     <string name="settings_debug_summary">κούτσουρα συντριβής</string>
     <string name="settings_debug_dump_crash_logs_title">Κοινή χρήση αρχείων καταγραφής σφαλμάτων</string>
     <string name="settings_debug_dump_crash_logs_summary">Αποθηκεύει αρχεία καταγραφής σφαλμάτων σε ένα αρχείο για κοινή χρήση με τους προγραμματιστές</string>
@@ -554,7 +553,7 @@
     <string name="common_weather_text_drizzle_heavy">Έντονο ψιλόβροχο</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ώρα ειδοποίησης για την πρόβλεψη της επόμενης ημέρας</string>
     <string name="settings_widgets">Γραφικά στοιχεία &amp; Ζωντανή ταπετσαρία</string>
-    <string name="settings_widgets_gadgetbridge_switch">Στείλτε δεδομένα καιρού στο Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Στείλτε δεδομένα καιρού στο %s</string>
     <string name="about_privacy_policy">Πολιτική απορρήτου</string>
     <string name="settings_widgets_configure_widget_summary">Διαμόρφωση αυτού του γραφικού στοιχείου</string>
     <string name="notification_precipitation_continuing">Κατακρήμνιση</string>

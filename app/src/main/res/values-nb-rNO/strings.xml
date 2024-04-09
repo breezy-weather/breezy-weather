@@ -324,11 +324,9 @@
     <string name="settings_appearance_dark_mode_locations_title">Dag-/nattmodus for lokasjoner</string>
     <string name="settings_widgets">Moduler &amp; Animert bakgrunn</string>
     <string name="settings_main_cards_title">Kort</string>
-    <string name="settings_widgets_broadcast_switch">Send værdata til andre apper</string>
+    <string name="settings_widgets_broadcast_title">Send værdata til andre apper</string>
     <string name="settings_main_summary">Kortrekkefølge, synlige objekter, animasjoner</string>
     <string name="settings_debug">Feilsøk</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Denne innstillingen tillater ALLE apper på enheten din å få tilgang til stedsnavn og værdata. Gå kun videre hvis du forstår potensielle risikoer knyttet til misbruk fra andre apper som et resultat av dette.</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
     <string name="location_delete_location_dialog_message">Du er i ferd med å slette «%s» fra lagrede lokasjoner.</string>
     <string name="settings_main">Startskjerm</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerer alle værvarslingsmodellene fra denne leverandøren for en sømløs prognose</string>
@@ -386,7 +384,7 @@
     <string name="settings_widgets_configure_widget_summary">Konfigurer denne modulen</string>
     <string name="settings_widgets_section_widgets_in_use">Moduler i bruk</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reverser rekkefølgen på dag/natt temperaturer</string>
-    <string name="settings_widgets_gadgetbridge_switch">Send værdata til Gadgetbridge</string>
+    <string name="settings_widgets_broadcast_send_data_title">Send værdata til %s</string>
     <string name="settings_widgets_section_notification_widget">Varselmodul</string>
     <string name="settings_widgets_notification_widget_title">Varselmodul</string>
     <string name="settings_debug_summary">Krasjlogger</string>

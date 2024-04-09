@@ -17,7 +17,6 @@
 package org.breezyweather.common.basic
 
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.annotation.CallSuper

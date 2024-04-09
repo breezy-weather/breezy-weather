@@ -1,9 +1,9 @@
-package org.breezyweather.remoteviews.gadgetbridge.json
+package org.breezyweather.sources.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GadgetBridgeDailyForecast(
+data class GadgetbridgeDailyForecast(
     val minTemp: Int? = null,
     val maxTemp: Int? = null,
     val conditionCode: Int? = null,
@@ -17,5 +17,5 @@ data class GadgetBridgeDailyForecast(
     val moonRise: Int? = null,
     val moonSet: Int? = null,
     val moonPhase: Int? = null,
-    val airQuality: GadgetBridgeAirQuality? = null,
+    val airQuality: GadgetbridgeAirQuality? = null,
 )

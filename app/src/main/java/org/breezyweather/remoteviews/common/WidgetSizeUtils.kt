@@ -3,7 +3,6 @@ package org.breezyweather.remoteviews.common
 import android.appwidget.AppWidgetManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.util.SizeF
 import android.widget.RemoteViews
 import kotlin.math.roundToInt

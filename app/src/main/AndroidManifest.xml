@@ -46,26 +46,22 @@
         android:required="false" />
 
     <queries>
+        <!-- Breezy Weather Icon Packs -->
         <intent>
-            <!-- Breezy Weather Icon Packs. -->
             <action android:name="org.breezyweather.ICON_PROVIDER" />
         </intent>
+        <!-- Geometric Weather Icon Packs -->
         <intent>
-            <!-- Geometric Weather Icon Packs. -->
             <action android:name="wangdaye.com.geometricweather.ICON_PROVIDER" />
         </intent>
+        <!-- Chronus Icon Packs -->
         <intent>
-            <!-- Chronus Icon Packs. -->
             <action android:name="android.intent.action.MAIN" />
         </intent>
-
-        <!-- Gadgetbridge -->
-        <package android:name="nodomain.freeyourgadget.gadgetbridge" />
-        <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly" />
-        <package android:name="nodomain.freeyourgadget.gadgetbridge.nightly_nopebble" />
-        <package android:name="com.espruino.gadgetbridge.banglejs" />
-        <package android:name="com.espruino.gadgetbridge.banglejs.nightly" />
-        <package android:name="nodomain.pacjo.smartspacer.plugin.genericweather" />
+        <!-- GadgetBridge WeatherSpec -->
+        <intent>
+            <action android:name="nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER" />
+        </intent>
     </queries>
 
     <application

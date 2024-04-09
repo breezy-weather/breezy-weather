@@ -75,7 +75,7 @@ The following features, if not available from your selected source, can be added
 | **Air quality**              | Current | ❌             | Europe and nearby        | ❌          | ❌      | ❌       | ❌       | ❌           |
 | **Pollen**                   | ❌       | ❌             | ❌                        | ❌          | ❌      | ❌       | ❌       | ❌           |
 | **Precipitation nowcasting** | ✅       | ❌             | Austria and nearby       | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Alerts**                   | China   | United States | *In progress*            | Germany    | Canada | ✅       | ❌       | Ireland     |
+| **Alerts**                   | China   | United States | Austria                  | Germany    | Canada | ✅       | ❌       | Ireland     |
 | **Normals**                  | Average | Average       | *In progress*            | Average    | ✅      | Average | Average | Average     |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
@@ -198,7 +198,7 @@ Legend:
 | **Air quality**              | China | ❌             | Europe and nearby        | ❌                  | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
 | **Pollen**                   | ❌     | ❌             | ❌                        | ❌                  | ❌          | ❌      | ❌                             | ❌           | ❌             |
 | **Precipitation nowcasting** | China | ❌             | Austria and nearby       | ❌                  | ❌          | ❌      | ❌                             | ❌           | ❌             |
-| **Alerts**                   | China | United States | *In progress*            | ✅                  | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
+| **Alerts**                   | China | United States | Austria                  | ✅                  | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
 | **Normals**                  | ❌     | ❌             | *In progress*            | ❌                  | ❌          | Canada | ❌                             | ❌           | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing

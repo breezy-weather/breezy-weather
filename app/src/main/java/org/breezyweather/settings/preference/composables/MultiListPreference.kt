@@ -16,11 +16,11 @@
 
 package org.breezyweather.settings.preference.composables
 
-import android.content.Context
-import androidx.annotation.ArrayRes
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -43,68 +43,54 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.os.LocaleListCompat
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
-import java.util.Date
+import java.text.Collator
+
+data class PreferenceItem(
+    val name: String,
+    val value: String,
+    val icon: Drawable? = null,
+    val subname: String? = null
+)
 
 @Composable
-fun ListPreferenceView(
-    @StringRes titleId: Int,
-    @DrawableRes iconId: Int? = null,
-    @ArrayRes valueArrayId: Int,
-    @ArrayRes nameArrayId: Int,
-    @ArrayRes summaryArrayId: Int? = null,
-    selectedKey: String,
-    enabled: Boolean = true,
-    card: Boolean = true,
-    onValueChanged: (String) -> Unit,
-) {
-    val values = stringArrayResource(valueArrayId)
-    val names = stringArrayResource(nameArrayId)
-    val summaries = if (summaryArrayId == null) names else stringArrayResource(summaryArrayId)
-    ListPreferenceView(
-        title = stringResource(titleId),
-        iconId = iconId,
-        summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
-        selectedKey = selectedKey,
-        valueArray = values,
-        nameArray = names,
-        enabled = enabled,
-        card = card,
-        onValueChanged = onValueChanged,
-    )
-}
-
-@Composable
-fun ListPreferenceView(
+fun MultiListPreferenceView(
     title: String,
     @DrawableRes iconId: Int? = null,
-    summary: (Context, String) -> String?, // value -> summary.
-    selectedKey: String,
-    valueArray: Array<String>,
-    nameArray: Array<String>,
+    selectedKeys: List<String>,
+    itemsArray: Array<PreferenceItem>,
     enabled: Boolean = true,
     card: Boolean = true,
-    withState: Boolean = true,
-    dismissButton: @Composable (() -> Unit)? = null,
-    onValueChanged: (String) -> Unit,
+    onValueChanged: (List<String>) -> Unit
 ) {
-    val listSelectedState = remember { mutableStateOf(selectedKey) }
+    val context = LocalContext.current
+    val listSelectedState = remember {
+        mutableStateListOf<String>().apply {
+            addAll(selectedKeys)
+        }
+    }
     val dialogOpenState = remember { mutableStateOf(false) }
-    val currentSummary = summary(LocalContext.current, if (withState) listSelectedState.value else selectedKey)
+    val currentSummary = (listSelectedState.mapNotNull {
+            selectedItem -> itemsArray.firstOrNull { it.value == selectedItem }?.name
+        })
+        .sortedWith(Collator.getInstance(context.currentLocale))
+        .joinToString(stringResource(R.string.comma_separator))
+        .ifEmpty {
+            stringResource(R.string.settings_disabled)
+        }
 
     // TODO: Redundancy
     if (card) {
@@ -149,18 +135,16 @@ fun ListPreferenceView(
                         }
                     }
                 },
-                supportingContent = if (currentSummary?.isNotEmpty() == true) {
-                    {
-                        Column {
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                            Text(
-                                text = currentSummary,
-                                color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
-                        }
+                supportingContent = {
+                    Column {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = currentSummary,
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
                     }
-                } else null
+                }
             )
         }
     } else {
@@ -202,24 +186,25 @@ fun ListPreferenceView(
                     }
                 }
             },
-            supportingContent = if (currentSummary?.isNotEmpty() == true) {
-                {
-                    Column {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                        Text(
-                            text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
+            supportingContent = {
+                Column {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Text(
+                        text = currentSummary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
                 }
-            } else null
+            }
         )
     }
 
     if (dialogOpenState.value) {
         AlertDialogNoPadding(
-            onDismissRequest = { dialogOpenState.value = false },
+            onDismissRequest = {
+                onValueChanged(selectedKeys)
+                dialogOpenState.value = false
+            },
             title = {
                 Text(
                     text = title,
@@ -231,26 +216,43 @@ fun ListPreferenceView(
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    items(valueArray.zip(nameArray)) {
-                        RadioButton(
-                            selected = if (withState) {
-                                listSelectedState.value == it.first
-                            } else selectedKey == it.first,
+                    items(itemsArray) {
+                        Switch(
+                            icon = it.icon,
+                            selected = listSelectedState.contains(it.value),
                             onClick = {
-                                if (withState) {
-                                    listSelectedState.value = it.first
+                                if (listSelectedState.contains(it.value)) {
+                                    listSelectedState.remove(it.value)
+                                } else {
+                                    listSelectedState.add(it.value)
                                 }
-                                dialogOpenState.value = false
-                                onValueChanged(it.first)
                             },
-                            text = it.second,
+                            text = it.name,
+                            subtext = it.subname
                         )
                     }
                 }
             },
             confirmButton = {
                 TextButton(
-                    onClick = { dialogOpenState.value = false }
+                    onClick = {
+                        onValueChanged(listSelectedState)
+                        dialogOpenState.value = false
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.action_save),
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        onValueChanged(selectedKeys)
+                        dialogOpenState.value = false
+                    }
                 ) {
                     Text(
                         text = stringResource(R.string.action_cancel),
@@ -258,68 +260,83 @@ fun ListPreferenceView(
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
-            },
-            dismissButton = dismissButton
+            }
         )
     }
 }
 
 @Composable
-internal fun RadioButton(
+internal fun Switch(
     selected: Boolean,
     onClick: () -> Unit,
     text: String,
+    icon: Drawable? = null,
+    subtext: String? = null,
 ) {
-    Row(
+    ListItem(
+        headlineContent = {
+            Text(text)
+        },
         modifier = Modifier
-            .fillMaxWidth()
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberThemeRipple(),
                 onClick = onClick,
-            )
-            .padding(
-                horizontal = dimensionResource(R.dimen.little_margin),
             ),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        androidx.compose.material3.RadioButton(
-            selected = selected,
-            onClick = onClick
-        )
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-        Text(
-            text = text,
-            color = DayNightTheme.colors.titleColor,
-            style = MaterialTheme.typography.titleMedium,
-        )
-    }
+        leadingContent = {
+            icon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
+                Image(
+                    bitmap,
+                    contentDescription = text,
+                    modifier = Modifier
+                        .height(42.dp)
+                        .width(42.dp)
+                )
+            }
+        },
+        trailingContent = {
+            androidx.compose.material3.Switch(
+                checked = selected,
+                onCheckedChange = {
+                    onClick()
+                }
+            )
+        }
+    )
 }
 
 @Composable
-fun LanguagePreferenceView(
-    @StringRes titleId: Int,
+fun PackagePreferenceView(
+    title: String,
+    selectedKeys: List<String>,
+    intent: String,
+    onValueChanged: (List<String>) -> Unit
 ) {
     val context = LocalContext.current
-
-    val langs = remember { LocaleHelper.getLangs(context) }
-    val currentLanguage by remember {
-        mutableStateOf(AppCompatDelegate.getApplicationLocales().get(0)?.toLanguageTag() ?: "")
+    val packages = remember {
+        context.packageManager.queryBroadcastReceivers(
+            Intent(intent), PackageManager.GET_RESOLVED_FILTER
+        )
     }
 
-    ListPreferenceView(
-        title = stringResource(titleId),
-        summary = { _, value -> langs.firstOrNull { value == it.langTag }?.displayName ?: "" },
-        selectedKey = langs.firstOrNull { currentLanguage == it.langTag }?.langTag ?: "",
-        valueArray = langs.map { it.langTag }.toTypedArray(),
-        nameArray = langs.map { it.displayName }.toTypedArray()
-    ) {
-        val locale = if (it.isEmpty()) {
-            LocaleListCompat.getEmptyLocaleList()
-        } else {
-            LocaleListCompat.forLanguageTags(it)
-        }
-        AppCompatDelegate.setApplicationLocales(locale)
-        SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
-    }
+    MultiListPreferenceView(
+        title = title,
+        selectedKeys = selectedKeys,
+        itemsArray = packages
+            .sortedWith { app1, app2 ->
+                Collator.getInstance(context.currentLocale).compare(
+                    app1.activityInfo.applicationInfo.loadLabel(context.packageManager),
+                    app2.activityInfo.applicationInfo.loadLabel(context.packageManager)
+                )
+            }
+            .map {
+                PreferenceItem(
+                    name = it.activityInfo.applicationInfo.loadLabel(context.packageManager).toString(),
+                    subname = it.activityInfo.applicationInfo.packageName,
+                    value = it.activityInfo.applicationInfo.packageName,
+                    icon = it.activityInfo.applicationInfo.loadIcon(context.packageManager)
+                )
+            }.toTypedArray(),
+        onValueChanged = onValueChanged
+    )
 }

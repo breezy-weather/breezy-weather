@@ -1,6 +1,6 @@
 ## Weather update process
 
-*Latest update of this document: 2024-04-07 (v5.1.9)*
+*Latest update of this document: 2024-04-09 (v5.1.9)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
@@ -24,11 +24,15 @@ This process can happen in the background automatically or manually with slight 
 
 ## Background (or automatic) weather update
 
-By default, weather is refreshed every 1.5 hours. You can disable or change this value in `Settings` > `Background updates`.
+By default, background updates happens every 1.5 hours. You can disable or change this value in `Settings` > `Background updates`.
 
-Background updates are done in an efficient way so that only locations actually used are refreshed in the background. This means that most of the time only the first location is refreshed in the background (if you use a widget that display multiple locations, the next 2 or 3 locations are also refreshed, but with a lower frequency (once a day) so you can have accurate daily info), so you can add as many locations as you want without having to worry about battery/bandwidth consumption in the background.
+Android is in charge of executing that work more or less at your selected refresh rate preference. If, for some reason, it doesn’t work, you may try the troubleshooting options from `Settings` > `Background updates`.
 
-Android system takes care of executing our work more or less every 1.5 hours (or whatever is your refresh rate preference). If, for some reason, it doesn’t work, you may try the troubleshooting options from `Settings` > `Background updates`.
+At your selected refresh rate, this is what happens:
+- The weather for the first location is refreshed
+- The weather for secondary locations are:
+  - not refreshed if you don’t use multi cities widget or notification-widget, or data sharing feature (they will, however, be automatically refreshed if outdated as soon as you try to access them in the app)
+  - otherwise, refreshed once a day at most to avoid battery/bandwidth consumption in the background from less-used locations
 
 When weather for the location(s) is done refreshing in the background, the following tasks are executed:
 - If enabled, notifications are sent for each new alerts for the first location

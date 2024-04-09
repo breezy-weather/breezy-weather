@@ -531,7 +531,6 @@
     <string name="settings_debug">दोषमार्जन</string>
     <string name="common_weather_text_drizzle_freezing">गोठने वाली बूंदें बांदी</string>
     <string name="common_weather_text_drizzle_freezing_heavy">भारी बर्फ़ीली बूंदाबांदी</string>
-    <string name="settings_widgets_gadgetbridge_switch">गैजेटब्रिज को मौसम माहिती भेजें</string>
     <string name="settings_items_drag_to_sort">क्रमबद्ध करने के लिए सूची आइटम को खींचने के लिए दबाएं</string>
     <string name="common_weather_text_rain_snow_mixed">बारिश और गीली बर्फ मिश्रित</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">भारी बारिश और बर्फ मिश्रित बौछारें</string>
@@ -603,7 +602,6 @@
     <string name="notification_channel_background_services">पृष्ठभूमि सेवाएँ</string>
     <string name="weather_kind_hail">ओले</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">जमा हुआ कोहरा</string>
-    <string name="settings_widgets_gadgets_title">उपकरने</string>
     <string name="notification_updating_weather_data">अद्यतन मौसम डेटा (%1$d/%2$d)</string>
     <string name="about_app">अनुप्रयोग के बारे में</string>
     <string name="about_contact">संपर्क</string>

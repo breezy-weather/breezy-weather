@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.remoteviews.gadgetbridge.json
+package org.breezyweather.sources.gadgetbridge.json
 
 import kotlinx.serialization.Serializable
 
@@ -23,7 +23,7 @@ import kotlinx.serialization.Serializable
  * https://codeberg.org/Freeyourgadget/Gadgetbridge/src/branch/master/app/src/main/java/nodomain/freeyourgadget/gadgetbridge/model/WeatherSpec.java
  */
 @Serializable
-data class GadgetBridgeData (
+data class GadgetbridgeData (
     val timestamp: Int? = null,
     val location: String? = null,
     val currentTemp: Int? = null,
@@ -46,7 +46,7 @@ data class GadgetBridgeData (
     val moonSet: Int? = null,
     val moonPhase: Int? = null,
     val feelsLikeTemp: Int? = null,
-    val forecasts: List<GadgetBridgeDailyForecast>? = null,
-    val hourly: List<GadgetBridgeHourlyForecast>? = null,
-    val airQuality: GadgetBridgeAirQuality? = null,
+    val forecasts: List<GadgetbridgeDailyForecast>? = null,
+    val hourly: List<GadgetbridgeHourlyForecast>? = null,
+    val airQuality: GadgetbridgeAirQuality? = null,
 )

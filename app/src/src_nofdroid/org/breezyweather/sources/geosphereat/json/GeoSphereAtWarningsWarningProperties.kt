@@ -14,17 +14,17 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.remoteviews
+package org.breezyweather.sources.geosphereat.json
 
-import android.content.Context
-import breezyweather.domain.location.model.Location
-import org.breezyweather.remoteviews.gadgetbridge.GadgetBridgeService
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-object Gadgets {
-
-    fun updateGadgetIfNecessary(context: Context, location: Location) {
-        if (GadgetBridgeService.isEnabled(context)) {
-            GadgetBridgeService.sendWeatherBroadcast(context, location);
-        }
-    }
-}
+@Serializable
+data class GeoSphereAtWarningsWarningProperties(
+    val warnid: Int,
+    val text: String?,
+    @SerialName("auswirkungen") val consequences: String?,
+    @SerialName("empfehlungen") val instructions: String?,
+    val meteotext: String?,
+    val rawInfo: GeoSphereAtWarningsWarningPropertiesRawInfo?
+)

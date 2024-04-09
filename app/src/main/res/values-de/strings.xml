@@ -602,8 +602,7 @@
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von %s</string>
     <string name="temperature_average_short">Mittel</string>
-    <string name="settings_widgets_gadgets_title">Gadgets</string>
-    <string name="settings_widgets_gadgetbridge_switch">Wetterdaten an Gadgetbridge senden</string>
+    <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
     <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
@@ -671,8 +670,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftqualitätsinstanz</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Vorhersageninstanz</string>
     <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
-    <string name="settings_widgets_broadcast_switch">Meine Wetterdaten mit anderen Apps teilen</string>
-    <string name="settings_widgets_broadcast_switch_dialog">Diese Option ermöglicht JEDER App auf Ihrem Gerät den Zugriff auf Ihren Ortsnamen und Ihre Wetterdaten. Fahren Sie nur fort, wenn Sie sich der potenziellen Risiken eines Missbrauchs durch andere Apps bewusst sind.</string>
+    <string name="settings_widgets_broadcast_title">Meine Wetterdaten mit anderen Apps teilen</string>
     <string name="message_invalid_incomplete_data">Ungültige oder unvollständige Daten vom Server empfangen</string>
     <string name="settings_per_location_theme">Thema</string>
     <string name="settings_source_instance_invalid">Muss eine https-URL sein, die mit einem / endet</string>
