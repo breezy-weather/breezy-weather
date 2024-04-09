@@ -463,7 +463,7 @@
     <string name="settings_main_section_options">Opțiuni</string>
     <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
-    <string name="settings_notifications_summary">Alerte meteo, precipitații și prognoză</string>
+    <string name="settings_notifications_summary">Notificări de alerte meteo, precipitații și prognoză pentru locația primară</string>
     <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ora de notificare privind prognoza zilei următoare</string>
     <string name="settings_widgets">Widgets &amp; Imagini de fundal live</string>
@@ -680,4 +680,6 @@
     <string name="settings_per_location_theme">Temă</string>
     <string name="settings_source_instance_invalid">Trebuie să fie un URL https cu / la sfârșit</string>
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>
+    <string name="dialog_time_picker_select_time">Alege ora</string>
+    <string name="alert_source">Sursa: %s</string>
 </resources>
