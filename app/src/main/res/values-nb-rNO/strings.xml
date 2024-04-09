@@ -524,4 +524,21 @@
     <string name="widget_custom_subtitle_explanation">Du kan skrive hva som helst, men vær oppmerksom på hvor lang teksten blir. Hvis du ønsker å sitere værdata så kan du bruke $ for å referere til samsvarende nøkkelord.
 \n
 \nFor eksempel, «Nåværende vær er: $cw$.» vil bli vist som «Nåværende vær er: Klarvær.».</string>
+    <string name="message_invalid_incomplete_data">Mottokk ugyldig eller ufullstendig data fra serveren</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Bytt til tekstinput</string>
+    <string name="dialog_time_picker_select_time">Velg tidspunkt</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Bytt til trykkinput</string>
+    <string name="action_share">Del</string>
+    <string name="message_server_timeout">Forespørselen brøt</string>
+    <string name="action_confirm">Bekreft</string>
+    <string name="message_parsing_error_content">Sørg for at du har oppdatert til nyeste versjon av appen. Serveren kan være utilgjengelig for øyeblikket, i så fall kan du prøve på nytt senere. Hvis problemet vedvarer kan du hente ut krasjloggen fra innstillinger, og rapportere problemet på GitHub.</string>
+    <string name="message_network_unavailable">Nettverk utilgjengelig</string>
+    <string name="dialog_permissions_location_background_content">For at appen skal kunne hente posisjonen din i bakgrunnen, for å oppdage endringer i lokasjon og gi oppdatert værdata, må du endre posisjonstilgang i enhetsinnstillingene til «Tillat hele tiden».</string>
+    <string name="message_parsing_error_title">Feilet å analysere værdata</string>
+    <string name="message_source_not_installed_error_content_tip_1">Dette kan skje når du har lagt til lokasjonen i Standardversjonen av Breezy Weather, og seinere byttet til F-Droid versjonen som støtter færre værkilder. Du kan forsøke å gå tilbake til Standardversjonen for å løse problemet.</string>
+    <string name="action_close">Lukk</string>
+    <string name="action_help_me_choose">Hjelp meg å velge</string>
+    <string name="message_source_not_installed_error_title">Kilden er ikke tilgjengelig lenger</string>
+    <string name="dialog_permissions_notification_title">Hold deg oppdatert</string>
+    <string name="action_show_errors">Trykk for detaljer</string>
 </resources>
