@@ -20,6 +20,7 @@ import android.content.Context
 import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
+import android.icu.util.ULocale
 import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
@@ -165,7 +166,7 @@ fun Date.getHourIn24Format(location: Location): String {
 fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
     location: Location? = null, context: Context
 ): String? {
-    /*return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         //val calendar = SettingsManager.getInstance(context).additionalCalendar
         //if (calendar.isNullOrEmpty()) return null
         //if (calendar == "auto") {  } // TODO
@@ -177,7 +178,7 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
         ).apply {
             timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         }.format(this)
-    } else {*/
+    } else {
         val cal = Calendar.getInstance().apply {
             time = this@getFormattedMediumDayAndMonthInAdditionalCalendar
             timeZone = location?.timeZone?.let { java.util.TimeZone.getTimeZone(it) } ?: java.util.TimeZone.getDefault()
@@ -196,5 +197,5 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
             e.printStackTrace()
             null
         }
-    //}
+    }
 }

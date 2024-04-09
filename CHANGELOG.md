@@ -27,6 +27,7 @@
 
 **Translations**
 - Translations updated
+- Replaced Lunar calendar with native Android `ChineseCalendar` on Android >= 7.0
 
 
 # Version 5.1.8 (2024-03-30)
