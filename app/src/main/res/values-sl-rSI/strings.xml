@@ -291,4 +291,17 @@
     <string name="pollen_fraxinus">Jesen</string>
     <string name="pollen_plantaginaceae">Trpotec</string>
     <string name="pollen_level_3">Zmerno</string>
+    <string name="weather_minutely_data_by">Vir podatkov o trenutni napovedi padavin: %s</string>
+    <string name="weather_api_limit_reached_title">Dosežena omejitev zahtevkov API</string>
+    <string name="weather_air_quality_and_pollen_data_by">Vir podatkov o kakovosti zraka in o cvetnem prahu: %s</string>
+    <string name="weather_message_unsupported_feature">Vir ne podpira ene izmed zahtevanih funkcij</string>
+    <string name="weather_message_secondary_data_refresh_failed">Podatki o vremenu iz sekundarnega vira niso na voljo</string>
+    <string name="weather_normals_data_by">Vir podatkov o temperaturnih normalah: %s</string>
+    <string name="weather_message_too_frequent_refreshes">Pred ponovnim poskusom počakajte nekaj sekund…</string>
+    <string name="weather_message_invalid_location">Nepravilna lokacija, izbrišite jo in jo ponovno dodajte</string>
+    <string name="weather_alert_data_by">Vir podatkov o opozorilu: %s</string>
+    <string name="cloud_cover_short">Oblačnost</string>
+    <string name="weather_data_by">Vir podatkov: %s</string>
+    <string name="weather_air_quality_data_by">Vir podatkov o kakovosti zraka: %s</string>
+    <string name="weather_pollen_data_by">Vir podatkov o cvetnem prahu: %s</string>
 </resources>
