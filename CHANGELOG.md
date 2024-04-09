@@ -22,6 +22,7 @@
 - Background updates: secondary locations (when used) are now refreshed once a day
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
+- Improved time picker for forecast notification (now supports 12-hour system) (@min7-i)
 - Fix extra padding on bottom of keyboard on location search (@min7-i)
 
 **Translations**

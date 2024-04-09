@@ -199,6 +199,10 @@
     <string name="dialog_permissions_location_content">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
     <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
     <string name="dialog_permissions_location_background_content">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
+    <string name="dialog_time_picker_select_time">Sélectionner l’heure</string>
+    <string name="dialog_time_picker_input_time">Saisir l’heure</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Basculer en saisie tactile</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Basculer en saisie manuelle</string>
 
     <string name="location_message_search_failed">Échec de recherche d’emplacements</string>
     <string name="location_message_failed_to_locate">Échec de géolocalisation</string>
