@@ -306,4 +306,8 @@
     <string name="weather_pollen_data_by">Vir podatkov o cvetnem prahu: %s</string>
     <string name="weather_api_unauthorized_title">Neodobren dostop do API</string>
     <string name="weather_api_limit_reached_content">Če želite zaobiti omejitev, dodajte svoj API ključ.</string>
+    <string name="weather_api_unauthorized_content">Pri nekaterih virih vremenskih podatkov morate zagotoviti svoj API ključ. Če ste ga že vnesli, ga ponovno preverite.</string>
+    <string name="weather_api_key_required_missing_title">Manjka zahtevan API ključ</string>
+    <string name="weather_api_key_required_missing_content">Če želite uporabiti ta vir, morate zagotoviti API ključ.</string>
+    <string name="settings_weather_source_portal">Portal</string>
 </resources>
