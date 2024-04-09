@@ -671,4 +671,10 @@
     <string name="settings_source_instance_invalid">Має бути URL-адреса https, що закінчується на /</string>
     <string name="settings_invalid_syntax">Неправильний синтаксис</string>
     <string name="alert_source">Джерело: %s</string>
+    <string name="dialog_time_picker_select_time">Вибрати час</string>
+    <string name="dialog_time_picker_input_time">Ввести час</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Переключитися на сенсорний ввід</string>
+    <string name="widget_label_hide_alternate_calendar">Сховати альтернативний календар</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Переключитися на текстовий ввід</string>
+    <string name="settings_appearance_calendar_title">Альтернативний календар</string>
 </resources>
