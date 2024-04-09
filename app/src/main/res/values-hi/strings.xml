@@ -630,4 +630,16 @@
     <string name="common_weather_text_rain_showers_heavy">वर्षा की भारी बौछार</string>
     <string name="common_weather_text_rain_freezing">हिमीकरण बारिश</string>
     <string name="common_weather_text_rain_freezing_light">हल्की बर्फ़ीली बारिश</string>
+    <string name="alert">चेतावनी</string>
+    <string name="air_quality_co_info_title">कार्बन मोनोऑक्साइड (सीओ)</string>
+    <string name="alert_source">स्रोतः %s</string>
+    <string name="air_quality_so2_info_title">सल्फर डाइऑक्साइड (एसओ₂)</string>
+    <string name="temperature_degree_day_heating">तापन डिग्री दिन</string>
+    <string name="temperature_degree_day_cooling">शीतलन डिग्री दिन</string>
+    <string name="pollen_alnus">अल्डर</string>
+    <string name="pollen_ambrosia">रगवीड</string>
+    <string name="pollen_artemisia">मुग्वरत</string>
+    <string name="pollen_betula">भोज</string>
+    <string name="pollen_carpinus">हानबीन</string>
+    <string name="pollen_plantaginaceae">कंदली</string>
 </resources>
