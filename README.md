@@ -166,6 +166,9 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 - Changes to the [background updates process](docs/UPDATES.md), including but not limited: options for refreshing less than every 30 minutes, every time you open the app, every time you tap on widget, every time you unlock your phone
 - “Circular sky” interface: please set a fixed background per location instead
 - Publish to Google Play Store: please [check alternatives](INSTALL.md)
+- Allow different flavors to be installed in parallel
+- Implement features that are no longer available in latest Android versions
+- Backport features/fixes from latest Android versions to older Android versions
 - Donations
 
 
