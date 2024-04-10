@@ -677,4 +677,14 @@
     <string name="settings_source_instance_invalid">Мора да буде https URL који се завршава с /</string>
     <string name="settings_invalid_syntax">Неважећа синтакса</string>
     <string name="alert_source">Извор: %s</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Пребаци се на унос текстом</string>
+    <string name="widget_label_hide_alternate_calendar">Сакриј алтернативни календар</string>
+    <string name="settings_background_updates_refresh_never_warning3">Размислите о коришћењу мање честе брзине освежавања уместо да искључите ажурирања у позадини, у супротном додирните „Настави“ ако и даље желите да наставите.</string>
+    <string name="settings_appearance_calendar_title">Алтернативни календар</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Пребаци се на унос додиром</string>
+    <string name="dialog_time_picker_select_time">Избор времена</string>
+    <string name="dialog_time_picker_input_time">Унос времена</string>
+    <string name="settings_background_updates_refresh_never_warning1">Ако искључите ажурирања у позадини, више нећете добијати обавештења о упозорењима или падавинама. Виџети се неће освежити док не отворите апликацију.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Процес ажурирања у позадини је лаган: освежава само вашу прву локацију по вашој изабраној брзини, а секундарне локације само ако су вам потребне, једном дневно. Штеди батерију и не би требало да прелази 5 МБ потрошње података месечно.</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
 </resources>
