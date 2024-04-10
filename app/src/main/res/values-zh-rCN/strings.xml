@@ -682,4 +682,10 @@
     <string name="settings_source_instance_invalid">必须是以 / 结尾的 https URL</string>
     <string name="settings_invalid_syntax">无效格式</string>
     <string name="alert_source">源：%s</string>
+    <string name="dialog_time_picker_select_time">选择时间</string>
+    <string name="dialog_time_picker_input_time">输入事件</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">切换到文本输入</string>
+    <string name="settings_appearance_calendar_title">备选日历</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">切换到触摸输入</string>
+    <string name="widget_label_hide_alternate_calendar">隐藏备选日历</string>
 </resources>
