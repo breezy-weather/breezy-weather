@@ -155,7 +155,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.
 
-[![Translation progress report](https://camo.githubusercontent.com/300e06706d5aa03ae0333db112b8dce2dff67c698f86af7f95557fc4d081f616/68747470733a2f2f686f737465642e7765626c6174652e6f72672f7769646765742f627265657a792d776561746865722f627265657a792d776561746865722d616e64726f69642f686f72697a6f6e74616c2d6175746f2e737667)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
+[![Translation progress report](https://hosted.weblate.org/widget/breezy-weather/breezy-weather-android/multi-auto.svg)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
 
 English (and regional variants) and French translations are maintained by repo maintainers, but they are open to proofreading/improvements. You will need to make a pull request, as we didn’t find a way to make these languages in suggestion-only mode in Weblate (let us know if you find anything).
 
