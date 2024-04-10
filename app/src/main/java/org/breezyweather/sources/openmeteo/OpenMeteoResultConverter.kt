@@ -56,7 +56,10 @@ import kotlin.math.roundToInt
 
 fun convert(
     result: OpenMeteoLocationResult
-): Location {
+): Location? {
+    if (result.timezone == null) {
+        return null
+    }
     return Location(
         cityId = result.id.toString(),
         latitude = result.latitude,

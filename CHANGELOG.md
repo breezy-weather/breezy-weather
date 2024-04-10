@@ -11,6 +11,7 @@
 - [AccuWeather] Fix fail to refresh when using a language not supported by AccuWeather (noticed on Central Kurdish, Esperanto and Interlingua), now fallbacks to English
 - [Open-Meteo] Fix workaround location search issue when result list is empty (will show instructions instead of an error)
 - [Open-Meteo] Fix issues related to DST
+- [Open-Meteo] Fix location search failed when at least one result didn’t have a timezone info
 - [DMI] Add severity/colors to alerts
 
 **Improvements and fixes**

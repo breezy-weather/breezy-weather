@@ -28,7 +28,7 @@ data class OpenMeteoLocationResult(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val timezone: String,
+    val timezone: String?,
     @SerialName("country_code") val countryCode: String?,
     val country: String?,
     val admin1: String?,

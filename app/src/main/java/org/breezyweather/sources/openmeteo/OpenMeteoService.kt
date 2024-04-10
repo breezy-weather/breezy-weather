@@ -326,7 +326,7 @@ class OpenMeteoService @Inject constructor(
                     throw LocationSearchException()
                 }
             } else {
-                results.results.map {
+                results.results.mapNotNull {
                     convert(it)
                 }
             }
