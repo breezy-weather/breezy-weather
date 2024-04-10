@@ -677,4 +677,8 @@
     <string name="widget_label_hide_alternate_calendar">Сховати альтернативний календар</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Переключитися на текстовий ввід</string>
     <string name="settings_appearance_calendar_title">Альтернативний календар</string>
+    <string name="settings_background_updates_refresh_never_warning1">Вимкнувши фонові оновлення, ви більше не отримуватимете сповіщення про попередження чи опади. Віджети не оновлюватимуться, поки ви не відкриєте програму.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Подумайте про використання менш частої частоти оновлення замість вимкнення фонових оновлень. В іншому випадку натисніть \"Продовжити\", якщо ви все ще хочете продовжити.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Процес фонового оновлення простий: він оновлює лише ваше перше місце з вибраною вами частотою, а додаткові місця оновлюються лише в тому випадку, якщо вони вам потрібні, раз на день. Він економно витрачає заряд батареї і не повинен перевищувати 5 МБ даних на місяць.</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Сумісні пакети не знайдені</string>
 </resources>
