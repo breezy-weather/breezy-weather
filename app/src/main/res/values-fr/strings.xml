@@ -455,6 +455,9 @@
     <string name="settings_background_updates_summary">Fréquence de rafraîchissement, résolution de problèmes</string>
     <string name="settings_background_updates_refresh_title">Fréquence de rafraîchissement</string>
     <string name="settings_background_updates_refresh_never">Jamais</string>
+    <string name="settings_background_updates_refresh_never_warning1">En désactivant les mises à jour en arrière-plan, vous ne recevrez plus de notifications de vigilances ou de précipitations. Les widgets ne seront actualisés que lorsque vous ouvrirez l’application.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Le processus de mise à jour en arrière-plan est léger : il ne rafraîchit que votre premier emplacement à la fréquence choisie, et les emplacements secondaires uniquement si vous en avez besoin, une fois par jour. Il est économe en batterie et la consommation de données ne devrait pas excéder 5 Mio par mois.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Privilégiez une fréquence de rafraîchissement moins élevée plutôt que de désactiver les mises à jour en arrière-plan, sinon appuyez sur “Continuer” si vous souhaitez quand même poursuivre.</string>
     <string name="settings_background_updates_refresh_30min">30 minutes</string>
     <string name="settings_background_updates_refresh_1h">1 heure</string>
     <string name="settings_background_updates_refresh_1h_30min">1 heure 30</string>
@@ -533,6 +536,7 @@
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
     <string name="settings_widgets_broadcast_title">Partage de données</string>
     <string name="settings_widgets_broadcast_send_data_title">Envoyer des données %s</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Aucun paquet compatible trouvé</string>
     <string name="about_privacy_policy">Politique de confidentialité</string>
     <string name="settings_debug">Débogage</string>
     <string name="settings_debug_summary">Journaux d’incident</string>
