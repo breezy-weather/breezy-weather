@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="short_yesterday">Eile</string>
+    <string name="short_today">Täna</string>
+    <string name="short_tomorrow">Homme</string>
+    <string name="of_clock">:00</string>
+    <string name="ephemeris">Päike ja kuu</string>
+    <string name="details">Lisateave</string>
+    <string name="alert">Hoiatus</string>
+    <string name="alerts">Hoiatused</string>
+    <string name="alert_source">Allikas: %s</string>
+    <string name="temperature">Temperatuur</string>
+    <string name="temperature_feels_like">Tundub kui</string>
+    <string name="temperature_feels_like_short">Tundub kui</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
+    <string name="precipitation_rain">Vihm</string>
+    <string name="precipitation_thunderstorm">Äike</string>
+    <string name="precipitation_snow">Lumi</string>
+</resources>
