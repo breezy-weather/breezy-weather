@@ -681,4 +681,6 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">Váltás érintéses bevitelre</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Váltás szöveges bevitelre</string>
     <string name="dialog_time_picker_select_time">Idő kiválasztása</string>
+    <string name="widget_label_hide_alternate_calendar">Alternatív naptár elrejtése</string>
+    <string name="settings_appearance_calendar_title">Alternatív naptár</string>
 </resources>
