@@ -679,4 +679,8 @@
     <string name="widget_label_hide_alternate_calendar">Alternativen Kalender ausblenden</string>
     <string name="settings_appearance_calendar_title">Alternativer Kalender</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Zur Toucheingabe wechseln</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
+    <string name="settings_background_updates_refresh_never_warning1">Wenn Sie die Hintergrundaktualisierung deaktivieren, erhalten Sie keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn Sie die App öffnen.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Der Aktualisierungsprozess im Hintergrund ist leichtgewichtig: Er aktualisiert nur Ihren ersten Standort mit der von Ihnen gewählten Rate und die sekundären Standorte nur bei Bedarf, also einmal am Tag. Der Akku ist sparsam und der Datenverbrauch sollte 5 MB pro Monat nicht überschreiten.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Ziehen Sie in Erwägung, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren, oder tippen Sie auf \"Weiter\", wenn Sie fortfahren möchten.</string>
 </resources>
