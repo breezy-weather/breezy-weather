@@ -677,4 +677,8 @@
     <string name="settings_appearance_calendar_title">Альтэрнатыўны каляндар</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Пераключыцца на сэнсарны ўвод</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Пераключыцца на тэкставы ўвод</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Сумяшчальныя пакеты не знойдзены</string>
+    <string name="settings_background_updates_refresh_never_warning3">Разгледзьце магчымасць выкарыстання менш частай частоты абнаўлення замест адключэння фонавых абнаўленняў. У адваротным выпадку націсніце \"Працягнуць\", калі вы ўсё яшчэ хочаце працягнуць.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Адключыўшы фонавыя абнаўлення, вы больш не будзеце атрымліваць апавяшчэнні аб папярэджаннях або ападках. Віджэты не будуць абнаўляцца, пакуль вы не адкрыеце прыкладанне.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Працэс фонавага абнаўлення просты: ён абнаўляе толькі ваша першае месцазнаходжанне з абранай вамі частатой, а дадатковыя месцы абнаўляюцца толькі пры неабходнасці адзін раз у дзень. Ён эканомна расходуе зарад батарэі і не павінен перавышаць 5 МБ дадзеных у месяц.</string>
 </resources>
