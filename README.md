@@ -146,9 +146,24 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 
 # Contribute
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. You can have a look at [issues opened to contributions](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue+is%3Aopen+label%3A%22Open+to+contributions%22). For other changes, please open an issue first to discuss what you would like to change.
 
 * [Contribution guide (includes a guide to create a new weather source)](CONTRIBUTE.md)
+
+The following features are currently being worked on by a contributor:
+- [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts - WIP in `better_charts` branch
+
+The following features lack an active contributor to work on it:
+- [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
+- Widget overhaul (prerequisite for any new widget improvement) - Some mockups were done but no one is working on it anymore
+
+The following features will not be implemented:
+- Paid-only sources (or too limited free-tier)
+- Adding `standard` flavor or non-free sources to the F-Droid default repo: please use the `standard` flavor from a different store/source instead
+- Changes to the [background updates process](docs/UPDATES.md), including but not limited: options for refreshing less than every 30 minutes, every time you open the app, every time you tap on widget, every time you unlock your phone
+- “Circular sky” interface: please set a fixed background per location instead
+- Publish to Google Play Store: please [check alternatives](INSTALL.md)
+- Donations
 
 
 # Translations
@@ -167,18 +182,6 @@ English (and regional variants) and French translations are maintained by repo m
   * If you are not comfortable writing a GitHub discussion/issue in English, you can ask on the channel if someone can help you in your language.
     * We also have a dedicated help channel in French: [`#breezy-weather-francais:matrix.org`](https://matrix.to/#/#breezy-weather-francais:matrix.org)
   * If you’d prefer a direct channel link instead of a space link, here’s the main Breezy Weather Matrix channel: [`#breezy-weather:matrix.org`](https://matrix.to/#/#breezy-weather:matrix.org)
-
-
-# Status of main requested features
-
-These are time-consuming features and help is always appreciated. A fresh look to help maintain code quality can also be of great help! Please join the [Matrix channel](https://matrix.to/#/#breezy-weather:matrix.org) for that purpose.
-
-| ID                                                                                                                                     | Feature                            | Status                       | Note                                                                                                                                     |
-|----------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) | New 24-hour fitting charts         | Work in progress             | Precipitation chart worked on with new chart lib on `dev` branch                                                                         |
-| [#10](https://github.com/breezy-weather/breezy-weather/issues/10)                                                                      | Add location from a map            | Mockups to do, on hold       | “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually |
-|                                                                                                                                        | Widgets redesign                   | Mockups in progress, on hold | No widgets improvements will be done until completed                                                                                     |
-| [#147](https://github.com/breezy-weather/breezy-weather/issues/147)                                                                    | Black theme                        | Not being worked on          | We already have a dark mode                                                                                                              |
 
 
 # License
