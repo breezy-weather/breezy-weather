@@ -65,7 +65,6 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
-import org.breezyweather.sources.SourceManager
 import java.io.File
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList

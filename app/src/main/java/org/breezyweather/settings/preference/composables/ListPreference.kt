@@ -73,6 +73,7 @@ fun ListPreferenceView(
     selectedKey: String,
     enabled: Boolean = true,
     card: Boolean = true,
+    withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
     val values = stringArrayResource(valueArrayId)
@@ -87,6 +88,7 @@ fun ListPreferenceView(
         nameArray = names,
         enabled = enabled,
         card = card,
+        withState = withState,
         onValueChanged = onValueChanged,
     )
 }
