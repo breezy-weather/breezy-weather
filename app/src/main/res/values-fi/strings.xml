@@ -652,4 +652,7 @@
     <string name="pollen_salix">Paju</string>
     <string name="pollen_tilia">Lehmus</string>
     <string name="location_delete_location_dialog_title">Poista sijainti?</string>
+    <string name="pollen_corylus">Pähkinäpensaat</string>
+    <string name="pollen_cupressaceae_taxaceae">Sypressikasvit</string>
+    <string name="pollen_fraxinus">Saarnet</string>
 </resources>
