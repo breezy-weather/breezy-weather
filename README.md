@@ -150,14 +150,17 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 * [Contribution guide (includes a guide to create a new weather source)](CONTRIBUTE.md)
 
-The following features are currently being worked on by a contributor:
+## Features currently being worked on by a contributor
+
 - [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts - WIP in `better_charts` branch
 
-The following features lack an active contributor to work on it:
+## Features lacking an active contributor
+
 - [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
 - Widget overhaul (prerequisite for any new widget improvement) - Some mockups were done but no one is working on it anymore
 
-The following features will not be implemented:
+## Features that will not be implemented
+
 - Paid-only sources (or too limited free-tier)
 - Adding `standard` flavor or non-free sources to the F-Droid default repo: please use the `standard` flavor from a different store/source instead
 - Changes to the [background updates process](docs/UPDATES.md), including but not limited: options for refreshing less than every 30 minutes, every time you open the app, every time you tap on widget, every time you unlock your phone
