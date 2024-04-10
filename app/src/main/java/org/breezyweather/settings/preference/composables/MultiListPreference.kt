@@ -34,6 +34,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
@@ -72,6 +73,7 @@ fun MultiListPreferenceView(
     @DrawableRes iconId: Int? = null,
     selectedKeys: List<String>,
     itemsArray: Array<PreferenceItem>,
+    noItemsMessage: String,
     enabled: Boolean = true,
     card: Boolean = true,
     onValueChanged: (List<String>) -> Unit
@@ -200,74 +202,109 @@ fun MultiListPreferenceView(
     }
 
     if (dialogOpenState.value) {
-        AlertDialogNoPadding(
-            onDismissRequest = {
-                listSelectedState.apply {
-                    clear()
-                    addAll(selectedKeys)
-                }
-                dialogOpenState.value = false
-            },
-            title = {
-                Text(
-                    text = title,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.headlineSmall,
-                )
-            },
-            text = {
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    items(itemsArray) {
-                        Switch(
-                            icon = it.icon,
-                            selected = listSelectedState.contains(it.value),
-                            onClick = {
-                                if (listSelectedState.contains(it.value)) {
-                                    listSelectedState.remove(it.value)
-                                } else {
-                                    listSelectedState.add(it.value)
-                                }
-                            },
-                            text = it.name,
-                            subtext = it.subname
+        if (itemsArray.isNotEmpty()) {
+            AlertDialogNoPadding(
+                onDismissRequest = {
+                    listSelectedState.apply {
+                        clear()
+                        addAll(selectedKeys)
+                    }
+                    dialogOpenState.value = false
+                },
+                title = {
+                    Text(
+                        text = title,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                },
+                text = {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        items(itemsArray) {
+                            Switch(
+                                icon = it.icon,
+                                selected = listSelectedState.contains(it.value),
+                                onClick = {
+                                    if (listSelectedState.contains(it.value)) {
+                                        listSelectedState.remove(it.value)
+                                    } else {
+                                        listSelectedState.add(it.value)
+                                    }
+                                },
+                                text = it.name,
+                                subtext = it.subname
+                            )
+                        }
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            onValueChanged(listSelectedState)
+                            dialogOpenState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_save),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(
+                        onClick = {
+                            listSelectedState.apply {
+                                clear()
+                                addAll(selectedKeys)
+                            }
+                            dialogOpenState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_cancel),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
                         )
                     }
                 }
-            },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        onValueChanged(listSelectedState)
-                        dialogOpenState.value = false
-                    }
-                ) {
+            )
+        } else {
+            AlertDialog(
+                onDismissRequest = {
+                    dialogOpenState.value = false
+                },
+                title = {
                     Text(
-                        text = stringResource(R.string.action_save),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
+                        text = title,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall,
                     )
-                }
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = {
-                        listSelectedState.apply {
-                            clear()
-                            addAll(selectedKeys)
+                },
+                text = {
+                    Text(
+                        text = noItemsMessage,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            dialogOpenState.value = false
                         }
-                        dialogOpenState.value = false
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_close),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
                     }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_cancel),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
-                    )
                 }
-            }
-        )
+            )
+        }
     }
 }
 
@@ -343,6 +380,7 @@ fun PackagePreferenceView(
                     icon = it.activityInfo.applicationInfo.loadIcon(context.packageManager)
                 )
             }.toTypedArray(),
+        noItemsMessage = stringResource(R.string.settings_widgets_broadcast_send_data_summary_empty),
         onValueChanged = onValueChanged
     )
 }
