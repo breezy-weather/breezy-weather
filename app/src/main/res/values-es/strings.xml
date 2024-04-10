@@ -690,5 +690,5 @@
     <string name="settings_background_updates_refresh_never_warning1">Al desactivar las actualizaciones en segundo plano, dejarás de recibir notificaciones de alertas o precipitaciones. Los widgets no se actualizarán hasta que abras la aplicación.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">No se han encontrado paquetes compatibles</string>
     <string name="settings_background_updates_refresh_never_warning2">El proceso de actualización en segundo plano es ligero: sólo actualiza tu primera ubicación a la velocidad que elijas, y las ubicaciones secundarias sólo si las necesitas, una vez al día. Ahorra batería y no debería consumir más de 5 MB de datos al mes.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse \"Continuar\" si aún desea seguir adelante.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse “Continuar” si aún desea seguir adelante.</string>
 </resources>

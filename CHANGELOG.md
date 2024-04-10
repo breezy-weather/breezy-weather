@@ -28,6 +28,7 @@
 
 **Translations**
 - Translations updated
+- Initial translation added for Eesti (thanks Priit Jõerüüt!)
 
 **Removed features**
 - Lunar calendar on Android < 7.0

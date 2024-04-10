@@ -681,7 +681,7 @@
     <string name="dialog_time_picker_select_time">اختيار الوقت</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">قم بالتبديل إلى الإدخال باللمس</string>
     <string name="widget_label_hide_alternate_calendar">إخفاء التقويم البديل</string>
-    <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على \"متابعة\" إذا كنت لا تزال ترغب في المتابعة.</string>
+    <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على ”متابعة“ إذا كنت لا تزال ترغب في المتابعة.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">لم يتم العثور على حزم متوافقة</string>
     <string name="dialog_time_picker_input_time">وقت الإدخال</string>
     <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
