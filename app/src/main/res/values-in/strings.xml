@@ -545,7 +545,7 @@
     <string name="settings_widgets_section_widgets_in_use">Widget hang digunakan</string>
     <string name="message_parsing_error_content">Pastikan Anda telah memperbarui aplikasi ke versi yang terbaru. Servernya sementara mungkin tidak tersedia. Dalam hal ini, silakan mencoba lagi. Jika masalahnya masih ada, silakan melakukan pencatatan kemogokan dari pengaturan pengawakutuan dan laporkan masalah di GitHub.</string>
     <string name="settings_debug_dump_crash_logs_summary">Menyimpan catatan kesalahan ke berkas untuk dibagikan dengan pengembang</string>
-    <string name="settings_notifications_summary">Peringatan cuaca, curah hujan, prakiraan cuaca</string>
+    <string name="settings_notifications_summary">Notifikasi peringatan cuaca, curah hujan atau prakiraan cuaca untuk lokasi pertama</string>
     <string name="common_weather_text_rain_freezing_heavy">Hujan beku berat</string>
     <string name="weather_message_secondary_data_refresh_failed">Penyegaran data cuaca untuk sumber cuaca sekunder gagal</string>
     <string name="settings_location_summary">Pengaturan layanan lokasi</string>
@@ -690,4 +690,14 @@
     <string name="settings_source_instance_invalid">Harus merupakan URL HTTPS berakhiran dengan /</string>
     <string name="settings_invalid_syntax">Sintaks tidak valid</string>
     <string name="alert_source">Sumber: %s</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Ubah ke Masukan Sentuhan</string>
+    <string name="widget_label_hide_alternate_calendar">Sembunyikan kalender lain</string>
+    <string name="dialog_time_picker_select_time">Pilih waktu</string>
+    <string name="dialog_time_picker_input_time">Masukkan waktu</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Ubah ke Masukan Teks</string>
+    <string name="settings_background_updates_refresh_never_warning1">Dengan mematikan pembaruan latar belakang, Anda tidak akan menerima notifikasi peringatan atau curah hujan lagi. Widget tidak akan disegarkan sampai Anda membuka aplikasi.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Proses pembaruan latar belakang bersifat ringan: ini hanya menyegarkan lokasi pertama Anda pada jangka yang ditentukan, dan lokasi sekunder hanya jika diperlukan, se</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Tidak ada paket kompatibel yang ditemukan</string>
+    <string name="settings_background_updates_refresh_never_warning3">Pertimbangkan menggunakan jangka penyegaran yang lebih jarang daripada mematikan pembaruan latar belakang, selain itu ketuk “Lanjutkan” jika Anda masih ingin melanjutkan.</string>
+    <string name="settings_appearance_calendar_title">Kalender lain</string>
 </resources>
