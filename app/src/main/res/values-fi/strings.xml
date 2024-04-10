@@ -655,4 +655,9 @@
     <string name="pollen_corylus">Pähkinäpensaat</string>
     <string name="pollen_cupressaceae_taxaceae">Sypressikasvit</string>
     <string name="pollen_fraxinus">Saarnet</string>
+    <string name="pollen_plantaginaceae">Ratamokasvit</string>
+    <string name="pollen_platanus">Plataanit</string>
+    <string name="pollen_populus">Poppelit</string>
+    <string name="pollen_rumex">Hierakat</string>
+    <string name="pollen_urticaceae">Nokkoskasvit</string>
 </resources>
