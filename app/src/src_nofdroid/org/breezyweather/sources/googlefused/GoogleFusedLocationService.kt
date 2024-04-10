@@ -19,19 +19,14 @@ package org.breezyweather.sources.googlefused
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Location
-import android.os.Looper
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
+import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import io.reactivex.rxjava3.core.Observable
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.rx3.rxObservable
+import io.reactivex.rxjava3.core.ObservableEmitter
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
@@ -44,69 +39,77 @@ class GoogleFusedLocationService @Inject constructor() : LocationSource {
     override val id = "googlefused"
     override val name = "Google Fused"
 
-    private var fusedLocationClient: FusedLocationProviderClient? = null
-
-    private var gmsLocation: Location? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
-        return rxObservable {
-            gmsLocation = null
-            clearLocationUpdates()
+        if (!hasPermissions(context)) {
+            LogHelper.log(msg = "Location permissions missing")
+            throw LocationException()
+        }
 
-            if (!hasPermissions(context)) {
-                LogHelper.log(msg = "Location permissions missing")
-                throw LocationException()
-            }
-            if (!isGMSEnabled(context)) {
-                LogHelper.log(msg = "Google Play Services not available")
-                throw LocationException()
-            }
+        if (!isGMSEnabled(context)) {
+            LogHelper.log(msg = "Google Play Services not available")
+            throw LocationException()
+        }
 
+        if (!this::fusedLocationClient.isInitialized) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-            if (fusedLocationClient == null) {
-                LogHelper.log(msg = "Failed to initialize Fused Location provider")
-                throw LocationException()
-            }
+        }
 
-            fusedLocationClient!!.let { client ->
-                val locationRequest = LocationRequest.Builder(
-                    Priority.PRIORITY_BALANCED_POWER_ACCURACY,
-                    1
-                ).setMaxUpdates(1).build()
-
-                client.requestLocationUpdates(
-                    locationRequest,
-                    gmsLocationCallback,
-                    Looper.getMainLooper()
-                )
-
-                client.lastLocation.addOnSuccessListener {
-                    gmsLocation = it
+        return Observable.create { emitter ->
+            fusedLocationClient.locationAvailability.addOnSuccessListener { locationAvailability ->
+                // best guess
+                if (locationAvailability.isLocationAvailable) {
+                    requestLastLocation(emitter, fusedLocationClient)
+                } else {
+                    requestCurrentLocation(emitter, fusedLocationClient)
                 }
             }
-
-            // TODO: Dirty, should be improved
-            // wait X seconds for callbacks to set locations
-            for (i in 1..TIMEOUT_MILLIS / 1000) {
-                delay(1000)
-
-                gmsLocation?.let {
-                    clearLocationUpdates()
-                    send(LocationPositionWrapper(it.latitude, it.longitude))
-                }
-            }
-
-            // if we are unlucky enough to get a fix, get the last known location
-            getLastKnownLocation(fusedLocationClient!!)?.let {
-                send(LocationPositionWrapper(it.latitude, it.longitude))
-            } ?: throw LocationException()
-        }.doOnDispose {
-            clearLocationUpdates()
         }
     }
 
-    private fun clearLocationUpdates() {
-        fusedLocationClient?.removeLocationUpdates(gmsLocationCallback)
+    private fun requestLastLocation(emitter: ObservableEmitter<LocationPositionWrapper>, client: FusedLocationProviderClient) {
+        // will be called regardless of 'location' value
+        client.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                LogHelper.log(msg = "GMS FUSED: got cached location")
+                emitter.onNext(LocationPositionWrapper(location.latitude, location.longitude))
+                emitter.onComplete()
+            } else {
+                // fall back and request current location
+                requestCurrentLocation(emitter, client)
+            }
+        }
+    }
+
+    private fun requestCurrentLocation(emitter: ObservableEmitter<LocationPositionWrapper>, client: FusedLocationProviderClient) {
+        LogHelper.log(msg = "GMS FUSED: no cached location, requesting current location")
+
+        val currentLocationRequest = CurrentLocationRequest.Builder()
+            .setDurationMillis(TIMEOUT_MILLIS)
+            .setPriority(Priority.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setMaxUpdateAgeMillis(VALID_FOR_MILLIS)
+            .build()
+
+        client.getCurrentLocation(currentLocationRequest, null).addOnSuccessListener { location ->
+            if (location == null) {
+                LogHelper.log(msg = "GMS FUSED: current location request failed")
+                emitter.onError(LocationException())
+                return@addOnSuccessListener
+            }
+
+            LogHelper.log(msg = "GMS FUSED: got current location")
+            emitter.onNext(LocationPositionWrapper(location.latitude, location.longitude))
+            emitter.onComplete()
+        }.addOnCanceledListener {
+            // yet to encounter this case
+            LogHelper.log(msg = "GMS FUSED: current location request was cancelled")
+            emitter.onError(LocationException())
+        }.addOnFailureListener {
+            // called if request timed out
+            LogHelper.log(msg = "GMS FUSED: current location request failed")
+            emitter.onError(LocationException())
+        }
     }
 
     override val permissions: Array<String>
@@ -115,19 +118,9 @@ class GoogleFusedLocationService @Inject constructor() : LocationSource {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
 
-    // location callback.
-    private val gmsLocationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            if (locationResult.locations.isNotEmpty()) {
-                clearLocationUpdates()
-                gmsLocation = locationResult.locations[0]
-                LogHelper.log(msg = "Got GMS location")
-            }
-        }
-    }
-
     companion object {
-        private const val TIMEOUT_MILLIS = (10 * 1000).toLong()
+        private const val TIMEOUT_MILLIS = (10 * 1000).toLong() // 10 seconds
+        private const val VALID_FOR_MILLIS = (1000 * 60 * 10).toLong() // 10 minutes
 
         private fun isGMSEnabled(
             context: Context
@@ -138,11 +131,6 @@ class GoogleFusedLocationService @Inject constructor() : LocationSource {
         } catch (e: Error) {
             e.printStackTrace()
             false
-        }
-
-        @SuppressLint("MissingPermission")
-        private fun getLastKnownLocation(fusedLocationProviderClient: FusedLocationProviderClient): Location? {
-            return fusedLocationProviderClient.lastLocation.result
         }
     }
 }
