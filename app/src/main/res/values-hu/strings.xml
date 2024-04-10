@@ -683,4 +683,8 @@
     <string name="dialog_time_picker_select_time">Idő kiválasztása</string>
     <string name="widget_label_hide_alternate_calendar">Alternatív naptár elrejtése</string>
     <string name="settings_appearance_calendar_title">Alternatív naptár</string>
+    <string name="settings_background_updates_refresh_never_warning2">A háttérben zajló frissítési folyamat ritkán fut: csak az első helyszínt frissíti az Ön által kiválasztott ütemben, a másodlagos helyszíneket pedig csak akkor, ha szüksége van rájuk, naponta egyszer. Az akkumulátorral takarékos, és nem haladhatja meg az 5 MB adatforgalmat havonta.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Fontolja meg, hogy a háttérfrissítések kikapcsolása helyett ritkább frissítési gyakoriságot használjon, ellenkező esetben koppintson a \"Folytatás\" gombra, ha továbbra is folytatni szeretné.</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nem találhatóak kompatibilis csomagok</string>
+    <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
 </resources>
