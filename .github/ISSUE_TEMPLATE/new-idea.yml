@@ -28,9 +28,9 @@ body:
       options:
         - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open or closed issue.
           required: true
-        - label: I have written a short but informative title.
+        - label: The idea I’m suggesting is not in the [list of features that will not be implemented](https://github.com/breezy-weather/breezy-weather/blob/main/README.md#features-that-will-not-be-implemented).
           required: true
-        - label: My idea is not related to a question covered in the [Frequently Asked Questions](https://github.com/breezy-weather/breezy-weather/blob/main/HELP.md) document, or a feature described in the [Homepage](https://github.com/breezy-weather/breezy-weather/blob/main/docs/HOMEPAGE.md) document.
+        - label: I have written a short but informative title.
           required: true
         - label: I have updated the app to **[version 5.1.8 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
           required: true
