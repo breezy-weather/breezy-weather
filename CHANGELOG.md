@@ -3,7 +3,7 @@
 **New feature**
 - Alternate calendars (from `Settings` > `Appearance`) for Android >= 7.0. Currently supported: Chinese, Dangi, Indian National, Islamic and Persian.
 
-**Weather sources**
+**Sources**
 - [GeoSphere Austria] Added as main source in Austria and nearby
 - [GeoSphere Austria] Added as secondary source for air quality in Europe and nearby
 - [GeoSphere Austria] Added as secondary source for precipitation nowcasting in Austria and nearby
@@ -13,6 +13,7 @@
 - [Open-Meteo] Fix issues related to DST
 - [Open-Meteo] Fix location search failed when at least one result didn’t have a timezone info
 - [DMI] Add severity/colors to alerts
+- [Google Fused] Now a separate source (only available in `gplay` flavor)
 
 **Improvements and fixes**
 - Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps. As a consequence, **if you were using this feature, you will have to go back to settings and enable which apps you want to send it to.**

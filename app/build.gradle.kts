@@ -90,13 +90,13 @@ android {
 
     sourceSets {
         getByName("basic") {
-            java.srcDirs("src/src_nofdroid")
+            java.srcDirs("src/src_nonfreenet", "src/src_standard")
         }
         getByName("fdroid") {
-            java.srcDirs("src/src_fdroid")
+            java.srcDirs("src/src_freenet")
         }
         getByName("gplay") {
-            java.srcDirs("src/src_nofdroid")
+            java.srcDirs("src/src_nonfreenet", "src/src_proprietary")
         }
     }
 
