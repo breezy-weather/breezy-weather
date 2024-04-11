@@ -30,7 +30,6 @@ import android.os.Process
 import android.service.wallpaper.WallpaperService
 import android.view.OrientationEventListener
 import android.view.SurfaceHolder
-import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
@@ -45,6 +44,8 @@ import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimat
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
+import org.breezyweather.common.extensions.sensorManager
+import org.breezyweather.common.extensions.windowManager
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.isDaylight
@@ -93,7 +94,6 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mImplementor: MaterialWeatherView.WeatherAnimationImplementor? = null
         private var mBackground: Drawable? = null
         private var mOpenGravitySensor = false
-        private var mSensorManager: SensorManager? = null
         private var mGravitySensor: Sensor? = null
 
         @Size(2)
@@ -316,8 +316,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 })
                 setFormat(PixelFormat.RGBA_8888)
             }
-            mSensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-            mSensorManager?.let {
+            sensorManager?.let {
                 mOpenGravitySensor = true
                 mGravitySensor = it.getDefaultSensor(Sensor.TYPE_GRAVITY)
             }
@@ -335,7 +334,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                     mIntervalController = null
                 }
                 mHandler?.removeCallbacksAndMessages(null)
-                mSensorManager?.unregisterListener(mGravityListener, mGravitySensor)
+                sensorManager?.unregisterListener(mGravityListener, mGravitySensor)
                 mOrientationListener.disable()
                 return
             }
@@ -396,17 +395,16 @@ class MaterialLiveWallpaperService : WallpaperService() {
             setIntervalComputer()
             setOpenGravitySensor(settingsManager.isGravitySensorEnabled)
             if (mOpenGravitySensor) {
-                mSensorManager?.registerListener(
+                sensorManager?.registerListener(
                     mGravityListener,
                     mGravitySensor,
                     SensorManager.SENSOR_DELAY_FASTEST
                 )
             } else {
-                mSensorManager?.unregisterListener(mGravityListener, mGravitySensor)
+                sensorManager?.unregisterListener(mGravityListener, mGravitySensor)
             }
 
             setWeatherBackgroundDrawable()
-            val windowManager = getSystemService(WINDOW_SERVICE) as? WindowManager
             val screenRefreshRate =
                 max(60f, windowManager?.defaultDisplay?.refreshRate ?: 60f)
             mIntervalController = AsyncHelper.intervalRunOnUI(

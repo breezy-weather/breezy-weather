@@ -614,6 +614,7 @@ class RefreshHelper @Inject constructor(
                 when (e.code()) {
                     401, 403 -> RefreshErrorType.API_UNAUTHORIZED
                     409, 429 -> RefreshErrorType.API_LIMIT_REACHED
+                    in 500..599 -> RefreshErrorType.SERVER_UNAVAILABLE
                     else -> {
                         e.printStackTrace()
                         defaultRefreshError

@@ -1,5 +1,8 @@
 # Version 5.1.9 (not yet released)
 
+**Breaking changes**
+- If you were using “Send data to Gadgetbridge” feature, you will need to go back to `Settings` > `Widgets` to define which apps you want to send data to
+
 **New feature**
 - Alternate calendars (from `Settings` > `Appearance`) for Android >= 7.0. Currently supported: Chinese, Dangi, Indian National, Islamic and Persian.
 
@@ -15,18 +18,22 @@
 - [DMI] Add severity/colors to alerts
 - [Google Fused] Now a separate source (only available in `gplay` flavor)
 
-**Improvements and fixes**
-- Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps. As a consequence, **if you were using this feature, you will have to go back to settings and enable which apps you want to send it to.**
-- Fix wrong number displayed on the daily feels like chart
+**Improvements**
+- Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps.
 - Added source for each alert for compatible sources
-- [Widgets] “Material You - Current” Tap to open app now works again
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12
 - [Widgets] “Material You - Current” add preview
 - Background updates: secondary locations (when used) are now refreshed once a day
+- Add a new error message “Server unavailable”
+- Improved time picker for forecast notification (now supports 12-hour system), also fixes a crash on Android 14 QPR2 (@min7-i)
+
+**Fixes**
+- [Widgets] “Material You - Current” Tap to open app now works again
+- Fix wrong number displayed on the daily feels like chart
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
-- Improved time picker for forecast notification (now supports 12-hour system) (@min7-i)
 - Fix extra padding on bottom of keyboard on location search (@min7-i)
+- The sensor manager is no longer queried if the gravity sensor preference is disabled (fix a trigger on GrapheneOS)
 
 **Translations**
 - Translations updated

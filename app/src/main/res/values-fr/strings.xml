@@ -306,6 +306,8 @@
     <string name="message_invalid_incomplete_data">Données invalides ou incomplètes reçues du serveur</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_server_timeout">Délai imparti dépassé</string>
+    <string name="message_server_unavailable_title">Serveur indisponible</string>
+    <string name="message_server_unavailable_content">L’erreur est en général temporaire. Si le problème persiste, merci de signaler le problème sur GitHub.</string>
     <string name="message_parsing_error_title">Échec d’analyse des données météo</string>
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
@@ -345,7 +347,7 @@
     <string name="settings_location_access_background_summaryOn">Activé. L’application pourra rafraîchir les données météo pour votre position en arrière-plan.</string>
     <string name="settings_location_access_background_summaryOff">Veuillez choisir “Toujours autoriser” pour pouvoir rafraîchir les données météo pour votre position en arrière-plan.</string>
     <string name="settings_location_access_precise_title">Usage du GPS de l’appareil</string>
-    <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation et le GPS de l’appareil sont tous les deux utilisés.</string>
+    <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation de l’appareil sera utilisé en priorité et la plupart du temps, mais le GPS pourra aussi être utilisé si besoin.</string>
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
     <string name="settings_per_location">Préférences de l’emplacement</string>
     <string name="settings_per_location_summary">Personnalisations supplémentaires pour cet emplacement</string>

@@ -69,6 +69,7 @@ class SearchActivityRepository @Inject internal constructor(
                             when (e.code()) {
                                 401, 403 -> RefreshErrorType.API_UNAUTHORIZED
                                 409, 429 -> RefreshErrorType.API_LIMIT_REACHED
+                                in 500..599 -> RefreshErrorType.SERVER_UNAVAILABLE
                                 else -> {
                                     e.printStackTrace()
                                     RefreshErrorType.LOCATION_SEARCH_FAILED

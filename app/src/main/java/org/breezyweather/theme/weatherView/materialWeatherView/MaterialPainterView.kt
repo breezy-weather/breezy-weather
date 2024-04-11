@@ -30,6 +30,7 @@ import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
+import org.breezyweather.common.extensions.sensorManager
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.abs
 import kotlin.math.acos
@@ -54,7 +55,6 @@ class MaterialPainterView(
     private var impl: MaterialWeatherView.WeatherAnimationImplementor? = null
     private var rotators: Array<MaterialWeatherView.RotateController>? = null
 
-    private var sensorManager: SensorManager? = null
     private var gravitySensor: Sensor? = null
 
     @Size(2)
@@ -87,7 +87,7 @@ class MaterialPainterView(
                 return
             }
 
-            sensorManager?.unregisterListener(mGravityListener, gravitySensor)
+            context.sensorManager?.unregisterListener(mGravityListener, gravitySensor)
             orientationListener.disable()
         }
 
@@ -192,8 +192,7 @@ class MaterialPainterView(
     }
 
     init {
-        sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        gravitySensor = sensorManager?.getDefaultSensor(Sensor.TYPE_GRAVITY)
+        gravitySensor = context.sensorManager?.getDefaultSensor(Sensor.TYPE_GRAVITY)
 
         val metrics = resources.displayMetrics
         canvasSize = intArrayOf(
@@ -304,7 +303,7 @@ class MaterialPainterView(
         rotation2D = 0f
         rotation3D = 0f
 
-        sensorManager?.registerListener(
+        context.sensorManager?.registerListener(
             mGravityListener,
             gravitySensor,
             SensorManager.SENSOR_DELAY_FASTEST

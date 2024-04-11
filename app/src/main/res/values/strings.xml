@@ -355,6 +355,8 @@
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
+    <string name="message_server_unavailable_title">Server unavailable</string>
+    <string name="message_server_unavailable_content">This is usually a temporary error. If the error persists, please report an issue on GitHub.</string>
     <string name="message_parsing_error_title">Failed to parse weather data</string>
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
@@ -504,7 +506,7 @@
     <string name="settings_location_access_background_summaryOn">Enabled. App will be able to refresh weather data for your current location in background.</string>
     <string name="settings_location_access_background_summaryOff">Please enable “Allow all the time” to have background refreshes for your current location.</string>
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
-    <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
+    <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network provider will be used in priority and most of the time, but GPS can also be used as a fallback.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
     <!-- In other words: "Preferences of the location" -->
     <string name="settings_per_location">Location preferences</string>

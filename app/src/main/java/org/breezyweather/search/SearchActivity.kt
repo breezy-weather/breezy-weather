@@ -18,7 +18,6 @@ package org.breezyweather.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -64,6 +63,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.extensions.inputMethodManager
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
@@ -308,8 +308,7 @@ class SearchActivity : GeoActivity() {
 
     private fun hideKeyboard() {
         currentFocus?.let {
-            val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            manager.hideSoftInputFromWindow(it.windowToken, 0)
+            inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
 

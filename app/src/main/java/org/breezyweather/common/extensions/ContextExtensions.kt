@@ -19,11 +19,15 @@ package org.breezyweather.common.extensions
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutManager
+import android.hardware.SensorManager
 import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.PermissionChecker
 import androidx.core.content.getSystemService
+import org.breezyweather.settings.SettingsManager
 import java.io.File
 
 /**
@@ -43,8 +47,19 @@ fun Context.hasPermission(
     permission: String
 ) = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
+val Context.inputMethodManager: InputMethodManager
+    get() = getSystemService()!!
+
 val Context.powerManager: PowerManager
     get() = getSystemService()!!
+
+val Context.sensorManager: SensorManager?
+    get() = if (SettingsManager.getInstance(this).isGravitySensorEnabled) {
+        getSystemService()
+    } else null
+
+val Context.windowManager: WindowManager?
+    get() = getSystemService()
 
 val Context.shortcutManager: ShortcutManager?
     get() = getSystemService()

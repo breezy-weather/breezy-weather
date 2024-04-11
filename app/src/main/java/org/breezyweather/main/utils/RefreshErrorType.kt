@@ -65,6 +65,16 @@ enum class RefreshErrorType(
             )
         }
     ),
+    SERVER_UNAVAILABLE(
+        shortMessage = R.string.message_server_unavailable_title,
+        /*showDialogAction = { TODO
+            ServerUnavailableErrorHelpDialog.show(
+                it,
+                R.string.message_server_unavailable_title,
+                R.string.message_server_unavailable_content
+            )
+        }*/
+    ),
     PARSING_ERROR(
         shortMessage = R.string.message_parsing_error_title,
         /*showDialogAction = { TODO
