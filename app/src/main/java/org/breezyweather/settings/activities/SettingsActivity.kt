@@ -190,7 +190,7 @@ class SettingsActivity : GeoActivity() {
             topBar = {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.action_settings),
-                    onBackPressed = { finish() },
+                    onBackPressed = { onBackPressedDispatcher.onBackPressed() },
                     actions = {
                         IconButton(
                             onClick = {
