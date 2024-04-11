@@ -345,7 +345,7 @@
     <string name="settings_location_access_background_summaryOff">Пожалуйста, включите «Разрешить в фоне», чтобы иметь фоновое обновление для вашего текущего местоположения.</string>
     <string name="settings_location_access_background_summaryOn">Включено. Приложение сможет обновлять данные о погоде для вашего текущего местоположения в фоновом режиме.</string>
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
-    <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и источники GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Включено. Сетевой провайдер устройства будет использоваться в приоритете и большую часть времени, GPS будет использоваться в качестве запасного варианта.</string>
     <string name="settings_source_default_value">По умолчанию</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
@@ -687,4 +687,6 @@
     <string name="settings_background_updates_refresh_never_warning2">Процесс фонового обновления прост: он обновляет только ваше первое местоположение с выбранной вами частотой, а дополнительные местоположения обновляются только в том случае, если они вам нужны, один раз в день. Он экономно расходует заряд батареи и не должен превышать 5 МБ данных в месяц.</string>
     <string name="settings_background_updates_refresh_never_warning3">Рассмотрите возможность использования менее частой частоты обновления вместо отключения фоновых обновлений. В противном случае нажмите «Продолжить», если вы все еще хотите продолжить.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Совместимые пакеты не найдены</string>
+    <string name="message_server_unavailable_title">Сервер недоступен</string>
+    <string name="message_server_unavailable_content">Обычно это временная ошибка. Если ошибка не исчезнет, сообщите о проблеме на GitHub.</string>
 </resources>
