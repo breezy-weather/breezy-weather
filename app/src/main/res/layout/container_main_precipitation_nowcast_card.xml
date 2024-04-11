@@ -29,75 +29,76 @@
             tools:text="Expected to start at 07:34"
             tools:ignore="RtlHardcoded" />
 
-        <LinearLayout
-            android:id="@+id/container_main_minutely_card_minutely"
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/container_main_minutely_chart_composeView"
+            android:paddingStart="@dimen/normal_margin"
+            android:paddingEnd="@dimen/normal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/normal_margin">
 
-            <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
-                android:id="@+id/container_main_minutely_card_minutelyBar"
+            <TextView
+                android:id="@+id/container_main_minutely_card_minutelyStartText"
+                android:layout_alignParentStart="true"
+                style="@style/content_text"
+                tools:text="07:00"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_minutely_card_minutelyCenterText"
+                android:layout_centerInParent="true"
+                style="@style/content_text"
+                tools:text="08:00"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/container_main_minutely_card_minutelyEndText"
+                android:layout_alignParentEnd="true"
+                style="@style/content_text"
+                tools:text="09:00"
+                tools:ignore="RtlHardcoded" />
+
+            <View
+                android:id="@+id/container_main_minutely_card_minutelyStartLine"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:paddingTop="36dp"
-                android:paddingStart="@dimen/normal_margin"
-                android:paddingEnd="@dimen/normal_margin"
-                android:paddingBottom="4dp"
-                tools:background="?attr/colorOutline" />
+                android:layout_height="1dp"
+                android:background="?attr/colorOutline"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/container_main_minutely_card_minutelyStartText"
+                android:layout_toStartOf="@id/container_main_minutely_card_minutelyCenterText"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin" />
 
-            <RelativeLayout
+            <View
+                android:id="@+id/container_main_minutely_card_minutelyEndLine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin">
+                android:layout_height="1dp"
+                android:background="?attr/colorOutline"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/container_main_minutely_card_minutelyCenterText"
+                android:layout_toStartOf="@id/container_main_minutely_card_minutelyEndText"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/little_margin" />
 
-                <TextView
-                    android:id="@+id/container_main_minutely_card_minutelyStartText"
-                    android:layout_alignParentStart="true"
-                    style="@style/content_text"
-                    tools:text="07:00"
-                    tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/container_main_minutely_card_minutelyCenterText"
-                    android:layout_centerInParent="true"
-                    style="@style/content_text"
-                    tools:text="08:00"
-                    tools:ignore="RtlHardcoded" />
-
-                <TextView
-                    android:id="@+id/container_main_minutely_card_minutelyEndText"
-                    android:layout_alignParentEnd="true"
-                    style="@style/content_text"
-                    tools:text="09:00"
-                    tools:ignore="RtlHardcoded" />
-
-                <View
-                    android:id="@+id/container_main_minutely_card_minutelyStartLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?attr/colorOutline"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/container_main_minutely_card_minutelyStartText"
-                    android:layout_toStartOf="@id/container_main_minutely_card_minutelyCenterText"
-                    android:layout_marginStart="@dimen/little_margin"
-                    android:layout_marginEnd="@dimen/little_margin" />
-
-                <View
-                    android:id="@+id/container_main_minutely_card_minutelyEndLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?attr/colorOutline"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/container_main_minutely_card_minutelyCenterText"
-                    android:layout_toStartOf="@id/container_main_minutely_card_minutelyEndText"
-                    android:layout_marginStart="@dimen/little_margin"
-                    android:layout_marginEnd="@dimen/little_margin" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        <!-- Deprecated, keeping for tests -->
+        <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
+            android:id="@+id/container_main_minutely_card_minutelyBar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:paddingTop="36dp"
+            android:paddingStart="@dimen/normal_margin"
+            android:paddingEnd="@dimen/normal_margin"
+            android:paddingBottom="4dp"
+            tools:background="?attr/colorOutline" />
 
     </LinearLayout>
 

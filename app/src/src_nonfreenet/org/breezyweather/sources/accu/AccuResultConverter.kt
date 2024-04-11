@@ -439,9 +439,9 @@ private fun getMinutelyList(
         Minutely(
             date = Date(interval.StartEpochDateTime),
             minuteInterval = if (i < minuteResult.Intervals.size - 1) {
-                ((minuteResult.Intervals[i + 1].Minute - interval.Minute) / (60 * 1000)).toDouble()
+                ((minuteResult.Intervals[i + 1].StartEpochDateTime - interval.StartEpochDateTime) / (60 * 1000)).toDouble()
                     .roundToInt()
-            } else ((interval.Minute - minuteResult.Intervals[i - 1].Minute) / (60 * 1000)).toDouble()
+            } else ((interval.StartEpochDateTime - minuteResult.Intervals[i - 1].StartEpochDateTime) / (60 * 1000)).toDouble()
                 .roundToInt(),
             precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)
         )

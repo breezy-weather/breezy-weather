@@ -66,6 +66,48 @@ data class Weather(
                 (it.startDate != null && it.endDate == null && Date() > it.startDate)
         }
 
+    val minutelyForecastBy5Minutes: List<Minutely>
+        get() {
+            return if (minutelyForecast.any { it.minuteInterval != 5 }) {
+                val newMinutelyList = mutableListOf<Minutely>()
+
+                if (minutelyForecast.any { it.minuteInterval == 1 }) {
+                    // Let’s assume 1-minute by 1-minute forecast are always 1-minute all along
+                    for (i in minutelyForecast.indices step 5) {
+                        newMinutelyList.add(
+                            minutelyForecast[i].copy(
+                                precipitationIntensity = doubleArrayOf(
+                                    minutelyForecast[i].precipitationIntensity ?: 0.0,
+                                    minutelyForecast.getOrNull(i + 1)?.precipitationIntensity ?: 0.0,
+                                    minutelyForecast.getOrNull(i + 2)?.precipitationIntensity ?: 0.0,
+                                    minutelyForecast.getOrNull(i + 3)?.precipitationIntensity ?: 0.0,
+                                    minutelyForecast.getOrNull(i + 4)?.precipitationIntensity ?: 0.0
+                                ).average(),
+                                minuteInterval = 5
+                            )
+                        )
+                    }
+                } else {
+                    // Let’s assume the other cases are divisible by 5
+                    for (i in minutelyForecast.indices) {
+                        if (minutelyForecast[i].minuteInterval == 5) {
+                            newMinutelyList.add(minutelyForecast[i])
+                        } else {
+                            for (j in 0..minutelyForecast[i].minuteInterval.div(5)) {
+                                newMinutelyList.add(
+                                    minutelyForecast[i].copy(
+                                        date = Date(minutelyForecast[i].date.time + (j.times(60).times(1000))),
+                                        minuteInterval = 5
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+                return newMinutelyList
+            } else minutelyForecast
+        }
+
     fun toWeatherWrapper() = WeatherWrapper(
         current = this.current,
         normals = this.normals,

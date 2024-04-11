@@ -243,6 +243,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.rx3)
 
     // ui.
+    implementation(libs.vico.compose.m3)
     implementation(libs.adaptiveiconview)
     implementation(libs.activity.ktx)
     implementation(libs.expandabletextcompose)
