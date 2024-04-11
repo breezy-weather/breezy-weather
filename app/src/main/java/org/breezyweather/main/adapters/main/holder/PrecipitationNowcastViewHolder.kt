@@ -59,14 +59,12 @@ import com.patrykandpatrick.vico.core.marker.Marker
 import com.patrykandpatrick.vico.core.marker.MarkerLabelFormatter
 import com.patrykandpatrick.vico.core.model.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.model.columnSeries
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -99,7 +97,6 @@ class PrecipitationNowcastViewHolder(
     private val minutelyEndText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyEndText)
     private val minutelyStartLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyStartLine)
     private val minutelyEndLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyEndLine)
-    private val precipitationBar = itemView.findViewById<PrecipitationBar>(R.id.container_main_minutely_card_minutelyBar)
 
     override fun onBindView(
         activity: GeoActivity,
@@ -174,46 +171,6 @@ class PrecipitationNowcastViewHolder(
                 location, com.google.android.material.R.attr.colorOutline
             )
         )
-
-        // TODO: Everything below is deprecated, keeping for tests:
-        if (BreezyWeather.instance.debugMode) {
-            precipitationBar.visibility = View.VISIBLE
-            precipitationBar.precipitationIntensities = minutelyList.map {
-                it.precipitationIntensity ?: 0.0
-            }.toTypedArray()
-            precipitationBar.indicatorGenerator = object : PrecipitationBar.IndicatorGenerator {
-                override fun getIndicatorContent(precipitation: Double) =
-                    SettingsManager
-                        .getInstance(activity)
-                        .precipitationIntensityUnit
-                        .getValueText(activity, precipitation)
-            }
-
-            precipitationBar.precipitationColor = ThemeManager
-                .getInstance(context)
-                .weatherThemeDelegate
-                .getThemeColors(
-                    context,
-                    WeatherViewController.getWeatherKind(location),
-                    WeatherViewController.isDaylight(location)
-                )[0]
-            precipitationBar.subLineColor = MainThemeColorProvider.getColor(
-                location, com.google.android.material.R.attr.colorOutline
-            )
-            precipitationBar.highlightColor = MainThemeColorProvider.getColor(
-                location, androidx.appcompat.R.attr.colorPrimary
-            )
-            precipitationBar.textColor = MainThemeColorProvider.getColor(
-                location, com.google.android.material.R.attr.colorOnPrimary
-            )
-            precipitationBar.setShadowColors(
-                colors[0],
-                colors[1],
-                MainThemeColorProvider.isLightTheme(itemView.context, location)
-            )
-        } else {
-            precipitationBar.visibility = View.GONE
-        }
     }
 
     @Composable

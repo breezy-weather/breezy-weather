@@ -89,17 +89,6 @@
 
         </RelativeLayout>
 
-        <!-- Deprecated, keeping for tests -->
-        <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
-            android:id="@+id/container_main_minutely_card_minutelyBar"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:paddingTop="36dp"
-            android:paddingStart="@dimen/normal_margin"
-            android:paddingEnd="@dimen/normal_margin"
-            android:paddingBottom="4dp"
-            tools:background="?attr/colorOutline" />
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
