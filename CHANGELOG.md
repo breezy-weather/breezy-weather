@@ -20,6 +20,7 @@
 - [Open-Meteo] Fix issues related to DST
 - [Open-Meteo] Fix location search failed when at least one result didn’t have a timezone info
 - [DMI] Add severity/colors to alerts
+- [Android location source] Added support for native Fused on Android >= 12
 - [Google Fused] Now a separate source (only available in `gplay` flavor)
 
 **Improvements**

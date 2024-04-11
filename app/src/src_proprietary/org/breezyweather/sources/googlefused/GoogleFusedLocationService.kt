@@ -82,7 +82,9 @@ class GoogleFusedLocationService @Inject constructor() : LocationSource {
         }
     }
 
-    private fun requestCurrentLocation(emitter: ObservableEmitter<LocationPositionWrapper>, client: FusedLocationProviderClient) {
+    private fun requestCurrentLocation(
+        emitter: ObservableEmitter<LocationPositionWrapper>, client: FusedLocationProviderClient
+    ) {
         LogHelper.log(msg = "GMS FUSED: no cached location, requesting current location")
 
         val currentLocationRequest = CurrentLocationRequest.Builder()
@@ -119,8 +121,8 @@ class GoogleFusedLocationService @Inject constructor() : LocationSource {
         )
 
     companion object {
-        private const val TIMEOUT_MILLIS = (10 * 1000).toLong() // 10 seconds
-        private const val VALID_FOR_MILLIS = (1000 * 60 * 10).toLong() // 10 minutes
+        private const val TIMEOUT_MILLIS = 10 * 1000L // 10 seconds
+        private const val VALID_FOR_MILLIS = 10 * 60 * 1000L // 10 minutes
 
         private fun isGMSEnabled(
             context: Context

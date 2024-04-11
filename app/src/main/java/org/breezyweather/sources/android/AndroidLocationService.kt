@@ -4,11 +4,12 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
-import android.os.Bundle
 import android.os.Looper
+import androidx.core.location.LocationListenerCompat
+import androidx.core.location.LocationManagerCompat
+import androidx.core.location.LocationRequestCompat
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx3.rxObservable
@@ -19,37 +20,48 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import javax.inject.Inject
 
 @SuppressLint("MissingPermission")
-open class AndroidLocationService @Inject constructor() : LocationSource, LocationListener {
+class AndroidLocationService @Inject constructor() : LocationSource, LocationListenerCompat {
 
     override val id = "native"
     override val name = "Android"
 
-    private var locationManager: LocationManager? = null
+    private lateinit var locationManager: LocationManager
+    private var androidLocation: Location? = null
 
-    private var currentProvider = ""
-
-    private var gpsLocation: Location? = null
+    private val bestProvider: String
+        get() = when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                locationManager.allProviders.contains(LocationManager.FUSED_PROVIDER) -> LocationManager.FUSED_PROVIDER
+            locationManager.allProviders.contains(LocationManager.NETWORK_PROVIDER) -> LocationManager.NETWORK_PROVIDER
+            locationManager.allProviders.contains(LocationManager.GPS_PROVIDER) -> LocationManager.GPS_PROVIDER
+            else -> LocationManager.PASSIVE_PROVIDER
+        }
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
+        if (!hasPermissions(context)) {
+            LogHelper.log(msg = "Location permissions missing")
+            throw LocationException()
+        }
+
+        if (!this::locationManager.isInitialized) {
+            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        }
+
+        if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
+            LogHelper.log(msg = "Location service not enabled")
+            throw LocationException()
+        }
+
         return rxObservable {
-            gpsLocation = null
+            androidLocation = null
             clearLocationUpdates()
 
-            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-            currentProvider = locationManager?.let { getBestProvider(it) } ?: currentProvider
-            if (locationManager == null ||
-                !hasPermissions(context) ||
-                !isLocationEnabled(locationManager!!) ||
-                currentProvider.isEmpty()
-            ) {
-                LogHelper.log(msg = "Location manager not ready, no permissions, no location enabled or no provider available")
-                throw LocationException()
-            }
-
-            locationManager!!.requestLocationUpdates(
-                currentProvider,
-                0L,
-                0F,
+            LocationManagerCompat.requestLocationUpdates(
+                locationManager,
+                bestProvider,
+                LocationRequestCompat.Builder(1000).apply {
+                    setQuality(LocationRequestCompat.QUALITY_BALANCED_POWER_ACCURACY)
+                }.build(),
                 this@AndroidLocationService,
                 Looper.getMainLooper()
             )
@@ -59,14 +71,14 @@ open class AndroidLocationService @Inject constructor() : LocationSource, Locati
             for (i in 1..TIMEOUT_MILLIS / 1000) {
                 delay(1000)
 
-                gpsLocation?.let {
+                androidLocation?.let {
                     clearLocationUpdates()
                     send(LocationPositionWrapper(it.latitude, it.longitude))
                 }
             }
 
             clearLocationUpdates()
-            getLastKnownLocation(locationManager!!)?.let {
+            getLastKnownLocation(locationManager)?.let {
                 send(LocationPositionWrapper(it.latitude, it.longitude))
             } ?: run {
                 // Actually it’s a timeout, but it is more reasonable to say it failed to find location
@@ -78,25 +90,14 @@ open class AndroidLocationService @Inject constructor() : LocationSource, Locati
     }
 
     private fun clearLocationUpdates() {
-        locationManager?.removeUpdates(this)
+        locationManager.removeUpdates(this)
     }
-
-    override val permissions: Array<String>
-        get() = arrayOf(
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
 
     // location listener.
     override fun onLocationChanged(location: Location) {
         clearLocationUpdates()
-        gpsLocation = location
+        androidLocation = location
         LogHelper.log(msg = "Got GPS location")
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
-        // do nothing.
     }
 
     override fun onProviderEnabled(provider: String) {
@@ -107,29 +108,26 @@ open class AndroidLocationService @Inject constructor() : LocationSource, Locati
         // do nothing.
     }
 
+    override val permissions: Array<String>
+        get() = arrayOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
     companion object {
-        private const val TIMEOUT_MILLIS = (10 * 1000).toLong()
-
-        private fun isLocationEnabled(
-            manager: LocationManager
-        ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            manager.isLocationEnabled
-        } else {
-            manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
-                    manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        }
-
-        private fun getBestProvider(locationManager: LocationManager): String {
-            return locationManager
-                .getProviders(true)
-                .getOrNull(0) ?: ""
-        }
+        private const val TIMEOUT_MILLIS = 10 * 1000L // 10 seconds
 
         @SuppressLint("MissingPermission")
         private fun getLastKnownLocation(
             locationManager: LocationManager
-        ) = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-            ?: locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            ?: locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+        ): Location? {
+            val lastKnownFused = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                locationManager.getLastKnownLocation(LocationManager.FUSED_PROVIDER)
+            } else null
+            return lastKnownFused
+                ?: locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                ?: locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                ?: locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+        }
     }
 }
