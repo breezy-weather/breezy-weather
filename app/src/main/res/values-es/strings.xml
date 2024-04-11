@@ -459,7 +459,7 @@
     <string name="pollen_alnus">Aliso</string>
     <string name="settings_location_access_background_summaryOn">Activado. La aplicación podrá actualizar los datos meteorológicos de tu ubicación actual en segundo plano.</string>
     <string name="settings_location_access_precise_title">Utilizar el GPS del dispositivo</string>
-    <string name="settings_location_access_precise_summaryOn">Activado. Se utilizan tanto la red del dispositivo como los proveedores GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Activado. El operador de la red que usa en el dispositivo, se utilizará principalmente y la mayoría de las veces, pero el GPS también puede utilizarse como alternativa.</string>
     <string name="settings_weather_source_main">Fuente principal</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar las fuentes de datos meteorológicos utilizadas para esta ubicación</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo día/noche para las ubicaciones</string>
@@ -690,4 +690,6 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">No se han encontrado paquetes compatibles</string>
     <string name="settings_background_updates_refresh_never_warning2">El proceso de actualización en segundo plano es ligero: sólo actualiza tu primera ubicación a la velocidad que elijas, y las ubicaciones secundarias sólo si las necesitas, una vez al día. Ahorra batería y no debería consumir más de 5 MB de datos al mes.</string>
     <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse “Continuar” si aún desea seguir adelante.</string>
+    <string name="message_server_unavailable_title">Servidor no disponible</string>
+    <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifique una incidencia en GitHub.</string>
 </resources>
