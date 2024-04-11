@@ -68,9 +68,8 @@
     <string name="wind_direction_short_W">西风</string>
     <string name="wind_direction_short_NW">西北风</string>
     <string name="precipitation_intensity_light">小雨</string>
-    <string name="precipitation_intensity_middle">中雨</string>
+    <string name="precipitation_intensity_medium">中雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
-    <string name="precipitation_intensity_rainstorm">暴雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">蛾眉月</string>
     <string name="ephemeris_moon_phase_first_quarter">上弦月</string>

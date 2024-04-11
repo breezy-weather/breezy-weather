@@ -85,7 +85,6 @@
     <string name="widget_day">Dnevno</string>
     <string name="settings_icon_packs_check_details">Provjerite detalje</string>
     <string name="uv_alert_level">Upozorenje</string>
-    <string name="precipitation_intensity_rainstorm">Kišna oluja</string>
     <string name="settings_main_gravity_sensor_switch">Senzor gravitacije</string>
     <string name="settings_location_access_switch_summaryOff">Dozvolite, ako želite biti u mogućnosti dodati vašu trenutnu lokaciju kao lokaciju.</string>
     <string name="wind_direction_short_W">Z</string>
@@ -165,7 +164,7 @@
     <string name="settings_background_updates_refresh_6h">6 sati</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linija</string>
-    <string name="precipitation_intensity_middle">Kiša</string>
+    <string name="precipitation_intensity_medium">Kiša</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
     <string name="weather_air_quality_and_pollen_data_by">Podatci o kvaliteti zraka i peludi od %s</string>

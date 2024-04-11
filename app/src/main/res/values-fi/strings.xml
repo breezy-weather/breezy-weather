@@ -60,9 +60,8 @@
     <string name="wind_strength_11">Ankara myrsky</string>
     <string name="wind_strength_12">Hirmumyrsky</string>
     <string name="precipitation_intensity_light">Tihkusade</string>
-    <string name="precipitation_intensity_middle">Sade</string>
+    <string name="precipitation_intensity_medium">Sade</string>
     <string name="precipitation_intensity_heavy">Rankkasade</string>
-    <string name="precipitation_intensity_rainstorm">Sademyrsky</string>
     <string name="ephemeris_moon_phase_new_moon">Uusikuu</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Kasvava kuunsirppi</string>
     <string name="ephemeris_moon_phase_first_quarter">Ensimmäinen neljännes</string>

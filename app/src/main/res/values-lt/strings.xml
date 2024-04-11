@@ -18,9 +18,8 @@
     <string name="precipitation_snow">Sniegas</string>
     <string name="precipitation_ice">Lijundra</string>
     <string name="precipitation_intensity_light">Dulksna</string>
-    <string name="precipitation_intensity_middle">Lietus</string>
+    <string name="precipitation_intensity_medium">Lietus</string>
     <string name="precipitation_intensity_heavy">Stiprus lietus</string>
-    <string name="precipitation_intensity_rainstorm">Liūtinis lietus</string>
     <string name="precipitation_none">Kritulių nėra</string>
     <string name="precipitation_between_time">Krituliai nuo %1$s iki %2$s</string>
     <string name="wind">Vėjas</string>

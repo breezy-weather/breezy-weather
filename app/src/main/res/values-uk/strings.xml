@@ -4,7 +4,6 @@
     <string name="precipitation_intensity_heavy">Проливний дощ</string>
     <string name="air_quality_level_4_description">Чутливі люди можуть відразу відчути вплив на здоров’я. Здорові люди можуть відчувати утруднене дихання та подразнення горла при тривалому впливі повітря. Обмежте активність на вулиці.</string>
     <string name="uv_index_6_7">Високий</string>
-    <string name="precipitation_intensity_rainstorm">Злива</string>
     <string name="wind">Вітер</string>
     <string name="air_quality_o3_voice">Озон</string>
     <string name="air_quality_level_6_description">Будь-яке перебування на повітрі, навіть протягом кількох хвилин, може призвести до серйозних наслідків для здоров’я кожної людини. Уникайте активності на вулиці.</string>
@@ -29,7 +28,7 @@
     <string name="precipitation_thunderstorm">Гроза</string>
     <string name="precipitation_rain">Дощ</string>
     <string name="precipitation_intensity_light">Мряка</string>
-    <string name="precipitation_intensity_middle">Дощ</string>
+    <string name="precipitation_intensity_medium">Дощ</string>
     <string name="precipitation_none">Без опадів</string>
     <string name="wind_speed">Швидкість вітру</string>
     <string name="wind_gusts">Пориви вітру</string>

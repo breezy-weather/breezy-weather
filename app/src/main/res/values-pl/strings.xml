@@ -61,9 +61,8 @@
     <string name="wind_strength_11">Gwałtowny sztorm</string>
     <string name="wind_strength_12">Huragan</string>
     <string name="precipitation_intensity_light">Mżawka</string>
-    <string name="precipitation_intensity_middle">Deszcz</string>
+    <string name="precipitation_intensity_medium">Deszcz</string>
     <string name="precipitation_intensity_heavy">Silny deszcz</string>
-    <string name="precipitation_intensity_rainstorm">Ulewa</string>
     <string name="ephemeris_moon_phase_new_moon">Nów</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Sierp</string>
     <string name="ephemeris_moon_phase_first_quarter">Pierwsza kwadra</string>

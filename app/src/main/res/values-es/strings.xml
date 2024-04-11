@@ -61,9 +61,8 @@
     <string name="wind_strength_11">Tormenta violenta</string>
     <string name="wind_strength_12">Huracán/Tifón</string>
     <string name="precipitation_intensity_light">Llovizna</string>
-    <string name="precipitation_intensity_middle">Lluvia</string>
+    <string name="precipitation_intensity_medium">Lluvia</string>
     <string name="precipitation_intensity_heavy">Lluvia intensa</string>
-    <string name="precipitation_intensity_rainstorm">Aguacero</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>

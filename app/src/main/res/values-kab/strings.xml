@@ -84,7 +84,7 @@
     <string name="precipitation_rain">Lehwa</string>
     <string name="precipitation_snow">Adfel</string>
     <string name="precipitation_ice">Agris</string>
-    <string name="precipitation_intensity_middle">Lehwa</string>
+    <string name="precipitation_intensity_medium">Lehwa</string>
     <string name="locations">Tigawin</string>
     <string name="pollen_olea">Azemmur</string>
     <string name="pollen_level_0">Ulac</string>

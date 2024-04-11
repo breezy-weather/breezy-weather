@@ -60,9 +60,8 @@
     <string name="wind_strength_11">Tempestade violenta</string>
     <string name="wind_strength_12">Furacão</string>
     <string name="precipitation_intensity_light">Garoa</string>
-    <string name="precipitation_intensity_middle">Chuva</string>
+    <string name="precipitation_intensity_medium">Chuva</string>
     <string name="precipitation_intensity_heavy">Chuva forte</string>
-    <string name="precipitation_intensity_rainstorm">Tempestade</string>
     <string name="ephemeris_moon_phase_new_moon">Lua nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Lua crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Quarto crescente</string>

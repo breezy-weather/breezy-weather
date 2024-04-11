@@ -22,9 +22,8 @@
     <string name="precipitation_snow">Сняг</string>
     <string name="precipitation_ice">Лед</string>
     <string name="precipitation_intensity_light">Ръмеж</string>
-    <string name="precipitation_intensity_middle">Дъжд</string>
+    <string name="precipitation_intensity_medium">Дъжд</string>
     <string name="precipitation_intensity_heavy">Проливен дъжд</string>
-    <string name="precipitation_intensity_rainstorm">Дъждовна буря</string>
     <string name="precipitation_none">Без валежи</string>
     <string name="precipitation_between_time">Валежи между %1$s и %2$s</string>
     <string name="wind">Вятър</string>

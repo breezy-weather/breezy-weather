@@ -41,9 +41,8 @@
     <string name="precipitation_snow">برف</string>
     <string name="precipitation_ice">یخ</string>
     <string name="precipitation_intensity_light">نم‌نم باران</string>
-    <string name="precipitation_intensity_middle">باران</string>
+    <string name="precipitation_intensity_medium">باران</string>
     <string name="precipitation_intensity_heavy">باران سنگین</string>
-    <string name="precipitation_intensity_rainstorm">باران شدید و طوفان</string>
     <string name="precipitation_none">بدون بارش</string>
     <string name="wind_speed">تندی باد</string>
     <string name="wind_gusts">وزیدن باد</string>

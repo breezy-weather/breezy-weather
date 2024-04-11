@@ -26,9 +26,8 @@
     <string name="precipitation_rain">Dážď</string>
     <string name="precipitation_ice">Ľad</string>
     <string name="precipitation_intensity_light">Mrholenie</string>
-    <string name="precipitation_intensity_middle">Dážď</string>
+    <string name="precipitation_intensity_medium">Dážď</string>
     <string name="precipitation_intensity_heavy">Silný dážď</string>
-    <string name="precipitation_intensity_rainstorm">Dažďová búrka</string>
     <string name="precipitation_none">Bez zrážok</string>
     <string name="precipitation_between_time">Zrážky medzi %1$s a %2$s</string>
     <string name="wind">Vietor</string>

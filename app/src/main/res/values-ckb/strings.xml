@@ -18,9 +18,8 @@
     <string name="temperature_wet_bulb">بای شێدار</string>
     <string name="precipitation_probability">ئەگەری بارین</string>
     <string name="precipitation_intensity_light">دڵۆپ</string>
-    <string name="precipitation_intensity_middle">باران</string>
+    <string name="precipitation_intensity_medium">باران</string>
     <string name="precipitation_intensity_heavy">بارانێکی بەلێزمە</string>
-    <string name="precipitation_intensity_rainstorm">زریانی باران</string>
     <string name="precipitation_none">بێ باران</string>
     <string name="wind_speed">خێرایی با</string>
     <string name="wind_direction">ئاڕاستەی با</string>

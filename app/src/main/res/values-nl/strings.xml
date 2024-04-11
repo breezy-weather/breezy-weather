@@ -383,8 +383,7 @@
     <string name="settings_background_updates_battery_optimization">Batterijoptimalisatie uitschakelen</string>
     <string name="precipitation_intensity_heavy">Hevige regen</string>
     <string name="precipitation_intensity_light">Motregen</string>
-    <string name="precipitation_intensity_middle">Regen</string>
-    <string name="precipitation_intensity_rainstorm">Regenstorm</string>
+    <string name="precipitation_intensity_medium">Regen</string>
     <string name="precipitation_none">Geen neerslag</string>
     <string name="wind_speed">Windsnelheid</string>
     <string name="wind_direction">Windrichting</string>

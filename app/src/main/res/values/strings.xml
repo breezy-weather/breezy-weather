@@ -52,10 +52,9 @@
     <string name="precipitation_rain">Rain</string>
     <string name="precipitation_snow">Snow</string>
     <string name="precipitation_ice">Ice</string>
-    <string name="precipitation_intensity_light">Drizzle</string>
-    <string name="precipitation_intensity_middle">Rain</string>
-    <string name="precipitation_intensity_heavy">Heavy rain</string>
-    <string name="precipitation_intensity_rainstorm">Rainstorm</string>
+    <string name="precipitation_intensity_light">Light</string>
+    <string name="precipitation_intensity_medium">Medium</string>
+    <string name="precipitation_intensity_heavy">Heavy</string>
     <string name="precipitation_none">No precipitation</string>
     <!-- Precipitation between 09:02 and 09:34 -->
     <string name="precipitation_between_time">Precipitation between %1$s and %2$s</string>

@@ -129,7 +129,7 @@
     <string name="precipitation_probability">Верагоднасць ападкаў</string>
     <string name="precipitation_rain">Дождж</string>
     <string name="precipitation_snow">Снег</string>
-    <string name="precipitation_intensity_middle">Дождж</string>
+    <string name="precipitation_intensity_medium">Дождж</string>
     <string name="precipitation_intensity_heavy">Праліўны дождж</string>
     <string name="precipitation_none">Без ападкаў</string>
     <string name="wind_gusts">Парывы ветру</string>
@@ -259,7 +259,6 @@
     <string name="air_quality">Якасць паветра</string>
     <string name="alerts">Абвесткі</string>
     <string name="temperature_wet_bulb">Вільготны тэрмометр</string>
-    <string name="precipitation_intensity_rainstorm">Штармавы дождж</string>
     <string name="temperature_degree_day">Градуса-дзень</string>
     <string name="temperature_degree_day_heating">Градуса-дзень ацяпляльнага перыяду</string>
     <string name="temperature_normal_short">Норма</string>

@@ -105,7 +105,7 @@
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
     <string name="precipitation_between_time">Падавине између %1$s и %2$s</string>
     <string name="precipitation_intensity_light">Росуља</string>
-    <string name="precipitation_intensity_middle">Киша</string>
+    <string name="precipitation_intensity_medium">Киша</string>
     <string name="wind_speed">Брзина ветра</string>
     <string name="wind_direction">Правац ветра</string>
     <string name="wind_direction_short_N">С</string>
@@ -402,7 +402,6 @@
     <string name="precipitation_total">Укупно</string>
     <string name="temperature_degree_day">Степен дана</string>
     <string name="precipitation_none">Без падавина</string>
-    <string name="precipitation_intensity_rainstorm">Кишна олуја</string>
     <string name="air_quality_level_1">Одлично</string>
     <string name="air_quality_level_5">Веома нездраво</string>
     <string name="air_quality_level_6">Опасно</string>

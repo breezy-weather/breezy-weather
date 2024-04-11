@@ -60,9 +60,8 @@
     <string name="wind_strength_11">Furtună violentă</string>
     <string name="wind_strength_12">Uragan</string>
     <string name="precipitation_intensity_light">Burniță</string>
-    <string name="precipitation_intensity_middle">Ploaie</string>
+    <string name="precipitation_intensity_medium">Ploaie</string>
     <string name="precipitation_intensity_heavy">Ploaie torențială</string>
-    <string name="precipitation_intensity_rainstorm">Furtună</string>
     <string name="ephemeris_moon_phase_new_moon">Lună nouă</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Semilună în creștere</string>
     <string name="ephemeris_moon_phase_first_quarter">Primul pătrar</string>

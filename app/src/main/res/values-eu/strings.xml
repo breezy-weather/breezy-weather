@@ -31,7 +31,6 @@
     <string name="temperature_normal_short">Normal</string>
     <string name="precipitation_total">Guztira</string>
     <string name="precipitation_intensity_heavy">Euri-jasa</string>
-    <string name="precipitation_intensity_rainstorm">Zaparrada</string>
     <string name="precipitation_none">Prezipitaziorik gabe</string>
     <string name="precipitation_between_time">Prezipitazioak %1$s eta %2$s artean</string>
     <string name="wind">Haizea</string>
@@ -108,7 +107,7 @@
     <string name="precipitation_snow">Elurra</string>
     <string name="precipitation_intensity_light">Zirimiria</string>
     <string name="precipitation_ice">Izotza</string>
-    <string name="precipitation_intensity_middle">Euria</string>
+    <string name="precipitation_intensity_medium">Euria</string>
     <string name="uv_index">UV indizea</string>
     <string name="air_quality_pm25_voice">PM bi puntu bost</string>
     <string name="air_quality_pm_explanations_consequences">Partikulak kutsadura atmosferikoaren modurik kaltegarriena dira, birikak eta garuna odol-uholdeetatik sakon sartzeko duten gaitasunagatik, eta osasun-arazoak eragiten dituzte, hala nola kardiopatiak, biriketako gaixotasunak eta heriotza goiztiarra.</string>

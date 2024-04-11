@@ -96,7 +96,7 @@
     <string name="wind_direction_short_SW">GB</string>
     <string name="temperature_wet_bulb">Islak hazne sıcaklığı</string>
     <string name="wind_direction_short_variable">Değişken</string>
-    <string name="precipitation_intensity_middle">Yağmur</string>
+    <string name="precipitation_intensity_medium">Yağmur</string>
     <string name="temperature_wind_chill">Rüzgar soğuğu</string>
     <string name="temperature">Sıcaklık</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -109,7 +109,6 @@
     <string name="precipitation_thunderstorm">Gök gürültülü fırtına</string>
     <string name="precipitation_rain">Yağmur</string>
     <string name="precipitation_snow">Kar</string>
-    <string name="precipitation_intensity_rainstorm">Yağmur fırtınası</string>
     <string name="precipitation_intensity_heavy">Sağanak yağmur</string>
     <string name="wind_speed">Rüzgar hızı</string>
     <string name="wind_direction_short_N">K</string>

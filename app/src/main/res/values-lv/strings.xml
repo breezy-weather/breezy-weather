@@ -31,9 +31,8 @@
     <string name="precipitation_rain">Lietus</string>
     <string name="precipitation_snow">Sniegs</string>
     <string name="precipitation_ice">Ledus</string>
-    <string name="precipitation_intensity_rainstorm">Lietus vētra</string>
     <string name="precipitation_intensity_light">Smidzina</string>
-    <string name="precipitation_intensity_middle">Lietus</string>
+    <string name="precipitation_intensity_medium">Lietus</string>
     <string name="precipitation_intensity_heavy">Spēcīgs lietus</string>
     <string name="precipitation_none">Bez nokrišņiem</string>
     <string name="precipitation_between_time">Nokrišņi no %1$s līdz %2$s</string>

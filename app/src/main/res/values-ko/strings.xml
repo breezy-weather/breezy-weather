@@ -59,9 +59,8 @@
     <string name="wind_strength_11">왕바람</string>
     <string name="wind_strength_12">싹슬바람</string>
     <string name="precipitation_intensity_light">이슬비</string>
-    <string name="precipitation_intensity_middle">비</string>
+    <string name="precipitation_intensity_medium">비</string>
     <string name="precipitation_intensity_heavy">호우</string>
-    <string name="precipitation_intensity_rainstorm">폭풍우</string>
     <string name="ephemeris_moon_phase_new_moon">삭</string>
     <string name="ephemeris_moon_phase_waxing_crescent">초승달</string>
     <string name="ephemeris_moon_phase_first_quarter">상현달</string>

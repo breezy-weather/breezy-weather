@@ -321,9 +321,8 @@
     <string name="precipitation_snow">Có tuyết</string>
     <string name="precipitation_ice">Băng</string>
     <string name="precipitation_intensity_light">Mưa phùn</string>
-    <string name="precipitation_intensity_middle">Mưa</string>
+    <string name="precipitation_intensity_medium">Mưa</string>
     <string name="precipitation_intensity_heavy">Mưa nhiều</string>
-    <string name="precipitation_intensity_rainstorm">Mưa bão</string>
     <string name="precipitation_none">Không có mưa</string>
     <string name="precipitation_between_time">Mưa giữa %1$s và %2$s</string>
     <string name="wind">Gió</string>

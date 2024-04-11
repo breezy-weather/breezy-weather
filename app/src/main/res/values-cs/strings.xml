@@ -60,9 +60,8 @@
     <string name="wind_strength_11">Mohutná vichřice</string>
     <string name="wind_strength_12">Orkán</string>
     <string name="precipitation_intensity_light">Mrholení</string>
-    <string name="precipitation_intensity_middle">Déšť</string>
+    <string name="precipitation_intensity_medium">Déšť</string>
     <string name="precipitation_intensity_heavy">Silný déšť</string>
-    <string name="precipitation_intensity_rainstorm">Liják</string>
     <string name="ephemeris_moon_phase_new_moon">Nový měsíc</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorustající čtvrtina</string>
     <string name="ephemeris_moon_phase_first_quarter">Dorůstající polovina</string>

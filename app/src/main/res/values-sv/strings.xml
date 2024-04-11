@@ -59,7 +59,6 @@
     <string name="unit_inph">inch/h</string>
     <string name="action_help_me_choose">Hjälp mig välja</string>
     <string name="uv_alert_level">Varning</string>
-    <string name="precipitation_intensity_rainstorm">Hällregn</string>
     <string name="wind_direction_short_W">V</string>
     <string name="about_contact">Kontakt</string>
     <string name="unit_kelvin">K</string>
@@ -113,7 +112,7 @@
     <string name="settings_background_updates_refresh_6h">6 timmar</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="precipitation_intensity_middle">Regn</string>
+    <string name="precipitation_intensity_medium">Regn</string>
     <string name="wind_strength">Vindstyrka</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftkvalitets- och pollendata från %s</string>
     <string name="hourly_forecast">Timprognos</string>

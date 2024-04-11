@@ -98,9 +98,8 @@
     <string name="wind_direction_short_NW">NO</string>
 
     <string name="precipitation_intensity_light">Faible</string>
-    <string name="precipitation_intensity_middle">Modérée</string>
+    <string name="precipitation_intensity_medium">Modérée</string>
     <string name="precipitation_intensity_heavy">Forte</string>
-    <string name="precipitation_intensity_rainstorm">Torentielle</string>
 
     <string name="ephemeris_moon_phase_new_moon">Nouvelle lune</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Premier croissant</string>

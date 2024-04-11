@@ -58,9 +58,8 @@
     <string name="wind_strength_11">عاصفة عنيفة</string>
     <string name="wind_strength_12">إعصار</string>
     <string name="precipitation_intensity_light">رذاذ</string>
-    <string name="precipitation_intensity_middle">مطر</string>
+    <string name="precipitation_intensity_medium">مطر</string>
     <string name="precipitation_intensity_heavy">مطر غزير</string>
-    <string name="precipitation_intensity_rainstorm">عاصفة مطرية</string>
     <string name="ephemeris_moon_phase_new_moon">مُحاق</string>
     <string name="ephemeris_moon_phase_waxing_crescent">هلال أول الشهر</string>
     <string name="ephemeris_moon_phase_first_quarter">تربيع أول</string>

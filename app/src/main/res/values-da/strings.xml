@@ -20,13 +20,12 @@
     <string name="wind_speed">Vindhastighed</string>
     <string name="precipitation_ice">Is</string>
     <string name="short_tomorrow">I morgen</string>
-    <string name="precipitation_intensity_rainstorm">Regnvejr</string>
     <string name="wind_direction_short_W">V</string>
     <string name="precipitation_intensity_heavy">Kraftig regn</string>
     <string name="precipitation_none">Ingen nedbør</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_probability">Sandsynlighed for nedbør</string>
-    <string name="precipitation_intensity_middle">Regn</string>
+    <string name="precipitation_intensity_medium">Regn</string>
     <string name="wind_strength">Vindstyrke</string>
     <string name="hourly_forecast">Timelig prognose</string>
     <string name="wind_strength_0">Rolig</string>

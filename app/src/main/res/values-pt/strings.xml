@@ -134,9 +134,8 @@
     <string name="precipitation_snow">Neve</string>
     <string name="precipitation_ice">Gelo</string>
     <string name="precipitation_intensity_light">Chuva fina</string>
-    <string name="precipitation_intensity_middle">Chuva</string>
+    <string name="precipitation_intensity_medium">Chuva</string>
     <string name="precipitation_intensity_heavy">Chuva intensa</string>
-    <string name="precipitation_intensity_rainstorm">Tempestade de chuva</string>
     <string name="precipitation_none">Sem precipitação</string>
     <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
