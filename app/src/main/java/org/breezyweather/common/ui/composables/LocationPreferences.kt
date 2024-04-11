@@ -73,7 +73,7 @@ fun LocationPreference(
             }
         }
         if (location.isCurrentPosition) {
-            val locationSources = activity.sourceManager.getLocationSources()
+            val locationSources = activity.sourceManager.getConfiguredLocationSources()
             SourceView(
                 title = stringResource(R.string.settings_location_service),
                 iconId = R.drawable.ic_location,

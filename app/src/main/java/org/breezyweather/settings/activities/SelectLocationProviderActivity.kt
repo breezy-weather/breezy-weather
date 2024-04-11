@@ -78,7 +78,7 @@ class SelectLocationProviderActivity : GeoActivity() {
                 composable(SettingsScreenRouter.Location.route) {
                     LocationSettingsScreen(
                         context = this@SelectLocationProviderActivity,
-                        locationSources = sourceManager.getLocationSources(),
+                        locationSources = sourceManager.getConfiguredLocationSources(),
                         accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
                         accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
                         // TODO: What happens on Android < Q? Why is it not underlined when initializing from SettingsActivity??

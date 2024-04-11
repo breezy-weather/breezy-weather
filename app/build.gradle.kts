@@ -90,14 +90,13 @@ android {
 
     sourceSets {
         getByName("basic") {
-            java.srcDirs("src/src_nofdroid", "src/src_nogplay")
+            java.srcDirs("src/src_nofdroid")
         }
         getByName("fdroid") {
-            java.srcDirs("src/src_fdroid", "src/src_nogplay")
+            java.srcDirs("src/src_fdroid")
         }
         getByName("gplay") {
-            java.srcDirs("src/src_nofdroid", "src/src_gplay")
-            manifest.srcFile("manifest_gplay/AndroidManifest.xml")
+            java.srcDirs("src/src_nofdroid")
         }
     }
 
@@ -214,6 +213,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // gms.
+    "basicImplementation"(libs.gms.location)
     "gplayImplementation"(libs.gms.location)
 
     // HTTP

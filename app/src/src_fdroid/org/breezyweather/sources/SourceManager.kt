@@ -32,7 +32,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.Source
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.android.AndroidLocationSource
+import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
@@ -41,7 +41,7 @@ import org.breezyweather.sources.recosante.RecosanteService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
-    androidLocationSource: AndroidLocationSource,
+    androidLocationService: AndroidLocationService,
     brightSkyService: BrightSkyService,
     gadgetbridgeService: GadgetbridgeService,
     naturalEarthService: NaturalEarthService,
@@ -52,7 +52,7 @@ class SourceManager @Inject constructor(
     // The order of this list is preserved in "source chooser" dialogs
     private val sourceList: List<Source> = listOf(
         // Location sources
-        androidLocationSource,
+        androidLocationService,
 
         // Reverse geocoding sources
         naturalEarthService,
@@ -76,6 +76,9 @@ class SourceManager @Inject constructor(
     // Location
     fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
     fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
+    fun getConfiguredLocationSources(): List<LocationSource> = getLocationSources().filter {
+        it !is ConfigurableSource || it.isConfigured
+    }
     fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
         ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
