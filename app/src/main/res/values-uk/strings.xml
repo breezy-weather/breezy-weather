@@ -402,7 +402,7 @@
     <string name="settings_widgets_monochrome_icons_title">Монохромні значки</string>
     <string name="settings_location_access_switch_summaryOn">Дозволено. Ви можете додати ваше поточне місцезнаходження як місцезнаходження.</string>
     <string name="settings_location_access_precise_title">Використання GPS пристроєм</string>
-    <string name="settings_location_access_precise_summaryOn">Увімкнено. Використовуються як мережа пристрою, і джерела GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Увімкнено. Мережевий провайдер пристрою буде використовуватися в пріоритеті і більшу частину часу, GPS буде використовуватися як запасний варіант.</string>
     <string name="settings_weather_source_main">Основне джерело</string>
     <string name="settings_weather_sources_per_location_summary">Налаштування джерел інформації про погоду, які використовуються для цього розташування</string>
     <string name="settings_source_api_key">Ключ API</string>
@@ -680,4 +680,6 @@
     <string name="settings_background_updates_refresh_never_warning3">Подумайте про використання менш частої частоти оновлення замість вимкнення фонових оновлень. В іншому випадку натисніть “Продовжити”, якщо ви все ще хочете продовжити.</string>
     <string name="settings_background_updates_refresh_never_warning2">Процес фонового оновлення простий: він оновлює лише ваше перше місце з вибраною вами частотою, а додаткові місця оновлюються лише в тому випадку, якщо вони вам потрібні, раз на день. Він економно витрачає заряд батареї і не повинен перевищувати 5 МБ даних на місяць.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Сумісні пакети не знайдені</string>
+    <string name="message_server_unavailable_title">Сервер не доступний</string>
+    <string name="message_server_unavailable_content">Зазвичай, це тимчасова помилка. Якщо помилка не зникне, повідомте про проблему GitHub.</string>
 </resources>
