@@ -128,7 +128,7 @@ class SearchActivity : GeoActivity() {
                         {
                             FloatingActionButton(
                                 onClick = { dialogLocationSearchSourceOpenState.value = true },
-                                containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                                containerColor = FloatingActionButtonDefaults.containerColor,
                                 elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                             ) {
                                 Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
