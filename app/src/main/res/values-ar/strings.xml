@@ -162,7 +162,7 @@
     <string name="settings_background_updates_refresh_30min">30 دقيقة</string>
     <string name="settings_background_updates_refresh_1h">كل ساعة</string>
     <string name="settings_background_updates_refresh_1h_30min">كل ساعة ونصف</string>
-    <string name="settings_background_updates_refresh_2h">كل ساعتان</string>
+    <string name="settings_background_updates_refresh_2h">كل ساعتين</string>
     <string name="settings_background_updates_refresh_3h">كل ٣ ساعات</string>
     <string name="settings_background_updates_refresh_6h">كل ست ساعات</string>
     <string name="settings_background_updates_refresh_12h">كل 12 ساعات</string>
@@ -211,10 +211,10 @@
     <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (درجة مئوية/درجة فهرنهايت)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
-    <string name="widget_material_you_current">نمط واجهة ”Material You“ - الحالي</string>
+    <string name="widget_material_you_current">”Material You“ - الحالي</string>
     <string name="widget_multi_city">مدينة متعددة</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء ، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس ، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
@@ -234,7 +234,7 @@
     <string name="settings_location_access_switch_title">الوصول إلى الموقع</string>
     <string name="settings_location_access_switch_summaryOn">مسموح. يمكنك إضافة موقعك الحالي كمنطقة.</string>
     <string name="settings_location_access_background_summaryOn">مفعل. سيكون التطبيق قادرًا على تحديث بيانات الطقس لمنطقتك الحالية في الخلفية.</string>
-    <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ للحصول على تحديثات خلفية حية لمنطقتك الحالي.</string>
+    <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ لتحديث منطقتك الحالية في الخلفية.</string>
     <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_source_default_value">افتراضي (بدون تغيير)</string>
     <string name="settings_icon_packs_weather_adaptive_icon">أيقونة الطقس</string>
@@ -311,7 +311,7 @@
     <string name="ephemeris_sunset_at">غروب الشمس في %s</string>
     <string name="widget_custom_subtitle_keyword_cw_description">الطقس الحالي</string>
     <string name="action_back">رجوع</string>
-    <string name="widget_material_you_forecast">نمط واجهة ”Material You“- التوقعات</string>
+    <string name="widget_material_you_forecast">”Material You“- التوقعات</string>
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
@@ -410,8 +410,8 @@
     <string name="settings_background_updates_refresh_title">معدل التحديث</string>
     <string name="settings_background_updates_refresh_never">أبدا</string>
     <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
-    <string name="settings_location_access_precise_title">استخدام نظام تحديد المواقع العالمي (GPS) للجهاز</string>
-    <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
+    <string name="settings_location_access_precise_title">بيانات استخدام نظام تحديد المواقع العالمي (GPS)</string>
+    <string name="settings_weather_sources_summary">موفر الطقس الافتراضي للمواقع الجديدة، مفاتيح API المخصصة، إعدادات موفر أخرى</string>
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="air_quality_pm_info_title">الجسيمات (PM2.5 و PM10)</string>
@@ -437,12 +437,12 @@
     <string name="dialog_permissions_notification_content">انقر هنا لتمكين الإشعارات حول تنبيهات الطقس ، أو حدد لاحقا في الإعدادات.</string>
     <string name="precipitation_none">لا توجد تساقطات</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم تكن ايقونات سطح المكتب تتحدث.</string>
+    <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم يتم تحديث ايقونات سطح المكتب.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات توقف خدمات الخلفية.يحتوي موقع !Don’t kill my app على معلومات حول كيفية إصلاحه.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات التي توقف خدمات الخلفية.يحتوي موقع !Don’t kill my app على معلومات حول كيفية إصلاحه.</string>
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كمنطقة.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
-    <string name="settings_location_access_precise_summaryOn">مفعل. يتم استخدام كل من شبكة الجهاز وموفري GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">مفعل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن يمكن أيضا يمكن ان يستخدم GPS كبديل.</string>
     <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي ورق الحائط. لا يزال بإمكانك تمكين خلفية Breezy Weather عن طريق اختيار ”Live Wallpaper“ في منتقي خلفية الشاشة الرئيسية.</string>
     <string name="action_add_from_map">أضف من الخريطة</string>
     <string name="action_see_more">انظر أكثر</string>
@@ -578,15 +578,15 @@
     <string name="common_weather_text_snow_heavy">ثلج غزير</string>
     <string name="common_weather_text_drizzle_light">رذاذ خفيف</string>
     <string name="common_weather_text_drizzle_moderate">رذاذ متوسط</string>
-    <string name="common_weather_text_rain_snow_mixed_showers">رشات مطر وثلج مختلط</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_heavy">أمطار غزيرة وثلوج أمطار مختلطة</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">رشات مطر وثلج مختلطة</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">أمطار غزيرة وثلوج مختلطة</string>
     <string name="common_weather_text_snow_showers_light">رشات ثلج خفيفة</string>
     <string name="common_weather_text_snow_showers_heavy">رشات ثلج غزيرة</string>
     <string name="unit_bf_voice">على مقياس بوفورت</string>
     <string name="common_weather_text_drizzle">رذاذ</string>
     <string name="unit_bf">Bf</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلج مختلط</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلط</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلطة</string>
     <string name="common_weather_text_snow_light">ثلج خفيف</string>
     <string name="common_weather_text_snow_moderate">ثلج متوسط</string>
     <string name="common_weather_text_drizzle_freezing_light">رذاذ متجمد خفيف</string>
@@ -632,7 +632,7 @@
     <string name="cloud_cover_short">الغطاء</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">تتوفر المزيد من مصادر الطقس من النكهات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
+    <string name="settings_weather_source_fdroid_disclaimer">تتوفر المزيد من مصادر الطقس في الاصدرات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
     <string name="location_delete_location_dialog_title">هل تريد حذف المنطقة؟</string>
     <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المناطق المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المناطق المحفوظة.</string>
@@ -674,7 +674,7 @@
     <string name="settings_widgets_broadcast_title">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
     <string name="message_invalid_incomplete_data">تم تلقي بيانات غير صالحة أو غير كاملة من الخادم</string>
     <string name="settings_per_location_theme">السمة</string>
-    <string name="settings_source_instance_invalid">يجب أن يكون عنوان URL https وينتهي بـ /</string>
+    <string name="settings_source_instance_invalid">يجب أن يبتدئ الرابط بhttps وينتهي بـ /</string>
     <string name="settings_invalid_syntax">صيغة غير صالحة</string>
     <string name="alert_source">المصدر: %s</string>
     <string name="dialog_time_picker_select_time">اختيار الوقت</string>
@@ -684,7 +684,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">لم يتم العثور على حزم متوافقة</string>
     <string name="dialog_time_picker_input_time">وقت الإدخال</string>
     <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
-    <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التنبيهات أو هطول الأمطار. لن يتم تحديث الأدوات حتى تفتح التطبيق.</string>
+    <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التحذير أو هطول الأمطار. لن يتم تحديث الأيقونات حتى تفتح التطبيق.</string>
     <string name="settings_background_updates_refresh_never_warning2">تتميز عملية التحديث في الخلفية بالبساطة: فهي تقوم فقط بتحديث موقعك الأول بالمعدل الذي حددته، والمواقع الثانوية فقط إذا كنت في حاجة إليها، مرة واحدة يوميًا. إنه موفر للبطارية ويجب ألا يتجاوز استهلاك البيانات 5 ميجابايت شهريًا.</string>
     <string name="settings_appearance_calendar_title">التقويم البديل</string>
 </resources>
