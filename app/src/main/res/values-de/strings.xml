@@ -78,8 +78,8 @@
     <string name="ephemeris_moon_phase_waxing_gibbous">Zunehmender Dreiviertelmond</string>
     <string name="precipitation">Niederschlag</string>
     <string name="precipitation_duration">Niederschlagsdauer</string>
-    <string name="precipitation_intensity_heavy">Starkregen</string>
-    <string name="precipitation_intensity_light">Nieselregen</string>
+    <string name="precipitation_intensity_heavy">Stark</string>
+    <string name="precipitation_intensity_light">Leicht</string>
     <string name="precipitation_intensity_medium">Regen</string>
     <string name="precipitation_probability">Niederschlagswahrscheinlichkeit</string>
     <string name="pressure">Druck</string>
