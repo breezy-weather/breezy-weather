@@ -1,4 +1,4 @@
-# Version 5.1.9 (not yet released)
+# Version 5.2.0 (not yet released)
 
 **Breaking changes**
 - If you were using “Send data to Gadgetbridge” feature, you will need to go back to `Settings` > `Widgets` to define which apps you want to send data to

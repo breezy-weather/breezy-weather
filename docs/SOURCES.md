@@ -17,7 +17,7 @@ Below, you can find details about the support and implementation status for feat
 |--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|
 | **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None |
 
-| National sources | China³ | NWS  | GeoSphere Austria V5.1.9 | Bright Sky | ECCC   | IMS                           | SMHI   | MET Éireann |
+| National sources | China³ | NWS  | GeoSphere Austria V5.2.0 | Bright Sky | ECCC   | IMS                           | SMHI   | MET Éireann |
 |------------------|--------|------|--------------------------|------------|--------|-------------------------------|--------|-------------|
 | **API key**      | None   | None | None                     | None       | None   | None                          | None   | None        |
 | **Countries**    | China  | USA  | Austria and nearby       | Germany    | Canada | Israel, West Bank, Gaza Strip | Sweden | Ireland     |
@@ -43,7 +43,7 @@ Sources with mandatory API key to use are at the bottom of this page.
 | **UV**                        | ✅          | ✅           | ✅          | ✅           | ✅            | ❌   |
 | **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   |
 
-| National sources              | China | NWS    | GeoSphere Austria V5.1.9 | Bright Sky | ECCC | IMS           | SMHI | MET Éireann |
+| National sources              | China | NWS    | GeoSphere Austria V5.2.0 | Bright Sky | ECCC | IMS           | SMHI | MET Éireann |
 |-------------------------------|-------|--------|--------------------------|------------|------|---------------|------|-------------|
 | **Daily (days)**              | 15    | 7      | 2.5                      | 10         | 6    | 6             | 15   | 7           |
 | **Hourly (days)**             | 1     | 7      | 2.5                      | 10         | 1    | 6             | 15   | 7           |
@@ -70,7 +70,7 @@ The following features, if not available from your selected source, can be added
 | **Alerts**                   | ❌          | ✅             | *In progress* | ✅¹          | France       | Denmark |
 | **Normals**                  | Average    | ✅             | Average       | Average     | ✅            | Average |
 
-| National sources             | China   | NWS           | GeoSphere Austria V5.1.9 | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
+| National sources             | China   | NWS           | GeoSphere Austria V5.2.0 | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
 |------------------------------|---------|---------------|--------------------------|------------|--------|---------|---------|-------------|
 | **Air quality**              | Current | ❌             | Europe and nearby        | ❌          | ❌      | ❌       | ❌       | ❌           |
 | **Pollen**                   | ❌       | ❌             | ❌                        | ❌          | ❌      | ❌       | ❌       | ❌           |
@@ -104,7 +104,7 @@ Legend:
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   |
 | **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   |
 
-| National sources           | China   | NWS | GeoSphere Austria V5.1.9 | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
+| National sources           | China   | NWS | GeoSphere Austria V5.2.0 | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
 |----------------------------|---------|-----|--------------------------|------------|---------|-----|------|-------------|
 | **Humidity**               | Current | ✅   | ✅                        | ✅          | Current | ✅   | ✅    | ✅           |
 | **Dew point**              | Current | ✅   | ✅                        | ✅          | Current | ✅   | ✅    | ✅           |
@@ -125,7 +125,7 @@ Legend:
 | **Search**            | ✅          | ✅           | Default    | Default     | Default      | Default |
 | **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅       |
 
-| National sources      | China | NWS     | GeoSphere Austria V5.1.9 | Bright Sky | ECCC    | IMS     | SMHI    | MET Éireann |
+| National sources      | China | NWS     | GeoSphere Austria V5.2.0 | Bright Sky | ECCC    | IMS     | SMHI    | MET Éireann |
 |-----------------------|-------|---------|--------------------------|------------|---------|---------|---------|-------------|
 | **Search**            | ✅³    | Default | Default                  | Default    | Default | Default | Default | Default     |
 | **Reverse geocoding** | ✅³    | ✅       | ❌²                       | ❌²         | ✅²      | ✅⁴      | ❌²      | ✅⁵          |
@@ -193,7 +193,7 @@ Legend:
 | **Alerts**                   | ❌          | ✅           | *In progress* | ✅           | ✅              | France       | *In progress* |
 | **Normals**                  | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             |
 
-| National sources             | China | NWS           | GeoSphere Austria V5.1.9 | WMO Severe Weather | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
+| National sources             | China | NWS           | GeoSphere Austria V5.2.0 | WMO Severe Weather | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
 |------------------------------|-------|---------------|--------------------------|--------------------|------------|--------|-------------------------------|-------------|---------------|
 | **Air quality**              | China | ❌             | Europe and nearby        | ❌                  | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
 | **Pollen**                   | ❌     | ❌             | ❌                        | ❌                  | ❌          | ❌      | ❌                             | ❌           | ❌             |
