@@ -19,6 +19,7 @@
 - [Google Fused] Now a separate source (only available in `gplay` flavor)
 
 **Improvements**
+- Better chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data, has start time and end time on the marker, now supports RtL languages
 - Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps.
 - Added source for each alert for compatible sources
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12
