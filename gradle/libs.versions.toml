@@ -14,7 +14,7 @@ core-ktx = "1.12.0"
 dagger = "2.51.1"
 datastore = "1.0.0"
 expandabletextcompose = "2.0.1"
-gms-location = "21.2.0"
+gms-location = "0.3.0.233515"
 hilt = "1.2.0"
 javapoet = "1.13.0"
 jjwt = "0.12.5"
@@ -70,7 +70,7 @@ dagger-hilt-core = { group = "com.google.dagger", name = "hilt-android", version
 dagger-hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 expandabletextcompose = { group = "com.github.giangpham96.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }
-gms-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "gms-location" }
+gms-location = { group = "org.microg.gms", name = "play-services-location", version.ref = "gms-location" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }

@@ -18,36 +18,8 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import javax.inject.Inject
 
-// static.
-
-private const val TIMEOUT_MILLIS = (10 * 1000).toLong()
-
-private fun isLocationEnabled(
-    manager: LocationManager
-) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-    manager.isLocationEnabled
-} else {
-    manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
-        manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-}
-
-private fun getBestProvider(locationManager: LocationManager): String {
-    return locationManager
-        .getProviders(true)
-        .getOrNull(0) ?: ""
-}
-
 @SuppressLint("MissingPermission")
-private fun getLastKnownLocation(
-    locationManager: LocationManager
-) = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-    ?: locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-    ?: locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
-
-// interface.
-
-@SuppressLint("MissingPermission")
-open class AndroidLocationSource @Inject constructor() : LocationSource, LocationListener {
+open class AndroidLocationService @Inject constructor() : LocationSource, LocationListener {
 
     override val id = "native"
     override val name = "Android"
@@ -78,7 +50,7 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
                 currentProvider,
                 0L,
                 0F,
-                this@AndroidLocationSource,
+                this@AndroidLocationService,
                 Looper.getMainLooper()
             )
 
@@ -105,7 +77,7 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
         }
     }
 
-    fun clearLocationUpdates() {
+    private fun clearLocationUpdates() {
         locationManager?.removeUpdates(this)
     }
 
@@ -133,5 +105,31 @@ open class AndroidLocationSource @Inject constructor() : LocationSource, Locatio
 
     override fun onProviderDisabled(provider: String) {
         // do nothing.
+    }
+
+    companion object {
+        private const val TIMEOUT_MILLIS = (10 * 1000).toLong()
+
+        private fun isLocationEnabled(
+            manager: LocationManager
+        ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            manager.isLocationEnabled
+        } else {
+            manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ||
+                    manager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        }
+
+        private fun getBestProvider(locationManager: LocationManager): String {
+            return locationManager
+                .getProviders(true)
+                .getOrNull(0) ?: ""
+        }
+
+        @SuppressLint("MissingPermission")
+        private fun getLastKnownLocation(
+            locationManager: LocationManager
+        ) = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+            ?: locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            ?: locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
     }
 }

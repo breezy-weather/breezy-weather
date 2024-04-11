@@ -319,7 +319,7 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.Location.route) {
                     LocationSettingsScreen(
                         context = this@SettingsActivity,
-                        locationSources = sourceManager.getLocationSources(),
+                        locationSources = sourceManager.getConfiguredLocationSources(),
                         accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
                         accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
                         accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
