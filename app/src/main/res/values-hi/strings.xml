@@ -639,4 +639,7 @@
     <string name="pollen_betula">भोज</string>
     <string name="pollen_carpinus">हानबीन</string>
     <string name="pollen_plantaginaceae">कंदली</string>
+    <string name="pollen_platanus">उड़ान वृक्ष</string>
+    <string name="pollen_rumex">सोरेल</string>
+    <string name="pollen_salix">विलो</string>
 </resources>
