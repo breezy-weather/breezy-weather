@@ -169,7 +169,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 - Allow different flavors to be installed in parallel
 - Implement features that are no longer available in latest Android versions
 - Backport features/fixes from latest Android versions to older Android versions
-- Donations
+- Donations: if you have extra money to spare, consider [donating to Open-Meteo](https://github.com/sponsors/open-meteo) to support infrastructure costs and future developments (we currently lack a libre and gratis worldwide alternative for the following features: [Reverse geocoding](https://github.com/open-meteo/geocoding-api/issues/6), [Alerts](https://github.com/open-meteo/open-meteo/issues/351), [Normals](https://github.com/open-meteo/open-meteo/issues/361))
 
 
 # Translations
