@@ -59,9 +59,9 @@
     <string name="wind_strength_10">Silná vichřice</string>
     <string name="wind_strength_11">Mohutná vichřice</string>
     <string name="wind_strength_12">Orkán</string>
-    <string name="precipitation_intensity_light">Mrholení</string>
-    <string name="precipitation_intensity_medium">Déšť</string>
-    <string name="precipitation_intensity_heavy">Silný déšť</string>
+    <string name="precipitation_intensity_light">Slabý</string>
+    <string name="precipitation_intensity_medium">Střední</string>
+    <string name="precipitation_intensity_heavy">Silný</string>
     <string name="ephemeris_moon_phase_new_moon">Nový měsíc</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorustající čtvrtina</string>
     <string name="ephemeris_moon_phase_first_quarter">Dorůstající polovina</string>
@@ -312,7 +312,7 @@
     <string name="settings_location_access_background_summaryOn">Povoleno. Aplikace bude moci na pozadí obnovovat údaje o počasí pro vaši aktuální polohu.</string>
     <string name="settings_location_access_background_summaryOff">Povolte možnost „Povolit po celou dobu“, chcete-li mít aktualizace na pozadí pro aktuální polohu.</string>
     <string name="settings_location_access_precise_title">Použití zařízení GPS</string>
-    <string name="settings_location_access_precise_summaryOn">Povoleno. Používá se síť zařízení i poskytovatelé GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Povoleno. Prioritně a po většinu času bude použit poskytovatel sítě zařízení, jako záloha ale může být použito také GPS.</string>
     <string name="settings_location_access_precise_summaryOff">Pokud máte potíže s určením polohy, povolte možnost „Použít přesnou polohu“.</string>
     <string name="settings_appearance_summary">Jazyk, tmavý režim, balíček ikon, jednotky</string>
     <string name="settings_icon_packs_title">Balíčky ikon</string>
@@ -694,4 +694,6 @@
     <string name="settings_background_updates_refresh_never_warning3">Zvažte použití méně časté frekvence obnovování, namísto vypnutí aktualizací na pozadí. Pokud stále chcete pokračovat, klepněte na „Pokračovat“.</string>
     <string name="settings_appearance_calendar_title">Alternativní kalendář</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>
+    <string name="message_server_unavailable_content">Toto obvykle bývá dočasný chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
+    <string name="message_server_unavailable_title">Server není dostupný</string>
 </resources>
