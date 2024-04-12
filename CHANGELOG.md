@@ -35,6 +35,7 @@
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 - Fix extra padding on bottom of keyboard on location search (@min7-i)
 - The sensor manager is no longer queried if the gravity sensor preference is disabled (fix a trigger on GrapheneOS)
+- Fix back button in a sub settings menu exited settings instead of going back to main settings screen (@min7-i)
 - Fix color of the “change source” button on location search (@min7-i)
 - Fix live wallpaper refresh rate (was capped at 60 Hz)
 
