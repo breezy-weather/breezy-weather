@@ -445,7 +445,7 @@
     <string name="settings_location_access_background_title">在后台访问位置信息</string>
     <string name="settings_location_access_background_summaryOn">已启用。应用将能够在后台更新你当前位置的天气数据。</string>
     <string name="settings_location_access_background_summaryOff">请选择“始终允许”来启用后台位置更新。</string>
-    <string name="settings_location_access_precise_summaryOn">已启用。设备网络定位和 GPS 定位已同时使用。</string>
+    <string name="settings_location_access_precise_summaryOn">已启用。多数时候将优先使用设备的网络提供商，但 GPS 也可以用作备选。</string>
     <string name="settings_weather_sources">天气数据源</string>
     <string name="weather_source_accu_preference_days_10">10天</string>
     <string name="settings_location_access_switch_summaryOff">如果你想要将当前定位作为一个位置的话，请允许该权限。</string>
@@ -691,4 +691,6 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">未找到兼容的包</string>
     <string name="settings_background_updates_refresh_never_warning1">关闭后台更新后，你将无法再收到警报或降水的通知。在打开应用前，小部件显示不会被刷新。</string>
     <string name="settings_background_updates_refresh_never_warning3">考虑降低刷新频率而不是直接关闭后台更新，如果执意要关，请轻按“继续”。</string>
+    <string name="message_server_unavailable_title">服务器不可用</string>
+    <string name="message_server_unavailable_content">这通常是临时性错误。如果错误持续，请在 GitHub 上报告问题。</string>
 </resources>
