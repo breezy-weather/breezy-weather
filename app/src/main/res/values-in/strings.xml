@@ -60,9 +60,9 @@
     <string name="wind_strength_10">Petir</string>
     <string name="wind_strength_11">Petir kencang</string>
     <string name="wind_strength_12">Angin puting beliung</string>
-    <string name="precipitation_intensity_light">Gerimis</string>
+    <string name="precipitation_intensity_light">Ringan</string>
     <string name="precipitation_intensity_medium">Hujan</string>
-    <string name="precipitation_intensity_heavy">Hujan deras</string>
+    <string name="precipitation_intensity_heavy">Deras</string>
     <string name="ephemeris_moon_phase_new_moon">Bulan Baru</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Bulan sabit muda</string>
     <string name="ephemeris_moon_phase_first_quarter">Kuartal pertama</string>
@@ -607,7 +607,7 @@
     <string name="unit_kgfpsqcm_voice">Gaya kilogram per sentimeter persegi</string>
     <string name="settings_location_access_permission_already_granted">Izin sudah diberi</string>
     <string name="notification_update_error">%d pembaruan gagal</string>
-    <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan dan GPS perangkat digunakan.</string>
+    <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan akan digunakan dalam prioritas dan sepanjang waktu, tetapi GPS dapat digunakan sebagai cadangan.</string>
     <string name="common_weather_text_rain_showers_moderate">Hujan sedang</string>
     <string name="unit_lpsqm_voice">Liter per meter persegi</string>
     <string name="location_search_no_results">%1$s tidak dapat mencari %2$s</string>
@@ -695,8 +695,10 @@
     <string name="dialog_time_picker_input_time">Masukkan waktu</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Ubah ke Masukan Teks</string>
     <string name="settings_background_updates_refresh_never_warning1">Dengan mematikan pembaruan latar belakang, Anda tidak akan menerima notifikasi peringatan atau curah hujan lagi. Widget tidak akan disegarkan sampai Anda membuka aplikasi.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Proses pembaruan latar belakang bersifat ringan: ini hanya menyegarkan lokasi pertama Anda pada jangka yang ditentukan, dan lokasi sekunder hanya jika diperlukan, se</string>
+    <string name="settings_background_updates_refresh_never_warning2">Proses pembaruan latar belakang bersifat ringan: ini hanya menyegarkan lokasi pertama Anda pada jangka yang ditentukan, dan lokasi sekunder hanya jika diperlukan, satu kali sehari. Ini efisien pada baterai dan seharusnya tidak melebihi penggunaan data 5 MB per bulan.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Tidak ada paket kompatibel yang ditemukan</string>
     <string name="settings_background_updates_refresh_never_warning3">Pertimbangkan menggunakan jangka penyegaran yang lebih jarang daripada mematikan pembaruan latar belakang, selain itu ketuk “Lanjutkan” jika Anda masih ingin melanjutkan.</string>
     <string name="settings_appearance_calendar_title">Kalender lain</string>
+    <string name="message_server_unavailable_title">Server tidak tersedia</string>
+    <string name="message_server_unavailable_content">Ini biasanya merupakan kesalahan sementara. Jika terus berlangsung, silakan laporkan isu di GitHub.</string>
 </resources>
