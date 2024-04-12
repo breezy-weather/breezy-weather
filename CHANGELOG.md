@@ -4,6 +4,7 @@
 - If you were using “Send data to Gadgetbridge” feature, you will need to go back to `Settings` > `Widgets` to define which apps you want to send data to
 
 **New feature**
+- New (better) chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data (values may be adjusted in the future), has start time and end time on the marker, now supports RtL languages
 - Alternate calendars (from `Settings` > `Appearance`) for Android >= 7.0. Currently supported: Chinese, Dangi, Indian National, Islamic and Persian.
 
 **Sources**
@@ -19,7 +20,6 @@
 - [Google Fused] Now a separate source (only available in `gplay` flavor)
 
 **Improvements**
-- Better chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data, has start time and end time on the marker, now supports RtL languages
 - Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps.
 - Added source for each alert for compatible sources
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12
@@ -35,6 +35,8 @@
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info
 - Fix extra padding on bottom of keyboard on location search (@min7-i)
 - The sensor manager is no longer queried if the gravity sensor preference is disabled (fix a trigger on GrapheneOS)
+- Fix color of the “change source” button on location search (@min7-i)
+- Fix live wallpaper refresh rate (was capped at 60 Hz)
 
 **Translations**
 - Translations updated

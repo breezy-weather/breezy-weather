@@ -32,6 +32,7 @@ import android.view.OrientationEventListener
 import android.view.SurfaceHolder
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
@@ -382,10 +383,6 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 "night" -> false
                 else -> location?.isDaylight ?: true
             }
-            if (BreezyWeather.instance.debugMode) {
-                LogHelper.log(msg = "weatherKind: ${configManager.weatherKind} -> $weatherKind")
-                LogHelper.log(msg = "daytime: ${configManager.dayNightType} -> $daytime")
-            }
             setWeather(
                 WeatherViewController.getWeatherKind(weatherKind),
                 daytime
@@ -405,8 +402,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             setWeatherBackgroundDrawable()
-            val screenRefreshRate =
-                max(60f, windowManager?.defaultDisplay?.refreshRate ?: 60f)
+            val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService).refreshRate
             mIntervalController = AsyncHelper.intervalRunOnUI(
                 { mHandler?.post(mDrawableRunnable) },
                 (1000.0 / screenRefreshRate).toLong(),
