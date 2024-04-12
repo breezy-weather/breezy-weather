@@ -58,7 +58,7 @@
     <string name="wind_strength_12">Ураган</string>
     <string name="precipitation_intensity_light">Изморось</string>
     <string name="precipitation_intensity_medium">Дождь</string>
-    <string name="precipitation_intensity_heavy">Проливной дождь</string>
+    <string name="precipitation_intensity_heavy">Сильный</string>
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Молодая луна</string>
     <string name="ephemeris_moon_phase_first_quarter">Первая четверть</string>
