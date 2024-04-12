@@ -130,7 +130,7 @@
     <string name="precipitation_rain">Дождж</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_intensity_medium">Дождж</string>
-    <string name="precipitation_intensity_heavy">Праліўны дождж</string>
+    <string name="precipitation_intensity_heavy">Моцны</string>
     <string name="precipitation_none">Без ападкаў</string>
     <string name="wind_gusts">Парывы ветру</string>
     <string name="wind_direction_short_NE">Пн. Ус.</string>
@@ -260,7 +260,7 @@
     <string name="temperature_degree_day">Градуса-дзень</string>
     <string name="temperature_degree_day_heating">Градуса-дзень ацяпляльнага перыяду</string>
     <string name="temperature_normal_short">Норма</string>
-    <string name="precipitation_intensity_light">Iмжа</string>
+    <string name="precipitation_intensity_light">Лёгкі</string>
     <string name="precipitation_duration">Працягласць ападкаў</string>
     <string name="precipitation_total">Усяго</string>
     <string name="precipitation_thunderstorm">Навальніца</string>
