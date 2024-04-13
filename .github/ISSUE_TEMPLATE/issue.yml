@@ -95,7 +95,7 @@ body:
           required: true
         - label: I read the [Frequently Asked Questions](https://github.com/breezy-weather/breezy-weather/blob/main/HELP.md) document and followed instructions if relevant.
           required: true
-        - label: I have updated the app to **[version 5.1.8 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
+        - label: I have updated the app to **[version 5.2.0 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
           required: true
         - label: I wrote my request in English, and any screenshot I attached are also in English (language can be changed from Settings > Appearance), unless my issue only happens with a specific language
           required: true

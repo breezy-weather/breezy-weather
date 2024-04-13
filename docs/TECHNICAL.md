@@ -32,7 +32,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOGS.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v5.2.0 -m "Version 5.2.0"`).
+7) Tag version beginning with a `v` (example: `git tag v5.2.1 -m "Version 5.2.1"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
@@ -129,25 +129,6 @@ Not yet implemented in app:
 | MET alerts  | 1.1     | Norway only by country code, there is a GeoJSON format but is heavily discouraged for production use |
 
 No location search endpoint exists, it uses Open-Meteo instead.
-
-
-## OpenWeather
-
-*Last checked: 2024-02-13*
-
-| Endpoint      | Version | Notes                 |
-|---------------|---------|-----------------------|
-| OneCall       | 3.0     | 2.5 is also supported |
-| Air pollution | 2.5     |                       |
-
-Not used:
-
-| Endpoint    | Version | Notes                                 |
-|-------------|---------|---------------------------------------|
-| Geo         | 1.0     | Doesn’t have mandatory timezone field |
-| Reverse geo | 1.0     | Doesn’t have mandatory timezone field |
-
-Uses Open-Meteo for location search.
 
 
 ## Pirate Weather

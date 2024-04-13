@@ -95,7 +95,6 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
   - Open-Meteo
   - AccuWeather
   - MET Norway
-  - OpenWeatherMap (often rate-limited)
   - Pirate Weather (no API key provided)
   - HERE (no API key provided)
   - Météo France

@@ -16,7 +16,7 @@ The source may be temporarily unavailable, please retry later or check your netw
 
 For most sources, we only have a limited number of calls allowed for free for all users of our app. If too many users use the same source, the only way to be able to continue using it is to check instructions on the source website to have your own API key. This may be troublesome, but if you have your own API key, the rate-limit will only apply to you (one user vs all users of Breezy Weather).
 
-Regarding the “API access unauthorized”, this error may appear when you subscribed to the wrong product, or you’re trying to use features of the API that your subscription doesn’t allow. For example, OpenWeather has a specific product called “OneCall 3.0”, and you need to use this specific product and configure app to use v3.0 and not v2.5.
+Regarding the “API access unauthorized”, this error may appear when you subscribed to the wrong product, or you’re trying to use features of the API that your subscription doesn’t allow.
 
 
 ### “Weather source failed to find a matching location”

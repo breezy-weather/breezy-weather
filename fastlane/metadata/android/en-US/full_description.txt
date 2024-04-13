@@ -19,9 +19,8 @@ Available worldwide weather sources:
 - Open-Meteo
 - AccuWeather¹
 - MET Norway¹
-- OpenWeatherMap¹²
-- Pirate Weather¹³
-- HERE¹³
+- Pirate Weather¹²
+- HERE¹²
 - Météo France¹
 - Danmarks Meteorologiske Institut (DMI)¹
 
@@ -29,6 +28,7 @@ Available only-national weather sources:
 - Mixed China sources¹
 - National Weather Service (NWS)¹
 - Bright Sky (DWD)
+- GeoSphere Austria
 - Environment and Climate Change Canada¹
 - Israel Meteorological Service (IMS)¹
 - SMHI¹
@@ -39,15 +39,9 @@ Available secondary weather sources:
 - Recosanté
 - ATMO AuRA¹
 
-¹ Not included in versions with suffix _fdroid
-² Often rate-limited
-³ Requires an API key
+¹ Sources not libre/self-hostable are not included in versions with suffix _freenet
+² Requires an API key
 
-<b>Versions</b>
-Depending on your F-Droid repositories, you may be able to download different flavors of Breezy Weather:
-- Versions with no suffix: standard version, fully open source
-- Versions with _gplay suffix: same as standard + includes proprietary Fused location for Google Play Services users
-- Versions with _fdroid suffix: same as standard without all sources that are not libre/self-hostable
 
 <b>Permissions</b>
 Required:

@@ -31,7 +31,7 @@ So, the idea is to make a fair use of preferences, so if it covers too narrow of
 
 To be candidate for inclusion in the project, a weather source must:
 - have a free-tier available with hourly forecast at minimum
-- not require credit card information to have a free key (OpenWeather is exempted as it didn’t require it at the time it was implemented)
+- not require private information such as credit card or phone number to have a free key
 
 Additionally, we usually don’t accept sources that are just frontends to other sources (for example, if they use AccuWeather data, we will just use AccuWeather directly).
 
@@ -94,14 +94,14 @@ Choose a unique identifier for your weather source, with only lowercase letters.
 
 Copy:
 ```
-app/src/main/java/org/breezyweather/sources/openweather/
+app/src/main/java/org/breezyweather/sources/pirateweather/
 ```
 to:
 ```
 app/src/main/java/org/breezyweather/sources/<yoursourceid>/
 ```
 
-We will use OpenWeather as a base as it is the most “apply to most situations” source, without having too many specific code that most sources don’t need.
+We will use Pirate Weather as a base as it is the most “apply to most situations” source, without having too many specific code that most sources don’t need.
 But at each step, you can have a look at what already exists for this source if you feel like something you want to implement might already have been done on other sources.
 
 
@@ -128,7 +128,7 @@ As in the example, make as many fields as possible nullable so that in case the 
 
 ### Service and converter
 
-Rename `OpenWeatherService` with your source name and completes basic information.
+Rename `PirateWeatherService` with your source name and completes basic information.
 
 As a starting point, we will only implement weather part, but here is the full list of interfaces/classes you can implement:
 

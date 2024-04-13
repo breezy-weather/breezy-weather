@@ -32,7 +32,7 @@ body:
           required: true
         - label: I have written a short but informative title.
           required: true
-        - label: I have updated the app to **[version 5.1.8 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
+        - label: I have updated the app to **[version 5.2.0 or later](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
           required: true
         - label: I understand that this app is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, so I may not get a positive reply to my request, if any at all.
           required: true

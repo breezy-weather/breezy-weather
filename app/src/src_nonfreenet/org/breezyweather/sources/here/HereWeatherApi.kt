@@ -22,7 +22,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * OpenWeather API.
+ * HERE Weather API.
  */
 interface HereWeatherApi {
     @GET("v3/report")
