@@ -24,12 +24,9 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
-import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.preference.EditTextPreference
-import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
@@ -39,10 +36,13 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
-import org.breezyweather.sources.openweather.preferences.OpenWeatherOneCallVersion
 import retrofit2.Retrofit
 import javax.inject.Inject
 
+/**
+ * Deprecated: will be removed in June 2024
+ * See: https://github.com/breezy-weather/breezy-weather/issues/934
+ */
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
@@ -71,13 +71,13 @@ class OpenWeatherService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
+        if (getApiKeyOrDefault().isEmpty()) {
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.code
         val oneCall = mApi.getOneCall(
-            oneCallVersion.id,
+            oneCallVersion,
             apiKey,
             location.latitude,
             location.longitude,
@@ -127,7 +127,7 @@ class OpenWeatherService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
+        if (getApiKeyOrDefault().isEmpty()) {
             return Observable.error(ApiKeyMissingException())
         }
 
@@ -136,7 +136,7 @@ class OpenWeatherService @Inject constructor(
         val oneCall = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getOneCall(
-                oneCallVersion.id,
+                oneCallVersion,
                 apiKey,
                 location.latitude,
                 location.longitude,
@@ -183,47 +183,23 @@ class OpenWeatherService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private var oneCallVersion: OpenWeatherOneCallVersion
+    private var oneCallVersion: String
         set(value) {
-            config.edit().putString("one_call_version", value.id).apply()
+            config.edit().putString("one_call_version", value).apply()
         }
-        get() = OpenWeatherOneCallVersion.getInstance(
-            config.getString("one_call_version", null) ?: "2.5"
-        )
+        get() = config.getString("one_call_version", null) ?: "2.5"
 
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.OPEN_WEATHER_KEY }
     }
     override val isConfigured
-        get() = getApiKeyOrDefault().isNotEmpty()
+        get() = false // Hack to get the source to no longer show for new locations as we deprecate it
 
     override val isRestricted
         get() = apikey.isEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
-        return listOf(
-            EditTextPreference(
-                titleId = R.string.settings_weather_source_open_weather_api_key,
-                summary = { c, content ->
-                    content.ifEmpty {
-                        c.getString(R.string.settings_source_default_value)
-                    }
-                },
-                content = apikey,
-                onValueChanged = {
-                    apikey = it
-                }
-            ),
-            ListPreference(
-                titleId = R.string.settings_weather_source_open_weather_one_call_version,
-                selectedKey = oneCallVersion.id,
-                valueArrayId = R.array.open_weather_one_call_version_values,
-                nameArrayId = R.array.open_weather_one_call_version,
-                onValueChanged = {
-                    oneCallVersion = OpenWeatherOneCallVersion.getInstance(it)
-                },
-            )
-        )
+        return listOf()
     }
 
     companion object {

@@ -262,12 +262,10 @@
     <string name="unit_ppcm">/м³</string>
     <string name="location_search_weather_source">Источник погоды</string>
     <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха предоставлены %s</string>
-    <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
     <string name="uv_index_3_5">Умеренный</string>
     <string name="air_quality_level_1">Отлично</string>
-    <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
     <string name="pollen_poaeceae">Трава</string>
     <string name="uv_index_8_10">Очень высокий</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -369,7 +367,6 @@
     <string name="common_weather_text_mainly_clear">В основном ясно</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
     <string name="settings_weather_sources_summary">Поставщики погоды по умолчанию для новых местоположений, пользовательские ключи API и другие настройки поставщиков</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>

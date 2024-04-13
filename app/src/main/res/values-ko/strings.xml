@@ -263,7 +263,6 @@
     <string name="settings_background_updates_worker_info_title">Worker 정보</string>
     <string name="settings_weather_sources">날씨 제공 업체</string>
     <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall 버전</string>
     <string name="notification_channel_background_services">백그라운드 서비스</string>
     <string name="settings_location_access_switch_summaryOn">허용되었습니다. 이제 위치 목록에 현재 위치를 추가할 수 있습니다.</string>
     <string name="settings_main_cards_title">카드</string>
@@ -348,8 +347,6 @@
     <string name="ephemeris_moonrise_at">%s에 월출</string>
     <string name="ephemeris_moonset_at">%s에 월몰</string>
     <string name="weather_data_by">%s 제공</string>
-    <string name="weather_source_openweather_version_2_5">버전 2.5</string>
-    <string name="weather_source_openweather_version_3_0">버전 3.0</string>
     <string name="locations">위치</string>
     <string name="dialog_permissions_location_title">위치 정보 접근</string>
     <string name="message_tap_again_to_exit">한 번 더 누르면 앱을 종료합니다.</string>

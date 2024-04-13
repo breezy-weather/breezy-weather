@@ -34,9 +34,11 @@ import androidx.compose.ui.res.stringResource
 import breezyweather.domain.location.model.Location
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
@@ -264,14 +266,16 @@ fun SecondarySourcesPreference(
     val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
     val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
     val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
-    val weatherSources = sourceManager.getConfiguredMainWeatherSources().filter {
+    val weatherSources = sourceManager.getMainWeatherSources().filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == weatherSource.value) &&
         // Allow to choose any source if reverse geocoding has not processed current location yet
-        (location.isCurrentPosition && location.countryCode.isNullOrEmpty()) ||
-            it.isFeatureSupportedInMainForLocation(location)
+        ((location.isCurrentPosition && location.countryCode.isNullOrEmpty()) ||
+            it.isFeatureSupportedInMainForLocation(location))
     }.associate { it.id to it.name }
     val secondarySources = sourceManager.getSecondaryWeatherSources()
     val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
     val compatibleAirQualitySources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
             it.isFeatureSupportedInSecondaryForLocation(
@@ -279,6 +283,7 @@ fun SecondarySourcesPreference(
             )
     }.associate { it.id to it.name }
     val compatiblePollenSources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == pollenSource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) &&
             it.isFeatureSupportedInSecondaryForLocation(
@@ -286,6 +291,7 @@ fun SecondarySourcesPreference(
             )
     }.associate { it.id to it.name }
     val compatibleMinutelySources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == minutelySource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
             it.isFeatureSupportedInSecondaryForLocation(
@@ -293,6 +299,7 @@ fun SecondarySourcesPreference(
             )
     }.associate { it.id to it.name }
     val compatibleAlertSources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == alertSource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             it.isFeatureSupportedInSecondaryForLocation(
@@ -300,6 +307,7 @@ fun SecondarySourcesPreference(
             )
     }.associate { it.id to it.name }
     val compatibleNormalsSources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == normalsSource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
             it.isFeatureSupportedInSecondaryForLocation(

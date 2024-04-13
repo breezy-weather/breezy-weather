@@ -344,7 +344,6 @@
     <string name="action_help">Pomoć</string>
     <string name="message_server_timeout">Vrijeme zahtjeva je isteklo</string>
     <string name="action_search">Pretražite</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall verzija</string>
     <string name="ephemeris_sunrise_at">Svitanje u %s</string>
     <string name="temperature_wind_chill">Hladnoća vjetra</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “%s”</string>
@@ -383,7 +382,6 @@
     <string name="short_today">Danas</string>
     <string name="humidity">Vlažnost</string>
     <string name="humidity_dew_point">Vlažnost / Točka orošenja</string>
-    <string name="weather_source_openweather_version_2_5">Verzija 2.5</string>
     <string name="settings_main_background_animation_disabled">Onemogućeno</string>
     <string name="of_clock">:00</string>
     <string name="precipitation_snow">Snijeg</string>
@@ -409,7 +407,6 @@
     <string name="weather_message_data_refresh_failed">Osvježavanje vremenskih podataka neuspjelo</string>
     <string name="app_name">Vrijeme</string>
     <string name="settings_location_access_switch_title">Pristup lokaciji</string>
-    <string name="weather_source_openweather_version_3_0">Verzija 3.0</string>
     <string name="weather_api_unauthorized_title">Pristup API-ju nije autoriziran</string>
     <string name="dew_point">Rosište</string>
     <string name="sunshine_duration">Sati sunca</string>

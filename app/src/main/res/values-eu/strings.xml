@@ -195,8 +195,6 @@
     <string name="weather_source_accu_preference_hours_1">Ordu 1</string>
     <string name="weather_source_accu_preference_hours_12">12 ordu</string>
     <string name="weather_source_accu_preference_hours_24">24 ordu</string>
-    <string name="weather_source_openweather_version_2_5">2.5 bertsioa</string>
-    <string name="weather_source_openweather_version_3_0">3.0 bertsioa</string>
     <string name="locations">Kokalekuak</string>
     <string name="location_none_added_yet_instructions">Oraindik ez da kokalekurik gehitu. Mesedez, sakatu bilaketa-ikonoa kokaleku bat eskuz gehitzeko, edo gehitu zure egungo kokapena botoi flotatzailetik.</string>
     <string name="location_current">Egungo kokapena</string>
@@ -283,7 +281,6 @@
     <string name="settings_weather_source_main">Iturri nagusia</string>
     <string name="settings_weather_sources_per_location_summary">Pertsonalizatu kokapen honetarako datu meteorologikoen iturriak</string>
     <string name="settings_source_api_key">API gakoa</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall bertsioa</string>
     <string name="settings_main_daily_trends_title">Egunkako joerak</string>
     <string name="settings_main_hourly_trends_title">Ordukako joerak</string>
     <string name="settings_main_header_details_title">Goiburuko xehetasunak</string>

@@ -264,7 +264,6 @@
     <string name="unit_inph_voice">Inci pe oră</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="settings_widgets_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versiune OneCall</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_km">km</string>
     <string name="unit_kelvin_short">K</string>
@@ -407,8 +406,6 @@
     <string name="ephemeris_moonrise_at">Răsărit la %s</string>
     <string name="ephemeris_moonset_at">Apus la %s</string>
     <string name="weather_data_by">Furnizat de %s</string>
-    <string name="weather_source_openweather_version_2_5">Versiunea 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Versiunea 3.0</string>
     <string name="locations">Locații</string>
     <string name="location_results_by">Rezultatele locației de la %s</string>
     <string name="location_swipe_to_delete">Poți glisa spre stânga pentru a șterge această locație</string>

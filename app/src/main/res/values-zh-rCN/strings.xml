@@ -376,15 +376,12 @@
     <string name="widget_style_mini">Mini 风格</string>
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="unit_kelvin_short">K</string>
     <string name="weather_data_by">数据来自 %s</string>
-    <string name="weather_source_openweather_version_2_5">2.5 版本</string>
-    <string name="weather_source_openweather_version_3_0">3.0 版本</string>
     <string name="locations">位置</string>
     <string name="location_results_by">位置结果来自 %s</string>
     <string name="action_add_from_map">从地图中添加</string>

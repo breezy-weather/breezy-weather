@@ -311,13 +311,11 @@
     <string name="weather_source_accu_preference_days_15">15 dni</string>
     <string name="locations">Lokacije</string>
     <string name="weather_source_accu_preference_hours_240">240 ur</string>
-    <string name="weather_source_openweather_version_2_5">Različica 2.5</string>
     <string name="location_search_weather_source">Vir vremena</string>
     <string name="location_none_added_yet_instructions">Lokacija še ni bila dodana. Če želite ročno dodati lokacijo, se dotaknite ikone za iskanje ali dodajte svojo trenutno lokacijo s plavajočega gumba.</string>
     <string name="location_delete_location_dialog_title">Izbriši lokacijo?</string>
     <string name="weather_source_accu_preference_hours_120">120 ur</string>
     <string name="setting_weather_source_accu_hours">Ure</string>
-    <string name="weather_source_openweather_version_3_0">Različica 3.0</string>
     <string name="weather_source_accu_preference_hours_12">12 ur</string>
     <string name="setting_weather_source_accu_days">Dnevi</string>
     <string name="weather_source_accu_preference_hours_24">24 ur</string>

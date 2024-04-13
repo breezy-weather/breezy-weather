@@ -460,7 +460,6 @@
     <string name="common_weather_text_partly_cloudy">Sebagian berawan</string>
     <string name="unit_mb_voice">Milibar</string>
     <string name="unit_mps">m/d</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versi OneCall</string>
     <string name="unit_hpa_voice">Hectopascal</string>
     <string name="settings_weather_sources">Sumber cuaca</string>
     <string name="common_weather_text_snow_showers">Hujan salju</string>
@@ -476,7 +475,6 @@
     <string name="unit_celsius">°C</string>
     <string name="widget_style_tile">Ubin</string>
     <string name="unit_kn">kn</string>
-    <string name="weather_source_openweather_version_2_5">Versi 2.5</string>
     <string name="common_weather_text_drizzle_heavy">Gerimis berat</string>
     <string name="common_weather_text_mainly_clear">Sebagian besar cerah</string>
     <string name="settings_main_background_animation_disabled">Dinonaktifkan</string>
@@ -493,7 +491,6 @@
     <string name="common_weather_text_rain_showers">Gerimis</string>
     <string name="pollen_level_0">Tidak ada</string>
     <string name="settings_location_access_switch_title">Akses lokasi</string>
-    <string name="weather_source_openweather_version_3_0">Versi 3.0</string>
     <string name="unit_h">j</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="common_weather_text_drizzle_light">Gerimis ringan</string>

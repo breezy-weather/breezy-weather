@@ -314,7 +314,6 @@
     <string name="settings_location_access_precise_title">Použití zařízení GPS</string>
     <string name="settings_location_access_precise_summaryOn">Povoleno. Používá se síť zařízení i poskytovatelé GPS.</string>
     <string name="settings_location_access_precise_summaryOff">Pokud máte potíže s určením polohy, povolte možnost „Použít přesnou polohu“.</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Verze OpenWeather OneCall</string>
     <string name="settings_appearance_summary">Jazyk, tmavý režim, balíček ikon, jednotky</string>
     <string name="settings_icon_packs_title">Balíčky ikon</string>
     <string name="settings_main_hourly_trends_title">Hodinové trendy</string>
@@ -344,8 +343,6 @@
     <string name="common_weather_text_mainly_clear">Skoro jasno</string>
     <string name="weather_api_unauthorized_content">U některých zdrojů dat o počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li tento zdroj použít, musíte zadat klíč API.</string>
-    <string name="weather_source_openweather_version_2_5">Verze 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Verze 3.0</string>
     <string name="location_search_no_results">%1$s nemůže najít %2$s</string>
     <string name="action_undo">Vrátit zpět</string>
     <string name="action_close">Zavřít</string>

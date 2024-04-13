@@ -366,7 +366,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combine les meilleurs modèles météo pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Harmonisé</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combine tous les modèles météo de ce fournisseur en une prévision harmonisée</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25">PM2,5</string>
@@ -614,8 +613,6 @@
     <string name="weather_source_accu_preference_hours_72">72 heures</string>
     <string name="weather_source_accu_preference_hours_120">120 heures</string>
     <string name="weather_source_accu_preference_hours_240">240 heures</string>
-    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="location_service_native">API native</string>
     <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Natif</string>

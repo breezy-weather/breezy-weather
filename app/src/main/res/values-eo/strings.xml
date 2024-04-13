@@ -204,8 +204,6 @@
     <string name="weather_source_accu_preference_hours_72">72 horoj</string>
     <string name="weather_source_accu_preference_hours_120">120 horoj</string>
     <string name="weather_source_accu_preference_hours_240">240 horoj</string>
-    <string name="weather_source_openweather_version_2_5">Versio 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Versio 3.0</string>
     <!-- Location -->
     <string name="locations">Lokoj</string>
     <string name="location_current">Nuna loko</string>
@@ -324,7 +322,6 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Aerkvalita servilo</string>
     <string name="settings_weather_source_open_meteo_weather_models">Veteraj modeloj</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Plej bona kongruo</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall versio</string>
     <string name="settings_appearance">Aspketo</string>
     <string name="settings_appearance_summary">Lingvo, malhela reĝimo, pakoj de bildsimboloj, unuoj</string>
     <string name="settings_appearance_language_title">Lingvo</string>

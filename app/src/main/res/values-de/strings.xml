@@ -190,7 +190,6 @@
     <string name="common_weather_text_rain">Regen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag zwischen %1$s und %2$s</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall Version</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mm">mm</string>
@@ -315,8 +314,6 @@
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Kohlenmonoxid</string>
     <string name="weather_api_unauthorized_title">API-Zugang nicht autorisiert</string>
-    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="action_back">Zurück</string>
     <string name="widget_material_you_forecast">Material You - Vorhersage</string>
     <string name="widget_subtitle_data_custom">Benutzerdefiniert</string>

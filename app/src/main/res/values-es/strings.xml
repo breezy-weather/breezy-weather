@@ -362,10 +362,8 @@
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
     <string name="weather_air_quality_and_pollen_data_by">Calidad de aire y datos de polen por %s</string>
-    <string name="weather_source_openweather_version_2_5">Versión 2.5</string>
     <string name="location_results_by">Resultados de ubicación según %s</string>
     <string name="action_add_from_map">Añadir desde mapa</string>
-    <string name="weather_source_openweather_version_3_0">Versión 3.0</string>
     <string name="widget_label_align_end">Alinear fin</string>
     <string name="locations">Ubicaciones</string>
     <string name="widget_material_you_forecast">Material You - Pronóstico</string>
@@ -493,7 +491,6 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora de notificación de la previsión para el día siguiente</string>
     <string name="settings_widgets">Complementos y fondos de pantalla animados</string>
     <string name="settings_widgets_section_widgets_in_use">Complementos utilizados</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versión de OneCall</string>
     <string name="settings_main_cards_title">Tarjetas</string>
     <string name="settings_main_hourly_trends_title">Evolución por hora</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Invertir el orden para las temperaturas diurnas/nocturnas</string>

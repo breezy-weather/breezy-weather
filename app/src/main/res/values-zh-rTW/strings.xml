@@ -462,7 +462,6 @@
     <string name="settings_widgets_summary">設定桌布、配置使用的小工具、通知小工具</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_alerts">預警</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="weather_message_invalid_location">你所選擇的地點無效，請刪除後重新添加</string>
     <string name="weather_pollen_data_by">花粉相關資料由 %s 提供</string>
     <string name="weather_minutely_data_by">降水逐分鐘數據由 %s 提供</string>
@@ -489,8 +488,6 @@
     <string name="weather_source_accu_preference_hours_72">72 小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>
     <string name="weather_source_accu_preference_days_15">15 天</string>
-    <string name="weather_source_openweather_version_2_5">2.5 版本</string>
-    <string name="weather_source_openweather_version_3_0">3.0 版本</string>
     <string name="settings_widgets_live_wallpaper_summary">將天氣動畫設定為桌布</string>
     <string name="settings_widgets_week_icon_mode_title">在週視圖中顯示的圖示</string>
     <string name="settings_widgets_configure_widget_summary">設定這個小工具</string>

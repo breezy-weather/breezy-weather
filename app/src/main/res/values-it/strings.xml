@@ -352,11 +352,8 @@
     <string name="weather_source_accu_preference_hours_72">72 ore</string>
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
     <string name="weather_source_accu_preference_hours_240">240 ore</string>
-    <string name="weather_source_openweather_version_2_5">Versione 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Versione 3.0</string>
     <string name="location_search_weather_source">Fonte dati meteo</string>
     <string name="locations">Località</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versione OneCall</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_packs_title">Pacchetti icone</string>
     <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione</string>

@@ -248,7 +248,6 @@
     <string name="short_today">Idag</string>
     <string name="humidity">Luftfuktighet</string>
     <string name="humidity_dew_point">Luftfuktighet / Daggpunkt</string>
-    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
     <string name="of_clock">:00</string>
     <string name="precipitation_snow">Snö</string>
     <string name="unit_kph">km/h</string>
@@ -266,7 +265,6 @@
     <string name="ephemeris_moonrise_at">Månuppgång vid %s</string>
     <string name="wind_direction_short_SE">SO</string>
     <string name="app_name">Väder</string>
-    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="dew_point">Daggpunkt</string>
     <string name="sunshine_duration">Soltimmar</string>
     <string name="daytime">Dagtid</string>
@@ -535,7 +533,6 @@
     <string name="settings_none">Ingen</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
     <string name="message_server_timeout">Begäran timade ut</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall-version</string>
     <string name="action_set">Välj</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Åskstorm med kraftigt hagel</string>
     <string name="settings_item_delete">Ta bort detta objekt</string>

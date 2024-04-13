@@ -262,8 +262,6 @@
     <string name="unit_h_voice">godziny</string>
     <string name="settings_widgets_notification_persistent_switch">Trwałe</string>
     <string name="action_share">Udostępnij</string>
-    <string name="weather_source_openweather_version_2_5">Wersja 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Wersja 3.0</string>
     <string name="locations">Lokalizacje</string>
     <string name="widget_style_mini">Mały</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -536,7 +534,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
     <string name="settings_source_api_key">Klucz API</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Wersja OneCall</string>
     <string name="settings_widgets_summary">Ustaw tapetę, skonfiguruj używane widżety, widżet w powiadomieniu</string>
     <string name="about_contribution_WangDaYeeeeee">Twórca oryginalnego projektu Geometric Weather</string>
     <string name="settings_icon_packs_weather_icon_light">Jasna ikona</string>

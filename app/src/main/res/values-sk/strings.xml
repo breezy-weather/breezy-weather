@@ -304,8 +304,6 @@
     <string name="weather_source_accu_preference_days_15">15 dní</string>
     <string name="setting_weather_source_accu_hours">Hodiny</string>
     <string name="weather_source_accu_preference_hours_24">24 hodín</string>
-    <string name="weather_source_openweather_version_2_5">Verzia 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Verzia 3.0</string>
     <string name="location_search_weather_source">Zdroj počasia</string>
     <string name="location_dialog_failed_to_locate_title">Zobrazuje sa nesprávna poloha?</string>
     <string name="action_location_list">Zoznam miest</string>

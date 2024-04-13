@@ -223,14 +223,12 @@
     <string name="settings_debug">Отклањање грешака</string>
     <string name="setting_weather_source_accu_days">Дани</string>
     <string name="setting_weather_source_accu_hours">Сати</string>
-    <string name="weather_source_openweather_version_3_0">Верзија 3.0</string>
     <string name="locations">Локације</string>
     <string name="location_dialog_failed_to_locate_title">Не можете добити исправну локацију\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Изабери услугу локације</string>
     <string name="action_add_new_location">Додај нову локацију</string>
     <string name="action_help">Помоћ</string>
     <string name="uv_index_0_2">Ниско</string>
-    <string name="weather_source_openweather_version_2_5">Верзија 2.5</string>
     <string name="settings_weather_source_portal">Портал</string>
     <string name="location_search_weather_source">Извор времена</string>
     <string name="weather_source_accu_preference_hours_240">240 сати</string>
@@ -523,7 +521,6 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Није могуће отворити подешавања уређаја.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизација батерије је већ онемогућена.</string>
     <string name="settings_location_access_background_summaryOn">Омогућено. Апликација ће моћи да освежи податке о времену за вашу тренутну локацију у позадини.</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall верзија</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневни / Ноћни режим за локације</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Иконица за време</string>
     <string name="settings_icon_packs_weather_icon_light">Светла иконица</string>

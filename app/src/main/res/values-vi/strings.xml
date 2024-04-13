@@ -158,8 +158,6 @@
     <string name="weather_source_accu_preference_hours_72">72 tiếng</string>
     <string name="weather_source_accu_preference_hours_120">120 tiếng</string>
     <string name="weather_source_accu_preference_hours_240">240 tiếng</string>
-    <string name="weather_source_openweather_version_2_5">Phiên bản 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Phiên bản 3.0</string>
     <string name="locations">Vị trí</string>
     <string name="location_current">Vị trí hiện tại</string>
     <string name="location_search_weather_source">Nguồn cung cấp thời tiết</string>
@@ -487,7 +485,6 @@
     <string name="settings_background_updates_worker_info_summary">Lần chạy cuối cùng: %s</string>
     <string name="action_help_me_choose">Giúp tôi chọn</string>
     <string name="settings_source_api_key">Khóa API</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Phiên bản OneCall</string>
     <string name="temperature_degree_day_cooling">Nhiệt độ nguội ban ngày</string>
     <string name="temperature_degree_day_heating">Nhiệt độ nóng ban ngày</string>
     <string name="location_service_native">API gốc</string>

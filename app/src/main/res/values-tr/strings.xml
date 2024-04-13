@@ -469,7 +469,6 @@
     <string name="unit_h">sa</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="setting_weather_source_accu_days">Gün</string>
-    <string name="weather_source_openweather_version_3_0">Sürüm 3.0</string>
     <string name="settings_widgets_notification_feels_like_switch">Hissedilen sıcaklığı kullan</string>
     <string name="settings_debug_dump_crash_logs_summary">Çökme günlüklerini geliştiricilerle paylaşmak için bir dosyaya kaydet</string>
     <string name="settings_widgets_configure_widget_summary">Bu widget’ı yapılandır</string>
@@ -512,7 +511,6 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_m">m</string>
     <string name="unit_mm">mm</string>
-    <string name="weather_source_openweather_version_2_5">Sürüm 2.5</string>
     <string name="unit_h_voice">saat</string>
     <string name="weather_normals_data_by">%s tarafından sağlanan sıcaklık normalleri verisi</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
@@ -534,7 +532,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Siyah</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava durumu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Bugünün, yarının, …, 4 gün sonrasının gece hava durumu</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall sürümü</string>
     <string name="settings_widgets_section_widgets_in_use">Kullanılan widget’lar</string>
     <string name="unit_mmph">mm/sa</string>
     <string name="unit_fahrenheit_short">F</string>

@@ -392,7 +392,6 @@
     <string name="weather_air_quality_and_pollen_data_by">空気質と花粉データ提供: %s</string>
     <string name="settings_weather_source_portal">ポータル</string>
     <string name="location_message_reverse_geocoding_failed">情報源が一致する場所を見つけられませんでした</string>
-    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="action_location_list">場所リスト</string>
     <string name="action_add_current_location">現在地を追加</string>
     <string name="action_add_from_map">地図から追加</string>
@@ -410,7 +409,6 @@
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall バージョン</string>
     <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信する</string>
     <string name="settings_debug_summary">クラッシュログ</string>
     <string name="settings_debug_dump_crash_logs_title">クラッシュログを共有する</string>
@@ -523,7 +521,6 @@
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">ｲﾝﾁ毎時</string>
     <string name="weather_message_invalid_location">無効な場所です。削除して再度追加してください</string>
-    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
     <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報をアクセス</string>

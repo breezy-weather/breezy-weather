@@ -240,7 +240,6 @@
     <string name="action_help_me_choose">Segíts választani</string>
     <string name="settings_weather_sources">Időjárásforrások</string>
     <string name="settings_icon_packs_title">Ikonkészletek</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall verzió</string>
     <string name="settings_icon_packs_weather_icon_light">Világos ikon</string>
     <string name="settings_location_access_permission_already_granted">Az engedély már meg van adva</string>
     <string name="widget_subtitle_data_aqi">Légszennyezettség</string>
@@ -289,7 +288,6 @@
     <string name="pollen_alnus">Éger</string>
     <string name="weather_data_by">Adatszolgáltató: %s</string>
     <string name="weather_source_accu_preference_hours_240">240 óra</string>
-    <string name="weather_source_openweather_version_3_0">3.0-ás verzió</string>
     <string name="dialog_permissions_notification_title">Maradj naprakész</string>
     <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja az aktuális tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_background_updates_worker_info_summary">Utoljára futtatva: %s</string>
@@ -332,7 +330,6 @@
     <string name="weather_source_accu_preference_hours_1">1 óra</string>
     <string name="weather_source_accu_preference_hours_12">12 óra</string>
     <string name="weather_source_accu_preference_hours_72">72 óra</string>
-    <string name="weather_source_openweather_version_2_5">2.5-ös verzió</string>
     <string name="location_message_permission_background_missing">A helyadatokhoz való háttérhozzáférés nincs engedélyezve</string>
     <string name="action_add_new_location">Új helyszín hozzáadása</string>
     <string name="action_see_more">További részletek</string>

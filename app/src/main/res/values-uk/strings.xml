@@ -75,7 +75,6 @@
     <string name="weather_source_accu_preference_hours_24">24 години</string>
     <string name="weather_source_accu_preference_hours_120">120 годин</string>
     <string name="weather_source_accu_preference_hours_240">240 годин</string>
-    <string name="weather_source_openweather_version_2_5">Версія 2.5</string>
     <string name="locations">Розташування</string>
     <string name="location_current">Поточне місцезнаходження</string>
     <string name="location_search_weather_source">Джерело погоди</string>
@@ -212,7 +211,6 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="location_none_added_yet_instructions">Розташування ще не додано. Натисніть на значок пошуку, щоб додати розташування вручну, або додайте ваше поточне місцезнаходження за допомогою плаваючої кнопки.</string>
     <string name="weather_source_accu_preference_hours_72">72 години</string>
-    <string name="weather_source_openweather_version_3_0">Версія 3.0</string>
     <string name="air_quality_so2_info_introduction">Діоксид сірки (SO₂) — це безбарвний токсичний газ, який відповідає за запах згорілих сірників.</string>
     <string name="pollen_artemisia">Полин</string>
     <string name="air_quality_so2_info_origin">Він виділяється внаслідок вулканічної активності та спалювання викопного палива для побутового опалення, промисловості та виробництва електроенергії.</string>
@@ -376,7 +374,6 @@
     <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
     <string name="settings_weather_sources_summary">Постачальники погоди за замовчуванням для нових розташуваннь, користувацьких ключів API та інших налаштувань ростачальників</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Версія OneCall</string>
     <string name="settings_appearance_summary">Мова, тема, пакети значків, одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
     <string name="settings_appearance_dark_mode_title">Тема</string>

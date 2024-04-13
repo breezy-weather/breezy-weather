@@ -269,8 +269,6 @@
     <string name="weather_source_accu_preference_hours_72">72 hours</string>
     <string name="weather_source_accu_preference_hours_120">120 hours</string>
     <string name="weather_source_accu_preference_hours_240">240 hours</string>
-    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
@@ -524,7 +522,6 @@
     <string name="settings_source_api_key">API key</string>
     <string name="settings_location_source_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_accu_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_source_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_here_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
@@ -548,7 +545,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combines the best weather models for this location</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Seamless</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combines all weather models from this provider into a seamless prediction</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
     <string name="settings_source_geonames_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>

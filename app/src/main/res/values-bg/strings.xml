@@ -112,8 +112,6 @@
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часа</string>
     <string name="weather_source_accu_preference_hours_240">240 часа</string>
-    <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
     <string name="locations">Местоположения</string>
     <string name="location_current">Текущо местонахождение</string>
     <string name="location_results_by">Резултати за местоположение по %s</string>
@@ -359,7 +357,6 @@
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
     <string name="settings_weather_sources_summary">Персонализирайте на доставчиците на прогноза за времето , използвани за това местоположение</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall версия</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
     <string name="settings_appearance">Изглед</string>
     <string name="settings_appearance_summary">Език, тъмен режим, пакет с икони, мерни единици</string>

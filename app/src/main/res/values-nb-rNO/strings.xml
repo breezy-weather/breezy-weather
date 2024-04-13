@@ -316,7 +316,6 @@
     <string name="common_weather_text_drizzle_heavy">Kraftig yr</string>
     <string name="settings_icon_packs_weather_icon_light">Lyst ikon</string>
     <string name="settings_source_instance_invalid">Må være en HTTPS-URL som slutter med /</string>
-    <string name="settings_weather_source_open_weather_one_call_version">One Call API versjon</string>
     <string name="settings_units_pressure">Trykkenhet</string>
     <string name="settings_appearance_dark_mode_title">Mørkt tema</string>
     <string name="settings_icon_packs_weather_icon_grey">Grått ikon</string>

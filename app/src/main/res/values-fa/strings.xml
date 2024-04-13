@@ -212,8 +212,6 @@
     <string name="weather_source_accu_preference_hours_72">۷۲ ساعت</string>
     <string name="weather_source_accu_preference_hours_120">۱۲۰ ساعت</string>
     <string name="weather_source_accu_preference_hours_240">۲۴۰ ساعت</string>
-    <string name="weather_source_openweather_version_2_5">نسخه 2.5</string>
-    <string name="weather_source_openweather_version_3_0">نسخه 3.0</string>
     <string name="location_message_deleted">مکان حذف شد</string>
     <string name="location_message_list_cannot_be_empty">فهرست مکان ها نمی توانند خالی باشند</string>
     <string name="location_swipe_to_delete">شما می توانید به سمت چپ بکشید تا این آیتم را حذف کنید</string>
@@ -408,7 +406,6 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">شاخص کیفیت هوای امروز، فردا، …، 4 روز دیگر</string>
     <string name="settings_weather_source_unavailable">%s (خارج از دسترسی)</string>
     <string name="settings_weather_sources_per_location_summary">منابع آب و هوا استفاده شده برای این مکان را سفارشی کنید</string>
-    <string name="settings_weather_source_open_weather_one_call_version">نسخه OneCall</string>
     <string name="settings_appearance_language_title">زبان</string>
     <string name="settings_appearance_dark_mode_locations_title">حالت تیره/روشن برای مکان ها</string>
     <string name="settings_appearance_icon_pack_title">نماد ها</string>

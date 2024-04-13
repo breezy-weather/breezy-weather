@@ -1,7 +1,9 @@
 # Version 5.2.0 (not yet released)
 
-**Breaking changes**
+**IMPORTANT changes**
+- OpenWeatherMap source will no longer be available in June 2024. As a consequence, it’s no longer possible to choose OpenWeatherMap as your source for new locations. Existing locations will continue to work until June 2024. Suggested replacement: delete your location and re-add it. Breezy Weather will preselect sources based on your country if added manually.
 - If you were using “Send data to Gadgetbridge” feature, you will need to go back to `Settings` > `Widgets` to define which apps you want to send data to
+- Lunar calendar is no longer available on Android < 7.0
 
 **New feature**
 - New (better) chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data (values may be adjusted in the future), has start time and end time on the marker, now supports RtL languages
@@ -38,13 +40,11 @@
 - Fix back button in a sub settings menu exited settings instead of going back to main settings screen (@min7-i)
 - Fix color of the “change source” button on location search (@min7-i)
 - Fix live wallpaper refresh rate (was capped at 60 Hz)
+- Fix non-configured sources showing as options for secondary sources
 
 **Translations**
 - Translations updated
 - Initial translation added for Eesti (thanks Priit Jõerüüt!)
-
-**Removed features**
-- Lunar calendar on Android < 7.0
 
 
 # Version 5.1.8 (2024-03-30)

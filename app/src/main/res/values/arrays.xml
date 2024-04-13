@@ -333,16 +333,6 @@
         <item>arpae_cosmo_5m</item>
     </string-array>
 
-    <!-- Open Weather Map One Call version -->
-    <string-array name="open_weather_one_call_version">
-        <item>@string/weather_source_openweather_version_2_5</item>
-        <item>@string/weather_source_openweather_version_3_0</item>
-    </string-array>
-    <string-array name="open_weather_one_call_version_values">
-        <item>2.5</item>
-        <item>3.0</item>
-    </string-array>
-
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
         <item>@string/air_quality_level_1</item>

@@ -431,8 +431,6 @@
     <string name="locations">Τοποθεσίες</string>
     <string name="weather_source_accu_preference_hours_1">1 ώρα</string>
     <string name="weather_source_accu_preference_hours_120">120 ώρες</string>
-    <string name="weather_source_openweather_version_2_5">Έκδοση 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Έκδοση 3.0</string>
     <string name="settings_location_summary">Ρυθμίσεις υπηρεσιών τοποθεσίας</string>
     <string name="widget_custom_subtitle_keyword_als_description">Προειδοποιήσεις (Σύντομο)</string>
     <string name="settings_location">Ανίχνευση τοποθεσίας</string>
@@ -445,7 +443,6 @@
     <string name="settings_source_default_value">Προεπιλογή (καμία αλλαγή)</string>
     <string name="settings_source_api_key">Κλειδί API</string>
     <string name="settings_icon_packs_title">Πακέτα εικονιδίων</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Έκδοση OneCall</string>
     <string name="settings_appearance_summary">Γλώσσα, σκοτεινή λειτουργία, πακέτο εικονιδίων, μονάδες</string>
     <string name="settings_main_section_options">Επιλογές</string>
     <string name="settings_icon_packs_weather_icon_dark">Σκοτεινό εικονίδιο</string>

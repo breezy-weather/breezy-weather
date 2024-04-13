@@ -172,8 +172,6 @@
     <string name="weather_source_accu_preference_hours_1">1 sat</string>
     <string name="location_none_added_yet_instructions">Još nije dodana lokacija. Dodirnite ikonu za pretragu da ručno dodate lokaciju ili svoju trenutnu lokaciju pomoću plutajućeg dugmeta.</string>
     <string name="location_current">Trenutna lokacija</string>
-    <string name="weather_source_openweather_version_2_5">Verzija 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Verzija 3.0</string>
     <string name="locations">Lokacije</string>
     <string name="location_search_weather_source">Izvor prognoze</string>
     <string name="location_message_list_cannot_be_empty">Lista lokacija ne može biti prazna</string>
@@ -605,7 +603,6 @@
     <string name="settings_location_service">Lokacijske usluge</string>
     <string name="settings_location_access_switch_summaryOff">Molimo dozvolite, ako želite biti u mogućnosti dodati vašu trenutnu lokaciju kao lokaciju za prognozu.</string>
     <string name="settings_units">Mjerne jedinice</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall verzija</string>
     <string name="air_quality_o3_info_origin">Nastaje fotohemijskim reakcijama sa zagađivačima kao što su hlapljiva organska jedinjenja, ugljen monoksid i dušikovi oksidi (NOₓ) koji se emituju iz vozila i industrije. Zbog fotohemijske prirode, najviši nivoi ozona se vide u periodima sunčanog vremena.</string>
     <string name="dew_point_short">Tačka rose</string>
     <string name="cloud_cover_short">Oblačnost</string>

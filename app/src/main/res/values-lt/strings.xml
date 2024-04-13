@@ -120,8 +120,6 @@
     <string name="settings_weather_source_portal">Portalas</string>
     <string name="weather_source_accu_preference_hours_120">120 valandų</string>
     <string name="weather_source_accu_preference_hours_240">240 valandų</string>
-    <string name="weather_source_openweather_version_2_5">2,5 versija</string>
-    <string name="weather_source_openweather_version_3_0">3,0 versija</string>
     <string name="location_current">Dabartinė buvimo vieta</string>
     <string name="location_search_weather_source">Orų šaltinis</string>
     <string name="location_results_by">Vietovių rezultatai iš %s</string>
@@ -372,7 +370,6 @@
     <string name="settings_icon_packs_title">Piktogramų paketai</string>
     <string name="settings_icon_packs_check_details">Išsami informacija</string>
     <string name="settings_source_api_key">API raktas</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall versija</string>
     <string name="settings_icon_packs_weather_icon_dark">Tamsi piktograma</string>
     <string name="settings_icon_packs_get_more">Gauti daugiau</string>
     <string name="settings_location_access_permission_already_granted">Leidimas jau suteiktas</string>

@@ -534,7 +534,6 @@
     <string name="unit_bf_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
     <string name="unit_mps">m/s</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versió OneCall</string>
     <string name="ephemeris_sunrise_at">Sortida del sol a les %s</string>
     <string name="settings_weather_sources">Fonts meteorològiques</string>
     <string name="common_weather_text_snow_showers">Ruixats de neu</string>
@@ -556,7 +555,6 @@
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>
     <string name="unit_kn">kn</string>
     <string name="settings_main_header_details_title">Detalls a la capçalera</string>
-    <string name="weather_source_openweather_version_2_5">Versió 2.5</string>
     <string name="common_weather_text_drizzle_heavy">Plugim intens</string>
     <string name="common_weather_text_mainly_clear">Majoritàriament clar</string>
     <string name="settings_main_background_animation_disabled">Desactivat</string>
@@ -580,7 +578,6 @@
     <string name="ephemeris_moonrise_at">Sortida de la lluna a les %s</string>
     <string name="notification_update_error">%d actualització(ns) fallida(es)</string>
     <string name="settings_location_access_switch_title">Accés a la ubicació</string>
-    <string name="weather_source_openweather_version_3_0">Versió 3.0</string>
     <string name="weather_api_unauthorized_title">Accés a l’API no autoritzat</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Giny</string>

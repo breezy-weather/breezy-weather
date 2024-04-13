@@ -338,7 +338,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">عاصفة رعدية مع برد خفيف</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
     <string name="weather_source_accu_preference_hours_1">1 ساعة</string>
-    <string name="weather_source_openweather_version_2_5">الإصدار 2.5</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم ، غدا ،…، بعد 4 أيام (٪)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم ، غدا ،…، بعد 4 أيام (٪)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">الرياح نهارا اليوم ، غدا ،…، بعد 4 أيام</string>
@@ -492,7 +491,6 @@
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
     <string name="common_weather_text_mainly_clear">واضح بشكل أساسي</string>
-    <string name="weather_source_openweather_version_3_0">الإصدار 3.0</string>
     <string name="location_message_permission_missing">إذن الوصول إلى الموقع مفقود</string>
     <string name="setting_weather_source_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>
@@ -534,7 +532,6 @@
     <string name="settings_source_api_key">مفتاح API</string>
     <string name="temperature_degree_day_cooling">درجة الحرارة لتبريد منزلك</string>
     <string name="temperature_degree_day_heating">درجة الحرارة لتسخين منزلك</string>
-    <string name="settings_weather_source_open_weather_one_call_version">إصدار OneCall</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: %s</string>
     <string name="action_help_me_choose">ساعدني في الاختيار</string>
     <string name="pollen_alnus">النغت</string>

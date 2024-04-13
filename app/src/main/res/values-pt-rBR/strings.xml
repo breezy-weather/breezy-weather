@@ -326,8 +326,6 @@
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
     <string name="weather_api_key_required_missing_content">Para utilizar esse provedor, é necessário fornecer uma chave de API.</string>
-    <string name="weather_source_openweather_version_2_5">Versão 2.5</string>
-    <string name="weather_source_openweather_version_3_0">Versão 3.0</string>
     <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
     <string name="action_add_from_map">Adicionar a partir do mapa</string>
     <string name="action_see_more">Ver mais</string>
@@ -382,7 +380,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Essa é a primeira coisa a tentar quando você não recebe notificações ou os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
-    <string name="settings_weather_source_open_weather_one_call_version">Versão do OneCall</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>

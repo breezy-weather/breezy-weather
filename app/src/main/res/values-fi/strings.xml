@@ -399,7 +399,6 @@
     <string name="unit_bf_voice">Boforiasteikolla</string>
     <string name="unit_mb_voice">Millibaaria</string>
     <string name="unit_mps">m/s</string>
-    <string name="settings_weather_source_open_weather_one_call_version">OneCall versio</string>
     <string name="unit_hpa_voice">Hehtopascalia</string>
     <string name="settings_weather_sources">Säälähteet</string>
     <string name="action_delete">Poista</string>
@@ -412,7 +411,6 @@
     <string name="settings_location_access_background_summaryOn">Sallittu. Sovellus voi päivittää nykyisen sijaintisi säätiedot taustalla.</string>
     <string name="settings_units_summary">Lämpötila, sademäärä, etäisyys, nopeus, paine</string>
     <string name="unit_kn">kn</string>
-    <string name="weather_source_openweather_version_2_5">Versio 2.5</string>
     <string name="common_weather_text_mainly_clear">Enimmäkseen selkeää</string>
     <string name="settings_main_background_animation_disabled">Ei käytössä</string>
     <string name="unit_kph_voice">Kilometriä tunnissa</string>
@@ -428,7 +426,6 @@
     <string name="settings_location_access_permission_already_granted">Lupa myönnetty jo</string>
     <string name="notification_update_error">%d päivitys(tä) epäonnistui</string>
     <string name="settings_location_access_switch_title">Sijainnin käyttöoikeus</string>
-    <string name="weather_source_openweather_version_3_0">Versio 3.0</string>
     <string name="unit_h">t</string>
     <string name="notification_channel_widget">Widgetti</string>
     <string name="weather_source_accu_preference_hours_12">12 tuntia</string>

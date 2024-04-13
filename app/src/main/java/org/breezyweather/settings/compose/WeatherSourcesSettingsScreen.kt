@@ -106,7 +106,10 @@ fun WeatherSourcesSettingsScreen(
     sectionFooterItem(R.string.settings_weather_sources_section_general)
 
     configurableSources
-        .filter { it !is LocationSource } // Exclude location sources configured in its own screen
+        .filter {
+            it !is LocationSource && // Exclude location sources configured in their own screen
+                it.getPreferences(context).isNotEmpty()
+        }
         .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
             Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
         }
