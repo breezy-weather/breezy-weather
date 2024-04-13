@@ -78,13 +78,9 @@ android {
         create("basic") {
             dimension = "default"
         }
-        create("fdroid") {
+        create("freenet") {
             dimension = "default"
-            versionNameSuffix = "_fdroid"
-        }
-        create("gplay") {
-            dimension = "default"
-            versionNameSuffix = "_gplay"
+            versionNameSuffix = "_freenet"
         }
     }
 
@@ -92,11 +88,8 @@ android {
         getByName("basic") {
             java.srcDirs("src/src_nonfreenet", "src/src_standard")
         }
-        getByName("fdroid") {
+        getByName("freenet") {
             java.srcDirs("src/src_freenet")
-        }
-        getByName("gplay") {
-            java.srcDirs("src/src_nonfreenet", "src/src_proprietary")
         }
     }
 
@@ -212,10 +205,6 @@ dependencies {
     implementation(libs.hilt.work)
     kapt(libs.hilt.compiler)
 
-    // gms.
-    "basicImplementation"(libs.gms.location)
-    "gplayImplementation"(libs.gms.location)
-
     // HTTP
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
@@ -229,11 +218,6 @@ dependencies {
     "basicImplementation"(libs.jjwt.api)
     "basicRuntimeOnly"(libs.jjwt.impl)
     "basicRuntimeOnly"(libs.jjwt.orgjson) {
-        exclude("org.json", "json") // provided by Android natively
-    }
-    "gplayImplementation"(libs.jjwt.api)
-    "gplayRuntimeOnly"(libs.jjwt.impl)
-    "gplayRuntimeOnly"(libs.jjwt.orgjson) {
         exclude("org.json", "json") // provided by Android natively
     }
 

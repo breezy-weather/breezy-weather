@@ -644,7 +644,7 @@
     <string name="settings_weather_source_unavailable">%s (nedostupno)</string>
     <string name="settings_weather_source_open_meteo_weather_models">Vremenski modeli</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinira najbolje vremenske modele za ovu lokaciju</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Daljnji izvori vremena dostupni su iz drugih vrsta Breezy Weathera. Dodirnite ovdje da biste saznali više.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Daljnji izvori vremena dostupni su iz drugih vrsta Breezy Weathera. Dodirnite ovdje da biste saznali više.</string>
     <string name="action_confirm">Potvrdi</string>
     <string name="widget_label_hide_header">Sakrij zaglavlje</string>
     <string name="pollen_platanus">Platana</string>

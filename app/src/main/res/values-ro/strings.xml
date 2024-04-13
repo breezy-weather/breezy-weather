@@ -633,7 +633,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Calitatea Aerului de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="settings_weather_source_unavailable">%s (indisponibil)</string>
     <string name="settings_weather_source_none">Niciunul</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Mai mulți furnizori meteo sunt disponibili în alte variante Breezy Weather. Apasă aici pentru a afla mai multe.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mai mulți furnizori meteo sunt disponibili în alte variante Breezy Weather. Apasă aici pentru a afla mai multe.</string>
     <string name="settings_main_threshold_lines_on_charts">Linii pe diagramă</string>
     <string name="notification_channel_crash_logs">Jurnal de incidente</string>
     <string name="common_weather_text_rain_light">Ploaie Ușoară</string>

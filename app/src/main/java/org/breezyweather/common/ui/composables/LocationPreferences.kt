@@ -38,7 +38,6 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
@@ -331,14 +330,14 @@ fun SecondarySourcesPreference(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
-                if (BuildConfig.FLAVOR == "fdroid") {
+                if (BuildConfig.FLAVOR == "freenet") {
                     Material3CardListItem(
                         modifier = Modifier.clickable {
                             dialogLinkOpenState.value = true
                         }
                     ) {
                         Text(
-                            text = stringResource(R.string.settings_weather_source_fdroid_disclaimer),
+                            text = stringResource(R.string.settings_weather_source_freenet_disclaimer),
                             color = DayNightTheme.colors.bodyColor,
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))

@@ -124,7 +124,7 @@ class SearchActivity : GeoActivity() {
                             }
                         }
                     },
-                    floatingActionButton = if (BuildConfig.FLAVOR != "fdroid") {
+                    floatingActionButton = if (BuildConfig.FLAVOR != "freenet") {
                         {
                             FloatingActionButton(
                                 onClick = { dialogLocationSearchSourceOpenState.value = true },

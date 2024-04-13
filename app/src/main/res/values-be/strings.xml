@@ -630,7 +630,7 @@
     <string name="location_delete_location_dialog_title">Выдаліць месцазнаходжанне?</string>
     <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць “%s” з спісу захаваных месцаў.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, …, 4 дні праз</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Дадатковыя пастаўшчыкі надвор’я даступныя ў іншых версіях Breezy Weather. Націсніце тут, каб даведацца больш.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Дадатковыя пастаўшчыкі надвор’я даступныя ў іншых версіях Breezy Weather. Націсніце тут, каб даведацца больш.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ляшчына</string>
     <string name="pollen_cupressaceae_taxaceae">Кіпарыс</string>

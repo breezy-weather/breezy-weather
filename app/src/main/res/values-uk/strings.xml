@@ -630,7 +630,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Поточний індекс якості повітря</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря на сьогодні, завтра, …, через 4 дні</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Додаткові постачальники погоди доступні в інших версіях Breezy Weather. Натисніть тут, щоб дізнатися більше.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Додаткові постачальники погоди доступні в інших версіях Breezy Weather. Натисніть тут, щоб дізнатися більше.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ліщина</string>
     <string name="pollen_fraxinus">Ясень</string>

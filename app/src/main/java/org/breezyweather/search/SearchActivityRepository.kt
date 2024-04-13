@@ -107,7 +107,7 @@ class SearchActivityRepository @Inject internal constructor(
         set(value) {
             mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, value).apply()
         }
-        get() = if (BuildConfig.FLAVOR != "fdroid") {
+        get() = if (BuildConfig.FLAVOR != "freenet") {
             mConfig.getString(KEY_LAST_DEFAULT_SOURCE, null) ?: BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE
         } else "openmeteo"
 

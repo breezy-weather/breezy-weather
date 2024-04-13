@@ -628,7 +628,7 @@
     <string name="cloud_cover_short">Felhőtakaró</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
     <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">További időjárási források állnak rendelkezésre a Breezy Weather egyéb kiadási változataiból. További információkért koppintson ide.</string>
+    <string name="settings_weather_source_freenet_disclaimer">További időjárási források állnak rendelkezésre a Breezy Weather egyéb kiadási változataiból. További információkért koppintson ide.</string>
     <string name="weather_message_too_frequent_refreshes">Várjon néhány másodpercet mielőtt újrapróbálkozna…</string>
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
     <string name="location_delete_location_dialog_message">A(z) “%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>

@@ -641,7 +641,7 @@
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance">Instância</string>
     <string name="settings_source_instance_invalid">Deve ser uma URL https terminada com uma /</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Mais provedores meteorológicos estão disponíveis a partir de outros flavors do Breezy Weather. Toque aqui para saber mais.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mais provedores meteorológicos estão disponíveis a partir de outros flavors do Breezy Weather. Toque aqui para saber mais.</string>
     <string name="pollen_populus">Choupo</string>
     <string name="settings_per_location_summary">Personalizações adicionais para este local</string>
     <string name="pollen_rumex">Azeda</string>

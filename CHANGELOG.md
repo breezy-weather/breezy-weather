@@ -1,6 +1,8 @@
 # Version 5.2.0 (not yet released)
 
 **IMPORTANT changes**
+- `gplay` flavor was removed, Fused location is now available natively in all flavors for Android >= 12 with no proprietary library. Migration path: use the `standard` flavor
+- `fdroid` flavor was renamed `freenet` to avoid confusion with the store. Obtainium users need to take action to change their regular expression to catch the new name
 - OpenWeatherMap source will no longer be available in June 2024. As a consequence, it’s no longer possible to choose OpenWeatherMap as your source for new locations. Existing locations will continue to work until June 2024. Suggested replacement: delete your location and re-add it. Breezy Weather will preselect sources based on your country if added manually.
 - If you were using “Send data to Gadgetbridge” feature, you will need to go back to `Settings` > `Widgets` to define which apps you want to send data to
 - Lunar calendar is no longer available on Android < 7.0
@@ -21,7 +23,6 @@
 - [Open-Meteo] Fix location search failed when at least one result didn’t have a timezone info
 - [DMI] Add severity/colors to alerts
 - [Android location source] Added support for native Fused on Android >= 12
-- [Google Fused] Now a separate source (only available in `gplay` flavor)
 
 **Improvements**
 - Improved privacy of the “Send Gadgetbridge data” which now allows you to select which apps you want to send data to, instead of all compatible apps.

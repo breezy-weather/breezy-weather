@@ -624,7 +624,7 @@
     <string name="pressure_short">Притисак</string>
     <string name="dew_point_short">Тачка росе</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Више извора времена доступно је из других врста Breezy Weather-а. Додирните овде да бисте сазнали више.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Више извора времена доступно је из других врста Breezy Weather-а. Додирните овде да бисте сазнали више.</string>
     <string name="temperature_feels_like_short">Осећа се као</string>
     <string name="visibility_short">Видљивост</string>
     <string name="ceiling_short">Облачни плафон</string>

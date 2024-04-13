@@ -658,7 +658,7 @@
     <string name="settings_widgets_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Fler väderkällor finns tillgängliga från andra versioner av Breezy Weather. Tryck här för att veta mer.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Fler väderkällor finns tillgängliga från andra versioner av Breezy Weather. Tryck här för att veta mer.</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Närmast matchning</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerar de bästa vädermodellerna för denna plats</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sömlös</string>

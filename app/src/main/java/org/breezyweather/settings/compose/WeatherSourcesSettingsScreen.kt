@@ -61,8 +61,8 @@ fun WeatherSourcesSettingsScreen(
     configurableSources: List<ConfigurableSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    if (BuildConfig.FLAVOR == "fdroid") {
-        clickablePreferenceItem(R.string.settings_weather_source_fdroid_disclaimer) { id ->
+    if (BuildConfig.FLAVOR == "freenet") {
+        clickablePreferenceItem(R.string.settings_weather_source_freenet_disclaimer) { id ->
             val dialogLinkOpenState = remember { mutableStateOf(false) }
 
             Material3CardListItem(

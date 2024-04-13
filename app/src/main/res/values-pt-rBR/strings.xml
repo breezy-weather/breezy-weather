@@ -637,7 +637,7 @@
     <string name="cloud_cover_short">Nuvem</string>
     <string name="settings_weather_source_unavailable">%s (indisponível)</string>
     <string name="ceiling_short">Teto</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Mais provedores meteorológicos estão disponíveis a partir de outros flavors do Breezy Weather. Toque aqui para saber mais.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mais provedores meteorológicos estão disponíveis a partir de outros flavors do Breezy Weather. Toque aqui para saber mais.</string>
     <string name="visibility_short">Visibilidade</string>
     <string name="settings_weather_sources_default_source">Fonte padrão para novos locais</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos os modelos meteorológicos deste provedor em uma previsão perfeita</string>

@@ -33,7 +33,7 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: assembleFdroidRelease
+          arguments: assembleFreenetRelease
 
       - name: Add secrets to local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -59,16 +59,6 @@ jobs:
         with:
           arguments: assembleBasicRelease
 
-      - name: Add default location source for gplay flavor
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        run: |
-          set -e
-          echo "breezy.source.default_location=googlefused" >> local.properties
-
-      - uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: assembleGplayRelease
-
       - name: Delete local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
@@ -81,11 +71,11 @@ jobs:
           set -x
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
-      - name: Sign APK (F-Droid)
+      - name: Sign APK (free networks)
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/fdroid/release
+          releaseDirectory: app/build/outputs/apk/freenet/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -96,16 +86,6 @@ jobs:
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/apk/basic/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Sign APK (gplay)
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: app/build/outputs/apk/gplay/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -130,15 +110,11 @@ jobs:
           mv app/build/outputs/apk/basic/release/app-basic-x86_64-release-unsigned-signed.apk breezy-weather-x86_64-${{ env.VERSION_TAG }}_standard.apk
           sha256=`sha256sum breezy-weather-x86_64-${{ env.VERSION_TAG }}_standard.apk | awk '{ print $1 }'`
           echo "APK_X86_64_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/gplay/release/app-gplay-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}_gplay.apk
-          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}_gplay.apk | awk '{ print $1 }'`
-          echo "APK_UNIVERSAL_GPLAY_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}_fdroid.apk
-          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}_fdroid.apk | awk '{ print $1 }'`
-          echo "APK_UNIVERSAL_FDROID_SHA256=$sha256" >> $GITHUB_ENV
+          mv app/build/outputs/apk/freenet/release/app-freenet-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
+          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}_freenet.apk | awk '{ print $1 }'`
+          echo "APK_UNIVERSAL_FREENET_SHA256=$sha256" >> $GITHUB_ENV
           tar -czvf mapping-${{ env.VERSION_TAG }}_standard.tar.gz --directory=app/build/outputs/mapping/basicRelease/ mapping.txt
-          tar -czvf mapping-${{ env.VERSION_TAG }}_fdroid.tar.gz --directory=app/build/outputs/mapping/fdroidRelease/ mapping.txt
-          tar -czvf mapping-${{ env.VERSION_TAG }}_gplay.tar.gz --directory=app/build/outputs/mapping/gplayRelease/ mapping.txt
+          tar -czvf mapping-${{ env.VERSION_TAG }}_freenet.tar.gz --directory=app/build/outputs/mapping/freenetRelease/ mapping.txt
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -152,15 +128,14 @@ jobs:
             ---
 
             ### Checksums
-            | Flavor      | Variant     | SHA-256                                |
-            |-------------|-------------|----------------------------------------|
-            | Standard    | Universal   | ${{ env.APK_UNIVERSAL_SHA256 }}        |
-            | Standard    | arm64-v8a   | ${{ env.APK_ARM64_V8A_SHA256 }}        |
-            | Standard    | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA256 }}      |
-            | Standard    | x86         | ${{ env.APK_X86_SHA256 }}              |
-            | Standard    | x86_64      | ${{ env.APK_X86_64_SHA256 }}           |
-            | Google Play | Universal   | ${{ env.APK_UNIVERSAL_GPLAY_SHA256 }}  |
-            | F-Droid     | Universal   | ${{ env.APK_UNIVERSAL_FDROID_SHA256 }} |
+            | Flavor        | Variant     | SHA-256                                |
+            |---------------|-------------|----------------------------------------|
+            | Standard      | Universal   | ${{ env.APK_UNIVERSAL_SHA256 }}        |
+            | Standard      | arm64-v8a   | ${{ env.APK_ARM64_V8A_SHA256 }}        |
+            | Standard      | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA256 }}      |
+            | Standard      | x86         | ${{ env.APK_X86_SHA256 }}              |
+            | Standard      | x86_64      | ${{ env.APK_X86_64_SHA256 }}           |
+            | Free networks | Universal   | ${{ env.APK_UNIVERSAL_FREENET_SHA256 }} |
           files: |
             breezy-weather-${{ env.VERSION_TAG }}_standard.apk
             breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}_standard.apk
@@ -168,9 +143,7 @@ jobs:
             breezy-weather-x86-${{ env.VERSION_TAG }}_standard.apk
             breezy-weather-x86_64-${{ env.VERSION_TAG }}_standard.apk
             mapping-${{ env.VERSION_TAG }}_standard.tar.gz
-            breezy-weather-${{ env.VERSION_TAG }}_gplay.apk
-            mapping-${{ env.VERSION_TAG }}_gplay.tar.gz
-            breezy-weather-${{ env.VERSION_TAG }}_fdroid.apk
-            mapping-${{ env.VERSION_TAG }}_fdroid.tar.gz
+            breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
+            mapping-${{ env.VERSION_TAG }}_freenet.tar.gz
           draft: true
           prerelease: false

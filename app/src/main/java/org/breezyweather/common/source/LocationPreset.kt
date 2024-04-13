@@ -40,7 +40,7 @@ enum class LocationPreset(
     val normals: String? = null
 ) {
     DEFAULT("openmeteo", alert = "accu", normals = "accu"),
-    DEFAULT_FDROID("openmeteo"),
+    DEFAULT_FREENET("openmeteo"),
 
     // North America
     CANADA("eccc", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
@@ -50,10 +50,10 @@ enum class LocationPreset(
     //AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat", alert = "geosphereat", normals = "geosphereat"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    GERMANY_FDROID("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
     FRANCE("mf", airQuality = "openmeteo", pollen = "recosante"),
-    FRANCE_FDROID("openmeteo", pollen = "recosante"),
+    FRANCE_FREENET("openmeteo", pollen = "recosante"),
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
@@ -67,7 +67,7 @@ enum class LocationPreset(
     companion object {
         fun getLocationPreset(countryCode: String?): LocationPreset {
             if (countryCode.isNullOrEmpty()) return DEFAULT
-            return if (BuildConfig.FLAVOR != "fdroid") {
+            return if (BuildConfig.FLAVOR != "freenet") {
                 when (countryCode.uppercase(Locale.ENGLISH)) {
                     // North America
                     "CA" -> CANADA
@@ -92,10 +92,10 @@ enum class LocationPreset(
             } else {
                 when (countryCode.uppercase(Locale.ENGLISH)) {
                     // Europe
-                    "DE" -> GERMANY_FDROID
-                    "FR" -> FRANCE_FDROID
+                    "DE" -> GERMANY_FREENET
+                    "FR" -> FRANCE_FREENET
 
-                    else -> DEFAULT_FDROID
+                    else -> DEFAULT_FREENET
                 }
             }
         }

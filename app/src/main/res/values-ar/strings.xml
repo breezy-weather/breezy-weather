@@ -629,7 +629,7 @@
     <string name="cloud_cover_short">الغطاء</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">تتوفر المزيد من مصادر الطقس في الاصدرات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
+    <string name="settings_weather_source_freenet_disclaimer">تتوفر المزيد من مصادر الطقس في الاصدرات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
     <string name="location_delete_location_dialog_title">هل تريد حذف المنطقة؟</string>
     <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المناطق المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المناطق المحفوظة.</string>

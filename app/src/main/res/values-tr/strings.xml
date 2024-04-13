@@ -628,7 +628,7 @@
     <string name="cloud_cover_short">Bulutluluk</string>
     <string name="settings_weather_sources_default_source">Yeni konumlar için öntanımlı kaynak</string>
     <string name="settings_weather_source_unavailable">%s (kullanılabilir değil)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Diğer Breezy Weather çeşitlerinde daha fazla hava durumu kaynağı bulunmaktadır. Daha fazlasını öğrenmek için buraya dokunun.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Diğer Breezy Weather çeşitlerinde daha fazla hava durumu kaynağı bulunmaktadır. Daha fazlasını öğrenmek için buraya dokunun.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Şu Anki Hava Kalitesi Göstergesi</string>
     <string name="location_delete_location_dialog_title">Konum silinsin mi?</string>
     <string name="location_delete_location_dialog_message_no_name">Bu konumu kayıtlı konumlar listenizden silmek üzeresiniz.</string>

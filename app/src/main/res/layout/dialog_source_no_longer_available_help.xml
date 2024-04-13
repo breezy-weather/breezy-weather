@@ -10,14 +10,14 @@
     android:paddingTop="@dimen/normal_margin">
 
     <RelativeLayout
-        android:id="@+id/dialog_message_help_fdroidContainer"
+        android:id="@+id/dialog_message_help_freenetContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="@drawable/selectable_item_background"
         tools:ignore="UnusedAttribute">
 
         <ImageView
-            android:id="@+id/dialog_message_help_fdroidIcon"
+            android:id="@+id/dialog_message_help_freenetIcon"
             android:src="@drawable/ic_android"
             android:layout_centerVertical="true"
             style="@style/material_icon"
@@ -25,13 +25,13 @@
             app:tint="#68b545" />
 
         <TextView
-            android:id="@+id/dialog_message_help_fdroidTitle"
+            android:id="@+id/dialog_message_help_freenetTitle"
             android:text="@string/message_source_not_installed_error_content_tip_1"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/dialog_message_help_fdroidIcon"
+            android:layout_toEndOf="@id/dialog_message_help_freenetIcon"
             style="@style/content_text" />
 
     </RelativeLayout>

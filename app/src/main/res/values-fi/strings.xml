@@ -684,7 +684,7 @@
     <string name="settings_per_location_summary">Lisämääritykset tälle sijainnille</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Yhdistää parhaat säämallit tälle sijainnille</string>
     <string name="settings_weather_source_unavailable">%s (ei saatavilla)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Lisää säälähteitä on saatavilla Breezy Weatherin muissa versioissa. Napauta tästä saadaksesi lisätietoja.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Lisää säälähteitä on saatavilla Breezy Weatherin muissa versioissa. Napauta tästä saadaksesi lisätietoja.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Tämänhetkinen ilmanlaatuindeksi</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Ilmanlaatuindeksi tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="settings_weather_source_none">Ei määritelty</string>

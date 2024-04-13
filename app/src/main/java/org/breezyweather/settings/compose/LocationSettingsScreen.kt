@@ -55,7 +55,7 @@ fun LocationSettingsScreen(
     accessBackgroundLocationPermissionState: PermissionState,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    if (BuildConfig.FLAVOR != "fdroid") {
+    if (BuildConfig.FLAVOR != "freenet") {
         sectionHeaderItem(R.string.settings_location_section_general)
         listPreferenceItem(R.string.settings_location_service) { id ->
             ListPreferenceView(

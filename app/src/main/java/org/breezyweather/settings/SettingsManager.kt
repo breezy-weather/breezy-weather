@@ -170,7 +170,7 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = if (BuildConfig.FLAVOR != "fdroid") {
+        get() = if (BuildConfig.FLAVOR != "freenet") {
             config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
         } else "native"
 

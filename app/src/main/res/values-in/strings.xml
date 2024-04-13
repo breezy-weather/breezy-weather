@@ -641,7 +641,7 @@
     <string name="location_search_change_source">Ubah sumber pencarian lokasi</string>
     <string name="settings_weather_sources_default_source">Sumber bawaan untuk aplikasi baru</string>
     <string name="settings_weather_source_unavailable">%s (tidak tersedia)</string>
-    <string name="settings_weather_source_fdroid_disclaimer">Sumber cuaca tambahan tersedia dari versi Breezy Weather yang lain. Ketuk di sini untuk mempelajari lebih lanjut.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Sumber cuaca tambahan tersedia dari versi Breezy Weather yang lain. Ketuk di sini untuk mempelajari lebih lanjut.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Indeks Kualitas Udara saat ini</string>
     <string name="action_confirm">Konfirmasi</string>
     <string name="widget_label_hide_header">Sembunyikan tajuk</string>

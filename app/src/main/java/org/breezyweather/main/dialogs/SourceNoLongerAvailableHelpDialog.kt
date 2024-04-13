@@ -46,8 +46,8 @@ object SourceNoLongerAvailableHelpDialog {
 
     @SuppressLint("SetTextI18n")
     private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
-        if (BuildConfig.FLAVOR != "fdroid") {
-            view.findViewById<View>(R.id.dialog_message_help_fdroidContainer)
+        if (BuildConfig.FLAVOR != "freenet") {
+            view.findViewById<View>(R.id.dialog_message_help_freenetContainer)
                 .visibility = View.GONE
         }
     }
