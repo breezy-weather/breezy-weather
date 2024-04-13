@@ -17,6 +17,7 @@
 package org.breezyweather.sources.gadgetbridge
 
 import android.content.Context
+import android.os.Bundle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Daily
@@ -45,16 +46,29 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
     override val name = "Gadgetbridge"
 
     override val intentAction = "nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER"
-    override val intentExtra = "WeatherJson"
 
-    override fun getData(context: Context, locations: List<Location>): String? {
-        if (locations.isEmpty() || locations[0].weather?.current == null) {
+    override fun getExtras(context: Context, locations: List<Location>): Bundle? {
+        if (!locations.any { it.weather?.current != null }) {
             LogHelper.log(msg = "Not sending GadgetBridge data, current weather is null")
             return null
         }
 
-        val weatherData = getWeatherData(context, locations[0])
-        return Json.encodeToString(weatherData)
+        return Bundle().apply {
+            putString(
+                "WeatherJson",
+                Json.encodeToString(getWeatherData(context, locations[0]))
+            )
+            putString(
+                "WeatherSecondaryJson",
+                Json.encodeToString(
+                    locations.drop(1).mapNotNull {
+                        if (it.weather?.current != null) {
+                            getWeatherData(context, it)
+                        } else null
+                    }
+                )
+            )
+        }
     }
 
     private fun getWeatherData(

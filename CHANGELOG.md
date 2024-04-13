@@ -14,6 +14,7 @@
 - [GeoSphere Austria] Added as secondary source for air quality in Europe and nearby
 - [GeoSphere Austria] Added as secondary source for precipitation nowcasting in Austria and nearby
 - [GeoSphere Austria] Added as secondary source for alerts in Austria
+- [Gadgetbridge] We are now able to send data for secondary locations
 - [AccuWeather] Fix fail to refresh when using a language not supported by AccuWeather (noticed on Central Kurdish, Esperanto and Interlingua), now fallbacks to English
 - [Open-Meteo] Fix workaround location search issue when result list is empty (will show instructions instead of an error)
 - [Open-Meteo] Fix issues related to DST
