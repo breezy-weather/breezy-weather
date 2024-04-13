@@ -36,6 +36,8 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.getDailyAirQualityFromHourly
@@ -68,11 +70,7 @@ fun convert(
             publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
         ),*/
         current = if (oneCallResult.current != null) Current(
-            weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                if (it.isLowerCase()) {
-                    it.titlecase(Locale.getDefault())
-                } else it.toString()
-            },
+            weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.capitalize(),
             weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
             temperature = Temperature(
                 temperature = oneCallResult.current.temp,
@@ -111,9 +109,7 @@ private fun getDailyList(
             Daily(
                 date = theDay,
                 day = HalfDay(
-                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                    },
+                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.capitalize(),
                     weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                     weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                     temperature = Temperature(
@@ -122,9 +118,7 @@ private fun getDailyList(
                     )
                 ),
                 night = HalfDay(
-                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                    },
+                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.capitalize(),
                     weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                     weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                     // night temperature is actually from previous night,
@@ -158,9 +152,7 @@ private fun getHourlyList(
         val theDate = Date(result.dt.times(1000))
         HourlyWrapper(
             date = theDate,
-            weatherText = result.weather?.getOrNull(0)?.main?.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-            },
+            weatherText = result.weather?.getOrNull(0)?.main?.capitalize(),
             weatherCode = getWeatherCode(result.weather?.getOrNull(0)?.id),
             temperature = Temperature(
                 temperature = result.temp,

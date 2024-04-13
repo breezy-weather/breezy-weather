@@ -42,6 +42,8 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.ui.composables.PollenGrid
@@ -148,7 +150,7 @@ class PollenActivity : GeoActivity() {
                                                 getLongWeekdayDayMonth(this@PollenActivity),
                                                 location.value!!,
                                                 this@PollenActivity
-                                            ),
+                                            ).capitalize(this@PollenActivity.currentLocale),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,
                                             style = MaterialTheme.typography.titleMedium,

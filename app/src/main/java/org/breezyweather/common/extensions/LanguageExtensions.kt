@@ -99,3 +99,11 @@ fun String.chop(count: Int, replacement: String = "…"): String {
         this
     }
 }
+
+fun String.capitalize(locale: Locale = Locale("en", "001")): String {
+    return this.replaceFirstChar { firstChar ->
+        if (firstChar.isLowerCase()) {
+            firstChar.titlecase(locale)
+        } else firstChar.toString()
+    }
+}

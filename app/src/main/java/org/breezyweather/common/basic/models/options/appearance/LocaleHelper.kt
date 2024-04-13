@@ -21,6 +21,8 @@ import androidx.core.os.LocaleListCompat
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.xmlpull.v1.XmlPullParser
 import java.util.Locale
 
@@ -77,7 +79,7 @@ object LocaleHelper {
             "zh-TW" -> Locale.forLanguageTag("zh-Hant")
             else -> Locale.forLanguageTag(lang)
         }
-        return locale!!.getDisplayName(locale).replaceFirstChar { it.uppercase(locale) }
+        return locale!!.getDisplayName(locale).capitalize(locale)
     }
 
     data class Language(

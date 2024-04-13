@@ -24,6 +24,7 @@ import androidx.core.text.util.LocalePreferences
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
+import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.isIndian
@@ -48,19 +49,35 @@ object CalendarHelper {
     )
 
     @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun getDisplayName(
+        calendar: String, locale: Locale = Locale("en", "001")
+    ): String {
+        val localeWithCalendar = Locale.Builder()
+            .setUnicodeLocaleKeyword(CALENDAR_EXTENSION_TYPE, calendar)
+            .build()
+        return ULocale.getDisplayKeywordValue(
+            localeWithCalendar.toLanguageTag(),
+            DISPLAY_KEYWORD_OF_CALENDAR,
+            ULocale.forLocale(locale)
+        )
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     fun getCalendars(context: Context): ImmutableList<AlternateCalendar> {
         return supportedCalendars.map {
             val displayName = try {
-                val locale = Locale.Builder()
-                    .setUnicodeLocaleKeyword(CALENDAR_EXTENSION_TYPE, it)
-                    .build()
-                ULocale.getDisplayKeywordValue(
-                    locale.toLanguageTag(),
-                    DISPLAY_KEYWORD_OF_CALENDAR,
-                    ULocale.forLocale(context.currentLocale)
-                )
+                getDisplayName(it, context.currentLocale).let { result ->
+                    if (result.equals(it, ignoreCase = false)) {
+                        // Fallback to English if there is no translation
+                        getDisplayName(it).capitalize(context.currentLocale)
+                    } else result.capitalize()
+                }
             } catch (ignored: Exception) {
-                it
+                try {
+                    getDisplayName(it).capitalize()
+                } catch (ignored2: Exception) {
+                    it.capitalize()
+                }
             }
             AlternateCalendar(
                 id = it,

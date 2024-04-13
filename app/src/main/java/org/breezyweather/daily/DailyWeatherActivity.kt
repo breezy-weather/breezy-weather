@@ -34,6 +34,8 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -188,7 +190,7 @@ class DailyWeatherActivity : GeoActivity() {
     private fun selectPage(daily: Daily, location: Location, position: Int, size: Int) {
         mTitle?.text = daily.date.getFormattedDate(
             getLongWeekdayDayMonth(this), location, this
-        )
+        ).capitalize(this.currentLocale)
         mSubtitle?.text = daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, this)
         mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
         mIndicator?.text = if (daily.isToday(location)) {

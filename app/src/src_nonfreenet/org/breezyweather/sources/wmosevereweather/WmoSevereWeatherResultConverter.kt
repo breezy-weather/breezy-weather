@@ -20,6 +20,8 @@ import android.graphics.Color
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import java.util.Date
 import java.util.Locale
@@ -39,11 +41,7 @@ fun convert(alertResult: WmoSevereWeatherAlertResult): SecondaryWeatherWrapper {
                         ?: it.properties.url)!!,
                     startDate = it.properties.onset ?: it.properties.effective ?: it.properties.sent,
                     endDate = it.properties.expires,
-                    headline = it.properties.event?.replaceFirstChar { firstChar ->
-                        if (firstChar.isLowerCase()) {
-                            firstChar.titlecase(Locale.getDefault())
-                        } else firstChar.toString()
-                    },
+                    headline = it.properties.event?.capitalize(),
                     description = it.properties.description,
                     severity = AlertSeverity.getInstance(it.properties.s),
                     color = when (severity) {

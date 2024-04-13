@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import org.breezyweather.R
+import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.source.PollenIndexSource
@@ -77,7 +79,7 @@ class HomePollenViewHolder internal constructor(
 
         binding.title.text = daily.date.getFormattedDate(
             getLongWeekdayDayMonth(context), location, context
-        )
+        ).capitalize(context.currentLocale)
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         daily.pollen?.let {
