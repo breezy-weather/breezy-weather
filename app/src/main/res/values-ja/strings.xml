@@ -660,7 +660,7 @@
     <string name="pollen_populus">白楊花粉</string>
     <string name="pollen_quercus">楢木花粉</string>
     <string name="pollen_rumex">酸葉花粉</string>
-    <string name="message_source_not_installed_error_content_tip_1">Breezy Weather スタンダードバージョンで場所を追加した後、対応する情報源が少ない F-Droid バージョンに切り替えたときにこの問題が発生する可能性があります。スタンダードバージョンに戻すか情報源の切り替えをお試しください。</string>
+    <string name="message_source_not_installed_error_content_tip_1">Breezy Weather スタンダードバージョンで場所を追加した後、対応する情報源が少ない Free-networks only バージョンに切り替えたときにこの問題が発生する可能性があります。スタンダードバージョンに戻すか情報源の切り替えをお試しください。</string>
     <string name="message_source_not_installed_error_content_tip_2">この場所の情報源を変更するか、この場所を削除して再度追加してください。</string>
     <string name="about_open_link_message">%sを開きますか?</string>
     <string name="sunshine">日照</string>

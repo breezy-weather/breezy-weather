@@ -676,5 +676,5 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina els millors models meteorològics per a aquesta ubicació</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tots els models meteorològics d’aquest proveïdor en una predicció perfecta</string>
     <string name="settings_invalid_syntax">Sintaxi no vàlida</string>
-    <string name="message_source_not_installed_error_content_tip_1">Això pot passar quan afegiu la vostra ubicació en la versió estàndard del Breezy Weather i després canvieu a l’F-Droid que té menys fonts meteorològiques admeses. Tornar a la versió estàndard pot resoldre aquest problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Això pot passar quan afegiu la vostra ubicació en la versió estàndard del Breezy Weather i després canvieu a l’Free-networks only que té menys fonts meteorològiques admeses. Tornar a la versió estàndard pot resoldre aquest problema.</string>
 </resources>

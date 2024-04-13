@@ -643,7 +643,7 @@
     <string name="pollen_salix">Vide</string>
     <string name="pollen_tilia">Lind</string>
     <string name="pollen_urticaceae">Nässla/Nysört</string>
-    <string name="message_source_not_installed_error_content_tip_1">Detta kan ske om du lagt till platsen i Standard-versionen av Breezy Weather och sedan bytt till F-Droid-versionen som stödjer färre väderdatakällor. Detta kan eventuellt lösas genom att byta tillbaka till Standard-versionen.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Detta kan ske om du lagt till platsen i Standard-versionen av Breezy Weather och sedan bytt till Free-networks only-versionen som stödjer färre väderdatakällor. Detta kan eventuellt lösas genom att byta tillbaka till Standard-versionen.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ändra antingen väderkällor för denna plats, eller ta bort platsen och lägg till den igen.</string>
     <string name="sunshine">Solsken</string>
     <string name="action_confirm">Bekräfta</string>

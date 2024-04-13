@@ -666,7 +666,7 @@
     <string name="pollen_plantaginaceae">Tanchagem</string>
     <string name="pollen_platanus">Plátano</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Índice de Qualidade do Ar atual</string>
-    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando adicionou a sua localização na versão padrão do Breezy Weather e depois mudou para do F-Droid um que tem menos fontes meteorológicas suportadas. Voltar para a versão padrão pode resolver este problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando adicionou a sua localização na versão padrão do Breezy Weather e depois mudou para do Free-networks only um que tem menos fontes meteorológicas suportadas. Voltar para a versão padrão pode resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ou alterar as fontes meteorológicas para este local ou apagar e readicionar o mesmo.</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, …, 4 dias depois</string>

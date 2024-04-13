@@ -654,7 +654,7 @@
     <string name="pollen_fraxinus">白蠟樹</string>
     <string name="pollen_rumex">酸模</string>
     <string name="pollen_urticaceae">蕁麻/假蕁麻</string>
-    <string name="message_source_not_installed_error_content_tip_1">當您在 Breezy Weather 的標準版本中添加了您的位置，然後切換到支援較少天氣來源的 F-Droid 版本時，可能會發生這種情況。回到標準版本可能會解決這個問題。</string>
+    <string name="message_source_not_installed_error_content_tip_1">當您在 Breezy Weather 的標準版本中添加了您的位置，然後切換到支援較少天氣來源的 Free-networks only 版本時，可能會發生這種情況。回到標準版本可能會解決這個問題。</string>
     <string name="message_source_not_installed_error_content_tip_2">更改此位置的天氣來源或刪除並重新添加此位置。</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天……至4天後的花粉指數摘要</string>
     <string name="sunshine">陽光</string>

@@ -657,7 +657,7 @@
     <string name="pollen_salix">Врба</string>
     <string name="pollen_tilia">Липа</string>
     <string name="pollen_urticaceae">Коприва</string>
-    <string name="message_source_not_installed_error_content_tip_1">Ово се може десити када додате своју локацију у стандардну верзију Breezy Weather-а, а затим пређете на F-Droid који има мање подржаних извора времена. Повратак на стандардну верзију може решити овај проблем.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Ово се може десити када додате своју локацију у стандардну верзију Breezy Weather-а, а затим пређете на Free-networks only који има мање подржаних извора времена. Повратак на стандардну верзију може решити овај проблем.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Тренутни индекс квалитета ваздуха</string>
     <string name="about_open_link_message">Отворити %s?</string>
     <string name="sunshine">Сунчано</string>

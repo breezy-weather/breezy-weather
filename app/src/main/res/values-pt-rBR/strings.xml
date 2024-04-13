@@ -667,7 +667,7 @@
     <string name="pollen_salix">Salgueiro</string>
     <string name="pollen_tilia">Tília</string>
     <string name="pollen_urticaceae">Urtiga</string>
-    <string name="message_source_not_installed_error_content_tip_1">Isso pode acontecer quando você adicionou sua localização na versão padrão do Breezy Weather e depois mudou para do F-Droid um que tem menos fontes meteorológicas suportadas. Voltar para a versão padrão pode resolver este problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Isso pode acontecer quando você adicionou sua localização na versão padrão do Breezy Weather e depois mudou para do Free-networks only um que tem menos fontes meteorológicas suportadas. Voltar para a versão padrão pode resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ou alterar as fontes meteorológicas para este local ou excluir e readicionar o mesmo.</string>
     <string name="sunshine">Sol</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere alguns segundos antes de voltar…</string>

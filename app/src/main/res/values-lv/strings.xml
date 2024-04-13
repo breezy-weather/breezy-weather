@@ -623,7 +623,7 @@
     <string name="pollen_urticaceae">Nātres</string>
     <string name="location_search_source">Atrašanās vietas meklēšanas avots</string>
     <string name="location_search_change_source">Mainīt atrašanās vietas meklēšanas avotu</string>
-    <string name="message_source_not_installed_error_content_tip_1">Tas var notikt, ja pievienojāt savu atrašanās vietu standarta Breezy Weather un pēc tam pārslēdzaties uz F-Droid, kurā tiek atbalstīts mazāk laikapstākļu avotu. Atgriešanās pie standarta var atrisināt šo problēmu.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Tas var notikt, ja pievienojāt savu atrašanās vietu standarta Breezy Weather un pēc tam pārslēdzaties uz Free-networks only, kurā tiek atbalstīts mazāk laikapstākļu avotu. Atgriešanās pie standarta var atrisināt šo problēmu.</string>
     <string name="sunshine">Saule</string>
     <string name="weather_message_too_frequent_refreshes">Lūdzu, uzgaidiet dažas sekundes, pirms mēģināt vēlreiz…</string>
     <string name="location_delete_location_dialog_title">Vai dzēst atrašanās vietu?</string>

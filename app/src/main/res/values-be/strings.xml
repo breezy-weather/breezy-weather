@@ -651,7 +651,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Аб’ядноўвае ўсе мадэлі надвор’я ад гэтага пастаўшчыка ў адзіны прагноз</string>
     <string name="settings_per_location">Перавагі па месцазнаходжанні</string>
     <string name="settings_weather_source_open_meteo_weather_models">Мадэлі надвор’я</string>
-    <string name="message_source_not_installed_error_content_tip_1">Гэта можа адбыцца, калі вы дадалі сваё месцазнаходжанне ў стандартную версію Breezy Weather, а затым пераключыліся на версію F-Droid, у якой падтрымліваецца менш пастаўшчыкоў надвор’я. Вяртанне да стандартнай версіі можа вырашыць гэтую праблему.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Гэта можа адбыцца, калі вы дадалі сваё месцазнаходжанне ў стандартную версію Breezy Weather, а затым пераключыліся на версію Free-networks only, у якой падтрымліваецца менш пастаўшчыкоў надвор’я. Вяртанне да стандартнай версіі можа вырашыць гэтую праблему.</string>
     <string name="message_source_not_installed_error_content_tip_2">Альбо змяніць пастаўшчык надвор’я для гэтага месца або выдаліць і дадаць гэта месцазнаходжанне зноў.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Зводка пыльцевого індэкса на сёння, заўтра, …, 4 дні праз</string>
     <string name="about_open_link_message">Адкрыць %s?</string>

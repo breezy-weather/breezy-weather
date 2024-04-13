@@ -357,7 +357,7 @@
     <string name="message_parsing_error_title">Failed to parse weather data</string>
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
-    <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of Breezy Weather and then switched to the F-Droid one which has less weather sources supported. Going back to the Standard flavor may solve this problem.</string>
+    <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of Breezy Weather and then switched to the flavor with only free network sources. Going back to the Standard flavor may solve this problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location or delete and re-add this location.</string>
     <!-- Update refers to weather update -->
     <string name="message_tap_again_to_exit">Tap again to exit</string>
