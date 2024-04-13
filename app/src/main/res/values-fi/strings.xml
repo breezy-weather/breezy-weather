@@ -678,7 +678,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Vaihda tekstisyöttöön</string>
     <string name="location_search_no_results_advice">Varmista, että hakusanasi on kirjoitettu oikein eikä se ole liian tarkka. Vaihtoehtoisesti voit kokeilla toista hakulähdettä, joka saattaa tuottaa erilaisia tuloksia.</string>
     <string name="settings_background_updates_refresh_never_warning2">Taustapäivitysprosessi on kevyt: se päivittää vain ensisijaista sijaintiasi valitsemallasi päivitystahdilla ja muut vain kerran päivässä tai kun tarvitset niitä. Se on akkuhyötysuhteeltaan tehokas, eikä datankulutuksenkaan pitäisi ylittää 5 Mt kuukaudessa.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Harkitse harvempaa päivitystahtia sen sijaan, että ottaisit taustapäivitykset pois käytöstä, muuten napauta \"Jatka\", jos haluat edetä.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Harkitse harvempaa päivitystahtia sen sijaan, että ottaisit taustapäivitykset pois käytöstä, muuten napauta “Jatka”, jos haluat edetä.</string>
     <string name="settings_source_instance_geocoding">Geokoodaus palvelin</string>
     <string name="action_confirm">Vahvista</string>
     <string name="settings_per_location_summary">Lisämääritykset tälle sijainnille</string>
