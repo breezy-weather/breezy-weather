@@ -86,7 +86,7 @@ android {
 
     sourceSets {
         getByName("basic") {
-            java.srcDirs("src/src_nonfreenet", "src/src_standard")
+            java.srcDirs("src/src_nonfreenet")
         }
         getByName("freenet") {
             java.srcDirs("src/src_freenet")
