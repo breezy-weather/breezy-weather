@@ -754,7 +754,7 @@ class RefreshHelper @Inject constructor(
                     }
 
                     if (enabledAndAvailablePackages.isNotEmpty()) {
-                        val data = source.getData(context, locationList)
+                        val data = source.getExtras(context, locationList)
                         if (data != null) {
                             enabledAndAvailablePackages.forEach {
                                 if (BreezyWeather.instance.debugMode) {
@@ -763,7 +763,7 @@ class RefreshHelper @Inject constructor(
                                 context.sendBroadcast(
                                     Intent(source.intentAction)
                                         .setPackage(it)
-                                        .putExtra(source.intentExtra, data)
+                                        .putExtras(data)
                                         .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
                                 )
                             }
