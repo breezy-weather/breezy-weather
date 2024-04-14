@@ -46,9 +46,7 @@ import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.sensorManager
-import org.breezyweather.common.extensions.windowManager
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.weatherView.WeatherView

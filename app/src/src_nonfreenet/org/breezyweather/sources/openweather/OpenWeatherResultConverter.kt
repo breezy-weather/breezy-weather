@@ -37,7 +37,6 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.capitalize
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.getDailyAirQualityFromHourly
@@ -49,7 +48,6 @@ import org.breezyweather.sources.openweather.json.OpenWeatherOneCallHourly
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallMinutely
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import java.util.Date
-import java.util.Locale
 import java.util.Objects
 import kotlin.math.roundToInt
 

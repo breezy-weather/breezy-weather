@@ -21,10 +21,8 @@ import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.extensions.capitalize
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import java.util.Date
-import java.util.Locale
 
 fun convert(alertResult: WmoSevereWeatherAlertResult): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(

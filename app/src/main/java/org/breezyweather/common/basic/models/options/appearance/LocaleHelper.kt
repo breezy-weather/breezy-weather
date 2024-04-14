@@ -22,7 +22,6 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.capitalize
-import org.breezyweather.common.extensions.currentLocale
 import org.xmlpull.v1.XmlPullParser
 import java.util.Locale
 
