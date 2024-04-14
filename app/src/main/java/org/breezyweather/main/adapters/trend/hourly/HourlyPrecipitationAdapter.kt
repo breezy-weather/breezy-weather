@@ -28,7 +28,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.domain.weather.model.getPrecipitationColor
+import org.breezyweather.domain.weather.model.getHourlyPrecipitationColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -87,8 +87,8 @@ class HourlyPrecipitationAdapter(
                 0f
             )
             mPolylineAndHistogramView.setLineColors(
-                hourly.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
-                hourly.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
+                hourly.precipitation?.getHourlyPrecipitationColor(activity) ?: Color.TRANSPARENT,
+                hourly.precipitation?.getHourlyPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
 
@@ -149,17 +149,17 @@ class HourlyPrecipitationAdapter(
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_LIGHT.toFloat(),
+                Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
                 activity.getString(R.string.precipitation_intensity_light),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HOURLY_LIGHT),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HEAVY.toFloat(),
+                Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
                 activity.getString(R.string.precipitation_intensity_heavy),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )

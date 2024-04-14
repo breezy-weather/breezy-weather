@@ -372,9 +372,9 @@ fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
 }
 
 private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
-    4 -> Minutely.PRECIPITATION_HEAVY
-    3 -> Minutely.PRECIPITATION_MEDIUM
-    2 -> Minutely.PRECIPITATION_LIGHT
+    4 -> Precipitation.PRECIPITATION_HOURLY_HEAVY
+    3 -> Precipitation.PRECIPITATION_HOURLY_MEDIUM
+    2 -> Precipitation.PRECIPITATION_HOURLY_LIGHT
     else -> 0.0
 }
 

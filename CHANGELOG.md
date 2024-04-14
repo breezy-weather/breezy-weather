@@ -8,7 +8,7 @@
 - Lunar calendar is no longer available on Android < 7.0
 
 **New feature**
-- New (better) chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data (values may be adjusted in the future), has start time and end time on the marker, now supports RtL languages
+- New (better) chart for precipitation nowcasting: more accurate with a bar chart, has light/medium/heavy thresholds to help interpret the data, has start time and end time on the marker, now supports RtL languages
 - Alternate calendars (from `Settings` > `Appearance`) for Android >= 7.0. Currently supported: Chinese, Dangi, Indian National, Islamic and Persian.
 
 **Sources**

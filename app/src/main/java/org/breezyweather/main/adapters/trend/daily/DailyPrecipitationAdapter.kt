@@ -29,7 +29,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.domain.weather.model.getPrecipitationColor
+import org.breezyweather.domain.weather.model.getHalfDayPrecipitationColor
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -94,8 +94,8 @@ class DailyPrecipitationAdapter(
                 mHighestPrecipitation
             )
             mDoubleHistogramView.setLineColors(
-                daily.day?.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
-                daily.night?.precipitation?.getPrecipitationColor(activity) ?: Color.TRANSPARENT,
+                daily.day?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
+                daily.night?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
             mDoubleHistogramView.setTextColors(
@@ -142,32 +142,32 @@ class DailyPrecipitationAdapter(
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                -Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                -Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
+                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
