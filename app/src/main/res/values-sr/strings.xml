@@ -104,7 +104,7 @@
     <string name="weather_kind_thunderstorm">Олуја са грмљавином</string>
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
     <string name="precipitation_between_time">Падавине између %1$s и %2$s</string>
-    <string name="precipitation_intensity_light">Росуља</string>
+    <string name="precipitation_intensity_light">Слабо</string>
     <string name="precipitation_intensity_medium">Киша</string>
     <string name="wind_speed">Брзина ветра</string>
     <string name="wind_direction">Правац ветра</string>
@@ -175,7 +175,7 @@
     <string name="settings_location_access_permission_already_granted">Дозвола је већ дата</string>
     <string name="settings_location_access_switch_summaryOn">Дозвољено. Можете додати своју тренутну локацију као локацију.</string>
     <string name="settings_location_access_background_summaryOff">Омогућите „Дозволи све време“ да бисте имали позадинско освежавање за вашу тренутну локацију.</string>
-    <string name="settings_location_access_precise_summaryOn">Омогућено. Користе се и интернет и GPS провајдери уређаја.</string>
+    <string name="settings_location_access_precise_summaryOn">Омогућено. Мрежни провајдер уређаја ће се користити приоритетно и већину времена, али GPS се такође може користити као резервни.</string>
     <string name="settings_location_access_precise_summaryOff">Омогућите „Користи прецизну локацију“, ако имате проблема са проналажењем локације.</string>
     <string name="settings_units_temperature">Јединица за температуру</string>
     <string name="settings_units_precipitation">Јединица за падавине</string>
@@ -394,7 +394,7 @@
     <string name="unit_atm_voice">Атмосфере</string>
     <string name="cloud_cover">Облачност</string>
     <string name="widget_subtitle_data_wind">Ветар</string>
-    <string name="precipitation_intensity_heavy">Јака киша</string>
+    <string name="precipitation_intensity_heavy">Јако</string>
     <string name="widget_text">Текст</string>
     <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да бисте их видели.</string>
     <string name="precipitation_total">Укупно</string>
@@ -683,4 +683,6 @@
     <string name="settings_background_updates_refresh_never_warning1">Ако искључите ажурирања у позадини, више нећете добијати обавештења о упозорењима или падавинама. Виџети се неће освежити док не отворите апликацију.</string>
     <string name="settings_background_updates_refresh_never_warning2">Процес ажурирања у позадини је лаган: освежава само вашу прву локацију по вашој изабраној брзини, а секундарне локације само ако су вам потребне, једном дневно. Штеди батерију и не би требало да прелази 5 МБ потрошње података месечно.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
+    <string name="message_server_unavailable_title">Сервер недоступан</string>
+    <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>
 </resources>
