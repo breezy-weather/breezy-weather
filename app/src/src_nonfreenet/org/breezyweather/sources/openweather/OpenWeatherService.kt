@@ -26,6 +26,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
@@ -37,16 +38,13 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
-import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
+import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 /**
- * Deprecated: will be removed in June 2024
- * See: https://github.com/breezy-weather/breezy-weather/issues/934
- * TODO:
- * - Remove MainWeatherSource, keep SecondaryWeatherSource
- * - Remove dirty hack in LocationPreferences
+ * OpenWeatherMap
+ * No longer based on OneCall API as it is now billing-only
  */
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
@@ -68,21 +66,18 @@ class OpenWeatherService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
     )
 
     override fun requestWeather(
         context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
-        if (getApiKeyOrDefault().isEmpty()) {
+        val apiKey = getApiKeyOrDefault()
+        if (apiKey.isEmpty()) {
             return Observable.error(ApiKeyMissingException())
         }
-        val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.code
-        val oneCall = mApi.getOneCall(
-            oneCallVersion,
+        val forecast = mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
@@ -104,13 +99,13 @@ class OpenWeatherService @Inject constructor(
                 emitter.onNext(OpenWeatherAirPollutionResult())
             }
         }
-        return Observable.zip(oneCall, airPollution) {
-                openWeatherOneCallResult: OpenWeatherOneCallResult,
+        return Observable.zip(forecast, airPollution) {
+                openWeatherForecastResult: OpenWeatherForecastResult,
                 openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
             ->
             convert(
                 location,
-                openWeatherOneCallResult,
+                openWeatherForecastResult,
                 openWeatherAirPollutionResult
             )
         }
@@ -118,65 +113,32 @@ class OpenWeatherService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
     )
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
+    override val minutelyAttribution = null
+    override val alertAttribution = null
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (getApiKeyOrDefault().isEmpty()) {
+        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            return Observable.error(SourceNotInstalledException())
+        }
+        val apiKey = getApiKeyOrDefault()
+        if (apiKey.isEmpty()) {
             return Observable.error(ApiKeyMissingException())
         }
 
-        val apiKey = getApiKeyOrDefault()
-        val languageCode = context.currentLocale.code
-        val oneCall = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
-            mApi.getOneCall(
-                oneCallVersion,
-                apiKey,
-                location.latitude,
-                location.longitude,
-                "metric",
-                languageCode
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherOneCallResult())
-            }
-        }
-        val airPollution = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getAirPollution(
-                apiKey,
-                location.latitude,
-                location.longitude
-            )
-        } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherAirPollutionResult())
-            }
-        }
-        return Observable.zip(oneCall, airPollution) {
-                openWeatherOneCallResult: OpenWeatherOneCallResult,
-                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
-            ->
-            convertSecondary(
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
-                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
-                    openWeatherOneCallResult
-                } else null,
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-                    openWeatherAirPollutionResult
-                } else null
-            )
+        return mApi.getAirPollution(
+            apiKey,
+            location.latitude,
+            location.longitude
+        ).map {
+            convertSecondary(it)
         }
     }
 
@@ -188,17 +150,11 @@ class OpenWeatherService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private var oneCallVersion: String
-        set(value) {
-            config.edit().putString("one_call_version", value).apply()
-        }
-        get() = config.getString("one_call_version", null) ?: "2.5"
-
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.OPEN_WEATHER_KEY }
     }
     override val isConfigured
-        get() = false // Hack to get the source to no longer show for new locations as we deprecate it
+        get() = getApiKeyOrDefault().isNotEmpty()
 
     override val isRestricted
         get() = apikey.isEmpty()

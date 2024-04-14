@@ -19,9 +19,14 @@ package org.breezyweather.sources.openweather.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OpenWeatherOneCallDailyFeelsLike(
-    val day: Double?,
-    val night: Double?,
-    val eve: Double?,
-    val morn: Double?
+data class OpenWeatherForecast(
+    val dt: Long,
+    val main: OpenWeatherForecastMain?,
+    val weather: List<OpenWeatherForecastWeather>?,
+    val clouds: OpenWeatherForecastClouds?,
+    val wind: OpenWeatherForecastWind?,
+    val visibility: Int?,
+    val pop: Double?,
+    val rain: OpenWeatherForecastPrecipitation?,
+    val snow: OpenWeatherForecastPrecipitation?
 )

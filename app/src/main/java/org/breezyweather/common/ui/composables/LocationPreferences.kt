@@ -274,7 +274,7 @@ fun SecondarySourcesPreference(
     val secondarySources = sourceManager.getSecondaryWeatherSources()
     val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
     val compatibleAirQualitySources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value || it.id == "openweather" /* TODO: Dirty hack */) &&
+        (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value) &&
         it.id != weatherSource.value &&
             it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
             it.isFeatureSupportedInSecondaryForLocation(

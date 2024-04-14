@@ -20,10 +20,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OpenWeatherOneCallAlert(
-    @SerialName("sender_name") val senderName: String?,
-    val event: String?,
-    val start: Long,
-    val end: Long,
-    val description: String?
+data class OpenWeatherForecastMain(
+    val temp: Double?,
+    @SerialName("feels_like") val feelsLike: Double?,
+    val pressure: Int?,
+    val humidity: Int?
 )

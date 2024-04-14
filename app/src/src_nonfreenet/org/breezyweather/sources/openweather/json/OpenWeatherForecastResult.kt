@@ -18,8 +18,10 @@ package org.breezyweather.sources.openweather.json
 
 import kotlinx.serialization.Serializable
 
+/**
+ * OpenWeather One Call result.
+ */
 @Serializable
-data class OpenWeatherOneCallMinutely(
-    val dt: Long,
-    val precipitation: Double?
+data class OpenWeatherForecastResult(
+    val list: List<OpenWeatherForecast>? = null
 )

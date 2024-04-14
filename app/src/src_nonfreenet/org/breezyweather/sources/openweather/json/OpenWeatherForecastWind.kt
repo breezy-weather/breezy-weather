@@ -16,28 +16,11 @@
 
 package org.breezyweather.sources.openweather.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OpenWeatherOneCallDaily(
-    val dt: Long,
-    val sunrise: Long?,
-    val sunset: Long?,
-    val moonrise: Long?,
-    val moonset: Long?,
-    val temp: OpenWeatherOneCallDailyTemp?,
-    @SerialName("feels_like") val feelsLike: OpenWeatherOneCallDailyFeelsLike?,
-    val pressure: Int?,
-    val humidity: Int?,
-    @SerialName("dew_point") val dewPoint: Double?,
-    @SerialName("wind_speed") val windSpeed: Double?,
-    @SerialName("wind_deg") val windDeg: Int?,
-    @SerialName("wind_gust") val windGust: Double?,
-    val weather: List<OpenWeatherOneCallWeather>?,
-    val clouds: Int?,
-    val pop: Double?,
-    val rain: Double?,
-    val snow: Double?,
-    val uvi: Double?
+data class OpenWeatherForecastWind(
+    val speed: Double?,
+    val deg: Int?,
+    val gust: Double?
 )
