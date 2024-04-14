@@ -357,21 +357,13 @@ private class MarkerLabelFormatterMinutelyDecorator(
                 .getValueText(context, minutely[model.entry.x.toInt()].precipitationIntensity!!)
         }
 
-        return SpannableStringBuilder().apply {
-            append(
-                startTime,
-                "-",
-                endTime,
-                context.getString(R.string.colon_separator),
-                quantityFormatted
-            )
-            setSpan(
-                ForegroundColorSpan(model.color),
-                0,
-                this.length,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-        }
+        return SpannableStringBuilder().append(
+            startTime,
+            "-",
+            endTime,
+            context.getString(R.string.colon_separator),
+            quantityFormatted
+        )
     }
 }
 
