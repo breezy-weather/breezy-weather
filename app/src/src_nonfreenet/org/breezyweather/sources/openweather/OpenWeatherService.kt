@@ -24,9 +24,11 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
@@ -42,6 +44,9 @@ import javax.inject.Inject
 /**
  * Deprecated: will be removed in June 2024
  * See: https://github.com/breezy-weather/breezy-weather/issues/934
+ * TODO:
+ * - Remove MainWeatherSource, keep SecondaryWeatherSource
+ * - Remove dirty hack in LocationPreferences
  */
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
@@ -199,7 +204,20 @@ class OpenWeatherService @Inject constructor(
         get() = apikey.isEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
-        return listOf()
+        return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_open_weather_api_key,
+                summary = { c, content ->
+                    content.ifEmpty {
+                        c.getString(R.string.settings_source_default_value)
+                    }
+                },
+                content = apikey,
+                onValueChanged = {
+                    apikey = it
+                }
+            )
+        )
     }
 
     companion object {
