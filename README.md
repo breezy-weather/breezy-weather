@@ -152,7 +152,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 ## Features currently being worked on by a contributor
 
-- [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts - WIP in `better_charts` branch
+- [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts
 
 ## Features lacking an active contributor
 
