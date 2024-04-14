@@ -542,7 +542,7 @@
     <string name="weather_source_accu_preference_days_10">10 dager</string>
     <string name="location_delete_location_dialog_title">Slett lokasjon?</string>
     <string name="widget_label_hide_alternate_calendar">Skjul alternativ kalender</string>
-    <string name="settings_background_updates_refresh_never_warning3">Vurder å bruke en lavere oppdateringsfrekvens istedenfor å skru av bakgrunnsoppdateringer. Trykk på \"Fortsett\" om du likevel vil gå videre.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Vurder å bruke en lavere oppdateringsfrekvens istedenfor å skru av bakgrunnsoppdateringer. Trykk på “Fortsett” om du likevel vil gå videre.</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="location_message_deleted">Lokasjon slettet</string>
     <string name="location_search_weather_source">Værkilde</string>
