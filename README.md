@@ -157,7 +157,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 ## Features lacking an active contributor
 
 - [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
-- Widget overhaul (prerequisite for any new widget improvement) - Some mockups were done but no one is working on it anymore
+- [#937](https://github.com/breezy-weather/breezy-weather/issues/937) - Widget overhaul (prerequisite for any new widget improvement) - Some mockups were done but no one is working on it anymore
 
 ## Features that will not be implemented
 
