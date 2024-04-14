@@ -38,8 +38,10 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
+import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import retrofit2.Retrofit
+import java.util.Date
 import javax.inject.Inject
 
 /**
@@ -84,6 +86,21 @@ class OpenWeatherService @Inject constructor(
             "metric",
             languageCode
         )
+        val current = mApi.getCurrent(
+            apiKey,
+            location.latitude,
+            location.longitude,
+            "metric",
+            languageCode
+        ).onErrorResumeNext {
+            Observable.create { emitter ->
+                emitter.onNext(
+                    OpenWeatherForecast(
+                        dt = Date().time.div(1000)
+                    )
+                )
+            }
+        }
         val airPollution = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
                 apiKey,
@@ -99,13 +116,15 @@ class OpenWeatherService @Inject constructor(
                 emitter.onNext(OpenWeatherAirPollutionResult())
             }
         }
-        return Observable.zip(forecast, airPollution) {
+        return Observable.zip(forecast, current, airPollution) {
                 openWeatherForecastResult: OpenWeatherForecastResult,
+                openWeatherCurrentResult: OpenWeatherForecast,
                 openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
             ->
             convert(
                 location,
                 openWeatherForecastResult,
+                openWeatherCurrentResult,
                 openWeatherAirPollutionResult
             )
         }

@@ -21,12 +21,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OpenWeatherForecast(
     val dt: Long,
-    val main: OpenWeatherForecastMain?,
-    val weather: List<OpenWeatherForecastWeather>?,
-    val clouds: OpenWeatherForecastClouds?,
-    val wind: OpenWeatherForecastWind?,
-    val visibility: Int?,
-    val pop: Double?,
-    val rain: OpenWeatherForecastPrecipitation?,
-    val snow: OpenWeatherForecastPrecipitation?
+    val main: OpenWeatherForecastMain? = null,
+    val weather: List<OpenWeatherForecastWeather>? = null,
+    val clouds: OpenWeatherForecastClouds? = null,
+    val wind: OpenWeatherForecastWind? = null,
+    val visibility: Int? = null,
+    val pop: Double? = null,
+    val rain: OpenWeatherForecastPrecipitation? = null,
+    val snow: OpenWeatherForecastPrecipitation? = null
 )

@@ -18,6 +18,7 @@ package org.breezyweather.sources.openweather
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -43,6 +44,7 @@ import java.util.Date
 fun convert(
     location: Location,
     forecastResult: OpenWeatherForecastResult,
+    currentResult: OpenWeatherForecast,
     airPollutionResult: OpenWeatherAirPollutionResult?
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
@@ -53,25 +55,23 @@ fun convert(
     val hourlyAirQuality = getHourlyAirQuality(airPollutionResult?.list)
 
     return WeatherWrapper(
-        /*current = if (currentResult != null) Current(
-            weatherText = forecastResult.current.weather?.getOrNull(0)?.description?.capitalize(),
-            weatherCode = getWeatherCode(forecastResult.current.weather?.getOrNull(0)?.id),
+        current = Current(
+            weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
+            weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
             temperature = Temperature(
-                temperature = forecastResult.current.temp,
-                apparentTemperature = forecastResult.current.feelsLike
+                temperature = currentResult.main?.temp,
+                apparentTemperature = currentResult.main?.feelsLike
             ),
             wind = Wind(
-                degree = forecastResult.current.windDeg?.toDouble(),
-                speed = forecastResult.current.windSpeed,
-                gusts = forecastResult.current.windGust
+                degree = currentResult.wind?.deg?.toDouble(),
+                speed = currentResult.wind?.speed,
+                gusts = currentResult.wind?.gust
             ),
-            uV = UV(index = forecastResult.current.uvi),
-            relativeHumidity = forecastResult.current.humidity?.toDouble(),
-            dewPoint = forecastResult.current.dewPoint,
-            pressure = forecastResult.current.pressure?.toDouble(),
-            cloudCover = forecastResult.current.clouds,
-            visibility = forecastResult.current.visibility?.toDouble()
-        ) else null,*/
+            relativeHumidity = currentResult.main?.humidity?.toDouble(),
+            pressure = currentResult.main?.pressure?.toDouble(),
+            cloudCover = currentResult.clouds?.all,
+            visibility = currentResult.visibility?.toDouble()
+        ),
         dailyForecast = getDailyList(forecastResult.list, hourlyAirQuality, location),
         hourlyForecast = getHourlyList(forecastResult.list, hourlyAirQuality)
     )
