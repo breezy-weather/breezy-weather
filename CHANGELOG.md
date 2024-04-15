@@ -1,4 +1,4 @@
-# Version 5.2.0 (not yet released)
+# Version 5.2.0 (2024-04-15)
 
 **IMPORTANT changes**
 - `gplay` flavor was removed, Fused location is now available natively in all flavors for Android >= 12 with no proprietary library. Migration path: use the `standard` flavor
