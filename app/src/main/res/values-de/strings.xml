@@ -461,7 +461,7 @@
     <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Ort hinzufügen möchten.</string>
     <string name="settings_location_access_background_summaryOff">Bitte aktivieren Sie „Immer zulassen“, um Hintergrundaktualisierungen für Ihren aktuellen Standort zu erhalten.</string>
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
-    <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden sowohl das Netzwerk des Geräts als auch GPS-Anbieter verwendet.</string>
+    <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden bevorzugt die Netzwerkdienste Ihres Geräts genutzt, aber als Ersatz kann auch auf GPS zurückgegriffen werden.</string>
     <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Benachrichtigungszeit für die Tagesprognose des nächsten Tages</string>
     <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
