@@ -71,6 +71,10 @@ class WeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mTextSizeContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        WeekWidgetIMP.updateWidgetView(this, locationNow)
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return WeekWidgetIMP.getRemoteViews(

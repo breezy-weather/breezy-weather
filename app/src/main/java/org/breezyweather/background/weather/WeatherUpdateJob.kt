@@ -61,7 +61,6 @@ import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
@@ -277,8 +276,8 @@ class WeatherUpdateJob @AssistedInject constructor(
             }
 
             // Update widgets and notification-widget
-            Widgets.updateWidgetIfNecessary(context, locationList)
-            Notifications.updateNotificationIfNecessary(context, locationList)
+            refreshHelper.updateWidgetIfNecessary(context, locationList)
+            refreshHelper.updateNotificationIfNecessary(context, locationList)
 
             // Update shortcuts
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
@@ -291,7 +290,6 @@ class WeatherUpdateJob @AssistedInject constructor(
 
             // Send alert and precipitation for first location
             if (indexOfFirstLocation != null) {
-                Widgets.updateWidgetIfNecessary(context, location)
                 // TODO: We only send alert and precipitation forecast for first location for historical reason, but this should be reworked
                 Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
                 Notifications.checkAndSendPrecipitation(applicationContext, location)

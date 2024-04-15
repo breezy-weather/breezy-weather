@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
+import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
 /**
@@ -39,6 +40,9 @@ class WidgetClockDayVerticalProvider : AppWidgetProvider() {
 
     @Inject
     lateinit var weatherRepository: WeatherRepository
+
+    @Inject
+    lateinit var sourceManager: SourceManager
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
@@ -55,7 +59,11 @@ class WidgetClockDayVerticalProvider : AppWidgetProvider() {
                             withMinutely = false,
                             withAlerts = true // Custom subtitle
                         )
-                    )
+                    ),
+                    location?.let { locationNow ->
+                        sourceManager.getPollenIndexSource((locationNow.pollenSource ?: "")
+                            .ifEmpty { locationNow.weatherSource })
+                    }
                 )
             }
         }

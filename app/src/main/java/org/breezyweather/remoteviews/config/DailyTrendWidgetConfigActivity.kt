@@ -68,6 +68,10 @@ class DailyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mCardAlphaContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        DailyTrendWidgetIMP.updateWidgetView(this, locationNow)
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return DailyTrendWidgetIMP.getRemoteViews(

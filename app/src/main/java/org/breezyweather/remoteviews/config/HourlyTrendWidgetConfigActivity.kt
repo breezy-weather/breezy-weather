@@ -68,6 +68,10 @@ class HourlyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mCardAlphaContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        HourlyTrendWidgetIMP.updateWidgetView(this, locationNow)
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return HourlyTrendWidgetIMP.getRemoteViews(

@@ -24,6 +24,7 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
+import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
 /**
@@ -39,6 +40,9 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     @Inject
     lateinit var weatherRepository: WeatherRepository
+
+    @Inject
+    lateinit var sourceManager: SourceManager
 
     override suspend fun initLocations() {
         val location = locationRepository.getFirstLocation(withParameters = false)
@@ -88,12 +92,27 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mClockFontContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        ClockDayVerticalWidgetIMP.updateWidgetView(
+            this,
+            locationNow,
+            locationNow?.let { location ->
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                    .ifEmpty { location.weatherSource })
+            }
+        )
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return ClockDayVerticalWidgetIMP.getRemoteViews(
                 this, locationNow,
                 viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
-                hideSubtitle, subtitleDataValueNow, clockFontValueNow
+                hideSubtitle, subtitleDataValueNow, clockFontValueNow,
+                locationNow?.let { location ->
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                        .ifEmpty { location.weatherSource })
+                }
             )
         }
 

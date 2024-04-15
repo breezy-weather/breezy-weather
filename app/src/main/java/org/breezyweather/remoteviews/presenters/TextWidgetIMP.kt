@@ -33,6 +33,7 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
@@ -43,12 +44,14 @@ import java.util.Date
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_text_setting))
         val views = getRemoteViews(
             context, location,
             config.textColor, config.textSize, config.alignEnd,
-            config.hideSubtitle, config.subtitleData
+            config.hideSubtitle, config.subtitleData, pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTextProvider::class.java),
@@ -59,7 +62,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     fun getRemoteViews(
         context: Context, location: Location?,
         textColor: String?, textSize: Int, alignEnd: Boolean,
-        hideHeader: Boolean, subtitleData: String?
+        hideHeader: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -125,7 +128,8 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     weather,
                     subtitleData,
                     temperatureUnit,
-                    speedUnit
+                    speedUnit,
+                    pollenIndexSource
                 )
             )
             setTextColor(R.id.widget_text_subtitle, color.textColor)
@@ -155,7 +159,8 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getTimeText(
         context: Context, location: Location, weather: Weather,
-        subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+        subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?
     ): String? {
         return when (subtitleData) {
             "time" -> weather.base.refreshTime?.getFormattedTime(
@@ -178,7 +183,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     + temperatureUnit.getValueText(context, it, 0)
                 )
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 

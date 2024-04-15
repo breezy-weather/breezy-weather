@@ -37,6 +37,7 @@ import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
@@ -51,12 +52,14 @@ import java.util.Date
 
 object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_vertical_setting))
         val views = getRemoteViews(
             context, location,
             config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor, config.textSize,
-            config.hideSubtitle, config.subtitleData, config.clockFont
+            config.hideSubtitle, config.subtitleData, config.clockFont, pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetClockDayVerticalProvider::class.java),
@@ -67,7 +70,8 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     fun getRemoteViews(
         context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
-        hideSubtitle: Boolean, subtitleData: String?, clockFont: String?
+        hideSubtitle: Boolean, subtitleData: String?, clockFont: String?,
+        pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val settings = SettingsManager.getInstance(context)
@@ -76,7 +80,8 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val views = buildWidgetViewDayPart(
             context, location, temperatureUnit, speedUnit,
-            color, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData
+            color, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData,
+            pollenIndexSource
         )
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color))
@@ -89,7 +94,8 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     private fun buildWidgetViewDayPart(
         context: Context, location: Location?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
         color: WidgetColor, textSize: Int, minimalIcon: Boolean,
-        clockFont: String?, viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?
+        clockFont: String?, viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -227,7 +233,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             )
             setTextViewText(
                 R.id.widget_clock_day_time,
-                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit)
+                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit, pollenIndexSource)
             )
         }
 
@@ -421,7 +427,8 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getTimeText(
         context: Context, location: Location, viewStyle: String?, subtitleData: String?,
-        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?
     ): String? {
         val weather = location.weather ?: return null
         return when (subtitleData) {
@@ -469,7 +476,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     + " "
                     + temperatureUnit.getValueText(context, it, 0))
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 

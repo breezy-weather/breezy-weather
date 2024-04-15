@@ -44,7 +44,6 @@ import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
-import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import java.text.DateFormat
@@ -138,12 +137,6 @@ object Notifications {
         )
     }
 
-    fun updateNotificationIfNecessary(context: Context, locationList: List<Location>) {
-        if (WidgetNotificationIMP.isEnabled(context)) {
-            WidgetNotificationIMP.buildNotificationAndSendIt(context, locationList)
-        }
-    }
-
     private fun getNotificationBuilder(
         context: Context, @DrawableRes iconId: Int,
         title: String, subtitle: String, content: String?,
@@ -162,7 +155,6 @@ object Notifications {
         }
     }
 
-    // FIXME: Duplicate issue, see #73
     fun checkAndSendAlert(context: Context, location: Location, oldResult: Weather?) {
         val weather = location.weather
         if (weather == null || !SettingsManager.getInstance(context).isAlertPushEnabled) return

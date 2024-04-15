@@ -23,7 +23,9 @@ import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
+import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.TextWidgetIMP.getRemoteViews
+import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
 /**
@@ -39,6 +41,9 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     @Inject
     lateinit var weatherRepository: WeatherRepository
+
+    @Inject
+    lateinit var sourceManager: SourceManager
 
     override suspend fun initLocations() {
         val location = locationRepository.getFirstLocation(withParameters = false)
@@ -63,12 +68,27 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mSubtitleDataContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        TextWidgetIMP.updateWidgetView(
+            this,
+            locationNow,
+            locationNow?.let { location ->
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                    .ifEmpty { location.weatherSource })
+            }
+        )
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return getRemoteViews(
                 this, locationNow,
                 textColorValueNow, textSize, alignEnd,
-                hideSubtitle, subtitleDataValueNow
+                hideSubtitle, subtitleDataValueNow,
+                locationNow?.let { location ->
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                        .ifEmpty { location.weatherSource })
+                }
             )
         }
 

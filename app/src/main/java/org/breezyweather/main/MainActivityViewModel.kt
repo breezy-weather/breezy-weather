@@ -41,8 +41,6 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.main.utils.StatementManager
-import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import java.util.Date
@@ -569,9 +567,8 @@ class MainActivityViewModel @Inject constructor(
             if (it.isNotEmpty()) {
                 viewModelScope.launchIO {
                     AsyncHelper.delayRunOnIO({
-                        Widgets.updateWidgetIfNecessary(context, it[0])
-                        Notifications.updateNotificationIfNecessary(context, it)
-                        Widgets.updateWidgetIfNecessary(context, it)
+                        refreshHelper.updateWidgetIfNecessary(context, it)
+                        refreshHelper.updateNotificationIfNecessary(context, it)
                         refreshHelper.broadcastDataIfNecessary(context, it)
                     }, 1000)
 

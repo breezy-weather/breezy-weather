@@ -72,6 +72,10 @@ class ClockDayHorizontalWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mHideAlternateCalendarContainer?.visibility = isHideAlternateCalendarContainerVisible
     }
 
+    override fun updateWidgetView() {
+        ClockDayHorizontalWidgetIMP.updateWidgetView(this, locationNow)
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return ClockDayHorizontalWidgetIMP.getRemoteViews(

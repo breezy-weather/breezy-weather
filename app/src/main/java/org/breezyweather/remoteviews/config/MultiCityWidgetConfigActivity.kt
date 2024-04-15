@@ -63,6 +63,10 @@ class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mTextSizeContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        MultiCityWidgetIMP.updateWidgetView(this, locationList)
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return MultiCityWidgetIMP.getRemoteViews(

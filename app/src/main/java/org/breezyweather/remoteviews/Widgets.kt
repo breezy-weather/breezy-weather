@@ -18,22 +18,8 @@ package org.breezyweather.remoteviews
 
 import android.content.Context
 import android.text.TextPaint
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayWeekWidgetIMP
-import org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP
-import org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP
-import org.breezyweather.remoteviews.presenters.DayWidgetIMP
-import org.breezyweather.remoteviews.presenters.HourlyTrendWidgetIMP
-import org.breezyweather.remoteviews.presenters.MaterialYouCurrentWidgetIMP
-import org.breezyweather.remoteviews.presenters.MaterialYouForecastWidgetIMP
-import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
-import org.breezyweather.remoteviews.presenters.TextWidgetIMP
-import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 
 object Widgets {
 
@@ -114,51 +100,6 @@ object Widgets {
     // material you.
     const val MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
     const val MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
-
-    fun updateWidgetIfNecessary(context: Context, location: Location) {
-        if (DayWidgetIMP.isInUse(context)) {
-            DayWidgetIMP.updateWidgetView(context, location)
-        }
-        if (WeekWidgetIMP.isInUse(context)) {
-            WeekWidgetIMP.updateWidgetView(context, location)
-        }
-        if (DayWeekWidgetIMP.isInUse(context)) {
-            DayWeekWidgetIMP.updateWidgetView(context, location)
-        }
-        if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
-            ClockDayHorizontalWidgetIMP.updateWidgetView(context, location)
-        }
-        if (ClockDayVerticalWidgetIMP.isInUse(context)) {
-            ClockDayVerticalWidgetIMP.updateWidgetView(context, location)
-        }
-        if (ClockDayWeekWidgetIMP.isInUse(context)) {
-            ClockDayWeekWidgetIMP.updateWidgetView(context, location)
-        }
-        if (ClockDayDetailsWidgetIMP.isInUse(context)) {
-            ClockDayDetailsWidgetIMP.updateWidgetView(context, location)
-        }
-        if (TextWidgetIMP.isInUse(context)) {
-            TextWidgetIMP.updateWidgetView(context, location)
-        }
-        if (DailyTrendWidgetIMP.isInUse(context)) {
-            DailyTrendWidgetIMP.updateWidgetView(context, location)
-        }
-        if (HourlyTrendWidgetIMP.isInUse(context)) {
-            HourlyTrendWidgetIMP.updateWidgetView(context, location)
-        }
-        if (MaterialYouForecastWidgetIMP.isEnabled(context)) {
-            MaterialYouForecastWidgetIMP.updateWidgetView(context, location)
-        }
-        if (MaterialYouCurrentWidgetIMP.isEnabled(context)) {
-            MaterialYouCurrentWidgetIMP.updateWidgetView(context, location)
-        }
-    }
-
-    fun updateWidgetIfNecessary(context: Context, locationList: List<Location>) {
-        if (MultiCityWidgetIMP.isInUse(context)) {
-            MultiCityWidgetIMP.updateWidgetView(context, locationList)
-        }
-    }
 
     fun buildWidgetDayStyleText(context: Context, weather: Weather, unit: TemperatureUnit): Array<String> {
         val texts = arrayOf(

@@ -43,6 +43,7 @@ import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditi
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
@@ -52,6 +53,7 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.domain.weather.model.getSummary
+import org.breezyweather.domain.weather.model.getSummaryFromSource
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -262,7 +264,8 @@ abstract class AbstractRemoteViewsPresenter {
         }
 
         fun getCustomSubtitle(
-            context: Context, subtitleP: String?, location: Location, weather: Weather
+            context: Context, subtitleP: String?, location: Location, weather: Weather,
+            pollenIndexSource: PollenIndexSource?
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
             val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
@@ -360,7 +363,7 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace("\$enter$", "\n")
             subtitle = replaceAlerts(context, subtitle, location, weather)
             subtitle = replaceDailyWeatherSubtitle(
-                context, subtitle, location, weather, temperatureUnit, speedUnit
+                context, subtitle, location, weather, temperatureUnit, speedUnit, pollenIndexSource
             )
             return subtitle
         }
@@ -413,7 +416,8 @@ abstract class AbstractRemoteViewsPresenter {
 
         private fun replaceDailyWeatherSubtitle(
             context: Context, subtitleP: String, location: Location, weather: Weather,
-            temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+            temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+            pollenIndexSource: PollenIndexSource?
         ): String {
             var subtitle = subtitleP
             for (i in 0 until SUBTITLE_DAILY_ITEM_LENGTH) {
@@ -476,9 +480,11 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "$" + i + "pis$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen?.pollensWithConcentration?.isNotEmpty() == true) {
-                        // TODO #782: Tricky as we need to handle PollenIndexSource when applicable
-                        // TODO #782: Add to AbstractWidgetConfigActivity::subtitleCustomKeywords
-                        weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
+                        if (pollenIndexSource != null) {
+                            weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(context, pollenIndexSource)
+                        } else {
+                            weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
+                        }
                     } else context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",

@@ -29,6 +29,7 @@
 - Added source for each alert for compatible sources
 - [Widgets] “Material You - Current” automatically adapt size to the frame on Android >= 12
 - [Widgets] “Material You - Current” add preview
+- [Widgets] Added a custom subtitle keyword for a summary of pollen indexes
 - Background updates: secondary locations (when used) are now refreshed once a day
 - Add a new error message “Server unavailable”
 - Improved time picker for forecast notification (now supports 12-hour system), also fixes a crash on Android 14 QPR2 (@min7-i)

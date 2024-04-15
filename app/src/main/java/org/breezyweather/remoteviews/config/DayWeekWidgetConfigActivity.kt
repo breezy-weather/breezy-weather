@@ -24,6 +24,7 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP
+import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
 /**
@@ -39,6 +40,9 @@ class DayWeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     @Inject
     lateinit var weatherRepository: WeatherRepository
+
+    @Inject
+    lateinit var sourceManager: SourceManager
 
     override suspend fun initLocations() {
         val location = locationRepository.getFirstLocation(withParameters = false)
@@ -81,12 +85,27 @@ class DayWeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
         mTextSizeContainer?.visibility = View.VISIBLE
     }
 
+    override fun updateWidgetView() {
+        DayWeekWidgetIMP.updateWidgetView(
+            this,
+            locationNow,
+            locationNow?.let { location ->
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                    .ifEmpty { location.weatherSource })
+            }
+        )
+    }
+
     override val remoteViews: RemoteViews
         get() {
             return DayWeekWidgetIMP.getRemoteViews(
                 this, locationNow,
                 viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
-                hideSubtitle, subtitleDataValueNow
+                hideSubtitle, subtitleDataValueNow,
+                locationNow?.let { location ->
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
+                        .ifEmpty { location.weatherSource })
+                }
             )
         }
 

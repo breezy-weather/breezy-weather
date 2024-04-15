@@ -33,6 +33,7 @@ import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditi
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
@@ -50,12 +51,14 @@ import java.util.Date
 
 object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_day_week_setting))
         val views = getRemoteViews(
             context, location,
-            config.viewStyle, config.cardStyle, config.cardAlpha,
-            config.textColor, config.textSize, config.hideSubtitle, config.subtitleData
+            config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor,
+            config.textSize, config.hideSubtitle, config.subtitleData, pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetDayWeekProvider::class.java),
@@ -66,7 +69,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     fun getRemoteViews(
         context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int,
-        textColor: String?, textSize: Int, hideSubtitle: Boolean, subtitleData: String?
+        textColor: String?, textSize: Int, hideSubtitle: Boolean, subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
         val settings = SettingsManager.getInstance(context)
@@ -77,7 +81,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = buildWidgetViewDayPart(
             context, provider, location, temperatureUnit, speedUnit,
-            color, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData
+            color, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData,
+            pollenIndexSource
         )
         val weather = location?.weather ?: return views
 
@@ -178,7 +183,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context, helper: ResourceProvider, location: Location?,
         temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
         color: WidgetColor, textSize: Int, minimalIcon: Boolean,
-        viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?
+        viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -209,7 +215,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             )
             setTextViewText(
                 R.id.widget_day_week_time,
-                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit)
+                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit, pollenIndexSource)
             )
         }
         if (color.textColor != Color.TRANSPARENT) {
@@ -299,7 +305,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getTimeText(
         context: Context, location: Location, viewStyle: String?, subtitleData: String?,
-        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?
     ): String? {
         val weather = location.weather ?: return null
         return when (subtitleData) {
@@ -350,7 +357,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     + " "
                     + temperatureUnit.getValueText(context, it, 0))
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 

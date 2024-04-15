@@ -63,17 +63,6 @@ import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
-import org.breezyweather.remoteviews.presenters.ClockDayWeekWidgetIMP
-import org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP
-import org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP
-import org.breezyweather.remoteviews.presenters.DayWidgetIMP
-import org.breezyweather.remoteviews.presenters.HourlyTrendWidgetIMP
-import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
-import org.breezyweather.remoteviews.presenters.TextWidgetIMP
-import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.settings.ConfigStore
 import java.text.NumberFormat
 import kotlin.math.max
@@ -472,19 +461,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             val resultValue = Intent()
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             setResult(RESULT_OK, resultValue)
-            when (this) { // TODO: Dirty
-                is DayWidgetConfigActivity -> DayWidgetIMP.updateWidgetView(this, locationNow)
-                is WeekWidgetConfigActivity -> WeekWidgetIMP.updateWidgetView(this, locationNow)
-                is DayWeekWidgetConfigActivity -> DayWeekWidgetIMP.updateWidgetView(this, locationNow)
-                is ClockDayHorizontalWidgetConfigActivity -> ClockDayHorizontalWidgetIMP.updateWidgetView(this, locationNow)
-                is ClockDayVerticalWidgetConfigActivity -> ClockDayVerticalWidgetIMP.updateWidgetView(this, locationNow)
-                is ClockDayWeekWidgetConfigActivity -> ClockDayWeekWidgetIMP.updateWidgetView(this, locationNow)
-                is ClockDayDetailsWidgetConfigActivity -> ClockDayDetailsWidgetIMP.updateWidgetView(this, locationNow)
-                is TextWidgetConfigActivity -> TextWidgetIMP.updateWidgetView(this, locationNow)
-                is DailyTrendWidgetConfigActivity -> DailyTrendWidgetIMP.updateWidgetView(this, locationNow)
-                is HourlyTrendWidgetConfigActivity -> HourlyTrendWidgetIMP.updateWidgetView(this, locationNow)
-                is MultiCityWidgetConfigActivity -> MultiCityWidgetIMP.updateWidgetView(this, locationList)
-            }
+            updateWidgetView()
             finish()
         }
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView)
@@ -523,6 +500,8 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             setBottomSheetState(isCustomSubtitle)
         }
     }
+
+    abstract fun updateWidgetView()
 
     fun updateHostView() {
         mWidgetContainer?.let {
@@ -628,6 +607,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
 
             ${getString(R.string.widget_custom_subtitle_keyword_xaqi)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xaqi_description)}
+
+            ${getString(R.string.widget_custom_subtitle_keyword_xpis)}${getString(R.string.colon_separator)}
+            ${getString(R.string.widget_custom_subtitle_keyword_xpis_description)}
 
             ${getString(R.string.widget_custom_subtitle_keyword_xsr)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xsr_description)}

@@ -68,8 +68,19 @@ import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.main.utils.RefreshErrorType
-import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.remoteviews.Widgets
+import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
+import org.breezyweather.remoteviews.presenters.ClockDayWeekWidgetIMP
+import org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP
+import org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP
+import org.breezyweather.remoteviews.presenters.DayWidgetIMP
+import org.breezyweather.remoteviews.presenters.HourlyTrendWidgetIMP
+import org.breezyweather.remoteviews.presenters.MaterialYouCurrentWidgetIMP
+import org.breezyweather.remoteviews.presenters.MaterialYouForecastWidgetIMP
+import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
+import org.breezyweather.remoteviews.presenters.TextWidgetIMP
+import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
@@ -661,6 +672,68 @@ class RefreshHelper @Inject constructor(
         return searchService.requestLocationSearch(context, query)
     }
 
+    fun updateWidgetIfNecessary(context: Context, locationList: List<Location>) {
+        if (DayWidgetIMP.isInUse(context)) {
+            DayWidgetIMP.updateWidgetView(
+                context,
+                locationList[0],
+                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
+                    .ifEmpty { locationList[0].weatherSource })
+            )
+        }
+        if (WeekWidgetIMP.isInUse(context)) {
+            WeekWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (DayWeekWidgetIMP.isInUse(context)) {
+            DayWeekWidgetIMP.updateWidgetView(
+                context,
+                locationList[0],
+                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
+                    .ifEmpty { locationList[0].weatherSource })
+            )
+        }
+        if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
+            ClockDayHorizontalWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (ClockDayVerticalWidgetIMP.isInUse(context)) {
+            ClockDayVerticalWidgetIMP.updateWidgetView(
+                context,
+                locationList[0],
+                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
+                    .ifEmpty { locationList[0].weatherSource })
+            )
+        }
+        if (ClockDayWeekWidgetIMP.isInUse(context)) {
+            ClockDayWeekWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (ClockDayDetailsWidgetIMP.isInUse(context)) {
+            ClockDayDetailsWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (TextWidgetIMP.isInUse(context)) {
+            TextWidgetIMP.updateWidgetView(
+                context,
+                locationList[0],
+                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
+                    .ifEmpty { locationList[0].weatherSource })
+            )
+        }
+        if (DailyTrendWidgetIMP.isInUse(context)) {
+            DailyTrendWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (HourlyTrendWidgetIMP.isInUse(context)) {
+            HourlyTrendWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (MaterialYouForecastWidgetIMP.isEnabled(context)) {
+            MaterialYouForecastWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (MaterialYouCurrentWidgetIMP.isEnabled(context)) {
+            MaterialYouCurrentWidgetIMP.updateWidgetView(context, locationList[0])
+        }
+        if (MultiCityWidgetIMP.isInUse(context)) {
+            MultiCityWidgetIMP.updateWidgetView(context, locationList)
+        }
+    }
+
     suspend fun updateWidgetIfNecessary(context: Context) {
         val locationList = locationRepository.getXLocations(3, withParameters = false).toMutableList()
         if (locationList.isNotEmpty()) {
@@ -675,8 +748,13 @@ class RefreshHelper @Inject constructor(
                     )
                 )
             }
-            Widgets.updateWidgetIfNecessary(context, locationList[0])
-            Widgets.updateWidgetIfNecessary(context, locationList)
+            updateWidgetIfNecessary(context, locationList)
+        }
+    }
+
+    fun updateNotificationIfNecessary(context: Context, locationList: List<Location>) {
+        if (WidgetNotificationIMP.isEnabled(context)) {
+            WidgetNotificationIMP.buildNotificationAndSendIt(context, locationList)
         }
     }
 
@@ -694,7 +772,7 @@ class RefreshHelper @Inject constructor(
                     )
                 )
             }
-            Notifications.updateNotificationIfNecessary(context, locationList)
+            updateNotificationIfNecessary(context, locationList)
         }
     }
 

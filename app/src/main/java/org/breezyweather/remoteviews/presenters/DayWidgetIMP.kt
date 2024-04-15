@@ -35,6 +35,7 @@ import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
+import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getIndex
@@ -51,12 +52,14 @@ import kotlin.math.roundToInt
 
 object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_day_setting))
         val views = getRemoteViews(
             context, location,
             config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor, config.textSize,
-            config.hideSubtitle, config.subtitleData
+            config.hideSubtitle, config.subtitleData, pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetDayProvider::class.java),
@@ -67,7 +70,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     fun getRemoteViews(
         context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
-        hideSubtitle: Boolean, subtitleData: String?
+        hideSubtitle: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
@@ -83,7 +86,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val views = buildWidgetView(
             context, location, temperatureUnit, speedUnit,
-            color, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData
+            color, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData, pollenIndexSource
         )
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_day_card, getCardBackgroundId(color))
@@ -96,7 +99,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     private fun buildWidgetView(
         context: Context, location: Location?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
         color: WidgetColor, minimalIcon: Boolean, viewStyle: String?, textSize: Int,
-        hideSubtitle: Boolean, subtitleData: String?
+        hideSubtitle: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -180,7 +183,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         if (viewStyle != "pixel") {
             views.setTextViewText(
                 R.id.widget_day_time,
-                getTimeText(context, location, weather, viewStyle, subtitleData, temperatureUnit, speedUnit)
+                getTimeText(context, location, weather, viewStyle, subtitleData, temperatureUnit, speedUnit, pollenIndexSource)
             )
         }
         if (color.textColor != Color.TRANSPARENT) {
@@ -293,7 +296,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getTimeText(
         context: Context, location: Location, weather: Weather,
-        viewStyle: String?, subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+        viewStyle: String?, subtitleData: String?, temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit, pollenIndexSource: PollenIndexSource?
     ): String? {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
@@ -341,7 +345,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     + temperatureUnit.getValueText(context, it, 0)
                 )
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 
