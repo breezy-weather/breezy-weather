@@ -35,6 +35,7 @@
 
 **Fixes**
 - [Widgets] “Material You - Current” Tap to open app now works again
+- [Widgets] Day + Vertical - To fix a crash when using Android < 12, the clock when displayed as analog will no longer set the correct timezone on Android < 12 (this feature is not available on these versions)
 - Fix wrong number displayed on the daily feels like chart
 - Fix current location keeping old timezone on some sources, when travelling to a different timezone
 - Fix “Stay informed” card stays visible after allowing notifications via settings / app-info

@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
@@ -164,21 +165,25 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             "setTimeZone",
             location.timeZone
         )
-        views.setString(
-            R.id.widget_clock_day_clock_analog_auto,
-            "setTimeZone",
-            location.timeZone
-        )
-        views.setString(
-            R.id.widget_clock_day_clock_analog_light,
-            "setTimeZone",
-            location.timeZone
-        )
-        views.setString(
-            R.id.widget_clock_day_clock_analog_dark,
-            "setTimeZone",
-            location.timeZone
-        )
+
+        // Apply correct timezone on analog clock (only available on Android >= 12)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            views.setString(
+                R.id.widget_clock_day_clock_analog_auto,
+                "setTimeZone",
+                location.timeZone
+            )
+            views.setString(
+                R.id.widget_clock_day_clock_analog_light,
+                "setTimeZone",
+                location.timeZone
+            )
+            views.setString(
+                R.id.widget_clock_day_clock_analog_dark,
+                "setTimeZone",
+                location.timeZone
+            )
+        }
 
         if (viewStyle == "temp") {
             // Date
