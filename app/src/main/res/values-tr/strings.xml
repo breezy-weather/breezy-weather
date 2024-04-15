@@ -104,12 +104,12 @@
     <string name="precipitation_probability">Yağış olasılığı</string>
     <string name="precipitation_duration">Yağış süresi</string>
     <string name="precipitation_ice">Buz</string>
-    <string name="precipitation_intensity_light">Çiseleme</string>
+    <string name="precipitation_intensity_light">Seyrek</string>
     <string name="precipitation_total">Toplam</string>
     <string name="precipitation_thunderstorm">Gök gürültülü fırtına</string>
     <string name="precipitation_rain">Yağmur</string>
     <string name="precipitation_snow">Kar</string>
-    <string name="precipitation_intensity_heavy">Sağanak yağmur</string>
+    <string name="precipitation_intensity_heavy">Sağanak</string>
     <string name="wind_speed">Rüzgar hızı</string>
     <string name="wind_direction_short_N">K</string>
     <string name="wind_direction_short_NE">KD</string>
@@ -424,7 +424,7 @@
     <string name="settings_location_access_switch_summaryOn">Kabul edildi. Kendi konumunuzu konum olarak ekleyebilirsiniz.</string>
     <string name="settings_location_access_background_summaryOn">Etkinleştirildi. Uygulama anlık konumunuz için hava durumu verisini arkaplanda güncelleyebilecek.</string>
     <string name="settings_location_access_background_summaryOff">Arkaplanda anlık konumunuzun güncellenebilmesi için lütfen “Her zaman izin ver” seçeneğini işaretleyin.</string>
-    <string name="settings_location_access_precise_summaryOn">Etkinleştirildi. Cihazın ağ ve GPS sensörü sağlayıcıları aynı anda kullanılıyor.</string>
+    <string name="settings_location_access_precise_summaryOn">Etkinleştirildi. Cihazın ağ sağlayıcısı öncelikli olarak ve çoğu zaman kullanılacaktır, ancak GPS de yedek olarak kullanılabilir.</string>
     <string name="settings_location_access_precise_summaryOff">Konum almada sorun yaşıyorsanız “Tam konumu kullan” seçeneğini etkinleştirin.</string>
     <string name="settings_appearance_dark_mode_locations_title">Konumlar için gündüz / gece modu</string>
     <string name="settings_main_daily_trends_title">Günlük akımlar</string>
@@ -683,4 +683,6 @@
     <string name="settings_background_updates_refresh_never_warning3">Arka plan güncellemelerini kapatmak yerine daha az sıklıkta bir yenileme hızı kullanmayı düşünün, yine de devam etmek istiyorsanız “Devam Et” seçeneğine dokunun.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Uyumlu paket bulunamadı</string>
     <string name="settings_appearance_calendar_title">Alternatif takvim</string>
+    <string name="message_server_unavailable_content">Bu genellikle geçici bir hatadır. Hata devam ederse, lütfen GitHub\'da bir sorun bildirin.</string>
+    <string name="message_server_unavailable_title">Sunucu kullanılamıyor</string>
 </resources>
