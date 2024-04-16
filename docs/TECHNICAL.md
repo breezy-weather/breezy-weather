@@ -15,7 +15,6 @@ breezy.here.key=myapikey
 breezy.mf.jwtKey=myapikey
 breezy.mf.key=myapikey
 breezy.openweather.key=myapikey
-breezy.openweather.oneCallVersion=3.0
 breezy.pirateweather.key=myapikey
 ```
 
@@ -76,7 +75,7 @@ This section keep track of endpoints and when they were last checked.
 
 ## Open-Meteo
 
-*Last checked: 2024-02-13*
+*Last checked: 2024-04-16*
 
 | Endpoint            | Version  | Notes                                                                                                                                                                                                                              |
 |---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -93,7 +92,7 @@ Future additional endpoints/improvements for existing endpoints:
 
 ## AccuWeather
 
-*Last checked: 2024-02-13*
+*Last checked: 2024-04-16*
 
 https://apidev.accuweather.com/developers/
 
@@ -113,7 +112,9 @@ https://apidev.accuweather.com/developers/
 
 ## MET Norway
 
-*Last checked: 2024-02-13*
+*Last checked: 2024-04-16*
+
+https://api.met.no/
 
 | Endpoint          | Version | Notes                                                                                                     |
 |-------------------|---------|-----------------------------------------------------------------------------------------------------------|
@@ -124,22 +125,35 @@ https://apidev.accuweather.com/developers/
 
 Not yet implemented in app:
 
-| Endpoint    | Version | Notes                                                                                                |
-|-------------|---------|------------------------------------------------------------------------------------------------------|
-| MET alerts  | 1.1     | Norway only by country code, there is a GeoJSON format but is heavily discouraged for production use |
+| Endpoint    | Version | Notes                                                                      |
+|-------------|---------|----------------------------------------------------------------------------|
+| MET alerts  | 1.1     | Norway only by country code, wait for v2.0 in May to get alerts by lat,lon |
 
 No location search endpoint exists, it uses Open-Meteo instead.
 
 
+## OpenWeather
+
+*Last checked: 2024-04-16*
+
+https://openweathermap.org/api
+
+| Endpoint                | Version |
+|-------------------------|---------|
+| Current                 | 2.5     |
+| 5 Day / 3 Hour Forecast | 2.5     |
+| Air Pollution           | 2.5     |
+
+
 ## Pirate Weather
 
-*Last checked: 2024-02-13*
+*Last checked: 2024-04-16*
 
-See: https://github.com/alexander0042/pirateweather/
+https://github.com/Pirate-Weather/pirateweather
 
-| Endpoint    | Version |
-|-------------|---------|
-| Forecast    | v1.5.6  |
+| Endpoint | Version | Notes                  |
+|----------|---------|------------------------|
+| Forecast | v1.5.6  | V2.0 is in pre-release |
 
 We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
 
@@ -176,9 +190,29 @@ Not used:
 Uses Open-Meteo for location search.
 
 
+## DMI
+
+*To be documented*
+
+
+## China
+
+*Legacy source, undocumented*
+
+
+## National Weather Service (NWS)
+
+*To be documented*
+
+
+## GeoSphere Austria
+
+*To be documented*
+
+
 ## Bright Sky
 
-*Last checked: 2024-02-13*
+*Last checked: 2024-04-16*
 
 | Endpoint        | Version |
 |-----------------|---------|
@@ -196,6 +230,11 @@ Uses Open-Meteo for location search.
 | Location    | v2      |
 
 
+## Israel Meteorological Service
+
+*To be documented*
+
+
 ## SMHI
 
 *Last checked: 2024-01-26*
@@ -205,21 +244,6 @@ Uses Open-Meteo for location search.
 | Weather  | 2       |
 
 
-## DMI
-
-*To be documented*
-
-
 ## MET Éireann
 
 *To be documented*
-
-
-## National Weather Service (NWS)
-
-*To be documented*
-
-
-## China
-
-*Legacy source, undocumented*
