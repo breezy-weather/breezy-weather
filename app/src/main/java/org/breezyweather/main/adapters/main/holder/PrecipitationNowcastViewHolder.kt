@@ -34,30 +34,28 @@ import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
-import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
-import com.patrykandpatrick.vico.compose.chart.CartesianChartHost
-import com.patrykandpatrick.vico.compose.chart.decoration.rememberHorizontalLine
-import com.patrykandpatrick.vico.compose.chart.layer.rememberColumnCartesianLayer
-import com.patrykandpatrick.vico.compose.chart.rememberCartesianChart
-import com.patrykandpatrick.vico.compose.chart.scroll.rememberVicoScrollState
-import com.patrykandpatrick.vico.compose.component.fixed
-import com.patrykandpatrick.vico.compose.component.marker.rememberMarkerComponent
-import com.patrykandpatrick.vico.compose.component.rememberLineComponent
-import com.patrykandpatrick.vico.compose.component.rememberShapeComponent
-import com.patrykandpatrick.vico.compose.component.rememberTextComponent
-import com.patrykandpatrick.vico.compose.component.shape.markerCorneredShape
-import com.patrykandpatrick.vico.compose.dimensions.dimensionsOf
-import com.patrykandpatrick.vico.core.chart.layer.ColumnCartesianLayer
-import com.patrykandpatrick.vico.core.chart.values.AxisValueOverrider
-import com.patrykandpatrick.vico.core.chart.values.ChartValues
-import com.patrykandpatrick.vico.core.component.shape.Shapes
-import com.patrykandpatrick.vico.core.component.shape.cornered.Corner
-import com.patrykandpatrick.vico.core.component.text.TextComponent
-import com.patrykandpatrick.vico.core.component.text.VerticalPosition
-import com.patrykandpatrick.vico.core.marker.Marker
-import com.patrykandpatrick.vico.core.marker.MarkerLabelFormatter
-import com.patrykandpatrick.vico.core.model.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.model.columnSeries
+import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottomAxis
+import com.patrykandpatrick.vico.compose.cartesian.decoration.rememberHorizontalLine
+import com.patrykandpatrick.vico.compose.cartesian.layer.rememberColumnCartesianLayer
+import com.patrykandpatrick.vico.compose.cartesian.marker.rememberDefaultCartesianMarker
+import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
+import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
+import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
+import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
+import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
+import com.patrykandpatrick.vico.compose.common.of
+import com.patrykandpatrick.vico.core.cartesian.CartesianDrawContext
+import com.patrykandpatrick.vico.core.cartesian.data.AxisValueOverrider
+import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
+import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
+import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerValueFormatter
+import com.patrykandpatrick.vico.core.common.Dimensions
+import com.patrykandpatrick.vico.core.common.VerticalPosition
+import com.patrykandpatrick.vico.core.common.component.TextComponent
+import com.patrykandpatrick.vico.core.common.shape.Shape
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
@@ -78,7 +76,6 @@ import kotlin.math.max
 /**
  * TODO:
  * - Improve marker: make always showing, initialize the marker on "current time"
- * - Define better values for light/medium/heavy precipitation
  * - Check what's the best way to make thick bars (currently we just put a very high random value)
  */
 class PrecipitationNowcastViewHolder(
@@ -200,7 +197,7 @@ class PrecipitationNowcastViewHolder(
         val axisValueOverrider = AxisValueOverrider.fixed(
             maxY = maxY
         )
-        val marker = rememberMarkerComponent(
+        val marker = rememberDefaultCartesianMarker(
             label = rememberTextComponent(
                 color = Color(
                     MainThemeColorProvider.getColor(
@@ -208,7 +205,7 @@ class PrecipitationNowcastViewHolder(
                     )
                 ),
                 background = rememberShapeComponent(
-                    Shapes.markerCorneredShape(Corner.FullyRounded),
+                    Shape.Pill,
                     Color(
                         MainThemeColorProvider.getColor(
                             location, androidx.appcompat.R.attr.colorPrimary
@@ -219,14 +216,14 @@ class PrecipitationNowcastViewHolder(
                     dy = LABEL_BACKGROUND_SHADOW_DY_DP,
                     applyElevationOverlay = true,
                 ),
-                padding = dimensionsOf(
+                padding = Dimensions.of(
                     dimensionResource(R.dimen.normal_margin),
                     dimensionResource(R.dimen.little_margin)
                 ),
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
-                minWidth = TextComponent.MinWidth.fixed(40.dp),
+                minWidth = TextComponent.MinWidth.fixed(40f),
             ),
-            labelFormatter = MarkerLabelFormatterMinutelyDecorator(
+            valueFormatter = MarkerLabelFormatterMinutelyDecorator(
                 minutely, location, context, hasOnlyThresholdsValues
             )
         )
@@ -326,40 +323,40 @@ class PrecipitationNowcastViewHolder(
 private class MarkerLabelFormatterMinutelyDecorator(
     private val minutely: List<Minutely>,
     private val location: Location,
-    private val context: Context,
+    private val androidContext: Context,
     private val hasOnlyThresholdValues: Boolean
-) : MarkerLabelFormatter {
-    override fun getLabel(
-        markedEntries: List<Marker.EntryModel>,
-        chartValues: ChartValues
+) : CartesianMarkerValueFormatter {
+    override fun format(
+        context: CartesianDrawContext,
+        targets: List<CartesianMarker.Target>
     ): CharSequence {
-        val model = markedEntries.first()
-        val startTime = minutely[model.entry.x.toInt()].date.getFormattedTime(location, context, context.is12Hour)
-        val endTime = (minutely[model.entry.x.toInt()].date.time + 5.times(60).times(1000))
-            .toDate().getFormattedTime(location, context, context.is12Hour)
+        val model = targets.first()
+        val startTime = minutely[model.x.toInt()].date.getFormattedTime(location, androidContext, androidContext.is12Hour)
+        val endTime = (minutely[model.x.toInt()].date.time + 5.times(60).times(1000))
+            .toDate().getFormattedTime(location, androidContext, androidContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
-            when (minutely[model.entry.x.toInt()].precipitationIntensity!!) {
-                0.0 -> context.getString(R.string.precipitation_none)
-                Precipitation.PRECIPITATION_HOURLY_LIGHT -> context.getString(R.string.precipitation_intensity_light)
-                Precipitation.PRECIPITATION_HOURLY_MEDIUM -> context.getString(R.string.precipitation_intensity_medium)
-                Precipitation.PRECIPITATION_HOURLY_HEAVY -> context.getString(R.string.precipitation_intensity_heavy)
+            when (minutely[model.x.toInt()].precipitationIntensity!!) {
+                0.0 -> androidContext.getString(R.string.precipitation_none)
+                Precipitation.PRECIPITATION_HOURLY_LIGHT -> androidContext.getString(R.string.precipitation_intensity_light)
+                Precipitation.PRECIPITATION_HOURLY_MEDIUM -> androidContext.getString(R.string.precipitation_intensity_medium)
+                Precipitation.PRECIPITATION_HOURLY_HEAVY -> androidContext.getString(R.string.precipitation_intensity_heavy)
                 else -> SettingsManager
-                    .getInstance(context)
+                    .getInstance(androidContext)
                     .precipitationIntensityUnit
-                    .getValueText(context, minutely[model.entry.x.toInt()].precipitationIntensity!!)
+                    .getValueText(androidContext, minutely[model.x.toInt()].precipitationIntensity!!)
             }
         } else {
             SettingsManager
-                .getInstance(context)
+                .getInstance(androidContext)
                 .precipitationIntensityUnit
-                .getValueText(context, minutely[model.entry.x.toInt()].precipitationIntensity!!)
+                .getValueText(androidContext, minutely[model.x.toInt()].precipitationIntensity!!)
         }
 
         return SpannableStringBuilder().append(
             startTime,
             "-",
             endTime,
-            context.getString(R.string.colon_separator),
+            androidContext.getString(R.string.colon_separator),
             quantityFormatted
         )
     }
