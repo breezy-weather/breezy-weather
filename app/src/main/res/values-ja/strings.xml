@@ -303,7 +303,7 @@
     <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
     <string name="settings_main_daily_trends_title">日時予報</string>
     <string name="about_contributors">貢献者</string>
-    <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別特別説明</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別の特別説明</string>
     <string name="precipitation_nowcasting">毎分降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定する</string>
