@@ -172,7 +172,7 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
         val calendar = CalendarHelper.getAlternateCalendarSetting(context)
         if (calendar != null) {
             val locale = context.currentLocale
-            val uLocale = ULocale("${locale.toLanguageTag()}@calendar=${calendar}")
+            val uLocale = ULocale("${locale.toLanguageTag()}@${CalendarHelper.getAlterCalendarLocale(calendar)}")
             SimpleDateFormat(
                 DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM"),
                 uLocale

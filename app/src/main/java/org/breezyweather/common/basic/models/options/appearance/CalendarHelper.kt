@@ -47,6 +47,9 @@ object CalendarHelper {
         LocalePreferences.CalendarType.ISLAMIC_UMALQURA,
         LocalePreferences.CalendarType.PERSIAN
     )
+    private val calendarAdditionalLocale = mapOf(
+        LocalePreferences.CalendarType.CHINESE to ";numbers=hanidays"
+    )
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private fun getDisplayName(
@@ -114,6 +117,10 @@ object CalendarHelper {
         return if (supportedCalendars.contains(alternateCalendar)) {
             alternateCalendar
         } else null
+    }
+    
+    fun getAlterCalendarLocale(alternateCalendar: String): String {
+        return "calendar=${alternateCalendar}${calendarAdditionalLocale.getOrDefault(alternateCalendar, "")}"
     }
 
     data class AlternateCalendar(
