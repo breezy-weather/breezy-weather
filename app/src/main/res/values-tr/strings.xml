@@ -683,6 +683,6 @@
     <string name="settings_background_updates_refresh_never_warning3">Arka plan güncellemelerini kapatmak yerine daha az sıklıkta bir yenileme hızı kullanmayı düşünün, yine de devam etmek istiyorsanız “Devam Et” seçeneğine dokunun.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Uyumlu paket bulunamadı</string>
     <string name="settings_appearance_calendar_title">Alternatif takvim</string>
-    <string name="message_server_unavailable_content">Bu genellikle geçici bir hatadır. Hata devam ederse, lütfen GitHub\'da bir sorun bildirin.</string>
+    <string name="message_server_unavailable_content">Bu genellikle geçici bir hatadır. Hata devam ederse, lütfen GitHub’da bir sorun bildirin.</string>
     <string name="message_server_unavailable_title">Sunucu kullanılamıyor</string>
 </resources>

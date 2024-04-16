@@ -4,6 +4,7 @@
 - Fix crash when sending data to Gadgetbridge in some cases
 
 **Translations**
+- Translations updated
 - Fix formatting of Chinese calendar day of the month (@CoelacanthusHex)
 
 
