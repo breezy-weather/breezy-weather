@@ -33,7 +33,8 @@ import java.util.Locale
 
 object CalendarHelper {
 
-    private const val CALENDAR_EXTENSION_TYPE = "ca"
+    const val CALENDAR_EXTENSION_TYPE = "ca"
+    private const val NUMBERS_EXTENSION_TYPE = "nu"
     private const val DISPLAY_KEYWORD_OF_CALENDAR = "calendar"
 
     private val supportedCalendars = listOf(
@@ -81,7 +82,15 @@ object CalendarHelper {
             }
             AlternateCalendar(
                 id = it,
-                displayName = displayName
+                displayName = displayName,
+                additionalParams = when (it) {
+                    "chinese" -> mapOf(NUMBERS_EXTENSION_TYPE to "hanidays")
+                    else -> null
+                },
+                specificPattern = when (it) {
+                    "chinese" -> "MMMd"
+                    else -> null
+                }
             )
         }.sortedBy {
             it.displayName
@@ -118,6 +127,8 @@ object CalendarHelper {
 
     data class AlternateCalendar(
         val id: String,
-        val displayName: String
+        val displayName: String,
+        val additionalParams: Map<String, String>? = null,
+        val specificPattern: String? = null
     )
 }

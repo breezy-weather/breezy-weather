@@ -169,16 +169,29 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
     location: Location? = null, context: Context
 ): String? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        val calendar = CalendarHelper.getAlternateCalendarSetting(context)
-        if (calendar != null) {
-            val locale = context.currentLocale
-            val uLocale = ULocale("${locale.toLanguageTag()}@calendar=${calendar}")
-            SimpleDateFormat(
-                DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM"),
-                uLocale
-            ).apply {
-                timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
-            }.format(this)
+        val calendarId = CalendarHelper.getAlternateCalendarSetting(context)
+        if (calendarId != null) {
+            val alternateCalendar = CalendarHelper.getCalendars(context).firstOrNull { it.id == calendarId }
+            if (alternateCalendar != null) {
+                val locale = context.currentLocale
+                val uLocale = ULocale.Builder().apply {
+                    setLanguageTag(locale.toLanguageTag())
+                    setUnicodeLocaleKeyword(CalendarHelper.CALENDAR_EXTENSION_TYPE, calendarId)
+                    alternateCalendar.additionalParams?.forEach {
+                        setUnicodeLocaleKeyword(it.key, it.value)
+                    }
+                }.build()
+                SimpleDateFormat(
+                    if (!alternateCalendar.specificPattern.isNullOrEmpty()) {
+                        alternateCalendar.specificPattern
+                    } else {
+                        DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM")
+                    },
+                    uLocale
+                ).apply {
+                    timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
+                }.format(this)
+            } else null
         } else null
     } else null
 }

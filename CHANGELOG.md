@@ -1,3 +1,9 @@
+# Version 5.2.1 (not yet released)
+
+**Fixes**
+- Fix formatting of Chinese calendar day (@CoelacanthusHex)
+
+
 # Version 5.2.0 (2024-04-15)
 
 **IMPORTANT changes**
