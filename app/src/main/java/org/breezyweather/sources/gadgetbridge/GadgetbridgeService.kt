@@ -27,7 +27,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.getPlace
@@ -87,9 +86,9 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             currentHumidity = current?.relativeHumidity?.roundToInt(),
             windSpeed = current?.wind?.speed?.let {
                 SpeedUnit.KPH.convertUnit(it)
-            }?.roundDecimals(1)?.toFloat(),
+            }?.toFloat(),
             windDirection = current?.wind?.degree?.roundToInt(),
-            uvIndex = current?.uV?.index?.roundDecimals(1)?.toFloat(),
+            uvIndex = current?.uV?.index?.toFloat(),
 
             todayMaxTemp = today?.day?.temperature?.temperature?.roundCelsiusToKelvin(),
             todayMinTemp = today?.night?.temperature?.temperature?.roundCelsiusToKelvin(),
@@ -97,9 +96,9 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
 
             dewPoint = current?.dewPoint?.roundCelsiusToKelvin(),
-            pressure = current?.pressure?.roundDecimals(1)?.toFloat(),
+            pressure = current?.pressure?.toFloat(),
             cloudCover = current?.cloudCover,
-            visibility = current?.visibility?.roundDecimals(1)?.toFloat(),
+            visibility = current?.visibility?.toFloat(),
 
             sunRise = today?.sun?.riseDate?.time?.div(1000)?.toInt(),
             sunSet = today?.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -140,12 +139,12 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
         return GadgetbridgeAirQuality(
             aqi = aqi,
-            co = airQuality.cO?.roundDecimals(2)?.toFloat(),
-            no2 = airQuality.nO2?.roundDecimals(2)?.toFloat(),
-            o3 = airQuality.o3?.roundDecimals(2)?.toFloat(),
-            pm10 = airQuality.pM10?.roundDecimals(2)?.toFloat(),
-            pm25 = airQuality.pM25?.roundDecimals(2)?.toFloat(),
-            so2 = airQuality.sO2?.roundDecimals(2)?.toFloat(),
+            co = airQuality.cO?.toFloat(),
+            no2 = airQuality.nO2?.toFloat(),
+            o3 = airQuality.o3?.toFloat(),
+            pm10 = airQuality.pM10?.toFloat(),
+            pm25 = airQuality.pM25?.toFloat(),
+            so2 = airQuality.sO2?.toFloat(),
             coAqi = airQuality.getIndex(PollutantIndex.CO),
             no2Aqi = airQuality.getIndex(PollutantIndex.NO2),
             o3Aqi = airQuality.getIndex(PollutantIndex.O3),
@@ -166,7 +165,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 humidity = hour.relativeHumidity?.roundToInt(),
                 windSpeed = hour.wind?.speed?.let {
                     SpeedUnit.KPH.convertUnit(it)
-                }?.roundDecimals(1)?.toFloat(),
+                }?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
             )
         }

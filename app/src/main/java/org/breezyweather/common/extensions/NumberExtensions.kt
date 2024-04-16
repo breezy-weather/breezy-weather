@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalLayoutDirection
+import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -33,8 +34,10 @@ operator fun Double?.plus(other: Double?): Double? = if (this != null || other !
     (this ?: 0.0) + (other ?: 0.0)
 } else null
 
-fun Double.roundDecimals(decimals: Int): Double {
-    return this.toBigDecimal().setScale(decimals, RoundingMode.HALF_EVEN).toDouble()
+fun Double.roundDecimals(decimals: Int): Double? {
+    return if (!this.isNaN()) {
+        BigDecimal(this).setScale(decimals, RoundingMode.HALF_EVEN).toDouble()
+    } else null
 }
 
 fun Double.format(decimals: Int): String {
