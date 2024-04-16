@@ -59,9 +59,9 @@
     <string name="wind_strength_10">Silná vichřice</string>
     <string name="wind_strength_11">Mohutná vichřice</string>
     <string name="wind_strength_12">Orkán</string>
-    <string name="precipitation_intensity_light">Slabý</string>
+    <string name="precipitation_intensity_light">Slabé</string>
     <string name="precipitation_intensity_medium">Střední</string>
-    <string name="precipitation_intensity_heavy">Silný</string>
+    <string name="precipitation_intensity_heavy">Silné</string>
     <string name="ephemeris_moon_phase_new_moon">Nový měsíc</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorustající čtvrtina</string>
     <string name="ephemeris_moon_phase_first_quarter">Dorůstající polovina</string>
@@ -76,7 +76,7 @@
     <string name="pollen_tree">Pyl</string>
     <string name="daily_forecast">Denní předpověď</string>
     <string name="hourly_forecast">Hodinová předpověď</string>
-    <string name="air_quality">Kvalita vzduchu</string>
+    <string name="air_quality">Kvalita ovzduší</string>
     <string name="pollen">Alergeny</string>
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Slunce a měsíc</string>
@@ -303,7 +303,7 @@
     <string name="unit_ppcm_voice">Na metr krychlový</string>
     <string name="settings_notifications">Oznámení</string>
     <string name="location_message_reverse_geocoding_failed">Zdroji počasí se nepodařilo najít odpovídající místo</string>
-    <string name="settings_background_updates_worker_info_title">Informace pro pracovníky</string>
+    <string name="settings_background_updates_worker_info_title">Informace o procesech</string>
     <string name="settings_location_access_switch_summaryOff">Pokud chcete mít možnost přidat svou aktuální polohu jako polohu, povolte to.</string>
     <string name="settings_location_access_background_title">Přístup k poloze na pozadí</string>
     <string name="settings_location_access_switch_summaryOn">Povoleno. Jako umístění můžete přidat svou aktuální polohu.</string>
@@ -356,7 +356,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nepodařilo se otevřít nastavení zařízení.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimalizace baterie je již vypnutá.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Oznámení pro předpověď na další den</string>
-    <string name="settings_debug_dump_crash_logs_title">Sdílení protokolů o pádu</string>
+    <string name="settings_debug_dump_crash_logs_title">Sdílet protokoly o pádech</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_km">km</string>
     <string name="notification_update_error">%d aktualizace se nezdařila/y</string>
@@ -370,7 +370,7 @@
     <string name="uv_index_8_10">Velmi vysoký</string>
     <string name="location_results_by">Výsledky polohy podle %s</string>
     <string name="air_quality_level_1">Vynikající</string>
-    <string name="air_quality_level_2_description">Kvalita vzduchu je obecně přijatelná pro většinu jedinců. Citlivé skupiny lidí ovšem mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
+    <string name="air_quality_level_2_description">Kvalita ovzduší je obecně přijatelná pro většinu jedinců. Citlivé skupiny lidí ovšem mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
     <string name="air_quality_no2_info_introduction">Oxid dusičitý (NO₂) je dusivý, jedovatý červenohnědý plyn s charakteristickým štiplavým, ostrým zápachem.</string>
     <string name="action_share">Sdílet</string>
     <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
@@ -436,7 +436,7 @@
     <string name="wind_direction_short_W">Z</string>
     <string name="uv_alert_level">Upozornění</string>
     <string name="air_quality_level_3">Špatná</string>
-    <string name="air_quality_level_3_description">Vzduch je vysoce znečištěný a je nezdravý pro citlivé skupiny lidí. Snižte čas strávený venku, pokud cítíte symptomy jako obtížné dýchání nebo podrážděný krk.</string>
+    <string name="air_quality_level_3_description">Ovzduší je vysoce znečištěno a je nezdravé pro citlivé skupiny lidí. Snižte čas strávený venku, pokud cítíte symptomy jako obtížné dýchání nebo podrážděný krk.</string>
     <string name="air_quality_level_4">Nezdravá</string>
     <string name="air_quality_level_5">Velmi nezdravá</string>
     <string name="air_quality_level_5_description">Zdravotní účinky pocítí citlivé skupiny okamžitě a měly by se vyhnout venkovním aktivitám. Zdraví jedinci pravděpodobně pocítí potíže s dýcháním a podráždění hrdla; zvažte pobyt v uzavřených prostorách a přeložte venkovní aktivity.</string>
@@ -473,7 +473,7 @@
     <string name="settings_main_section_displayed_data">Zobrazené údaje</string>
     <string name="settings_main_cards_title">Karty</string>
     <string name="settings_main_daily_trends_title">Denní trendy</string>
-    <string name="settings_main_header_details_title">Podrobnosti v hlavičce</string>
+    <string name="settings_main_header_details_title">Podrobnosti v záhlaví</string>
     <string name="settings_main_section_options">Možnosti</string>
     <string name="settings_notifications_precipitations_title">Oznámení o srážkách</string>
     <string name="settings_widgets_live_wallpaper_summary">Nastavit animaci počasí jako tapetu</string>
@@ -487,7 +487,7 @@
     <string name="unit_mb">mb</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_hpa">hPa</string>
-    <string name="air_quality_level_1_description">Kvalita vzduchu je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
+    <string name="air_quality_level_1_description">Kvalita ovzduší je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
     <string name="weather_api_unauthorized_title">Neautorizovaný přístup k API</string>
     <string name="widget_material_you_current">Material You - Aktuální</string>
@@ -495,7 +495,7 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_index">Index kvality ovzduší</string>
-    <string name="air_quality_pm_explanations_introduction">Pevné částice neboli atmosférické hmotné částice jsou mikroskopické částice pevných nebo kapalných látek suspendované ve vzduchu.</string>
+    <string name="air_quality_pm_explanations_introduction">Pevné částice neboli atmosférické hmotné částice jsou mikroskopické částice pevných nebo kapalných látek suspendované v ovzduší.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm25">PM2.5</string>
@@ -531,7 +531,7 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates_section_troubleshoot">Řešení potíží</string>
-    <string name="settings_background_updates_dont_kill_my_app_title">Specifické pokyny výrobce</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">Pokyny pro specifické výrobce</string>
     <string name="settings_location">Poloha</string>
     <string name="settings_location_summary">Nastavení služeb určování polohy</string>
     <string name="temperature_degree_day_heating">Vytápěcí denostupeň</string>
@@ -568,7 +568,7 @@
     <string name="common_weather_text_rain_snow_mixed">Směs deště a sněhu</string>
     <string name="settings_weather_source_portal">Portál</string>
     <string name="action_help_me_choose">Pomozte mi vybrat</string>
-    <string name="settings_source_api_key">API klíč</string>
+    <string name="settings_source_api_key">Klíč API</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Usazování mlhy</string>
     <string name="weather_message_unsupported_feature">Zdroj nepodporuje jednu z požadovaných funkcí</string>
     <string name="about_contact">Kontakt</string>
@@ -594,7 +594,7 @@
     <string name="settings_weather_source_main">Hlavní zdroj</string>
     <string name="settings_weather_sources_per_location_summary">Přizpůsobte zdroj dat o počasí použitý pro toto umístění</string>
     <string name="settings_appearance_dark_mode_locations_title">Denní / noční režim pro umístění</string>
-    <string name="settings_main_threshold_lines_on_charts">Prahové čáry na grafech</string>
+    <string name="settings_main_threshold_lines_on_charts">Prahové linky na grafech</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">na Beaufortově stupnici</string>
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
@@ -646,8 +646,8 @@
     <string name="location_delete_location_dialog_title">Odstranit umístění?</string>
     <string name="location_delete_location_dialog_message">Chystáte se odstranit „%s“ z vašeho seznamu uložených umístění.</string>
     <string name="widget_label_hide_header">Skrýt záhlaví</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Aktuální index kvality vzduchu</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Index kvality vzduchu pro dnešek, zítřek, …, za 4 dny</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Aktuální index kvality ovzduší</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Index kvality ovzduší pro dnešek, zítřek, …, za 4 dny</string>
     <string name="pollen_castanea">Kaštanovník</string>
     <string name="pollen_corylus">Líska</string>
     <string name="pollen_cupressaceae_taxaceae">Cypřiš</string>
@@ -677,7 +677,7 @@
     <string name="settings_source_instance_geocoding">Geokódovací instance</string>
     <string name="settings_source_instance">Instance</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance předpovědi</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">Instance kvality vzduchu</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Instance kvality ovzduší</string>
     <string name="settings_widgets_broadcast_title">Posílat data o počasí ostatním aplikacím</string>
     <string name="message_invalid_incomplete_data">Ze serveru byla obdržena neplatná nebo neúplná data</string>
     <string name="settings_per_location_theme">Motiv</string>
