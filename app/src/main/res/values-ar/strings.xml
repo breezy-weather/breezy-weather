@@ -686,4 +686,5 @@
     <string name="settings_appearance_calendar_title">التقويم البديل</string>
     <string name="message_server_unavailable_title">الخادم غير متاح</string>
     <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يرجى الإبلاغ عن المشكلة على GitHub.</string>
+    <string name="action_edit_location">تعديل هذا الموقع</string>
 </resources>
