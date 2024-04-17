@@ -664,7 +664,7 @@
     <string name="settings_background_updates_refresh_never_warning2">بروزرسانی در پس‌زمینه پردازشی سبک است: نوسازی تنها برای اولین مکان با نرخ زمانی انتخاب شده شما، و دومین مکان تنها اگر بهشان نیاز داشته باشید، یک بار در روز نوسازی خواهند شد. این فرایند برای باتری بهینه شده و شما نباید بیش از ۵ مگابایت در ماه برای آن مصرف کنید.</string>
     <string name="settings_appearance_calendar_title">تقویم جایگزین</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">بسته سازگاری پیدا نشد</string>
-    <string name="settings_background_updates_refresh_never_warning3">استفاده از تعداد دفعات کمتر نوسازی را به جای خاموش کردن بروزرسانی در پس‌زمینه را در نظر داشته باشید؛ اگر هنوز می‌خواهید پیش بروید بر روی \"ادامه\" ضربه بزنید.</string>
+    <string name="settings_background_updates_refresh_never_warning3">استفاده از تعداد دفعات کمتر نوسازی را به جای خاموش کردن بروزرسانی در پس‌زمینه را در نظر داشته باشید؛ اگر هنوز می‌خواهید پیش بروید بر روی ”ادامه“ ضربه بزنید.</string>
     <string name="settings_source_instance_invalid">نشانی اینترنتی https باید با یک / در انتها تمام شود</string>
     <string name="settings_invalid_syntax">syntax نامعتبر</string>
     <string name="alert">هشدار</string>

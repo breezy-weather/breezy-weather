@@ -171,6 +171,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("fa"), "Aspen", weblate = "olden"),
         TranslatorItem(arrayOf("fa"), "Armin Bashizade", github = "arminbashizade"),
         TranslatorItem(arrayOf("fa"), "Alireza Rashidi", github = "alr86"),
+        TranslatorItem(arrayOf("fa"), "Monirzadeh", github = "Monirzadeh"),
         TranslatorItem(arrayOf("fr", "en", "eo"), "Julien Papasian", github = "papjul"),
         TranslatorItem(arrayOf("fr"), "Benjamin Tourrel", mail = "polo_naref@hotmail.fr"),
         TranslatorItem(arrayOf("fr"), "Nam", github = "ldmpub"),
