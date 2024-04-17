@@ -434,7 +434,7 @@
     <string name="settings_main_background_animation_disabled">Вимкнено</string>
     <string name="settings_location_access_background_summaryOff">Будь ласка, увімкніть “Дозволити у фоні”, щоб мати фонове оновлення для вашого поточного місцезнаходження.</string>
     <string name="settings_location_access_precise_summaryOff">Увімкніть «Використовувати точне місцезнаходження», якщо у вас виникли проблеми з визначенням місцезнаходження.</string>
-    <string name="settings_notifications_alerts_title">Повідомлення про погодні попередження</string>
+    <string name="settings_notifications_alerts_title">Повідомлення про суворі погодні умови</string>
     <string name="settings_notifications_precipitations_title">Повідомлення про опади</string>
     <string name="settings_widgets_live_wallpaper_title">Живі шпалери</string>
     <string name="settings_widgets_live_wallpaper_summary">Встановіть анімацію погоди як шпалери</string>
