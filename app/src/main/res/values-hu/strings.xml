@@ -433,7 +433,7 @@
     <string name="settings_main_threshold_lines_on_charts">Küszöbértékvonalak a diagramon</string>
     <string name="settings_main_background_animation_disabled">Letiltva</string>
     <string name="settings_main_background_animation_enabled">Engedélyezve</string>
-    <string name="settings_notifications_alerts_title">Értesítések riasztásokról</string>
+    <string name="settings_notifications_alerts_title">Értesítések a szélsőséges időjárási riasztásokról</string>
     <string name="settings_widgets_monochrome_icons_title">Monokróm ikonok</string>
     <string name="settings_widgets">Modulok és élő háttérkép</string>
     <string name="settings_widgets_section_notification_widget">Értesítési modul</string>
