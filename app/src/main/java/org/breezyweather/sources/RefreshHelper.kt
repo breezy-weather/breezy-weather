@@ -50,6 +50,7 @@ import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.shortcutManager
@@ -155,7 +156,14 @@ class RefreshHelper @Inject constructor(
                     return LocationResult(
                         currentLocation,
                         errors = currentErrors + listOf(
-                            RefreshError(getRequestErrorType(e, RefreshErrorType.REVERSE_GEOCODING_FAILED), weatherService.name)
+                            RefreshError(
+                                getRequestErrorType(
+                                    context,
+                                    e,
+                                    RefreshErrorType.REVERSE_GEOCODING_FAILED
+                                ),
+                                weatherService.name
+                            )
                         )
                     )
                 }
@@ -224,7 +232,10 @@ class RefreshHelper @Inject constructor(
             LocationResult(
                 location,
                 errors = listOf(
-                    RefreshError(getRequestErrorType(e, RefreshErrorType.LOCATION_FAILED), locationService.name)
+                    RefreshError(
+                        getRequestErrorType(context, e, RefreshErrorType.LOCATION_FAILED),
+                        locationService.name
+                    )
                 )
             )
         }
@@ -388,7 +399,14 @@ class RefreshHelper @Inject constructor(
                     return WeatherResult(
                         location.weather,
                         listOf(
-                            RefreshError(getRequestErrorType(e, RefreshErrorType.WEATHER_REQ_FAILED), service.name)
+                            RefreshError(
+                                getRequestErrorType(
+                                    context,
+                                    e,
+                                    RefreshErrorType.WEATHER_REQ_FAILED
+                                ),
+                                service.name
+                            )
                         )
                     )
                 }
@@ -488,7 +506,11 @@ class RefreshHelper @Inject constructor(
                                     e.printStackTrace()
                                     errors.add(
                                         RefreshError(
-                                            getRequestErrorType(e, RefreshErrorType.SECONDARY_WEATHER_FAILED),
+                                            getRequestErrorType(
+                                                context,
+                                                e,
+                                                RefreshErrorType.SECONDARY_WEATHER_FAILED
+                                            ),
                                             secondaryService.name
                                         )
                                     )
@@ -614,14 +636,16 @@ class RefreshHelper @Inject constructor(
     }
 
     private fun getRequestErrorType(
+        context: Context,
         e: Throwable,
         defaultRefreshError: RefreshErrorType
     ): RefreshErrorType {
-        return when (e) {
+        val refreshErrorType = when (e) {
             is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
             // Can mean different things but most of the time, it’s a network issue:
             is UnknownHostException -> RefreshErrorType.NETWORK_UNAVAILABLE
             is HttpException -> {
+                LogHelper.log(msg = "HttpException ${e.code()}")
                 when (e.code()) {
                     401, 403 -> RefreshErrorType.API_UNAUTHORIZED
                     409, 429 -> RefreshErrorType.API_LIMIT_REACHED
@@ -655,6 +679,10 @@ class RefreshHelper @Inject constructor(
                 defaultRefreshError
             }
         }
+
+        LogHelper.log(msg = "Refresh error: ${context.getStringByLocale(refreshErrorType.shortMessage)}")
+
+        return refreshErrorType
     }
 
     fun requestSearchLocations(

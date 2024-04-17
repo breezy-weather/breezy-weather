@@ -30,8 +30,10 @@ import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
+import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.sources.RefreshHelper
@@ -66,6 +68,7 @@ class SearchActivityRepository @Inject internal constructor(
                         // Can mean different things but most of the time, it’s a network issue:
                         is UnknownHostException -> RefreshErrorType.NETWORK_UNAVAILABLE
                         is HttpException -> {
+                            LogHelper.log(msg = "HttpException ${e.code()}")
                             when (e.code()) {
                                 401, 403 -> RefreshErrorType.API_UNAUTHORIZED
                                 409, 429 -> RefreshErrorType.API_LIMIT_REACHED
@@ -91,6 +94,7 @@ class SearchActivityRepository @Inject internal constructor(
                             RefreshErrorType.LOCATION_SEARCH_FAILED
                         }
                     }
+                    LogHelper.log(msg = "Refresh error: ${context.getStringByLocale(refreshErrorType.shortMessage)}")
                     callback(
                         Pair<List<Location>, RefreshErrorType?>(emptyList(), refreshErrorType),
                         true

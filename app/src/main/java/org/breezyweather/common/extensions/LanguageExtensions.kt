@@ -16,10 +16,13 @@
 
 package org.breezyweather.common.extensions
 
+import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
+
 
 val Context.currentLocale: Locale
     get() {
@@ -106,4 +109,10 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
             firstChar.titlecase(locale)
         } else firstChar.toString()
     }
+}
+
+fun Context.getStringByLocale(id: Int, locale: Locale = Locale("en", "001")): String {
+    val configuration = Configuration(resources.configuration)
+    configuration.setLocale(locale)
+    return createConfigurationContext(configuration).resources.getString(id)
 }
