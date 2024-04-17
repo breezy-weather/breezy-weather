@@ -183,11 +183,11 @@
     <string name="weather_kind_thunder">رعد</string>
     <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
     <string name="weather_kind_wind">رياح</string>
-    <string name="unit_kph">كم/س</string>
-    <string name="unit_mps">م/س</string>
+    <string name="unit_kph">كم\\س</string>
+    <string name="unit_mps">م\\س</string>
     <string name="unit_kn">عق</string>
-    <string name="unit_mph">ميل/س</string>
-    <string name="unit_ftps">قدم/س</string>
+    <string name="unit_mph">ميل\\س</string>
+    <string name="unit_ftps">قدم\\س</string>
     <string name="unit_mm">ملم</string>
     <string name="unit_in">إنش</string>
     <string name="unit_lpsqm">لتر/م²</string>
@@ -208,7 +208,7 @@
     <string name="unit_atm">ضغط جوي</string>
     <string name="unit_mmhg">ملي متر زئبق</string>
     <string name="unit_inhg">بوصة من الزئبق</string>
-    <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
+    <string name="unit_kgfpsqcm">كغم\\سم²</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -254,7 +254,7 @@
     <string name="settings_notifications">الإشعارات</string>
     <string name="settings_widgets_notification_style_title">‎الأسلوب</string>
     <string name="settings_widgets_notification_feels_like_switch">استخدام تبدو وكأنها درجة حرارة</string>
-    <string name="unit_mugpcum">μg/m³</string>
+    <string name="unit_mugpcum">مكغ\\م³</string>
     <string name="settings_widgets_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
     <string name="unit_kph_voice">كيلومتر في الساعة</string>
     <string name="unit_inph_voice">بوصة في الساعة</string>
@@ -299,7 +299,7 @@
     <string name="widget_week_style_3_days">3 أيام</string>
     <string name="unit_lpsqmph">لتر / م² / ساعة</string>
     <string name="unit_cm">سم</string>
-    <string name="unit_mgpcum">mg/m³</string>
+    <string name="unit_mgpcum">مغ\\م³</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
     <string name="uv_index_8_10">مرتفع جدا</string>
     <string name="location_results_by">نتائج البحث بواسطة %s</string>
@@ -422,7 +422,7 @@
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>
     <string name="air_quality_no2_info_origin">يدخل NO₂ الى البيئة عند حرق الوقود في درجات حرارة عالية ضمن عمليات مثل تلك المستخدمة للتدفئة والنقل والصناعة وتوليد الطاقة. تشمل المصادر المنزلية لأكاسيد النيتروجين (NOₓ) المعدات التي تحرق الوقود مثل السخانات والمدافئ ومواقد الغاز والأفران.</string>
     <string name="air_quality_no2_info_consequences">التعرض لثاني أكسيد النيتروجين يمكن أن يهيج الشعب الهوائية ويؤدي إلى تفاقم أمراض الجهاز التنفسي. بالإضافة إلى ذلك، يعد NO₂ مكونا أساسيا للأوزون الأرضي، وهو ملوث يرتبط ارتباطا وثيقا بالربو وأمراض الجهاز التنفسي الأخرى.</string>
-    <string name="air_quality_pm_explanations_introduction">الجسيمات أو الجسيمات الجوية هي جزيئات مجهرية من مادة صلبة أو سائلة معلقة في الهواء.</string>
+    <string name="air_quality_pm_explanations_introduction">الجسيمات أو الجسيمات الجوية هي جزيئات مجهرية من مادة صلبة أو سائلة معلقة في الهواء وتقاس بالـميكروغرام على المتر مكعب (مكغ\\م³).</string>
     <string name="air_quality_pm_explanations_origin">تنتج بعض الجسيمات بشكل طبيعي، تنشأ من البراكين والعواصف الترابية وحرائق الغابات والمراعي والنباتات الحية ورذاذ البحر. تولد الأنشطة البشرية أيضا كميات كبيرة من الجسيمات، مثل حركة المرور والنقل والأنشطة الصناعية ومحطات الطاقة ومواقع البناء وحرق النفايات أو الحقول.</string>
     <string name="air_quality_pm_explanations_consequences">الجسيمات هي أكثر أشكال تلوث الهواء ضررا بسبب قدرتها على الدخول في مجرى الدم وبالتالي اختراق عمق الرئتين والدماغ، مما يسبب مشاكل صحية مثل أمراض القلب وأمراض الرئة والوفاة المبكرة.</string>
     <string name="air_quality_so2_info_introduction">ثاني أكسيد الكبريت (SO₂) هو غاز سام عديم اللون مسؤول عن رائحة أعواد الثقاب المحترقة.</string>
@@ -485,7 +485,7 @@
     <string name="unit_kgfpsqcm_voice">قوة الكيلوغرام لكل سنتيمتر مربع</string>
     <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
     <string name="unit_h_voice">ساعات</string>
-    <string name="unit_ppcm">/m³</string>
+    <string name="unit_ppcm">لكل م³</string>
     <string name="unit_ppcm_voice">لكل متر مكعب</string>
     <string name="notification_channel_alerts">تنبيهات</string>
     <string name="notification_channel_background_services">خدمات الخلفية</string>
