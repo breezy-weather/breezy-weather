@@ -410,7 +410,7 @@
     <string name="settings_background_updates_refresh_never">أبدا</string>
     <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">بيانات استخدام نظام تحديد المواقع العالمي (GPS)</string>
-    <string name="settings_weather_sources_summary">موفر الطقس الافتراضي للمواقع الجديدة، مفاتيح API المخصصة، إعدادات موفر أخرى</string>
+    <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="air_quality_pm_info_title">الجسيمات (PM2.5 و PM10)</string>
@@ -455,7 +455,7 @@
     <string name="settings_main_cards_fade_in_switch">البطاقات تتلاشى لداخل</string>
     <string name="settings_main_cards_other_element_animations_switch">الرسوم المتحركة للعناصر الأخرى</string>
     <string name="settings_notifications_summary">إخطارات تنبيهات الطقس أو هطول الأمطار أو التوقعات للموقع الأول</string>
-    <string name="settings_notifications_alerts_title">إخطارات تنبيهات الطقس</string>
+    <string name="settings_notifications_alerts_title">إخطارات تنبيهات الطقس الخطيرة</string>
     <string name="settings_notifications_precipitations_title">إشعارات التساقطات</string>
     <string name="settings_notifications_forecast_today_title">إشعار لتوقعات اليوم</string>
     <string name="settings_notifications_forecast_time_today_title">وقت الإخطار لتوقعات اليوم</string>
