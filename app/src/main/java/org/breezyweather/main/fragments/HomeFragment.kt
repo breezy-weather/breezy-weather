@@ -71,6 +71,7 @@ class HomeFragment : MainModuleFragment() {
     private var lastCurrentLocation: Location? = null
 
     interface Callback {
+        fun onEditIconClicked()
         fun onManageIconClicked()
         fun onSettingsIconClicked()
     }
@@ -177,11 +178,13 @@ class HomeFragment : MainModuleFragment() {
         binding.toolbar.inflateMenu(R.menu.activity_main)
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.action_edit -> callback?.onEditIconClicked()
                 R.id.action_manage -> callback?.onManageIconClicked()
                 R.id.action_settings -> callback?.onSettingsIconClicked()
             }
             true
         }
+        binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
 
         binding.switchLayout.setOnSwitchListener(switchListener)
         binding.switchLayout.reset()
@@ -221,6 +224,10 @@ class HomeFragment : MainModuleFragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentLocation.collect {
+                    if (it?.location != null) {
+                        binding.toolbar.menu.findItem(R.id.action_edit).setVisible(true)
+                    }
+
                     // TODO: Dirty workaround to avoid recollecting on lifecycle resume
                     if (it?.location != lastCurrentLocation) {
                         updateViews(it?.location)

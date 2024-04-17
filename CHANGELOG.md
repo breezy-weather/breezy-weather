@@ -1,7 +1,8 @@
 # Version 5.2.1 (not yet released)
 
 **Improvements and fixes**
-- We no longer send notifications for alerts with minimal to no known threat to life or property (known as “yellow” alerts in many countries), to avoid spamming in some countries where these kind of alerts are sent daily. Alerts with unknown severity may still be sent.
+- We no longer send notifications for alerts with minimal to no known threat to life or property, to avoid spamming in some countries where these kind of alerts are sent daily. Alerts with unknown severity may still be sent.
+- Moved “Edit location” button from footer to a pencil icon on top right
 - Fix crash when sending data to Gadgetbridge in some cases
 
 **Translations**

@@ -24,6 +24,15 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -34,6 +43,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import breezyweather.domain.location.model.Location
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.breezyweather.Migrations
 import org.breezyweather.R
@@ -42,6 +53,8 @@ import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.ui.composables.AlertDialogNoPadding
+import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
@@ -53,6 +66,8 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -65,6 +80,9 @@ class MainActivity : GeoActivity(),
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
+
+    private val _dialogPerLocationSettingsOpen = MutableStateFlow(false)
+    val dialogPerLocationSettingsOpen = _dialogPerLocationSettingsOpen.asStateFlow()
 
     companion object {
         const val SEARCH_ACTIVITY = 4
@@ -275,7 +293,6 @@ class MainActivity : GeoActivity(),
             }
         }
 
-        val context = this
         // Start a coroutine in the lifecycle scope
         lifecycleScope.launch {
             // repeatOnLifecycle launches the block in a new coroutine every time the
@@ -351,6 +368,129 @@ class MainActivity : GeoActivity(),
                         showDialogAction(this)
                     }
                 } ?: SnackbarHelper.showSnackbar(shortMessage)
+            }
+        }
+
+        binding.perLocationSettings?.setContent {
+            BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, isDaylight)) {
+                ComposeView()
+            }
+        }
+    }
+
+
+    @Composable
+    fun ComposeView() {
+        val dialogPerLocationSettingsOpenState = dialogPerLocationSettingsOpen.collectAsState()
+        if (dialogPerLocationSettingsOpenState.value) {
+            val validLocation = viewModel.currentLocation.collectAsState()
+            validLocation.value?.location?.let { location ->
+                val dialogDeleteLocationOpenState = remember { mutableStateOf(false) }
+                AlertDialogNoPadding(
+                    onDismissRequest = {
+                        _dialogPerLocationSettingsOpen.value = false
+                    },
+                    title = {
+                        Text(
+                            text = stringResource(R.string.action_edit_location),
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                    },
+                    text = {
+                        LocationPreference(this, location, true) { newLocation: Location? ->
+                            if (newLocation != null) {
+                                updateLocation(newLocation)
+                            }
+                            _dialogPerLocationSettingsOpen.value = false
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                _dialogPerLocationSettingsOpen.value = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_close),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    },
+                    dismissButton = if (locationListSize() > 1) {
+                        {
+                            TextButton(
+                                onClick = {
+                                    dialogDeleteLocationOpenState.value = true
+                                }
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.action_delete),
+                                    color = MaterialTheme.colorScheme.error,
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                            }
+                        }
+                    } else null
+                )
+
+                if (dialogDeleteLocationOpenState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            dialogDeleteLocationOpenState.value = false
+                        },
+                        title = {
+                            Text(
+                                text = stringResource(R.string.location_delete_location_dialog_title),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                style = MaterialTheme.typography.headlineSmall,
+                            )
+                        },
+                        text = {
+                            Text(
+                                text = if (location.city.isNotEmpty()) {
+                                    stringResource(
+                                        R.string.location_delete_location_dialog_message,
+                                        location.city
+                                    )
+                                } else {
+                                    stringResource(R.string.location_delete_location_dialog_message_no_name)
+                                },
+                                color = DayNightTheme.colors.bodyColor,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    dialogDeleteLocationOpenState.value = false
+                                    _dialogPerLocationSettingsOpen.value = false
+                                    deleteLocation(location)
+                                }
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.action_confirm),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(
+                                onClick = {
+                                    dialogDeleteLocationOpenState.value = false
+                                }
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.action_cancel),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                            }
+                        }
+                    )
+                }
             }
         }
     }
@@ -543,6 +683,10 @@ class MainActivity : GeoActivity(),
     // interface.
 
     // main fragment callback.
+    override fun onEditIconClicked() {
+        _dialogPerLocationSettingsOpen.value = true
+    }
+
     override fun onManageIconClicked() {
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }

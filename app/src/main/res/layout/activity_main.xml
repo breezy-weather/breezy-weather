@@ -14,4 +14,9 @@
         android:layout_height="match_parent"
         tools:ignore="UnusedAttribute" />
 
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/per_location_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
