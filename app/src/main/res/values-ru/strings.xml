@@ -422,7 +422,7 @@
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_notifications_summary">Оповещения о погоде, осадках или прогнозе для первого местоположения</string>
     <string name="settings_notifications_precipitations_title">Уведомления об осадках</string>
-    <string name="settings_notifications_alerts_title">Уведомления о погоде</string>
+    <string name="settings_notifications_alerts_title">Уведомления о суровых погодных условиях</string>
     <string name="settings_notifications_forecast_today_title">Уведомление о дневном прогнозе</string>
     <string name="settings_notifications_forecast_time_today_title">Время уведомления для дневного прогноза</string>
     <string name="settings_widgets_summary">Установить обои, настроить используемые виджеты, виджет в уведомлениях</string>
