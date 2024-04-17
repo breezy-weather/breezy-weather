@@ -1,6 +1,7 @@
 # Version 5.2.1 (not yet released)
 
-**Fixes**
+**Improvements and fixes**
+- We no longer send notifications for alerts with minimal to no known threat to life or property (known as “yellow” alerts in many countries), to avoid spamming in some countries where these kind of alerts are sent daily. Alerts with unknown severity may still be sent.
 - Fix crash when sending data to Gadgetbridge in some cases
 
 **Translations**

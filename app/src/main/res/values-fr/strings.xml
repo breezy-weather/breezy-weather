@@ -509,7 +509,7 @@
     <string name="settings_units_summary">Température, précipitation, distance, vitesse, pression</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_summary">Notifications de vigilances météo, précipitations ou prévisions pour le premier emplacement</string>
-    <string name="settings_notifications_alerts_title">Notifications de vigilances</string>
+    <string name="settings_notifications_alerts_title">Notifications de vigilances de phénomènes dangereux</string>
     <string name="settings_notifications_precipitations_title">Notifications de précipitations</string>
     <string name="settings_notifications_section_forecast">Prévisions</string>
     <string name="settings_notifications_forecast_today_title">Notification pour les prévisions du jour</string>

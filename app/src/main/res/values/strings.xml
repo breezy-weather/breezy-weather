@@ -590,7 +590,8 @@
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_summary">Notifications of weather alerts, precipitations or forecast for the first location</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
-    <string name="settings_notifications_alerts_title">Notifications of weather alerts</string>
+    <!-- “important” means we won’t send notifications for minor severity alerts -->
+    <string name="settings_notifications_alerts_title">Notifications of severe weather alerts</string>
     <string name="settings_notifications_precipitations_title">Notifications of precipitations</string>
     <string name="settings_notifications_section_forecast">Forecast</string>
     <string name="settings_notifications_forecast_today_title">Notification for the day’s forecast</string>

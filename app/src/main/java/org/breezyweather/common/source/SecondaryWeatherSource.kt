@@ -32,7 +32,6 @@ interface SecondaryWeatherSource : Source {
         location: Location, feature: SecondaryWeatherSourceFeature
     ): Boolean = true
 
-    // TODO: Improve
     val airQualityAttribution: String?
     val pollenAttribution: String?
     val minutelyAttribution: String?

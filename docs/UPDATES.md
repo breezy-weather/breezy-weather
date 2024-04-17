@@ -1,6 +1,6 @@
 ## Weather update process
 
-*Latest update of this document: 2024-04-11 (v5.2.0)*
+*Latest update of this document: 2024-04-17 (v5.2.1)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
@@ -35,7 +35,8 @@ At your selected refresh rate, this is what happens:
   - otherwise, refreshed once a day at most to avoid battery/bandwidth consumption in the background from less-used locations
 
 When weather for the location(s) is done refreshing in the background, the following tasks are executed:
-- If enabled, notifications are sent for each new alerts for the first location
+- If enabled, notifications are sent for each new severe alerts for the first location
+    - You will NOT receive notifications of alerts with minor severity (minimal to no known threat to life or property), but you may still receive notifications for alerts of unknown severity
     - You will NOT receive notifications of alerts for locations other than your first location
     - You will NOT receive notifications of updated existing alerts, even if the description or severity changed, unless the weather source decided to remove the previous alert and create a new alert
     - You will NOT receive notifications of alerts if the alert source for your first location doesn’t support alerts for your country/location

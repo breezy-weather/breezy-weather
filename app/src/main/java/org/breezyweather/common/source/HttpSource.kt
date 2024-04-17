@@ -22,7 +22,6 @@ abstract class HttpSource : Source {
 
     /**
      * Privacy policy of the website, like: https://mysite.com/privacy
-     * TODO: Implement this in UI
      */
     abstract val privacyPolicyUrl: String
 }

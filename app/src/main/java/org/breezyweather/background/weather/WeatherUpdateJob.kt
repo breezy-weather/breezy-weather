@@ -288,9 +288,8 @@ class WeatherUpdateJob @AssistedInject constructor(
             val indexOfFirstLocation =
                 newUpdates.firstOrNull { it.first.formattedId == location.formattedId }
 
-            // Send alert and precipitation for first location
+            // Send alert and precipitation for the first location
             if (indexOfFirstLocation != null) {
-                // TODO: We only send alert and precipitation forecast for first location for historical reason, but this should be reworked
                 Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
                 Notifications.checkAndSendPrecipitation(applicationContext, location)
             }

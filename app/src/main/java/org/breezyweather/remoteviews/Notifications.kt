@@ -32,6 +32,7 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_MIN
 import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.extensions.buildNotificationChannel
@@ -159,13 +160,15 @@ object Notifications {
         val weather = location.weather
         if (weather == null || !SettingsManager.getInstance(context).isAlertPushEnabled) return
 
-        val alertList: MutableList<Alert> = ArrayList()
+        val alertList = mutableListOf<Alert>()
         if (oldResult == null) {
             alertList.addAll(weather.alertList)
         } else {
-            val idSet: MutableSet<String> = HashSet()
-            val desSet: MutableSet<String> = HashSet()
-            for (alert in oldResult.alertList) {
+            val idSet = mutableSetOf<String>()
+            val desSet = mutableSetOf<String>()
+            for (alert in oldResult.alertList.filter {
+                it.severity != AlertSeverity.MINOR
+            }) {
                 idSet.add(alert.alertId)
                 desSet.add(
                     alert.headline?.ifEmpty {
@@ -173,7 +176,9 @@ object Notifications {
                     } ?: context.getString(R.string.alert)
                 )
             }
-            for (alert in weather.alertList) {
+            for (alert in weather.alertList.filter {
+                it.severity != AlertSeverity.MINOR
+            }) {
                 if (!idSet.contains(alert.alertId) &&
                     !desSet.contains(
                         alert.headline?.ifEmpty {
@@ -212,16 +217,17 @@ object Notifications {
     private fun buildSingleAlertNotification(
         context: Context, location: Location, alert: Alert, inGroup: Boolean, notificationId: Int
     ): Notification {
-        // FIXME: Timezone
-        // FIXME: Start date may be null
-        val time = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(alert.startDate)
+        val time = alert.startDate?.let {
+            // FIXME: Timezone
+            DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(it)
+        }
         val builder = getNotificationBuilder(
             context,
             R.drawable.ic_alert,
             alert.headline?.ifEmpty {
                 context.getString(R.string.alert)
             } ?: context.getString(R.string.alert),
-            time,
+            time ?: "",
             alert.description,
             PendingIntent.getActivity(
                 context,
