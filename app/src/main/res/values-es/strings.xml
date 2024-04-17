@@ -60,9 +60,9 @@
     <string name="wind_strength_10">Tormenta</string>
     <string name="wind_strength_11">Tormenta violenta</string>
     <string name="wind_strength_12">Huracán/Tifón</string>
-    <string name="precipitation_intensity_light">Llovizna</string>
+    <string name="precipitation_intensity_light">Rocío</string>
     <string name="precipitation_intensity_medium">Lluvia</string>
-    <string name="precipitation_intensity_heavy">Lluvia intensa</string>
+    <string name="precipitation_intensity_heavy">Torrenciales</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>
@@ -453,7 +453,7 @@
     <string name="settings_main_section_options">Opciones</string>
     <string name="settings_main_background_animation_title">Animación en segundo plano</string>
     <string name="settings_main_background_animation_enabled">Activado</string>
-    <string name="settings_notifications_alerts_title">Notificaciones sobre alertas meteorológicas</string>
+    <string name="settings_notifications_alerts_title">Notificaciones de alertas meteorológicas graves</string>
     <string name="pollen_alnus">Aliso</string>
     <string name="settings_location_access_background_summaryOn">Activado. La aplicación podrá actualizar los datos meteorológicos de tu ubicación actual en segundo plano.</string>
     <string name="settings_location_access_precise_title">Utilizar el GPS del dispositivo</string>
@@ -689,4 +689,5 @@
     <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse “Continuar” si aún desea seguir adelante.</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
     <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifique una incidencia en GitHub.</string>
+    <string name="action_edit_location">Editar esta ubicación</string>
 </resources>
