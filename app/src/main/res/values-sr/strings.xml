@@ -188,13 +188,13 @@
     <string name="settings_debug_summary">Евиденције отказивања</string>
     <string name="settings_widgets_section_notification_widget">Виџет као обавештење</string>
     <string name="unit_atm">atm</string>
-    <string name="notification_update_error">%d ажурирање(а) није успело</string>
+    <string name="notification_update_error">%d ажурирања није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
     <string name="common_weather_text_snow_showers_heavy">Јаки снежни пљускови</string>
     <string name="common_weather_text_drizzle_light">Слаба росуља</string>
     <string name="common_weather_text_drizzle_moderate">Умерена росуља</string>
     <string name="settings_background_updates_worker_info_summary">Последње покретање: %s</string>
-    <string name="settings_notifications_alerts_title">Упозорења о времену</string>
+    <string name="settings_notifications_alerts_title">Обавештења о упозорењима о лошем времену</string>
     <string name="unit_km_voice">Километри</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Омогући информације о локацији</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Тренутна „Осећа се као“ температура (°)</string>
@@ -609,7 +609,7 @@
     <string name="notification_precipitation_starting">Ускоро падавине</string>
     <string name="notification_precipitation_starting_desc">Очекује се да ће почети у %s</string>
     <string name="notification_precipitation_continuing_desc">Очекује се да ће се наставити барем до %s</string>
-    <string name="notification_precipitation_stopping_desc">Очекује се да ће се зауставити у %s</string>
+    <string name="notification_precipitation_stopping_desc">Очекује се да ће престати у %s</string>
     <string name="notification_precipitation_continuing">Падавине</string>
     <string name="notification_precipitation_stopping">Ускоро престанак падавина</string>
     <string name="location_message_updated">Локација је ажурирана</string>
@@ -685,4 +685,5 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
     <string name="message_server_unavailable_title">Сервер недоступан</string>
     <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>
+    <string name="action_edit_location">Измени ову локацију</string>
 </resources>
