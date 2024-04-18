@@ -19,6 +19,7 @@ package org.breezyweather.main.utils
 import android.app.Activity
 import androidx.annotation.StringRes
 import org.breezyweather.R
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
 import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog

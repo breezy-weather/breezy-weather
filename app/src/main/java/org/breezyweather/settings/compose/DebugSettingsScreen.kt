@@ -16,7 +16,6 @@
 
 package org.breezyweather.settings.compose
 
-import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -26,14 +25,19 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.utils.CrashLogUtils
+import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.main.utils.RefreshErrorType
+import org.breezyweather.settings.activities.SettingsActivity
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.sectionFooterItem
+import org.breezyweather.settings.preference.sectionHeaderItem
 
 @Composable
 fun DebugSettingsScreen(
-    context: Context,
+    context: SettingsActivity,
     paddingValues: PaddingValues
 ) {
     val scope = rememberCoroutineScope()
@@ -59,6 +63,26 @@ fun DebugSettingsScreen(
                     WeatherUpdateJob.startNow(context)
                 }
             }
+
+            sectionHeaderItem(R.string.settings_debug_section_refresh_error)
+            RefreshErrorType.entries.forEach { refreshError ->
+                clickablePreferenceItem(refreshError.shortMessage) { shortMessage ->
+                    PreferenceView(
+                        titleId = shortMessage,
+                        onClick = {
+                            refreshError.showDialogAction?.let { showDialogAction ->
+                                SnackbarHelper.showSnackbar(
+                                    content = context.getString(shortMessage),
+                                    action = context.getString(refreshError.actionButtonMessage)
+                                ) {
+                                    showDialogAction(context)
+                                }
+                            } ?: SnackbarHelper.showSnackbar(context.getString(shortMessage))
+                        }
+                    )
+                }
+            }
+            sectionFooterItem(R.string.settings_debug_section_refresh_error)
         }
 
         bottomInsetItem()
