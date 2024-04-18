@@ -276,9 +276,9 @@
     <string name="widget_week_style_3_days">۳ روز</string>
     <string name="widget_live_wallpaper_weather_kind">آب و هوا</string>
     <string name="widget_live_wallpaper_day_night_type">زمان</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif نازک</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif درشت</string>
     <string name="widget_clock_font_analog">عقربه دار</string>
     <string name="settings_background_updates_summary">نرخ تازه سازی، عیب یابی</string>
     <string name="settings_background_updates_refresh_title">نرخ تازه سازی</string>
@@ -516,7 +516,7 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_km">km</string>
     <string name="settings_main_background_animation_title">پویانمایی پس‌زمینه</string>
-    <string name="settings_notifications_alerts_title">آگاه‌سازی هشدار های هواشناسی</string>
+    <string name="settings_notifications_alerts_title">آگاه‌سازی هشدار های هواشناسی مهم</string>
     <string name="settings_notifications_precipitations_title">آگاه‌ساز های بارش</string>
     <string name="settings_notifications_forecast_today_title">آگاه‌سازی پیش‌بینی روز</string>
     <string name="settings_notifications_forecast_tomorrow_title">آگاه‌سازی پیش‌بینی فردا</string>
@@ -678,4 +678,6 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">نمونه کیفیت هوا</string>
     <string name="alert_source">منبع: %s</string>
     <string name="message_invalid_incomplete_data">اطلاعات نامعتبر یا ناقص از سرور دریافت شد</string>
+    <string name="settings_weather_source_freenet_disclaimer">منابع آب و هوای بیشتری در نسخه های دیگر Breezy Weather موجود است. برای کسب اطلاعات بیشتر اینجا ضربه بزنید.</string>
+    <string name="action_edit_location">ویرایش این مکان</string>
 </resources>
