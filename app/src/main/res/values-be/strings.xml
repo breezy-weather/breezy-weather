@@ -679,4 +679,5 @@
     <string name="settings_background_updates_refresh_never_warning2">Працэс фонавага абнаўлення просты: ён абнаўляе толькі ваша першае месцазнаходжанне з абранай вамі частатой, а дадатковыя месцы абнаўляюцца толькі пры неабходнасці адзін раз у дзень. Ён эканомна расходуе зарад батарэі і не павінен перавышаць 5 МБ дадзеных у месяц.</string>
     <string name="message_server_unavailable_title">Сервер недаступны</string>
     <string name="message_server_unavailable_content">Звычайна гэта часовая памылка. Калі памылка не знікне, паведаміце аб праблеме на GitHub.</string>
+    <string name="action_edit_location">Змяніць гэтае месцазнаходжанне</string>
 </resources>
