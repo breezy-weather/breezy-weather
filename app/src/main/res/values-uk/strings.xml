@@ -679,4 +679,5 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Сумісні пакети не знайдені</string>
     <string name="message_server_unavailable_title">Сервер не доступний</string>
     <string name="message_server_unavailable_content">Зазвичай, це тимчасова помилка. Якщо помилка не зникне, повідомте про проблему GitHub.</string>
+    <string name="action_edit_location">Змінити це розташування</string>
 </resources>
