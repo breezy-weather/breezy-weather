@@ -31,16 +31,16 @@ This error should be reported as soon as possible to GitHub, mentioning the sour
 
 ### “Source no longer available”
 
-This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard or `gplay` flavor of Breezy Weather to `fdroid` one which has less sources supported.
+This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard flavor of Breezy Weather to `freenet` one which has less sources supported.
 
 
 
 
 ## Sources
 
-### How do I change the weather source for a location?
+### How can I change sources for a location?
 
-For current location, you can do that with a swipe on the location list, or from the “Edit” button in the footer of the main screen. For manually added locations, you need to add the location again with the other source, and delete the old location.
+Just swipe from right to left on location list, or tap the pencil icon on top right (v5.2.1+) or tap the Edit button on Footer (< v5.2.1).
 
 
 ## Updates
