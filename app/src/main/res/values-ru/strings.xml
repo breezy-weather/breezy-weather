@@ -686,4 +686,5 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Совместимые пакеты не найдены</string>
     <string name="message_server_unavailable_title">Сервер недоступен</string>
     <string name="message_server_unavailable_content">Обычно это временная ошибка. Если ошибка не исчезнет, сообщите о проблеме на GitHub.</string>
+    <string name="action_edit_location">Изменить это местоположение</string>
 </resources>
