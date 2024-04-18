@@ -470,7 +470,7 @@
     <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Ort hinzugefügt werden.</string>
     <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
     <string name="settings_location_access_precise_summaryOff">Aktivieren Sie „Genauen Standort verwenden“, wenn Sie Probleme bei der Standortermittlung haben.</string>
-    <string name="settings_notifications_alerts_title">Benachrichtigungen über Wetterwarnungen</string>
+    <string name="settings_notifications_alerts_title">Benachrichtigungen über schwere Unwetterwarnungen</string>
     <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesprognose</string>
     <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesprognose</string>
     <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung für die Tagesprognose des nächsten Tages</string>
@@ -681,4 +681,5 @@
     <string name="settings_background_updates_refresh_never_warning3">Ziehen Sie in Erwägung, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Ansonsten tippen Sie auf „Weiter“, wenn Sie fortfahren möchten.</string>
     <string name="message_server_unavailable_content">Dies ist normalerweise ein temporärer Fehler. Wenn er weiterhin besteht, melden Sie ihn bitte auf GitHub.</string>
     <string name="message_server_unavailable_title">Server nicht erreichbar</string>
+    <string name="action_edit_location">Diesen Ort bearbeiten</string>
 </resources>
