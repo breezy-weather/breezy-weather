@@ -524,7 +524,7 @@
     <string name="action_see_more">Zobrazit více</string>
     <string name="settings_main_background_animation_disabled">Zakázano</string>
     <string name="settings_notifications_summary">Upozornění na výstrahy, srážky nebo předpověď počasí pro první lokalitu</string>
-    <string name="settings_notifications_alerts_title">Upozornění na meteorologické výstrahy</string>
+    <string name="settings_notifications_alerts_title">Upozornění na důležité meteorologické výstrahy</string>
     <string name="unit_cm">cm</string>
     <string name="message_network_unavailable">Síť není k dispozici</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don’t kill my app! najdete informace o tom, jak to napravit.</string>
@@ -696,4 +696,5 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>
     <string name="message_server_unavailable_content">Toto obvykle bývá dočasný chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
     <string name="message_server_unavailable_title">Server není dostupný</string>
+    <string name="action_edit_location">Upravit tuto lokalitu</string>
 </resources>
