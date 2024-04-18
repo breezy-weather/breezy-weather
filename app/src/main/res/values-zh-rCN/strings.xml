@@ -467,7 +467,7 @@
     <string name="settings_main_summary">卡片顺序，显示的项目，动画</string>
     <string name="settings_main_section_displayed_data">显示的数据</string>
     <string name="settings_main_cards_other_element_animations_switch">其他动画</string>
-    <string name="settings_notifications_alerts_title">天气警报通知</string>
+    <string name="settings_notifications_alerts_title">严重天气警报通知</string>
     <string name="settings_notifications_forecast_today_title">每日预报通知</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日预报通知</string>
     <string name="settings_notifications_summary">首个位置的天气警报，降水或预报的通知</string>
@@ -690,4 +690,5 @@
     <string name="settings_background_updates_refresh_never_warning3">考虑降低刷新频率而不是直接关闭后台更新，如果执意要关，请轻按“继续”。</string>
     <string name="message_server_unavailable_title">服务器不可用</string>
     <string name="message_server_unavailable_content">这通常是临时性错误。如果错误持续，请在 GitHub 上报告问题。</string>
+    <string name="action_edit_location">编辑此位置</string>
 </resources>
