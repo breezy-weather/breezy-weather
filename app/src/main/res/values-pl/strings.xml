@@ -98,7 +98,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Włącz informacje o lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Wybierz usługę lokalizacji</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń “%s”</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń „%s”</string>
     <string name="widget_label_view_style">Wybierz styl</string>
     <string name="widget_label_show_widget_card">Kolor tła</string>
     <string name="widget_label_show_widget_card_alpha">Przezroczystość</string>
@@ -109,7 +109,7 @@
     <string name="widget_label_clock_font">Czcionka zegara</string>
     <string name="widget_custom_subtitle_explanation">Możesz wpisać wszystko, ale zwróć uwagę na długość tekstu. Jeśli chcesz odwołać się do danych pogodowych, proszę użyj $ aby odwołać się do odpowiedniego słowa kluczowego.
 \n
-\nNa przykład, “current weather = $cw$” wyświetli się jako “current weather = Clear Day”.</string>
+\nNa przykład, „current weather = $cw$” wyświetli się jako „current weather = Clear Day”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Obecna pogoda</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Obecna temperatura (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Obecna temperatura (°)</string>
@@ -659,10 +659,10 @@
     <string name="dialog_time_picker_input_time">Wprowadź godzinę</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Przełącz na wprowadzanie dotykowe</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Przełącz na wprowadzanie tekstowe</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Podsumowanie indeksu pylenia na dziś, jutro, ..., 4 dni później</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Podsumowanie indeksu pylenia na dziś, jutro, …, 4 dni później</string>
     <string name="message_server_unavailable_content">Zazwyczaj jest to błąd tymczasowy. Jeśli błąd będzie się powtarzał, zgłoś problem na GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning1">Po wyłączeniu aktualizacji w tle nie będziesz już otrzymywać powiadomień o alertach lub opadach. Widżety nie będą odświeżane do momentu otwarcia aplikacji.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Rozważ użycie mniejszej częstotliwości odświeżania zamiast wyłączania aktualizacji w tle, w przeciwnym razie dotknij \"Kontynuuj\", jeśli nadal chcesz kontynuować.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Rozważ użycie mniejszej częstotliwości odświeżania zamiast wyłączania aktualizacji w tle, w przeciwnym razie dotknij „Kontynuuj”, jeśli nadal chcesz kontynuować.</string>
     <string name="settings_per_location_theme">Motyw</string>
     <string name="settings_weather_source_freenet_disclaimer">Więcej źródeł pogody jest dostępnych w innych wersjach Breezy Weather. Kliknij tutaj, aby dowiedzieć się więcej.</string>
     <string name="location_delete_location_dialog_title">Usunąć lokalizację?</string>
@@ -683,7 +683,7 @@
     <string name="pollen_corylus">Leszczyna</string>
     <string name="pollen_cupressaceae_taxaceae">Cyprys</string>
     <string name="pollen_fraxinus">Jesion</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks Jakości Powietrza na dziś, jutro, ..., 4 dni później</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks Jakości Powietrza na dziś, jutro, …, 4 dni później</string>
     <string name="message_source_not_installed_error_content_tip_1">Może się tak zdarzyć, jeśli dodałeś swoją lokalizację w standardowej wersji Breezy Weather, a następnie przełączyłeś się na wersję tylko z wolnymi źródłami sieciowymi. Powrót do wersji standardowej może rozwiązać ten problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Zmień źródła pogody dla tej lokalizacji lub usuń i ponownie dodaj tę lokalizację.</string>
     <string name="widget_label_hide_header">Ukryj nagłówek</string>

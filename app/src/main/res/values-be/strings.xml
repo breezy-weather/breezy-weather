@@ -420,7 +420,7 @@
     <string name="settings_main_cards_fade_in_switch">З’яўленне картак</string>
     <string name="settings_main_cards_other_element_animations_switch">Іншыя элементы анімацый</string>
     <string name="settings_notifications_summary">Абвесткі аб надвор’і, ападках або прагнозе для першага месцазнаходжання</string>
-    <string name="settings_notifications_alerts_title">Апавяшчэння аб суровых умовах надвор\'я</string>
+    <string name="settings_notifications_alerts_title">Апавяшчэння аб суровых умовах надвор’я</string>
     <string name="settings_notifications_precipitations_title">Апавяшчэнні аб ападках</string>
     <string name="settings_notifications_section_forecast">Прагноз надвор’я</string>
     <string name="settings_notifications_forecast_today_title">Апавяшчэнне аб дзённым прагнозе</string>
