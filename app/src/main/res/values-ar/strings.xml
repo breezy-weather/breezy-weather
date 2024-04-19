@@ -327,7 +327,7 @@
     <string name="air_quality_level_1_description">جودة هواء مثالية لمعظم الأفراد ؛ استمتع بأنشطتك العادية في الهواء الطلق.</string>
     <string name="air_quality_level_4_description">يمكن أن يشعر الأشخاص الحساسون بآثار صحية على الفور. قد يواجه الأفراد الأصحاء صعوبة في التنفس وتهيج الحلق اثناء التعرض له لفترات طويلة. قلل من النشاط في الهواء الطلق.</string>
     <string name="air_quality_level_5">غير صحي للغاية</string>
-    <string name="ephemeris_sunrise_at">شروق الشمس عند %s</string>
+    <string name="ephemeris_sunrise_at">طلوع الشمس عند %s</string>
     <string name="dialog_permissions_location_title">الوصول إلى معلومات الموقع</string>
     <string name="widget_custom_subtitle_keyword_ut_description">وقت التحديث</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -626,7 +626,7 @@
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
     <string name="uv_index_short">مؤشر الأشعة فوق البنفسجية</string>
-    <string name="cloud_cover_short">الغطاء</string>
+    <string name="cloud_cover_short">الغيوم</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
     <string name="settings_weather_source_freenet_disclaimer">تتوفر المزيد من مصادر الطقس في الاصدرات الأخرى لـ Breezy Weather. انقر هنا لمعرفة المزيد.</string>
@@ -651,7 +651,7 @@
     <string name="pollen_castanea">شجرة الكستناء</string>
     <string name="pollen_platanus">البلتانوس</string>
     <string name="pollen_urticaceae">نبات القراص / بيلتوري</string>
-    <string name="sunshine">شروق الشمس</string>
+    <string name="sunshine">إضاءة الشمس</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">مقتطف مؤشر حبوب اللقاح لليوم، الغد، …، بعد 4 أيام</string>
     <string name="about_open_link_message">فتح %s ؟</string>
     <string name="message_source_not_installed_error_content_tip_1">يمكن أن يحدث هذا عند إضافة موقعك في الإصدار القياسي لـ Breezy Weather ثم التبديل إلى إصدار Free-networks only الذي يحتوي على مصادر أقل للطقس مدعومة. العودة إلى الإصدار القياسي قد تحل هذه المشكلة.</string>
