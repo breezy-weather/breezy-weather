@@ -20,6 +20,9 @@ android {
         versionCode = 50201
         versionName = "5.2.1"
 
+        buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
+        buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
+
         multiDexEnabled = true
         ndk {
             abiFilters += SUPPORTED_ABIS
@@ -42,6 +45,7 @@ android {
     buildTypes {
         named("debug") {
             applicationIdSuffix = ".debug"
+            versionNameSuffix = "-r${getCommitCount()}"
         }
         named("release") {
             isShrinkResources = true

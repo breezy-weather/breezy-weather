@@ -427,7 +427,7 @@ class AboutActivity : GeoActivity() {
                 style = MaterialTheme.typography.headlineSmall,
             )
             Text(
-                text = BuildConfig.VERSION_NAME,
+                text = versionFormatted,
                 color = DayNightTheme.colors.captionColor,
                 style = MaterialTheme.typography.labelMedium,
             )
@@ -443,6 +443,12 @@ class AboutActivity : GeoActivity() {
             style = MaterialTheme.typography.labelMedium,
         )
     }
+
+    private val versionFormatted: String
+        get() = when {
+            BuildConfig.DEBUG -> "Debug ${BuildConfig.COMMIT_SHA}"
+            else -> "Stable ${BuildConfig.VERSION_NAME}"
+        }
 
     @Composable
     private fun AboutAppLink(
