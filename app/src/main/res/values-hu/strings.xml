@@ -685,4 +685,5 @@
     <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
     <string name="message_server_unavailable_title">A kiszolgáló nem érhető el</string>
     <string name="message_server_unavailable_content">Ez általában egy átmeneti hiba. Ha a hiba továbbra is fennáll, akkor jelentse a problémát a GitHubon.</string>
+    <string name="action_edit_location">Helyszín szerkesztése</string>
 </resources>
