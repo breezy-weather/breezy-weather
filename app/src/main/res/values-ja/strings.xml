@@ -57,7 +57,7 @@
     <string name="wind_strength_10">全強風</string>
     <string name="wind_strength_11">暴風</string>
     <string name="wind_strength_12">颶風</string>
-    <string name="precipitation_intensity_light">霧雨</string>
+    <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_medium">雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
@@ -407,7 +407,7 @@
     <string name="widget_week_style_3_days">3日間</string>
     <string name="widget_clock_font_sans_serif_black">サンセリフ体（太字）</string>
     <string name="settings_section_general">一般</string>
-    <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。</string>
+    <string name="settings_location_access_precise_summaryOn">有効されました。デバイスのネットワークと GPS 両方が使用されています。デバイスのネットワーク プロバイダーが優先的に、ほとんどの場合使用されますが、GPS もフォールバックとして使用できます。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
     <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信する</string>
     <string name="settings_debug_summary">クラッシュログ</string>
@@ -678,4 +678,15 @@
     <string name="settings_widgets_broadcast_title">天気データを他のアプリにブロードキャストする</string>
     <string name="settings_invalid_syntax">無効な構文</string>
     <string name="alert_source">情報提供：%s</string>
+    <string name="dialog_time_picker_select_time">時間を選ぶ</string>
+    <string name="dialog_time_picker_input_time">時間を入力する</string>
+    <string name="widget_label_hide_alternate_calendar">代替カレンダーを非表示する</string>
+    <string name="settings_background_updates_refresh_never_warning2">バックグラウンド更新プロセスは軽量です：主な位置情報は選択した頻度でのみ更新され、二次位置情報は必要な場合にのみ1日に1回更新されます。この機能のバッテリー効率が高く、1か月あたりのデータ消費量は 5 MB を超えません。</string>
+    <string name="message_server_unavailable_title">サーバー利用不可</string>
+    <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水量の通知が届けなくなります。ウィジェットはアプリを開くまで更新されません。</string>
+    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新をオフにするのではなく、より低い頻度の更新レートを使用することを検討してください。それでも続行したい場合は、「続行」をタップしてください。</string>
+    <string name="message_server_unavailable_content">これは通常、一時的なエラーです。エラーが続く場合はGitHubで問題を報告してください。</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
+    <string name="action_edit_location">この場所を編集する</string>
 </resources>
