@@ -159,7 +159,7 @@
     <string name="air_quality_pm_explanations_origin">Bazı partiküller volkanlar, toz fırtınaları, orman ve otlak yangınları, canlı bitki örtüsü ya da deniz serpintilerinden dolayı doğal olarak oluşur. Trafik ve ulaşım, endüstriyel faaliyetler, enerji santralleri, şantiyeler, atık yakma veya tarlalar gibi insan etkinlikleri de önemli miktarda partikül üretir.</string>
     <string name="dialog_permissions_location_title">Konum bilgilerine erişim</string>
     <string name="message_parsing_error_content">Uygulamanın en son sürümüne güncellediğinizden emin olun. Sunucu geçici olarak kullanılamıyor olabilir, bu durumda lütfen daha sonra tekrar deneyin. Sorun devam ederse lütfen hata ayıklama ayarlarından bir kilitlenme günlüğü dökümü yapın ve GitHub’da bir sorun bildirin.</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Şu Anki Nem</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Şu anki nem</string>
     <string name="settings_background_updates_battery_optimization_summary">Bildirim almadığınızda veya widget’lar yenilenmediğinde denenecek ilk şey budur.</string>
     <string name="common_weather_text_mainly_clear">Çoğunlukla açık</string>
     <string name="common_weather_text_fog">Sis</string>
@@ -209,7 +209,7 @@
     <string name="location_message_search_failed">Konum arama yapılamadı</string>
     <string name="location_dialog_failed_to_locate_title">Konum doğru bir şekilde bulunamadı mı\?</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Konum bilgilerini etkinleştir</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Şu Anki Çiy Noktası</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Şu anki çiy noktası</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
     <string name="settings_background_updates_refresh_title">Yenileme sıklığı</string>
     <string name="settings_background_updates_refresh_2h">2 saat</string>
@@ -252,17 +252,17 @@
     <string name="air_quality_co_info_origin">Odun, petrol, kömür, doğal gaz ve kerosen gibi karbonlu yakıtların basit sobalarda, açık ateşlerde, fitilli kandillerde, fırınlarda, şöminelerde tam yanmamasıyla üretilir. Ortam havasındaki baskın karbon monoksit (CO) kaynağı motorlu araçlardır.</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Konum hizmetini seçin</string>
     <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok özel olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Şu Anki Sıcaklık (°)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Şu anki sıcaklık (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Hissedilen sıcaklık (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Hissedilen sıcaklık (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Şu Anki Rüzgar</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Şu Anki Basınç</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Şu anki rüzgar</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Şu anki basınç</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Şu Anki UV</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Şu Anki Sıcaklık (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Şu anki sıcaklık (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Konum</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Güncelleme Zamanı</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Güncelleme zamanı</string>
     <string name="widget_custom_subtitle_keyword_d_description">Tarih</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Hafta (Kısa)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Hafta (kısa)</string>
     <string name="settings_section_general">Genel</string>
     <string name="settings_background_updates_refresh_30min">30 dakika</string>
     <string name="settings_icon_packs_weather_icon_dark">Koyu renk simge</string>
@@ -288,7 +288,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Konum izinlerini kontrol edin</string>
     <string name="location_message_permission_background_missing">Arkaplanda konum erişimi izni yok</string>
     <string name="widget_multi_city">Çoklu şehir</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Şu Anki Görüş Mesafesi</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Şu anki görüş mesafesi</string>
     <string name="widget_custom_subtitle_keyword_al_description">Uyarılar</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Hava durumu simgesi</string>
     <string name="settings_icon_packs_weather_icon_light">Açık renk simge</string>
@@ -308,7 +308,7 @@
     <string name="action_set">Ayarla</string>
     <string name="widget_label_hide_subtitle">Alt yazıyı gizle</string>
     <string name="widget_subtitle_data_feels_like">Hissedilen sıcaklık</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Şu Anki Hava Durumu</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Şu anki hava durumu</string>
     <string name="widget_label_clock_font">Saat yazı tipi</string>
     <string name="action_add_new_location">Yeni bir konum ekle</string>
     <string name="action_location_list">Konum listesi</string>
@@ -350,7 +350,7 @@
     <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
     <string name="dialog_permissions_location_content">Breezy Weather, geçerli konumunuzun hava durumu verilerini sağlamak için konum bilgilerinizi ön planda veya arka planda toplamalıdır. Bunun için bazı izinler isteyeceğiz. Konum bilgileriniz yalnızca geçerli konumunuzdaki hava durumu verilerini elde etmek için kullanılacaktır. Konum bilgilerinizi paylaşmak istemiyorsanız, bu gereksinimleri reddedebilir ve yönetim sayfasında konumunuzu manuel olarak ayarlayabilirsiniz.</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (Kısa)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
     <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek Breezy Weather duvar kağıdını etkinleştirebilirsiniz.</string>
@@ -414,10 +414,10 @@
     <string name="weather_api_unauthorized_title">API erişimi reddedildi</string>
     <string name="location_results_by">%s tarafından sağlanan konum bilgileri</string>
     <string name="widget_material_you_current">Material You - Anlık</string>
-    <string name="widget_label_align_end">Sona Yasla</string>
+    <string name="widget_label_align_end">Sağa yasla</string>
     <string name="widget_custom_subtitle_explanation">İstediğinizi yazabilirsiniz ama metin uzunluğuna dikkat edin. Hava durumu verilerini almak için referans vermek istiyorsanız $ kullanın.
 \n
-\nÖrnek olarak “Anlık hava durumu: $cw$.” metni “Anlık hava durumu: Sakin Gün.” olarak gösterilecektir.</string>
+\nÖrnek olarak “Anlık hava durumu: $cw$.” metni “Anlık hava durumu: Açık hava” olarak gösterilecektir.</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava sıcaklığı (°C/°F)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif İnce</string>
     <string name="widget_week_style_5_days">5 günlük</string>
@@ -492,11 +492,11 @@
     <string name="widget_trend_hourly">Saatlik akım</string>
     <string name="widget_material_you_forecast">Material You - Tahminler</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Yeni Satır</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Günlük Açıklama</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Günlük açıklama</string>
     <string name="settings_weather_sources">Hava durumu kaynakları</string>
     <string name="settings_source_api_key">API anahtarı</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Gündüz/gece sıcaklık sıralamalarını tersine çevir</string>
-    <string name="settings_notifications_alerts_title">Hava durumu alarm bildirimleri</string>
+    <string name="settings_notifications_alerts_title">Şiddetli hava durumu uyarıları bildirimleri</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="weather_api_key_required_missing_title">Gerekli API anahtarı bulunamadı</string>
     <string name="settings_debug">Hata ayıklama</string>
@@ -514,7 +514,7 @@
     <string name="unit_h_voice">saat</string>
     <string name="weather_normals_data_by">%s tarafından sağlanan sıcaklık normalleri verisi</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Saatlik Açıklama</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
     <string name="settings_background_updates_worker_info_title">İşlem bilgisi</string>
     <string name="settings_main_threshold_lines_on_charts">Grafiklerdeki eşik çizgileri</string>
@@ -685,4 +685,6 @@
     <string name="settings_appearance_calendar_title">Alternatif takvim</string>
     <string name="message_server_unavailable_content">Bu genellikle geçici bir hatadır. Hata devam ederse, lütfen GitHub’da bir sorun bildirin.</string>
     <string name="message_server_unavailable_title">Sunucu kullanılamıyor</string>
+    <string name="settings_global">Genel ayarlar</string>
+    <string name="action_edit_location">Bu konumu düzenle</string>
 </resources>
