@@ -389,7 +389,8 @@
     <string name="widget_label_text_size">Text size</string>
     <string name="widget_label_clock_font">Clock font</string>
     <string name="widget_label_hide_alternate_calendar">Hide alternate calendar</string>
-    <string name="widget_label_align_end">Align End</string>
+    <!-- RtL languages must change “right” to “left”!! -->
+    <string name="widget_label_align_end">Align right</string>
     <string name="widget_subtitle_data_time">Refresh time</string>
     <string name="widget_subtitle_data_aqi">Air quality</string>
     <string name="widget_subtitle_data_wind">Wind</string>
@@ -397,49 +398,49 @@
     <string name="widget_subtitle_data_alternate_calendar" translatable="false">@string/settings_appearance_calendar_title</string>
     <string name="widget_subtitle_data_custom">Custom</string>
     <!-- keep the “$cw$” part as is -->
-    <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Current Temperature (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Current Feels like Temperature (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Current Feels like Temperature (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Current Wind</string>
+    <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear sky.”.</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Current weather</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Current temperature (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Current temperature (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Current feels like temperature (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Current feels like temperature (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Current wind</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Current Air Quality Index</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Current UV</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Current Humidity</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Current Pressure</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Current Visibility</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Current DewPoint</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Current humidity</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Current pressure</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Current visibility</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Current dew point</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alerts</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Alerts (Short)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alerts (short)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Location</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitude</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Update Time</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Update time</string>
     <string name="widget_custom_subtitle_keyword_d_description">Date</string>
     <string name="widget_custom_subtitle_keyword_lc_description" translatable="false">@string/settings_appearance_calendar_title</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Week (Short)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Daily Description</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Hourly Description</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Week (short)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Daily description</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Hourly description</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Newline</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Daytime Weather of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Nighttime Weather of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Daytime Temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nighttime Temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Daytime Temperature of today, tomorrow, …, 4 days later (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nighttime Temperature of today, tomorrow, …, 4 days later (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Daytime Precipitation of today, tomorrow, …, 4 days later (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Nighttime Precipitation of today, tomorrow, …, 4 days later (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Daytime Wind of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Nighttime Wind of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Daytime weather of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Nighttime weather of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Daytime temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nighttime temperature of today, tomorrow, …, 4 days later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Daytime temperature of today, tomorrow, …, 4 days later (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nighttime temperature of today, tomorrow, …, 4 days later (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Daytime precipitation of today, tomorrow, …, 4 days later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Nighttime precipitation of today, tomorrow, …, 4 days later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Daytime wind of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Nighttime wind of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Air Quality Index of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollen index summary of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sunrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Sunset of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Moonrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Moonset of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Moon Phase of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Moon phase of today, tomorrow, …, 4 days later</string>
     <string name="widget_style_rectangle">Rectangle</string>
     <string name="widget_style_symmetry">Symmetry</string>
     <string name="widget_style_tile">Tile</string>
@@ -507,6 +508,7 @@
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
     <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network provider will be used in priority and most of the time, but GPS can also be used as a fallback.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
+    <string name="settings_global">Global settings</string>
     <!-- In other words: "Preferences of the location" -->
     <string name="settings_per_location">Location preferences</string>
     <string name="settings_per_location_summary">Additional customizations for this location</string>
@@ -616,7 +618,7 @@
     <string name="settings_widgets_notification_persistent_switch">Persistent</string>
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
-    <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
+    <string name="settings_widgets_notification_feels_like_switch">Use feels like temperature</string>
     <string name="settings_widgets_broadcast_title">Data sharing</string>
     <!-- %s is for example Gadgetbridge, as in "Send data of type Gadgetbridge" -->
     <string name="settings_widgets_broadcast_send_data_title">Send %s data</string>

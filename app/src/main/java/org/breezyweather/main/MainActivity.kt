@@ -398,7 +398,7 @@ class MainActivity : GeoActivity(),
                         )
                     },
                     text = {
-                        LocationPreference(this, location, true) { newLocation: Location? ->
+                        LocationPreference(this, location) { newLocation: Location? ->
                             if (newLocation != null) {
                                 updateLocation(newLocation)
                             }

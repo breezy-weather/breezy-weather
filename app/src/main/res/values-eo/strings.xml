@@ -17,6 +17,7 @@
     <string name="alerts">Atentigoj</string>
     <!-- $ = alert count. -->
     <string name="alerts_to_follow">Venontaj atentigoj, tuŝeti ĉi tie por vidi ilin.</string>
+    <string name="alert_source">Fonto: %s</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Hie</string>
     <string name="short_today">Hod</string>
@@ -221,6 +222,7 @@
     <string name="action_add_current_location">Aldoni nunan lokon</string>
     <string name="action_add_from_map">Aldoni el mapo</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
+    <string name="action_edit_location">Modifi ĉi tiun lokon</string>
     <string name="action_settings">Agordoj</string>
     <string name="action_preview">Antaŭmontri</string>
     <string name="action_about">Pri</string>
@@ -244,6 +246,12 @@
     <string name="action_close">Fermi</string>
     <string name="action_share">Komuni</string>
     <string name="action_show_errors">Tuŝeti por vidi detaloj</string>
+    <!-- Button shown in the weather selection dialog -->
+    <string name="action_help_me_choose">Helpi min elekti</string>
+    <!-- Miscellaneous messages -->
+    <string name="message_network_unavailable">Reto nedisponebla</string>
+    <string name="message_server_timeout">Tempolimo de peto</string>
+    <string name="message_server_unavailable_title">Servilo nedisponebla</string>
     <!-- Widgets -->
     <string name="widget_day">Ĉiutage</string>
     <string name="widget_week">Ĉiusemajne</string>
@@ -263,6 +271,7 @@
     <string name="widget_label_text_color">Tekstokoloro</string>
     <string name="widget_label_text_size">Tekstogrando</string>
     <string name="widget_label_clock_font">Horloĝa tiparo</string>
+    <string name="widget_label_align_end">Ĝisrandigi dekstren</string>
     <string name="widget_subtitle_data_aqi">Aerkvalito</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sentotemperaturo</string>
@@ -289,6 +298,15 @@
     <string name="widget_custom_subtitle_keyword_w_description">Semajntago</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Semajntago (mallonga)</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Liniorompo</string>
+    <string name="widget_style_rectangle">Rektangulo</string>
+    <string name="widget_style_symmetry">Simetria</string>
+    <string name="widget_style_tile">Kahelo</string>
+    <string name="widget_style_mini">Mini</string>
+    <string name="widget_style_nano">Nano</string>
+    <string name="widget_style_pixel">Pixel</string>
+    <string name="widget_style_vertical">Vertikalo</string>
+    <string name="widget_style_oreo">Oreo</string>
+    <string name="widget_style_temperature">Temperaturo</string>
     <string name="widget_week_style_5_days">5 tagoj</string>
     <string name="widget_week_style_3_days">3 tagoj</string>
     <string name="widget_live_wallpaper_weather_kind">Veterkondiĉo</string>
@@ -330,6 +348,11 @@
     <string name="settings_appearance_icon_pack_title">Pako de bildsimboloj</string>
     <string name="settings_icon_packs_title">Pakoj de bildsimboloj</string>
     <string name="settings_icon_packs_check_details">Kontroli detaloj</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Vetero bildsimbolo</string>
+    <string name="settings_icon_packs_weather_icon_light">Hela bildsimbolo</string>
+    <string name="settings_icon_packs_weather_icon_grey">Griza bildsimbolo</string>
+    <string name="settings_icon_packs_weather_icon_dark">Malhela bildsimbolo</string>
+    <string name="settings_icon_packs_get_more">Akiri pli</string>
     <string name="settings_units">Unuoj</string>
     <string name="settings_units_summary">Temperatura, precipitaĵa, distanca, rapideco, prema</string>
     <string name="settings_units_temperature">Temperatura unuo</string>
@@ -372,12 +395,21 @@
     <string name="settings_debug">Senararigado</string>
     <string name="settings_debug_summary">Kraŝaj protokoloj</string>
     <string name="settings_debug_dump_crash_logs_title">Komuni kraŝaj protokoloj</string>
+    <string name="settings_item_delete">Forigi ĉu tiun elemento</string>
     <string name="settings_enabled">Aktivigita</string>
     <string name="settings_disabled">Malaktivigita</string>
     <string name="settings_automatic">Aŭtomatiko</string>
     <string name="settings_follow_system">Sistema prefero</string>
     <string name="settings_none">Sen</string>
     <string name="settings_color_day_night">Tago / Nokto</string>
+    <!-- Used as "Follow app preference/setting", NOT as in "Follow us on Facebook". Keep it short or translate it “Automatic” if too complicated -->
+    <string name="settings_color_app">Apa prefero</string>
+    <string name="settings_color_day_always">Ĉiam tago</string>
+    <string name="settings_color_night_always">Ĉiam nokto</string>
+    <string name="settings_color_light">Helo</string>
+    <string name="settings_color_grey">Grizo</string>
+    <string name="settings_color_dark">Malhelo</string>
+    <string name="settings_invalid_syntax">Nevalida sintakso</string>
     <!-- Units -->
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">sur la boforta skalo</string>
@@ -461,9 +493,17 @@
     <string name="about_dependencies">Dependecoj</string>
     <string name="about_contributors">Kontribuantoj</string>
     <string name="about_translators">Tradukistoj</string>
+    <string name="about_contribution_designer">Loga aspektigisto</string>
+    <!-- %s is a link -->
+    <string name="about_open_link_message">Malfermi %s?</string>
     <!-- Weather condition text -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
     <!-- We don’t use all of them currently, but they might come useful some day -->
+    <string name="common_weather_text_clear_sky">Klara ĉielo</string>
+    <string name="common_weather_text_mainly_clear">Ĉefe klara</string>
+    <string name="common_weather_text_partly_cloudy">Parte nuba</string>
+    <string name="common_weather_text_cloudy">Nuba</string>
+    <string name="common_weather_text_overcast">Kovrita</string>
     <string name="common_weather_text_fog">Nebulo</string>
     <string name="common_weather_text_rain">Pluvo</string>
     <string name="common_weather_text_rain_light">Pluveto</string>

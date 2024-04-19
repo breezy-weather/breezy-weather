@@ -348,6 +348,7 @@
     <string name="settings_location_access_precise_title">Usage du GPS de l’appareil</string>
     <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation de l’appareil sera utilisé en priorité et la plupart du temps, mais le GPS pourra aussi être utilisé si besoin.</string>
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
+    <string name="settings_global">Paramètres communs</string>
     <string name="settings_per_location">Préférences de l’emplacement</string>
     <string name="settings_per_location_summary">Personnalisations supplémentaires pour cet emplacement</string>
     <string name="settings_per_location_theme">Thème</string>

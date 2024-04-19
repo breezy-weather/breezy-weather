@@ -52,7 +52,6 @@ import org.breezyweather.theme.compose.DayNightTheme
 fun LocationPreference(
     activity: MainActivity,
     location: Location,
-    includeMainScreenSettings: Boolean = false,
     onClose: ((location: Location?) -> Unit)
 ) {
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
@@ -62,17 +61,6 @@ fun LocationPreference(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        if (includeMainScreenSettings) {
-            PreferenceView(
-                titleId = R.string.settings_main,
-                iconId = R.drawable.ic_home,
-                summaryId = R.string.settings_main_summary,
-                card = false
-            ) {
-                IntentHelper.startMainScreenSettingsActivity(activity)
-                onClose(null)
-            }
-        }
         if (location.isCurrentPosition) {
             val locationSources = activity.sourceManager.getConfiguredLocationSources()
             SourceView(
@@ -100,6 +88,15 @@ fun LocationPreference(
             card = false
         ) {
             dialogAdditionalLocationPreferencesOpenState.value = true
+        }
+        PreferenceView(
+            titleId = R.string.settings_global,
+            iconId = R.drawable.ic_home,
+            summaryId = R.string.settings_main_summary,
+            card = false
+        ) {
+            IntentHelper.startMainScreenSettingsActivity(activity)
+            onClose(null)
         }
 
         if (dialogWeatherSourcesOpenState.value) {
