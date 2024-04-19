@@ -103,44 +103,44 @@
     <string name="widget_label_clock_font">Шрифт чаcов</string>
     <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
 \n
-\nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясный День”.</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
+\nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясное небо”.</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Текущая погода</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текущая температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">По ощущениям (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">По ощущениям (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Ветер</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Текущая температура по ощущениям (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Текущая температура по ощущениям (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Текущая скорость ветер</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Текущий УФ-индекс</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Влажность</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Текущая влажность</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Текущее давление</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Текущая видимость</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Текущая точка росы</string>
     <string name="widget_custom_subtitle_keyword_al_description">Оповещение</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Оповещение (Кратко)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Оповещение (кратко)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Местоположение</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Широта</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Долгота</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Время обновления</string>
     <string name="widget_custom_subtitle_keyword_d_description">Дата</string>
     <string name="widget_custom_subtitle_keyword_w_description">Неделя</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Неделя (Кратко)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Неделя (кратко)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Дневной подробный</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Почасовой подробный</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Погода сегодня днём, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Погода сегодня ночью, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Дневная температура сегодня, завтра, …, на 4 дня (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Ночная температура сегодня, завтра, …, на 4 дня (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Дневная температура сегодня, завтра, …, на 4 дня (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Ночная температура сегодня, завтра, …, на 4 дня (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Осадки днём, завтра, …, на 4 дня (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Осадки ночью, завтра, …, на 4 дня (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Ветер днём, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Ветер ночью, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Погода сегодня днём, завтра, …, через 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Погода сегодня ночью, завтра, …, через 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Дневная температура сегодня, завтра, …, через 4 дня (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Ночная температура сегодня, завтра, …, через 4 дня (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Дневная температура сегодня, завтра, …, через 4 дня (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Ночная температура сегодня, завтра, …, через 4 дня (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Осадки днём, завтра, …, через 4 дня (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Осадки ночью, завтра, …, через 4 дня (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Ветер днём, завтра, …, через 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Ветер ночью, завтра, …, через 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Восход сегодня, завтра, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Закат сегодня, завтра, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Восход Луны сегодня, завтра, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Заход Луны сегодня, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны сегодня, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны сегодня, завтра, …, через 4 дня</string>
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Время</string>
     <string name="location_message_added">Местоположение добавлено</string>
@@ -390,7 +390,7 @@
     <string name="action_add_current_location">Добавить текущее местоположение</string>
     <string name="action_see_more">Развернуть</string>
     <string name="message_network_unavailable">Сеть недоступна</string>
-    <string name="widget_label_align_end">Сопоставить конец</string>
+    <string name="widget_label_align_end">Выровнять по правому краю</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Новая строка</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -493,7 +493,7 @@
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
-    <string name="settings_widgets_notification_feels_like_switch">Использовать темперутуру “По ощущениям”</string>
+    <string name="settings_widgets_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
     <string name="unit_lpsqmph_voice">Литров на квадратный метр в час</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_nmi_voice">Морские мили</string>
@@ -687,4 +687,5 @@
     <string name="message_server_unavailable_title">Сервер недоступен</string>
     <string name="message_server_unavailable_content">Обычно это временная ошибка. Если ошибка не исчезнет, сообщите о проблеме на GitHub.</string>
     <string name="action_edit_location">Изменить это местоположение</string>
+    <string name="settings_global">Глобальные настройки</string>
 </resources>
