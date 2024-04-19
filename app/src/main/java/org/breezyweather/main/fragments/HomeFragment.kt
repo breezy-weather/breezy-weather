@@ -20,6 +20,8 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -185,6 +187,9 @@ class HomeFragment : MainModuleFragment() {
             true
         }
         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
+        binding.toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(
+            Color.WHITE, PorterDuff.Mode.SRC_ATOP
+        )
 
         binding.switchLayout.setOnSwitchListener(switchListener)
         binding.switchLayout.reset()
