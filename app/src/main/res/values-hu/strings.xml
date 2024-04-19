@@ -109,12 +109,12 @@
     <string name="widget_label_clock_font">Óra betűtípusa</string>
     <string name="widget_custom_subtitle_explanation">Akármit beírhat, de figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, használja a $ jelet a kulcsszóra való hivatkozáshoz.
 \n
-\nPéldául, „Jelenlegi időjárás: $cw$” így fog megjelenni: „Jelenlegi időjárás: Napos”.</string>
+\nPéldául, „Jelenlegi időjárás: $cw$” így fog megjelenni: „Jelenlegi időjárás: Tiszta égbolt”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Jelenlegi időjárás</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Jelenlegi hőmérséklet (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Jelenlegi hőmérséklet (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Jelenlegi Hőérzet (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Jelenlegi Hőérzet (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Jelenlegi hőérzet (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Jelenlegi hőérzet (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Jelenlegi szél</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Jelenlegi UV</string>
     <string name="widget_custom_subtitle_keyword_l_description">Helyszín</string>
@@ -123,20 +123,20 @@
     <string name="widget_custom_subtitle_keyword_ut_description">Frissítési idő</string>
     <string name="widget_custom_subtitle_keyword_d_description">Dátum</string>
     <string name="widget_custom_subtitle_keyword_w_description">Hét</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Hét (Rövid)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Napi leírás</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Óránkénti leírás</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Hét (rövid)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Napi ismertető</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Óránkénti ismertető</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Új sor</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Nappali időjárás ma, holnap, …, 4 nap múlva</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Esti időjárás ma, holnap, …, 4 nap múlva</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Éjszakai időjárás ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Nappali hőmérséklet ma, holnap, …, 4 nap múlva (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Esti hőmérséklet ma, holnap, …, 4 nap múlva (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Éjszakai hőmérséklet ma, holnap, …, 4 nap múlva (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Nappali hőmérséklet ma, holnap, …, 4 nap múlva (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Esti hőmérséklet ma, holnap, …, 4 nap múlva (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Éjszakai hőmérséklet ma, holnap, …, 4 nap múlva (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nappali csapadék ma, holnap, …, 4 nap múlva (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Esti csapadék ma, holnap, …, 4 nap múlva (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Éjszakai csapadék ma, holnap, …, 4 nap múlva (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Nappali szél ma, holnap, …, 4 nap múlva</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Esti szél ma, holnap, …, 4 nap múlva</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Éjszakai szél ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Napkelte ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Napnyugta ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Holdkelte ma, holnap, …, 4 nap múlva</string>
@@ -226,7 +226,7 @@
     <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni az aktuális tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_appearance_summary">Nyelv, sötét mód, ikoncsomag, mértékegységek</string>
     <string name="weather_api_key_required_missing_content">A forrás használatához meg kell adnia egy API-kulcsot.</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Riasztások (Rövid)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Riasztások (rövid)</string>
     <string name="weather_api_limit_reached_title">Az API-kérelmek száma elérte a korlátot</string>
     <string name="weather_api_limit_reached_content">A korlátozás megkerüléséhez hozzáadhat saját API-kulcsot.</string>
     <string name="weather_api_unauthorized_title">Engedély nélküli API-hozzáférés</string>
@@ -334,7 +334,7 @@
     <string name="action_add_new_location">Új helyszín hozzáadása</string>
     <string name="action_see_more">További részletek</string>
     <string name="message_network_unavailable">Hálózat nem elérhető</string>
-    <string name="widget_label_align_end">Vége igazítása</string>
+    <string name="widget_label_align_end">Jobbra igazítás</string>
     <string name="widget_subtitle_data_time">Frissítési idő</string>
     <string name="widget_subtitle_data_feels_like">Hőérzet</string>
     <string name="widget_style_mini">Mini</string>
@@ -455,7 +455,7 @@
     <string name="notification_channel_alerts">Riasztások</string>
     <string name="notification_update_error">%d frissítés sikertelen</string>
     <string name="about_dependencies">Függőségek</string>
-    <string name="common_weather_text_clear_sky">Tiszta</string>
+    <string name="common_weather_text_clear_sky">Tiszta égbolt</string>
     <string name="common_weather_text_rain_moderate">Mérsékelt eső</string>
     <string name="common_weather_text_rain_showers_light">Enyhe zápor</string>
     <string name="common_weather_text_rain_snow_mixed_light">Enyhe havas eső</string>
@@ -488,7 +488,7 @@
     <string name="settings_widgets_notification_style_title">Stílus</string>
     <string name="settings_widgets_notification_widget_title">Értesítési modul</string>
     <string name="settings_color_day_always">Mindig nappali</string>
-    <string name="settings_color_night_always">Mindig esti</string>
+    <string name="settings_color_night_always">Mindig éjszakai</string>
     <string name="settings_color_day_night">Nappal/este</string>
     <string name="settings_none">Nincs</string>
     <string name="unit_mb_voice">Millibár</string>
@@ -686,4 +686,5 @@
     <string name="message_server_unavailable_title">A kiszolgáló nem érhető el</string>
     <string name="message_server_unavailable_content">Ez általában egy átmeneti hiba. Ha a hiba továbbra is fennáll, akkor jelentse a problémát a GitHubon.</string>
     <string name="action_edit_location">Helyszín szerkesztése</string>
+    <string name="settings_global">Általános beállítások</string>
 </resources>
