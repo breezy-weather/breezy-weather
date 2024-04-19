@@ -615,9 +615,9 @@ private fun getDegreeDay(minTemp: Double?, maxTemp: Double?): DegreeDay? {
  * Given it is only called on missing data, it’s efficiently-safe
  */
 private fun getCalculatedAstroSun(date: Date, longitude: Double, latitude: Double): Astro {
-    val times = SunTimes.compute().on(date).at(latitude, longitude).execute()
+    val riseTimes = SunTimes.compute().on(date).at(latitude, longitude).execute()
 
-    if (times.isAlwaysUp) {
+    if (riseTimes.isAlwaysUp) {
         return Astro(
             riseDate = date,
             setDate = Date(date.time + (24 * 3600 * 1000) - 1)
@@ -625,17 +625,35 @@ private fun getCalculatedAstroSun(date: Date, longitude: Double, latitude: Doubl
     }
 
     // If we miss the rise time, it means we are leaving midnight sun season
-    if (times.rise == null && times.set != null) {
+    if (riseTimes.rise == null && riseTimes.set != null) {
         return Astro(
             riseDate = date, // Setting 00:00 as rise date
-            setDate = times.set
+            setDate = riseTimes.set
+        )
+    }
+
+    if (riseTimes.rise != null && riseTimes.set != null && riseTimes.set!! < riseTimes.rise) {
+        val setTimes = SunTimes.compute().on(riseTimes.rise).at(latitude, longitude).execute()
+        if (setTimes.set != null) {
+            return Astro(
+                riseDate = riseTimes.rise,
+                setDate = setTimes.set
+            )
+        }
+
+        // If we miss the set time, redo a calculation that takes more computing power
+        // Should not happen very often so avoid doing full cycle everytime
+        val setTimes2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        return Astro(
+            riseDate = riseTimes.rise,
+            setDate = setTimes2.set
         )
     }
 
     // If we miss the set time, redo a calculation that takes more computing power
     // Should not happen very often so avoid doing full cycle everytime
-    if (times.rise != null && times.set == null) {
-        val times2 = SunTimes.compute().fullCycle().on(date).at(latitude, longitude).execute()
+    if (riseTimes.rise != null && riseTimes.set == null) {
+        val times2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = times2.rise,
             setDate = times2.set
@@ -643,15 +661,15 @@ private fun getCalculatedAstroSun(date: Date, longitude: Double, latitude: Doubl
     }
 
     return Astro(
-        riseDate = times.rise,
-        setDate = times.set
+        riseDate = riseTimes.rise,
+        setDate = riseTimes.set
     )
 }
 
 private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Double): Astro {
-    val times = MoonTimes.compute().on(date).at(latitude, longitude).execute()
+    val riseTimes = MoonTimes.compute().on(date).at(latitude, longitude).execute()
 
-    if (times.isAlwaysUp) {
+    if (riseTimes.isAlwaysUp) {
         return Astro(
             riseDate = date,
             setDate = Date(date.time + (24 * 3600 * 1000) - 1)
@@ -659,17 +677,35 @@ private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Doub
     }
 
     // If we miss the rise time, it means moon was already up before 00:00
-    if (times.rise == null && times.set != null) {
+    if (riseTimes.rise == null && riseTimes.set != null) {
         return Astro(
             riseDate = date, // Setting 00:00 as rise date
-            setDate = times.set
+            setDate = riseTimes.set
+        )
+    }
+
+    if (riseTimes.rise != null && riseTimes.set != null && riseTimes.set!! < riseTimes.rise) {
+        val setTimes = MoonTimes.compute().on(riseTimes.rise).at(latitude, longitude).execute()
+        if (setTimes.set != null) {
+            return Astro(
+                riseDate = riseTimes.rise,
+                setDate = setTimes.set
+            )
+        }
+
+        // If we miss the set time, redo a calculation that takes more computing power
+        // Should not happen very often so avoid doing full cycle everytime
+        val setTimes2 = MoonTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        return Astro(
+            riseDate = riseTimes.rise,
+            setDate = setTimes2.set
         )
     }
 
     // If we miss the set time, redo a calculation that takes more computing power
     // Should not happen very often so avoid doing full cycle everytime
-    if (times.rise != null && times.set == null) {
-        val times2 = MoonTimes.compute().fullCycle().on(date).at(latitude, longitude).execute()
+    if (riseTimes.rise != null && riseTimes.set == null) {
+        val times2 = MoonTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = times2.rise,
             setDate = times2.set
@@ -677,8 +713,8 @@ private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Doub
     }
 
     return Astro(
-        riseDate = times.rise,
-        setDate = times.set
+        riseDate = riseTimes.rise,
+        setDate = riseTimes.set
     )
 }
 

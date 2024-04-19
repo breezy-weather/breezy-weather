@@ -161,7 +161,7 @@
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
     <string name="common_weather_text_mainly_clear">Principalement dégagé</string>
     <string name="common_weather_text_overcast">Couvert</string>
-    <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Dépôt d’un brouillard de givre</string>
     <string name="common_weather_text_snow_grains">Neige en grains</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
