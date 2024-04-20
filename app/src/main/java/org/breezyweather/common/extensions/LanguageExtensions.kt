@@ -16,13 +16,11 @@
 
 package org.breezyweather.common.extensions
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
-
 
 val Context.currentLocale: Locale
     get() {
