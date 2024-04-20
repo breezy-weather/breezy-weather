@@ -6,7 +6,7 @@ Homepage shows the weather for the selected location. When talking about current
 
 In the background, you can see an animation matching the current weather condition. This animation is dynamic by default, but you can choose a static one in the settings (Appearance).
 
-On top, you have city name of the location on the left, and location list and settings buttons on the right. From versions >= 5.2.1, you also have an Edit button that lets you access different options specific to the location, such as:
+On top, you have city name of the location on the left, and location list and settings buttons on the right. You also have an Edit button that lets you access different options specific to the location, such as:
 - Reorganize main screen (applies to all locations)
 - (Current location only) Change location service
 - Change main weather source or secondary weather sources (air quality, allergens, precipitations minute by minute, alerts)
@@ -334,9 +334,3 @@ Details already shown in the header will not be shown again.
 ### Footer
 
 In the footer, you have credits and acknowledgment for the weather source used for this location.
-
-In versions < 5.2.1, you also have an Edit button that lets you access different options specific to the location, such as:
-- Reorganize main screen (applies to all locations)
-- (Current location only) Change location service
-- Change main weather source or secondary weather sources (air quality, allergens, precipitations minute by minute, alerts)
-- Change source-specific preferences

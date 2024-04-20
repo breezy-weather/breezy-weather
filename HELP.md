@@ -40,7 +40,7 @@ This error may happen when a source is no longer provided by Breezy Weather. In 
 
 ### How can I change sources for a location?
 
-Just swipe from right to left on location list, or tap the pencil icon on top right (v5.2.1+) or tap the Edit button on Footer (< v5.2.1).
+Just swipe from right to left on location list, or tap the pencil icon on top right.
 
 
 ## Updates
