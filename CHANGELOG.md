@@ -1,10 +1,11 @@
-# Version 5.2.1 (not yet released)
+# Version 5.2.1 (2024-04-20)
 
 **Improvements and fixes**
 - We no longer send notifications for alerts with minimal to no known threat to life or property, to avoid spamming in some countries where these kind of alerts are sent daily. Alerts with unknown severity may still be sent.
 - Moved “Edit location” button from footer to a pencil icon on top right
 - Fix sun or moon not showing in ephemeris card with some sources when the sun/moon is setting the day after
 - Fix crash when sending data to Gadgetbridge in some cases
+- Fix moving to next location when swiping on the nowcasting chart (@min7-i)
 
 **Translations**
 - Translations updated
