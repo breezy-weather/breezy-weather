@@ -23,11 +23,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
@@ -71,6 +77,7 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 import java.util.Date
+import kotlin.math.absoluteValue
 import kotlin.math.max
 
 /**
@@ -173,6 +180,7 @@ class PrecipitationNowcastViewHolder(
     private fun ContentView(
         location: Location
     ) {
+        val view = LocalView.current
         val minutely = location.weather!!.minutelyForecastBy5Minutes
         val maxY = max(
             Precipitation.PRECIPITATION_HOURLY_HEAVY,
@@ -315,10 +323,46 @@ class PrecipitationNowcastViewHolder(
             ),
             modelProducer,
             marker = marker,
-            scrollState = rememberVicoScrollState(scrollEnabled = false)
+            scrollState = rememberVicoScrollState(scrollEnabled = false),
+            modifier = Modifier.handleNestedHorizontalDragGesture(view)
         )
     }
 }
+
+// Simplified version of https://stackoverflow.com/a/77321467
+private fun Modifier.handleNestedHorizontalDragGesture(
+    view: View
+) = this.pointerInput(Unit) {
+        var initialX = 0f
+        var initialY = 0f
+
+        awaitEachGesture {
+            do {
+                val event = awaitPointerEvent(PointerEventPass.Initial)
+                when (event.type) {
+                    PointerEventType.Press -> {
+                        view.parent.requestDisallowInterceptTouchEvent(true)
+                        event.changes.firstOrNull()?.let {
+                            initialX = it.position.x
+                            initialY = it.position.y
+                        }
+                    }
+                    PointerEventType.Move -> {
+                        event.changes.firstOrNull()?.let {
+                            val changedX = it.previousPosition.x - initialX
+                            val changedY = it.previousPosition.y - initialY
+
+                            if (changedY.absoluteValue > changedX.absoluteValue) {
+                                view.parent.requestDisallowInterceptTouchEvent(false)
+                            } else {
+                                view.parent.requestDisallowInterceptTouchEvent(true)
+                            }
+                        }
+                    }
+                }
+            } while (event.changes.any { it.pressed })
+        }
+    }
 
 private class MarkerLabelFormatterMinutelyDecorator(
     private val minutely: List<Minutely>,
