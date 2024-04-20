@@ -281,10 +281,10 @@
     <string name="widget_subtitle_data_time">Час оновлення</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Поточна погода</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Поточний УФ-індекс</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Нічна температура сьогодні, завтра, ..., через 4 дні (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Опади вдень, завтра, ..., через 4 дні (%)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Нічна температура сьогодні, завтра, …, через 4 дні (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Опади вдень, завтра, …, через 4 дні (%)</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Захід Місяця сьогодні, завтра, …, на 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Місяця сьогодні, завтра,..., через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Місяця сьогодні, завтра, …, через 4 дні</string>
     <string name="widget_style_rectangle">Прямокутний</string>
     <string name="widget_week_style_5_days">5 днів</string>
     <string name="settings_background_updates_refresh_title">Частота оновлень</string>
@@ -308,14 +308,14 @@
     <string name="widget_custom_subtitle_keyword_w_description">Тиждень</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Щогодинний опис</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Новий рядок</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Погода сьогодні вдень, завтра, ..., через 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Погода сьогодні вночі, завтра, ..., через 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Денна температура сьогодні, завтра, ..., через 4 дні (°C / ° F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Нічна температура сьогодні, завтра, ..., через 4 дні (°C / ° F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Денна температура сьогодні, завтра, ..., через 4 дні (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Вітер вдень, завтра, ..., через 4 дні</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Опади вночі, завтра, ..., через 4 дні (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Вітер вночі, завтра, ..., через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Погода сьогодні вдень, завтра, …, через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Погода сьогодні вночі, завтра, …, через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Денна температура сьогодні, завтра, …, через 4 дні (°C / ° F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Нічна температура сьогодні, завтра, …, через 4 дні (°C / ° F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Денна температура сьогодні, завтра, …, через 4 дні (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Вітер вдень, завтра, …, через 4 дні</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Опади вночі, завтра, …, через 4 дні (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Вітер вночі, завтра, …, через 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Схід Сонця сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Захід Сонця сьогодні, завтра, …, на 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Схід Місяця сьогодні, завтра, …, на 4 дні</string>
@@ -365,7 +365,7 @@
 \nНаприклад, “Поточна погода: $cw$” буде показана як “Поточна погода: Ясно небо”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Поточна температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Поточна температура (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Поточна температура за відчуттями (°C / ° F)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Поточна температура за відчуттями (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Поточна температура за відчуттям (°)</string>
     <string name="settings_location">Місцезнаходження</string>
     <string name="settings_location_service">Сервіс визначення місцезнаходження</string>
@@ -513,7 +513,7 @@
     <string name="about_contributors">Учасники</string>
     <string name="about_translators">Перекладачі</string>
     <string name="common_weather_text_snow_heavy">Сильний сніг</string>
-    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру \"по відчуттях\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру по відчуттях</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза з сильним градом</string>
     <string name="weather_message_unsupported_feature">Джерело не підтримує одну із запитаних функцій</string>
     <string name="settings_debug_dump_crash_logs_title">Поділитися журналом збоїв</string>
