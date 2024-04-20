@@ -5,7 +5,7 @@
     <!-- keyword. -->
     <string name="location_current">Jelenlegi helyszín</string>
     <string name="short_today">Ma</string>
-    <string name="notification_refreshed_at">Frissítve ekkor:</string>
+    <string name="notification_refreshed_at">Frissítve:</string>
     <string name="precipitation">Csapadék</string>
     <string name="precipitation_probability">Csapadék esélye</string>
     <string name="precipitation_duration">Csapadék időtartama</string>
@@ -399,10 +399,10 @@
     <string name="air_quality_level_4">Káros</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="ephemeris_moonset_at">Holdnyugta ekkor: %s</string>
-    <string name="ephemeris_moonrise_at">Holdkelte ekkor: %s</string>
-    <string name="ephemeris_sunset_at">Napnyugta ekkor: %s</string>
-    <string name="ephemeris_sunrise_at">Napkelte ekkor: %s</string>
+    <string name="ephemeris_moonset_at">Holdnyugta: %s</string>
+    <string name="ephemeris_moonrise_at">Holdkelte: %s</string>
+    <string name="ephemeris_sunset_at">Napnyugta: %s</string>
+    <string name="ephemeris_sunrise_at">Napkelte: %s</string>
     <string name="settings_location_access_background_summaryOff">Válassza ki a „Mindig engedélyezett” lehetőséget, hogy a háttérben frissülhessenek az aktuális tartózkodási helyszínének időjárásadatai.</string>
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
     <string name="pollen_level_3">Közepes</string>
