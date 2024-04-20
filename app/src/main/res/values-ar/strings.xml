@@ -15,7 +15,7 @@
     <string name="wind_speed">سرعة الرياح</string>
     <string name="humidity">الرطوبة</string>
     <string name="uv_index">مؤشر الأشعة فوق البنفسجية</string>
-    <string name="sunshine_duration">ساعات من الشمس</string>
+    <string name="sunshine_duration">مدة إضاءة الشمس</string>
     <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
