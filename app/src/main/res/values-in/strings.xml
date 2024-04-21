@@ -115,10 +115,10 @@
     <string name="widget_label_text_color">Warna teks</string>
     <string name="widget_label_text_size">Ukuran teks</string>
     <string name="widget_label_clock_font">Font jam</string>
-    <string name="widget_label_align_end">Align end</string>
+    <string name="widget_label_align_end">Paskan ke kanan</string>
     <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.
 \n
-\nuntuk contoh, “cuaca saat ini = $cw$” akan ditampilkan sebagai “cuaca saat ini = Hari Jernih”.</string>
+\nuntuk contoh, “cuaca saat ini = $cw$” akan ditampilkan sebagai “cuaca saat ini = Langit cerah.”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Cuaca saat ini</string>
@@ -131,34 +131,34 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Kelembaban saat ini</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Tekanan saat ini</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Penglihatan saat ini</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Titik Embun saat ini</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Titik embun saat ini</string>
     <string name="widget_custom_subtitle_keyword_al_description">Peringatan</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Peringatan (Pendek)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Peringatan (pendek)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Lokasi</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Garis lintang</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Garis bujur</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Waktu Pembaruan</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Waktu pembaruan</string>
     <string name="widget_custom_subtitle_keyword_d_description">Tanggal</string>
     <string name="widget_custom_subtitle_keyword_w_description">Minggu</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Minggu (Pendek)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Deskripsi Harian</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Deskripsi per Jam</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Minggu (pendek)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Deskripsi harian</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Deskripsi per jam</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Enter</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Siang hari Cuaca Hari ini, Bsk, …, 4 hari kemudian</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Malam hari Cuaca Hari ini, Bsk, …, 4 hari kemudian</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Siang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Malam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Siang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Malam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Siang hari Presipitasi Hari ini, Bsk, …, 4 hari kemudian (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Malam hari Presipitasi Hari ini, Bsk, …, 4 hari kemudian (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Siang hari Angin Hari ini, Bsk, …, 4 hari kemudian</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Malam hari Angin Hari ini, Bsk, …, 4 hari kemudian</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Cuaca siang ini, besok, …, 4 hari kemudian</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Cuaca malam ini, besok, …, 4 hari kemudian</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Suhu siang ini, besok, …, 4 hari kemudian (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Suhu malam ini, besok, …, 4 hari kemudian (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Suhu siang ini, besok, …, 4 hari kemudian (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Suhu malam ini, besok, …, 4 hari kemudian (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Presipitasi siang ini, besok, …, 4 hari kemudian (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Presipitasi malam ini, besok, …, 4 hari kemudian (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Angin siang ini, besok, …, 4 hari kemudian</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Angin malam ini, besok, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Matahari terbit Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Matahari tenggelam Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Bulan terbit Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Bulan tenggelam Hari ini, Bsk, …, 4 hari kemudian</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Fase bulan Hari ini, Bsk, …, 4 hari kemudian</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Fase bulan hari ini, besok, …, 4 hari kemudian</string>
     <string name="widget_live_wallpaper_weather_kind">Cuaca</string>
     <string name="widget_live_wallpaper_day_night_type">Waktu</string>
     <string name="location_message_added">Lokasi telah ditambahkan</string>
@@ -239,7 +239,7 @@
     <string name="settings_units_speed">Unit kecepatan</string>
     <string name="settings_notifications_section_forecast">Ramalan</string>
     <string name="settings_widgets_notification_temp_icon_switch">Suhu sebagai Ikon Bilah Status</string>
-    <string name="settings_widgets_notification_feels_like_switch">Gunakan suhu Feels Like</string>
+    <string name="settings_widgets_notification_feels_like_switch">Gunakan suhu terasa seperti</string>
     <string name="settings_source_default_value">Bawaan (tidak diubah)</string>
     <string name="settings_background_updates_refresh_1h">1 jam</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 jam</string>
@@ -551,7 +551,7 @@
     <string name="settings_widgets_live_wallpaper_summary">Tetapkan animasi cuaca sebagai latar belakang</string>
     <string name="message_parsing_error_title">Gagal mengurai data cuaca</string>
     <string name="weather_message_invalid_location">Lokasi tidak valid, silakan hapus dan tambahkan lagi</string>
-    <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca</string>
+    <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca berat</string>
     <string name="settings_weather_sources_summary">Sumber cuaca bawaan untuk lokasi baru, kunci API khusus, pengaturan sumber lainnya</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Petunjuk spesifik pabrikan</string>
     <string name="settings_notifications_forecast_time_today_title">Waktu notifikasi untuk perkiraan hari itu</string>
@@ -698,4 +698,6 @@
     <string name="settings_appearance_calendar_title">Kalender lain</string>
     <string name="message_server_unavailable_title">Server tidak tersedia</string>
     <string name="message_server_unavailable_content">Ini biasanya merupakan kesalahan sementara. Jika terus berlangsung, silakan laporkan isu di GitHub.</string>
+    <string name="settings_global">Pengaturan global</string>
+    <string name="action_edit_location">Sunting lokasi ini</string>
 </resources>
