@@ -110,14 +110,14 @@
     <string name="widget_label_text_color">文字顔色</string>
     <string name="widget_label_text_size">文字尺寸</string>
     <string name="widget_label_clock_font">時鐘字體</string>
-    <string name="widget_label_align_end">右對齊</string>
-    <string name="widget_custom_subtitle_explanation">您可以輸入任何文字，但請注意文字的長度。如果您想引用天氣數據，請使用 $ 符號引用對應的關鍵字。
+    <string name="widget_label_align_end">向右對齊</string>
+    <string name="widget_custom_subtitle_explanation">您可以輸入任何文字，但請注意文字的長度。如果您想要引用天氣數據，請使用 $ 符號引用對應的關鍵字。
 \n
 \n例如，「目前的天氣是：$cw$。」將會顯示為「目前的天氣是：晴天。」。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">當前天氣</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">當前溫度（°C／°F）</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度（°C／°F）</string>
     <string name="widget_custom_subtitle_keyword_atd_description">目前體感溫度（°）</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">當前風況</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">當前紫外線</string>
@@ -134,11 +134,11 @@
     <string name="widget_custom_subtitle_keyword_d_description">日期</string>
     <string name="widget_custom_subtitle_keyword_w_description">星期</string>
     <string name="widget_custom_subtitle_keyword_ws_description">星期（短）</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">每日天氣狀況描述</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">每小時天氣狀況描述</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">每天概述</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">每小時概述</string>
     <string name="widget_custom_subtitle_keyword_enter_description">換行</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">今日白天天氣，明日，……，4天後</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">今日夜間天氣，明日，……，4天後</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">今天、明天、…、4 天後的日間天氣</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">今天、明天、…、4 天後的晚間天氣</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">今日白天溫度，明日，……，4天後（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">今日夜間溫度，明日，……，4天後（°C/°F）</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">今日白天溫度，明日，……，4天後（°）</string>
@@ -203,7 +203,7 @@
     <string name="widget_clock_day_week">時鐘 + 今日 + 一週</string>
     <string name="widget_text">純文字</string>
     <string name="widget_trend_daily">每日趨勢</string>
-    <string name="widget_trend_hourly">小時趨勢</string>
+    <string name="widget_trend_hourly">每小時趨勢</string>
     <string name="widget_multi_city">多個城市</string>
     <string name="widget_material_you_forecast">Material You - 預報</string>
     <string name="widget_material_you_current">Material You - 實時</string>
@@ -464,7 +464,7 @@
     <string name="notification_channel_alerts">預警</string>
     <string name="weather_message_invalid_location">你所選擇的地點無效，請刪除後重新添加</string>
     <string name="weather_pollen_data_by">花粉相關資料由 %s 提供</string>
-    <string name="weather_minutely_data_by">降水逐分鐘數據由 %s 提供</string>
+    <string name="weather_minutely_data_by">臨近降水預報數據由 %s 提供</string>
     <string name="weather_message_secondary_data_refresh_failed">來自次要氣象資料來源的更新失敗</string>
     <string name="weather_alert_data_by">氣象警報資料由 %s 提供</string>
     <string name="weather_air_quality_and_pollen_data_by">本空氣品質和花粉數據由 %s 提供</string>
@@ -662,4 +662,15 @@
     <string name="settings_widgets_broadcast_title">將我的天氣數據廣播給其他應用程式</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">結合此地點最佳的天氣模型</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">將此提供者的所有天氣模型結合成無縫的預測</string>
+    <string name="alert">警報</string>
+    <string name="dialog_time_picker_select_time">選擇時間</string>
+    <string name="dialog_time_picker_input_time">輸入時間</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">切換到觸控輸入</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">切換到文字輸入</string>
+    <string name="widget_label_hide_alternate_calendar">隱藏替代日曆</string>
+    <string name="message_server_unavailable_content">這通常是暫時性的錯誤。如果錯誤仍然存在，請在 GitHub 上報告問題。</string>
+    <string name="action_edit_location">編輯此位置</string>
+    <string name="message_invalid_incomplete_data">從伺服器收到的資料無效或不完整</string>
+    <string name="message_server_unavailable_title">伺服器無法使用</string>
+    <string name="alert_source">來源：%s</string>
 </resources>
