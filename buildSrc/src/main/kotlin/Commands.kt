@@ -9,7 +9,7 @@ fun Project.getCommitCount(): String {
 }
 
 fun Project.getGitSha(): String {
-    return runCommand("git rev-parse --short HEAD")
+    return runCommand("git rev-parse --short=8 HEAD")
     // return "1"
 }
 
