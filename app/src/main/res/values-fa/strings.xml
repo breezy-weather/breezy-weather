@@ -252,16 +252,16 @@
     <string name="widget_subtitle_data_wind">باد</string>
     <string name="widget_subtitle_data_feels_like">دمایی که احساس می شود</string>
     <string name="widget_subtitle_data_custom">سفارشی</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">آب و هوای الآن</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">آب و هوای فعلی</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">دمای فعلی (درجه)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">باد اینگاه</string>
-    <string name="widget_custom_subtitle_keyword_at_description">دمای حس شونده (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">باد فعلی</string>
+    <string name="widget_custom_subtitle_keyword_at_description">دمای فعلی حس شونده (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">پرتو UV اینگاه</string>
     <string name="widget_custom_subtitle_keyword_atd_description">دمای حس شونده (درجه)</string>
     <string name="widget_custom_subtitle_keyword_al_description">هشدار ها</string>
     <string name="widget_custom_subtitle_keyword_als_description">هشدارها (کوچک)</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">دید اینگاه</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">نقطه شبنم اینگاه</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">دید فعلی</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">نقطه شبنم فعلی</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط تازه</string>
     <string name="widget_custom_subtitle_keyword_ws_description">هفته (کوچک)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">توضیحات روزانه</string>
@@ -318,9 +318,9 @@
     <string name="action_show_errors">برای دیدن ریزگان لمس کنید</string>
     <string name="message_parsing_error_title">تجزیه و تحلیل داده های آب و هوایی انجام نشد</string>
     <string name="widget_material_you_current">Material You - اینگاه</string>
-    <string name="widget_label_align_end">هم تراز شدن با پایان</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">نم اینگاه</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">فشار اینگاه</string>
+    <string name="widget_label_align_end">راست چین</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">رطوبت فعلی</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">فشار فعلی</string>
     <string name="widget_custom_subtitle_keyword_l_description">موقعیت مکانی</string>
     <string name="widget_custom_subtitle_keyword_lat_description">عرض جغرافیایی</string>
     <string name="widget_custom_subtitle_keyword_w_description">هفته</string>
@@ -374,8 +374,8 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">کیفیت هوای کنونی</string>
     <string name="location_message_already_exists">مکانی با همان منبع اصلی آب و هوا از قبل وجود دارد.</string>
     <string name="location_message_updated">مکان به‌روز‌رسانی شد</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">بارندگی امشب، فردا شب، …، 4 شب دیگر (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">بارندگی امروز، فردا، …، 4 روز دیگر (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">بارندگی امشب، فردا شب، …، ۴ شب آینده (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">بارندگی امروز، فردا، …، ۴ روز آینده (%)</string>
     <string name="settings_main_summary">سفارش کارت، موارد نمایش داده شده، انیمیشن ها</string>
     <string name="settings_main_daily_trends_title">روند روزانه</string>
     <string name="settings_main_section_options">گزینه ها</string>
@@ -383,7 +383,7 @@
     <string name="temperature_feels_like_short">حس میشود</string>
     <string name="uv_index_short">اشعه UV</string>
     <string name="air_quality_so2_info_consequences">قرار گرفتن در معرض SO₂ با بستری شدن در بیمارستان آسم و مراجعه به اتاق اورژانس همراه است.</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">باد امروز، فردا، …، 4 روز دیگر</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">باد امروز، فردا، …، ۴ روز آینده</string>
     <string name="settings_background_updates_dont_kill_my_app_title">راهنما های خاص سازنده</string>
     <string name="pollen_castanea">‹درخت بلوط</string>
     <string name="pollen_corylus">فندق</string>
@@ -401,8 +401,8 @@
     <string name="action_confirm">پذیرش</string>
     <string name="widget_label_show_widget_card">رنگ پس‌زمینه</string>
     <string name="widget_label_hide_header">مخفی سازی‌ سرلوحه</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">دمای امشب، فردا‌ شب، …، 4 شب دیگر (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">دمای امشب، فردا شب، …، 4 شب دیگر (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">دمای روز امروز، فردا، …، ۴ روز آینده (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">دمای امشب، فردا شب، …، ۴ شب آینده (°)</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">شاخص کیفیت هوای امروز، فردا، …، 4 روز دیگر</string>
     <string name="settings_weather_source_unavailable">%s (خارج از دسترسی)</string>
     <string name="settings_weather_sources_per_location_summary">منابع آب و هوا استفاده شده برای این مکان را سفارشی کنید</string>
@@ -415,10 +415,10 @@
     <string name="settings_icon_packs_weather_icon_dark">نماد تیره</string>
     <string name="settings_main">صفحه اصلی</string>
     <string name="location_search_no_results_advice">مطمئن شوید که املای جستجوی شما درست است و خیلی خاص نیست. از طرف دیگر، می توانید منبع جستجوی مکان دیگری را امتحان کنید که ممکن است نتایج متفاوتی ایجاد کند.</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">هوای امروز، فردا، …، 4 روز دیگر</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">هوای امشب، فردا شب، …، 4 شب دیگر</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">دمای امروز، فردا، …، 4 روز دیگر (°C°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">دمای امشب، فردا شب، …، 4 شب دیگر (°C°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">هوای امروز، فردا، …، ۴ روز آینده</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">هوای امشب، فردا شب، …، ۴ شب آینده</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">دمای روز امروز، فردا، …، ۴ روز آینده (°C°/F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">دمای امشب، فردا شب، …، ۴ شب آینده (°C°/F)</string>
     <string name="settings_background_updates_battery_optimization_summary">این اولین چیزی است که وقتی آگاه‌ساز دریافت نمی کنید یا ابزارک ها به روز نمی شوند، امتحان کنید.</string>
     <string name="settings_weather_source_none">هیچکدام</string>
     <string name="settings_weather_sources_default_source">منبع انتخابی برای‌ مکان های تازه</string>
@@ -434,7 +434,7 @@
     <string name="dialog_permissions_location_content">Breezy Weather باید اطلاعات موقعیت مکانی شما را در پیش‌زمینه یا پس‌زمینه جمع‌آوری کند تا اطلاعات آب و هوای مکان فعلی شما را ارائه دهد. برای این، ما برخی از مجوزها را درخواست خواهیم کرد. اطلاعات مکان شما فقط برای به دست آوردن اطلاعات آب و هوا در مکان فعلی شما استفاده خواهد شد. اگر نمی‌خواهید موقعیت مکانی خود را به اشتراک بگذارید، می‌توانید آن شرایط را رد کنید و مکان خود را به صورت دستی در صفحه مدیریت تنظیم کنید.</string>
     <string name="widget_custom_subtitle_explanation">شما می توانید هر چیزی را وارد کنید، اما لطفا به طول متن توجه کنید. اگر می خواهید داده های آب و هوا را نقل قول کنید، لطفاً از $ برای ارجاع به کلمه کلیدی مربوطه استفاده کنید.
 \n
-\nبه عنوان مثال، “آب و هوای فعلی: $cw$.” به صورت ”آب و هوای فعلی: روز صاف است.“ نمایش داده می شود.</string>
+\nبه عنوان مثال، “آب و هوای فعلی: $cw$.” به صورت ”آب و هوای فعلی: آسمان صاف است.“ نمایش داده می شود.</string>
     <string name="dialog_permissions_location_background_content">برای اینکه به برنامه دسترسی داده شود به مکان در پس‌زمینه دسترسی داشته باشد، به طوری که ما بتوانیم تغییرات مکان را درک کرده و داده‌های آب و هوای معتبری را در اختیار شما قرار دهیم، لطفاً دسترسی به مکان را روی «همیشه مجاز باشد» تنظیم کنید.</string>
     <string name="location_delete_location_dialog_message">شما در شرف پاکسازی ”%s“ از فهرست مکان های نگه داری شده خود هستید.</string>
     <string name="settings_location_service">خدمات رسان مکان</string>
@@ -680,4 +680,5 @@
     <string name="message_invalid_incomplete_data">اطلاعات نامعتبر یا ناقص از سرور دریافت شد</string>
     <string name="settings_weather_source_freenet_disclaimer">منابع آب و هوای بیشتری در نسخه های دیگر Breezy Weather موجود است. برای کسب اطلاعات بیشتر اینجا ضربه بزنید.</string>
     <string name="action_edit_location">ویرایش این مکان</string>
+    <string name="settings_global">تنظیمات عمومی</string>
 </resources>
