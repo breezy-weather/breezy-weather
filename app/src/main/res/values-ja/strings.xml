@@ -423,7 +423,7 @@
     <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
     <string name="settings_widgets_day_night_temp_reversed_title">昼夜の気温の順序を逆転させる</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
-    <string name="settings_notifications_alerts_title">気象警報の通知</string>
+    <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">体感温度を使う</string>
     <string name="unit_kn">kn</string>
     <string name="notification_precipitation_starting">まもなく降水が始めます</string>
@@ -563,7 +563,7 @@
     <string name="settings_icon_packs_weather_icon_dark">暗いアイコン</string>
     <string name="settings_main_threshold_lines_on_charts">図表上の閾値ライン</string>
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
-    <string name="settings_notifications_summary">気象警報･降水量･予報</string>
+    <string name="settings_notifications_summary">最初場所の気象警報･降水量･予報通知</string>
     <string name="settings_notifications_precipitations_title">降水量の通知</string>
     <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで続くでしょう</string>
@@ -689,4 +689,7 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
     <string name="action_edit_location">この場所を編集する</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">互換性のあるパッケージが見つかりませんでした</string>
+    <string name="settings_appearance_calendar_title">代替カレンダー</string>
+    <string name="settings_global">全般設定</string>
 </resources>
