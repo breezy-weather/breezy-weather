@@ -136,7 +136,7 @@
     <string name="notification_channel_widget">Виџет</string>
     <string name="widget_custom_subtitle_explanation">Можете да унесете било шта, али обратите пажњу на дужину текста. Ако желите да цитирате податке о времену, користите $ за референцу на одговарајућу кључну реч.
 \n
-\nНа пример, „Тренутно време је: $cw$.“ биће приказано као „Тренутно време је: Ведар дан.“.</string>
+\nНа пример, „Тренутно време је: $cw$.“ биће приказано као „Тренутно време је: Ведро небо.“.</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Ноћна температура - данас, сутра, …, 4 дана касније (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Залазак месеца - данас, сутра, …, 4 дана касније</string>
     <string name="settings_notifications_forecast_tomorrow_title">Обавештење за прогнозу за следећи дан</string>
@@ -239,7 +239,7 @@
     <string name="action_add_current_location">Додај тренутну локацију</string>
     <string name="location_message_permission_background_missing">Недостаје дозвола за приступ локацији у позадини</string>
     <string name="widget_label_text_size">Величина текста</string>
-    <string name="widget_label_align_end">Поравнај крај</string>
+    <string name="widget_label_align_end">Поравнај десно</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Тренутна видљивост</string>
     <string name="widget_custom_subtitle_keyword_als_description">Упозорења (кратка)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Локација</string>
@@ -686,4 +686,5 @@
     <string name="message_server_unavailable_title">Сервер недоступан</string>
     <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>
     <string name="action_edit_location">Измени ову локацију</string>
+    <string name="settings_global">Глобална подешавања</string>
 </resources>
