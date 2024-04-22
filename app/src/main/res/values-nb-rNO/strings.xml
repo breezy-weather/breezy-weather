@@ -562,7 +562,7 @@
     <string name="weather_source_accu_preference_days_5">5 dager</string>
     <string name="weather_source_accu_preference_hours_240">240 timer</string>
     <string name="location_message_list_cannot_be_empty">Lokasjonsliste kan ikke være tom</string>
-    <string name="location_current">Nåværende lokasjon</string>
+    <string name="location_current">Nåværende posisjon</string>
     <string name="settings_background_updates_refresh_never_warning1">Du vil ikke kunne motta varslinger om farevarsler eller nedbør hvis du skrur av bakgrunnsoppdateringer. Moduler vil ikke bli oppdatert før neste gang du åpner appen.</string>
     <string name="action_see_more">Se mer</string>
     <string name="weather_message_data_refresh_failed">Oppdatering av værdata feilet</string>
@@ -595,4 +595,14 @@
     <string name="action_edit">Rediger</string>
     <string name="action_restart">Start på nytt</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Fant ingen kompatible pakker</string>
+    <string name="widget_label_align_end">Høyrejuster</string>
+    <string name="location_search_source">Kilde for lokasjonssøk</string>
+    <string name="dialog_time_picker_input_time">Skriv inn tidspunkt</string>
+    <string name="settings_global">Globale innstillinger</string>
+    <string name="location_search_change_source">Endre kilde for lokasjonssøk</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Sjekk posisjonstillatelser</string>
+    <string name="settings_background_updates_refresh_never_warning2">Prosessen for bakgrunnsoppdatering er lite krevende: den oppdaterer kun den første lokasjonen din med oppdateringsfrekvensen du har valgt i innstillingene, samt resten av lokasjonene dine en gang i døgnet ved behov. Det er en energi-effektiv prosess, og den vil vanligvis ligge under 5 MB i databruk pr måned.</string>
+    <string name="location_current_not_found_yet">Nåværende posisjon er ikke funnet enda…</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Tillat posisjonsinformasjon</string>
+    <string name="action_edit_location">Rediger lokasjonen</string>
 </resources>
