@@ -308,11 +308,11 @@
     <string name="settings_main_header_details_title">Detaljer i oppsummeringen</string>
     <string name="weather_kind_haze">Tørrdis</string>
     <string name="common_weather_text_drizzle_freezing">Underkjølt yr</string>
-    <string name="settings_source_instance_geocoding">Geokodingsserver</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">Luftkvalitetsserver</string>
+    <string name="settings_source_instance_geocoding">Server for geokoding</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Server for luftkvalitet</string>
     <string name="common_weather_text_drizzle_moderate">Moderat yr</string>
     <string name="settings_source_instance">Server</string>
-    <string name="settings_weather_source_open_meteo_instance_forecast">Værvarselserver</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Server for værvarsel</string>
     <string name="common_weather_text_drizzle_heavy">Kraftig yr</string>
     <string name="settings_icon_packs_weather_icon_light">Lyst ikon</string>
     <string name="settings_source_instance_invalid">Må være en HTTPS-URL som slutter med /</string>
@@ -324,7 +324,7 @@
     <string name="settings_main_cards_title">Kort</string>
     <string name="settings_widgets_broadcast_title">Send værdata til andre apper</string>
     <string name="settings_main_summary">Kortrekkefølge, synlige objekter, animasjoner</string>
-    <string name="settings_debug">Feilsøk</string>
+    <string name="settings_debug">Feilsøking</string>
     <string name="location_delete_location_dialog_message">Du er i ferd med å slette «%s» fra lagrede lokasjoner.</string>
     <string name="settings_main">Startskjerm</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerer alle værvarslingsmodellene fra denne leverandøren for en sømløs prognose</string>
@@ -594,4 +594,5 @@
     <string name="action_delete">Slett</string>
     <string name="action_edit">Rediger</string>
     <string name="action_restart">Start på nytt</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Fant ingen kompatible pakker</string>
 </resources>
