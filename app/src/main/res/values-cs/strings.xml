@@ -111,23 +111,23 @@
     <string name="widget_label_text_color">Barva písma</string>
     <string name="widget_label_text_size">Velikost písma</string>
     <string name="widget_label_clock_font">Písmo hodin</string>
-    <string name="widget_label_align_end">Zarovnat konec</string>
+    <string name="widget_label_align_end">Zarovnat vpravo</string>
     <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.
 \n
-\nNapříklad “current weather = $cw$” bude zobrazeno jako “current weather = Clear Day”.</string>
+\nNapříklad „Aktuální počasí: $cw$“ bude zobrazeno jako „Aktuální počasí: Jasná obloha“.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="widget_custom_subtitle_keyword_cw_description">Současné počasí</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Současná teplota (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Současná teplota (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Pocitová teplota (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Pocitová teplota (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Současná vítr</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Aktuální počasí</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Aktuální teplota (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Aktuální teplota (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Aktuální pocitová teplota (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Aktuální pocitová teplota (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Aktuální vítr</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Současné UV</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Současná vlhkost</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Současný tlak</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Současná viditelnost</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Současný rosný bod</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Aktuální vlhkost</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Aktuální tlak</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Aktuální viditelnost</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Aktuální rosný bod</string>
     <string name="widget_custom_subtitle_keyword_al_description">Upozornění</string>
     <string name="widget_custom_subtitle_keyword_als_description">Upozornění (krátká)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Poloha</string>
@@ -140,21 +140,21 @@
     <string name="widget_custom_subtitle_keyword_dd_description">Denní popis</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Hodinový popis</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Enter</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Dnešní denní počasí, zítra, …, o 4 dny později</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Dnešní noční počasí, zítra, …, o 4 dny později</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dnešní denní teplota, zítra, …, o 4 dny později (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Dnešní noční teplota, zítra, …, o 4 dny později (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Dnešní denní teplota, zítra, …, o 4 dny později (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Dnešní noční teplota, zítra, …, o 4 dny později (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Dnešní denní srážky, zítra, …, o 4 dny později (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Dnešní noční srážky, zítra, …, o 4 dny později (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Dnešní denní vítr, zítra, …, o 4 dny později</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Dnešní noční vítr, zítra, …, o 4 dny později</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Denní počasí dnes, zítra, …, za 4 dny</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Noční počasí dnes, zítra, …, za 4 dny</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Denní teplota dnes, zítra, …, za 4 dny (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Noční teplota dnes, zítra, …, za 4 dny (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Denní teplota dnes, zítra, …, za 4 dny (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Noční teplota dnes, zítra, …, za 4 dny (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Denní srážky dnes, zítra, …, za 4 dny (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Noční srážky dnes, zítra, …, za 4 dny (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Denní vítr dnes, zítra, …, za 4 dny</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Noční vítr dnes, zítra, …, za 4 dny</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Dnešní východ slunce, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Dnešní západ slunce, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Dnešní východ měsíce, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Dnešní západ měsíce, zítra, …, o 4 dny později</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Dnešní fáze měsíce, zítra, …, o 4 dny později</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Fáze měsíce dnes, zítra, …, za 4 dny</string>
     <string name="widget_live_wallpaper_weather_kind">Počasí</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
     <string name="location_message_added">Lokalita úspěšně přidána</string>
@@ -317,7 +317,7 @@
     <string name="settings_appearance_summary">Jazyk, tmavý režim, balíček ikon, jednotky</string>
     <string name="settings_icon_packs_title">Balíčky ikon</string>
     <string name="settings_main_hourly_trends_title">Hodinové trendy</string>
-    <string name="settings_widgets_notification_feels_like_switch">Použití Pocitové teploty</string>
+    <string name="settings_widgets_notification_feels_like_switch">Použít pocitovou teplotu</string>
     <string name="settings_main_background_animation_title">Animace na pozadí</string>
     <string name="settings_debug_dump_crash_logs_summary">Uložit protokoly o chybách do souboru pro sdílení s vývojáři</string>
     <string name="unit_m">m</string>
@@ -697,4 +697,5 @@
     <string name="message_server_unavailable_content">Toto obvykle bývá dočasný chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
     <string name="message_server_unavailable_title">Server není dostupný</string>
     <string name="action_edit_location">Upravit tuto lokalitu</string>
+    <string name="settings_global">Globální nastavení</string>
 </resources>
