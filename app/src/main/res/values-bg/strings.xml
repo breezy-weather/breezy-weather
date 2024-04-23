@@ -21,9 +21,9 @@
     <string name="precipitation_rain">Дъжд</string>
     <string name="precipitation_snow">Сняг</string>
     <string name="precipitation_ice">Лед</string>
-    <string name="precipitation_intensity_light">Ръмеж</string>
-    <string name="precipitation_intensity_medium">Дъжд</string>
-    <string name="precipitation_intensity_heavy">Проливен дъжд</string>
+    <string name="precipitation_intensity_light">Леки</string>
+    <string name="precipitation_intensity_medium">Умерени</string>
+    <string name="precipitation_intensity_heavy">Проливни</string>
     <string name="precipitation_none">Без валежи</string>
     <string name="precipitation_between_time">Валежи между %1$s и %2$s</string>
     <string name="wind">Вятър</string>
@@ -200,7 +200,7 @@
     <string name="widget_clock_day_vertical">Часовник + Ежедневно (вертикален стил)</string>
     <string name="widget_material_you_forecast">Material You - Прогноза</string>
     <string name="widget_trend_daily">Ежедневна тенденция</string>
-    <string name="widget_multi_city">Мулти Град</string>
+    <string name="widget_multi_city">Мулти град</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Преглед на стил</string>
     <string name="widget_label_text_color">Цвят на текста</string>
@@ -258,7 +258,7 @@
     <string name="message_server_timeout">Времето за изчакване на заявката изтече</string>
     <string name="wind_strength">Сила на вятъра</string>
     <string name="message_parsing_error_title">Неуспешно анализиране на данните за времето</string>
-    <string name="widget_label_align_end">Подравни края</string>
+    <string name="widget_label_align_end">Подравни надясно</string>
     <string name="widget_subtitle_data_time">Време на опресняване</string>
     <string name="widget_subtitle_data_wind">Вятър</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Текущ вятър</string>
@@ -276,7 +276,7 @@
     <string name="widget_custom_subtitle_keyword_cuv_description">Текущо UV</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Географска ширина</string>
     <string name="widget_custom_subtitle_keyword_d_description">Дата</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Седмица (Накратко)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Седмица (накратко)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Почасово описание</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Нов ред</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Времето през деня днес, утре, …, 4 дни по-късно</string>
@@ -296,13 +296,13 @@
     <string name="message_parsing_error_content">Уверете се, че сте актуализирали до най-новата версия на приложението. Сървърът може да е временно недостъпен, в такъв случай, моля, опитайте отново по-късно. Ако проблемът продължава, моля, копирайте лога за сривовете от настройките за отстраняване на грешки и докладвайте за проблем в GitHub.</string>
     <string name="widget_custom_subtitle_explanation">Можете да въведете всичко, но моля, обърнете внимание на дължината на текста. Ако искате да цитирате данни за времето, моля, използвайте $ за препратка към съответната ключова дума.
 \n
-\nНапример “Текущото време е: $cw$.” ще се покаже като “Текущото време е: Ясен ден.”.</string>
+\nНапример “Текущото време е: $cw$.” ще се покаже като “Текущото време е: Ясно небе.”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Текущо време</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текуща температура (°)</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Текуща видимост</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Географска дължина</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Текуща температура (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Сигнали (Кратки)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Сигнали (кратки)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Местоположение</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Време на актуализиране</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Дневно описание</string>
@@ -319,7 +319,7 @@
     <string name="widget_style_pixel">Пиксел</string>
     <string name="widget_week_style_5_days">5 дни</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_background_updates_refresh_30min">Половин час</string>
+    <string name="settings_background_updates_refresh_30min">30 минути</string>
     <string name="settings_background_updates_refresh_6h">6 часа</string>
     <string name="settings_location_access_background_summaryOn">Активирано. Приложението ще може да опреснява данните за времето за текущото ви местоположение във фонов режим.</string>
     <string name="settings_weather_sources">Източници на прогноза за времето</string>
@@ -353,10 +353,10 @@
     <string name="settings_location_access_background_title">Достъп до местоположението във фонов режим</string>
     <string name="settings_location_access_switch_summaryOff">Моля, позволете, ако искате да можете да добавите текущото си местоположение като местоположение.</string>
     <string name="settings_location_access_switch_title">Достъп до местоположение</string>
-    <string name="settings_location_access_precise_summaryOn">Активирано. Използват се както мрежата на устройството, така и GPS доставчиците.</string>
+    <string name="settings_location_access_precise_summaryOn">Активирано. Мрежовият доставчик на устройството ще се използва с приоритет и през повечето време, но GPS може да се използва и като резервен вариант.</string>
     <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
     <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
-    <string name="settings_weather_sources_summary">Персонализирайте на доставчиците на прогноза за времето , използвани за това местоположение</string>
+    <string name="settings_weather_sources_summary">Източник на времето по подразбиране за нови местоположения, персонализирани API ключове, други настройки на източника</string>
     <string name="settings_source_default_value">По подразбиране (непроменено)</string>
     <string name="settings_appearance">Изглед</string>
     <string name="settings_appearance_summary">Език, тъмен режим, пакет с икони, мерни единици</string>
@@ -393,8 +393,8 @@
     <string name="settings_main_gravity_sensor_switch">Сензор за земно притегляне</string>
     <string name="settings_main_cards_other_element_animations_switch">Други анимации на елементи</string>
     <string name="settings_main_cards_fade_in_switch">Картите избледняват</string>
-    <string name="settings_notifications_summary">Сигнали за времето, валежи, прогноза</string>
-    <string name="settings_notifications_alerts_title">Известия за предупреждения за времето</string>
+    <string name="settings_notifications_summary">Известия за предупреждения за времето, валежи или прогноза за първото местоположение</string>
+    <string name="settings_notifications_alerts_title">Известия за предупреждения за лошо време</string>
     <string name="settings_notifications_forecast_tomorrow_title">Известие за прогноза за следващия ден</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Време за известяване за прогноза за следващия ден</string>
     <string name="settings_icon_packs_check_details">Провери подробностите</string>
@@ -412,7 +412,7 @@
     <string name="settings_widgets_notification_widget_title">Приспособление в известията</string>
     <string name="settings_widgets_configure_widget_summary">Конфигурирай това приспособление</string>
     <string name="settings_widgets_section_notification_widget">Приспособление в известията</string>
-    <string name="settings_widgets_notification_feels_like_switch">Използвай Усеща се като температура</string>
+    <string name="settings_widgets_notification_feels_like_switch">Използвай усеща се като температура</string>
     <string name="settings_widgets_notification_temp_icon_switch">Температура като икона в лентата на състоянието</string>
     <string name="settings_widgets_notification_persistent_switch">Постоянно</string>
     <string name="settings_debug">Отстраняване на грешки</string>
@@ -555,7 +555,7 @@
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>
     <string name="settings_weather_source_main">Основен източник</string>
-    <string name="settings_weather_sources_per_location_summary">Персонализирайте източниците на данни за времето за това местоположение</string>
+    <string name="settings_weather_sources_per_location_summary">Персонализирайте източниците на данни за времето, използвани за това местоположение</string>
     <string name="common_weather_text_rain_freezing_light">Слаб леден дъжд</string>
     <string name="common_weather_text_drizzle_moderate">Умерен ръмеж</string>
     <string name="common_weather_text_drizzle_heavy">Силен ръмеж</string>
@@ -656,4 +656,29 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Обобщение на индексa за алергени за днес, утре, …, 4 дни по-късно</string>
     <string name="sunshine">Слънчева светлина</string>
     <string name="alert">Сигнал</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Сървър за качество на въздуха</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Превключване към сензорно въвеждане</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Превключване към въвеждане на текст</string>
+    <string name="widget_label_hide_alternate_calendar">Скриване на алтернативния календар</string>
+    <string name="settings_global">Глобални настройки</string>
+    <string name="settings_source_instance_invalid">Трябва да е https URL, завършващ с /</string>
+    <string name="settings_source_instance_geocoding">Сървър за геокодиране</string>
+    <string name="settings_appearance_calendar_title">Алтернативен календар</string>
+    <string name="message_server_unavailable_content">Това обикновено е временна грешка. Ако грешката продължава, моля, докладвайте за проблем в GitHub.</string>
+    <string name="settings_widgets_broadcast_title">Споделяне на данни</string>
+    <string name="settings_background_updates_refresh_never_warning2">Процесът на фоново актуализиране е лек: той само опреснява първото ви местоположение с избраната от вас скорост, а вторичните местоположения само ако имате нужда от тях, веднъж на ден. Той е енергийно-ефективен и не трябва да надвишава 5 MB консумация на данни на месец.</string>
+    <string name="settings_background_updates_refresh_never_warning1">При изключване на фоновите актуализации, вече няма да получавате известия за предупреждения или валежи. Приспособленията няма да се опресняват, докато не отворите приложението.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Вместо да изключвате фоновите актуализации, може да използвате на по-рядка честота на опресняване , ако все още искате да продължите, докоснете \"Продължи\" .</string>
+    <string name="settings_weather_source_freenet_disclaimer">Достъпни са още източници на метеорологични данни от други варианти на Breezy Weather. Докоснете тук, за да научите повече.</string>
+    <string name="action_edit_location">Редактирайте това местоположение</string>
+    <string name="message_invalid_incomplete_data">Невалидни или непълни данни получени от сървъра</string>
+    <string name="message_server_unavailable_title">Сървърът е недостъпен</string>
+    <string name="dialog_time_picker_select_time">Изберете време</string>
+    <string name="dialog_time_picker_input_time">Въведете час</string>
+    <string name="alert_source">Източник: %s</string>
+    <string name="settings_per_location_theme">Тема</string>
+    <string name="settings_source_instance">Сървър</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Сървър за прогноза</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Няма намерени съвместими пакети</string>
+    <string name="settings_invalid_syntax">Невалиден синтаксис</string>
 </resources>
