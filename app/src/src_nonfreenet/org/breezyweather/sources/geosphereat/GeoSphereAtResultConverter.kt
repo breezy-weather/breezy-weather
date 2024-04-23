@@ -33,6 +33,7 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.minus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
@@ -131,9 +132,12 @@ private fun getHourlyForecast(
                 temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)
             ),
             precipitation = Precipitation(
-                total = hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i),
-                rain = hourlyResult.features[0].properties!!.parameters!!.rainAcc?.data?.getOrNull(i),
+                total = hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i)
+                    .minus(hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i - 1)),
+                rain = hourlyResult.features[0].properties!!.parameters!!.rainAcc?.data?.getOrNull(i)
+                    .minus(hourlyResult.features[0].properties!!.parameters!!.rainAcc?.data?.getOrNull(i - 1)),
                 snow = hourlyResult.features[0].properties!!.parameters!!.snowAcc?.data?.getOrNull(i)
+                    .minus(hourlyResult.features[0].properties!!.parameters!!.snowAcc?.data?.getOrNull(i - 1))
             ),
             wind = if (windSpeed != null) {
                 Wind(

@@ -1,3 +1,12 @@
+# Version 5.2.2 (not yet released)
+
+**Sources**
+- [GeoSphere Austria] Fix precipitation values
+
+**Translations**
+- Translations updated
+
+
 # Version 5.2.1 (2024-04-20)
 
 **Improvements and fixes**
