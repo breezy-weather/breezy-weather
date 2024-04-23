@@ -230,7 +230,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle Temperatur (°C/°F)</string>
     <string name="widget_custom_subtitle_explanation">Sie können alles eingeben, aber achten Sie bitte auf die Länge des Textes. Wenn Sie Wetterdaten nutzen möchten, verwenden Sie bitte $, um auf das entsprechende Stichwort zu verweisen.
 \n
-\nZum Beispiel: „Aktuell: $cw$.“ wird angezeigt als „Aktuell: Klar.“.</string>
+\nZum Beispiel: „Aktuelles Wetter: $cw$.“ wird angezeigt als „Aktuelles Wetter: Klar.“.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Aktuelles Wetter</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Aktuelle gefühlte Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuelle Sichtweite</string>
