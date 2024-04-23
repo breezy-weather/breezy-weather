@@ -648,6 +648,6 @@
     <string name="dialog_time_picker_input_time">Ievadīt laiku</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Pārslēgties uz skārienievadi</string>
     <string name="message_server_unavailable_title">Serveris nav pieejams</string>
-    <string name="settings_background_updates_refresh_never_warning3">Drīzāk jāapsver izmantot retāku atsvaidzināšanu, nevis fona atjauninājumu izslēgšanu, pretējā gadījumā jāpiesit \"Turpināt\", ja joprojām ir vēlme turpināt.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Drīzāk jāapsver izmantot retāku atsvaidzināšanu, nevis fona atjauninājumu izslēgšanu, pretējā gadījumā jāpiesit “Turpināt”, ja joprojām ir vēlme turpināt.</string>
     <string name="alert_source">Avots: %s</string>
 </resources>

@@ -209,6 +209,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("lt"), "splice11", github = "splice11"),
         TranslatorItem(arrayOf("lv"), "Niks Rodžers", weblate = "niks.rodzers.auzins"),
         TranslatorItem(arrayOf("lv"), "Eduards Lusts", weblate = "eduardslu"),
+        TranslatorItem(arrayOf("lv"), "Edgars Andersons", weblate = "Edgarsons"),
         TranslatorItem(arrayOf("mk"), "ikocevski7", github = "ikocevski7"),
         TranslatorItem(arrayOf("nb_rNO"), "Even Bull-Tornøe", github = "bt0rne"),
         TranslatorItem(arrayOf("nb_rNO"), "Visnes", github = "Visnes"),
@@ -249,6 +250,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("sv"), "Peter Ericson", github = "noscirep"),
         TranslatorItem(arrayOf("sv"), "Luna Jernberg", github = "bittin"),
         TranslatorItem(arrayOf("sv"), "Victor Zamanian", github = "victorz"),
+        TranslatorItem(arrayOf("ta"), "Naveen", weblate = "naveen"),
         TranslatorItem(arrayOf("tr"), "Mehmet Saygin Yilmaz", mail = "memcos@gmail.com"),
         TranslatorItem(arrayOf("tr"), "Ali D.", mail = "siyaha@gmail.com"),
         TranslatorItem(arrayOf("tr"), "metezd", weblate = "metezd"),
@@ -269,12 +271,13 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", github = "misaka-13766"),
         TranslatorItem(arrayOf("zh_rCN"), "losky2987", github = "losky2987"),
         TranslatorItem(arrayOf("zh_rCN"), "thdcloud", github = "thdcloud"),
-        TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "thaumiel9", github = "thaumiel9"),
+        TranslatorItem(arrayOf("zh_rCN", "zh_rTW"), "thaumiel9", github = "thaumiel9"),
         TranslatorItem(arrayOf("zh_rCN"), "tomac4t", github = "tomac4t"),
-        TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "abc0922001", github = "abc0922001"),
+        TranslatorItem(arrayOf("zh_rTW"), "abc0922001", github = "abc0922001"),
         TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", weblate = "hamburger2048"),
-        TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rHK", "zh_rTW"), "天ツ風", github = "Yibuki"),
-        TranslatorItem(arrayOf("zh_rHK", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25")
+        TranslatorItem(arrayOf("zh_rCN"), "hugoalh", github = "hugoalh"),
+        TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rTW"), "天ツ風", github = "Yibuki"),
+        TranslatorItem(arrayOf("zh_rTW", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

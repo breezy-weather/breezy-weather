@@ -5,6 +5,7 @@
 
 **Translations**
 - Translations updated
+- Tamil added (thanks Naveen!)
 
 
 # Version 5.2.1 (2024-04-20)
