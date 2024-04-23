@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Laikapstākļi</string>
-    <string name="daily_forecast">Dienas prognoze</string>
+    <string name="daily_forecast">Ikdienas prognoze</string>
     <string name="hourly_forecast">Stundu prognoze</string>
     <string name="air_quality">Gaisa kvalitāte</string>
     <string name="pollen">Ziedputekšņi</string>
@@ -187,7 +187,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Citu elementu animācijas</string>
     <string name="settings_notifications">Paziņojumi</string>
     <string name="settings_notifications_precipitations_title">Paziņojumi par nokrišņiem</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Paziņojums nākamās dienas prognozei</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Paziņojums par nākamās dienas prognozi</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Apgrieztā dienas/nakts temperatūras secība</string>
     <string name="uv_index_11">Ekstrēms</string>
     <string name="air_quality_level_3_description">Gaiss ir sasniedzis augstu piesārņojuma līmeni un ir neveselīgs jutīgiem cilvēkiem. Jāsamazina ārā pavadītais laiks, ja ir jūtamas tādas izpausmes kā apgrūtināta elpošana vai rīkles kairinājums.</string>
@@ -429,8 +429,8 @@
     <string name="settings_notifications_forecast_today_title">Paziņojums par dienas prognozi</string>
     <string name="settings_notifications_alerts_title">Paziņojumi par bīstamu laikapstākļu brīdinājumiem</string>
     <string name="settings_widgets">Logrīki un reāllaika fona tapetes</string>
-    <string name="settings_notifications_forecast_time_today_title">Dienas prognozes paziņošanas laiks</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">Nākamās dienas prognozes paziņošanas laiks</string>
+    <string name="settings_notifications_forecast_time_today_title">Dienas prognozes paziņojuma laiks</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Nākamās dienas prognozes paziņojuma laiks</string>
     <string name="settings_widgets_live_wallpaper_title">Dzīvās tapetes</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurēt šo logrīku</string>
     <string name="settings_widgets_section_notification_widget">Paziņojumu logrīks</string>
