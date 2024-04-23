@@ -678,7 +678,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
     <string name="settings_background_updates_refresh_never_warning1">Wenn Sie die Hintergrundaktualisierung deaktivieren, erhalten Sie keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn Sie die App öffnen.</string>
     <string name="settings_background_updates_refresh_never_warning2">Der Hintergrundaktualisierungsprozess ist ressourcenschonend: Nur Ihr erster Ort wird mit der von Ihnen gewählten Rate aktualisiert und weitere Orte einmal täglich, wenn Sie sie benötigen. Der Prozess ist akkuschonend und sollte einen Datenverbrauch von 5 MB pro Monat nicht überschreiten.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Ziehen Sie in Erwägung, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Ansonsten tippen Sie auf „Weiter“, wenn Sie fortfahren möchten.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Ziehen Sie in Erwägung, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Ansonsten tippen Sie auf „Weiter“, wenn Sie trotzdem fortfahren möchten.</string>
     <string name="message_server_unavailable_content">Dies ist normalerweise ein temporärer Fehler. Wenn er weiterhin besteht, melden Sie ihn bitte auf GitHub.</string>
     <string name="message_server_unavailable_title">Server nicht erreichbar</string>
     <string name="action_edit_location">Diesen Ort bearbeiten</string>
