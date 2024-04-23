@@ -31,7 +31,7 @@
     <string name="precipitation_rain">Lietus</string>
     <string name="precipitation_snow">Sniegs</string>
     <string name="precipitation_ice">Ledus</string>
-    <string name="precipitation_intensity_light">Smidzina</string>
+    <string name="precipitation_intensity_light">Viegli</string>
     <string name="precipitation_intensity_medium">Vidēji</string>
     <string name="precipitation_intensity_heavy">Spēcīgi</string>
     <string name="precipitation_none">Bez nokrišņiem</string>
@@ -153,7 +153,7 @@
     <string name="widget_live_wallpaper_weather_kind">Laikapstākļi</string>
     <string name="widget_live_wallpaper_day_night_type">Laiks</string>
     <string name="settings_section_general">Vispārīgi</string>
-    <string name="settings_background_updates_refresh_30min">Pusstunda</string>
+    <string name="settings_background_updates_refresh_30min">30 minūtes</string>
     <string name="settings_background_updates_refresh_never">Nekad</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Neņemt vērā, kad baterijas līmenis ir zems</string>
     <string name="settings_background_updates_section_troubleshoot">Problēmu novēršana</string>
@@ -162,7 +162,7 @@
     <string name="settings_background_updates_worker_info_title">Informācija par procesu</string>
     <string name="settings_background_updates_worker_info_summary">Pēdējā palaišana: %s</string>
     <string name="settings_location">Atrašanās vieta</string>
-    <string name="settings_location_access_precise_summaryOn">Iespējots. Tiek izmantots gan ierīces tīkls, gan GPS nodrošinātāji.</string>
+    <string name="settings_location_access_precise_summaryOn">Iespējots. Lielākoties tiks izmantots ierīces tīkla nodrošinātājs, bet var tikt izmantots arī GPS kā papildu iespēja.</string>
     <string name="settings_location_access_precise_summaryOff">Iespējojiet opciju “Izmantot precīzu atrašanās vietu”, ja rodas problēmas ar atrašanās vietas noteikšanu.</string>
     <string name="settings_appearance_dark_mode_locations_title">Dienas/nakts režīms vietām</string>
     <string name="settings_appearance_icon_pack_title">Ikonu pakotne</string>
@@ -222,9 +222,9 @@
     <string name="widget_day">Ikdienas</string>
     <string name="widget_text">Teksts</string>
     <string name="widget_subtitle_data_wind">Vējš</string>
-    <string name="widget_custom_subtitle_explanation">Varat ievadīt jebko, taču, lūdzu, pievērsiet uzmanību teksta garumam. Ja vēlaties citēt laikapstākļu datus, lūdzu, izmantojiet $, lai atsauktos uz atbilstošo atslēgvārdu.
+    <string name="widget_custom_subtitle_explanation">Var ievadīt jebko, bet lūgums pievērst uzmanību teksta garumam. Ja ir vēlme citēt laikapstākļu datus, lūgums izmantot $, lai atsauktos uz atbilstošo atslēgvārdu.
 \n
-\nPiemēram, “Pašreizējie laikapstākļi ir: $cw$”. tiks parādīts kā “Pašreizējie laikapstākļi: Skaidra diena”.</string>
+\nPiemēram, “Pašreizējie laikapstākļi ir: $cw$.” tiks parādīts kā “Pašreizējie laikapstākļi: Skaidras debesis.”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Pašreizējie laikapstākļi</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Pašreizējā temperatūra (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Pašreizējā temperatūra (°)</string>
@@ -246,9 +246,9 @@
     <string name="settings_location_service">Atrašanās vietas pakalpojums</string>
     <string name="settings_location_access_permission_already_granted">Atļauja jau piešķirta</string>
     <string name="settings_weather_sources">Laikapstākļu avoti</string>
-    <string name="settings_weather_sources_summary">Laikapstākļu datu avotu iestatījumi</string>
+    <string name="settings_weather_sources_summary">Noklusējuma laikapstākļu avots jaunām atrašanās vietām, pielāgotām API atslēgām, citiem avota iestatījumiem</string>
     <string name="settings_weather_source_main">Galvenais avots</string>
-    <string name="settings_weather_sources_per_location_summary">Pielāgojiet laikapstākļu datu avotus šai atrašanās vietai</string>
+    <string name="settings_weather_sources_per_location_summary">Pielāgot laikapstākļu datu avotus, kas tiek izmantoti šai atrašanās vietai</string>
     <string name="settings_source_api_key">API atslēga</string>
     <string name="settings_appearance_summary">Valoda, tumšais režīms, ikonu pakotne, vienības</string>
     <string name="settings_appearance_language_title">Valoda</string>
@@ -378,11 +378,11 @@
     <string name="widget_week">Iknedēļas</string>
     <string name="widget_trend_daily">Ikdienas tendence</string>
     <string name="widget_material_you_forecast">Materiāls Tu - Prognoze</string>
-    <string name="widget_multi_city">Daudzpilsēta</string>
+    <string name="widget_multi_city">Vairākas pilsētas</string>
     <string name="widget_material_you_current">Materiāls Tu — pašreizējais</string>
     <string name="widget_refreshing">Atsvaidzinoš</string>
     <string name="widget_label_clock_font">Pulksteņa fonts</string>
-    <string name="widget_label_align_end">Izlīdzināt beigas</string>
+    <string name="widget_label_align_end">Pielīdzināt labajai malai</string>
     <string name="widget_subtitle_data_time">Atsvaidzināt laiku</string>
     <string name="widget_subtitle_data_aqi">Gaisa kvalitāte</string>
     <string name="widget_subtitle_data_feels_like">Šķietamā temperatūra</string>
@@ -427,7 +427,7 @@
     <string name="settings_notifications_section_forecast">Prognoze</string>
     <string name="settings_widgets_summary">Fona attēlu iestatīšana, izmantoto logrīku konfigurēšana, paziņojumu logrīks</string>
     <string name="settings_notifications_forecast_today_title">Paziņojums par dienas prognozi</string>
-    <string name="settings_notifications_alerts_title">Paziņojumi par laikapstākļiem</string>
+    <string name="settings_notifications_alerts_title">Paziņojumi par bīstamu laikapstākļu brīdinājumiem</string>
     <string name="settings_widgets">Logrīki un reāllaika fona tapetes</string>
     <string name="settings_notifications_forecast_time_today_title">Dienas prognozes paziņošanas laiks</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Nākamās dienas prognozes paziņošanas laiks</string>
@@ -650,4 +650,33 @@
     <string name="message_server_unavailable_title">Serveris nav pieejams</string>
     <string name="settings_background_updates_refresh_never_warning3">Drīzāk jāapsver izmantot retāku atsvaidzināšanu, nevis fona atjauninājumu izslēgšanu, pretējā gadījumā jāpiesit “Turpināt”, ja joprojām ir vēlme turpināt.</string>
     <string name="alert_source">Avots: %s</string>
+    <string name="settings_weather_source_open_meteo_weather_models">Laikapstākļu modeļi</string>
+    <string name="settings_source_instance">Serveris</string>
+    <string name="settings_source_instance_geocoding">Ģeokodēšanas serveris</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Prognožu serveris</string>
+    <string name="settings_weather_source_unavailable">%s (nav pieejams)</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Labākā atbilstība</string>
+    <string name="settings_weather_source_none">Neviens</string>
+    <string name="settings_global">Vispārēji iestatījumi</string>
+    <string name="about_open_link_message">Atvērt %s?</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Netika atrastas saderīgas pakotnes</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Apvieno labākos laikapstākļu modeļus šai atrašanās vietai</string>
+    <string name="settings_invalid_syntax">Nederīgs pieraksts</string>
+    <string name="settings_per_location_theme">Izskats</string>
+    <string name="settings_background_updates_refresh_never_warning2">Fona atjaunināšanas process ir viegls, tas atjaunina tikai pirmo atrašanās vietu ik pēc norādītā laika, un pārējās atrašanās vietas, tikai ja tās ir nepieciešamas, reizi dienā. Tas neietekmē bateriju un nevajadzētu pārsniegt 5 MB datu patēriņu mēnesī.</string>
+    <string name="settings_per_location">Atrašanās vietas iestatījumi</string>
+    <string name="settings_per_location_summary">Papildu pielāgojumi šai atrašanās vietai</string>
+    <string name="settings_unavailable_no_background_updates">Nav pieejams, vispirms jāiespējo fona atjauninājumi</string>
+    <string name="settings_widgets_broadcast_title">Datu kopīgošana</string>
+    <string name="settings_weather_source_freenet_disclaimer">Vairāk laikapstākļu avotu ir pieejami citos Breezy Weather laidienos. Piesist šeit, lai uzzinātu vairāk.</string>
+    <string name="widget_label_show_widget_card_alpha">Necaurspīdīgums</string>
+    <string name="widget_label_hide_header">Paslēpt galveni</string>
+    <string name="message_server_unavailable_content">Tā parasti ir īslaicīga kļūda. Ja tā nepazūd, lūgums iesniegt nepilnības pieteikumu GitHub.</string>
+    <string name="settings_weather_sources_default_source">Noklusējuma avots jaunām atrašanās vietām</string>
+    <string name="message_source_not_installed_error_content_tip_2">Vai nu jānomaina laikapstākļu avoti šai atrašanās vietai, vai arī tā ir jāizdzēš un jāpievieno no jauna.</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Pašreizējais gaisa kvalitātes indekss</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Gaisa kvalitātes indekss šodien, rīt, ..., pēc 4 dienām</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Putekšņu indeksa apkopojums šodien, rīt, ..., pēc 4 dienām</string>
+    <string name="settings_source_instance_invalid">Jābūt HTTPS URL, kas beidzas ar /</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Gaisa kvalitātes serveris</string>
 </resources>
