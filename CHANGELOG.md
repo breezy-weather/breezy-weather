@@ -2,6 +2,7 @@
 
 **Sources**
 - [GeoSphere Austria] Fix precipitation values
+- [Pirate Weather] Fix parsing error due to server changes
 
 **Translations**
 - Translations updated

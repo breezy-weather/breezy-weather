@@ -24,9 +24,6 @@ data class PirateWeatherCurrently(
     val icon: String?,
     val summary: String?,
 
-    val nearestStormDistance: Int?,
-    val nearestStormBearing: Int?,
-
     val precipType: String?,
     val precipIntensity: Double?,
     val precipProbability: Double?,
