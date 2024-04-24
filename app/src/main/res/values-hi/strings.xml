@@ -24,7 +24,7 @@
     <string name="uv_index_8_10">बहुत उच्च</string>
     <string name="daily_forecast">दैनिक पूर्वानुमान</string>
     <string name="air_quality_level_1_description">वायु गुणवत्ता अधिकांश व्यक्तियों के लिए आदर्श है; अपनी सामान्य बाहरी गतिविधियों का आनंद लें।।</string>
-    <string name="precipitation_intensity_heavy">भारी बारिश</string>
+    <string name="precipitation_intensity_heavy">भारी</string>
     <string name="air_quality_level_5">बहुत अस्वास्थ्यकर</string>
     <string name="precipitation_none">कोई वर्षा नहीं</string>
     <string name="air_quality_pm_explanations_introduction">कण या वायुमंडलीय कण पदार्थ हवा में निलंबित ठोस या तरल पदार्थ के सूक्ष्म कण हैं।।</string>
@@ -42,7 +42,7 @@
     <string name="wind_strength_4">अल्पबल समीर</string>
     <string name="temperature_normals">तापमान सामान्य</string>
     <string name="pollen">पोलेन</string>
-    <string name="precipitation_intensity_light">बूंदा बांदी</string>
+    <string name="precipitation_intensity_light">हल्की</string>
     <string name="precipitation">वर्षा</string>
     <string name="wind_strength_8">झंझा</string>
     <string name="uv_index_3_5">मध्यम</string>
