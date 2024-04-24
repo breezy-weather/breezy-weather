@@ -400,7 +400,9 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             setWeatherBackgroundDrawable()
-            val screenRefreshRate = max(ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService).refreshRate, 60f)
+            val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService).refreshRate.let {
+                if (it > 60f) 60f else it
+            }
             mIntervalController = AsyncHelper.intervalRunOnUI(
                 { mHandler?.post(mDrawableRunnable) },
                 (1000.0 / screenRefreshRate).toLong(),
