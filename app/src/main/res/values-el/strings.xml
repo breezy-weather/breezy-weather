@@ -58,9 +58,9 @@
     <string name="wind_strength_10">Καταιγίδα</string>
     <string name="wind_strength_11">Βίαιη καταιγίδα</string>
     <string name="wind_strength_12">Τυφώνας</string>
-    <string name="precipitation_intensity_light">Ψιλή βροχή</string>
+    <string name="precipitation_intensity_light">Ελαφρύς</string>
     <string name="precipitation_intensity_medium">Βροχή</string>
-    <string name="precipitation_intensity_heavy">Δυνατή βροχή</string>
+    <string name="precipitation_intensity_heavy">Ισχυρός</string>
     <string name="ephemeris_moon_phase_new_moon">Νέα Σελήνη</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Αύξων μηνίσκος</string>
     <string name="ephemeris_moon_phase_first_quarter">Πρώτο τέταρτο</string>
@@ -104,20 +104,20 @@
     <string name="widget_label_text_color">Χρώμα κειμένου</string>
     <string name="widget_label_text_size">Μέγεθος κειμένου</string>
     <string name="widget_label_clock_font">Γραμματοσειρά ρολογιού</string>
-    <string name="widget_custom_subtitle_explanation">Μπορείτε να εισάγετε οτιδήποτε, αλλά παρακαλώ δώστε προσοχή στο μήκος του κειμένου. Αν θέλετε τα δεδομένα καιρού να εμφανίζονται, χρησιμοποιήστε το $ για σύνδεση με την αντίστοιχη λέξη-κλειδί.
+    <string name="widget_custom_subtitle_explanation">Μπορείς να εισάγεις οτιδήποτε, αλλά παρακαλώ δώσε προσοχή στο μήκος του κειμένου. Αν θέλεις να παραθέσεις δεδομένα καιρού, χρησιμοποίησε το $ για σύνδεση με την αντίστοιχη λέξη-κλειδί.
 \n
-\nΓια παράδειγμα, “Ο καιρός τώρα = $cw$” θα εμφανιστεί ως “Ο καιρός τώρα = Καθαρή ημέρα”.</string>
+\nΓια παράδειγμα, “Ο καιρός τώρα είναι: $cw$” θα εμφανιστεί ως “Ο καιρός τώρα είναι: Καθαρός ουρανός.”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Ο καιρός τώρα</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Τρέχουσα θερμοκρασία (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Τρέχουσα θερμοκρασία (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Θερμοκρασία Τρέχουσας Αίσθησης (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Τρέχουσα Αίσθηση Θερμοκρασίας (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Άνεμος</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Θερμοκρασία τρέχουσας αίσθησης (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Θερμοκρασία τρέχουσας αίσθησης (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Τρέχων άνεμος</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Δείκτης UV</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Υγρασία</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Τρέχων Πίεση</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Ορατότητα</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Σημείο δρόσου</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Τρέχουσα υγρασία</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Τρέχουσα πίεση</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Τρέχουσα ορατότητα</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Τρέχων σημείο δρόσου</string>
     <string name="widget_custom_subtitle_keyword_l_description">Τοποθεσία</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Γεωγραφικό πλάτος</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Γεωγραφικό μήκος</string>
@@ -128,21 +128,21 @@
     <string name="widget_custom_subtitle_keyword_dd_description">Ημερήσια περιγραφή</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Ωριαία περιγραφή</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Καταχώρηση</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Ο καιρός σήμερα, αύριο …, για 4 ημέρες</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Ο καιρός τη νύχτα σήμερα, αύριο, …, για 4 ημέρες</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Ο καιρός την ημέρα σήμερα, αύριο, …, για 4 ημέρες (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Θερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Θερμοκρασία ημέρας σήμερα, αύριο, …, για 4 ημέρες (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Θερμοκρασία νύχτας σήμερα, αύριο, …, για 4 ημέρες (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Βροχόπτωση ημέρας σήμερα, αύριο, …, για 4 ημέρες (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Βροχόπτωση νύχτας σήμερα, αύριο, …, για 4 ημέρες (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Άνεμος ημέρας σήμερα, αύριο, …, για 4 ημέρες</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Άνεμος νύχτας σήμερα, αύριο, …, για 4 ημέρες</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Ο καιρός τη μέρα σήμερα, αύριο …, 4 ημέρες μετά</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Ο καιρός τη νύχτα σήμερα, αύριο, …, 4 ημέρες μετά</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Η θερμοκρασία την ημέρα σήμερα, αύριο, …, 4 ημέρες μετά (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Η Θερμοκρασία τη νύχτα σήμερα, αύριο, …, 4 ημέρες μετά (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Η θερμοκρασία τη μέρα σήμερα, αύριο, …, 4 ημέρες μετά (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Η θερμοκρασία τη νύχτα σήμερα, αύριο, …, 4 ημέρες μετά (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Ο υετός τη μέρα σήμερα, αύριο, …, 4 ημέρες μετά (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Ο υετός τη νύχτα σήμερα, αύριο, …, 4 ημέρες μετά (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Ο άνεμος τη μέρα σήμερα, αύριο, …, 4 ημέρες μετά</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Ο άνεμος τη νύχτα σήμερα, αύριο, …, 4 ημέρες μετά</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Ανατολή ηλίου σήμερα, αύριο, …, για 4 ημέρες</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Δύση ηλίου σήμερα, αύριο, …, για 4 ημέρες</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Ανατολή σελήνης σήμερα, αύριο, …, για 4 ημέρες</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Δύση σελήνης, αύριο, …, για 4 ημέρες</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Φάση σελήνης σήμερα, αύριο, …, για 4 ημέρες</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Φάση σελήνης σήμερα, αύριο, …, 4 ημέρες μετά</string>
     <string name="widget_live_wallpaper_weather_kind">Καιρός</string>
     <string name="widget_live_wallpaper_day_night_type">Ώρα</string>
     <string name="location_message_added">Επιτυχής προσθήκη τοποθεσίας</string>
@@ -170,8 +170,8 @@
     <string name="widget_clock_day_vertical">Ρολόι + Ημέρα (Κατακόρυφο)</string>
     <string name="widget_clock_day_week">Ρολόι + Ημέρα + Εβδομάδα</string>
     <string name="widget_text">Κείμενο</string>
-    <string name="widget_trend_daily">Ημέρας</string>
-    <string name="widget_trend_hourly">Ωριαίο</string>
+    <string name="widget_trend_daily">Ημερίσια τάση</string>
+    <string name="widget_trend_hourly">Ωριαία τάση</string>
     <string name="widget_refreshing">αναμονή</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -324,7 +324,7 @@
     <string name="weather_data_by">Δεδομένα από %s</string>
     <string name="weather_pollen_data_by">Δεδομένα γύρης από %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Δεδομένα ποιότητας αέρα και γύρης %s</string>
-    <string name="weather_minutely_data_by">Δεδομένα υετού λεπτό προς λεπτό %s</string>
+    <string name="weather_minutely_data_by">Δεδομένα υετού τώρα %s</string>
     <string name="weather_alert_data_by">Δεδομένα προειδοποιήσεων από %s</string>
     <string name="weather_normals_data_by">Δεδομένα κανονικής θερμοκρασίας από %s</string>
     <string name="weather_api_limit_reached_title">Το όριο αιτήσεων API επιτεύχθη</string>
@@ -409,8 +409,8 @@
     <string name="dialog_permissions_notification_content">Πάτησε εδώ για να ενεργοποιήσεις τις ειδοποιήσεις σχετικά με προειδοποιήσεις καιρού ή αποφάσισε αργότερα στις Ρυθμίσεις.</string>
     <string name="dialog_permissions_location_title">Πληροφορίες πρόσβασης τοποθεσίας</string>
     <string name="dialog_permissions_location_background_content">Για να επιτρέψεις στην εφαρμογή να έχει πρόσβαση σε πληροφορίες τοποθεσίας στο παρασκήνιο, ώστε να γίνονται αντιληπτές αλλαγές στη τοποθεσία και να παρέχονται έγκυρα δεδομένα καιρού, παρακαλώ θέσε την πρόσβαση τοποθεσίας σε “Επιτρέπεται πάντα”.</string>
-    <string name="widget_multi_city">Πολλαπλές Πόλεις</string>
-    <string name="widget_label_align_end">Ευθυγράμμιση Τέλους</string>
+    <string name="widget_multi_city">Πολλαπλές πόλεις</string>
+    <string name="widget_label_align_end">Στοίχιση δεξιά</string>
     <string name="widget_style_temperature">Θερμοκρασία</string>
     <string name="widget_week_style_5_days">5 μέρες</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Ελαφρύ</string>
@@ -432,7 +432,7 @@
     <string name="weather_source_accu_preference_hours_1">1 ώρα</string>
     <string name="weather_source_accu_preference_hours_120">120 ώρες</string>
     <string name="settings_location_summary">Ρυθμίσεις υπηρεσιών τοποθεσίας</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Προειδοποιήσεις (Σύντομο)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Προειδοποιήσεις (σύντομο)</string>
     <string name="settings_location">Ανίχνευση τοποθεσίας</string>
     <string name="settings_location_access_precise_summaryOff">Ενεργοποίησε το “Χρήση ακριβούς τοποθεσίας” αν έχεις πρόβλημα με την εύρεση θέσης.</string>
     <string name="settings_background_updates_section_troubleshoot">Διαγνωστικός έλεγχος</string>
@@ -644,4 +644,24 @@
     <string name="action_confirm">Επιβεβαίωση</string>
     <string name="location_search_no_results_advice">Σιγουρέψου ότι η αναζήτησή σου είναι γραμμένη σωστά και όχι πολύ συγκεκριμένη.
 \nΕναλλακτικά, δοκίμασε μια άλλη πηγή αναζήτησης τοποθεσίας που ίσως δώσει διαφορετικά αποτελέσματα.</string>
+    <string name="alert">Ειδοποίηση</string>
+    <string name="dialog_time_picker_select_time">Επιλογή ώρας</string>
+    <string name="dialog_time_picker_input_time">Εισαγωγή ώρας</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Εναλλαγή σε Εισαγωγή με Κείμενο</string>
+    <string name="message_invalid_incomplete_data">Λήφθηκαν ελλιπή ή άκυρα δεδομένα από τον διακομιστή</string>
+    <string name="widget_label_hide_alternate_calendar">Απόκρυψη εναλλακτικού ημερολογίου</string>
+    <string name="widget_label_show_widget_card_alpha">Αδιαφάνεια</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Εναλλαγή σε Εισαγωγή με Αφή</string>
+    <string name="settings_background_updates_refresh_never_warning2">Η διεργασία ενημέρωσης παρασκηνίου είναι ελαφριά: ανανεώνει μόνο την πρώτη σου τοποθεσία στην επιλεγμένη συχνότητα και τις δευτερεύουσες τοποθεσίες μόνο αν τις χρειάζεσαι, μια φορά τη μέρα. Δεν καταναλώνει ιδιαίτερη μπαταρία και δεν καταναλώνει περισσότερο από 5 MB τον μήνα.</string>
+    <string name="action_edit_location">Επεξεργασία αυτής της τοποθεσίας</string>
+    <string name="message_server_unavailable_title">Διακομιστής μη διαθέσιμος</string>
+    <string name="message_server_unavailable_content">Πρόκειται για προσωρινό σφάλμα. Αν το σφάλμα παραμένει, αναφέρετε το ζήτημα στο GitHub.</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Δείκτης Ποιότητας Αέρα σήμερα, αύριο, ..., 4 μέρες μετά</string>
+    <string name="settings_background_updates_refresh_never_warning1">Απενεργοποιώντας τις ενημερώσεις παρασκηνίου, δε θα λαμβάνεις πλέον ενημερώσεις για ειδοποιήσεις ή υετό. Τα γραφικά στοιχεία δεν θα ανανεώνονται μέχρι να ανοίξεις την εφαρμογή.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Αυτό συνέβη όταν πρόσθεσες την τοποθεσία σου στην Τυπική έκδοση του Breezy Weather και μετά άλλαξες στην έκδοση με μόνο ελεύθερες πηγές δικτύου. Αν γυρίσεις ξανά στην Τυπική έκδοση, το πρόβλημα ίσως επιλυθεί.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Είτε άλλαξε τις πηγές καιρού για αυτή τη τοποθεσία είτε αφαίρεσέ τη και πρόσθεσέ τη ξανά.</string>
+    <string name="widget_label_hide_header">Απόκρυψη κεφαλίδας</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Τρέχων Δείκτης Ποιότητας Αέρα</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Σύνοψη δείκτη γύρης σήμερα, αύριο, ..., 4 μέρες μετά</string>
+    <string name="alert_source">Πηγή: %s</string>
 </resources>
