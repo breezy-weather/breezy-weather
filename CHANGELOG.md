@@ -1,4 +1,7 @@
-# Version 5.2.2 (not yet released)
+# Version 5.2.2 (2024-04-24)
+
+**Improvements and fixes**
+- Cap refresh rate of live wallpaper to 60 Hz, to avoid consuming too much battery
 
 **Sources**
 - [GeoSphere Austria] Fix precipitation values
