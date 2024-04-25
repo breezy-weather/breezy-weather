@@ -694,4 +694,8 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Siitepölyindeksin yhteenveto tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="location_delete_location_dialog_message">Olet aikeissa poistaa “%s” tallennettujen sijaintijen listalta.</string>
     <string name="location_delete_location_dialog_message_no_name">Olet poistamassa tämän sijainnin tallennettujen sijaintien listalta.</string>
+    <string name="settings_global">Yleiset asetukset</string>
+    <string name="message_server_unavailable_content">Tämä on yleensä tilapäinen ongelma. Jos ongelma on jatkuva, raportoi siitä GitHubissa.</string>
+    <string name="message_server_unavailable_title">Palvelin ei vastaa</string>
+    <string name="action_edit_location">Muokkaa tätä sijaintia</string>
 </resources>
