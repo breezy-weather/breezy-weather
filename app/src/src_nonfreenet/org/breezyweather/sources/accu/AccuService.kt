@@ -502,7 +502,11 @@ class AccuService @Inject constructor(
             config.edit().putString("portal", value.id).apply()
         }
         get() = AccuPortalPreference.getInstance(
-            config.getString("portal", null) ?: "enterprise"
+            if (apikey.isEmpty() || apikey == BuildConfig.ACCU_WEATHER_KEY) {
+                "enterprise" // Force portal to make sure a user didn’t select a portal incompatible with the default key
+            } else {
+                config.getString("portal", null) ?: "enterprise"
+            }
         )
 
     private var days: AccuDaysPreference
@@ -518,7 +522,11 @@ class AccuService @Inject constructor(
             config.edit().putString("hours", value.id).apply()
         }
         get() = AccuHoursPreference.getInstance(
-            config.getString("hours", null) ?: "240"
+            (config.getString("hours", null) ?: "240").let {
+                if (portal != AccuPortalPreference.ENTERPRISE && it == "240") {
+                    "120" // 120 hours is the max on developer portal
+                } else it
+            }
         )
 
     private fun getApiKeyOrDefault(): String {

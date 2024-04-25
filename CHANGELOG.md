@@ -1,3 +1,9 @@
+# Version 5.2.3 (not yet released)
+
+**Sources**
+- [AccuWeather] Prevent user from selecting incompatible preferences
+
+
 # Version 5.2.2 (2024-04-24)
 
 **Improvements and fixes**
