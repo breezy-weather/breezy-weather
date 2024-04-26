@@ -197,7 +197,7 @@
     <string name="settings_color_light">Λευκό</string>
     <string name="settings_color_grey">Γκρί</string>
     <string name="settings_color_dark">Μαύρο</string>
-    <string name="settings_background_updates_refresh_30min">00:30</string>
+    <string name="settings_background_updates_refresh_30min">30 λεπτά</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
     <string name="settings_background_updates_refresh_2h">02:00</string>
@@ -424,7 +424,7 @@
     <string name="settings_location_access_switch_summaryOff">Παρακαλώ επέτρεψε αν θες να προσθέσεις την τρέχουσα τοποθεσία σου ως τοποθεσία.</string>
     <string name="settings_location_access_background_summaryOn">Ενεργό. Η εφαρμογή θα μπορεί να ανανεώσει τα δεδομένα καιρού για την τρέχουσα τοπθεσία σου στο παρασκήνιο.</string>
     <string name="settings_location_access_precise_title">Χρήση GPS συσκευής</string>
-    <string name="settings_location_access_precise_summaryOn">Ενεργό. Χρησιμοποιούνται και οι πάροχοι δικτύου και GPS της συσκευής.</string>
+    <string name="settings_location_access_precise_summaryOn">Ενεργό. Προτεραιότητα έχουν οι πάροχοι δικτύου ως επί το πλείστον αλλά, το GPS θα χρησιμοποιηθεί ως εναλλακτική..</string>
     <string name="settings_weather_sources_per_location_summary">Παραμετροποίησε πηγές δεδομένων καιρού για αυτή την τοποθεσία</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="location_service_native">Εγγενές API</string>
@@ -664,4 +664,9 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Τρέχων Δείκτης Ποιότητας Αέρα</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Σύνοψη δείκτη γύρης σήμερα, αύριο, …, 4 μέρες μετά</string>
     <string name="alert_source">Πηγή: %s</string>
+    <string name="settings_global">Καθολικές ρυθμίσεις</string>
+    <string name="settings_per_location_summary">Επιπρόσθετες παραμετροποιήσεις για αυτή τη τοποθεσία</string>
+    <string name="settings_per_location">Προτιμήσεις τοποθεσίας</string>
+    <string name="settings_per_location_theme">Θέμα</string>
+    <string name="settings_background_updates_refresh_never_warning3">Προτίμησε να χρησιμοποιείς χαμηλότερο ρυθμό ανανέωσης αντί να κλείσεις τις ενημερώσεις παρασκηνίου αλλιώς, πάτησε \"Συνέχεια\" αν θες να συνεχίσεις όπως και να \'χει.</string>
 </resources>
