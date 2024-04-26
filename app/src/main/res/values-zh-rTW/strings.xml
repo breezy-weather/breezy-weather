@@ -483,7 +483,7 @@
     <string name="weather_data_by">本氣象資料由 %s 提供</string>
     <string name="weather_air_quality_data_by">空氣品質數據由 %s 提供</string>
     <string name="widget_clock_font_sans_serif_light">無襯線體（細體）</string>
-    <string name="settings_location_access_precise_summaryOn">已啟用。在大多數情況下，裝置的網絡供應商將優先使用，但是 GPS 也可以作為後備。</string>
+    <string name="settings_location_access_precise_summaryOn">已啟用。大部分時間將優先使用裝置的網路提供者，但在需要時也可使用 GPS 作為後備。</string>
     <string name="settings_source_default_value">預設（未變更）</string>
     <string name="weather_source_accu_preference_hours_72">72 小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>
@@ -687,7 +687,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">空氣品質伺服器</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">沒有找到相容的套件</string>
-    <string name="settings_background_updates_refresh_never_warning2">背景更新的過程是輕量級的：它只會以你所選擇的更新間距重新整理你的首要位置，並且只會在你需要時每天一次重新整理次要位置。它的電池效率很高，每月的網絡流量也不會超過 5 MB。</string>
+    <string name="settings_background_updates_refresh_never_warning2">背景更新程序是輕量級的：它只會按您選擇的頻率刷新您的第一個位置，而次要位置只在您需要時每天刷新一次。它的耗電效率高，每月的數據消耗不應超過 5 MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用一個較低頻率的重新整理更新間距而不是關閉背景更新，如果你仍想關閉背景更新，請點擊「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
     <string name="settings_per_location_theme">主題</string>
