@@ -279,6 +279,7 @@
         <item>GFS Seamless</item>
         <item>GFS Global</item>
         <item>GFS HRRR</item>
+        <item>GFS GraphCast</item>
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
         <item>JMA GSM</item>
@@ -311,6 +312,7 @@
         <item>gfs_seamless</item>
         <item>gfs_global</item>
         <item>gfs_hrrr</item>
+        <item>gfs_graphcast025</item>
         <item>jma_seamless</item>
         <item>jma_msm</item>
         <item>jma_gsm</item>

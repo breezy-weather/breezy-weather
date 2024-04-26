@@ -1,7 +1,11 @@
 # Version 5.2.3 (not yet released)
 
 **Sources**
+- [Open-Meteo] Allow to select “GFS GraphCast” model individually
 - [AccuWeather] Prevent user from selecting incompatible preferences
+
+**Translations**
+- Translations updated
 
 
 # Version 5.2.2 (2024-04-24)

@@ -9,13 +9,13 @@ import org.breezyweather.common.basic.models.options._basic.Utils
  * List from:
  * https://open-meteo.com/en/docs/
  *
- * Up-to-date as of 2024-03-13
+ * Up-to-date as of 2024-04-26
  */
 enum class OpenMeteoWeatherModel(
     override val id: String,
     val incompatibleSources: Set<String>
 ): BaseEnum {
-    BEST_MATCH("best_match", setOf("ecmwf_ifs04", "ecmwf_ifs025", "ecmwf_aifs025", "cma_grapes_global", "bom_access_global", "metno_nordic", "gfs_seamless", "gfs_global", "gfs_hrrr", "jma_seamless", "jma_msm", "jma_gsm", "icon_seamless", "icon_global", "icon_eu", "icon_d2", "gem_seamless", "gem_global", "gem_regional", "gem_hrdps_continental", "meteofrance_seamless", "meteofrance_arpege_world", "meteofrance_arpege_europe", "meteofrance_arome_france", "meteofrance_arome_france_hd", "arpae_cosmo_seamless", "arpae_cosmo_2i", "arpae_cosmo_2i_ruc", "arpae_cosmo_5m")),
+    BEST_MATCH("best_match", setOf("ecmwf_ifs04", "ecmwf_ifs025", "ecmwf_aifs025", "cma_grapes_global", "bom_access_global", "metno_nordic", "gfs_seamless", "gfs_global", "gfs_hrrr", "gfs_graphcast025", "jma_seamless", "jma_msm", "jma_gsm", "icon_seamless", "icon_global", "icon_eu", "icon_d2", "gem_seamless", "gem_global", "gem_regional", "gem_hrdps_continental", "meteofrance_seamless", "meteofrance_arpege_world", "meteofrance_arpege_europe", "meteofrance_arome_france", "meteofrance_arome_france_hd", "arpae_cosmo_seamless", "arpae_cosmo_2i", "arpae_cosmo_2i_ruc", "arpae_cosmo_5m")),
 
     ECMWF_IFS04("ecmwf_ifs04", setOf("best_match")),
     ECMWF_IFS025("ecmwf_ifs025", setOf("best_match")),
@@ -24,9 +24,10 @@ enum class OpenMeteoWeatherModel(
     BOM_ACCESS_GLOBAL("bom_access_global", setOf("best_match")),
     MET_NO_NORDIC("metno_nordic", setOf("best_match")),
 
-    GFS_SEAMLESS("gfs_seamless", setOf("best_match", "gfs_global", "gfs_hrrr")),
+    GFS_SEAMLESS("gfs_seamless", setOf("best_match", "gfs_global", "gfs_hrrr", "gfs_graphcast025")),
     GFS_GLOBAL("gfs_global", setOf("best_match", "gfs_seamless")),
     GFS_HRRR("gfs_hrrr", setOf("best_match", "gfs_seamless")),
+    GFS_GRAPHCAST("gfs_graphcast025", setOf("best_match", "gfs_seamless")),
 
     JMA_SEAMLESS("jma_seamless", setOf("best_match", "jma_msm", "jma_gsm")),
     JMA_MSM("jma_msm", setOf("best_match", "jma_seamless")),
