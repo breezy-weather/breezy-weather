@@ -166,8 +166,8 @@
     <string name="settings_location_access_precise_summaryOff">Jāiespējo “Izmantot precīzu atrašanās vietu”, ja rodas sarežģījumi ar atrašanās vietas noteikšanu.</string>
     <string name="settings_appearance_dark_mode_locations_title">Dienas/nakts izskats atrašanās vietām</string>
     <string name="settings_appearance_icon_pack_title">Ikonu pakotne</string>
-    <string name="settings_icon_packs_title">Ikonu komplekti</string>
-    <string name="settings_appearance_dark_mode_title">Tumšais režīms</string>
+    <string name="settings_icon_packs_title">Ikonu pakotnes</string>
+    <string name="settings_appearance_dark_mode_title">Tumšais izskats</string>
     <string name="settings_main_cards_title">Kartes</string>
     <string name="settings_main_daily_trends_title">Ikdienas tendences</string>
     <string name="settings_widgets_live_wallpaper_summary">Iestatīt laikapstākļu animāciju kā tapeti</string>
@@ -216,7 +216,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Tumša ikona</string>
     <string name="settings_units_summary">Temperatūra, nokrišņi, attālums, ātrums, spiediens</string>
     <string name="settings_units_temperature">Temperatūras mērvienība</string>
-    <string name="settings_units_precipitation">Nokrišņu vienība</string>
+    <string name="settings_units_precipitation">Nokrišņu mērvienība</string>
     <string name="settings_main_cards_fade_in_switch">Kartes izgaist</string>
     <string name="message_tap_again_to_exit">Jāpiesit vēlreiz, lai izietu</string>
     <string name="widget_day">Ikdienas</string>
@@ -250,7 +250,7 @@
     <string name="settings_weather_source_main">Galvenais avots</string>
     <string name="settings_weather_sources_per_location_summary">Pielāgot laikapstākļu datu avotus, kas tiek izmantoti šai atrašanās vietai</string>
     <string name="settings_source_api_key">API atslēga</string>
-    <string name="settings_appearance_summary">Valoda, tumšais režīms, ikonu pakotne, vienības</string>
+    <string name="settings_appearance_summary">Valoda, tumšais izskats, ikonu pakotne, mērvienības</string>
     <string name="settings_appearance_language_title">Valoda</string>
     <string name="settings_icon_packs_weather_icon_light">Gaišā ikona</string>
     <string name="settings_icon_packs_weather_icon_grey">Pelēka ikona</string>
@@ -419,7 +419,7 @@
     <string name="settings_location_access_switch_title">Piekļuve atrašanās vietai</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Laikapstākļu ikona</string>
     <string name="settings_icon_packs_check_details">Jāpārbauda detaļas</string>
-    <string name="settings_units">Vienības</string>
+    <string name="settings_units">Mērvienības</string>
     <string name="settings_units_distance">Attāluma mērvienība</string>
     <string name="settings_units_speed">Ātruma mērvienība</string>
     <string name="settings_units_pressure">Spiediena mērvienība</string>
