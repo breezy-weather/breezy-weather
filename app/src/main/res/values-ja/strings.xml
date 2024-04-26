@@ -675,7 +675,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">予報実例</string>
     <string name="settings_weather_source_freenet_disclaimer">Breezy Weather の他バージョンはもっと情報源を利用できます。ここをタップして詳細を表示します。</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空気質実例</string>
-    <string name="settings_widgets_broadcast_title">天気データを他のアプリにブロードキャストする</string>
+    <string name="settings_widgets_broadcast_title">気象データブロードキャスト</string>
     <string name="settings_invalid_syntax">無効な構文</string>
     <string name="alert_source">情報提供：%s</string>
     <string name="dialog_time_picker_select_time">時間を選ぶ</string>
