@@ -112,7 +112,6 @@
     <string name="settings_background_updates_refresh_6h">6 timmar</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="precipitation_intensity_medium">Regn</string>
     <string name="wind_strength">Vindstyrka</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftkvalitets- och pollendata från %s</string>
     <string name="hourly_forecast">Timprognos</string>

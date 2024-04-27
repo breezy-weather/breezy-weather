@@ -53,7 +53,6 @@
     <string name="precipitation_snow">Snø</string>
     <string name="precipitation_ice">Is</string>
     <string name="precipitation_intensity_light">Duskregn</string>
-    <string name="precipitation_intensity_medium">Regn</string>
     <string name="precipitation_intensity_heavy">Kraftig regn</string>
     <string name="precipitation_none">Ingen nedbør</string>
     <string name="precipitation_between_time">Nedbør mellom %1$s og %2$s</string>

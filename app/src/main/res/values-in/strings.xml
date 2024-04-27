@@ -61,7 +61,6 @@
     <string name="wind_strength_11">Petir kencang</string>
     <string name="wind_strength_12">Angin puting beliung</string>
     <string name="precipitation_intensity_light">Ringan</string>
-    <string name="precipitation_intensity_medium">Hujan</string>
     <string name="precipitation_intensity_heavy">Deras</string>
     <string name="ephemeris_moon_phase_new_moon">Bulan Baru</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Bulan sabit muda</string>

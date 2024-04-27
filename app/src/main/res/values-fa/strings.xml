@@ -41,7 +41,6 @@
     <string name="precipitation_snow">برف</string>
     <string name="precipitation_ice">یخ</string>
     <string name="precipitation_intensity_light">سبک</string>
-    <string name="precipitation_intensity_medium">باران</string>
     <string name="precipitation_intensity_heavy">سنگین</string>
     <string name="precipitation_none">بدون بارش</string>
     <string name="wind_speed">تندی باد</string>

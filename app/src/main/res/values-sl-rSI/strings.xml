@@ -223,7 +223,6 @@
     <string name="cloud_cover">Oblačnost</string>
     <string name="precipitation_snow">Sneg</string>
     <string name="precipitation_intensity_light">Sodra</string>
-    <string name="precipitation_intensity_medium">Dež</string>
     <string name="precipitation_between_time">Padavine med%1$s in %2$s</string>
     <string name="wind_direction_short_SE">JV</string>
     <string name="uv_index_0_2">Nizek</string>

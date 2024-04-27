@@ -57,7 +57,6 @@
     <string name="wind_strength_11">Жестокий шторм</string>
     <string name="wind_strength_12">Ураган</string>
     <string name="precipitation_intensity_light">Лёгкий</string>
-    <string name="precipitation_intensity_medium">Дождь</string>
     <string name="precipitation_intensity_heavy">Сильный</string>
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Молодая луна</string>

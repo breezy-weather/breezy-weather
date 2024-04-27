@@ -59,7 +59,6 @@
     <string name="wind_strength_11">Heves szélvész</string>
     <string name="wind_strength_12">Orkán</string>
     <string name="precipitation_intensity_light">Szemerkélő</string>
-    <string name="precipitation_intensity_medium">Eső</string>
     <string name="precipitation_intensity_heavy">Heves</string>
     <string name="ephemeris_moon_phase_new_moon">Újhold</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Növekvő félhold</string>
