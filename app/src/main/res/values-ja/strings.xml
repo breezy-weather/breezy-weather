@@ -58,7 +58,6 @@
     <string name="wind_strength_11">暴風</string>
     <string name="wind_strength_12">颶風</string>
     <string name="precipitation_intensity_light">小雨</string>
-    <string name="precipitation_intensity_medium">雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">三日月</string>

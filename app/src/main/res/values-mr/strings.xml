@@ -65,7 +65,6 @@
     <string name="precipitation_duration">पर्जन्य कालावधी</string>
     <string name="precipitation_thunderstorm">गडगडाट</string>
     <string name="precipitation_rain">पाऊस</string>
-    <string name="precipitation_intensity_medium">पाऊस</string>
     <string name="precipitation_intensity_heavy">जोरदार पाऊस</string>
     <string name="precipitation_none">पर्जन्य नाही</string>
     <string name="wind">वारा</string>

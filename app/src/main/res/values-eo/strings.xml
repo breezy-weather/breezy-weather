@@ -50,7 +50,6 @@
     <string name="precipitation_snow">Neĝo</string>
     <string name="precipitation_ice">Glatglacio</string>
     <string name="precipitation_intensity_light">Pluveto</string>
-    <string name="precipitation_intensity_medium">Pluvo</string>
     <string name="precipitation_intensity_heavy">Pluvego</string>
     <string name="precipitation_none">Neniu precipitaĵo</string>
     <string name="precipitation_between_time">Precipitaĵoj inter %1$s kaj %2$s</string>

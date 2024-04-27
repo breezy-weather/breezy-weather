@@ -60,7 +60,6 @@
     <string name="wind_strength_11">Tempesta violenta</string>
     <string name="wind_strength_12">Uragano</string>
     <string name="precipitation_intensity_light">Pioggerella</string>
-    <string name="precipitation_intensity_medium">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>

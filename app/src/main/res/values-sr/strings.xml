@@ -105,7 +105,6 @@
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
     <string name="precipitation_between_time">Падавине између %1$s и %2$s</string>
     <string name="precipitation_intensity_light">Слабо</string>
-    <string name="precipitation_intensity_medium">Киша</string>
     <string name="wind_speed">Брзина ветра</string>
     <string name="wind_direction">Правац ветра</string>
     <string name="wind_direction_short_N">С</string>

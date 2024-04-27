@@ -129,7 +129,6 @@
     <string name="precipitation_probability">Верагоднасць ападкаў</string>
     <string name="precipitation_rain">Дождж</string>
     <string name="precipitation_snow">Снег</string>
-    <string name="precipitation_intensity_medium">Дождж</string>
     <string name="precipitation_intensity_heavy">Моцны</string>
     <string name="precipitation_none">Без ападкаў</string>
     <string name="wind_gusts">Парывы ветру</string>

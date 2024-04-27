@@ -13,7 +13,6 @@
     <string name="precipitation_total">Вкупно</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Мраз</string>
-    <string name="precipitation_intensity_medium">Дожд</string>
     <string name="precipitation_intensity_heavy">Многу дожд</string>
     <string name="wind_direction">Правец на ветрот</string>
     <string name="wind_direction_short_variable">Променливо</string>
