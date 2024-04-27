@@ -109,34 +109,34 @@
     <string name="widget_label_text_color">Culoare text</string>
     <string name="widget_label_text_size">Mărime text</string>
     <string name="widget_label_clock_font">Font ceas</string>
-    <string name="widget_label_align_end">Aliniază la Sfârșit</string>
+    <string name="widget_label_align_end">Aliniază în dreapta</string>
     <string name="widget_custom_subtitle_explanation">Poți introduce orice, dar te rog să fii atent la lungimea textului. Dacă dorești să citezi date meteo, te rog să utilizezi $ pentru a face referire la cuvântul cheie corespunzător.
 \n
-\nDe exemplu, „Vremea actuală este: $cw$”. va fi afișat ca „Vremea actuală este: Zi Senină”.</string>
+\nDe exemplu, „Vremea actuală este: $cw$”. va fi afișat ca „Vremea actuală este: Cer Senin”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="widget_custom_subtitle_keyword_cw_description">Vremea Actuală</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actuală (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura Actuală (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Temperatura Resimțită Actuală (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Temperatura Resimțită Actuală (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Vântul Actual</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Vremea actuală</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura actuală (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura actuală (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura resimțită actuală (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Temperatura resimțită actuală (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Vântul actual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV Actual</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Umiditatea Actuală</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Presiunea Actuală</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Vizibilitatea Actuală</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Punct de Rouă Actual</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Umiditatea actuală</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Presiunea actuală</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Vizibilitatea actuală</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Punct de rouă actual</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alerte</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Alerte (Scurt)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alerte (scurt)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Locație</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitudine</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudine</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Timpul de Actualizare</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Timp de actualizare</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_w_description">Săptămână</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Săptămână (Scurt)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Descrieri Zilnice</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Descrieri Orare</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Săptămână (scurt)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Descrieri zilnice</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Descrieri orare</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Selectează</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Vremea de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vremea la Noapte, de Mâine, …, 4 nopți mai târziu</string>
@@ -460,7 +460,7 @@
     <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
     <string name="settings_notifications_summary">Notificări de alerte meteo, precipitații și prognoză pentru locația primară</string>
-    <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo</string>
+    <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo severe</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ora de notificare privind prognoza zilei următoare</string>
     <string name="settings_widgets">Widgets &amp; Imagini de fundal live</string>
     <string name="settings_widgets_live_wallpaper_summary">Setează o animație meteo ca imagine de fundal</string>
@@ -484,7 +484,7 @@
     <string name="settings_location_access_permission_already_granted">Permisiunea a fost deja acordată</string>
     <string name="settings_location_access_switch_title">Acces la locație</string>
     <string name="settings_location_access_switch_summaryOff">Te rog să permiți dacă dorești să poți adăuga locația ta actuală ca locație.</string>
-    <string name="settings_location_access_precise_summaryOn">Activat. Rețeaua dispozitivului și serviciul GPS sunt ambele utilizate.</string>
+    <string name="settings_location_access_precise_summaryOn">Activat. Rețeaua dispozitivului va fi utilizată cu prioritate și de cele mai multe ori, dar GPS-ul poate fi utilizat ca și soluție de rezervă.</string>
     <string name="settings_location_access_precise_summaryOff">Activează „Utilizați locația precisă” dacă ai probleme în obținerea unei locații.</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="location_message_reverse_geocoding_failed">Furnizorul meteo nu a găsit locația potrivită</string>
@@ -678,4 +678,17 @@
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>
     <string name="dialog_time_picker_select_time">Alege ora</string>
     <string name="alert_source">Sursa: %s</string>
+    <string name="dialog_time_picker_input_time">Input time</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Switch to Text Input</string>
+    <string name="widget_label_hide_alternate_calendar">Ascunde calendarul alternativ</string>
+    <string name="settings_global">Setări globale</string>
+    <string name="settings_background_updates_refresh_never_warning1">Prin dezactivarea actualizărilor în fundal, nu vei mai primi notificări de alerte sau precipitații. Widgeturile nu vor fi reîmprospătate până când nu deschideți aplicația.</string>
+    <string name="message_server_unavailable_title">Serve indisponibil</string>
+    <string name="message_server_unavailable_content">Aceasta e de obicei o eroare temporară. Dacă eroarea persistă, te rog să o raportezi pe GitHub.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă \"Continuă\" dacă dorești să confirmi.</string>
+    <string name="settings_appearance_calendar_title">Calendar alternativ</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
+    <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească 5 MB de consum de date pe lună.</string>
+    <string name="action_edit_location">Editează locația</string>
 </resources>
