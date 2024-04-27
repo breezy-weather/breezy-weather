@@ -668,5 +668,5 @@
     <string name="settings_per_location_summary">Επιπρόσθετες παραμετροποιήσεις για αυτή τη τοποθεσία</string>
     <string name="settings_per_location">Προτιμήσεις τοποθεσίας</string>
     <string name="settings_per_location_theme">Θέμα</string>
-    <string name="settings_background_updates_refresh_never_warning3">Προτίμησε να χρησιμοποιείς χαμηλότερο ρυθμό ανανέωσης αντί να κλείσεις τις ενημερώσεις παρασκηνίου αλλιώς, πάτησε \"Συνέχεια\" αν θες να συνεχίσεις όπως και να \'χει.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Προτίμησε να χρησιμοποιείς χαμηλότερο ρυθμό ανανέωσης αντί να κλείσεις τις ενημερώσεις παρασκηνίου αλλιώς, πάτησε “Συνέχεια” αν θες να συνεχίσεις όπως και να ’χει.</string>
 </resources>
