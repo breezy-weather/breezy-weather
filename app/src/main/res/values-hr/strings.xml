@@ -164,7 +164,6 @@
     <string name="settings_background_updates_refresh_6h">6 sati</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linija</string>
-    <string name="precipitation_intensity_medium">Kiša</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
     <string name="weather_air_quality_and_pollen_data_by">Podatci o kvaliteti zraka i peludi od %s</string>

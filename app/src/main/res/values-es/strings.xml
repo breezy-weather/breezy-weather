@@ -61,7 +61,6 @@
     <string name="wind_strength_11">Tormenta violenta</string>
     <string name="wind_strength_12">Huracán/Tifón</string>
     <string name="precipitation_intensity_light">Rocío</string>
-    <string name="precipitation_intensity_medium">Lluvia</string>
     <string name="precipitation_intensity_heavy">Torrenciales</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>

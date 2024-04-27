@@ -60,7 +60,6 @@
     <string name="wind_strength_11">Tempesta violenta</string>
     <string name="wind_strength_12">Huracà/Tifó</string>
     <string name="precipitation_intensity_light">Plugim</string>
-    <string name="precipitation_intensity_medium">Pluja</string>
     <string name="precipitation_intensity_heavy">Pluja intensa</string>
     <string name="ephemeris_moon_phase_new_moon">Lluna nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Gibosa creixent</string>

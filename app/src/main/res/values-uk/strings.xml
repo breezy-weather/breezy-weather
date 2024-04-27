@@ -28,7 +28,6 @@
     <string name="precipitation_thunderstorm">Гроза</string>
     <string name="precipitation_rain">Дощ</string>
     <string name="precipitation_intensity_light">Легкий</string>
-    <string name="precipitation_intensity_medium">Дощ</string>
     <string name="precipitation_none">Без опадів</string>
     <string name="wind_speed">Швидкість вітру</string>
     <string name="wind_gusts">Пориви вітру</string>

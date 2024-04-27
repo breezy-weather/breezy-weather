@@ -80,7 +80,6 @@
     <string name="precipitation_duration">Niederschlagsdauer</string>
     <string name="precipitation_intensity_heavy">Stark</string>
     <string name="precipitation_intensity_light">Leicht</string>
-    <string name="precipitation_intensity_medium">Regen</string>
     <string name="precipitation_probability">Niederschlagswahrscheinlichkeit</string>
     <string name="pressure">Druck</string>
     <string name="pollen_ambrosia">Ambrosia</string>

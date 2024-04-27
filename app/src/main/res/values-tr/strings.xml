@@ -96,7 +96,6 @@
     <string name="wind_direction_short_SW">GB</string>
     <string name="temperature_wet_bulb">Islak hazne sıcaklığı</string>
     <string name="wind_direction_short_variable">Değişken</string>
-    <string name="precipitation_intensity_medium">Yağmur</string>
     <string name="temperature_wind_chill">Rüzgar soğuğu</string>
     <string name="temperature">Sıcaklık</string>
     <string name="temperature_real_feel">RealFeel®</string>

@@ -17,7 +17,6 @@
     <string name="precipitation_none">Nema padavine</string>
     <string name="precipitation_total">Ukupno</string>
     <string name="precipitation_probability">Vjerojatnost padavina</string>
-    <string name="precipitation_intensity_medium">Kiša</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="hourly_forecast">Satna prognoza</string>
     <string name="wind_strength_0">Tišina</string>

@@ -59,7 +59,6 @@
     <string name="wind_strength_11">Βίαιη καταιγίδα</string>
     <string name="wind_strength_12">Τυφώνας</string>
     <string name="precipitation_intensity_light">Ελαφρύς</string>
-    <string name="precipitation_intensity_medium">Βροχή</string>
     <string name="precipitation_intensity_heavy">Ισχυρός</string>
     <string name="ephemeris_moon_phase_new_moon">Νέα Σελήνη</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Αύξων μηνίσκος</string>
