@@ -677,15 +677,12 @@
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>
     <string name="dialog_time_picker_select_time">Alege ora</string>
     <string name="alert_source">Sursa: %s</string>
-    <string name="dialog_time_picker_input_time">Input time</string>
-    <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
-    <string name="dialog_time_picker_toggle_text_input_voice">Switch to Text Input</string>
     <string name="widget_label_hide_alternate_calendar">Ascunde calendarul alternativ</string>
     <string name="settings_global">Setări globale</string>
     <string name="settings_background_updates_refresh_never_warning1">Prin dezactivarea actualizărilor în fundal, nu vei mai primi notificări de alerte sau precipitații. Widgeturile nu vor fi reîmprospătate până când nu deschideți aplicația.</string>
     <string name="message_server_unavailable_title">Serve indisponibil</string>
     <string name="message_server_unavailable_content">Aceasta e de obicei o eroare temporară. Dacă eroarea persistă, te rog să o raportezi pe GitHub.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă \"Continuă\" dacă dorești să confirmi.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă “Continuă” dacă dorești să confirmi.</string>
     <string name="settings_appearance_calendar_title">Calendar alternativ</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
     <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească 5 MB de consum de date pe lună.</string>

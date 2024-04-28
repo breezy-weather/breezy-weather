@@ -675,8 +675,8 @@
     <string name="settings_weather_sources_default_source">Noklusējuma avots jaunām atrašanās vietām</string>
     <string name="message_source_not_installed_error_content_tip_2">Vai nu jānomaina laikapstākļu avoti šai atrašanās vietai, vai arī tā ir jāizdzēš un jāpievieno no jauna.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Pašreizējais gaisa kvalitātes indekss</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Gaisa kvalitātes indekss šodien, rīt, ..., pēc 4 dienām</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Putekšņu indeksa apkopojums šodien, rīt, ..., pēc 4 dienām</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Gaisa kvalitātes indekss šodien, rīt, …, pēc 4 dienām</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Putekšņu indeksa apkopojums šodien, rīt, …, pēc 4 dienām</string>
     <string name="settings_source_instance_invalid">Jābūt HTTPS URL, kas beidzas ar /</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Gaisa kvalitātes serveris</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Vienoti</string>

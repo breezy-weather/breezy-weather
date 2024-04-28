@@ -365,8 +365,8 @@
     <string name="settings_weather_source_open_meteo_weather_models">Modèles météo</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Meilleure combinaison</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combine les meilleurs modèles météo pour cet emplacement</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless">Harmonisé</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combine tous les modèles météo de ce fournisseur en une prévision harmonisée</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Homogène</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combine tous les modèles météo de ce fournisseur en une prévision homogène</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25">PM2,5</string>
