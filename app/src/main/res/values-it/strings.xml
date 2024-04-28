@@ -59,9 +59,9 @@
     <string name="wind_strength_10">Tempesta</string>
     <string name="wind_strength_11">Tempesta violenta</string>
     <string name="wind_strength_12">Uragano</string>
-    <string name="precipitation_intensity_light">Pioggerella</string>
+    <string name="precipitation_intensity_light">Leggera</string>
     <string name="precipitation_intensity_medium">Pioggia</string>
-    <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
+    <string name="precipitation_intensity_heavy">Forte</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Primo quarto</string>
@@ -104,10 +104,10 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Seleziona il servizio di localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “%s”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
-    <string name="widget_label_align_end">Allinea alla fine</string>
+    <string name="widget_label_align_end">Allinea a destra</string>
     <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.
 \n
-\nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = giorno sereno”.</string>
+\nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = cielo sereno”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Meteo attuale</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura attuale (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura attuale (°)</string>
@@ -611,7 +611,7 @@
     <string name="notification_precipitation_starting_desc">Inizio previsto alle %s</string>
     <string name="notification_precipitation_stopping_desc">Previsto arresto a %s</string>
     <string name="notification_precipitation_continuing">Precipitazione</string>
-    <string name="notification_precipitation_continuing_desc">Si prevede che continui almeno fino al %s</string>
+    <string name="notification_precipitation_continuing_desc">Si prevede che continui almeno fino alle %s</string>
     <string name="notification_precipitation_stopping">Le precipitazioni smetteranno presto</string>
     <string name="temperature_feels_like_short">Sembrano</string>
     <string name="humidity_short">Umidità</string>
@@ -658,4 +658,17 @@
     <string name="message_source_not_installed_error_content_tip_2">Modifica le fonti meteo per questa posizione o elimina e aggiungi nuovamente questa posizione.</string>
     <string name="sunshine">Sole</string>
     <string name="message_invalid_incomplete_data">Dati non validi o incompleti ricevuti dal server</string>
+    <string name="dialog_time_picker_input_time">Inserisci ora</string>
+    <string name="dialog_time_picker_select_time">Seleziona ora</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Passa a immissione testuale</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Passa a immissione tattile</string>
+    <string name="widget_label_hide_alternate_calendar">Nascondi calendario alternativo</string>
+    <string name="cloud_cover_short">Nuvolosità</string>
+    <string name="settings_background_updates_refresh_never_warning1">Disattivando gli aggiornamenti in background, non riceverai più notifiche di avvisi o precipitazioni. I widget verranno aggiornati solo all\'apertura dell\'applicazione.</string>
+    <string name="widget_label_hide_header">Nascondi intestazione</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice Qualità dell\'aria di oggi, domani, …, 4 giorni dopo</string>
+    <string name="message_server_unavailable_title">Server non disponibile</string>
+    <string name="action_edit_location">Modifica questa posizione</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Riassunto dell\'indice pollinico di oggi, domani, …, 4 giorni dopo</string>
+    <string name="message_server_unavailable_content">Di solito si tratta di un errore temporaneo. Se l\'errore persiste, segnala un problema su GitHub.</string>
 </resources>
