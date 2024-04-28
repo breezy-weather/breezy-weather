@@ -687,4 +687,5 @@
     <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يرجى الإبلاغ عن المشكلة على GitHub.</string>
     <string name="action_edit_location">عدل هذا الموقع</string>
     <string name="settings_global">إعدادات عامة</string>
+    <string name="precipitation_intensity_medium">مطر متوسط</string>
 </resources>
