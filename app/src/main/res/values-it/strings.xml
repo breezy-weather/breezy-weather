@@ -365,7 +365,7 @@
     <string name="settings_main_background_animation_disabled">Disattivata</string>
     <string name="settings_notifications">Notifiche</string>
     <string name="settings_notifications_summary">Notifiche allerte meteo, precipitazioni o previsioni per la prima posizione</string>
-    <string name="settings_notifications_alerts_title">Notifiche di allerte meteo</string>
+    <string name="settings_notifications_alerts_title">Notifiche di gravi allerte meteo</string>
     <string name="settings_notifications_precipitations_title">Notifiche di precipitazioni</string>
     <string name="settings_notifications_forecast_today_title">Notifica per le previsioni odierne</string>
     <string name="air_quality_level_5">Molto malsana</string>
@@ -486,7 +486,7 @@
     <string name="location_message_reverse_geocoding_failed">La fonte di dati meteo non è riuscita a trovare una località corrispondente</string>
     <string name="settings_location_summary">Impostazioni servizi di posizione</string>
     <string name="settings_location_access_switch_summaryOn">Concessa. Puoi aggiungere la posizione corrente come posizione.</string>
-    <string name="settings_weather_sources_summary">Impostazioni fornitori meteo</string>
+    <string name="settings_weather_sources_summary">Fonte meteo predefinita per le nuove località, chiavi API personalizzate, altre impostazioni della fonte</string>
     <string name="action_show_errors">Tocca per dettagli</string>
     <string name="dialog_permissions_notification_title">Rimani informato</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignora quando la batteria è bassa</string>
@@ -517,7 +517,7 @@
     <string name="pollen_alnus">Ontano</string>
     <string name="pollen_olea">Olivo</string>
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
-    <string name="settings_location_access_precise_summaryOn">Abilitata. Sia le reti del dispositivo sia i dati GPS saranno utilizzati.</string>
+    <string name="settings_location_access_precise_summaryOn">Abilitato. Il provider di rete del dispositivo verrà utilizzato principalmente e per la maggior parte del tempo, ma il GPS può essere utilizzato anche come ripiego.</string>
     <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Temporale con grandine leggera</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Temporale con grandine pesante</string>
@@ -540,7 +540,7 @@
     <string name="air_quality_so2_info_origin">È rilasciata naturalmente dall’attività vulcanica e deriva principalmente dalla combustione di fonti fossili per il riscaldamento domestico, l’industria e la generazione di energia.</string>
     <string name="settings_weather_source_main">Fonte principale</string>
     <string name="action_save">Salva</string>
-    <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo per questa posizione</string>
+    <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo usate per questa posizione</string>
     <string name="action_delete">Elimina</string>
     <string name="air_quality_co_info_origin">È prodotto dalla combustione incompleta di combustibili carboniosi come legna, benzina, carbone, gas naturale e cherosene in semplici stufe, caminetti, lampade a stoppino, fornaci, caminetti. La fonte predominante di monossido di carbonio (CO) nell’aria aperta proviene dai veicoli a motore.</string>
     <string name="air_quality_co_info_consequences">Il monossido di carbonio si diffonde attraverso i tessuti polmonari e nel flusso sanguigno, rendendo difficile per le cellule dell’organismo legarsi all’ossigeno. Questa mancanza di ossigeno danneggia i tessuti e le cellule. L’esposizione al monossido di carbonio può causare difficoltà respiratorie, spossatezza, vertigini e altri sintomi influenzali. L’esposizione a livelli elevati di monossido di carbonio può essere letale.</string>
@@ -673,4 +673,18 @@
     <string name="message_server_unavailable_content">Di solito si tratta di un errore temporaneo. Se l\'errore persiste, segnala un problema su GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning2">Il processo di aggiornamento in background è leggero: aggiorna la prima posizione alla frequenza selezionata e le posizioni secondarie solo se necessario, una volta al giorno. È efficiente dal punto di vista della batteria e non dovrebbe superare i 5 MB di consumo di dati al mese.</string>
     <string name="settings_background_updates_refresh_never_warning3">Considerate di utilizzare una frequenza di aggiornamento ridotta piuttosto che disattivare gli aggiornamenti in background, altrimenti tocca \"Continua\" se vuoi ancora procedere.</string>
+    <string name="settings_widgets_broadcast_title">Condivisione dati</string>
+    <string name="settings_global">Impostazioni globali</string>
+    <string name="about_open_link_message">Aprire %s?</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nessun pacchetto compatibile trovato</string>
+    <string name="settings_source_instance_invalid">Deve essere un URL https che termina con una /</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Miglior abbinamento</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina i migliori modelli meteorologici per questa posizione</string>
+    <string name="settings_source_instance_geocoding">Istanza di geocodifica</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Omogenea</string>
+    <string name="settings_weather_source_freenet_disclaimer">Ulteriori fonti meteorologiche sono disponibili in altre versioni di Breezy Weather. Tocca qui per saperne di più.</string>
+    <string name="settings_weather_sources_default_source">Fonte predefinita per nuove posizioni</string>
+    <string name="settings_per_location_summary">Ulteriori personalizzazioni per questa posizione</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tutti i modelli meteorologici di questo fornitore in una previsione omogenea</string>
+    <string name="settings_invalid_syntax">Sintassi non valida</string>
 </resources>
