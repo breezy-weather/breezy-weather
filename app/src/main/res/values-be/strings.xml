@@ -680,4 +680,5 @@
     <string name="message_server_unavailable_content">Звычайна гэта часовая памылка. Калі памылка не знікне, паведаміце аб праблеме на GitHub.</string>
     <string name="action_edit_location">Змяніць гэтае месцазнаходжанне</string>
     <string name="settings_global">Глабальныя налады</string>
+    <string name="precipitation_intensity_medium">Сярэдні</string>
 </resources>
