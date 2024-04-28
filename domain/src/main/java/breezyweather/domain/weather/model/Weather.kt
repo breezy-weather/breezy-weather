@@ -93,10 +93,10 @@ data class Weather(
                         if (minutelyForecast[i].minuteInterval == 5) {
                             newMinutelyList.add(minutelyForecast[i])
                         } else {
-                            for (j in 0..minutelyForecast[i].minuteInterval.div(5)) {
+                            for (j in 0..<minutelyForecast[i].minuteInterval.div(5)) {
                                 newMinutelyList.add(
                                     minutelyForecast[i].copy(
-                                        date = Date(minutelyForecast[i].date.time + (j.times(60).times(1000))),
+                                        date = Date(minutelyForecast[i].date.time + (j.times(5).times(60).times(1000))),
                                         minuteInterval = 5
                                     )
                                 )

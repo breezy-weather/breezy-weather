@@ -1,5 +1,8 @@
 # Version 5.2.3 (not yet released)
 
+**Improvements and fixes**
+- Fix nowcasting values on sources with values 10-minute by 10-minute or more
+
 **Sources**
 - [Open-Meteo] Allow to select “GFS GraphCast” model individually
 - [AccuWeather] Prevent user from selecting incompatible preferences
