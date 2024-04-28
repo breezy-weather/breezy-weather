@@ -672,4 +672,5 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Riassunto dell\'indice pollinico di oggi, domani, …, 4 giorni dopo</string>
     <string name="message_server_unavailable_content">Di solito si tratta di un errore temporaneo. Se l\'errore persiste, segnala un problema su GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning2">Il processo di aggiornamento in background è leggero: aggiorna la prima posizione alla frequenza selezionata e le posizioni secondarie solo se necessario, una volta al giorno. È efficiente dal punto di vista della batteria e non dovrebbe superare i 5 MB di consumo di dati al mese.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considerate di utilizzare una frequenza di aggiornamento ridotta piuttosto che disattivare gli aggiornamenti in background, altrimenti tocca \"Continua\" se vuoi ancora procedere.</string>
 </resources>
