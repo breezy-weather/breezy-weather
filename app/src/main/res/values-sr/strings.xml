@@ -686,4 +686,5 @@
     <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>
     <string name="action_edit_location">Измени ову локацију</string>
     <string name="settings_global">Глобална подешавања</string>
+    <string name="precipitation_intensity_medium">Средње</string>
 </resources>
