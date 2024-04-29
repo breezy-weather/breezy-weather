@@ -404,7 +404,7 @@
     <string name="ephemeris_sunrise_at">Napkelte: %s</string>
     <string name="settings_location_access_background_summaryOff">Válassza ki a „Mindig engedélyezett” lehetőséget, hogy a háttérben frissülhessenek az aktuális tartózkodási helyszínének időjárásadatai.</string>
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
-    <string name="pollen_level_3">Közepes</string>
+    <string name="pollen_level_3">Mérsékelt</string>
     <string name="pollen_level_4">Magas</string>
     <string name="air_quality_no2_info_introduction">A nitrogén-dioxid (NO₂) fojtogató, mérgező, vörösesbarna színű, jellegzetes, szúrós, fanyar szagú gáz.</string>
     <string name="air_quality_no2_info_origin">A NO₂ környezeti forrásai a tüzelőanyagok magas hőmérsékleten történő elégetéséből származnak, például a fűtési, közlekedési, ipari és energiatermelési folyamatokban. A nitrogén-oxidok (NOₓ) háztartási forrásai közé tartoznak a tüzelőanyagokat égető berendezések, például a kemencék, kandallók, gáztűzhelyek és sütők.</string>
@@ -686,4 +686,5 @@
     <string name="message_server_unavailable_content">Ez általában egy átmeneti hiba. Ha a hiba továbbra is fennáll, akkor jelentse a problémát a GitHubon.</string>
     <string name="action_edit_location">Helyszín szerkesztése</string>
     <string name="settings_global">Általános beállítások</string>
+    <string name="precipitation_intensity_medium">Közepes</string>
 </resources>
