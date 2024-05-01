@@ -19,7 +19,6 @@ package org.breezyweather.common.ui.activities
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -66,6 +65,9 @@ import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.ColorUtils
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
@@ -151,10 +153,23 @@ class AlertActivity : GeoActivity() {
                 }
             }
         }
-
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+        val isLightTheme = MainThemeColorProvider.isLightTheme(context, location.value)
+        BreezyWeatherTheme(lightTheme = isLightTheme) {
+            //re-setting the status bar color once the location is fetched above in the launched effect
+            ThemeManager
+                .getInstance(this)
+                .weatherThemeDelegate
+                .setSystemBarStyle(
+                    context = this,
+                    window = this.window,
+                    statusShader = false,
+                    lightStatus = location.value?.isDaylight ?: isLightTheme,
+                    navigationShader = true,
+                    lightNavigation = false
+                )
+
             Material3Scaffold(
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                 topBar = {

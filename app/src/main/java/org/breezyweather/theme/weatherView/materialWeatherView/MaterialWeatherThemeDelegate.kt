@@ -135,10 +135,10 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         lightNavigation: Boolean
     ) {
         window.setSystemBarStyle(
-            statusShader,
-            lightNavigation,
-            navigationShader,
-            lightNavigation
+            statusShaderP = statusShader,
+            lightStatusP = lightStatus,
+            navigationShaderP = navigationShader,
+            lightNavigationP = lightNavigation
         )
     }
 
