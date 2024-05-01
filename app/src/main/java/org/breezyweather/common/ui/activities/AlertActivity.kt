@@ -19,6 +19,7 @@ package org.breezyweather.common.ui.activities
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -65,7 +66,6 @@ import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
@@ -154,7 +154,7 @@ class AlertActivity : GeoActivity() {
 
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location.value)) {
+        BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
             Material3Scaffold(
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                 topBar = {
