@@ -74,7 +74,7 @@ class BreezyWeatherColors {
         val DarkContentText = LightText2nd
 
         val LightSubtitleText = GreyText2nd
-        val DarkSubtitleText = GreyText
+        val DarkSubtitleText = LightText2nd
     }
 }
 
