@@ -624,7 +624,7 @@
     <string name="wind_short">الرياح</string>
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
-    <string name="uv_index_short">الأشعة الضارة</string>
+    <string name="uv_index_short">مؤشر الأشعة فوق البنفسجية</string>
     <string name="cloud_cover_short">الغيوم</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
