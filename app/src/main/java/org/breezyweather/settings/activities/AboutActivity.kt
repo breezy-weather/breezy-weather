@@ -111,6 +111,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("WangDaYeeeeee", github = "WangDaYeeeeee", contribution = R.string.about_contribution_WangDaYeeeeee),
         ContributorItem("Cod3d.", github = "Cod3dDOT"),
         ContributorItem("min7-i", github = "min7-i"),
+        ContributorItem("Suyash Gupta", github = "suyashgupta25"),
         ContributorItem("Romain Théry", github = "rthery"),
         ContributorItem("danielzhang130", github = "danielzhang130"),
         ContributorItem("majjejjam", github = "majjejjam"),

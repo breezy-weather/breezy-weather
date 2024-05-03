@@ -156,7 +156,7 @@ class AlertActivity : GeoActivity() {
 
         val isLightTheme = MainThemeColorProvider.isLightTheme(context, location.value)
         BreezyWeatherTheme(lightTheme = isLightTheme) {
-            //re-setting the status bar color once the location is fetched above in the launched effect
+            // re-setting the status bar color once the location is fetched above in the launched effect
             ThemeManager
                 .getInstance(this)
                 .weatherThemeDelegate
