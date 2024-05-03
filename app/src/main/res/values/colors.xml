@@ -60,7 +60,7 @@
 
     <color name="colorTextTitle">#000000</color>
     <color name="colorTextContent">#666666</color>
-    <color name="colorTextSubtitle">@color/colorTextLight2nd</color>
+    <color name="colorTextSubtitle">#b2b2b2</color>
 
     <color name="colorMainCardBackground">#FDFCFF</color>
     <color name="colorPrecipitationProbability">@color/md_theme_primary</color>
