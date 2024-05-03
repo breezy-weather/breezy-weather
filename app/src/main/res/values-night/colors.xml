@@ -5,7 +5,7 @@
 
     <color name="colorTextTitle">#ffffff</color>
     <color name="colorTextContent">#999999</color>
-    <color name="colorTextSubtitle">#4d4d4d</color>
+    <color name="colorTextSubtitle">@color/colorTextLight2nd</color>
 
     <color name="colorMainCardBackground">#1C1B1F</color>
 
