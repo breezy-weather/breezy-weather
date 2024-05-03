@@ -1,5 +1,12 @@
 # Help / Frequently Asked Questions
 
+## App shows “Current location” instead of the reverse geocoded address
+
+First of all, reverse geocoding is absolutely not required to get an accurate forecast, since it’s based on your longitude and latitude, not on your address, which is a totally different process.
+
+If it’s still an important matter to you, you will need to choose as your main source [a weather source supporting reverse geocoding](https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md#location).
+
+
 ## Troubleshooting errors
 
 ### “Invalid or incomplete data received from server” / “Location search failed” / “Weather data refresh failed” / “Weather data refresh for a secondary weather source failed”
