@@ -10,6 +10,7 @@
 
 **Translations**
 - Translations updated
+- Initial translation added for Bengali (thanks Manab Ray!)
 
 
 # Version 5.2.2 (2024-04-24)

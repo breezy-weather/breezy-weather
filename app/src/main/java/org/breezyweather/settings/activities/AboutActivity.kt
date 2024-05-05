@@ -129,6 +129,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ar"), "TomatoScriptCPP", github = "TomatoScriptCPP"),
         TranslatorItem(arrayOf("bg"), "elgratea", weblate = "flantito"),
         TranslatorItem(arrayOf("bg"), "StoyanDimitrov", github = "StoyanDimitrov"),
+        TranslatorItem(arrayOf("bn"), "Manab Ray", github = "manabray"),
         TranslatorItem(arrayOf("bs"), "Erudaro", github = "Erudaro"),
         TranslatorItem(arrayOf("bs"), "SecularSteve", github = "SecularSteve"),
         TranslatorItem(arrayOf("ca"), "Álvaro Martínez Majado", github = "alvaromartinezmajado"),
