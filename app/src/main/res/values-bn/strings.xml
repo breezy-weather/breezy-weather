@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="air_quality">বাতাসের গুণমান</string>
+    <string name="pollen">পরাগ</string>
+    <string name="pollen_and_mold">পরাগ এবং ছাঁচ</string>
+    <string name="ephemeris">সূর্য ও চাঁদ</string>
+    <string name="details">বিস্তারিত</string>
+    <string name="alert">সতর্কতা</string>
+    <string name="short_today">আজ</string>
+    <string name="temperature">তাপমাত্রা</string>
+    <string name="temperature_feels_like">অনুভূত তাপমাত্রা</string>
+    <string name="temperature_wind_chill">বাতাস বইছে</string>
+    <string name="temperature_average_short">গড়</string>
+    <string name="app_name">আবহাওয়া</string>
+    <string name="daily_forecast">দৈনিক পূর্বাভাস</string>
+    <string name="precipitation_nowcasting">এখন বৃষ্টিপাত হচ্ছে</string>
+    <string name="hourly_forecast">প্রতি ঘণ্টার পূর্বাভাস</string>
+    <string name="alerts">সতর্কতা গুলো</string>
+    <string name="alerts_to_follow">আসন্ন সতর্কতা, সেগুলি দেখতে এখানে ট্যাপ করুন।</string>
+    <string name="temperature_feels_like_short">অনুভূত তাপমাত্রা</string>
+    <string name="temperature_apparent">আপাত</string>
+</resources>
