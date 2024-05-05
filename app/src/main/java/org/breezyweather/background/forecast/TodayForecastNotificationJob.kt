@@ -83,7 +83,7 @@ class TodayForecastNotificationJob @AssistedInject constructor(
     override suspend fun getForegroundInfo(): ForegroundInfo {
         return ForegroundInfo(
             Notifications.ID_UPDATING_TODAY_FORECAST,
-            notifier.showProgress(today = true).build(),
+            notifier.showProgress(),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
             } else {
