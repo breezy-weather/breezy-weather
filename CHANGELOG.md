@@ -1,4 +1,4 @@
-# Version 5.2.3 (not yet released)
+# Version 5.2.3 (2024-05-05)
 
 **Improvements and fixes**
 - Fix nowcasting values on sources with values 10-minute by 10-minute or more
