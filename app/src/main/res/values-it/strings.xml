@@ -546,7 +546,7 @@
     <string name="air_quality_no2_info_introduction">Il diossido di azoto (NO₂) è un gas rosso-marrone tossico, soffocante e con un caratteristico odore pungente ed acre.</string>
     <string name="air_quality_no2_info_origin">Le fonti ambientali di NO₂ derivano dalla combustione ad alta temperatura di combustibili in processi come quelli utilizzati per riscaldamento, trasporti, industria e produzione di energia. Le fonti domestiche di ossidi di azoto (NOₓ) comprendono apparecchiature che bruciano combustibili come fornaci, caminetti e stufe e forni a gas.</string>
     <string name="air_quality_no2_info_consequences">L’esposizione al diossido di azoto può irritare le vie respiratorie e aggravare le malattie respiratorie. Inoltre, l’NO₂ è un importante precursore dell’ozono, un inquinante strettamente correlato all’asma e ad altre patologie respiratorie.</string>
-    <string name="weather_minutely_data_by">Dati precipitazioni minuto per minuto forniti da %s</string>
+    <string name="weather_minutely_data_by">Previsione delle precipitazioni da %s</string>
     <string name="weather_alert_data_by">Dati allerte per %s</string>
     <string name="precipitation_nowcasting">Precipitazioni minuto per minuto</string>
     <string name="common_weather_text_rain_moderate">Pioggia moderata</string>
@@ -686,4 +686,7 @@
     <string name="settings_per_location_summary">Ulteriori personalizzazioni per questa posizione</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tutti i modelli meteorologici di questo fornitore in una previsione omogenea</string>
     <string name="settings_invalid_syntax">Sintassi non valida</string>
+    <string name="settings_appearance_calendar_title">Calendario alternativo</string>
+    <string name="ceiling_short">Tetto</string>
+    <string name="precipitation_intensity_medium">Media</string>
 </resources>
