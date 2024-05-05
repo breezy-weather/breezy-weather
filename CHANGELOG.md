@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Fix nowcasting values on sources with values 10-minute by 10-minute or more
 - [Alert page] Status bar black text on dark background when theme is light with day/night mode enabled (@suyashgupta25)
+- Adjust contrast of some caption texts in dark mode (@suyashgupta25)
 
 **Sources**
 - [Open-Meteo] Allow to select “GFS GraphCast” model individually
