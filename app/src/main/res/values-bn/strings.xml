@@ -19,4 +19,16 @@
     <string name="alerts_to_follow">আসন্ন সতর্কতা, সেগুলি দেখতে এখানে ট্যাপ করুন।</string>
     <string name="temperature_feels_like_short">অনুভূত তাপমাত্রা</string>
     <string name="temperature_apparent">আপাত</string>
+    <string name="air_quality_level_1">চমৎকার</string>
+    <string name="air_quality_level_1_description">হাওয়ার গুণমান বেশির ভাগ ব্যক্তির জন্য আদর্শ; আপনার বাড়ির বাইরের স্বাভাবিক কাজকর্ম উপভোগ করুন।</string>
+    <string name="air_quality_level_2">মোটামুটি</string>
+    <string name="air_quality_level_2_description">হাওয়ার গুণমান বেশির ভাগ ব্যক্তির জন্য সাধারণভাবে গ্রহণযোগ্য। তবে সংবেদনশীল গো‌ষ্ঠীর মানুষরা দীর্ঘ‌কালীন সংস্পর্শের কারণে হালকা থেকে মাঝারি লক্ষণে ভুগতে পারেন।</string>
+    <string name="air_quality_level_3">খারাপ</string>
+    <string name="air_quality_level_5">খুব অস্বাস্থ্যকর</string>
+    <string name="air_quality_level_6">বিপজ্জনক</string>
+    <string name="air_quality_level_6_description">হাওয়ার যে কোনো সংস্পর্শ, তা এমন কি কয়েক মিনিটের জন্য হলেও, প্রত্যেকের স্বা‌স্থ্যের ওপরে গুরুতর প্রভাব ফেলতে পারে। ঘরের বাইরের কাজকর্মগুলি এড়িয়ে চলুন।</string>
+    <string name="air_quality_level_3_description">হাওয়াতে দূষণ উচ্চ মাত্রায় পৌঁছে গেছে এবং সংবেদনশীল গো‌ষ্ঠীর মানুষদের জন্য অস্বা‌স্থ্যকর। আপনি যদি শ্বাসকষ্ট বা গলায় অস্বস্তির মত লক্ষণগুলি অনুভব করেন তাহলে বাইরে সময় কাটানোর পরিমাণ কমান।</string>
+    <string name="air_quality_level_4">অস্বাস্থ্যকর</string>
+    <string name="air_quality_level_4_description">সংবেদনশীল গো‌ষ্ঠীর মানুষরা স্বা‌স্থ্যের ওপরে প্রভাবগুলি অবিলম্বে অনুভব করতে পারেন। সু‌স্থ মানুষরা দী‌র্ঘকাল সংস্পর্শে থাকলে শ্বাসকষ্ট ও গলায় অস্বস্তিতে ভুগতে পারেন। ঘরের বাইরের কাজকর্মকে সীমিত করুন।</string>
+    <string name="air_quality_level_5_description">সংবেদনশীল গো‌ষ্ঠীর মানুষরা স্বা‌স্থ্যের ওপরে প্রভাবগুলি অবিলম্বে অনুভব করবেন এবং তাদের ঘরের বাইরের কাজকর্ম এড়িয়ে চলা উচিত। সু‌স্থ মানুষদের শ্বাসকষ্ট ও গলায় অস্বস্তিতে ভোগার সম্ভাবনা আছে; ঘরের ভিতরে থাকা এবং ঘরের বাইরের কাজকর্মগুলির সময়সূচি পরিবর্তন করার কথা বিবেচনা করুন।</string>
 </resources>
