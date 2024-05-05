@@ -51,20 +51,13 @@ class ForecastNotificationNotifier(private val context: Context) {
         setAutoCancel(false)
     }
 
-    private fun NotificationCompat.Builder.show(id: Int) {
-        context.notify(id, build())
-    }
-
-    fun showProgress(today: Boolean): NotificationCompat.Builder {
-        val builder = with(progressNotificationBuilder) {
-            setContentTitle(context.getString(R.string.notification_running_in_background))
-
-            setProgress(0, 0, true)
-        }
-
-        builder.show(if (today) Notifications.ID_UPDATING_TODAY_FORECAST else Notifications.ID_UPDATING_TOMORROW_FORECAST)
-
-        return builder
+    fun showProgress(): Notification {
+        return progressNotificationBuilder
+            // prevent Android from muting notifications ('muting recently noisy')
+            // and only play a sound for the actual forecast notification
+            .setSilent(true)
+            .setContentTitle(context.getString(R.string.notification_running_in_background))
+            .build()
     }
 
     fun showComplete(location: Location, today: Boolean) {
