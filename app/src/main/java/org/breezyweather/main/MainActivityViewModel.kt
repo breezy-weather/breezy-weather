@@ -295,7 +295,7 @@ class MainActivityViewModel @Inject constructor(
             updating = true
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
-            viewModelScope.launch {
+            viewModelScope.launchIO {
                 getWeather(
                     getApplication(),
                     locationToCheck,
@@ -317,7 +317,7 @@ class MainActivityViewModel @Inject constructor(
             updating = true
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
-            viewModelScope.launch {
+            viewModelScope.launchIO {
                 getWeather(
                     getApplication(),
                     locationToCheck,
