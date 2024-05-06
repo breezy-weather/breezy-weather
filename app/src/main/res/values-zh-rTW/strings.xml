@@ -690,4 +690,5 @@
     <string name="settings_background_updates_refresh_never_warning3">考慮使用一個較低頻率的重新整理更新間距而不是關閉背景更新，如果你仍想關閉背景更新，請點擊「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
     <string name="settings_per_location_theme">主題</string>
+    <string name="precipitation_intensity_medium">中等</string>
 </resources>
