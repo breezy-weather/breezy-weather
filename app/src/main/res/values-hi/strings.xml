@@ -124,8 +124,8 @@
     <string name="location_message_permission_background_missing">पृष्ठभूमि में पहुंच स्थान की अनुमति अनुपलब्ध है</string>
     <string name="location_search_placeholder">कोई स्थान खोजें…</string>
     <string name="action_settings">समायोजन</string>
-    <string name="weather_source_accu_preference_days_10">10 दिन</string>
-    <string name="weather_source_accu_preference_days_15">15 दिन</string>
+    <string name="weather_source_accu_preference_days_10">१० दिन</string>
+    <string name="weather_source_accu_preference_days_15">१५ दिन</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">स्थान की जानकारी सक्षम करें</string>
     <string name="location_dialog_failed_to_locate_action_select_source">स्थान सेवा का चयन करें</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">मैन्युअल रूप से स्थान जोड़ें और “%s” को हटा दें</string>
@@ -176,8 +176,8 @@
     <string name="ceiling_short">छत</string>
     <string name="setting_weather_source_accu_days">दिन</string>
     <string name="weather_api_unauthorized_content">कुछ मौसम डेटा स्रोतों पर, आपको अपना खुद का एपीआई कुंजी प्रदान करने की आवश्यकता है। यदि आप पहले से ही एक प्रदान करते हैं, तो कृपया आपके द्वारा प्रदान की गई एपीआई कुंजी को डबल-चेक करें।।</string>
-    <string name="weather_source_accu_preference_days_1">1 दिन</string>
-    <string name="weather_source_accu_preference_days_5">5 दिन</string>
+    <string name="weather_source_accu_preference_days_1">१ दिन</string>
+    <string name="weather_source_accu_preference_days_5">५ दिन</string>
     <string name="setting_weather_source_accu_hours">घंटे</string>
     <string name="weather_source_accu_preference_hours_1">1 घंटा</string>
     <string name="location_current">वर्तमान स्थान</string>
@@ -193,8 +193,8 @@
     <string name="weather_data_by">%s द्वारा माहिती</string>
     <string name="weather_pollen_data_by">%s द्वारा पराग डेटा</string>
     <string name="weather_message_data_refresh_failed">मौसम डेटा ताज़ा करना विफल रहा</string>
-    <string name="weather_source_accu_preference_hours_72">72 घंटे</string>
-    <string name="weather_source_accu_preference_hours_120">120 घंटे</string>
+    <string name="weather_source_accu_preference_hours_72">७२ घंटे</string>
+    <string name="weather_source_accu_preference_hours_120">१२० घंटे</string>
     <string name="location_message_added">स्थान जोड़ा</string>
     <string name="location_message_updated">स्थान अद्यतनीत किया गया</string>
     <string name="location_message_already_exists">पहले से ही उसी मुख्य मौसम स्रोत के साथ एक स्थान मौजूद है।।</string>
@@ -212,7 +212,7 @@
     <string name="pollen_urticaceae">बिछुआ / प्रान्त</string>
     <string name="weather_message_invalid_location">अमान्य स्थान, कृपया इसे हटाएँ और पुनः जोड़ें</string>
     <string name="weather_api_unauthorized_title">एपीआई पहुंच अनधिकृत</string>
-    <string name="weather_source_accu_preference_hours_240">240 घंटे</string>
+    <string name="weather_source_accu_preference_hours_240">२४० घंटे</string>
     <string name="pollen_olea">जैतून का पेड़</string>
     <string name="weather_air_quality_and_pollen_data_by">%s द्वारा वायु गुणवत्ता और पराग डेटा</string>
     <string name="weather_message_too_frequent_refreshes">कृपया पुनः प्रयास करने से पहले कुछ सेकंड प्रतीक्षा करें…</string>
@@ -638,4 +638,9 @@
     <string name="pollen_platanus">उड़ान वृक्ष</string>
     <string name="pollen_rumex">सोरेल</string>
     <string name="pollen_salix">विलो</string>
+    <string name="dialog_time_picker_select_time">समय चुनें</string>
+    <string name="action_edit_location">इस स्थान को संपादित करें</string>
+    <string name="precipitation_intensity_medium">मध्यम</string>
+    <string name="action_app_store">ऐप स्टोर</string>
+    <string name="location_search_no_results">%1$s को %2$s नहीं मिल सका</string>
 </resources>
