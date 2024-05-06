@@ -57,8 +57,8 @@
     <string name="wind_strength_10">全強風</string>
     <string name="wind_strength_11">暴風</string>
     <string name="wind_strength_12">颶風</string>
-    <string name="precipitation_intensity_light">小雨</string>
-    <string name="precipitation_intensity_heavy">大雨</string>
+    <string name="precipitation_intensity_light">弱い</string>
+    <string name="precipitation_intensity_heavy">強い</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">三日月</string>
     <string name="ephemeris_moon_phase_first_quarter">上弦</string>
@@ -691,4 +691,5 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">互換性のあるパッケージが見つかりませんでした</string>
     <string name="settings_appearance_calendar_title">代替カレンダー</string>
     <string name="settings_global">全般設定</string>
+    <string name="precipitation_intensity_medium">中程度</string>
 </resources>
