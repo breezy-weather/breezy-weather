@@ -122,7 +122,7 @@
     <string name="precipitation_nowcasting">Опади щохвилини</string>
     <string name="air_quality">Якість повітря</string>
     <string name="ephemeris">Сонце та Місяць</string>
-    <string name="temperature_feels_like">За відчуттями</string>
+    <string name="temperature_feels_like">Відчувається як</string>
     <string name="details">Подробиці</string>
     <string name="alerts_to_follow">Щоб переглянути майбутні попередження, натисніть тут.</string>
     <string name="alerts">Оповіщення</string>
@@ -263,7 +263,7 @@
     <string name="air_quality_pm_explanations_consequences">Тверді частинки є найшкідливішою формою забруднення повітря через їхню здатність проникати з потоками крові глибоко в легені та мозок, викликаючи такі проблеми зі здоров’ям, як хвороби серця, легень і передчасну смерть.</string>
     <string name="air_quality_no2_info_origin">Джерела NO₂ у навколишньому середовищі є результатом високотемпературного згорання палива в таких процесах, як опалення, транспорт, промисловість та виробництво електроенергії. До побутових джерел оксидів азоту (NOₓ) належить обладнання, яке спалює паливо, наприклад, печі, каміни, газові плити та духовки.</string>
     <string name="message_parsing_error_title">Не вдалося отримати погодні дані</string>
-    <string name="temperature_apparent">За відчуттями</string>
+    <string name="temperature_apparent">Відчувається як</string>
     <string name="wind_direction_short_N">Пн.</string>
     <string name="wind_strength_3">Слабкий</string>
     <string name="pollen_olea">Олива</string>
@@ -372,7 +372,7 @@
     <string name="settings_location_access_background_summaryOn">Увімкнено. Застосунок зможе оновлювати погодні дані для вашого поточного місцезнаходження у фоновому режимі.</string>
     <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
-    <string name="settings_weather_sources_summary">Постачальники погоди за замовчуванням для нових розташуваннь, користувацьких ключів API та інших налаштувань ростачальників</string>
+    <string name="settings_weather_sources_summary">Постачальники погоди за замовчуванням для нових розташуваннь, користувацьких ключів API та інших налаштувань постачальників</string>
     <string name="settings_appearance_summary">Мова, тема, пакети значків, одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
     <string name="settings_appearance_dark_mode_title">Тема</string>
@@ -619,7 +619,7 @@
     <string name="dew_point_short">Точка роси</string>
     <string name="ceiling_short">Межа</string>
     <string name="settings_weather_sources_default_source">Джерело за замовчуванням для нових місць</string>
-    <string name="temperature_feels_like_short">За відчуттями</string>
+    <string name="temperature_feels_like_short">Відчувається як</string>
     <string name="action_confirm">Підтвердити</string>
     <string name="location_delete_location_dialog_title">Видалити місцезнаходження?</string>
     <string name="weather_message_too_frequent_refreshes">Будь ласка, зачекайте кілька секунд, перш ніж повторити спробу…</string>
@@ -660,7 +660,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Приклад прогнозу</string>
     <string name="settings_source_instance">Приклад</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Приклад якості повітря</string>
-    <string name="settings_widgets_broadcast_title">Передавати мої дані про погоду в інші додатки</string>
+    <string name="settings_widgets_broadcast_title">Обмін даними</string>
     <string name="message_invalid_incomplete_data">З сервера отримані невірні або неповні дані</string>
     <string name="settings_per_location_theme">Тема</string>
     <string name="settings_source_instance_invalid">Має бути URL-адреса https, що закінчується на /</string>
