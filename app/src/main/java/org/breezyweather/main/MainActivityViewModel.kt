@@ -509,13 +509,13 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun writeLocationList(locationList: List<Location>) {
-        viewModelScope.launch {
+        viewModelScope.launchIO {
             locationRepository.addAll(locationList)
         }
     }
 
     fun deleteLocation(location: Location) {
-        viewModelScope.launch {
+        viewModelScope.launchIO {
             // Note: we will have a gap in the listOrder, but this doesn't cause any issue, and
             // it will fix by itself on next rewrite of the full location list
             locationRepository.delete(location.formattedId)

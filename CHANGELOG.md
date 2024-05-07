@@ -1,3 +1,12 @@
+# Version 5.2.4 (not yet released)
+
+**Improvements and fixes**
+- Reduce lag on refresh on low-end devices/slow sources (@jayyuz)
+
+**Translations**
+- Translations updated
+
+
 # Version 5.2.3 (2024-05-05)
 
 **Improvements and fixes**
