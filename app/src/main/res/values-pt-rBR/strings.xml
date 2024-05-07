@@ -59,8 +59,8 @@
     <string name="wind_strength_10">Tempestade</string>
     <string name="wind_strength_11">Tempestade violenta</string>
     <string name="wind_strength_12">Furacão</string>
-    <string name="precipitation_intensity_light">Garoa</string>
-    <string name="precipitation_intensity_heavy">Chuva forte</string>
+    <string name="precipitation_intensity_light">Leve</string>
+    <string name="precipitation_intensity_heavy">Forte</string>
     <string name="ephemeris_moon_phase_new_moon">Lua nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Lua crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Quarto crescente</string>
@@ -110,7 +110,7 @@
     <string name="widget_label_text_color">Cor do texto</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
-    <string name="widget_label_align_end">Alinhar até o final</string>
+    <string name="widget_label_align_end">Alinhar à direita</string>
     <string name="widget_custom_subtitle_explanation">Você pode inserir qualquer coisa, mas por favor preste atenção ao comprimento do texto. Se você quiser citar dados meteorológicos, use $ para fazer referência à palavra-chave correspondente.
 \n
 \nPor exemplo, “Clima atual = $cw$” será exibido como “Clima atual = Limpo”.</string>
@@ -128,14 +128,14 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Visibilidade atual</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Ponto de orvalho atual</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alertas</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Alertas (Curto)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alertas (curto)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Localização</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitude</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Tempo de atualização</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semana</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Semana (Curto)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Semana (curto)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Descrição por hora</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linha</string>
@@ -358,7 +358,7 @@
     <string name="settings_main_background_animation_disabled">Desativado</string>
     <string name="settings_main_background_animation_enabled">Ativado</string>
     <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas</string>
-    <string name="settings_notifications_alerts_title">Notificações de alertas meteorológicos</string>
+    <string name="settings_notifications_alerts_title">Notificações de alertas de clima severo</string>
     <string name="settings_appearance_summary">Idioma, modo escuro, pacote de ícones, unidades</string>
     <string name="settings_main_hourly_trends_title">Tendências horárias</string>
     <string name="settings_background_updates_battery_optimization">Desativar otimização de bateria</string>
@@ -388,7 +388,7 @@
     <string name="settings_background_updates_worker_info_title">Informações do Worker</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Você pode adicionar sua localização atual como um local.</string>
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
-    <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>
+    <string name="settings_location_access_precise_summaryOn">Ativado. O provedor de rede do dispositivo será usado com prioridade e na maioria das vezes, mas o GPS também pode ser usado como alternativa.</string>
     <string name="settings_location_access_background_summaryOn">Habilitado. O aplicativo poderá atualizar os dados meteorológicos de sua localização atual em segundo plano.</string>
     <string name="settings_weather_sources_summary">Configurações dos provedores de dados meteorológicos</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
@@ -683,4 +683,19 @@
     <string name="settings_invalid_syntax">Sintaxe inválida</string>
     <string name="settings_source_instance_invalid">Deve ser uma URL https terminada com uma /</string>
     <string name="alert_source">Fonte: %s</string>
+    <string name="dialog_time_picker_select_time">Selecionar horário</string>
+    <string name="dialog_time_picker_input_time">Entrada do horário</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Alternar para entrada de toque</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Alternar para entrada de texto</string>
+    <string name="widget_label_hide_alternate_calendar">Ocultar calendário alternativo</string>
+    <string name="settings_appearance_calendar_title">Calendário alternativo</string>
+    <string name="settings_global">Configurações globais</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nenhum pacote compatível encontrado</string>
+    <string name="settings_background_updates_refresh_never_warning2">O processo de atualização em segundo plano é leve: ele atualiza apenas seu primeiro local de acordo com a taxa selecionada e os locais secundários apenas se você precisar deles, uma vez por dia. É eficiente em termos de bateria e não deve usar 5 MB de dados por mês.</string>
+    <string name="message_server_unavailable_content">Geralmente é um erro temporário. Se o erro persistir, relate o problema no GitHub.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Ao desativar as atualizações em segundo plano, você não receberá mais notificações de alertas ou precipitação. Os widgets não serão atualizados até que você abra o aplicativo.</string>
+    <string name="precipitation_intensity_medium">Moderada</string>
+    <string name="message_server_unavailable_title">Servidor indisponível</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considere usar uma tempo de atualização menos frequente em vez de desativar as atualizações em segundo plano, caso contrário, toque em “Continuar” se ainda quiser prosseguir.</string>
+    <string name="action_edit_location">Editar este local</string>
 </resources>
