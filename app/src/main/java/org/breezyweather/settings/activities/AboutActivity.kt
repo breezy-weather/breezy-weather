@@ -199,6 +199,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("it"), "Lorenzo J. Lucchini", github = "LuccoJ"),
         TranslatorItem(arrayOf("it"), "Gabriele Monaco", github = "glemco"),
         TranslatorItem(arrayOf("it"), "Manuel Tassi", github = "Mannivu"),
+        TranslatorItem(arrayOf("it"), "Ulisse Perusin", github = "ulipo"),
         TranslatorItem(arrayOf("ja"), "rikupin1105", github = "rikupin1105"),
         TranslatorItem(arrayOf("ja"), "Meiru", weblate = "Tenbin"),
         TranslatorItem(arrayOf("ja"), "若林 さち", weblate = "05e82918ec434690"),
