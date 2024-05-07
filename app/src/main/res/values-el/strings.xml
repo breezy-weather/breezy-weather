@@ -245,7 +245,7 @@
     <string name="air_quality_no2_voice">Διοξείδιο του αζώτου</string>
     <string name="wind_direction_short_S">Ν</string>
     <string name="pollen_and_mold">Γύρη &amp; μούχλα</string>
-    <string name="air_quality_pm_info_title">Σωματίδια (ΣΥ2,5 &amp; ΣΥ10)</string>
+    <string name="air_quality_pm_info_title">Σωματιδιακή Ύλη (ΣΥ2,5 &amp; ΣΥ10)</string>
     <string name="air_quality_pm_explanations_consequences">Τα σωματίδια είναι η πιο επιβλαβής μορφή ατμοσφαιρικής ρύπανσης λόγω της ικανότητάς τους να διεισδύουν βαθιά στους πνεύμονες και τον εγκέφαλο από τις ροές του αίματος, προκαλώντας προβλήματα υγείας όπως καρδιακές παθήσεις, πνευμονικές παθήσεις και πρόωρο θάνατο.</string>
     <string name="uv_alert_level">Προειδοποίηση</string>
     <string name="wind_direction_short_W">Δ</string>
@@ -515,7 +515,7 @@
     <string name="unit_atm">ΑΤΜ</string>
     <string name="settings_widgets_notification_persistent_switch">Επίμονος</string>
     <string name="settings_unavailable_no_background_updates">Μη διαθέσιμο, ενεργοποιήστε πρώτα τις ενημερώσεις στο παρασκήνιο</string>
-    <string name="unit_bf">Μπφρ</string>
+    <string name="unit_bf">Μπφ</string>
     <string name="unit_bf_voice">στην κλίμακα Μποφόρ</string>
     <string name="unit_kph_voice">Χιλιόμετρα την ώρα</string>
     <string name="unit_kn_voice">Κόμβοι</string>
