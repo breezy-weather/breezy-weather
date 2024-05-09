@@ -146,7 +146,7 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Tramonto lunare di oggi, domani, …, 4 giorni dopo</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunare di oggi, domani, …, 4 giorni dopo</string>
     <string name="widget_live_wallpaper_weather_kind">Meteo</string>
-    <string name="widget_live_wallpaper_day_night_type">Tempo</string>
+    <string name="widget_live_wallpaper_day_night_type">Orario</string>
     <string name="widget_label_view_style">Stile widget</string>
     <string name="widget_label_show_widget_card">Sfondo</string>
     <string name="widget_label_show_widget_card_alpha">Opacità sfondo</string>
