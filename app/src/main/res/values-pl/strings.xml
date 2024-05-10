@@ -129,7 +129,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Tydzień (krótki)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Opis dzienny</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Opis godzinowy</string>
-    <string name="widget_custom_subtitle_keyword_enter_description">Wprowadź</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Nowa linia</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dzisiejsza pogoda w ciągu dnia, jutro, …, 4 dni później</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Dzisiejsza pogoda w ciągu nocy, jutro, …, 4 dni później</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dzisiejsza temperatura w ciągu dnia, jutro, …, 4 dni później (°C/°F)</string>
@@ -298,7 +298,7 @@
     <string name="unit_mm">mm</string>
     <string name="unit_cm">cm</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="common_weather_text_clear_sky">Czyste niebo</string>
+    <string name="common_weather_text_clear_sky">Bezchmurnie</string>
     <string name="unit_mm_voice">Minilitry</string>
     <string name="about_contributors">Współtwórcy</string>
     <string name="unit_mi_voice">Mile</string>
