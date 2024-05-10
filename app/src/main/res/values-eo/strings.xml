@@ -219,7 +219,6 @@
     <string name="action_location_list">Listo de lokoj</string>
     <string name="action_search">Serĉi</string>
     <string name="action_add_current_location">Aldoni nunan lokon</string>
-    <string name="action_add_from_map">Aldoni el mapo</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
     <string name="action_edit_location">Modifi ĉi tiun lokon</string>
     <string name="action_settings">Agordoj</string>

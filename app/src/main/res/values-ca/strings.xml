@@ -416,7 +416,6 @@
     <string name="action_see_more">Veure més</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
-    <string name="action_add_from_map">Afegir des del mapa</string>
     <string name="settings_widgets_notification_feels_like_switch">Usa la sensació tèrmica</string>
     <string name="dialog_permissions_location_content">Breezy Weather ha de recopilar la vostra informació d’ubicació en primer pla o en segon pla per proporcionar les dades meteorològiques de la vostra ubicació actual. Per a això, sol·licitarem alguns permisos. La vostra informació d’ubicació només s’utilitzarà per obtenir dades meteorològiques a la vostra ubicació actual. Si no voleu compartir la vostra informació d’ubicació, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>

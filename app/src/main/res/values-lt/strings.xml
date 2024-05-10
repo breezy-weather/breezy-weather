@@ -207,7 +207,6 @@
     <string name="location_search_no_results">%1$s negali rasti %2$s</string>
     <string name="action_search">Paieška</string>
     <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
-    <string name="action_add_from_map">Pridėti iš žemėlapio</string>
     <string name="action_location_list">Vietovių sąrašas</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_add_new_location">Pridėti naują vietovę</string>

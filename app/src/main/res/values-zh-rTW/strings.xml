@@ -436,7 +436,6 @@
     <string name="dialog_permissions_notification_content">點選此處以開啟天氣警報通知，或稍後在設定中做選擇。</string>
     <string name="settings_main">主界面</string>
     <string name="location_results_by">定位結果來源 %s</string>
-    <string name="action_add_from_map">從地圖添加</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">輕微或中度雷雨</string>
     <string name="alerts_to_follow">即將出現的天氣警報，點此查看詳情。</string>
     <string name="wind_direction_short_NE">東北風</string>

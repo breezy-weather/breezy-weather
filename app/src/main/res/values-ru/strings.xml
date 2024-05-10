@@ -447,7 +447,6 @@
     <string name="air_quality_co_info_title">Окись углерода (СО)</string>
     <string name="location_message_search_failed">Не удалось найти местоположение</string>
     <string name="location_message_permission_background_missing">Доступ к местоположению в фоновом режиме отсутствует</string>
-    <string name="action_add_from_map">Добавить с карты</string>
     <string name="action_back">Назад</string>
     <string name="action_undo">Отменить</string>
     <string name="action_close">Закрыть</string>

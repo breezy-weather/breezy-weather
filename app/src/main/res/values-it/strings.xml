@@ -337,7 +337,6 @@
     <string name="air_quality_level_4_description">Gli effetti sulla salute possono essere immediatamente percepiti dai gruppi sensibili. Individui sani possono avere difficoltà respiratorie e irritazioni alla gola in caso di esposizione prolungata. Limita l’attività all’aperto.</string>
     <string name="air_quality_level_6">Pericolosa</string>
     <string name="air_quality_level_6_description">Qualsiasi esposizione all’aria, anche per pochi minuti, può portare a gravi effetti sulla salute di tutti. Evita le attività all’aperto.</string>
-    <string name="action_add_from_map">Aggiungi dalla mappa</string>
     <string name="settings_weather_source_portal">Portale</string>
     <string name="setting_weather_source_accu_days">Giorni</string>
     <string name="weather_source_accu_preference_days_1">1 giorno</string>

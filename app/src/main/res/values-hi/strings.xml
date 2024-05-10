@@ -133,7 +133,6 @@
     <string name="location_current_not_found_yet">वर्तमान स्थान अभी तक नहीं मिला …</string>
     <string name="action_search">खोज</string>
     <string name="action_add_current_location">वर्तमान स्थान जोड़ें</string>
-    <string name="action_add_from_map">मानचित्र से जोड़ें</string>
     <string name="action_add_new_location">एक नया स्थान जोड़ें</string>
     <string name="action_restart">पुनः आरंभ करें</string>
     <string name="ephemeris_moon_phase_waxing_crescent">वर्धमान अर्धचंद्र</string>

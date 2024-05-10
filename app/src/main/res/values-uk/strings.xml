@@ -241,7 +241,6 @@
     <string name="wind_strength_11">Жорстокий шторм</string>
     <string name="uv_index_0_2">Низький</string>
     <string name="uv_index_11">Надмірний</string>
-    <string name="action_add_from_map">Додати з мапи</string>
     <string name="action_restart">Перезапустити</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
     <string name="dialog_permissions_location_content">Breezy Weather має збирати інформацію про ваше місцезнаходження, щоб надавати погодні дані згідно поточному місцеположенню. Для цього ми запрошуємо деякі дозволи. Інформація про ваше місцезнаходження буде використана лише для отримання погодних даних у вашому поточному місціположенні. Якщо ви не хочете ділитися цією інформацією, ви можете відхилити ці вимоги та вручну встановити своє місцезнаходження на сторінці керування.</string>

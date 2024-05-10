@@ -179,7 +179,6 @@
     <string name="widget_label_clock_font">Font sata</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Upute proizvođača</string>
     <string name="settings_main_cards_title">Kartice</string>
-    <string name="action_add_from_map">Dodajte sa mape</string>
     <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
     <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>

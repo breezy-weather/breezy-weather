@@ -221,7 +221,6 @@
     <string name="action_location_list">Спіс месцазнаходжання</string>
     <string name="action_search">Пошук</string>
     <string name="action_add_current_location">Дадаць бягучае месцазнаходжанне</string>
-    <string name="action_add_from_map">Дадаць з карты</string>
     <string name="action_add_new_location">Дадаць новае месцазнаходжанне</string>
     <string name="action_settings">Налады</string>
     <string name="action_preview">Прадпрагляд</string>

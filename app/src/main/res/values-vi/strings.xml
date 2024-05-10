@@ -176,7 +176,6 @@
     <string name="action_location_list">Danh sách vị trí</string>
     <string name="action_search">Tìm kiếm</string>
     <string name="action_add_current_location">Thêm vị trí hiện tại</string>
-    <string name="action_add_from_map">Thêm từ bản đồ</string>
     <string name="action_about">Thông tin</string>
     <string name="action_refresh">Làm mới</string>
     <string name="action_restart">Khởi động lại</string>

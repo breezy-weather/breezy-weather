@@ -209,7 +209,6 @@
     <string name="location_search_placeholder">Bilatu kokapen bat…</string>
     <string name="location_search_no_results">%1$s ezin du %2$s aurkitu</string>
     <string name="action_add_current_location">Gehitu egungo kokapena</string>
-    <string name="action_add_from_map">Gehitu mapatik</string>
     <string name="action_add_new_location">Gehitu kokapen berria</string>
     <string name="action_about">Honi buruz</string>
     <string name="action_restart">Berrabiarazi</string>

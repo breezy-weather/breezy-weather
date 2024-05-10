@@ -129,7 +129,6 @@
     <string name="action_location_list">Списък с местоположения</string>
     <string name="action_search">Търсене</string>
     <string name="action_add_current_location">Добавяне на текущо местоположение</string>
-    <string name="action_add_from_map">Добавяне от картата</string>
     <string name="action_settings">Настройки</string>
     <string name="action_about">Относно</string>
     <string name="action_refresh">Опресни</string>

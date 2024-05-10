@@ -401,7 +401,6 @@
     <string name="pollen_tap_to_see_more">Tik om meer te zien…</string>
     <string name="ephemeris_moon_phase_waning_crescent">Afnemende halve maan</string>
     <string name="locations">Locaties</string>
-    <string name="action_add_from_map">Toevoegen van kaart</string>
     <string name="action_add_new_location">Een nieuwe locatie toevoegen</string>
     <string name="action_app_store">App Store</string>
     <string name="action_restart">Herstart</string>

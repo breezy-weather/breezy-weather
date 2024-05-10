@@ -383,7 +383,6 @@
     <string name="weather_data_by">数据来自 %s</string>
     <string name="locations">位置</string>
     <string name="location_results_by">位置结果来自 %s</string>
-    <string name="action_add_from_map">从地图中添加</string>
     <string name="widget_clock_font_sans_serif">无衬线体</string>
     <string name="widget_clock_font_sans_serif_black">无衬线体（粗）</string>
     <string name="unit_fahrenheit_short">°</string>

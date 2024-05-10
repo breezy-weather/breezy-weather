@@ -562,7 +562,6 @@
     <string name="settings_weather_source_portal">Портал</string>
     <string name="action_search">Пребарување</string>
     <string name="action_add_current_location">Додадете моментална локација</string>
-    <string name="action_add_from_map">Додај од мапата</string>
     <string name="action_add_new_location">Додадете нова локација</string>
     <string name="action_settings">Поставки</string>
     <string name="action_preview">Преглед</string>

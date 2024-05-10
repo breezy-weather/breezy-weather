@@ -519,7 +519,6 @@
     <string name="weather_api_unauthorized_title">Acesso não autorizado à API</string>
     <string name="dialog_permissions_location_background_content">Permitir que o app acesse informações de localização em segundo plano, para que possamos perceber mudanças na localização e fornecer dados meteorológicos válidos, por favor, defina o acesso à localização como “Permita o tempo todo”.</string>
     <string name="action_add_current_location">Adicionar localização atual</string>
-    <string name="action_add_from_map">Adicionar a partir do mapa</string>
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="action_continue">Continuar</string>
     <string name="dialog_permissions_location_content">Breezy Weather precisa coletar as suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. As suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se não quiser que obtenhamos as suas informações de localização, pode negar esses requisitos e definir o seu local manualmente na página de gestão.</string>

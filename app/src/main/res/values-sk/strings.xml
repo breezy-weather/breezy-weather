@@ -313,7 +313,6 @@
     <string name="weather_source_accu_preference_hours_240">240 hodín</string>
     <string name="location_delete_location_dialog_title">Odstrániť miesto?</string>
     <string name="location_message_permission_background_missing">Chýbajúce oprávnenie na prístup k polohe na pozadí</string>
-    <string name="action_add_from_map">Pridať z mapy</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorastajúca štvrtina</string>
     <string name="ephemeris_moon_phase_first_quarter">Dorastajúci polmesiac</string>
     <string name="weather_normals_data_by">Údaje o teplotných normách od %s</string>

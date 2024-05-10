@@ -104,7 +104,6 @@
     <string name="location_search_placeholder">Meklēt atrašanās vietu…</string>
     <string name="location_search_no_results">%1$s nevar atrast %2$s</string>
     <string name="action_add_current_location">Pievienot pašreizējo atrašanās vietu</string>
-    <string name="action_add_from_map">Pievienot no kartes</string>
     <string name="action_settings">Iestatījumi</string>
     <string name="action_about">Par</string>
     <string name="action_app_store">Aplikāciju veikals</string>

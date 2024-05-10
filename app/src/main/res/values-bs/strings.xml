@@ -178,7 +178,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">Omogućite informacije o lokaciji</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
-    <string name="action_add_from_map">Dodajte sa mape</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
     <string name="action_restart">Ponovo pokreni</string>
     <string name="action_see_more">Vidi više</string>

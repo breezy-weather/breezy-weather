@@ -362,7 +362,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
     <string name="weather_air_quality_and_pollen_data_by">Calidad de aire y datos de polen por %s</string>
     <string name="location_results_by">Resultados de ubicación según %s</string>
-    <string name="action_add_from_map">Añadir desde mapa</string>
     <string name="widget_label_align_end">Alinear a la derecha</string>
     <string name="locations">Ubicaciones</string>
     <string name="widget_material_you_forecast">Material You - Pronóstico</string>

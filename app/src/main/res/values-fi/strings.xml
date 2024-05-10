@@ -472,7 +472,6 @@
     <string name="common_weather_text_rain_showers_heavy">Rankkoja sadekuuroja</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_notifications_alerts_title">Ilmoita säävaroituksista</string>
-    <string name="action_add_from_map">Lisää kartasta</string>
     <string name="common_weather_text_rain_freezing">Jäätävää sadetta</string>
     <string name="settings_notifications_precipitations_title">Ilmoita sateista</string>
     <string name="message_source_not_installed_error_title">Lähde ei enää käytettävissä</string>

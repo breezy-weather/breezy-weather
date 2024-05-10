@@ -141,7 +141,6 @@
     <string name="action_location_list">فهرست مکان ها</string>
     <string name="action_search">جستجو</string>
     <string name="action_add_current_location">افزودن مکان فعلی</string>
-    <string name="action_add_from_map">افزودن از نقشه</string>
     <string name="action_settings">تنظیمات</string>
     <string name="action_preview">پیش نما</string>
     <string name="action_about">درباره</string>

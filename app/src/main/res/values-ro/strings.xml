@@ -409,7 +409,6 @@
     <string name="location_results_by">Rezultatele locației de la %s</string>
     <string name="location_swipe_to_delete">Poți glisa spre stânga pentru a șterge această locație</string>
     <string name="action_add_current_location">Adaugă locația curentă</string>
-    <string name="action_add_from_map">Adaugă de pe hartă</string>
     <string name="action_add_new_location">Adaugă o locație nouă</string>
     <string name="weather_api_unauthorized_title">Acces API neautorizat</string>
     <string name="weather_api_unauthorized_content">La unii furnizori de vreme, trebuie să oferi propria cheie API. Dacă ai oferit deja una, reverifică cheia API pe care ai oferit-o.</string>

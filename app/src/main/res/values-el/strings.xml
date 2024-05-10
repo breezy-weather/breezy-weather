@@ -371,7 +371,6 @@
     <string name="settings_weather_source_main">Κύρια πηγή</string>
     <string name="settings_weather_sources">Πηγές καιρού</string>
     <string name="action_add_current_location">Προσθήκη τρέχουσας τοποθεσίας</string>
-    <string name="action_add_from_map">Προσθήκη από χάρτη</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_location_access_background_summaryOff">Παρακαλώ ενεργοποίησε το “Επιτρέπεται πάντα” για να γίνονται ανανεώσεις στο παρασκήνιο για την τρέχουσα τοποθεσία σου.</string>
     <string name="widget_week_style_3_days">3 μέρες</string>

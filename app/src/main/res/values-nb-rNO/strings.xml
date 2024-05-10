@@ -469,7 +469,6 @@
     <string name="action_preview">Forhåndsvisning</string>
     <string name="action_add_current_location">Legg til nåværende posisjon</string>
     <string name="action_settings">Innstillinger</string>
-    <string name="action_add_from_map">Legg til fra kart</string>
     <string name="widget_custom_subtitle_keyword_d_description">Dato</string>
     <string name="widget_custom_subtitle_keyword_l_description">Lokasjon</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Daglig beskrivelse</string>

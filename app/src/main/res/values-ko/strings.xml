@@ -284,7 +284,6 @@
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 %s 제공</string>
     <string name="action_location_list">위치 목록</string>
-    <string name="action_add_from_map">지도에서 추가</string>
     <string name="widget_subtitle_data_aqi">대기질</string>
     <string name="unit_kph_voice">시속 킬로미터</string>
     <string name="unit_mps">m/s</string>

@@ -34,6 +34,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.MyLocation
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.FloatingActionButton
@@ -160,19 +161,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     title = stringResource(R.string.locations),
                     onBackPressed = {
                         (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
-                    },
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                callback?.onSearchBarClicked()
-                            }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Outlined.Search,
-                                contentDescription = stringResource(R.string.action_add_new_location),
-                                tint = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
                     }
                 )
             },
@@ -189,14 +177,15 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 stringResource(R.string.action_add_current_location)
                             )
                         }
-                        //Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
-                    // TODO: Uncomment spacer and FAB when map selection is implemented
-                    /*FloatingActionButton(
-                        onClick = { /* TODO */ },
+                    FloatingActionButton(
+                        onClick = {
+                            callback?.onSearchBarClicked()
+                        }
                     ) {
-                        Icon(Icons.Outlined.Map, stringResource(R.string.action_add_from_map))
-                    }*/
+                        Icon(Icons.Outlined.Add, stringResource(R.string.action_add_new_location))
+                    }
                 }
             }
         ) { paddings ->
@@ -258,11 +247,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 + PaddingValues(top = dimensionResource(R.dimen.large_margin))
                         ),
                 ) {
-                    Text(
+                    // TODO: People don’t read instructions, so replace with just a big “Add a new location” button
+                    /*Text(
                         text = stringResource(R.string.location_none_added_yet_instructions),
                         color = DayNightTheme.colors.bodyColor,
                         style = MaterialTheme.typography.bodyLarge
-                    )
+                    )*/
                 }
             }
         }

@@ -372,7 +372,6 @@
     <string name="common_weather_text_snow_heavy">Јак снег</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Олуја са грмљавином са јаким градом</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Провери дозволе за локацију</string>
-    <string name="action_add_from_map">Додај са мапе</string>
     <string name="dialog_permissions_location_background_title">Приступ локацији у позадини</string>
     <string name="widget_label_show_widget_card_alpha">Непрозирност</string>
     <string name="widget_label_hide_subtitle">Сакриј поднаслов</string>

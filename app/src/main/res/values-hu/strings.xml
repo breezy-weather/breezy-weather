@@ -309,7 +309,6 @@
     <string name="location_service_native">Natív API</string>
     <string name="action_location_list">Helyszínlista</string>
     <string name="action_add_current_location">Jelenlegi helyszín hozzáadása</string>
-    <string name="action_add_from_map">Hozzáadás térképről</string>
     <string name="message_parsing_error_title">Az időjárásadatok elemzése sikertelen</string>
     <string name="widget_material_you_current">Material You - Jelenlegi</string>
     <string name="widget_style_nano">Nano</string>
