@@ -261,19 +261,17 @@ class SettingsActivity : GeoActivity() {
                         todayForecastEnabled = remember { todayForecastEnabledState }.value,
                         tomorrowForecastEnabled = remember { tomorrowForecastEnabledState }.value,
                         postNotificationPermissionEnsurer = { succeedCallback ->
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                                succeedCallback()
-                                return@NotificationsSettingsScreen
-                            }
-                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-                                return@NotificationsSettingsScreen
-                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                                !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
 
-                            requestPostNotificationPermissionSucceedCallback = succeedCallback
-                            requestPermissions(
-                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                PERMISSION_CODE_POST_NOTIFICATION
-                            )
+                                requestPostNotificationPermissionSucceedCallback = succeedCallback
+                                requestPermissions(
+                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                    PERMISSION_CODE_POST_NOTIFICATION
+                                )
+                            } else {
+                                succeedCallback()
+                            }
                         }
                     )
                 }
@@ -284,19 +282,17 @@ class SettingsActivity : GeoActivity() {
                         notificationTemperatureIconEnabled = remember { notificationTemperatureIconEnabledState }.value,
                         paddingValues = paddings,
                         postNotificationPermissionEnsurer = { succeedCallback ->
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                                succeedCallback()
-                                return@WidgetsSettingsScreen
-                            }
-                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-                                return@WidgetsSettingsScreen
-                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                                !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
 
-                            requestPostNotificationPermissionSucceedCallback = succeedCallback
-                            requestPermissions(
-                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                PERMISSION_CODE_POST_NOTIFICATION
-                            )
+                                requestPostNotificationPermissionSucceedCallback = succeedCallback
+                                requestPermissions(
+                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                    PERMISSION_CODE_POST_NOTIFICATION
+                                )
+                            } else {
+                                succeedCallback()
+                            }
                         },
                         updateWidgetIfNecessary = { context: Context ->
                             scope.launch {
