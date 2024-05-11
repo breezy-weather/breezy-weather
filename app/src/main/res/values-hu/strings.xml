@@ -416,7 +416,7 @@
     <string name="settings_location_summary">Helyszín meghatározási szolgáltatások beállításai</string>
     <string name="common_weather_text_rain_freezing_heavy">Heves ónos eső</string>
     <string name="metno_weather_text_andthunder">%s és mennydörgés</string>
-    <string name="weather_kind_haze">Ködös</string>
+    <string name="weather_kind_haze">Száraz légköri homály</string>
     <string name="weather_kind_thunder">Mennydörgés</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps_voice">Méter per másodperc</string>
@@ -497,7 +497,7 @@
     <string name="common_weather_text_snow">Havazás</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Záporos havas eső</string>
     <string name="common_weather_text_drizzle_heavy">Heves szemerkélő eső</string>
-    <string name="common_weather_text_fog">Ködös</string>
+    <string name="common_weather_text_fog">Köd</string>
     <string name="about_contribution_designer">Logótervező</string>
     <string name="weather_kind_hail">Jégeső</string>
     <string name="weather_kind_thunderstorm">Zivatar</string>
