@@ -393,7 +393,6 @@
     <string name="weather_source_accu_preference_hours_12">12 ώρες</string>
     <string name="weather_source_accu_preference_hours_24">24 ώρες</string>
     <string name="weather_source_accu_preference_hours_240">240 ώρες</string>
-    <string name="location_none_added_yet_instructions">Δε προστέθηκε καμία τοποθεσία ακόμα. Παρακαλώ άγγιξε το εικονίδιο αναζήτησης για να προσθέσεις χειροκίνητα μια τοποθεσία ή πρόσθεσε τη τρέχουσα τοποθεσία σου από το αιωρούμενο κουμπί.</string>
     <string name="location_message_permission_missing">Δεν υπάρχεις άδεια πρόσβασης τοποθεσίας</string>
     <string name="location_message_permission_background_missing">Η άδεια πρόσβασης τοποθεσίας στο παρασκήνιο λείπει</string>
     <string name="location_message_reverse_geocoding_failed">Η πηγή καιρού δε βρήκε τοποθεσία που να ταιριάζει</string>

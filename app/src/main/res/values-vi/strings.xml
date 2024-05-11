@@ -440,7 +440,6 @@
     <string name="air_quality_so2_info_origin">Nó được giải phóng tự nhiên bởi hoạt động núi lửa và chủ yếu có nguồn gốc từ quá trình đốt cháy nhiên liệu hóa thạch để sưởi ấm trong nước, công nghiệp và phát điện.</string>
     <string name="air_quality_so2_info_consequences">Tiếp xúc với SO₂ có liên quan đến việc nhập viện do hen suyễn và đến phòng cấp cứu.</string>
     <string name="air_quality_co_info_title">Cacbon monoxit (CO)</string>
-    <string name="location_none_added_yet_instructions">Chưa có vị trí nào được thêm vào. Vui lòng nhấn vào biểu tượng tìm kiếm để thêm vị trí theo cách thủ công hoặc thêm vị trí hiện tại của bạn từ nút nổi.</string>
     <string name="air_quality_pm_info_title">Bụi mịn (PM2.5 &amp; PM10)</string>
     <string name="air_quality_pm_explanations_introduction">Bụi hoặc vật chất bụi trong khí quyển là các hạt siêu nhỏ của vật chất rắn hoặc lỏng lơ lửng trong không khí.</string>
     <string name="air_quality_o3_info_introduction">Ôzôn tầng mặt (O₃) là thành phần chính của sương mù. Mặc dù cùng một phân tử, nhưng ôzôn tầng mặt có thể gây hại cho sức khỏe con người, không giống như ôzôn ở tầng bình lưu bảo vệ trái đất khỏi bức xạ UV dư thừa.</string>

@@ -580,7 +580,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notifikasi untuk perkiraan hari berikutnya</string>
     <string name="settings_appearance_summary">Bahasa, mode gelap, paket ikon, satuan</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimasi baterai sudah dinonaktifkan.</string>
-    <string name="location_none_added_yet_instructions">Belum ada lokasi yang ditambahkan. Silakan mengetuk pada ikon pencarian untuk menambahkan lokasi secara manual, atau tambahkan lokasi Anda saat ini dari tombol memgambang.</string>
     <string name="air_quality_co_info_origin">Hal ini dihasilkan oleh pembakaran tidak sempurna bahan bakar berkarbon seperti kayu, bensin, batu bara, gas alam dan minyak tanah dalam kompor sederhana, api terbuka, lampu sumbu, tungku, dan perapian. Sumber utama karbon monoksida (CO) di udara ambien berasal dari kendaraan bermotor.</string>
     <string name="weather_message_unsupported_feature">Sumber tidak mendukung salah satu fitur yang diminta</string>
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>

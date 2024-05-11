@@ -489,7 +489,6 @@
     <string name="action_undo">Anulează</string>
     <string name="settings_widgets_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal Breezy Weather alegând „Imagine de fundal live” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
     <string name="null_data_text">N/A</string>
-    <string name="location_none_added_yet_instructions">Nicio locație adăugată încă. Atinge pictograma de căutare pentru a adăuga manual o locație sau adaugă automat locația atingând butonul plutitor.</string>
     <string name="temperature_degree_day_heating">Gradul de încălzire a zilei</string>
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>
     <string name="air_quality_co">CO</string>

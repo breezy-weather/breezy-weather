@@ -516,7 +516,6 @@
     <string name="settings_appearance_dark_mode_title">Mörkt läge</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Inget nätverk</string>
-    <string name="location_none_added_yet_instructions">Ingen plats tillagd än. Tryck på sökikonen för att manuellt lägga till plats eller lägg till din nuvarande plats från den flytande knappen.</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
     <string name="air_quality_co_info_origin">Det skapas av ofullständing förbränning av kolhaltiga bränslen så som trä, bensin, kol, naturgas och fotogen i enkla kök, öppna eldar, oljelampor, ugnar och eldstäder. Den vanligaste källan till kolmonoxid (CO) i omgivande luft är från förbränning från fordonsmotorer.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>

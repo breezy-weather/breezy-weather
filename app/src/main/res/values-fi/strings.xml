@@ -487,7 +487,6 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_mi">mi</string>
     <string name="unit_ft">ft</string>
-    <string name="location_none_added_yet_instructions">Ei vielä lisättyjä sijainteja. Napauta hakukuvaketta lisätäksesi sijainnin manuaalisesti tai lisää nykyinen sijaintisi kelluvasta painikkeesta.</string>
     <string name="unit_cmph_voice">Senttimetriä tunnissa</string>
     <string name="message_server_timeout">Pyyntö aikakatkaistiin</string>
     <string name="common_weather_text_snow_showers">Lumikuuroja</string>

@@ -564,7 +564,6 @@
     <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatto</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
-    <string name="location_none_added_yet_instructions">Nessuna posizione ancora aggiunta. Tocca l’icona di ricerca per aggiungere manualmente una posizione o aggiungi la tua posizione corrente dal pulsante mobile.</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>
     <string name="common_weather_text_rain_snow_mixed">Pioggia mista a neve</string>
     <string name="common_weather_text_snow_heavy">Neve intensa</string>

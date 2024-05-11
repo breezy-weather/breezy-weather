@@ -387,7 +387,6 @@
     <string name="common_weather_text_overcast">天陰</string>
     <string name="weather_source_accu_preference_hours_1">1 小時</string>
     <string name="weather_source_accu_preference_hours_24">24 小時</string>
-    <string name="location_none_added_yet_instructions">尚未加入任何地點。請點擊搜尋圖示以手動加入地點，或從懸浮按鈕加入您目前所在地。</string>
     <string name="location_search_no_results">%1$s 無法找到 %2$s</string>
     <string name="widget_clock_font_sans_serif_black">無襯線體（濃體）</string>
     <string name="settings_background_updates_worker_info_summary">最後執行：%s</string>

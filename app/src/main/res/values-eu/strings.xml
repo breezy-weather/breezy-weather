@@ -195,7 +195,6 @@
     <string name="weather_source_accu_preference_hours_12">12 ordu</string>
     <string name="weather_source_accu_preference_hours_24">24 ordu</string>
     <string name="locations">Kokalekuak</string>
-    <string name="location_none_added_yet_instructions">Oraindik ez da kokalekurik gehitu. Mesedez, sakatu bilaketa-ikonoa kokaleku bat eskuz gehitzeko, edo gehitu zure egungo kokapena botoi flotatzailetik.</string>
     <string name="location_current">Egungo kokapena</string>
     <string name="location_message_added">Kokapena gehitu da</string>
     <string name="location_message_deleted">Kokapena ezabatu da</string>

@@ -442,7 +442,6 @@
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
-    <string name="location_none_added_yet_instructions">Nenhum local foi adicionado ainda. Toque no ícone de pesquisa para adicionar manualmente um local ou adicione o seu local atual a partir do botão flutuante.</string>
     <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="air_quality_so2_info_introduction">O dióxido de enxofre (SO₂) é um gás tóxico incolor responsável pelo odor dos fósforos queimados.</string>

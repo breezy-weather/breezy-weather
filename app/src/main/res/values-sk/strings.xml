@@ -316,7 +316,6 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Dorastajúca štvrtina</string>
     <string name="ephemeris_moon_phase_first_quarter">Dorastajúci polmesiac</string>
     <string name="weather_normals_data_by">Údaje o teplotných normách od %s</string>
-    <string name="location_none_added_yet_instructions">Zatiaľ nebolo pridané žiadne miesto. Ťuknutím na ikonu vyhľadávania manuálne pridajte miesto alebo pridajte svoje súčasné miesto z plávajúceho tlačidla.</string>
     <string name="location_message_failed_to_locate">Nepodarilo sa zistiť aktuálnu polohu</string>
     <string name="weather_api_unauthorized_content">Pri niektorých zdrojoch dát o počasí je potrebné zadať vlastný API kľúč. Ak ste ho už zadali, opätovne ho skontrolujte.</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>

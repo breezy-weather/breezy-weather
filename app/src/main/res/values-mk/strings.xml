@@ -125,7 +125,6 @@
     <string name="weather_source_accu_preference_hours_120">120 часа</string>
     <string name="weather_source_accu_preference_hours_240">240 часа</string>
     <string name="locations">Локации</string>
-    <string name="location_none_added_yet_instructions">Сè уште не е додадена локација. Ве молиме допрете на иконата за пребарување за рачно да додадете локација или додадете ја вашата моментална локација од лебдечкото копче.</string>
     <string name="location_search_weather_source">Извор на времето</string>
     <string name="location_message_added">Додадена е локација</string>
     <string name="location_message_deleted">Локацијата е избришана</string>

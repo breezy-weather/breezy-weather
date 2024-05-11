@@ -509,7 +509,6 @@
     <string name="air_quality_co_info_introduction">一氧化碳（CO）是一种无色、无臭、无味、无刺激性的有毒易燃气体。</string>
     <string name="air_quality_co_info_origin">一氧化碳是由木柴、汽油、煤炭、天然气和煤油等碳质燃料在简易炉灶、明火、灯芯、火炉和壁炉中不完全燃烧产生的。在环境空气中，一氧化碳的主要来源是机动车辆。</string>
     <string name="air_quality_co_info_consequences">一氧化碳扩散到肺组织并进入血液，使红细胞难以与氧气结合。缺氧会损害组织和细胞。接触一氧化碳会导致呼吸困难、疲惫、头晕和其他流感样症状。暴露于高浓度的一氧化碳可能致命。</string>
-    <string name="location_none_added_yet_instructions">尚未添加位置。请点击搜索图标手动添加位置，或通过浮动按钮添加您当前的位置。</string>
     <string name="action_close">关闭</string>
     <string name="dialog_permissions_notification_content">点击此处启用有关天气警报的通知，或稍后在设置中决定。</string>
     <string name="dialog_permissions_notification_title">保持通知</string>

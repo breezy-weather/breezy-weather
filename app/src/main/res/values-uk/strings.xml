@@ -208,7 +208,6 @@
     <string name="weather_api_key_required_missing_title">Необхідний ключ API відсутній</string>
     <string name="weather_source_accu_preference_days_15">15 днів</string>
     <string name="air_quality_no2">NO₂</string>
-    <string name="location_none_added_yet_instructions">Розташування ще не додано. Натисніть на значок пошуку, щоб додати розташування вручну, або додайте ваше поточне місцезнаходження за допомогою плаваючої кнопки.</string>
     <string name="weather_source_accu_preference_hours_72">72 години</string>
     <string name="air_quality_so2_info_introduction">Діоксид сірки (SO₂) — це безбарвний токсичний газ, який відповідає за запах згорілих сірників.</string>
     <string name="pollen_artemisia">Полин</string>

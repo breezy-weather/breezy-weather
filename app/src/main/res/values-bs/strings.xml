@@ -169,7 +169,6 @@
     <string name="weather_source_accu_preference_days_15">15 dana</string>
     <string name="setting_weather_source_accu_hours">Sati</string>
     <string name="weather_source_accu_preference_hours_1">1 sat</string>
-    <string name="location_none_added_yet_instructions">Još nije dodana lokacija. Dodirnite ikonu za pretragu da ručno dodate lokaciju ili svoju trenutnu lokaciju pomoću plutajućeg dugmeta.</string>
     <string name="location_current">Trenutna lokacija</string>
     <string name="locations">Lokacije</string>
     <string name="location_search_weather_source">Izvor prognoze</string>

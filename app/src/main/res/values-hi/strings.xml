@@ -119,7 +119,6 @@
     <string name="weather_source_accu_preference_hours_12">12 घंटे</string>
     <string name="weather_source_accu_preference_hours_24">24 घंटे</string>
     <string name="locations">स्थान</string>
-    <string name="location_none_added_yet_instructions">अभी तक कोई स्थान नहीं जोड़ा गया. कृपया किसी स्थान को मानवी रूप से जोड़ने के लिए खोज छवि पर टैप करें, या चल बटन से अपना वर्तमान स्थान जोड़ें।</string>
     <string name="location_results_by">%s द्वारा स्थान परिणाम</string>
     <string name="location_message_permission_background_missing">पृष्ठभूमि में पहुंच स्थान की अनुमति अनुपलब्ध है</string>
     <string name="location_search_placeholder">कोई स्थान खोजें…</string>

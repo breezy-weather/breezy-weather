@@ -184,7 +184,6 @@
     <string name="weather_source_accu_preference_days_10">10 дена</string>
     <string name="weather_source_accu_preference_hours_12">12 часа</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
-    <string name="location_none_added_yet_instructions">Все още няма добавено местоположение. Моля, докоснете иконата за търсене, за да добавите ръчно местоположение, или добавете текущото си местоположение от плаващия бутон.</string>
     <string name="location_search_weather_source">Източник на времето</string>
     <string name="location_message_added">Местоположението е добавено</string>
     <string name="location_swipe_to_delete">Можете да плъзнете наляво, за да изтриете този елемент</string>

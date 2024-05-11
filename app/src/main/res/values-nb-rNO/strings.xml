@@ -548,7 +548,6 @@
     <string name="location_search_no_results">%1$s kan ikke finne %2$s</string>
     <string name="action_about">Om</string>
     <string name="action_refresh">Oppdater</string>
-    <string name="location_none_added_yet_instructions">Ingen lokasjoner er lagt til enda. Vennligst trykk på søkefeltet for å legge til en lokasjon manuelt, eller legg til nåværende posisjon fra den flytende knappen.</string>
     <string name="ceiling_short">Tak</string>
     <string name="weather_source_accu_preference_hours_72">72 timer</string>
     <string name="weather_source_accu_preference_hours_24">24 timer</string>

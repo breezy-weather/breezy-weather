@@ -196,7 +196,6 @@
     <string name="weather_source_accu_preference_hours_24">24 гадзіны</string>
     <string name="weather_source_accu_preference_hours_120">120 гадзін</string>
     <string name="weather_source_accu_preference_hours_240">240 гадзін</string>
-    <string name="location_none_added_yet_instructions">Месцазнаходжанне яшчэ не дададзена. Націсніце на значок пошуку, каб дадаць месцазнаходжанне ўручную, або дадайце сваё бягучае месцазнаходжанне з дапамогай кнопкі.</string>
     <string name="location_search_weather_source">Крыніца надвор’я</string>
     <string name="location_results_by">Вынікі месцазнаходжання па %s</string>
     <string name="location_message_added">Месцазнаходжанне дададзена</string>

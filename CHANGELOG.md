@@ -1,7 +1,7 @@
 # Version 5.2.4 (not yet released)
 
 **Improvements and fixes**
-- Moved “add new location” search icon to a Floating Action Button in location list
+- Reorganized location list actions
 - Fix today/tomorrow notification being silent on some devices (@min7-i)
 - Reduce lag on refresh on low-end devices/slow sources (@jayyuz)
 

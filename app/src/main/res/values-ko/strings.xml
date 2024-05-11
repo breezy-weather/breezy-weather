@@ -443,7 +443,6 @@
     <string name="air_quality_co">CO</string>
     <string name="settings_weather_source_main">메인 소스</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="location_none_added_yet_instructions">아직 위치를 추가하지 않았습니다. 검색 아이콘을 눌러 위치를 직접 추가하거나, 위치 아이콘을 눌러 현재 위치를 추가할 수 있습니다.</string>
     <string name="location_search_no_results_advice">검색어에 오타가 없는지, 너무 구체적이지는 않은지 확인해 보세요. 아니면 다른 위치 검색 소스를 사용해 볼 수도 있습니다.</string>
     <string name="location_message_already_exists">메인 날씨 소스가 동일한 위치가 이미 있습니다.</string>
     <string name="air_quality_no2">NO₂</string>

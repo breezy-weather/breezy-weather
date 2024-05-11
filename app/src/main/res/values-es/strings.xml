@@ -394,7 +394,6 @@
     <string name="action_close">Cerrar</string>
     <string name="dialog_permissions_notification_title">Mantenerme informado</string>
     <string name="widget_subtitle_data_aqi">Calidad del aire</string>
-    <string name="location_none_added_yet_instructions">Aún no se ha añadido ninguna ubicación. Por favor, pulse el icono de búsqueda para añadir manualmente una ubicación, o añada su ubicación actual desde el botón flotante.</string>
     <string name="location_message_permission_missing">No hay acceso al permiso de ubicación</string>
     <string name="location_message_permission_background_missing">No hay acceso al permiso de ubicación en el fondo</string>
     <string name="location_service_native">API nativa</string>

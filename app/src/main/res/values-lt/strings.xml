@@ -122,7 +122,6 @@
     <string name="location_current">Dabartinė buvimo vieta</string>
     <string name="location_search_weather_source">Orų šaltinis</string>
     <string name="location_results_by">Vietovių rezultatai iš %s</string>
-    <string name="location_none_added_yet_instructions">Dar nepridėjote jokios vietovės. Jei norite pridėti vietovę patys, spauskite ieškojimo ikoną. Norėdami pridėti savo dabartinę buvimo vietą spauskite ant plaukiojančio mygtuko.</string>
     <string name="location_message_added">Vietovė pridėta</string>
     <string name="location_message_deleted">Vietovė ištrinta</string>
     <string name="locations">Vietovės</string>

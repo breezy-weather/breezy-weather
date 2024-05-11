@@ -184,7 +184,6 @@
     <string name="action_share">Partager</string>
 
     <string name="locations">Emplacements</string>
-    <string name="location_none_added_yet_instructions">Aucun emplacement ajouté pour l’instant. Veuillez appuyer sur l’icône de recherche pour ajouter manuellement un emplacement, ou ajoutez votre position actuelle depuis le bouton flottant.</string>
     <string name="location_search_weather_source">Source météo</string>
 
     <string name="about_app">À propos</string>

@@ -25,6 +25,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -33,14 +34,16 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.MyLocation
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -48,11 +51,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -165,28 +170,33 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 )
             },
             floatingActionButton = {
-                Column {
-                    if (validLocationListState.value.firstOrNull { it.isCurrentPosition } == null) {
+                if (validLocationListState.value.isNotEmpty()) {
+                    Column {
+                        if (validLocationListState.value.firstOrNull { it.isCurrentPosition } == null) {
+                            FloatingActionButton(
+                                onClick = {
+                                    viewModel.openChooseWeatherSourcesDialog(null)
+                                },
+                            ) {
+                                Icon(
+                                    Icons.Outlined.MyLocation,
+                                    stringResource(R.string.action_add_current_location)
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                        }
                         FloatingActionButton(
                             onClick = {
-                                viewModel.openChooseWeatherSourcesDialog(null)
-                            },
+                                callback?.onSearchBarClicked()
+                            }
                         ) {
                             Icon(
-                                Icons.Outlined.MyLocation,
-                                stringResource(R.string.action_add_current_location)
+                                Icons.Outlined.Add,
+                                stringResource(R.string.action_add_new_location)
                             )
                         }
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
-                    FloatingActionButton(
-                        onClick = {
-                            callback?.onSearchBarClicked()
-                        }
-                    ) {
-                        Icon(Icons.Outlined.Add, stringResource(R.string.action_add_new_location))
-                    }
-                }
+                } else null
             }
         ) { paddings ->
             if (validLocationListState.value.isNotEmpty()) {
@@ -243,16 +253,48 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         .fillMaxWidth()
                         .padding(
                             paddings
-                                + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
-                                + PaddingValues(top = dimensionResource(R.dimen.large_margin))
-                        ),
+                                    + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                                    + PaddingValues(bottom = dimensionResource(R.dimen.large_margin))
+                        )
+                        .fillMaxHeight(),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // TODO: People don’t read instructions, so replace with just a big “Add a new location” button
-                    /*Text(
-                        text = stringResource(R.string.location_none_added_yet_instructions),
-                        color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyLarge
-                    )*/
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.large_margin))
+                    ) {
+                        Button(
+                            onClick = {
+                                callback?.onSearchBarClicked()
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_add_new_location),
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                        OutlinedButton(
+                            onClick = {
+                                viewModel.openChooseWeatherSourcesDialog(null)
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.MyLocation,
+                                contentDescription = stringResource(R.string.location_current),
+                                modifier = Modifier.size(ButtonDefaults.IconSize)
+                            )
+                            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                            Text(
+                                text = stringResource(R.string.action_add_current_location),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
                 }
             }
         }

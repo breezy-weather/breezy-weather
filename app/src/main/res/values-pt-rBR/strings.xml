@@ -441,7 +441,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notificação para a previsão do dia seguinte</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário de notificação para a previsão do dia seguinte</string>
     <string name="action_close">Fechar</string>
-    <string name="location_none_added_yet_instructions">Nenhum local foi adicionado ainda. Toque no ícone de pesquisa para adicionar manualmente um local ou adicione seu local atual a partir do botão flutuante.</string>
     <string name="unit_atm">atm</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="unit_h">h</string>

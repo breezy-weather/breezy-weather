@@ -495,7 +495,6 @@
     <string name="action_close">Schließen</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_o3_info_title">Bodennahes Ozon (O₃)</string>
-    <string name="location_none_added_yet_instructions">Noch kein Ort hinzugefügt. Bitte tippen Sie auf das Suchsymbol, um einen Ort manuell hinzuzufügen, oder fügen Sie Ihren aktuellen Standort über die schwebende Schaltfläche hinzu.</string>
     <string name="air_quality_pm_explanations_introduction">Feinstaub besteht aus in der Umgebungsluft schwebenden, festen oder flüssigen Partikeln.</string>
     <string name="air_quality_pm_explanations_origin">Manche Partikel treten natürlicherweise auf und haben ihren Ursprung in Vulkanen, Sandstürmen, Wald- und Flächenbränden, lebenden Organismen sowie Meeresgischt. Menschliche Aktivitäten erzeugen ebenfalls signifikante Mengen an Feinstaub, wie durch Verkehr, Industrie, Kraftwerke, Bauwirtschaft, Müllverbrennung oder Landwirtschaft.</string>
     <string name="air_quality_pm_explanations_consequences">Feinstaub ist durch seine Fähigkeit, bis tief ins Lungen- und über die Blutgefäße ins Hirngewebe vorzudringen die gefährlichste Art der Luftbelastung, was Gesundheitsschäden wie Herz-und Lungenkrankheiten sowie einen vorzeitigen Tod verursachen kann.</string>

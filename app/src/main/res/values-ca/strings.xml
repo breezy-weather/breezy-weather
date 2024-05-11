@@ -511,7 +511,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">L’optimització de la bateria ja està desactivada.</string>
     <string name="message_network_unavailable">Xarxa no disponible</string>
     <string name="pollen_alnus">Vern</string>
-    <string name="location_none_added_yet_instructions">Encara no s’ha afegit cap ubicació. Toqueu la icona de cerca per afegir manualment una ubicació o afegiu la vostra ubicació actual des del botó flotant.</string>
     <string name="settings_main_hourly_trends_title">Tendències horàries</string>
     <string name="air_quality_co_info_origin">Es produeix per la combustió incompleta de combustibles carbonosos com la llenya, la gasolina, el carbó, el gas natural i el querosè en estufes simples, focs oberts, llums de metxa, forns, xemeneies. La font predominant de monòxid de carboni (CO) en l’aire ambient prové dels vehicles de motor.</string>
     <string name="pollen_level_3">Moderat</string>

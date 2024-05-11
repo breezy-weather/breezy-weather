@@ -130,7 +130,6 @@
     <string name="setting_weather_source_accu_hours">ساعت ها</string>
     <string name="weather_source_accu_preference_hours_1">۱ ساعت</string>
     <string name="weather_source_accu_preference_hours_12">۱۲ ساعت</string>
-    <string name="location_none_added_yet_instructions">هنوز جایی اضافه نشده است. لطفا روی آیکون جستجو کلیک کنید تا به صورت دستی یک مکان اضافه کنید یا مکان فعلی خود را از دکمه شناور اضافه کنید.</string>
     <string name="location_current">مکان فعلی</string>
     <string name="location_search_weather_source">منبع آب و هوا</string>
     <string name="location_results_by">نتایج موقعیت یابی از %s</string>

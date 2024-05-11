@@ -231,7 +231,6 @@
     <string name="settings_weather_source_portal">Портал</string>
     <string name="location_search_weather_source">Извор времена</string>
     <string name="weather_source_accu_preference_hours_240">240 сати</string>
-    <string name="location_none_added_yet_instructions">Још увек није додата ниједна локација. Додирните иконицу за претраживање да бисте ручно додали локацију или додајте своју тренутну локацију помоћу плутајућег дугмета.</string>
     <string name="location_message_reverse_geocoding_failed">Извор времена није успео да пронађе одговарајућу локацију</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додај локацију ручно и избриши „%s“</string>
     <string name="location_service_native">Изворни API</string>

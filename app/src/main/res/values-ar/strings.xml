@@ -397,7 +397,6 @@
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
     <string name="weather_api_key_required_missing_content">لاستخدام هذا المصدر، تحتاج إلى توفير مفتاح API.</string>
     <string name="settings_weather_source_portal">منفذ</string>
-    <string name="location_none_added_yet_instructions">لم تتم إضافة أي منطقة حتى الآن. يرجى النقر على أيقونة البحث لإضافة منطقة يدويا، أو أضف منطقتك الحالية من الزر العائم.</string>
     <string name="location_message_reverse_geocoding_failed">فشل مصدر الطقس في العثور على موقع مطابق</string>
     <string name="action_close">اغلاق</string>
     <string name="null_data_text">غير متوفر</string>

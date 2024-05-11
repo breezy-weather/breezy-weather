@@ -311,7 +311,6 @@
     <string name="locations">Lokacije</string>
     <string name="weather_source_accu_preference_hours_240">240 ur</string>
     <string name="location_search_weather_source">Vir vremena</string>
-    <string name="location_none_added_yet_instructions">Lokacija še ni bila dodana. Če želite ročno dodati lokacijo, se dotaknite ikone za iskanje ali dodajte svojo trenutno lokacijo s plavajočega gumba.</string>
     <string name="location_delete_location_dialog_title">Izbriši lokacijo?</string>
     <string name="weather_source_accu_preference_hours_120">120 ur</string>
     <string name="setting_weather_source_accu_hours">Ure</string>

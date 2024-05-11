@@ -231,7 +231,6 @@
     <string name="weather_api_unauthorized_title">Engedély nélküli API-hozzáférés</string>
     <string name="action_close">Bezárás</string>
     <string name="widget_week_style_5_days">5 nap</string>
-    <string name="location_none_added_yet_instructions">Még nincs helyszín hozzáadva. Koppintson a keresés ikonra manuális hozzáadáshoz, vagy adja hozzá jelenlegi tartózkodási helyét a lebegő gomb segítségével.</string>
     <string name="uv_index_8_10">Nagyon magas</string>
     <string name="settings_weather_source_portal">Portál</string>
     <string name="setting_weather_source_accu_days">Napok</string>

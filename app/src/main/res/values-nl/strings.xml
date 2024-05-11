@@ -530,7 +530,6 @@
     <string name="air_quality_no2_info_title">Stikstofdioxide (NO₂)</string>
     <string name="air_quality_co_info_title">Koolstofmonoxide (CO)</string>
     <string name="weather_source_accu_preference_hours_12">12 uurs</string>
-    <string name="location_none_added_yet_instructions">Er is nog geen locatie toegevoegd. Tik op het zoekpictogram om handmatig een locatie toe te voegen, of voeg uw huidige locatie toe via de zwevende knop.</string>
     <string name="location_results_by">Locatie resultaten door %s</string>
     <string name="weather_kind_thunderstorm">Onweersbui</string>
     <string name="weather_kind_wind">Wind</string>

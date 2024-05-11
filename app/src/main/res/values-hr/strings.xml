@@ -310,7 +310,6 @@
     <string name="message_network_unavailable">Mreža nedostupna</string>
     <string name="precipitation_rain">Kiša</string>
     <string name="pollen_alnus">Joha</string>
-    <string name="location_none_added_yet_instructions">Nema dodanih lokacija. Pritisnite ikonu pretraživanja za ručno dodavanje lokacije ili dodajte svoju trenutnu lokaciju pomoću lebdećeg gumba.</string>
     <string name="location_message_deleted">Lokacija obrisana</string>
     <string name="widget_clock_day_vertical">Sat + Dnevno (Okomiti stil)</string>
     <string name="settings_main_hourly_trends_title">Trendovi po satu</string>

@@ -326,7 +326,6 @@
     <string name="settings_main_background_animation_enabled">Etkin</string>
     <string name="settings_main_header_details_title">Başlıkta detaylar</string>
     <string name="weather_message_invalid_location">Geçersiz konum, lütfen silin ve tekrar ekleyin</string>
-    <string name="location_none_added_yet_instructions">Henüz konum eklenmemiş. Manuel olarak bir konum eklemek için lütfen arama simgesine dokunun veya mevcut konumunuzu kayan düğmeden ekleyin.</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Enlem</string>
     <string name="widget_live_wallpaper_day_night_type">Zaman</string>
     <string name="air_quality_so2_info_title">Sülfür dioksit (SO₂)</string>

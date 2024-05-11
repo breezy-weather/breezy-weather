@@ -94,7 +94,6 @@
     <string name="weather_api_key_required_missing_content">Lai izmantotu šo avotu, ir jānorāda API atslēga.</string>
     <string name="settings_weather_source_portal">Portāls</string>
     <string name="locations">Atrašanās vietas</string>
-    <string name="location_none_added_yet_instructions">Atrašanās vieta vēl nav pievienota. Lūgums piesist meklēšanas ikonai, lai pašrocīgi pievienotu atrašanās vietu, vai pievienot savu pašreizējo atrašanās vietu no peldošās pogas.</string>
     <string name="location_current">Pašreizējā atrašanās vieta</string>
     <string name="location_message_deleted">Atrašanās vieta izdzēsta</string>
     <string name="location_message_list_cannot_be_empty">Atrašanās vietu saraksts nevar būt tukšs</string>

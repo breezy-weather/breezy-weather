@@ -271,7 +271,6 @@
     <string name="weather_source_accu_preference_hours_240">240 hours</string>
     <!-- Location -->
     <string name="locations">Locations</string>
-    <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
     <string name="location_current">Current location</string>
     <string name="location_search_weather_source">Weather source</string>
     <!-- Ex: Location results by Open-Meteo -->
