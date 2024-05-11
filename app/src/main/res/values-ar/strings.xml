@@ -440,7 +440,7 @@
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كمنطقة.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">مفعل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
-    <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي ورق الحائط. لا يزال بإمكانك تمكين خلفية Breezy Weather عن طريق اختيار ”Live Wallpaper“ في منتقي خلفية الشاشة الرئيسية.</string>
+    <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تمكين خلفية Breezy Weather عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
     <string name="action_see_more">انظر أكثر</string>
     <string name="location_service_native">API الافتراضي</string>
     <string name="action_location_list">لائحة المناطق</string>
