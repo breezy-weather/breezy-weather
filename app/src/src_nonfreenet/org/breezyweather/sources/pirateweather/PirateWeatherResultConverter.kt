@@ -41,7 +41,6 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
 import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
-import java.util.Date
 import java.util.Objects
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.seconds

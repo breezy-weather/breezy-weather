@@ -29,7 +29,6 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoViewModel
