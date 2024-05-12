@@ -19,6 +19,9 @@ package breezyweather.domain.weather.model
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import java.io.Serializable
 import java.util.Date
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 data class Weather(
     val base: Base = Base(),
@@ -33,11 +36,11 @@ data class Weather(
     // Only hourly in the future, starting from current hour
     val nextHourlyForecast = hourlyForecast.filter {
         // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
-        it.date.time >= System.currentTimeMillis() - (3600 * 1000)
+        it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
     }
 
     val todayIndex = dailyForecast.indexOfFirst {
-        it.date.time > Date().time - (24 * 3600 * 1000)
+        it.date.time > Date().time - 1.days.inWholeMilliseconds
     }
     val today
         get() = dailyForecast.getOrNull(todayIndex)
@@ -55,7 +58,7 @@ data class Weather(
         val currentTime = System.currentTimeMillis()
         return (pollingIntervalHours == null ||
             (currentTime >= updateTime &&
-                currentTime - updateTime < pollingIntervalHours * 60 * 60 * 1000))
+                currentTime - updateTime < pollingIntervalHours * 1.hours.inWholeMilliseconds))
     }
 
     val currentAlertList: List<Alert> = alertList
@@ -96,7 +99,7 @@ data class Weather(
                             for (j in 0..<minutelyForecast[i].minuteInterval.div(5)) {
                                 newMinutelyList.add(
                                     minutelyForecast[i].copy(
-                                        date = Date(minutelyForecast[i].date.time + (j.times(5).times(60).times(1000))),
+                                        date = Date(minutelyForecast[i].date.time + (j.times(5)).minutes.inWholeMilliseconds),
                                         minuteInterval = 5
                                     )
                                 )

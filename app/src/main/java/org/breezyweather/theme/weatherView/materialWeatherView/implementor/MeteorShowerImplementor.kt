@@ -27,6 +27,7 @@ import java.util.Random
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sin
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Meteor shower implementor.
@@ -81,7 +82,7 @@ class MeteorShowerImplementor(
             progress = 0
             delay = (random.nextInt(
                 METEOR_REVIVE_SECONDS_MAX - METEOR_REVIVE_SECONDS_MIN
-            ) + METEOR_REVIVE_SECONDS_MIN).toLong().times(1000)
+            ) + METEOR_REVIVE_SECONDS_MIN).seconds.inWholeMilliseconds
 
             x = random.nextInt(mCanvasSize).toFloat()
             y = if (!firstTime) {

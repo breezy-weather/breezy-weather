@@ -133,7 +133,7 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_cloud_cover)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_PARTLY.toFloat(),

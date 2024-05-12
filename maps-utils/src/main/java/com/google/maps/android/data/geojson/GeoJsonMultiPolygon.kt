@@ -50,7 +50,7 @@ class GeoJsonMultiPolygon(
         get() {
             //convert list of Geometry types to list of GeoJsonPolygon types
             val geometryList = geometryObject
-            val geoJsonPolygon = ArrayList<GeoJsonPolygon>()
+            val geoJsonPolygon = mutableListOf<GeoJsonPolygon>()
             for (geometry in geometryList as List<GeoJsonPolygon>) {
                 geoJsonPolygon.add(geometry)
             }

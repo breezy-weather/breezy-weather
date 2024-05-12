@@ -23,6 +23,7 @@ import android.widget.RemoteViews.RemoteView
 import android.widget.TextView
 import org.breezyweather.common.extensions.getRelativeTime
 import java.util.Date
+import kotlin.time.Duration.Companion.minutes
 
 /**
  *
@@ -44,16 +45,16 @@ class TextRelativeClock @JvmOverloads constructor(
             onTimeChanged()
 
             //Date now = new Date();
-            val millisUntilNextTick = (60 * 1000).toLong()
+            val millisUntilNextTick = 1.minutes.inWholeMilliseconds
             // It is currently refreshing every minute
             // It's not precise (but enough for our use case) as it won't refresh on second 0 of next minute
             // but rather on the same second on next minute
             // Plus it's refreshing every minute when > 1 hour, which is not optimized
             // TODO: We should optimize this function one day, for Green IT purposes
             /*long secondsDifference = (now.time - mDate.time) / 1000;
-            if (secondsDifference <= 60 * 60) { // < 1 hour
+            if (secondsDifference <= 1.hours.inWholeSeconds) { // < 1 hour
 
-            } else if (secondsDifference <= 24 * 60 * 60) { // < 24 hours
+            } else if (secondsDifference <= 1.days.inWholeSeconds) { // < 24 hours
                 // Calculate modulo for next hour
             } else { // More than 24 hours
 

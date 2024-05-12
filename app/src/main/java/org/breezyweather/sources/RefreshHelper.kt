@@ -94,6 +94,9 @@ import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 import kotlin.math.min
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 class RefreshHelper @Inject constructor(
     private val sourceManager: SourceManager,
@@ -434,7 +437,7 @@ class RefreshHelper @Inject constructor(
 
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
-            val yesterdayMidnight = Date(Date().time - 24 * 3600 * 1000)
+            val yesterdayMidnight = Date(Date().time - 1.days.inWholeMilliseconds)
                 .getFormattedDate("yyyy-MM-dd", location)
                 .toDateNoHour(location.javaTimeZone)!!
             val mainWeatherCompleted = completeMainWeatherWithPreviousData(
@@ -589,11 +592,11 @@ class RefreshHelper @Inject constructor(
 
             // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
             val currentHour = hourlyForecast.firstOrNull {
-                it.date.time >= System.currentTimeMillis() - (3600 * 1000)
+                it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
             }
             val currentDay = dailyForecast.firstOrNull {
                 // Adding 23 hours just to be safe in case of DST
-                it.date.time >= yesterdayMidnight.time + (23 * 3600 * 1000)
+                it.date.time >= yesterdayMidnight.time + 23.hours.inWholeMilliseconds
             }
 
             val weather = Weather(
@@ -883,7 +886,7 @@ class RefreshHelper @Inject constructor(
     suspend fun refreshShortcuts(context: Context, locationList: List<Location>) {
         val shortcutManager = context.shortcutManager ?: return
         val provider = ResourcesProviderFactory.newInstance
-        val shortcutList: MutableList<ShortcutInfo> = ArrayList()
+        val shortcutList = mutableListOf<ShortcutInfo>()
 
         // location list.
         val count = min(shortcutManager.maxShortcutCountPerActivity - 1, locationList.size)
@@ -1006,7 +1009,7 @@ class RefreshHelper @Inject constructor(
 
         val currentTime = System.currentTimeMillis()
 
-        return currentTime >= updateTime.time && currentTime - updateTime.time < wait * 60 * 1000
+        return currentTime >= updateTime.time && currentTime - updateTime.time < wait.minutes.inWholeMilliseconds
     }
 
     companion object {

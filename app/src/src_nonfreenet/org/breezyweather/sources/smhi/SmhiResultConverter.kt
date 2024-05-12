@@ -51,7 +51,7 @@ private fun getDailyForecast(
     location: Location,
     forecastResult: List<SmhiTimeSeries>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = forecastResult.groupBy {
         it.validTime.getFormattedDate("yyyy-MM-dd", location)
     }

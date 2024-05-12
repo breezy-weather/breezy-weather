@@ -47,7 +47,7 @@ object ResourcesProviderFactory {
     }
 
     fun getProviderList(context: Context): List<ResourceProvider> {
-        val providerList: MutableList<ResourceProvider> = ArrayList()
+        val providerList = mutableListOf<ResourceProvider>()
         val defaultProvider = DefaultResourceProvider()
         providerList.add(defaultProvider)
 

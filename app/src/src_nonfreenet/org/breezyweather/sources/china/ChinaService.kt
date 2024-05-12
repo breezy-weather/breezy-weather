@@ -210,7 +210,7 @@ class ChinaService @Inject constructor(
             context.currentLocale.code
         )
             .map { results ->
-                val locationList: MutableList<Location> = ArrayList()
+                val locationList = mutableListOf<Location>()
                 results.forEach {
                     if (it.locationKey?.startsWith("weathercn:") == true && it.status == 0) {
                         locationList.add(convert(null, it))
@@ -230,7 +230,7 @@ class ChinaService @Inject constructor(
             context.currentLocale.code
         )
             .map {
-                val locationList: MutableList<Location> = ArrayList()
+                val locationList = mutableListOf<Location>()
                 if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
                     it[0].status == 0) {
                     locationList.add(convert(location, it[0]))

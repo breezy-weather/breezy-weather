@@ -59,6 +59,8 @@ import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.json.AccuValue
 import java.util.Date
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
@@ -98,7 +100,7 @@ fun convert(
 
     return WeatherWrapper(
         /*base = Base(
-            publishDate = Date(currentResult.EpochTime.times(1000)),
+            publishDate = currentResult.EpochTime.seconds.inWholeMilliseconds.toDate(),
         ),*/
         current = Current(
             weatherText = currentResult.WeatherText,
@@ -148,7 +150,7 @@ private fun getDailyList(
 
     return dailyForecasts.map { forecasts ->
         Daily(
-            date = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(location.javaTimeZone)!!,
+            date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!,
             day = HalfDay(
                 weatherText = forecasts.Day?.LongPhrase,
                 weatherPhase = forecasts.Day?.ShortPhrase,
@@ -224,12 +226,12 @@ private fun getDailyList(
                 cooling = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Cooling)
             ),
             sun = Astro(
-                riseDate = forecasts.Sun?.EpochRise?.times(1000)?.toDate(),
-                setDate = forecasts.Sun?.EpochSet?.times(1000)?.toDate()
+                riseDate = forecasts.Sun?.EpochRise?.seconds?.inWholeMilliseconds?.toDate(),
+                setDate = forecasts.Sun?.EpochSet?.seconds?.inWholeMilliseconds?.toDate()
             ),
             moon = Astro(
-                riseDate = forecasts.Moon?.EpochRise?.times(1000)?.toDate(),
-                setDate = forecasts.Moon?.EpochSet?.times(1000)?.toDate()
+                riseDate = forecasts.Moon?.EpochRise?.seconds?.inWholeMilliseconds?.toDate(),
+                setDate = forecasts.Moon?.EpochSet?.seconds?.inWholeMilliseconds?.toDate()
             ),
             moonPhase = MoonPhase(
                 angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
@@ -289,7 +291,7 @@ private fun getHourlyList(
 ): List<HourlyWrapper> {
     return resultList.map { result ->
         HourlyWrapper(
-            date = Date(result.EpochDateTime.times(1000)),
+            date = result.EpochDateTime.seconds.inWholeMilliseconds.toDate(),
             isDaylight = result.IsDaylight,
             weatherText = result.IconPhrase,
             weatherCode = getWeatherCode(result.WeatherIcon),
@@ -397,7 +399,7 @@ fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): Air
                 cO = co
             ) else null
             if (airQuality != null) {
-                airQualityHourly[Date(it.epochDate.times(1000))] = airQuality
+                airQualityHourly[it.epochDate.seconds.inWholeMilliseconds.toDate()] = airQuality
             }
         }
 
@@ -421,7 +423,7 @@ fun getPollenWrapper(
         .forEach {
             val dailyPollen = getDailyPollen(it.AirAndPollen)
             if (dailyPollen != null) {
-                pollenDaily[Date(it.EpochDate.times(1000)).toTimezoneNoHour(location.javaTimeZone)!!] = dailyPollen
+                pollenDaily[it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!] = dailyPollen
             }
         }
 
@@ -439,9 +441,9 @@ private fun getMinutelyList(
         Minutely(
             date = Date(interval.StartEpochDateTime),
             minuteInterval = if (i < minuteResult.Intervals.size - 1) {
-                ((minuteResult.Intervals[i + 1].StartEpochDateTime - interval.StartEpochDateTime) / (60 * 1000)).toDouble()
+                ((minuteResult.Intervals[i + 1].StartEpochDateTime - interval.StartEpochDateTime) / 1.minutes.inWholeMilliseconds).toDouble()
                     .roundToInt()
-            } else ((interval.StartEpochDateTime - minuteResult.Intervals[i - 1].StartEpochDateTime) / (60 * 1000)).toDouble()
+            } else ((interval.StartEpochDateTime - minuteResult.Intervals[i - 1].StartEpochDateTime) / 1.minutes.inWholeMilliseconds).toDouble()
                 .roundToInt(),
             precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)
         )
@@ -456,10 +458,10 @@ private fun getAlertList(
         Alert(
             alertId = result.AlertID.toString(),
             startDate = result.Area?.getOrNull(0)?.let { area ->
-                area.EpochStartTime?.times(1000)?.let { Date(it) }
+                area.EpochStartTime?.seconds?.inWholeMilliseconds?.toDate()
             },
             endDate = result.Area?.getOrNull(0)?.let { area ->
-                area.EpochEndTime?.times(1000)?.let { Date(it) }
+                area.EpochEndTime?.seconds?.inWholeMilliseconds?.toDate()
             },
             headline = result.Description?.Localized,
             description = result.Area?.getOrNull(0)?.Text,

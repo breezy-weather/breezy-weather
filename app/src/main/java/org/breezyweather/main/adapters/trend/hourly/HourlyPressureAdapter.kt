@@ -187,7 +187,7 @@ class HourlyPressureAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),

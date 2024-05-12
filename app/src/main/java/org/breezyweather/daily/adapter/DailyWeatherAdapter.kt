@@ -86,7 +86,7 @@ class DailyWeatherAdapter(
 
     init {
         // model list.
-        mModelList = ArrayList()
+        mModelList = mutableListOf()
         daily.day?.let { day ->
             mModelList.add(LargeTitle(activity.getString(R.string.daytime)))
             mModelList.add(Overview(day, true))
@@ -229,7 +229,7 @@ class DailyWeatherAdapter(
     override fun getItemCount() = mModelList.size
 
     private fun getHalfDayOptionalModelList(context: Context, halfDay: HalfDay): List<ViewModel> {
-        val list: MutableList<ViewModel> = ArrayList()
+        val list = mutableListOf<ViewModel>()
         // temperature.
         val temperature = halfDay.temperature
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit

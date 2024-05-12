@@ -274,7 +274,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
 
     init {
         mLightTheme = MainThemeColorProvider.isLightTheme(context, location)
-        mItemList = ArrayList()
+        mItemList = mutableListOf()
         location.weather?.validAirQuality?.let { airQuality ->
             // We use air quality index for the progress bar instead of concentration for more realistic bar
             airQuality.pM25?.let {
@@ -374,7 +374,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                 )
             }
         }
-        mHolderList = ArrayList()
+        mHolderList = mutableListOf()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

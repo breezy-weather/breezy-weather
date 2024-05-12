@@ -167,7 +167,7 @@ class NwsService @Inject constructor(
             if (it.properties == null) {
                 throw InvalidLocationException()
             }
-            val locationList: MutableList<Location> = ArrayList()
+            val locationList = mutableListOf<Location>()
             locationList.add(convert(location, it.properties))
             locationList
         }

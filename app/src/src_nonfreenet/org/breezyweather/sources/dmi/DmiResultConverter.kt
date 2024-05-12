@@ -80,7 +80,7 @@ private fun getDailyForecast(
     location: Location,
     dailyResult: List<DmiTimeserie>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = dailyResult.groupBy {
         it.localTimeIso.getFormattedDate("yyyy-MM-dd", location)
     }

@@ -44,6 +44,7 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import java.util.Date
 import java.util.Objects
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Converts PirateWeather result into a forecast
@@ -58,7 +59,7 @@ fun convert(
 
     return WeatherWrapper(
         /*base = Base(
-            publishDate = forecastResult.currently?.time?.times(1000)?.toDate() ?: Date()
+            publishDate = forecastResult.currently?.time?.seconds?.inWholeMilliseconds?.toDate() ?: Date()
         ),*/
         current = getCurrent(forecastResult.currently),
         dailyForecast = getDailyForecast(forecastResult.daily!!.data!!),
@@ -99,7 +100,7 @@ private fun getDailyForecast(
 ): List<Daily> {
     return dailyResult.map { result ->
         Daily(
-            date = Date(result.time.times(1000)),
+            date = result.time.seconds.inWholeMilliseconds.toDate(),
             day = HalfDay(
                 weatherText = result.summary,
                 weatherCode = getWeatherCode(result.icon),
@@ -119,8 +120,8 @@ private fun getDailyForecast(
                 ),
             ),
             sun = Astro(
-                riseDate = result.sunrise?.times(1000)?.toDate(),
-                setDate = result.sunset?.times(1000)?.toDate(),
+                riseDate = result.sunrise?.seconds?.inWholeMilliseconds?.toDate(),
+                setDate = result.sunset?.seconds?.inWholeMilliseconds?.toDate(),
             ),
             moon = Astro(),
             moonPhase = MoonPhase(
@@ -139,7 +140,7 @@ private fun getHourlyForecast(
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
-            date = Date(result.time.times(1000)),
+            date = result.time.seconds.inWholeMilliseconds.toDate(),
             weatherText = result.summary,
             weatherCode = getWeatherCode(result.icon),
             temperature = Temperature(
@@ -182,7 +183,7 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
     minutelyResult.forEachIndexed { i, minutelyForecast ->
         minutelyList.add(
             Minutely(
-                date = Date(minutelyForecast.time * 1000),
+                date = minutelyForecast.time.seconds.inWholeMilliseconds.toDate(),
                 minuteInterval = if (i < minutelyResult.size - 1) {
                     ((minutelyResult[i + 1].time - minutelyForecast.time) / 60).toDouble()
                         .roundToInt()
@@ -204,8 +205,8 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
         Alert(
             // Create unique ID from: title, severity, start time
             alertId = Objects.hash(alert.title, alert.severity, alert.start).toString(),
-            startDate = Date(alert.start.times(1000)),
-            endDate = Date(alert.end.times(1000)),
+            startDate = alert.start.seconds.inWholeMilliseconds.toDate(),
+            endDate = alert.end.seconds.inWholeMilliseconds.toDate(),
             headline = alert.title,
             description = alert.description,
             source = alert.uri,

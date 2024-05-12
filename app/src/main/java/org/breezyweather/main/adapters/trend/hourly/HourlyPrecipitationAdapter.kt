@@ -146,7 +146,7 @@ class HourlyPrecipitationAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val unit = SettingsManager.getInstance(activity).precipitationUnit
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),

@@ -43,6 +43,7 @@ import kotlin.math.atan2
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Converts DMI result into a forecast
@@ -189,8 +190,8 @@ fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
     return alertsResult.properties.warnings.map { result ->
         Alert(
             alertId = result.properties.warnid.toString(),
-            startDate = result.properties.rawInfo?.start?.toLongOrNull()?.times(1000)?.toDate(),
-            endDate = result.properties.rawInfo?.end?.toLongOrNull()?.times(1000)?.toDate(),
+            startDate = result.properties.rawInfo?.start?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
+            endDate = result.properties.rawInfo?.end?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
             headline = result.properties.text,
             description = "${result.properties.meteotext.let {
                 if (!it.isNullOrEmpty()) {

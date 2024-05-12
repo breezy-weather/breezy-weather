@@ -56,6 +56,8 @@ import java.util.Locale
 import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 fun convert(location: Location, result: MfForecastResult): Location {
     return if (result.properties == null) {
@@ -238,7 +240,9 @@ private fun getHourlyPrecipitationProbability(
          * sometimes only one of them
          * It's not very clear, but we take all hours in order.
          */
-        if (probabilityForecast.time.time == dt.time || probabilityForecast.time.time + 3600 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 2 * 1000 == dt.time) {
+        if (probabilityForecast.time.time == dt.time ||
+            probabilityForecast.time.time + 1.hours.inWholeMilliseconds == dt.time ||
+            probabilityForecast.time.time + 2.hours.inWholeMilliseconds == dt.time) {
             if (probabilityForecast.rainHazard3h != null) {
                 rainProbability = probabilityForecast.rainHazard3h.toDouble()
             } else if (probabilityForecast.rainHazard6h != null) {
@@ -258,7 +262,9 @@ private fun getHourlyPrecipitationProbability(
          * If it's found as part of the "6 hour schedule" and we find later a "3 hour schedule"
          * the "3 hour schedule" will overwrite the "6 hour schedule" below with the above
          */
-        if (probabilityForecast.time.time + 3600 * 3 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 4 * 1000 == dt.time || probabilityForecast.time.time + 3600 * 5 * 1000 == dt.time) {
+        if (probabilityForecast.time.time + 3.hours.inWholeMilliseconds == dt.time ||
+            probabilityForecast.time.time + 4.hours.inWholeMilliseconds == dt.time ||
+            probabilityForecast.time.time + 5.hours.inWholeMilliseconds == dt.time) {
             if (probabilityForecast.rainHazard6h != null) {
                 rainProbability = probabilityForecast.rainHazard6h.toDouble()
             }
@@ -286,9 +292,9 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
             Minutely(
                 date = rainForecast.time,
                 minuteInterval = if (i < rainResult.properties.rainForecasts.size - 1) {
-                    ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / (60 * 1000)).toDouble()
+                    ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / 1.minutes.inWholeMilliseconds).toDouble()
                         .roundToInt()
-                } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / (60 * 1000)).toDouble()
+                } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / 1.minutes.inWholeMilliseconds).toDouble()
                     .roundToInt(),
                 precipitationIntensity = if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null
             )

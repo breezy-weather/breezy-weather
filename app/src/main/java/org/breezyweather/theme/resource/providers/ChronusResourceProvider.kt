@@ -178,7 +178,7 @@ class ChronusResourceProvider(
             context: Context,
             defaultProvider: ResourceProvider
         ): List<ChronusResourceProvider> {
-            val providerList: MutableList<ChronusResourceProvider> = ArrayList()
+            val providerList = mutableListOf<ChronusResourceProvider>()
             val infoList = context.packageManager.queryIntentActivities(
                 Intent(Intent.ACTION_MAIN).addCategory(Constants.CATEGORY_CHRONUS_ICON_PACK),
                 PackageManager.GET_RESOLVED_FILTER

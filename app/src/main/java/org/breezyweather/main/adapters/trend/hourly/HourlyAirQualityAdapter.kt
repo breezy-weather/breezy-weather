@@ -126,7 +126,7 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
     }
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         val goodPollutionLevel = PollutantIndex.indexFreshAir
         keyLineList.add(
             TrendRecyclerView.KeyLine(

@@ -34,7 +34,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
      *
      * @return array of GeoJsonFeatures
      */
-    val features: ArrayList<GeoJsonFeature>
+    val features = mutableListOf<GeoJsonFeature>()
     private var mBoundingBox: LatLngBounds? = null
 
     /**
@@ -50,7 +50,6 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
      * @param geoJsonFile GeoJSON file to parse
      */
     init {
-        features = ArrayList()
         parseGeoJson()
     }
 
@@ -90,9 +89,9 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
      * @param geoJsonFeatureCollection feature collection to parse
      * @return array of GeoJsonFeature objects
      */
-    private fun parseFeatureCollection(geoJsonFeatureCollection: JSONObject): ArrayList<GeoJsonFeature> {
+    private fun parseFeatureCollection(geoJsonFeatureCollection: JSONObject): List<GeoJsonFeature> {
         val geoJsonFeatures: JSONArray
-        val features = ArrayList<GeoJsonFeature>()
+        val features = mutableListOf<GeoJsonFeature>()
         try {
             geoJsonFeatures = geoJsonFeatureCollection.getJSONArray(FEATURE_COLLECTION_ARRAY)
             if (geoJsonFeatureCollection.has(BOUNDING_BOX)) {
@@ -331,7 +330,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
          */
         @Throws(JSONException::class)
         private fun createMultiPoint(coordinates: JSONArray): GeoJsonMultiPoint {
-            val geoJsonPoints = ArrayList<GeoJsonPoint>()
+            val geoJsonPoints = mutableListOf<GeoJsonPoint>()
             for (i in 0 until coordinates.length()) {
                 geoJsonPoints.add(createPoint(coordinates.getJSONArray(i)))
             }
@@ -348,7 +347,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
         @Throws(JSONException::class)
         private fun createLineString(coordinates: JSONArray): GeoJsonLineString {
             val latLngAlts = parseCoordinatesArray(coordinates)
-            val latLngs = ArrayList<LatLng>()
+            val latLngs = mutableListOf<LatLng>()
             for (latLngAlt in latLngAlts) {
                 latLngs.add(latLngAlt.latLng)
             }
@@ -364,7 +363,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
          */
         @Throws(JSONException::class)
         private fun createMultiLineString(coordinates: JSONArray): GeoJsonMultiLineString {
-            val geoJsonLineStrings = ArrayList<GeoJsonLineString>()
+            val geoJsonLineStrings = mutableListOf<GeoJsonLineString>()
             for (i in 0 until coordinates.length()) {
                 geoJsonLineStrings.add(createLineString(coordinates.getJSONArray(i)))
             }
@@ -392,7 +391,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
          */
         @Throws(JSONException::class)
         private fun createMultiPolygon(coordinates: JSONArray): GeoJsonMultiPolygon {
-            val geoJsonPolygons = ArrayList<GeoJsonPolygon>()
+            val geoJsonPolygons = mutableListOf<GeoJsonPolygon>()
             for (i in 0 until coordinates.length()) {
                 geoJsonPolygons.add(createPolygon(coordinates.getJSONArray(i)))
             }
@@ -409,7 +408,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
          */
         @Throws(JSONException::class)
         private fun createGeometryCollection(geometries: JSONArray): GeoJsonGeometryCollection {
-            val geometryCollectionElements = ArrayList<Geometry<*>>()
+            val geometryCollectionElements = mutableListOf<Geometry<*>>()
             for (i in 0 until geometries.length()) {
                 val geometryElement = geometries.getJSONObject(i)
                 val geometry = parseGeometry(geometryElement)
@@ -437,15 +436,15 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
         }
 
         /**
-         * Parses an array containing coordinates into an ArrayList of LatLng objects
+         * Parses an array containing coordinates into a List of LatLng objects
          *
          * @param coordinates array containing the GeoJSON coordinates
-         * @return ArrayList of LatLng objects
+         * @return List of LatLng objects
          * @throws JSONException if coordinates cannot be parsed
          */
         @Throws(JSONException::class)
-        private fun parseCoordinatesArray(coordinates: JSONArray): ArrayList<LatLngAlt> {
-            val coordinatesArray = ArrayList<LatLngAlt>()
+        private fun parseCoordinatesArray(coordinates: JSONArray): List<LatLngAlt> {
+            val coordinatesArray = mutableListOf<LatLngAlt>()
             for (i in 0 until coordinates.length()) {
                 coordinatesArray.add(parseCoordinate(coordinates.getJSONArray(i)))
             }
@@ -453,20 +452,20 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
         }
 
         /**
-         * Parses an array of arrays containing coordinates into an ArrayList of an ArrayList of LatLng
+         * Parses an array of arrays containing coordinates into a List of a List of LatLng
          * objects
          *
          * @param coordinates array of an array containing the GeoJSON coordinates
-         * @return ArrayList of an ArrayList of LatLng objects
+         * @return List of a List of LatLng objects
          * @throws JSONException if coordinates cannot be parsed
          */
         @Throws(JSONException::class)
-        private fun parseCoordinatesArrays(coordinates: JSONArray): ArrayList<ArrayList<LatLng>> {
-            val coordinatesArray = ArrayList<ArrayList<LatLng>>()
+        private fun parseCoordinatesArrays(coordinates: JSONArray): List<List<LatLng>> {
+            val coordinatesArray = mutableListOf<MutableList<LatLng>>()
             for (i in 0 until coordinates.length()) {
                 val latLngAlts = parseCoordinatesArray(coordinates.getJSONArray(i))
                 //this method is called for polygons, which do not have altitude values
-                val latLngs = ArrayList<LatLng>()
+                val latLngs = mutableListOf<LatLng>()
                 for (latLngAlt in latLngAlts) {
                     latLngs.add(latLngAlt.latLng)
                 }

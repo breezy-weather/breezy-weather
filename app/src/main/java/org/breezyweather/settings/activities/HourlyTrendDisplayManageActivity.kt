@@ -133,7 +133,7 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
                 }
             }
         }
-        val tagList: MutableList<TagAdapter.Tag> = ArrayList()
+        val tagList = mutableListOf<TagAdapter.Tag>()
         for (tag in otherTags) {
             tagList.add(HourlyTrendTag(tag))
         }

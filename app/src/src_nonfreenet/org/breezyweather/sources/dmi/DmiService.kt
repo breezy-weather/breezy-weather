@@ -138,7 +138,7 @@ class DmiService @Inject constructor(
             location.longitude,
             DMI_WEATHER_CMD
         ).map {
-            val locationList: MutableList<Location> = ArrayList()
+            val locationList = mutableListOf<Location>()
             locationList.add(convert(location, it))
             locationList
         }

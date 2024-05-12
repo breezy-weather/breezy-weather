@@ -53,6 +53,8 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Calendar
 import java.util.Date
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     result: OpenMeteoLocationResult
@@ -126,7 +128,7 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     for (i in 0 until dailyResult.time.size - 1) {
-        val theDayWithDstFixed = dailyResult.time[i].times(1000).toDate()
+        val theDayWithDstFixed = dailyResult.time[i].seconds.inWholeMilliseconds.toDate()
             .toCalendarWithTimeZone(location.javaTimeZone)
             .apply {
                 add(Calendar.HOUR_OF_DAY, 1)
@@ -148,8 +150,8 @@ private fun getDailyList(
                 )
             ),
             sun = Astro(
-                riseDate = dailyResult.sunrise?.getOrNull(i)?.times(1000)?.toDate(),
-                setDate = dailyResult.sunset?.getOrNull(i)?.times(1000)?.toDate()
+                riseDate = dailyResult.sunrise?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate(),
+                setDate = dailyResult.sunset?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate()
             ),
             uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
             sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600)
@@ -170,7 +172,7 @@ private fun getHourlyList(
 
         hourlyList.add(
             HourlyWrapper(
-                date = hourlyResult.time[i].times(1000).toDate(),
+                date = hourlyResult.time[i].seconds.inWholeMilliseconds.toDate(),
                 isDaylight = if (hourlyResult.isDay?.getOrNull(i) != null) hourlyResult.isDay[i] > 0 else null,
                 weatherText = getWeatherText(context, hourlyResult.weatherCode?.getOrNull(i)),
                 weatherCode = getWeatherCode(hourlyResult.weatherCode?.getOrNull(i)),
@@ -222,7 +224,9 @@ private fun getHourlyList(
 fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>? {
     if (minutelyFifteen?.time == null || minutelyFifteen.time.isEmpty()) return null
 
-    val currentMinutelyIndex = minutelyFifteen.time.indexOfFirst { it.times(1000) >= (Date().time - 15 * 60 * 1000) }
+    val currentMinutelyIndex = minutelyFifteen.time.indexOfFirst {
+        it.seconds.inWholeMilliseconds >= (Date().time - 15.minutes.inWholeMilliseconds)
+    }
     val maxMinutelyIndex = minOf(currentMinutelyIndex + 8, minutelyFifteen.time.size - 1)
     val precipitationMinutely = minutelyFifteen.precipitation?.slice(currentMinutelyIndex until maxMinutelyIndex)
     //val precipitationProbabilityMinutely = minutelyFifteen.precipitationProbability?.slice(currentMinutelyIndex until maxMinutelyIndex)
@@ -230,7 +234,7 @@ fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>?
         // 2 hours
         .mapIndexed { i, time ->
             Minutely(
-                date = time.times(1000).toDate(),
+                date = time.seconds.inWholeMilliseconds.toDate(),
                 minuteInterval = 15,
                 precipitationIntensity = /*if (precipitationProbabilityMinutely?.getOrNull(i) != null &&
                     precipitationProbabilityMinutely[i]!! > 30) {*/
@@ -309,7 +313,7 @@ fun convertSecondary(
     if (hourlyAirQualityResult != null) {
         for (i in hourlyAirQualityResult.time.indices) {
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-                airQualityHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = AirQuality(
+                airQualityHourly[hourlyAirQualityResult.time[i].seconds.inWholeMilliseconds.toDate()] = AirQuality(
                     pM25 = hourlyAirQualityResult.pm25?.getOrNull(i),
                     pM10 = hourlyAirQualityResult.pm10?.getOrNull(i),
                     sO2 = hourlyAirQualityResult.sulphurDioxide?.getOrNull(i),
@@ -319,7 +323,7 @@ fun convertSecondary(
                 )
             }
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
-                pollenHourly[hourlyAirQualityResult.time[i].times(1000).toDate()] = Pollen(
+                pollenHourly[hourlyAirQualityResult.time[i].seconds.inWholeMilliseconds.toDate()] = Pollen(
                     alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.roundToInt(),
                     birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.roundToInt(),
                     grass = hourlyAirQualityResult.grassPollen?.getOrNull(i)?.roundToInt(),
@@ -355,7 +359,7 @@ fun debugConvert(
     val dailyList = mutableListOf<Daily>()
     if (weatherResult.daily != null) {
         for (i in 1 until weatherResult.daily.time.size) {
-            val daily = Daily(date = Date(weatherResult.daily.time[i].times(1000)))
+            val daily = Daily(date = weatherResult.daily.time[i].seconds.inWholeMilliseconds.toDate())
             dailyList.add(daily)
         }
     }
@@ -365,7 +369,7 @@ fun debugConvert(
         for (i in weatherResult.hourly.time.indices) {
             // Add to the app only if starts in the current hour
             if (weatherResult.hourly.time[i] >= System.currentTimeMillis() / 1000 - 3600) {
-                hourlyList.add(HourlyWrapper(date = Date(weatherResult.hourly.time[i].times(1000))))
+                hourlyList.add(HourlyWrapper(date = weatherResult.hourly.time[i].seconds.inWholeMilliseconds.toDate()))
             }
         }
     }

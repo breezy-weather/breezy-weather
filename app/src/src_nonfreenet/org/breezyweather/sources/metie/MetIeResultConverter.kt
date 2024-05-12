@@ -71,7 +71,7 @@ private fun getDailyForecast(
     location: Location,
     hourlyResult: List<MetIeHourly>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = hourlyResult.groupBy { it.date }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)

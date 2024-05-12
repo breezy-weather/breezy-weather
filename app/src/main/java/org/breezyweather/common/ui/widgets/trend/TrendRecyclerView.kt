@@ -74,7 +74,7 @@ class TrendRecyclerView @JvmOverloads constructor(
         mDrawingBoundaryTop = -1
         mDrawingBoundaryBottom = -1
         setLineColor(Color.GRAY)
-        mKeyLineList = ArrayList()
+        mKeyLineList = mutableListOf()
     }
 
     override fun onDraw(canvas: Canvas) {

@@ -48,6 +48,7 @@ import org.breezyweather.sources.metno.json.MetNoSunProperties
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import java.util.Date
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.minutes
 
 fun convert(
     context: Context,
@@ -191,9 +192,9 @@ private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): 
             Minutely(
                 date = nowcastForecast.time,
                 minuteInterval = if (i < nowcastTimeseries.size - 1) {
-                    ((nowcastTimeseries[i + 1].time.time - nowcastForecast.time.time) / (60 * 1000)).toDouble()
+                    ((nowcastTimeseries[i + 1].time.time - nowcastForecast.time.time) / 1.minutes.inWholeMilliseconds).toDouble()
                         .roundToInt()
-                } else ((nowcastForecast.time.time - nowcastTimeseries[i - 1].time.time) / (60 * 1000)).toDouble()
+                } else ((nowcastForecast.time.time - nowcastTimeseries[i - 1].time.time) / 1.minutes.inWholeMilliseconds).toDouble()
                     .roundToInt(),
                 precipitationIntensity = nowcastForecast.data?.instant?.details?.precipitationRate
             )

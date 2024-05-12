@@ -79,6 +79,7 @@ import org.breezyweather.theme.weatherView.WeatherViewController
 import java.util.Date
 import kotlin.math.absoluteValue
 import kotlin.math.max
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * TODO:
@@ -149,7 +150,7 @@ class PrecipitationNowcastViewHolder(
 
         val firstTime = minutelyList.first().date
         val lastTime = Date(minutelyList.last().date.time +
-            minutelyList.last().minuteInterval * 60 * 1000)
+            minutelyList.last().minuteInterval.minutes.inWholeMilliseconds)
         minutelyStartText.text = firstTime.getFormattedTime(location, context, context.is12Hour)
         minutelyCenterText.text = Date(firstTime.time + (lastTime.time - firstTime.time) / 2)
             .getFormattedTime(location, context, context.is12Hour)
@@ -376,7 +377,7 @@ private class MarkerLabelFormatterMinutelyDecorator(
     ): CharSequence {
         val model = targets.first()
         val startTime = minutely[model.x.toInt()].date.getFormattedTime(location, androidContext, androidContext.is12Hour)
-        val endTime = (minutely[model.x.toInt()].date.time + 5.times(60).times(1000))
+        val endTime = (minutely[model.x.toInt()].date.time + 5.minutes.inWholeMilliseconds)
             .toDate().getFormattedTime(location, androidContext, androidContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
             when (minutely[model.x.toInt()].precipitationIntensity!!) {

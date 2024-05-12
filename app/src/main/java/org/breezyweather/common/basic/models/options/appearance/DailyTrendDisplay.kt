@@ -39,10 +39,10 @@ enum class DailyTrendDisplay(
         fun toDailyTrendDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
-            ArrayList()
+            mutableListOf()
         } else try {
             val cards = value.split("&").toTypedArray()
-            val list: MutableList<DailyTrendDisplay> = ArrayList()
+            val list = mutableListOf<DailyTrendDisplay>()
             for (card in cards) {
                 when (card) {
                     "temperature" -> list.add(TAG_TEMPERATURE)
@@ -56,7 +56,7 @@ enum class DailyTrendDisplay(
             }
             list
         } catch (e: Exception) {
-            ArrayList()
+            mutableListOf()
         }
 
         fun toValue(list: List<DailyTrendDisplay>): String {

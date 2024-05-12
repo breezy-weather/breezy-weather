@@ -51,7 +51,7 @@ class MainAdapter(
     private var mWeatherView: WeatherView? = null
     private var mLocation: Location? = null
     private var mProvider: ResourceProvider? = null
-    private val mViewTypeList: MutableList<Int> = ArrayList()
+    private val mViewTypeList: MutableList<Int> = mutableListOf()
     private var mFirstCardPosition: Int? = null
     private var mPendingAnimatorList: MutableList<Animator>? = null
     private var mHeaderCurrentTemperatureTextHeight = 0
@@ -73,7 +73,7 @@ class MainAdapter(
         mProvider = provider
         mViewTypeList.clear()
         mFirstCardPosition = null
-        mPendingAnimatorList = ArrayList()
+        mPendingAnimatorList = mutableListOf()
         mHeaderCurrentTemperatureTextHeight = -1
         mListAnimationEnabled = listAnimationEnabled
         mItemAnimationEnabled = itemAnimationEnabled

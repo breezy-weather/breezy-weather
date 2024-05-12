@@ -50,10 +50,10 @@ enum class DetailDisplay(
         fun toDetailDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
-            ArrayList()
+            mutableListOf()
         } else try {
             val details = value.split("&").toTypedArray()
-            val list = ArrayList<DetailDisplay>()
+            val list = mutableListOf<DetailDisplay>()
             for (detail in details) {
                 when (detail) {
                     "feels_like" -> list.add(DETAIL_FEELS_LIKE)

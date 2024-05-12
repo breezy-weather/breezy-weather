@@ -43,7 +43,7 @@ import java.util.Locale
 
 class PreviewIconActivity : GeoActivity() {
     private var mProvider: ResourceProvider? = null
-    private val mItemList: MutableList<WeatherIconAdapter.Item> = ArrayList()
+    private val mItemList = mutableListOf<WeatherIconAdapter.Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

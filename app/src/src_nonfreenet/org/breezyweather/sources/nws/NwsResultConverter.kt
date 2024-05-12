@@ -153,7 +153,7 @@ private fun getDailyForecast(
     location: Location,
     uniqueDates: List<Date>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = uniqueDates.groupBy {
         it.getFormattedDate("yyyy-MM-dd", location)
     }

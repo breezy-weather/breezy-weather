@@ -45,6 +45,7 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import java.util.Date
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 interface WeatherRequestCallback {
     fun onCompleted(
@@ -582,6 +583,6 @@ class MainActivityViewModel @Inject constructor(
 
     companion object {
         private const val KEY_FORMATTED_ID = "formatted_id"
-        private const val DELAY_BEFORE_NEXT_MANUAL_REFRESH = 10 * 1000L // 10 seconds
+        private val DELAY_BEFORE_NEXT_MANUAL_REFRESH = 10.seconds.inWholeMilliseconds
     }
 }

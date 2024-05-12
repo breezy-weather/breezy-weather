@@ -18,6 +18,7 @@ import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @SuppressLint("MissingPermission")
 class AndroidLocationService @Inject constructor() : LocationSource, LocationListenerCompat {
@@ -115,7 +116,7 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
         )
 
     companion object {
-        private const val TIMEOUT_MILLIS = 10 * 1000L // 10 seconds
+        private val TIMEOUT_MILLIS = 10.seconds.inWholeMilliseconds
 
         @SuppressLint("MissingPermission")
         private fun getLastKnownLocation(

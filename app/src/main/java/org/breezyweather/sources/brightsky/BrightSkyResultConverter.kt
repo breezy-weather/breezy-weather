@@ -93,7 +93,7 @@ private fun getDailyForecast(
     location: Location,
     weatherResult: List<BrightSkyWeather>
 ): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = weatherResult.groupBy {
         it.timestamp.getFormattedDate("yyyy-MM-dd", location)
     }

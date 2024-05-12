@@ -46,6 +46,7 @@ import org.breezyweather.sources.eccc.json.EcccUnit
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
+import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     location: Location,
@@ -122,8 +123,8 @@ private fun getDailyForecast(
     location: Location,
     dailyResult: EcccDailyFcst
 ): List<Daily> {
-    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().times(1000).toDate().toTimezoneNoHour(location.javaTimeZone)
-    val dailyList: MutableList<Daily> = ArrayList()
+    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)
+    val dailyList = mutableListOf<Daily>()
     if (dailyFirstDay != null) {
         val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null
         for (i in 0 until 6) {

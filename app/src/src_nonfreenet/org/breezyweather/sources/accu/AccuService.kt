@@ -483,7 +483,7 @@ class AccuService @Inject constructor(
             details = false,
             location.latitude.toString() + "," + location.longitude
         ).map {
-            val locationList: MutableList<Location> = ArrayList()
+            val locationList = mutableListOf<Location>()
             locationList.add(convert(location, it))
             locationList
         }

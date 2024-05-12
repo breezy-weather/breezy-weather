@@ -123,7 +123,7 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_uv)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 UV.UV_INDEX_HIGH.toFloat(), UV.UV_INDEX_HIGH.format(0),

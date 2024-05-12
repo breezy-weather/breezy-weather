@@ -58,6 +58,8 @@ import kotlin.math.ln
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 /**
  * /!\ WARNING /!\
@@ -620,7 +622,7 @@ private fun getCalculatedAstroSun(date: Date, longitude: Double, latitude: Doubl
     if (riseTimes.isAlwaysUp) {
         return Astro(
             riseDate = date,
-            setDate = Date(date.time + (24 * 3600 * 1000) - 1)
+            setDate = Date(date.time + 1.days.inWholeMilliseconds - 1)
         )
     }
 
@@ -672,7 +674,7 @@ private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Doub
     if (riseTimes.isAlwaysUp) {
         return Astro(
             riseDate = date,
-            setDate = Date(date.time + (24 * 3600 * 1000) - 1)
+            setDate = Date(date.time + 1.days.inWholeMilliseconds - 1)
         )
     }
 
@@ -724,7 +726,7 @@ private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Doub
 private fun getCalculatedMoonPhase(date: Date): MoonPhase {
     val illumination = MoonIllumination.compute()
         // Let’s take the middle of the day
-        .on(Date(date.time + (12 * 3600 * 1000)))
+        .on(Date(date.time + 12.hours.inWholeMilliseconds))
         .execute()
 
     return MoonPhase(
@@ -740,7 +742,7 @@ private fun getHourlyListByHalfDay(
 
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-        val theDayShifted = Date(hourly.date.time - (6 * 3600 * 1000))
+        val theDayShifted = Date(hourly.date.time - 6.hours.inWholeMilliseconds)
         val theDayFormatted = theDayShifted.getFormattedDate("yyyy-MM-dd", location)
 
         if (!hourlyByHalfDay.containsKey(theDayFormatted)) {

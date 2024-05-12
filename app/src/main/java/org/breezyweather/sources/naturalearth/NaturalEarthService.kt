@@ -86,7 +86,7 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        val locationList: MutableList<Location> = ArrayList()
+        val locationList = mutableListOf<Location>()
         val languageCode = context.currentLocale.codeForNaturalEarthService
 
         // Countries

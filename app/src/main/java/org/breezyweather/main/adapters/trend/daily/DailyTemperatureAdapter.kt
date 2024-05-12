@@ -257,7 +257,7 @@ class DailyTemperatureAdapter(
         if (normals?.daytimeTemperature == null || normals.nighttimeTemperature == null) {
             host.setData(null, 0f, 0f)
         } else {
-            val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+            val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.daytimeTemperature!!.toFloat(),

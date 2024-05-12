@@ -38,6 +38,8 @@ import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.settings.SettingsManager
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 @HiltWorker
 class TomorrowForecastNotificationJob @AssistedInject constructor(
@@ -128,11 +130,11 @@ class TomorrowForecastNotificationJob @AssistedInject constructor(
                 time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0].toInt(),
                 time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1].toInt()
             )
-            var delay = (setTimes[0] - realTimes[0]) * 60 + (setTimes[1] - realTimes[1])
+            var delay = (setTimes[0] - realTimes[0]).hours.inWholeMinutes + (setTimes[1] - realTimes[1])
             if (delay <= 0 || nextDay) {
-                delay += 24 * 60
+                delay += 1.days.inWholeMinutes
             }
-            return delay.toLong()
+            return delay
         }
     }
 }

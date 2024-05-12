@@ -40,6 +40,7 @@ import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import java.util.Date
+import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     location: Location,
@@ -85,7 +86,7 @@ private fun getDailyList(
     val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, location)
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = hourlyResult.groupBy {
-        it.dt.times(1000).toDate().getFormattedDate("yyyy-MM-dd", location)
+        it.dt.seconds.inWholeMilliseconds.toDate().getFormattedDate("yyyy-MM-dd", location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
@@ -106,7 +107,7 @@ private fun getHourlyList(
     hourlyAirQuality: MutableMap<Date, AirQuality>
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
-        val theDate = Date(result.dt.times(1000))
+        val theDate = result.dt.seconds.inWholeMilliseconds.toDate()
         HourlyWrapper(
             date = theDate,
             weatherText = result.weather?.getOrNull(0)?.main?.capitalize(),
@@ -173,7 +174,7 @@ private fun getHourlyAirQuality(
 ): MutableMap<Date, AirQuality> {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
     airPollutionResultList?.forEach {
-        airQualityHourly[it.dt.times(1000).toDate()] = AirQuality(
+        airQualityHourly[it.dt.seconds.inWholeMilliseconds.toDate()] = AirQuality(
             pM25 = it.components?.pm25,
             pM10 = it.components?.pm10,
             sO2 = it.components?.so2,

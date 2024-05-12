@@ -39,10 +39,10 @@ enum class CardDisplay(
         fun toCardDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
-            ArrayList()
+            mutableListOf()
         } else try {
             val cards = value.split("&").toTypedArray()
-            val list = ArrayList<CardDisplay>()
+            val list = mutableListOf<CardDisplay>()
             for (card in cards) {
                 when (card) {
                     "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)

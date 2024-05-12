@@ -64,7 +64,7 @@ class GeoJsonPolygon(
      */
     override val outerBoundaryCoordinates: List<LatLng?>
         get() =// First array of coordinates are the outline
-            coordinates[POLYGON_OUTER_COORDINATE_INDEX] as ArrayList<LatLng>
+            coordinates[POLYGON_OUTER_COORDINATE_INDEX] as MutableList<LatLng>
 
     /**
      * Gets an array of arrays of inner boundary coordinates
@@ -74,9 +74,9 @@ class GeoJsonPolygon(
     override val innerBoundaryCoordinates: List<List<LatLng?>?>
         get() {
             // Following arrays are holes
-            val innerBoundary = ArrayList<ArrayList<LatLng>>()
+            val innerBoundary = mutableListOf<MutableList<LatLng>>()
             for (i in POLYGON_INNER_COORDINATE_INDEX until coordinates.size) {
-                innerBoundary.add(coordinates[i] as ArrayList<LatLng>)
+                innerBoundary.add(coordinates[i] as MutableList<LatLng>)
             }
             return innerBoundary
         }

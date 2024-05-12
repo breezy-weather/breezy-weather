@@ -153,7 +153,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val unit = SettingsManager.getInstance(activity).speedUnit
-        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
+        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3.toFloat(),

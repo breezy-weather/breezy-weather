@@ -452,7 +452,7 @@ open class IconPackResourcesProvider(
             context: Context,
             defaultProvider: ResourceProvider
         ): List<IconPackResourcesProvider> {
-            val providerList: MutableList<IconPackResourcesProvider> = ArrayList()
+            val providerList = mutableListOf<IconPackResourcesProvider>()
             val infoList = context.packageManager.queryIntentActivities(
                 Intent(Constants.ACTION_ICON_PROVIDER),
                 PackageManager.GET_RESOLVED_FILTER
