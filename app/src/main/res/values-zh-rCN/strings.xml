@@ -192,8 +192,8 @@
     <string name="message_tap_again_to_exit">再次点击以退出</string>
     <string name="action_back">返回</string>
     <string name="settings_icon_packs_check_details">查看详情</string>
-    <string name="air_quality_pm25_voice">PM二点五</string>
-    <string name="air_quality_pm10_voice">PM十</string>
+    <string name="air_quality_pm25_voice">PM2.5</string>
+    <string name="air_quality_pm10_voice">PM10</string>
     <string name="air_quality_so2_voice">二氧化硫</string>
     <string name="air_quality_no2_voice">二氧化氮</string>
     <string name="air_quality_o3_voice">臭氧</string>
@@ -203,7 +203,7 @@
     <string name="ephemeris_moonrise_at">%s月出</string>
     <string name="ephemeris_moonset_at">%s月落</string>
     <string name="precipitation_none">无降水</string>
-    <string name="precipitation_between_time">%1$s至%2$s间存在降水</string>
+    <string name="precipitation_between_time">%1$s至%2$s的降水状况</string>
     <string name="action_add_current_location">添加当前位置</string>
     <string name="settings_items_drag_to_sort">轻触并拖拽以对列表项排序</string>
     <string name="settings_item_delete">删除此项</string>
@@ -624,7 +624,7 @@
     <string name="ceiling_short">云高</string>
     <string name="humidity_short">相对湿度</string>
     <string name="wind_short">风况</string>
-    <string name="uv_index_short">紫外线指数</string>
+    <string name="uv_index_short">UV指数</string>
     <string name="visibility_short">能见度</string>
     <string name="pressure_short">气压</string>
     <string name="comma_separator">、</string>
