@@ -45,6 +45,8 @@ import android.widget.RelativeLayout
 import android.widget.RemoteViews
 import android.widget.Switch
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.CallSuper
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
@@ -177,6 +179,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_widget_config)
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
         lifecycleScope.launchUI {
             initLocations()
             initData()
@@ -192,19 +195,18 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         KeyboardResizeBugWorkaround.assistActivity(this)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
-            setBottomSheetState(true)
-            return
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
+                setBottomSheetState(true)
+            } else if (System.currentTimeMillis() - mLastBackPressedTime < 3650) {
+                isEnabled = false
+                onBackPressedDispatcher.onBackPressed()
+            } else {
+                mLastBackPressedTime = System.currentTimeMillis()
+                SnackbarHelper.showSnackbar(getString(R.string.message_tap_again_to_exit))
+            }
         }
-        val time = System.currentTimeMillis()
-        if (time - mLastBackPressedTime < 2000) {
-            super.onBackPressed()
-            return
-        }
-        mLastBackPressedTime = time
-        SnackbarHelper.showSnackbar(getString(R.string.message_tap_again_to_exit))
     }
 
     override fun onCreateView(

@@ -18,6 +18,8 @@ package org.breezyweather.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -90,6 +92,8 @@ class SearchActivity : GeoActivity() {
                 ContentView()
             }
         }
+
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     @Composable
@@ -289,9 +293,10 @@ class SearchActivity : GeoActivity() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        finishSelf(null)
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finishSelf(null)
+        }
     }
 
     // init.
