@@ -1,6 +1,7 @@
 Breezy Weather is a free and open-source Android weather app, forked from Geometric Weather, adding new features, sources, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
 
 In the app, you'll find:
+
 - Real-time weather conditions (temperature, feels like, wind, UV index, humidity, dew point, atmospheric pressure, visibility, cloud cover, ceiling)
 - Daily and hourly forecasts up to 16 days (temperature, air quality, wind, UV index, precipitation, sunshine, feels like)
 - Detailed hourly forecasts (humidity / dew point, pressure, cloud cover, visibility)
@@ -9,13 +10,16 @@ In the app, you'll find:
 - Severe weather and precipitation alerts
 
 The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:
+
 - Automatic dark mode
 - Custom icon packs
 - Large selection of home screen widgets for at-a-glance information
 - Live wallpaper
 
 <b>Sources</b>
+
 Available worldwide weather sources:
+
 - Open-Meteo
 - AccuWeather¹
 - MET Norway¹
@@ -25,6 +29,7 @@ Available worldwide weather sources:
 - Danmarks Meteorologiske Institut (DMI)¹
 
 Available only-national weather sources:
+
 - Mixed China sources¹
 - National Weather Service (NWS)¹
 - Bright Sky (DWD)
@@ -35,6 +40,7 @@ Available only-national weather sources:
 - MET Éireann¹
 
 Available secondary weather sources:
+
 - WMO Severe Weather Information Centre¹
 - Recosanté
 - ATMO AuRA¹
@@ -44,10 +50,13 @@ Available secondary weather sources:
 
 
 <b>Permissions</b>
+
 Required:
+
 - Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): fetch weather data from sources over the Internet
 
 Optional:
+
 - Background services (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): weather updates in the background and scheduled forecast notifications
 - Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): help preventing the app from being killed on some devices
 - Send notifications (POST_NOTIFICATIONS): alerts, precipitation, today/tomorrow forecast, notification-widget, update progress of background updates, etc
@@ -56,6 +65,7 @@ Optional:
 - Tile (EXPAND_STATUS_BAR): allow to launch the app from Quick Settings
 
 <b>License</b>
+
 - GNU Lesser General Public License v3.0
 - This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
 - Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
