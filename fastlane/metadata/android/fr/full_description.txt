@@ -1,6 +1,7 @@
 Breezy Weather est une application météo Android libre et gratuite, dérivé de Geometric Weather, qui ajoute de nouvelles fonctionnalités, fournisseurs, modernise le code, corrige des bugs, met à jour les dépendances pour des raisons de sécurité, etc., tout en gardant l’expérience utilisateur et développeur en tête.
 
 Vous trouverez dans cette application, de façon non exhaustive :
+
 - Les conditions météorologiques en temps réel (température, ressenti, vent, indice UV, humidité, point de rosée, pression atmosphérique, visibilité, couverture nuageuse, plafond)
 - Les prévisions quotidiennes et horaires jusqu’à un maximum de 16 jours (température, qualité de l’air, vent, indice UV, précipitations, ensoleillement, ressenti)
 - Détails des prévisions horaires (humidité / point de rosée, pression, couverture nuageuse, visibilité)
@@ -9,13 +10,16 @@ Vous trouverez dans cette application, de façon non exhaustive :
 - Vigilances météo et alertes de précipitations
 
 L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations :
+
 - Thème sombre automatique
 - Thèmes d’icônes personnalisées
 - Une large sélection de widgets pour l’écran d’accueil pour disposer de l’information en un coup d’œil
 - Fond d’écrans animés
 
 <b>Sources</b>
+
 Sources météo mondiales disponibles :
+
 - Open-Meteo
 - AccuWeather¹
 - MET Norway¹
@@ -25,6 +29,7 @@ Sources météo mondiales disponibles :
 - Danmarks Meteorologiske Institut (DMI)¹
 
 Sources météo uniquement nationales disponibles :
+
 - Mix de sources pour la Chine¹
 - National Weather Service (NWS)¹
 - Bright Sky (DWD)
@@ -35,6 +40,7 @@ Sources météo uniquement nationales disponibles :
 - MET Éireann¹
 
 Sources météo secondaires disponibles :
+
 - OMM Centre d’Information des Phénomènes Dangereux¹
 - Recosanté
 - ATMO AuRA¹
@@ -46,9 +52,11 @@ Sources météo secondaires disponibles :
 <b>Permissions</b>
 
 Obligatoires :
+
 - Réseau (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) : récupérer des données météo depuis des sources sur Internet
 
 Facultatives :
+
 - Services en arrière-plan (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE) : mises à jour météo en arrière-plan et notifications programmées des prévisions
 - Ignorer l’optimisation de la batterie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) : aide à empêcher l’application d’être tuée en arrière-plan sur certains appareils
 - Envoyer des notification (POST_NOTIFICATIONS) : vigilances, précipitations, prévisions du jour/lendemain, notification-widget, avancement des mises à jour en arrière-plan, etc

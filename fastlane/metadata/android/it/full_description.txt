@@ -1,6 +1,7 @@
 Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un fork di Geometric Weather, che aggiunge nuove funzionalità e fonti di dati, modernizza il codice, risolve vari bug, aggiorna le dipendenze per ragioni di sicurezza, eccetera, continuando allo stesso tempo a perseguire l'obbiettivo di un'esperienza fluida per utenti e sviluppatori.
 
 Nell'app troverete:
+
 - Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)
 - Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni, sunshine duration, feels like)
 - Hourly details (Humidity / Dew point, Pressure, Cloud cover, Visibility)
@@ -9,13 +10,16 @@ Nell'app troverete:
 - Avvisi di maltempo e di precipitazioni
 
 L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:
+
 - Tema scuro automatico
 - Temi di icone personalizzati
 - Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.
 - Sfondo animato
 
 <b>Sources</b>
+
 Available worldwide weather sources:
+
 - Open-Meteo
 - AccuWeather¹
 - MET Norway¹
@@ -25,6 +29,7 @@ Available worldwide weather sources:
 - Danmarks Meteorologiske Institut (DMI)¹
 
 Available only-national weather sources:
+
 - Varie fonti per la Cina¹
 - National Weather Service (NWS)¹
 - Bright Sky (DWD)
@@ -35,6 +40,7 @@ Available only-national weather sources:
 - MET Éireann¹
 
 Available weather sources:
+
 - WMO Severe Weather Information Centre¹
 - Recosanté
 - ATMO AuRA¹
@@ -46,9 +52,11 @@ Available weather sources:
 <b>Autorizzazioni</b>
 
 Obbligatorie:
+
 - Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): fetch weather data from sources over the Internet
 
 Facoltative:
+
 - Background services (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): weather updates in the background and scheduled forecast notifications
 - Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): help preventing the app from being killed on some devices
 - Send notifications (POST_NOTIFICATIONS): alerts, precipitation, today/tomorrow forecast, notification-widget, update progress of background updates, etc
