@@ -9,13 +9,6 @@
   ],
   "packageRules": [
     {
-      "groupName": "Kotlin",
-      "matchPackagePrefixes": [
-        "androidx.compose.compiler",
-        "org.jetbrains.kotlin"
-      ]
-    },
-    {
       "matchPackagePrefixes": ["org.shredzone.commons"],
       "allowedVersions": "<3.0"
     }

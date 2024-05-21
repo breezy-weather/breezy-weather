@@ -3,24 +3,22 @@ aboutlib_version = "11.1.4"
 accompanist = "0.34.0"
 activity = "1.9.0"
 adaptiveiconview = "v0.0.3"
-agp = "8.4.0"
+agp = "8.4.1"
 appcompat = "1.6.1"
 cardview = "1.0.0"
 compose = "1.6.7"
-compose-compiler = "1.5.14"
 compose-lint-checks = "1.3.1"
 compose-material3 = "1.2.1"
 core-ktx = "1.13.1"
 dagger = "2.51.1"
 datastore = "1.1.1"
 expandabletextcompose = "2.0.1"
-gms-location = "21.2.0"
 hilt = "1.2.0"
 javapoet = "1.13.0"
 jjwt = "0.12.5"
 junit = "5.10.2"
 kotest-assertions = "5.9.0"
-kotlin = "1.9.24"
+kotlin = "2.0.0"
 kotlinx-coroutines = "1.8.1"
 kotlinx-serialization-json = "1.6.3"
 kotlinx-serialization-xml = "3980721899b8a990d9e5df170459e17b81fbc34d"
@@ -57,7 +55,6 @@ android-gradle = { group = "com.android.tools.build", name = "gradle", version.r
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "compose-compiler" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-lint-checks = { group = "com.slack.lint.compose", name = "compose-lint-checks", version.ref = "compose-lint-checks" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
@@ -71,7 +68,6 @@ dagger-hilt-core = { group = "com.google.dagger", name = "hilt-android", version
 dagger-hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 expandabletextcompose = { group = "com.github.giangpham96.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }
-gms-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "gms-location" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
@@ -123,6 +119,7 @@ work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "
 
 [plugins]
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

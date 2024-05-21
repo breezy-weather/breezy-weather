@@ -60,7 +60,7 @@ class SearchViewModel @Inject constructor(
             } ?: run {
                 result?.first?.let {
                     _listResource.value = Pair(it, LoadableLocationStatus.SUCCESS)
-                } ?: {
+                } ?: run {
                     _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
                 }
             }
