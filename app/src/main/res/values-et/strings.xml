@@ -94,4 +94,7 @@
     <string name="dew_point_short">Kastepunkt</string>
     <string name="cloud_cover">Pilvkate</string>
     <string name="cloud_cover_short">Pilvkate</string>
+    <string name="pollen_alnus">Lepp</string>
+    <string name="pollen_ambrosia">Ambroosia</string>
+    <string name="pollen_betula">Kask</string>
 </resources>
