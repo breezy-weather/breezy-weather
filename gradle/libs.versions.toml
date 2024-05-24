@@ -1,5 +1,5 @@
 [versions]
-aboutlib_version = "11.1.4"
+aboutlib_version = "11.2.0"
 accompanist = "0.34.0"
 activity = "1.9.0"
 adaptiveiconview = "v0.0.3"
@@ -41,7 +41,7 @@ sqlite = "3.45.0"
 sqlite-android = "2.4.0"
 suncalc = "2.14"
 swiperefreshlayout = "1.1.0"
-vico = "2.0.0-alpha.19"
+vico = "2.0.0-alpha.20"
 work-runtime = "2.9.0"
 
 [libraries]
