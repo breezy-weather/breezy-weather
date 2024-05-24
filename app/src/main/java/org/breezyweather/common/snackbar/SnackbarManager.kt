@@ -197,6 +197,6 @@ internal class SnackbarManager private constructor() {
         }
         private const val MSG_TIMEOUT = 0
         private const val SHORT_DURATION_MS = 1500
-        private const val LONG_DURATION_MS = 3000
+        const val LONG_DURATION_MS = 3000
     }
 }

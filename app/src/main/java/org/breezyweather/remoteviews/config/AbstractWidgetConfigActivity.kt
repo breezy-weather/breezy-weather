@@ -63,6 +63,8 @@ import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.launchUI
+import org.breezyweather.common.snackbar.Snackbar
+import org.breezyweather.common.snackbar.SnackbarManager
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.ConfigStore
@@ -199,7 +201,11 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         override fun handleOnBackPressed() {
             if (mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
                 setBottomSheetState(true)
-            } else if (System.currentTimeMillis() - mLastBackPressedTime < 3650) {
+            } else if (
+                (System.currentTimeMillis() - mLastBackPressedTime) <
+                (Snackbar.ANIMATION_DURATION + Snackbar.ANIMATION_FADE_DURATION +
+                    SnackbarManager.LONG_DURATION_MS)
+            ) {
                 isEnabled = false
                 onBackPressedDispatcher.onBackPressed()
             } else {

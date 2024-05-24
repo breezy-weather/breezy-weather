@@ -506,8 +506,8 @@ class Snackbar private constructor(
         const val LENGTH_INDEFINITE = -2
         const val LENGTH_SHORT = -1
         const val LENGTH_LONG = 0
-        private const val ANIMATION_DURATION = 450
-        private const val ANIMATION_FADE_DURATION = 200
+        const val ANIMATION_DURATION = 450
+        const val ANIMATION_FADE_DURATION = 200
         private val sHandler: Handler = Handler(Looper.getMainLooper(), Handler.Callback { message: Message ->
             when (message.what) {
                 MSG_SHOW -> {
