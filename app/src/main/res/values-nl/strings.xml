@@ -631,7 +631,7 @@
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Check dat de zoekopdracht goed gespeld is en niet te specifiek. Als alternatief kunt u een andere locatie zoek bron gebruiken wat een ander resultaat kan opleveren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
-    <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van breezy weer. Klik om meer te weten te komen.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van Breezy Weather. Klik om meer te weten te komen.</string>
     <string name="notification_precipitation_starting_desc">Verwacht te beginnen rond %s</string>
     <string name="notification_precipitation_continuing_desc">Verwacht aan te houden tot in iedergeval %s</string>
     <string name="notification_precipitation_stopping_desc">Verwacht op te houden om %s</string>
