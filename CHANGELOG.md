@@ -9,6 +9,7 @@
 
 **Translations**
 - Translations updated
+- Dansk translation completed (thanks Rasmus!)
 
 
 # Version 5.2.3 (2024-05-05)
