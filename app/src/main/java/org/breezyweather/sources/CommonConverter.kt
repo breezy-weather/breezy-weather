@@ -265,12 +265,13 @@ private fun getDailyAirQualityFromSecondaryHourlyList(
     if (hourlyList.isEmpty() || hourlyList.size < 18) return null
 
     return AirQuality(
-        pM25 = hourlyList.mapNotNull { it.value.pM25 }.average(),
-        pM10 = hourlyList.mapNotNull { it.value.pM10 }.average(),
-        sO2 = hourlyList.mapNotNull { it.value.sO2 }.average(),
-        nO2 = hourlyList.mapNotNull { it.value.nO2 }.average(),
-        o3 = hourlyList.mapNotNull { it.value.o3 }.average(),
-        cO = hourlyList.mapNotNull { it.value.cO }.average()
+        // average() would return NaN when called for an empty list, which breaks serialization
+        pM25 = hourlyList.mapNotNull { it.value.pM25 }.takeIf { it.isNotEmpty() }?.average(),
+        pM10 = hourlyList.mapNotNull { it.value.pM10 }.takeIf { it.isNotEmpty() }?.average(),
+        sO2 = hourlyList.mapNotNull { it.value.sO2 }.takeIf { it.isNotEmpty() }?.average(),
+        nO2 = hourlyList.mapNotNull { it.value.nO2 }.takeIf { it.isNotEmpty() }?.average(),
+        o3 = hourlyList.mapNotNull { it.value.o3 }.takeIf { it.isNotEmpty() }?.average(),
+        cO = hourlyList.mapNotNull { it.value.cO }.takeIf { it.isNotEmpty() }?.average()
     )
 }
 
