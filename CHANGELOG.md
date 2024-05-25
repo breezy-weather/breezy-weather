@@ -6,6 +6,7 @@
 - Fix notification-related settings not propagated immediately on Android >= 13 (@min7-i)
 - Fix today/tomorrow notification being silent on some devices (@min7-i)
 - Reduce lag on refresh on low-end devices/slow sources (@jayyuz)
+- Fix another crash case when sending data to Gadgetbridge (@kosmoz)
 
 **Translations**
 - Translations updated

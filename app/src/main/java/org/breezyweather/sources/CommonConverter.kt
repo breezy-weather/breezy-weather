@@ -1098,16 +1098,14 @@ private fun getHalfDayWindFromHourlyList(
 private fun getHalfDayCloudCoverFromHourlyList(
     halfDayHourlyList: List<HourlyWrapper>
 ): Int? {
-    val halfDayHourlyListCloudCover = halfDayHourlyList.mapNotNull { it.cloudCover }
-
-    return if (halfDayHourlyListCloudCover.isNotEmpty()) {
-        halfDayHourlyListCloudCover.average().roundToInt()
-    } else null
+    // average() would return NaN when called for an empty list
+    return halfDayHourlyList.mapNotNull { it.cloudCover }
+        .takeIf { it.isNotEmpty() }?.average()?.roundToInt()
 }
 
 private fun getHalfDayAvgVisibilityFromHourlyList(halfDayHourlyList: List<HourlyWrapper>): Double? {
-    val withVisibility = halfDayHourlyList.mapNotNull { it.visibility }
-    return if (withVisibility.isNotEmpty()) withVisibility.average() else null
+    // average() would return NaN when called for an empty list
+    return halfDayHourlyList.mapNotNull { it.visibility }.takeIf { it.isNotEmpty() }?.average()
 }
 
 /**
@@ -1120,13 +1118,14 @@ private fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = 
     val hourlyListWithAirQuality = hourlyList.mapNotNull { it.airQuality }
     if (hourlyListWithAirQuality.size < 18) return null
 
+    // average() would return NaN when called for an empty list
     return AirQuality(
-        pM25 = hourlyListWithAirQuality.mapNotNull { it.pM25 }.average(),
-        pM10 = hourlyListWithAirQuality.mapNotNull { it.pM10 }.average(),
-        sO2 = hourlyListWithAirQuality.mapNotNull { it.sO2 }.average(),
-        nO2 = hourlyListWithAirQuality.mapNotNull { it.nO2 }.average(),
-        o3 = hourlyListWithAirQuality.mapNotNull { it.o3 }.average(),
-        cO = hourlyListWithAirQuality.mapNotNull { it.cO }.average()
+        pM25 = hourlyListWithAirQuality.mapNotNull { it.pM25 }.takeIf { it.isNotEmpty() }?.average(),
+        pM10 = hourlyListWithAirQuality.mapNotNull { it.pM10 }.takeIf { it.isNotEmpty() }?.average(),
+        sO2 = hourlyListWithAirQuality.mapNotNull { it.sO2 }.takeIf { it.isNotEmpty() }?.average(),
+        nO2 = hourlyListWithAirQuality.mapNotNull { it.nO2 }.takeIf { it.isNotEmpty() }?.average(),
+        o3 = hourlyListWithAirQuality.mapNotNull { it.o3 }.takeIf { it.isNotEmpty() }?.average(),
+        cO = hourlyListWithAirQuality.mapNotNull { it.cO }.takeIf { it.isNotEmpty() }?.average()
     )
 }
 
