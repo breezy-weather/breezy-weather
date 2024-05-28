@@ -150,8 +150,8 @@
     <string name="widget_custom_subtitle_keyword_cps_description">当前气压</string>
     <string name="widget_custom_subtitle_keyword_cv_description">当前能见度</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">当前露点</string>
-    <string name="widget_custom_subtitle_keyword_al_description">警报</string>
-    <string name="widget_custom_subtitle_keyword_als_description">警报（短）</string>
+    <string name="widget_custom_subtitle_keyword_al_description">预警</string>
+    <string name="widget_custom_subtitle_keyword_als_description">预警（短）</string>
     <string name="widget_custom_subtitle_keyword_l_description">位置</string>
     <string name="widget_custom_subtitle_keyword_lat_description">纬度</string>
     <string name="widget_custom_subtitle_keyword_lon_description">经度</string>
@@ -370,14 +370,14 @@
     <string name="unit_h_voice">小时</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="uv_alert_level">警报级别</string>
+    <string name="uv_alert_level">预警水平</string>
     <string name="action_location_list">位置列表</string>
     <string name="widget_style_mini">Mini 风格</string>
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
-    <string name="notification_channel_alerts">警报</string>
+    <string name="notification_channel_alerts">预警</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="unit_kelvin_short">K</string>
     <string name="weather_data_by">数据来自 %s</string>
@@ -465,10 +465,10 @@
     <string name="settings_main_summary">卡片顺序，显示的项目，动画</string>
     <string name="settings_main_section_displayed_data">显示的数据</string>
     <string name="settings_main_cards_other_element_animations_switch">其他动画</string>
-    <string name="settings_notifications_alerts_title">恶劣天气警报通知</string>
+    <string name="settings_notifications_alerts_title">恶劣天气预警通知</string>
     <string name="settings_notifications_forecast_today_title">每日预报通知</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日预报通知</string>
-    <string name="settings_notifications_summary">首个位置的天气警报，降水或预报的通知</string>
+    <string name="settings_notifications_summary">首个位置的天气预警、降水或预报的通知</string>
     <string name="settings_widgets_summary">设置壁纸，配置正在使用的微件，通知微件</string>
     <string name="settings_notifications_forecast_time_today_title">每日预报的通知时间</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">明日预报的通知时间</string>
@@ -510,7 +510,7 @@
     <string name="air_quality_co_info_origin">一氧化碳是由木柴、汽油、煤炭、天然气和煤油等碳质燃料在简易炉灶、明火、灯芯、火炉和壁炉中不完全燃烧产生的。在环境空气中，一氧化碳的主要来源是机动车辆。</string>
     <string name="air_quality_co_info_consequences">一氧化碳扩散到肺组织并进入血液，使红细胞难以与氧气结合。缺氧会损害组织和细胞。接触一氧化碳会导致呼吸困难、疲惫、头晕和其他流感样症状。暴露于高浓度的一氧化碳可能致命。</string>
     <string name="action_close">关闭</string>
-    <string name="dialog_permissions_notification_content">点击此处启用有关天气警报的通知，或稍后在设置中决定。</string>
+    <string name="dialog_permissions_notification_content">点击此处启用有关天气预警的通知，或稍后在设置中决定。</string>
     <string name="dialog_permissions_notification_title">随时获取信息</string>
     <string name="null_data_text">无数据</string>
     <string name="air_quality_pm_explanations_introduction">颗粒物或大气颗粒物是悬浮在空气中的固体或液体物质的微小颗粒。</string>
@@ -549,7 +549,7 @@
     <string name="weather_air_quality_data_by">空气质量数据来自 %s</string>
     <string name="weather_minutely_data_by">临近降水预报数据来自 %s</string>
     <string name="weather_pollen_data_by">花粉数据来自 %s</string>
-    <string name="weather_alert_data_by">警报数据来自 %s</string>
+    <string name="weather_alert_data_by">预警数据来自 %s</string>
     <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
     <string name="wind_gusts">阵风</string>
@@ -665,7 +665,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">无缝</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">混合此提供商的所有天气模型的预报结果，生成无缝预测</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">预报实例</string>
-    <string name="alert">警报</string>
+    <string name="alert">预警</string>
     <string name="settings_source_instance">实例</string>
     <string name="settings_source_instance_geocoding">地理编码实例</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空气质量实例</string>
@@ -683,7 +683,7 @@
     <string name="widget_label_hide_alternate_calendar">隐藏备选日历</string>
     <string name="settings_background_updates_refresh_never_warning2">后台更新进程所需资源不多：它仅以您选定的频率刷新首个位置的数据，并只在您需要的情况下，每天一次刷新次要位置的数据。该功能耗电不多，每月用掉的流量应该不超过 5MB。</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">未找到兼容的包</string>
-    <string name="settings_background_updates_refresh_never_warning1">关闭后台更新后，您将无法再收到警报或降水的通知。在打开应用前，微件显示不会被刷新。</string>
+    <string name="settings_background_updates_refresh_never_warning1">关闭后台更新后，您将无法再收到预警或降水的通知。在打开应用前，微件显示不会被刷新。</string>
     <string name="settings_background_updates_refresh_never_warning3">考虑降低刷新频率而不是直接关闭后台更新，如果您仍想要关闭，请轻按“继续”。</string>
     <string name="message_server_unavailable_title">服务器不可用</string>
     <string name="message_server_unavailable_content">这通常是临时性错误。如果错误持续，请在 GitHub 上报告问题。</string>
