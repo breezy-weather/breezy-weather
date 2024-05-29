@@ -59,7 +59,7 @@
     <string name="location_current_not_found_yet">Nog geen locatie…</string>
     <string name="settings_changes_apply_after_restart">Wijzigingen worden van kracht na het opnieuw opstarten</string>
     <!-- action -->
-    <string name="alerts">Alarm</string>
+    <string name="alerts">Waarschuwingen</string>
     <string name="action_search">Zoek</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
@@ -622,12 +622,12 @@
     <string name="pollen_fraxinus">Es</string>
     <string name="pollen_populus">Populier</string>
     <string name="message_server_unavailable_content">Dit is normaal gesproken een tijdelijk probleem. Als dit probleem aanhoudt word u geadviseerd een probleem op GitHub te openen.</string>
-    <string name="location_delete_location_dialog_message">Je staat op het punt “%s” te verwijderen van je lijst opgeslagen locaties</string>
+    <string name="location_delete_location_dialog_message">Je staat op het punt “%s” te verwijderen van je lijst opgeslagen locaties.</string>
     <string name="message_invalid_incomplete_data">Incorrecte of incomplete gegevens ontvangen van de server</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Actuele lucht qualiteits index</string>
     <string name="pollen_carpinus">Haagbeuk</string>
     <string name="pollen_tilia">Linde</string>
-    <string name="humidity_short">Luchtvochtigheid</string>
+    <string name="humidity_short">vochtigheid</string>
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Check dat de zoekopdracht goed gespeld is en niet te specifiek. Als alternatief kunt u een andere locatie zoek bron gebruiken wat een ander resultaat kan opleveren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
@@ -640,7 +640,7 @@
     <string name="location_search_source">Locatie zoek bron</string>
     <string name="location_search_change_source">Weinig locatie zoek bron</string>
     <string name="sunshine">Zonneschijn</string>
-    <string name="weather_message_too_frequent_refreshes">Gelieve een paar seconden te wachten voor het opnieuw proberen</string>
+    <string name="weather_message_too_frequent_refreshes">Gelieve een paar seconden te wachten voor u het opnieuw probeert…</string>
     <string name="location_message_updated">Locatie bijgewerkt</string>
     <string name="location_delete_location_dialog_title">Verwijder locatie?</string>
     <string name="action_edit_location">Wijzig deze locatie</string>
@@ -656,4 +656,5 @@
     <string name="notification_precipitation_continuing">Neerslag</string>
     <string name="notification_precipitation_stopping">Neerslag stopt snel</string>
     <string name="alert_source">Bron: %s</string>
+    <string name="settings_background_updates_refresh_never_warning1">Door achtergrond updates uit te schakelen krijgt u geen meldingen van waarschuwingen of regen. Widgets worden niet meer ververst tot u de app opent.</string>
 </resources>
