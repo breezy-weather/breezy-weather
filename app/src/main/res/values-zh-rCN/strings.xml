@@ -181,7 +181,7 @@
     <string name="widget_live_wallpaper_day_night_type">时间</string>
     <string name="location_message_added">位置已添加</string>
     <string name="location_message_deleted">位置已删除</string>
-    <string name="location_message_list_cannot_be_empty">位址列表不能为空</string>
+    <string name="location_message_list_cannot_be_empty">位置列表不能为空</string>
     <string name="location_search_placeholder">搜索一个位置…</string>
     <string name="location_current_not_found_yet">未找到当前位置…</string>
     <string name="settings_changes_apply_after_restart">修改将在重启后生效</string>
