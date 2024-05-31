@@ -283,6 +283,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rTW"), "abc0922001", github = "abc0922001"),
         TranslatorItem(arrayOf("zh_rCN"), "大王叫我来巡山", weblate = "hamburger2048"),
         TranslatorItem(arrayOf("zh_rCN"), "hugoalh", github = "hugoalh"),
+        TranslatorItem(arrayOf("zh_rCN"), "cloudfish", github = "cloudfish"),
         TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rTW"), "天ツ風", github = "Yibuki"),
         TranslatorItem(arrayOf("zh_rTW", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25")
     )
