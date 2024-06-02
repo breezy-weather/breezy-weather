@@ -1,4 +1,4 @@
-# Version 5.2.4 (not yet released)
+# Version 5.2.4 (2024-06-01)
 
 **Improvements and fixes**
 - Reorganized location list actions
