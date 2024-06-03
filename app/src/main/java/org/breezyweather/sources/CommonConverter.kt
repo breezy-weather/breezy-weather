@@ -395,6 +395,7 @@ fun mergeSecondaryWeatherDataIntoDailyList(
  * - Weather code
  * - Weather text
  * - Dew point
+ * - Apparent temperature
  * - Wind chill temperature
  * - Wet bulb temperature
  */
@@ -470,12 +471,30 @@ fun completeTemperatureWithComputedData(
     windSpeed: Double?,
     relativeHumidity: Double?
 ): Temperature? {
-    if (temperature?.temperature == null || temperature.windChillTemperature != null && temperature.wetBulbTemperature != null) return temperature
+    if (temperature?.temperature == null || temperature.apparentTemperature != null && temperature.windChillTemperature != null && temperature.wetBulbTemperature != null) return temperature
 
     return temperature.copy(
+        apparentTemperature = temperature.apparentTemperature ?: computeApparentTemperature(temperature.temperature!!, relativeHumidity, windSpeed),
         windChillTemperature = temperature.windChillTemperature ?: computeWindChillTemperature(temperature.temperature!!, windSpeed),
         wetBulbTemperature = temperature.wetBulbTemperature ?: computeWetBulbTemperature(temperature.temperature!!, relativeHumidity),
     )
+}
+
+/**
+ * Compute apparent temperature from temperature, relative humidity, and wind speed
+ * Uses Bureau of Meteorology Australia methodology
+ * Source: http://www.bom.gov.au/info/thermal_stress/#atapproximation
+ * TODO: Unit test
+ *
+ * @param temperature in °C
+ * @param relativeHumidity in %
+ * @param windSpeed in m/s
+ */
+private fun computeApparentTemperature(temperature: Double?, relativeHumidity: Double?, windSpeed: Double?): Double? {
+    if (temperature == null || relativeHumidity == null || windSpeed == null) return null
+
+    val e = relativeHumidity / 100 * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
+    return temperature + 0.33 * e - 0.7 * windSpeed - 4.0
 }
 
 /**
