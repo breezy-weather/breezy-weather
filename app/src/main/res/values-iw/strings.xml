@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">מזג אוויר</string>
     <string name="daily_forecast">תחזית יומית</string>
-    <string name="hourly_forecast">תחזית לפי שעה</string>
+    <string name="hourly_forecast">תחזית שעתית</string>
     <string name="ephemeris">שמש וירח</string>
     <string name="details">פרטים</string>
     <string name="temperature_apparent">נראה</string>
@@ -62,7 +62,7 @@
     <string name="wind_strength_5">רוח ערה</string>
     <string name="wind_strength_6">רוח עזה</string>
     <string name="uv_index">מדד קרינה אולטרה סגולה</string>
-    <string name="precipitation_nowcasting">תחזית מיידית</string>
+    <string name="precipitation_nowcasting">תחזית משקעים לטווח קצר</string>
     <string name="short_yesterday">אתמול</string>
     <string name="short_tomorrow">מחר</string>
     <string name="air_quality_level_1_description">איכות האוויר היא אידיאלית עבור רוב האנשים; תהנה מפעילויות החוץ הרגילות שלך.</string>
@@ -81,4 +81,33 @@
     <string name="temperature_degree_day">יום מעלות</string>
     <string name="temperature_degree_day_cooling">יום מעלות קירור</string>
     <string name="air_quality_level_2_description">איכות האוויר מקובלת על ידי רוב האנשים. למרות זאת, קבוצות של אנשים בעלי רגישות עלולים לחוות סימפטומים קלים עד מתונים עקב חשיפה ארוכת טווח.</string>
+    <string name="air_quality_level_3_description">זיהום האוויר הגיע לרמה גבוהה ואינו בריא לקבוצות רגישות. מומלץ לצמצם את זמן השהייה בחוץ במקרה וחשים בתסמינים כגון קושי בנשימה או גירוי בגרון.</string>
+    <string name="air_quality_level_6">מסוכן</string>
+    <string name="air_quality_level_6_description">כל חשיפה לאוויר, אפילו לכמה דקות, עלולה לגרום לבעיות רפואיות חמורות לכולם. הימנעו מפעילות חוץ.</string>
+    <string name="air_quality_pm25_voice">PM שתיים נקודה חמש</string>
+    <string name="air_quality_pm10">PM10</string>
+    <string name="air_quality_pm10_voice">PM עשר</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_o3_voice">אוזון</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_co_voice">פחמן חד חמצני</string>
+    <string name="air_quality_pm_info_title">חומר חלקיקי (PM2.5 ו-PM10)</string>
+    <string name="air_quality_pm_explanations_introduction">חלקיקי חומר הם שברים קטנים של חומר נוזלי או מוצק הנמצאים באוויר.</string>
+    <string name="air_quality_so2_voice">גופרית דו-חמצנית</string>
+    <string name="air_quality_pm_explanations_consequences">חומר חלקיקי הוא מזהם האוויר המסוכן ביותר משום שהוא חודר עמוק לתוך הריאות ואף למוח דרך מחזור הדם, וגורם לבעיות בריאותיות כגון מחלות לב, ריאה ומוות מוקדם.</string>
+    <string name="air_quality_o3_info_title">אוזון בגובה הקרקע (O₃)</string>
+    <string name="air_quality_no2_info_introduction">חנקן דו חמצני (NO₂) הוא גז חום-אדמדם מחניק ורעיל בעל ריח אופייני חריף וחזק.</string>
+    <string name="air_quality_level_4">לא בריא</string>
+    <string name="air_quality_level_5">מאוד לא בריא</string>
+    <string name="air_quality_level_5_description">חברי קבוצות רגישות יחוו השפעות בריאותיות מיידיות ומוטב שימנעו מפעילות חוץ. אנשים בריאים עשויים לחוות קשיי נשימה וגירוי בגרון. שקלו להישאר בפנים ולקבוע מחדש פעילויות חוץ.</string>
+    <string name="air_quality_level_4_description">חברי קבוצות רגישות עלולים לחוות השפעות בריאותיות חמורות. שאר האוכלוסויה עלול לחוות קשיים בנשימה וגירוי בגרון לאחר חשיפה ממושכת. מומלץ להגביל פעילות חוץ.</string>
+    <string name="air_quality_pm25">PM2.5</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_no2_voice">חנקן דו חמצני</string>
+    <string name="air_quality_pm_explanations_origin">חלקיקי חומר מסויימים הם טבעיים ומקורם בהרי געש, סופות חול, שריפות יער ודשא, צמחייה חיה ותרסיסי ים. פעילות אנושית גם מייצרת כמויות משמעותיות של חומר חלקיקי, כגון תחבורה, פעילות תעשייתית, תחנות כוח, אתרי בנייה, שרפת פסולת או שדות.</string>
+    <string name="air_quality_o3_info_introduction">אוזון בגובה הקרקע (O₃) הוא מרכיב עיקרי בערפיך. למרות שמדובר באותו מולקולה, אוזון בגובה הקרקע עלול להזיק לבריאות האדם, בניגוד לאוזון הסטרטוספרי המגן על כדור הארץ מעודף קרינת UV.</string>
+    <string name="air_quality_o3_info_origin">הוא נוצר מתגובות פוטוכימיות עם מזהמים כמו תרכובות אורגניות נדיפות, פחמן חד-חמצני ותחמוצות חנקן (NOₓ) הנפלטים מכלי רכב ותעשייה. בשל אופיו הפוטוכימי, רמות האוזון הגבוהות ביותר נצפות בתקופות של מזג אוויר שמשי.</string>
+    <string name="air_quality_o3_info_consequences">חשיפה לאוזון בכמות גבוהה עלולה לגרום לבעיות נשימה, להחמיר אסטמה, להפחית את תפקודי הריאות ולהוביל למחלות ריאה.</string>
+    <string name="air_quality_no2_info_title">חנקן דו חמצני (NO₂)</string>
 </resources>
