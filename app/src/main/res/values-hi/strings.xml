@@ -109,7 +109,7 @@
     <string name="weather_air_quality_data_by">%s द्वारा वायु गुणवत्ता डेटा</string>
     <string name="weather_alert_data_by">%s द्वारा अलर्ट डेटा</string>
     <string name="weather_normals_data_by">%s द्वारा तापमान सामान्य डेटा</string>
-    <string name="weather_minutely_data_by">%s द्वारा वर्षा का मिनट-दर-मिनट डेटा</string>
+    <string name="weather_minutely_data_by">%s द्वारा वर्षा की वर्तमान पूर्वानुमान डेटा</string>
     <string name="weather_message_unsupported_feature">स्रोत अनुरोधित सुविधाओं में से किसी एक का समर्थन नहीं करता है</string>
     <string name="weather_message_secondary_data_refresh_failed">मौसम डेटा एक माध्यमिक मौसम स्रोत के लिए ताज़ा विफल रहा</string>
     <string name="weather_api_limit_reached_title">एपीआई अनुरोध की सीमा पूरी हो गई</string>
@@ -641,4 +641,7 @@
     <string name="precipitation_intensity_medium">मध्यम</string>
     <string name="action_app_store">ऐप स्टोर</string>
     <string name="location_search_no_results">%1$s को %2$s नहीं मिल सका</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">वेनिंग गिबस</string>
+    <string name="pollen_tilia">नींबू का पेड़</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">वैक्सिंग गिबस</string>
 </resources>
