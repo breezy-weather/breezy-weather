@@ -134,7 +134,7 @@
     <string name="precipitation_snow">Neve</string>
     <string name="precipitation_ice">Gelo</string>
     <string name="precipitation_intensity_light">Claro</string>
-    <string name="precipitation_intensity_heavy">Chuva intensa</string>
+    <string name="precipitation_intensity_heavy">Intensa</string>
     <string name="precipitation_none">Sem precipitação</string>
     <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
@@ -272,7 +272,7 @@
     <string name="settings_location_access_background_summaryOn">Ativado. A app poderá atualizar os dados meteorológicos da sua localização atual em segundo plano.</string>
     <string name="settings_weather_sources">Provedor de dados meteorológicos</string>
     <string name="settings_weather_sources_summary">Configurações dos provedores de dados meteorológicos</string>
-    <string name="settings_location_access_precise_summaryOn">Ativado. A rede do aparelho e os provedores de GPS são usados.</string>
+    <string name="settings_location_access_precise_summaryOn">Activado. O provedor de rede do dispositivo será usado prioritariamente e na maioria das vezes, mas o GPS também pode ser usado em alternativa.</string>
     <string name="settings_icon_packs_check_details">Verificar detalhes</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Ícone de clima</string>
     <string name="settings_units_distance">Unidade de distância</string>
@@ -291,7 +291,7 @@
     <string name="location_message_search_failed">A busca de localização falhou</string>
     <string name="action_edit">Editar</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Visibilidade atual</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Alertas (Curto)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alertas (curto)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Localização</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Descrição por hora</string>
@@ -344,7 +344,7 @@
     <string name="widget_multi_city">Várias cidades</string>
     <string name="widget_material_you_forecast">Material You - Previsão</string>
     <string name="widget_material_you_current">Material You - Atual</string>
-    <string name="widget_label_align_end">Alinhar até o final</string>
+    <string name="widget_label_align_end">Alinhar à direita</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura atual (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Temperatura aparente (°C/°F)</string>
@@ -375,7 +375,7 @@
     <string name="settings_background_updates_section_troubleshoot">Solução de problemas</string>
     <string name="settings_background_updates_battery_optimization">Desativar otimização de pilha</string>
     <string name="settings_background_updates_battery_optimization_summary">Esta é a primeira coisa a tentar quando não recebe notificações ou os widgets não se atualizam.</string>
-    <string name="settings_notifications_alerts_title">Notificações de alertas meteorológicos</string>
+    <string name="settings_notifications_alerts_title">Notificações de alertas meteorológicos graves</string>
     <string name="settings_notifications_precipitations_title">Notificações de precipitações</string>
     <string name="settings_notifications_forecast_today_title">Notificação sobre a previsão do dia</string>
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
@@ -532,7 +532,7 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Pressão atual</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitude</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitude</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Semana (Curto)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Semana (curto)</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Clima do dia de hoje, amanhã, …, 4 dias depois</string>
     <string name="settings_background_updates_worker_info_title">Informações do Worker</string>
     <string name="settings_appearance_summary">Idioma, modo escuro, pacote de ícones, unidades</string>
@@ -670,4 +670,19 @@
     <string name="sunshine">Sol</string>
     <string name="alert_source">Fonte: %s</string>
     <string name="pollen_salix">Salgueiro</string>
+    <string name="dialog_time_picker_select_time">Selecionar horário</string>
+    <string name="dialog_time_picker_input_time">Introduza horário</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Alterar para toque</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Alterar para texto</string>
+    <string name="widget_label_hide_alternate_calendar">Ocultar calendário alternativo</string>
+    <string name="settings_background_updates_refresh_never_warning1">Ao desligar atualizações de fundo, não receberá mais notificações de alertas ou precipitação. Widgets não serão atualizados até que abra o aplicativo.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considere usar uma taxa de atualização menos frequente em vez de desligar atualizações de fundo, caso contrário, toque em “Continue” se você ainda quiser prosseguir.</string>
+    <string name="settings_global">Definições globais</string>
+    <string name="precipitation_intensity_medium">Moderada</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Não foi encontrado nenhum pacote compatível</string>
+    <string name="message_server_unavailable_title">Servidor indisponível</string>
+    <string name="message_server_unavailable_content">Este é geralmente um erro temporário. Se o erro persistir, reporte um problema no GitHub.</string>
+    <string name="action_edit_location">Alterar esta localização</string>
+    <string name="settings_background_updates_refresh_never_warning2">O processo de atualização de fundo é leve: ele só atualiza sua primeira localização em sua taxa de seleção e locais secundários apenas se você precisar deles, uma vez por dia. É eficiente em bateria e não deve exceder 5 MB de consumo de dados por mês.</string>
+    <string name="settings_appearance_calendar_title">Calendário alternativo</string>
 </resources>
