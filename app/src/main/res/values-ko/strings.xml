@@ -503,4 +503,10 @@
     <string name="pollen_level_0">없음</string>
     <string name="pollen_level_1">매우 낮음</string>
     <string name="pollen_level_3">보통</string>
+    <string name="weather_alert_data_by">%s에 의한 경보 데이터</string>
+    <string name="sunshine">햇빛</string>
+    <string name="pollen_plantaginaceae">플랜틴</string>
+    <string name="weather_pollen_data_by">%s에 의한 꽃가루 데이터</string>
+    <string name="pollen_cupressaceae_taxaceae">편백나무</string>
+    <string name="pollen_populus">포플러</string>
 </resources>
