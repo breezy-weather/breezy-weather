@@ -1,3 +1,10 @@
+# Version 5.2.5 (not yet released)
+
+**Translations**
+- Translations updated
+- Initial translation added for Hebrew (@nvurgaft)
+
+
 # Version 5.2.4 (2024-06-01)
 
 **Improvements and fixes**

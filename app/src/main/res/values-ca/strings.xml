@@ -678,9 +678,9 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Canviar a entrada de text</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
     <string name="precipitation_intensity_medium">Mitjà</string>
-    <string name="dialog_time_picker_select_time">Escollir l\'hora</string>
-    <string name="dialog_time_picker_input_time">Introduir l\'hora</string>
+    <string name="dialog_time_picker_select_time">Escollir l’hora</string>
+    <string name="dialog_time_picker_input_time">Introduir l’hora</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Canviar a entrada tàctil</string>
-    <string name="message_server_unavailable_content">Això sol ser un error temporal. Si l\'error persisteix, obriu una incidència a GitHub.</string>
+    <string name="message_server_unavailable_content">Això sol ser un error temporal. Si l’error persisteix, obriu una incidència a GitHub.</string>
     <string name="action_edit_location">Editar aquesta ubicació</string>
 </resources>
