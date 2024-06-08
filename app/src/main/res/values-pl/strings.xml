@@ -313,7 +313,7 @@
     <string name="weather_source_accu_preference_hours_24">24 godziny</string>
     <string name="weather_source_accu_preference_hours_72">72 godziny</string>
     <string name="weather_source_accu_preference_hours_120">120 godzin</string>
-    <string name="weather_source_accu_preference_hours_240">240 godzin</string>
+    <string name="weather_source_accu_preference_hours_240">240 godzin</string>
     <string name="unit_m">m</string>
     <string name="notification_channel_background_services">Usługi w tle</string>
     <string name="notification_style_cities">Miasta</string>
