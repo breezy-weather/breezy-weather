@@ -128,7 +128,7 @@
     <string name="widget_custom_subtitle_keyword_w_description">Tydzień</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tydzień (krótki)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Opis dzienny</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Opis godzinowy</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Opis godzinny</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nowa linia</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dzisiejsza pogoda w ciągu dnia, jutro, …, 4 dni później</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Dzisiejsza pogoda w ciągu nocy, jutro, …, 4 dni później</string>
