@@ -480,7 +480,7 @@
     <string name="pollen_olea">ㅇ</string>
     <string name="pollen_platanus">올리브 나무</string>
     <string name="temperature_average_short">평균</string>
-    <string name="temperature_normals">온도 정상</string>
+    <string name="temperature_normals">온도평년값</string>
     <string name="air_quality_so2_info_title">이산화황(SO₂)</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="precipitation_nowcasting">강수 예보</string>
@@ -497,4 +497,10 @@
     <string name="pollen_quercus">오크 나무</string>
     <string name="pollen_salix">버드나무</string>
     <string name="pollen_urticaceae">쐐기풀/펠리토리</string>
+    <string name="pollen_level_2">낮음</string>
+    <string name="pollen_level_4">높음</string>
+    <string name="pollen_level_5">매우 높음</string>
+    <string name="pollen_level_0">없음</string>
+    <string name="pollen_level_1">매우 낮음</string>
+    <string name="pollen_level_3">보통</string>
 </resources>
