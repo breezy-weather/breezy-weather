@@ -652,4 +652,12 @@
     <string name="sunshine">Saulės šviesa</string>
     <string name="widget_label_hide_header">Paslėpti antraštę</string>
     <string name="cloud_cover_short">Debesuotumas</string>
+    <string name="dialog_time_picker_select_time">Išrinkti laiką</string>
+    <string name="widget_label_hide_alternate_calendar">Paslėpti Alternatyvų kalendorių</string>
+    <string name="alert">Įspėjimas</string>
+    <string name="precipitation_intensity_medium">Vidutinis</string>
+    <string name="settings_global">Visi nustatymai</string>
+    <string name="message_server_unavailable_title">Serveris nepasiekiamas</string>
+    <string name="action_edit_location">Redaguoti šią vietovę</string>
+    <string name="alert_source">Šaltinis: %s</string>
 </resources>
