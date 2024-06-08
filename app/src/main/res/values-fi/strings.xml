@@ -59,8 +59,8 @@
     <string name="wind_strength_10">Kova myrsky</string>
     <string name="wind_strength_11">Ankara myrsky</string>
     <string name="wind_strength_12">Hirmumyrsky</string>
-    <string name="precipitation_intensity_light">Tihkusade</string>
-    <string name="precipitation_intensity_heavy">Rankkasade</string>
+    <string name="precipitation_intensity_light">Kevyt</string>
+    <string name="precipitation_intensity_heavy">Raskas</string>
     <string name="ephemeris_moon_phase_new_moon">Uusikuu</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Kasvava kuunsirppi</string>
     <string name="ephemeris_moon_phase_first_quarter">Ensimmäinen neljännes</string>
@@ -209,8 +209,8 @@
     <string name="widget_clock_day_vertical">Kello + päivittäinen (Pystysuora tyyli)</string>
     <string name="widget_clock_day_week">Kello + päivittäinen + viikottainen</string>
     <string name="widget_text">Teksti</string>
-    <string name="widget_trend_daily">Päivittäinen trendi</string>
-    <string name="widget_trend_hourly">Tuntikohtainen trendi</string>
+    <string name="widget_trend_daily">Päivittäinen kehityssuunta</string>
+    <string name="widget_trend_hourly">Tuntikohtainen kehityssuunta</string>
     <string name="widget_multi_city">Monen kaupungin</string>
     <string name="widget_refreshing">Päivitetään</string>
     <string name="widget_ellipsis">…</string>
@@ -695,4 +695,5 @@
     <string name="message_server_unavailable_content">Tämä on yleensä tilapäinen ongelma. Jos ongelma on jatkuva, raportoi siitä GitHubissa.</string>
     <string name="message_server_unavailable_title">Palvelin ei vastaa</string>
     <string name="action_edit_location">Muokkaa tätä sijaintia</string>
+    <string name="precipitation_intensity_medium">Keskiraskas</string>
 </resources>
