@@ -110,7 +110,7 @@
     <string name="air_quality_o3_info_origin">הוא נוצר מתגובות פוטוכימיות עם מזהמים כמו תרכובות אורגניות נדיפות, פחמן חד-חמצני ותחמוצות חנקן (NOₓ) הנפלטים מכלי רכב ותעשייה. בשל אופיו הפוטוכימי, רמות האוזון הגבוהות ביותר נצפות בתקופות של מזג אוויר שמשי.</string>
     <string name="air_quality_o3_info_consequences">חשיפה לאוזון בכמות גבוהה עלולה לגרום לבעיות נשימה, להחמיר אסטמה, להפחית את תפקודי הריאות ולהוביל למחלות ריאה.</string>
     <string name="air_quality_no2_info_title">חנקן דו חמצני (NO₂)</string>
-    <string name="air_quality_so2_info_title">דו תחמוצת הגופרית (SO₂)</string>
+    <string name="air_quality_so2_info_title">גופרית דו-חמצנית (SO₂)</string>
     <string name="pollen_tree">עץ</string>
     <string name="pollen_alnus">אלמון</string>
     <string name="settings_background_updates_section_troubleshoot">איתור תקלות</string>
