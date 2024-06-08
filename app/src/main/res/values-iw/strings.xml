@@ -443,4 +443,21 @@
     <string name="air_quality_co_info_consequences">פחמן חד-חמצני מתפשט דרך רקמות הריאה אל מחזור הדם, ומקשה על תאי הגוף לקלוט חמצן. החוסר בחמצן פוגע ברקמות ובתאים. חשיפה לפחמן חד-חמצני עלולה לגרום לקשיי נשימה, תשישות, סחרחורת ותסמינים אחרים דמויי שפעת. חשיפה לרמות גבוהות של פחמן חד-חמצני עלולה להיות קטלנית.</string>
     <string name="dialog_permissions_location_content">Breezy Weather צריך לאסוף את פרטי המיקום שלך בחזית או ברקע כדי לספק נתוני מזג אוויר על מיקומך הנוכחי. לשם כך, נבקש מספר הרשאות. פרטי מיקומך ישמשו אך ורק כדי לקבל את נתוני מזג האוויר במיקומך הנוכחי. אם אינך רוצה לשתף את פרטי המיקום שלך, אפשרי לסרב לבקשות אלו ולהגדיר את המיקום שלך באופן ידני בדף הניהול.</string>
     <string name="dialog_permissions_location_background_content">על מנת לאפשר לאפליקציה לגשת למידע על מיקום ברקע, וכדי שנוכל לקלוט שינויים במיקום ולספק לך נתוני מזג אוויר עדכניים, יש להגדיר את הגישה למיקום כ\"אפשר כל הזמן\".</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">לחץ נוכחי</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">קו אורך</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">קרינה אולטרה סגולה הנוכחית</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">זמן עידכון</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">שבוע (קצר)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">תיאור יומי</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">לחות נוכחית</string>
+    <string name="widget_custom_subtitle_keyword_al_description">התראות</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">תיאור לפי שעה</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">נראות נוכחית</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">נקודת הטל הנוכחית</string>
+    <string name="widget_custom_subtitle_keyword_als_description">התראות (קצרות)</string>
+    <string name="widget_custom_subtitle_keyword_d_description">תאריך</string>
+    <string name="widget_custom_subtitle_keyword_w_description">שבוע</string>
+    <string name="widget_custom_subtitle_keyword_l_description">מיקום</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">קו רוחב</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">שורה חדשה</string>
 </resources>
