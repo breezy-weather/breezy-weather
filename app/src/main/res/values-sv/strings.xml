@@ -664,4 +664,8 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för idag, imorgon, …, om 4 dagar</string>
     <string name="settings_source_instance_invalid">Måste vara en HTTPS-URL som slutar med /</string>
     <string name="settings_invalid_syntax">Ogiltig syntax</string>
+    <string name="dialog_time_picker_select_time">Välj tid</string>
+    <string name="widget_label_hide_alternate_calendar">Göm alternativ kalender</string>
+    <string name="settings_appearance_calendar_title">Alternativ kalender</string>
+    <string name="message_server_unavailable_title">Servern är otillgänglig</string>
 </resources>
