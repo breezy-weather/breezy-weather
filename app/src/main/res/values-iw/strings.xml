@@ -48,5 +48,18 @@
     <string name="wind_direction_short_W">מע</string>
     <string name="wind_direction_short_NW">צ-מע</string>
     <string name="wind_strength">עוצמת הרוח</string>
-    <string name="wind_strength_0">רגוע</string>
+    <string name="wind_strength_0">דממה</string>
+    <string name="wind_strength_11">סופה עזה</string>
+    <string name="wind_strength_12">הוריקן</string>
+    <string name="wind_strength_10">סופה</string>
+    <string name="wind_strength_7">רוח סוערת</string>
+    <string name="wind_strength_8">סערה</string>
+    <string name="wind_strength_9">סערה עזה</string>
+    <string name="wind_strength_2">רוח חרישית</string>
+    <string name="wind_strength_3">רוח קלה</string>
+    <string name="wind_strength_4">רוח מתונה</string>
+    <string name="uv_index_short">מדד UV</string>
+    <string name="wind_strength_5">רוח ערה</string>
+    <string name="wind_strength_6">רוח עזה</string>
+    <string name="uv_index">מדד קרינה אולטרה סגולה</string>
 </resources>
