@@ -43,7 +43,7 @@
     <string name="temperature_degree_day">Astepäivä</string>
     <string name="precipitation_total">Kokonaismäärä</string>
     <string name="precipitation_thunderstorm">Ukkonen</string>
-    <string name="precipitation_rain">Sade</string>
+    <string name="precipitation_rain">Vesisade</string>
     <string name="precipitation_snow">Lumi</string>
     <string name="precipitation_ice">Rakeet</string>
     <string name="wind_strength_0">Tyyni</string>
@@ -76,7 +76,7 @@
     <string name="daily_forecast">Päivittäinen ennuste</string>
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
-    <string name="pollen">Allergeenit</string>
+    <string name="pollen">Siitepöly</string>
     <string name="details">Lisätietoja</string>
     <string name="ephemeris">Aurinko &amp; kuu</string>
     <string name="action_next">Seuraava</string>
@@ -108,17 +108,17 @@
     <string name="widget_label_text_color">Tekstin väri</string>
     <string name="widget_label_text_size">Tekstin koko</string>
     <string name="widget_label_clock_font">Kellon fontti</string>
-    <string name="widget_label_align_end">Kohdista loppuun</string>
+    <string name="widget_label_align_end">Kohdista oikealle</string>
     <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.
 \n
-\nEsimerkiksi, “Tämänhetkinen sää = $cw$” näytetään seuraavasti “tämänhetkinen sää: Selkeä päivä.”.</string>
+\nEsimerkiksi, “Tämänhetkinen sää = $cw$” näytetään seuraavasti “Tämänhetkinen sää: Pilvetön taivas.”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Tämänhetkinen sää</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Tämänhetkinen lämpötila (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Tämänhetkinen lämpötila (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Näenäinen lämpötila (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Näennäinen lämpötila (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Tämänhetkinen tuntuu kuin lämpötila (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Tämänhetkinen tuntuu kuin lämpötila (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Tämänhetkinen tuuli</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Tämänhetkinen UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Tämänhetkinen ilmankosteus</string>
@@ -126,27 +126,27 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Tämänhetkinen näkyvyys</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Tämänhetkinen kastepiste</string>
     <string name="widget_custom_subtitle_keyword_al_description">Hälytykset</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Hälytykset (Lyhyt)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Hälytykset (lyhyt)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Sijainti</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Leveysaste</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Pituusaste</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Päivitysaika</string>
     <string name="widget_custom_subtitle_keyword_d_description">Päiväys</string>
     <string name="widget_custom_subtitle_keyword_w_description">Viikko</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Viikko (Lyhyt)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Viikko (lyhyt)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Päivittäinen kuvaus</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Tuntikohtainen kuvaus</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Uusi rivi</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Sää tänään päivällä, huomenna, …, 4:n päivän päästä</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Sää tänään yöllä, huomenna, …, 4:n päivän päästä</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Sateen todennäköisyys tänään päivällä, huomenna, …, 4:n päivän päästä (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Sateen todennäköisyys tänään yöllä, huomenna, …, 4:n päivän päästä (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Tuuli tänään päivällä, huomenna, …, 4:n päivän päästä</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Tuuli tänään yöllä, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Päiväsajan sää tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Yöajan sää tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Päiväsajan lämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Yöajan lämpötila tänään, huomenna, …, 4:n päivän päästä (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Päiväsajan lämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Yöajan lämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Päiväsajan sateen todennäköisyys tänään, huomenna, …, 4:n päivän päästä (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Yöajan sateen todennäköisyys tänään, huomenna, …, 4:n päivän päästä (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Päiväsajan tuuli tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Yöajan tuuli tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Aurinko nousee tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Aurinko laskee tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Kuu nousee tänään, huomenna, …, 4:n päivän päästä</string>
@@ -199,7 +199,7 @@
     <string name="action_settings">Asetukset</string>
     <string name="action_preview">Esikatsele</string>
     <string name="action_about">Tietoja</string>
-    <string name="action_app_store">App Store</string>
+    <string name="action_app_store">Sovelluskauppa</string>
     <!-- widget -->
     <string name="widget_day">Päivittäinen</string>
     <string name="widget_week">Viikottainen</string>
@@ -238,7 +238,7 @@
     <string name="settings_color_night_always">Aina yönäkymä</string>
     <string name="settings_color_light">Vaalea</string>
     <string name="settings_color_dark">Tumma</string>
-    <string name="settings_background_updates_refresh_30min">Puoli tuntia</string>
+    <string name="settings_background_updates_refresh_30min">30 minuuttia</string>
     <string name="settings_background_updates_refresh_1h">1 tunti</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 tuntia</string>
     <string name="settings_background_updates_refresh_2h">2 tuntia</string>
@@ -253,9 +253,9 @@
     <string name="widget_style_tile">Laatta</string>
     <string name="widget_style_vertical">Pystysuora</string>
     <string name="widget_style_temperature">Lämpötila</string>
-    <string name="widget_week_style_5_days">5 päivää</string>
-    <string name="widget_week_style_3_days">3 päivää</string>
-    <string name="widget_subtitle_data_time">Päivitetty</string>
+    <string name="widget_week_style_5_days">5 päivää</string>
+    <string name="widget_week_style_3_days">3 päivää</string>
+    <string name="widget_subtitle_data_time">Päivitysaika</string>
     <string name="widget_subtitle_data_wind">Tuuli</string>
     <string name="widget_subtitle_data_feels_like">Lämpötila tuntuu kuin</string>
     <string name="widget_subtitle_data_custom">Mukautettu</string>
@@ -280,7 +280,7 @@
     <string name="settings_widgets_notification_style_title">Tyyli</string>
     <string name="settings_background_updates_refresh_title">Päivitystahti</string>
     <string name="air_quality_so2_info_title">Rikkidioksidi (SO₂)</string>
-    <string name="pollen_and_mold">Allergeenit</string>
+    <string name="pollen_and_mold">Siitepöly &amp; home</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
     <string name="air_quality_pm_info_title">Hiukkaset (PM2.5 &amp; PM10)</string>
     <string name="unit_hpa">hPa</string>
@@ -331,7 +331,7 @@
     <string name="settings_main_cards_title">Kortit</string>
     <string name="air_quality_index">Ilmanlaatuindeksi</string>
     <string name="unit_kn_voice">Solmua</string>
-    <string name="settings_widgets_notification_feels_like_switch">Käytä Tuntuu kuin lämpötilaa</string>
+    <string name="settings_widgets_notification_feels_like_switch">Käytä tuntuu kuin -lämpötilaa</string>
     <string name="settings_notifications_forecast_time_today_title">Ilmoitusaika päivän ennusteelle</string>
     <string name="unit_km_voice">Kilometriä</string>
     <string name="air_quality_no2_info_title">Typpidioksidi (NO₂)</string>
@@ -352,7 +352,7 @@
     <string name="unit_mmph_voice">Millimetriä tunnissa</string>
     <string name="settings_widgets_summary">Aseta taustakuva, muokkaa widgettejä, ilmoitusalueen widget</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="action_show_errors">Napauta nähdäksesi lisätietoja</string>
+    <string name="action_show_errors">Katso lisätietoja</string>
     <string name="pollen_olea">Oliivi</string>
     <string name="weather_air_quality_data_by">Ilmanlaatutiedot tarjoaa %s</string>
     <string name="air_quality_o3">O₃</string>
@@ -388,7 +388,7 @@
     <string name="weather_data_by">Tiedot tarjoaa %s</string>
     <string name="pollen_level_5">Erittäin runsaasti</string>
     <string name="weather_source_accu_preference_days_1">1 päivä</string>
-    <string name="alerts_to_follow">Tulevia varoituksia, napauta tätä nähdäksesi ne.</string>
+    <string name="alerts_to_follow">Tulevia hälytyksiä, paina nähdäksesi.</string>
     <string name="uv_index_0_2">Heikko</string>
     <string name="settings_debug_summary">Kaatumislokit</string>
     <string name="weather_message_unsupported_feature">Lähde ei tue jotakin vaadittua ominaisuutta</string>
@@ -431,7 +431,7 @@
     <string name="weather_source_accu_preference_hours_1">1 tunti</string>
     <string name="weather_source_accu_preference_days_15">15 päivää</string>
     <string name="weather_source_accu_preference_hours_24">24 tuntia</string>
-    <string name="settings_location_access_precise_summaryOn">Sallittu. Sekä laitteen verkko- että GPS-palveluntarjoajia käytetään.</string>
+    <string name="settings_location_access_precise_summaryOn">Sallittu. Laitteen verkkopalveluntarjoaja on etusijalla ja sitä käytetään suurin osa ajasta, mutta GPS-palvelua voidaan myös käyttää varakeinona.</string>
     <string name="action_continue">Jatka</string>
     <string name="unit_mmhg_voice">Elohopeamillimetriä</string>
     <string name="action_close">Sulje</string>
@@ -465,13 +465,13 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="common_weather_text_snow_heavy">Rankkaa lumisadetta</string>
     <string name="settings_debug_dump_crash_logs_summary">Tallentaa virhelokit tiedostoon kehittäjille jakamista varten</string>
-    <string name="settings_notifications_summary">Säävaroitukset, sadeilmoitukset, ennusteet</string>
+    <string name="settings_notifications_summary">Ilmoitukset säävaroituksista, sateista tai ennusteesta ensimmäiselle sijainnille</string>
     <string name="common_weather_text_rain_freezing_heavy">Jäätävää rankkasadetta</string>
     <string name="location_service_native">Natiivi API</string>
     <string name="common_weather_text_snow_light">Kevyttä lumisadetta</string>
     <string name="common_weather_text_rain_showers_heavy">Rankkoja sadekuuroja</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="settings_notifications_alerts_title">Ilmoita säävaroituksista</string>
+    <string name="settings_notifications_alerts_title">Ilmoita vakavista säävaroituksista</string>
     <string name="common_weather_text_rain_freezing">Jäätävää sadetta</string>
     <string name="settings_notifications_precipitations_title">Ilmoita sateista</string>
     <string name="message_source_not_installed_error_title">Lähde ei enää käytettävissä</string>
@@ -541,7 +541,7 @@
     <string name="location_results_by">Sijaintitulokset tarjoaa %s</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="dialog_permissions_notification_content">Ota säähälytyksiä koskevat ilmoitukset käyttöön napauttamalla tätä tai päätä siitä myöhemmin Asetuksissa.</string>
+    <string name="dialog_permissions_notification_content">Napauta tästä salliaksesi huomautukset säävaroituksista tai valitse myöhemmin asetuksista.</string>
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
     <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
     <string name="widget_style_mini">Mini</string>
@@ -567,7 +567,7 @@
     <string name="unit_ppcm_voice">Per kuutiometri</string>
     <string name="common_weather_text_snow_grains">Lumitihkusadetta</string>
     <string name="settings_location">Sijainti</string>
-    <string name="settings_weather_sources_summary">Säätietolähteiden asetukset</string>
+    <string name="settings_weather_sources_summary">Oletuslähde uusille sijainneille, mukautetut API-avaimet, muut lähdeasetukset</string>
     <string name="common_weather_text_drizzle_freezing">Jäätävää tihkusadetta</string>
     <string name="common_weather_text_rain_snow_mixed_light">Kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="widget_material_you_forecast">Material You - Ennuste</string>
@@ -577,7 +577,7 @@
     <string name="common_weather_text_overcast">Pilvinen</string>
     <string name="settings_location_access_precise_summaryOff">Ota käyttöön “Käytä tarkkaa sijaintia”, jos sijainnin määrittämisessä on ongelmia.</string>
     <string name="common_weather_text_rain_light">Kevyttä sadetta</string>
-    <string name="settings_weather_sources_per_location_summary">Mukauta tämän sijainnin säätietolähteitä</string>
+    <string name="settings_weather_sources_per_location_summary">Mukauta tämän sijainnin säätietoihin käytettyjä lähteitä</string>
     <string name="settings_widgets_broadcast_send_data_title">Lähetä säätietoja %s</string>
     <string name="settings_appearance_dark_mode_locations_title">Päivä-/yötila sijainteja varten</string>
     <string name="settings_main_daily_trends_title">Päiväkohtaiset suuntaukset</string>
