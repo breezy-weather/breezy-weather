@@ -369,4 +369,5 @@
     <string name="weather_message_too_frequent_refreshes">Počkajte prosím niekoľko sekúnd pred opätovným pokusom…</string>
     <string name="pollen_tilia">Lipa</string>
     <string name="pollen_urticaceae">Žihľava</string>
+    <string name="alert_source">Zdroje: %s</string>
 </resources>
