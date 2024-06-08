@@ -660,4 +660,8 @@
     <string name="message_server_unavailable_title">Serveris nepasiekiamas</string>
     <string name="action_edit_location">Redaguoti šią vietovę</string>
     <string name="alert_source">Šaltinis: %s</string>
+    <string name="message_server_unavailable_content">Paprastai tai yra laikina klaida. Jei klaida tęsiaisi, praneškite apie problemą „GitHub“.</string>
+    <string name="message_invalid_incomplete_data">Gauta neišsami arba neteisinga informacija iš serverio</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Pereiti į jutiklinį įvesties režimą</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Pereiti į teksto įvesties režimą</string>
 </resources>
