@@ -135,4 +135,13 @@
     <string name="wind_direction_short_SW">SW</string>
     <string name="wind_direction_short_W">W</string>
     <string name="air_quality_pm_explanations_consequences">Peenosakesed on kõige kahjulikum õhusaaste vorm, kuna nad suudavad tungida sügavale kopsudesse ja vereringe kaudu ka ajju. Peenosakesed põhjustavad erinevaid terviseprobleeme nagu südame- ja kopsuhaigused, mille tagajärjeks võib olla enneaegne surm.</string>
+    <string name="pollen_fraxinus">Saar</string>
+    <string name="pollen_level_1">Väga madal</string>
+    <string name="pollen_level_2">Madal</string>
+    <string name="pollen_level_3">Mõõdukas</string>
+    <string name="pollen_level_4">Kõrge</string>
+    <string name="pollen_level_5">Väga kõrge</string>
+    <string name="pollen_tap_to_see_more">Rohkema info saamiseks vajutage siia…</string>
+    <string name="pollen_tree">Puu</string>
+    <string name="pollen_quercus">Tamm</string>
 </resources>
