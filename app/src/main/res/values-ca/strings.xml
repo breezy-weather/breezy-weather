@@ -334,7 +334,7 @@
     <string name="setting_weather_source_accu_days">Dies</string>
     <string name="air_quality_level_4">Insalubre</string>
     <string name="metno_weather_text_andthunder">%s i trons</string>
-    <string name="weather_minutely_data_by">Previsió de les precipitacions per %s</string>
+    <string name="weather_minutely_data_by">Dades de precipitació minut a minut per %s</string>
     <string name="weather_source_accu_preference_days_5">5 dies</string>
     <string name="unit_mph">mph</string>
     <string name="location_message_permission_missing">Falta el permís d’accés a la ubicació</string>
