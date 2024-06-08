@@ -159,7 +159,7 @@
     <string name="location_message_list_cannot_be_empty">Sijaintiluettelo ei voi olla tyhjä</string>
     <string name="location_search_placeholder">Etsi sijainti…</string>
     <string name="location_current_not_found_yet">Ei vielä sijaintia…</string>
-    <string name="settings_changes_apply_after_restart">Muutokset tulevat voimaan uudelleenkäynnistyksen jälkeen</string>
+    <string name="settings_changes_apply_after_restart">Muutokset vaativat uudelleenkäynnistyksen</string>
     <string name="notification_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
     <string name="notification_updating_weather_data">Päivitetään säätietoja (%1$d/%2$d)</string>
     <string name="pollen_tap_to_see_more">Napauta nähdäksesi lisää…</string>
