@@ -452,4 +452,5 @@
     <string name="settings_main_section_options">Možnosti</string>
     <string name="settings_debug_dump_crash_logs_saved">Záznamy o chybách boli uložené</string>
     <string name="settings_notifications">Notifikácie</string>
+    <string name="unit_h_voice">hodín</string>
 </resources>
