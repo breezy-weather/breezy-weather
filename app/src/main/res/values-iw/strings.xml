@@ -62,4 +62,23 @@
     <string name="wind_strength_5">רוח ערה</string>
     <string name="wind_strength_6">רוח עזה</string>
     <string name="uv_index">מדד קרינה אולטרה סגולה</string>
+    <string name="precipitation_nowcasting">תחזית מיידית</string>
+    <string name="short_yesterday">אתמול</string>
+    <string name="short_tomorrow">מחר</string>
+    <string name="air_quality_level_1_description">איכות האוויר היא אידיאלית עבור רוב האנשים; תהנה מפעילויות החוץ הרגילות שלך.</string>
+    <string name="air_quality_level_1">מצויינת</string>
+    <string name="air_quality_level_2">נאה</string>
+    <string name="air_quality_level_3">ירודה</string>
+    <string name="uv_index_0_2">נמוך</string>
+    <string name="uv_index_6_7">גבוה</string>
+    <string name="uv_index_8_10">גבוה מאוד</string>
+    <string name="uv_index_11">קיצוני</string>
+    <string name="uv_alert_level">התראה</string>
+    <string name="air_quality_index">מדד איכות האוויר</string>
+    <string name="uv_index_3_5">מתון</string>
+    <string name="temperature_wet_bulb">תרמומטר רטוב</string>
+    <string name="temperature_degree_day_heating">יום מעלות חימום</string>
+    <string name="temperature_degree_day">יום מעלות</string>
+    <string name="temperature_degree_day_cooling">יום מעלות קירור</string>
+    <string name="air_quality_level_2_description">איכות האוויר מקובלת על ידי רוב האנשים. למרות זאת, קבוצות של אנשים בעלי רגישות עלולים לחוות סימפטומים קלים עד מתונים עקב חשיפה ארוכת טווח.</string>
 </resources>
