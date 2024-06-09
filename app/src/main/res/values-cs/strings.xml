@@ -688,7 +688,7 @@
     <string name="widget_label_hide_alternate_calendar">Skrýt alternativní kalendář</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Přepnout na dotykový vstup</string>
     <string name="settings_background_updates_refresh_never_warning1">Po vypnutí aktualizací na pozadí již nebudete získávat oznámení a upozornění o předpovědi. Widgety nebudou obnoveny, dokud neotevřete aplikaci.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Proces aktualizace na pozadí je nenáročný: obnovuje pouze vaši první lokaci ve vybraném cyklu a sekundární lokace pouze, pokud je potřebujete, jednou za den. Není náročný na baterii a za měsíc by neměl spotřebovat více než 5 MB dat.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Proces aktualizace na pozadí je nenáročný: obnovuje pouze vaši první lokaci ve vybraném cyklu a sekundární lokace pouze, pokud je potřebujete, jednou za den. Není náročný na baterii a za měsíc by neměl spotřebovat více než %d MB dat.</string>
     <string name="settings_background_updates_refresh_never_warning3">Zvažte použití méně časté frekvence obnovování, namísto vypnutí aktualizací na pozadí. Pokud stále chcete pokračovat, klepněte na „Pokračovat“.</string>
     <string name="settings_appearance_calendar_title">Alternativní kalendář</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>

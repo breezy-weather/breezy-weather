@@ -683,7 +683,7 @@
     <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă “Continuă” dacă dorești să confirmi.</string>
     <string name="settings_appearance_calendar_title">Calendar alternativ</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
-    <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească 5 MB de consum de date pe lună.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească %d MB de consum de date pe lună.</string>
     <string name="action_edit_location">Editează locația</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Comută la introducerea tactilă</string>
     <string name="dialog_time_picker_input_time">Introdu ora</string>

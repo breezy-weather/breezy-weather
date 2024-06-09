@@ -648,7 +648,7 @@
     <string name="pollen_fraxinus">Cây tần bì</string>
     <string name="pollen_plantaginaceae">Cây mã đề</string>
     <string name="message_source_not_installed_error_content_tip_2">Thay đổi nguồn thời tiết cho vị trí này hoặc xóa và thêm lại vị trí này.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Quá trình cập nhật nền rất nhẹ: nó chỉ làm mới vị trí đầu tiên của bạn theo tỷ lệ bạn đã chọn và chỉ làm mới các vị trí phụ nếu bạn cần chúng, mỗi ngày một lần. Nó tiết kiệm pin và không được tiêu thụ quá 5 MB dữ liệu mỗi tháng.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Quá trình cập nhật nền rất nhẹ: nó chỉ làm mới vị trí đầu tiên của bạn theo tỷ lệ bạn đã chọn và chỉ làm mới các vị trí phụ nếu bạn cần chúng, mỗi ngày một lần. Nó tiết kiệm pin và không được tiêu thụ quá %d MB dữ liệu mỗi tháng.</string>
     <string name="settings_source_instance_invalid">Phải là URL https kết thúc bằng /</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Liền mạch</string>
     <string name="location_delete_location_dialog_message">Bạn sắp xóa “%s” khỏi danh sách các vị trí đã lưu của mình.</string>

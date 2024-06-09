@@ -681,7 +681,7 @@
     <string name="settings_appearance_calendar_title">备选日历</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">切换到触摸输入</string>
     <string name="widget_label_hide_alternate_calendar">隐藏备选日历</string>
-    <string name="settings_background_updates_refresh_never_warning2">后台更新进程所需资源不多：它仅以您选定的频率刷新首个位置的数据，并只在您需要的情况下，每天一次刷新次要位置的数据。该功能耗电不多，每月用掉的流量应该不超过 5MB。</string>
+    <string name="settings_background_updates_refresh_never_warning2">后台更新进程所需资源不多：它仅以您选定的频率刷新首个位置的数据，并只在您需要的情况下，每天一次刷新次要位置的数据。该功能耗电不多，每月用掉的流量应该不超过 %dMB。</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">未找到兼容的包</string>
     <string name="settings_background_updates_refresh_never_warning1">关闭后台更新后，您将无法再收到预警或降水的通知。在打开应用前，微件显示不会被刷新。</string>
     <string name="settings_background_updates_refresh_never_warning3">考虑降低刷新频率而不是直接关闭后台更新，如果您仍想要关闭，请轻按“继续”。</string>

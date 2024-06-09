@@ -634,7 +634,7 @@
     <string name="pollen_carpinus">Grab</string>
     <string name="pollen_rumex">Szczaw</string>
     <string name="pollen_salix">Wierzba</string>
-    <string name="settings_background_updates_refresh_never_warning2">Proces aktualizacji w tle jest lekki: odświeża tylko pierwszą lokalizację w wybranej przez Ciebie częstotliwości, a dodatkowe lokalizacje tylko wtedy, gdy ich potrzebujesz, raz dziennie. Aplikacja jest energooszczędna i nie powinna zużywać więcej niż 5 MB danych miesięcznie.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Proces aktualizacji w tle jest lekki: odświeża tylko pierwszą lokalizację w wybranej przez Ciebie częstotliwości, a dodatkowe lokalizacje tylko wtedy, gdy ich potrzebujesz, raz dziennie. Aplikacja jest energooszczędna i nie powinna zużywać więcej niż %d MB danych miesięcznie.</string>
     <string name="about_open_link_message">Otworzyć %s?</string>
     <string name="settings_widgets_broadcast_title">Udostępnianie danych</string>
     <string name="settings_per_location">Preferencje dotyczące lokalizacji</string>

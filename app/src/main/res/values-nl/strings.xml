@@ -664,7 +664,7 @@
     <string name="pollen_plantaginaceae">Wegbree</string>
     <string name="pollen_platanus">Plataan</string>
     <string name="settings_background_updates_refresh_never_warning3">Overweeg minder vaak te updaten, eerder dan achtergrondupdates volledig uit te zetten. Klik op “Verder” als je toch verder wilt gaan.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Het updateproces op de achtergrond is efficiënt: het vernieuwt alleen je eerste locatie met de door jou gekozen snelheid, en secundaire locaties alleen als je ze nodig hebt, één keer per dag. Het werkt batterijzuinig en verbruikt niet meer dan 5 MB gegevens per maand.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Het updateproces op de achtergrond is efficiënt: het vernieuwt alleen je eerste locatie met de door jou gekozen snelheid, en secundaire locaties alleen als je ze nodig hebt, één keer per dag. Het werkt batterijzuinig en verbruikt niet meer dan %d MB gegevens per maand.</string>
     <string name="message_source_not_installed_error_content_tip_1">Dit kan gebeuren wanneer je je positie in de standaardversie van Breezy Weather hebt toegevoegd, en dan gewisseld bent naar de versie met enkel vrije netwerkbronnen. Opnieuw de standaardversie instellen kan mogelijk dit probleem verhelpen.</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Voorspellingsserver</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luchtkwaliteitsserver</string>

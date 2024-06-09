@@ -105,7 +105,7 @@ fun BackgroundSettingsScreen(
                             )
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                             Text(
-                                text = stringResource(R.string.settings_background_updates_refresh_never_warning2),
+                                text = stringResource(R.string.settings_background_updates_refresh_never_warning2, 5),
                                 color = DayNightTheme.colors.bodyColor,
                                 style = MaterialTheme.typography.bodyMedium,
                             )

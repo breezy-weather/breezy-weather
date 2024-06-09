@@ -598,7 +598,7 @@
     <string name="settings_global">Globale innstillinger</string>
     <string name="location_search_change_source">Endre kilde for lokasjonssøk</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Sjekk posisjonstillatelser</string>
-    <string name="settings_background_updates_refresh_never_warning2">Prosessen for bakgrunnsoppdatering er lite krevende: den oppdaterer kun den første lokasjonen din med oppdateringsfrekvensen du har valgt i innstillingene, samt resten av lokasjonene dine en gang i døgnet ved behov. Det er en energi-effektiv prosess, og den vil vanligvis ligge under 5 MB i databruk pr måned.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Prosessen for bakgrunnsoppdatering er lite krevende: den oppdaterer kun den første lokasjonen din med oppdateringsfrekvensen du har valgt i innstillingene, samt resten av lokasjonene dine en gang i døgnet ved behov. Det er en energi-effektiv prosess, og den vil vanligvis ligge under %d MB i databruk pr måned.</string>
     <string name="location_current_not_found_yet">Nåværende posisjon er ikke funnet enda…</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Tillat posisjonsinformasjon</string>
     <string name="action_edit_location">Rediger lokasjonen</string>

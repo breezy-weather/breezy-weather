@@ -684,7 +684,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">空氣品質伺服器</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">沒有找到相容的套件</string>
-    <string name="settings_background_updates_refresh_never_warning2">背景更新程序是輕量級的：它只會按您選擇的頻率刷新您的第一個位置，而次要位置只在您需要時每天刷新一次。它的耗電效率高，每月的數據消耗不應超過 5 MB。</string>
+    <string name="settings_background_updates_refresh_never_warning2">背景更新程序是輕量級的：它只會按您選擇的頻率刷新您的第一個位置，而次要位置只在您需要時每天刷新一次。它的耗電效率高，每月的數據消耗不應超過 %d MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用一個較低頻率的重新整理更新間距而不是關閉背景更新，如果你仍想關閉背景更新，請點擊「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
     <string name="settings_per_location_theme">主題</string>

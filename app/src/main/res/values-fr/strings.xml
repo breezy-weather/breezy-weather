@@ -456,7 +456,7 @@
     <string name="settings_background_updates_refresh_title">Fréquence de rafraîchissement</string>
     <string name="settings_background_updates_refresh_never">Jamais</string>
     <string name="settings_background_updates_refresh_never_warning1">En désactivant les mises à jour en arrière-plan, vous ne recevrez plus de notifications de vigilances ou de précipitations. Les widgets ne seront actualisés que lorsque vous ouvrirez l’application.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Le processus de mise à jour en arrière-plan est léger : il ne rafraîchit que votre premier emplacement à la fréquence choisie, et les emplacements secondaires uniquement si vous en avez besoin, une fois par jour. Il utilise la batterie avec parcimonie et la consommation de données ne devrait pas excéder 5 Mio par mois.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Le processus de mise à jour en arrière-plan est léger : il ne rafraîchit que votre premier emplacement à la fréquence choisie, et les emplacements secondaires uniquement si vous en avez besoin, une fois par jour. Il utilise la batterie avec parcimonie et la consommation de données ne devrait pas excéder %d Mio par mois.</string>
     <string name="settings_background_updates_refresh_never_warning3">Privilégiez une fréquence de rafraîchissement moins élevée plutôt que de désactiver les mises à jour en arrière-plan, sinon appuyez sur “Continuer” si vous souhaitez quand même poursuivre.</string>
     <string name="settings_background_updates_refresh_30min">30 minutes</string>
     <string name="settings_background_updates_refresh_1h">1 heure</string>

@@ -649,7 +649,7 @@
     <string name="widget_label_hide_alternate_calendar">Απόκρυψη εναλλακτικού ημερολογίου</string>
     <string name="widget_label_show_widget_card_alpha">Αδιαφάνεια</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Εναλλαγή σε Εισαγωγή με Αφή</string>
-    <string name="settings_background_updates_refresh_never_warning2">Η διεργασία ενημέρωσης παρασκηνίου είναι ελαφριά: ανανεώνει μόνο την πρώτη σου τοποθεσία στην επιλεγμένη συχνότητα και τις δευτερεύουσες τοποθεσίες μόνο αν τις χρειάζεσαι, μια φορά τη μέρα. Δεν καταναλώνει ιδιαίτερη μπαταρία και δεν καταναλώνει περισσότερο από 5 MB τον μήνα.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Η διεργασία ενημέρωσης παρασκηνίου είναι ελαφριά: ανανεώνει μόνο την πρώτη σου τοποθεσία στην επιλεγμένη συχνότητα και τις δευτερεύουσες τοποθεσίες μόνο αν τις χρειάζεσαι, μια φορά τη μέρα. Δεν καταναλώνει ιδιαίτερη μπαταρία και δεν καταναλώνει περισσότερο από %d MB τον μήνα.</string>
     <string name="action_edit_location">Επεξεργασία αυτής της τοποθεσίας</string>
     <string name="message_server_unavailable_title">Διακομιστής μη διαθέσιμος</string>
     <string name="message_server_unavailable_content">Πρόκειται για προσωρινό σφάλμα. Αν το σφάλμα παραμένει, αναφέρετε το ζήτημα στο GitHub.</string>

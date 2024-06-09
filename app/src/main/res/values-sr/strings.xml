@@ -678,7 +678,7 @@
     <string name="dialog_time_picker_select_time">Избор времена</string>
     <string name="dialog_time_picker_input_time">Унос времена</string>
     <string name="settings_background_updates_refresh_never_warning1">Ако искључите ажурирања у позадини, више нећете добијати обавештења о упозорењима или падавинама. Виџети се неће освежити док не отворите апликацију.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Процес ажурирања у позадини је лаган: освежава само вашу прву локацију по вашој изабраној брзини, а секундарне локације само ако су вам потребне, једном дневно. Штеди батерију и не би требало да прелази 5 МБ потрошње података месечно.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Процес ажурирања у позадини је лаган: освежава само вашу прву локацију по вашој изабраној брзини, а секундарне локације само ако су вам потребне, једном дневно. Штеди батерију и не би требало да прелази %d МБ потрошње података месечно.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
     <string name="message_server_unavailable_title">Сервер недоступан</string>
     <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>

@@ -635,7 +635,7 @@
     <string name="settings_source_instance">Instans</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månefase i dag, i morgen, …, 4 dage senere</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Lys</string>
-    <string name="settings_background_updates_refresh_never_warning2">Baggrundsopdateringsprocessen er let: den opdatere kun din første lokation med din valgte hastighed, og opdatere kun sekundære lokationer en gang om dagen hvis du har brug for dem. Det er batterieffektivt og burde ikke bruge mere end 5 MB data om måneden.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Baggrundsopdateringsprocessen er let: den opdatere kun din første lokation med din valgte hastighed, og opdatere kun sekundære lokationer en gang om dagen hvis du har brug for dem. Det er batterieffektivt og burde ikke bruge mere end %d MB data om måneden.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Producentspecifikke instruktioner</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Nogle producenter har yderligere apprestriktioner der dræber baggrundstjenester. Don’t kill my app! hjemmesiden har info om, hvordan man skal fikse det.</string>
     <string name="settings_location_access_switch_summaryOff">Venligst tillad hvis du gerne vil kunne tilføje din nuværende lokation som en lokation.</string>

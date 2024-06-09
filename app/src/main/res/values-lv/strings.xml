@@ -661,7 +661,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Apvieno labākos laikapstākļu modeļus šai atrašanās vietai</string>
     <string name="settings_invalid_syntax">Nederīgs pieraksts</string>
     <string name="settings_per_location_theme">Izskats</string>
-    <string name="settings_background_updates_refresh_never_warning2">Fona atjaunināšanas process ir viegls, tas atjaunina tikai pirmo atrašanās vietu ik pēc norādītā laika, un pārējās atrašanās vietas, tikai ja tās ir nepieciešamas, reizi dienā. Tas neietekmē bateriju un nevajadzētu pārsniegt 5 MB datu patēriņu mēnesī.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Fona atjaunināšanas process ir viegls, tas atjaunina tikai pirmo atrašanās vietu ik pēc norādītā laika, un pārējās atrašanās vietas, tikai ja tās ir nepieciešamas, reizi dienā. Tas neietekmē bateriju un nevajadzētu pārsniegt %d MB datu patēriņu mēnesī.</string>
     <string name="settings_per_location">Atrašanās vietas iestatījumi</string>
     <string name="settings_per_location_summary">Papildu pielāgojumi šai atrašanās vietai</string>
     <string name="settings_unavailable_no_background_updates">Nav pieejams, vispirms jāiespējo fona atjauninājumi</string>

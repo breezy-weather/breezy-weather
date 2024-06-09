@@ -683,6 +683,6 @@
     <string name="message_server_unavailable_title">Servidor indisponível</string>
     <string name="message_server_unavailable_content">Este é geralmente um erro temporário. Se o erro persistir, reporte um problema no GitHub.</string>
     <string name="action_edit_location">Alterar esta localização</string>
-    <string name="settings_background_updates_refresh_never_warning2">O processo de atualização de fundo é leve: ele só atualiza sua primeira localização em sua taxa de seleção e locais secundários apenas se você precisar deles, uma vez por dia. É eficiente em bateria e não deve exceder 5 MB de consumo de dados por mês.</string>
+    <string name="settings_background_updates_refresh_never_warning2">O processo de atualização de fundo é leve: ele só atualiza sua primeira localização em sua taxa de seleção e locais secundários apenas se você precisar deles, uma vez por dia. É eficiente em bateria e não deve exceder %d MB de consumo de dados por mês.</string>
     <string name="settings_appearance_calendar_title">Calendário alternativo</string>
 </resources>

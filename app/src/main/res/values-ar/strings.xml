@@ -679,7 +679,7 @@
     <string name="dialog_time_picker_input_time">وقت الإدخال</string>
     <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
     <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التحذير أو هطول الأمطار. لن يتم تحديث الأيقونات حتى تفتح التطبيق.</string>
-    <string name="settings_background_updates_refresh_never_warning2">تتميز عملية التحديث في الخلفية بالبساطة: فهي تقوم فقط بتحديث موقعك الأول بالمعدل الذي حددته، والمواقع الثانوية فقط إذا كنت في حاجة إليها، مرة واحدة يوميًا. إنه موفر للبطارية ويجب ألا يتجاوز استهلاك البيانات 5 ميجابايت شهريًا.</string>
+    <string name="settings_background_updates_refresh_never_warning2">تتميز عملية التحديث في الخلفية بالبساطة: فهي تقوم فقط بتحديث موقعك الأول بالمعدل الذي حددته، والمواقع الثانوية فقط إذا كنت في حاجة إليها، مرة واحدة يوميًا. إنه موفر للبطارية ويجب ألا يتجاوز استهلاك البيانات %d ميجابايت شهريًا.</string>
     <string name="settings_appearance_calendar_title">التقويم البديل</string>
     <string name="message_server_unavailable_title">الخادم غير متاح</string>
     <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يرجى الإبلاغ عن المشكلة على GitHub.</string>

@@ -678,7 +678,7 @@
     <string name="dialog_time_picker_select_time">時間を選ぶ</string>
     <string name="dialog_time_picker_input_time">時間を入力する</string>
     <string name="widget_label_hide_alternate_calendar">代替カレンダーを非表示する</string>
-    <string name="settings_background_updates_refresh_never_warning2">バックグラウンド更新プロセスは軽量です：主な位置情報は選択した頻度でのみ更新され、二次位置情報は必要な場合にのみ1日に1回更新されます。この機能のバッテリー効率が高く、1か月あたりのデータ消費量は 5 MB を超えません。</string>
+    <string name="settings_background_updates_refresh_never_warning2">バックグラウンド更新プロセスは軽量です：主な位置情報は選択した頻度でのみ更新され、二次位置情報は必要な場合にのみ1日に1回更新されます。この機能のバッテリー効率が高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
     <string name="message_server_unavailable_title">サーバー利用不可</string>
     <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水量の通知が届けなくなります。ウィジェットはアプリを開くまで更新されません。</string>
     <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新をオフにするのではなく、より低い頻度の更新レートを使用することを検討してください。それでも続行したい場合は、「続行」をタップしてください。</string>

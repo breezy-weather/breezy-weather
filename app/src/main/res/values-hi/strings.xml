@@ -400,7 +400,7 @@
     <string name="dialog_permissions_location_title">स्थान की जानकारी ले</string>
     <string name="dialog_permissions_location_background_content">एप्लिकेशन को पृष्ठभूमि में स्थान की जानकारी तक पहुंचने की अनुमति दे, ताकि हम स्थान में बदलाव कर सकें और आपको वैध मौसम डेटा प्रदान कर सकें, कृपया स्थान पहुंच को “सभी समय की अनुमति दें” के रूप में सहेजे।।</string>
     <string name="widget_multi_city">बहु नगरीय</string>
-    <string name="message_source_not_installed_error_content_tip_1">यह ऐसे समय पर हो सकता है जब आपने \"ब्रीज़ी वेदर\" के मानक स्वाद में अपनी स्थान जोड़ा और फिर केवल मुफ्त नेटवर्क स्रोतों वाले स्वाद में स्विच किया हो। \"स्टैंडर्ड\" स्वाद में वापस जाना इस समस्या को हल कर सकता है।</string>
+    <string name="message_source_not_installed_error_content_tip_1">यह ऐसे समय पर हो सकता है जब आपने “ब्रीज़ी वेदर” के मानक स्वाद में अपनी स्थान जोड़ा और फिर केवल मुफ्त नेटवर्क स्रोतों वाले स्वाद में स्विच किया हो। “स्टैंडर्ड” स्वाद में वापस जाना इस समस्या को हल कर सकता है।</string>
     <string name="message_source_not_installed_error_content_tip_2">या तो इस स्थान के लिए मौसम स्रोत बदलें या इस स्थान को हटा दें और पुनः जोड़ें।</string>
     <string name="widget_label_hide_header">शीर्षक छुपाएं</string>
     <string name="sunshine">धूप</string>
@@ -484,7 +484,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">आज, कल, …, 4 दिन बाद का पराग सूचकांक सारांश</string>
     <string name="widget_custom_subtitle_explanation">आप कुछ भी इनपुट कर सकते हैं, लेकिन कृपया पाठ की लंबाई पर ध्यान दें। अगर आप मौसम डेटा को उद्धृत करना चाहते हैं, तो कृपया $ का उपयोग करके संबंधित कीवर्ड को संदर्भित करें।
 \n
-\nउदाहरण के लिए, \"मौसम वर्तमान है: $cw$।\" को \"मौसम वर्तमान है: साफ आसमान।\" के रूप में प्रदर्शित किया जाएगा।</string>
+\nउदाहरण के लिए, “मौसम वर्तमान है: $cw$।” को “मौसम वर्तमान है: साफ आसमान।” के रूप में प्रदर्शित किया जाएगा।</string>
     <string name="settings_appearance">दिखावट</string>
     <string name="settings_appearance_icon_pack_title">प्रतिमा समूह</string>
     <string name="settings_icon_packs_check_details">विवरण देखें</string>
@@ -655,12 +655,12 @@
     <string name="settings_widgets_broadcast_send_data_title">%s डेटा भेजें</string>
     <string name="settings_global">वैश्विक सेटिंग्स</string>
     <string name="settings_weather_source_freenet_disclaimer">अन्य ब्रीज़ी वेदर के स्वादों से अधिक मौसम स्रोत उपलब्ध हैं। और जानने के लिए यहां टैप करें।</string>
-    <string name="settings_source_instance_invalid">एक https URL होना चाहिए जो \"/\" से समाप्त होता है</string>
+    <string name="settings_source_instance_invalid">एक https URL होना चाहिए जो “/” से समाप्त होता है</string>
     <string name="settings_widgets_section_widgets_in_use">उपयोग में विजेट्स</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">कोई संगत पैकेज नहीं मिला</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">स्पर्श इनपुट पर स्विच करें</string>
     <string name="dialog_time_picker_toggle_text_input_voice">टेक्स्ट इनपुट पर स्विच करें</string>
-    <string name="settings_background_updates_refresh_never_warning3">बैकग्राउंड अपडेट को बंद करने के बजाय कम आवृत्ति वाली ताजगी दर का उपयोग करने का विचार करें। अन्यथा यदि आप अभी भी आगे बढ़ना चाहते हैं, तो \"जारी रखें\" पर टैप करें।</string>
+    <string name="settings_background_updates_refresh_never_warning3">बैकग्राउंड अपडेट को बंद करने के बजाय कम आवृत्ति वाली ताजगी दर का उपयोग करने का विचार करें। अन्यथा यदि आप अभी भी आगे बढ़ना चाहते हैं, तो “जारी रखें” पर टैप करें।</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">वायु गुणवत्ता संदर्भ (Air Quality Instance)</string>
     <string name="settings_appearance_calendar_title">वैकल्पिक कैलेंडर</string>
     <string name="settings_widgets_configure_widget_summary">इस विजेट को कॉन्फ़िगर करें</string>
@@ -676,7 +676,7 @@
     <string name="unit_ppcm">प्रति मीटर³ (/m³)</string>
     <string name="message_server_unavailable_title">सर्वर अनुपलब्ध</string>
     <string name="message_server_unavailable_content">यह आमतौर पर एक अस्थायी त्रुटि है। यदि त्रुटि बनी रहती है, कृपया GitHub पर एक समस्या की रिपोर्ट करें।</string>
-    <string name="settings_background_updates_refresh_never_warning2">पृष्ठभूमि अपडेट प्रक्रिया हल्की है: यह केवल आपके चयनित दर पर आपकी पहली स्थान सूची को ताजगी देता है, और आपको चाहिए तो दूसरी स्थानों को केवल एक बार प्रतिदिन। यह बैटरी की दृष्टि से उर्जा कुशल है और मासिक डेटा खपत को 5 एमबी से अधिक नहीं होने देता।</string>
+    <string name="settings_background_updates_refresh_never_warning2">पृष्ठभूमि अपडेट प्रक्रिया हल्की है: यह केवल आपके चयनित दर पर आपकी पहली स्थान सूची को ताजगी देता है, और आपको चाहिए तो दूसरी स्थानों को केवल एक बार प्रतिदिन। यह बैटरी की दृष्टि से उर्जा कुशल है और मासिक डेटा खपत को %d एमबी से अधिक नहीं होने देता।</string>
     <string name="settings_per_location_theme">थीम</string>
-    <string name="settings_widgets_live_wallpaper_error">वॉलपेपर चुनने को लांच नहीं किया जा सका। आप अपने होम स्क्रीन वॉलपेपर पिकर में \"लाइव वॉलपेपर\" का चयन करके फिर भी ब्रीज़ी वेदर वॉलपेपर को सक्षम कर सकते हैं।</string>
+    <string name="settings_widgets_live_wallpaper_error">वॉलपेपर चुनने को लांच नहीं किया जा सका। आप अपने होम स्क्रीन वॉलपेपर पिकर में “लाइव वॉलपेपर” का चयन करके फिर भी ब्रीज़ी वेदर वॉलपेपर को सक्षम कर सकते हैं।</string>
 </resources>

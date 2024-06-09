@@ -678,7 +678,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Переключиться на текстовый ввод</string>
     <string name="settings_appearance_calendar_title">Альтернативный календарь</string>
     <string name="settings_background_updates_refresh_never_warning1">Отключив фоновые обновления, вы больше не будете получать уведомления о предупреждениях или осадках. Виджеты не будут обновляться, пока вы не откроете приложение.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Процесс фонового обновления прост: он обновляет только ваше первое местоположение с выбранной вами частотой, а дополнительные местоположения обновляются только в том случае, если они вам нужны, один раз в день. Он экономно расходует заряд батареи и не должен превышать 5 МБ данных в месяц.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Процесс фонового обновления прост: он обновляет только ваше первое местоположение с выбранной вами частотой, а дополнительные местоположения обновляются только в том случае, если они вам нужны, один раз в день. Он экономно расходует заряд батареи и не должен превышать %d МБ данных в месяц.</string>
     <string name="settings_background_updates_refresh_never_warning3">Рассмотрите возможность использования менее частой частоты обновления вместо отключения фоновых обновлений. В противном случае нажмите «Продолжить», если вы все еще хотите продолжить.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Совместимые пакеты не найдены</string>
     <string name="message_server_unavailable_title">Сервер недоступен</string>
