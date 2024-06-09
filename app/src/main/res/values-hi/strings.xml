@@ -661,7 +661,7 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">स्पर्श इनपुट पर स्विच करें</string>
     <string name="dialog_time_picker_toggle_text_input_voice">टेक्स्ट इनपुट पर स्विच करें</string>
     <string name="settings_background_updates_refresh_never_warning3">बैकग्राउंड अपडेट को बंद करने के बजाय कम आवृत्ति वाली ताजगी दर का उपयोग करने का विचार करें। अन्यथा यदि आप अभी भी आगे बढ़ना चाहते हैं, तो “जारी रखें” पर टैप करें।</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">वायु गुणवत्ता संदर्भ (Air Quality Instance)</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">वायु गुणवत्ता सर्वर</string>
     <string name="settings_appearance_calendar_title">वैकल्पिक कैलेंडर</string>
     <string name="settings_widgets_configure_widget_summary">इस विजेट को कॉन्फ़िगर करें</string>
     <string name="unit_mgpcum">मिलीग्राम/मीटर³ (mg/m³)</string>
