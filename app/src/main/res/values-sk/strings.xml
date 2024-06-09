@@ -453,4 +453,16 @@
     <string name="settings_debug_dump_crash_logs_saved">Záznamy o chybách boli uložené</string>
     <string name="settings_notifications">Notifikácie</string>
     <string name="unit_h_voice">hodín</string>
+    <string name="action_continue">Pokračovať</string>
+    <string name="action_close">Zavrieť</string>
+    <string name="message_network_unavailable">Sieť nie je k dispozícii</string>
+    <string name="dialog_time_picker_select_time">Vybrať čas</string>
+    <string name="dialog_time_picker_input_time">Zadajte čas</string>
+    <string name="message_invalid_incomplete_data">Neplatné alebo neúplné dáta obdržané zo servera</string>
+    <string name="action_edit_location">Upraviť túto lokáciu</string>
+    <string name="action_learn_more">Zistiť viac</string>
+    <string name="action_confirm">Potvrdiť</string>
+    <string name="action_share">Zdieľať</string>
+    <string name="dialog_permissions_location_background_title">Prístup k polohe v pozadí</string>
+    <string name="message_server_unavailable_title">Server je nedostupný</string>
 </resources>
