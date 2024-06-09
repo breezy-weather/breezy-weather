@@ -2,7 +2,7 @@
 
 **Translations**
 - Translations updated
-- Initial translation added for Hebrew (@nvurgaft)
+- Initial translation added for Hebrew (@nvurgaft, Doge)
 
 
 # Version 5.2.4 (2024-06-01)
