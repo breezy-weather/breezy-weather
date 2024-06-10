@@ -129,7 +129,7 @@
     <string name="air_quality_no2_info_introduction">Kvælstofilte (NO₂) er en kvælende, giftig, rødbrun gas, med en karakteristisk skarp, harsk lugt.</string>
     <string name="pollen_fraxinus">Ask</string>
     <string name="ephemeris_sunrise_at">Solopgang kl. %s</string>
-    <string name="weather_air_quality_data_by">Luftkvalitetsdata af %s</string>
+    <string name="weather_air_quality_data_by">Luftkvalitetsdata fra %s</string>
     <string name="ephemeris_moon_phase_last_quarter">Sidste kvarter</string>
     <string name="pressure">Tryk</string>
     <string name="pollen_corylus">Hassel</string>
@@ -164,7 +164,7 @@
     <string name="dew_point_short">Dugpt.</string>
     <string name="cloud_cover">Skydække</string>
     <string name="ceiling">Loft</string>
-    <string name="weather_data_by">Data af %s</string>
+    <string name="weather_data_by">Data fra %s</string>
     <string name="widget_multi_city">Flere byer</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="weather_source_accu_preference_hours_120">120 timer</string>
