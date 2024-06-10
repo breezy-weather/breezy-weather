@@ -142,7 +142,7 @@
     <string name="visibility">Sigtbarhed</string>
     <string name="weather_pollen_data_by">Pollendata fra %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftkvalitet og pollendata fra %s</string>
-    <string name="weather_minutely_data_by">Nedbørsdata af %s</string>
+    <string name="weather_minutely_data_by">Nedbørsdata fra %s</string>
     <string name="weather_normals_data_by">Temperaturdata af %s</string>
     <string name="weather_message_data_refresh_failed">Opdatering af vejrdata mislykkedes</string>
     <string name="weather_message_secondary_data_refresh_failed">Opdatering af vejrdata for en sekundær vejrkilde mislykkedes</string>
