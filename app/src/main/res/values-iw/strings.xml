@@ -460,4 +460,13 @@
     <string name="widget_custom_subtitle_keyword_l_description">מיקום</string>
     <string name="widget_custom_subtitle_keyword_lat_description">קו רוחב</string>
     <string name="widget_custom_subtitle_keyword_enter_description">שורה חדשה</string>
+    <string name="settings_notifications">התראות</string>
+    <string name="settings_widgets_section_notification_widget">ווידג\'ט התראות</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">הקש על מנת לפתוח</string>
+    <string name="settings_item_delete">מחק פריט זה</string>
+    <string name="settings_color_day_always">תמיד יום</string>
+    <string name="settings_widgets_notification_style_title">עיצוב</string>
+    <string name="settings_color_day_night">יום / לילה</string>
+    <string name="settings_color_night_always">תמיד לילה</string>
+    <string name="settings_widgets_notification_widget_title">ווידג\'ט התראות</string>
 </resources>
