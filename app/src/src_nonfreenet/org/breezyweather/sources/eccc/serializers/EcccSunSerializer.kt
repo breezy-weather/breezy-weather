@@ -1,4 +1,4 @@
-package org.breezyweather.sources.eccc
+package org.breezyweather.sources.eccc.serializers
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer

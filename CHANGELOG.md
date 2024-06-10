@@ -1,5 +1,8 @@
 # Version 5.2.5 (not yet released)
 
+**Sources**
+- [ECCC] Fix refreshing issues in locations observing midnight sun
+
 **Translations**
 - Translations updated
 - Initial translation added for Hebrew (@nvurgaft, Doge)

@@ -17,7 +17,7 @@
 package org.breezyweather.sources.eccc.json
 
 import kotlinx.serialization.Serializable
-import org.breezyweather.sources.eccc.EcccSunSerializer
+import org.breezyweather.sources.eccc.serializers.EcccSunSerializer
 
 @Serializable(with = EcccSunSerializer::class)
 data class EcccSun(
