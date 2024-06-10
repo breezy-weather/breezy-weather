@@ -160,8 +160,8 @@
     <string name="humidity_short">Luftf.</string>
     <string name="pressure_short">Tryk</string>
     <string name="visibility_short">Sigtb.</string>
-    <string name="dew_point">Dugpt.</string>
-    <string name="dew_point_short">Dugpunkt</string>
+    <string name="dew_point">Dugpunkt</string>
+    <string name="dew_point_short">Dugpt.</string>
     <string name="cloud_cover">Skydække</string>
     <string name="ceiling">Loft</string>
     <string name="weather_data_by">Data af %s</string>
