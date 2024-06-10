@@ -92,6 +92,8 @@
     <string name="air_quality_o3_info_consequences">অত্যধিক ওজোনের এক্সপোজার শ্বাসকষ্টের কারণ হতে পারে, হাঁপানি শুরু করতে পারে, ফুসফুসের কার্যকারিতা হ্রাস করতে পারে এবং ফুসফুসের রোগ হতে পারে।</string>
     <string name="air_quality_no2_info_origin">NO₂ এর পরিবেষ্টিত উত্সগুলি গরম, পরিবহন, শিল্প এবং বিদ্যুৎ উৎপাদনের মতো প্রক্রিয়াগুলিতে জ্বালানীর উচ্চ তাপমাত্রার দহনের ফলে হয়। নাইট্রোজেন অক্সাইডের (NOₓ) গৃহস্থালীর উৎসগুলির মধ্যে রয়েছে এমন সরঞ্জাম যা জ্বালানী পোড়ায় যেমন চুল্লি, ফায়ারপ্লেস এবং গ্যাসের চুলা এবং চুলা।</string>
     <string name="short_yesterday">গতকাল</string>
-    <string name="alert_source">সতর্কতার উৎস</string>
+    <string name="alert_source">উৎস: %s</string>
     <string name="temperature_real_feel">প্রকৃত অনুভূত তাপমাত্রা</string>
+    <string name="temperature_real_feel_shade">ছায়ায় প্রকৃত অনুভূত তাপমাত্রা</string>
+    <string name="null_data_text">উপলভ্য নয়</string>
 </resources>
