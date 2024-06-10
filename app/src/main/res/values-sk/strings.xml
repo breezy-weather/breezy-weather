@@ -206,7 +206,7 @@
     <string name="settings_background_updates_refresh_6h">6 hodín</string>
     <string name="common_weather_text_drizzle_freezing">Mrznúce mrholenie</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Špecifické pokyny výrobcu</string>
-    <string name="settings_widgets_notification_feels_like_switch">Použitie Pocitovej teploty</string>
+    <string name="settings_widgets_notification_feels_like_switch">Použiť pocitovú teplotu</string>
     <string name="common_weather_text_rain_freezing">Mrznúci dážď</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
     <string name="settings_background_updates_refresh_12h">12 hodín</string>
@@ -502,4 +502,21 @@
     <string name="settings_location_access_permission_already_granted">Povolenie už bolo udelené</string>
     <string name="settings_weather_source_unavailable">%s (nedostupný)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Aktuálny rosný bod</string>
+    <string name="message_server_timeout">Vypršal časový limit požiadavku</string>
+    <string name="message_tap_again_to_exit">Stlačte znovu pre odchod</string>
+    <string name="action_show_errors">Stlačte pre zobrazenie podrobností</string>
+    <string name="settings_items_drag_to_sort">Pre zoradenie stlačte položku a potiahnite</string>
+    <string name="notification_running_in_background">Aplikácia beží na pozadí pre aktualizáciu údajov</string>
+    <string name="widget_week">Týždenný</string>
+    <string name="settings_widgets_live_wallpaper_title">Živá tapeta</string>
+    <string name="unit_hpa_voice">Hektopascaly</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Aktuálny index kvality ovzdušia</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Aktuálna viditeľnosť</string>
+    <string name="message_server_unavailable_content">Toto je zvyčajne iba dočasná chyba. Ak však pretrváva dlhšie, nahláste ju prosím v platforme GitHub.</string>
+    <string name="message_parsing_error_content">Uistite sa, že máte nainštalovanú najnovšiu verziu aplikácie. Server môže byť dočasne nedostupný, v tom prípade to skúste neskôr. Ak problém aj naďalej pretrváva, prosím uložte záznam o chybe v sekcii \"Ladenie\" v nastaveniach a nahláste chybu na platforme GitHub.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Skúste zmeniť zdroj informácii o počasí alebo odstráňte a znovu pridajte toto miesto.</string>
+    <string name="widget_day">Denný</string>
+    <string name="widget_day_week">Denný + Týždenný</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Stačením otvoríte</string>
 </resources>
