@@ -140,8 +140,8 @@
     <string name="ephemeris_moon_phase_full_moon">Fuldmåne</string>
     <string name="ephemeris_moonset_at">Månenedgang kl. %s</string>
     <string name="visibility">Sigtbarhed</string>
-    <string name="weather_pollen_data_by">Pollendata af %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Luftkvalitet og pollendata af %s</string>
+    <string name="weather_pollen_data_by">Pollendata fra %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Luftkvalitet og pollendata fra %s</string>
     <string name="weather_minutely_data_by">Nedbørsdata af %s</string>
     <string name="weather_normals_data_by">Temperaturdata af %s</string>
     <string name="weather_message_data_refresh_failed">Opdatering af vejrdata mislykkedes</string>
