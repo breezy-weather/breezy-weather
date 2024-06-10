@@ -692,7 +692,7 @@
     <string name="settings_background_updates_refresh_never_warning3">Zvažte použití méně časté frekvence obnovování, namísto vypnutí aktualizací na pozadí. Pokud stále chcete pokračovat, klepněte na „Pokračovat“.</string>
     <string name="settings_appearance_calendar_title">Alternativní kalendář</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>
-    <string name="message_server_unavailable_content">Toto obvykle bývá dočasný chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
+    <string name="message_server_unavailable_content">Toto obvykle bývá dočasná chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
     <string name="message_server_unavailable_title">Server není dostupný</string>
     <string name="action_edit_location">Upravit tuto lokalitu</string>
     <string name="settings_global">Globální nastavení</string>
