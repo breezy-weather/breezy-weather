@@ -1,5 +1,8 @@
 # Version 5.2.5 (not yet released)
 
+**Improvements and fixes**
+- Fix wrong category for UV when between two categories in some cases
+
 **Sources**
 - [ECCC] Fix refreshing issues in locations observing midnight sun
 
