@@ -509,4 +509,15 @@
     <string name="weather_pollen_data_by">%s에 의한 꽃가루 데이터</string>
     <string name="pollen_cupressaceae_taxaceae">편백나무</string>
     <string name="pollen_populus">포플러</string>
+    <string name="common_weather_text_rain_showers_heavy">폭우</string>
+    <string name="common_weather_text_rain_freezing_light">약하게 차가운 비</string>
+    <string name="common_weather_text_rain_light">가랑비</string>
+    <string name="common_weather_text_rain_snow_mixed">진눈깨비</string>
+    <string name="common_weather_text_rain_showers_light">약한 소나기</string>
+    <string name="common_weather_text_rain_showers_moderate">보통 정도의 소나기</string>
+    <string name="common_weather_text_rain_freezing">얼어붙는 비</string>
+    <string name="common_weather_text_rain_moderate">보통 비</string>
+    <string name="common_weather_text_rain_freezing_heavy">대폭우</string>
+    <string name="common_weather_text_rain_heavy">많은 비</string>
+    <string name="common_weather_text_rain_showers">소나기</string>
 </resources>
