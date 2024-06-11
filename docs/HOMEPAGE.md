@@ -307,7 +307,11 @@ Only show allergens with at least one day where concentration > 0. The details o
 
 ### Ephemeris (Sun & Moon)
 
-Arc show the progression of sun and moon during their course. The starting point is the rise time (sunrise or moonrise) and the endpoint is the set time (sunset or moonset).
+Arc show the progression of sun and moon during their course for the currently observed day. The starting point is the rise time (sunrise or moonrise) and the endpoint is the set time (sunset or moonset). The sun and the moon icons remain on the endpoint after they set for the rest of the day.
+
+If there are two rise time (for example, the moon rises twice that day, or the moon already rose before 00:00 that day), only the first rise time after midnight for that day will be shown. The set time is the set time for that rise time, and can end up on next day. You will not be shown a set time before a rise time, even if one exists. If that information is important to you, we recommend using dedicated astronomy tools instead, especially as some weather sources might behave differently than what we just described (which is the general and fallback case).
+
+When sun or moon is always up, it will be shown as rising at 00:00 and setting at 23:59. When sun or moon is always down, nothing will be shown.
 
 Sunrise and sunset are shown on bottom left, and moonrise and moonset on bottom right.
 
