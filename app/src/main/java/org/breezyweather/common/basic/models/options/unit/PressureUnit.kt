@@ -32,10 +32,10 @@ enum class PressureUnit(
     MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }),
     KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10) }, 1),
     HPA("hpa", { valueInDefaultUnit -> valueInDefaultUnit }),
-    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, 2),
+    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, 3),
     MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) }),
-    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, 1),
-    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, 2);
+    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, 2),
+    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, 3);
 
     companion object {
 

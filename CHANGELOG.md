@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Fix wrong category for UV when between two categories in some cases
+- Add one more decimal precision to the following pressure units: inHg, atm, kgf/cm²
 
 **Sources**
 - [ECCC] Fix refreshing issues in locations observing midnight sun
