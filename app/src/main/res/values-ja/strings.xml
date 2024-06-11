@@ -635,7 +635,7 @@
     <string name="action_confirm">確認</string>
     <string name="widget_label_hide_header">ヘッダーを隠す</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">現在の空気質指数</string>
-    <string name="weather_message_too_frequent_refreshes">数秒を待ってから再試行してください…</string>
+    <string name="weather_message_too_frequent_refreshes">数秒待ってから再試行してください…</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日の空気質指数, 明日, …, 4日目</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
     <string name="pollen_urticaceae">蕁麻花粉</string>
