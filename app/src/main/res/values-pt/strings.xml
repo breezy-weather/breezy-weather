@@ -280,7 +280,6 @@
     <string name="settings_main_background_animation_disabled">Desativado</string>
     <string name="settings_notifications_summary">Notificações de alertas meteorológicos, precipitações ou previsão para o primeiro local</string>
     <string name="settings_widgets_monochrome_icons_title">Ícones monocromáticos</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Ordem inversa de temperaturas dia/noite</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
     <string name="unit_lpsqmph_voice">Litros por metro quadrado por hora</string>

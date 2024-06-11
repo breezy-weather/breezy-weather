@@ -518,7 +518,6 @@
     <string name="settings_main_section_displayed_data">प्रदर्शित की गई माहिती</string>
     <string name="settings_main_cards_title">पत्ते</string>
     <string name="settings_units">इकाइयाँ</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">दिन/रात के तापमान का क्रम उलटा करे</string>
     <string name="settings_debug">दोषमार्जन</string>
     <string name="common_weather_text_drizzle_freezing">गोठने वाली बूंदें बांदी</string>
     <string name="common_weather_text_drizzle_freezing_heavy">भारी बर्फ़ीली बूंदाबांदी</string>

@@ -410,7 +410,6 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Orario di notifica per le previsioni del giorno successivo</string>
     <string name="settings_widgets">Widgets &amp; sfondo animato</string>
     <string name="settings_widgets_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Invertire l’ordine delle temperature giorno/notte</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in uso</string>
     <string name="settings_widgets_configure_widget_summary">Configura questo widget</string>
     <string name="settings_widgets_section_notification_widget">Widget di notifica</string>

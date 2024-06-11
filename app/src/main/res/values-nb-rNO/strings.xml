@@ -380,7 +380,6 @@
     <string name="settings_widgets_live_wallpaper_title">Animert bakgrunn</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurer denne modulen</string>
     <string name="settings_widgets_section_widgets_in_use">Moduler i bruk</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Reverser rekkefølgen på dag/natt temperaturer</string>
     <string name="settings_widgets_broadcast_send_data_title">Send værdata til %s</string>
     <string name="settings_widgets_section_notification_widget">Varselmodul</string>
     <string name="settings_widgets_notification_widget_title">Varselmodul</string>

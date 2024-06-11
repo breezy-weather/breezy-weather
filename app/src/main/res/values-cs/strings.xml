@@ -376,7 +376,6 @@
     <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
     <string name="settings_main_cards_other_element_animations_switch">Další animace prvků</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurace tohoto widgetu</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Obrácené pořadí denních/nočních teplot</string>
     <string name="settings_debug">Ladění</string>
     <string name="locations">Umístění</string>
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>

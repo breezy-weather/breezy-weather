@@ -414,7 +414,6 @@
     <string name="settings_main_hourly_trends_title">每小時趨勢</string>
     <string name="settings_notifications_forecast_time_today_title">當日天氣預報通知時間</string>
     <string name="settings_widgets_monochrome_icons_title">單色圖示</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">顛倒晝/夜溫度順序</string>
     <string name="notification_channel_background_services">背景服務</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="message_parsing_error_content">請確認您的應用程式已更新至最新版本。若伺服器暫時無法使用，請稍後再試。若問題持續，請從偵錯設定中導出錯誤記錄，並在 GitHub 上報告問題。</string>

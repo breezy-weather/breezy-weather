@@ -585,7 +585,6 @@
     <string name="notification_style_native">Natív</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_main_daily_trends_title">Napi trendek</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Fordított nappali/éjszakai hőmérsékletsorrend</string>
     <string name="settings_widgets_broadcast_send_data_title">Időjárásadatok elküldése a %s számára</string>
     <string name="settings_color_dark">Sötét</string>
     <string name="unit_mi_voice">Mérföld</string>

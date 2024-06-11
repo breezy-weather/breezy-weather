@@ -458,7 +458,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_inph">in/h</string>
     <string name="action_help_me_choose">Auta valitsemaan</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Käänteinen järjestys päivä/yö lämpötiloille</string>
     <string name="about_contact">Yhteydenotto</string>
     <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Pixel</string>

@@ -490,7 +490,6 @@
     <string name="settings_widgets_section_widgets_in_use">Complementos utilizados</string>
     <string name="settings_main_cards_title">Tarjetas</string>
     <string name="settings_main_hourly_trends_title">Evolución por hora</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Invertir el orden para las temperaturas diurnas/nocturnas</string>
     <string name="settings_widgets_monochrome_icons_title">Iconos monocromáticos</string>
     <string name="settings_main_background_animation_disabled">Desactivado</string>
     <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu ubicación actual.</string>

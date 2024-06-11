@@ -347,7 +347,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
     <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Обратный порядок дневных и ночных температур</string>
     <string name="settings_widgets_section_widgets_in_use">Используемые виджеты</string>
     <string name="settings_debug">Отладка</string>
     <string name="settings_debug_dump_crash_logs_summary">Сохраняет журналы с ошибками в файл для отправки разработчикам</string>

@@ -502,7 +502,6 @@
     <string name="settings_notifications_precipitations_title">Powiadomienia o opadach</string>
     <string name="settings_notifications_forecast_time_today_title">Czas powiadomienia o prognozie na dany dzień</string>
     <string name="settings_notifications_forecast_tomorrow_title">Powiadomienie o prognozie na następny dzień</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Odwróć kolejność temperatur w dzień/nocy</string>
     <string name="settings_widgets_configure_widget_summary">Skonfiguruj ten widżet</string>
     <string name="settings_widgets_section_notification_widget">Widżet w powiadomieniu</string>
     <string name="settings_widgets_notification_widget_title">Widżet w powiadomieniu</string>

@@ -498,7 +498,6 @@
     <string name="settings_notifications_forecast_today_title">Dienos prognozės pranešimas</string>
     <string name="settings_notifications_forecast_time_today_title">Dienos prognozės pranešimo laikas</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Kitos dienos prognozės pranešimo laikas</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Atvirkštinė dienos ir nakties temperatūrų tvarka</string>
     <string name="temperature_average_short">Vid.</string>
     <string name="temperature_normal_short">Normalus</string>
     <string name="temperature_normals">Temperatūros normos</string>

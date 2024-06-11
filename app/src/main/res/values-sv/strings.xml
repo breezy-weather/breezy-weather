@@ -412,7 +412,6 @@
     <string name="settings_color_night_always">Alltid natt</string>
     <string name="weather_api_key_required_missing_title">Krävd API-nyckel saknas</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Invertera ordningen på dags-/nattemperaturer</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
     <string name="unit_inhg_voice">Tum kvicksilver</string>

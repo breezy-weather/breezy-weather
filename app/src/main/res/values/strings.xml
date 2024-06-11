@@ -607,7 +607,6 @@
     <string name="settings_widgets_live_wallpaper_error">Couldn’t launch wallpaper chooser. You can still enable Breezy Weather wallpaper by choosing “Live Wallpaper” in your home screen wallpaper picker.</string>
     <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly views</string>
     <string name="settings_widgets_monochrome_icons_title">Monochrome icons</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Reverse day/night temperatures order</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>
     <string name="settings_widgets_configure_widget_summary">Configure this widget</string>
     <string name="settings_widgets_section_notification_widget">Notification widget</string>

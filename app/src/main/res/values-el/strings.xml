@@ -585,7 +585,6 @@
     <string name="unit_mmph">mm/h</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφρά χαλαζόπτωση</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Αντίστροφη σειρά θερμοκρασιών ημέρας/νύχτας</string>
     <string name="settings_widgets_section_widgets_in_use">Γραφικά στοιχεία σε χρήση</string>
     <string name="settings_widgets_notification_feels_like_switch">Χρήση αίσθηση ως θερμοκρασία</string>
     <string name="settings_widgets_summary">Ορισμός ταπετσαρίας, διαμόρφωση γραφικών στοιχείων που χρησιμοποιούνται, γραφικό στοιχείο ειδοποιήσεων</string>

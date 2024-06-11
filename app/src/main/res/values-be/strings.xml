@@ -431,7 +431,6 @@
     <string name="settings_widgets_live_wallpaper_error">Не ўдалося запусціць сродак выбару шпалер. Вы па-ранейшаму можаце ўключыць шпалеры Breezy Weather, выбраўшы Жывыя шпалеры ў меню выбару шпалер на галоўным экране.</string>
     <string name="settings_widgets_week_icon_mode_title">Абразкі для адлюстравання ў тыднёвых праглядах</string>
     <string name="settings_widgets_monochrome_icons_title">Манахромныя абразкі</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Зваротны парадак дзённых і начных тэмператур</string>
     <string name="settings_widgets_section_widgets_in_use">Выкарыстоўваныя фішкі</string>
     <string name="settings_widgets_configure_widget_summary">Наладзіць гэты віджэт</string>
     <string name="settings_widgets_section_notification_widget">Віджэт у апавяшчэннях</string>

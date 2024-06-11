@@ -448,7 +448,6 @@
     <string name="settings_widgets_live_wallpaper_title">کاغذدیواری زنده</string>
     <string name="settings_widgets_monochrome_icons_title">نماد تک رنگ</string>
     <string name="settings_widgets_configure_widget_summary">پیکربندی این ابزارک</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">معکوس کردن ترتیب دما شب/روز</string>
     <string name="settings_widgets_section_widgets_in_use">ابزارک های در حال استفاده</string>
     <string name="settings_widgets_notification_style_title">حالت</string>
     <string name="settings_widgets_notification_temp_icon_switch">نماد دما در نوار وضعیت</string>

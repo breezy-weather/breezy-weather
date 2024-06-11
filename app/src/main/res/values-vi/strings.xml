@@ -341,7 +341,6 @@
     <string name="settings_widgets_summary">Đặt hình nền, thiết lập tiện ích đã sử dụng, tiện ích thông báo,</string>
     <string name="settings_widgets_week_icon_mode_title">Biểu tượng để hiển thị ở kiểu xem theo tuần</string>
     <string name="settings_widgets_monochrome_icons_title">Biểu tượng đơn sắc</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Đảo ngược thứ tự nhiệt độ ngày/đêm</string>
     <string name="settings_widgets_configure_widget_summary">Thiết lập tiện ích này</string>
     <string name="settings_widgets_section_notification_widget">Tiện ích thông báo</string>
     <string name="settings_widgets_notification_persistent_switch">Khóa</string>

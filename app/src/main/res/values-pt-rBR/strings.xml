@@ -410,7 +410,6 @@
     <string name="settings_widgets">Widgets &amp; Papel de parede animado</string>
     <string name="settings_widgets_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="settings_widgets_week_icon_mode_title">Ícone a ser exibido em visualizações semanais</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Ordem inversa de temperaturas dia/noite</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_widgets_configure_widget_summary">Configurar esse widget</string>
     <string name="settings_widgets_monochrome_icons_title">Ícones monocromáticos</string>

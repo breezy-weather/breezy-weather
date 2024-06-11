@@ -588,7 +588,6 @@
     <string name="common_weather_text_rain_light">Lichte regen</string>
     <string name="common_weather_text_rain_snow_mixed">Natte sneeuw</string>
     <string name="common_weather_text_rain_freezing_heavy">Zware ijzel</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Omgekeerde dag/nacht temperatuur volgorde</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in gebruik</string>
     <string name="settings_widgets_configure_widget_summary">Deze widget configureren</string>
     <string name="settings_widgets_section_notification_widget">Widget voor meldingen</string>

@@ -533,7 +533,6 @@
     <string name="unit_lpsqmph_voice">Liter per meter persegi per jam</string>
     <string name="weather_api_key_required_missing_title">Kunci API yang dibutuhkan belum ada</string>
     <string name="action_help_me_choose">Bantu saya pilih</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Balikkan urutan suhu siang/malam</string>
     <string name="settings_location_access_switch_summaryOff">Silakan memperbolehkan jika Anda ingin dapat menambahkan lokasi Anda saat ini sebagai lokasi.</string>
     <string name="dialog_permissions_notification_content">Ketuk di sini untuk mengaktifkan notifikasi tentang peringatan cuaca, atau tentukan nanti dalam Pengaturan.</string>
     <string name="settings_widgets_section_widgets_in_use">Widget hang digunakan</string>

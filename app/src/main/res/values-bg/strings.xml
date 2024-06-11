@@ -403,7 +403,6 @@
     <string name="settings_widgets_summary">Задаване на тапет, конфигуриране на използвани приспособления, приспособление за известия</string>
     <string name="settings_widgets_week_icon_mode_title">Икона за показване в седмични изгледи</string>
     <string name="settings_widgets_monochrome_icons_title">Едноцветни икони</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Обратен ред на температурите за ден/нощ</string>
     <string name="settings_item_delete">Изтрий този елемент</string>
     <string name="settings_widgets_live_wallpaper_error">Неуспешно стартиране на инструмента за избор на тапет. Все още можете да активирате тапет Breezy Weather, като изберете “Живи тапети” в инструмента за избор на тапети на началния екран.</string>
     <string name="settings_widgets_section_widgets_in_use">Приспособления в употреба</string>

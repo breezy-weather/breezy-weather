@@ -476,7 +476,6 @@
     <string name="settings_widgets_live_wallpaper_summary">将一个天气动画设置为壁纸</string>
     <string name="settings_widgets_week_icon_mode_title">显示在每周视图中的图标</string>
     <string name="settings_widgets_monochrome_icons_title">单色图标</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">交换白天/夜间温度</string>
     <string name="settings_widgets_configure_widget_summary">配置此微件</string>
     <string name="settings_widgets_section_notification_widget">通知微件</string>
     <string name="settings_debug_summary">崩溃日志</string>

@@ -271,7 +271,6 @@
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja za dnevnu prognozu</string>
     <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget obavještenja</string>
     <string name="settings_widgets_configure_widget_summary">Podesite ovaj widget</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Zamijeni redoslijed temperatura dan/noć</string>
     <string name="settings_widgets_section_widgets_in_use">Widgeti u upotrebi</string>
     <string name="settings_widgets_notification_persistent_switch">Stalni</string>
     <string name="settings_widgets_broadcast_send_data_title">Pošaljite prognozu na %s</string>

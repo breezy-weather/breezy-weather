@@ -525,7 +525,6 @@
     <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran Breezy Weather en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
     <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>
     <string name="settings_widgets_monochrome_icons_title">Icônes monochromes</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Inverser l’ordre des températures jour/nuit</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets utilisés</string>
     <string name="settings_widgets_configure_widget_summary">Configurer ce widget</string>
     <string name="settings_widgets_section_notification_widget">Notification widget</string>

@@ -460,7 +460,6 @@
     <string name="settings_widgets">الأيقونات والخلفيات الحية</string>
     <string name="settings_widgets_summary">تعيين خلفية، تكوين الأيقونات المستخدمة، أيقونة كإشعار</string>
     <string name="settings_widgets_monochrome_icons_title">أيقونات أحادية اللون</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">عكس ترتيب درجات الحرارة ليلا ونهارا</string>
     <string name="settings_widgets_section_widgets_in_use">الاداة قيد الاستخدام</string>
     <string name="settings_widgets_configure_widget_summary">تكوين هذه الأيقونة</string>
     <string name="settings_widgets_section_notification_widget">أيقونة كإشعار</string>

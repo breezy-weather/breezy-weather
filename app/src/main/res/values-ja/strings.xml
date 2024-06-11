@@ -419,7 +419,6 @@
     <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
     <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">昼夜の気温の順序を逆転させる</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">体感温度を使う</string>

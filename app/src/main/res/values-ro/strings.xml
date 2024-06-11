@@ -428,7 +428,6 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nu s-a putut deschide setările dispozitivului.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimizarea bateriei este deja dezactivată.</string>
     <string name="settings_widgets_monochrome_icons_title">Pictograme monocrom</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Inversează ordinea temperaturilor zi/noapte</string>
     <string name="settings_widgets_notification_persistent_switch">Persistent</string>
     <string name="settings_widgets_notification_feels_like_switch">Utilizează temperatura resimțită</string>
     <string name="settings_debug">Depanare</string>

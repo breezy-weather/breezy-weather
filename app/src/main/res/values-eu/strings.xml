@@ -287,7 +287,6 @@
     <string name="settings_main_background_animation_disabled">Desgaitua</string>
     <string name="settings_widgets_week_icon_mode_title">Astekako bistan erakusteko ikonoa</string>
     <string name="settings_widgets_monochrome_icons_title">Ikono monokromoak</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Eguneko/gaueko tenperaturen ordena aldatu</string>
     <string name="settings_widgets_section_widgets_in_use">Erabiltzen ari diren trepetak</string>
     <string name="settings_widgets_notification_persistent_switch">Iraunkorra</string>
     <string name="settings_widgets_notification_style_title">Estiloa</string>

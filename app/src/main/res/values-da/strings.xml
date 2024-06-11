@@ -354,7 +354,6 @@
     <string name="settings_appearance_language_title">Sprog</string>
     <string name="settings_icon_packs_get_more">Få flere</string>
     <string name="settings_widgets_monochrome_icons_title">Monokrome ikoner</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Ombyt rækkefølge på dag/nat-temperaturer</string>
     <string name="settings_invalid_syntax">Ugyldig syntaks</string>
     <string name="air_quality_co_info_title">Kulilte (CO)</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Aftagende pukkel</string>
@@ -578,7 +577,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindeks for i dag, i morgen, …, 4 dage senere</string>
     <string name="settings_background_updates_refresh_never_warning1">Ved at slå baggrundsopdateringer fra, vil du ikke længere modtage notifikationer om varsler, eller nedbør. Widgets vil ikke blive genopfrisket før du åbner appen.</string>
     <string name="settings_location_access_switch_summaryOn">Tilladt. Du kan tilføje din aktuelle placering, som en placering.</string>
-    <string name="settings_location_access_background_summaryOff">Aktivér venligst \"Tillad altid\", for at få baggrundsgenopfriskninger, for din aktuelle placering.</string>
+    <string name="settings_location_access_background_summaryOff">Aktivér venligst “Tillad altid”, for at få baggrundsgenopfriskninger, for din aktuelle placering.</string>
     <string name="air_quality_no2_info_origin">Atmosfæriske kilder til NO₂ stammer fra forbrænding af brændstoffer ved høje temperaturer, i processer, så som dem, der anvendes til opvarmning, transport, industri og energiproduktion. Husholdningskilder til kvælstofilter (NOₓ) inkluderer udstyr, som forbrænder brændstoffer, så som fyr, pejse og gaskomfurer og -ovne.</string>
     <string name="location_search_no_results_advice">Sørg for, at din søgning er stavet korrekt og ikke for specifikt. Ellers kan du prøve en anden placeringssøgningskilde, hvilket kan give andre resultater.</string>
     <string name="dialog_permissions_location_content">Breezy Weather har brug for at indsamle dine placeringsoplysninger, i forgrunden og baggrunden, for at levere din aktuelle placerings vejrdata. Til dette formål vil vi efterspørge nogle tilladelser. Dine placeringsoplysninger vil kun blive brugt til, at indhente vejrdata for din aktuelle placering. Hvis du ikke vil dele dine placeringsoplysninger, kan du afvise de krav og manuelt indstille din placering, på adminstrationssiden.</string>

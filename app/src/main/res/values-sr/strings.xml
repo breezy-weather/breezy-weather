@@ -263,7 +263,6 @@
     <string name="settings_notifications_forecast_time_today_title">Време обавештења за дневну прогнозу</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Време обавештења за прогнозу за следећи дан</string>
     <string name="settings_widgets_week_icon_mode_title">Иконица за приказ у недељним приказима</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Обрнути редослед дневних/ноћних температура</string>
     <string name="settings_none">Ниједно</string>
     <string name="null_data_text">N/A</string>
     <string name="message_parsing_error_title">Рашчлањивање података о времену није успело</string>

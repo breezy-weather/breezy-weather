@@ -10,7 +10,7 @@
 
 **Translations**
 - Translations updated
-- Initial translation added for Hebrew (@nvurgaft, Doge)
+- Hebrew translation added and completed (@nvurgaft, Doge)
 
 
 # Version 5.2.4 (2024-06-01)

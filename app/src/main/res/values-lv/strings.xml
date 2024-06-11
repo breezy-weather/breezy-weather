@@ -186,7 +186,6 @@
     <string name="settings_notifications">Paziņojumi</string>
     <string name="settings_notifications_precipitations_title">Paziņojumi par nokrišņiem</string>
     <string name="settings_notifications_forecast_tomorrow_title">Paziņojums par nākamās dienas prognozi</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Apvērsta dienas/nakts temperatūras secība</string>
     <string name="uv_index_11">Ekstrēms</string>
     <string name="air_quality_level_3_description">Gaiss ir sasniedzis augstu piesārņojuma līmeni un ir neveselīgs jutīgiem cilvēkiem. Jāsamazina ārā pavadītais laiks, ja ir jūtamas tādas izpausmes kā apgrūtināta elpošana vai rīkles kairinājums.</string>
     <string name="air_quality_level_4">Neveselīga</string>

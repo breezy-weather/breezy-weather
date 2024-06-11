@@ -501,7 +501,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">הודעה עבור תחזית היום הבא</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">זמן הודעה עבור תחזית היום הבא</string>
     <string name="settings_widgets_monochrome_icons_title">אייקונים מונוכרומיים</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">הפוך סדר טמפרטורות יום/לילה</string>
     <string name="settings_widgets_week_icon_mode_title">אייקון להצגת צפיות שבועיות</string>
     <string name="settings_widgets_section_widgets_in_use">ווידג\'טים בשימוש</string>
     <string name="settings_widgets_configure_widget_summary">הגדר את הווידג\'ט הזה</string>
