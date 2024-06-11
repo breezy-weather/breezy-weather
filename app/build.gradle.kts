@@ -75,6 +75,7 @@ android {
         it.buildConfigField("String", "MF_WSFT_KEY", "\"${properties.getProperty("breezy.mf.key") ?: ""}\"")
         it.buildConfigField("String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\"")
         it.buildConfigField("String", "PIRATE_WEATHER_KEY", "\"${properties.getProperty("breezy.pirateweather.key") ?: ""}\"")
+        it.buildConfigField("String", "CWA_KEY", "\"${properties.getProperty("breezy.cwa.key") ?: ""}\"")
     }
 
     flavorDimensions.add("default")
