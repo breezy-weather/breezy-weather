@@ -1,6 +1,7 @@
 # Version 5.2.5 (not yet released)
 
 **Improvements and fixes**
+- Add apparent temperature computing when missing (@chunshek). Will generally improve feels like temperature, as it avoids fallback to the -less useful- wet bulb temperature.
 - Fix wrong category for UV when between two categories in some cases
 - Add one more decimal precision to the following pressure units: inHg, atm, kgf/cm²
 
