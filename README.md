@@ -103,6 +103,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
   - National Weather Service (NWS)
   - Bright Sky (DWD)
   - Environment and Climate Change Canada
+  - Central Weather Administration (CMA), Taiwan
   - Israel Meteorological Service (IMS)
   - SMHI
   - MET Éireann

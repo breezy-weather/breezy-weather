@@ -17,10 +17,10 @@ Below, you can find details about the support and implementation status for feat
 |--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|
 | **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None |
 
-| National sources | China³ | NWS  | GeoSphere Austria  | Bright Sky | ECCC   | IMS                           | SMHI   | MET Éireann |
-|------------------|--------|------|--------------------|------------|--------|-------------------------------|--------|-------------|
-| **API key**      | None   | None | None               | None       | None   | None                          | None   | None        |
-| **Countries**    | China  | USA  | Austria and nearby | Germany    | Canada | Israel, West Bank, Gaza Strip | Sweden | Ireland     |
+| National sources | China³ | NWS  | GeoSphere Austria  | Bright Sky | ECCC   | CWA      | IMS                           | SMHI   | MET Éireann |
+|------------------|--------|------|--------------------|------------|--------|----------|-------------------------------|--------|-------------|
+| **API key**      | None   | None | None               | None       | None   | Required | None                          | None   | None        |
+| **Countries**    | China  | USA  | Austria and nearby | Germany    | Canada | Taiwan   | Israel, West Bank, Gaza Strip | Sweden | Ireland     |
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features may not be available everywhere.
@@ -151,6 +151,21 @@ Legend:
 | **UV**                        | ✅              | ✅    |
 | **Sun & Moon & Moon phase**   | ✅              | ✅    |
 
+| National sources              | CWA |
+|-------------------------------|-----|
+| **Daily (days)**              | 7   |
+| **Hourly (days)**             | 4   |
+| **Weather**                   | ✅   |
+| **Temperature**               | ✅   |
+| **Precipitation**             | ❌   |
+| **Precipitation probability** | ✅   |
+| **Wind**                      | ✅   |
+| **UV**                        | ✅¹  |
+| **Sun & Moon & Moon phase**   | ✅²  |
+
+* ¹ Forecast only
+* ² No moon phase
+
 ## Features that can be added from other sources
 
 | Worldwide sources            | Pirate Weather | HERE     |
@@ -161,7 +176,15 @@ Legend:
 | **Alerts**                   | ✅              | ❌        |
 | **Normals**                  | Average¹       | Average¹ |
 
-¹ Median from daily forecast
+| National sources             | CWA     |
+|------------------------------|---------|
+| **Air quality**              | Current |
+| **Pollen**                   | ❌       |
+| **Precipitation nowcasting** | ❌       |
+| **Alerts**                   | ✅       |
+| **Normals**                  | ✅       |
+
+* ¹ Median from daily forecast
 
 ## Other weather data
 
@@ -175,11 +198,32 @@ Legend:
 | **Ceiling**                | ❌              | ❌    |
 | **Precipitation duration** | ❌              | ❌    |
 | **Sunshine duration**      | ❌              | ❌    |
+
+| National sources           | CWA     |
+|----------------------------|---------|
+| **Humidity**               | ✅       |
+| **Dew point**              | ✅       |
+| **Pressure**               | Current |
+| **Cloud cover**            | ❌       |
+| **Visibility**             | ❌       |
+| **Ceiling**                | ❌       |
+| **Precipitation duration** | ❌       |
+| **Sunshine duration**      | ❌       |
+
+## Location
+
+| Worldwide sources          | Pirate Weather | HERE |
+|----------------------------|----------------|------|
 | **Search**                 | Default        | ✅    |
 | **Reverse geocoding**      | ❌¹             | ✅    |
 
-* ¹ TimeZone is assumed to be the same as device
+| National sources           | CWA |
+|----------------------------|-----|
+| **Search**                 | ❌   |
+| **Reverse geocoding**      | ✅²  |
 
+* ¹ TimeZone is assumed to be the same as device
+* ² TimeZone is assumed to be Asia/Taipei
 
 # Combinable sources
 
@@ -191,13 +235,13 @@ Legend:
 | **Alerts**                   | ❌          | ✅           | *In progress* | ❌           | ✅              | France       | *In progress* |
 | **Normals**                  | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             |
 
-| National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | IMS                           | MET Éireann | ATMO AuRA     |
-|------------------------------|-------|---------------|--------------------|--------------------|------------|--------|-------------------------------|-------------|---------------|
-| **Air quality**              | China | ❌             | Europe and nearby  | ❌                  | ❌          | ❌      | ❌                             | ❌           | France (AuRA) |
-| **Pollen**                   | ❌     | ❌             | ❌                  | ❌                  | ❌          | ❌      | ❌                             | ❌           | ❌             |
-| **Precipitation nowcasting** | China | ❌             | Austria and nearby | ❌                  | ❌          | ❌      | ❌                             | ❌           | ❌             |
-| **Alerts**                   | China | United States | Austria            | ✅                  | Germany    | Canada | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
-| **Normals**                  | ❌     | ❌             | *In progress*      | ❌                  | ❌          | Canada | ❌                             | ❌           | ❌             |
+| National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | CWA    | IMS                           | MET Éireann | ATMO AuRA     |
+|------------------------------|-------|---------------|--------------------|--------------------|------------|--------|--------|-------------------------------|-------------|---------------|
+| **Air quality**              | China | ❌             | Europe and nearby  | ❌                  | ❌          | ❌      | Taiwan | ❌                             | ❌           | France (AuRA) |
+| **Pollen**                   | ❌     | ❌             | ❌                  | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |
+| **Precipitation nowcasting** | China | ❌             | Austria and nearby | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |
+| **Alerts**                   | China | United States | Austria            | ✅                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
+| **Normals**                  | ❌     | ❌             | *In progress*      | ❌                  | ❌          | Canada | Taiwan | ❌                             | ❌           | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe

@@ -38,6 +38,7 @@ import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.cwa.CwaService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
@@ -66,6 +67,7 @@ class SourceManager @Inject constructor(
     baiduIPService: BaiduIPLocationService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
+    cwaService: CwaService,
     dmiService: DmiService,
     ecccService: EcccService,
     gadgetbridgeService: GadgetbridgeService,
@@ -118,6 +120,7 @@ class SourceManager @Inject constructor(
         geoSphereAtService, // Austria and nearby
         brightSkyService,
         ecccService,
+        cwaService,
         imsService,
         smhiService,
         metIeService,
