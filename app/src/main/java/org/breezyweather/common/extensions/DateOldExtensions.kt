@@ -69,6 +69,9 @@ fun Date.toTimezone(timeZone: TimeZone = TimeZone.getDefault()): Date {
 
 fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date? {
     return this.toCalendarWithTimeZone(timeZone).apply {
+        set(Calendar.YEAR, this.get(Calendar.YEAR))
+        set(Calendar.MONTH, this.get(Calendar.MONTH))
+        set(Calendar.DAY_OF_MONTH, this.get(Calendar.DAY_OF_MONTH))
         set(Calendar.HOUR_OF_DAY, 0)
         set(Calendar.MINUTE, 0)
         set(Calendar.SECOND, 0)
