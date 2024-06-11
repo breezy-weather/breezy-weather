@@ -644,4 +644,15 @@
     <string name="settings_follow_system">עקוב אחרי המערכת</string>
     <string name="settings_debug_dump_crash_logs_summary">שומר יומן שגיאות אל תוך קובץ לשיתוף עם המפתחים</string>
     <string name="notification_update_error">%d עדכון/ים נכשלו</string>
+    <string name="temperature_normal_short">נורמל</string>
+    <string name="temperature_normals">נורמלי טמפרטורה</string>
+    <string name="settings_widgets_notification_feels_like_switch">השתמש בטמפרטורה ”המרגישה כמו‌”</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">לא נמצאו חבילות תואמות</string>
+    <string name="settings_debug">ניפוי שגיאות</string>
+    <string name="unit_mm">מ\"מ</string>
+    <string name="unit_cmph">ס\"מ/שעה</string>
+    <string name="unit_inph">אינץ\'/שעה</string>
+    <string name="notification_precipitation_starting_desc">צפוי להתחיל ב%s</string>
+    <string name="notification_style_native">מקומי</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">ערפל כפור</string>
 </resources>
