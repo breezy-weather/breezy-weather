@@ -18,6 +18,7 @@ package org.breezyweather.sources.china
 
 import android.content.Context
 import android.graphics.Color
+import androidx.compose.ui.text.toLowerCase
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -94,13 +95,13 @@ class ChinaService @Inject constructor(
             appKey = CHINA_APP_KEY,
             sign = CHINA_SIGN,
             isGlobal = false,
-            context.currentLocale.code
+            context.currentLocale.toString().lowercase()
         )
         val minutely = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getMinutelyWeather(
                 location.latitude,
                 location.longitude,
-                context.currentLocale.code,
+                context.currentLocale.toString().lowercase(),
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
@@ -166,7 +167,7 @@ class ChinaService @Inject constructor(
                 appKey = CHINA_APP_KEY,
                 sign = CHINA_SIGN,
                 isGlobal = false,
-                context.currentLocale.code
+                context.currentLocale.toString().lowercase()
             )
         } else {
             Observable.create { emitter ->
@@ -178,7 +179,7 @@ class ChinaService @Inject constructor(
             mApi.getMinutelyWeather(
                 location.latitude,
                 location.longitude,
-                context.currentLocale.code,
+                context.currentLocale.toString().lowercase(),
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
