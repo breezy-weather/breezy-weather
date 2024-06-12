@@ -23,8 +23,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
@@ -71,9 +73,15 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     )
                 )
             mSun.visibility = View.VISIBLE
-            mSunText.text = (model.sun.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
-                (model.sun.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
-                (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+            mSunText.text = if (BreezyWeather.instance.debugMode) {
+                (model.sun.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↑ / " +
+                    (model.sun.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↓" +
+                    (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+            } else {
+                (model.sun.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
+                    (model.sun.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
+                    (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+            }
         } else {
             mSun.visibility = View.GONE
         }
@@ -94,7 +102,11 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     )
                 )
             mMoon.visibility = View.VISIBLE
-            mMoonText.text = (model.moon.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
+            mMoonText.text = if (BreezyWeather.instance.debugMode) {
+                (model.moon.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↓"
+            } else {
+                (model.moon.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
+            }
         } else {
             mMoon.visibility = View.GONE
         }
