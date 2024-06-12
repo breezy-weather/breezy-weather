@@ -17,3 +17,4 @@ jobs:
           github-token: ${{ github.token }}
           issue-inactive-days: '2'
           pr-inactive-days: '2'
+          discussion-inactive-days: '2'
