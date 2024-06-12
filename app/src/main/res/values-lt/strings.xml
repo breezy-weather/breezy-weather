@@ -255,7 +255,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">Akumuliatoriaus optimizavimas jau išjungtas.</string>
     <string name="widget_label_clock_font">Laikrodžio šriftas</string>
     <string name="widget_subtitle_data_custom">Pasirinktinis</string>
-    <string name="widget_label_align_end">Sulygiuoti į kairę</string>
+    <string name="widget_label_align_end">Sulygiuoti į dešinę</string>
     <string name="widget_custom_subtitle_keyword_al_description">Perspėjimai</string>
     <string name="widget_custom_subtitle_keyword_als_description">Perspėjimai (trumpi)</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Atnaujinimo laikas</string>
