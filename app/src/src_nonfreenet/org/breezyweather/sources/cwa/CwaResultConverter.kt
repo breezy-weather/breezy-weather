@@ -57,7 +57,7 @@ fun convert(
         timeZone = "Asia/Taipei",
         country = "臺灣",
         province = town.ctyName,
-        city = town.townName!!,
+        city = town.townName,
         district = town.villageName
     )
 }
@@ -72,15 +72,19 @@ fun convert(
     id: String,
     ignoreFeatures: List<SecondaryWeatherSourceFeature>
 ): WeatherWrapper {
-    if (weatherResult.data?.aqi?.getOrNull(0)?.town?.daily == null || weatherResult.data.aqi[0].town?.hourly == null) {
+    if (weatherResult.data?.aqi?.getOrNull(0)?.town?.daily == null || weatherResult.data.aqi[0].town!!.hourly == null) {
         throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
         current = getCurrent(weatherResult, ignoreFeatures),
-        normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) getNormals(normalsResult) else null,
-        dailyForecast = getDailyForecast(weatherResult.data.aqi[0].town!!.daily, sunResult, moonResult),
-        hourlyForecast = getHourlyForecast(weatherResult.data.aqi[0].town!!.hourly),
-        alertList = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) getAlertList(alertResult, location, id) else null
+        normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            getNormals(normalsResult)
+        } else null,
+        dailyForecast = getDailyForecast(weatherResult.data.aqi[0].town!!.daily!!, sunResult, moonResult),
+        hourlyForecast = getHourlyForecast(weatherResult.data.aqi[0].town!!.hourly!!),
+        alertList = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            getAlertList(alertResult, location, id)
+        } else null
     )
 }
 
@@ -92,37 +96,41 @@ fun convertSecondary(
     id: String
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        airQuality = if (airQualityResult != null) AirQualityWrapper(current = getAirQuality(airQualityResult, null, null)) else null,
-        alertList = if (alertResult != null) getAlertList(alertResult, location, id) else null,
-        normals = if (normalsResult != null) getNormals(normalsResult) else null
+        airQuality = airQualityResult?.let {
+            AirQualityWrapper(current = getAirQuality(it, null, null))
+        },
+        alertList = alertResult?.let { getAlertList(it, location, id) },
+        normals = normalsResult?.let { getNormals(it) }
     )
 }
 
 private fun getCurrent(
     weatherResult: CwaWeatherResult,
     ignoreFeatures: List<SecondaryWeatherSourceFeature>
-): Current {
+): Current? {
+    if (weatherResult.data?.aqi?.getOrNull(0)?.station?.weatherElement.isNullOrEmpty()) {
+        return null
+    }
+
     var weatherText: String? = null
     var weatherCode: WeatherCode? = null
     var temperature: Temperature? = null
-    var wind: Wind? = null
     var windDegree: Double? = null
     var windSpeed: Double? = null
     var windGusts: Double? = null
-    var airQuality: AirQuality? = null
     var relativeHumidity: Double? = null
     var pressure: Double? = null
 
-    weatherResult.data!!.aqi[0].station!!.weatherElement.forEach {
+    weatherResult.data!!.aqi!![0].station!!.weatherElement!!.forEach {
         if (it.elementValue != "-99" && it.elementValue != "-99.0") {
             when (it.elementName) {
                 "Weather" -> weatherText = it.elementValue
-                "TEMP" -> temperature = Temperature( temperature = it.elementValue.toDouble() )
-                "WDIR" -> windDegree = it.elementValue.toDouble()
-                "WDSD" -> windSpeed = it.elementValue.toDouble()
-                "H_FX" -> windGusts = it.elementValue.toDouble()
-                "HUMD" -> relativeHumidity = it.elementValue.toDouble()
-                "PRES" -> pressure = it.elementValue.toDouble()
+                "TEMP" -> temperature = Temperature( temperature = it.elementValue.toDoubleOrNull() )
+                "WDIR" -> windDegree = it.elementValue.toDoubleOrNull()
+                "WDSD" -> windSpeed = it.elementValue.toDoubleOrNull()
+                "H_FX" -> windGusts = it.elementValue.toDoubleOrNull()
+                "HUMD" -> relativeHumidity = it.elementValue.toDoubleOrNull()
+                "PRES" -> pressure = it.elementValue.toDoubleOrNull()
             }
         }
     }
@@ -130,58 +138,52 @@ private fun getCurrent(
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
     // First we check for precipitation, thunder, and fog conditions.
-    if (weatherText != null) {
-        if (weatherText!!.endsWith("有霾")) weatherCode = WeatherCode.HAZE
-        if (weatherText!!.endsWith("有靄")) weatherCode = WeatherCode.FOG
-        if (weatherText!!.endsWith("有閃電")) weatherCode = WeatherCode.THUNDER
-        if (weatherText!!.endsWith("有雷聲")) weatherCode = WeatherCode.THUNDER
-        if (weatherText!!.endsWith("有霧")) weatherCode = WeatherCode.FOG
-        if (weatherText!!.endsWith("有雨")) weatherCode = WeatherCode.RAIN
-        if (weatherText!!.endsWith("有雨雪")) weatherCode = WeatherCode.SLEET
-        if (weatherText!!.endsWith("有大雪")) weatherCode = WeatherCode.SNOW
-        if (weatherText!!.endsWith("有雪珠")) weatherCode = WeatherCode.SNOW
-        if (weatherText!!.endsWith("有冰珠")) weatherCode = WeatherCode.SNOW
-        if (weatherText!!.endsWith("有陣雨")) weatherCode = WeatherCode.RAIN
-        if (weatherText!!.endsWith("陣雨雪")) weatherCode = WeatherCode.SLEET
-        if (weatherText!!.endsWith("有雹")) weatherCode = WeatherCode.HAIL
-        if (weatherText!!.endsWith("有雷雨")) weatherCode = WeatherCode.THUNDERSTORM
-        if (weatherText!!.endsWith("有雷雪")) weatherCode = WeatherCode.SNOW
-        if (weatherText!!.endsWith("有雷雹")) weatherCode = WeatherCode.HAIL
-        if (weatherText!!.endsWith("大雷雨")) weatherCode = WeatherCode.THUNDERSTORM
-        if (weatherText!!.endsWith("大雷雹")) weatherCode = WeatherCode.HAIL
-        if (weatherText!!.endsWith("有雷")) weatherCode = WeatherCode.THUNDER
+    weatherText?.let {
+        weatherCode = when {
+            it.endsWith("有雷") -> WeatherCode.THUNDER
+            it.endsWith("大雷雹") -> WeatherCode.HAIL
+            it.endsWith("大雷雨") -> WeatherCode.THUNDERSTORM
+            it.endsWith("有雷雹") -> WeatherCode.HAIL
+            it.endsWith("有雷雪") -> WeatherCode.SNOW
+            it.endsWith("有雷雨") -> WeatherCode.THUNDERSTORM
+            it.endsWith("有雹") -> WeatherCode.HAIL
+            it.endsWith("陣雨雪") -> WeatherCode.SLEET
+            it.endsWith("有陣雨") -> WeatherCode.RAIN
+            it.endsWith("有大雪") || it.endsWith("有雪珠") || it.endsWith("有冰珠") -> WeatherCode.SNOW
+            it.endsWith("有雨雪") -> WeatherCode.SLEET
+            it.endsWith("有雨") -> WeatherCode.RAIN
+            it.endsWith("有霧") -> WeatherCode.FOG
+            it.endsWith("有閃電") || it.endsWith("有雷聲") -> WeatherCode.THUNDER
+            it.endsWith("有靄") -> WeatherCode.FOG
+            it.endsWith("有霾") -> WeatherCode.HAZE
 
-        // If there is no precipitation, thunder, or fog, we check for strong winds.
-        // CWA's thresholds for "Strong Wind Advisory" are
-        // sustained winds of Bft 6 (10.8m/s), or gusts Bft 8 (17.2m/s).
-        if (weatherCode == null) {
-            if (windSpeed != null && windSpeed!! >= 10.8) weatherCode = WeatherCode.WIND
-            if (windGusts != null && windGusts!! >= 17.2) weatherCode = WeatherCode.WIND
-        }
+            // If there is no precipitation, thunder, or fog, we check for strong winds.
+            // CWA's thresholds for "Strong Wind Advisory" are
+            // sustained winds of Bft 6 (10.8m/s), or gusts Bft 8 (17.2m/s).
+            (windSpeed ?: 0.0) >= 10.8 || (windGusts ?: 0.0) >= 17.2 -> WeatherCode.WIND
 
-        // If there is no precipitation, thunder, fog, or wind,
-        // we determine the code from cloud cover.
-        if (weatherCode == null) {
-            if (weatherText!!.startsWith("晴")) weatherCode = WeatherCode.CLEAR
-            if (weatherText!!.startsWith("多雲")) weatherCode = WeatherCode.PARTLY_CLOUDY
-            if (weatherText!!.startsWith("陰")) weatherCode = WeatherCode.CLOUDY
+            // If there is no precipitation, thunder, fog, or wind,
+            // we determine the code from cloud cover.
+            it.startsWith("晴") -> WeatherCode.CLEAR
+            it.startsWith("多雲") -> WeatherCode.PARTLY_CLOUDY
+            it.startsWith("陰") -> WeatherCode.CLOUDY
+
+            else -> null
         }
     }
-
-    wind = Wind(
-        degree = windDegree,
-        speed = windSpeed,
-        gusts = windGusts
-    )
-
-    airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) getAirQuality(weatherResult, temperature?.temperature, pressure) else null
 
     return Current(
         weatherText = weatherText,
         weatherCode = weatherCode,
         temperature = temperature,
-        wind = wind,
-        airQuality = airQuality,
+        wind = Wind(
+            degree = windDegree,
+            speed = windSpeed,
+            gusts = windGusts
+        ),
+        airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            getAirQuality(weatherResult, temperature?.temperature, pressure)
+        } else null,
         relativeHumidity = relativeHumidity,
         pressure = pressure
     )
@@ -189,12 +191,14 @@ private fun getCurrent(
 
 private fun getNormals(
     normalsResult: CwaNormalsResult
-): Normals {
-    return if (normalsResult.records != null) Normals(
-        month = normalsResult.records.data.surfaceObs.location[0].stationObsStatistics.AirTemperature.monthly[0].Month.toInt(),
-        daytimeTemperature = normalsResult.records.data.surfaceObs.location[0].stationObsStatistics.AirTemperature.monthly[0].Maximum.toDouble(),
-        nighttimeTemperature = normalsResult.records.data.surfaceObs.location[0].stationObsStatistics.AirTemperature.monthly[0].Minimum.toDouble()
-    ) else Normals()
+): Normals? {
+    return normalsResult.records?.data?.surfaceObs?.location?.getOrNull(0)?.stationObsStatistics?.AirTemperature?.monthly?.getOrNull(0)?.let {
+        Normals(
+            month = it.Month?.toIntOrNull(),
+            daytimeTemperature = it.Maximum?.toDoubleOrNull(),
+            nighttimeTemperature = it.Minimum?.toDoubleOrNull()
+        )
+    }
 }
 
 // Concentrations of SO₂, NO₂, O₃ are given in ppb (and in ppm for CO).
@@ -203,15 +207,17 @@ private fun getAirQuality(
     result: CwaWeatherResult,
     temperature: Double?,
     pressure: Double?
-): AirQuality {
-    return if (result.data != null) AirQuality(
-        pM25 = result.data.aqi[0].pm2_5.toDoubleOrNull(),
-        pM10 = result.data.aqi[0].pm10.toDoubleOrNull(),
-        sO2 = ppbToUgm3("SO2", result.data.aqi[0].so2.toDoubleOrNull(), temperature, pressure),
-        nO2 = ppbToUgm3("NO2", result.data.aqi[0].no2.toDoubleOrNull(), temperature, pressure),
-        o3 = ppbToUgm3("O3", result.data.aqi[0].o3.toDoubleOrNull(), temperature, pressure),
-        cO = ppbToUgm3("CO", result.data.aqi[0].co.toDoubleOrNull(), temperature, pressure)
-    ) else AirQuality()
+): AirQuality? {
+    return if (result.data?.aqi?.getOrNull(0) != null) {
+        AirQuality(
+            pM25 = result.data.aqi[0].pm2_5?.toDoubleOrNull(),
+            pM10 = result.data.aqi[0].pm10?.toDoubleOrNull(),
+            sO2 = ppbToUgm3("SO2", result.data.aqi[0].so2?.toDoubleOrNull(), temperature, pressure),
+            nO2 = ppbToUgm3("NO2", result.data.aqi[0].no2?.toDoubleOrNull(), temperature, pressure),
+            o3 = ppbToUgm3("O3", result.data.aqi[0].o3?.toDoubleOrNull(), temperature, pressure),
+            cO = ppbToUgm3("CO", result.data.aqi[0].co?.toDoubleOrNull(), temperature, pressure)
+        )
+    } else null
 }
 
 // Forecast data from the main weather API call are unsorted.
@@ -256,63 +262,63 @@ private fun getDailyForecast(
     var dayPart: HalfDay
     var nightPart: HalfDay
 
-    dailyResult.Wx!!.timePeriods.forEach {
+    dailyResult.Wx?.timePeriods?.forEach {
+        // TODO: Unsafe, wasn't it possible to use date serializer instead?
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         wxMap[timeKey] = it.weather!!
         wxIconMap[timeKey] = it.weatherIcon!!
     }
-    dailyResult.MinT!!.timePeriods.forEach {
+    dailyResult.MinT?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         if (timeKey.substring(11, 13) == "18") {
             tMap[timeKey] = it.temperature!!.toDoubleOrNull()
         }
     }
-    dailyResult.MaxT!!.timePeriods.forEach {
+    dailyResult.MaxT?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         if (timeKey.substring(11, 13) == "06") {
             tMap[timeKey] = it.temperature!!.toDoubleOrNull()
         }
     }
-    dailyResult.MinAT!!.timePeriods.forEach {
+    dailyResult.MinAT?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         if (timeKey.substring(11, 13) == "18") {
             atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
         }
     }
-    dailyResult.MaxAT!!.timePeriods.forEach {
+    dailyResult.MaxAT?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         if (timeKey.substring(11, 13) == "06") {
             atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
         }
     }
-    dailyResult.WD!!.timePeriods.forEach {
+    dailyResult.WD?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         wdMap[timeKey] = getWindDirection(it.windDirectionDescription)
     }
-    dailyResult.WS!!.timePeriods.forEach {
+    dailyResult.WS?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
     }
-    dailyResult.PoP12h!!.timePeriods.forEach {
+    dailyResult.PoP12h?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         popMap[timeKey] = it.probabilityOfPrecipitation!!.toDoubleOrNull()
     }
-    dailyResult.UVI!!.timePeriods.forEach {
+    dailyResult.UVI?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
         uviMap[timeKey] = it.UVIndex!!.toDoubleOrNull()
     }
 
-    sunResult.records.locations.location[0].time.forEach { time ->
+    sunResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { time ->
         srMap[time.date] = time.sunRiseTime
         ssMap[time.date] = time.sunSetTime
     }
-    moonResult.records.locations.location[0].time.forEach { time ->
+    moonResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { time ->
         mrMap[time.date] = time.moonRiseTime
         msMap[time.date] = time.moonSetTime
     }
 
-    val timeKeys = wxMap.keys.sorted()
-    timeKeys.forEach {
+    wxMap.keys.sorted().forEach {
         if (it.substring(0, 10) != day) {
             day = it.substring(0, 10)
             dayKey = "$day 06:00:00"
@@ -361,12 +367,20 @@ private fun getDailyForecast(
                     day = dayPart,
                     night = nightPart,
                     sun = Astro(
-                        riseDate = if (!ssMap[day].isNullOrBlank()) formatter.parse(day + " " + srMap[day] + ":00") else null,
-                        setDate = if (!ssMap[day].isNullOrBlank()) formatter.parse(day + " " + ssMap[day] + ":00") else null
+                        riseDate = if (!ssMap[day].isNullOrBlank()) {
+                            formatter.parse(day + " " + srMap[day] + ":00")
+                        } else null,
+                        setDate = if (!ssMap[day].isNullOrBlank()) {
+                            formatter.parse(day + " " + ssMap[day] + ":00")
+                        } else null
                     ),
                     moon = Astro(
-                        riseDate = if (!mrMap[day].isNullOrBlank()) formatter.parse(day + " " + mrMap[day] + ":00") else null,
-                        setDate = if (!msMap[day].isNullOrBlank()) formatter.parse(day + " " + msMap[day] + ":00") else null
+                        riseDate = if (!mrMap[day].isNullOrBlank()) {
+                            formatter.parse(day + " " + mrMap[day] + ":00")
+                        } else null,
+                        setDate = if (!msMap[day].isNullOrBlank()) {
+                            formatter.parse(day + " " + msMap[day] + ":00")
+                        } else null
                     ),
                     uV = UV(
                         index = uviMap[dayKey]
@@ -407,47 +421,45 @@ private fun getHourlyForecast(
     var nextTimeKey: String
     var hour: Int
 
-    hourlyResult.Wx!!.timePeriods.forEach {
+    hourlyResult.Wx?.timePeriods?.forEach {
         timeKey = it.startTime!!.replace('T', ' ')
         wxMap[timeKey] = it.weather!!
         wxIconMap[timeKey] = it.weatherIcon!!
     }
-    hourlyResult.T!!.timePeriods.forEach {
+    hourlyResult.T?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         tMap[timeKey] = it.temperature!!.toDoubleOrNull()
     }
-    hourlyResult.AT!!.timePeriods.forEach {
+    hourlyResult.AT?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
     }
-    hourlyResult.Td!!.timePeriods.forEach {
+    hourlyResult.Td?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         tdMap[timeKey] = it.dewPointTemperature!!.toDoubleOrNull()
     }
-    hourlyResult.RH!!.timePeriods.forEach {
+    hourlyResult.RH?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         rhMap[timeKey] = it.relativeHumidity!!.toDoubleOrNull()
     }
-    hourlyResult.WD!!.timePeriods.forEach {
+    hourlyResult.WD?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         wdMap[timeKey] = getWindDirection(it.windDirectionDescription)
     }
-    hourlyResult.WS!!.timePeriods.forEach {
+    hourlyResult.WS?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
         wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
     }
-    hourlyResult.PoP6h!!.timePeriods.forEach {
+    hourlyResult.PoP6h?.timePeriods?.forEach {
         timeKey = it.startTime!!.replace('T', ' ')
         popMap[timeKey] = it.probabilityOfPrecipitation!!.toDoubleOrNull()
-        hour = timeKey.substring(11, 13).toInt() + 3
+        hour = timeKey.substring(11, 13).toInt() + 3 // Unsafe
         nextTimeKey = timeKey.substring(0, 11) + hour.toString().padStart(2, '0') + ":00:00"
-        popMap[nextTimeKey] = it.probabilityOfPrecipitation!!.toDoubleOrNull()
+        popMap[nextTimeKey] = it.probabilityOfPrecipitation.toDoubleOrNull()
     }
 
-    val timeKeys = wxMap.keys.sorted()
-
-    timeKeys.forEach {
-        hour = it.substring(11, 13).toInt()
+    wxMap.keys.sorted().forEach {
+        hour = it.substring(11, 13).toInt() // Unsafe
         hourlyList.add(
             HourlyWrapper(
                 date = formatter.parse(it)!!,
@@ -503,42 +515,43 @@ private fun getAlertList(
         throw InvalidLocationException()
     }
 
-    val warningArea = CWA_TOWNSHIP_WARNING_AREAS.getOrDefault(township, "G")
+    val warningArea = CWA_TOWNSHIP_WARNING_AREAS.getOrElse(township) { "G" }
 
-    if (alertResult.records != null) {
-        alertResult.records.record?.forEach { record ->
-            applicable = false
-            record.hazardConditions?.hazards?.hazard?.forEach { hazard ->
-                hazard.info.affectedAreas.location.forEach { location ->
-                    if (
-                        (location.locationName == county)
-                        || (location.locationName == county + "山區" && warningArea == "M")
-                        || (location.locationName == "基隆北海岸" && warningArea == "K")
-                        || (location.locationName == "恆春半島" && warningArea == "H")
-                        || (location.locationName == "蘭嶼綠島" && warningArea == "L")
-                    ) {
-                        if (!applicable) { // so we don't cover up a more severe level with a less severe one
-                            applicable = true
-                            headline = hazard.info.phenomena + hazard.info.significance
-                            severity = getAlertSeverity(headline)
-                            alert = Alert(
-                                alertId = headline + " " + record.datasetInfo.validTime.startTime,
-                                startDate = formatter.parse(record.datasetInfo.validTime.startTime)!!,
-                                endDate = formatter.parse(record.datasetInfo.validTime.endTime)!!,
-                                headline = headline,
-                                description = record.contents.content.contentText.trim(),
-                                instruction = null,
-                                source = "中央氣象署",
-                                severity = severity,
-                                color = getAlertColor(headline, severity)
-                            )
-                            alertList.add(alert)
-                        }
+    alertResult.records?.record?.forEach { record ->
+        applicable = false
+        record.hazardConditions?.hazards?.hazard?.forEach { hazard ->
+            hazard.info?.affectedAreas?.location?.forEach { location ->
+                if (
+                    (location.locationName == county)
+                    || (location.locationName == county + "山區" && warningArea == "M")
+                    || (location.locationName == "基隆北海岸" && warningArea == "K")
+                    || (location.locationName == "恆春半島" && warningArea == "H")
+                    || (location.locationName == "蘭嶼綠島" && warningArea == "L")
+                ) {
+                    // so we don't cover up a more severe level with a less severe one
+                    // TODO: Why? There can be multiple same-type alerts at different times
+                    if (!applicable) {
+                        applicable = true
+                        headline = hazard.info.phenomena + hazard.info.significance
+                        severity = getAlertSeverity(headline)
+                        alert = Alert(
+                            // TODO: Unsafe
+                            alertId = headline + "-" + record.datasetInfo!!.validTime.startTime,
+                            startDate = formatter.parse(record.datasetInfo.validTime.startTime)!!,
+                            endDate = formatter.parse(record.datasetInfo.validTime.endTime)!!,
+                            headline = headline,
+                            description = record.contents?.content?.contentText?.trim(),
+                            source = "中央氣象署",
+                            severity = severity,
+                            color = getAlertColor(headline, severity)
+                        )
+                        alertList.add(alert)
                     }
                 }
             }
         }
     }
+
     return alertList
 }
 
@@ -552,12 +565,11 @@ private fun normalizeHalfDay(timestamp: String): String {
     val day = timestamp.substring(8, 10).toInt()
     val hour = timestamp.substring(11, 13).toInt()
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-    calendar.set(year, month-1, day, hour, 0, 0)
+    calendar.set(year, month - 1, day, hour, 0, 0)
     if (hour == 0 || hour == 12) {
         calendar.add(Calendar.HOUR_OF_DAY, -6)
     }
-    val result = formatter.format(calendar.time)
-    return result
+    return formatter.format(calendar.time)
 }
 
 private fun getWindDirection(direction: String?): Double? {

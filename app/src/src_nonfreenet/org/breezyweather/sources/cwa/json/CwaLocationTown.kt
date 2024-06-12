@@ -22,6 +22,6 @@ import kotlinx.serialization.Serializable
 data class CwaLocationTown(
     val townCode: String?,
     val ctyName: String?,
-    val townName: String?,
+    val townName: String,
     val villageName: String?
 )

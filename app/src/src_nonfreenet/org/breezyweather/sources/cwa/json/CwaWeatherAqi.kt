@@ -22,10 +22,10 @@ import kotlinx.serialization.Serializable
 data class CwaWeatherAqi(
     val station: CwaWeatherStation?,
     val town: CwaWeatherTown?,
-    val so2: String,
-    val co: String,
-    val o3: String,
-    val pm10: String,
-    val pm2_5: String,
-    val no2: String
+    val so2: String?,
+    val co: String?,
+    val o3: String?,
+    val pm10: String?,
+    val pm2_5: String?,
+    val no2: String?
 )

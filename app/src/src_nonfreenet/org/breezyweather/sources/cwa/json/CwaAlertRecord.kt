@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAlertRecord(
-    val datasetInfo: CwaAlertDatasetInfo,
-    val contents: CwaAlertContents,
+    val datasetInfo: CwaAlertDatasetInfo?,
+    val contents: CwaAlertContents?,
     val hazardConditions: CwaAlertHazardConditions?
 )

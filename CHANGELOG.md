@@ -7,6 +7,8 @@
 - Fix a day shift on some sources when adding a location from a different timezone that is already “tomorrow”
 
 **Sources**
+- [CWA] Added as available experimental main source in Taiwan (@chunshek)
+- [CWA] Added as available experimental secondary source in Taiwan for air quality, alerts and normals (@chunshek)
 - [ECCC] Fix refreshing issues in locations observing midnight sun
 
 **Translations**

@@ -68,5 +68,4 @@ interface CwaApi {
         @Query("weatherElement") weatherElement: String,
         @Query("Month") month: String
     ): Observable<CwaNormalsResult>
-
 }

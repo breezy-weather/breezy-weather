@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAlertInfo(
-    val phenomena: String,
-    val significance: String,
-    val affectedAreas: CwaAlertAffectedAreas
+    val phenomena: String?,
+    val significance: String?,
+    val affectedAreas: CwaAlertAffectedAreas?
 )

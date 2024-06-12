@@ -62,8 +62,8 @@ enum class LocationPreset(
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     CHINA("china"),
     HONG_KONG("openmeteo", alert = "wmosevereweather", normals = "accu"),
-    ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
-    TAIWAN("cwa");
+    ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
+    // Don’t add cwa for TAIWAN as it is a rate-limited source
 
     companion object {
         fun getLocationPreset(countryCode: String?): LocationPreset {
@@ -87,7 +87,6 @@ enum class LocationPreset(
                     "CN" -> CHINA
                     "HK" -> HONG_KONG
                     "IL", "PS" -> ISRAEL
-                    "TW" -> TAIWAN
 
                     else -> DEFAULT
                 }
