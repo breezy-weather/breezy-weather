@@ -18,7 +18,7 @@
     <string name="precipitation_snow">Sniegas</string>
     <string name="precipitation_ice">Lijundra</string>
     <string name="precipitation_intensity_light">Dulksna</string>
-    <string name="precipitation_intensity_heavy">Stiprus lietus</string>
+    <string name="precipitation_intensity_heavy">Stiprus</string>
     <string name="precipitation_none">Kritulių nėra</string>
     <string name="precipitation_between_time">Krituliai nuo %1$s iki %2$s</string>
     <string name="wind">Vėjas</string>
@@ -152,7 +152,7 @@
     <string name="wind_strength_10">Štormas</string>
     <string name="wind_strength_9">Stipri audra</string>
     <string name="air_quality_level_4_description">Jautrios gyventojų grupės simptomus gali pajusti iš karto. Apsvarstykite galimybę apriboti fizinę veiklą, visų pirma lauke, ypač jei pasireiškia tokie simptomai kaip akių perštėjimas, kosulys ar gerklės skausmas.</string>
-    <string name="air_quality_level_3_description">Apsvarstykite galimybę apriboti fizinę veiklą, visų pirma lauke ir ypač, jei pasireiškia tokie simptomai kaip akių perštėjimas, kosulys ar gerklės skausmas.</string>
+    <string name="air_quality_level_3_description">Oras yra labai užterštas ir nesveikas jautrioms grupėms. Sumažinkite lauke praleidžiamą laiką, jei jaučiate tokius simptomus, kaip pasunkėjęs kvėpavimas ar gerklės dirginimas.</string>
     <string name="air_quality_o3_voice">Ozonas</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Anglies monoksidas</string>
@@ -241,7 +241,7 @@
     <string name="settings_location">Vieta</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Ilguma</string>
     <string name="widget_custom_subtitle_keyword_w_description">Savaitė</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Savaitė (Trumpa)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Savaitė (trumpa)</string>
     <string name="widget_clock_font_analog">Analoginis</string>
     <string name="widget_live_wallpaper_weather_kind">Orai</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Kai kurie gamintojai taiko papildomus programėlių apribojimus, kurie išjungia fono paslaugas. Svetainėje Don’t kill my app! rasite informacijos, kaip tai ištaisyti.</string>
@@ -255,9 +255,9 @@
     <string name="settings_background_updates_battery_optimization_disabled">Akumuliatoriaus optimizavimas jau išjungtas.</string>
     <string name="widget_label_clock_font">Laikrodžio šriftas</string>
     <string name="widget_subtitle_data_custom">Pasirinktinis</string>
-    <string name="widget_label_align_end">Sulygiuoti pabaigoje</string>
+    <string name="widget_label_align_end">Sulygiuoti į kairę</string>
     <string name="widget_custom_subtitle_keyword_al_description">Perspėjimai</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Perspėjimai (Trumpi)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Perspėjimai (trumpi)</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Atnaujinimo laikas</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dienos temperatūra šiandien, rytoj, …, po 4 dienų (°)</string>
     <string name="widget_style_nano">Nano</string>
@@ -282,8 +282,8 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Dabartinis matomumas</string>
     <string name="widget_custom_subtitle_keyword_l_description">Vieta</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Platuma</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Valandinis Aprašymas</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Dienos Aprašymas</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Valandinis aprašymas</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Dienos aprašymas</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nauja eilutė</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dienos orai šiandien, rytoj, …, po 4 dienų</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Nakties orai šiąnakt, rytoj, …, po 4 dienų</string>
@@ -307,7 +307,7 @@
     <string name="widget_subtitle_data_time">Atnaujinimo laikas</string>
     <string name="widget_custom_subtitle_explanation">Galite įvesti bet ką, tačiau atkreipkite dėmesį į teksto ilgį. Jei norite pacituoti orų duomenis, naudokite $, kad pateiktumėte nuorodą į atitinkamą raktažodį.
 \n
-\nPavyzdžiui, “Dabartinis oras yra: $cw$.” bus rodomas kaip “Dabartinis oras yra: Giedra diena.”.</string>
+\nPavyzdžiui, “Dabartinis oras yra: $cw$.” bus rodomas kaip “Dabartinis oras yra: Giedras dangus.”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Dabartinė temperatūra (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Dabartinė temperatūra (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Dabartinė jutiminė temperatūra (°C/°F)</string>
@@ -330,7 +330,7 @@
     <string name="settings_background_updates_section_troubleshoot">Trikčių šalinimas</string>
     <string name="settings_background_updates_refresh_title">Atnaujinimo dažnis</string>
     <string name="settings_background_updates_refresh_never">Niekada</string>
-    <string name="settings_background_updates_refresh_30min">Pusvalandis</string>
+    <string name="settings_background_updates_refresh_30min">30 minučių</string>
     <string name="settings_background_updates_refresh_1h">1 valanda</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 valandos</string>
     <string name="settings_background_updates_refresh_2h">2 valandos</string>
@@ -344,7 +344,7 @@
     <string name="settings_automatic">Automatinis</string>
     <string name="settings_color_light">Šviesus</string>
     <string name="settings_color_grey">Pilka</string>
-    <string name="settings_location_access_precise_summaryOn">Įjungta. Naudojamas ir įrenginio tinklas, ir GPS teikėjai.</string>
+    <string name="settings_location_access_precise_summaryOn">Įjungta. Įrenginio tinklo paslaugų teikėjas bus naudojamas pirmiausiai ir dažniausiai, tačiau GPS gali būti naudojamas kaip atsarginis variantas.</string>
     <string name="settings_follow_system">Sekti sistemą</string>
     <string name="settings_appearance_dark_mode_title">Tamsus režimas</string>
     <string name="settings_appearance_icon_pack_title">Piktogramų paketas</string>
@@ -460,7 +460,7 @@
     <string name="wind_gusts">Vėjo gūsiai</string>
     <string name="weather_air_quality_data_by">Oro kokybės duomenys pagal %s</string>
     <string name="weather_pollen_data_by">Duomenys apie alergenus pagal %s</string>
-    <string name="weather_minutely_data_by">Kritulių kiekio minutė po minutės duomenys pagal %s</string>
+    <string name="weather_minutely_data_by">Kritulių prognozės duomenys pagal %s</string>
     <string name="weather_alert_data_by">Įspėjimo duomenys pagal %s</string>
     <string name="weather_message_secondary_data_refresh_failed">Nepavyko atnaujinti antrinio orų šaltinio orų duomenų</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
@@ -474,7 +474,7 @@
     <string name="settings_widgets_live_wallpaper_error">Nepavyko paleisti ekrano užsklandos pasirinkimo programos. Vis dar galite įjungti Breezy Weather ekrano užsklandą pasirinkę „Live Wallpaper“ pagrindinio ekrano ekrano užsklandos pasirinkimo programoje.</string>
     <string name="settings_main">Pagrindinis ekranas</string>
     <string name="settings_notifications">Pranešimai</string>
-    <string name="settings_notifications_summary">Orų perspėjimai, krituliai, prognozės</string>
+    <string name="settings_notifications_summary">Pranešimai apie orų perspėjimus, kritulius arba orų prognozę pirmajai vietovei</string>
     <string name="settings_notifications_section_forecast">Prognozė</string>
     <string name="settings_units">Vienetai</string>
     <string name="settings_main_cards_title">Kortelės</string>
@@ -489,7 +489,7 @@
     <string name="settings_widgets_summary">Nustatyti ekrano užsklandą, sukonfigūruoti naudojamus valdiklius, pranešimų valdiklį</string>
     <string name="settings_widgets_section_notification_widget">Pranešimų valdiklis</string>
     <string name="settings_main_section_animations">Animacijos</string>
-    <string name="settings_notifications_alerts_title">Orų pranešimai</string>
+    <string name="settings_notifications_alerts_title">Pranešimai apie smarkių oro sąlygų perspėjimų</string>
     <string name="action_save">Išsaugoti</string>
     <string name="settings_units_precipitation">Kritulių vienetas</string>
     <string name="settings_units_pressure">Slėgio vienetas</string>
@@ -677,4 +677,5 @@
     <string name="settings_background_updates_refresh_never_warning3">Apsvarstykite galimybę naudoti retesnį atnaujinimo dažnį, negu išjungti fono atnaujinimus, priešingu atveju bakstelėkite „Tęsti“, jei vis dar norite tęsti.</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_appearance_calendar_title">Alternatyvus kalendorius</string>
+    <string name="dialog_time_picker_input_time">Įveskite laiką</string>
 </resources>
