@@ -609,7 +609,7 @@
     <string name="common_weather_text_drizzle_light">זרזיף קל</string>
     <string name="common_weather_text_drizzle_freezing">זרזיף קפוא</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">סופרת רעמים קלה או מתונה</string>
-    <string name="metno_weather_text_andthunder">%s ורעם</string>
+    <string name="metno_weather_text_andthunder">%s ורעמים</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">סופרת רעמים עם ברד כבד</string>
     <string name="widget_clock_day_vertical">שעון + יומי (סגנון אנכי)</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">מזג אוויר בשעות הלילה של היום, מחר, …, 4 ימים אחרי</string>
