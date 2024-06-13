@@ -656,4 +656,5 @@
     <string name="notification_style_native">מקומי</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">ערפל כפור</string>
     <string name="weather_normals_data_by">נתוני נורמלי טמפרטורה על ידי %s</string>
+    <string name="about_matrix">חדר מטריצה</string>
 </resources>
