@@ -205,9 +205,11 @@ private fun getHourlyList(
 ): List<HourlyWrapper> {
     if (hourlyForecast.weather == null || hourlyForecast.weather.value.isNullOrEmpty()) return emptyList()
 
+    val hourlyListPubTime = hourlyForecast.temperature?.pubTime ?: publishDate
+
     val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = hourlyListPubTime.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
