@@ -518,4 +518,5 @@
     <string name="widget_day">Denný</string>
     <string name="widget_day_week">Denný + Týždenný</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Stačením otvoríte</string>
+    <string name="temperature_degree_day"></string>
 </resources>
