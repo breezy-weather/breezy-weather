@@ -133,7 +133,18 @@ class AlertActivity : GeoActivity() {
                 finish()
                 return@LaunchedEffect
             }
-            location.value = locationC
+
+            // Astro data is needed to check if the sun is still up or if it has set when day/night
+            // mode per location is enabled.
+            location.value = locationC.copy(
+                weather = weatherRepository.getWeatherByLocationId(
+                    locationC.formattedId,
+                    withDaily = true,
+                    withHourly = false,
+                    withMinutely = false,
+                    withAlerts = false
+                )
+            )
 
             val alerts = weatherRepository.getAlertListByLocationId(locationC.formattedId)
             alertList.value = alerts
@@ -152,6 +163,7 @@ class AlertActivity : GeoActivity() {
                 }
             }
         }
+
         val scrollBehavior = generateCollapsedScrollBehavior()
 
         val isLightTheme = MainThemeColorProvider.isLightTheme(context, location.value)

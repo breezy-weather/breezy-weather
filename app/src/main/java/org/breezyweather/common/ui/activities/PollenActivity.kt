@@ -32,6 +32,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -56,6 +57,7 @@ import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
@@ -85,6 +87,7 @@ class PollenActivity : GeoActivity() {
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
         val location = remember { mutableStateOf<Location?>(null) }
+        val context = LocalContext.current
 
         LaunchedEffect(formattedId) {
             var locationC: Location? = null
@@ -116,7 +119,21 @@ class PollenActivity : GeoActivity() {
 
         val scrollBehavior = generateCollapsedScrollBehavior()
 
-        BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, location.value)) {
+        val isLightTheme = MainThemeColorProvider.isLightTheme(context, location.value)
+        BreezyWeatherTheme(lightTheme = isLightTheme) {
+            // re-setting the status bar color once the location is fetched above in the launched effect
+            ThemeManager
+                .getInstance(this)
+                .weatherThemeDelegate
+                .setSystemBarStyle(
+                    context = this,
+                    window = this.window,
+                    statusShader = false,
+                    lightStatus = isLightTheme,
+                    navigationShader = true,
+                    lightNavigation = false
+                )
+
             Material3Scaffold(
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                 topBar = {
