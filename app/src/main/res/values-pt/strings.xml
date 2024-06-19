@@ -44,7 +44,7 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Balsâmica</string>
     <string name="ephemeris_moon_phase_last_quarter">Quarto Minguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minguante</string>
-    <string name="daily_forecast">Diário</string>
+    <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
     <string name="air_quality">Qualidade do Ar</string>
     <string name="details">Detalhes</string>
