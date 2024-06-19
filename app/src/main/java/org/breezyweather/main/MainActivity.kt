@@ -371,20 +371,24 @@ class MainActivity : GeoActivity(),
             }
         }
 
-        binding.perLocationSettings?.setContent {
-            BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(this, isDaylight)) {
-                ComposeView()
+        binding.perLocationSettings.setContent {
+            val validLocation = viewModel.currentLocation.collectAsState()
+
+            BreezyWeatherTheme(
+                lightTheme = MainThemeColorProvider.isLightTheme(this, validLocation.value?.daylight)
+            ) {
+                PerLocationSettingsDialog(location = validLocation.value?.location)
             }
         }
     }
 
-
     @Composable
-    fun ComposeView() {
+    fun PerLocationSettingsDialog(
+        location: Location?
+    ) {
         val dialogPerLocationSettingsOpenState = dialogPerLocationSettingsOpen.collectAsState()
         if (dialogPerLocationSettingsOpenState.value) {
-            val validLocation = viewModel.currentLocation.collectAsState()
-            validLocation.value?.location?.let { location ->
+            location?.let {
                 val dialogDeleteLocationOpenState = remember { mutableStateOf(false) }
                 AlertDialogNoPadding(
                     onDismissRequest = {
@@ -398,7 +402,7 @@ class MainActivity : GeoActivity(),
                         )
                     },
                     text = {
-                        LocationPreference(this, location) { newLocation: Location? ->
+                        LocationPreference(this, it) { newLocation: Location? ->
                             if (newLocation != null) {
                                 updateLocation(newLocation)
                             }
@@ -449,10 +453,10 @@ class MainActivity : GeoActivity(),
                         },
                         text = {
                             Text(
-                                text = if (location.city.isNotEmpty()) {
+                                text = if (it.city.isNotEmpty()) {
                                     stringResource(
                                         R.string.location_delete_location_dialog_message,
-                                        location.city
+                                        it.city
                                     )
                                 } else {
                                     stringResource(R.string.location_delete_location_dialog_message_no_name)
@@ -466,7 +470,7 @@ class MainActivity : GeoActivity(),
                                 onClick = {
                                     dialogDeleteLocationOpenState.value = false
                                     _dialogPerLocationSettingsOpen.value = false
-                                    deleteLocation(location)
+                                    deleteLocation(it)
                                 }
                             ) {
                                 Text(
