@@ -367,7 +367,7 @@
     <string name="settings_notifications_precipitations_title">Teavitused sademetest</string>
     <string name="common_weather_text_overcast">Tihe pilvisus</string>
     <string name="common_weather_text_rain_snow_mixed">Lörts</string>
-    <string name="common_weather_text_snow_showers">Lumehood</string>
+    <string name="common_weather_text_snow_showers">Lumesajuhood</string>
     <string name="location_results_by">Asukohaandmed %s -ilt</string>
     <string name="location_message_updated">Asukoht uuendatud</string>
     <string name="location_message_already_exists">Sama peamise ilmateateallikaga asukoht on juba olemas.</string>
@@ -624,7 +624,7 @@
     <string name="common_weather_text_snow_showers_light">Hõredad lumehood</string>
     <string name="weather_kind_thunder">Äike</string>
     <string name="weather_kind_wind">Tuul</string>
-    <string name="unit_bf">Bf</string>
+    <string name="unit_bf">Bft</string>
     <string name="settings_color_dark">Tume</string>
     <string name="settings_invalid_syntax">Vigane süntaks</string>
     <string name="unit_mps">m/s</string>
@@ -661,12 +661,12 @@
     <string name="unit_bf_voice">Beauforti skaalal</string>
     <string name="unit_mps_voice">Meetrit sekundis</string>
     <string name="unit_kph_voice">Kilomeetrit tunnis</string>
-    <string name="unit_kn">kn</string>
+    <string name="unit_kn">sõlm</string>
     <string name="unit_kn_voice">Sõlmed</string>
     <string name="unit_mph">mi/h</string>
     <string name="unit_mph_voice">Miili tunnis</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_in_voice">tollid</string>
+    <string name="unit_in_voice">Tollid</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_lpsqm_voice">Liitrid ruutmeetrile</string>
     <string name="unit_mmph">mm/h</string>
