@@ -684,5 +684,5 @@
     <string name="message_server_unavailable_content">Обычно это временная ошибка. Если ошибка не исчезнет, сообщите о проблеме на GitHub.</string>
     <string name="action_edit_location">Изменить это местоположение</string>
     <string name="settings_global">Глобальные настройки</string>
-    <string name="precipitation_intensity_medium">Средняя</string>
+    <string name="precipitation_intensity_medium">Средний</string>
 </resources>
