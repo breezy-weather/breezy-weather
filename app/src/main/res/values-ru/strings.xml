@@ -61,7 +61,7 @@
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Растущий месяц</string>
     <string name="ephemeris_moon_phase_first_quarter">Первая четверть</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Прибывающая луна</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Растущая луна</string>
     <string name="ephemeris_moon_phase_full_moon">Полнолуние</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Убывающая луна</string>
     <string name="ephemeris_moon_phase_last_quarter">Последняя четверть</string>
