@@ -59,7 +59,7 @@
     <string name="precipitation_intensity_light">Лёгкий</string>
     <string name="precipitation_intensity_heavy">Сильный</string>
     <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Молодая луна</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Растущий месяц</string>
     <string name="ephemeris_moon_phase_first_quarter">Первая четверть</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Прибывающая луна</string>
     <string name="ephemeris_moon_phase_full_moon">Полнолуние</string>
