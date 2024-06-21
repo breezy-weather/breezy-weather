@@ -39,5 +39,5 @@ data class NwsGridPointProperties(
     val ceilingHeight: NwsValueDoubleContainer?,
     val visibility: NwsValueDoubleContainer?,
     val pressure: NwsValueDoubleContainer?,
-    val probabilityOfThunder: NwsValueIntContainer?,
+    val probabilityOfThunder: NwsValueDoubleContainer?,
 )

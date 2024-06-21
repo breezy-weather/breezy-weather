@@ -83,7 +83,7 @@ fun convert(
     val iceAccumulationForecastList = getDoubleForecast(forecastResult.properties.iceAccumulation, true, location)
 
     val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, location)
-    val probabilityOfThunderForecastList = getIntForecast(forecastResult.properties.probabilityOfThunder, location)
+    val probabilityOfThunderForecastList = getDoubleForecast(forecastResult.properties.probabilityOfThunder, false, location)
 
     val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, location)
     val windSpeedForecastList = getDoubleForecast(forecastResult.properties.windSpeed, false, location)

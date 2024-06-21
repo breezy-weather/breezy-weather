@@ -10,6 +10,7 @@
 **Sources**
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)
 - [CWA] Added as available experimental secondary source in Taiwan for air quality, alerts and normals (@chunshek)
+- [NWS] Fix parsing issues when probability of thunder contains decimals
 - [ECCC] Fix refreshing issues in locations observing midnight sun
 
 **Translations**
