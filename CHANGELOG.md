@@ -6,6 +6,7 @@
 - Add one more decimal precision to the following pressure units: inHg, atm, kgf/cm²
 - Fix a day shift on some sources when adding a location from a different timezone that is already “tomorrow”
 - Fix hourly feels like not working in some cases
+- Fix “Edit location” dialog theme (@min7-i)
 
 **Sources**
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)
