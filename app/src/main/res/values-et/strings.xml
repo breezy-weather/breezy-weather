@@ -193,10 +193,10 @@
     <string name="air_quality_co_info_consequences">Süsinikmonooksiid levib läbi kopsukoe vereringesse, raskendades organismi rakkude hapniku sidumist. See hapnikupuudus kahjustab kudesid ja rakke. Kokkupuude süsinikmonooksiidiga võib põhjustada hingamisraskusi, kurnatust, pearinglust ja muid gripilaadseid sümptomeid. Kokkupuude suure hulga süsinikmonooksiidiga võib olla surmav.</string>
     <string name="action_next">Järgmine</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Uus rida</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Õhukvaliteedi indeks täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Päikesetõus täna, homme, ..., 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Õhukvaliteedi indeks täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Päikesetõus täna, homme, …, 4 päeva hiljem</string>
     <string name="settings_background_updates_refresh_never_warning1">Kui lülitate tagataustauuendused välja, ei saa te enam hoiatusi või teateid sademete kohta. Vidinaid ei värskendata enne rakenduse avamist.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Mõnel tootjal on täiendavad rakenduste piirangud, mis lõpetavad taustateenused. Veebisaidil Don\'t kill my app! on teavet selle kohta, kuidas seda parandada.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Mõnel tootjal on täiendavad rakenduste piirangud, mis lõpetavad taustateenused. Veebisaidil Don’t kill my app! on teavet selle kohta, kuidas seda parandada.</string>
     <string name="settings_location_access_switch_summaryOn">Lubatud. Saad lisada enda praeguse asukoha asukohana.</string>
     <string name="settings_location_access_switch_summaryOff">Palun lubage, kui soovite lisada oma praeguse asukoha asukohana.</string>
     <string name="settings_widgets_section_notification_widget">Vidin teavituses</string>
@@ -209,12 +209,12 @@
     <string name="widget_custom_subtitle_keyword_als_description">Hoiatused</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uuendamisaeg</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Tunnine kirjeldus</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Päeva temperatuur täna, homme, ..., 4 päeva pärast (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Öine temperatuur täna, homme, ..., 4 päeva hiljem (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Öine temperatuur täna, homme, ..., 4 päeva hiljem (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Päevane sademete hulk täna, homme, ..., 4 päeva hiljem (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Päevane tuul täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Öine tuul täna, homme, ..., 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Päeva temperatuur täna, homme, …, 4 päeva pärast (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Öine temperatuur täna, homme, …, 4 päeva hiljem (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Öine temperatuur täna, homme, …, 4 päeva hiljem (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Päevane sademete hulk täna, homme, …, 4 päeva hiljem (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Päevane tuul täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Öine tuul täna, homme, …, 4 päeva hiljem</string>
     <string name="settings_global">Üldised sätted</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sujuv</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombineerib selle asukoha parimad ilmamudelid</string>
@@ -232,7 +232,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Teavitus järgmise päeva prognoosist</string>
     <string name="settings_notifications_forecast_time_today_title">Päeva prognoosi teavituse aeg</string>
     <string name="settings_widgets_summary">Sea taustapilt, seadista kasutatud vidinaid, vidin teavituses</string>
-    <string name="settings_widgets_live_wallpaper_error">Ei saanud käivitada taustapildi valijat. Saate siiski lubada Breezy Weather taustapildi, valides oma koduekraani taustapildi valijast \"Elus taustapilt\".</string>
+    <string name="settings_widgets_live_wallpaper_error">Ei saanud käivitada taustapildi valijat. Saate siiski lubada Breezy Weather taustapildi, valides oma koduekraani taustapildi valijast “Elus taustapilt”.</string>
     <string name="settings_widgets_week_icon_mode_title">Nädalases vaates kuvatav ikoon</string>
     <string name="settings_widgets_notification_feels_like_switch">Kasuta tundub kui temperatuuri</string>
     <string name="settings_widgets_broadcast_title">Andmete jagamine</string>
@@ -264,7 +264,7 @@
     <string name="pollen_level_0">Puudub</string>
     <string name="dialog_permissions_notification_content">Ilmateadete teavituste lubamiseks vajuta siia või sea see hiljem seadetes.</string>
     <string name="dialog_time_picker_select_time">Vali aeg</string>
-    <string name="dialog_permissions_location_background_content">Selleks, et võimaldada rakendusel juurdepääsu asukohateabele taustal, et me saaksime tajuda asukoha muutusi ja pakkuda teile kehtivaid ilmaandmeid, seadistage asukoha juurdepääsuks \"Luba kogu aeg\".</string>
+    <string name="dialog_permissions_location_background_content">Selleks, et võimaldada rakendusel juurdepääsu asukohateabele taustal, et me saaksime tajuda asukoha muutusi ja pakkuda teile kehtivaid ilmaandmeid, seadistage asukoha juurdepääsuks “Luba kogu aeg”.</string>
     <string name="message_source_not_installed_error_content_tip_2">Muutke selle asukoha ilmastikuallikaid või kustutage ja lisage see asukoht uuesti.</string>
     <string name="widget_day">Päevane</string>
     <string name="widget_subtitle_data_wind">Tuul</string>
@@ -295,11 +295,11 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Praegune ilm</string>
     <string name="widget_custom_subtitle_explanation">Võite sisestada mida iganes, kuid palun pöörake tähelepanu teksti pikkusele. Kui soovite tsiteerida ilmaandmeid, kasutage $, et viidata vastavale märksõnale.
 \n
-\nNäiteks \"Praegune ilm on: $cw$.\" kuvatakse kui \"Praegune ilm on: Selge taevas.\".</string>
+\nNäiteks “Praegune ilm on: $cw$.” kuvatakse kui “Praegune ilm on: Selge taevas.”.</string>
     <string name="widget_custom_subtitle_keyword_w_description">Nädal</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Päevane temperatuur täna, homme, ..., 4 päeva hiljem (°)</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Kuu loojumine täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Kuu faas täna, homme, ..., 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Päevane temperatuur täna, homme, …, 4 päeva hiljem (°)</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Kuu loojumine täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Kuu faas täna, homme, …, 4 päeva hiljem</string>
     <string name="widget_style_rectangle">Ristkülik</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_pixel">Piksel</string>
@@ -351,8 +351,8 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">Lülita puutesisestusele</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Praegune UV</string>
     <string name="widget_custom_subtitle_keyword_al_description">Hoiatused</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Öine sademete hulk täna, homme, ..., 4 päeva hiljem (%)</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Päikeseloojang täna, homme, ..., 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Öine sademete hulk täna, homme, …, 4 päeva hiljem (%)</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Päikeseloojang täna, homme, …, 4 päeva hiljem</string>
     <string name="settings_background_updates_battery_optimization_summary">See on esimene asi, mida proovida, kui te ei saa teateid või vidinaid ei värskendata.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Ei õnnestunud avada seadme sätteid.</string>
     <string name="settings_source_default_value">Vaikimisi (muutmata)</string>
@@ -460,9 +460,9 @@
     <string name="common_weather_text_snow_grains">Lumeterad</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Tugev külmuv tibutamine</string>
     <string name="weather_kind_hail">Rahe</string>
-    <string name="settings_weather_source_freenet_disclaimer">Breezy Weather\'i muudest versioonidest on saadaval rohkem ilmateatellikad. Vajutage siia, et rohkem teada saada.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Breezy Weather’i muudest versioonidest on saadaval rohkem ilmateatellikad. Vajutage siia, et rohkem teada saada.</string>
     <string name="settings_notifications_alerts_title">Raskete ilmaolude hoiatused</string>
-    <string name="message_source_not_installed_error_content_tip_1">See võib juhtuda siis, kui lisasite oma asukoha Breezy Weather\'i standardse versiooni ja seejärel lülitusite ainult vabavaraliste võrguallikatega versiooni. Probleemi võib lahendada tagasipöördumine tavalise versiooni juurde.</string>
+    <string name="message_source_not_installed_error_content_tip_1">See võib juhtuda siis, kui lisasite oma asukoha Breezy Weather’i standardse versiooni ja seejärel lülitusite ainult vabavaraliste võrguallikatega versiooni. Probleemi võib lahendada tagasipöördumine tavalise versiooni juurde.</string>
     <string name="settings_appearance_dark_mode_locations_title">Päev / Öö režiim asukohtadele</string>
     <string name="settings_appearance_icon_pack_title">Ikoonipakk</string>
     <string name="settings_icon_packs_check_details">Vaata detaile</string>
@@ -575,10 +575,10 @@
     <string name="widget_custom_subtitle_keyword_ctd_description">Praegune temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Pikkuskraad</string>
     <string name="widget_custom_subtitle_keyword_d_description">Kuupäev</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Päevane ilm täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Öine ilm täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Õietolmuindeksi kokkuvõte täna, homme, ..., 4 päeva hiljem</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Kuu tõus täna, homme, ..., 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Päevane ilm täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Öine ilm täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Õietolmuindeksi kokkuvõte täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Kuu tõus täna, homme, …, 4 päeva hiljem</string>
     <string name="widget_style_symmetry">Sümmeetria</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_nano">Nano</string>
@@ -587,7 +587,7 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_background_updates_refresh_title">Värskendussagedus</string>
     <string name="settings_background_updates_refresh_never">Mitte kunagi</string>
-    <string name="settings_background_updates_refresh_never_warning3">Kaaluge tagataustauuenduste väljalülitamise asemel harvemat värskendussagedust, vastasel juhul vajutage valikut \"Jätka\", kui soovite siiski jätkata.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Kaaluge tagataustauuenduste väljalülitamise asemel harvemat värskendussagedust, vastasel juhul vajutage valikut “Jätka”, kui soovite siiski jätkata.</string>
     <string name="settings_background_updates_refresh_30min">30 minutit</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 tundi</string>
     <string name="settings_background_updates_refresh_2h">2 tundi</string>
@@ -603,10 +603,10 @@
     <string name="settings_location_access_permission_already_granted">Luba juba antud</string>
     <string name="settings_location_access_switch_title">Asukoha juurdepääs</string>
     <string name="settings_location_access_background_summaryOn">Sees. Rakendus suudab taustal värskendada teie praeguse asukoha ilmaandmeid.</string>
-    <string name="settings_location_access_background_summaryOff">Palun luba \"Luba kogu aeg\", et tagataustauuendused oleksid teie praeguse asukoha jaoks olemas.</string>
+    <string name="settings_location_access_background_summaryOff">Palun luba “Luba kogu aeg”, et tagataustauuendused oleksid teie praeguse asukoha jaoks olemas.</string>
     <string name="settings_location_access_precise_title">Seadme GPS-i kasutus</string>
     <string name="settings_location_access_precise_summaryOn">Lubatud. Esmajärjekorras ja enamasti kasutatakse seadme võrguteenuse pakkujat, kuid GPS-i võib kasutada ka varuvariandina.</string>
-    <string name="settings_location_access_precise_summaryOff">Kui seadmel on raskusi asukoha leidmisega, lülitage sisse \"Kasuta täpset asukohta\".</string>
+    <string name="settings_location_access_precise_summaryOff">Kui seadmel on raskusi asukoha leidmisega, lülitage sisse “Kasuta täpset asukohta”.</string>
     <string name="settings_per_location">Asukoha eelistused</string>
     <string name="settings_weather_source_unavailable">%s (pole kätteaadav)</string>
     <string name="settings_weather_source_none">Pole</string>

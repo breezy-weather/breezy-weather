@@ -421,7 +421,7 @@
     <string name="settings_location_access_switch_summaryOff">Παρακαλώ επέτρεψε αν θες να προσθέσεις την τρέχουσα τοποθεσία σου ως τοποθεσία.</string>
     <string name="settings_location_access_background_summaryOn">Ενεργό. Η εφαρμογή θα μπορεί να ανανεώσει τα δεδομένα καιρού για την τρέχουσα τοπθεσία σου στο παρασκήνιο.</string>
     <string name="settings_location_access_precise_title">Χρήση GPS συσκευής</string>
-    <string name="settings_location_access_precise_summaryOn">Ενεργό. Προτεραιότητα έχουν οι πάροχοι δικτύου ως επί το πλείστον αλλά, το GPS θα χρησιμοποιηθεί ως εναλλακτική..</string>
+    <string name="settings_location_access_precise_summaryOn">Ενεργό. Προτεραιότητα έχουν οι πάροχοι δικτύου ως επί το πλείστον αλλά, το GPS θα χρησιμοποιηθεί ως εναλλακτική.</string>
     <string name="settings_weather_sources_per_location_summary">Παραμετροποίησε πηγές δεδομένων καιρού που χρησιμοποιούνται για αυτή την τοποθεσία</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="location_service_native">Εγγενές API</string>

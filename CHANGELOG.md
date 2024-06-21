@@ -14,6 +14,7 @@
 **Translations**
 - Translations updated
 - Hebrew translation added and completed (@nvurgaft, Doge)
+- Initial translation for Galician added (@adrianhermida)
 
 
 # Version 5.2.4 (2024-06-01)
