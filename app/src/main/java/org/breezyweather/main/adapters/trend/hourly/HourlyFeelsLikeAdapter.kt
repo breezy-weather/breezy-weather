@@ -76,6 +76,8 @@ class HourlyFeelsLikeAdapter(
                 null,
                 hourly.temperature?.feelsLikeTemperature?.let {
                     mTemperatureUnit.getShortValueText(activity, it)
+                } ?: hourly.temperature?.temperature?.let {
+                    mTemperatureUnit.getShortValueText(activity, it)
                 },
                 null,
                 mHighestTemperature,

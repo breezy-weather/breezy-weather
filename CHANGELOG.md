@@ -5,6 +5,7 @@
 - Fix wrong category for UV when between two categories in some cases
 - Add one more decimal precision to the following pressure units: inHg, atm, kgf/cm²
 - Fix a day shift on some sources when adding a location from a different timezone that is already “tomorrow”
+- Fix hourly feels like not working in some cases
 
 **Sources**
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)
