@@ -187,7 +187,7 @@
     <string name="weather_air_quality_data_by">Aerkvalito datumoj de %s</string>
     <string name="weather_pollen_data_by">Poleno datumoj de %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Aerkvalito kaj poleno datumoj de %s</string>
-    <string name="weather_minutely_data_by">Datenoj pri nuna precipitaĵo far %s</string>
+    <string name="weather_minutely_data_by">Ĉiuminutaj precipitaĵoj datumoj de %s</string>
     <string name="weather_alert_data_by">Atentigo datumoj de %s</string>
     <string name="weather_normals_data_by">Normalaj temperaturoj datumoj de %s</string>
     <!-- $ = weather data source -->
