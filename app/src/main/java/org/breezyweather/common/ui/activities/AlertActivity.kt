@@ -134,32 +134,34 @@ class AlertActivity : GeoActivity() {
                 return@LaunchedEffect
             }
 
-            // Astro data is needed to check if the sun is still up or if it has set when day/night
-            // mode per location is enabled.
-            location.value = locationC.copy(
-                weather = weatherRepository.getWeatherByLocationId(
-                    locationC.formattedId,
-                    withDaily = true,
-                    withHourly = false,
-                    withMinutely = false,
-                    withAlerts = false
-                )
+            // Daily weather data is needed to check if the sun is still up or if it has set when
+            // day/night mode per location is enabled.
+            val weather = weatherRepository.getWeatherByLocationId(
+                locationC.formattedId,
+                withDaily = true,
+                withHourly = false,
+                withMinutely = false,
+                withAlerts = true
             )
 
-            val alerts = weatherRepository.getAlertListByLocationId(locationC.formattedId)
-            alertList.value = alerts
+            location.value = locationC.copy(weather = weather)
 
-            if (alerts.isNotEmpty()) {
-                val alertId = intent.getStringExtra(KEY_ALERT_ID)
-                if (!alertId.isNullOrEmpty()) {
-                    val alertIndex = alerts.indexOfFirst { it.alertId == alertId }
-                    if (alertIndex != -1) {
-                        listState.scrollToItem(alertIndex)
+            if (weather != null) {
+                val alerts = weather.alertList
+                alertList.value = alerts
+
+                if (alerts.isNotEmpty()) {
+                    val alertId = intent.getStringExtra(KEY_ALERT_ID)
+                    if (!alertId.isNullOrEmpty()) {
+                        val alertIndex = alerts.indexOfFirst { it.alertId == alertId }
+                        if (alertIndex != -1) {
+                            listState.scrollToItem(alertIndex)
+                        } else {
+                            listState.scrollToItem(0)
+                        }
                     } else {
                         listState.scrollToItem(0)
                     }
-                } else {
-                    listState.scrollToItem(0)
                 }
             }
         }
