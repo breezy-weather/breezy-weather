@@ -7,6 +7,7 @@
 - Fix a day shift on some sources when adding a location from a different timezone that is already “tomorrow”
 - Fix hourly feels like not working in some cases
 - Fix “Edit location” dialog theme (@min7-i)
+- Fix day/night theme not respecting sunset/sunrise in alerts and pollen pages (@min7-i)
 
 **Sources**
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)

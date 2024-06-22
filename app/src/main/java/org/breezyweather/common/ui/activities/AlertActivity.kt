@@ -116,7 +116,6 @@ class AlertActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
-        val alertList = remember { mutableStateOf(emptyList<Alert>()) }
         val location = remember { mutableStateOf<Location?>(null) }
         val listState = rememberLazyListState()
         val context = LocalContext.current
@@ -146,10 +145,7 @@ class AlertActivity : GeoActivity() {
 
             location.value = locationC.copy(weather = weather)
 
-            if (weather != null) {
-                val alerts = weather.alertList
-                alertList.value = alerts
-
+            weather?.alertList?.let { alerts ->
                 if (alerts.isNotEmpty()) {
                     val alertId = intent.getStringExtra(KEY_ALERT_ID)
                     if (!alertId.isNullOrEmpty()) {
@@ -198,7 +194,7 @@ class AlertActivity : GeoActivity() {
                     contentPadding = it,
                     state = listState
                 ) {
-                    items(alertList.value) { alert ->
+                    items(location.value?.weather?.alertList ?: emptyList()) { alert ->
                         Material3CardListItem {
                             Column(
                                 modifier = Modifier
