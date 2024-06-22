@@ -672,4 +672,5 @@
     <string name="pollen_urticaceae">Cây tầm ma/Pellitory</string>
     <string name="pollen_platanus">Cây huyền linh</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kết hợp tất cả các mô hình thời tiết từ nhà cung cấp này thành một dự đoán liền mạch</string>
+    <string name="precipitation_intensity_medium">Vừa</string>
 </resources>
