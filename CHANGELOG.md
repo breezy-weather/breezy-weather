@@ -14,6 +14,7 @@
 - [CWA] Added as available experimental secondary source in Taiwan for air quality, alerts and normals (@chunshek)
 - [NWS] Fix parsing issues when probability of thunder contains decimals
 - [ECCC] Fix refreshing issues in locations observing midnight sun
+- [China] Fix hourly forecast being shifted by one hour (@JiunnTarn)
 
 **Translations**
 - Translations updated
