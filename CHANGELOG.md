@@ -16,6 +16,7 @@
 - [Météo-France] Fix not showing as a suggested normals secondary source when not using Météo-France as main source
 - [ECCC] Fix refreshing issues in locations observing midnight sun
 - [China] Fix hourly forecast being shifted by one hour (@JiunnTarn)
+- [Open-Meteo] Disable ability to select more than one model at a time which would result in a failure to refresh
 
 **Translations**
 - Translations updated
