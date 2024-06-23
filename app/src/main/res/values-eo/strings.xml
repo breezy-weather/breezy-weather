@@ -610,12 +610,12 @@
     <string name="settings_widgets_section_widgets_in_use">Fenestraĵoj uzataj</string>
     <string name="weather_api_key_required_missing_title">Mankas postulata API-ŝlosilo</string>
     <string name="message_invalid_incomplete_data">Ricevis de servilo nevalidajn aŭ nekompletajn datenojn</string>
-    <string name="air_quality_level_2_description">La aera kvalito estas ĝenerale akceptebla por normalaj homoj. Tamen, sentemaj grupoj povas travivi negravajn ĝis moderajn simptomojn de daŭra elmeto.</string>
+    <string name="air_quality_level_2_description">La aera kvalito estas ĝenerale akceptebla por normalaj homoj. Tamen, riskaj grupoj povas sperti negravajn aŭ moderajn simptomojn pro daŭra elmeto.</string>
     <string name="weather_message_too_frequent_refreshes">Bonvolu atendi kelkajn sekundojn antaŭ ol reprovi…</string>
     <string name="location_message_search_failed">Serĉado de loko malsukcesis</string>
     <string name="air_quality_level_1_description">La aera kvalito estas ideala por normalaj homoj; ĝuu viajn ordinarajn subĉielajn aktivecojn.</string>
-    <string name="air_quality_level_4_description">Sanefikoj povas esti tuj sentitaj fare de sentemaj grupoj. Sanaj individuoj povas travivi malfacilecon spirantan kaj gorĝon iritiĝon kun longedaŭra malkovro. Li estas eksterleĝa agado.</string>
-    <string name="air_quality_level_3_description">La aero atingis altan nivelan de poluo kaj estas nesana por sentemaj grupoj. Reduktu tempon eluzitan ekstere se vi sentas simptomojn kiel ekzemple malfacilecon spiri aŭ gorĝan iritiĝo.</string>
+    <string name="air_quality_level_4_description">Riskaj grupoj povas tuj senti efikojn pri sano. Sanaj homoj povas sperti malfacilecon spiri kaj gorĝan iriton pro longedaŭra elmeto. Limigu eksterdoman aktivecon.</string>
+    <string name="air_quality_level_3_description">La aero atingis altan nivelon de poluo kaj estas malsaniga por riskaj grupoj. Malpliigu eksterdoman tempon, se vi sentas simptomojn kiel ekzemple malfacilecon spiri aŭ gorĝan iriton.</string>
     <string name="weather_api_key_required_missing_content">Por uzi ĉi tiun fonton, vi devas provizi API-ŝlosilon.</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aldonu la lokon malaŭtomate, kaj forigu “%s”</string>
     <string name="location_service_native">API de la mastruma sistemo</string>
@@ -675,4 +675,14 @@
     <string name="dialog_permissions_location_content">Breezy Weather devas kolekti viajn lokinformojn en malfono aŭ fono por disponigi la veterdatenojn de via nuna loko. Por tio ni petos iujn permesojn. Via retejo informo nur estos uzata por akiri veterdatenojn ĉe via nuna loko. Se vi ne volas dividi vian retejon informo, vi povas nei tiujn postulojn kaj mane meti vian lokon en la administra paĝo.</string>
     <string name="dialog_permissions_location_title">Atingi informojn pri la nuna loko</string>
     <string name="air_quality_no2_info_origin">Atmosfera NO₂ rezultas el alt-temperatura brulado de bruligaĵoj en procezoj kiel ekzemple tiuj uzitaj por hejtado, transportado, industrio kaj elektrogenerado. Hejmaj fontoj de nitrogenaj oksidoj (NOₓ) inkluzivas bruligajn ekipaĵojn, ekzemple gasajn fornojn kaj kamenojn.</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless">Unuigita</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombini la plej bonajn vetermodelojn por tiu loko</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombini ĉiujn vetermodelojn de tiu provizanto en unu prognozon</string>
+    <string name="location_message_reverse_geocoding_failed">Veterfonto malsukcesis trovi kongruan lokon</string>
+    <string name="location_message_already_exists">Jam ekzistas loko kun la sama ĉefa veterfonto.</string>
+    <string name="widget_label_subtitle_data">Subtitolaj datenoj</string>
+    <string name="widget_subtitle_data_time">Tempo de aktualigo</string>
+    <string name="settings_location_access_switch_summaryOn">Permesata. Vi povas aldoni vian nunan lokon en la liston de lokoj.</string>
+    <string name="settings_widgets_summary">Ŝanĝi fono, agordi uzatajn fenestraĵojn, sciiga fenestraĵo</string>
+    <string name="location_message_permission_background_missing">Mankas permeso atingi lokon fone</string>
 </resources>
