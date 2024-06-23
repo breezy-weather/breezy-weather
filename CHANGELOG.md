@@ -13,6 +13,7 @@
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)
 - [CWA] Added as available experimental secondary source in Taiwan for air quality, alerts and normals (@chunshek)
 - [NWS] Fix parsing issues when probability of thunder contains decimals
+- [Météo-France] Fix not showing as a suggested normals secondary source when not using Météo-France as main source
 - [ECCC] Fix refreshing issues in locations observing midnight sun
 - [China] Fix hourly forecast being shifted by one hour (@JiunnTarn)
 

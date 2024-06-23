@@ -198,7 +198,8 @@ class MfService @Inject constructor(
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SecondaryWeatherSourceFeature.FEATURE_ALERT,
+        SecondaryWeatherSourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
@@ -212,7 +213,11 @@ class MfService @Inject constructor(
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("FR", ignoreCase = true) &&
                 !location.provinceCode.isNullOrEmpty()
-            ) || feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS
+            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true)
+            ) // Technically, works anywhere but as a France-focused source, we don’t want the whole
+            // world to use this source, as currently the only alternative is AccuWeather
     }
     override val airQualityAttribution = null
     override val pollenAttribution = null
