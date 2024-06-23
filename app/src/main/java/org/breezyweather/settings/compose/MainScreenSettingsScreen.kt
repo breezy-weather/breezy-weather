@@ -19,11 +19,7 @@ package org.breezyweather.settings.compose
 import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
@@ -38,6 +34,7 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
@@ -55,12 +52,7 @@ fun MainScreenSettingsScreen(
     paddingValues: PaddingValues,
     updateWidgetIfNecessary: (Context) -> Unit,
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        contentPadding = paddingValues,
-    ) {
+    PreferenceScreen(paddingValues = paddingValues) {
         sectionHeaderItem(R.string.settings_main_section_displayed_data)
         clickablePreferenceItem(
             R.string.settings_main_cards_title
