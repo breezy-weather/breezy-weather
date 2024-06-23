@@ -8,6 +8,7 @@
 - Fix hourly feels like not working in some cases
 - Fix “Edit location” dialog theme (@min7-i)
 - Fix day/night theme not respecting sunset/sunrise in alerts and pollen pages (@min7-i)
+- Recompute sun and moon data when sources return data from the wrong day (fixes some places being always “nighttime”)
 
 **Sources**
 - [CWA] Added as available experimental main source in Taiwan (@chunshek)

@@ -44,6 +44,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -538,7 +539,7 @@ private fun computeWetBulbTemperature(temperature: Double?, relativeHumidity: Do
  * Completes daily data from hourly data:
  * - HalfDay (day and night)
  * - Degree day
- * - Sunrise/set
+ * - Sunrise/set (recomputes it if data is inconsistent)
  * - Air quality
  * - Pollen
  * - UV
@@ -575,7 +576,16 @@ fun completeDailyListFromHourlyList(
          * So we recalculate even in that case, and if it’s always up, we set up fake dates for
          * the whole 24-hour period to avoid having nighttime all the time
          */
-        val newSun = if (daily.sun?.isValid == true) daily.sun!! else {
+        val nextDayAtMidnight = (daily.date.time + 1.days.inWholeMilliseconds).toDate()
+        val newSun = if (daily.sun?.isValid == true) {
+            // We check that the sunrise is indeed between 00:00 and 23:59 that day
+            // (many sources unfortunately return next day!)
+            if (daily.sun!!.riseDate!! in daily.date..<nextDayAtMidnight) {
+                daily.sun!!
+            } else {
+                getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
+            }
+        } else {
             getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
         }
 
@@ -589,7 +599,15 @@ fun completeDailyListFromHourlyList(
                 )
             } else daily.degreeDay,
             sun = newSun,
-            moon = if (daily.moon?.isValid == true) daily.moon else {
+            moon = if (daily.moon?.isValid == true) {
+                // We check that the moonrise is indeed between 00:00 and 23:59 that day
+                // (many sources unfortunately return next day!)
+                if (daily.moon!!.riseDate!! in daily.date..<nextDayAtMidnight) {
+                    daily.moon
+                } else {
+                    getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
+                }
+            } else {
                 getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
             },
             moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else {
