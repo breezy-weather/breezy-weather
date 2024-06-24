@@ -501,16 +501,24 @@ private fun computeApparentTemperature(temperature: Double?, relativeHumidity: D
 /**
  * Compute wind chill from temperature and wind speed
  * Uses Environment Canada methodology
- * Only valid for temperatures at or below 10 °C and wind speeds above 4.8 km/h
+ * Source: https://climate.weather.gc.ca/glossary_e.html#w
+ * Only valid for (T ≤ 0°C) or (T ≤ 10°C and WS ≥ 5km/h)
  * TODO: Unit test
  *
  * @param temperature in °C
- * @param windSpeed in km/h
+ * @param windSpeed in m/s
  */
 private fun computeWindChillTemperature(temperature: Double?, windSpeed: Double?): Double? {
-    if (temperature == null || windSpeed == null || temperature > 10 || windSpeed <= 4.8) return null
+    if (temperature == null || windSpeed == null || temperature > 10) return null
+    val windSpeedKph = windSpeed * 3.6
 
-    return (13.12 + (0.6215 * temperature) - (11.37 * windSpeed.pow(0.16)) + (0.3965 * temperature * windSpeed.pow(0.16)))
+    return if (windSpeedKph >= 5.0) {
+        (13.12 + (0.6215 * temperature) - (11.37 * windSpeedKph.pow(0.16)) + (0.3965 * temperature * windSpeedKph.pow(0.16)))
+    } else if (temperature <= 0.0) {
+        temperature + ((-1.59 + 0.1345 * temperature) / 5.0) * windSpeedKph
+    } else {
+        null
+    }
 }
 
 /**
