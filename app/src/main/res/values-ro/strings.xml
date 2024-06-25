@@ -39,7 +39,7 @@
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Temp. aparentă</string>
     <string name="temperature_wind_chill">Răcoarea vântului</string>
-    <string name="temperature_wet_bulb">Umiditatea aerului</string>
+    <string name="temperature_wet_bulb">Temp. la umed</string>
     <string name="temperature_degree_day">Gradul zilei</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Furtună</string>
@@ -74,7 +74,7 @@
     <string name="pollen_ambrosia">Ambrozie</string>
     <string name="pollen_tree">Copaci</string>
     <string name="daily_forecast">Prognoza zilnică</string>
-    <string name="hourly_forecast">Temperatură</string>
+    <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="air_quality">Calitatea aerului</string>
     <string name="pollen">Polen</string>
     <string name="details">Detalii</string>
