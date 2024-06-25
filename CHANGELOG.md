@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Add apparent temperature computing when missing (@chunshek). Will generally improve feels like temperature, as it avoids fallback to the -less useful- wet bulb temperature.
+- Improve wind chill computing (@chunshek).
 - Fix wrong category for UV when between two categories in some cases
 - Add one more decimal precision to the following pressure units: inHg, atm, kgf/cm²
 - Fix a day shift on some sources when adding a location from a different timezone that is already “tomorrow”
