@@ -1,4 +1,4 @@
-# Version 5.2.5 (not yet released)
+# Version 5.2.5 (2024-06-27)
 
 **Improvements and fixes**
 - Add apparent temperature computing when missing (@chunshek). Will generally improve feels like temperature, as it avoids fallback to the -less useful- wet bulb temperature.
