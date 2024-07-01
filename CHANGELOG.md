@@ -1,3 +1,9 @@
+# Version 5.2.6 (not yet released)
+
+**Sources**
+- [IMS] Fix text not being in Hebrew when selected language is Hebrew
+
+
 # Version 5.2.5 (2024-06-27)
 
 **Improvements and fixes**

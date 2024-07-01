@@ -85,7 +85,7 @@ class ImsService @Inject constructor(
 
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
-            "he" -> "he"
+            "he", "iw" -> "he"
             else -> "en"
         }
 
@@ -124,7 +124,7 @@ class ImsService @Inject constructor(
 
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
-            "he" -> "he"
+            "he", "iw" -> "he"
             else -> "en"
         }
 
@@ -140,7 +140,7 @@ class ImsService @Inject constructor(
     ): Observable<List<Location>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
-            "he" -> "he"
+            "he", "iw" -> "he"
             else -> "en"
         }
         return mApi.getLocations(languageCode)
@@ -199,7 +199,7 @@ class ImsService @Inject constructor(
     ): Observable<Map<String, String>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
-            "he" -> "he"
+            "he", "iw" -> "he"
             else -> "en"
         }
         return mApi.getLocations(languageCode)
