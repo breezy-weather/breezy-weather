@@ -860,6 +860,17 @@
     <string name="metno_weather_text_sleetshowers" translatable="false">@string/common_weather_text_rain_snow_mixed_showers</string>
     <string name="metno_weather_text_snow" translatable="false">@string/common_weather_text_snow</string>
     <string name="metno_weather_text_snowshowers" translatable="false">@string/common_weather_text_snow_showers</string>
+    <!-- Weather texts for Meteo AM -->
+    <string name="meteoam_weather_text_clear_sky" translatable="false">@string/common_weather_text_clear_sky</string>
+    <string name="meteoam_weather_text_partly_cloudy" translate="false">@string/common_weather_text_partly_cloudy</string>
+    <string name="meteoam_weather_text_cloudy" translate="false">@string/common_weather_text_cloudy</string>
+    <string name="meteoam_weather_text_overcast" translatable="false">@string/common_weather_text_overcast</string>
+    <string name="meteoam_weather_text_rain_light" translatable="false">@string/common_weather_text_rain_light</string>
+    <string name="meteoam_weather_text_rain_heavy" translatable="false">@string/common_weather_text_rain_heavy</string>
+    <string name="meteoam_weather_text_rain_snow_mixed" translatable="false">@string/common_weather_text_rain_snow_mixed</string>
+    <string name="meteoam_weather_text_rain_freezing" translatable="false">@string/common_weather_text_rain_freezing</string>
+    <string name="meteoam_weather_text_fog" translatable="false">@string/common_weather_text_fog</string>
+    <string name="meteoam_weather_text_snow" translatable="false">@string/common_weather_text_snow</string>
     <!-- Example: Heavy rain and thunder -->
     <string name="metno_weather_text_andthunder">%s and thunder</string>
     <!-- Do NOT translate everything below -->
