@@ -47,6 +47,7 @@ import org.breezyweather.sources.geosphereat.GeoSphereAtService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.ipsb.IpSbLocationService
+import org.breezyweather.sources.meteoam.MeteoAmService
 import org.breezyweather.sources.metie.MetIeService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
@@ -76,6 +77,7 @@ class SourceManager @Inject constructor(
     hereService: HereService,
     imsService: ImsService,
     ipSbService: IpSbLocationService,
+    meteoAmService: MeteoAmService,
     metIeService: MetIeService,
     metNoService: MetNoService,
     mfService: MfService,
@@ -113,6 +115,7 @@ class SourceManager @Inject constructor(
         // National sources supporting worldwide
         mfService,
         dmiService,
+        meteoAmService,
 
         // National-only sources (sorted by population)
         chinaService,

@@ -99,6 +99,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
   - HERE (no API key provided)
   - Météo France
   - Danmarks Meteorologiske Institut (DMI)
+  - Servizio Meteorologico dell’Aeronautica Militare (Meteo AM)
   - Mixed China sources
   - National Weather Service (NWS)
   - Bright Sky (DWD)
