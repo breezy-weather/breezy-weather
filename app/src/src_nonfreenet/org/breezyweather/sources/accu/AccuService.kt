@@ -115,6 +115,8 @@ class AccuService @Inject constructor(
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
             context.currentLocale.code
+        } else if (context.currentLocale.code.startsWith("iw")) {
+            "he"
         } else "en"
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
         val current = mApi.getCurrent(
@@ -293,6 +295,8 @@ class AccuService @Inject constructor(
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
             context.currentLocale.code
+        } else if (context.currentLocale.code.startsWith("iw")) {
+            "he"
         } else "en"
         val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
 
@@ -448,6 +452,8 @@ class AccuService @Inject constructor(
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
             context.currentLocale.code
+        } else if (context.currentLocale.code.startsWith("iw")) {
+            "he"
         } else "en"
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocation(
@@ -475,6 +481,8 @@ class AccuService @Inject constructor(
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
             context.currentLocale.code
+        } else if (context.currentLocale.code.startsWith("iw")) {
+            "he"
         } else "en"
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
@@ -611,6 +619,8 @@ class AccuService @Inject constructor(
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
             context.currentLocale.code
+        } else if (context.currentLocale.code.startsWith("iw")) {
+            "he"
         } else "en"
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
