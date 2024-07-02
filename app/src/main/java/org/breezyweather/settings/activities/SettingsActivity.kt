@@ -22,24 +22,35 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import breezyweather.domain.location.model.Location
-import com.google.accompanist.permissions.rememberPermissionState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.breezyweather.R
@@ -49,9 +60,9 @@ import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.compose.AppBarState
 import org.breezyweather.settings.compose.AppearanceSettingsScreen
 import org.breezyweather.settings.compose.BackgroundSettingsScreen
 import org.breezyweather.settings.compose.DebugSettingsScreen
@@ -69,6 +80,7 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0
+private const val ANIMATION_DURATION = 700
 
 @AndroidEntryPoint
 class SettingsActivity : GeoActivity() {
@@ -182,44 +194,77 @@ class SettingsActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val scrollBehavior = generateCollapsedScrollBehavior()
         val scope = rememberCoroutineScope()
+        val scrollBehavior = generateCollapsedScrollBehavior()
+        val navController = rememberNavController()
+
+        var appBarState by remember { mutableStateOf(AppBarState()) }
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.action_settings),
-                    onBackPressed = { onBackPressedDispatcher.onBackPressed() },
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                IntentHelper.startAboutActivity(this@SettingsActivity)
-                            }
+                    title =  {
+                        AnimatedContent(
+                            targetState = appBarState.title,
+                            transitionSpec = {
+                                if (initialState.isNotEmpty()) {
+                                    ContentTransform(
+                                        defaultEnterTransition(),
+                                        defaultExitTransition(),
+                                        sizeTransform = null
+                                    )
+                                } else ContentTransform( // No animation when the title is initially set.
+                                    EnterTransition.None, ExitTransition.None, sizeTransform = null
+                                )
+                            },
+                            label = "Settings title"
                         ) {
+                            Text(text = it)
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { onBackPressedDispatcher.onBackPressed() }) {
                             Icon(
-                                imageVector = Icons.Outlined.Info,
-                                contentDescription = stringResource(R.string.action_about),
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.action_back),
                                 tint = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                     },
+                    actions = appBarState.actions,
                     scrollBehavior = scrollBehavior,
                 )
             },
         ) { paddings ->
-            val navController = rememberNavController()
+            // Use the destination as key for the LaunchedEffect to ensure that it is correctly
+            // triggered when quickly navigating back and forth between destinations.
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentDestination = navBackStackEntry?.destination?.id
+
             NavHost(
                 navController = navController,
-                startDestination = SettingsScreenRouter.Root.route
+                startDestination = SettingsScreenRouter.Root.route,
+                enterTransition = { defaultEnterTransition() },
+                exitTransition = { defaultExitTransition() }
             ) {
                 composable(SettingsScreenRouter.Root.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.action_settings)
+                        )
+                    }
                     RootSettingsView(
-                        navController = navController,
+                        onNavigateTo = { navController.navigate(it) },
                         paddingValues = paddings
                     )
                 }
                 composable(SettingsScreenRouter.BackgroundUpdates.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_background_updates)
+                        )
+                    }
                     BackgroundSettingsScreen(
                         context = this@SettingsActivity,
                         updateInterval = remember { updateIntervalState }.value,
@@ -227,19 +272,34 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.Appearance.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_appearance)
+                        )
+                    }
                     AppearanceSettingsScreen(
                         context = this@SettingsActivity,
-                        navController = navController,
+                        onNavigateTo = { navController.navigate(it) },
                         paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.Unit.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_units)
+                        )
+                    }
                     UnitSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.MainScreen.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_main)
+                        )
+                    }
                     MainScreenSettingsScreen(
                         context = this@SettingsActivity,
                         cardDisplayList = remember { cardDisplayState }.value,
@@ -255,6 +315,11 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.Notifications.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_notifications)
+                        )
+                    }
                     NotificationsSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
@@ -276,6 +341,11 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.Widgets.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_widgets)
+                        )
+                    }
                     WidgetsSettingsScreen(
                         context = this@SettingsActivity,
                         notificationEnabled = remember { notificationEnabledState }.value,
@@ -313,16 +383,23 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.Location.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_location)
+                        )
+                    }
                     LocationSettingsScreen(
                         context = this@SettingsActivity,
                         locationSources = sourceManager.getConfiguredLocationSources(),
-                        accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
-                        accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
-                        accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
                         paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.WeatherProviders.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_weather_sources)
+                        )
+                    }
                     WeatherSourcesSettingsScreen(
                         context = this@SettingsActivity,
                         configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
@@ -334,6 +411,11 @@ class SettingsActivity : GeoActivity() {
                     )
                 }
                 composable(SettingsScreenRouter.Debug.route) {
+                    LaunchedEffect(currentDestination) {
+                        appBarState = AppBarState(
+                            title = getString(R.string.settings_debug)
+                        )
+                    }
                     DebugSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
@@ -341,6 +423,14 @@ class SettingsActivity : GeoActivity() {
                 }
             }
         }
+    }
+
+    private fun defaultEnterTransition(): EnterTransition {
+        return fadeIn((tween(ANIMATION_DURATION)))
+    }
+
+    private fun defaultExitTransition(): ExitTransition {
+        return fadeOut((tween(ANIMATION_DURATION)))
     }
 
     /*@Preview

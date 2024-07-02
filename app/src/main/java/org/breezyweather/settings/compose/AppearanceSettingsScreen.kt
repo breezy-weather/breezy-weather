@@ -23,7 +23,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -45,7 +44,6 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
@@ -60,6 +58,7 @@ import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.CalendarPreferenceView
 import org.breezyweather.settings.preference.composables.LanguagePreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
@@ -72,15 +71,10 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 @Composable
 fun AppearanceSettingsScreen(
     context: Context,
-    navController: NavHostController,
+    onNavigateTo: (route: String) -> Unit,
     paddingValues: PaddingValues,
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        contentPadding = paddingValues,
-    ) {
+    PreferenceScreen(paddingValues = paddingValues) {
         listPreferenceItem(R.string.settings_appearance_language_title) { id ->
             LanguagePreferenceView(
                 titleId = id
@@ -247,7 +241,7 @@ fun AppearanceSettingsScreen(
                 titleId = id,
                 summaryId = R.string.settings_units_summary
             ) {
-                navController.navigate(SettingsScreenRouter.Unit.route)
+                onNavigateTo(SettingsScreenRouter.Unit.route)
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
