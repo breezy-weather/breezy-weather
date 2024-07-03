@@ -266,7 +266,7 @@
     <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
-    <string name="temperature_degree_day_cooling">Gelant temperatura diaria</string>
+    <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
     <string name="pollen_and_mold">Pol·len i floridura</string>
     <string name="alerts_to_follow">Alertes pròximes, toca per a veure-les.</string>
     <string name="wind_gusts">Ràfegues de vent</string>
@@ -642,7 +642,7 @@
     <string name="action_confirm">Confirma</string>
     <string name="message_invalid_incomplete_data">Dades no vàlides o incompletes rebudes del servidor</string>
     <string name="settings_weather_source_open_meteo_weather_models">Models meteorològics</string>
-    <string name="settings_weather_source_open_meteo_instance_forecast">Instància de previsió meteorológica</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Instància de previsió meteorològica</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instància de qualitat de l’aire</string>
     <string name="settings_widgets_broadcast_title">Transmet les meves dades meteorològiques a altres aplicacions</string>
     <string name="notification_precipitation_starting_desc">S’espera que comenci a les %s</string>
