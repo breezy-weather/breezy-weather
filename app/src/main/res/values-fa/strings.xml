@@ -677,4 +677,5 @@
     <string name="settings_weather_source_freenet_disclaimer">منابع آب و هوای بیشتری در نسخه های دیگر Breezy Weather موجود است. برای کسب اطلاعات بیشتر اینجا ضربه بزنید.</string>
     <string name="action_edit_location">ویرایش این مکان</string>
     <string name="settings_global">تنظیمات عمومی</string>
+    <string name="precipitation_intensity_medium">میانه</string>
 </resources>
