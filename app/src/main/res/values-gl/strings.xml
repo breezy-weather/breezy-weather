@@ -172,4 +172,5 @@
     <string name="pollen_artemisia">Artemisa</string>
     <string name="pollen_betula">Bidueiro</string>
     <string name="temperature_wet_bulb">Temperatura húmida</string>
+    <string name="temperature_average_short">Media</string>
 </resources>
