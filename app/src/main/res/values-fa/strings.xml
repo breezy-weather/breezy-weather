@@ -351,7 +351,7 @@
     <string name="settings_weather_sources_summary">منبع آب و هوای پیش‌فرض برای مکان‌های جدید، کلیدهای API سفارشی، پیکربندی منابع دیگر</string>
     <string name="settings_weather_sources">منابع آب و هوا</string>
     <string name="settings_source_api_key">کلید API</string>
-    <string name="settings_source_default_value">پیشفرض(بدون تغییر)</string>
+    <string name="settings_source_default_value">پیش‌فرض(بدون تغییر)</string>
     <string name="settings_appearance_dark_mode_title">حالت تیره</string>
     <string name="settings_icon_packs_weather_icon_grey">نماد خاکستری</string>
     <string name="settings_units_summary">دما، بارش، مسافت، سرعت، فشار</string>
