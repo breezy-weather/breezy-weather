@@ -540,7 +540,7 @@
     <string name="pollen_tilia">피나무</string>
     <string name="weather_air_quality_data_by">%s 제공 대기 질 데이터</string>
     <string name="weather_message_secondary_data_refresh_failed">2차 출처 날씨정보 갱신 실패</string>
-    <string name="location_delete_location_dialog_message">“%s\"를 저장된 위치 목록에서 제거합니다.</string>
+    <string name="location_delete_location_dialog_message">“%s”를 저장된 위치 목록에서 제거합니다.</string>
     <string name="location_delete_location_dialog_message_no_name">이 위치를 저장된 목록에서 삭제합니다.</string>
     <string name="location_message_reverse_geocoding_failed">날씨정보 제공자가 일치하는 위치를 확인하지 못했습니다.</string>
     <string name="location_search_no_results">%2$s 가 %1$s를 찾을수 없습니다.</string>
