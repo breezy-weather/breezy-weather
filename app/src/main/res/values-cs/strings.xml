@@ -695,4 +695,6 @@
     <string name="message_server_unavailable_title">Server není dostupný</string>
     <string name="action_edit_location">Upravit tuto lokalitu</string>
     <string name="settings_global">Globální nastavení</string>
+    <string name="meteoam_weather_text_partly_cloudy" translate="false">\@string/common_weather_text_partly_cloudy</string>
+    <string name="meteoam_weather_text_cloudy" translate="false">\@string/common_weather_text_cloudy</string>
 </resources>
