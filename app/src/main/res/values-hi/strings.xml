@@ -678,4 +678,6 @@
     <string name="settings_background_updates_refresh_never_warning2">पृष्ठभूमि अपडेट प्रक्रिया हल्की है: यह केवल आपके चयनित दर पर आपकी पहली स्थान सूची को ताजगी देता है, और आपको चाहिए तो दूसरी स्थानों को केवल एक बार प्रतिदिन। यह बैटरी की दृष्टि से उर्जा कुशल है और मासिक डेटा खपत को %d एमबी से अधिक नहीं होने देता।</string>
     <string name="settings_per_location_theme">थीम</string>
     <string name="settings_widgets_live_wallpaper_error">वॉलपेपर चुनने को लांच नहीं किया जा सका। आप अपने होम स्क्रीन वॉलपेपर पिकर में “लाइव वॉलपेपर” का चयन करके फिर भी ब्रीज़ी वेदर वॉलपेपर को सक्षम कर सकते हैं।</string>
+    <string name="meteoam_weather_text_partly_cloudy" translate="false">\@string/सामान्य_मौसम_पाठ_आंशिक_बादल_छाया</string>
+    <string name="meteoam_weather_text_cloudy" translate="false">\@string/सामान्य_मौसम_टेक्स्ट_बादलयुक्त</string>
 </resources>
