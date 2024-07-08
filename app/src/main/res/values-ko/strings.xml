@@ -477,7 +477,7 @@
     <string name="pollen_castanea">밤나무</string>
     <string name="pollen_corylus">개암나무</string>
     <string name="pollen_fraxinus">재</string>
-    <string name="pollen_olea">ㅇ</string>
+    <string name="pollen_olea">올리브나무</string>
     <string name="pollen_platanus">올리브 나무</string>
     <string name="temperature_average_short">평균</string>
     <string name="temperature_normals">온도평년값</string>
@@ -521,7 +521,7 @@
     <string name="common_weather_text_rain_heavy">많은 비</string>
     <string name="common_weather_text_rain_showers">소나기</string>
     <string name="action_help_me_choose">선택 도움받기</string>
-    <string name="weather_message_unsupported_feature">날씨 출처가 요구하신 부분을 지원하지 않습니다.</string>
+    <string name="weather_message_unsupported_feature">날씨 출처가 요구하신 부분을 지원하지 않습니다</string>
     <string name="precipitation_intensity_medium">보통 비</string>
     <string name="weather_normals_data_by">%s 제공 평균 온도</string>
     <string name="weather_message_too_frequent_refreshes">몇초 뒤 다시 시도해주세요.</string>
@@ -547,4 +547,8 @@
     <string name="action_save">저장</string>
     <string name="action_confirm">확인</string>
     <string name="pollen_rumex">수영</string>
+    <string name="dialog_time_picker_select_time">시간 선택</string>
+    <string name="message_invalid_incomplete_data">서버에서 수신한 유효하지 않거나 불완전한 데이터</string>
+    <string name="dialog_permissions_notification_content">날씨 알림에 대한 알림을 사용 설정하려면 여기를 탭하거나 나중에 설정에서 결정하세요.</string>
+    <string name="dialog_permissions_location_background_content">앱이 백그라운드에서 위치 정보에 액세스할 수 있도록 허용하여 위치의 변화를 감지하고 유효한 날씨 데이터를 제공하려면 위치 액세스를 \"항상 허용\"으로 설정하세요.</string>
 </resources>
