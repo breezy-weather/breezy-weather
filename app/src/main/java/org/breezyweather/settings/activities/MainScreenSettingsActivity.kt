@@ -19,6 +19,7 @@ package org.breezyweather.settings.activities
 import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.annotation.ContentView
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -100,39 +101,27 @@ class MainScreenSettingsActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val scrollBehavior = generateCollapsedScrollBehavior()
         val scope = rememberCoroutineScope()
+        val navController = rememberNavController()
 
-        Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            topBar = {
-                FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_main),
-                    onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
-                )
-            },
-        ) { paddings ->
-            val navController = rememberNavController()
-            NavHost(
-                navController = navController,
-                startDestination = SettingsScreenRouter.MainScreen.route
-            ) {
-                composable(SettingsScreenRouter.MainScreen.route) {
-                    MainScreenSettingsScreen(
-                        context = this@MainScreenSettingsActivity,
-                        cardDisplayList = remember { cardDisplayState }.value,
-                        dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
-                        hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
-                        detailDisplayList = remember { detailsDisplayState }.value,
-                        paddingValues = paddings,
-                        updateWidgetIfNecessary = { context: Context ->
-                            scope.launch {
-                                refreshHelper.updateWidgetIfNecessary(context)
-                            }
+        NavHost(
+            navController = navController,
+            startDestination = SettingsScreenRouter.MainScreen.route
+        ) {
+            composable(SettingsScreenRouter.MainScreen.route) {
+                MainScreenSettingsScreen(
+                    context = this@MainScreenSettingsActivity,
+                    onNavigateBack = { onBackPressedDispatcher.onBackPressed() },
+                    cardDisplayList = remember { cardDisplayState }.value,
+                    dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
+                    hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
+                    detailDisplayList = remember { detailsDisplayState }.value,
+                    updateWidgetIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateWidgetIfNecessary(context)
                         }
-                    )
-                }
+                    }
+                )
             }
         }
     }
