@@ -862,8 +862,8 @@
     <string name="metno_weather_text_snowshowers" translatable="false">@string/common_weather_text_snow_showers</string>
     <!-- Weather texts for Meteo AM -->
     <string name="meteoam_weather_text_clear_sky" translatable="false">@string/common_weather_text_clear_sky</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">@string/common_weather_text_partly_cloudy</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">@string/common_weather_text_cloudy</string>
+    <string name="meteoam_weather_text_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
+    <string name="meteoam_weather_text_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
     <string name="meteoam_weather_text_overcast" translatable="false">@string/common_weather_text_overcast</string>
     <string name="meteoam_weather_text_rain_light" translatable="false">@string/common_weather_text_rain_light</string>
     <string name="meteoam_weather_text_rain_heavy" translatable="false">@string/common_weather_text_rain_heavy</string>
