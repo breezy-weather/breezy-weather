@@ -12,7 +12,7 @@
     <string name="wind_strength_0">Штиль</string>
     <string name="wind_strength_5">Свіжий</string>
     <string name="uv_alert_level">Попередження</string>
-    <string name="air_quality_level_1">Відмінний</string>
+    <string name="air_quality_level_1">Відмінно</string>
     <string name="air_quality_so2_voice">Діоксид сірки</string>
     <string name="air_quality_pm_explanations_introduction">Мікроскопічні частинки твердої або рідкої речовини, зважені в повітрі.</string>
     <string name="air_quality_o3_info_introduction">Приземний озон (O₃) є основним компонентом смогу. Приземний озон може бути шкідливим для здоров’я людини, на відміну від стратосферного озону, який захищає землю від надмірного ультрафіолетового випромінювання.</string>
@@ -45,9 +45,9 @@
     <string name="uv_index">УФ-індекс</string>
     <string name="uv_index_3_5">Помірний</string>
     <string name="air_quality_index">Індекс якості повітря</string>
-    <string name="air_quality_level_3">Поганий</string>
-    <string name="air_quality_level_4">Шкідливий</string>
-    <string name="air_quality_level_6">Небезпечний</string>
+    <string name="air_quality_level_3">Погано</string>
+    <string name="air_quality_level_4">Шкідливо</string>
+    <string name="air_quality_level_6">Небезпечно</string>
     <string name="air_quality_no2_voice">Діоксиду азоту</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM два цілих п’ять десятих</string>
@@ -252,10 +252,10 @@
     <string name="widget_clock_day_details">Годинник + щоденний (з деталями)</string>
     <string name="widget_trend_hourly">Погодинна динаміка</string>
     <string name="widget_trend_daily">Подневна динаміка</string>
-    <string name="air_quality_level_5">Дуже шкідливий</string>
+    <string name="air_quality_level_5">Дуже шкідливо</string>
     <string name="air_quality_level_5_description">Чутливі люди миттєво відчують вплив на здоров’я, тому їм потрібно уникати діяльності на вулиці. Здорові люди, ймовірно, відчують утруднене дихання та подразнення горла; подумайте про те, щоб залишатися вдома та перенести заходи на свіжому повітрі.</string>
     <string name="air_quality_level_1_description">Якість повітря ідеально підходить для більшості людей; насолоджуйтеся своїми звичайними заняттями на свіжому повітрі.</string>
-    <string name="air_quality_level_2">Гарний</string>
+    <string name="air_quality_level_2">Нормально</string>
     <string name="uv_index_8_10">Дуже високий</string>
     <string name="air_quality_level_2_description">Якість повітря загалом прийнятна для більшості людей. Однак чутливі люди можуть відчути незначні або помірні симптоми від тривалого впливу повітря.</string>
     <string name="air_quality_pm_explanations_consequences">Тверді частинки є найшкідливішою формою забруднення повітря через їхню здатність проникати з потоками крові глибоко в легені та мозок, викликаючи такі проблеми зі здоров’ям, як хвороби серця, легень і передчасну смерть.</string>
