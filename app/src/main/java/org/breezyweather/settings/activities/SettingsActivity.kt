@@ -23,33 +23,19 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import breezyweather.domain.location.model.Location
-import com.google.accompanist.permissions.rememberPermissionState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
-import org.breezyweather.common.ui.widgets.Material3Scaffold
-import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
-import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.compose.AppearanceSettingsScreen
@@ -182,163 +168,136 @@ class SettingsActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val scrollBehavior = generateCollapsedScrollBehavior()
         val scope = rememberCoroutineScope()
+        val navController = rememberNavController()
+        val onBack = { onBackPressedDispatcher.onBackPressed() }
 
-        Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            topBar = {
-                FitStatusBarTopAppBar(
-                    title = stringResource(R.string.action_settings),
-                    onBackPressed = { onBackPressedDispatcher.onBackPressed() },
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                IntentHelper.startAboutActivity(this@SettingsActivity)
-                            }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Outlined.Info,
-                                contentDescription = stringResource(R.string.action_about),
-                                tint = MaterialTheme.colorScheme.onSurface,
+        NavHost(
+            navController = navController,
+            startDestination = SettingsScreenRouter.Root.route,
+        ) {
+            composable(SettingsScreenRouter.Root.route) {
+                RootSettingsView(
+                    onNavigateTo = { navController.navigate(it) },
+                    onNavigateBack = { onBack() }
+                )
+            }
+            composable(SettingsScreenRouter.BackgroundUpdates.route) {
+                BackgroundSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    updateInterval = remember { updateIntervalState }.value
+                )
+            }
+            composable(SettingsScreenRouter.Appearance.route) {
+                AppearanceSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateTo = { navController.navigate(it) },
+                    onNavigateBack = { onBack() }
+                )
+            }
+            composable(SettingsScreenRouter.Unit.route) {
+                UnitSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() }
+                )
+            }
+            composable(SettingsScreenRouter.MainScreen.route) {
+                MainScreenSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    cardDisplayList = remember { cardDisplayState }.value,
+                    dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
+                    hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
+                    detailDisplayList = remember { detailsDisplayState }.value,
+                    updateWidgetIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateWidgetIfNecessary(context)
+                        }
+                    }
+                )
+            }
+            composable(SettingsScreenRouter.Notifications.route) {
+                NotificationsSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    todayForecastEnabled = remember { todayForecastEnabledState }.value,
+                    tomorrowForecastEnabled = remember { tomorrowForecastEnabledState }.value,
+                    postNotificationPermissionEnsurer = { succeedCallback ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
+
+                            requestPostNotificationPermissionSucceedCallback = succeedCallback
+                            requestPermissions(
+                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                PERMISSION_CODE_POST_NOTIFICATION
                             )
+                        } else {
+                            succeedCallback()
+                        }
+                    }
+                )
+            }
+            composable(SettingsScreenRouter.Widgets.route) {
+                WidgetsSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    notificationEnabled = remember { notificationEnabledState }.value,
+                    notificationTemperatureIconEnabled = remember { notificationTemperatureIconEnabledState }.value,
+                    postNotificationPermissionEnsurer = { succeedCallback ->
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
+
+                            requestPostNotificationPermissionSucceedCallback = succeedCallback
+                            requestPermissions(
+                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                PERMISSION_CODE_POST_NOTIFICATION
+                            )
+                        } else {
+                            succeedCallback()
                         }
                     },
-                    scrollBehavior = scrollBehavior,
+                    updateWidgetIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateWidgetIfNecessary(context)
+                        }
+                    },
+                    updateNotificationIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateNotificationIfNecessary(context)
+                        }
+                    },
+                    broadcastDataIfNecessary = { context: Context, sourceId: String ->
+                        scope.launch {
+                            refreshHelper.broadcastDataIfNecessary(context, sourceId)
+                        }
+                    },
+                    broadcastSources = sourceManager.getBroadcastSources()
                 )
-            },
-        ) { paddings ->
-            val navController = rememberNavController()
-            NavHost(
-                navController = navController,
-                startDestination = SettingsScreenRouter.Root.route
-            ) {
-                composable(SettingsScreenRouter.Root.route) {
-                    RootSettingsView(
-                        navController = navController,
-                        paddingValues = paddings
-                    )
-                }
-                composable(SettingsScreenRouter.BackgroundUpdates.route) {
-                    BackgroundSettingsScreen(
-                        context = this@SettingsActivity,
-                        updateInterval = remember { updateIntervalState }.value,
-                        paddingValues = paddings
-                    )
-                }
-                composable(SettingsScreenRouter.Appearance.route) {
-                    AppearanceSettingsScreen(
-                        context = this@SettingsActivity,
-                        navController = navController,
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.Unit.route) {
-                    UnitSettingsScreen(
-                        context = this@SettingsActivity,
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.MainScreen.route) {
-                    MainScreenSettingsScreen(
-                        context = this@SettingsActivity,
-                        cardDisplayList = remember { cardDisplayState }.value,
-                        dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
-                        hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
-                        detailDisplayList = remember { detailsDisplayState }.value,
-                        paddingValues = paddings,
-                        updateWidgetIfNecessary = { context: Context ->
-                            scope.launch {
-                                refreshHelper.updateWidgetIfNecessary(context)
-                            }
-                        }
-                    )
-                }
-                composable(SettingsScreenRouter.Notifications.route) {
-                    NotificationsSettingsScreen(
-                        context = this@SettingsActivity,
-                        paddingValues = paddings,
-                        todayForecastEnabled = remember { todayForecastEnabledState }.value,
-                        tomorrowForecastEnabled = remember { tomorrowForecastEnabledState }.value,
-                        postNotificationPermissionEnsurer = { succeedCallback ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                                !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-
-                                requestPostNotificationPermissionSucceedCallback = succeedCallback
-                                requestPermissions(
-                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                    PERMISSION_CODE_POST_NOTIFICATION
-                                )
-                            } else {
-                                succeedCallback()
-                            }
-                        }
-                    )
-                }
-                composable(SettingsScreenRouter.Widgets.route) {
-                    WidgetsSettingsScreen(
-                        context = this@SettingsActivity,
-                        notificationEnabled = remember { notificationEnabledState }.value,
-                        notificationTemperatureIconEnabled = remember { notificationTemperatureIconEnabledState }.value,
-                        paddingValues = paddings,
-                        postNotificationPermissionEnsurer = { succeedCallback ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                                !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-
-                                requestPostNotificationPermissionSucceedCallback = succeedCallback
-                                requestPermissions(
-                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                    PERMISSION_CODE_POST_NOTIFICATION
-                                )
-                            } else {
-                                succeedCallback()
-                            }
+            }
+            composable(SettingsScreenRouter.Location.route) {
+                LocationSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    locationSources = sourceManager.getConfiguredLocationSources()
+                )
+            }
+            composable(SettingsScreenRouter.WeatherProviders.route) {
+                WeatherSourcesSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() },
+                    configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
+                        .filter {
+                            it.isFeatureSupportedInMainForLocation(Location())
                         },
-                        updateWidgetIfNecessary = { context: Context ->
-                            scope.launch {
-                                refreshHelper.updateWidgetIfNecessary(context)
-                            }
-                        },
-                        updateNotificationIfNecessary = { context: Context ->
-                            scope.launch {
-                                refreshHelper.updateNotificationIfNecessary(context)
-                            }
-                        },
-                        broadcastDataIfNecessary = { context: Context, sourceId: String ->
-                            scope.launch {
-                                refreshHelper.broadcastDataIfNecessary(context, sourceId)
-                            }
-                        },
-                        broadcastSources = sourceManager.getBroadcastSources(),
-                    )
-                }
-                composable(SettingsScreenRouter.Location.route) {
-                    LocationSettingsScreen(
-                        context = this@SettingsActivity,
-                        locationSources = sourceManager.getConfiguredLocationSources(),
-                        accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
-                        accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
-                        accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.WeatherProviders.route) {
-                    WeatherSourcesSettingsScreen(
-                        context = this@SettingsActivity,
-                        configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
-                            .filter {
-                                it.isFeatureSupportedInMainForLocation(Location())
-                            },
-                        configurableSources = sourceManager.getConfigurableSources(),
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.Debug.route) {
-                    DebugSettingsScreen(
-                        context = this@SettingsActivity,
-                        paddingValues = paddings,
-                    )
-                }
+                    configurableSources = sourceManager.getConfigurableSources()
+                )
+            }
+            composable(SettingsScreenRouter.Debug.route) {
+                DebugSettingsScreen(
+                    context = this@SettingsActivity,
+                    onNavigateBack = { onBack() }
+                )
             }
         }
     }

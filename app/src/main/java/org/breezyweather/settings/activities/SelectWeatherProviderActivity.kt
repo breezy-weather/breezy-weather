@@ -57,33 +57,21 @@ class SelectWeatherProviderActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val scrollBehavior = generateCollapsedScrollBehavior()
+        val navController = rememberNavController()
 
-        Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            topBar = {
-                FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_weather_sources),
-                    onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
+        NavHost(
+            navController = navController,
+            startDestination = SettingsScreenRouter.WeatherProviders.route
+        ) {
+            composable(SettingsScreenRouter.WeatherProviders.route) {
+                WeatherSourcesSettingsScreen(
+                    context = this@SelectWeatherProviderActivity,
+                    onNavigateBack = { onBackPressedDispatcher.onBackPressed() },
+                    configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources().filter {
+                        it.isFeatureSupportedInMainForLocation(Location())
+                    },
+                    configurableSources = sourceManager.getConfigurableSources(),
                 )
-            },
-        ) { paddings ->
-            val navController = rememberNavController()
-            NavHost(
-                navController = navController,
-                startDestination = SettingsScreenRouter.WeatherProviders.route
-            ) {
-                composable(SettingsScreenRouter.WeatherProviders.route) {
-                    WeatherSourcesSettingsScreen(
-                        context = this@SelectWeatherProviderActivity,
-                        configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources().filter {
-                            it.isFeatureSupportedInMainForLocation(Location())
-                        },
-                        configurableSources = sourceManager.getConfigurableSources(),
-                        paddingValues = paddings,
-                    )
-                }
             }
         }
     }

@@ -185,8 +185,8 @@ object IntentHelper {
         )
     }
 
-    fun startAboutActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, AboutActivity::class.java))
+    fun startAboutActivity(context: Context) {
+        context.startActivity(Intent(context, AboutActivity::class.java))
     }
 
     fun startDependenciesActivity(activity: Activity) {

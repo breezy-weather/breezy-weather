@@ -16,14 +16,18 @@
 
 package org.breezyweather.settings.compose
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.common.ui.widgets.Material3Scaffold
+import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
+import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.utils.CrashLogUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RefreshErrorType
@@ -38,53 +42,66 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 @Composable
 fun DebugSettingsScreen(
     context: SettingsActivity,
-    paddingValues: PaddingValues
+    onNavigateBack: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
+    val scrollBehavior = generateCollapsedScrollBehavior()
 
-    PreferenceScreen(paddingValues = paddingValues) {
-        clickablePreferenceItem(R.string.settings_debug_dump_crash_logs_title) { id ->
-            PreferenceView(
-                titleId = id,
-                summaryId = R.string.settings_debug_dump_crash_logs_summary
-            ) {
-                scope.launch {
-                    CrashLogUtils(context).dumpLogs()
-                }
-            }
-        }
-
-        if (BreezyWeather.instance.debugMode) {
-            clickablePreferenceItem(R.string.settings_debug_force_weather_update) { id ->
+    Material3Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            FitStatusBarTopAppBar(
+                title = stringResource(R.string.settings_debug),
+                onBackPressed = onNavigateBack,
+                actions = { AboutActivityIconButton(context) },
+                scrollBehavior = scrollBehavior
+            )
+        },
+    ) { paddings ->
+        PreferenceScreen(paddingValues = paddings) {
+            clickablePreferenceItem(R.string.settings_debug_dump_crash_logs_title) { id ->
                 PreferenceView(
-                    title = stringResource(id),
-                    summary = "Execute job for debugging purpose"
+                    titleId = id,
+                    summaryId = R.string.settings_debug_dump_crash_logs_summary
                 ) {
-                    WeatherUpdateJob.startNow(context)
+                    scope.launch {
+                        CrashLogUtils(context).dumpLogs()
+                    }
                 }
             }
 
-            sectionHeaderItem(R.string.settings_debug_section_refresh_error)
-            RefreshErrorType.entries.forEach { refreshError ->
-                clickablePreferenceItem(refreshError.shortMessage) { shortMessage ->
+            if (BreezyWeather.instance.debugMode) {
+                clickablePreferenceItem(R.string.settings_debug_force_weather_update) { id ->
                     PreferenceView(
-                        titleId = shortMessage,
-                        onClick = {
-                            refreshError.showDialogAction?.let { showDialogAction ->
-                                SnackbarHelper.showSnackbar(
-                                    content = context.getString(shortMessage),
-                                    action = context.getString(refreshError.actionButtonMessage)
-                                ) {
-                                    showDialogAction(context)
-                                }
-                            } ?: SnackbarHelper.showSnackbar(context.getString(shortMessage))
-                        }
-                    )
+                        title = stringResource(id),
+                        summary = "Execute job for debugging purpose"
+                    ) {
+                        WeatherUpdateJob.startNow(context)
+                    }
                 }
-            }
-            sectionFooterItem(R.string.settings_debug_section_refresh_error)
-        }
 
-        bottomInsetItem()
+                sectionHeaderItem(R.string.settings_debug_section_refresh_error)
+                RefreshErrorType.entries.forEach { refreshError ->
+                    clickablePreferenceItem(refreshError.shortMessage) { shortMessage ->
+                        PreferenceView(
+                            titleId = shortMessage,
+                            onClick = {
+                                refreshError.showDialogAction?.let { showDialogAction ->
+                                    SnackbarHelper.showSnackbar(
+                                        content = context.getString(shortMessage),
+                                        action = context.getString(refreshError.actionButtonMessage)
+                                    ) {
+                                        showDialogAction(context)
+                                    }
+                                } ?: SnackbarHelper.showSnackbar(context.getString(shortMessage))
+                            }
+                        )
+                    }
+                }
+                sectionFooterItem(R.string.settings_debug_section_refresh_error)
+            }
+
+            bottomInsetItem()
+        }
     }
 }
