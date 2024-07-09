@@ -281,7 +281,7 @@
     <string name="uv_index_6_7">Высокий</string>
     <string name="uv_index_11">Чрезмерный</string>
     <string name="air_quality_level_1_description">Качество воздуха идеальное для большинства людей; можно проводить время на улице без ограничений.</string>
-    <string name="air_quality_level_2">Нормальный</string>
+    <string name="air_quality_level_2">Нормально</string>
     <string name="air_quality_level_3">Плохо</string>
     <string name="air_quality_level_3_description">Загрязнение воздуха достигло высокого уровня, он является небезопасным для людей с повышенной чувствительностью. Если вы почувствуете затрудненное дыхание или раздражение горла, сократите время пребывания на улице.</string>
     <string name="air_quality_level_4">Вредно</string>
@@ -591,7 +591,7 @@
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>
-    <string name="temperature_average_short">Середина</string>
+    <string name="temperature_average_short">Средняя</string>
     <string name="temperature_normals">Температурные нормы</string>
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
