@@ -1,5 +1,9 @@
 # Version 5.2.6 (not yet released)
 
+**New features**
+- [Standard version] Add an option to periodically check for app updates in the background. Available from `Settings` > `Background updates`. Disabled by default.
+- Allow to manually check for updates from `Settings` > `About` (icon). In the `freenet` flavor where non-free networks are not allowed, the button only asks to open the link in an external browser.
+
 **Sources**
 - [Servizio Meteo AM] Added as a possible primary source (@chunshek)
 - [AccuWeather, IMS] Fix text not being in Hebrew when selected language is Hebrew

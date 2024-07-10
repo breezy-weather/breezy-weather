@@ -92,12 +92,32 @@ class SettingsManager private constructor(context: Context) {
 
     private val config = ConfigStore(context)
 
+    // App updates
     var lastVersionCode: Int
         set(value) {
             config.edit().putInt("last_version_code", value).apply()
         }
         get() = config.getInt("last_version_code", 0)
 
+    var isAppUpdateCheckEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("app_update_check_switch", value).apply()
+        }
+        get() = config.getBoolean("app_update_check_switch", false)
+
+    var isAppUpdateCheckPromptAlreadyAsked: Boolean
+        set(value) {
+            config.edit().putBoolean("app_update_check_prompt", value).apply()
+        }
+        get() = config.getBoolean("app_update_check_prompt", false)
+
+    var appUpdateCheckLastTimestamp: Long
+        set(value) {
+            config.edit().putLong("app_update_check_last_timestamp", value).apply()
+        }
+        get() = config.getLong("app_update_check_last_timestamp", 0)
+
+    // Weather updates
     var weatherUpdateLastTimestamp: Long
         set(value) {
             config.edit().putLong("weather_update_last_timestamp", value).apply()

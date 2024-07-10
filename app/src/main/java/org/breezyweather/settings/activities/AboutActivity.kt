@@ -41,18 +41,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.background.updater.AppUpdateChecker
+import org.breezyweather.background.updater.interactor.GetApplicationRelease
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.withIOContext
+import org.breezyweather.common.extensions.withUIContext
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
@@ -61,9 +69,11 @@ import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
+import javax.inject.Inject
 
 private class AboutAppLinkItem(
     @DrawableRes val iconId: Int,
@@ -89,7 +99,11 @@ private class TranslatorItem(
     val url: String? = null
 )
 
+@AndroidEntryPoint
 class AboutActivity : GeoActivity() {
+
+    @Inject
+    lateinit var updateChecker: AppUpdateChecker
 
     private val aboutAppLinks = arrayOf(
         AboutAppLinkItem(
@@ -327,6 +341,10 @@ class AboutActivity : GeoActivity() {
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
 
+        val scope = rememberCoroutineScope()
+        var isCheckingUpdates = remember { mutableStateOf(false) }
+
+        val uriHandler = LocalUriHandler.current
         val linkToOpen = remember { mutableStateOf("") }
         val dialogLinkOpenState = remember { mutableStateOf(false) }
 
@@ -374,6 +392,61 @@ class AboutActivity : GeoActivity() {
             ) {
                 item {
                     Header()
+                    AboutAppLink(
+                        iconId = R.drawable.ic_sync, // TODO: Replace with a circular progress indicator
+                        title = stringResource(R.string.about_check_for_app_updates),
+                        onClick = {
+                            if (BuildConfig.FLAVOR == "freenet") {
+                                // GitHub is a non-free network, so we cannot automatically check for updates in the "freenet" flavor
+                                // We ask for permission to manually check updates in the browser instead
+                                linkToOpen.value = "https://github.com/breezy-weather/breezy-weather/releases/latest"
+                                dialogLinkOpenState.value = true
+                            } else {
+                                if (!isCheckingUpdates.value) {
+                                    scope.launch {
+                                        isCheckingUpdates.value = true
+
+                                        withUIContext {
+                                            try {
+                                                when (val result = withIOContext {
+                                                    updateChecker.checkForUpdate(
+                                                        this@AboutActivity,
+                                                        forceCheck = true
+                                                    )
+                                                }) {
+                                                    is GetApplicationRelease.Result.NewUpdate -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            this@AboutActivity.getString(R.string.notification_app_update_available),
+                                                            this@AboutActivity.getString(R.string.action_download)
+                                                        ) {
+                                                            uriHandler.openUri(result.release.releaseLink)
+                                                        }
+                                                    }
+
+                                                    is GetApplicationRelease.Result.NoNewUpdate -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            this@AboutActivity.getString(R.string.about_no_new_updates)
+                                                        )
+                                                    }
+                                                    /*is GetApplicationRelease.Result.OsTooOld -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            this@AboutActivity.getString(R.string.about_update_check_eol)
+                                                        )
+                                                    }*/
+                                                    else -> {}
+                                                }
+                                            } catch (e: Exception) {
+                                                e.message?.let { SnackbarHelper.showSnackbar(it) }
+                                                e.printStackTrace()
+                                            } finally {
+                                                isCheckingUpdates.value = false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    )
                     SectionTitle(stringResource(R.string.about_contact))
                 }
                 items(contactLinks) { item ->

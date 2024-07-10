@@ -40,6 +40,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
@@ -178,6 +179,20 @@ fun BackgroundSettingsScreen(
                         WeatherUpdateJob.setupTask(context)
                     },
                 )
+            }
+            if (BuildConfig.FLAVOR != "freenet") {
+                switchPreferenceItem(R.string.settings_background_updates_app_updates_check) { id ->
+                    SwitchPreferenceView(
+                        titleId = id,
+                        summaryOnId = R.string.settings_enabled,
+                        summaryOffId = R.string.settings_disabled,
+                        checked = SettingsManager.getInstance(context).isAppUpdateCheckEnabled,
+                        enabled = updateInterval != UpdateInterval.INTERVAL_NEVER,
+                        onValueChanged = {
+                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled = it
+                        },
+                    )
+                }
             }
             sectionFooterItem(R.string.settings_background_updates_section_general)
 
