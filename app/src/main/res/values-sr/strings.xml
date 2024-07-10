@@ -684,6 +684,4 @@
     <string name="action_edit_location">Измени ову локацију</string>
     <string name="settings_global">Глобална подешавања</string>
     <string name="precipitation_intensity_medium">Средње</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">\@string/common_weather_text_partly_cloudy</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">\@string/common_weather_text_cloudy</string>
 </resources>

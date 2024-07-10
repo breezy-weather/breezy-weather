@@ -678,6 +678,4 @@
     <string name="action_edit_location">Змінити це розташування</string>
     <string name="settings_global">Глобальні налаштування</string>
     <string name="precipitation_intensity_medium">Середня</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">Мінлива хмарність</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">Хмарно</string>
 </resources>

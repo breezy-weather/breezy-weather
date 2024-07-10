@@ -688,6 +688,4 @@
     <string name="action_edit_location">Editar esta ubicación</string>
     <string name="settings_global">Ajustes globales</string>
     <string name="precipitation_intensity_medium">Media</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">\@string/common_weather_text_partly_cloudy</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">\@string/common_weather_text_cloudy</string>
 </resources>

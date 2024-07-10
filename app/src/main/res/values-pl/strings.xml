@@ -689,6 +689,4 @@
     <string name="pollen_populus">Topola</string>
     <string name="settings_global">Ustawienia globalne</string>
     <string name="precipitation_intensity_medium">Umiarkowane</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">Częściowe zachmurzenie</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">Pochmurny</string>
 </resources>

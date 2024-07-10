@@ -2,8 +2,12 @@
 
 **Sources**
 - [Servizio Meteo AM] Added as a possible primary source (@chunshek)
-- Main source preset for Italy is now Servizio Meteo AM (@chunshek)
 - [AccuWeather, IMS] Fix text not being in Hebrew when selected language is Hebrew
+- Updated recommendations for new locations (existing locations must be modified manually, or re-added):
+
+| Location | Source type | Old        | New               |
+|----------|-------------|------------|-------------------|
+| Italy    | Main source | Open-Meteo | Servizio Meteo AM |
 
 
 # Version 5.2.5 (2024-06-27)

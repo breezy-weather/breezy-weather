@@ -550,5 +550,5 @@
     <string name="dialog_time_picker_select_time">시간 선택</string>
     <string name="message_invalid_incomplete_data">서버에서 수신한 유효하지 않거나 불완전한 데이터</string>
     <string name="dialog_permissions_notification_content">날씨 알림에 대한 알림을 사용 설정하려면 여기를 탭하거나 나중에 설정에서 결정하세요.</string>
-    <string name="dialog_permissions_location_background_content">앱이 백그라운드에서 위치 정보에 액세스할 수 있도록 허용하여 위치의 변화를 감지하고 유효한 날씨 데이터를 제공하려면 위치 액세스를 \"항상 허용\"으로 설정하세요.</string>
+    <string name="dialog_permissions_location_background_content">앱이 백그라운드에서 위치 정보에 액세스할 수 있도록 허용하여 위치의 변화를 감지하고 유효한 날씨 데이터를 제공하려면 위치 액세스를 “항상 허용”으로 설정하세요.</string>
 </resources>

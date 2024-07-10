@@ -685,6 +685,4 @@
     <string name="action_edit_location">Изменить это местоположение</string>
     <string name="settings_global">Глобальные настройки</string>
     <string name="precipitation_intensity_medium">Средний</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">Облачно</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">Переменная облачность</string>
 </resources>

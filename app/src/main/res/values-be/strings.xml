@@ -678,6 +678,4 @@
     <string name="action_edit_location">Змяніць гэтае месцазнаходжанне</string>
     <string name="settings_global">Глабальныя налады</string>
     <string name="precipitation_intensity_medium">Сярэдні</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">Пераменная воблачнасць</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">Хмарна</string>
 </resources>

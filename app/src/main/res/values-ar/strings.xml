@@ -685,6 +685,4 @@
     <string name="action_edit_location">عدل هذا الموقع</string>
     <string name="settings_global">إعدادات عامة</string>
     <string name="precipitation_intensity_medium">مطر متوسط</string>
-    <string name="meteoam_weather_text_partly_cloudy" translate="false">\@string/common_weather_text_partly_cloudy</string>
-    <string name="meteoam_weather_text_cloudy" translate="false">\@string/common_weather_text_cloudy</string>
 </resources>
