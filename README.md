@@ -119,7 +119,6 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
   - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
   - Chronus Weather icon packs
 - Automatic dark mode
-- Looking for radar? [Check out this document](docs/RADAR.md)
 
 - <details><summary>Free and Open Source</summary>
 
@@ -163,6 +162,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 ## Features that will not be implemented
 
 - Paid-only sources, too limited free-tier, or free-tier that requires privacy-invasive information (credit card info, phone number, etc)
+- Radar; [please check out this document for alternatives](docs/RADAR.md)
 - Adding `standard` flavor or non-free sources to the F-Droid default repo: please use the `standard` flavor from a different store/source instead
 - Changes to the [background updates process](docs/UPDATES.md), including but not limited: options for refreshing less than every 30 minutes, every time you open the app, every time you tap on widget, every time you unlock your phone
 - “Circular sky” interface: please set a fixed background per location instead
