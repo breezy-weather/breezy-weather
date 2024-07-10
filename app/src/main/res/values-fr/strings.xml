@@ -27,6 +27,7 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="notification_channel_crash_logs">Journaux d’incident</string>
+    <string name="notification_channel_app_updates">Mises à jour de l’appli</string>
     <string name="pressure">Pression</string>
     <string name="pressure_short">Pression</string>
     <string name="visibility">Visibilité</string>
@@ -182,11 +183,14 @@
     <string name="action_confirm">Confirmer</string>
     <string name="action_close">Fermer</string>
     <string name="action_share">Partager</string>
+    <string name="action_download">Télécharger</string>
 
     <string name="locations">Emplacements</string>
     <string name="location_search_weather_source">Source météo</string>
 
     <string name="about_app">À propos</string>
+    <string name="about_check_for_app_updates">Vérifier les mises à jour de l’appli</string>
+    <string name="about_no_new_updates">Pas de nouvelle version disponible</string>
     <string name="about_contact">Contact</string>
     <string name="about_translators">Traducteurs</string>
 
@@ -469,6 +473,7 @@
     <string name="action_show_errors">Appuyez pour voir les détails</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer quand la batterie est faible</string>
+    <string name="settings_background_updates_app_updates_check">Notifier des mises à jour de l’appli</string>
     <string name="settings_background_updates_section_troubleshoot">Résolution de problèmes</string>
     <string name="settings_background_updates_battery_optimization">Désactiver l’optimisation de la batterie</string>
     <string name="settings_background_updates_battery_optimization_summary">C’est la première chose à essayer si vous ne recevez pas les notifications ou que les widgets ne s’actualisent pas.</string>
@@ -616,6 +621,7 @@
     <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Natif</string>
     <string name="notification_style_cities">Villes</string>
+    <string name="notification_app_update_available">Nouvelle version disponible !</string>
     <string name="widget_style_rectangle">Rectangle</string>
     <string name="widget_style_symmetry">Symétrie</string>
     <string name="widget_style_tile">Carreau</string>

@@ -45,7 +45,9 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.background.updater.AppUpdateChecker
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
@@ -81,7 +83,8 @@ class WeatherUpdateJob @AssistedInject constructor(
     @Assisted workerParams: WorkerParameters,
     private val refreshHelper: RefreshHelper,
     private val locationRepository: LocationRepository,
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
+    private val updateChecker: AppUpdateChecker
 ) : CoroutineWorker(context, workerParams) {
 
     private val notifier = WeatherUpdateNotifier(context)
@@ -123,6 +126,13 @@ class WeatherUpdateJob @AssistedInject constructor(
                 }
             } finally {
                 notifier.cancelProgressNotification()
+                if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
+                    try {
+                        updateChecker.checkForUpdate(context, forceCheck = false)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
             }
         }
     }

@@ -21,7 +21,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.notificationManager
 import org.breezyweather.BuildConfig.APPLICATION_ID as ID
 
 /**
@@ -42,6 +45,15 @@ class NotificationReceiver : BroadcastReceiver() {
             // Cancel weather update and dismiss notification
             ACTION_CANCEL_WEATHER_UPDATE -> cancelWeatherUpdate(context)
         }
+    }
+
+    /**
+     * Dismiss the notification
+     *
+     * @param notificationId the id of the notification
+     */
+    private fun dismissNotification(context: Context, notificationId: Int) {
+        context.cancelNotification(notificationId)
     }
 
     /**
@@ -74,6 +86,44 @@ class NotificationReceiver : BroadcastReceiver() {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
+        }
+
+        /**
+         * Returns [PendingIntent] that starts a service which dismissed the notification
+         *
+         * @param context context of application
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun dismissNotification(context: Context, notificationId: Int, groupId: Int? = null) {
+            /*
+            Group notifications always have at least 2 notifications:
+            - Group summary notification
+            - Single manga notification
+
+            If the single notification is dismissed by the system, ie by a user swipe or tapping on the notification,
+            it will auto dismiss the group notification if there's no other single updates.
+
+            When programmatically dismissing this notification, the group notification is not automatically dismissed.
+             */
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                val groupKey = context.notificationManager.activeNotifications.find {
+                    it.id == notificationId
+                }?.groupKey
+
+                if (groupId != null && groupId != 0 && !groupKey.isNullOrEmpty()) {
+                    val notifications = context.notificationManager.activeNotifications.filter {
+                        it.groupKey == groupKey
+                    }
+
+                    if (notifications.size == 2) {
+                        context.cancelNotification(groupId)
+                        return
+                    }
+                }
+            }
+
+            context.cancelNotification(notificationId)
         }
 
         /**

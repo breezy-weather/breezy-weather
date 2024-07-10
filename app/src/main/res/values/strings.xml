@@ -333,6 +333,7 @@
     <string name="action_confirm">Confirm</string>
     <string name="action_close">Close</string>
     <string name="action_share">Share</string>
+    <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
@@ -475,6 +476,7 @@
     <string name="settings_background_updates_refresh_12h">12 hours</string>
     <string name="settings_background_updates_refresh_24h">24 hours</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignore when battery is low</string>
+    <string name="settings_background_updates_app_updates_check">Notify me of app updates</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>
     <string name="settings_background_updates_battery_optimization_summary">This is the first thing to try when you don’t receive notifications or widgets are not refreshing.</string>
@@ -722,6 +724,7 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Background services</string>
     <string name="notification_channel_crash_logs">Crash logs</string>
+    <string name="notification_channel_app_updates">App updates</string>
     <string name="notification_running_in_background">Running in background to keep updating</string>
     <string name="notification_updating_weather_data">Updating weather data (%1$d/%2$d)</string>
     <string name="notification_update_error">%d update(s) failed</string>
@@ -736,8 +739,11 @@
     <string name="notification_precipitation_stopping_desc">Expected to stop at %s</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Cities</string>
+    <string name="notification_app_update_available">New version available!</string>
     <!-- About -->
     <string name="about_app">About app</string>
+    <string name="about_check_for_app_updates">Check for app updates</string>
+    <string name="about_no_new_updates">No new updates available</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrix room</string>
     <string name="about_source_code">Source code</string>

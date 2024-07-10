@@ -77,6 +77,10 @@ object Notifications {
     const val ID_WEATHER_PROGRESS = -101
     const val ID_WEATHER_ERROR = -102
 
+    const val CHANNEL_APP_UPDATE = "app_apk_update_channel"
+    const val ID_APP_UPDATER = 11
+    const val ID_APP_UPDATE_PROMPT = 12
+
     /**
      * Notification channel used for crash log file sharing.
      */
@@ -133,6 +137,9 @@ object Notifications {
                 },
                 buildNotificationChannel(CHANNEL_CRASH_LOGS, IMPORTANCE_HIGH) {
                     setName(context.getString(R.string.notification_channel_crash_logs))
+                },
+                buildNotificationChannel(CHANNEL_APP_UPDATE, IMPORTANCE_DEFAULT) {
+                    setName(context.getString(R.string.notification_channel_app_updates))
                 },
             )
         )
