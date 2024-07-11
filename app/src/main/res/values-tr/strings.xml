@@ -3,7 +3,7 @@
     <!-- app. -->
     <string name="app_name">Hava Durumu</string>
     <!-- keyword. -->
-    <string name="location_current">Bulunduğunuz konumu</string>
+    <string name="location_current">Konumunuz</string>
     <string name="short_today">Bugün</string>
     <string name="notification_refreshed_at">Son güncelleme</string>
     <string name="precipitation">Yağış</string>
@@ -304,7 +304,7 @@
     <string name="ephemeris_moon_phase_waning_crescent">Küçülen hilal</string>
     <string name="ephemeris_sunrise_at">Gün doğumu saati %s</string>
     <string name="action_set">Ayarla</string>
-    <string name="widget_label_hide_subtitle">Alt yazıyı gizle</string>
+    <string name="widget_label_hide_subtitle">Alt Başlığı gizle</string>
     <string name="widget_subtitle_data_feels_like">Hissedilen sıcaklık</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Şu anki hava durumu</string>
     <string name="widget_label_clock_font">Saat yazı tipi</string>
@@ -314,7 +314,7 @@
     <string name="action_learn_more">Daha fazla bilgi</string>
     <string name="action_close">Kapat</string>
     <string name="action_help_me_choose">Seçmem için bana yardım et</string>
-    <string name="widget_label_subtitle_data">Alt yazı verisi</string>
+    <string name="widget_label_subtitle_data">Alt Başlık verisi</string>
     <string name="widget_style_temperature">Sıcaklık</string>
     <string name="widget_live_wallpaper_weather_kind">Hava Durumu</string>
     <string name="widget_style_nano">Nano</string>
@@ -342,7 +342,7 @@
     <string name="message_parsing_error_title">Hava durumu verileri ayrıştırılamadı</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Konumu manuel olarak ekle ve “%s” öğesini sil</string>
     <string name="widget_label_show_widget_card_alpha">Matlık</string>
-    <string name="widget_subtitle_data_time">Yenileme zamanı</string>
+    <string name="widget_subtitle_data_time">Yenileme süresi</string>
     <string name="ceiling">Tavan</string>
     <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
@@ -369,7 +369,7 @@
     <string name="action_save">Kaydet</string>
     <string name="message_network_unavailable">Ağ erişimi yok</string>
     <string name="action_preview">Ön izleme</string>
-    <string name="action_app_store">Uygulama mağazası</string>
+    <string name="action_app_store">Uygulama Mağazası</string>
     <string name="action_refresh">Yenile</string>
     <string name="action_restart">Yeniden başlat</string>
     <string name="action_see_more">Daha fazla</string>
@@ -631,7 +631,7 @@
     <string name="action_confirm">Onayla</string>
     <string name="weather_message_too_frequent_refreshes">Lütfen yeniden denemeden önce birkaç saniye bekleyin…</string>
     <string name="location_delete_location_dialog_message">Kayıtlı konumlar listenizden “%s” konumunu silmek üzeresiniz.</string>
-    <string name="widget_label_hide_header">Başlığı gizle</string>
+    <string name="widget_label_hide_header">Ana Başlığı gizle</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Bugün, yarın, …, 4 gün sonrasının Hava Kalitesi Göstergesi</string>
     <string name="pollen_carpinus">Gürgen</string>
     <string name="pollen_castanea">Kestane ağacı</string>
