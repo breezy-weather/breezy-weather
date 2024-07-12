@@ -680,4 +680,10 @@
     <string name="action_edit_location">Diesen Ort bearbeiten</string>
     <string name="settings_global">Globale Einstellungen</string>
     <string name="precipitation_intensity_medium">Mäßig</string>
+    <string name="settings_background_updates_app_updates_check">Benachrichtige mich bei App-Updates</string>
+    <string name="about_check_for_app_updates">Nach App-Updates suchen</string>
+    <string name="about_no_new_updates">Es gibt keine neuen Updates</string>
+    <string name="notification_app_update_available">Es gibt eine neue Version!</string>
+    <string name="notification_channel_app_updates">App-Updates</string>
+    <string name="action_download">Herunterladen</string>
 </resources>
