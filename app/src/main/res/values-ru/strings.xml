@@ -606,7 +606,7 @@
     <string name="notification_precipitation_continuing">Осадки</string>
     <string name="notification_precipitation_starting">Вскоре выпадут осадки</string>
     <string name="notification_precipitation_starting_desc">Ожидаются начиная с %s</string>
-    <string name="notification_precipitation_continuing_desc">Ожидаемая продолжительность не менее %s</string>
+    <string name="notification_precipitation_continuing_desc">Минимальная ожидаемая продолжительность до %s</string>
     <string name="notification_precipitation_stopping">Осадки вскоре прекратятся</string>
     <string name="notification_precipitation_stopping_desc">Ожидается прекращение в %s</string>
     <string name="location_search_source">Источник поиска</string>
