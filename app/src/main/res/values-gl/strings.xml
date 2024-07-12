@@ -174,4 +174,5 @@
     <string name="temperature_wet_bulb">Temperatura húmida</string>
     <string name="temperature_average_short">Media</string>
     <string name="air_quality_so2_info_title">Dióxido de xofre (SO₂)</string>
+    <string name="air_quality_co_info_title">Monóxido de carbono (CO)</string>
 </resources>
