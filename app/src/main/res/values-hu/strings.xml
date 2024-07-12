@@ -684,4 +684,10 @@
     <string name="action_edit_location">Helyszín szerkesztése</string>
     <string name="settings_global">Általános beállítások</string>
     <string name="precipitation_intensity_medium">Közepes</string>
+    <string name="about_check_for_app_updates">Alkalmazás frissítések ellenőrzése</string>
+    <string name="about_no_new_updates">Nincs elérhető új frissítés</string>
+    <string name="action_download">Letöltés</string>
+    <string name="settings_background_updates_app_updates_check">Értesítsen az alkalmazás frissítéseiről</string>
+    <string name="notification_app_update_available">Új verzió érhető el!</string>
+    <string name="notification_channel_app_updates">Alkalmazás frissítések</string>
 </resources>
