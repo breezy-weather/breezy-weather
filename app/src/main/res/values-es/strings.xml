@@ -688,4 +688,10 @@
     <string name="action_edit_location">Editar esta ubicación</string>
     <string name="settings_global">Ajustes globales</string>
     <string name="precipitation_intensity_medium">Media</string>
+    <string name="notification_channel_app_updates">Actualizaciones de la aplicación</string>
+    <string name="notification_app_update_available">¡Nueva versión disponible!</string>
+    <string name="about_check_for_app_updates">Buscar actualizaciones de la aplicación</string>
+    <string name="action_download">Descargar</string>
+    <string name="settings_background_updates_app_updates_check">Notificarme actualizaciones de la aplicación</string>
+    <string name="about_no_new_updates">No hay nuevas actualizaciones disponibles</string>
 </resources>
