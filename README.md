@@ -2,6 +2,11 @@
 <br />
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Logo" />
 </div>
+<br />
+
+<div align="center">
+    <img src="docs/mockup.svg" alt="" style="width: 700px" />
+</div>
 
 <h1 align="center">Breezy Weather</h1>
 
@@ -54,9 +59,6 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 
 <hr />
 
-<div align="center">
-    <img src="docs/FullHomepageScreenshot.png" alt="" style="width: 300px" />
-</div>
 
 # Features
 
