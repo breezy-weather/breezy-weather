@@ -685,4 +685,10 @@
     <string name="action_edit_location">عدل هذا الموقع</string>
     <string name="settings_global">إعدادات عامة</string>
     <string name="precipitation_intensity_medium">مطر متوسط</string>
+    <string name="action_download">تنزيل</string>
+    <string name="settings_background_updates_app_updates_check">أبلغني بتحديثات التطبيق</string>
+    <string name="about_no_new_updates">لا تتوفر تحديثات جديدة</string>
+    <string name="about_check_for_app_updates">تحقق من تحديثات التطبيق</string>
+    <string name="notification_channel_app_updates">تحديثات التطبيق</string>
+    <string name="notification_app_update_available">نسخة جديدة متاحة!</string>
 </resources>
