@@ -695,4 +695,10 @@
     <string name="message_server_unavailable_title">Server není dostupný</string>
     <string name="action_edit_location">Upravit tuto lokalitu</string>
     <string name="settings_global">Globální nastavení</string>
+    <string name="notification_channel_app_updates">Aktualizace aplikace</string>
+    <string name="notification_app_update_available">Je dostupná nová verze!</string>
+    <string name="about_check_for_app_updates">Zkontrolovat aktualizace</string>
+    <string name="action_download">Stáhnout</string>
+    <string name="settings_background_updates_app_updates_check">Oznamovat aktualizace aplikace</string>
+    <string name="about_no_new_updates">Nejsou dostupné žádné nové aktualizace</string>
 </resources>
