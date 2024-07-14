@@ -99,7 +99,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “%s”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>
+    <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en \"Permitir todo el tiempo\". Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
     <string name="widget_label_show_widget_card_alpha">Opacidad</string>
@@ -494,7 +494,7 @@
     <string name="settings_main_background_animation_disabled">Desactivado</string>
     <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu ubicación actual.</string>
     <string name="settings_widgets_summary">Establecer el fondo de pantalla, configurar los complementos utilizados, complementos de notificaciones</string>
-    <string name="dialog_permissions_location_content">Breezy Weather necesita recopilar información de su ubicación en primer plano o en segundo plano para proporcionar los datos meteorológicos de su ubicación actual. Para ello solicitaremos algunos permisos. La información de su ubicación solo se utilizará para obtener datos meteorológicos en su ubicación actual. Si no desea compartir la información de su ubicación, puede rechazar esos requisitos y configurar manualmente su ubicación en la página de administración.</string>
+    <string name="dialog_permissions_location_content">Para utilizar esta función, debes conceder permiso a la aplicación para acceder a tu ubicación actual. Sólo se compartirá con las fuentes meteorológicas seleccionadas. Si cambias de opinión, puedes cancelar el proceso y añadir una ubicación fija manualmente.</string>
     <string name="settings_location_access_switch_summaryOff">Por favor, permite si quieres añadir tu ubicación actual como una ubicación.</string>
     <string name="settings_source_default_value">Por defecto (sin modificar)</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificaciones para la previsión del día siguiente</string>
@@ -649,9 +649,9 @@
     <string name="settings_weather_source_unavailable">%s (no disponible)</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
     <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de ubicaciones guardadas.</string>
-    <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de Breezy Weather. Toque aquí para obtener más información.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Pulse aquí para obtener más información.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
-    <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de Breezy Weather y luego has cambiado a la versión Free-networks only, que soporta menos fuentes meteorológicas. Volver a la versión estándar puede resolver este problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de la aplicación y luego has cambiado a la versión con fuentes de red libres. Volver a la versión estándar puede resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Cambie las fuentes meteorológicas de esta ubicación o elimínelas y vuelva a añadirlas.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>
     <string name="settings_per_location">Ajustes de la ubicación</string>
@@ -694,4 +694,7 @@
     <string name="action_download">Descargar</string>
     <string name="settings_notifications_app_updates_check">Notificarme actualizaciones de la aplicación</string>
     <string name="about_no_new_updates">No hay nuevas actualizaciones disponibles</string>
+    <string name="meteoam_weather_text_smoke">Humo</string>
+    <string name="common_weather_text_sand_storm">Tormenta de arena</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
 </resources>
