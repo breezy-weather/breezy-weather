@@ -560,6 +560,7 @@
     <string name="common_weather_text_drizzle_freezing">Pioggerella ghiacciata</string>
     <string name="common_weather_text_drizzle_freezing_light">Pioggerella ghiacciata leggera</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Pioggerella ghiacciata intensa</string>
+    <string name="common_weather_text_sand_storm">Tempesta di sabbia</string>
     <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatto</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
@@ -569,6 +570,8 @@
     <string name="common_weather_text_rain_freezing">Pioggia ghiacciata</string>
     <string name="common_weather_text_drizzle">Pioggerella</string>
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tromba d’aria o marina</string>
+    <string name="meteoam_weather_text_smoke">Fumo</string>
     <string name="metno_weather_text_andthunder">%s e tuoni</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: %s</string>
     <string name="notification_update_error">%d aggiornamento/i fallito/i</string>

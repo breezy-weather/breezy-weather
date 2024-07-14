@@ -802,6 +802,7 @@
     <string name="common_weather_text_drizzle_freezing">Freezing drizzle</string>
     <string name="common_weather_text_drizzle_freezing_light">Light freezing drizzle</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Heavy freezing drizzle</string>
+    <string name="common_weather_text_sand_storm">Sand storm</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
@@ -871,6 +872,7 @@
     <string name="metno_weather_text_snowshowers" translatable="false">@string/common_weather_text_snow_showers</string>
     <!-- Weather texts for Meteo AM -->
     <string name="meteoam_weather_text_clear_sky" translatable="false">@string/common_weather_text_clear_sky</string>
+    <string name="meteoam_weather_text_mainly_cloudy" translatable="false">@string/common_weather_text_mainly_clear</string>
     <string name="meteoam_weather_text_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
     <string name="meteoam_weather_text_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
     <string name="meteoam_weather_text_overcast" translatable="false">@string/common_weather_text_overcast</string>
@@ -880,6 +882,13 @@
     <string name="meteoam_weather_text_rain_freezing" translatable="false">@string/common_weather_text_rain_freezing</string>
     <string name="meteoam_weather_text_fog" translatable="false">@string/common_weather_text_fog</string>
     <string name="meteoam_weather_text_snow" translatable="false">@string/common_weather_text_snow</string>
+    <string name="meteoam_weather_text_thunderstorm" translatable="false">@string/weather_kind_thunderstorm</string>
+    <string name="meteoam_weather_text_haze" translatable="false">@string/weather_kind_haze</string>
+    <string name="meteoam_weather_text_hail" translatable="false">@string/weather_kind_hail</string>
+    <!-- Literally "air or marine tornado" in Italian -->
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado or waterspout</string>
+    <string name="meteoam_weather_text_smoke">Smoke</string>
+    <string name="meteoam_weather_text_sand_storm" translatable="false">@string/common_weather_text_sand_storm</string>
     <!-- Example: Heavy rain and thunder -->
     <string name="metno_weather_text_andthunder">%s and thunder</string>
     <!-- Do NOT translate everything below -->

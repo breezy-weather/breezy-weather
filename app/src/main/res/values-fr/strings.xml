@@ -738,11 +738,14 @@
     <string name="common_weather_text_drizzle_freezing">Bruine verglaçante</string>
     <string name="common_weather_text_drizzle_freezing_light">Bruine verglaçante légère</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Bruine verglaçante forte</string>
+    <string name="common_weather_text_sand_storm">Tempête de sable</string>
     <string name="common_weather_text_rain_snow_mixed">Neige mouillée</string>
     <string name="common_weather_text_rain_snow_mixed_light">Neige mouillée légère</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Neige mouillée forte</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Averses de neige mouillée</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Averses de neige mouillée légères</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Averses de neige mouillée fortes</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Trombe terrestre ou marine</string>
+    <string name="meteoam_weather_text_smoke">Fumée</string>
     <string name="metno_weather_text_andthunder">%s et tonnerre</string>
 </resources>

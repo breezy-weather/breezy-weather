@@ -211,23 +211,22 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 private fun getWeatherText(context: Context, icon: String?): String? {
     return when (icon) {
         "01", "31" -> context.getString(R.string.meteoam_weather_text_clear_sky)     // "Sereno"
-        "02", "32" -> "Parzialmente velato"                                          // (either this or the line below could be "mostly clear")
-        "03", "33" -> "Velato"                                                       // (either this or the line above could be "mostly clear")
+        "02", "03", "32", "33" -> context.getString(R.string.meteoam_weather_text_mainly_cloudy) // "Parzialmente velato" o "Velato"
         "04", "34" -> context.getString(R.string.meteoam_weather_text_partly_cloudy) // "Poco nuvoloso"
         "05", "35" -> context.getString(R.string.meteoam_weather_text_cloudy)        // "Molto nuvoloso"
         "06", "07" -> context.getString(R.string.meteoam_weather_text_overcast)      // "Coperto"
         "08" -> context.getString(R.string.meteoam_weather_text_rain_light)          // "Pioggia debole"
         "09" -> context.getString(R.string.meteoam_weather_text_rain_heavy)          // "Pioggia forte"
-        "10" -> "Temporale"                                                          // (thunderstorm: use weather_kind_thunderstorm?)
+        "10" -> context.getString(R.string.meteoam_weather_text_thunderstorm)        // "Temporale"
         "11" -> context.getString(R.string.meteoam_weather_text_rain_snow_mixed)     // "Pioggia mista a neve"
         "12" -> context.getString(R.string.meteoam_weather_text_rain_freezing)       // "Pioggia che gela"
-        "13", "36" -> "Foschia"                                                      // (haze: use weather_kind_haze?)
+        "13", "36" -> context.getString(R.string.meteoam_weather_text_haze)          // "Foschia"
         "14" -> context.getString(R.string.meteoam_weather_text_fog)                 // "Nebbia"
-        "15" -> "Grandine"                                                           // (hail: use weather_kind_hail?)
+        "15" -> context.getString(R.string.meteoam_weather_text_hail)                // "Grandine"
         "16" -> context.getString(R.string.meteoam_weather_text_snow)                // "Neve"
-        "17" -> "Tromba d’aria o marina"                                             // (tornado or waterspout)
-        "18" -> "Fumo"                                                               // (smoke)
-        "19" -> "Tempesta di sabbia"                                                 // (sand storm)
+        "17" -> context.getString(R.string.meteoam_weather_text_tornado_watersprout) // "Tromba d’aria o marina"
+        "18" -> context.getString(R.string.meteoam_weather_text_smoke)               // "Fumo"
+        "19" -> context.getString(R.string.meteoam_weather_text_sand_storm)          // "Tempesta di sabbia"
         else -> null
     }
 }
