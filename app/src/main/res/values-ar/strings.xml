@@ -691,4 +691,7 @@
     <string name="about_check_for_app_updates">تحقق من تحديثات التطبيق</string>
     <string name="notification_channel_app_updates">تحديثات التطبيق</string>
     <string name="notification_app_update_available">نسخة جديدة متاحة!</string>
+    <string name="common_weather_text_sand_storm">عاصفة رملية</string>
+    <string name="meteoam_weather_text_tornado_watersprout">إعصار او رشة ماء</string>
+    <string name="meteoam_weather_text_smoke">دخان</string>
 </resources>
