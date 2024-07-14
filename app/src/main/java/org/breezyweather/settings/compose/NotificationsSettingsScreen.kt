@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
@@ -61,6 +62,19 @@ fun NotificationsSettingsScreen(
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             sectionHeaderItem(R.string.settings_notifications_section_general)
+            if (BuildConfig.FLAVOR != "freenet") {
+                switchPreferenceItem(R.string.settings_background_updates_app_updates_check) { id ->
+                    SwitchPreferenceView(
+                        titleId = id,
+                        summaryOnId = R.string.settings_enabled,
+                        summaryOffId = R.string.settings_disabled,
+                        checked = SettingsManager.getInstance(context).isAppUpdateCheckEnabled,
+                        onValueChanged = {
+                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled = it
+                        }
+                    )
+                }
+            }
             switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,

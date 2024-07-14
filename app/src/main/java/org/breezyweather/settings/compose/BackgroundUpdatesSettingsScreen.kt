@@ -180,20 +180,6 @@ fun BackgroundSettingsScreen(
                     },
                 )
             }
-            if (BuildConfig.FLAVOR != "freenet") {
-                switchPreferenceItem(R.string.settings_background_updates_app_updates_check) { id ->
-                    SwitchPreferenceView(
-                        titleId = id,
-                        summaryOnId = R.string.settings_enabled,
-                        summaryOffId = R.string.settings_disabled,
-                        checked = SettingsManager.getInstance(context).isAppUpdateCheckEnabled,
-                        enabled = updateInterval != UpdateInterval.INTERVAL_NEVER,
-                        onValueChanged = {
-                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled = it
-                        },
-                    )
-                }
-            }
             sectionFooterItem(R.string.settings_background_updates_section_general)
 
             sectionHeaderItem(R.string.settings_background_updates_section_troubleshoot)

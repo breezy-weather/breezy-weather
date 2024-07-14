@@ -1,6 +1,6 @@
 ## Weather update process
 
-*Latest update of this document: 2024-04-17 (v5.2.1)*
+*Latest update of this document: 2024-07-14 (v5.2.6)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
@@ -49,6 +49,7 @@ When weather for the location(s) is done refreshing in the background, the follo
 - If used, the notification-widget is updated with the latest weather data
 - If enabled, weather data of the first location is sent to Gadgetbridge
 - Shortcuts (available on long press on icon on home screen) are updated
+- If enabled and if it’s been more than 24 hours since last check, app updates are checked
 
 
 ## Manual weather update
@@ -66,6 +67,7 @@ When weather for the location is done refreshing manually, the following tasks a
 - If used, the notification-widget is updated with the latest weather data
 - If enabled, weather data of the first location is sent to Gadgetbridge
 - Shortcuts (available on long press on icon on home screen) are updated
+- If enabled and if it’s been more than 24 hours since last check, app updates are checked
 
 
 ## Caching

@@ -30,7 +30,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.runBlocking
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.background.updater.AppUpdateChecker
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.extensions.hasPermission
@@ -60,7 +62,8 @@ class MainActivityViewModel @Inject constructor(
     val statementManager: StatementManager,
     private val refreshHelper: RefreshHelper,
     private val locationRepository: LocationRepository,
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
+    private val updateChecker: AppUpdateChecker
 ) : GeoViewModel(application), WeatherRequestCallback {
 
     // flow
@@ -574,6 +577,14 @@ class MainActivityViewModel @Inject constructor(
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                         refreshHelper.refreshShortcuts(context, it)
+                    }
+
+                    if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
+                        try {
+                            updateChecker.checkForUpdate(context, forceCheck = false)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
                     }
                 }
             }
