@@ -29,6 +29,8 @@ class StatementManager @Inject constructor(@ApplicationContext context: Context)
         private set
     var isPostNotificationDialogAlreadyShown: Boolean = config.getBoolean(KEY_POST_NOTIFICATION_REQUIRED, false)
         private set
+    var isAppUpdateCheckDialogAlreadyShown: Boolean = config.getBoolean(KEY_APP_UPDATE_CHECK_ASKED, false)
+        private set
 
     fun setLocationPermissionDialogAlreadyShown() {
         isLocationPermissionDialogAlreadyShown = true
@@ -51,10 +53,18 @@ class StatementManager @Inject constructor(@ApplicationContext context: Context)
             .apply()
     }
 
+    fun setAppUpdateCheckDialogAlreadyShown() {
+        isAppUpdateCheckDialogAlreadyShown = true
+        config.edit()
+            .putBoolean(KEY_APP_UPDATE_CHECK_ASKED, true)
+            .apply()
+    }
+
     companion object {
         private const val SP_STATEMENT_RECORD = "statement_record"
         private const val KEY_LOCATION_PERMISSION_DECLARED = "location_permission_declared"
         private const val KEY_BACKGROUND_LOCATION_DECLARED = "background_location_declared"
         private const val KEY_POST_NOTIFICATION_REQUIRED = "post_notification_required"
+        private const val KEY_APP_UPDATE_CHECK_ASKED = "app_update_check_asked"
     }
 }

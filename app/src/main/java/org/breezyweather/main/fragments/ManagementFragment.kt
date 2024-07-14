@@ -150,6 +150,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         val validLocationListState = viewModel.validLocationList.collectAsState()
         var notificationDismissed by remember { mutableStateOf(false) }
+        var notificationAppUpdateCheckDismissed by remember { mutableStateOf(false) }
 
         val dialogChooseWeatherSourcesOpenState = viewModel.dialogChooseWeatherSourcesOpen.collectAsState()
         val selectedLocationState = viewModel.selectedLocation.collectAsState()
@@ -232,6 +233,44 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                      * permission check before sending any notification even if
                                      * preference is enabled.
                                      */
+                                }
+                            )
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        }
+                    }
+                    if (!viewModel.statementManager.isAppUpdateCheckDialogAlreadyShown &&
+                        !notificationAppUpdateCheckDismissed
+                    ) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            val notificationPermissionState = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+                            if (notificationPermissionState.status == PermissionStatus.Granted) {
+                                NotificationCard(
+                                    title = stringResource(R.string.dialog_app_update_check_title),
+                                    summary = stringResource(R.string.dialog_app_update_check_content),
+                                    onClick = {
+                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                        notificationAppUpdateCheckDismissed = true
+                                        SettingsManager.getInstance(requireContext()).isAppUpdateCheckEnabled = true
+                                    },
+                                    onClose = {
+                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                        notificationAppUpdateCheckDismissed = true
+                                    }
+                                )
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            }
+                        } else {
+                            NotificationCard(
+                                title = stringResource(R.string.dialog_app_update_check_title),
+                                summary = stringResource(R.string.dialog_app_update_check_content),
+                                onClick = {
+                                    viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                    notificationAppUpdateCheckDismissed = true
+                                    SettingsManager.getInstance(requireContext()).isAppUpdateCheckEnabled = true
+                                },
+                                onClose = {
+                                    viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                    notificationAppUpdateCheckDismissed = true
                                 }
                             )
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
