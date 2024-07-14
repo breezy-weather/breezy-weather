@@ -689,7 +689,7 @@
     <string name="action_edit_location">编辑此位置</string>
     <string name="settings_global">全局设置</string>
     <string name="precipitation_intensity_medium">中雨</string>
-    <string name="settings_background_updates_app_updates_check">提示应用更新</string>
+    <string name="settings_notifications_app_updates_check">提示应用更新</string>
     <string name="notification_channel_app_updates">应用更新</string>
     <string name="notification_app_update_available">有新版本可用！</string>
     <string name="about_check_for_app_updates">检查应用更新</string>

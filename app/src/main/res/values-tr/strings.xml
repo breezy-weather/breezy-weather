@@ -684,7 +684,7 @@
     <string name="settings_global">Genel ayarlar</string>
     <string name="action_edit_location">Bu konumu düzenle</string>
     <string name="precipitation_intensity_medium">Orta</string>
-    <string name="settings_background_updates_app_updates_check">Uygulama güncellemelerini bana bildir</string>
+    <string name="settings_notifications_app_updates_check">Uygulama güncellemelerini bana bildir</string>
     <string name="notification_channel_app_updates">Uygulama güncellemeleri</string>
     <string name="notification_app_update_available">Yeni sürüm var!</string>
     <string name="about_check_for_app_updates">Uygulama güncellemelerini denetle</string>

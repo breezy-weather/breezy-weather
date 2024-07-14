@@ -476,7 +476,6 @@
     <string name="settings_background_updates_refresh_12h">12 hours</string>
     <string name="settings_background_updates_refresh_24h">24 hours</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignore when battery is low</string>
-    <string name="settings_background_updates_app_updates_check">Notifications of app updates</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>
     <string name="settings_background_updates_battery_optimization_summary">This is the first thing to try when you don’t receive notifications or widgets are not refreshing.</string>
@@ -593,6 +592,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_summary">Notifications of weather alerts, precipitations or forecast for the first location</string>
+    <string name="settings_notifications_app_updates_check">Notifications of app updates</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
     <!-- “important” means we won’t send notifications for minor severity alerts -->
     <string name="settings_notifications_alerts_title">Notifications of severe weather alerts</string>

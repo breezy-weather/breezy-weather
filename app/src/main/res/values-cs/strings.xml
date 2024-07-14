@@ -699,6 +699,6 @@
     <string name="notification_app_update_available">Je dostupná nová verze!</string>
     <string name="about_check_for_app_updates">Zkontrolovat aktualizace</string>
     <string name="action_download">Stáhnout</string>
-    <string name="settings_background_updates_app_updates_check">Oznamovat aktualizace aplikace</string>
+    <string name="settings_notifications_app_updates_check">Oznamovat aktualizace aplikace</string>
     <string name="about_no_new_updates">Nejsou dostupné žádné nové aktualizace</string>
 </resources>

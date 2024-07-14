@@ -678,7 +678,7 @@
     <string name="action_edit_location">Редагувати це розташування</string>
     <string name="settings_global">Глобальні налаштування</string>
     <string name="precipitation_intensity_medium">Середня</string>
-    <string name="settings_background_updates_app_updates_check">Повідомляти мене про оновлення застосунку</string>
+    <string name="settings_notifications_app_updates_check">Повідомляти мене про оновлення застосунку</string>
     <string name="notification_app_update_available">Доступна нова версія!</string>
     <string name="about_check_for_app_updates">Перевірте наявність оновлень</string>
     <string name="about_no_new_updates">Нових оновлень немає</string>

@@ -61,9 +61,9 @@ fun NotificationsSettingsScreen(
         },
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
-            sectionHeaderItem(R.string.settings_notifications_section_general)
+            sectionHeaderItem(R.string.notification_channel_app_updates)
             if (BuildConfig.FLAVOR != "freenet") {
-                switchPreferenceItem(R.string.settings_background_updates_app_updates_check) { id ->
+                switchPreferenceItem(R.string.settings_notifications_app_updates_check) { id ->
                     SwitchPreferenceView(
                         titleId = id,
                         summaryOnId = R.string.settings_enabled,
@@ -75,6 +75,9 @@ fun NotificationsSettingsScreen(
                     )
                 }
             }
+            sectionFooterItem(R.string.notification_channel_app_updates)
+
+            sectionHeaderItem(R.string.settings_notifications_section_general)
             switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
