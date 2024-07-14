@@ -222,7 +222,7 @@
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
-    <string name="dialog_permissions_location_background_content">Um Standortveränderungen erkennen und Ihnen gültige Wetterdaten liefern zu können, muss die App im Hintergrund auf Standortinformationen zugreifen können. Bitte stellen Sie dafür den Standortzugriff auf „Immer zulassen“.</string>
+    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf \"Immer zulassen\" setzen. Wenn Sie dies nicht tun, wird das Wetter auf der Grundlage der zuletzt abgerufenen Koordinaten im Vordergrund aktualisiert, die veraltet sein können.</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>
@@ -243,7 +243,7 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Mondaufgang heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, …, in 4 Tagen (%)</string>
-    <string name="dialog_permissions_location_content">Breezy Weather muss Ihre Standortinformationen im Vorder- oder Hintergrund sammeln, um die Wetterdaten Ihres aktuellen Standorts bereitzustellen. Hierfür werden wir einige Berechtigungen anfordern. Ihre Standortinformationen werden nur verwendet, um Wetterdaten für Ihren aktuellen Standort zu erhalten. Wenn Sie Ihre Standortinformationen nicht freigeben möchten, können Sie diese Berechtigungen ablehnen und Ihren Standort manuell auf der Seite zur Verwaltung der Orte festlegen.</string>
+    <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen müssen Sie der App erlauben, auf Ihren aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn Sie sich anders entscheiden, können Sie dies abbrechen und einen festen Ort hinzufügen.</string>
     <string name="weather_data_by">Daten von %s</string>
     <string name="location_results_by">Standortergebnisse von %s</string>
     <string name="action_add_current_location">Aktuellen Standort hinzufügen</string>
@@ -620,7 +620,7 @@
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mehr Wetterquellen sind in den anderen Varianten von Breezy Weather verfügbar. Tippen Sie hier, um mehr zu erfahren.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mehr Wetterquellen sind in den anderen Varianten der App verfügbar. Tippen Sie hier, um mehr zu erfahren.</string>
     <string name="location_delete_location_dialog_message">Sie sind dabei, „%s“ aus Ihrer Liste der gespeicherten Orte zu löschen.</string>
     <string name="location_delete_location_dialog_title">Ort löschen?</string>
     <string name="widget_label_hide_header">Kopfzeile ausblenden</string>
@@ -645,7 +645,7 @@
     <string name="about_open_link_message">%s öffnen?</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
     <string name="sunshine">Sonnenschein</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn Sie Ihren Ort in der Standardvariante von Breezy Weather hinzugefügt haben und dann zur Free-networks only-Variante gewechselt sind, die weniger Wetterquellen unterstützt. Wenn Sie zur Standardvariante zurückkehren, könnte das das Problem lösen.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn Sie Ihren Standort in der Standardvariante der App hinzugefügt haben und dann zu der Variante mit nur freien Netzwerkquellen gewechselt haben. Zur Standardvariante zurückzukehren, kann dieses Problem lösen.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ändern Sie entweder die Wetterquelle für diesen Ort oder entfernen Sie ihn und fügen Sie ihn dann wieder hinzu.</string>
     <string name="settings_per_location">Ortseinstellungen</string>
     <string name="settings_per_location_summary">Zusätzliche Anpassungen für diesen Ort</string>
@@ -686,4 +686,6 @@
     <string name="notification_app_update_available">Es gibt eine neue Version!</string>
     <string name="notification_channel_app_updates">App-Updates</string>
     <string name="action_download">Herunterladen</string>
+    <string name="common_weather_text_sand_storm">Sandsturm</string>
+    <string name="meteoam_weather_text_smoke">Rauch</string>
 </resources>
