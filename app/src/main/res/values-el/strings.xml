@@ -349,7 +349,7 @@
     <string name="action_undo">Αναίρεση</string>
     <string name="action_continue">Συνέχεια</string>
     <string name="message_server_timeout">Το αίτημα έληξε</string>
-    <string name="dialog_permissions_location_content">Ο Καιρός Breezy χρειάζεται να συλλέγει πληροφορίες για την τοποθεσία σου στο προσκήνιο ή παρασκήνιο για να παρέχει δεδομένα καιρού για την τρέχουσα θέση σου. Για αυτό, θα ζητήσουμε κάποιες άδειες. Οι πληροφορίες για τη τοποθεσία σου θα χρησιμοποιούνται μόνο για την απόκτηση πληροφοριών για τη τρέχουσα τοποθεσία σου. Αν δε θες να κοινοποιείς τέτοιες πληροφορίες, μπορείς να αρνήθεις και να ρυθμίζεις τη θέση σου χειροκίνητα από τη σελίδα διαχείρισης.</string>
+    <string name="dialog_permissions_location_content">Για να χρησιμοποιήσεις αυτή τη δυνατότητα, παραχώρησε άδεια πρόσβασης για τη τρέχουσα τοποθεσία σου. Θα κοινοποιούνται μόνο σε πηγές καιρού. Αν αλλάξεις γνώμη, μπορείς να ακυρώσεις τη διαδικασία και να ρυθμίζεις τη θέση σου χειροκίνητα.</string>
     <string name="message_parsing_error_content">Βεβαιώσου ότι είσαι στη τελευταία έκδοση της εφαρμογής. Ο διακομιστής μπορεί να είναι προσωρινά μη διαθέσιμος, σε αυτή τη περίπτωση, δοκίμασε ξανά αργότερα. Αν το πρόβλημα συνεχίζεται, παρακαλώ ανάκτησε το αρχείο σφαλμάτων από τις ρυθμίσεις αποσφαλμάτωσης και ανέφερε το πρόβλημα στο GitHub.</string>
     <string name="message_tap_again_to_exit">Πάτα ξανά για έξοδο</string>
     <string name="widget_material_you_current">Material You - Τρέχουσα</string>
@@ -405,7 +405,7 @@
     <string name="dialog_permissions_notification_title">Μείνε ενημερωμένος</string>
     <string name="dialog_permissions_notification_content">Πάτησε εδώ για να ενεργοποιήσεις τις ειδοποιήσεις σχετικά με προειδοποιήσεις καιρού ή αποφάσισε αργότερα στις Ρυθμίσεις.</string>
     <string name="dialog_permissions_location_title">Πληροφορίες πρόσβασης τοποθεσίας</string>
-    <string name="dialog_permissions_location_background_content">Για να επιτρέψεις στην εφαρμογή να έχει πρόσβαση σε πληροφορίες τοποθεσίας στο παρασκήνιο, ώστε να γίνονται αντιληπτές αλλαγές στη τοποθεσία και να παρέχονται έγκυρα δεδομένα καιρού, παρακαλώ θέσε την πρόσβαση τοποθεσίας σε “Επιτρέπεται πάντα”.</string>
+    <string name="dialog_permissions_location_background_content">Για να επιτρέψεις στην εφαρμογή να έχει πρόσβαση σε πληροφορίες τοποθεσίας στο παρασκήνιο, ώστε να γίνονται αντιληπτές αλλαγές στη τοποθεσία και να παρέχονται έγκυρα δεδομένα καιρού, παρακαλώ θέσε την πρόσβαση τοποθεσίας σε “Επιτρέπεται πάντα”. Αν δε θες, ο καιρός θα ανανεώνεται βάσει των πιο πρόσφατων συντεταγμένων σου, που ίσως είναι παλιές.</string>
     <string name="widget_multi_city">Πολλαπλές πόλεις</string>
     <string name="widget_label_align_end">Στοίχιση δεξιά</string>
     <string name="widget_style_temperature">Θερμοκρασία</string>
@@ -654,7 +654,7 @@
     <string name="message_server_unavailable_content">Πρόκειται για προσωρινό σφάλμα. Αν το σφάλμα παραμένει, αναφέρετε το ζήτημα στο GitHub.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Δείκτης Ποιότητας Αέρα σήμερα, αύριο, …, 4 μέρες μετά</string>
     <string name="settings_background_updates_refresh_never_warning1">Απενεργοποιώντας τις ενημερώσεις παρασκηνίου, δε θα λαμβάνεις πλέον ενημερώσεις για ειδοποιήσεις ή υετό. Τα γραφικά στοιχεία δεν θα ανανεώνονται μέχρι να ανοίξεις την εφαρμογή.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Αυτό συνέβη όταν πρόσθεσες την τοποθεσία σου στην Τυπική έκδοση του Breezy Weather και μετά άλλαξες στην έκδοση με μόνο ελεύθερες πηγές δικτύου. Αν γυρίσεις ξανά στην Τυπική έκδοση, το πρόβλημα ίσως επιλυθεί.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Αυτό συνέβη όταν πρόσθεσες την τοποθεσία σου στην Τυπική έκδοση του Breezy Weather και μετά άλλαξες στην έκδοση με μόνο libre πηγές δικτύου. Αν γυρίσεις ξανά στην Τυπική έκδοση, το πρόβλημα ίσως επιλυθεί.</string>
     <string name="message_source_not_installed_error_content_tip_2">Είτε άλλαξε τις πηγές καιρού για αυτή τη τοποθεσία είτε αφαίρεσέ τη και πρόσθεσέ τη ξανά.</string>
     <string name="widget_label_hide_header">Απόκρυψη κεφαλίδας</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Τρέχων Δείκτης Ποιότητας Αέρα</string>
@@ -678,11 +678,20 @@
     <string name="settings_weather_source_open_meteo_weather_models">Μοντέλα καιρού</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Απρόσκοπτη</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Συνδυάζει τα καλύτερα μοντέλα καιρού για αυτήν την τοποθεσία</string>
-    <string name="settings_weather_source_freenet_disclaimer">Περισσότερες πηγές καιρού είναι διαθέσιμες από άλλες εκδοχές του Breezy Weather. Πάτα εδώ για να μάθεις περισσότερα.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Περισσότερες πηγές καιρού είναι διαθέσιμες από άλλες εκδοχές της εφαρμογής. Πάτα εδώ για να μάθεις περισσότερα.</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Καλύτερη αντιστοίχιση</string>
     <string name="settings_weather_sources_default_source">Προεπιλεγμένη πηγή για νέες τοποθεσίες</string>
     <string name="settings_weather_source_unavailable">%s (μη διαθέσιμη)</string>
     <string name="settings_weather_source_none">Καμία</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Διακομιστής ποιότητας αέρα</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Συνδυάζει όλα τα μοντέλα καιρού από αυτόν τον πάροχο σε μια απρόσκοπτη πρόγνωση</string>
+    <string name="action_download">Λήψη</string>
+    <string name="notification_channel_app_updates">Ενημερώσεις εφαρμογής</string>
+    <string name="notification_app_update_available">Είναι διαθέσιμη νέα έκδοση!</string>
+    <string name="about_check_for_app_updates">Έλεγχος για ενημερώσεις εφαρμογής</string>
+    <string name="about_no_new_updates">Καμία διαθέσιμη ενημέρωση</string>
+    <string name="common_weather_text_sand_storm">Αμμοθύελλα</string>
+    <string name="settings_notifications_app_updates_check">Ειδοποιήσεις για ενημερώσεις εφαρμογής</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Τυφώνας ή Σίφωνας</string>
+    <string name="meteoam_weather_text_smoke">Καπνός</string>
 </resources>
