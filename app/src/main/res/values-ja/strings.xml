@@ -465,7 +465,7 @@
     <string name="settings_location_access_switch_summaryOn">許可されました。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
-    <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、Breezy Weather の壁紙を有効にすることができます。</string>
+    <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、%s の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">情報源は要求された機能の一部に対応していません</string>
     <string name="unit_mmph_voice">ﾐﾘﾒｰﾄﾙ毎時</string>
     <string name="settings_location_access_background_summaryOn">有効されました。バックグラウンドで現在地の気象データを更新できます。</string>

@@ -560,7 +560,7 @@
     <string name="common_weather_text_drizzle_freezing">Pioggerella ghiacciata</string>
     <string name="common_weather_text_drizzle_freezing_light">Pioggerella ghiacciata leggera</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Pioggerella ghiacciata intensa</string>
-    <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo Breezy Weather scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
+    <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatto</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>

@@ -471,7 +471,7 @@
     <string name="settings_units_distance">Atstumo vienetas</string>
     <string name="settings_main_daily_trends_title">Dienos tendencijos</string>
     <string name="settings_widgets_live_wallpaper_title">Gyvi tapetai</string>
-    <string name="settings_widgets_live_wallpaper_error">Nepavyko paleisti ekrano užsklandos pasirinkimo programos. Vis dar galite įjungti „Breezy Weather“ ekrano užsklandą pasirinkę „Live Wallpaper“ pagrindinio ekrano ekrano užsklandos pasirinkimo programoje.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nepavyko paleisti ekrano užsklandos pasirinkimo programos. Vis dar galite įjungti „%s“ ekrano užsklandą pasirinkę „Live Wallpaper“ pagrindinio ekrano ekrano užsklandos pasirinkimo programoje.</string>
     <string name="settings_main">Pagrindinis ekranas</string>
     <string name="settings_notifications">Pranešimai</string>
     <string name="settings_notifications_summary">Pranešimai apie orų perspėjimus, kritulius arba orų prognozę pirmajai vietovei</string>

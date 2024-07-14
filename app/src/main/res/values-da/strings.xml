@@ -661,7 +661,7 @@
     <string name="unit_atm_voice">Atmosfærer</string>
     <string name="unit_inhg_voice">Tommer kviksølv</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Vejrudsigtsinstans</string>
-    <string name="settings_widgets_live_wallpaper_error">Kunne ikke starte baggrundsvælger. Du kan stadig aktivere Breezy Weather-baggrund, ved at vælge “Levende baggrund” på din hjemmeskærms baggrundsvælger.</string>
+    <string name="settings_widgets_live_wallpaper_error">Kunne ikke starte baggrundsvælger. Du kan stadig aktivere %s-baggrund, ved at vælge “Levende baggrund” på din hjemmeskærms baggrundsvælger.</string>
     <string name="null_data_text">N/A</string>
     <string name="air_quality_pm_explanations_consequences">Atmosfæriske partikler er den mest skadelige form for luftforurening, på grund af deres evne til at penetrere dybt ind i lungerne og hjernen, via blodbanerne, hvilket forårsager helbredsproblemer så som hjerte- og lungesygdomme, samt en tidlig død.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindeks for i dag, i morgen, …, 4 dage senere</string>

@@ -482,7 +482,7 @@
     <string name="settings_main_section_displayed_data">Datos mostrados</string>
     <string name="action_delete">Borrar</string>
     <string name="settings_location_access_precise_summaryOff">Activa “Usar la ubicación precisa” si tienes problemas para obtener una ubicación.</string>
-    <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de Breezy Weather seleccionando “Fondo de pantalla animado” en el selector de fondos de la pantalla de inicio.</string>
+    <string name="settings_widgets_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de %s seleccionando “Fondo de pantalla animado” en el selector de fondos de la pantalla de inicio.</string>
     <string name="settings_widgets_week_icon_mode_title">Icono para mostrar en las vistas semanales</string>
     <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, notificaciones del pronóstico para la ubicación principal</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora de notificación de la previsión para el día siguiente</string>

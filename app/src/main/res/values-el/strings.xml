@@ -496,7 +496,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Ειδοποίηση για την πρόβλεψη της επόμενης ημέρας</string>
     <string name="settings_widgets_live_wallpaper_summary">Ορίστε μια κινούμενη εικόνα καιρού ως ταπετσαρία</string>
     <string name="air_quality_o3_info_origin">Σχηματίζεται από φωτοχημικές αντιδράσεις με ρύπους όπως πτητικές οργανικές ενώσεις, μονοξείδιο του άνθρακα και οξείδια του αζώτου (NOₓ) που εκπέμπονται από οχήματα και τη βιομηχανία. Λόγω της φωτοχημικής φύσης, τα υψηλότερα επίπεδα όζοντος παρατηρούνται σε περιόδους ηλιόλουστου καιρού.</string>
-    <string name="settings_widgets_live_wallpaper_error">Δεν ήταν δυνατή η εκκίνηση του επιλογέα ταπετσαρίας. Μπορείτε ακόμα να ενεργοποιήσετε την ταπετσαρία Breezy Weather επιλέγοντας Ζωντανή ταπετσαρία στο εργαλείο επιλογής ταπετσαρίας της αρχικής οθόνης σας.</string>
+    <string name="settings_widgets_live_wallpaper_error">Δεν ήταν δυνατή η εκκίνηση του επιλογέα ταπετσαρίας. Μπορείτε ακόμα να ενεργοποιήσετε την ταπετσαρία %s επιλέγοντας Ζωντανή ταπετσαρία στο εργαλείο επιλογής ταπετσαρίας της αρχικής οθόνης σας.</string>
     <string name="settings_widgets_week_icon_mode_title">Εικονίδιο για εμφάνιση σε εβδομαδιαίες προβολές</string>
     <string name="settings_widgets_monochrome_icons_title">Μονόχρωμα εικονίδια</string>
     <string name="settings_widgets_section_notification_widget">Γραφικό στοιχείο ειδοποίησης</string>

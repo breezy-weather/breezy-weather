@@ -639,7 +639,7 @@
     <string name="settings_location_access_background_summaryOn">מופעל. האפליקציה תוכל לרענן את נתוני מזג האוויר עבור המיקום הנוכחי שלך ברקע.</string>
     <string name="settings_widgets_summary">הגדר טפט, הגדר ווידג\'טים בשימוש, ווידג\'ט הודעות</string>
     <string name="settings_widgets_live_wallpaper_title">טפט חי</string>
-    <string name="settings_widgets_live_wallpaper_error">לא ניתן היה להפעיל את בוחר הטפטים. אתה עדיין יכול להפעיל טפטים של Breezy Weather על ידי בחירת ”טפט חי“ בבוחר הטפטים של מסך הבית שלך.</string>
+    <string name="settings_widgets_live_wallpaper_error">לא ניתן היה להפעיל את בוחר הטפטים. אתה עדיין יכול להפעיל טפטים של %s על ידי בחירת ”טפט חי“ בבוחר הטפטים של מסך הבית שלך.</string>
     <string name="settings_widgets_live_wallpaper_summary">הגדר אנימציית מזג אוויר כטפט</string>
     <string name="settings_follow_system">עקוב אחרי המערכת</string>
     <string name="settings_debug_dump_crash_logs_summary">שומר יומן שגיאות אל תוך קובץ לשיתוף עם המפתחים</string>

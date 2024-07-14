@@ -486,7 +486,7 @@
     <string name="widget_clock_font_analog">模拟时钟</string>
     <string name="action_undo">撤消</string>
     <string name="notification_channel_widget">微件</string>
-    <string name="settings_widgets_live_wallpaper_error">无法启动壁纸选择器。您仍然可以通过在主屏幕壁纸选择器中选择动态壁纸来启用 Breezy Weather 壁纸。</string>
+    <string name="settings_widgets_live_wallpaper_error">无法启动壁纸选择器。您仍然可以通过在主屏幕壁纸选择器中选择动态壁纸来启用 %s 壁纸。</string>
     <string name="air_quality_index">空气质量指数</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>

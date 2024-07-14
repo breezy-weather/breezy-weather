@@ -351,7 +351,7 @@
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_notifications_summary">Временски сигнали, врнежи, прогноза</string>
     <string name="settings_notifications_forecast_tomorrow_title">Известување за прогноза за следниот ден</string>
-    <string name="settings_widgets_live_wallpaper_error">Не може да се стартува избирачот на тапети. Сè уште можете да ја овозможите заднината на „Бреези“ со избирање „Жива позадина“ во избирачот на тапети на почетниот екран.</string>
+    <string name="settings_widgets_live_wallpaper_error">Не може да се стартува избирачот на тапети. Сè уште можете да ја овозможите заднината на „%s“ со избирање „Жива позадина“ во избирачот на тапети на почетниот екран.</string>
     <string name="settings_widgets_week_icon_mode_title">Икона за прикажување во неделни прегледи</string>
     <string name="settings_widgets_monochrome_icons_title">Монохроматски икони</string>
     <string name="settings_widgets_section_widgets_in_use">Додатоци во употреба</string>

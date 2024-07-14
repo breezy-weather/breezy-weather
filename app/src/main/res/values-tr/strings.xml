@@ -350,7 +350,7 @@
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
-    <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek Breezy Weather duvar kağıdını etkinleştirebilirsiniz.</string>
+    <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek %s duvar kağıdını etkinleştirebilirsiniz.</string>
     <string name="weather_air_quality_and_pollen_data_by">Hava kalitesi ve alerjen bilgisi %s tarafından sağlanıyor</string>
     <string name="pollen_level_4">Yüksek</string>
     <string name="pollen_level_5">Çok yüksek</string>

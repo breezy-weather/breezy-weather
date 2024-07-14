@@ -118,7 +118,12 @@ fun WidgetsSettingsScreen(
                     context.startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                         } catch (e2: ActivityNotFoundException) {
-                            SnackbarHelper.showSnackbar(context.getString(R.string.settings_widgets_live_wallpaper_error))
+                            SnackbarHelper.showSnackbar(
+                                context.getString(
+                                    R.string.settings_widgets_live_wallpaper_error,
+                                    context.getString(R.string.breezy_weather)
+                                )
+                            )
                         }
                     }
                 }

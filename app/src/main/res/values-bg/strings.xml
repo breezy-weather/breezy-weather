@@ -404,7 +404,7 @@
     <string name="settings_widgets_week_icon_mode_title">Икона за показване в седмични изгледи</string>
     <string name="settings_widgets_monochrome_icons_title">Едноцветни икони</string>
     <string name="settings_item_delete">Изтрий този елемент</string>
-    <string name="settings_widgets_live_wallpaper_error">Неуспешно стартиране на инструмента за избор на тапет. Все още можете да активирате тапет Breezy Weather, като изберете “Живи тапети” в инструмента за избор на тапети на началния екран.</string>
+    <string name="settings_widgets_live_wallpaper_error">Неуспешно стартиране на инструмента за избор на тапет. Все още можете да активирате тапет %s, като изберете “Живи тапети” в инструмента за избор на тапети на началния екран.</string>
     <string name="settings_widgets_section_widgets_in_use">Приспособления в употреба</string>
     <string name="settings_widgets_notification_widget_title">Приспособление в известията</string>
     <string name="settings_widgets_configure_widget_summary">Конфигурирай това приспособление</string>

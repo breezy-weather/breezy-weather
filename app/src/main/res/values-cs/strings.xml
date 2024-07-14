@@ -402,7 +402,7 @@
     <string name="wind_direction_short_NE">SV</string>
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
-    <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu Breezy Weather můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
     <string name="unit_lpsqmph_voice">Litry na metr čtvereční za hodinu</string>
     <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Bouřka slabá nebo středně silná</string>

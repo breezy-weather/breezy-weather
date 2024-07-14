@@ -542,7 +542,7 @@
     <string name="settings_widgets">Widgeti i žive pozadine</string>
     <string name="settings_widgets_live_wallpaper_title">Živa pozadina</string>
     <string name="settings_widgets_live_wallpaper_summary">Postavi animaciju prognoze kao pozadinu</string>
-    <string name="settings_widgets_live_wallpaper_error">Neuspješno pokretanje biranja pozadine. Pozadinu „Breezy Weather” možete omogućiti pomoću opcije „Živa pozadina” u podešavanjima pozadine za početni zaslon.</string>
+    <string name="settings_widgets_live_wallpaper_error">Neuspješno pokretanje biranja pozadine. Pozadinu „%s” možete omogućiti pomoću opcije „Živa pozadina” u podešavanjima pozadine za početni zaslon.</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona za prikazivanje u sedmičnim prikazima</string>
     <string name="settings_widgets_monochrome_icons_title">Monokromatske ikone</string>
     <string name="settings_widgets_section_notification_widget">Widget obavještenja</string>
@@ -625,7 +625,7 @@
     <string name="about_open_link_message">Otvoriti %s?</string>
     <string name="settings_source_instance_invalid">Mora biti https URL adresa koja završava / (kosom crtom)</string>
     <string name="settings_weather_source_open_meteo_weather_models">Vremenski modeli</string>
-    <string name="settings_background_updates_refresh_never_warning3">Razmislite da koristite rjeđu brzinu osvježavanja umjesto gašenja pozadinskog ažuriranja, u suprotnom kliknite na \"Nastavi\" ako želite da nastavite.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Razmislite da koristite rjeđu brzinu osvježavanja umjesto gašenja pozadinskog ažuriranja, u suprotnom kliknite na “Nastavi” ako želite da nastavite.</string>
     <string name="precipitation_intensity_medium">Srednje</string>
     <string name="pollen_tilia">Lipa</string>
     <string name="pollen_castanea">Kesten</string>

@@ -578,7 +578,7 @@
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_hpa_voice">Hektopascal</string>
-    <string name="settings_widgets_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a Breezy Weather háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a %s háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
     <string name="settings_debug_summary">Hibanapló</string>
     <string name="unit_inph_voice">Hüvelyk per óra</string>
     <string name="unit_lpsqmph">L/m²/h</string>

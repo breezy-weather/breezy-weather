@@ -264,7 +264,7 @@
     <string name="settings_main_background_animation_enabled">Iespējots</string>
     <string name="settings_main_background_animation_disabled">Atspējots</string>
     <string name="settings_notifications_summary">Paziņojumi par laikapstākļu brīdinājumiem, nokrišņiem vai pirmās atrašanās vietas prognozi</string>
-    <string name="settings_widgets_live_wallpaper_error">Nevarēja palaist tapetes atlasītāju. Joprojām var iespējot Breezy Weather tapeti, sākuma ekrāna tapetes atlasītājā izvēloties Live Wallpaper.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nevarēja palaist tapetes atlasītāju. Joprojām var iespējot %s tapeti, sākuma ekrāna tapetes atlasītājā izvēloties Live Wallpaper.</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona, ko attēlot nedēļas skatos</string>
     <string name="settings_widgets_monochrome_icons_title">Vienkrāsainas ikonas</string>
     <string name="settings_widgets_notification_feels_like_switch">Izmantot šķietamo temperatūru</string>

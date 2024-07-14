@@ -333,7 +333,7 @@
     <string name="settings_debug_dump_crash_logs_title">Podijeli zapisnike o padu aplikacije</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="settings_location_service">Lokacijske usluge</string>
-    <string name="settings_widgets_live_wallpaper_error">Neuspjelo pokretanje biranja pozadine. Pozadinu za „Breezy Weather” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
+    <string name="settings_widgets_live_wallpaper_error">Neuspjelo pokretanje biranja pozadine. Pozadinu za „%s” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_appearance">Izgled</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Trenutačna temperatura (°C/°F)</string>

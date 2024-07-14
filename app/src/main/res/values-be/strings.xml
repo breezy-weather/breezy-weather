@@ -428,7 +428,7 @@
     <string name="settings_widgets_summary">Усталяваць шпалеры, наладзіць выкарыстоўваныя фішкі, віджэт у апавяшчэннях</string>
     <string name="settings_widgets_live_wallpaper_title">Жывыя шпалеры</string>
     <string name="settings_widgets_live_wallpaper_summary">Усталюйце анімацыю надвор’я ў якасці шпалер</string>
-    <string name="settings_widgets_live_wallpaper_error">Не ўдалося запусціць сродак выбару шпалер. Вы па-ранейшаму можаце ўключыць шпалеры Breezy Weather, выбраўшы Жывыя шпалеры ў меню выбару шпалер на галоўным экране.</string>
+    <string name="settings_widgets_live_wallpaper_error">Не ўдалося запусціць сродак выбару шпалер. Вы па-ранейшаму можаце ўключыць шпалеры %s, выбраўшы Жывыя шпалеры ў меню выбару шпалер на галоўным экране.</string>
     <string name="settings_widgets_week_icon_mode_title">Абразкі для адлюстравання ў тыднёвых праглядах</string>
     <string name="settings_widgets_monochrome_icons_title">Манахромныя абразкі</string>
     <string name="settings_widgets_section_widgets_in_use">Выкарыстоўваныя фішкі</string>

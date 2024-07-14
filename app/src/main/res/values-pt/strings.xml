@@ -508,7 +508,7 @@
     <string name="unit_lpsqm_voice">Litros por metro quadrado</string>
     <string name="unit_kn">kn</string>
     <string name="settings_widgets_live_wallpaper_title">Papel de parede animado</string>
-    <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Ainda pode ativar o papel de parede Breezy Weather escolhendo “Live Wallpaper” no seletor de papéis de parede do ecrã inicial.</string>
+    <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Ainda pode ativar o papel de parede %s escolhendo “Live Wallpaper” no seletor de papéis de parede do ecrã inicial.</string>
     <string name="settings_widgets_notification_widget_title">Widget de notificação</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>

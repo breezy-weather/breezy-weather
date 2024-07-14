@@ -435,7 +435,7 @@
     <string name="settings_notifications_precipitations_title">Повідомляти про опади</string>
     <string name="settings_widgets_live_wallpaper_title">Живі шпалери</string>
     <string name="settings_widgets_live_wallpaper_summary">Встановити анімацію погоди як шпалери</string>
-    <string name="settings_widgets_live_wallpaper_error">Не вдалося запустити засіб вибору шпалер. Ви, як і раніше, можете увімкнути шпалери Breezy Weather, вибравши «Живі шпалери» в меню вибору шпалер на головному екрані.</string>
+    <string name="settings_widgets_live_wallpaper_error">Не вдалося запустити засіб вибору шпалер. Ви, як і раніше, можете увімкнути шпалери %s, вибравши «Живі шпалери» в меню вибору шпалер на головному екрані.</string>
     <string name="settings_widgets_section_widgets_in_use">Використовувані віджети</string>
     <string name="settings_widgets_configure_widget_summary">Налаштувати цей віджет</string>
     <string name="settings_location_access_switch_summaryOff">Надайте доступ, якщо ви хочете мати можливість додати ваше поточне місцезнаходження як місцезнаходження.</string>

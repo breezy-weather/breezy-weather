@@ -450,7 +450,7 @@
     <string name="air_quality_co_info_origin">Nó được tạo ra do quá trình đốt cháy không hoàn toàn các nhiên liệu có chứa carbon như gỗ, xăng, than, khí đốt tự nhiên và dầu hỏa trong bếp đơn giản, ngọn lửa mở, đèn bấc, lò nung, lò sưởi. Nguồn cacbon monoxit (CO) chủ yếu trong không khí xung quanh là từ các phương tiện cơ giới.</string>
     <string name="air_quality_co_info_consequences">Cacbon monoxit khuếch tán qua các mô phổi và vào máu, khiến các tế bào của cơ thể khó liên kết với oxy. Sự thiếu oxy này làm hỏng các mô và tế bào. Tiếp xúc với carbon monoxide có thể gây khó thở, kiệt sức, chóng mặt và các triệu chứng giống như cúm khác. Tiếp xúc với nồng độ cacbon monoxit cao có thể gây chết người.</string>
     <string name="action_close">Đóng</string>
-    <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
+    <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền %s bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="air_quality_index">Chỉ số chất lượng không khí</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>
     <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Cài đặt.</string>

@@ -483,7 +483,7 @@
     <string name="air_quality_o3_info_origin">Powstaje w wyniku reakcji fotochemicznych z zanieczyszczeniami, takimi jak lotne związki organiczne, tlenek węgla i tlenki azotu (NOₓ) emitowane przez pojazdy i przemysł. Ze względu na charakter fotochemiczny najwyższe poziomy ozonu obserwuje się w okresach słonecznej pogody.</string>
     <string name="air_quality_no2_info_origin">Źródła NO₂ w otoczeniu powstają w wyniku spalania paliw w wysokich temperaturach w procesach stosowanych m.in. w ciepłownictwie, transporcie, przemyśle i energetyce. Domowymi źródłami tlenków azotu (NOₓ) są urządzenia spalające paliwa, takie jak piece, kominki oraz piekarniki i kuchenki gazowe.</string>
     <string name="settings_location_access_precise_title">Użycie GPS urządzenia</string>
-    <string name="settings_widgets_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę Breezy Weather, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę %s, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
     <string name="unit_inph_voice">Cali na godzinę</string>
     <string name="settings_item_delete">Usuń ten element</string>
     <string name="settings_location_access_precise_summaryOff">Włącz opcję „Używaj dokładnej lokalizacji”, jeśli masz problem z uzyskaniem lokalizacji.</string>

@@ -348,7 +348,7 @@
     <string name="settings_main_header_details_title">標題中的詳細資訊</string>
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
-    <string name="settings_widgets_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 Breezy Weather 的桌布。</string>
+    <string name="settings_widgets_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 %s 的桌布。</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
     <string name="action_undo">復原</string>

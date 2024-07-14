@@ -341,9 +341,9 @@
     <string name="dialog_permissions_notification_title">Stay informed</string>
     <string name="dialog_permissions_notification_content">Tap here to enable notifications about weather alerts, or decide later in Settings.</string>
     <string name="dialog_permissions_location_title">Access location information</string>
-    <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
+    <string name="dialog_permissions_location_content">To use this feature, you need to grant the app permission to access your current location. It will only be shared with the selected weather sources. If you changed your mind, you can cancel the process and add a fixed location manually.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>
-    <string name="dialog_permissions_location_background_content">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
+    <string name="dialog_permissions_location_background_content">To allow weather refresh in the background to be made for the most recent current location known by Android, you need to set location permission to “Allow all the time”. If you don’t, weather will be refreshed based on the latest retrieved coordinates in the foreground, which can be outdated.</string>
     <string name="dialog_time_picker_select_time">Select time</string>
     <string name="dialog_time_picker_input_time">Input time</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
@@ -358,7 +358,7 @@
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
     <!-- Free as in “libre -->
-    <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of Breezy Weather and then switched to the flavor with only free network sources. Going back to the Standard flavor may solve this problem.</string>
+    <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of the app and then switched to the flavor with only free network sources. Going back to the Standard flavor may solve this problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location or delete and re-add this location.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
@@ -519,7 +519,7 @@
     <string name="settings_weather_source_main">Main source</string>
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
     <string name="settings_weather_source_none">None</string>
-    <string name="settings_weather_source_freenet_disclaimer">More weather sources are available from other flavors of Breezy Weather. Tap here to learn more.</string>
+    <string name="settings_weather_source_freenet_disclaimer">More weather sources are available from other flavors of the app. Tap here to learn more.</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources used for this location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>
     <string name="settings_source_api_key">API key</string>
@@ -607,7 +607,8 @@
     <string name="settings_widgets_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_widgets_live_wallpaper_title">Live wallpaper</string>
     <string name="settings_widgets_live_wallpaper_summary">Set a weather animation as wallpaper</string>
-    <string name="settings_widgets_live_wallpaper_error">Couldn’t launch wallpaper chooser. You can still enable Breezy Weather wallpaper by choosing “Live Wallpaper” in your home screen wallpaper picker.</string>
+    <!-- %s = Breezy Weather -->
+    <string name="settings_widgets_live_wallpaper_error">Couldn’t launch wallpaper chooser. You can still enable %s wallpaper by choosing “Live Wallpaper” in your home screen wallpaper picker.</string>
     <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly views</string>
     <string name="settings_widgets_monochrome_icons_title">Monochrome icons</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>

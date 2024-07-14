@@ -232,7 +232,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Teavitus järgmise päeva prognoosist</string>
     <string name="settings_notifications_forecast_time_today_title">Päeva prognoosi teavituse aeg</string>
     <string name="settings_widgets_summary">Sea taustapilt, seadista kasutatud vidinaid, vidin teavituses</string>
-    <string name="settings_widgets_live_wallpaper_error">Ei saanud käivitada taustapildi valijat. Saate siiski lubada Breezy Weather taustapildi, valides oma koduekraani taustapildi valijast “Elus taustapilt”.</string>
+    <string name="settings_widgets_live_wallpaper_error">Ei saanud käivitada taustapildi valijat. Saate siiski lubada %s taustapildi, valides oma koduekraani taustapildi valijast “Elus taustapilt”.</string>
     <string name="settings_widgets_week_icon_mode_title">Nädalases vaates kuvatav ikoon</string>
     <string name="settings_widgets_notification_feels_like_switch">Kasuta tundub kui temperatuuri</string>
     <string name="settings_widgets_broadcast_title">Andmete jagamine</string>

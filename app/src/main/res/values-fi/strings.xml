@@ -584,7 +584,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lievä tai kohtalainen ukkonen</string>
     <string name="settings_main_hourly_trends_title">Tuntikohtainen kehitys</string>
     <string name="notification_channel_background_services">Taustapalvelut</string>
-    <string name="settings_widgets_live_wallpaper_error">Taustakuvanvalitsinta ei voitu käynnistää. Voit silti ottaa Breezy Weather -taustakuvan käyttöön valitsemalla “Live Wallpaper” kotinäytön taustakuvanvalitsimesta.</string>
+    <string name="settings_widgets_live_wallpaper_error">Taustakuvanvalitsinta ei voitu käynnistää. Voit silti ottaa %s -taustakuvan käyttöön valitsemalla “Live Wallpaper” kotinäytön taustakuvanvalitsimesta.</string>
     <string name="unit_mgpcum_voice">Milligrammaa per kuutiometri</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Ukkosmyrsky ja rajuja raekuuroja</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kuurottaista kevyttä vesisateen ja lumen sekoitusta</string>

@@ -582,7 +582,7 @@
     <string name="air_quality_co_info_origin">Hal ini dihasilkan oleh pembakaran tidak sempurna bahan bakar berkarbon seperti kayu, bensin, batu bara, gas alam dan minyak tanah dalam kompor sederhana, api terbuka, lampu sumbu, tungku, dan perapian. Sumber utama karbon monoksida (CO) di udara ambien berasal dari kendaraan bermotor.</string>
     <string name="weather_message_unsupported_feature">Sumber tidak mendukung salah satu fitur yang diminta</string>
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>
-    <string name="settings_widgets_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang Breezy Weather dengan memilih “Latar Belakang Langsung” dalam pemilih latar belakang layar beranda Anda.</string>
+    <string name="settings_widgets_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Langsung” dalam pemilih latar belakang layar beranda Anda.</string>
     <string name="unit_mgpcum_voice">Miligram per meter kubik</string>
     <string name="unit_bf_voice">pada skala Beaufort</string>
     <string name="message_server_timeout">Waktu permintaan habis</string>

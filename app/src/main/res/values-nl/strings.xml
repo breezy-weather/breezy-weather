@@ -111,7 +111,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Negeren als batterij bijna leeg is</string>
     <string name="settings_units_distance">Afstandseenheid</string>
-    <string name="settings_widgets_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de Breezy Weather wallpaper nog steeds inschakelen door “Live Wallpaper” te kiezen in de wallpaperkiezer op je startscherm.</string>
+    <string name="settings_widgets_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de %s wallpaper nog steeds inschakelen door “Live Wallpaper” te kiezen in de wallpaperkiezer op je startscherm.</string>
     <string name="about_privacy_policy">Privacybeleid</string>
     <string name="unit_lpsqmph">L/m²/u</string>
     <string name="unit_lpsqmph_voice">Liter per vierkante meter per uur</string>

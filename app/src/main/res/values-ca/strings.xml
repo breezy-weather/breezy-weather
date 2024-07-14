@@ -526,7 +526,7 @@
     <string name="settings_debug_dump_crash_logs_title">Compartir registres d’errors</string>
     <string name="unit_cmph_voice">Centímetres per hora</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="settings_widgets_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla Breezy Weather triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
+    <string name="settings_widgets_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
     <string name="unit_bf_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
     <string name="unit_mps">m/s</string>

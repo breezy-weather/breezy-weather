@@ -198,9 +198,9 @@
     <string name="dialog_permissions_notification_title">Restez informés</string>
     <string name="dialog_permissions_notification_content">Appuyez ici pour activer les notifications de vigilances météo, ou décidez plus tard depuis les paramètres.</string>
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>
-    <string name="dialog_permissions_location_content">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
+    <string name="dialog_permissions_location_content">Pour utiliser cette fonctionnalité, vous devez autoriser l’application à accéder à votre position actuelle. Celle-ci ne sera partagée qu’avec les sources météorologiques sélectionnées. Si vous avez changé d’avis, vous pouvez annuler l’opération et ajouter un emplacement fixe manuellement.</string>
     <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
-    <string name="dialog_permissions_location_background_content">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
+    <string name="dialog_permissions_location_background_content">Pour que l’actualisation des données météo en arrière-plan se fasse pour la position la plus récente connue par Android, vous devez définir la permission de localisation sur « Toujours autoriser ». Si vous ne le faites pas, la météo sera actualisée sur la base des dernières coordonnées récupérées au premier plan, qui sont potentiellement obsolètes.</string>
     <string name="dialog_time_picker_select_time">Sélectionner l’heure</string>
     <string name="dialog_time_picker_input_time">Saisir l’heure</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Basculer en saisie tactile</string>
@@ -313,7 +313,7 @@
     <string name="message_parsing_error_title">Échec d’analyse des données météo</string>
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
-    <string name="message_source_not_installed_error_content_tip_1">Cela peut se produire lorsque vous avez ajouté votre emplacement dans la version Standard de Breezy Weather et que vous êtes ensuite passé à la version avec uniquement des sources réseau libres et auto-hébergeables (freenet). Revenir à la version Standard peut permettre de résoudre ce problème.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Cela peut se produire lorsque vous avez ajouté votre emplacement dans la version Standard de l’application et que vous êtes ensuite passé à la version avec uniquement des sources réseau libres et auto-hébergeables (freenet). Revenir à la version Standard peut permettre de résoudre ce problème.</string>
     <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement ou supprimez et ajoutez à nouveau cet emplacement.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
@@ -361,7 +361,7 @@
     <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_none">Aucune</string>
-    <string name="settings_weather_source_freenet_disclaimer">D’autres sources sont disponibles à partir d’autres versions de Breezy Weather. Appuyez ici pour en savoir plus.</string>
+    <string name="settings_weather_source_freenet_disclaimer">D’autres sources sont disponibles à partir d’autres versions de l’application. Appuyez ici pour en savoir plus.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance de qualité de l’air</string>
@@ -527,7 +527,7 @@
     </string>
     <string name="settings_widgets_live_wallpaper_title">Fond d’écran animé</string>
     <string name="settings_widgets_live_wallpaper_summary">Définir une animation météo comme fond d’écran</string>
-    <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran Breezy Weather en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
+    <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran %s en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
     <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>
     <string name="settings_widgets_monochrome_icons_title">Icônes monochromes</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets utilisés</string>

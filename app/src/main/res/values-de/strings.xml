@@ -480,7 +480,7 @@
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>
     <string name="null_data_text">n. v.</string>
-    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von Breezy Weather weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
+    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von %s weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
     <string name="air_quality_index">Luftqualitätsindex</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>

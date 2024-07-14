@@ -539,7 +539,7 @@
     <string name="about_app">درباره برنامه</string>
     <string name="common_weather_text_overcast">ابری</string>
     <string name="settings_widgets_live_wallpaper_summary">تنظیم یک پویانمایی آب‌وهوایی به عنوان کاغذدیواری</string>
-    <string name="settings_widgets_live_wallpaper_error">نمی توانید انتخابگر کاغذ دیواری را راه اندازی کنید. با انتخاب “کاغذدیواری زنده” در انتخاب کننده کاغذ دیواری صفحه اصلی خود، همچنان می توانید کاغذ دیواری Breezy Weather را فعال کنید.</string>
+    <string name="settings_widgets_live_wallpaper_error">نمی توانید انتخابگر کاغذ دیواری را راه اندازی کنید. با انتخاب “کاغذدیواری زنده” در انتخاب کننده کاغذ دیواری صفحه اصلی خود، همچنان می توانید کاغذ دیواری %s را فعال کنید.</string>
     <string name="settings_widgets_notification_widget_title">ابزارک آگاه‌ساز</string>
     <string name="settings_widgets_notification_persistent_switch">مداوم</string>
     <string name="settings_widgets_notification_feels_like_switch">استفاده از دما حس شدنی</string>
