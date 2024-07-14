@@ -12,7 +12,7 @@
     <string name="wind_strength_0">Штиль</string>
     <string name="wind_strength_5">Свіжий</string>
     <string name="uv_alert_level">Попередження</string>
-    <string name="air_quality_level_1">Відмінно</string>
+    <string name="air_quality_level_1">Відмінний</string>
     <string name="air_quality_so2_voice">Діоксид сірки</string>
     <string name="air_quality_pm_explanations_introduction">Пил або атмосферний пил – це мікроскопічні частинки твердої або рідкої речовини, зважені в повітрі.</string>
     <string name="air_quality_o3_info_introduction">Приземний озон (O₃) є основним компонентом смогу. Приземний озон може бути шкідливим для здоров’я людини, на відміну від стратосферного озону, який захищає землю від надмірного ультрафіолетового випромінювання.</string>
@@ -45,9 +45,9 @@
     <string name="uv_index">УФ-індекс</string>
     <string name="uv_index_3_5">Помірний</string>
     <string name="air_quality_index">Індекс якості повітря</string>
-    <string name="air_quality_level_3">Погано</string>
-    <string name="air_quality_level_4">Шкідливо</string>
-    <string name="air_quality_level_6">Небезпечно</string>
+    <string name="air_quality_level_3">Поганий</string>
+    <string name="air_quality_level_4">Шкідливий</string>
+    <string name="air_quality_level_6">Небезпечний</string>
     <string name="air_quality_no2_voice">Діоксиду азоту</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM два цілих п’ять десятих</string>
@@ -63,13 +63,13 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Спадаючий місяць</string>
     <string name="humidity">Вологість</string>
     <string name="humidity_dew_point">Вологість / Точка роси</string>
-    <string name="weather_api_limit_reached_title">Досягнуто ліміту запитів API</string>
+    <string name="weather_api_limit_reached_title">Досягнуто обмеження запитів API</string>
     <string name="setting_weather_source_accu_days">Кількість днів</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 днів</string>
     <string name="weather_source_accu_preference_days_10">10 днів</string>
     <string name="weather_source_accu_preference_hours_1">1 година</string>
-    <string name="setting_weather_source_accu_hours">Години</string>
+    <string name="setting_weather_source_accu_hours">Кількість годин</string>
     <string name="weather_source_accu_preference_hours_12">12 годин</string>
     <string name="weather_source_accu_preference_hours_24">24 години</string>
     <string name="weather_source_accu_preference_hours_120">120 годин</string>
@@ -79,7 +79,7 @@
     <string name="location_search_weather_source">Джерело погоди</string>
     <string name="location_message_deleted">Розташування видалено</string>
     <string name="location_message_list_cannot_be_empty">Список розташувань не може бути порожнім</string>
-    <string name="location_message_search_failed">Помилка пошуку розташувань</string>
+    <string name="location_message_search_failed">Пошук розташування не вдався</string>
     <string name="location_message_failed_to_locate">Не вдалося знайти поточне місцезнаходження</string>
     <string name="location_message_permission_missing">Відсутній дозвіл на доступ до місцезнаходження</string>
     <string name="location_dialog_failed_to_locate_title">Не вдається правильно визначити місцезнаходження\?</string>
@@ -205,7 +205,7 @@
     <string name="weather_api_unauthorized_title">Доступ до API несанкціонований</string>
     <string name="weather_api_key_required_missing_content">Щоб використовувати це джерело, вам потрібно надати ключ API.</string>
     <string name="settings_weather_source_portal">Портал</string>
-    <string name="weather_api_key_required_missing_title">Необхідний ключ API відсутній</string>
+    <string name="weather_api_key_required_missing_title">Обов’язковий ключ API відсутній</string>
     <string name="weather_source_accu_preference_days_15">15 днів</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="weather_source_accu_preference_hours_72">72 години</string>
@@ -252,10 +252,10 @@
     <string name="widget_clock_day_details">Годинник + щоденний (з деталями)</string>
     <string name="widget_trend_hourly">Погодинна динаміка</string>
     <string name="widget_trend_daily">Подневна динаміка</string>
-    <string name="air_quality_level_5">Дуже шкідливо</string>
+    <string name="air_quality_level_5">Дуже шкідливий</string>
     <string name="air_quality_level_5_description">Чутливі люди миттєво відчують вплив на здоров’я, тому їм краще уникати діяльності на вулиці. Здорові люди, ймовірно, відчують утруднене дихання та подразнення горла; подумайте про те, щоб залишатися у приміщенні та перенести заходи надворі.</string>
     <string name="air_quality_level_1_description">Якість повітря ідеально підходить для більшості; насолоджуйтеся своїми звичайними заняттями на свіжому повітрі.</string>
-    <string name="air_quality_level_2">Нормально</string>
+    <string name="air_quality_level_2">Нормальний</string>
     <string name="uv_index_8_10">Дуже високий</string>
     <string name="air_quality_level_2_description">Якість повітря загалом прийнятна для більшості. Однак чутливі люди можуть відчути незначні або помірні симптоми від тривалого впливу повітря.</string>
     <string name="air_quality_pm_explanations_consequences">Пил є найшкідливішою формою забруднення повітря через їхню здатність проникати глибоко в легені та мозок через кровоносні судини, викликаючи проблеми зі здоров’ям, такі, як хвороби серця, захворювання легень та передчасну смерть.</string>
@@ -483,7 +483,7 @@
     <string name="notification_style_native">Нативний</string>
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
     <string name="about_app">Про застосунок</string>
-    <string name="about_contact">Контакти</string>
+    <string name="about_contact">Зворотний зв’язок</string>
     <string name="about_matrix">Кімната Matrix</string>
     <string name="about_dependencies">Залежності</string>
     <string name="common_weather_text_overcast">Похмуро</string>
@@ -509,7 +509,7 @@
     <string name="about_contributors">Учасники</string>
     <string name="about_translators">Перекладачі</string>
     <string name="common_weather_text_snow_heavy">Сильний сніг</string>
-    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру \"відчувається як\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Використовувати темперутуру “відчувається як”</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза з сильним градом</string>
     <string name="weather_message_unsupported_feature">Джерело не підтримує одну із запитаних функцій</string>
     <string name="settings_debug_dump_crash_logs_title">Поділитися журналом збоїв</string>
@@ -551,7 +551,7 @@
     <string name="notification_channel_alerts">Попередження</string>
     <string name="notification_channel_widget">Віджет</string>
     <string name="notification_channel_background_services">Фонові сервіси</string>
-    <string name="about_contribution_WangDaYeeeeee">Розробник оригінального проєкту Geometric Weather</string>
+    <string name="about_contribution_WangDaYeeeeee">Розробник початкового проєкту Geometric Weather</string>
     <string name="common_weather_text_mainly_clear">Переважно ясно</string>
     <string name="common_weather_text_rain_light">Невеликий дощ</string>
     <string name="common_weather_text_rain_moderate">Помірний дощ</string>
@@ -596,7 +596,7 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Натисніть, щоб відкрити</string>
     <string name="notification_channel_crash_logs">Журнал збоїв</string>
     <string name="notification_precipitation_continuing">Опади</string>
-    <string name="notification_precipitation_continuing_desc">Мінімальна очікувана тривалість до %s</string>
+    <string name="notification_precipitation_continuing_desc">Очікувана тривалість щонайменше до %s</string>
     <string name="notification_precipitation_stopping">Опади невдовзі припиняться</string>
     <string name="notification_precipitation_stopping_desc">Очікується припинення об %s</string>
     <string name="settings_unavailable_no_background_updates">Недоступно, спочатку увімкніть фонові оновлення</string>
@@ -619,7 +619,7 @@
     <string name="temperature_feels_like_short">Відчувається як</string>
     <string name="action_confirm">Підтвердити</string>
     <string name="location_delete_location_dialog_title">Видалити місцезнаходження?</string>
-    <string name="weather_message_too_frequent_refreshes">Будь ласка, зачекайте кілька секунд, перш ніж повторити спробу…</string>
+    <string name="weather_message_too_frequent_refreshes">Зачекайте кілька секунд, перш ніж повторити спробу…</string>
     <string name="location_delete_location_dialog_message">Ви збираєтеся видалити “%s” зі свого списку збережених місць.</string>
     <string name="location_delete_location_dialog_message_no_name">Ви збираєтеся видалити це місце зі свого списку збережених місць.</string>
     <string name="widget_label_hide_header">Сховати заголовок</string>
@@ -675,7 +675,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Сумісні пакети не знайдено</string>
     <string name="message_server_unavailable_title">Сервер не доступний</string>
     <string name="message_server_unavailable_content">Зазвичай, це тимчасова помилка. Якщо помилка не зникне, повідомте про проблему GitHub.</string>
-    <string name="action_edit_location">Змінити це розташування</string>
+    <string name="action_edit_location">Редагувати це розташування</string>
     <string name="settings_global">Глобальні налаштування</string>
     <string name="precipitation_intensity_medium">Середня</string>
     <string name="settings_background_updates_app_updates_check">Повідомляти мене про оновлення застосунку</string>
