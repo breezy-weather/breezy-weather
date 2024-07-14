@@ -62,12 +62,14 @@ This can happen when:
 - You change the sources used for your location
 - [Open-Meteo] You change weather models used
 
+When weather refresh for the location begins, the following task is executed:
+- If enabled and if it’s been more than 24 hours since last check, app updates are checked
+
 When weather for the location is done refreshing manually, the following tasks are executed:
 - If used, widgets are updated with the latest weather data
 - If used, the notification-widget is updated with the latest weather data
 - If enabled, weather data of the first location is sent to Gadgetbridge
 - Shortcuts (available on long press on icon on home screen) are updated
-- If enabled and if it’s been more than 24 hours since last check, app updates are checked
 
 
 ## Caching

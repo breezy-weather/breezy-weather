@@ -294,6 +294,16 @@ class MainActivityViewModel @Inject constructor(
 
         _loading.value = true
 
+        if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(getApplication()).isAppUpdateCheckEnabled) {
+            viewModelScope.launchIO {
+                try {
+                    updateChecker.checkForUpdate(getApplication(), forceCheck = false)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
             SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
@@ -577,14 +587,6 @@ class MainActivityViewModel @Inject constructor(
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                         refreshHelper.refreshShortcuts(context, it)
-                    }
-
-                    if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
-                        try {
-                            updateChecker.checkForUpdate(context, forceCheck = false)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
                     }
                 }
             }
