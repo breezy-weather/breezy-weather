@@ -4,6 +4,10 @@
 - [Standard version] Add an option to periodically check for app updates in the background. Available from `Settings` > `Background updates`. Disabled by default.
 - Allow to manually check for updates from `Settings` > `About` (icon). In the `freenet` flavor where non-free networks are not allowed, the button only asks to open the link in an external browser.
 
+**Improvements and fixes**
+- Fix title not changing when going in a subcategory of settings (@min7-i)
+- Fix crash in old Android versions when trying to set location permissions that don’t exist (@min7-i)
+
 **Sources**
 - [Servizio Meteo AM] Added as a possible primary source (@chunshek)
 - [AccuWeather, IMS] Fix text not being in Hebrew when selected language is Hebrew
