@@ -97,7 +97,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy az alkalmazás a háttérben is hozzáférjen az ön tartózkodási helyszínéhez, kérjük állítsa be a helymeghatározási jogosultságokat „Mindig engedélyezettre”.</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb aktuális helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt \"Mindig engedélyezett\" értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
     <string name="widget_label_view_style">Nézet stílusa</string>
     <string name="widget_label_show_widget_card">Háttérszín</string>
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
@@ -205,7 +205,7 @@
     <string name="message_source_not_installed_error_title">A forrás már nem elérhető</string>
     <string name="message_parsing_error_content">Győződjön meg róla, hogy frissítette az alkalmazást a legújabb verzióra. Előfordulhat, hogy a kiszolgáló ideiglenesen nem érhető el, ilyen esetben kérjük, próbálja újra később. Ha a probléma továbbra is fennáll, kérjük, rögzítsen egy hibajegyzéket a hibakeresési beállításokból, majd jelentse a problémát GitHubon.</string>
     <string name="action_show_errors">Érintse meg a részletekért</string>
-    <string name="dialog_permissions_location_content">A Breezy Weathernek szüksége van arra, hogy az előtérben, vagy a háttérben hozzáférjen az ön tartózkodási helyszínéhez, annak érdekében, hogy az aktuális időjárásadatait meg tudja jeleníteni. Ehhez néhány engedélyt fog kérni. A tartózkodási helyszínének adatait csak az aktuális helyszínénél lévő időjárásadatok beszerzéséhez fogjuk használni. Ha nem szeretné megosztani a tartózkodási helyszínének adatait, akkor kézzel is megadhatja a tartózkodási helyszínét a kezelési oldalon.</string>
+    <string name="dialog_permissions_location_content">A funkció használatához engedélyt kell adnia az alkalmazásnak, hogy hozzáférjen az aktuális tartózkodási helyszínéhez. Ez csak a kiválasztott időjárási forrásokkal lesz megosztva. Ha meggondolta magát, megszakíthatja a folyamatot, és kézzel is hozzáadhat egy rögzített helyszínt.</string>
     <string name="settings_background_updates_refresh_title">Frissítési gyakoriság</string>
     <string name="settings_background_updates_refresh_never">Soha</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 óra</string>
@@ -624,7 +624,7 @@
     <string name="cloud_cover_short">Felhőtakaró</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
     <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
-    <string name="settings_weather_source_freenet_disclaimer">További időjárási források állnak rendelkezésre a Breezy Weather egyéb kiadási változataiból. További információkért koppintson ide.</string>
+    <string name="settings_weather_source_freenet_disclaimer">További időjárási források állnak rendelkezésre az alkalmazás egyéb kiadási változataiból. További információkért koppintson ide.</string>
     <string name="weather_message_too_frequent_refreshes">Várjon néhány másodpercet mielőtt újrapróbálkozna…</string>
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
     <string name="location_delete_location_dialog_message">A(z) “%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
@@ -649,7 +649,7 @@
     <string name="sunshine">Napsütés</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">A mai, holnapi, …, 4 nappal későbbi pollenindex összefoglalása</string>
     <string name="about_open_link_message">%s oldal megnyitása?</string>
-    <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha a Breezy Weather normál változatában adta hozzá a helyszínt, majd átváltott a csak nyílt forráskódot tartalmazó változatra. A probléma megoldódhat, ha visszatér a normál verzióra.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha az alkalmazás normál változatában adta hozzá a helyszínt, majd átváltott a csak nyílt forráskódot tartalmazó változatra. A probléma megoldódhat, ha visszatér a normál verzióra.</string>
     <string name="message_source_not_installed_error_content_tip_2">Vagy változtassa meg a helyszínhez tartozó időjárási forrást, esetleg törölje és adja hozzá újra a helyszínt.</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Zökkenőmentes</string>
     <string name="settings_per_location">Helyszín beállítások</string>
