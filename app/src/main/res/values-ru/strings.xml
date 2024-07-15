@@ -685,4 +685,6 @@
     <string name="action_edit_location">Изменить это местоположение</string>
     <string name="settings_global">Глобальные настройки</string>
     <string name="precipitation_intensity_medium">Средний</string>
+    <string name="action_download">Скачать</string>
+    <string name="dialog_app_update_check_title">Следите за обновлениями</string>
 </resources>
