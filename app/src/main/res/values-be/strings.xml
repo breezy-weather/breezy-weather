@@ -123,7 +123,7 @@
     <string name="short_tomorrow">Заўтра</string>
     <string name="temperature_wind_chill">Адчуваецца пры ветры</string>
     <string name="temperature_degree_day_cooling">Градуса-дзень ахаладжальнага сезона</string>
-    <string name="temperature_average_short">Сярэдзіна</string>
+    <string name="temperature_average_short">Сярэдні</string>
     <string name="temperature_normals">Тэмпературныя нормы</string>
     <string name="precipitation">Ападкі</string>
     <string name="precipitation_probability">Верагоднасць ападкаў</string>
@@ -578,9 +578,9 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Навальніца са слабым градам</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Навальніца з моцным градам</string>
     <string name="metno_weather_text_andthunder">%s з навальніцай</string>
-    <string name="dialog_permissions_location_content">Breezy Weather неабходна збіраць інфармацыю аб вашым месцазнаходжанні на зараз ці ў фоне, каб прадастаўляць дадзеныя аб надвор’і для вашага бягучага месцазнаходжання. Для гэтага мы запытаем некаторыя дазволы. Інфармацыя пра вашае месцазнаходжанне будзе выкарыстоўвацца толькі для атрымання дадзеных аб надвор’і ў вашым бягучым месцазнаходжанні. Калі вы не хочаце дзяліцца інфармацыяй аб сваім месцазнаходжанні, вы можаце адхіліць гэтыя патрабаванні і ўручную пазначыць сваё месцазнаходжанне ў панэлі кіравання.</string>
+    <string name="dialog_permissions_location_content">Каб скарыстацца гэтай функцыяй, вам неабходна прадаставіць дазвол на доступ да вашага бягучаму месцазнаходжанні. Ён будзе даступны толькі абраным крыніцах дадзеных аб надвор\'і. Калі вы перадумалі, вы можаце змяніць працэс і дадаць фіксаванае месца ўручную.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
-    <string name="dialog_permissions_location_background_content">Каб дазволіць з дадаткам доступ да месцазнаходжання ў фоне, каб мы маглі сачыць за зменамі месцазнаходжання і прадастаўляць актуальны прагноз надвор’я, уключыце доступ да месцазнаходжання Дазволіць у любым рэжыме.</string>
+    <string name="dialog_permissions_location_background_content">Каб уключыць абнаўленне надвор\'я ў фонавым рэжыме для апошняга бягучага месцазнаходжання, вядомага Android, вам неабходна ўсталяваць дазвол месцазнаходжання на\"Дазволіць у любым рэжыме\". Калі вы гэтага не зробіце, надвор\'е будзе абноўлена на аснове апошніх атрыманых каардынатаў на пярэднім плане, якія могуць быць старымі.</string>
     <string name="message_parsing_error_title">Не ўдалося прааналізаваць дадзеныя аб надвор’і</string>
     <string name="message_parsing_error_content">Пераканайцеся, што вы абнавілі дадатак да апошняй версіі. Сервер можа быць часова недаступны, у гэтым выпадку паспрабуйце пазней. Калі праблема не ўхіленая, стварыце дамп часопіса збояў з налад адладкі і паведаміце аб праблеме на GitHub.</string>
     <string name="message_source_not_installed_error_title">Крыніца больш не даступна</string>
@@ -626,7 +626,7 @@
     <string name="location_delete_location_dialog_title">Выдаліць месцазнаходжанне?</string>
     <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць “%s” з спісу захаваных месцаў.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, …, 4 дні праз</string>
-    <string name="settings_weather_source_freenet_disclaimer">Дадатковыя пастаўшчыкі надвор’я даступныя ў іншых версіях Breezy Weather. Націсніце тут, каб даведацца больш.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Дадатковыя крыніцы дадзеных аб надвор\'і даступныя ў іншых версіях прыкладання. Націсніце тут, каб даведацца больш.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ляшчына</string>
     <string name="pollen_cupressaceae_taxaceae">Кіпарыс</string>
@@ -647,7 +647,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Аб’ядноўвае ўсе мадэлі надвор’я ад гэтага пастаўшчыка ў адзіны прагноз</string>
     <string name="settings_per_location">Перавагі па месцазнаходжанні</string>
     <string name="settings_weather_source_open_meteo_weather_models">Мадэлі надвор’я</string>
-    <string name="message_source_not_installed_error_content_tip_1">Гэта можа адбыцца, калі вы дадалі сваё месцазнаходжанне ў стандартную версію Breezy Weather, а затым пераключыліся на версію Free-networks only, у якой падтрымліваецца менш пастаўшчыкоў надвор’я. Вяртанне да стандартнай версіі можа вырашыць гэтую праблему.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Гэта можа адбыцца, калі вы дадалі сваё месцазнаходжанне ў стандартную версію Breezy Weather, а затым пераключылі толькі на версію libre-networks, у якой падтрымліваецца менш крыніц дадзеных аб надвор\'і. Вяртанне да стандартнай версіі можа вырашыць гэтую праблему.</string>
     <string name="message_source_not_installed_error_content_tip_2">Альбо змяніць пастаўшчык надвор’я для гэтага месца або выдаліць і дадаць гэта месцазнаходжанне зноў.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Зводка пыльцевого індэкса на сёння, заўтра, …, 4 дні праз</string>
     <string name="about_open_link_message">Адкрыць %s?</string>
@@ -678,4 +678,15 @@
     <string name="action_edit_location">Змяніць гэтае месцазнаходжанне</string>
     <string name="settings_global">Глабальныя налады</string>
     <string name="precipitation_intensity_medium">Сярэдні</string>
+    <string name="action_download">Скачаць</string>
+    <string name="dialog_app_update_check_title">Сачыце за абнаўленнямі</string>
+    <string name="notification_channel_app_updates">Абнаўленне прыкладання</string>
+    <string name="notification_app_update_available">Новая версія даступная!</string>
+    <string name="about_check_for_app_updates">Праверце наяўнасць абнаўленняў</string>
+    <string name="about_no_new_updates">Новых абнаўленняў няма</string>
+    <string name="dialog_app_update_check_content">Націсніце тут, каб уключыць апавяшчэння аб абнаўленні прыкладання.</string>
+    <string name="common_weather_text_sand_storm">Пясчаная бура</string>
+    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="settings_notifications_app_updates_check">Апавяшчаць мяне аб абнаўленні прыкладання</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Тарнада або водны смерч</string>
 </resources>
