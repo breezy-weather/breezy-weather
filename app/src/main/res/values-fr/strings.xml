@@ -195,6 +195,8 @@
     <string name="about_translators">Traducteurs</string>
 
     <!-- feedback. -->
+    <string name="dialog_app_update_check_title">Restez à jour</string>
+    <string name="dialog_app_update_check_content">Appuyez ici pour activer les notifications des mises à jour de l’application.</string>
     <string name="dialog_permissions_notification_title">Restez informés</string>
     <string name="dialog_permissions_notification_content">Appuyez ici pour activer les notifications de vigilances météo, ou décidez plus tard depuis les paramètres.</string>
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>

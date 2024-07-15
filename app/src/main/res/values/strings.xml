@@ -338,8 +338,8 @@
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
     <!-- Dialogs -->
-    <string name="dialog_app_update_check_title" translatable="false">Stay up-to-date</string>
-    <string name="dialog_app_update_check_content" translatable="false">Tap here to allow us to notify you when there is an app update available.</string>
+    <string name="dialog_app_update_check_title">Stay up-to-date</string>
+    <string name="dialog_app_update_check_content">Tap here to enable notifications about app updates.</string>
     <string name="dialog_permissions_notification_title">Stay informed</string>
     <string name="dialog_permissions_notification_content">Tap here to enable notifications about weather alerts, or decide later in Settings.</string>
     <string name="dialog_permissions_location_title">Access location information</string>
