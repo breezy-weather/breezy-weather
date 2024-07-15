@@ -697,4 +697,6 @@
     <string name="meteoam_weather_text_smoke">Humo</string>
     <string name="common_weather_text_sand_storm">Tormenta de arena</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
+    <string name="dialog_app_update_check_title">Mantente al día</string>
+    <string name="dialog_app_update_check_content">Pulsa aquí para habilitar notificaciones sobre actualizaciones de la aplicación.</string>
 </resources>
