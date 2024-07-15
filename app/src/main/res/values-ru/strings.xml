@@ -91,7 +91,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Выбрать сервис определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “%s”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоновом режиме</string>
-    <string name="dialog_permissions_location_background_content">Чтобы разрешить приложению доступ к местоположению в фоне, чтобы мы могли следить за изменениями местоположения и предоставлять актуальный прогноз погоды, включите доступ к местоположению “Разрешить в любом режиме”.</string>
+    <string name="dialog_permissions_location_background_content">Чтобы разрешить обновление погоды в фоновом режиме для последнего текущего местоположения, известного Android, вам необходимо установить разрешение местоположения на «Разрешить в любом режиме». Если вы этого не сделаете, погода будет обновляться на основе последних полученных координат на переднем плане, которые могут быть устаревшими.</string>
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
     <string name="widget_label_show_widget_card_alpha">Прозрачность</string>
@@ -197,9 +197,9 @@
     <string name="settings_color_day_night">День / Ночь</string>
     <string name="settings_color_day_always">Всегда день</string>
     <string name="settings_color_night_always">Всегда ночь</string>
-    <string name="settings_color_light">Светлая</string>
-    <string name="settings_color_grey">Серая</string>
-    <string name="settings_color_dark">Тёмная</string>
+    <string name="settings_color_light">Светло</string>
+    <string name="settings_color_grey">Серо</string>
+    <string name="settings_color_dark">Тёмно</string>
     <string name="settings_background_updates_refresh_30min">30 минут</string>
     <string name="settings_background_updates_refresh_1h">1 час</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
@@ -365,7 +365,7 @@
     <string name="common_weather_text_mainly_clear">В основном ясно</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
-    <string name="settings_weather_sources_summary">Поставщики погоды по умолчанию для новых местоположений, пользовательские ключи API и другие настройки поставщиков</string>
+    <string name="settings_weather_sources_summary">Источники данных о погоде по умолчанию для новых местоположений, пользовательские ключи API и другие настройки источников</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои %s, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
@@ -483,7 +483,7 @@
     <string name="location_search_no_results_advice">Убедитесь, что поисковый запрос написан правильно и не слишком специфичен. Вы также можете попробовать использовать другой источник поиска местоположения, который может дать другие результаты.</string>
     <string name="location_search_no_results">%1$s не может найти %2$s</string>
     <string name="settings_background_updates_refresh_title">Частота обновления</string>
-    <string name="dialog_permissions_location_content">Breezy Weather необходимо собирать информацию о вашем местоположении на сейчас или в фоне, чтобы предоставлять данные о погоде для вашего текущего местоположения. Для этого мы запросим некоторые разрешения. Информация о вашем местоположении будет использоваться только для получения данных о погоде в вашем текущем местоположении. Если вы не хотите делиться информацией о своем местоположении, вы можете отклонить эти требования и вручную указать свое местоположение в панели управления.</string>
+    <string name="dialog_permissions_location_content">Чтобы использовать эту функцию, вам необходимо предоставить приложению разрешение на доступ к вашему текущему местоположению. Оно будет доступно только выбранным источникам данных о погоде. Если вы передумали, вы можете отменить процесс и добавить фиксированное местоположение вручную.</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_background_updates_refresh_never">Никогда</string>
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
@@ -633,7 +633,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Текущий индекс качества воздуха</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс качества воздуха на сегодня, завтра, …, 4 дня спустя</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Дополнительные поставщики погоды доступны в других версиях Breezy Weather. Нажмите здесь, чтобы узнать больше.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Дополнительные источники данных о погоде доступны в других версиях приложения. Нажмите здесь, чтобы узнать больше.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_plantaginaceae">Подорожник</string>
     <string name="pollen_platanus">Платан</string>
@@ -654,9 +654,9 @@
     <string name="about_open_link_message">Открыть %s?</string>
     <string name="settings_weather_source_open_meteo_weather_models">Модели погоды</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Объединяет в себе лучшие модели погоды для этого местоположения</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Объединяет все модели погоды от этого поставщика в единый прогноз</string>
-    <string name="message_source_not_installed_error_content_tip_1">Это может произойти, если вы добавили свое местоположение в стандартную версию Breezy Weather, а затем переключились на версию Free-networks only, в которой поддерживается меньше поставщиков погоды. Возврат к стандартной версии может решить эту проблему.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Либо измените поставщика погоды для этого местоположения, либо удалите и снова добавьте это местоположение.</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Объединяет все модели погоды из этого источника в единый прогноз</string>
+    <string name="message_source_not_installed_error_content_tip_1">Это может произойти, если вы добавили свое местоположение в стандартную версию Breezy Weather, а затем переключились на версию только с libre-networks, в которой поддерживается меньше источников данных о погоде. Возврат к стандартной версии может решить эту проблему.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Либо измените источник данных о погоде для этого местоположения, либо удалите и снова добавьте это местоположение.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, …, 4 дня спустя</string>
     <string name="sunshine">Солнечно</string>
     <string name="alert">Оповещение</string>
@@ -687,4 +687,13 @@
     <string name="precipitation_intensity_medium">Средний</string>
     <string name="action_download">Скачать</string>
     <string name="dialog_app_update_check_title">Следите за обновлениями</string>
+    <string name="dialog_app_update_check_content">Нажмите здесь, чтобы включить уведомления об обновлениях приложения.</string>
+    <string name="notification_channel_app_updates">Обновления приложений</string>
+    <string name="notification_app_update_available">Доступна новая версия!</string>
+    <string name="about_no_new_updates">Нет доступных обновлений</string>
+    <string name="common_weather_text_sand_storm">Песчаная буря</string>
+    <string name="settings_notifications_app_updates_check">Уведомления об обновлениях приложения</string>
+    <string name="about_check_for_app_updates">Проверить наличие обновлений</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Торнадо или водный смерч</string>
+    <string name="meteoam_weather_text_smoke">Дым</string>
 </resources>
