@@ -113,9 +113,9 @@
     <string name="about_translators">译者</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">获取位置信息</string>
-    <string name="dialog_permissions_location_content">Breezy Weather 需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>
+    <string name="dialog_permissions_location_content">要使用此功能，你需要授予本应用访问当前位置的权限。应用只会和所选的天气源分享你的位置信息。如果你改变了主意，可以取消权限并手动添加固定的位置。</string>
     <string name="dialog_permissions_location_background_title">在后台访问位置</string>
-    <string name="dialog_permissions_location_background_content">为了让本应用可以在后台访问您的位置信息，以便我们能够即时感知您的位置变化并为您提供有效的天气数据，请将位置权限设置为“始终允许”。</string>
+    <string name="dialog_permissions_location_background_content">要允许后台刷新 Android 系统所知的当前最新位置的天气数据，你需要将位置权限设为“始终允许”。如果不这样设置，应用将基于前台获取的最新坐标刷新天气数据，而前台坐标表明的位置可能和当前实际位置有时间差。</string>
     <string name="location_message_failed_to_locate">无法定位当前位置</string>
     <string name="weather_message_data_refresh_failed">天气数据刷新失败</string>
     <string name="location_dialog_failed_to_locate_title">无法获取正确位置？</string>
@@ -654,7 +654,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">今日花粉指数概述，明日，……，4天后</string>
     <string name="about_open_link_message">打开 %s？</string>
     <string name="sunshine">日照</string>
-    <string name="message_source_not_installed_error_content_tip_1">当您在 Standard 版本的 Breezy Weather 中添加了位置，然后切换到支持的天气源较少的 Free-network 版本的应用时可能会发生此问题。切回到 Standard 版本可能会解决这个问题。</string>
+    <string name="message_source_not_installed_error_content_tip_1">当您在 Standard 版本的 Breezy Weather 中添加了位置，然后切换到支持的天气源较少的 libre 版本的应用时可能会发生此问题。切回到 Standard 版本可能会解决这个问题。</string>
     <string name="message_source_not_installed_error_content_tip_2">要么更改此位置的天气源，要么删除并重新添加此位置。</string>
     <string name="settings_per_location">位置选项</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
@@ -695,4 +695,9 @@
     <string name="about_check_for_app_updates">检查应用更新</string>
     <string name="about_no_new_updates">无更新可用</string>
     <string name="action_download">下载</string>
+    <string name="dialog_app_update_check_title">保持最新</string>
+    <string name="dialog_app_update_check_content">轻按此处启用应用更新的通知。</string>
+    <string name="meteoam_weather_text_tornado_watersprout">龙卷风或海龙卷</string>
+    <string name="meteoam_weather_text_smoke">烟尘</string>
+    <string name="common_weather_text_sand_storm">沙尘暴</string>
 </resources>
