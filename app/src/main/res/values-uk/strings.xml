@@ -242,8 +242,8 @@
     <string name="uv_index_11">Надмірний</string>
     <string name="action_restart">Перезапустити</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
-    <string name="dialog_permissions_location_content">Breezy Weather має збирати інформацію про ваше місцезнаходження, щоб надавати погодні дані згідно поточному місцеположенню. Для цього ми запрошуємо деякі дозволи. Інформація про ваше місцезнаходження буде використана лише для отримання погодних даних у вашому поточному місціположенні. Якщо ви не хочете ділитися цією інформацією, ви можете відхилити ці вимоги та вручну встановити своє місцезнаходження на сторінці керування.</string>
-    <string name="dialog_permissions_location_background_content">Дозвольте застосунку отримувати доступ до інформації про місцезнаходження у фоновому режимі, щоб ми могли сприймати зміни місцезнаходження і надавати вам достовірні погодні дані. Для цього встановіть доступ до місцезнаходження як “Дозволяти завжди”.</string>
+    <string name="dialog_permissions_location_content">Щоб скористатися цією функцією, вам необхідно надати дозвіл на доступ до вашого поточного місця розташування. Він буде доступний лише вибраним джерелам даних про погоду. Якщо ви передумали, ви можете змінити процес і додати фіксоване місце вручну.</string>
+    <string name="dialog_permissions_location_background_content">Щоб увімкнути оновлення погоди у фоновому режимі для останнього поточного місця розташування, відомого Android, вам необхідно встановити дозвіл місця розташування на «Вирішити в будь-якому режимі». Якщо ви цього не зробите, погода буде оновлена на основі останніх отриманих координат на передній плані, які можуть бути старими.</string>
     <string name="message_parsing_error_content">Переконайтеся, що ви оновили застосунок до останньої версії. Сервер може бути тимчасово недоступний, в такому випадку, повторіть спробу пізніше. Якщо проблема не зникне, будь ласка, створіть журнал збоїв у налаштуваннях та повідомте про проблему на GitHub.</string>
     <string name="message_source_not_installed_error_title">Джерело більше недоступне</string>
     <string name="widget_material_you_current">Material You - Зараз</string>
@@ -370,7 +370,7 @@
     <string name="settings_location_access_background_summaryOn">Увімкнено. Застосунок зможе оновлювати погодні дані для вашого поточного місцезнаходження у фоновому режимі.</string>
     <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
-    <string name="settings_weather_sources_summary">Постачальники погоди за замовчуванням для нових розташуваннь, користувацьких ключів API та інших налаштувань постачальників</string>
+    <string name="settings_weather_sources_summary">Джерела даних про погоду за промовчанням для нових позицій, ключі користувача API та інші налаштування джерел</string>
     <string name="settings_appearance_summary">Мова, тема, пакети значків та одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
     <string name="settings_appearance_dark_mode_title">Тема</string>
@@ -495,7 +495,7 @@
     <string name="settings_debug">Налагодження</string>
     <string name="settings_debug_summary">Журнал збоїв</string>
     <string name="settings_item_delete">Видалити цей елемент</string>
-    <string name="settings_color_light">Світла</string>
+    <string name="settings_color_light">Світло</string>
     <string name="unit_cmph_voice">Сантиметрів за годину</string>
     <string name="unit_inph_voice">Дюймів за годину</string>
     <string name="unit_lpsqmph">л/м²/год</string>
@@ -514,8 +514,8 @@
     <string name="weather_message_unsupported_feature">Джерело не підтримує одну із запитаних функцій</string>
     <string name="settings_debug_dump_crash_logs_title">Поділитися журналом збоїв</string>
     <string name="settings_debug_dump_crash_logs_summary">Зберігає журнал зі збоями у файл для надсилання розробникам</string>
-    <string name="settings_color_grey">Сіра</string>
-    <string name="settings_color_dark">Темна</string>
+    <string name="settings_color_grey">Сіро</string>
+    <string name="settings_color_dark">Темний</string>
     <string name="unit_bf">Бф</string>
     <string name="unit_bf_voice">на шкалі Бофорта</string>
     <string name="unit_kn">вузли</string>
@@ -626,7 +626,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Поточний індекс якості повітря</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря на сьогодні, завтра, …, через 4 дні</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Додаткові постачальники погоди доступні в інших версіях Breezy Weather. Натисніть тут, щоб дізнатися більше.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Додаткові джерела погодних даних доступні в інших версіях програми. Натисніть тут, щоб дізнатися більше.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ліщина</string>
     <string name="pollen_fraxinus">Ясен</string>
@@ -647,9 +647,9 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Об’єднує в собі найкращі моделі погоди для цього розташування</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Безшовна</string>
     <string name="about_open_link_message">Відкрити %s?</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Об’єднує всі моделі погоди від цього постачальника в єдиний прогноз</string>
-    <string name="message_source_not_installed_error_content_tip_1">Це може статися, якщо ви додали своє місце розташування в стандартну версію Breezy Weather, а потім переключилися на версію Free-networks only, в якій підтримується менше постачальників погоди. Повернення до стандартної версії може вирішити цю проблему.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Або змініть постачальника погоди для цього місця розташування, або видаліть і знову додайте це місце розташування.</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Поєднує всі моделі погоди з цього джерела в єдиний прогноз</string>
+    <string name="message_source_not_installed_error_content_tip_1">Це може статися, якщо ви додали своє місце розташування в стандартну версію Breezy Weather, а потім переключили лише на версію libre-networks, у якій підтримується менше джерел даних про погоду. Повернення до стандартної версії може вирішити цю проблему.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Або змініть джерело даних про погоду для цього місця розташування, або видаліть і знову додайте це місце.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Зведення пилкового індексу на сьогодні, завтра, …, 4 дні потому</string>
     <string name="sunshine">Сонячно</string>
     <string name="alert">Попередження</string>
@@ -684,4 +684,9 @@
     <string name="about_no_new_updates">Нових оновлень немає</string>
     <string name="action_download">Завантажити</string>
     <string name="notification_channel_app_updates">Оновлення застосунку</string>
+    <string name="dialog_app_update_check_title">Слідкуйте за оновленнями</string>
+    <string name="dialog_app_update_check_content">Торкніться тут, щоб увімкнути сповіщення про оновлення програми.</string>
+    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="common_weather_text_sand_storm">Піщана буря</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Торнадо або водограй</string>
 </resources>
