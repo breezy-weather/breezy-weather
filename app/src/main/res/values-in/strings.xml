@@ -93,9 +93,9 @@
     <string name="about_translators">Translator</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
-    <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
+    <string name="dialog_permissions_location_content">Untuk menggunakan fitur ini, Anda perlu memberikan izin kepada aplikasi untuk mengakses lokasi Anda saat ini. Lokasi tersebut hanya akan dibagikan dengan sumber cuaca yang dipilih. Jika Anda berubah pikiran, Anda dapat membatalkan proses tersebut dan menambahkan lokasi tetap secara manual.</string>
     <string name="dialog_permissions_location_background_title">Akses lokasi di latar belakang</string>
-    <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai “Izinkan sepanjang waktu”.</string>
+    <string name="dialog_permissions_location_background_content">Agar penyegaran cuaca di latar belakang dapat dilakukan untuk lokasi terkini yang diketahui oleh Android, Anda perlu menyetel izin lokasi ke \"Izinkan sepanjang waktu\". Jika tidak, cuaca akan disegarkan berdasarkan koordinat terbaru yang diambil di latar depan, yang mungkin sudah ketinggalan jaman.</string>
     <string name="location_message_failed_to_locate">Lokasi gagal</string>
     <string name="weather_message_data_refresh_failed">permintaan data cuaca gagal</string>
     <string name="location_dialog_failed_to_locate_title">tidak bisa mendapatkan lokasi dengan benar\?</string>
@@ -637,7 +637,7 @@
     <string name="location_search_change_source">Ubah sumber pencarian lokasi</string>
     <string name="settings_weather_sources_default_source">Sumber bawaan untuk aplikasi baru</string>
     <string name="settings_weather_source_unavailable">%s (tidak tersedia)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Sumber cuaca tambahan tersedia dari versi Breezy Weather yang lain. Ketuk di sini untuk mempelajari lebih lanjut.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Sumber cuaca tambahan tersedia dari variasi aplikasi yang lain. Ketuk di sini untuk mempelajari lebih lanjut.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Indeks Kualitas Udara saat ini</string>
     <string name="action_confirm">Konfirmasi</string>
     <string name="widget_label_hide_header">Sembunyikan tajuk</string>
@@ -662,7 +662,7 @@
     <string name="sunshine">Sinar matahari</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, 4 hari lagi</string>
     <string name="about_open_link_message">Buka %s?</string>
-    <string name="message_source_not_installed_error_content_tip_1">Ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam versi Breezy Weather yang Standar lalu diubah ke versi Free-networks only yang memiliki jumlah sumber cuaca yang lebih sedikit. Mengembalikan ke versi Standar dapat menyelesaikan masalah ini.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Hal ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam varian aplikasi Standar dan kemudian beralih ke varian hanya dengan sumber jaringan bebas. Kembali ke varian Standar dapat mengatasi masalah ini.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca untuk lokasi ini atau hapus dan tambahkan lokasi ini lagi.</string>
     <string name="settings_per_location">Preferensi lokasi</string>
     <string name="settings_per_location_summary">Kustomisasi tambahan untuk lokasi ini</string>
@@ -697,4 +697,15 @@
     <string name="settings_global">Pengaturan global</string>
     <string name="action_edit_location">Sunting lokasi ini</string>
     <string name="precipitation_intensity_medium">Sedang</string>
+    <string name="action_download">Unduh</string>
+    <string name="settings_notifications_app_updates_check">Notifikasi pembaruan aplikasi</string>
+    <string name="common_weather_text_sand_storm">Badai pasir</string>
+    <string name="dialog_app_update_check_title">Tetap terkini</string>
+    <string name="dialog_app_update_check_content">Ketuk did sini untuk mengaktifkan notifikasi tentang pembaruan aplikasi.</string>
+    <string name="notification_channel_app_updates">Pembaruan aplikasi</string>
+    <string name="notification_app_update_available">Versi baru tersedia!</string>
+    <string name="about_check_for_app_updates">Periksa pembaruan aplikasi</string>
+    <string name="about_no_new_updates">Tidak ada pembaruan aplikasi yang tersedia</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Angin topan atau puting beliung</string>
+    <string name="meteoam_weather_text_smoke">Asap</string>
 </resources>
