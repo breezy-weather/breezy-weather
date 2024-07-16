@@ -485,7 +485,7 @@
     <string name="settings_main">Главни екран</string>
     <string name="settings_main_summary">Редослед картица, приказане ставке, анимације</string>
     <string name="settings_main_header_details_title">Детаљи у заглављу</string>
-    <string name="dialog_permissions_location_content">Breezy Weather мора да прикупи информације о вашој локацији у првом плану или у позадини, како би обезбедио податке о времену за вашу тренутну локацију. Из овог разлога, затражићемо неке дозволе. Информације о вашој локацији ће се користити само за добијање података о времену на вашој тренутној локацији. Ако не желите да делите информације о својој локацији, можете да одбијете те захтеве и ручно подесите своју локацију на страници за управљање.</string>
+    <string name="dialog_permissions_location_content">Да бисте користили ову функцију, потребно је да апликацији дате дозволу за приступ вашој тренутној локацији. Делиће се само са изабраним временским изворима. Ако сте се предомислили, можете отказати процес и додати локацију ручно.</string>
     <string name="action_help_me_choose">Помози ми да изаберем</string>
     <string name="temperature_normals">Температурне норме</string>
     <string name="air_quality_level_1_description">Квалитет ваздуха је идеалан за већину особа; уживајте у својим нормалним активностима на отвореном простору.</string>
@@ -620,7 +620,7 @@
     <string name="pressure_short">Притисак</string>
     <string name="dew_point_short">Тачка росе</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Више извора времена доступно је из других врста Breezy Weather-а. Додирните овде да бисте сазнали више.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Више извора времена доступно је из других врста апликације. Додирните овде да бисте сазнали више.</string>
     <string name="temperature_feels_like_short">Осећа се као</string>
     <string name="visibility_short">Видљивост</string>
     <string name="ceiling_short">Облачни плафон</string>
@@ -653,7 +653,7 @@
     <string name="pollen_salix">Врба</string>
     <string name="pollen_tilia">Липа</string>
     <string name="pollen_urticaceae">Коприва</string>
-    <string name="message_source_not_installed_error_content_tip_1">Ово се може десити када додате своју локацију у стандардну верзију Breezy Weather-а, а затим пређете на Free-networks only који има мање подржаних извора времена. Повратак на стандардну верзију може решити овај проблем.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Ово се може догодити када додате своју локацију у стандардну верзију апликације, а затим пређете на верзију са само слободним мрежним изворима. Повратак на стандардну верзију може решити овај проблем.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Тренутни индекс квалитета ваздуха</string>
     <string name="about_open_link_message">Отворити %s?</string>
     <string name="sunshine">Сунчано</string>
@@ -684,4 +684,15 @@
     <string name="action_edit_location">Измени ову локацију</string>
     <string name="settings_global">Глобална подешавања</string>
     <string name="precipitation_intensity_medium">Средње</string>
+    <string name="action_download">Преузми</string>
+    <string name="dialog_app_update_check_title">Остани у току</string>
+    <string name="notification_channel_app_updates">Ажурирања апликације</string>
+    <string name="notification_app_update_available">Доступна нова верзија!</string>
+    <string name="about_check_for_app_updates">Провера ажурирања</string>
+    <string name="about_no_new_updates">Нема доступних нових ажурирања</string>
+    <string name="common_weather_text_sand_storm">Пешчана олуја</string>
+    <string name="dialog_app_update_check_content">Додирните овде да бисте омогућили обавештења о ажурирањима апликације.</string>
+    <string name="settings_notifications_app_updates_check">Обавештења о ажурирањима апликације</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Торнадо или излив воде</string>
+    <string name="meteoam_weather_text_smoke">Дим</string>
 </resources>
