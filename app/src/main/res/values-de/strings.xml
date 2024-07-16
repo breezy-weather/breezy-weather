@@ -222,7 +222,7 @@
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
-    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf „Immer zulassen“ setzen. Wenn Sie dies nicht tun, wird das Wetter auf der Grundlage der zuletzt abgerufenen Koordinaten im Vordergrund aktualisiert, die veraltet sein können.</string>
+    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf „Immer zulassen“ setzen. Wenn Sie dies nicht tun, wird das Wetter auf Grundlage der zuletzt im Vordergrund abgerufenen Koordinaten aktualisiert, die veraltet sein können.</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>
@@ -243,7 +243,7 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Mondaufgang heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, …, in 4 Tagen (%)</string>
-    <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen müssen Sie der App erlauben, auf Ihren aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn Sie sich anders entscheiden, können Sie dies abbrechen und einen festen Ort hinzufügen.</string>
+    <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen, müssen Sie der App erlauben, auf Ihren aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn Sie sich anders entscheiden, können Sie den Vorgang abbrechen und einen festen Ort hinzufügen.</string>
     <string name="weather_data_by">Daten von %s</string>
     <string name="location_results_by">Standortergebnisse von %s</string>
     <string name="action_add_current_location">Aktuellen Standort hinzufügen</string>
@@ -645,7 +645,7 @@
     <string name="about_open_link_message">%s öffnen?</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
     <string name="sunshine">Sonnenschein</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn Sie Ihren Standort in der Standardvariante der App hinzugefügt haben und dann zu der Variante mit nur freien Netzwerkquellen gewechselt haben. Zur Standardvariante zurückzukehren, kann dieses Problem lösen.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn Sie Ihren Ort in der Standardvariante der App hinzugefügt haben und dann zur Variante mit nur freien Netzwerkquellen gewechselt sind. Eine Rückkehr zur Standardvariante könnte dieses Problem lösen.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ändern Sie entweder die Wetterquelle für diesen Ort oder entfernen Sie ihn und fügen Sie ihn dann wieder hinzu.</string>
     <string name="settings_per_location">Ortseinstellungen</string>
     <string name="settings_per_location_summary">Zusätzliche Anpassungen für diesen Ort</string>
@@ -688,4 +688,7 @@
     <string name="action_download">Herunterladen</string>
     <string name="common_weather_text_sand_storm">Sandsturm</string>
     <string name="meteoam_weather_text_smoke">Rauch</string>
+    <string name="dialog_app_update_check_content">Tippen Sie hier, um Benachrichtigungen über App-Updates zu aktivieren.</string>
+    <string name="dialog_app_update_check_title">Aktuell bleiben</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>
 </resources>
