@@ -222,7 +222,7 @@
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
-    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf \"Immer zulassen\" setzen. Wenn Sie dies nicht tun, wird das Wetter auf der Grundlage der zuletzt abgerufenen Koordinaten im Vordergrund aktualisiert, die veraltet sein können.</string>
+    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf „Immer zulassen“ setzen. Wenn Sie dies nicht tun, wird das Wetter auf der Grundlage der zuletzt abgerufenen Koordinaten im Vordergrund aktualisiert, die veraltet sein können.</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>

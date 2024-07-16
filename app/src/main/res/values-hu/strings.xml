@@ -97,7 +97,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb aktuális helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt \"Mindig engedélyezett\" értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb aktuális helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
     <string name="widget_label_view_style">Nézet stílusa</string>
     <string name="widget_label_show_widget_card">Háttérszín</string>
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>

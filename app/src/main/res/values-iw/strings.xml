@@ -615,7 +615,7 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">מזג אוויר בשעות הלילה של היום, מחר, …, 4 ימים אחרי</string>
     <string name="message_parsing_error_content">ודא שעדכנת לגרסה האחרונה של האפליקציה. ייתכן שהשרת אינו זמין באופן זמני, במקרה זה, אנא נסה שוב מאוחר יותר. אם הבעיה נמשכת, אנא צור יומן קריסה מהגדרות ניפוי הבאגים ודווח על בעיה ב-GitHub.</string>
     <string name="message_source_not_installed_error_content_tip_1">זה יכול לקרות כאשר הוספת את המיקום שלך בגרסא הסטנדרטית של Breezy Weather ולאחר מכן עברת לגרסא עם מקורות רשת חינמיים בלבד. חזרה לגרסא הסטנדרטית עשויה לפתור בעיה זו.</string>
-    <string name="settings_location_access_precise_summaryOff">הפעל \"השתמש במיקום מדוייק\" אם יש בעיה להשיג מיקום.</string>
+    <string name="settings_location_access_precise_summaryOff">הפעל ”השתמש במיקום מדוייק“ אם יש בעיה להשיג מיקום.</string>
     <string name="settings_source_instance">שרת</string>
     <string name="settings_source_instance_geocoding">שרת קידוד גיאוגרפי</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">ההתאמה הכי טובה</string>

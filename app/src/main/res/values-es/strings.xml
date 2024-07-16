@@ -99,7 +99,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “%s”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en \"Permitir todo el tiempo\". Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
+    <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en “Permitir todo el tiempo”. Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
     <string name="widget_label_show_widget_card_alpha">Opacidad</string>

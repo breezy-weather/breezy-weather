@@ -502,7 +502,7 @@
     <string name="action_continue">أستمرار</string>
     <string name="action_share">مشاركة</string>
     <string name="dialog_permissions_location_content">لاستخدام هذه الميزة، تحتاج إلى منح التطبيق إذنًا للوصول إلى موقعك الحالي. سيتم مشاركته فقط مع مصادر الطقس المحددة. إذا غيرت رأيك، يمكنك إلغاء العملية وإضافة موقع ثابت يدويًا.</string>
-    <string name="dialog_permissions_location_background_content">للسماح بتحديث الطقس في الخلفية لأحدث موقع حالي معروف بواسطة أندرويد، تحتاج إلى تعيين إذن الموقع على \"السماح طوال الوقت\". إذا لم تقم بذلك، فسيتم تحديث الطقس بناءً على أحدث الإحداثيات المستردة في المقدمة، والتي قد تكون قديمة.</string>
+    <string name="dialog_permissions_location_background_content">للسماح بتحديث الطقس في الخلفية لأحدث موقع حالي معروف بواسطة أندرويد، تحتاج إلى تعيين إذن الموقع على ”السماح طوال الوقت“. إذا لم تقم بذلك، فسيتم تحديث الطقس بناءً على أحدث الإحداثيات المستردة في المقدمة، والتي قد تكون قديمة.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا لليوم، الغد، …، بعد 4 أيام (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا لليوم، الغد، …، بعد 4 أيام (°C/°F)</string>
