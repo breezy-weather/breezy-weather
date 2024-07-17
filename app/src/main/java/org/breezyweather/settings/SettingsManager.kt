@@ -17,6 +17,7 @@
 package org.breezyweather.settings
 
 import android.content.Context
+import android.os.Build
 import androidx.core.text.util.LocalePreferences
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
@@ -182,7 +183,8 @@ class SettingsManager private constructor(context: Context) {
             config.edit().putBoolean("day_night_mode_locations", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("day_night_mode_locations", true)
+        get() = config.getBoolean("day_night_mode_locations", Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+        // Default config is: follow system on Android 10+ (disabled), automatic day/night switch (enabled) on Android < 10 where dark mode doesn’t exist natively
 
     // service providers.
     var locationSource: String
