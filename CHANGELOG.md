@@ -1,4 +1,4 @@
-# Version 5.2.6 (not yet released)
+# Version 5.2.6 (2024-07-17)
 
 **New features**
 - [Standard version] Add an option to periodically check for app updates in the background. Available from `Settings` > `Background updates`. Disabled by default.

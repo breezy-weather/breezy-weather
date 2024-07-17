@@ -4,7 +4,7 @@ Go to [Releases page](https://github.com/breezy-weather/breezy-weather/releases)
 
 Install it and you’re done!
 
-(Update from the app itself is not yet available)
+After adding your first location, you will be asked if you want to be notified of app updates. We highly recommend you enable it.
 
 
 # Detailed instructions
@@ -24,13 +24,13 @@ Both flavors are signed with the same signature, so you can easily try/switch be
 - **[GitHub releases](https://github.com/breezy-weather/breezy-weather/releases)** is where releases built by GitHub are published under APK format. Any Android device can install APK files without needing any particular app. If you have a GitHub account, you can subscribe to be notified of updates, however it’s more convenient to use a store app to track updates.
 - **[Breezy Weather’s F-Droid repositories](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)** are maintained by Breezy Weather developers and get updates from a F-Droid client that doesn’t support receiving updates from GitHub.
 - **[Izzy F-Droid repository](https://apt.izzysoft.de/fdroid/index/info)** offers the standard flavor which is our recommended choice if you would like someone to independently review the app before it gets published. Updates are fast (less than 24 hours).
-- **[F-Droid default repository](https://apt.izzysoft.de/fdroid/index/info)** offers the flavor with only free-network sources. Updates are slow (usually about a week). If you decide to use this source and you want to report an issue, you will be asked to update to the latest version before making the report.
+- **[F-Droid default repository](https://apt.izzysoft.de/fdroid/index/info)** offers the flavor with only free-network sources. Updates are slow as it requires someone on F-Droid team to manually add new versions. If you decide to use this source and you want to report an issue, you will be asked to update to the latest version before making the report.
 
 | Differences             | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    | [F-Droid repo] Default    |
 |-------------------------|-----------------|-------------------------------|------------------------|---------------------------|
 | Available flavors       | All             | All                           | Standard               | Free network sources-only |
 | Pre-releases            | Optional        | Optional                      | ❌                      | ❌                         |
-| Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC | About a week              |
+| Delay for updates       | Immediate       | Immediate                     | Every day at 18:00 UTC | Very slow (manual)        |
 | APK matches source code | ✅               | ✅                             | ✅                      | ✅                         |
 | Independently reviewed  | ❌               | ❌                             | ✅                      | ✅                         |
 
