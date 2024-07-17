@@ -113,7 +113,7 @@
     <string name="action_delete">Dzēst</string>
     <string name="action_continue">Turpināt</string>
     <string name="action_close">Aizvērt</string>
-    <string name="dialog_permissions_location_content">Breezy Weather ir jāapkopo atrašanās vietas informācija priekšplānā vai fonā, lai nodrošinātu laikapstākļu datus pašreizējai atrašanās vietai. Šim nolūkam mēs pieprasīsim dažas atļaujas. Atrašanās vietas informācija tiks izmantota tikai laikapstākļu datu iegūšanai pašreizējā atrašanās vietā. Ja nav vēlēšanās kopīgot informāciju par savu atrašanās vietu, var noraidīt šīs prasības un pašrocīgi iestatīt savu atrašanās vietu pārvaldības lapā.</string>
+    <string name="dialog_permissions_location_content">Lai izmantotu šo funkciju, jums ir nepieciešams atļaut lietotnei uzzināt jūsu atrašanās vietu. Tā tiks kopīgota tikai ar izvēlētajiem laikapstākļu avotiem. Ja jūs pārdomājāt, jums ir iespēja atcelt procesu un pievienot fiksētu atrašanās vietu manuāli.</string>
     <string name="dialog_permissions_location_background_title">Piekļūt atrašanās vietai fonā</string>
     <string name="message_parsing_error_title">Neizdevās apstrādāt laikapstākļu datus</string>
     <string name="message_source_not_installed_error_title">Avots vairs nav pieejams</string>
@@ -368,7 +368,7 @@
     <string name="action_add_new_location">Pievienot jaunu atrašanās vietu</string>
     <string name="action_preview">Priekšskatījums</string>
     <string name="dialog_permissions_notification_content">Jāpiesit šeit, lai iespējotu paziņojumus par laikapstākļu brīdinājumiem, vai vēlāk var izlemt iestatījumos.</string>
-    <string name="dialog_permissions_location_background_content">Lai lietotne varētu fonā piekļūt atrašanās vietas informācijai, lai mēs varētu uztvert atrašanās vietas izmaiņas un sniegt derīgus laikapstākļu datus, lūgums iestatīt piekļuvi atrašanās vietai kā “Atļaut visu laiku”.</string>
+    <string name="dialog_permissions_location_background_content">Lai atļautu laikapstākļu atsvaidzinājumiem fonā notikt pēc jaunākās pašreizējās atrašanās vietas, kas zināma Android, jums ir jāiestata atrašanās vietas atļauja uz \"Atļaut visu laiku\". Citādi laikapstākļi tiks atsvaidzināti balstoties uz jaunākajām iegūtajām koordinātām priekšplānā, kuras var būt novecojušas.</string>
     <string name="message_network_unavailable">Tīkls nav pieejams</string>
     <string name="message_parsing_error_content">Jāpārliecinās, ka lietotne ir atjaunināta uz jaunāko versiju. Serveris var īslaicīgi nebūt pieejams, tādā gadījumā, lūgums vēlāk mēģināt vēlreiz. Ja sarežģījums joprojām pastāv, lūgums izgūt avārijas žurnālu no atkļūdošanas iestatījumiem un ziņot par nepilnību GitHub.</string>
     <string name="widget_day_week">Ikdienu + iknedēļu</string>
@@ -665,7 +665,7 @@
     <string name="settings_per_location_summary">Papildu pielāgojumi šai atrašanās vietai</string>
     <string name="settings_unavailable_no_background_updates">Nav pieejams, vispirms jāiespējo fona atjauninājumi</string>
     <string name="settings_widgets_broadcast_title">Datu kopīgošana</string>
-    <string name="settings_weather_source_freenet_disclaimer">Vairāk laikapstākļu avotu ir pieejami citos Breezy Weather laidienos. Piesist šeit, lai uzzinātu vairāk.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Vairāk laikapstākļu avotu ir pieejami citos lietotnes laidienos. Piespiest šeit, lai uzzinātu vairāk.</string>
     <string name="widget_label_show_widget_card_alpha">Necaurspīdīgums</string>
     <string name="widget_label_hide_header">Paslēpt galveni</string>
     <string name="message_server_unavailable_content">Tā parasti ir īslaicīga kļūda. Ja tā nepazūd, lūgums iesniegt nepilnības pieteikumu GitHub.</string>
@@ -678,4 +678,15 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Gaisa kvalitātes serveris</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Vienoti</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Apvieno visus šī nodrošinātāja laikapstākļu modeļus vienotā prognozē</string>
+    <string name="action_download">Lejuplādēt</string>
+    <string name="dialog_app_update_check_content">Pieskarties šeit, lai iespējotu paziņojumus par lietotnes atjauninājumiem.</string>
+    <string name="dialog_app_update_check_title">Sekot līdzi jaunumiem</string>
+    <string name="settings_notifications_app_updates_check">Paziņojumi par lietotnes atjauninājumiem</string>
+    <string name="notification_channel_app_updates">Lietotnes atjauninājumi</string>
+    <string name="notification_app_update_available">Jauna versija pieejama!</string>
+    <string name="about_check_for_app_updates">Pārbaudīt, vai ir atjauninājumu</string>
+    <string name="about_no_new_updates">Nav jaunu atjauninājumu</string>
+    <string name="common_weather_text_sand_storm">Smilšu vētra</string>
+    <string name="meteoam_weather_text_smoke">Dūmi</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Virpuļvētra vai smerčs</string>
 </resources>
