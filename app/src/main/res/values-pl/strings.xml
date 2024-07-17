@@ -566,7 +566,7 @@
     <string name="common_weather_text_rain_showers_heavy">Silne przelotne opady deszczu</string>
     <string name="weather_message_unsupported_feature">Źródło nie obsługuje jednej z żądanych funkcji</string>
     <string name="common_weather_text_rain_heavy">Silne opady deszczu</string>
-    <string name="temperature_average_short">Średnio</string>
+    <string name="temperature_average_short">Śr</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Normy temperaturowe</string>
     <string name="weather_normals_data_by">Dane dotyczące norm temperaturowych podane przez %s</string>
@@ -689,4 +689,15 @@
     <string name="pollen_populus">Topola</string>
     <string name="settings_global">Ustawienia globalne</string>
     <string name="precipitation_intensity_medium">Umiarkowane</string>
+    <string name="action_download">Pobierz</string>
+    <string name="dialog_app_update_check_title">Bądź na bieżąco</string>
+    <string name="dialog_app_update_check_content">Dotknij tutaj, aby włączyć powiadomienia o aktualizacjach aplikacji.</string>
+    <string name="settings_notifications_app_updates_check">Powiadomienia o aktualizacjach aplikacji</string>
+    <string name="notification_channel_app_updates">Aktualizacje aplikacji</string>
+    <string name="notification_app_update_available">Nowa wersja aplikacji dostępna!</string>
+    <string name="about_check_for_app_updates">Sprawdź uaktualnienia</string>
+    <string name="about_no_new_updates">Brak nowych aktualizacji</string>
+    <string name="common_weather_text_sand_storm">Burza piaskowa</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado lub trąba wodna</string>
+    <string name="meteoam_weather_text_smoke">Dym</string>
 </resources>
