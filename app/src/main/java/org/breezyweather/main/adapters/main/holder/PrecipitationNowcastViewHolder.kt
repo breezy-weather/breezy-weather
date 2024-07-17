@@ -214,16 +214,15 @@ class PrecipitationNowcastViewHolder(
                     )
                 ),
                 background = rememberShapeComponent(
-                    Shape.Pill,
                     Color(
                         MainThemeColorProvider.getColor(
                             location, androidx.appcompat.R.attr.colorPrimary
                         )
-                    )
+                    ),
+                    Shape.Pill
                 ).setShadow(
                     radius = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
-                    dy = LABEL_BACKGROUND_SHADOW_DY_DP,
-                    applyElevationOverlay = true,
+                    dy = LABEL_BACKGROUND_SHADOW_DY_DP
                 ),
                 padding = Dimensions.of(
                     dimensionResource(R.dimen.normal_margin),
@@ -321,9 +320,9 @@ class PrecipitationNowcastViewHolder(
                 ),
                 // TODO: Makes two markers instead of fading away when tapped somewhere else
                 //persistentMarkers = mapOf(minutely.indexOfLast { it.date < Date() }.toFloat() to marker),
+                marker = marker,
             ),
-            modelProducer,
-            marker = marker,
+            modelProducer = modelProducer,
             scrollState = rememberVicoScrollState(scrollEnabled = false),
             modifier = Modifier.handleNestedHorizontalDragGesture(view)
         )
