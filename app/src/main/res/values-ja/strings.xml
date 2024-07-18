@@ -689,4 +689,10 @@
     <string name="settings_appearance_calendar_title">代替カレンダー</string>
     <string name="settings_global">全般設定</string>
     <string name="precipitation_intensity_medium">中程度</string>
+    <string name="action_download">ダウンロード</string>
+    <string name="dialog_app_update_check_content">タップしてアプリのアップデートの通知を有効にします。</string>
+    <string name="about_check_for_app_updates">アプリのアップデートを確認</string>
+    <string name="about_no_new_updates">アップデートはありません</string>
+    <string name="notification_channel_app_updates">アプリのアップデート</string>
+    <string name="settings_notifications_app_updates_check">アプリのアップデートの通知</string>
 </resources>
