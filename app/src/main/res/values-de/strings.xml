@@ -49,7 +49,7 @@
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
-    <string name="settings_follow_system">Systemstandard</string>
+    <string name="settings_follow_system">System folgen</string>
     <string name="notification_channel_forecast">Vorhersage</string>
     <string name="settings_icon_packs_get_more">Mehr erhalten</string>
     <string name="action_set">Festlegen</string>
@@ -596,7 +596,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
-    <string name="settings_color_app">Automatisch</string>
+    <string name="settings_color_app">App folgen</string>
     <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktivieren Sie zuerst die Hintergrundaktualisierungen</string>
     <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %s</string>
     <string name="notification_precipitation_starting">Baldiger Niederschlag</string>
