@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Change of behavior: on Android 10+, by default, day/night mode for locations is no longer enabled.
+- Add temperature normals in the daily detailed view
 
 
 # Version 5.2.6 (2024-07-17)

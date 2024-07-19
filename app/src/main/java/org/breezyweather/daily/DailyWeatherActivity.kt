@@ -88,8 +88,10 @@ class DailyWeatherActivity : GeoActivity() {
             it.setBackgroundColor(
                 ColorUtils.getWidgetSurfaceColor(
                     6f,
-                    ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
-                    ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
+                    ThemeManager.getInstance(this)
+                        .getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
+                    ThemeManager.getInstance(this)
+                        .getThemeColor(this, com.google.android.material.R.attr.colorSurface)
                 )
             )
             it.setNavigationOnClickListener { finish() }
@@ -147,7 +149,9 @@ class DailyWeatherActivity : GeoActivity() {
                         location.pollenSource!!
                     } else location.weatherSource
                 )
-                val dailyWeatherAdapter = DailyWeatherAdapter(this@DailyWeatherActivity, location, daily, pollenIndexSource, 3)
+                val dailyWeatherAdapter = DailyWeatherAdapter(
+                    this@DailyWeatherActivity, location, daily, pollenIndexSource, 3
+                )
                 val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
                 rv.adapter = dailyWeatherAdapter
@@ -156,17 +160,25 @@ class DailyWeatherActivity : GeoActivity() {
                 titleList.add((i + 1).toString())
             }
             val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
-            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList)
+            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(
+                pager, viewList, titleList
+            )
             pager.pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
             pager.setPageMarginDrawable(
                 ColorDrawable(
-                    ThemeManager.getInstance(this@DailyWeatherActivity).getThemeColor(this@DailyWeatherActivity, com.google.android.material.R.attr.colorOutline)
+                    ThemeManager.getInstance(this@DailyWeatherActivity)
+                        .getThemeColor(
+                            this@DailyWeatherActivity,
+                            com.google.android.material.R.attr.colorOutline
+                        )
                 )
             )
             pager.currentItem = mPosition
             pager.clearOnPageChangeListeners()
             pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                override fun onPageScrolled(
+                    position: Int, positionOffset: Float, positionOffsetPixels: Int
+                ) {
                     // do nothing.
                 }
 

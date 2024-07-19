@@ -25,9 +25,11 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.Normals
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.daily.DailyWeatherActivity
 import org.breezyweather.daily.adapter.holder.AirQualityHolder
@@ -58,6 +60,8 @@ import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
+import java.util.Calendar
+import java.util.Date
 
 class DailyWeatherAdapter(
     activity: DailyWeatherActivity,
@@ -87,6 +91,10 @@ class DailyWeatherAdapter(
     init {
         // model list.
         mModelList = mutableListOf()
+        val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
+        val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
+            location.weather!!.normals
+        } else null
         daily.day?.let { day ->
             mModelList.add(LargeTitle(activity.getString(R.string.daytime)))
             mModelList.add(Overview(day, true))
@@ -95,7 +103,9 @@ class DailyWeatherAdapter(
                     mModelList.add(DailyWind(wind))
                 }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(activity, day))
+            mModelList.addAll(
+                getHalfDayOptionalModelList(activity, day, thisDayNormals?.daytimeTemperature)
+            )
         }
         daily.night?.let { night ->
             mModelList.add(Line())
@@ -106,7 +116,9 @@ class DailyWeatherAdapter(
                     mModelList.add(DailyWind(wind))
                 }
             }
-            mModelList.addAll(getHalfDayOptionalModelList(activity, night))
+            mModelList.addAll(
+                getHalfDayOptionalModelList(activity, night, thisDayNormals?.nighttimeTemperature)
+            )
         }
         mModelList.add(Line())
         daily.airQuality?.let { airQuality ->
@@ -228,49 +240,61 @@ class DailyWeatherAdapter(
 
     override fun getItemCount() = mModelList.size
 
-    private fun getHalfDayOptionalModelList(context: Context, halfDay: HalfDay): List<ViewModel> {
+    private fun getHalfDayOptionalModelList(
+        context: Context, halfDay: HalfDay, normals: Double?
+    ): List<ViewModel> {
         val list = mutableListOf<ViewModel>()
         // temperature.
         val temperature = halfDay.temperature
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-        if (temperature?.feelsLikeTemperature != null) {
+        if (temperature?.feelsLikeTemperature != null || normals != null) {
             list.add(Title(R.drawable.ic_device_thermostat, context.getString(R.string.temperature)))
-            temperature.realFeelTemperature?.let {
-                list.add(
-                    Value(
-                        context.getString(R.string.temperature_real_feel),
-                        temperatureUnit.getValueText(context, it)
+            if (temperature?.feelsLikeTemperature != null) {
+                temperature.realFeelTemperature?.let {
+                    list.add(
+                        Value(
+                            context.getString(R.string.temperature_real_feel),
+                            temperatureUnit.getValueText(context, it)
+                        )
                     )
-                )
-            }
-            temperature.realFeelShaderTemperature?.let {
-                list.add(
-                    Value(
-                        context.getString(R.string.temperature_real_feel_shade),
-                        temperatureUnit.getValueText(context, it)
+                }
+                temperature.realFeelShaderTemperature?.let {
+                    list.add(
+                        Value(
+                            context.getString(R.string.temperature_real_feel_shade),
+                            temperatureUnit.getValueText(context, it)
+                        )
                     )
-                )
-            }
-            temperature.apparentTemperature?.let {
-                list.add(
-                    Value(
-                        context.getString(R.string.temperature_apparent),
-                        temperatureUnit.getValueText(context, it)
+                }
+                temperature.apparentTemperature?.let {
+                    list.add(
+                        Value(
+                            context.getString(R.string.temperature_apparent),
+                            temperatureUnit.getValueText(context, it)
+                        )
                     )
-                )
-            }
-            temperature.windChillTemperature?.let {
-                list.add(
-                    Value(
-                        context.getString(R.string.temperature_wind_chill),
-                        temperatureUnit.getValueText(context, it)
+                }
+                temperature.windChillTemperature?.let {
+                    list.add(
+                        Value(
+                            context.getString(R.string.temperature_wind_chill),
+                            temperatureUnit.getValueText(context, it)
+                        )
                     )
-                )
+                }
+                temperature.wetBulbTemperature?.let {
+                    list.add(
+                        Value(
+                            context.getString(R.string.temperature_wet_bulb),
+                            temperatureUnit.getValueText(context, it)
+                        )
+                    )
+                }
             }
-            temperature.wetBulbTemperature?.let {
+            normals?.let {
                 list.add(
                     Value(
-                        context.getString(R.string.temperature_wet_bulb),
+                        context.getString(R.string.temperature_normal_short),
                         temperatureUnit.getValueText(context, it)
                     )
                 )

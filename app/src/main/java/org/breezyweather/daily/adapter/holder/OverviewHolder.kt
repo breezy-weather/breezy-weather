@@ -52,7 +52,7 @@ class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             )
         }
         val builder = StringBuilder()
-        if (!overview.halfDay.weatherText .isNullOrEmpty()) {
+        if (!overview.halfDay.weatherText.isNullOrEmpty()) {
             builder.append(overview.halfDay.weatherText)
         }
         overview.halfDay.temperature?.temperature?.let {
