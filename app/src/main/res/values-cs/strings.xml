@@ -93,9 +93,9 @@
     <string name="about_translators">Překladatelé</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
-    <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
+    <string name="dialog_permissions_location_content">Pro použití této funkce musíte udělit aplikaci oprávnění k přístupu k vaší aktuální poloze. Bude sdílena pouze s vybranými zdroji počasí. Pokud si to rozmyslíte, můžete proces zrušit a přidat určitou lokalitu ručně.</string>
     <string name="dialog_permissions_location_background_title">Přístup k poloze na pozadí</string>
-    <string name="dialog_permissions_location_background_content">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na “Povolit vždy”.</string>
+    <string name="dialog_permissions_location_background_content">Chcete-li povolit obnovení počasí na pozadí pro nejnovější aktuální polohu známou systému Android, musíte nastavit oprávnění k poloze na hodnotu „Povolit vždy“. Pokud tak neučiníte, bude se počasí v popředí obnovovat na základě posledních načtených souřadnic, které mohou být zastaralé.</string>
     <string name="location_message_failed_to_locate">Nepodařilo se zjistit aktuální polohu</string>
     <string name="weather_message_data_refresh_failed">Pokus o získání údajů o počasí selhal</string>
     <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu\?</string>
@@ -636,7 +636,7 @@
     <string name="ceiling_short">Strop</string>
     <string name="settings_weather_sources_default_source">Výchozí zdroj pro nová umístění</string>
     <string name="settings_weather_source_unavailable">%s (nedostupný)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Další zdroje počasí jsou dostupné v dalších verzích aplikace Breezy Weather. Klepněte sem pro více informací.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Další zdroje počasí jsou dostupné v ostatních verzích aplikace. Klepněte sem pro více informací.</string>
     <string name="location_delete_location_dialog_message_no_name">Chystáte se odstranit toto umístění z vašeho seznamu uložených umístění.</string>
     <string name="action_confirm">Potvrdit</string>
     <string name="weather_message_too_frequent_refreshes">Počkejte prosím několik vteřin před opětovným pokusem…</string>
@@ -658,7 +658,7 @@
     <string name="pollen_urticaceae">Kopřiva</string>
     <string name="pollen_carpinus">Habr</string>
     <string name="pollen_plantaginaceae">Plantain</string>
-    <string name="message_source_not_installed_error_content_tip_1">Toto může nastat, pokud jste přidali své umístění do standardní verze Breezy Weather a poté jste přešli na verzi z Free-networks onlyu, která podporuje méně zdrojů počasí. Tento problém nejspíše vyřešíte přechodem zpět na standardní verzi.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Toto může nastat, pokud jste přidali své umístění do standardní verze aplikace a poté jste přešli na verzi obsahující pouze svobodné zdroje, která podporuje méně zdrojů počasí. Tento problém nejspíše vyřešíte přechodem zpět na standardní verzi.</string>
     <string name="message_source_not_installed_error_content_tip_2">Změňte zdroje počasí pro toto umístění nebo ji odstraňte a znovu přidejte.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Souhrn indexu pylů pro dnešek, zítřek, …, za 4 dny</string>
     <string name="about_open_link_message">Otevřít %s?</string>
@@ -701,4 +701,9 @@
     <string name="action_download">Stáhnout</string>
     <string name="settings_notifications_app_updates_check">Oznamovat aktualizace aplikace</string>
     <string name="about_no_new_updates">Nejsou dostupné žádné nové aktualizace</string>
+    <string name="common_weather_text_sand_storm">Písečná bouře</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornádo nebo vodní smršť</string>
+    <string name="dialog_app_update_check_title">Udržovat aktuální</string>
+    <string name="dialog_app_update_check_content">Klepněte sem pro povolení oznámení o aktualizacích aplikace.</string>
+    <string name="meteoam_weather_text_smoke">Kouř</string>
 </resources>
