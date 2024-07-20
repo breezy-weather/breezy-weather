@@ -175,4 +175,13 @@
     <string name="temperature_average_short">Media</string>
     <string name="air_quality_so2_info_title">Dióxido de xofre (SO₂)</string>
     <string name="air_quality_co_info_title">Monóxido de carbono (CO)</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Humidade actual</string>
+    <string name="weather_kind_wind">Vento</string>
+    <string name="meteoam_weather_text_smoke">Fume</string>
+    <string name="humidity">Humidade</string>
+    <string name="humidity_short">Humidade</string>
+    <string name="humidity_dew_point">Humidade / Punto de orballo</string>
+    <string name="metno_weather_text_andthunder">%s e tronos</string>
+    <string name="weather_kind_hail">Sarabia</string>
+    <string name="common_weather_text_sand_storm">Tormenta de area</string>
 </resources>
