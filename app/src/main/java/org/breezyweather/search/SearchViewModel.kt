@@ -42,7 +42,7 @@ class SearchViewModel @Inject constructor(
         mRepository.cancel()
         mRepository.searchLocationList(
             getApplication(),
-            str,
+            str.trim(),
             locationSearchSource.value
         ) { result: Pair<List<Location>?, RefreshErrorType?>?, _: Boolean ->
             result?.second?.let { msg ->
