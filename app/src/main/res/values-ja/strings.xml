@@ -480,7 +480,7 @@
     <string name="settings_weather_source_main">主要情報源</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">ｷﾛｸﾞﾗﾑ力毎平方ｾﾝﾁﾒｰﾄﾙ</string>
-    <string name="message_network_unavailable">ネットワーク利用できません</string>
+    <string name="message_network_unavailable">ネットワークを利用できません</string>
     <string name="unit_atm_voice">大気圧</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
