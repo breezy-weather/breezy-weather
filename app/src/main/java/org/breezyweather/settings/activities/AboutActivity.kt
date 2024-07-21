@@ -134,6 +134,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("jayyuz", github = "jayyuz"),
         ContributorItem("chunshek", github = "chunshek"),
         ContributorItem("JiunnTarn", github = "JiunnTarn"),
+        ContributorItem("mags0ft", github = "mags0ft"),
         ContributorItem("Anthony Dégrange", url = "https://anthony-degrange-design.fr/", contribution = R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed

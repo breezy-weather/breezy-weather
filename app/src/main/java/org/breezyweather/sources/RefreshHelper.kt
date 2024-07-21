@@ -37,6 +37,7 @@ import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
+import org.breezyweather.common.exceptions.ApiUnauthorizedException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
@@ -662,6 +663,7 @@ class RefreshHelper @Inject constructor(
             is SocketTimeoutException -> RefreshErrorType.SERVER_TIMEOUT
             is ApiLimitReachedException -> RefreshErrorType.API_LIMIT_REACHED
             is ApiKeyMissingException -> RefreshErrorType.API_KEY_REQUIRED_MISSING
+            is ApiUnauthorizedException -> RefreshErrorType.API_UNAUTHORIZED
             is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
             is LocationException -> RefreshErrorType.LOCATION_FAILED
             is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING

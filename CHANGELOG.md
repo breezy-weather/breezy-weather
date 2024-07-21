@@ -3,6 +3,10 @@
 **Improvements and fixes**
 - Change of behavior: on Android 10+, by default, day/night mode for locations is no longer enabled.
 - Add temperature normals in the daily detailed view
+- Fix trailing whitespaces returning inconsistent search results (@mags0ft)
+
+**Sources**
+- [Baidu IP location] Show “API unauthorized” error message when API key is invalid, instead of “Failed to find current location”
 
 
 # Version 5.2.6 (2024-07-17)

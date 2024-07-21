@@ -23,6 +23,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
+import org.breezyweather.common.exceptions.ApiUnauthorizedException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.preference.EditTextPreference
@@ -33,6 +34,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.settings.SourceConfigStore
+import retrofit2.HttpException
+import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -60,6 +63,10 @@ class BaiduIPLocationService @Inject constructor(
             .compose(SchedulerTransformer.create())
             .map { t ->
                 if (t.status != 0) {
+                    if (t.status == 200) {
+                        // Key is invalid
+                        throw ApiUnauthorizedException()
+                    }
                     if (t.status == 302) {
                         throw ApiLimitReachedException()
                     }
