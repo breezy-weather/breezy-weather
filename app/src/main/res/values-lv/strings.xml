@@ -368,7 +368,7 @@
     <string name="action_add_new_location">Pievienot jaunu atrašanās vietu</string>
     <string name="action_preview">Priekšskatījums</string>
     <string name="dialog_permissions_notification_content">Jāpiesit šeit, lai iespējotu paziņojumus par laikapstākļu brīdinājumiem, vai vēlāk var izlemt iestatījumos.</string>
-    <string name="dialog_permissions_location_background_content">Lai atļautu laikapstākļu atsvaidzinājumiem fonā notikt pēc jaunākās pašreizējās atrašanās vietas, kas zināma Android, jums ir jāiestata atrašanās vietas atļauja uz \"Atļaut visu laiku\". Citādi laikapstākļi tiks atsvaidzināti balstoties uz jaunākajām iegūtajām koordinātām priekšplānā, kuras var būt novecojušas.</string>
+    <string name="dialog_permissions_location_background_content">Lai atļautu laikapstākļu atsvaidzinājumiem fonā notikt pēc jaunākās pašreizējās atrašanās vietas, kas zināma Android, jums ir jāiestata atrašanās vietas atļauja uz “Atļaut visu laiku”. Citādi laikapstākļi tiks atsvaidzināti balstoties uz jaunākajām iegūtajām koordinātām priekšplānā, kuras var būt novecojušas.</string>
     <string name="message_network_unavailable">Tīkls nav pieejams</string>
     <string name="message_parsing_error_content">Jāpārliecinās, ka lietotne ir atjaunināta uz jaunāko versiju. Serveris var īslaicīgi nebūt pieejams, tādā gadījumā, lūgums vēlāk mēģināt vēlreiz. Ja sarežģījums joprojām pastāv, lūgums izgūt avārijas žurnālu no atkļūdošanas iestatījumiem un ziņot par nepilnību GitHub.</string>
     <string name="widget_day_week">Ikdienu + iknedēļu</string>
