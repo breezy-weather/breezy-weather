@@ -49,7 +49,7 @@ object LocationHelpDialog {
         view.findViewById<View>(R.id.dialog_location_help_locationContainer)
             .setOnClickListener { IntentHelper.startLocationSettingsActivity(activity) }
         view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-            .setOnClickListener { IntentHelper.startSelectLocationProviderActivity(activity) }
+            .setOnClickListener { IntentHelper.startLocationProviderSettingsActivity(activity) }
         view.findViewById<View>(R.id.dialog_location_help_manageContainer).setOnClickListener {
             if (activity is MainActivity) {
                 activity.setManagementFragmentVisibility(true)
