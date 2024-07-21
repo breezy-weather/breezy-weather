@@ -52,7 +52,7 @@ object ApiHelpDialog {
     private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
         if (BuildConfig.FLAVOR != "freenet") {
             view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener { IntentHelper.startSelectWeatherProviderActivity(activity) }
+                .setOnClickListener { IntentHelper.startWeatherProviderSettingsActivity(activity) }
         } else {
             view.findViewById<View>(R.id.dialog_location_help_providerContainer)
                 .visibility = View.GONE

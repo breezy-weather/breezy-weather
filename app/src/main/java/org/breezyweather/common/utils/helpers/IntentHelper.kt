@@ -36,12 +36,10 @@ import org.breezyweather.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.settings.activities.DependenciesActivity
 import org.breezyweather.settings.activities.DetailDisplayManageActivity
 import org.breezyweather.settings.activities.HourlyTrendDisplayManageActivity
-import org.breezyweather.settings.activities.MainScreenSettingsActivity
 import org.breezyweather.settings.activities.PreviewIconActivity
 import org.breezyweather.settings.activities.PrivacyPolicyActivity
-import org.breezyweather.settings.activities.SelectLocationProviderActivity
-import org.breezyweather.settings.activities.SelectWeatherProviderActivity
 import org.breezyweather.settings.activities.SettingsActivity
+import org.breezyweather.settings.compose.SettingsScreenRouter
 
 /**
  * Intent helper.
@@ -163,15 +161,36 @@ object IntentHelper {
     }
 
     fun startMainScreenSettingsActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, MainScreenSettingsActivity::class.java))
+        activity.startActivity(
+            Intent(activity, SettingsActivity::class.java).apply {
+                putExtra(
+                    SettingsActivity.KEY_SETTINGS_ACTIVITY_START_DESTINATION,
+                    SettingsScreenRouter.MainScreen.route
+                )
+            }
+        )
     }
 
-    fun startSelectLocationProviderActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, SelectLocationProviderActivity::class.java))
+    fun startLocationProviderSettingsActivity(activity: Activity) {
+        activity.startActivity(
+            Intent(activity, SettingsActivity::class.java).apply {
+                putExtra(
+                    SettingsActivity.KEY_SETTINGS_ACTIVITY_START_DESTINATION,
+                    SettingsScreenRouter.Location.route
+                )
+            }
+        )
     }
 
-    fun startSelectWeatherProviderActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, SelectWeatherProviderActivity::class.java))
+    fun startWeatherProviderSettingsActivity(activity: Activity) {
+        activity.startActivity(
+            Intent(activity, SettingsActivity::class.java).apply {
+                putExtra(
+                    SettingsActivity.KEY_SETTINGS_ACTIVITY_START_DESTINATION,
+                    SettingsScreenRouter.WeatherProviders.route
+                )
+            }
+        )
     }
 
     fun startPreviewIconActivity(activity: Activity, packageName: String?) {

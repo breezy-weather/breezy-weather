@@ -62,6 +62,11 @@ class SettingsActivity : GeoActivity() {
     @Inject lateinit var sourceManager: SourceManager
     @Inject lateinit var refreshHelper: RefreshHelper
 
+    companion object {
+        const val KEY_SETTINGS_ACTIVITY_START_DESTINATION =
+            "SETTINGS_ACTIVITY_START_DESTINATION"
+    }
+
     private val updateIntervalState = mutableStateOf(
         SettingsManager.getInstance(this).updateInterval
     )
@@ -171,10 +176,12 @@ class SettingsActivity : GeoActivity() {
         val scope = rememberCoroutineScope()
         val navController = rememberNavController()
         val onBack = { onBackPressedDispatcher.onBackPressed() }
+        val startDestination = intent.getStringExtra(KEY_SETTINGS_ACTIVITY_START_DESTINATION)
+            ?: SettingsScreenRouter.Root.route
 
         NavHost(
             navController = navController,
-            startDestination = SettingsScreenRouter.Root.route,
+            startDestination = startDestination,
         ) {
             composable(SettingsScreenRouter.Root.route) {
                 RootSettingsView(
