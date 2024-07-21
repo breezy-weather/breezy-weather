@@ -34,8 +34,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.settings.SourceConfigStore
-import retrofit2.HttpException
-import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 

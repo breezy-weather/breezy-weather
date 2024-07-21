@@ -60,6 +60,7 @@ import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerValueFormatter
 import com.patrykandpatrick.vico.core.common.Dimensions
 import com.patrykandpatrick.vico.core.common.VerticalPosition
+import com.patrykandpatrick.vico.core.common.component.Shadow
 import com.patrykandpatrick.vico.core.common.component.TextComponent
 import com.patrykandpatrick.vico.core.common.shape.Shape
 import org.breezyweather.R
@@ -186,7 +187,7 @@ class PrecipitationNowcastViewHolder(
         val maxY = max(
             Precipitation.PRECIPITATION_HOURLY_HEAVY,
             minutely.maxOfOrNull { it.precipitationIntensity ?: 0.0 } ?: 0.0
-        ).toFloat()
+        )
         val hasOnlyThresholdsValues = !minutely.any {
             it.precipitationIntensity !in arrayOf(
                 null,
@@ -219,10 +220,11 @@ class PrecipitationNowcastViewHolder(
                             location, androidx.appcompat.R.attr.colorPrimary
                         )
                     ),
-                    Shape.Pill
-                ).setShadow(
-                    radius = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
-                    dy = LABEL_BACKGROUND_SHADOW_DY_DP
+                    Shape.Pill,
+                    shadow = Shadow(
+                        radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
+                        dyDp = LABEL_BACKGROUND_SHADOW_DY_DP
+                    )
                 ),
                 padding = Dimensions.of(
                     dimensionResource(R.dimen.normal_margin),
@@ -279,7 +281,7 @@ class PrecipitationNowcastViewHolder(
                     (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
                         if (it) {
                             rememberHorizontalLine(
-                                y = { Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat() },
+                                y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
                                     color = colorResource(thresholdLineColor)
@@ -294,7 +296,7 @@ class PrecipitationNowcastViewHolder(
                     (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
                         if (it) {
                             rememberHorizontalLine(
-                                y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM.toFloat() },
+                                y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
                                     color = colorResource(thresholdLineColor)
@@ -307,7 +309,7 @@ class PrecipitationNowcastViewHolder(
                         } else null
                     },
                     rememberHorizontalLine(
-                        y = { Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat() },
+                        y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
                         verticalLabelPosition = VerticalPosition.Bottom,
                         line = rememberLineComponent(
                             color = colorResource(thresholdLineColor)
