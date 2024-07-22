@@ -82,7 +82,10 @@ private fun getCurrent(
         keys[params[i]] = i.toString()
     }
     val icon = currentResult.getOrElse(keys["icon"].toString()) { null }?.getOrElse("0") { null }.toString()
-    val temp = currentResult.getOrElse(keys["2t"].toString()) { null }?.getOrElse("0") { null } as Double?
+    val temp = when (currentResult.getOrElse(keys["2t"].toString()) { null }?.getOrElse("0") { null }) {
+        is Double -> currentResult.getOrElse(keys["2t"].toString()) { null }?.get("0") as Double
+        else -> null // sometimes returned as "-"
+    }
     val wdir = when (currentResult.getOrElse(keys["wdir"].toString()) { null }?.getOrElse("0") { null }) {
         is Double -> currentResult.getOrElse(keys["wdir"].toString()) { null }?.get("0") as Double
         "VRB" -> -1.0
@@ -92,8 +95,14 @@ private fun getCurrent(
         is Double -> currentResult.getOrElse(keys["wkmh"].toString()) { null }?.get("0") as Double / 3.6
         else -> null // sometimes returned as "-"
     }
-    val rhum = currentResult.getOrElse(keys["r"].toString()) { null }?.getOrElse("0") { null } as Double?
-    val pres = currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null } as Double?
+    val rhum = when (currentResult.getOrElse(keys["r"].toString()) { null }?.getOrElse("0") { null }) {
+        is Double -> currentResult.getOrElse(keys["r"].toString()) { null }?.get("0") as Double
+        else -> null // sometimes returned as "-"
+    }
+    val pres = when (currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null }) {
+        is Double -> currentResult.getOrElse(keys["pmsl"].toString()) { null }?.get("0") as Double
+        else -> null // sometimes returned as "-"
+    }
 
     return Current(
         weatherText = getWeatherText(context, icon),
@@ -155,12 +164,31 @@ private fun getHourlyForecast(
     }
     for (i in timeseries.indices) {
         icon = data.getOrElse(keys["icon"].toString()) { null }?.getOrElse(i.toString()) { null }.toString()
-        temp = data.getOrElse(keys["2t"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?
-        tpop = data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?
-        wdir = data.getOrElse(keys["wdir"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?
-        wspd = (data.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?)?.div(3.6)
-        rhum = data.getOrElse(keys["r"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?
-        pres = data.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse(i.toString()) { null } as Double?
+        temp = when (data.getOrElse(keys["2t"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["2t"].toString()) { null }?.get(i.toString()) as Double
+            else -> null // in case a non-numerical value is returned
+        }
+        tpop = when (data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["tpp"].toString()) { null }?.get(i.toString()) as Double
+            else -> null // in case a non-numerical value is returned
+        }
+        wdir = when (data.getOrElse(keys["wdir"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["wdir"].toString()) { null }?.get(i.toString()) as Double
+            "VRB" -> -1.0
+            else -> null // in case a non-numerical value is returned
+        }
+        wspd = when (data.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["wkmh"].toString()) { null }?.get(i.toString()) as Double / 3.6
+            else -> null // in case a non-numerical value is returned
+        }
+        rhum = when (data.getOrElse(keys["r"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["r"].toString()) { null }?.get(i.toString()) as Double
+            else -> null // in case a non-numerical value is returned
+        }
+        pres = when (data.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse(i.toString()) { null }) {
+            is Double -> data.getOrElse(keys["pmsl"].toString()) { null }?.get(i.toString()) as Double
+            else -> null // in case a non-numerical value is returned
+        }
 
         hourlyForecast.add(
             HourlyWrapper(
