@@ -5,7 +5,7 @@
         PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń (“wet bulb temperature” lub “degree day temperature”) w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
     -->
     <!-- app. -->
-    <string name="app_name">Pogodas</string>
+    <string name="app_name">Pogoda</string>
     <!-- keyword. -->
     <string name="location_current">Obecna lokalizacja</string>
     <string name="short_today">Dziś</string>
