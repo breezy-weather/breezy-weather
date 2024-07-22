@@ -694,4 +694,6 @@
     <string name="settings_notifications_app_updates_check">Ειδοποιήσεις για ενημερώσεις εφαρμογής</string>
     <string name="meteoam_weather_text_tornado_watersprout">Τυφώνας ή Σίφωνας</string>
     <string name="meteoam_weather_text_smoke">Καπνός</string>
+    <string name="dialog_app_update_check_title">Μείνε ενημερωμένος</string>
+    <string name="dialog_app_update_check_content">Πάτα εδώ για να ενεργοποιήσεις ειδοποιήσεις περί ενημερώσεων εφαρμογής.</string>
 </resources>
