@@ -256,8 +256,8 @@ class OpenMeteoService @Inject constructor(
                 getWeatherModels(location).joinToString(",") { it.id },
                 "",
                 "",
-                "",
                 minutely.joinToString(","),
+                "",
                 forecastDays = 2, // In case current + 2 hours overlap two days
                 pastDays = 0,
                 windspeedUnit = "ms"
