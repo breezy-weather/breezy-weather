@@ -6,6 +6,7 @@
 - Fix trailing whitespaces returning inconsistent search results (@mags0ft)
 
 **Sources**
+- [Servizio Meteo AM] Fix some failures to refresh (@chunshek)
 - [Baidu IP location] Show “API unauthorized” error message when API key is invalid, instead of “Failed to find current location”
 
 
