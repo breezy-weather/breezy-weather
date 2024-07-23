@@ -7,6 +7,7 @@
 
 **Sources**
 - [Servizio Meteo AM] Fix some failures to refresh (@chunshek)
+- [Open-Meteo] Fix precipitation nowcasting when used as a secondary source (@min7-i)
 - [Baidu IP location] Show “API unauthorized” error message when API key is invalid, instead of “Failed to find current location”
 
 
