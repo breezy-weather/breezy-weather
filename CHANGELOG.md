@@ -4,6 +4,7 @@
 - Change of behavior: on Android 10+, by default, day/night mode for locations is no longer enabled.
 - Add temperature normals in the daily detailed view
 - Fix trailing whitespaces returning inconsistent search results (@mags0ft)
+- Fix location permission dialog being shown twice when resuming app (@ecawthorne)
 
 **Sources**
 - [Servizio Meteo AM] Fix some failures to refresh (@chunshek)
