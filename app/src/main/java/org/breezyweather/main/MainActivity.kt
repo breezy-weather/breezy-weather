@@ -24,6 +24,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -83,6 +84,7 @@ class MainActivity : GeoActivity(),
 
     private val _dialogPerLocationSettingsOpen = MutableStateFlow(false)
     val dialogPerLocationSettingsOpen = _dialogPerLocationSettingsOpen.asStateFlow()
+    private var dialogPerLocationAlert: AlertDialog? = null
 
     companion object {
         const val SEARCH_ACTIVITY = 4
@@ -241,6 +243,11 @@ class MainActivity : GeoActivity(),
         updateDayNightColors()
     }
 
+    override fun onPause() {
+        super.onPause()
+        dialogPerLocationAlert?.dismiss()
+    }
+
     override fun onStart() {
         super.onStart()
         viewModel.checkToUpdate()
@@ -327,8 +334,7 @@ class MainActivity : GeoActivity(),
                         }
 
                         if (showLocationPermissionDialog && !viewModel.statementManager.isLocationPermissionDialogAlreadyShown) {
-                            // only show dialog once.
-                            MaterialAlertDialogBuilder(this@MainActivity)
+                            dialogPerLocationAlert = MaterialAlertDialogBuilder(this@MainActivity)
                                 .setTitle(R.string.dialog_permissions_location_title)
                                 .setMessage(R.string.dialog_permissions_location_content)
                                 .setPositiveButton(R.string.action_next) { _, _ ->
