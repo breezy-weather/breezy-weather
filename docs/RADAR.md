@@ -37,12 +37,11 @@ Websites below often offer closed source apps as well, but adding a bookmark to 
     </tr>
     <tr>
         <td><a href="https://www.rainviewer.com/weather-radar-map-live.html">RainViewer</a></td>
-        <td>Free</td>
+        <td>Free (website)</td>
         <td>
             <ul>
                 <li>10-min step</li>
-                <li>2 next hours</li>
-                <li>Past hour</li>
+                <li>Past 2 hours (no forecast)</li>
             </ul>
         </td>
         <td>
@@ -51,7 +50,7 @@ Websites below often offer closed source apps as well, but adding a bookmark to 
     </tr>
     <tr>
         <td><a href="https://www.ventusky.com/">Ventusky</a></td>
-        <td>Free</td>
+        <td>Free (website)</td>
         <td>
             <ul>
                 <li>1-hour step (3-hour and 6-hour steps after a few days)</li>
