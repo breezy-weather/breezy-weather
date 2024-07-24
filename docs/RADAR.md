@@ -37,12 +37,22 @@ Websites below often offer closed source apps as well, but adding a bookmark to 
     </tr>
     <tr>
         <td><a href="https://www.rainviewer.com/weather-radar-map-live.html">RainViewer</a></td>
-        <td>Free</td>
+        <td>Freemium</td>
         <td>
             <ul>
-                <li>10-min step</li>
-                <li>2 next hours</li>
-                <li>Past hour</li>
+                <li>Free:
+                    <ul>
+                        <li>10-min step</li>
+                        <li>Past 2 hours</li>
+                    </ul>
+                </li>
+                <li>Paid:
+                    <ul>
+                        <li>10-min step</li>
+                        <li>Past 48 hours</li>
+                        <li>2 next hours</li>
+                    </ul>
+                </li>
             </ul>
         </td>
         <td>
