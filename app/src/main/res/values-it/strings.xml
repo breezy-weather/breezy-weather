@@ -319,7 +319,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="uv_index_0_2">Basso</string>
-    <string name="alerts_to_follow">Ci sono allerte da seguire, visualizzale toccando qui.</string>
+    <string name="alerts_to_follow">Ci sono allerte da seguire, tocca qui per visualizzarle.</string>
     <string name="wind_direction_short_variable">Variabile</string>
     <string name="wind_direction_short_N">N</string>
     <string name="uv_index_3_5">Moderato</string>
