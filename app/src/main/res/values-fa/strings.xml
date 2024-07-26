@@ -678,4 +678,5 @@
     <string name="action_edit_location">ویرایش این مکان</string>
     <string name="settings_global">تنظیمات عمومی</string>
     <string name="precipitation_intensity_medium">میانه</string>
+    <string name="action_download">دانلود</string>
 </resources>
