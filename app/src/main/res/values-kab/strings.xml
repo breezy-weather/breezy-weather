@@ -97,4 +97,11 @@
     <string name="pollen">Adqis</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="pollen_tree">Aseklu</string>
+    <string name="air_quality_pm10">PM10</string>
+    <string name="action_show_errors">Kenned da akken ad twaliḍ ugar n ttfaṣil</string>
+    <string name="message_tap_again_to_exit">Kenned tikkelt niḍen akken ad teffɣeḍ</string>
+    <string name="air_quality">Taɣara n wuzwu</string>
+    <string name="common_weather_text_clear_sky">Igenni yeṣfan</string>
+    <string name="pollen_tap_to_see_more">Kned da iwakken ad twaliḍ ugar …</string>
+    <string name="widget_subtitle_data_aqi">Taɣara n wuzwu</string>
 </resources>
