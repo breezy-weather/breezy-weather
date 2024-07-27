@@ -1,7 +1,7 @@
 [versions]
 aboutlib_version = "11.2.2"
 accompanist = "0.34.0"
-activity = "1.9.0"
+activity = "1.9.1"
 adaptiveiconview = "v0.0.3"
 agp = "8.5.1"
 appcompat = "1.7.0"
