@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_yesterday">Idl</string>
+    <string name="short_yesterday">Iḍl</string>
     <string name="wind_speed">Arured n waḍu</string>
     <string name="setting_weather_source_accu_days">Ussan</string>
-    <string name="weather_source_accu_preference_days_5">5 n wussan</string>
-    <string name="weather_source_accu_preference_days_10">10 n wussan</string>
-    <string name="weather_source_accu_preference_days_1">1 n wass</string>
+    <string name="weather_source_accu_preference_days_5">5 wussan</string>
+    <string name="weather_source_accu_preference_days_10">10 wussan</string>
+    <string name="weather_source_accu_preference_days_1">1 wass</string>
     <string name="wind_direction">Tanila n waḍu</string>
     <string name="short_today">Ass-a</string>
-    <string name="app_name">Tignewt</string>
-    <string name="weather_source_accu_preference_days_15">15 n yum</string>
+    <string name="app_name">Tagnewt</string>
+    <string name="weather_source_accu_preference_days_15">15 yum</string>
     <string name="settings_appearance_language_title">Tutlayt</string>
     <string name="wind">Aḍu</string>
     <string name="weather_kind_thunder">Rrɛud</string>
@@ -40,10 +40,10 @@
     <string name="unit_kelvin_short">K</string>
     <string name="widget_week">S dduṛt</string>
     <string name="widget_day_week">Yal ass + yal smana</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Tazɣelt tamirant (°)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Taẓɣelt tamirant (°)</string>
     <string name="widget_custom_subtitle_keyword_w_description">Ddurt</string>
-    <string name="widget_week_style_5_days">5 n wussan</string>
-    <string name="widget_week_style_3_days">3 n wussan</string>
+    <string name="widget_week_style_5_days">5 wussan</string>
+    <string name="widget_week_style_3_days">3 wussan</string>
     <string name="widget_style_temperature">Taẓɣelt</string>
     <string name="metno_weather_text_andthunder">%s akked rɛud</string>
     <string name="temperature">Taẓɣelt</string>
@@ -100,9 +100,27 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="action_show_errors">Kenned da akken ad twaliḍ ugar n ttfaṣil</string>
     <string name="message_tap_again_to_exit">Kenned tikkelt niḍen akken ad teffɣeḍ</string>
-    <string name="air_quality">Taɣara n wuzwu</string>
+    <string name="air_quality">Taɣara n uzwu</string>
     <string name="common_weather_text_clear_sky">Igenni yeṣfan</string>
     <string name="pollen_tap_to_see_more">Kned da iwakken ad twaliḍ ugar …</string>
     <string name="widget_subtitle_data_aqi">Taɣara n wuzwu</string>
     <string name="null_data_text">Ulac</string>
+    <string name="air_quality_level_3">Ur yelhi ara</string>
+    <string name="air_quality_level_1">Igerrez</string>
+    <string name="air_quality_level_2">D alemmas</string>
+    <string name="air_quality_index">Amatar n tɣara n uzwu</string>
+    <string name="common_weather_text_snow_moderate">Tiyita n udfel d talemmast</string>
+    <string name="uv_index_0_2">Iṣubb</string>
+    <string name="uv_index_8_10">Yuli aṭas</string>
+    <string name="action_set">Sbadu</string>
+    <string name="action_help_me_choose">Ɛawed-iyi deg ufran</string>
+    <string name="common_weather_text_snow_heavy">Adfel s waṭas</string>
+    <string name="weather_kind_hail">Abruri</string>
+    <string name="uv_index_3_5">Yelha kan</string>
+    <string name="uv_index_6_7">Yuli</string>
+    <string name="action_download">Sader</string>
+    <string name="common_weather_text_sand_storm">Tabuciḍant n ṛṛmel</string>
+    <string name="common_weather_text_snow_light">Cwiṭ n udfel</string>
+    <string name="weather_kind_thunderstorm">Tabuciḍant d ṛṛɛud</string>
+    <string name="action_confirm">Sentem</string>
 </resources>
