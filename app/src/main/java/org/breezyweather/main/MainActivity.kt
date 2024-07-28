@@ -537,7 +537,7 @@ class MainActivity : GeoActivity(),
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
             !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown &&
-            this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+            !this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.dialog_permissions_location_background_title)
