@@ -69,7 +69,7 @@
     <string name="ephemeris_moon_phase_full_moon">Luna llena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Media menguante</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Menguante</string>
     <string name="pollen_poaeceae">Gramíneas</string>
     <string name="pollen_mold">Moho</string>
     <string name="pollen_ambrosia">Ambrosía</string>
@@ -349,7 +349,7 @@
     <string name="air_quality_co_info_title">Monóxido de carbono (CO)</string>
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
-    <string name="weather_api_key_required_missing_title">No está la clave API requerida</string>
+    <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
     <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
