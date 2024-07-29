@@ -67,7 +67,7 @@
     <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Gibosa creciente</string>
     <string name="ephemeris_moon_phase_full_moon">Luna llena</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Gibosa menguante</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Media menguante</string>
     <string name="pollen_poaeceae">Gramíneas</string>
@@ -661,7 +661,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Impecable</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina los mejores modelos meteorológicos para este lugar</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos los modelos meteorológicos de este proveedor para una predicción impecable</string>
-    <string name="sunshine">Luz solar</string>
+    <string name="sunshine">Luz directa del sol</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Servidor de la calidad del aire</string>
     <string name="alert">Alerta</string>
     <string name="settings_source_instance">Servidor</string>
