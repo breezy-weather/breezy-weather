@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Clima</string>
+    <string name="app_name">El tiempo</string>
     <!-- keyword. -->
     <string name="location_current">Ubicación actual</string>
     <string name="short_today">Hoy</string>
@@ -63,11 +63,11 @@
     <string name="precipitation_intensity_light">Rocío</string>
     <string name="precipitation_intensity_heavy">Torrenciales</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Media creciente</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Creciente</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Gibosa creciente</string>
     <string name="ephemeris_moon_phase_full_moon">Luna llena</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Cuarto menguante</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Gibosa menguante</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Menguante</string>
     <string name="pollen_poaeceae">Gramíneas</string>
@@ -329,7 +329,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucciones específicas según fabricante</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Algunos fabricantes tienen restricciones adicionales para las aplicaciones que eliminan los servicios en segundo plano. El sitio web Don’t kill my app! contiene información sobre cómo solucionarlo.</string>
     <string name="weather_api_limit_reached_content">Para evitar este límite, añada su propia clave API.</string>
-    <string name="weather_api_key_required_missing_content">Para utilizar esta fuente, debes proporcionar una clave API.</string>
+    <string name="weather_api_key_required_missing_content">Para utilizar esta fuente de datos, necesita proveer su propia clave API.</string>
     <string name="setting_weather_source_accu_days">Días</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
@@ -350,7 +350,7 @@
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
-    <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
+    <string name="weather_api_unauthorized_content">En algunas fuentes de datos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar cuando la batería esté baja</string>
@@ -435,7 +435,7 @@
     <string name="air_quality_co_info_origin">Se produce por la combustión incompleta de combustibles carbonosos como madera, gasolina, carbón, gas natural y queroseno en estufas simples, hogueras, lámparas de mecha, hornos y chimeneas. La fuente predominante de monóxido de carbono (CO) en el aire ambiente proviene de los vehículos de motor.</string>
     <string name="pollen_level_5">Muy alto</string>
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
-    <string name="weather_pollen_data_by">Polen por %s</string>
+    <string name="weather_pollen_data_by">Datos de polen por %s</string>
     <string name="weather_air_quality_data_by">Datos sobre la calidad del aire por %s</string>
     <string name="weather_minutely_data_by">Previsión de las precipitaciones por %s</string>
     <string name="weather_alert_data_by">Alerta por %s</string>
@@ -622,7 +622,7 @@
     <string name="uv_index_short">Índice UV</string>
     <string name="visibility_short">Visibilidad</string>
     <string name="pressure_short">Presión</string>
-    <string name="temperature_feels_like_short">Sensación</string>
+    <string name="temperature_feels_like_short">Sensación térmica</string>
     <string name="dew_point_short">Punto de rocío</string>
     <string name="cloud_cover_short">Nubosidad</string>
     <string name="ceiling_short">Techo</string>
