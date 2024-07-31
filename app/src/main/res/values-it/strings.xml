@@ -92,9 +92,9 @@
     <string name="about_translators">Traduttori</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Accesso alle informazioni sulla posizione</string>
-    <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell’utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell’utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
+    <string name="dialog_permissions_location_content">Per poter utilizzare questa funzionalità, devi autorizzare l\'app a raccogliere informazioni sulla tua posizione corrente. Le informazioni sulla posizione saranno condivise esclusivamente con le fonti meteo selezionate. Se cambi idea, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
     <string name="dialog_permissions_location_background_title">Accedi alla posizione in background</string>
-    <string name="dialog_permissions_location_background_content">Per consentire all’applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l’accesso alla posizione su Consenti sempre.</string>
+    <string name="dialog_permissions_location_background_content">Per consentire l\'aggiornamento del meteo in background sulla base delle posizioni più recenti memorizzate da Android, devi settare i permessi di geolocalizzazione su \"Concedi sempre\". Se non lo fai, il meteo verrà aggiornato sulla base delle ultime coordinate registrate, per cui i dati potrebbero essere obsoleti.</string>
     <string name="location_message_failed_to_locate">Localizzazione fallita</string>
     <string name="weather_message_data_refresh_failed">Aggiornamento previsioni fallito</string>
     <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo\?</string>
@@ -653,7 +653,7 @@
     <string name="location_search_source">Fonte ricerca posizione</string>
     <string name="location_search_change_source">Cambia la fonte di ricerca della posizione</string>
     <string name="location_search_no_results_advice">Assicurati che la ricerca sia scritta correttamente e non sia troppo specifica. Altrimenti, è possibile provare un’altra fonte di ricerca della posizione che potrebbe dare risultati diversi.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Questo può succedere se aggiungi la posizione nella versione Standard di Breezy Weather e poi passi a quella Free-networks only, che ha meno fonti meteorologiche supportate. Il ritorno alla versione standard potrebbe risolvere il problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Questo può accadere se hai aggiunto la tua posizione nella versione standard di Breezy Weather e sei poi passato a quella con fonti meteorologiche libere. Il ritorno alla versione standard potrebbe risolvere il problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Modifica le fonti meteo per questa posizione o elimina e aggiungi nuovamente questa posizione.</string>
     <string name="sunshine">Sole</string>
     <string name="message_invalid_incomplete_data">Dati non validi o incompleti ricevuti dal server</string>
@@ -681,7 +681,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina i migliori modelli meteorologici per questa posizione</string>
     <string name="settings_source_instance_geocoding">Istanza di geocodifica</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Omogenea</string>
-    <string name="settings_weather_source_freenet_disclaimer">Ulteriori fonti meteorologiche sono disponibili in altre versioni di Breezy Weather. Tocca qui per saperne di più.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Ulteriori fonti meteorologiche sono disponibili in altre versioni dell\'app. Tocca qui per saperne di più.</string>
     <string name="settings_weather_sources_default_source">Fonte predefinita per nuove posizioni</string>
     <string name="settings_per_location_summary">Ulteriori personalizzazioni per questa posizione</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tutti i modelli meteorologici di questo fornitore in una previsione omogenea</string>
@@ -689,4 +689,12 @@
     <string name="settings_appearance_calendar_title">Calendario alternativo</string>
     <string name="ceiling_short">Tetto</string>
     <string name="precipitation_intensity_medium">Media</string>
+    <string name="notification_channel_app_updates">Aggiornamenti app</string>
+    <string name="notification_app_update_available">È disponibile una nuova versione!</string>
+    <string name="about_check_for_app_updates">Controlla aggiornamenti</string>
+    <string name="action_download">Download</string>
+    <string name="dialog_app_update_check_content">Clicca qui per attivare le notifiche sugli aggiornamenti dell\'app.</string>
+    <string name="dialog_app_update_check_title">Resta aggiornato</string>
+    <string name="settings_notifications_app_updates_check">Avvisi sugli aggiornamenti dell\'app</string>
+    <string name="about_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>
 </resources>
