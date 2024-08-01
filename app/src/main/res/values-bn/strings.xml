@@ -41,17 +41,17 @@
     <string name="precipitation_rain">বৃষ্টি</string>
     <string name="precipitation_snow">তুষার</string>
     <string name="precipitation_ice">বরফ</string>
-    <string name="precipitation_intensity_light">আলো</string>
-    <string name="precipitation_intensity_medium">মধ্যম</string>
+    <string name="precipitation_intensity_light">হালকা</string>
+    <string name="precipitation_intensity_medium">মাঝারি</string>
     <string name="precipitation_none">বৃষ্টিপাত নেই</string>
     <string name="precipitation_between_time">%1$s এবং %2$s এর মধ্যে বৃষ্টিপাত</string>
     <string name="wind">বায়ু</string>
     <string name="wind_short">বায়ু</string>
-    <string name="wind_gusts">দমকা হাওয়া</string>
+    <string name="wind_gusts">ঝোড়ো হাওয়া</string>
     <string name="wind_direction_short_variable">পরিবর্তনশীল</string>
-    <string name="wind_direction_short_SE">দ. পূ.</string>
-    <string name="wind_direction_short_S">দ.</string>
-    <string name="wind_direction_short_SW">দ. প.</string>
+    <string name="wind_direction_short_SE">দক্ষিণ-পূর্ব</string>
+    <string name="wind_direction_short_S">দক্ষিণ</string>
+    <string name="wind_direction_short_SW">দক্ষিণ-পশ্চিম</string>
     <string name="wind_strength">বাতাসের শক্তি</string>
     <string name="wind_strength_0">শান্ত</string>
     <string name="wind_strength_2">হালকা বাতাস</string>
@@ -80,8 +80,8 @@
     <string name="precipitation_intensity_heavy">ভারী</string>
     <string name="wind_speed">বাতাসের গতি</string>
     <string name="wind_direction">বায়ু দিক</string>
-    <string name="wind_direction_short_W">প.</string>
-    <string name="wind_direction_short_NW">উ. প.</string>
+    <string name="wind_direction_short_W">পশ্চিম</string>
+    <string name="wind_direction_short_NW">উত্তর-পশ্চিম</string>
     <string name="wind_strength_1">হাল্কা বাতাস</string>
     <string name="wind_strength_4">মাঝারি হাওয়া</string>
     <string name="wind_strength_11">তীব্র ঝড়</string>
@@ -96,4 +96,12 @@
     <string name="temperature_real_feel">প্রকৃত অনুভূত তাপমাত্রা</string>
     <string name="temperature_real_feel_shade">ছায়ায় প্রকৃত অনুভূত তাপমাত্রা</string>
     <string name="null_data_text">উপলভ্য নয়</string>
+    <string name="of_clock">:০০</string>
+    <string name="temperature_wet_bulb">আর্দ্র বালব</string>
+    <string name="temperature_degree_day_heating">হিটিং ডিগ্রি ডে</string>
+    <string name="temperature_degree_day_cooling">শীতল ডিগ্রি দিন</string>
+    <string name="wind_direction_short_N">উত্তর</string>
+    <string name="wind_direction_short_NE">উত্তর-পূর্ব</string>
+    <string name="wind_direction_short_E">পূর্ব</string>
+    <string name="temperature_degree_day">ডিগ্রি ডে</string>
 </resources>
