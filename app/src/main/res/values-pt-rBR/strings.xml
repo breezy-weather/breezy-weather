@@ -38,7 +38,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
-    <string name="temperature_wind_chill">Sensação de arrefecimento</string>
+    <string name="temperature_wind_chill">Frio do vento</string>
     <string name="temperature_wet_bulb">Bulbo úmido</string>
     <string name="temperature_degree_day">Graus-dia</string>
     <string name="precipitation_total">Total</string>
