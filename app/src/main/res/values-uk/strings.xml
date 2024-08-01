@@ -423,7 +423,7 @@
     <string name="settings_widgets_notification_persistent_switch">Постійне повідомлення</string>
     <string name="settings_widgets_notification_style_title">Стиль</string>
     <string name="settings_widgets_notification_temp_icon_switch">Показувати температуру у рядку стану</string>
-    <string name="settings_source_default_value">За замовчуванням</string>
+    <string name="settings_source_default_value">Типово</string>
     <string name="settings_units_temperature">Одиниця вимірювання температури</string>
     <string name="settings_units_precipitation">Одиниця вимірювання опадів</string>
     <string name="settings_main">Головний екран</string>
