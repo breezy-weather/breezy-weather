@@ -29,6 +29,7 @@ import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
+import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
@@ -137,6 +138,7 @@ fun MainScreenSettingsScreen(
             sectionFooterItem(R.string.settings_main_section_options)
 
             sectionHeaderItem(R.string.settings_main_section_animations)
+
             listPreferenceItem(R.string.settings_main_background_animation_title) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -157,6 +159,7 @@ fun MainScreenSettingsScreen(
                     },
                 )
             }
+
             switchPreferenceItem(R.string.settings_main_gravity_sensor_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -175,26 +178,36 @@ fun MainScreenSettingsScreen(
                     },
                 )
             }
+
+            val animationsEnabled = !context.isMotionReduced
             switchPreferenceItem(R.string.settings_main_cards_fade_in_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = R.string.settings_enabled,
-                    summaryOffId = R.string.settings_disabled,
-                    checked = SettingsManager.getInstance(context).isCardsFadeInEnabled,
+                    summaryOnId = if (animationsEnabled) R.string.settings_enabled
+                    else R.string.settings_unavailable_no_animations,
+                    summaryOffId = if (animationsEnabled) R.string.settings_disabled
+                    else R.string.settings_unavailable_no_animations,
+                    checked = SettingsManager.getInstance(context).isCardsFadeInEnabled
+                            && animationsEnabled,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isCardsFadeInEnabled = it
                     },
+                    enabled = animationsEnabled
                 )
             }
             switchPreferenceItem(R.string.settings_main_cards_other_element_animations_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = R.string.settings_enabled,
-                    summaryOffId = R.string.settings_disabled,
-                    checked = SettingsManager.getInstance(context).isElementsAnimationEnabled,
+                    summaryOnId = if (animationsEnabled) R.string.settings_enabled
+                    else R.string.settings_unavailable_no_animations,
+                    summaryOffId = if (animationsEnabled) R.string.settings_disabled
+                    else R.string.settings_unavailable_no_animations,
+                    checked = SettingsManager.getInstance(context).isElementsAnimationEnabled
+                            && animationsEnabled,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isElementsAnimationEnabled = it
                     },
+                    enabled = animationsEnabled
                 )
             }
             sectionFooterItem(R.string.settings_main_section_animations)
