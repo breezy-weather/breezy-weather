@@ -409,7 +409,7 @@
     <string name="settings_widgets_summary">Definir papel de parede, configurar widgets usados, widget de notificação</string>
     <string name="settings_widgets">Widgets e papel de parede animado</string>
     <string name="settings_widgets_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
-    <string name="settings_widgets_week_icon_mode_title">Ícone será exibido em visualizações semanais</string>
+    <string name="settings_widgets_week_icon_mode_title">Ícone para exibir nas visualizações semanais</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_widgets_configure_widget_summary">Configurar esse widget</string>
     <string name="settings_widgets_monochrome_icons_title">Ícones monocromáticos</string>
