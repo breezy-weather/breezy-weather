@@ -94,7 +94,7 @@
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
     <string name="dialog_permissions_location_content">Para usar este recurso, você precisa conceder ao app permissão para acessar sua localização atual. Ela será compartilhada apenas com as fontes meteorológicas selecionadas. Se você mudar de ideia, pode cancelar o processo e adicionar uma local fixo manualmente.</string>
     <string name="dialog_permissions_location_background_title">Acessar localização em segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa definir a permissão de localização como \"Permitir o tempo todo\". Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
+    <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa definir a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
     <string name="location_message_failed_to_locate">Falha ao encontrar a localização atual</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados meteorológicos</string>
     <string name="location_dialog_failed_to_locate_title">Não consegue obter a localização corretamente\?</string>
@@ -695,7 +695,7 @@
     <string name="message_server_unavailable_title">Servidor indisponível</string>
     <string name="settings_background_updates_refresh_never_warning3">Considere usar uma tempo de atualização menos frequente em vez de desativar as atualizações em segundo plano, caso contrário, toque em “Continuar” se ainda quiser prosseguir.</string>
     <string name="action_edit_location">Editar este local</string>
-    <string name="meteoam_weather_text_tornado_watersprout">Tornado ou tromba d\'água</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado ou tromba d’água</string>
     <string name="action_download">Download</string>
     <string name="dialog_app_update_check_title">Mantenha-se atualizado</string>
     <string name="dialog_app_update_check_content">Toque aqui para ativar as notificações sobre atualizações do app.</string>
