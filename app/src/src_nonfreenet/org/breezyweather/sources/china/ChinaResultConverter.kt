@@ -253,7 +253,7 @@ private fun getMinutelyList(
             Minutely(
                 date = calendar.time,
                 minuteInterval = 1,
-                precipitationIntensity = precipitation
+                precipitationIntensity = precipitation.times(60) // mm/min -> mm/h
             )
         )
     }
