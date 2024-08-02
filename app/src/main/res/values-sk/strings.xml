@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="precipitation_nowcasting">Zrážky po minútach</string>
-    <string name="air_quality">Kvalita vzduchu</string>
+    <string name="air_quality">Kvalita ovzdušia</string>
     <string name="pollen">Alergény</string>
     <string name="ephemeris">Slnko a mesiac</string>
     <string name="details">Podrobnosti</string>
