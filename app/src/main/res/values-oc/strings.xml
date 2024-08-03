@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Metèo</string>
+    <string name="precipitation_nowcasting">Precipitacion en dirècte</string>
+    <string name="air_quality">Qualitat de l’aire</string>
+    <string name="pollen">Pollèn</string>
+    <string name="ephemeris">Solelh e luna</string>
+    <string name="details">Detalhs</string>
+    <string name="alert">Alèrta</string>
+    <string name="alerts">Alèrtas</string>
+</resources>
