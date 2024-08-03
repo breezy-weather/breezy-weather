@@ -102,6 +102,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_WEATHER" />
             </intent-filter>
             <intent-filter>
                 <!--<action android:name="org.breezyweather.ICON_PROVIDER" />-->
