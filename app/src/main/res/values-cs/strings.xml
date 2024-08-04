@@ -706,4 +706,5 @@
     <string name="dialog_app_update_check_title">Udržovat aktuální</string>
     <string name="dialog_app_update_check_content">Klepněte sem pro povolení oznámení o aktualizacích aplikace.</string>
     <string name="meteoam_weather_text_smoke">Kouř</string>
+    <string name="settings_unavailable_no_animations">Nedostupné, nejprve povolte animace v nastavení systému Android</string>
 </resources>
