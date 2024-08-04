@@ -695,4 +695,5 @@
     <string name="settings_notifications_app_updates_check">Обавештења о ажурирањима апликације</string>
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо или излив воде</string>
     <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="settings_unavailable_no_animations">Недоступно, прво омогућите анимације у Android подешавањима</string>
 </resources>
