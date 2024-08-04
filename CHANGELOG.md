@@ -7,6 +7,7 @@
 - Fix location permission dialog being shown twice when resuming app (@ecawthorne)
 - Fix prompt for background location permission not being shown
 - Cards fade in and other elements preferences can’t work if animations are disabled at Android system level, greying out these options in this case (@ecawthorne)
+- Add the app to the weather category. Might be useful for assistants or launchers. (@devycarol)
 
 **Sources**
 - [Servizio Meteo AM] Fix some failures to refresh (@chunshek)

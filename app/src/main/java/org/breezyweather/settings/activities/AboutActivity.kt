@@ -125,6 +125,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("WangDaYeeeeee", github = "WangDaYeeeeee", contribution = R.string.about_contribution_WangDaYeeeeee),
         ContributorItem("Cod3d.", github = "Cod3dDOT"),
         ContributorItem("min7-i", github = "min7-i"),
+        ContributorItem("ecawthorne", github = "ecawthorne"),
         ContributorItem("Suyash Gupta", github = "suyashgupta25"),
         ContributorItem("Romain Théry", github = "rthery"),
         ContributorItem("danielzhang130", github = "danielzhang130"),
@@ -135,6 +136,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("chunshek", github = "chunshek"),
         ContributorItem("JiunnTarn", github = "JiunnTarn"),
         ContributorItem("mags0ft", github = "mags0ft"),
+        ContributorItem("Devy Ballard", github = "devycarol"),
         ContributorItem("Anthony Dégrange", url = "https://anthony-degrange-design.fr/", contribution = R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
