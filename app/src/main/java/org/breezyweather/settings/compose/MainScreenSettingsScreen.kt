@@ -183,10 +183,16 @@ fun MainScreenSettingsScreen(
             switchPreferenceItem(R.string.settings_main_cards_fade_in_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = if (animationsEnabled) R.string.settings_enabled
-                    else R.string.settings_unavailable_no_animations,
-                    summaryOffId = if (animationsEnabled) R.string.settings_disabled
-                    else R.string.settings_unavailable_no_animations,
+                    summaryOnId = if (animationsEnabled) {
+                        R.string.settings_enabled
+                    } else {
+                        R.string.settings_unavailable_no_animations
+                    },
+                    summaryOffId = if (animationsEnabled) {
+                        R.string.settings_disabled
+                    } else {
+                        R.string.settings_unavailable_no_animations
+                    },
                     checked = SettingsManager.getInstance(context).isCardsFadeInEnabled
                             && animationsEnabled,
                     onValueChanged = {
@@ -198,10 +204,16 @@ fun MainScreenSettingsScreen(
             switchPreferenceItem(R.string.settings_main_cards_other_element_animations_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = if (animationsEnabled) R.string.settings_enabled
-                    else R.string.settings_unavailable_no_animations,
-                    summaryOffId = if (animationsEnabled) R.string.settings_disabled
-                    else R.string.settings_unavailable_no_animations,
+                    summaryOnId = if (animationsEnabled) {
+                        R.string.settings_enabled
+                    } else {
+                        R.string.settings_unavailable_no_animations
+                    },
+                    summaryOffId = if (animationsEnabled) {
+                        R.string.settings_disabled
+                    } else {
+                        R.string.settings_unavailable_no_animations
+                    },
                     checked = SettingsManager.getInstance(context).isElementsAnimationEnabled
                             && animationsEnabled,
                     onValueChanged = {
