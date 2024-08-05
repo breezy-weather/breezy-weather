@@ -699,4 +699,5 @@
     <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
     <string name="dialog_app_update_check_title">Mantente al día</string>
     <string name="dialog_app_update_check_content">Pulsa aquí para habilitar notificaciones sobre actualizaciones de la aplicación.</string>
+    <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
 </resources>
