@@ -34,8 +34,7 @@ jobs:
           distribution: adopt
 
       - uses: gradle/actions/setup-gradle@v4
-        with:
-          arguments: assembleBasicDebug
+        run: ./gradlew assembleBasicDebug
 
       - uses: actions/upload-artifact@v4
         with:
