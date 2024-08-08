@@ -268,6 +268,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("nl"), "trend", github = "trend-1"),
         TranslatorItem(arrayOf("nl"), "programpro2005", github = "programpro2005"),
         TranslatorItem(arrayOf("nl"), "OliNau", github = "OliNau"),
+        TranslatorItem(arrayOf("oc"), "Quentin PAGÈS", weblate = "Quenti"),
         TranslatorItem(arrayOf("pl"), "Kamil", mail = "invisiblehype@gmail.com"),
         TranslatorItem(arrayOf("pl"), "nid", github = "nidmb"),
         TranslatorItem(arrayOf("pl"), "Eryk Michalak", github = "gnu-ewm"),

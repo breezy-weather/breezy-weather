@@ -15,6 +15,10 @@
 - [China] Fix very small values in the nowcasting chart
 - [Baidu IP location] Show “API unauthorized” error message when API key is invalid, instead of “Failed to find current location”
 
+**Translations**
+- Initial translation added for Occitan (mercé Quentin!)
+- Translations updated
+
 
 # Version 5.2.6 (2024-07-17)
 
