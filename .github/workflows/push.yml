@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Gradle Wrapper
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/actions/wrapper-validation@v4
 
       - name: Setup Android SDK
         run: |
@@ -29,9 +29,9 @@ jobs:
           distribution: adopt
 
       - name: Set up gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
 
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
         with:
           arguments: assembleFreenetRelease
 
@@ -57,7 +57,7 @@ jobs:
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
 
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
         with:
           arguments: assembleBasicRelease
 
