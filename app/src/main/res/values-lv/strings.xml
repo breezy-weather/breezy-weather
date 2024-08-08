@@ -436,7 +436,7 @@
     <string name="settings_widgets_notification_persistent_switch">Noturīgs</string>
     <string name="settings_widgets_notification_style_title">Stils</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatūra kā stāvokļa joslas ikona</string>
-    <string name="settings_debug_summary">Avārijas žurnāli</string>
+    <string name="settings_debug_summary">Avāriju žurnāli</string>
     <string name="settings_debug_dump_crash_logs_title">Kopīgot avāriju žurnālus</string>
     <string name="settings_debug_dump_crash_logs_summary">Saglabā kļūdu žurnālus failā, lai tos kopīgotu ar izstrādātājiem</string>
     <string name="unit_celsius">°C</string>
@@ -689,4 +689,5 @@
     <string name="common_weather_text_sand_storm">Smilšu vētra</string>
     <string name="meteoam_weather_text_smoke">Dūmi</string>
     <string name="meteoam_weather_text_tornado_watersprout">Virpuļvētra vai smerčs</string>
+    <string name="settings_unavailable_no_animations">Nav pieejamas, vispirms jāiespējo animācijas Android iestatījumos</string>
 </resources>
