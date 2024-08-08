@@ -221,7 +221,7 @@
     <string name="location_search_no_results">%1$s не може знайти %2$s</string>
     <string name="location_message_reverse_geocoding_failed">Не вдалося знайти відповідне розташування</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Перевірте дозволи на місцезнаходження</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Увімкнути інформацію про місцезнаходження</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Увімкніть інформацію про місцезнаходження</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додайте розташування вручну та видаліть “%s”</string>
     <string name="location_search_no_results_advice">Переконайтеся, що пошуковий запит написаний правильно та не надто специфічний. Ви також можете спробувати використовувати інше джерело пошуку розташування, яке може дати інші результати.</string>
     <string name="air_quality_co_info_origin">Він утворюється внаслідок неповного згоряння вуглецевого палива, такого, як деревина, бензин, вугілля, природний газ та гас у простих плитах, відкритих вогнищах, гасових лампах, печах, камінах. Основним джерелом оксиду вуглецю (CO) в навколишньому повітрі є автотранспорт.</string>
@@ -346,7 +346,7 @@
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ігнорувати, коли батарея розряджена</string>
     <string name="settings_background_updates_battery_optimization_summary">Це перше, що варто спробувати, якщо ви не отримуєте повідомлення або віджети не оновлюються.</string>
     <string name="settings_background_updates_section_troubleshoot">Відлагодження</string>
-    <string name="settings_background_updates_battery_optimization">Вимкніть оптимізацію батареї</string>
+    <string name="settings_background_updates_battery_optimization">Вимкнути оптимізацію батареї</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не вдалося відкрити налаштування пристрою.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимізація батареї вже вимкнена.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Спеціальні інструкції виробника</string>
@@ -680,7 +680,7 @@
     <string name="precipitation_intensity_medium">Середня</string>
     <string name="settings_notifications_app_updates_check">Повідомляти мене про оновлення застосунку</string>
     <string name="notification_app_update_available">Доступна нова версія!</string>
-    <string name="about_check_for_app_updates">Перевірте наявність оновлень</string>
+    <string name="about_check_for_app_updates">Перевірити наявність оновлень</string>
     <string name="about_no_new_updates">Нових оновлень немає</string>
     <string name="action_download">Завантажити</string>
     <string name="notification_channel_app_updates">Оновлення застосунку</string>
