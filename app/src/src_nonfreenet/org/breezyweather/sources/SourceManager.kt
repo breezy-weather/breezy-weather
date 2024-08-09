@@ -36,6 +36,7 @@ import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
+import org.breezyweather.sources.breezydatashare.BreezyService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
 import org.breezyweather.sources.cwa.CwaService
@@ -66,6 +67,7 @@ class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     baiduIPService: BaiduIPLocationService,
+    breezyService: BreezyService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
     cwaService: CwaService,
@@ -134,6 +136,7 @@ class SourceManager @Inject constructor(
         atmoAuraService,
 
         // Broadcast sources
+        breezyService,
         gadgetbridgeService
     )
 
