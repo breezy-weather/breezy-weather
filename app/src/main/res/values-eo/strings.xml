@@ -685,4 +685,13 @@
     <string name="settings_location_access_switch_summaryOn">Permesata. Vi povas aldoni vian nunan lokon en la liston de lokoj.</string>
     <string name="settings_widgets_summary">Ŝanĝi fono, agordi uzatajn fenestraĵojn, sciiga fenestraĵo</string>
     <string name="location_message_permission_background_missing">Mankas permeso atingi lokon fone</string>
+    <string name="dialog_permissions_notification_content">Tuŝeti ĉi tie por aktivigi sciigojn pri veteraj atentigoj, aŭ decidu malfrue en Agordoj.</string>
+    <string name="weather_api_unauthorized_title">APIn atingo malpermesita</string>
+    <string name="action_download">Elŝuti</string>
+    <string name="dialog_app_update_check_content">Tuŝeti ĉi tie por aktivigi sciigojn pri apon aktualigoj.</string>
+    <string name="dialog_app_update_check_title">Resti aktuala</string>
+    <string name="settings_location_access_background_summaryOff">Bonvolu ŝalti “Permesi ĉiam” por ekhavi fonajn aktualigojn de vian nunan lokon.</string>
+    <string name="location_delete_location_dialog_message">Vi estas forigonta \"%s\" el via listo de konservitaj lokoj.</string>
+    <string name="location_delete_location_dialog_message_no_name">Vi estas forigonta ĉi tiun lokon el via listo de konservitaj lokoj.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Aŭ ŝanĝu la verterfontojn por tiu loko, aŭ forigu kaj realdonu tiun lokon.</string>
 </resources>
