@@ -1,4 +1,4 @@
-# Version 5.2.7 (not yet released)
+# Version 5.2.7 (2024-08-08)
 
 **Improvements and fixes**
 - Change of behavior: on Android 10+, by default, day/night mode for locations is no longer enabled.
