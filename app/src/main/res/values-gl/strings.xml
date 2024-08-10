@@ -184,4 +184,19 @@
     <string name="metno_weather_text_andthunder">%s e tronos</string>
     <string name="weather_kind_hail">Sarabia</string>
     <string name="common_weather_text_sand_storm">Tormenta de area</string>
+    <string name="pollen_castanea">Castiñeira</string>
+    <string name="pollen_corylus">Abeleira</string>
+    <string name="pollen_olea">Oliveira</string>
+    <string name="pollen_level_0">Ningún</string>
+    <string name="pollen_level_1">Moi baixo</string>
+    <string name="pollen_level_2">Baixo</string>
+    <string name="pollen_level_3">Moderado</string>
+    <string name="pollen_level_4">Alto</string>
+    <string name="pollen_level_5">Moi alto</string>
+    <string name="pollen_tap_to_see_more">Preme para ver máis…</string>
+    <string name="ephemeris_moon_phase_new_moon">Lúa nova</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Crecente</string>
+    <string name="ephemeris_moon_phase_first_quarter">Cuarto crecente</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Crecente</string>
+    <string name="ephemeris_moon_phase_full_moon">Lúa chea</string>
 </resources>
