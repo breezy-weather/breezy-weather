@@ -79,7 +79,7 @@
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次へ</string>
     <string name="action_done">終了</string>
-    <string name="action_cancel">取り消し</string>
+    <string name="action_cancel">キャンセル</string>
     <string name="settings_enabled">有効</string>
     <string name="settings_disabled">無効</string>
     <string name="action_set">設定</string>
