@@ -151,7 +151,7 @@
 
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
-    <string name="precipitation_nowcasting">w</string>
+    <string name="precipitation_nowcasting">Prévisions immédiates de précipitations</string>
     <string name="air_quality">Qualité de l’air</string>
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; moisissure</string>
@@ -176,6 +176,7 @@
     <string name="settings_enabled">Actif</string>
     <string name="settings_disabled">Inactif</string>
     <string name="settings_unavailable_no_background_updates">Non disponible, activez d’abord les actualisations en arrière-plan</string>
+    <string name="settings_unavailable_no_animations">Non disponible, activez d’abord les animations dans les paramètres Android</string>
     <string name="action_set">Définir</string>
     <string name="action_help">Aide</string>
     <string name="action_learn_more">En savoir plus</string>
