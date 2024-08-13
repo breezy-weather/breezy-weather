@@ -65,7 +65,7 @@
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Creciente</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Gibosa creciente</string>
     <string name="ephemeris_moon_phase_full_moon">Luna llena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa menguante</string>
     <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
