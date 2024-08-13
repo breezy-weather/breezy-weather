@@ -606,4 +606,26 @@
     <string name="wind_short">Haizea</string>
     <string name="visibility_short">Ikuspena</string>
     <string name="pressure_short">Presioa</string>
+    <string name="temperature_feels_like_short">Sentsazioa</string>
+    <string name="weather_message_too_frequent_refreshes">Mesedez itxaron segundo batzuk berriro saiatu baino lehenago…</string>
+    <string name="about_open_link_message">Ireki %s?</string>
+    <string name="settings_global">Ezarpen orokorrak</string>
+    <string name="settings_per_location">Kokalekuaren hobespenak</string>
+    <string name="widget_label_show_widget_card_alpha">Opakutasuna</string>
+    <string name="message_server_unavailable_title">Zerbitzaria ez dago eskuragarri</string>
+    <string name="action_confirm">Baieztatu</string>
+    <string name="location_message_updated">Kokalekua eguneratuta</string>
+    <string name="dew_point_short">Ihintz-puntua</string>
+    <string name="action_download">Deskargatu</string>
+    <string name="notification_app_update_available">Bertsio berria eskuragarri!</string>
+    <string name="about_no_new_updates">Ez dago bertsio berririk eskuragarri</string>
+    <string name="dialog_app_update_check_title">Eguneratuta mantendu</string>
+    <string name="settings_per_location_theme">Itxura</string>
+    <string name="settings_source_instance">Instantzia</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Iragarpen instantzia</string>
+    <string name="location_delete_location_dialog_title">Kokalekua ezabatu?</string>
+    <string name="action_edit_location">Kokaleku hau editatu</string>
+    <string name="alert_source">Iturria: %s</string>
+    <string name="uv_index_short">UV maila</string>
+    <string name="widget_label_hide_header">Goiburua ezkutatu</string>
 </resources>
