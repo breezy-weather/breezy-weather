@@ -7,7 +7,7 @@
     <string name="short_today">Azi</string>
     <string name="notification_refreshed_at">Actualizat la</string>
     <string name="precipitation">Precipitații</string>
-    <string name="precipitation_probability">Probabilitatea precipitațiilor</string>
+    <string name="precipitation_probability">Probabilitate de precipitații</string>
     <string name="precipitation_duration">Durată precipitații</string>
     <string name="temperature">Temperatură</string>
     <string name="wind">Vânt</string>
@@ -662,7 +662,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">Modele meteo</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combină cele mai bune modele meteo pentru această locație</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combină toate modelele meteo de la acest furnizor într-o predicție impecabilă</string>
-    <string name="alert">Alerte</string>
+    <string name="alert">Alertă</string>
     <string name="settings_source_instance_geocoding">Server geocodare</string>
     <string name="message_invalid_incomplete_data">Date invalide sau incomplete primite de la server</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoză</string>
@@ -697,4 +697,7 @@
     <string name="notification_channel_app_updates">Actualizări aplicație</string>
     <string name="notification_app_update_available">O nouă versiune este disponibilă!</string>
     <string name="about_no_new_updates">Nici o actualizare disponibilă</string>
+    <string name="common_weather_text_sand_storm">Furtună de nisip</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornadă sau trombă de apă</string>
+    <string name="about_check_for_app_updates">Verificați actualizările aplicației</string>
 </resources>
