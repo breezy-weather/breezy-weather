@@ -409,7 +409,7 @@
     <string name="pollen_olea">Pohon zaitun</string>
     <string name="action_location_list">Daftar lokasi</string>
     <string name="common_weather_text_fog">Berkabut</string>
-    <string name="weather_air_quality_data_by">Data kualitas udara dari %s</string>
+    <string name="weather_air_quality_data_by">Data kualitas udara diambil dari %s</string>
     <string name="unit_lpsqmph">L/m²/j</string>
     <string name="common_weather_text_clear_sky">Langit cerah</string>
     <string name="settings_main_daily_trends_title">Tren harian</string>
@@ -445,7 +445,7 @@
     <string name="weather_kind_wind">Berangin</string>
     <string name="settings_main_hourly_trends_title">Tren tiap jam</string>
     <string name="pollen_level_3">Sedang</string>
-    <string name="weather_data_by">Data dari %s</string>
+    <string name="weather_data_by">Data diambil dari %s</string>
     <string name="pollen_level_5">Sangat tinggi</string>
     <string name="weather_source_accu_preference_days_1">1 hari</string>
     <string name="notification_channel_background_services">Layanan latar belakang</string>
@@ -508,14 +508,14 @@
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif, sehingga aktivitas di luar ruangan harus dihindari. Orang yang sehat mungkin mengalami kesulitan bernapas dan radang tenggorokan; pertimbangkan agar tetap berada di dalam ruangan dan jadwalkan ulang aktivitas di luar ruangan.</string>
     <string name="air_quality_so2_info_consequences">Paparan terhadap SO₂ berkaitan dengan kunjungan rumah sakit dan kunjungan IGD karena asma.</string>
-    <string name="weather_minutely_data_by">Data prakiraan langsung dari%s</string>
-    <string name="weather_pollen_data_by">Data serbuk sari dari %s</string>
+    <string name="weather_minutely_data_by">Data prakiraan-langsung diambil dari %s</string>
+    <string name="weather_pollen_data_by">Data serbuk sari diambil dari %s</string>
     <string name="air_quality_so2_info_origin">Terbentuk secara alami dari aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk bahan bakar pemanasan rumah tangga, industri, dan pembangkitan listrik.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari dari %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari diambil dari %s</string>
     <string name="air_quality_no2_info_consequences">Paparan terhadap nitrogen dioksida dapat mengiritasi jalan napas dan memperburuk penyakit pernapasan. Selain itu, NO₂ adalah prekursor penting ozon, sebuah polutan yang berkaitan erat dengan asma dan penyakit pernapasan lainnya.</string>
     <string name="air_quality_co_info_introduction">Karbon monoksida (CO) adalah gas beracun dan mudah terbakar yang tak berwarna, tak berbau, tak berasa, dan tak mengiritasi saluran napas.</string>
     <string name="air_quality_so2_info_introduction">Sulfur dioksida (SO2) adalah gas beracun tak berwarna yang memberikan bau korek api terbakar.</string>
-    <string name="weather_alert_data_by">Data peringatan dari %s</string>
+    <string name="weather_alert_data_by">Data peringatan diambil dari %s</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Tidak dapat membuka pengaturan perangkat.</string>
     <string name="common_weather_text_rain_showers_light">Hujan ringan</string>
     <string name="action_add_new_location">Tambahkan lokasi baru</string>
@@ -571,7 +571,7 @@
     <string name="settings_appearance_dark_mode_locations_title">Mode pagi/malam untuk lokasi</string>
     <string name="common_weather_text_snow_showers_heavy">Hujan salju berat</string>
     <string name="settings_background_updates_worker_info_summary">Terakhir dijalankan: %s</string>
-    <string name="weather_normals_data_by">Suhu normal cuaca dari %s</string>
+    <string name="weather_normals_data_by">Suhu normal cuaca diambil dari %s</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Badai petir ringan atau sedang</string>
     <string name="settings_background_updates_summary">Kecepatan penyegaran, pemecahan masalah</string>
     <string name="settings_location_access_precise_title">Penggunaan GPS perangkat</string>
