@@ -36,7 +36,7 @@
     <string name="hourly_forecast">Saatlik tahmin</string>
     <string name="air_quality">Hava kalitesi</string>
     <string name="details">Detaylar</string>
-    <string name="ephemeris">Güneş &amp; ay</string>
+    <string name="ephemeris">Güneş &amp; Ay</string>
     <string name="action_next">Sonraki</string>
     <string name="action_done">Bitti</string>
     <string name="action_cancel">İptal</string>
@@ -338,7 +338,7 @@
     <string name="pollen_olea">Zeytin</string>
     <string name="ephemeris_sunset_at">Gün batımı saati %s</string>
     <string name="location_message_permission_missing">Konum erişimi izni verilmemiş</string>
-    <string name="dialog_permissions_location_background_content">Uygulamanın arka planda konum bilgilerine erişmesine izin vermek, böylece konumdaki değişiklikleri algılayabilmemiz ve size geçerli hava durumu verileri sunabilmemiz için lütfen konum erişimini “Her zaman izin ver” olarak ayarlayın.</string>
+    <string name="dialog_permissions_location_background_content">Arka planda hava durumu yenilemesinin Android tarafından bilinen geçerli en son konum için yapılmasına izin vermek için konum iznini \"Her zaman izin ver\" olarak ayarlamanız gerekir. Bunu yapmazsanız, hava durumu ön planda en son alınan koordinatlara göre yenilenir ve bu da eski olabilir.</string>
     <string name="message_parsing_error_title">Hava durumu verileri ayrıştırılamadı</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Konumu manuel olarak ekle ve “%s” öğesini sil</string>
     <string name="widget_label_show_widget_card_alpha">Matlık</string>
@@ -346,7 +346,7 @@
     <string name="ceiling">Tavan</string>
     <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’da karar verin.</string>
-    <string name="dialog_permissions_location_content">Breezy Weather, geçerli konumunuzun hava durumu verilerini sağlamak için konum bilgilerinizi ön planda veya arka planda toplamalıdır. Bunun için bazı izinler isteyeceğiz. Konum bilgileriniz yalnızca geçerli konumunuzdaki hava durumu verilerini elde etmek için kullanılacaktır. Konum bilgilerinizi paylaşmak istemiyorsanız, bu gereksinimleri reddedebilir ve yönetim sayfasında konumunuzu manuel olarak ayarlayabilirsiniz.</string>
+    <string name="dialog_permissions_location_content">Bu özelliği kullanmak için uygulamaya mevcut konumunuza erişim izni vermeniz gerekir. Konumunuz yalnızca seçilen hava durumu kaynakları ile paylaşılacaktır. Fikrinizi değiştirirseniz, işlemi iptal edebilir ve manuel olarak sabit bir konum ekleyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
@@ -624,7 +624,7 @@
     <string name="cloud_cover_short">Bulutluluk</string>
     <string name="settings_weather_sources_default_source">Yeni konumlar için öntanımlı kaynak</string>
     <string name="settings_weather_source_unavailable">%s (kullanılabilir değil)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Diğer Breezy Weather çeşitlerinde daha fazla hava durumu kaynağı bulunmaktadır. Daha fazlasını öğrenmek için buraya dokunun.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Uygulamanın diğer çeşitlerinde daha fazla hava durumu kaynağı mevcuttur. Daha fazlasını öğrenmek için buraya dokunun.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Şu Anki Hava Kalitesi Göstergesi</string>
     <string name="location_delete_location_dialog_title">Konum silinsin mi?</string>
     <string name="location_delete_location_dialog_message_no_name">Bu konumu kayıtlı konumlar listenizden silmek üzeresiniz.</string>
@@ -649,7 +649,7 @@
     <string name="about_open_link_message">%s açılsın mı?</string>
     <string name="sunshine">Güneşli</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Bugün, yarın, …, 4 gün sonrasının polen göstergesi özeti</string>
-    <string name="message_source_not_installed_error_content_tip_1">Bu durum, konumunuzu standart Breezy Weather sürümüne ekledikten sonra daha az hava durumu kaynağının desteklendiği Free-networks only sürümüne geçtiğinizde meydana gelebilir. Standart sürüme geri dönmek bu sorunu çözebilir.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Bu durum, konumunuzu uygulamanın Standart sürümüne eklediğinizde ve ardından yalnızca libre ağ kaynaklarına sahip sürüme geçtiğinizde ortaya çıkabilir. Standart versiyona geri dönmek bu sorunu çözebilir.</string>
     <string name="message_source_not_installed_error_content_tip_2">Bu konum için hava durumu kaynaklarını değiştirin ya da bu konumu silin ve yeniden ekleyin.</string>
     <string name="settings_per_location_summary">Bu konum için ek özelleştirmeler</string>
     <string name="settings_per_location">Konum tercihleri</string>
@@ -690,4 +690,10 @@
     <string name="about_check_for_app_updates">Uygulama güncellemelerini denetle</string>
     <string name="about_no_new_updates">Yeni güncelleme yok</string>
     <string name="action_download">İndir</string>
+    <string name="settings_unavailable_no_animations">Kullanılamıyor, önce Android ayarlarında animasyonları etkinleştirin</string>
+    <string name="common_weather_text_sand_storm">Kum fırtınası</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Hortum veya su hortumu</string>
+    <string name="meteoam_weather_text_smoke">Duman</string>
+    <string name="dialog_app_update_check_title">Güncel kalın</string>
+    <string name="dialog_app_update_check_content">Uygulama güncellemeleriyle ilgili bildirimleri etkinleştirmek için buraya dokunun.</string>
 </resources>
