@@ -74,7 +74,7 @@
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="pollen_tree">Alberi</string>
     <string name="daily_forecast">Previsioni giornaliere</string>
-    <string name="hourly_forecast">Previsioni ad ore</string>
+    <string name="hourly_forecast">Previsioni orarie</string>
     <string name="air_quality">Qualità dell’aria</string>
     <string name="pollen">Polline</string>
     <string name="details">Dettagli</string>
@@ -495,7 +495,7 @@
     <string name="action_close">Chiudi</string>
     <string name="settings_location_access_switch_summaryOff">Concedi se vuoi aggiungere la posizione corrente come una posizione.</string>
     <string name="air_quality_pm_explanations_introduction">I particolati o materia particolata atmosferica sono particelle microscopiche di materia solida o liquida sospese nell’aria.</string>
-    <string name="air_quality_pm_explanations_consequences">I particolati sono la forma più dannosa dell’inquinamento atmosferico dovuto alla loro capacità di penetrare in profondità nei polmoni e nel cervello dai flussi di sangue, causando problemi di salute come malattie cardiache, polmonari e morte prematura.</string>
+    <string name="air_quality_pm_explanations_consequences">"I particolati sono considerati la forma più dannosa di inquinamento atmosferico per la loro capacità di raggiungere, attraverso il circolo ematico, tessuti profondi di polmoni e cervello, causando problemi di salute come malattie cardio-polmonari,  neurologiche e morte prematura."</string>
     <string name="air_quality_co_info_title">Monossido di carbonio (CO)</string>
     <string name="air_quality_co_info_introduction">Il monossido di carbonio (CO) è un gas velenoso, infiammabile che è incolore, inodore, insapore e non irritante.</string>
     <string name="settings_background_updates_worker_info_title">Info processo</string>
