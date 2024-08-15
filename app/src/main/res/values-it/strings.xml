@@ -179,7 +179,7 @@
     <string name="widget_clock_day_week">Orologio + Giornaliero + Settimanale</string>
     <string name="widget_text">Testo</string>
     <string name="widget_trend_daily">Trend giornaliero</string>
-    <string name="widget_trend_hourly">Trent orario</string>
+    <string name="widget_trend_hourly">Trend orario</string>
     <string name="widget_refreshing">in attesa</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -495,7 +495,7 @@
     <string name="action_close">Chiudi</string>
     <string name="settings_location_access_switch_summaryOff">Concedi se vuoi aggiungere la posizione corrente come una posizione.</string>
     <string name="air_quality_pm_explanations_introduction">I particolati o materia particolata atmosferica sono particelle microscopiche di materia solida o liquida sospese nell’aria.</string>
-    <string name="air_quality_pm_explanations_consequences">"I particolati sono considerati la forma più dannosa di inquinamento atmosferico per la loro capacità di raggiungere, attraverso il circolo ematico, tessuti profondi di polmoni e cervello, causando problemi di salute come malattie cardio-polmonari,  neurologiche e morte prematura."</string>
+    <string name="air_quality_pm_explanations_consequences">I particolati sono considerati la forma più dannosa di inquinamento atmosferico per la loro capacità di raggiungere, attraverso il circolo ematico, tessuti profondi di polmoni e cervello, causando problemi di salute come malattie cardio-polmonari, neurologiche e morte prematura.</string>
     <string name="air_quality_co_info_title">Monossido di carbonio (CO)</string>
     <string name="air_quality_co_info_introduction">Il monossido di carbonio (CO) è un gas velenoso, infiammabile che è incolore, inodore, insapore e non irritante.</string>
     <string name="settings_background_updates_worker_info_title">Info processo</string>
@@ -693,7 +693,7 @@
     <string name="notification_app_update_available">È disponibile una nuova versione!</string>
     <string name="about_check_for_app_updates">Controlla aggiornamenti</string>
     <string name="action_download">Download</string>
-    <string name="dialog_app_update_check_content">Clicca qui per attivare le notifiche sugli aggiornamenti dell’app.</string>
+    <string name="dialog_app_update_check_content">Clicca qui per abilitare le notifiche di aggiornamento dell\'applicazione.</string>
     <string name="dialog_app_update_check_title">Resta aggiornato</string>
     <string name="settings_notifications_app_updates_check">Avvisi sugli aggiornamenti dell’app</string>
     <string name="about_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>
