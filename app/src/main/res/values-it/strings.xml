@@ -330,7 +330,7 @@
     <string name="air_quality_level_1_description">La qualità dell’aria è ideale per la maggior parte delle persone; goditi le tue normali attività all’aperto.</string>
     <string name="air_quality_level_1">Eccellente</string>
     <string name="air_quality_level_2">Discreta</string>
-    <string name="air_quality_level_2_description">La qualità dell’aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati con esposizione a lungo termine.</string>
+    <string name="air_quality_level_2_description">La qualità dell’aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati con esposizione prolungata.</string>
     <string name="air_quality_level_3">Scadente</string>
     <string name="air_quality_level_3_description">L’aria ha raggiunto un alto livello di inquinamento ed è malsana per i gruppi sensibili. Riduci il tempo trascorso all’aperto se avverti sintomi come difficoltà respiratorie o irritazione alla gola.</string>
     <string name="air_quality_level_4">Malsana</string>
@@ -697,4 +697,5 @@
     <string name="dialog_app_update_check_title">Resta aggiornato</string>
     <string name="settings_notifications_app_updates_check">Avvisi sugli aggiornamenti dell’app</string>
     <string name="about_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>
+    <string name="settings_unavailable_no_animations">Non disponibile, abilita prima le animazioni nelle impostazioni di Android</string>
 </resources>
