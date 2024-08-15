@@ -20,7 +20,7 @@
     <string name="notification_channel_forecast">Previsioni</string>
     <string name="daytime">Giorno</string>
     <string name="nighttime">Notte</string>
-    <string name="temperature_feels_like">Temperatura percepita</string>
+    <string name="temperature_feels_like">Percepiti</string>
     <string name="settings_follow_system">Segui il sistema</string>
     <string name="pressure">Pressione</string>
     <string name="visibility">Visibilità</string>
