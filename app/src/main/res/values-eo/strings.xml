@@ -175,7 +175,7 @@
     <string name="pressure">Premo</string>
     <string name="pressure_short">Premo</string>
     <string name="visibility">Vidodistanco</string>
-    <string name="visibility_short">Vidodist.</string>
+    <string name="visibility_short">Vidodistanco</string>
     <string name="dew_point">Rosopunkto</string>
     <string name="dew_point_short">Rosopunkto</string>
     <string name="cloud_cover">Nubkovro</string>
@@ -321,10 +321,10 @@
     <string name="settings_background_updates_refresh_3h">3 horoj</string>
     <string name="settings_background_updates_refresh_6h">6 horoj</string>
     <string name="settings_background_updates_refresh_12h">12 horoj</string>
-    <string name="settings_background_updates_refresh_24h">24 horojs</string>
+    <string name="settings_background_updates_refresh_24h">24 horoj</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignori kiam baterio estas malalta</string>
     <string name="settings_background_updates_section_troubleshoot">Problemsolvi</string>
-    <string name="settings_background_updates_battery_optimization">Malŝalti bateria optimumigo</string>
+    <string name="settings_background_updates_battery_optimization">Malŝalti baterian optimumigon</string>
     <string name="settings_location">Loko</string>
     <string name="settings_location_summary">Agordoj de lokaj servoj</string>
     <string name="settings_location_service">Loka servo</string>
@@ -697,4 +697,20 @@
     <string name="settings_per_location_summary">Aldonaj agordoj por tiu loko</string>
     <string name="settings_weather_sources_per_location_summary">Agordi veterdatenfontojn uzatajn por tiu loko</string>
     <string name="settings_notifications_app_updates_check">Sciigoj pri apon aktualigoj</string>
+    <string name="settings_debug_dump_crash_logs_saved">Kraŝaj protokoloj registritaj</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">Instrukcioj fabrikantspecifaj</string>
+    <string name="settings_location_access_switch_summaryOff">Bonvolu permesi se vi volas povi aldoni vian nunan lokon estkiel loko.</string>
+    <string name="settings_unavailable_no_animations">Nedisponebla, aktivigu efektojn en Androidagordoj unue</string>
+    <string name="notification_channel_app_updates">Apon aktualigoj</string>
+    <string name="notification_app_update_available">Estas nova versio disponebla!</string>
+    <string name="about_check_for_app_updates">Serĉi apaktualigojn</string>
+    <string name="about_no_new_updates">Neniu nova aktualigo disponebla</string>
+    <string name="common_weather_text_sand_storm">Sabltempesto</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado aŭ trombo</string>
+    <string name="meteoam_weather_text_smoke">Fumo</string>
+    <string name="settings_location_access_background_summaryOn">Aktivigita. Apo povos fone aktualigi veterajn datenojn por via nuna loko.</string>
+    <string name="settings_items_drag_to_sort">Frapeti por treni la listerojn, kiun vi volas ordigi</string>
+    <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn aktualigojn unue</string>
+    <string name="notification_running_in_background">Rulante fone por plue aktualigi</string>
+    <string name="settings_debug_dump_crash_logs_summary">Registras erorprotokolon al dosiero por doni ilin al la programistoj</string>
 </resources>
