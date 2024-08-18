@@ -220,8 +220,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     },
                     highestTemperature,
                     lowestTemperature,
-                    if (p >= 5) p else null,
-                    if (p >= 5) {
+                    if (p > 0) p else null,
+                    if (p > 0) {
                         NumberFormat.getPercentInstance(context.currentLocale).apply {
                             maximumFractionDigits = 0
                         }.format(p.div(100.0))
