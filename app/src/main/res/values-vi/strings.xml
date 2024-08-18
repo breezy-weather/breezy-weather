@@ -51,7 +51,7 @@
     <string name="action_edit">Chỉnh sửa</string>
     <string name="dialog_permissions_location_background_title">Truy cập vị trí dưới nền</string>
     <string name="dialog_permissions_location_content">Để sử dụng tính năng này, bạn cần cấp cho ứng dụng quyền truy cập vào vị trí hiện tại của bạn. Vị trí này sẽ chỉ được chia sẻ với các nguồn thời tiết đã chọn. Nếu bạn đổi ý, bạn có thể hủy quy trình và thêm vị trí cố định theo cách thủ công.</string>
-    <string name="dialog_permissions_location_background_content">Để cho phép làm mới thời tiết ở chế độ nền cho vị trí hiện tại gần đây nhất mà Android biết, bạn cần đặt quyền vị trí thành \"Cho phép mọi lúc\". Nếu không, thời tiết sẽ được làm mới dựa trên tọa độ mới nhất được lấy ở chế độ nền, có thể đã lỗi thời.</string>
+    <string name="dialog_permissions_location_background_content">Để cho phép làm mới thời tiết ở chế độ nền cho vị trí hiện tại gần đây nhất mà Android biết, bạn cần đặt quyền vị trí thành “Cho phép mọi lúc”. Nếu không, thời tiết sẽ được làm mới dựa trên tọa độ mới nhất được lấy ở chế độ nền, có thể đã lỗi thời.</string>
     <string name="message_network_unavailable">Mạng không khả dụng</string>
     <string name="widget_custom_subtitle_explanation">Bạn có thể nhập vào bất cứ thứ gì, nhưng hãy chú ý đến chiều dài của tin nhắn. Nếu bạn muốn trích dẫn dữ liệu thời tiết, hãy dùng $ để xem từ khóa tương ứng.
 \n

@@ -416,7 +416,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
     <string name="settings_widgets_notification_feels_like_switch">Usa la sensació tèrmica</string>
-    <string name="dialog_permissions_location_content">Per poder utilitzar aquesta funció, heu de permetre a l\'app l\'accés a la vostra ubicació actual. Només serà compartida amb les fonts d\'informació del temps seleccionades. Si canvieu d\'opinió, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
+    <string name="dialog_permissions_location_content">Per poder utilitzar aquesta funció, heu de permetre a l’app l’accés a la vostra ubicació actual. Només serà compartida amb les fonts d’informació del temps seleccionades. Si canvieu d’opinió, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
     <string name="air_quality_no2_info_introduction">El diòxid de nitrogen (NO₂) és un gas asfixiant i tòxic de color marró vermellós amb una olor punxent i acre característica.</string>
@@ -684,5 +684,5 @@
     <string name="action_edit_location">Editar aquesta ubicació</string>
     <string name="action_download">Descarrega</string>
     <string name="dialog_app_update_check_title">Mantenir actualitzada</string>
-    <string name="dialog_app_update_check_content">Toqueu aquí per activar les notificacions sobre actualitzacions de l\'app.</string>
+    <string name="dialog_app_update_check_content">Toqueu aquí per activar les notificacions sobre actualitzacions de l’app.</string>
 </resources>

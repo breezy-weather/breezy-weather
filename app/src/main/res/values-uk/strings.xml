@@ -660,7 +660,7 @@
     <string name="settings_widgets_broadcast_title">Обмін даними</string>
     <string name="message_invalid_incomplete_data">З сервера отримані невірні або неповні дані</string>
     <string name="settings_per_location_theme">Тема</string>
-    <string name="settings_source_instance_invalid">URL-адреса має починатися з \"https\" та закінчуватися на \"/\"</string>
+    <string name="settings_source_instance_invalid">URL-адреса має починатися з “https” та закінчуватися на “/”</string>
     <string name="settings_invalid_syntax">Неправильний синтаксис</string>
     <string name="alert_source">Джерело: %s</string>
     <string name="dialog_time_picker_select_time">Вибрати час</string>

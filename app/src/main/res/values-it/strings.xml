@@ -693,7 +693,7 @@
     <string name="notification_app_update_available">È disponibile una nuova versione!</string>
     <string name="about_check_for_app_updates">Controlla aggiornamenti</string>
     <string name="action_download">Download</string>
-    <string name="dialog_app_update_check_content">Clicca qui per abilitare le notifiche di aggiornamento dell\'applicazione.</string>
+    <string name="dialog_app_update_check_content">Clicca qui per abilitare le notifiche di aggiornamento dell’applicazione.</string>
     <string name="dialog_app_update_check_title">Resta aggiornato</string>
     <string name="settings_notifications_app_updates_check">Avvisi sugli aggiornamenti dell’app</string>
     <string name="about_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>

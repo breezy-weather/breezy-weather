@@ -691,7 +691,7 @@
     <string name="dialog_app_update_check_content">Tuŝeti ĉi tie por aktivigi sciigojn pri apon aktualigoj.</string>
     <string name="dialog_app_update_check_title">Resti aktuala</string>
     <string name="settings_location_access_background_summaryOff">Bonvolu ŝalti “Permesi ĉiam” por ekhavi fonajn aktualigojn de vian nunan lokon.</string>
-    <string name="location_delete_location_dialog_message">Vi estas forigonta \"%s\" el via listo de konservitaj lokoj.</string>
+    <string name="location_delete_location_dialog_message">Vi estas forigonta “%s” el via listo de konservitaj lokoj.</string>
     <string name="location_delete_location_dialog_message_no_name">Vi estas forigonta ĉi tiun lokon el via listo de konservitaj lokoj.</string>
     <string name="message_source_not_installed_error_content_tip_2">Aŭ ŝanĝu la veterfontojn por tiu loko, aŭ forigu kaj realdonu tiun lokon.</string>
     <string name="settings_per_location_summary">Aldonaj agordoj por tiu loko</string>

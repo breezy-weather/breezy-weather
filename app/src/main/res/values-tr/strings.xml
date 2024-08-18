@@ -338,7 +338,7 @@
     <string name="pollen_olea">Zeytin</string>
     <string name="ephemeris_sunset_at">Gün batımı saati %s</string>
     <string name="location_message_permission_missing">Konum erişimi izni verilmemiş</string>
-    <string name="dialog_permissions_location_background_content">Arka planda hava durumu yenilemesinin Android tarafından bilinen geçerli en son konum için yapılmasına izin vermek için konum iznini \"Her zaman izin ver\" olarak ayarlamanız gerekir. Bunu yapmazsanız, hava durumu ön planda en son alınan koordinatlara göre yenilenir ve bu da eski olabilir.</string>
+    <string name="dialog_permissions_location_background_content">Arka planda hava durumu yenilemesinin Android tarafından bilinen geçerli en son konum için yapılmasına izin vermek için konum iznini “Her zaman izin ver” olarak ayarlamanız gerekir. Bunu yapmazsanız, hava durumu ön planda en son alınan koordinatlara göre yenilenir ve bu da eski olabilir.</string>
     <string name="message_parsing_error_title">Hava durumu verileri ayrıştırılamadı</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Konumu manuel olarak ekle ve “%s” öğesini sil</string>
     <string name="widget_label_show_widget_card_alpha">Matlık</string>
