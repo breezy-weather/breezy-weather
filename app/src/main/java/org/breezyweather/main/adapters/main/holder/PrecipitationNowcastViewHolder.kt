@@ -51,7 +51,7 @@ import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
 import com.patrykandpatrick.vico.compose.common.of
-import com.patrykandpatrick.vico.core.cartesian.CartesianDrawContext
+import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
 import com.patrykandpatrick.vico.core.cartesian.data.AxisValueOverrider
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
@@ -198,7 +198,7 @@ class PrecipitationNowcastViewHolder(
             )
         }
 
-        val modelProducer = remember { CartesianChartModelProducer.build() }
+        val modelProducer = remember { CartesianChartModelProducer() }
 
         val thresholdLineColor = if (context.isDarkMode) {
             R.color.colorTextGrey
@@ -239,7 +239,7 @@ class PrecipitationNowcastViewHolder(
         )
 
         LaunchedEffect(location) {
-            modelProducer.tryRunTransaction {
+            modelProducer.runTransaction {
                 columnSeries {
                     series(
                         x = minutely.indices.toList(),
@@ -373,7 +373,7 @@ private class MarkerLabelFormatterMinutelyDecorator(
     private val hasOnlyThresholdValues: Boolean
 ) : CartesianMarkerValueFormatter {
     override fun format(
-        context: CartesianDrawContext,
+        context: CartesianDrawingContext,
         targets: List<CartesianMarker.Target>
     ): CharSequence {
         val model = targets.first()
