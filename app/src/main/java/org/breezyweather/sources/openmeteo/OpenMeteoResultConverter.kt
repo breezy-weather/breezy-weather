@@ -238,7 +238,7 @@ fun getMinutelyList(minutelyFifteen: OpenMeteoWeatherMinutely?): List<Minutely>?
                 minuteInterval = 15,
                 precipitationIntensity = /*if (precipitationProbabilityMinutely?.getOrNull(i) != null &&
                     precipitationProbabilityMinutely[i]!! > 30) {*/
-                    precipitationMinutely?.getOrNull(i)?.toDouble()
+                    precipitationMinutely?.getOrNull(i)?.times(4) // mm/15 min -> mm/h
                 //} else null
             )
         }

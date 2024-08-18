@@ -3,6 +3,9 @@
 **Improvements and fixes**
 - Show precipitation probability when > 0 % (previously > 5 %)
 
+**Sources**
+- [Open-Meteo] Fix precipitation nowcasting values being 4 times lower than expected
+
 **Translations**
 - Translations updated
 
