@@ -17,7 +17,7 @@
     <string name="temperature_feels_like">Gevoelstemperatuur</string>
     <string name="settings_follow_system">Volg systeem</string>
     <string name="of_clock">:00</string>
-    <string name="short_yesterday">Gister</string>
+    <string name="short_yesterday">Gisteren</string>
     <string name="short_tomorrow">Morgen</string>
     <string name="wind_strength_0">Stil</string>
     <string name="wind_strength_1">Licht lucht</string>
@@ -103,7 +103,7 @@
     <string name="temperature_wind_chill">Windkou</string>
     <string name="temperature_wet_bulb">Natteboltemperatuur</string>
     <string name="temperature_degree_day">Daggraad dag</string>
-    <string name="precipitation_nowcasting">Neerslag nabije toekomst</string>
+    <string name="precipitation_nowcasting">Toekomstige neerslag</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Regen- en sneeuwbuien</string>
     <string name="weather_pollen_data_by">Allergenengegevens door %s</string>
     <string name="weather_alert_data_by">Waarschuwingsgegevens door %s</string>
@@ -162,7 +162,7 @@
     <string name="common_weather_text_drizzle_freezing">Ijzelende motregen</string>
     <string name="unit_mi">mi</string>
     <string name="common_weather_text_rain">Regen</string>
-    <string name="weather_minutely_data_by">Neerslag per minuut gegevens door %s</string>
+    <string name="weather_minutely_data_by">Toekomstige neerslagsdata door %s</string>
     <string name="unit_mps_voice">Meters per seconde</string>
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
     <string name="settings_main">Hoofdscherm</string>
@@ -250,7 +250,7 @@
     <string name="common_weather_text_snow">Sneeuw</string>
     <string name="action_share">Delen</string>
     <string name="widget_label_clock_font">Kloklettertype</string>
-    <string name="widget_label_align_end">Einde uitlijnen</string>
+    <string name="widget_label_align_end">Rechts uitlijnen</string>
     <string name="settings_main_hourly_trends_title">Uurtrends</string>
     <string name="settings_debug_dump_crash_logs_title">Crashlogs delen</string>
     <string name="precipitation_duration">Neerslagduur</string>
@@ -287,8 +287,8 @@
     <string name="action_preview">Voorbeeld</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Huidig weer</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Waarschuwingen (Kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Waarschuwingen (kort)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°), overdag</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Zwart</string>
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="settings_automatic">Automatisch</string>
@@ -297,7 +297,7 @@
     <string name="unit_cmph">cm/u</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Huidige temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beschrijving per uur</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Weer van vandaag, morgen, …, 4 dagen later, overdag</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zonsondergang van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_week_style_5_days">5 dagen</string>
@@ -324,7 +324,7 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="action_back">Terug</string>
     <string name="action_help_me_choose">Help mij kiezen</string>
-    <string name="weather_source_accu_preference_days_1">1 dag</string>
+    <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="weather_source_accu_preference_days_5">5 dagen</string>
     <string name="weather_source_accu_preference_days_10">10 dagen</string>
     <string name="location_message_search_failed">Zoeken naar locatie mislukt</string>
@@ -334,7 +334,7 @@
     <string name="action_undo">Ongedaan maken</string>
     <string name="action_close">Sluiten</string>
     <string name="action_show_errors">Tik om details te zien</string>
-    <string name="dialog_permissions_location_background_content">Om de app toegang te geven tot locatie-informatie op de achtergrond, zodat we veranderingen in de locatie kunnen waarnemen en je kunnen voorzien van geldige weergegevens, stel je locatietoegang in op “Altijd toestaan”.</string>
+    <string name="dialog_permissions_location_background_content">Om het verversen van het weer op de achtergrond toe te staan voor de meest recente locatie die bekend is bij Android, moet je de locatie-toestemming instellen op “Altijd toestaan”. Als je dat niet doet, wordt het weer ververst op basis van de laatst opgehaalde coördinaten op de voorgrond, wat verouderd kan zijn.</string>
     <string name="settings_icon_packs_weather_icon_light">Pictogram licht</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogram grijs</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogram donker</string>
@@ -381,8 +381,8 @@
     <string name="action_add_current_location">Huidige locatie toevoegen</string>
     <string name="settings_background_updates_section_troubleshoot">Problemen oplossen</string>
     <string name="settings_background_updates_battery_optimization">Batterijoptimalisatie uitschakelen</string>
-    <string name="precipitation_intensity_heavy">Hevige regen</string>
-    <string name="precipitation_intensity_light">Motregen</string>
+    <string name="precipitation_intensity_heavy">Hevig</string>
+    <string name="precipitation_intensity_light">Licht</string>
     <string name="precipitation_none">Geen neerslag</string>
     <string name="wind_speed">Windsnelheid</string>
     <string name="wind_direction">Windrichting</string>
@@ -416,9 +416,9 @@
     <string name="widget_custom_subtitle_keyword_l_description">Locatie</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Breedtegraad</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Week (Kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Week (kort)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°C/°F), overdag</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°C/°F), \'s nachts</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
     <string name="settings_none">Geen</string>
@@ -490,8 +490,8 @@
     <string name="message_parsing_error_content">Zorg ervoor dat je de laatste versie van de app hebt geïnstalleerd. De server kan tijdelijk niet beschikbaar zijn, probeer het in dat geval later nog eens. Als het probleem aanhoudt, dump dan een crash log van debug instellingen, en rapporteer een probleem op GitHub.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Huidige UV</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Huidige druk</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag overdag van vandaag, morgen, …, 4 dagen later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°), \'s nachts</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag van vandaag, morgen, …, 4 dagen later (%), overdag</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nachtelijke neerslag van vandaag, morgen, …, 4 dagen later (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Wind overdag van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nachtelijke wind van vandaag, morgen, …, 4 dagen later</string>
@@ -500,7 +500,7 @@
     <string name="common_weather_text_drizzle_moderate">Matige motregen</string>
     <string name="common_weather_text_drizzle_freezing_light">Licht-ijzelende motregen</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Hevig-ijzelende motregen</string>
-    <string name="dialog_permissions_location_content">Breezy Weather moet uw locatie-informatie op de voorgrond of achtergrond verzamelen om de weergegevens van uw huidige locatie te verschaffen. Hiervoor vragen we enkele toestemmingen. Uw locatiegegevens worden alleen gebruikt voor het verkrijgen van weergegevens op uw huidige locatie. Als u uw locatiegegevens niet wilt delen, kunt u deze vereisten weigeren en uw locatie handmatig instellen op de beheerpagina.</string>
+    <string name="dialog_permissions_location_content">Om deze functie te gebruiken, moet je de app toegang geven tot je huidige locatie. Deze zal enkel met je gekozen weersinformatiebronnen gedeeld worden. Als je van gedachte verandert, kan je op eender welk moment je toestemming intrekken en een manuele locatie ingeven.</string>
     <string name="settings_widgets_broadcast_send_data_title">Stuur weergegevens naar %s</string>
     <string name="settings_location_access_permission_already_granted">Reeds verleende toestemming</string>
     <string name="settings_location_access_switch_summaryOff">Geef toestemming als je je huidige locatie wilt kunnen toevoegen als locatie.</string>
@@ -566,7 +566,7 @@
     <string name="weather_message_invalid_location">Ongeldige locatie, verwijderen en opnieuw toevoegen</string>
     <string name="action_save">Opslaan</string>
     <string name="dialog_permissions_location_title">Locatie-informatie openen</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Weer van vandaag, morgen, …, 4 dagen later, \'s nachts</string>
     <string name="widget_style_tile">Tegel</string>
     <string name="widget_style_mini">Mini</string>
     <string name="settings_weather_source_main">Hoofdbron</string>
@@ -623,12 +623,12 @@
     <string name="message_server_unavailable_content">Dit is normaal gesproken een tijdelijk probleem. Als dit probleem aanhoudt word u geadviseerd een probleem op GitHub te openen.</string>
     <string name="location_delete_location_dialog_message">Je staat op het punt “%s” te verwijderen van je lijst opgeslagen locaties.</string>
     <string name="message_invalid_incomplete_data">Incorrecte of incomplete gegevens ontvangen van de server</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Actuele lucht qualiteits index</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Actuele luchtkwaliteitsindex</string>
     <string name="pollen_carpinus">Haagbeuk</string>
     <string name="pollen_tilia">Linde</string>
     <string name="humidity_short">vochtigheid</string>
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
-    <string name="location_search_no_results_advice">Check dat de zoekopdracht goed gespeld is en niet te specifiek. Als alternatief kunt u een andere locatie zoek bron gebruiken wat een ander resultaat kan opleveren.</string>
+    <string name="location_search_no_results_advice">Zorg dat je zoekopdracht juist gespeld en niet te specifiek is. Je kan ook proberen een andere locatiezoekbron te gebruiken, die kan andere resultaten genereren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
     <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van Breezy Weather. Klik om meer te weten te komen.</string>
     <string name="notification_precipitation_starting_desc">Verwacht te beginnen rond %s</string>
@@ -636,8 +636,8 @@
     <string name="notification_precipitation_stopping_desc">Verwacht op te houden om %s</string>
     <string name="pollen_salix">Wilg</string>
     <string name="pollen_quercus">Eik</string>
-    <string name="location_search_source">Locatie zoek bron</string>
-    <string name="location_search_change_source">Weinig locatie zoek bron</string>
+    <string name="location_search_source">Locatiezoekbron</string>
+    <string name="location_search_change_source">Verander de locatiezoekbron</string>
     <string name="sunshine">Zonneschijn</string>
     <string name="weather_message_too_frequent_refreshes">Gelieve een paar seconden te wachten voor u het opnieuw probeert…</string>
     <string name="location_message_updated">Locatie bijgewerkt</string>
@@ -646,7 +646,7 @@
     <string name="action_confirm">Bevestig</string>
     <string name="message_server_unavailable_title">Server is onbereikbaar</string>
     <string name="message_source_not_installed_error_content_tip_2">Wijzig of de weer bron voor deze locatie of verwijder en voeg deze locatie opnieuw toe.</string>
-    <string name="location_message_already_exists">Een locatie met de zelfde hoofd weer bron bestaat al.</string>
+    <string name="location_message_already_exists">Een locatie met de zelfde hoofdweerbron bestaat al.</string>
     <string name="settings_weather_source_none">Geen</string>
     <string name="settings_weather_sources_default_source">Standaard bron voor nieuwe locaties</string>
     <string name="settings_weather_source_unavailable">%s (niet beschikbaar)</string>
@@ -679,4 +679,7 @@
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Geocoderingsserver</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combineert alle weermodellen van deze provider in een naadloze voorspelling</string>
+    <string name="dialog_app_update_check_content">Tik hier om meldingen over app-updates aan te zetten.</string>
+    <string name="action_download">Download</string>
+    <string name="dialog_app_update_check_title">Blijf up-to-date</string>
 </resources>
