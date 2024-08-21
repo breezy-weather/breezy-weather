@@ -262,7 +262,7 @@
     <string name="wind_direction_short_NW">北西</string>
     <string name="wind_direction_short_E">東</string>
     <string name="wind_direction_short_SE">南東</string>
-    <string name="alerts_to_follow">ここをタップして警報を確認してください。</string>
+    <string name="alerts_to_follow">ここをタップすると警報を表示します。</string>
     <string name="air_quality_level_1">優良</string>
     <string name="air_quality_level_3_description">大気汚染が高いレベルに達しており、敏感な人々に健康被害が生じる場合があります。呼吸困難やのどの痛みなどの症状を感じている場合は、屋外で過ごす時間を減らしてください。</string>
     <string name="air_quality_level_4">健康被害あり</string>
