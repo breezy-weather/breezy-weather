@@ -398,13 +398,13 @@
     <string name="action_close">बंद</string>
     <string name="action_share">साझा करे</string>
     <string name="dialog_permissions_location_title">स्थान की जानकारी ले</string>
-    <string name="dialog_permissions_location_background_content">एप्लिकेशन को पृष्ठभूमि में स्थान की जानकारी तक पहुंचने की अनुमति दे, ताकि हम स्थान में बदलाव कर सकें और आपको वैध मौसम डेटा प्रदान कर सकें, कृपया स्थान पहुंच को “सभी समय की अनुमति दें” के रूप में सहेजे।।</string>
+    <string name="dialog_permissions_location_background_content">एंड्रायड द्वारा ज्ञात नवीनतम वर्तमान स्थान के लिए पृष्ठभूमि में मौसम को ताज़ा करने के लिए, आपको स्थान अनुमति को “हमेशा अनुमति दें” पर सेट करना होगा। यदि आप ऐसा नहीं करते हैं, तो मौसम अग्रभूमि में नवीनतम पुनर्प्राप्त निर्देशांक के आधार पर ताज़ा हो जाएगा, जो पुराना हो सकता है।</string>
     <string name="widget_multi_city">बहु नगरीय</string>
-    <string name="message_source_not_installed_error_content_tip_1">यह ऐसे समय पर हो सकता है जब आपने “ब्रीज़ी वेदर” के मानक स्वाद में अपनी स्थान जोड़ा और फिर केवल मुफ्त नेटवर्क स्रोतों वाले स्वाद में स्विच किया हो। “स्टैंडर्ड” स्वाद में वापस जाना इस समस्या को हल कर सकता है।</string>
+    <string name="message_source_not_installed_error_content_tip_1">यह ऐसे समय पर हो सकता है जब आपने ऐप के स्टैंडर्ड फ्लेवर में अपना स्थान जोड़ा हो और फिर केवल मुक्त नेटवर्क स्रोतों वाले फ्लेवर पर स्विच किया हो। स्टैंडर्ड फ्लेवर पर वापस जाने से यह समस्या हल हो सकती है।</string>
     <string name="message_source_not_installed_error_content_tip_2">या तो इस स्थान के लिए मौसम स्रोत बदलें या इस स्थान को हटा दें और पुनः जोड़ें।</string>
     <string name="widget_label_hide_header">शीर्षक छुपाएं</string>
     <string name="sunshine">धूप</string>
-    <string name="dialog_permissions_location_content">ब्रेज़ी मौसम को आपके वर्तमान स्थान के मौसम की माहिती प्रदान करने के लिए अग्रभूमि या पृष्ठभूमि में अपनी स्थान की जानकारी एकत्र करने की आवश्यकता है। इसके लिए हम कुछ अनुमतियों का अनुरोध करेंगे। आपके स्थान की जानकारी केवल आपके वर्तमान स्थान पर मौसम माहिती प्राप्त करने के लिए इस्तेमाल की जाएगी। यदि आप अपनी स्थान की जानकारी साझा नहीं करना चाहते हैं, तो आप उन आवश्यकताओं को अस्वीकार कर सकते हैं और मानवीय रूप से प्रबंधन पृष्ठ में अपना स्थान निर्धारित कर सकते हैं।।</string>
+    <string name="dialog_permissions_location_content">इस सुविधा का उपयोग करने के लिए, आपको ऐप को अपने वर्तमान लोकेशन तक पहुँच की अनुमति देनी होगी। इसे केवल चयनित मौसम स्रोतों के साथ साझा किया जाएगा। यदि आपने अपना विचार बदल दिया है, तो आप प्रक्रिया को रद्द कर सकते हैं और मैन्युअल रूप से एक निश्चित स्थान जोड़ सकते हैं।</string>
     <string name="message_network_unavailable">प्रसार अनुपलब्ध है</string>
     <string name="message_server_timeout">अनुरोध का समय समाप्त</string>
     <string name="widget_clock_day_horizontal">घड़ी + दैनिक (क्षैतिज शैली)</string>
@@ -653,7 +653,7 @@
     <string name="settings_widgets_broadcast_title">डेटा साझा करना</string>
     <string name="settings_widgets_broadcast_send_data_title">%s डेटा भेजें</string>
     <string name="settings_global">वैश्विक सेटिंग्स</string>
-    <string name="settings_weather_source_freenet_disclaimer">अन्य ब्रीज़ी वेदर के स्वादों से अधिक मौसम स्रोत उपलब्ध हैं। और जानने के लिए यहां टैप करें।</string>
+    <string name="settings_weather_source_freenet_disclaimer">ऐप के अन्य संस्करणों से मौसम के अधिक स्रोत उपलब्ध हैं। अधिक जानने के लिए यहां टैप करें।</string>
     <string name="settings_source_instance_invalid">एक https URL होना चाहिए जो “/” से समाप्त होता है</string>
     <string name="settings_widgets_section_widgets_in_use">उपयोग में विजेट्स</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">कोई संगत पैकेज नहीं मिला</string>
@@ -681,4 +681,13 @@
     <string name="action_download">डाउनलोड</string>
     <string name="dialog_app_update_check_content">यहां टैप करके ऐप अपडेट के बारे में नोटिफिकेशन चालू करें</string>
     <string name="notification_channel_app_updates">ऐप अपडेट्स</string>
+    <string name="settings_unavailable_no_animations">अनुपलब्ध, पहले एंड्रॉइड सेटिंग में एनिमेशन सक्षम करें</string>
+    <string name="meteoam_weather_text_tornado_watersprout">बवंडर या जलस्तंभ</string>
+    <string name="common_weather_text_sand_storm">रेतीला तूफ़ान</string>
+    <string name="meteoam_weather_text_smoke">धुआँ</string>
+    <string name="dialog_app_update_check_title">नवीनतम जानकारी रखें</string>
+    <string name="settings_notifications_app_updates_check">ऐप अपडेट की सूचनाएं</string>
+    <string name="notification_app_update_available">नया संस्करण उपलब्ध है!</string>
+    <string name="about_no_new_updates">कोई नया अपडेट उपलब्ध नहीं है</string>
+    <string name="about_check_for_app_updates">ऐप अपडेट के लिए जांच करें</string>
 </resources>
