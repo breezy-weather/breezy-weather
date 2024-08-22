@@ -91,9 +91,9 @@
     <string name="about_translators">Traducători</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Accesează informații despre locație</string>
-    <string name="dialog_permissions_location_content">Breezy Weather trebuie să colecteze informațiile despre locație în prim plan sau în fundal pentru a furniza datele meteo ale locației actuale. Pentru aceasta, se vor solicita niște permisiuni. Informațiile despre locație vor fi folosite numai pentru a obține date meteo în locația curentă. Dacă nu dorești să împărtășești informațiile despre locație, poți refuza aceste cerințe și poți seta manual locația în pagina de gestionare.</string>
+    <string name="dialog_permissions_location_content">Pentru a utiliza această funcție, trebuie să acordați aplicației permisiunea de a accesa locația dvs. curentă. Aceasta va fi partajată numai cu sursele meteo selectate. Dacă v-ați răzgândit, puteți anula procesul și adăuga manual o locație fixă.</string>
     <string name="dialog_permissions_location_background_title">Accesează locația în fundal</string>
-    <string name="dialog_permissions_location_background_content">Setează accesul la locație ca “Permite întotdeauna”, pentru a permite aplicației să acceseze informații despre locație, în fundal, astfel încât să putem percepe modificări ale locației și să oferim date meteo în timp real.</string>
+    <string name="dialog_permissions_location_background_content">Pentru a permite ca actualizarea vremii în fundal să se facă pentru cea mai recentă locație curentă cunoscută de Android, trebuie să setați permisiunea de locație la \"Permite tot timpul\". Dacă nu o faceți, vremea va fi actualizată pe baza celor mai recente coordonate recuperate în prim-plan, care pot să nu fie la zi.</string>
     <string name="location_message_failed_to_locate">Localizarea prin GPS a eșuat</string>
     <string name="weather_message_data_refresh_failed">Actualizarea datelor meteo a eșuat</string>
     <string name="location_dialog_failed_to_locate_title">Nu obții corect locația?</string>
@@ -629,7 +629,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Calitatea Aerului de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="settings_weather_source_unavailable">%s (indisponibil)</string>
     <string name="settings_weather_source_none">Niciunul</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mai mulți furnizori meteo sunt disponibili în alte variante Breezy Weather. Apasă aici pentru a afla mai multe.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mai multe surse meteo sunt disponibile în alte variante ale aplicației. Apasă aici pentru a afla mai multe.</string>
     <string name="settings_main_threshold_lines_on_charts">Linii pe diagramă</string>
     <string name="notification_channel_crash_logs">Jurnal de incidente</string>
     <string name="common_weather_text_rain_light">Ploaie Ușoară</string>
@@ -650,7 +650,7 @@
     <string name="pollen_tilia">Tei</string>
     <string name="action_save">Salvează</string>
     <string name="location_search_no_results_advice">Asigură-te că numele căutat este scris corect și că nu este prea specific. Alternativ, poți încerca un alt serviciu de căutare a locației, care poate avea rezultate diferite.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla din cauză că ai adăugat locația ta în versiunea standard a Breezy Weather și apoi ai trecut la cea de pe Free-networks only, care suportă mai puțini furnizori meteo. Poți rezolva această problemă, revenind la versiunea standard.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla atunci când ați adăugat locația dvs. în varianta Standard a aplicației și apoi ați trecut la varianta cu numai surse de rețea libere. Revenirea la varianta Standard poate rezolva această problemă.</string>
     <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reintroduci această locație.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="about_open_link_message">Deschizi %s?</string>
