@@ -10,7 +10,7 @@
     <string name="precipitation_probability">降水確率</string>
     <string name="precipitation_duration">降水時間</string>
     <string name="temperature">気温</string>
-    <string name="wind">風況</string>
+    <string name="wind">風</string>
     <string name="wind_direction">風向</string>
     <string name="wind_speed">風速</string>
     <string name="humidity">湿度</string>
@@ -57,8 +57,8 @@
     <string name="wind_strength_10">全強風</string>
     <string name="wind_strength_11">暴風</string>
     <string name="wind_strength_12">颶風</string>
-    <string name="precipitation_intensity_light">弱い</string>
-    <string name="precipitation_intensity_heavy">強い</string>
+    <string name="precipitation_intensity_light">弱</string>
+    <string name="precipitation_intensity_heavy">強</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">三日月</string>
     <string name="ephemeris_moon_phase_first_quarter">上弦</string>
@@ -103,17 +103,17 @@
     <string name="widget_label_text_color">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時計のスタイル</string>
-    <string name="widget_custom_subtitle_explanation">何を入力しても構いませんが、テキストの長さに注意してください。天気データを引用する場合は、対応するキーワードを$で参照してください。
+    <string name="widget_custom_subtitle_explanation">任意の文章を入力できますが、長さに注意してください。天気のデータを参照する場合は、対応するキーワードを$で参照してください。
 \n
 \n例えば、「現在の天気：$cw$」の場合は、「現在の天気：晴れ」と表示されます。</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">現在の天気</string>
-    <string name="widget_custom_subtitle_keyword_ct_description">現在の気温 (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">現在の気温 (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">現在の体感温度 (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">現在の体感温度 (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">現在の風況</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">現在の気温（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">現在の気温（°）</string>
+    <string name="widget_custom_subtitle_keyword_at_description">現在の体感温度（°C/°F）</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">現在の体感温度（°）</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">現在の風</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">現在の紫外線</string>
     <string name="widget_custom_subtitle_keyword_ch_description">現在の湿度</string>
     <string name="widget_custom_subtitle_keyword_cps_description">現在の気圧</string>
@@ -125,7 +125,7 @@
     <string name="widget_custom_subtitle_keyword_ut_description">更新時間</string>
     <string name="widget_custom_subtitle_keyword_d_description">日付</string>
     <string name="widget_custom_subtitle_keyword_w_description">曜日</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">曜日 (短い)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">曜日（短い）</string>
     <string name="widget_custom_subtitle_keyword_dd_description">今日の説明文</string>
     <string name="widget_custom_subtitle_keyword_hd_description">各時間の説明文</string>
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
@@ -153,7 +153,7 @@
     <string name="location_current_not_found_yet">現在地がまだ見つかりません…</string>
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新しています</string>
-    <string name="notification_updating_weather_data">気象データを更新しています (%1$d/%2$d)</string>
+    <string name="notification_updating_weather_data">気象データを更新しています（%1$d/%2$d）</string>
     <string name="pollen_tap_to_see_more">タップすると詳細を表示します…</string>
     <!-- action -->
     <string name="alerts">警報</string>
@@ -246,9 +246,9 @@
     <string name="wind_direction_short_N">北</string>
     <string name="wind_direction_short_NE">北東</string>
     <string name="wind_strength">風力</string>
-    <string name="uv_index_0_2">弱い</string>
+    <string name="uv_index_0_2">弱</string>
     <string name="uv_index_3_5">中程度</string>
-    <string name="uv_index_6_7">強い</string>
+    <string name="uv_index_6_7">強</string>
     <string name="precipitation_between_time">%1$s～%2$sの降水状況</string>
     <string name="uv_alert_level">警報</string>
     <string name="uv_index_8_10">非常に強い</string>
@@ -400,12 +400,12 @@
     <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定で決定することもできます。</string>
     <string name="message_parsing_error_title">気象データを解析できませんでした</string>
     <string name="widget_material_you_current">Material You - 現在</string>
-    <string name="widget_custom_subtitle_keyword_als_description">警報 (短い)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">警報（短い）</string>
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif（太字）</string>
     <string name="settings_section_general">一般</string>
-    <string name="settings_location_access_precise_summaryOn">有効です。デバイスのネットワークと GPS 両方が使用されています。デバイスのネットワーク プロバイダーが優先的に、ほとんどの場合使用されますが、GPS もフォールバックとして使用できます。</string>
+    <string name="settings_location_access_precise_summaryOn">有効です。デバイスのネットワークとGPSの両方が使用されています。デバイスのネットワークプロバイダーが優先的に、ほとんどの場合使用されますが、GPSもフォールバックとして使用できます。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
     <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信</string>
     <string name="settings_debug_summary">クラッシュログ</string>
@@ -462,7 +462,7 @@
     <string name="notification_update_error">%d件の更新に失敗しました</string>
     <string name="location_search_weather_source">気象情報源</string>
     <string name="settings_location_access_permission_already_granted">権限はすでに付与されています</string>
-    <string name="settings_location_access_switch_summaryOn">許可されました。現在地を場所として追加できます。</string>
+    <string name="settings_location_access_switch_summaryOn">許可されています。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
     <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、%s の壁紙を有効にすることができます。</string>
@@ -498,12 +498,12 @@
     <string name="unit_km_voice">キロメートル</string>
     <string name="air_quality_pm_explanations_consequences">微粒子は血流から肺や脳の奥深くに浸透する能力があるため、大気汚染の中で最も有害な形態であり、心臓病、肺疾患、早期死亡などの健康上の問題を引き起こします。</string>
     <string name="air_quality_o3_info_introduction">地表オゾン（O₃）はスモッグの主成分です。過剰な紫外線から地球を守る成層圏のオゾンと同じ分子ですが、地表のオゾンは人間の健康に有害な可能性があります。</string>
-    <string name="air_quality_o3_info_origin">地表オゾンは、車両や産業から排出される揮発性有機化合物、一酸化炭素、窒素酸化物（NOₓ）など汚染物質との光化学反応によって生成されます。光化学上の性質によって、オゾンの濃度は天気が晴れている期間に最高レベルになります。</string>
+    <string name="air_quality_o3_info_origin">O₃は、車両や工場から排出される揮発性有機化合物、一酸化炭素、窒素酸化物（NOₓ）など汚染物質との光化学反応により生じます。光化学上の性質により、オゾンの濃度は天気が晴れている間、最高の水準となります。</string>
     <string name="air_quality_no2_info_origin">NO₂ の周囲発生源は、暖房、輸送、工業、発電などのプロセスにおける燃料の高温燃焼によって生じます。家庭での窒素酸化物（NOₓ）の発生源には、炉、暖炉、ガスストーブやオーブンなどの燃料を燃やす機器が含まれます。</string>
     <string name="air_quality_pm_explanations_origin">一部の微粒子は、火山、砂嵐、森林火災、草原火災、生きた植物、波飛沫などに由来して自然に発生します。交通や輸送、産業活動、発電所、建設現場、廃棄物の焼却や畑などの人間の活動によっても、大量の微粒子が発生します。</string>
     <string name="air_quality_so2_info_introduction">二酸化硫黄（SO₂）は、マッチの燃えた臭いの原因となる無色の有毒ガスです。</string>
-    <string name="air_quality_so2_info_origin">SO₂は自然の火山活動により放出され、また、主に家庭の暖房、工業、発電用の化石燃料の燃焼に由来します。</string>
-    <string name="air_quality_co_info_origin">一酸化炭素は、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料を、単純なストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼させることによって生成されます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
+    <string name="air_quality_so2_info_origin">SO₂は自然の火山活動により放出され、また、主に家庭の暖房、工業、発電用の化石燃料の燃焼によって生じます。</string>
+    <string name="air_quality_co_info_origin">COは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料が、簡易ストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼することによって生じます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
     <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_normals_data_by">標準温度のデータ提供：%s</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを使用する必要があります。既に使用している場合は、キーを再確認してください。</string>
@@ -520,7 +520,7 @@
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
     <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報にアクセス</string>
-    <string name="dialog_permissions_location_background_content">Androidで認識されている直近の位置情報に応じて、天気データをバックグラウンドで更新することを許可する場合は、権限を「常に許可」に設定してください。許可しない場合は、天気データはアプリがフォアグラウンドで実行している最中に取得された座標（これは古くなる可能性があります）に基づき更新されます。</string>
+    <string name="dialog_permissions_location_background_content">Androidで認識されている直近の位置情報に応じて、天気データをバックグラウンドで更新することを許可する場合は、権限を「常に許可」に設定してください。許可しない場合は、天気データはアプリがフォアグラウンドで実行している際に取得される座標（これは古くなる可能性があります）に基づき更新されます。</string>
     <string name="message_tap_again_to_exit">再度タップすると終了します</string>
     <string name="widget_style_oreo">オレオ</string>
     <string name="unit_m_voice">メートル</string>
@@ -615,7 +615,7 @@
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>
     <string name="humidity_short">湿度</string>
-    <string name="wind_short">風況</string>
+    <string name="wind_short">風</string>
     <string name="uv_index_short">UV指数</string>
     <string name="visibility_short">視程</string>
     <string name="pressure_short">気圧</string>
@@ -628,7 +628,7 @@
     <string name="location_search_change_source">場所の検索源を変更</string>
     <string name="settings_weather_sources_default_source">新しい場所の既定の情報源</string>
     <string name="metno_weather_text_andthunder">%sと雷</string>
-    <string name="settings_weather_source_unavailable">%s (利用不可)</string>
+    <string name="settings_weather_source_unavailable">%s（利用不可）</string>
     <string name="location_delete_location_dialog_message">保存した場所のリストから「%s」を削除しようとしています。</string>
     <string name="location_delete_location_dialog_message_no_name">保存した場所のリストからこの場所を削除しようとしています。</string>
     <string name="action_confirm">確認</string>
@@ -664,7 +664,7 @@
     <string name="pollen_tilia">リンデン</string>
     <string name="alert">警報</string>
     <string name="settings_source_instance">サーバー</string>
-    <string name="settings_source_instance_invalid">半角スラッシュ（/）で終わるhttpsのURLを指定してください</string>
+    <string name="settings_source_instance_invalid">半角スラッシュ（/）で終わるhttpsプロトコルのURLを指定してください</string>
     <string name="message_invalid_incomplete_data">サーバーから無効または不完全なデータを受信しました</string>
     <string name="settings_per_location_theme">テーマ</string>
     <string name="settings_source_instance_geocoding">ジオコーディングのサーバー</string>
@@ -680,7 +680,7 @@
     <string name="settings_background_updates_refresh_never_warning2">バックグラウンドにおける更新プロセスは軽量です。メインの位置情報は選択した頻度でのみ更新され、二次位置情報は、これが必要な場合にのみ、1日に1回更新されます。この機能のバッテリー効率は高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
     <string name="message_server_unavailable_title">サーバー利用不可</string>
     <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水（降雪）の通知が届かなくなります。ウィジェットはアプリを開くまで更新されません。</string>
-    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新をオフにするのではなく、より低い頻度の更新レートの使用をご検討ください。それでも続行したい場合は、「続行」をタップしてください。</string>
+    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新をオフにする代わりに、より低い頻度の更新レートの使用をご検討ください。それでも続行したい場合は、「続行」をタップしてください。</string>
     <string name="message_server_unavailable_content">これは通常、一時的なエラーです。エラーが続く場合はGitHubで問題を報告してください。</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
