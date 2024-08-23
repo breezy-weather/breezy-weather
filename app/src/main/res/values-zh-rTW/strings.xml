@@ -699,4 +699,5 @@
     <string name="common_weather_text_sand_storm">沙塵暴</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
     <string name="meteoam_weather_text_smoke">煙霧</string>
+    <string name="settings_unavailable_no_animations">無法使用，請先在 Android 設定中啟用動畫</string>
 </resources>
