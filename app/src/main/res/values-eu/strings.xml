@@ -651,8 +651,8 @@
     <string name="message_server_unavailable_content">Hau aldi baterako akatsa da. Akatsa konpontzen ez bada, mesedez jakinarazi GitHub-en.</string>
     <string name="message_source_not_installed_error_content_tip_2">Aldatu toki honetako iturri meteorologikoak edo ezabatu eta gehitu berriro.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Airearen kalitatearen egungo indizea</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Airearen kalitatearen indizea gaur,bihar,...4 egun beranduago</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Polen indizearen laburpena gaur, bihar, ..., 4 egun geroago</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Airearen kalitatearen indizea gaur,bihar, …, 4 egun beranduago</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Polen indizearen laburpena gaur, bihar, …, 4 egun geroago</string>
     <string name="settings_background_updates_refresh_never_warning2">Atzeko planoaren eguneratze prozesua arina da: lehenengo kokapena bakarrik freskatzen du zure hautaketa tasara, eta bigarren mailako kokapenak behar badituzu bakarrik, egunean behin. Oso eraginkorra da, eta ez du gainditu behar hilean kontsumitutako datuen %d MB.</string>
     <string name="settings_background_updates_refresh_never_warning3">Kontuan izan eguneratze-maiztasun txikiagoa erabiltzeko aukera, bigarren planoan eguneratzeak desaktibatu beharrean; bestela, sakatu “Jarraitu”, oraindik aurrera jarraitu nahi baduzu.</string>
     <string name="location_message_already_exists">Badago meteorologia-iturri nagusi bera duen kokapen bat.</string>
