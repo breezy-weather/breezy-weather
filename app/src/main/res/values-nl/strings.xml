@@ -288,7 +288,7 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Huidig weer</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_als_description">Waarschuwingen (kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°), overdag</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Zwart</string>
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="settings_automatic">Automatisch</string>
@@ -297,7 +297,7 @@
     <string name="unit_cmph">cm/u</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Huidige temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beschrijving per uur</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Weer van vandaag, morgen, …, 4 dagen later, overdag</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zonsondergang van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_week_style_5_days">5 dagen</string>
@@ -417,8 +417,8 @@
     <string name="widget_custom_subtitle_keyword_lat_description">Breedtegraad</string>
     <string name="widget_custom_subtitle_keyword_w_description">Week</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Week (kort)</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°C/°F), overdag</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°C/°F), \'s nachts</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Dagtemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°C/°F)</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="settings_items_drag_to_sort">Tik om de lijstitems te slepen om te sorteren</string>
     <string name="settings_none">Geen</string>
@@ -490,8 +490,8 @@
     <string name="message_parsing_error_content">Zorg ervoor dat je de laatste versie van de app hebt geïnstalleerd. De server kan tijdelijk niet beschikbaar zijn, probeer het in dat geval later nog eens. Als het probleem aanhoudt, dump dan een crash log van debug instellingen, en rapporteer een probleem op GitHub.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Huidige UV</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Huidige druk</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatuur van vandaag, morgen, …, 4 dagen later (°), \'s nachts</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag van vandaag, morgen, …, 4 dagen later (%), overdag</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag overdag van vandaag, morgen, …, 4 dagen later (%)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nachtelijke neerslag van vandaag, morgen, …, 4 dagen later (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Wind overdag van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nachtelijke wind van vandaag, morgen, …, 4 dagen later</string>
@@ -566,7 +566,7 @@
     <string name="weather_message_invalid_location">Ongeldige locatie, verwijderen en opnieuw toevoegen</string>
     <string name="action_save">Opslaan</string>
     <string name="dialog_permissions_location_title">Locatie-informatie openen</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Weer van vandaag, morgen, …, 4 dagen later, \'s nachts</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_tile">Tegel</string>
     <string name="widget_style_mini">Mini</string>
     <string name="settings_weather_source_main">Hoofdbron</string>
