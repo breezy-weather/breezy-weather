@@ -1,5 +1,5 @@
 [versions]
-aboutlib_version = "11.2.2"
+aboutlib_version = "11.2.3"
 accompanist = "0.34.0"
 activity = "1.9.1"
 adaptiveiconview = "v0.0.3"
