@@ -103,7 +103,7 @@ private fun getCurrent(result: EcccObservation?): Current? {
             apparentTemperature = getNonEmptyMetric(result.feelsLike)
         ),
         wind = Wind(
-            degree = result.windBearing?.toDouble(),
+            degree = result.windBearing?.toDoubleOrNull(),
             speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
             gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
         ),

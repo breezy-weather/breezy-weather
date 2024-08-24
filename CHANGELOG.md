@@ -5,6 +5,7 @@
 
 **Sources**
 - [Open-Meteo] Fix precipitation nowcasting values being 4 times lower than expected
+- [ECCC] Fix failure to refresh when wind direction received from observation station is empty
 
 **Translations**
 - Translations updated
