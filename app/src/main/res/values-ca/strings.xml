@@ -686,18 +686,18 @@
     <string name="dialog_app_update_check_title">Mantenir actualitzada</string>
     <string name="dialog_app_update_check_content">Toqueu aquí per activar les notificacions sobre actualitzacions de l’app.</string>
     <string name="settings_global">Opcions globals</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">No s\'han trobat paquets compatibles</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">No s’han trobat paquets compatibles</string>
     <string name="settings_appearance_calendar_title">Calendari alternatiu</string>
-    <string name="settings_background_updates_refresh_never_warning2">El procés d\'actualització en rerefons és lleuger: Només actualitza la primera ubicació a l\'interval seleccionat i la resta només quan sigui necessari, un cop al dia. Estalviareu bateria i no s\'hauria d\'excedir més enllà de %d MB de consum de dades al mes.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Considereu utilitzar un interval d\'actualització menys freqüent en comptes d\'aturar les actualitzacions en rerefons. En cas contrari, toqueu «Continua» per a procedir.</string>
-    <string name="meteoam_weather_text_tornado_watersprout">Mànega marina o d\'aigua</string>
-    <string name="settings_unavailable_no_animations">No disponible. Activeu primer les animacions a la configuració d\'Android</string>
+    <string name="settings_background_updates_refresh_never_warning2">El procés d’actualització en rerefons és lleuger: Només actualitza la primera ubicació a l’interval seleccionat i la resta només quan sigui necessari, un cop al dia. Estalviareu bateria i no s’hauria d’excedir més enllà de %d MB de consum de dades al mes.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considereu utilitzar un interval d’actualització menys freqüent en comptes d’aturar les actualitzacions en rerefons. En cas contrari, toqueu «Continua» per a procedir.</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Mànega marina o d’aigua</string>
+    <string name="settings_unavailable_no_animations">No disponible. Activeu primer les animacions a la configuració d’Android</string>
     <string name="notification_channel_app_updates">Actualitzacions</string>
     <string name="notification_app_update_available">Versió nova disponible!</string>
     <string name="about_check_for_app_updates">Cerca actualitzacions</string>
-    <string name="about_no_new_updates">No s\'ha trobat cap actualització</string>
+    <string name="about_no_new_updates">No s’ha trobat cap actualització</string>
     <string name="common_weather_text_sand_storm">Tempesta de sorra</string>
     <string name="meteoam_weather_text_smoke">Fum</string>
-    <string name="settings_background_updates_refresh_never_warning1">En desactivar les actualitzacions en rerefons, no tornareu a rebre cap notificació d\'alerta o precipitació. Els ginys no s\'actualitzaran fins no obriu l\'aplicació.</string>
-    <string name="settings_notifications_app_updates_check">Mostra notificacions de l\'aplicació</string>
+    <string name="settings_background_updates_refresh_never_warning1">En desactivar les actualitzacions en rerefons, no tornareu a rebre cap notificació d’alerta o precipitació. Els ginys no s’actualitzaran fins no obriu l’aplicació.</string>
+    <string name="settings_notifications_app_updates_check">Mostra notificacions de l’aplicació</string>
 </resources>

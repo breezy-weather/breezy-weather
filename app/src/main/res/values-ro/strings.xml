@@ -93,7 +93,7 @@
     <string name="dialog_permissions_location_title">Accesează informații despre locație</string>
     <string name="dialog_permissions_location_content">Pentru a utiliza această funcție, trebuie să acordați aplicației permisiunea de a accesa locația dvs. curentă. Aceasta va fi partajată numai cu sursele meteo selectate. Dacă v-ați răzgândit, puteți anula procesul și adăuga manual o locație fixă.</string>
     <string name="dialog_permissions_location_background_title">Accesează locația în fundal</string>
-    <string name="dialog_permissions_location_background_content">Pentru a permite ca actualizarea vremii în fundal să se facă pentru cea mai recentă locație curentă cunoscută de Android, trebuie să setați permisiunea de locație la \"Permite tot timpul\". Dacă nu o faceți, vremea va fi actualizată pe baza celor mai recente coordonate recuperate în prim-plan, care pot să nu fie la zi.</string>
+    <string name="dialog_permissions_location_background_content">Pentru a permite ca actualizarea vremii în fundal să se facă pentru cea mai recentă locație curentă cunoscută de Android, trebuie să setați permisiunea de locație la “Permite tot timpul”. Dacă nu o faceți, vremea va fi actualizată pe baza celor mai recente coordonate recuperate în prim-plan, care pot să nu fie la zi.</string>
     <string name="location_message_failed_to_locate">Localizarea prin GPS a eșuat</string>
     <string name="weather_message_data_refresh_failed">Actualizarea datelor meteo a eșuat</string>
     <string name="location_dialog_failed_to_locate_title">Nu obții corect locația?</string>
