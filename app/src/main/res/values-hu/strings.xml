@@ -19,7 +19,7 @@
     <string name="sunshine_duration">Napsütéses órák</string>
     <string name="notification_channel_forecast">Előrejelzés</string>
     <string name="daytime">Nappal</string>
-    <string name="nighttime">Este</string>
+    <string name="nighttime">Éjszaka</string>
     <string name="temperature_feels_like">Hőérzet</string>
     <string name="settings_follow_system">Rendszerbeállítás használata</string>
     <string name="pressure">Légnyomás</string>
@@ -97,7 +97,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb aktuális helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
     <string name="widget_label_view_style">Nézet stílusa</string>
     <string name="widget_label_show_widget_card">Háttérszín</string>
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
@@ -205,7 +205,7 @@
     <string name="message_source_not_installed_error_title">A forrás már nem elérhető</string>
     <string name="message_parsing_error_content">Győződjön meg róla, hogy frissítette az alkalmazást a legújabb verzióra. Előfordulhat, hogy a kiszolgáló ideiglenesen nem érhető el, ilyen esetben kérjük, próbálja újra később. Ha a probléma továbbra is fennáll, kérjük, rögzítsen egy hibajegyzéket a hibakeresési beállításokból, majd jelentse a problémát GitHubon.</string>
     <string name="action_show_errors">Érintse meg a részletekért</string>
-    <string name="dialog_permissions_location_content">A funkció használatához engedélyt kell adnia az alkalmazásnak, hogy hozzáférjen az aktuális tartózkodási helyszínéhez. Ez csak a kiválasztott időjárási forrásokkal lesz megosztva. Ha meggondolta magát, megszakíthatja a folyamatot, és kézzel is hozzáadhat egy rögzített helyszínt.</string>
+    <string name="dialog_permissions_location_content">A funkció használatához engedélyt kell adnia az alkalmazásnak, hogy hozzáférjen a jelenlegi tartózkodási helyszínéhez. Ez csak a kiválasztott időjárási forrásokkal lesz megosztva. Ha meggondolta magát, megszakíthatja a folyamatot, és kézzel is hozzáadhat egy rögzített helyszínt.</string>
     <string name="settings_background_updates_refresh_title">Frissítési gyakoriság</string>
     <string name="settings_background_updates_refresh_never">Soha</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 óra</string>
@@ -216,13 +216,13 @@
     <string name="settings_background_updates_battery_optimization_disabled">Az akkumulátoroptimalizáció már le van tiltva.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Gyártóspecifikus útmutatások</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Néhány gyártó további korlátozásokat alkalmaz, amelyek letilthatják a háttérszolgáltatásokat. A „Don’t kill my app!” weboldalon információkat találhat arról, hogyan lehet ezt javítani.</string>
-    <string name="settings_location_access_background_summaryOn">Engedélyezve. Az alkalmazás képes lesz az aktuális tartózkodási helyszínének időjárásadatait frissíteni a háttérben.</string>
+    <string name="settings_location_access_background_summaryOn">Engedélyezve. Az alkalmazás képes lesz a jelenlegi tartózkodási helyszínének időjárásadatait frissíteni a háttérben.</string>
     <string name="settings_location_access_precise_summaryOff">Engedélyezze a „Pontos helyszín használata” lehetőséget, ha problémái vannak a hely meghatározásával.</string>
     <string name="settings_location_access_precise_summaryOn">Engedélyezve. A készülék hálózati szolgáltatója elsőbbséget élvez, de a GPS is használható tartalékként.</string>
     <string name="widget_subtitle_data_wind">Szél</string>
     <string name="settings_background_updates_refresh_2h">2 óra</string>
     <string name="action_undo">Visszavonás</string>
-    <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni az aktuális tartózkodási helyszínét az alkalmazáshoz.</string>
+    <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_appearance_summary">Nyelv, sötét mód, ikoncsomag, mértékegységek</string>
     <string name="weather_api_key_required_missing_content">A forrás használatához meg kell adnia egy API-kulcsot.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Riasztások (rövid)</string>
@@ -247,7 +247,7 @@
     <string name="weather_message_unsupported_feature">A forrás nem támogatja a kért funkciók valamelyikét</string>
     <string name="message_server_timeout">A kérelem időtúllépés miatt lejárt</string>
     <string name="widget_style_tile">Csempe</string>
-    <string name="settings_appearance_dark_mode_locations_title">Nappali/éjszakai mód a helyszínekhez</string>
+    <string name="settings_appearance_dark_mode_locations_title">Nappali / Éjszakai mód a helyszínekhez</string>
     <string name="temperature_degree_day_heating">Fűtési foknap</string>
     <string name="temperature_degree_day_cooling">Hűtési foknap</string>
     <string name="temperature_normal_short">Normál</string>
@@ -287,7 +287,7 @@
     <string name="weather_data_by">Adatszolgáltató: %s</string>
     <string name="weather_source_accu_preference_hours_240">240 óra</string>
     <string name="dialog_permissions_notification_title">Informálódjon</string>
-    <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja az aktuális tartózkodási helyszínét az alkalmazáshoz.</string>
+    <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_background_updates_worker_info_summary">Utoljára futtatva: %s</string>
     <string name="settings_location_access_background_title">Helyszín hozzáférés a háttérben</string>
     <string name="settings_location_access_precise_title">A készülék GPS-ének használata</string>
@@ -400,7 +400,7 @@
     <string name="ephemeris_moonrise_at">Holdkelte: %s</string>
     <string name="ephemeris_sunset_at">Napnyugta: %s</string>
     <string name="ephemeris_sunrise_at">Napkelte: %s</string>
-    <string name="settings_location_access_background_summaryOff">Válassza ki a „Mindig engedélyezett” lehetőséget, hogy a háttérben frissülhessenek az aktuális tartózkodási helyszínének időjárásadatai.</string>
+    <string name="settings_location_access_background_summaryOff">Válassza ki a „Mindig engedélyezett” lehetőséget, hogy a háttérben frissülhessenek a jelenlegi tartózkodási helyszínének időjárásadatai.</string>
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
     <string name="pollen_level_3">Mérsékelt</string>
     <string name="pollen_level_4">Magas</string>
@@ -486,7 +486,7 @@
     <string name="settings_widgets_notification_widget_title">Értesítési modul</string>
     <string name="settings_color_day_always">Mindig nappali</string>
     <string name="settings_color_night_always">Mindig éjszakai</string>
-    <string name="settings_color_day_night">Nappal/este</string>
+    <string name="settings_color_day_night">Nappali / Éjszakai</string>
     <string name="settings_none">Nincs</string>
     <string name="unit_mb_voice">Millibár</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
@@ -631,8 +631,8 @@
     <string name="location_delete_location_dialog_message_no_name">Ez a helyszín törölve lesz a mentett helyszínek listájáról.</string>
     <string name="action_confirm">Megerősít</string>
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Aktuális légszennyezettségi index</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Légszennyezettségi index ma, holnap, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi légszennyezettségi index</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Légszennyezettségi index ma, holnap, …, 4 nap múlva</string>
     <string name="pollen_castanea">Szelídgesztenyefa</string>
     <string name="pollen_corylus">Mogyoró</string>
     <string name="pollen_fraxinus">Kőris</string>
@@ -647,7 +647,7 @@
     <string name="pollen_urticaceae">Csalán</string>
     <string name="pollen_tilia">Hárs</string>
     <string name="sunshine">Napsütés</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">A mai, holnapi, …, 4 nappal későbbi pollenindex összefoglalása</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex összefoglalása ma, holnap, …, 4 nap múlva</string>
     <string name="about_open_link_message">%s oldal megnyitása?</string>
     <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha az alkalmazás normál változatában adta hozzá a helyszínt, majd átváltott a csak nyílt forráskódot tartalmazó változatra. A probléma megoldódhat, ha visszatér a normál verzióra.</string>
     <string name="message_source_not_installed_error_content_tip_2">Vagy változtassa meg a helyszínhez tartozó időjárási forrást, esetleg törölje és adja hozzá újra a helyszínt.</string>
