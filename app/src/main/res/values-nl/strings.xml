@@ -682,4 +682,13 @@
     <string name="dialog_app_update_check_content">Tik hier om meldingen over app-updates aan te zetten.</string>
     <string name="action_download">Download</string>
     <string name="dialog_app_update_check_title">Blijf up-to-date</string>
+    <string name="settings_appearance_calendar_title">Afwisselende kalender</string>
+    <string name="settings_unavailable_no_animations">"Niet beschikbaar,  activeer animaties in Android instellingen"</string>
+    <string name="settings_notifications_app_updates_check">Notificaties van app updates</string>
+    <string name="about_no_new_updates">Geen nieuwe updates beschikbaar</string>
+    <string name="notification_channel_app_updates">App updates</string>
+    <string name="notification_app_update_available">Nieuwe versie beschikbaar!</string>
+    <string name="common_weather_text_sand_storm">Zandstorm</string>
+    <string name="meteoam_weather_text_smoke">Rook</string>
+    <string name="about_check_for_app_updates">Check voor app updates</string>
 </resources>
