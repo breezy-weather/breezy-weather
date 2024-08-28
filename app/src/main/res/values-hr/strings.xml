@@ -66,7 +66,7 @@
 \nNa primjer, „Trenutno vrijeme je: $cw$.” će se prikazati kao „Trenutno vrijeme je: Vedro.”.</string>
     <string name="location_search_weather_source">Izvor vremena</string>
     <string name="wind_strength_12">Orkan</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Upozorenja (Kratko)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Upozorenja (kratko)</string>
     <string name="location_message_failed_to_locate">Neuspjelo pronalaženje trenutne lokacije</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Rastući polumjesec</string>
     <string name="settings_background_updates_refresh_2h">2 sata</string>
@@ -113,7 +113,7 @@
     <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="air_quality_level_1_description">Kvaliteta zraka savršena je za većinu osoba. Uživajte u uobičajenim aktivnostima na otvorenom.</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Trenutna vlažnost</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Trenutačna vlaga</string>
     <string name="settings_notifications_summary">Vremenska upozorenja, oborine ili prognoza za prvu lokaciju</string>
     <string name="widget_clock_font_analog">Analogni</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
@@ -122,7 +122,7 @@
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
     <string name="pollen_tap_to_see_more">Dodirnite za više…</string>
     <string name="location_service_native">Izvorni API</string>
-    <string name="precipitation_intensity_heavy">Jaka kiša</string>
+    <string name="precipitation_intensity_heavy">Jaka</string>
     <string name="settings_location_summary">Postavke lokacijskih usluga</string>
     <string name="weather_pollen_data_by">Podatci o peludi od %s</string>
     <string name="weather_source_accu_preference_days_10">10 dana</string>
@@ -142,9 +142,9 @@
     <string name="widget_custom_subtitle_keyword_atd_description">Trenutačni osjećaj temperature (°)</string>
     <string name="settings_widgets_live_wallpaper_summary">Postavi animaciju vremena kao pozadinu</string>
     <string name="message_parsing_error_title">Neuspjelo analiziranje vremenskih podataka</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Trenutno vrijeme</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Trenutačno vrijeme</string>
     <string name="weather_source_accu_preference_hours_72">72 sata</string>
-    <string name="widget_label_align_end">Poravnaj Kraj</string>
+    <string name="widget_label_align_end">Poravnaj desno</string>
     <string name="air_quality_co">CO</string>
     <string name="weather_api_limit_reached_title">Dosegnuto je ograničenje API zahtjeva</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tjedan (kratko)</string>
@@ -167,7 +167,7 @@
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
     <string name="weather_air_quality_and_pollen_data_by">Podatci o kvaliteti zraka i peludi od %s</string>
     <string name="hourly_forecast">Prognoza po satu</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme ažuriranja</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme aktualiziranja</string>
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
     <string name="air_quality_so2_voice">Sumporov dioksid</string>
     <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona se pojavljuju tijekom sunčanog vremena.</string>
@@ -203,7 +203,7 @@
     <string name="pollen_level_4">Visoko</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_custom_subtitle_keyword_at_description">Trenutačni osjećaj temperature (°C/°F)</string>
-    <string name="precipitation_intensity_light">Kišica</string>
+    <string name="precipitation_intensity_light">Slaba</string>
     <string name="location_search_placeholder">Pretražite lokaciju…</string>
     <string name="settings_source_default_value">Tvorničko (nepromijenjeno)</string>
     <string name="action_preview">Pregled</string>
@@ -239,7 +239,7 @@
     <string name="action_restart">Pokreni ponovo</string>
     <string name="wind_strength_11">Jak orkanski vjetar</string>
     <string name="weather_api_unauthorized_content">Za neke izvore vremenskih podataka, morate priložiti svoj vlastiti API ključ. Ako ste već priložili ključ, provjerite vaš priloženi API ključ.</string>
-    <string name="widget_custom_subtitle_keyword_cdp_description">Trenutna točka kondenziranja</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Trenutačna točka kondenziranja</string>
     <string name="pollen_ambrosia">Ambrozija</string>
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -317,11 +317,11 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="pollen_level_3">Umjereno</string>
     <string name="weather_data_by">Podatci od %s</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Trenutni tlak</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Trenutačni tlak</string>
     <string name="pollen_level_5">Jako visoko</string>
     <string name="weather_source_accu_preference_days_1">1 dan</string>
     <string name="alerts_to_follow">Nadolazeća upozorenja, dodirnite za prikaz.</string>
-    <string name="widget_custom_subtitle_keyword_ctd_description">Trenutna temperatura (°)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Trenutačna temperatura (°)</string>
     <string name="uv_index_0_2">Nisko</string>
     <string name="settings_icon_packs_weather_icon_dark">Tamna ikona</string>
     <string name="settings_icon_packs_weather_icon_grey">Siva ikona</string>
@@ -362,11 +362,11 @@
     <string name="settings_background_updates_refresh_3h">3 sata</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
     <string name="widget_material_you_current">Material You – Trenutno</string>
-    <string name="widget_custom_subtitle_keyword_cv_description">Trenutna vidljivost</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Trenutačna vidljivost</string>
     <string name="settings_location_access_background_summaryOn">Omogućeno. Aplikacija će moći osvježiti vremenske podatke za vašu trenutnu lokaciju u pozadini.</string>
     <string name="alerts">Upozorenja</string>
     <string name="action_next">Slijedeće</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Trenutni vjetar</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Trenutačni vjetar</string>
     <string name="settings_units_summary">Temperatura, oborine, udaljenost, brzina, tlak</string>
     <string name="widget_style_tile">Pločica</string>
     <string name="widget_clock_day_details">Sat + Dnevno (Detalji)</string>
@@ -663,4 +663,13 @@
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
     <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu Breezy Weathera, a zatim se prebacite na Free-networks only koji ima manje podržanih izvora vremena. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
     <string name="alert_source">Izvor: %s</string>
+    <string name="dialog_time_picker_select_time">Odaberi vrijeme</string>
+    <string name="dialog_time_picker_input_time">Unesi vrijeme</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Prebaci na unos dodirom</string>
+    <string name="widget_label_hide_alternate_calendar">Sakrij alternativni kalendar</string>
+    <string name="precipitation_intensity_medium">Srednja</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Prebaci na unos teksta</string>
+    <string name="message_server_unavailable_title">Server nije dostupan</string>
+    <string name="action_download">Preuzmi</string>
+    <string name="action_edit_location">Uredi ovu lokaciju</string>
 </resources>
