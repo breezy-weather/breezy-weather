@@ -156,7 +156,7 @@
     <string name="weather_message_invalid_location">Neispravna lokacija. Izbrišite ju i ponovo ju dodajte</string>
     <string name="widget_subtitle_data_aqi">Kvaliteta zraka</string>
     <string name="settings_location">Lokacija</string>
-    <string name="settings_notifications_alerts_title">Obavijesti vremenskih upozorenja</string>
+    <string name="settings_notifications_alerts_title">Obavijesti o upozorenjima nevremena</string>
     <string name="settings_background_updates_refresh_30min">30 minuta</string>
     <string name="uv_index_11">Ekstremno</string>
     <string name="settings_weather_sources_summary">Zadani izvor vremena za nove lokacije, prilagođeni API ključevi, druge postavke izvora</string>
@@ -640,7 +640,7 @@
     <string name="settings_weather_source_unavailable">%s (nedostupno)</string>
     <string name="settings_weather_source_open_meteo_weather_models">Vremenski modeli</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinira najbolje vremenske modele za ovu lokaciju</string>
-    <string name="settings_weather_source_freenet_disclaimer">Daljnji izvori vremena dostupni su iz drugih vrsta Breezy Weathera. Dodirnite ovdje da biste saznali više.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Daljnji izvori vremena dostupni su od drugih vrsta aplikacije. Dodirni ovdje i saznaj više.</string>
     <string name="action_confirm">Potvrdi</string>
     <string name="widget_label_hide_header">Sakrij zaglavlje</string>
     <string name="pollen_platanus">Platana</string>
@@ -672,4 +672,15 @@
     <string name="message_server_unavailable_title">Server nije dostupan</string>
     <string name="action_download">Preuzmi</string>
     <string name="action_edit_location">Uredi ovu lokaciju</string>
+    <string name="settings_appearance_calendar_title">Alternativni kalendar</string>
+    <string name="settings_global">Globalne postavke</string>
+    <string name="settings_unavailable_no_animations">Nedostupno, najprije aktiviraj animacije u Android postavkama</string>
+    <string name="notification_channel_app_updates">Ažuriranje aplikacije</string>
+    <string name="about_check_for_app_updates">Traži ažuriranja aplikacije</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado ili morski vrtlog</string>
+    <string name="meteoam_weather_text_smoke">Dim</string>
+    <string name="settings_notifications_app_updates_check">Obavijesti o aktualiziranjima aplikacije</string>
+    <string name="notification_app_update_available">Dostupna je nova verzija!</string>
+    <string name="about_no_new_updates">Nema novih ažuriranja</string>
+    <string name="common_weather_text_sand_storm">Pješčana oluja</string>
 </resources>
