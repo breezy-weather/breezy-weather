@@ -683,4 +683,5 @@
     <string name="notification_app_update_available">Dostupna je nova verzija!</string>
     <string name="about_no_new_updates">Nema novih ažuriranja</string>
     <string name="common_weather_text_sand_storm">Pješčana oluja</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nema kompatibilnih paketa</string>
 </resources>
