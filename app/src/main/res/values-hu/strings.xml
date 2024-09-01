@@ -176,7 +176,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Élő háttérkép</string>
     <string name="settings_location_service">Helyszín meghatározási szolgáltatás</string>
-    <string name="settings_appearance_dark_mode_title">Sötét mód</string>
+    <string name="settings_appearance_dark_mode_title">Színséma</string>
     <string name="settings_appearance_icon_pack_title">Ikonkészlet</string>
     <string name="settings_appearance">Megjelenés</string>
     <string name="settings_main_gravity_sensor_switch">Gravitációs érzékelő használata</string>
@@ -223,7 +223,7 @@
     <string name="settings_background_updates_refresh_2h">2 óra</string>
     <string name="action_undo">Visszavonás</string>
     <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
-    <string name="settings_appearance_summary">Nyelv, sötét mód, ikoncsomag, mértékegységek</string>
+    <string name="settings_appearance_summary">Nyelv, színséma, ikoncsomag, mértékegységek</string>
     <string name="weather_api_key_required_missing_content">A forrás használatához meg kell adnia egy API-kulcsot.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Riasztások (rövid)</string>
     <string name="weather_api_limit_reached_title">Az API-kérelmek száma elérte a korlátot</string>
