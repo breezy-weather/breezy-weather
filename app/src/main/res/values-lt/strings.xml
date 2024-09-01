@@ -298,9 +298,9 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikalus</string>
     <string name="action_help_me_choose">Padėkite man išsirinkti</string>
-    <string name="dialog_permissions_location_background_content">Jei norite, kad programėlė fone galėtų pasiekti vietos informaciją, kad galėtume keisti buvimo vietos informaciją ir pateikti jums tinkamus orų duomenis, nustatykite prieigą prie vietos kaip “Leisti visą laiką”.</string>
+    <string name="dialog_permissions_location_background_content">Norėdami leisti fone atnaujinti orus pagal naujausią Android žinomą dabartinę buvimo vietą, turite nustatyti buvimo vietos leidimą į \"Leisti visą laiką\". Jei to nepadarysite, orai bus atnaujinami pagal paskutines pirmame plane gautas koordinates, kurios gali būti pasenusios.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Dabartinis drėgnumas</string>
-    <string name="dialog_permissions_location_content">Breezy Weather turi rinkti informaciją apie jūsų buvimo vietą plane arba fone, kad galėtų pateikti dabartinės jūsų buvimo vietos orų duomenis. Todėl paprašysime tam tikrų leidimų. Informacija apie buvimo vietą bus naudojama tik dabartinės buvimo vietos orų duomenims gauti. Jei nenorite dalytis savo buvimo vietos informacija, galite atsisakyti šių reikalavimų ir rankiniu būdu nustatyti savo buvimo vietą valdymo puslapyje.</string>
+    <string name="dialog_permissions_location_content">Norėdami naudotis šia funkcija, turite suteikti programėlei leidimą pasiekti jūsų dabartinę buvimo vietą. Vieta bus dalijamasi tik su pasirinktais orų šaltiniais. Jei persigalvojote, galite atšaukti procesą ir pridėti fiksuotą vietą rankiniu būdu.</string>
     <string name="widget_label_show_widget_card">Fono spalva</string>
     <string name="widget_label_text_size">Teksto dydis</string>
     <string name="widget_label_subtitle_data">Subtitrų duomenys</string>
@@ -644,7 +644,7 @@
     <string name="pollen_tilia">Liepa</string>
     <string name="pollen_urticaceae">Dilgėlė</string>
     <string name="settings_weather_sources_default_source">Numatytasis naujų vietų šaltinis</string>
-    <string name="message_source_not_installed_error_content_tip_1">Taip gali nutikti, kai savo vietą įtraukėte į standartinę “Breezy Weather” versiją, o paskui perėjote į “Free-networks only”, kurioje palaikoma mažiau orų šaltinių. Šią problemą gali išspręsti grįžimas į standartinę versiją.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Taip galėjo nutikti, kai buvimo vietą pridėjote standartinėje programėlės versijoje, o tada perėjote į versiją, kurioje naudojami tik \"Libre\" tinklo šaltiniai. Grįžimas prie standartinės versijos gali išspręsti šią problemą.</string>
     <string name="message_source_not_installed_error_content_tip_2">Pakeiskite šios vietos orų šaltinius arba ištrinkite ir vėl pridėkite šią vietą.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Oro kokybės indeksas šiandien, rytoj, …, po 4 dienų</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Žiedadulkių indekso suvestinė šiandien, rytoj, …, po 4 dienų</string>
@@ -668,7 +668,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Orų prognozės serveris</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Oro kokybės serveris</string>
     <string name="settings_widgets_broadcast_title">Duomenų bendrinimas</string>
-    <string name="settings_weather_source_freenet_disclaimer">Daugiau orų šaltinių galima rasti kituose „Breezy Weather“ variantuose. Norėdami sužinoti daugiau, spauskite čia.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Daugiau orų šaltinių galima rasti kituose programėlės variantuose. Norėdami sužinoti daugiau, bakstelėkite čia.</string>
     <string name="settings_background_updates_refresh_never_warning1">Išjungdami programėles atnaujinimus fone, jūs negausite pranešimus apie perspėjimus ir kritulius. O valdikliai bus atnaujinami tik atidarius programėlę.</string>
     <string name="settings_background_updates_refresh_never_warning2">Fono atnaujinimo procesas yra lengvas: jis atnaujina tik pirmąją vietą jūsų pasirinktu greičiu, o antrines vietas tik tada, jei jums jų reikia, kartą per dieną. Jis taupiai naudoja akumuliatorių ir neturėtų viršyti %d MB duomenų suvartojimo per mėnesį.</string>
     <string name="settings_source_instance_invalid">Turi būti https URL, besibaigiantis ženklu /</string>
@@ -678,4 +678,16 @@
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_appearance_calendar_title">Alternatyvus kalendorius</string>
     <string name="dialog_time_picker_input_time">Įvesti laiką</string>
+    <string name="action_download">Atsisiųsti</string>
+    <string name="notification_app_update_available">Prieinama nauja versija!</string>
+    <string name="about_check_for_app_updates">Tikrinti, ar yra programėlės atnaujinimų</string>
+    <string name="about_no_new_updates">Naujų atnaujinimų nėra</string>
+    <string name="common_weather_text_sand_storm">Smėlio audra</string>
+    <string name="meteoam_weather_text_smoke">Dūmai</string>
+    <string name="dialog_app_update_check_content">Bakstelėkite čia, kad įjungtumėte pranešimus apie programėlės atnaujinimus.</string>
+    <string name="dialog_app_update_check_title">Būkite nuolat atnaujinami</string>
+    <string name="notification_channel_app_updates">Programėlės atnaujinimai</string>
+    <string name="settings_unavailable_no_animations">Nepasiekiama, pirmiausia įgalinkite animacijas Android nustatymuose</string>
+    <string name="settings_notifications_app_updates_check">Pranešimai apie programėlės atnaujinimus</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornadas arba vandens viesulas</string>
 </resources>
