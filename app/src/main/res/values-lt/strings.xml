@@ -298,7 +298,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikalus</string>
     <string name="action_help_me_choose">Padėkite man išsirinkti</string>
-    <string name="dialog_permissions_location_background_content">Norėdami leisti fone atnaujinti orus pagal naujausią Android žinomą dabartinę buvimo vietą, turite nustatyti buvimo vietos leidimą į \"Leisti visą laiką\". Jei to nepadarysite, orai bus atnaujinami pagal paskutines pirmame plane gautas koordinates, kurios gali būti pasenusios.</string>
+    <string name="dialog_permissions_location_background_content">Norėdami leisti fone atnaujinti orus pagal naujausią Android žinomą dabartinę buvimo vietą, turite nustatyti buvimo vietos leidimą į “Leisti visą laiką”. Jei to nepadarysite, orai bus atnaujinami pagal paskutines pirmame plane gautas koordinates, kurios gali būti pasenusios.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Dabartinis drėgnumas</string>
     <string name="dialog_permissions_location_content">Norėdami naudotis šia funkcija, turite suteikti programėlei leidimą pasiekti jūsų dabartinę buvimo vietą. Vieta bus dalijamasi tik su pasirinktais orų šaltiniais. Jei persigalvojote, galite atšaukti procesą ir pridėti fiksuotą vietą rankiniu būdu.</string>
     <string name="widget_label_show_widget_card">Fono spalva</string>
@@ -644,7 +644,7 @@
     <string name="pollen_tilia">Liepa</string>
     <string name="pollen_urticaceae">Dilgėlė</string>
     <string name="settings_weather_sources_default_source">Numatytasis naujų vietų šaltinis</string>
-    <string name="message_source_not_installed_error_content_tip_1">Taip galėjo nutikti, kai buvimo vietą pridėjote standartinėje programėlės versijoje, o tada perėjote į versiją, kurioje naudojami tik \"Libre\" tinklo šaltiniai. Grįžimas prie standartinės versijos gali išspręsti šią problemą.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Taip galėjo nutikti, kai buvimo vietą pridėjote standartinėje programėlės versijoje, o tada perėjote į versiją, kurioje naudojami tik “Libre” tinklo šaltiniai. Grįžimas prie standartinės versijos gali išspręsti šią problemą.</string>
     <string name="message_source_not_installed_error_content_tip_2">Pakeiskite šios vietos orų šaltinius arba ištrinkite ir vėl pridėkite šią vietą.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Oro kokybės indeksas šiandien, rytoj, …, po 4 dienų</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Žiedadulkių indekso suvestinė šiandien, rytoj, …, po 4 dienų</string>
