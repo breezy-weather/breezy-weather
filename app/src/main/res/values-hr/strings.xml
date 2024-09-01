@@ -25,7 +25,7 @@
     <string name="settings_background_updates_worker_info_title">Informacije procesa</string>
     <string name="widget_day_week">Dnevno + Tjedno</string>
     <string name="action_add_current_location">Dodajte trenutnu lokaciju</string>
-    <string name="settings_widgets_notification_widget_title">Widget u obavijestima</string>
+    <string name="settings_widgets_notification_widget_title">Widget za obavijesti</string>
     <string name="widget_clock_day_horizontal">Sat + Dnevno (Vodoravni stil)</string>
     <string name="action_app_store">Trgovina aplikacija</string>
     <string name="locations">Lokacije</string>
@@ -102,7 +102,7 @@
     <string name="settings_background_updates_refresh_1h">1 sat</string>
     <string name="air_quality_no2_info_origin">Okolni izvori NO₂ nastaju zbog visoko-temperaturnim izgaranjem goriva u procesima kao što su grijanje, transport, industrija i generiranje električne energije. Kućanski izvori dušikovih oksida (NOₓ) uključuju opremu za izgaranje goriva kao što su peći, kamini, plinski štednjaci i pećnice.</string>
     <string name="air_quality_co_voice">Ugljikov monoksid</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgeti u uporabi</string>
+    <string name="settings_widgets_section_widgets_in_use">Korišteni widgeti</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="message_parsing_error_content">Provjerite je li aplikacija ažurna. Server može biti privremeno nedostupan. U tom slučaju pokušajte kasnije. Ako problem ne nestane, pokrenite dnevnik o padu aplikacije u postavkama za otklanjanje grešaka te prijavite problem na GitHub-u.</string>
     <string name="settings_weather_source_main">Glavni izvor</string>
@@ -181,7 +181,7 @@
     <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
     <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>
-    <string name="dialog_permissions_location_content">Breezy Weather mora prikupiti vaše informacije o lokaciji u prvom planu ili pozadini kako bi vam dostavio vremenske podatke za vašu trenutnu lokaciju. Zbog toga ćemo od vas zatražiti neke dozvole. Informacije o vašoj lokaciji će se koristiti samo za dohvaćanje vremenskih podataka za vašu trenutnu lokaciju. Ako ne želite dijeliti vašu lokaciju, možete odbiti te zahtjeve i ručno postaviti vašu lokaciju na stranici upravljanja.</string>
+    <string name="dialog_permissions_location_content">Za korištenje ove funkcije, aplikaciji morate dati dopuštenje za pristup vašoj trenutačnoj lokaciji. Dijelit će se samo s odabranim vremenskim izvorima. Ako se predomislite, možete prekinuti postupak i ručno dodati fiksnu lokaciju.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja za dnevnu prognozu</string>
     <string name="location_dialog_failed_to_locate_title">Ne možete naći točnu lokaciju\?</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
@@ -223,7 +223,7 @@
     <string name="settings_widgets_configure_widget_summary">Podesite ovaj widget</string>
     <string name="widget_label_view_style">Način prikaza</string>
     <string name="settings_main_cards_other_element_animations_switch">Druge animacije elemenata</string>
-    <string name="settings_widgets_monochrome_icons_title">Monokromatske ikone</string>
+    <string name="settings_widgets_monochrome_icons_title">Jednobojne ikone</string>
     <string name="settings_background_updates">Ažuriranja u pozadini</string>
     <string name="pollen_betula">Breza</string>
     <string name="settings_background_updates_refresh_24h">24 sata</string>
@@ -266,7 +266,7 @@
     <string name="action_edit">Uredi</string>
     <string name="action_back">Nazad</string>
     <string name="message_tap_again_to_exit">Dodirnite ponovo za prekid</string>
-    <string name="settings_widgets_broadcast_send_data_title">Pošaljite vremenske podatke na %s</string>
+    <string name="settings_widgets_broadcast_send_data_title">Pošaljite podatke za %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
     <string name="weather_air_quality_data_by">Podatci o kvaliteti zraka od %s</string>
@@ -303,7 +303,7 @@
     <string name="location_message_search_failed">Pretraga lokacija neuspjela</string>
     <string name="weather_source_accu_preference_hours_120">120 sati</string>
     <string name="settings_appearance_summary">Jezik, tamni način, paketi ikona, mjerne jedinice</string>
-    <string name="settings_widgets_section_notification_widget">Widget u obavijestima</string>
+    <string name="settings_widgets_section_notification_widget">Widget za obavijesti</string>
     <string name="settings_appearance_dark_mode_title">Tamni način</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimiranje baterije je već onemogućeno.</string>
     <string name="message_network_unavailable">Mreža nedostupna</string>
@@ -344,7 +344,7 @@
     <string name="temperature_wind_chill">Hladnoća vjetra</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “%s”</string>
     <string name="action_set">Postavi</string>
-    <string name="settings_weather_sources">Izvori vremena</string>
+    <string name="settings_weather_sources">Vremenski izvori</string>
     <string name="widget_subtitle_data_wind">Vjetar</string>
     <string name="widget_style_symmetry">Simetrija</string>
     <string name="action_delete">Obriši</string>
@@ -412,7 +412,7 @@
     <string name="weather_source_accu_preference_hours_1">1 sat</string>
     <string name="weather_source_accu_preference_days_15">15 dana</string>
     <string name="weather_source_accu_preference_hours_24">24 sata</string>
-    <string name="settings_location_access_precise_summaryOn">Omogućeno. Koriste se mreža uređaja i GPS usluge.</string>
+    <string name="settings_location_access_precise_summaryOn">Omogućeno. Pružatelji mrežne usluge uređaja će se koristit po prioritetu i u većini slučajeva, ali se GPS također može koristiti kao rezervna mogućnost.</string>
     <string name="action_continue">Nastavi</string>
     <string name="action_cancel">Otkaži</string>
     <string name="action_close">Zatvori</string>
@@ -661,7 +661,7 @@
     <string name="weather_message_too_frequent_refreshes">Pričekajte par sekundi prije ponovnog pokušaja…</string>
     <string name="location_delete_location_dialog_title">Izbrisati lokaciju?</string>
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
-    <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu Breezy Weathera, a zatim se prebacite na Free-networks only koji ima manje podržanih izvora vremena. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
+    <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu aplikacije, a zatim se prebacite na stil koji sadrži samo izvore besplatne mreže. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
     <string name="alert_source">Izvor: %s</string>
     <string name="dialog_time_picker_select_time">Odaberi vrijeme</string>
     <string name="dialog_time_picker_input_time">Unesi vrijeme</string>
@@ -686,4 +686,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nema kompatibilnih paketa</string>
     <string name="dialog_app_update_check_content">Dodirnite ovdje za aktiviranje obavijesti o ažuriranjima aplikacije.</string>
     <string name="dialog_app_update_check_title">Ostanite u toku</string>
+    <string name="settings_background_updates_refresh_never_warning3">Razmislite o upotrebi rjeđe stope osvježavanja umjesto isključivanja ažuriranja u pozadini, inače dodirnite „Nastavi” ako i dalje želite nastaviti.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Isključivanjem ažuriranja u pozadini više nećete primati obavijesti o upozorenjima ili oborinama. Widgeti se neće ažurirati sve dok ne otvorite aplikaciju.</string>
+    <string name="message_server_unavailable_content">Ovo je obično privremena pogreška. Ako se pogreška nastavi pojavljivati, prijavite problem na GitHubu.</string>
 </resources>
