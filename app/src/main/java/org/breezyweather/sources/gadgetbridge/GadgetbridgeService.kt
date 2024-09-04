@@ -93,7 +93,10 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             todayMaxTemp = today?.day?.temperature?.temperature?.roundCelsiusToKelvin(),
             todayMinTemp = today?.night?.temperature?.temperature?.roundCelsiusToKelvin(),
             feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.roundCelsiusToKelvin(),
-            precipProbability = today?.day?.precipitationProbability?.total?.roundToInt(),
+            precipProbability = maxOfNullable(
+                today?.day?.precipitationProbability?.total,
+                today?.night?.precipitationProbability?.total
+            )?.roundToInt(),
 
             dewPoint = current?.dewPoint?.roundCelsiusToKelvin(),
             pressure = current?.pressure?.toFloat(),
