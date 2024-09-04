@@ -117,10 +117,26 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
 
         return dailyForecast.slice(1 until dailyForecast.size).map { day ->
+            val maxWind = listOf(
+                day.day?.wind,
+                day.night?.wind
+            ).maxByOrNull { it?.speed ?: Double.MIN_VALUE }
+
             GadgetbridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
                 minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
+
+                // TODO: humidity
+                windSpeed = maxWind?.speed?.let {
+                    SpeedUnit.KPH.convertUnit(it)
+                }?.toFloat(),
+                windDirection = maxWind?.degree?.roundToInt(),
+                uvIndex = day.uV?.index?.toFloat(),
+                precipProbability = maxOfNullable(
+                    day.day?.precipitationProbability?.total,
+                    day.night?.precipitationProbability?.total
+                )?.roundToInt(),
 
                 sunRise = day.sun?.riseDate?.time?.div(1000)?.toInt(),
                 sunSet = day.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -167,6 +183,8 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                     SpeedUnit.KPH.convertUnit(it)
                 }?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
+                uvIndex = hour.uV?.index?.toFloat(),
+                precipProbability = hour.precipitationProbability?.total?.roundToInt()
             )
         }
     }
@@ -186,6 +204,14 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             WeatherCode.THUNDER -> 210
             WeatherCode.THUNDERSTORM -> 211
             else -> 3200
+        }
+    }
+
+    private fun <T : Comparable<T>> maxOfNullable(a: T?, b: T?): T? {
+        return when {
+            a == null -> b
+            b == null -> a
+            else -> maxOf(a, b)
         }
     }
 
