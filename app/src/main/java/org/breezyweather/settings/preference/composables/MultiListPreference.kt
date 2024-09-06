@@ -57,7 +57,7 @@ import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 import java.text.Collator
 
 data class PreferenceItem(
@@ -106,7 +106,7 @@ fun MultiListPreferenceView(
                     .alpha(if (enabled) 1f else 0.5f)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = { dialogOpenState.value = true },
                         enabled = enabled,
                     )
@@ -157,7 +157,7 @@ fun MultiListPreferenceView(
                 .alpha(if (enabled) 1f else 0.5f)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberThemeRipple(),
+                    indication = themeRipple(),
                     onClick = { dialogOpenState.value = true },
                     enabled = enabled,
                 )
@@ -323,7 +323,7 @@ internal fun Switch(
         modifier = Modifier
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberThemeRipple(),
+                indication = themeRipple(),
                 onClick = onClick,
             ),
         leadingContent = {

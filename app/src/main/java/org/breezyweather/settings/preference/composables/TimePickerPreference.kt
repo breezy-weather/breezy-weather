@@ -70,7 +70,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -111,7 +111,7 @@ private fun TimePickerPreferenceView(
                 .alpha(if (enabled) 1f else 0.5f)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberThemeRipple(),
+                    indication = themeRipple(),
                     onClick = { showTimePicker = true },
                     enabled = enabled,
                 )

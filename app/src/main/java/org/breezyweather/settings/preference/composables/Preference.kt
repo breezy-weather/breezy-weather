@@ -51,7 +51,7 @@ import org.breezyweather.R
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 
 @Composable
 fun PreferenceView(
@@ -95,7 +95,7 @@ fun PreferenceView(
                     .alpha(if (enabled) 1f else 0.5f)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = onClick,
                         enabled = enabled,
                     )
@@ -165,7 +165,7 @@ fun PreferenceView(
                 .alpha(if (enabled) 1f else 0.5f)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberThemeRipple(),
+                    indication = themeRipple(),
                     onClick = onClick,
                     enabled = enabled,
                 )

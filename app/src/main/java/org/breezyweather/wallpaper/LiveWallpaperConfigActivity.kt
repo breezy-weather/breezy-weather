@@ -59,7 +59,7 @@ import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 
 class LiveWallpaperConfigActivity : GeoActivity() {
 
@@ -180,7 +180,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                     }
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = { expanded.value = !expanded.value },
                     ),
                 label = {

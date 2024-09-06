@@ -17,8 +17,8 @@
 package org.breezyweather.theme.compose
 
 import android.os.Build
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
@@ -176,9 +176,9 @@ class BreezyWeatherDayNightColors(
 }
 
 @Composable
-fun rememberThemeRipple(
+fun themeRipple(
     bounded: Boolean = true
-) = rememberRipple(
+) = ripple(
     color = MaterialTheme.colorScheme.primary,
     bounded = bounded
 )

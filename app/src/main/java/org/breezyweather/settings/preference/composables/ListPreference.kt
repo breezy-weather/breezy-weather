@@ -60,7 +60,7 @@ import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.defaultCardListItemElevation
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 import java.util.Date
 
 @Composable
@@ -123,7 +123,7 @@ fun ListPreferenceView(
                     .alpha(if (enabled) 1f else 0.5f)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = { dialogOpenState.value = true },
                         enabled = enabled,
                     )
@@ -176,7 +176,7 @@ fun ListPreferenceView(
                 .alpha(if (enabled) 1f else 0.5f)
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberThemeRipple(),
+                    indication = themeRipple(),
                     onClick = { dialogOpenState.value = true },
                     enabled = enabled,
                 )
@@ -280,7 +280,7 @@ internal fun RadioButton(
             .fillMaxWidth()
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberThemeRipple(),
+                indication = themeRipple(),
                 onClick = onClick,
             )
             .padding(

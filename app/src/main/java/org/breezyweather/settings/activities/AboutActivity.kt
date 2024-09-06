@@ -72,7 +72,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 import javax.inject.Inject
 
 private class AboutAppLinkItem(
@@ -596,7 +596,7 @@ class AboutActivity : GeoActivity() {
                     .fillMaxWidth()
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = onClick,
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),
@@ -629,7 +629,7 @@ class AboutActivity : GeoActivity() {
                     .fillMaxWidth()
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = {
                             onClick()
                         },

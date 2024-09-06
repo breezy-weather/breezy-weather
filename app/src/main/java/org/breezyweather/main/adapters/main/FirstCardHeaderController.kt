@@ -46,7 +46,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.rememberThemeRipple
+import org.breezyweather.theme.compose.themeRipple
 import java.util.Date
 
 @SuppressLint("InflateParams")
@@ -84,7 +84,7 @@ class FirstCardHeaderController(
                 modifier = Modifier
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberThemeRipple(),
+                        indication = themeRipple(),
                         onClick = {
                             IntentHelper.startAlertActivity(mActivity, mFormattedId)
                         }
@@ -115,7 +115,7 @@ class FirstCardHeaderController(
                         modifier = Modifier
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
-                                indication = rememberThemeRipple(),
+                                indication = themeRipple(),
                                 onClick = {
                                     IntentHelper.startAlertActivity(mActivity, mFormattedId, currentAlert.alertId)
                                 }
