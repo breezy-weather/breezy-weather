@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Show precipitation probability when > 0 % (previously > 5 %)
+- [Tablet] If the location list is not empty, it will no longer open by default in portrait mode on tablets with large resolution
 
 **Sources**
 - [Open-Meteo] Fix precipitation nowcasting values being 4 times lower than expected

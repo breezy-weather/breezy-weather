@@ -27,6 +27,7 @@ import androidx.annotation.FloatRange
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isRtl
 import kotlin.math.abs
 import kotlin.math.max
@@ -46,7 +47,7 @@ class DrawerLayout @JvmOverloads constructor(
 
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.DrawerLayout, defStyleAttr, 0)
-        mUnfold = a.getBoolean(R.styleable.DrawerLayout_unfold, false)
+        mUnfold = a.getBoolean(R.styleable.DrawerLayout_unfold, false) && context.isLandscape
         mProgress = if (mUnfold) 1f else 0f
         a.recycle()
     }
