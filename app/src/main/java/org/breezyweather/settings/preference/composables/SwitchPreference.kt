@@ -31,6 +31,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -61,6 +63,7 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) = SwitchPreferenceView(
     title = stringResource(titleId),
@@ -72,6 +75,7 @@ fun SwitchPreferenceView(
     withState = withState,
     enabled = enabled,
     card = card,
+    colors = colors,
     onValueChanged = onValueChanged,
 )
 
@@ -84,6 +88,7 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) {
     val state = remember { mutableStateOf(checked) }
@@ -143,6 +148,7 @@ fun SwitchPreferenceView(
         }
     } else {
         ListItem(
+            colors = colors,
             tonalElevation = 0.dp,
             modifier = Modifier
                 .fillMaxWidth()

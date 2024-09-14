@@ -28,9 +28,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -156,7 +158,7 @@ fun AppearanceSettingsScreen(
                 }
                 if (dialogIconPackOpenState.value) {
                     // TODO: async
-                listProviderState.value = ResourcesProviderFactory.getProviderList(BreezyWeather.instance)
+                    listProviderState.value = ResourcesProviderFactory.getProviderList(BreezyWeather.instance)
 
                     AlertDialogNoPadding(
                         onDismissRequest = {
@@ -203,6 +205,7 @@ fun AppearanceSettingsScreen(
                             ) {
                                 items(listProviderState.value) {
                                     ListItem(
+                                        colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
                                         headlineContent = {
                                             Text(it.providerName ?: "")
                                         },

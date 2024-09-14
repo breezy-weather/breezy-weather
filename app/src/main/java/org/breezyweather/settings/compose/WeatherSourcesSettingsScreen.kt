@@ -105,11 +105,11 @@ fun WeatherSourcesSettingsScreen(
 
             sectionHeaderItem(R.string.settings_weather_sources_section_general)
             listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
-        val configuredWorldwideSourcesAssociated = configuredWorldwideSources.associate { it.id to it.name }
+                val configuredWorldwideSourcesAssociated = configuredWorldwideSources.associate { it.id to it.name }
                 val defaultWeatherSource = SettingsManager.getInstance(context).defaultWeatherSource
                 SourceView(
                     title = stringResource(id),
-            selectedKey = if (configuredWorldwideSourcesAssociated.contains(defaultWeatherSource)) {
+                    selectedKey = if (configuredWorldwideSourcesAssociated.contains(defaultWeatherSource)) {
                         defaultWeatherSource
                     } else "auto",
                     sourceList = mapOf(

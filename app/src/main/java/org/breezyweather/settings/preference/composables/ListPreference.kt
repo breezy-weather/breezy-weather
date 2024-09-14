@@ -38,6 +38,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -73,6 +75,7 @@ fun ListPreferenceView(
     selectedKey: String,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
@@ -88,6 +91,7 @@ fun ListPreferenceView(
         nameArray = names,
         enabled = enabled,
         card = card,
+        colors = colors,
         withState = withState,
         onValueChanged = onValueChanged,
     )
@@ -103,6 +107,7 @@ fun ListPreferenceView(
     nameArray: Array<String>,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
     onValueChanged: (String) -> Unit,
@@ -170,6 +175,7 @@ fun ListPreferenceView(
         }
     } else {
         ListItem(
+            colors = colors,
             tonalElevation = 0.dp,
             modifier = Modifier
                 .fillMaxWidth()

@@ -35,6 +35,8 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,6 +62,7 @@ fun PreferenceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     onClick: () -> Unit,
 ) = PreferenceView(
     title = stringResource(titleId),
@@ -67,6 +70,7 @@ fun PreferenceView(
     iconId = iconId,
     enabled = enabled,
     card = card,
+    colors = colors,
     onClick = onClick
 )
 
@@ -77,6 +81,7 @@ fun PreferenceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
     onClose: (() -> Unit)? = null,
     onClick: () -> Unit,
 ) {
@@ -159,6 +164,7 @@ fun PreferenceView(
         }
     } else {
         ListItem(
+            colors = colors,
             tonalElevation = 0.dp,
             modifier = Modifier
                 .fillMaxWidth()

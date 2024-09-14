@@ -18,7 +18,6 @@ package org.breezyweather.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -44,6 +43,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Surface
@@ -180,6 +180,8 @@ class SearchActivity : GeoActivity() {
                         ) {
                             items(listResourceState.value.first) { location ->
                                 ListItem(
+                                    colors = ListItemDefaults
+                                        .colors(containerColor = SearchBarDefaults.colors().containerColor),
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {

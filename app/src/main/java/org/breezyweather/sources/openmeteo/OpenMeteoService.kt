@@ -21,7 +21,9 @@ import android.graphics.Color
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -460,7 +462,8 @@ class OpenMeteoService @Inject constructor(
                 .joinToString(context.getString(R.string.comma_separator)) {
                     it.model.getName(context)
                 },
-            card = false
+            card = false,
+            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogModelsOpenState.value = true
         }
@@ -492,7 +495,8 @@ class OpenMeteoService @Inject constructor(
                                 title = model.model.getName(context),
                                 summary = { context, _ -> model.model.getDescription(context) },
                                 checked = model.enabled,
-                                card = false
+                                card = false,
+                                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
                             ) { checked ->
                                 if (checked) {
                                     model.model.incompatibleSources.forEach { incompatibleSource ->
