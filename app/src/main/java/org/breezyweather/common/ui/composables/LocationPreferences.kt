@@ -22,6 +22,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -77,7 +80,8 @@ fun LocationPreference(
             titleId = R.string.settings_weather_sources,
             iconId = R.drawable.ic_factory,
             summaryId = R.string.settings_weather_sources_per_location_summary,
-            card = false
+            card = false,
+            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogWeatherSourcesOpenState.value = true
         }
@@ -85,7 +89,8 @@ fun LocationPreference(
             titleId = R.string.settings_per_location,
             iconId = R.drawable.ic_settings,
             summaryId = R.string.settings_per_location_summary,
-            card = false
+            card = false,
+            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogAdditionalLocationPreferencesOpenState.value = true
         }
@@ -93,7 +98,8 @@ fun LocationPreference(
             titleId = R.string.settings_global,
             iconId = R.drawable.ic_home,
             summaryId = R.string.settings_main_summary,
-            card = false
+            card = false,
+            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             IntentHelper.startMainScreenSettingsActivity(activity)
             onClose(null)
@@ -156,7 +162,8 @@ fun LocationPreference(
                             selectedKey = backgroundWeatherKind.value,
                             nameArrayId = R.array.live_wallpaper_weather_kinds,
                             valueArrayId = R.array.live_wallpaper_weather_kind_values,
-                            card = false
+                            card = false,
+                            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
                         ) { newValue ->
                             if (newValue != backgroundWeatherKind.value) {
                                 backgroundWeatherKind.value = newValue
@@ -168,7 +175,8 @@ fun LocationPreference(
                             selectedKey = backgroundDayNightType.value,
                             nameArrayId = R.array.live_wallpaper_day_night_types,
                             valueArrayId = R.array.live_wallpaper_day_night_type_values,
-                            card = false
+                            card = false,
+                            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
                         ) { newValue ->
                             if (newValue != backgroundDayNightType.value) {
                                 backgroundDayNightType.value = newValue
@@ -582,6 +590,7 @@ fun SourceView(
     enabled: Boolean = true,
     sourceList: Map<String, String>,
     card: Boolean = false,
+    colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit
 ) {
@@ -614,6 +623,7 @@ fun SourceView(
         },
         enabled = enabled,
         card = card,
+        colors = colors,
         withState = withState
     )
 
