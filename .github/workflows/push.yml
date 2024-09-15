@@ -123,7 +123,7 @@ jobs:
           tag_name: ${{ env.VERSION_TAG }}
           name: Breezy Weather ${{ env.VERSION_TAG }}
           body: |
-            **Don’t know which release to choose? Check [INSTALL instructions](https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md).**
+            **Don’t know which release to choose? Just pick `breezy-weather-${{ env.VERSION_TAG }}_standard.apk`, or check [INSTALL instructions](https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md) for more details.**
 
             ---
 

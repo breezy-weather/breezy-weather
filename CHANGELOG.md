@@ -1,4 +1,4 @@
-# Version 5.2.8 (not yet released)
+# Version 5.2.8 (2024-09-15)
 
 **Improvements and fixes**
 - Show precipitation probability when > 0 % (previously > 5 %)
