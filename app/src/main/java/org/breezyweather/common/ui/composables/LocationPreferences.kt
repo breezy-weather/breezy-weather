@@ -130,7 +130,6 @@ fun LocationPreference(
                     }
                 } else {
                     dialogWeatherSourcesOpenState.value = false
-                    onClose(null)
                 }
             }
         }
