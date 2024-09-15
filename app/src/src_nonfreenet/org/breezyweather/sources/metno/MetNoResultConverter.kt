@@ -19,6 +19,8 @@ package org.breezyweather.sources.metno
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -37,8 +39,10 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
+import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
 import org.breezyweather.sources.metno.json.MetNoMoonProperties
@@ -47,8 +51,10 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunProperties
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import java.util.Date
+import java.util.Objects
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     context: Context,
@@ -57,7 +63,8 @@ fun convert(
     sunResult: MetNoSunResult,
     moonResult: MetNoMoonResult,
     nowcastResult: MetNoNowcastResult,
-    airQualityResult: MetNoAirQualityResult
+    airQualityResult: MetNoAirQualityResult,
+    metNoAlerts: MetNoAlertResult
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null ||
@@ -97,7 +104,8 @@ fun convert(
             forecastResult.properties.timeseries,
             airQualityResult
         ),
-        minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries)
+        minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries),
+        alertList = getAlerts(metNoAlerts)
     )
 }
 
@@ -204,6 +212,29 @@ private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): 
     return minutelyList
 }
 
+private fun getAlerts(metNoAlerts: MetNoAlertResult): List<Alert>? {
+    return metNoAlerts.features?.mapNotNull { alert ->
+        alert.properties?.let {
+            Alert(
+                alertId = it.id,
+                startDate = alert.whenAlert?.interval?.getOrNull(0),
+                endDate = alert.whenAlert?.interval?.getOrNull(1) ?: it.eventEndingTime,
+                headline = it.eventAwarenessName,
+                description = it.description,
+                instruction = it.instruction,
+                source = "MET Norway",
+                severity = when (it.severity?.lowercase()) {
+                    "extreme" -> AlertSeverity.EXTREME
+                    "severe" -> AlertSeverity.SEVERE
+                    "moderate" -> AlertSeverity.MODERATE
+                    "minor" -> AlertSeverity.MINOR
+                    else -> AlertSeverity.UNKNOWN
+                }
+            )
+        }
+    }
+}
+
 private fun getWeatherCode(icon: String?): WeatherCode? {
     return if (icon == null) {
         null
@@ -264,7 +295,8 @@ private fun getWeatherText(context: Context, icon: String?): String? {
 
 fun convertSecondary(
     nowcastResult: MetNoNowcastResult?,
-    airQualityResult: MetNoAirQualityResult?
+    airQualityResult: MetNoAirQualityResult?,
+    metNoAlertResults: MetNoAlertResult?
 ): SecondaryWeatherWrapper {
     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
 

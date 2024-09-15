@@ -5,6 +5,7 @@
 - [Tablet] If the location list is not empty, it will no longer open by default in portrait mode on tablets with large resolution
 
 **Sources**
+- [MET Norway] Add support for alerts in Norway-only as main or secondary source (API is in beta, so might not be perfectly reliable)
 - [Open-Meteo] Fix precipitation nowcasting values being 4 times lower than expected
 - [ECCC] Fix failure to refresh when wind direction received from observation station is empty
 - [Gadgetbridge] Add missing fields (wind, UV, precipitation probability) (@joserebelo)

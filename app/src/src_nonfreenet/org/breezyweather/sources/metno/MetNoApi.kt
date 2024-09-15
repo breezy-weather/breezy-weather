@@ -18,6 +18,7 @@ package org.breezyweather.sources.metno
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
+import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
@@ -68,10 +69,11 @@ interface MetNoApi {
         @Query("lon") lon: Double
     ): Observable<MetNoAirQualityResult>
 
-    /*@GET("metalerts/1.1/")
+    @GET("metalerts/2.0/current.json")
     fun getAlerts(
         @Header("User-Agent") userAgent: String,
+        @Query("lang") lang: String,
         @Query("lat") lat: Double,
         @Query("lon") lon: Double
-    ): Observable<List<MetNoAlertResult>>*/
+    ): Observable<MetNoAlertResult>
 }

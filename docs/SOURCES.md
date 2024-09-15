@@ -62,13 +62,13 @@ Note that no forecast above 7 days is reliable, so you should not decide based o
 
 The following features, if not available from your selected source, can be added from another source.
 
-| Worldwide sources            | Open-Meteo | AccuWeather   | MET Norway    | OpenWeather | Météo-France | DMI     | Meteo AM |
-|------------------------------|------------|---------------|---------------|-------------|--------------|---------|----------|
-| **Air quality**              | ✅          | ✅             | Norway        | ✅           | ❌            | ❌       | ❌        |
-| **Pollen**                   | ✅          | North America | ❌             | ❌           | ❌            | ❌       | ❌        |
-| **Precipitation nowcasting** | ✅          | ✅             | Nordic area   | ❌           | France       | ❌       | ❌        |
-| **Alerts**                   | ❌          | ✅             | *In progress* | ❌           | France       | Denmark | ❌        |
-| **Normals**                  | Average    | ✅             | Average       | Average     | ✅            | Average | ❌        |
+| Worldwide sources            | Open-Meteo | AccuWeather   | MET Norway  | OpenWeather | Météo-France | DMI     | Meteo AM |
+|------------------------------|------------|---------------|-------------|-------------|--------------|---------|----------|
+| **Air quality**              | ✅          | ✅             | Norway      | ✅           | ❌            | ❌       | ❌        |
+| **Pollen**                   | ✅          | North America | ❌           | ❌           | ❌            | ❌       | ❌        |
+| **Precipitation nowcasting** | ✅          | ✅             | Nordic area | ❌           | France       | ❌       | ❌        |
+| **Alerts**                   | ❌          | ✅             | ✅           | ❌           | France       | Denmark | ❌        |
+| **Normals**                  | Average    | ✅             | Average     | Average     | ✅            | Average | ❌        |
 
 | National sources             | China   | NWS           | GeoSphere Austria  | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
 |------------------------------|---------|---------------|--------------------|------------|--------|---------|---------|-------------|
@@ -227,13 +227,13 @@ Legend:
 
 # Combinable sources
 
-| Worldwide sources            | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Pirate Weather | Météo-France | DMI           | Meteo AM |
-|------------------------------|------------|-------------|---------------|-------------|----------------|--------------|---------------|----------|
-| **Air quality**              | ✅          | ✅           | Norway        | ✅           | ❌              | ❌            | ❌             | ❌        |
-| **Pollen**                   | ✅²         | ✅           | ❌             | ❌           | ❌              | ❌            | ❌             | ❌        |
-| **Precipitation nowcasting** | ✅³         | ✅           | Nordic area   | ❌           | ✅              | France       | ❌             | ❌        |
-| **Alerts**                   | ❌          | ✅           | *In progress* | ❌           | ✅              | France       | *In progress* | ❌        |
-| **Normals**                  | ❌          | ✅           | ❌             | ❌           | ❌              | ✅⁴           | ❌             | ❌        |
+| Worldwide sources            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | DMI           | Meteo AM |
+|------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------------|----------|
+| **Air quality**              | ✅          | ✅           | Norway      | ✅           | ❌              | ❌            | ❌             | ❌        |
+| **Pollen**                   | ✅²         | ✅           | ❌           | ❌           | ❌              | ❌            | ❌             | ❌        |
+| **Precipitation nowcasting** | ✅³         | ✅           | Nordic area | ❌           | ✅              | France       | ❌             | ❌        |
+| **Alerts**                   | ❌          | ✅           | ✅           | ❌           | ✅              | France       | *In progress* | ❌        |
+| **Normals**                  | ❌          | ✅           | ❌           | ❌           | ❌              | ✅⁴           | ❌             | ❌        |
 
 | National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | CWA    | IMS                           | MET Éireann | ATMO AuRA     |
 |------------------------------|-------|---------------|--------------------|--------------------|------------|--------|--------|-------------------------------|-------------|---------------|

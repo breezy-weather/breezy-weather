@@ -23,12 +23,14 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
+import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
@@ -57,7 +59,8 @@ class MetNoService @Inject constructor(
 
     override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
     override fun requestWeather(
@@ -128,17 +131,43 @@ class MetNoService @Inject constructor(
                 }
             }
 
+        // Alerts only for Norway
+        val alerts =
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
+            ) {
+                mApi.getAlerts(
+                    USER_AGENT,
+                    if (context.currentLocale.toString().lowercase().startsWith("no")) {
+                        "no"
+                    } else "en",
+                    location.latitude,
+                    location.longitude
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MetNoAlertResult())
+                    }
+                }
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoAlertResult())
+                }
+            }
+
         return Observable.zip(
             forecast,
             sun,
             moon,
             nowcast,
-            airQuality
+            airQuality,
+            alerts
         ) { metNoForecast: MetNoForecastResult,
             metNoSun: MetNoSunResult,
             metNoMoon: MetNoMoonResult,
             metNoNowcast: MetNoNowcastResult,
-            metNoAirQuality: MetNoAirQualityResult
+            metNoAirQuality: MetNoAirQualityResult,
+            metNoAlerts: MetNoAlertResult
             ->
             convert(
                 context,
@@ -147,7 +176,8 @@ class MetNoService @Inject constructor(
                 metNoSun,
                 metNoMoon,
                 metNoNowcast,
-                metNoAirQuality
+                metNoAirQuality,
+                metNoAlerts
             )
         }
     }
@@ -155,7 +185,8 @@ class MetNoService @Inject constructor(
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
+        SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
@@ -169,12 +200,15 @@ class MetNoService @Inject constructor(
             ) || (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("NO", ignoreCase = true)
+            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
             )
     }
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = null
+    override val alertAttribution = weatherAttribution
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
@@ -207,8 +241,35 @@ class MetNoService @Inject constructor(
                 }
             }
 
-        return Observable.zip(nowcast, airQuality) { metNoNowcast: MetNoNowcastResult,
-                                                     metNoAirQuality: MetNoAirQualityResult
+        // Alerts only for Norway
+        val alerts =
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
+            ) {
+                mApi.getAlerts(
+                    USER_AGENT,
+                    if (context.currentLocale.toString().lowercase().startsWith("no")) {
+                        "no"
+                    } else "en",
+                    location.latitude,
+                    location.longitude
+                ).onErrorResumeNext {
+                    Observable.create { emitter ->
+                        emitter.onNext(MetNoAlertResult())
+                    }
+                }
+            } else {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoAlertResult())
+                }
+            }
+
+        return Observable.zip(
+            nowcast, airQuality, alerts
+        ) { metNoNowcast: MetNoNowcastResult,
+            metNoAirQuality: MetNoAirQualityResult,
+            metNoAlerts: MetNoAlertResult
             ->
             convertSecondary(
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -216,6 +277,9 @@ class MetNoService @Inject constructor(
                 } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     metNoAirQuality
+                } else null,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                    metNoAlerts
                 } else null
             )
         }
