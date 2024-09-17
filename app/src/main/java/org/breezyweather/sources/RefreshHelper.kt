@@ -141,8 +141,14 @@ class RefreshHelper @Inject constructor(
                                     timeZone = result.timeZone,
                                     country = result.country,
                                     countryCode = result.countryCode ?: "",
-                                    province = result.province ?: "",
-                                    provinceCode = result.provinceCode ?: "",
+                                    admin1 = result.admin1 ?: "",
+                                    admin1Code = result.admin1Code ?: "",
+                                    admin2 = result.admin2 ?: "",
+                                    admin2Code = result.admin2Code ?: "",
+                                    admin3 = result.admin3 ?: "",
+                                    admin3Code = result.admin3Code ?: "",
+                                    admin4 = result.admin4 ?: "",
+                                    admin4Code = result.admin4Code ?: "",
                                     city = result.city,
                                     district = result.district ?: "",
                                     needsGeocodeRefresh = false
@@ -225,8 +231,14 @@ class RefreshHelper @Inject constructor(
                          */
                         country = result.country ?: "",
                         countryCode = result.countryCode ?: "",
-                        province = result.province ?: "",
-                        provinceCode = result.provinceCode ?: "",
+                        admin1 = result.admin1 ?: "",
+                        admin1Code = result.admin1Code ?: "",
+                        admin2 = result.admin2 ?: "",
+                        admin2Code = result.admin2Code ?: "",
+                        admin3 = result.admin3 ?: "",
+                        admin3Code = result.admin3Code ?: "",
+                        admin4 = result.admin4 ?: "",
+                        admin4Code = result.admin4Code ?: "",
                         city = result.city ?: "",
                         district = result.district ?: ""
                     )

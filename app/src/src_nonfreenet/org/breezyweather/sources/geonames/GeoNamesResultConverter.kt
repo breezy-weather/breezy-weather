@@ -33,20 +33,14 @@ fun convert(
         timeZone = result.timezone!!.timeZoneId!!,
         country = result.countryName ?: "",
         countryCode = result.countryCode ?: "",
-        province = if (result.adminName2.isNullOrEmpty()) {
-            if (result.adminName1.isNullOrEmpty()) {
-                if (result.adminName3.isNullOrEmpty()) {
-                    result.adminName4
-                } else result.adminName3
-            } else result.adminName1
-        } else result.adminName2,
-        provinceCode = if (result.adminName2.isNullOrEmpty()) {
-            if (result.adminName1.isNullOrEmpty()) {
-                if (result.adminName3.isNullOrEmpty()) {
-                    result.adminCode4
-                } else result.adminCode3
-            } else result.adminCode1
-        } else result.adminCode2,
+        admin1 = result.adminName1,
+        admin1Code = result.adminCode1,
+        admin2 = result.adminName2,
+        admin2Code = result.adminCode2,
+        admin3 = result.adminName3,
+        admin3Code = result.adminCode3,
+        admin4 = result.adminName4,
+        admin4Code = result.adminCode4,
         city = getLocalizedName(result, languageCode) ?: ""
     )
 }

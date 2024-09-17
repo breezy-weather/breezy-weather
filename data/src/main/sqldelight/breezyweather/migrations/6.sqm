@@ -1,0 +1,23 @@
+ALTER TABLE locations
+RENAME COLUMN province TO admin2;
+
+ALTER TABLE locations
+RENAME COLUMN province_code TO admin2_code;
+
+ALTER TABLE locations
+ADD COLUMN admin1 TEXT;
+
+ALTER TABLE locations
+ADD COLUMN admin1_code TEXT;
+
+ALTER TABLE locations
+ADD COLUMN admin3 TEXT;
+
+ALTER TABLE locations
+ADD COLUMN admin3_code TEXT;
+
+ALTER TABLE locations
+ADD COLUMN admin4 TEXT;
+
+ALTER TABLE locations
+ADD COLUMN admin4_code TEXT;

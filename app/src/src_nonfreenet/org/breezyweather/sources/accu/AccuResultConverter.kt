@@ -74,10 +74,10 @@ fun convert(
             timeZone = result.TimeZone.Name,
             country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
             countryCode = result.Country.ID,
-            province = result.AdministrativeArea?.LocalizedName?.ifEmpty {
+            admin2 = result.AdministrativeArea?.LocalizedName?.ifEmpty {
                 result.AdministrativeArea.EnglishName
             },
-            provinceCode = result.AdministrativeArea?.ID,
+            admin2Code = result.AdministrativeArea?.ID,
             city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
         )
 }

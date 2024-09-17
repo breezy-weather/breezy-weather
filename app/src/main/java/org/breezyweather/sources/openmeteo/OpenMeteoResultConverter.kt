@@ -69,17 +69,14 @@ fun convert(
         timeZone = result.timezone,
         country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
         countryCode = result.countryCode,
-        province = if (result.admin2.isNullOrEmpty()) {
-            if (result.admin1.isNullOrEmpty()) {
-                if (result.admin3.isNullOrEmpty()) {
-                    result.admin4
-                } else result.admin3
-            } else result.admin1
-        } else result.admin2,
+        admin1 = result.admin1,
+        admin2 = result.admin2,
         // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
-        provinceCode = if (result.countryCode.equals("FR", ignoreCase = true)) {
+        admin2Code = if (result.countryCode.equals("FR", ignoreCase = true)) {
             getFrenchDepartmentCode(result.admin2 ?: "")
         } else null,
+        admin3 = result.admin3,
+        admin4 = result.admin4,
         city = result.name,
         weatherSource = "openmeteo"
     )

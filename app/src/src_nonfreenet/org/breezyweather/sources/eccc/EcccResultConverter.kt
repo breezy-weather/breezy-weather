@@ -55,8 +55,14 @@ fun convert(
     return location.copy(
         country = "Canada",
         countryCode = "CA",
-        province = "",
-        provinceCode = "",
+        admin1 = "",
+        admin1Code = "",
+        admin2 = "",
+        admin2Code = "",
+        admin3 = "",
+        admin3Code = "",
+        admin4 = "",
+        admin4Code = "",
         city = result.displayName ?: "",
         // Make sure to update TimeZone, especially useful on current location
         timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

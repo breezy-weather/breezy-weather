@@ -1,6 +1,7 @@
 # Version 5.2.9 (not yet released)
 
 **Improvements and fixes**
+- Add support for more administration levels (province, regions, county, departments, etc) on locations. Existing manually added locations will need to be re-added
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 
 

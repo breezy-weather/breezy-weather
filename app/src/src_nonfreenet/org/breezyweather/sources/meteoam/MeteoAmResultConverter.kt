@@ -44,7 +44,7 @@ fun convert(
         timeZone = timezone,
         country = reverseLocation.country,
         countryCode = reverseLocation.country_code,
-        province = reverseLocation.county,
+        admin2 = reverseLocation.county,
         city = reverseLocation.city
     )
 }

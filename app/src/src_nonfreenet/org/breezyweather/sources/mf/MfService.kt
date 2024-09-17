@@ -133,11 +133,11 @@ class MfService @Inject constructor(
         val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.provinceCode.isNullOrEmpty()
+            !location.admin2Code.isNullOrEmpty()
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.provinceCode!!,
+                location.admin2Code!!,
                 "iso",
                 token
             ).onErrorResumeNext {
@@ -212,7 +212,7 @@ class MfService @Inject constructor(
             ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("FR", ignoreCase = true) &&
-                !location.provinceCode.isNullOrEmpty()
+                !location.admin2Code.isNullOrEmpty()
             ) || (feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("FR", ignoreCase = true)
@@ -254,11 +254,11 @@ class MfService @Inject constructor(
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.provinceCode.isNullOrEmpty()
+            !location.admin2Code.isNullOrEmpty()
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.provinceCode!!,
+                location.admin2Code!!,
                 "iso",
                 token
             )

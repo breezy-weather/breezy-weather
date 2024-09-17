@@ -51,8 +51,8 @@ fun convert(
     return location.copy(
         timeZone = locationProperties.timeZone,
         countryCode = "US",
-        province = locationProperties.relativeLocation?.properties?.state,
-        provinceCode = locationProperties.relativeLocation?.properties?.state,
+        admin1 = locationProperties.relativeLocation?.properties?.state,
+        admin1Code = locationProperties.relativeLocation?.properties?.state,
         city = locationProperties.relativeLocation?.properties?.city ?: ""
     )
 }

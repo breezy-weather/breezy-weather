@@ -46,7 +46,7 @@ fun convert(
         timeZone = "Europe/Dublin",
         country = "Ireland",
         countryCode = "IE",
-        province = result.county,
+        admin2 = result.county,
         city = result.city ?: ""
     )
 }
@@ -120,8 +120,8 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
     if (warnings == null) return null
     if (warnings.isEmpty()) return emptyList()
 
-    val region = if (MetIeService.regionsMapping.containsKey(location.province)) {
-        location.province
+    val region = if (MetIeService.regionsMapping.containsKey(location.admin2)) {
+        location.admin2
     } else location.parameters.getOrElse("metie") { null }?.getOrElse("region") { null }
     val eiRegion = region?.let { MetIeService.regionsMapping.getOrElse(region) { null } }
 

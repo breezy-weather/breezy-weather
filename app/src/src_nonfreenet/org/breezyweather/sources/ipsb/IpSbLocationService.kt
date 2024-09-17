@@ -54,7 +54,8 @@ class IpSbLocationService @Inject constructor(
                     timeZone = t.timezone,
                     country = t.country,
                     countryCode = t.countryCode,
-                    province = t.region,
+                    admin1 = t.region,
+                    admin1Code = t.regionCode,
                     city = t.city
                 )
             }

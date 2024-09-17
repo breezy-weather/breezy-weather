@@ -46,8 +46,14 @@ fun convert(
         timeZone = result.timezone,
         country = result.country ?: location.country,
         countryCode = result.country,
-        province = "",
-        provinceCode = "",
+        admin1 = "",
+        admin1Code = "",
+        admin2 = "",
+        admin2Code = "",
+        admin3 = "",
+        admin3Code = "",
+        admin4 = "",
+        admin4Code = "",
         city = result.city ?: ""
     )
 }

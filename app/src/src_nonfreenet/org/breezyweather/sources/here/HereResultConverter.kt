@@ -54,9 +54,9 @@ fun convert(
                 timeZone = item.timeZone.name,
                 country = item.address.countryName,
                 countryCode = item.address.countryCode,
-                province = item.address.state,
-                provinceCode = item.address.stateCode,
-                district = item.address.county,
+                admin1 = item.address.state,
+                admin1Code = item.address.stateCode,
+                admin2 = item.address.county,
                 city = item.address.city
             )
     }

@@ -56,7 +56,7 @@ fun convert(
     return location.copy(
         timeZone = "Asia/Taipei",
         country = "臺灣",
-        province = town.ctyName,
+        admin2 = town.ctyName, // TODO: Double check if admin1, admin2, admin3 or admin4
         city = town.townName,
         district = town.villageName
     )

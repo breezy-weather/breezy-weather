@@ -67,10 +67,10 @@ fun convert(location: Location, result: MfForecastResult): Location {
             timeZone = result.properties.timezone,
             country = result.properties.country,
             countryCode = result.properties.country.substring(0, 2),
-            province = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
+            admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
                 getFrenchDepartmentName(result.properties.frenchDepartment)
             } else null, // Département
-            provinceCode = result.properties.frenchDepartment, // Département
+            admin2Code = result.properties.frenchDepartment, // Département
             city = result.properties.name
         )
     }

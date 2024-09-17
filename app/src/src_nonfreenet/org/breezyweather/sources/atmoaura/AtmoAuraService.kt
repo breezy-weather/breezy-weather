@@ -66,8 +66,8 @@ class AtmoAuraService @Inject constructor(
         return (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.provinceCode.isNullOrEmpty() &&
-            location.provinceCode in arrayOf(
+            !location.admin2Code.isNullOrEmpty() &&
+            location.admin2Code in arrayOf(
                 "01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"
             )
         )

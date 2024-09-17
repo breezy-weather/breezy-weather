@@ -59,7 +59,7 @@ fun convert(
             timeZone = "Asia/Shanghai",
             country = "",
             countryCode = "CN",
-            province = result.affiliation,
+            admin2 = result.affiliation, // TODO: Double check if admin1 or admin2
             city = result.name ?: ""
         )
 }

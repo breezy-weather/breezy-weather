@@ -140,7 +140,7 @@ class MetIeService @Inject constructor(
         coordinatesChanged: Boolean,
         features: List<SecondaryWeatherSourceFeature>
     ): Boolean {
-        if (regionsMapping.containsKey(location.province)) return false
+        if (regionsMapping.containsKey(location.admin2)) return false
 
         val currentRegion = location.parameters
             .getOrElse(id) { null }?.getOrElse("region") { null }

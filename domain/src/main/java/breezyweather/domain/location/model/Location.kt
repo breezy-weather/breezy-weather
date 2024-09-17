@@ -41,8 +41,14 @@ data class Location(
 
     val country: String = "",
     val countryCode: String? = null,
-    val province: String? = null,
-    val provinceCode: String? = null,
+    val admin1: String? = null,
+    val admin1Code: String? = null,
+    val admin2: String? = null,
+    val admin2Code: String? = null,
+    val admin3: String? = null,
+    val admin3Code: String? = null,
+    val admin4: String? = null,
+    val admin4Code: String? = null,
     val city: String = "",
     val district: String? = null,
 
@@ -91,8 +97,14 @@ data class Location(
         parcel.writeString(timeZone)
         parcel.writeString(country)
         parcel.writeString(countryCode)
-        parcel.writeString(province)
-        parcel.writeString(provinceCode)
+        parcel.writeString(admin1)
+        parcel.writeString(admin1Code)
+        parcel.writeString(admin2)
+        parcel.writeString(admin2Code)
+        parcel.writeString(admin3)
+        parcel.writeString(admin3Code)
+        parcel.writeString(admin4)
+        parcel.writeString(admin4Code)
         parcel.writeString(city)
         parcel.writeString(district)
         parcel.writeString(weatherSource)
@@ -116,8 +128,14 @@ data class Location(
         timeZone = parcel.readString()!!,
         country = parcel.readString()!!,
         countryCode = parcel.readString(),
-        province = parcel.readString(),
-        provinceCode = parcel.readString(),
+        admin1 = parcel.readString(),
+        admin1Code = parcel.readString(),
+        admin2 = parcel.readString(),
+        admin2Code = parcel.readString(),
+        admin3 = parcel.readString(),
+        admin3Code = parcel.readString(),
+        admin4 = parcel.readString(),
+        admin4Code = parcel.readString(),
         city = parcel.readString()!!,
         district = parcel.readString(),
         weatherSource = parcel.readString()!!,
@@ -201,8 +219,8 @@ data class Location(
     }
 
     override fun toString(): String {
-        val builder = StringBuilder("$country $province")
-        if (province != city && city.isNotEmpty()) {
+        val builder = StringBuilder("$country $admin1 $admin2 $admin3 $admin4")
+        if (admin4 != city && city.isNotEmpty()) {
             builder.append(" ").append(city)
         }
         if (city != district && !district.isNullOrEmpty()) {
@@ -216,11 +234,29 @@ data class Location(
         if (country.isNotEmpty()) {
             builder.append(country)
         }
-        if (!province.isNullOrEmpty()) {
+        if (!admin1.isNullOrEmpty()) {
             if (builder.toString().isNotEmpty()) {
                 builder.append(", ")
             }
-            builder.append(province)
+            builder.append(admin1)
+        }
+        if (!admin2.isNullOrEmpty()) {
+            if (builder.toString().isNotEmpty()) {
+                builder.append(", ")
+            }
+            builder.append(admin2)
+        }
+        if (!admin3.isNullOrEmpty() && (!admin4.isNullOrEmpty() || admin3 != city)) {
+            if (builder.toString().isNotEmpty()) {
+                builder.append(", ")
+            }
+            builder.append(admin3)
+        }
+        if (!admin4.isNullOrEmpty() && admin4 != city) {
+            if (builder.toString().isNotEmpty()) {
+                builder.append(", ")
+            }
+            builder.append(admin4)
         }
         return builder.toString()
     }
@@ -244,10 +280,17 @@ data class Location(
         if (cityId == location.cityId) {
             return true
         }
-        if (isEquals(province, location.province) && isEquals(city, location.city)) {
+        if (isEquals(admin1, location.admin1) &&
+            isEquals(admin2, location.admin2) &&
+            isEquals(admin3, location.admin3) &&
+            isEquals(admin4, location.admin4) &&
+            isEquals(city, location.city)) {
             return true
         }
-        return if (isEquals(province, location.province) &&
+        return if (isEquals(admin1, location.admin1) &&
+            isEquals(admin2, location.admin2) &&
+            isEquals(admin3, location.admin3) &&
+            isEquals(admin4, location.admin4) &&
             cityAndDistrict == location.cityAndDistrict
         ) {
             true
