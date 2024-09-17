@@ -200,6 +200,7 @@ class PrecipitationNowcastViewHolder(
 
         val modelProducer = remember { CartesianChartModelProducer() }
 
+        val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         val thresholdLineColor = if (context.isDarkMode) {
             R.color.colorTextGrey
         } else R.color.colorTextGrey2nd
@@ -266,7 +267,8 @@ class PrecipitationNowcastViewHolder(
                                         WeatherViewController.isDaylight(location)
                                     )[0]
                             ),
-                            thickness = 500.dp
+                            thickness = 500.dp,
+                            shape = remember { Shape.rounded(allPercent = 15) },
                         )
                     ),
                     axisValueOverrider = axisValueOverrider
@@ -277,9 +279,14 @@ class PrecipitationNowcastViewHolder(
                     label = null, // Workaround: no custom ticks
                 ),
                 decorations = listOfNotNull(
-                    // Don’t show some thresholds when max precipitation is very high
+                    /**
+                     * Don’t show some thresholds when max precipitation is very high
+                     * - Below heavy level: keep all 3 lines
+                     * - Between heavy level and 2 * heavy level: keep light and heavy lines
+                     * - Above 2 * heavy level: keep heavy line only
+                     */
                     (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
-                        if (it) {
+                        if (it && SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
                             rememberHorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
                                 verticalLabelPosition = VerticalPosition.Bottom,
@@ -293,8 +300,8 @@ class PrecipitationNowcastViewHolder(
                             )
                         } else null
                     },
-                    (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
-                        if (it) {
+                    (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY).let {
+                        if (it && isTrendHorizontalLinesEnabled) {
                             rememberHorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
                                 verticalLabelPosition = VerticalPosition.Bottom,
@@ -308,17 +315,19 @@ class PrecipitationNowcastViewHolder(
                             )
                         } else null
                     },
-                    rememberHorizontalLine(
-                        y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
-                        verticalLabelPosition = VerticalPosition.Bottom,
-                        line = rememberLineComponent(
-                            color = colorResource(thresholdLineColor)
-                        ),
-                        labelComponent = rememberTextComponent(
-                            color = colorResource(thresholdLineColor)
-                        ),
-                        label = { context.getString(R.string.precipitation_intensity_heavy) }
-                    )
+                    if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
+                        rememberHorizontalLine(
+                            y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
+                            verticalLabelPosition = VerticalPosition.Bottom,
+                            line = rememberLineComponent(
+                                color = colorResource(thresholdLineColor)
+                            ),
+                            labelComponent = rememberTextComponent(
+                                color = colorResource(thresholdLineColor)
+                            ),
+                            label = { context.getString(R.string.precipitation_intensity_heavy) }
+                        )
+                    } else null
                 ),
                 // TODO: Makes two markers instead of fading away when tapped somewhere else
                 //persistentMarkers = mapOf(minutely.indexOfLast { it.date < Date() }.toFloat() to marker),

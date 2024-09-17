@@ -1,3 +1,9 @@
+# Version 5.2.9 (not yet released)
+
+**Improvements and fixes**
+- Nowcasting chart: honor disabled “Threshold lines on charts” preference
+
+
 # Version 5.2.8 (2024-09-15)
 
 **Improvements and fixes**

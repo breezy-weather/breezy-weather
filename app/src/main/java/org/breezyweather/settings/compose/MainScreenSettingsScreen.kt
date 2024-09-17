@@ -132,6 +132,14 @@ fun MainScreenSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
                         updateWidgetIfNecessary(context) // Has some widgets with it
+
+                        // FIXME: Doesn't work without restart on nowcasting chart
+                        SnackbarHelper.showSnackbar(
+                            content = context.getString(R.string.settings_changes_apply_after_restart),
+                            action = context.getString(R.string.action_restart)
+                        ) {
+                            BreezyWeather.instance.recreateAllActivities()
+                        }
                     },
                 )
             }
