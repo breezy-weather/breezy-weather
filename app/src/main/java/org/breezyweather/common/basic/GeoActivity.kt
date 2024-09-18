@@ -46,10 +46,6 @@ abstract class GeoActivity : AppCompatActivity() {
             true,
             !this.isDarkMode
         )
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
 
         // decor -> fit horizontal system bar -> decor child.
         val decorView = window.decorView as ViewGroup
