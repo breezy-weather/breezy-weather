@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Add support for more administration levels (province, regions, county, departments, etc) on locations. Existing manually added locations will need to be re-added
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
+- Fix snackbar no longer appearing after changing some preferences in some cases (@min7-i)
 
 
 # Version 5.2.8 (2024-09-15)
