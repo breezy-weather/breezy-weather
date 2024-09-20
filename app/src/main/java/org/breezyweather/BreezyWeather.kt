@@ -109,9 +109,12 @@ class BreezyWeather : Application(),
     }
 
     fun recreateAllActivities() {
+        val topA = topActivity
         for (a in activitySet) {
-            a.recreate()
+            if (a != topA) a.recreate()
         }
+        // ensure that top activity stays on top by recreating it last
+        topA?.recreate()
     }
 
     private fun setDayNightMode() {
