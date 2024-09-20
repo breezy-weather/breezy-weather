@@ -5,6 +5,18 @@ import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.AirQuality
 import org.breezyweather.domain.weather.index.PollutantIndex
 
+val AirQuality.validPollutants: List<PollutantIndex>
+    get() {
+        return listOf(
+            PollutantIndex.NO2,
+            PollutantIndex.O3,
+            PollutantIndex.PM10,
+            PollutantIndex.PM25,
+            PollutantIndex.SO2,
+            PollutantIndex.CO
+        ).filter { getConcentration(it) != null }
+    }
+
 fun AirQuality.getIndex(pollutant: PollutantIndex? = null): Int? {
     return if (pollutant == null) { // Air Quality
         val pollutantsAqi: List<Int> = listOfNotNull(
