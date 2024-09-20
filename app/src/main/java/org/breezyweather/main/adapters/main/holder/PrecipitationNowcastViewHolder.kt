@@ -41,8 +41,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
-import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottomAxis
-import com.patrykandpatrick.vico.compose.cartesian.decoration.rememberHorizontalLine
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberColumnCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.marker.rememberDefaultCartesianMarker
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
@@ -50,19 +49,20 @@ import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
-import com.patrykandpatrick.vico.compose.common.of
+import com.patrykandpatrick.vico.compose.common.dimensions
 import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
-import com.patrykandpatrick.vico.core.cartesian.data.AxisValueOverrider
+import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
 import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
+import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerValueFormatter
-import com.patrykandpatrick.vico.core.common.Dimensions
 import com.patrykandpatrick.vico.core.common.VerticalPosition
 import com.patrykandpatrick.vico.core.common.component.Shadow
 import com.patrykandpatrick.vico.core.common.component.TextComponent
-import com.patrykandpatrick.vico.core.common.shape.Shape
+import com.patrykandpatrick.vico.core.common.shape.CorneredShape
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
@@ -205,7 +205,7 @@ class PrecipitationNowcastViewHolder(
             R.color.colorTextGrey
         } else R.color.colorTextGrey2nd
 
-        val axisValueOverrider = AxisValueOverrider.fixed(
+        val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(
             maxY = maxY
         )
         val marker = rememberDefaultCartesianMarker(
@@ -221,13 +221,13 @@ class PrecipitationNowcastViewHolder(
                             location, androidx.appcompat.R.attr.colorPrimary
                         )
                     ),
-                    Shape.Pill,
+                    CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
                         dyDp = LABEL_BACKGROUND_SHADOW_DY_DP
                     )
                 ),
-                padding = Dimensions.of(
+                padding = dimensions(
                     dimensionResource(R.dimen.normal_margin),
                     dimensionResource(R.dimen.little_margin)
                 ),
@@ -268,12 +268,12 @@ class PrecipitationNowcastViewHolder(
                                     )[0]
                             ),
                             thickness = 500.dp,
-                            shape = remember { Shape.rounded(allPercent = 15) },
+                            shape = remember { CorneredShape.rounded(allPercent = 15) },
                         )
                     ),
-                    axisValueOverrider = axisValueOverrider
+                    rangeProvider = cartesianLayerRangeProvider
                 ),
-                bottomAxis = rememberBottomAxis(
+                bottomAxis = HorizontalAxis.rememberBottom(
                     guideline = null,
                     tick = null, // Workaround: no custom ticks
                     label = null, // Workaround: no custom ticks
@@ -287,7 +287,7 @@ class PrecipitationNowcastViewHolder(
                      */
                     (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
                         if (it && SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
-                            rememberHorizontalLine(
+                            HorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
@@ -302,7 +302,7 @@ class PrecipitationNowcastViewHolder(
                     },
                     (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY).let {
                         if (it && isTrendHorizontalLinesEnabled) {
-                            rememberHorizontalLine(
+                            HorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
@@ -316,7 +316,7 @@ class PrecipitationNowcastViewHolder(
                         } else null
                     },
                     if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
-                        rememberHorizontalLine(
+                        HorizontalLine(
                             y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
                             verticalLabelPosition = VerticalPosition.Bottom,
                             line = rememberLineComponent(
