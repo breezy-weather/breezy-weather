@@ -20,7 +20,6 @@ import android.app.Notification
 import android.content.Context
 import android.graphics.drawable.Icon
 import android.os.Build
-import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
@@ -94,11 +93,15 @@ class ForecastNotificationNotifier(private val context: Context) {
                 )
             }
 
-            val remoteViews = getBigView(daily, temperatureUnit)
-            setCustomBigContentView(remoteViews)
-
             setContentTitle(getDayString(daily, temperatureUnit))
             setContentText(getNightString(daily, temperatureUnit))
+            setStyle(NotificationCompat.BigTextStyle()
+                .bigText(
+                    getDayString(daily, temperatureUnit) + "\n" +
+                            getNightString(daily, temperatureUnit)
+                )
+                .setBigContentTitle("") // do not show any title when expanding the notification
+            )
             setContentIntent(
                 AbstractRemoteViewsPresenter.getWeatherPendingIntent(
                     context,
@@ -127,17 +130,6 @@ class ForecastNotificationNotifier(private val context: Context) {
             if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST,
             notification
         )
-    }
-
-    private fun getBigView(daily: Daily, temperatureUnit: TemperatureUnit): RemoteViews {
-        val view = RemoteViews(context.packageName, R.layout.notification_forecast)
-        view.setTextViewText(
-            R.id.notification_forecast_day, getDayString(daily, temperatureUnit)
-        )
-        view.setTextViewText(
-            R.id.notification_forecast_night, getNightString(daily, temperatureUnit)
-        )
-        return view
     }
 
     private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
