@@ -377,6 +377,10 @@ class MainActivity : GeoActivity(),
             }
         }
 
+        initPerLocationSettingsView()
+    }
+
+    private fun initPerLocationSettingsView() {
         binding.perLocationSettings.setContent {
             val validLocation = viewModel.currentLocation.collectAsState()
 
@@ -695,6 +699,7 @@ class MainActivity : GeoActivity(),
     // main fragment callback.
     override fun onEditIconClicked() {
         _dialogPerLocationSettingsOpen.value = true
+        initPerLocationSettingsView()
     }
 
     override fun onManageIconClicked() {
