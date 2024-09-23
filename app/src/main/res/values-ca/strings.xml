@@ -106,7 +106,7 @@
     <string name="widget_label_text_color">Color del text</string>
     <string name="widget_label_text_size">Mida del text</string>
     <string name="widget_label_clock_font">Font del rellotge</string>
-    <string name="widget_custom_subtitle_explanation">Pots escriure-hi el que vulguis, però si us plau para atenció a la longitud del text. Si vols incloure-hi dades de l’oratge, si us plau empra $ per a referenciar la paraula clau corresponent.
+    <string name="widget_custom_subtitle_explanation">Podeu inserir el que vulgueu, però tingueu en compte la longitud del text. Si voleu incloure-hi dades de l’oratge, utilitzeu $ per a referenciar la paraula clau corresponent.
 \n
 \nPer exemple, “oratge actual = $cw$” es mostrarà com a “oratge actual = Cel clar”.</string>
     <!-- keep those content with the format "$xxx$". -->
@@ -123,32 +123,32 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Visibilitat actual</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Rosada actual</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alertes</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Alertes (versió breu)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alertes (resum)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Ubicació</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitud</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Freqüència d’actualització</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_w_description">Setmana</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Setmanal (versió breu)</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Descripció per dia</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Descripció per hores</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Setmanal (resum)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Descripció diària</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Descripció horària</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Canvi de línia</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Oratge diürn d’avui, demà, …, d’aquí a 4 dies</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Oratge nocturn d’avui, demà, …, d’aquí a 4 dies</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diürna d’avui, demà, …, d’aquí a 4 dies (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura nocturna d’avui, demà, …, 4 dies després (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura diürna d’avui, demà, …, 4 dies després (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura nocturna d’avui, demà, …, 4 dies després (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Precipitació diürna d’avui, demà, …, 4 dies després (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Precipitació nocturna d’avui, demà, …, 4 dies després (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Vient diürn d’avui, demà, …, 4 dies després</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Vient nocturn d’avui, demà, …, 4 dies després</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Oratge diürn d’avui, demà…, d’aquí a 4 dies</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Oratge nocturn d’avui, demà…, d’aquí a 4 dies</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura diürna d’avui, demà…, d’aquí a 4 dies (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura nocturna d’avui, demà…, 4 dies després (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura diürna d’avui, demà…, 4 dies després (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura nocturna d’avui, demà…, 4 dies després (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Precipitació diürna d’avui, demà…, 4 dies després (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Precipitació nocturna d’avui, demà…, 4 dies després (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Vent diürn d’avui, demà…, 4 dies després</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Vent nocturn d’avui, demà…, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sortida del sol d’avui, demà, …, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Posta del sol d’avui, demà, …, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Sortida de la lluna d’avui, demà, …, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Posta de la lluna d’avui, demà, …, 4 dies després</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar d’avui, demà, …, 4 dies després</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar d’avui, demà…, 4 dies després</string>
     <string name="widget_live_wallpaper_weather_kind">Oratge</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="location_message_added">S’ha afegit la ubicació correctament</string>
@@ -201,7 +201,7 @@
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
     <string name="settings_background_updates_refresh_never">Mai</string>
-    <string name="settings_background_updates_refresh_30min">Mitja hora</string>
+    <string name="settings_background_updates_refresh_30min">30 minuts</string>
     <string name="settings_background_updates_refresh_1h">1 hora</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 hores</string>
     <string name="settings_background_updates_refresh_2h">2 hores</string>
@@ -370,7 +370,7 @@
     <string name="settings_main">Pantalla principal</string>
     <string name="settings_debug_dump_crash_logs_summary">Desa registres d’error en un fitxer per compartir-los amb els desenvolupadors</string>
     <string name="air_quality_o3_info_title">Ozó a nivell del sòl (O₃)</string>
-    <string name="settings_notifications_summary">Alertes meteorològiques, precipitacions, pronòstic</string>
+    <string name="settings_notifications_summary">Notificacions d\'alertes meteorològiques, precipitacions i pronòstic de la primera ubicació</string>
     <string name="common_weather_text_rain_freezing_heavy">Pluja gelada intensa</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Posta del sol a les %s</string>
@@ -402,8 +402,8 @@
     <string name="unit_atm">atm</string>
     <string name="weather_message_invalid_location">Ubicació no vàlida, suprimeix-la i torna-la a afegir</string>
     <string name="settings_location">Ubicació</string>
-    <string name="settings_notifications_alerts_title">Notificacions d’alertes meteorològiques</string>
-    <string name="settings_weather_sources_summary">Configuració de les fonts de dades meteorològiques</string>
+    <string name="settings_notifications_alerts_title">Notificacions d’alertes meteorològiques severes</string>
+    <string name="settings_weather_sources_summary">Font meteorològica per defecte per a ubicacions noves, claus API personalitzades, i altres opcions de la font</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="weather_air_quality_and_pollen_data_by">Dades de qualitat de l’aire i pol·len per %s</string>
@@ -415,7 +415,7 @@
     <string name="action_see_more">Veure més</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
-    <string name="settings_widgets_notification_feels_like_switch">Usa la sensació tèrmica</string>
+    <string name="settings_widgets_notification_feels_like_switch">Utilitza la sensació tèrmica</string>
     <string name="dialog_permissions_location_content">Per poder utilitzar aquesta funció, heu de permetre a l’app l’accés a la vostra ubicació actual. Només serà compartida amb les fonts d’informació del temps seleccionades. Si canvieu d’opinió, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
@@ -463,7 +463,7 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Olivera</string>
     <string name="action_location_list">Llista d’ubicacions</string>
-    <string name="settings_weather_sources_per_location_summary">Personalitzar les fonts de dades meteorològiques d’aquesta ubicació</string>
+    <string name="settings_weather_sources_per_location_summary">Personalitza les fonts de dades meteorològiques utilitzades per a aquesta ubicació</string>
     <string name="action_back">Enrere</string>
     <string name="settings_widgets_broadcast_send_data_title">Enviar dades meteorològiques a %s</string>
     <string name="weather_air_quality_data_by">Dades de qualitat de l’aire per %s</string>
@@ -582,7 +582,7 @@
     <string name="weather_source_accu_preference_hours_1">1 hora</string>
     <string name="weather_source_accu_preference_days_15">15 dies</string>
     <string name="weather_source_accu_preference_hours_24">24 hores</string>
-    <string name="settings_location_access_precise_summaryOn">Activat. S’utilitzen tant la xarxa de dispositius com els proveïdors de GPS.</string>
+    <string name="settings_location_access_precise_summaryOn">Activat. El proveïdor de xarxa del dispositiu tindrà preferència, però també es pot utilitzar el GPS com a alternativa.</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Tancar</string>
     <string name="about_dependencies">Dependències</string>
@@ -660,7 +660,7 @@
     <string name="notification_precipitation_starting">Plourà aviat</string>
     <string name="notification_precipitation_stopping">Aviat deixarà de ploure</string>
     <string name="settings_weather_sources_default_source">Font per defecte per a ubicacions noves</string>
-    <string name="settings_weather_source_freenet_disclaimer">Hi ha més fonts meteorològiques disponibles d’altres versions de Breezy Weather. Toqueu aquí per obtenir més informació.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Hi ha més fonts meteorològiques disponibles en altres versions de l\'aplicació. Toqueu aquí per a més informació.</string>
     <string name="sunshine">Assolellat</string>
     <string name="dew_point_short">Punt de rosada</string>
     <string name="message_source_not_installed_error_content_tip_2">Canvieu les fonts meteorològiques d’aquesta ubicació o suprimiu-la i torneu-la a afegir.</string>
@@ -672,7 +672,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina els millors models meteorològics per a aquesta ubicació</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tots els models meteorològics d’aquest proveïdor en una predicció perfecta</string>
     <string name="settings_invalid_syntax">Sintaxi no vàlida</string>
-    <string name="message_source_not_installed_error_content_tip_1">Això pot passar quan afegiu la vostra ubicació en la versió estàndard del Breezy Weather i després canvieu a l’Free-networks only que té menys fonts meteorològiques admeses. Tornar a la versió estàndard pot resoldre aquest problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Això pot passar quan afegiu la vostra ubicació en la versió estàndard del Breezy Weather i després canvieu a fonts de xarxa lliures. Tornar a la versió estàndard pot resoldre aquest problema.</string>
     <string name="widget_label_hide_alternate_calendar">Amagar el calendari alternatiu</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Canviar a entrada de text</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
