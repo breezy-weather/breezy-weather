@@ -92,7 +92,7 @@
     <string name="location_message_failed_to_locate">A jelenlegi helyszín meghatározása sikertelen</string>
     <string name="weather_message_data_refresh_failed">Időjárásadatok frissítése sikertelen</string>
     <string name="location_dialog_failed_to_locate_title">Nem találja a megfelelő helyszínt?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Kérjük, ellenőrizze a helymeghatározási engedélyeket</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Ellenőrizze a helymeghatározási engedélyeket</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Engedélyezze a helymeghatározást</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
@@ -176,7 +176,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Élő háttérkép</string>
     <string name="settings_location_service">Helyszín meghatározási szolgáltatás</string>
-    <string name="settings_appearance_dark_mode_title">Színséma</string>
+    <string name="settings_appearance_dark_mode_title">Színtéma</string>
     <string name="settings_appearance_icon_pack_title">Ikonkészlet</string>
     <string name="settings_appearance">Megjelenés</string>
     <string name="settings_main_gravity_sensor_switch">Gravitációs érzékelő használata</string>
@@ -203,7 +203,7 @@
     <string name="widget_style_symmetry">Szimmetrikus</string>
     <string name="location_search_no_results">A(z) %1$s nem találja a következőt: %2$s</string>
     <string name="message_source_not_installed_error_title">A forrás már nem elérhető</string>
-    <string name="message_parsing_error_content">Győződjön meg róla, hogy frissítette az alkalmazást a legújabb verzióra. Előfordulhat, hogy a kiszolgáló ideiglenesen nem érhető el, ilyen esetben kérjük, próbálja újra később. Ha a probléma továbbra is fennáll, kérjük, rögzítsen egy hibajegyzéket a hibakeresési beállításokból, majd jelentse a problémát GitHubon.</string>
+    <string name="message_parsing_error_content">Győződjön meg róla, hogy frissítette az alkalmazást a legújabb verzióra. Előfordulhat, hogy a kiszolgáló ideiglenesen nem érhető el, ilyen esetben kérjük, próbálja újra később. Ha a probléma továbbra is fennáll, rögzítsen egy hibajegyzéket a hibakeresési beállításokból, majd jelentse a problémát GitHubon.</string>
     <string name="action_show_errors">Érintse meg a részletekért</string>
     <string name="dialog_permissions_location_content">A funkció használatához engedélyt kell adnia az alkalmazásnak, hogy hozzáférjen a jelenlegi tartózkodási helyszínéhez. Ez csak a kiválasztott időjárási forrásokkal lesz megosztva. Ha meggondolta magát, megszakíthatja a folyamatot, és kézzel is hozzáadhat egy rögzített helyszínt.</string>
     <string name="settings_background_updates_refresh_title">Frissítési gyakoriság</string>
@@ -223,7 +223,7 @@
     <string name="settings_background_updates_refresh_2h">2 óra</string>
     <string name="action_undo">Visszavonás</string>
     <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
-    <string name="settings_appearance_summary">Nyelv, színséma, ikoncsomag, mértékegységek</string>
+    <string name="settings_appearance_summary">Nyelv, színtéma, ikoncsomag, mértékegységek</string>
     <string name="weather_api_key_required_missing_content">A forrás használatához meg kell adnia egy API-kulcsot.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Riasztások (rövid)</string>
     <string name="weather_api_limit_reached_title">Az API-kérelmek száma elérte a korlátot</string>
@@ -301,7 +301,7 @@
     <string name="uv_index_11">Extrém</string>
     <string name="weather_alert_data_by">Riasztásadatok: %s</string>
     <string name="weather_normals_data_by">Hőmérsékletnorma-adatok: %s</string>
-    <string name="weather_api_unauthorized_content">Egyes időjárási adatforrások esetében saját API-kulcsot kell megadnia. Ha már megadott egyet, kérjük, ellenőrizze kétszer is a megadott API-kulcsot.</string>
+    <string name="weather_api_unauthorized_content">Egyes időjárási adatforrások esetében saját API-kulcsot kell megadnia. Ha már megadott egyet, ellenőrizze kétszer is a megadott API-kulcsot.</string>
     <string name="weather_source_accu_preference_days_1">1 nap</string>
     <string name="weather_source_accu_preference_days_5">5 nap</string>
     <string name="setting_weather_source_accu_hours">Órák</string>
@@ -322,7 +322,7 @@
     <string name="pollen_level_0">Semennyi</string>
     <string name="pollen_level_1">Nagyon alacsony</string>
     <string name="weather_message_secondary_data_refresh_failed">A másodlagos időjárásforrás adatainak frissítése sikertelen</string>
-    <string name="weather_message_invalid_location">Érvénytelen helyszín, kérjük törölje és adja hozzá újra</string>
+    <string name="weather_message_invalid_location">Érvénytelen helyszín, törölje és adja hozzá újra</string>
     <string name="weather_source_accu_preference_days_10">10 nap</string>
     <string name="weather_source_accu_preference_hours_1">1 óra</string>
     <string name="weather_source_accu_preference_hours_12">12 óra</string>
@@ -340,7 +340,7 @@
     <string name="settings_background_updates_summary">Frissítési gyakoriság, hibaelhárítás</string>
     <string name="settings_background_updates_refresh_3h">3 óra</string>
     <string name="settings_background_updates_refresh_6h">6 óra</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Figyelmen kívül hagyás alacsony töltöttségnél</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Mellőzés alacsony töltöttségnél</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nem sikerült megnyitni a készülék beállításait.</string>
     <string name="settings_background_updates_worker_info_title">Folyamatinformáció</string>
     <string name="settings_weather_sources_per_location_summary">A helyszínhez használt időjárási adatforrások testreszabása</string>
@@ -677,7 +677,7 @@
     <string name="settings_appearance_calendar_title">Alternatív naptár</string>
     <string name="settings_background_updates_refresh_never_warning2">A háttérben zajló frissítési folyamat ritkán fut: csak az első helyszínt frissíti az Ön által kiválasztott ütemben, a másodlagos helyszíneket pedig csak akkor, ha szüksége van rájuk, naponta egyszer. Az akkumulátorral takarékos, és nem haladhatja meg az %d MB adatforgalmat havonta.</string>
     <string name="settings_background_updates_refresh_never_warning3">Fontolja meg, hogy a háttérfrissítések kikapcsolása helyett ritkább frissítési gyakoriságot használjon, ellenkező esetben koppintson a “Folytatás” gombra, ha továbbra is folytatni szeretné.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nem találhatóak kompatibilis csomagok</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Nem találhatók kompatibilis csomagok</string>
     <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
     <string name="message_server_unavailable_title">A kiszolgáló nem érhető el</string>
     <string name="message_server_unavailable_content">Ez általában egy átmeneti hiba. Ha a hiba továbbra is fennáll, akkor jelentse a problémát a GitHubon.</string>
