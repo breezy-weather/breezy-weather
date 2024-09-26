@@ -85,7 +85,7 @@
     <string name="action_set">設定</string>
     <string name="action_help">ヘルプ</string>
     <string name="action_learn_more">詳細を表示</string>
-    <string name="about_app">アプリについて</string>
+    <string name="about_app">本アプリについて</string>
     <string name="about_translators">翻訳者</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">現在地が見つかりませんでした</string>
@@ -423,9 +423,9 @@
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">体感温度を使用</string>
     <string name="unit_kn">kn</string>
-    <string name="notification_precipitation_starting">まもなく降ります</string>
+    <string name="notification_precipitation_starting">まもなく雨が降ります</string>
     <string name="notification_precipitation_starting_desc">%s頃から降り始める予報となっています</string>
-    <string name="notification_precipitation_stopping">もうすぐ止むでしょう</string>
+    <string name="notification_precipitation_stopping">雨はもうすぐ止むでしょう</string>
     <string name="notification_precipitation_stopping_desc">%s頃に止む予報となっています</string>
     <string name="notification_style_native">ネイティブ</string>
     <string name="notification_style_cities">都市</string>
@@ -606,7 +606,7 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">ミリグラム毎立方メートル</string>
     <string name="notification_channel_background_services">バックグラウンドサービス</string>
-    <string name="notification_precipitation_continuing">降っています</string>
+    <string name="notification_precipitation_continuing">雨が降っています</string>
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>
     <string name="dialog_permissions_location_content">この機能を使用するには、現在の位置情報へのアクセスの権限をアプリに与える必要があります。位置情報は、選択した情報源とのみ共有されます。後から位置情報へのアクセスを取り消して、手動で位置情報を指定することもできます。</string>
     <string name="message_server_timeout">リクエストはタイムアウトになりました</string>
