@@ -72,7 +72,7 @@
     <string name="pollen_ambrosia">ブタクサ</string>
     <string name="pollen_tree">木の花粉</string>
     <string name="daily_forecast">予報（日）</string>
-    <string name="hourly_forecast">時間別予報</string>
+    <string name="hourly_forecast">予報（時間）</string>
     <string name="air_quality">大気の質</string>
     <string name="pollen">花粉</string>
     <string name="details">詳細情報</string>
@@ -237,7 +237,7 @@
     <string name="settings_background_updates_battery_optimization_summary">通知が受信できなかったり、ウィジェットが更新されなかったりする場合、まずこちらを試してください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>
     <string name="weather_source_accu_preference_days_5">5日</string>
-    <string name="weather_source_accu_preference_days_10">10 日</string>
+    <string name="weather_source_accu_preference_days_10">10日</string>
     <string name="weather_source_accu_preference_days_15">15日</string>
     <string name="temperature_degree_day_heating">暖房度日</string>
     <string name="temperature_degree_day_cooling">冷房度日</string>
@@ -415,8 +415,8 @@
     <string name="unit_mi">mi</string>
     <string name="unit_atm">標準大気圧</string>
     <string name="weather_source_accu_preference_hours_72">72時間</string>
-    <string name="weather_source_accu_preference_hours_120">120 時間</string>
-    <string name="weather_source_accu_preference_hours_240">240 時間</string>
+    <string name="weather_source_accu_preference_hours_120">120時間</string>
+    <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
     <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
@@ -539,7 +539,7 @@
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
     <string name="weather_source_accu_preference_hours_12">12時間</string>
-    <string name="weather_source_accu_preference_hours_24">24 時間</string>
+    <string name="weather_source_accu_preference_hours_24">24時間</string>
     <string name="location_message_permission_background_missing">バックグラウンドで位置情報へのアクセス権限がありません</string>
     <string name="action_see_more">詳細を見る</string>
     <string name="action_delete">削除</string>
