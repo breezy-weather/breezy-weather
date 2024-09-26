@@ -238,7 +238,7 @@
     <string name="weather_source_accu_preference_days_1">1 日</string>
     <string name="weather_source_accu_preference_days_5">5 日</string>
     <string name="weather_source_accu_preference_days_10">10 日</string>
-    <string name="weather_source_accu_preference_days_15">15日</string>
+    <string name="weather_source_accu_preference_days_15">15 日</string>
     <string name="temperature_degree_day_heating">暖房度日</string>
     <string name="temperature_degree_day_cooling">冷房度日</string>
     <string name="precipitation_none">降水なし</string>
@@ -488,7 +488,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
-    <string name="weather_source_accu_preference_hours_1">1時間</string>
+    <string name="weather_source_accu_preference_hours_1">1 時間</string>
     <string name="location_message_search_failed">場所を検索できませんでした</string>
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
     <string name="settings_debug_dump_crash_logs_summary">エラーログをファイルに保存して開発者と共有</string>
@@ -538,7 +538,7 @@
     <string name="ephemeris_sunrise_at">日の出 %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
-    <string name="weather_source_accu_preference_hours_12">12時間</string>
+    <string name="weather_source_accu_preference_hours_12">12 時間</string>
     <string name="weather_source_accu_preference_hours_24">24時間</string>
     <string name="location_message_permission_background_missing">バックグラウンドで位置情報へのアクセス権限がありません</string>
     <string name="action_see_more">詳細を見る</string>
