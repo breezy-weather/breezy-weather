@@ -559,7 +559,7 @@
     <string name="settings_icon_packs_weather_icon_dark">暗いアイコン</string>
     <string name="settings_main_threshold_lines_on_charts">図表上の閾値ライン</string>
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
-    <string name="settings_notifications_summary">最上部に設定されている場所の気象警報、降水（降雪）、予報の通知</string>
+    <string name="settings_notifications_summary">最上部に設定されている場所の気象警報・降水（降雪）・予報の通知</string>
     <string name="settings_notifications_precipitations_title">降水（降雪）の通知</string>
     <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで降るでしょう</string>
@@ -694,7 +694,7 @@
     <string name="about_check_for_app_updates">アプリのアップデートを確認</string>
     <string name="about_no_new_updates">アップデートはありません</string>
     <string name="notification_channel_app_updates">アプリのアップデート</string>
-    <string name="settings_notifications_app_updates_check">アプリのアップデートの通知</string>
+    <string name="settings_notifications_app_updates_check">アプリのアップデート通知</string>
     <string name="common_weather_text_sand_storm">砂あらし</string>
     <string name="meteoam_weather_text_smoke">煙</string>
     <string name="settings_unavailable_no_animations">利用できません。最初にAndroidの設定でアニメーションを有効にしてください</string>
