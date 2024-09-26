@@ -699,6 +699,6 @@
     <string name="meteoam_weather_text_smoke">煙</string>
     <string name="settings_unavailable_no_animations">利用できません。最初にAndroidの設定でアニメーションを有効にしてください</string>
     <string name="meteoam_weather_text_tornado_watersprout">竜巻または水上竜巻</string>
-    <string name="dialog_app_update_check_title">アップデートを通知</string>
+    <string name="dialog_app_update_check_title">最新の状態に保つ</string>
     <string name="notification_app_update_available">新しいバージョンが利用できます！</string>
 </resources>
