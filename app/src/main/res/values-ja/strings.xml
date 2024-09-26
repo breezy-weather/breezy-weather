@@ -217,7 +217,7 @@
     <string name="widget_style_pixel">ピクセル</string>
     <string name="widget_style_vertical">垂直</string>
     <string name="widget_subtitle_data_time">更新時刻</string>
-    <string name="widget_subtitle_data_aqi">大気質</string>
+    <string name="widget_subtitle_data_aqi">大気の質</string>
     <string name="widget_subtitle_data_wind">風</string>
     <string name="widget_subtitle_data_feels_like">体感温度</string>
     <string name="widget_subtitle_data_custom">カスタム</string>
@@ -633,7 +633,7 @@
     <string name="location_delete_location_dialog_message_no_name">保存した場所のリストからこの場所を削除しようとしています。</string>
     <string name="action_confirm">確認</string>
     <string name="widget_label_hide_header">ヘッダーを表示しない</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">現在の大気質の指数</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">現在の大気の質の指数</string>
     <string name="weather_message_too_frequent_refreshes">数秒待ってから再試行してください…</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日, 明日, …, 4日後の大気の質の指数</string>
     <string name="location_delete_location_dialog_title">場所を削除しますか？</string>
@@ -676,7 +676,7 @@
     <string name="alert_source">情報提供：%s</string>
     <string name="dialog_time_picker_select_time">時間を選択</string>
     <string name="dialog_time_picker_input_time">時間を入力</string>
-    <string name="widget_label_hide_alternate_calendar">他種類のカレンダーを表示しない</string>
+    <string name="widget_label_hide_alternate_calendar">他の種類のカレンダーを表示しない</string>
     <string name="settings_background_updates_refresh_never_warning2">バックグラウンドにおける更新プロセスは軽量です。メインの位置情報は選択した頻度でのみ更新され、二次位置情報は、これが必要な場合にのみ、1日に1回更新されます。この機能のバッテリー効率は高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
     <string name="message_server_unavailable_title">サーバー利用不可</string>
     <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水（降雪）の通知が届かなくなります。ウィジェットはアプリを開くまで更新されません。</string>
