@@ -235,8 +235,8 @@
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
     <string name="settings_background_updates_battery_optimization_summary">通知が受信できなかったり、ウィジェットが更新されなかったりする場合、まずこちらを試してください。</string>
-    <string name="weather_source_accu_preference_days_1">1 日</string>
-    <string name="weather_source_accu_preference_days_5">5 日</string>
+    <string name="weather_source_accu_preference_days_1">1日</string>
+    <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10 日</string>
     <string name="weather_source_accu_preference_days_15">15 日</string>
     <string name="temperature_degree_day_heating">暖房度日</string>
@@ -516,7 +516,7 @@
     <string name="settings_widgets_notification_persistent_switch">永続的</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">インチ毎時</string>
-    <string name="weather_message_invalid_location">無効の場所です。削除して改めて追加してください</string>
+    <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
     <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報にアクセス</string>
