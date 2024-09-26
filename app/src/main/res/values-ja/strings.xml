@@ -530,8 +530,8 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_mmhg_voice">水銀柱ミリメートル</string>
     <string name="wind_gusts">突風</string>
-    <string name="weather_data_by">データ提供: %s</string>
-    <string name="weather_air_quality_data_by">大気の質のデータ提供：%s</string>
+    <string name="weather_data_by">データ提供： %s</string>
+    <string name="weather_air_quality_data_by">大気質のデータ提供：%s</string>
     <string name="weather_minutely_data_by">降水量の予報データ提供：%s</string>
     <string name="weather_alert_data_by">警報のデータ提供：%s</string>
     <string name="weather_message_secondary_data_refresh_failed">二次情報源を更新できませんでした</string>
