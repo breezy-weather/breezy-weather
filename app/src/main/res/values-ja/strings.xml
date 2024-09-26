@@ -143,7 +143,7 @@
     <string name="widget_custom_subtitle_keyword_xss_description">今日, 明日, …, 4日後の日の入り</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">今日, 明日, …, 4日後の月の出</string>
     <string name="widget_custom_subtitle_keyword_xms_description">今日, 明日, …, 4日後の月の入り</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">今日, 明日, …, 4日後の月相</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">今日, 明日, …, 4日後の月の満ち欠け</string>
     <string name="widget_live_wallpaper_weather_kind">天気</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
     <string name="location_message_added">場所を追加しました</string>
@@ -401,7 +401,7 @@
     <string name="message_parsing_error_title">気象データを解析できませんでした</string>
     <string name="widget_material_you_current">Material You - 現在</string>
     <string name="widget_custom_subtitle_keyword_als_description">警報（短い）</string>
-    <string name="widget_week_style_5_days">5 日間</string>
+    <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3 日間</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif（太字）</string>
     <string name="settings_section_general">一般</string>
