@@ -414,7 +414,7 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_mi">mi</string>
     <string name="unit_atm">標準大気圧</string>
-    <string name="weather_source_accu_preference_hours_72">72 時間</string>
+    <string name="weather_source_accu_preference_hours_72">72時間</string>
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
