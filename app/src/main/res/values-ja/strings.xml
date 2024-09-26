@@ -286,7 +286,7 @@
     <string name="settings_widgets">ウィジェット･ライブ壁紙</string>
     <string name="about_contribution_WangDaYeeeeee">オリジナルプロジェクト「Geometric Weather」の開発者</string>
     <string name="settings_units_summary">気温･降水量･距離･速度･気圧</string>
-    <string name="settings_background_updates_worker_info_summary">最終実行: %s</string>
+    <string name="settings_background_updates_worker_info_summary">最終実行： %s</string>
     <string name="settings_main_cards_title">カード</string>
     <string name="settings_main_background_animation_disabled">無効</string>
     <string name="settings_background_updates_refresh_title">更新間隔</string>
@@ -418,7 +418,7 @@
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
-    <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
+    <string name="settings_location_access_precise_title">デバイスの GPS 使用状況</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">体感温度を使用</string>
@@ -461,7 +461,7 @@
     <string name="dialog_permissions_notification_title">気象警報を通知</string>
     <string name="notification_update_error">%d件の更新に失敗しました</string>
     <string name="location_search_weather_source">気象情報源</string>
-    <string name="settings_location_access_permission_already_granted">権限はすでに付与されています</string>
+    <string name="settings_location_access_permission_already_granted">権限は既に付与されています</string>
     <string name="settings_location_access_switch_summaryOn">許可されています。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
