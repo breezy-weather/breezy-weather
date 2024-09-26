@@ -235,9 +235,9 @@
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
     <string name="settings_background_updates_battery_optimization_summary">通知が受信できなかったり、ウィジェットが更新されなかったりする場合、まずこちらを試してください。</string>
-    <string name="weather_source_accu_preference_days_1">1日</string>
-    <string name="weather_source_accu_preference_days_5">5日</string>
-    <string name="weather_source_accu_preference_days_10">10日</string>
+    <string name="weather_source_accu_preference_days_1">1 日</string>
+    <string name="weather_source_accu_preference_days_5">5 日</string>
+    <string name="weather_source_accu_preference_days_10">10 日</string>
     <string name="weather_source_accu_preference_days_15">15日</string>
     <string name="temperature_degree_day_heating">暖房度日</string>
     <string name="temperature_degree_day_cooling">冷房度日</string>
@@ -516,7 +516,7 @@
     <string name="settings_widgets_notification_persistent_switch">永続的</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">インチ毎時</string>
-    <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
+    <string name="weather_message_invalid_location">無効の場所です。削除して改めて追加してください</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
     <string name="dialog_permissions_location_background_title">バックグラウンドで位置情報にアクセス</string>
@@ -575,7 +575,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">わずかまたは中程度の雷雨</string>
     <string name="air_quality_co_info_introduction">一酸化炭素（CO）は、無色、無臭、無味、非刺激性の有毒な可燃性ガスです。</string>
     <string name="weather_api_limit_reached_title">APIリクエスト数の制限に達しました</string>
-    <string name="weather_api_limit_reached_content">この制限を回避するには、あなた自身のAPIキーを追加してください。</string>
+    <string name="weather_api_limit_reached_content">この制限を回避するには、ご自身のAPIキーを追加してください。</string>
     <string name="weather_api_unauthorized_title">APIアクセスが許可されていません</string>
     <string name="about_contact">連絡</string>
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
