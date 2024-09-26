@@ -356,7 +356,7 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_cmph_voice">センチメートル毎時</string>
     <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">海里</string>
+    <string name="unit_nmi_voice">カイリ</string>
     <string name="unit_ft">ft</string>
     <string name="unit_mb_voice">ミリバール</string>
     <string name="unit_kpa">kPa</string>
