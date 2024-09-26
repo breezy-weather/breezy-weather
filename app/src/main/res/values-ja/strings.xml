@@ -295,7 +295,7 @@
     <string name="settings_main_summary">カードの順序･表示する情報･アニメーション</string>
     <string name="settings_main_section_animations">アニメーション</string>
     <string name="about_matrix">Matrixルーム</string>
-    <string name="settings_appearance_summary">言語･ダークモード･アイコンパック･単位</string>
+    <string name="settings_appearance_summary">言語･・ダークモード・アイコンパック・単位</string>
     <string name="settings_main_background_animation_enabled">有効</string>
     <string name="settings_background_updates_section_troubleshoot">問題の対処</string>
     <string name="about_source_code">ソースコード</string>
@@ -686,7 +686,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
     <string name="action_edit_location">この場所を編集</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">互換性のあるパッケージが見つかりませんでした</string>
-    <string name="settings_appearance_calendar_title">他の種類のカレンダー</string>
+    <string name="settings_appearance_calendar_title">他種類のカレンダー</string>
     <string name="settings_global">全般設定</string>
     <string name="precipitation_intensity_medium">中程度</string>
     <string name="action_download">ダウンロード</string>
