@@ -71,9 +71,9 @@
     <string name="pollen_mold">カビ</string>
     <string name="pollen_ambrosia">ブタクサ</string>
     <string name="pollen_tree">木の花粉</string>
-    <string name="daily_forecast">予報（日）</string>
-    <string name="hourly_forecast">予報（時間）</string>
-    <string name="air_quality">大気の質</string>
+    <string name="daily_forecast">毎日予報</string>
+    <string name="hourly_forecast">時間別予報</string>
+    <string name="air_quality">大気質</string>
     <string name="pollen">花粉</string>
     <string name="details">詳細情報</string>
     <string name="ephemeris">太陽と月</string>
@@ -485,7 +485,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプするとこの項目を削除できます</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">サンセリフ</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
