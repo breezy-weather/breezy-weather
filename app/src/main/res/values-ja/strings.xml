@@ -384,7 +384,7 @@
     <string name="pollen_level_3">やや多い</string>
     <string name="pollen_level_4">多い</string>
     <string name="pollen_level_5">非常に多い</string>
-    <string name="ephemeris_sunset_at">日没 %s</string>
+    <string name="ephemeris_sunset_at">日の入り %s</string>
     <string name="ephemeris_moonrise_at">月の出 %s</string>
     <string name="ephemeris_moonset_at">月の入り %s</string>
     <string name="weather_pollen_data_by">花粉のデータ提供：%s</string>
