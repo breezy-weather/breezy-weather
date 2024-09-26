@@ -71,7 +71,7 @@
     <string name="pollen_mold">カビ</string>
     <string name="pollen_ambrosia">ブタクサ</string>
     <string name="pollen_tree">木の花粉</string>
-    <string name="daily_forecast">毎日予報</string>
+    <string name="daily_forecast">予報（日）</string>
     <string name="hourly_forecast">時間別予報</string>
     <string name="air_quality">大気の質</string>
     <string name="pollen">花粉</string>
@@ -266,7 +266,7 @@
     <string name="air_quality_level_1">優良</string>
     <string name="air_quality_level_3_description">大気汚染が高いレベルに達しており、敏感な人々に健康被害が生じる場合があります。呼吸困難やのどの痛みなどの症状を感じている場合は、屋外で過ごす時間を減らしてください。</string>
     <string name="air_quality_level_4">健康被害あり</string>
-    <string name="air_quality_index">大気質指数</string>
+    <string name="air_quality_index">大気の質の指数</string>
     <string name="air_quality_level_1_description">大気の質はほとんどの人にとって理想的です。通常の屋外での活動をお楽しみください。</string>
     <string name="air_quality_level_2">普通</string>
     <string name="air_quality_level_4_description">敏感な人々は直ちに健康への影響を受ける場合があります。健康な人々は、長時間さらされると呼吸困難やのどの痛みを感じる場合があります。屋外活動を制限してください。</string>
@@ -485,7 +485,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプするとこの項目を削除できます</string>
-    <string name="widget_clock_font_sans_serif">サンセリフ</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
     <string name="weather_source_accu_preference_hours_1">1時間</string>
