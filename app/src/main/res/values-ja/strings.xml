@@ -171,7 +171,7 @@
     <string name="widget_clock_day_vertical">時計 + 今日（垂直）</string>
     <string name="widget_clock_day_week">時計 + 今日 + 今週</string>
     <string name="widget_text">テキスト</string>
-    <string name="widget_trend_daily">今日の予報</string>
+    <string name="widget_trend_daily">今日の傾向</string>
     <string name="widget_trend_hourly">時間別の傾向</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新しています</string>
@@ -292,7 +292,7 @@
     <string name="settings_background_updates_refresh_title">更新間隔</string>
     <string name="settings_background_updates_worker_info_title">バックグラウンド更新情報</string>
     <string name="settings_main_background_animation_title">背景のアニメーション</string>
-    <string name="settings_main_summary">カードの順序･表示する情報･アニメーション</string>
+    <string name="settings_main_summary">カードの順序・表示する情報・アニメーション</string>
     <string name="settings_main_section_animations">アニメーション</string>
     <string name="about_matrix">Matrixルーム</string>
     <string name="settings_appearance_summary">言語・ダークモード・アイコンパック・単位</string>
