@@ -413,7 +413,7 @@
     <string name="settings_item_delete">この項目を削除</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_mi">mi</string>
-    <string name="unit_atm">標準大気圧</string>
+    <string name="unit_atm">標準気圧</string>
     <string name="weather_source_accu_preference_hours_72">72時間</string>
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
@@ -481,7 +481,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">キログラム力毎平方センチメートル</string>
     <string name="message_network_unavailable">ネットワークを利用できません</string>
-    <string name="unit_atm_voice">標準大気圧</string>
+    <string name="unit_atm_voice">標準気圧</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
     <string name="location_swipe_to_delete">左にスワイプするとこの項目を削除できます</string>
