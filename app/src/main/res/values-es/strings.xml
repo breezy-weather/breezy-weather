@@ -350,7 +350,7 @@
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
-    <string name="weather_api_unauthorized_content">En algunas fuentes de datos meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
+    <string name="weather_api_unauthorized_content">En algunos servicios meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar cuando la batería esté baja</string>
@@ -443,7 +443,7 @@
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
     <string name="ephemeris_moonrise_at">Anochece a las %s</string>
     <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como los compuestos orgánicos volátiles, el monóxido de carbono y los óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a su naturaleza fotoquímica, los niveles más altos de ozono se observan durante los periodos de tiempo soleado.</string>
-    <string name="precipitation_nowcasting">Precipitaciones en tiempo real</string>
+    <string name="precipitation_nowcasting">Predicción inmediata</string>
     <string name="settings_main_section_animations">Animaciones</string>
     <string name="settings_notifications">Notificaciones</string>
     <string name="settings_notifications_forecast_today_title">Notificación de la previsión del día</string>
