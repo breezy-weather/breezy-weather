@@ -513,7 +513,7 @@
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
-    <string name="settings_widgets_notification_persistent_switch">永続化</string>
+    <string name="settings_widgets_notification_persistent_switch">永続的</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">インチ毎時</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
