@@ -458,7 +458,7 @@
     <string name="null_data_text">データなし</string>
     <string name="settings_color_app">アプリの設定に従う</string>
     <string name="weather_api_key_required_missing_title">必要なAPIキーがありません</string>
-    <string name="dialog_permissions_notification_title">気象情報を通知</string>
+    <string name="dialog_permissions_notification_title">気象警報を通知</string>
     <string name="notification_update_error">%d件の更新に失敗しました</string>
     <string name="location_search_weather_source">気象情報源</string>
     <string name="settings_location_access_permission_already_granted">権限はすでに付与されています</string>
