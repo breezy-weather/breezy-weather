@@ -551,7 +551,7 @@
     <string name="settings_weather_sources_per_location_summary">この場所の情報源をカスタマイズ</string>
     <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合、許可してください。</string>
     <string name="settings_weather_sources">気象情報源</string>
-    <string name="settings_source_default_value">デフォルト（変更なし）</string>
+    <string name="settings_source_default_value">既定（変更なし）</string>
     <string name="settings_source_api_key">APIキー</string>
     <string name="settings_appearance_dark_mode_locations_title">場所に応じてカラーモードを変更</string>
     <string name="settings_icon_packs_title">アイコンパック</string>
@@ -664,13 +664,13 @@
     <string name="pollen_tilia">リンデン</string>
     <string name="alert">警報</string>
     <string name="settings_source_instance">サーバー</string>
-    <string name="settings_source_instance_invalid">半角スラッシュ（/）で終わるhttpsプロトコルのURLを指定してください</string>
+    <string name="settings_source_instance_invalid">半角スラッシュ「/」で終わるhttpsプロトコルのURLを指定してください</string>
     <string name="message_invalid_incomplete_data">サーバーから無効または不完全なデータを受信しました</string>
     <string name="settings_per_location_theme">テーマ</string>
     <string name="settings_source_instance_geocoding">ジオコーディングのサーバー</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">予報のサーバー</string>
     <string name="settings_weather_source_freenet_disclaimer">他のバージョンでは情報源をさらに利用できます。ここをタップすると詳細を表示します。</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">大気の質のサーバー</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">大気質のサーバー</string>
     <string name="settings_widgets_broadcast_title">データの共有</string>
     <string name="settings_invalid_syntax">無効な構文</string>
     <string name="alert_source">情報提供：%s</string>
