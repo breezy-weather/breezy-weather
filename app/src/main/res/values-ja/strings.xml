@@ -172,7 +172,7 @@
     <string name="widget_clock_day_week">時計 + 今日 + 今週</string>
     <string name="widget_text">テキスト</string>
     <string name="widget_trend_daily">今日の予報</string>
-    <string name="widget_trend_hourly">時間別予報</string>
+    <string name="widget_trend_hourly">時間別の傾向</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新しています</string>
     <string name="widget_ellipsis">…</string>
