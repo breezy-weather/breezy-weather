@@ -283,7 +283,7 @@
     <string name="settings_main">メイン画面</string>
     <string name="settings_main_hourly_trends_title">各時間の予報</string>
     <string name="settings_main_section_options">オプション</string>
-    <string name="settings_widgets">ウィジェット･ライブ壁紙</string>
+    <string name="settings_widgets">ウィジェット・ライブ壁紙</string>
     <string name="about_contribution_WangDaYeeeeee">オリジナルプロジェクト「Geometric Weather」の開発者</string>
     <string name="settings_units_summary">気温・降水量・距離・速度・気圧</string>
     <string name="settings_background_updates_worker_info_summary">最終実行：%s</string>
@@ -513,7 +513,7 @@
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
-    <string name="settings_widgets_notification_persistent_switch">永続的</string>
+    <string name="settings_widgets_notification_persistent_switch">永続化</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">インチ毎時</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
@@ -561,7 +561,7 @@
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
     <string name="settings_notifications_summary">最上部に設定されている場所の気象警報・降水（降雪）・予報の通知</string>
     <string name="settings_notifications_precipitations_title">降水（降雪）の通知</string>
-    <string name="settings_widgets_summary">壁紙の設定･使用中のウィジェット･通知ウィジェット</string>
+    <string name="settings_widgets_summary">壁紙の設定・使用中のウィジェット・通知ウィジェット</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで降るでしょう</string>
     <string name="common_weather_text_mainly_clear">おおむね晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
