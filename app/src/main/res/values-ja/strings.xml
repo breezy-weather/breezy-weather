@@ -75,7 +75,7 @@
     <string name="hourly_forecast">予報（時間）</string>
     <string name="air_quality">大気の質</string>
     <string name="pollen">花粉</string>
-    <string name="details">詳細情報</string>
+    <string name="details">詳細</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次へ</string>
     <string name="action_done">終了</string>
@@ -85,7 +85,7 @@
     <string name="action_set">設定</string>
     <string name="action_help">ヘルプ</string>
     <string name="action_learn_more">詳細を表示</string>
-    <string name="about_app">本アプリについて</string>
+    <string name="about_app">アプリについて</string>
     <string name="about_translators">翻訳者</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">現在地が見つかりませんでした</string>
@@ -303,7 +303,7 @@
     <string name="settings_main_daily_trends_title">今日の予報</string>
     <string name="about_contributors">貢献者</string>
     <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別の説明</string>
-    <string name="precipitation_nowcasting">毎分の降水量</string>
+    <string name="precipitation_nowcasting">今後数時間の降水量</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定</string>
     <string name="about_privacy_policy">プライバシーポリシー</string>
@@ -373,7 +373,7 @@
     <string name="air_quality_o3_info_title">地表オゾン（O₃）</string>
     <string name="air_quality_no2_info_title">二酸化窒素（NO₂）</string>
     <string name="air_quality_no2_info_consequences">二酸化窒素にさらされると、気道を刺激し、呼吸器疾患を悪化させる可能性があります。さらに、NO₂ は重要なオゾン前駆体であり、喘息やその他の呼吸器疾患と密接に関係する汚染物質です。</string>
-    <string name="air_quality_so2_info_consequences">二酸化硫黄に曝されると、喘息による入院や救急外来への受診が必要になる場合があります。</string>
+    <string name="air_quality_so2_info_consequences">二酸化硫黄にさらされると、喘息による入院や救急外来への受診が必要になる場合があります。</string>
     <string name="pollen_alnus">ハンノキ</string>
     <string name="pollen_betula">カバノキ</string>
     <string name="pollen_artemisia">ヨモギ</string>
@@ -488,7 +488,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_never">無効</string>
     <string name="settings_location_access_background_title">バックグラウンドで位置情報へのアクセス</string>
-    <string name="weather_source_accu_preference_hours_1">1 時間</string>
+    <string name="weather_source_accu_preference_hours_1">1時間</string>
     <string name="location_message_search_failed">場所を検索できませんでした</string>
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
     <string name="settings_debug_dump_crash_logs_summary">エラーログをファイルに保存して開発者と共有</string>
