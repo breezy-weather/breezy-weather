@@ -38,6 +38,7 @@ import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
 import kotlin.math.min
 
@@ -106,54 +107,43 @@ fun Window.setSystemBarStyle(
     navigationShaderP: Boolean,
     lightNavigationP: Boolean
 ) {
-    var statusShader = statusShaderP
     var lightStatus = lightStatusP
-    var navigationShader = navigationShaderP
+    var statusShader = statusShaderP
     var lightNavigation = lightNavigationP
-    var visibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+    var navigationShader = navigationShaderP
 
-    // status bar.
-    if (lightStatus) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            visibility = visibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        } else {
-            lightStatus = false
-            statusShader = true
-        }
+    // status bar
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        lightStatus = false
+        statusShader = true
     }
+    WindowInsetsControllerCompat(this, this.decorView)
+        .isAppearanceLightStatusBars = lightStatus
 
-    // navigation bar.
-    if (lightNavigation) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            visibility = visibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-        } else {
-            lightNavigation = false
-            navigationShader = true
-        }
-    }
-    navigationShader = navigationShader and (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
-
-    // flags.
-    this.decorView.systemUiVisibility = visibility
-
-    // colors.
-    if (!statusShader) {
-        this.statusBarColor = Color.TRANSPARENT
-    } else {
+    if (statusShader) {
         this.statusBarColor = ColorUtils.setAlphaComponent(
             if (lightStatus) Color.WHITE else Color.BLACK,
             ((if (lightStatus) 0.5 else 0.2) * 255).toInt()
         )
-    }
-    if (!navigationShader) {
-        this.navigationBarColor = Color.TRANSPARENT
     } else {
+        this.statusBarColor = Color.TRANSPARENT
+    }
+
+    // navigation bar
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+        lightNavigation = false
+        navigationShader = true
+    }
+    WindowInsetsControllerCompat(this, this.decorView)
+        .isAppearanceLightNavigationBars = lightNavigation
+
+    if (navigationShader) {
         this.navigationBarColor = ColorUtils.setAlphaComponent(
             if (lightNavigation) Color.WHITE else Color.BLACK,
             ((if (lightNavigation) 0.5 else 0.2) * 255).toInt()
         )
+    } else {
+        this.navigationBarColor = Color.TRANSPARENT
     }
 }
 

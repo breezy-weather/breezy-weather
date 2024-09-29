@@ -17,49 +17,35 @@
 package org.breezyweather.common.basic
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.snackbar.SnackbarContainer
 
 abstract class GeoActivity : AppCompatActivity() {
 
-    lateinit var fitHorizontalSystemBarRootLayout: FitHorizontalSystemBarRootLayout
-
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fitHorizontalSystemBarRootLayout =
-            FitHorizontalSystemBarRootLayout(this)
+
+        enableEdgeToEdge()
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            window.setSystemBarStyle(
+                statusShaderP = false,
+                lightStatusP = !this.isDarkMode,
+                navigationShaderP = true,
+                lightNavigationP = false
+            )
+        }
 
         BreezyWeather.instance.addActivity(this)
-
-        window.setSystemBarStyle(
-            false,
-            !this.isDarkMode,
-            true,
-            !this.isDarkMode
-        )
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-        // decor -> fit horizontal system bar -> decor child.
-        val decorView = window.decorView as ViewGroup
-        val decorChild = decorView.getChildAt(0) as ViewGroup
-
-        decorView.removeView(decorChild)
-        decorView.addView(fitHorizontalSystemBarRootLayout)
-
-        fitHorizontalSystemBarRootLayout.removeAllViews()
-        fitHorizontalSystemBarRootLayout.addView(decorChild)
     }
 
     override fun onNewIntent(intent: Intent) {
