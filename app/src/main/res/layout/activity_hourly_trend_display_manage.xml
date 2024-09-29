@@ -45,11 +45,10 @@
             android:background="?android:attr/colorBackground"
             android:layout_alignParentBottom="true">
 
-            <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bottomRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:rv_side="bottom"
                 tools:ignore="RtlSymmetry,UnusedAttribute" />
 
         </com.google.android.material.appbar.AppBarLayout>

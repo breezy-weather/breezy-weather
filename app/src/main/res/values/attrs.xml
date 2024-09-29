@@ -82,27 +82,4 @@
         <attr name="unfold" format="boolean" />
     </declare-styleable>
 
-    <!-- Fit system bar. -->
-    <declare-styleable name="FitSystemBarRecyclerView">
-        <attr name="rv_side">
-            <flag name="none" value="0" />
-            <flag name="top" value="1" />
-            <flag name="bottom" value="2" />
-        </attr>
-    </declare-styleable>
-    <declare-styleable name="FitSystemBarNestedScrollView">
-        <attr name="sv_side">
-            <flag name="none" value="0" />
-            <flag name="top" value="1" />
-            <flag name="bottom" value="2" />
-        </attr>
-    </declare-styleable>
-    <declare-styleable name="FitSystemBarCoordinatorLayout">
-        <attr name="cl_side">
-            <flag name="none" value="0" />
-            <flag name="top" value="1" />
-            <flag name="bottom" value="2" />
-        </attr>
-    </declare-styleable>
-
 </resources>
