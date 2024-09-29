@@ -21,8 +21,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
@@ -32,17 +34,16 @@ import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
@@ -140,10 +141,15 @@ class DailyWeatherActivity : GeoActivity() {
             val viewList: MutableList<View> = ArrayList(weather.dailyForecast.size)
             val titleList: MutableList<String> = ArrayList(weather.dailyForecast.size)
             weather.dailyForecast.forEachIndexed { i, daily ->
-                val rv = FitSystemBarRecyclerView(this@DailyWeatherActivity)
-                rv.removeFitSide(FitBothSideBarView.SIDE_TOP)
-                rv.addFitSide(FitBothSideBarView.SIDE_BOTTOM)
+                val rv = RecyclerView(this@DailyWeatherActivity)
                 rv.clipToPadding = false
+                rv.doOnApplyWindowInsets { view, insets ->
+                    view.updatePadding(
+                        left = insets.left,
+                        right = insets.right,
+                        bottom = insets.bottom
+                    )
+                }
                 val pollenIndexSource = sourceManager.getPollenIndexSource(
                     if (!location.pollenSource.isNullOrEmpty()) {
                         location.pollenSource!!
@@ -159,9 +165,10 @@ class DailyWeatherActivity : GeoActivity() {
                 viewList.add(rv)
                 titleList.add((i + 1).toString())
             }
+
             val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
             pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(
-                pager, viewList, titleList
+                viewList, titleList
             )
             pager.pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
             pager.setPageMarginDrawable(
