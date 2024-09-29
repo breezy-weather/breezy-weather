@@ -29,6 +29,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -39,6 +42,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
@@ -114,6 +118,14 @@ class HomeFragment : MainModuleFragment() {
             BackgroundAnimationMode.DISABLED -> false
         }
 
+    private fun isButtonNavigation(): Boolean {
+        val insets = ViewCompat.getRootWindowInsets(requireActivity().window.decorView)
+        val tappableElement = insets?.getInsets(WindowInsetsCompat.Type.tappableElement())
+        val bottomPixels = tappableElement?.bottom
+
+        return (bottomPixels != null && bottomPixels != 0)
+    }
+
     override fun onResume() {
         super.onResume()
         weatherView.setDrawable(!isHidden)
@@ -145,7 +157,7 @@ class HomeFragment : MainModuleFragment() {
                 requireActivity().window,
                 statusShader = scrollListener?.topOverlap == true,
                 lightStatus = false,
-                navigationShader = true,
+                navigationShader = isButtonNavigation(), // no shade when gesture navigation is used
                 lightNavigation = false
             )
     }
@@ -174,6 +186,12 @@ class HomeFragment : MainModuleFragment() {
             isBackgroundAnimationEnabled()
         )
 
+        binding.appBar.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                top = insets.top
+            )
+        }
+
         binding.toolbar.setNavigationOnClickListener {
             callback?.onManageIconClicked()
         }
@@ -191,6 +209,13 @@ class HomeFragment : MainModuleFragment() {
             Color.WHITE, PorterDuff.Mode.SRC_ATOP
         )
 
+        // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
+        // start padding).
+        (binding.refreshTimeText.layoutParams as ViewGroup.MarginLayoutParams).apply {
+            marginStart = binding.toolbar.paddingStart + requireContext()
+                .resources.getDimensionPixelSize(R.dimen.normal_margin)
+        }
+
         binding.switchLayout.setOnSwitchListener(switchListener)
         binding.switchLayout.reset()
         binding.indicator.setSwitchView(binding.switchLayout)
@@ -198,7 +223,15 @@ class HomeFragment : MainModuleFragment() {
         binding.indicator.setIndicatorColor(
             ColorUtils.setAlphaComponent(Color.WHITE, (0.5 * 255).toInt())
         )
+        binding.indicator.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                bottom = insets.bottom
+            )
+        }
 
+        binding.refreshLayout.doOnApplyWindowInsets { _, insets ->
+            binding.refreshLayout.fitSystemBar(insets.top)
+        }
         binding.refreshLayout.setOnRefreshListener {
             viewModel.updateWithUpdatingChecking(
                 triggeredByUser = true,
@@ -221,8 +254,15 @@ class HomeFragment : MainModuleFragment() {
             listAnimationEnabled,
             itemAnimationEnabled
         )
+
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = MainLayoutManager()
+        binding.recyclerView.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                top = insets.top, // required to correctly move the topAppBar when scrolling
+                bottom = insets.bottom
+            )
+        }
         binding.recyclerView.addOnScrollListener(OnScrollListener().also { scrollListener = it })
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 

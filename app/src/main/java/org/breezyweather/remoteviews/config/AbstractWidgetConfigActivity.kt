@@ -33,7 +33,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -46,10 +45,10 @@ import android.widget.RemoteViews
 import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.CallSuper
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
+import androidx.core.view.updatePadding
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
@@ -61,11 +60,11 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.snackbar.Snackbar
 import org.breezyweather.common.snackbar.SnackbarManager
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.ConfigStore
 import java.text.NumberFormat
@@ -93,7 +92,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var mHideAlternateCalendarContainer: RelativeLayout? = null
     protected var mAlignEndContainer: RelativeLayout? = null
     private var mBottomSheetBehavior: BottomSheetBehavior<*>? = null
-    private var mBottomSheetScrollView: FitSystemBarNestedScrollView? = null
+    private var mBottomSheetScrollView: NestedScrollView? = null
     private var mSubtitleInputLayout: TextInputLayout? = null
     private var mSubtitleEditText: TextInputEditText? = null
 
@@ -189,11 +188,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             initView()
             updateHostView()
         }
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
         KeyboardResizeBugWorkaround.assistActivity(this)
     }
 
@@ -309,15 +303,23 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         val adaptiveWidth = this.getTabletListAdaptiveWidth(screenWidth)
         val paddingHorizontal = (screenWidth - adaptiveWidth) / 2
         mTopContainer = findViewById<FrameLayout>(R.id.activity_widget_config_top).apply {
-            setOnApplyWindowInsetsListener { _: View?, insets: WindowInsets ->
-                mWidgetContainer!!.setPadding(
-                    paddingHorizontal, insets.systemWindowInsetTop,
-                    paddingHorizontal, 0
+            mWidgetContainer!!.doOnApplyWindowInsets { view, insets ->
+                view.updatePadding(
+                    top = insets.top,
+                    left = insets.left + paddingHorizontal,
+                    right = insets.right + paddingHorizontal
                 )
-                insets
             }
         }
-        mScrollView = findViewById(R.id.activity_widget_config_scrollView)
+        mScrollView = findViewById<NestedScrollView>(R.id.activity_widget_config_scrollView).also {
+            it.doOnApplyWindowInsets { view, insets ->
+                view.updatePadding(
+                    left = insets.left,
+                    right = insets.right,
+                    bottom = insets.bottom
+                )
+            }
+        }
 
         mViewTypeContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_viewStyleContainer).apply {
             visibility = View.GONE
@@ -504,7 +506,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             setState(BottomSheetBehavior.STATE_HIDDEN)
         }
         bottomSheet.post {
-            mBottomSheetBehavior!!.peekHeight = mSubtitleInputLayout!!.measuredHeight + mBottomSheetScrollView!!.bottomWindowInset
+            mBottomSheetBehavior!!.peekHeight = mSubtitleInputLayout!!.measuredHeight
             setBottomSheetState(isCustomSubtitle)
         }
     }

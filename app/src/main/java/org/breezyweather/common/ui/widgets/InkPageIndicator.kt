@@ -278,12 +278,6 @@ class InkPageIndicator @JvmOverloads constructor(
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun fitSystemWindows(insets: Rect): Boolean {
-        setPadding(0, 0, 0, insets.bottom)
-        return false
-    }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val desiredHeight = desiredHeight
         val height: Int = when (MeasureSpec.getMode(heightMeasureSpec)) {
