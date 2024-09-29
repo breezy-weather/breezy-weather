@@ -26,7 +26,6 @@ import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherVi
 import java.util.Random
 import kotlin.math.cos
 import kotlin.math.pow
-import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlin.time.Duration.Companion.seconds
 
