@@ -30,10 +30,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
@@ -74,7 +78,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
-import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.ui.composables.NotificationCard
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
@@ -85,10 +88,10 @@ import org.breezyweather.main.MainActivity
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.LocationAdapterAnimWrapper
 import org.breezyweather.main.adapters.location.LocationAdapter
-import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.main.widgets.LocationItemTouchCallback
 import org.breezyweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -100,12 +103,17 @@ class PushedManagementFragment : ManagementFragment() {
     }
 
     override fun setSystemBarStyle() {
-        requireActivity().window.setSystemBarStyle(
-            false,
-            !requireContext().isDarkMode,
-            true,
-            !requireContext().isDarkMode
-        )
+        ThemeManager
+            .getInstance(requireContext())
+            .weatherThemeDelegate
+            .setSystemBarStyle(
+                requireContext(),
+                requireActivity().window,
+                statusShader = false,
+                lightStatus = !requireActivity().isDarkMode,
+                navigationShader = false,
+                lightNavigation = !requireActivity().isDarkMode
+            )
     }
 }
 
@@ -166,7 +174,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     title = stringResource(R.string.locations),
                     onBackPressed = {
                         (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
-                    }
+                    },
+                    windowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
                 )
             },
             floatingActionButton = {
@@ -202,9 +211,13 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             if (validLocationListState.value.isNotEmpty()) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(paddings)
+                        .fillMaxSize()
+                        .padding(
+                            // Do not set a horizontal padding as this adds too much padding in
+                            // landscape mode.
+                            top = paddings.calculateTopPadding(),
+                            bottom = paddings.calculateBottomPadding()
+                        ),
                 ) {
                     if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&
                         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
@@ -278,7 +291,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     }
                     AndroidView(
                         modifier = Modifier
-                            .fillMaxHeight()
+                            .fillMaxSize()
                             .clipToBounds(),
                         factory = {
                             recyclerView
@@ -288,13 +301,17 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             } else {
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .padding(
-                            paddings
-                                    + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
-                                    + PaddingValues(bottom = dimensionResource(R.dimen.large_margin))
-                        )
-                        .fillMaxHeight(),
+                            // Do not set a horizontal padding as this adds too much padding in
+                            // landscape mode.
+                            PaddingValues(
+                                top = paddings.calculateTopPadding(),
+                                bottom = paddings.calculateBottomPadding() +
+                                        dimensionResource(R.dimen.large_margin)
+                            )
+                            + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                        ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column(
@@ -431,7 +448,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 scrollOffset = recyclerView.computeVerticalScrollOffset().toFloat()
-                updateAppBarColor()
 
                 if (dy != 0) {
                     adapterAnimWrapper.setScrolled()
@@ -477,21 +493,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             }
         }
     }
-
-    private fun updateDayNightColors() {
-        val lightTheme = !requireContext().isDarkMode
-
-        updateAppBarColor()
-
-        recyclerView.setBackgroundColor(
-            MainThemeColorProvider.getColor(
-                lightTheme = lightTheme,
-                id = com.google.android.material.R.attr.colorSurfaceVariant
-            )
-        )
-    }
-
-    private fun updateAppBarColor() {}
 
     fun prepareReenterTransition() {
         // TODO
