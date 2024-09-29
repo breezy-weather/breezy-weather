@@ -274,6 +274,7 @@ class PrecipitationNowcastViewHolder(
                     rangeProvider = cartesianLayerRangeProvider
                 ),
                 bottomAxis = HorizontalAxis.rememberBottom(
+                    itemPlacer = HorizontalAxis.ItemPlacer.aligned(addExtremeLabelPadding = false),
                     guideline = null,
                     tick = null, // Workaround: no custom ticks
                     label = null, // Workaround: no custom ticks

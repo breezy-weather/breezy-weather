@@ -26,6 +26,7 @@ import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherVi
 import java.util.Random
 import kotlin.math.cos
 import kotlin.math.pow
+import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlin.time.Duration.Companion.seconds
 
@@ -70,9 +71,9 @@ class MeteorShowerImplementor(
         init { // 1, 0.7, 0.4
             mCanvasSize =
                 (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            width = (mViewWidth * 0.0088 * scale).toFloat()
+            width = (mViewWidth * 0.005 * scale).toFloat()
             speed = mViewWidth / 200f
-            MAX_HEIGHT = (1.1 * mViewWidth / cos(60.0 * Math.PI / 180.0)).toFloat()
+            MAX_HEIGHT = (mViewWidth / cos(60.0 * Math.PI / 180.0)).toFloat()
             MIN_HEIGHT = (MAX_HEIGHT * 0.7).toFloat()
 
             init(true)
@@ -128,7 +129,7 @@ class MeteorShowerImplementor(
         var progress: Long = 0
 
         init {
-            this.radius = (radius * (0.7 + 0.3 * Random().nextFloat())).toFloat()
+            this.radius = (radius * (0.6 + 0.3 * Random().nextFloat())).toFloat()
             computeAlpha(duration, progress)
         }
 
@@ -175,7 +176,7 @@ class MeteorShowerImplementor(
         val width = (1.0 * canvasSize).toInt()
         val height = ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111).toInt()
         val radius = (0.00125 * canvasSize * (0.5 + random.nextFloat())).toFloat()
-        mStars = Array(70) { i ->
+        mStars = Array(80) { i ->
             val x = (random.nextInt(width) - 0.5 * (canvasSize - viewWidth)).toInt()
             val y = (random.nextInt(height) - 0.5 * (canvasSize - viewHeight)).toInt()
             val duration = (2500 + random.nextFloat() * 2500).toLong()
