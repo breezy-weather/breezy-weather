@@ -30,7 +30,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -40,8 +39,11 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,
@@ -93,6 +95,13 @@ class Snackbar private constructor(
             mParent,
             false
         ) as SnackbarLayout
+
+        view.doOnApplyWindowInsets { v, insets ->
+            v.updatePadding(
+                left = insets.left,
+                right = insets.right
+            )
+        }
     }
 
     fun setAction(@StringRes resId: Int, listener: View.OnClickListener?): Snackbar {
@@ -315,8 +324,10 @@ class Snackbar private constructor(
                 com.google.android.material.R.styleable.SnackbarLayout_android_maxWidth,
                 -1
             )
+
             a.recycle()
             isClickable = true
+            fitsSystemWindows = false
             LayoutInflater.from(context).inflate(layoutId, this)
             ViewCompat.setAccessibilityLiveRegion(
                 this,
@@ -324,22 +335,24 @@ class Snackbar private constructor(
             )
         }
 
-        override fun onApplyWindowInsets(insets: WindowInsets): WindowInsets {
-            mWindowInsets.set(
-                insets.systemWindowInsetLeft,
-                insets.systemWindowInsetTop,
-                insets.systemWindowInsetRight,
-                insets.systemWindowInsetBottom
-            )
-            SnackbarAnimationUtils.consumeInsets(this, mWindowInsets)
-            return insets
-        }
-
         @Deprecated("Deprecated in Java")
-        override fun fitSystemWindows(insets: Rect): Boolean {
-            mWindowInsets.set(insets)
-            SnackbarAnimationUtils.consumeInsets(this, mWindowInsets)
-            return false
+        override fun requestFitSystemWindows() {
+            // Do not apply horizontal insets in home fragment
+            val isHomeFragment = this.parent is CoordinatorLayout
+            val insets = ViewCompat.getRootWindowInsets(this)
+            val i = insets?.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                        + WindowInsetsCompat.Type.displayCutout()
+            )
+            if (i != null) {
+                val rInsets = Rect(
+                    if (isHomeFragment) 0 else i.left,
+                    i.top,
+                    if (isHomeFragment) 0 else i.right,
+                    i.bottom
+                )
+                mWindowInsets.set(rInsets)
+            }
         }
 
         @get:LayoutRes
@@ -403,7 +416,11 @@ class Snackbar private constructor(
 
         override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
             val child = getChildAt(0)
-            val x = (measuredWidth - child.measuredWidth) / 2
+
+            // Set left insets for system bars and evenly align the snackbar
+            // within the safe drawing area.
+            val x = mWindowInsets.left + (measuredWidth - child.measuredWidth - mWindowInsets.left
+                    - mWindowInsets.right) / 2
             child.layout(x, 0, x + child.measuredWidth, child.measuredHeight)
             mOnLayoutChangeListener?.invoke(this, l, t, r, b)
         }
@@ -411,7 +428,6 @@ class Snackbar private constructor(
         override fun onAttachedToWindow() {
             super.onAttachedToWindow()
             mOnAttachStateChangeListener?.onViewAttachedToWindow(this)
-            ViewCompat.requestApplyInsets(this)
         }
 
         override fun onDetachedFromWindow() {
