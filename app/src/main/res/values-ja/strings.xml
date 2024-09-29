@@ -575,7 +575,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">わずかまたは中程度の雷雨</string>
     <string name="air_quality_co_info_introduction">一酸化炭素（CO）は、無色、無臭、無味、非刺激性の有毒な可燃性ガスです。</string>
     <string name="weather_api_limit_reached_title">APIリクエスト数の制限に達しました</string>
-    <string name="weather_api_limit_reached_content">この制限を回避するには、ご自身のAPIキーを追加してください。</string>
+    <string name="weather_api_limit_reached_content">この制限を回避するには、あなた自身のAPIキーを追加してください。</string>
     <string name="weather_api_unauthorized_title">APIアクセスが許可されていません</string>
     <string name="about_contact">連絡</string>
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
