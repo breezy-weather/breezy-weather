@@ -188,7 +188,7 @@
     <string name="widget_trend_hourly">Tunnine prognoos</string>
     <string name="widget_label_show_widget_card_alpha">Läbipaistvus</string>
     <string name="widget_label_subtitle_data">Subtiitri andmed</string>
-    <string name="dialog_permissions_location_content">Breezy Weather peab koguma teie asukohateavet esiplaanil või taustal, et pakkuda teie praeguse asukoha ilmaandmeid. Selleks küsime mõned õigused. Teie asukohateavet kasutatakse ainult teie praeguse asukoha ilmaandmete saamiseks. Kui te ei soovi oma asukohateavet jagada, võite need nõuded keelata ja määrata oma asukoha käsitsi halduslehel.</string>
+    <string name="dialog_permissions_location_content">Selle funktsiooni kasutamiseks peate andma rakendusele ligipääsu seadme. Seda jagatakse ainult valitud ilmastikuallikatega. Kui olete ümber mõelnud, saate protsessi tühistada ja lisada fikseeritud asukoha käsitsi.</string>
     <string name="air_quality_co_info_origin">See tekib süsinikdioksiidi sisaldavate kütuste, näiteks puidu, bensiini, kivisöe, maagaasi ja petrooli mittetäielikul põlemisel lihtsates ahjudes, lahtistes tuledes, tahvelampides, ahjudes ja kaminates. Süsinikmonooksiidi (CO) peamine allikas välisõhus on mootorsõidukid.</string>
     <string name="air_quality_co_info_consequences">Süsinikmonooksiid levib läbi kopsukoe vereringesse, raskendades organismi rakkude hapniku sidumist. See hapnikupuudus kahjustab kudesid ja rakke. Kokkupuude süsinikmonooksiidiga võib põhjustada hingamisraskusi, kurnatust, pearinglust ja muid gripilaadseid sümptomeid. Kokkupuude suure hulga süsinikmonooksiidiga võib olla surmav.</string>
     <string name="action_next">Järgmine</string>
@@ -264,7 +264,7 @@
     <string name="pollen_level_0">Puudub</string>
     <string name="dialog_permissions_notification_content">Ilmateadete teavituste lubamiseks vajuta siia või sea see hiljem seadetes.</string>
     <string name="dialog_time_picker_select_time">Vali aeg</string>
-    <string name="dialog_permissions_location_background_content">Selleks, et võimaldada rakendusel juurdepääsu asukohateabele taustal, et me saaksime tajuda asukoha muutusi ja pakkuda teile kehtivaid ilmaandmeid, seadistage asukoha juurdepääsuks “Luba kogu aeg”.</string>
+    <string name="dialog_permissions_location_background_content">Selleks, et lubada Androidile teadaoleva kõige värskema praeguse asukoha taustal toimuvat ilmateate värskendamist, peate seadistama asukoha kasutamise õiguse väärtuseks „Luba kogu aeg“. Kui te seda ei tee, värskendatakse ilmateadet esiplaanil viimaste hangitud koordinaatide alusel, mis võivad olla vananenud.</string>
     <string name="message_source_not_installed_error_content_tip_2">Muutke selle asukoha ilmastikuallikaid või kustutage ja lisage see asukoht uuesti.</string>
     <string name="widget_day">Päevane</string>
     <string name="widget_subtitle_data_wind">Tuul</string>
@@ -678,4 +678,16 @@
     <string name="unit_inph">“/h</string>
     <string name="unit_inph_voice">Tollid tunnis</string>
     <string name="unit_lpsqmph">L/m²/h</string>
+    <string name="dialog_app_update_check_title">Püsige kursis</string>
+    <string name="dialog_app_update_check_content">Vajuta siia, et uuenduste kohta teavitusi saada.</string>
+    <string name="settings_notifications_app_updates_check">Teatised rakenduse uuenduste kohta</string>
+    <string name="action_download">Lae alla</string>
+    <string name="settings_unavailable_no_animations">Kättesaamatu, lülita enne Androidi seadetes animatsioonid sisse</string>
+    <string name="common_weather_text_sand_storm">Liivatorm</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornaado või veetorm</string>
+    <string name="notification_channel_app_updates">Rakenduse uuendused</string>
+    <string name="notification_app_update_available">Uus versioon saadaval!</string>
+    <string name="about_check_for_app_updates">Kontrolli uuendusi</string>
+    <string name="about_no_new_updates">Uuendusi pole</string>
+    <string name="meteoam_weather_text_smoke">Suits</string>
 </resources>
