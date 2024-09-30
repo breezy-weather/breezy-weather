@@ -56,6 +56,7 @@ import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
+import org.breezyweather.sources.qweather.QWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
 import org.breezyweather.sources.smhi.SmhiService
 import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
@@ -68,6 +69,7 @@ class SourceManager @Inject constructor(
     baiduIPService: BaiduIPLocationService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
+    qWeatherService: QWeatherService,
     cwaService: CwaService,
     dmiService: DmiService,
     ecccService: EcccService,
@@ -119,6 +121,7 @@ class SourceManager @Inject constructor(
 
         // National-only sources (sorted by population)
         chinaService,
+        qWeatherService,
         nwsService,
         geoSphereAtService, // Austria and nearby
         brightSkyService,

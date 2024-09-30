@@ -533,6 +533,7 @@
     <string name="settings_weather_source_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_cwa_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_qweather_api_key" translatable="false">@string/settings_source_api_key</string>
     <!-- Synonym of instance: Server -->
     <string name="settings_source_instance">Instance</string>
     <string name="settings_source_instance_invalid">Must be an https URL ending with a /</string>
