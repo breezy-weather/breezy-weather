@@ -130,8 +130,8 @@ class PollenActivity : GeoActivity() {
                     window = this.window,
                     statusShader = false,
                     lightStatus = isLightTheme,
-                    navigationShader = true,
-                    lightNavigation = false
+                    navigationShader = false,
+                    lightNavigation = isLightTheme
                 )
 
             Material3Scaffold(

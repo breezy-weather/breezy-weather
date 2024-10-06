@@ -19,7 +19,11 @@ package org.breezyweather.common.ui.widgets.insets
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -80,6 +84,9 @@ fun FitStatusBarTopAppBar(
         actionIconContentColor = MaterialTheme.colorScheme.onSurface,
     ),
     scrollBehavior = scrollBehavior,
+    windowInsets = WindowInsets.safeDrawing.only(
+        WindowInsetsSides.Horizontal + WindowInsetsSides.Top
+    )
 )
 
 @Composable
@@ -107,9 +114,14 @@ fun FitStatusBarTopAppBar(
 fun BWCenterAlignedTopAppBar(
     title: String,
     onBackPressed: () -> Unit,
-    actions: @Composable RowScope.() -> Unit = {}
+    modifier: Modifier = Modifier,
+    actions: @Composable RowScope.() -> Unit = {},
+    windowInsets: WindowInsets = WindowInsets.safeDrawing.only(
+        WindowInsetsSides.Horizontal + WindowInsetsSides.Top
+    )
 ) = CenterAlignedTopAppBar(
     title = { Text(text = title) },
+    modifier = modifier,
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(
@@ -119,7 +131,8 @@ fun BWCenterAlignedTopAppBar(
             )
         }
     },
-    actions = actions
+    actions = actions,
+    windowInsets = windowInsets
 )
 
 enum class BottomInsetKey { INSTANCE }

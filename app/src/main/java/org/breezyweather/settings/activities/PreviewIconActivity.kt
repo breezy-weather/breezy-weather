@@ -20,12 +20,14 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.weather.model.WeatherCode
 import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.utils.ColorUtils
@@ -189,6 +191,13 @@ class PreviewIconActivity : GeoActivity() {
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.activity_preview_icon_recyclerView)
+        recyclerView.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                left = insets.left,
+                right = insets.right,
+                bottom = insets.bottom
+            )
+        }
         val manager = GridLayoutManager(this, 4)
         manager.spanSizeLookup = WeatherIconAdapter.getSpanSizeLookup(4, mItemList)
         recyclerView.layoutManager = manager

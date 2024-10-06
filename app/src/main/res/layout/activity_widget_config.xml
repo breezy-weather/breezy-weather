@@ -33,13 +33,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/activity_widget_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:sv_side="bottom">
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:id="@+id/activity_widget_config_scrollContainer"
@@ -325,7 +324,7 @@
 
             </LinearLayout>
 
-        </org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_widget_config_custom_subtitle"
@@ -335,12 +334,11 @@
             app:behavior_hideable="true"
             app:layout_behavior="@string/bottom_sheet_behavior">
 
-            <org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/activity_widget_config_custom_scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                app:sv_side="bottom">
+                android:clipToPadding="false">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -386,7 +384,7 @@
 
                 </LinearLayout>
 
-            </org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
         </com.google.android.material.appbar.AppBarLayout>
 

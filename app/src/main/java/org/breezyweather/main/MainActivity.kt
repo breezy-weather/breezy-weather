@@ -21,6 +21,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -34,6 +35,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -51,6 +53,7 @@ import org.breezyweather.Migrations
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
@@ -251,6 +254,22 @@ class MainActivity : GeoActivity(),
     override fun onStart() {
         super.onStart()
         viewModel.checkToUpdate()
+
+        binding.root.doOnApplyWindowInsets { view, insets ->
+            if (this.getResources().configuration.orientation == 2) {
+                // Apply root insets in landscape mode for a consistent look across different
+                // device types and navigation modes.
+                view.updatePadding(
+                    left = insets.left,
+                    right = insets.right
+                )
+            } else {
+                view.updatePadding(
+                    left = 0,
+                    right = 0
+                )
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -618,12 +637,18 @@ class MainActivity : GeoActivity(),
     }
 
     private fun updateDayNightColors() {
-        fitHorizontalSystemBarRootLayout.setBackgroundColor(
-            MainThemeColorProvider.getColor(
-                lightTheme = !this.isDarkMode,
-                id = android.R.attr.colorBackground
+        if (this.getResources().configuration.orientation == 2) {
+            // Set a black background to keep the background of the system bars black when root
+            // insets are applied in landscape mode.
+            binding.root.setBackgroundColor(Color.BLACK)
+        } else {
+            binding.root.setBackgroundColor(
+                MainThemeColorProvider.getColor(
+                    lightTheme = !this.isDarkMode,
+                    id = android.R.attr.colorBackground
+                )
             )
-        )
+        }
     }
 
     private val isOrWillManagementFragmentVisible: Boolean

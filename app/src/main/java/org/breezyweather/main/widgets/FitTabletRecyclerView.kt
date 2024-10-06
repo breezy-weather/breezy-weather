@@ -18,12 +18,12 @@ package org.breezyweather.main.widgets
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 
 class FitTabletRecyclerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-): FitSystemBarRecyclerView(context, attrs, defStyleAttr) {
+): RecyclerView(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)

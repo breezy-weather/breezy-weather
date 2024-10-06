@@ -25,12 +25,14 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Px
 import androidx.core.view.ViewCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.decorations.ListDecoration
@@ -114,6 +116,12 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             }
         )
         mBinding.recyclerView.layoutManager = LinearLayoutManager(this)
+        mBinding.recyclerView.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                left = insets.left,
+                right = insets.right
+            )
+        }
         mBinding.recyclerView.addItemDecoration(
             ListDecoration(
                 this,
@@ -160,6 +168,13 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             }
         )
         mBinding.bottomRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        mBinding.bottomRecyclerView.doOnApplyWindowInsets { view, insets ->
+            view.updatePadding(
+                left = insets.left,
+                right = insets.right,
+                bottom = insets.bottom
+            )
+        }
         mBinding.bottomRecyclerView.addItemDecoration(
             GridMarginsDecoration(
                 resources.getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView

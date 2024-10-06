@@ -28,19 +28,21 @@
 
     </org.breezyweather.common.ui.widgets.SwipeSwitchLayout>
 
-    <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
-        android:id="@+id/app_bar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        app:liftOnScrollColor="@android:color/transparent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            android:elevation="0dp"
             app:navigationIconTint="@android:color/white"
             app:titleTextColor="@android:color/white"
             app:titleTextAppearance="?attr/textAppearanceHeadline6" />
@@ -54,12 +56,11 @@
             android:gravity="center_vertical"
             android:drawableTint="#fff"
             android:drawableStart="@drawable/ic_time"
-            android:layout_marginStart="@dimen/normal_margin"
             style="@style/large_title_text"
             tools:text="1 minute ago"
             tools:ignore="RelativeOverlap,RtlHardcoded" />
 
-    </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <org.breezyweather.common.ui.widgets.InkPageIndicator
         android:id="@+id/indicator"

@@ -29,12 +29,11 @@
 
         </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-        <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_preview_icon_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:rv_side="bottom" />
+            android:clipToPadding="false" />
 
     </LinearLayout>
 

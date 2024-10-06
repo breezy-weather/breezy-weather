@@ -17,14 +17,18 @@
 package org.breezyweather
 
 import android.app.Application
+import android.app.UiModeManager
 import android.content.pm.ApplicationInfo
+import android.os.Build
 import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkInfo
 import androidx.work.WorkQuery
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.internal.Contexts.getApplication
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -118,12 +122,27 @@ class BreezyWeather : Application(),
     }
 
     private fun setDayNightMode() {
-        AppCompatDelegate.setDefaultNightMode(
-            ThemeManager.getInstance(this).uiMode.value!!
-        )
+        updateDayNightMode(ThemeManager.getInstance(this).uiMode.value!!)
+        
         ThemeManager.getInstance(this).uiMode.observeForever {
-            AppCompatDelegate.setDefaultNightMode(it)
+            updateDayNightMode(it)
         }
+    }
+
+    private fun updateDayNightMode(dayNightMode: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Sets and persists the night mode setting for this app. This allows the system to know
+            // if the app wants to be displayed in dark mode before it launches so that the splash
+            // screen can be displayed accordingly.
+            ContextCompat.getSystemService(getApplication(this), UiModeManager::class.java)
+                ?.setApplicationNightMode(
+                    when (dayNightMode) {
+                        -1 -> UiModeManager.MODE_NIGHT_AUTO
+                        1 -> UiModeManager.MODE_NIGHT_NO
+                        else -> UiModeManager.MODE_NIGHT_YES
+                    }
+                )
+        } else AppCompatDelegate.setDefaultNightMode(dayNightMode)
     }
 
     private fun setupNotificationChannels() {
