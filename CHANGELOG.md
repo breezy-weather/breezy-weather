@@ -4,6 +4,10 @@
 - Add support for more administration levels (province, regions, county, departments, etc) on locations. Existing manually added locations will need to be re-added
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 - Fix snackbar no longer appearing after changing some preferences in some cases (@min7-i)
+- Fix snackbar appearing above some items (@min7-i)
+- Fix freeze after applying some settings in some cases (@min7-i)
+- Fix dark mode theme not immediately applied in the location list (@min7-i)
+- Various fixes of alignment on tablets and/or landscape mode (@min7-i)
 
 
 # Version 5.2.8 (2024-09-15)
