@@ -112,11 +112,11 @@ fun WidgetsSettingsScreen(
                     .putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
                                     ComponentName(context, MaterialLiveWallpaperService::class.java)
                                 )
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS))
                     } catch (e: ActivityNotFoundException) {
                         try {
                     context.startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS))
                         } catch (e2: ActivityNotFoundException) {
                             SnackbarHelper.showSnackbar(
                                 context.getString(
