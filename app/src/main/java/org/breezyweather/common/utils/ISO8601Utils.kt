@@ -211,10 +211,10 @@ object ISO8601Utils {
                 if ("+0000" == timezoneOffset || "+00:00" == timezoneOffset) {
                     timezone = TIMEZONE_UTC
                 } else {
-                    // 18-Jun-2015, tatu: Looks like offsets only work from GMT, not UTC...
+                    // 18-Jun-2015, tatu: Looks like offsets only work from GMT, not UTC…
                     //    not sure why, but that's the way it looks. Further, Javadocs for
                     //    `java.util.TimeZone` specifically instruct use of GMT as base for
-                    //    custom timezones... odd.
+                    //    custom timezones… odd.
                     val timezoneId = "GMT$timezoneOffset"
                     // val timezoneId = "UTC$timezoneOffset;
 

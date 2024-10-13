@@ -200,6 +200,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("es"), "Jose", github = "AzagraMac"),
         TranslatorItem(arrayOf("es"), "Yayi23", github = "Yayi23"),
         TranslatorItem(arrayOf("es"), "Eraorahan", weblate = "eraorahan"),
+        TranslatorItem(arrayOf("es"), "Jose l. Azagra", github = "azagramac"),
         TranslatorItem(arrayOf("et"), "kovabait12", github = "kovabait12"),
         TranslatorItem(arrayOf("et"), "Priit Jõerüüt", weblate = "jrthwlate"),
         TranslatorItem(arrayOf("et"), "Gert Lutter", weblate = "ruut.103"),

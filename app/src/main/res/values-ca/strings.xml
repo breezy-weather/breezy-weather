@@ -370,7 +370,7 @@
     <string name="settings_main">Pantalla principal</string>
     <string name="settings_debug_dump_crash_logs_summary">Desa registres d’error en un fitxer per compartir-los amb els desenvolupadors</string>
     <string name="air_quality_o3_info_title">Ozó a nivell del sòl (O₃)</string>
-    <string name="settings_notifications_summary">Notificacions d\'alertes meteorològiques, precipitacions i pronòstic de la primera ubicació</string>
+    <string name="settings_notifications_summary">Notificacions d’alertes meteorològiques, precipitacions i pronòstic de la primera ubicació</string>
     <string name="common_weather_text_rain_freezing_heavy">Pluja gelada intensa</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Posta del sol a les %s</string>
@@ -660,7 +660,7 @@
     <string name="notification_precipitation_starting">Plourà aviat</string>
     <string name="notification_precipitation_stopping">Aviat deixarà de ploure</string>
     <string name="settings_weather_sources_default_source">Font per defecte per a ubicacions noves</string>
-    <string name="settings_weather_source_freenet_disclaimer">Hi ha més fonts meteorològiques disponibles en altres versions de l\'aplicació. Toqueu aquí per a més informació.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Hi ha més fonts meteorològiques disponibles en altres versions de l’aplicació. Toqueu aquí per a més informació.</string>
     <string name="sunshine">Assolellat</string>
     <string name="dew_point_short">Punt de rosada</string>
     <string name="message_source_not_installed_error_content_tip_2">Canvieu les fonts meteorològiques d’aquesta ubicació o suprimiu-la i torneu-la a afegir.</string>
