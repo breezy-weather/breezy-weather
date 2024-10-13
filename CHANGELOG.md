@@ -9,6 +9,7 @@
 - Fix dark mode theme not immediately applied in the location list (@min7-i)
 - Various fixes of alignment on tablets and/or landscape mode (@min7-i)
 - Fix margin issues on today/tomorrow notifications on old Android versions (@min7-i)
+- Fix dark mode not immediately changed on Edit location screen in case Dark mode setting is changed (@Mushfiq1060)
 
 
 # Version 5.2.8 (2024-09-15)
