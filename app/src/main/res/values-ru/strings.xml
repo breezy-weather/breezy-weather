@@ -66,7 +66,7 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Убывающая луна</string>
     <string name="ephemeris_moon_phase_last_quarter">Последняя четверть</string>
     <string name="ephemeris_moon_phase_waning_crescent">Убывающий месяц</string>
-    <string name="daily_forecast">Подневный прогноз</string>
+    <string name="daily_forecast">Ежедневный прогноз</string>
     <string name="hourly_forecast">Почасовой прогноз</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="pollen">Аллергены</string>
@@ -161,12 +161,12 @@
     <string name="action_app_store">Магазин приложений</string>
     <!-- widget -->
     <string name="widget_day">Подневной</string>
-    <string name="widget_week">Понедельный</string>
-    <string name="widget_day_week">Подневный + Понедельный</string>
-    <string name="widget_clock_day_horizontal">Время + Подневный (Горизонтальный)</string>
-    <string name="widget_clock_day_details">Время + Подневный (Подробно)</string>
-    <string name="widget_clock_day_vertical">Время + Подневный (Вертикальный)</string>
-    <string name="widget_clock_day_week">Время + Подневный + Понедельный</string>
+    <string name="widget_week">Еженедельный</string>
+    <string name="widget_day_week">Ежедневный + Еженедельный</string>
+    <string name="widget_clock_day_horizontal">Время + Ежедневный (Горизонтальный)</string>
+    <string name="widget_clock_day_details">Время + Ежедневный (Подробно)</string>
+    <string name="widget_clock_day_vertical">Время + Ежедневный (Вертикальный)</string>
+    <string name="widget_clock_day_week">Время + Ежедневный + Еженедельный</string>
     <string name="widget_text">Текст</string>
     <string name="widget_trend_daily">Подневная динамика</string>
     <string name="widget_trend_hourly">Почасовая динамика</string>
@@ -306,7 +306,7 @@
     <string name="settings_main_hourly_trends_title">Почасовой прогноз</string>
     <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>
-    <string name="settings_main_daily_trends_title">Подневный прогноз</string>
+    <string name="settings_main_daily_trends_title">Ежедневный прогноз</string>
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часов</string>
     <string name="weather_source_accu_preference_hours_240">240 часов</string>
