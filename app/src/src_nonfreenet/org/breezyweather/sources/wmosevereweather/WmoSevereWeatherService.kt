@@ -25,6 +25,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * World Meteorological Organization Severe Weather Information Centre (WMO SWIC)
@@ -33,18 +34,25 @@ import javax.inject.Inject
  * Based on WFS from SWIC v3.0 that was released on 2024-03-29
  */
 class WmoSevereWeatherService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") jsonClient: Retrofit.Builder,
+    @Named("XmlClient") xmlClient: Retrofit.Builder
 ) : HttpSource(), SecondaryWeatherSource {
 
     override val id = "wmosevereweather"
     override val name = "WMO Severe Weather Information Centre"
     override val privacyPolicyUrl = "https://wmo.int/privacy-policy"
 
-    private val mAlertsApi by lazy {
-        client
+    private val mAlertsJsonApi by lazy {
+        jsonClient
             .baseUrl(WMO_ALERTS_BASE_URL)
             .build()
-            .create(WmoSevereWeatherApi::class.java)
+            .create(WmoSevereWeatherJsonApi::class.java)
+    }
+    private val mAlertsXmlApi by lazy {
+        xmlClient
+            .baseUrl(WMO_ALERTS_BASE_URL)
+            .build()
+            .create(WmoSevereWeatherXmlApi::class.java)
     }
 
     override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_ALERT)
@@ -59,18 +67,16 @@ class WmoSevereWeatherService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        return mAlertsApi.getAlerts(
+        return mAlertsJsonApi.getAlerts(
             typeName = "local_postgis:postgis_geojsons",
             //cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"
             cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND row_type NEQ 'BOUNDARY'"
         ).map {
-            convert(it)
+            convert(it, mAlertsXmlApi, context)
         }
     }
 
     companion object {
         private const val WMO_ALERTS_BASE_URL = "https://severeweather.wmo.int/"
-        const val WMO_ALERTS_CAP_URL_BASE_URL = "https://8xieiqdnye.execute-api.us-west-2.amazonaws.com/swic/capUrl/"
-        const val WMO_ALERTS_URL_BASE_URL = "https://cvzxdcwxid.execute-api.us-west-2.amazonaws.com/swic/url/"
     }
 }

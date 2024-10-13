@@ -23,6 +23,7 @@ import java.util.Date
 @Serializable
 data class WmoSevereWeatherAlertProperties(
     val capurl: String?,
+    val rlink: String?, // Alternative cap URL for other languages
     val identifier: String?,
     @Serializable(DateSerializer::class) val sent: Date?,
     val description: String?,

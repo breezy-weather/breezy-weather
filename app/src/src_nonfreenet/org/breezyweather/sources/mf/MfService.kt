@@ -50,13 +50,14 @@ import java.nio.charset.StandardCharsets
 import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Mf weather service.
  */
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, ConfigurableSource {
 

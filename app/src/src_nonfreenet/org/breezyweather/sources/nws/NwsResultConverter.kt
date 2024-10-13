@@ -173,21 +173,22 @@ private fun getDailyForecast(
 fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
     if (alerts.isNullOrEmpty()) return null
     return alerts.filter { it.properties != null }.map {
+        val severity = when (it.properties!!.severity?.lowercase()) {
+            "extreme" -> AlertSeverity.EXTREME
+            "severe" -> AlertSeverity.SEVERE
+            "moderate" -> AlertSeverity.MODERATE
+            "minor" -> AlertSeverity.MINOR
+            else -> AlertSeverity.UNKNOWN
+        }
         Alert(
-            alertId = it.properties!!.id,
+            alertId = it.properties.id,
             startDate = it.properties.onset,
             endDate = it.properties.expires,
             headline = it.properties.event ?: it.properties.headline,
             description = it.properties.description + "\n\n" + it.properties.instruction,
             source = it.properties.senderName?.ifEmpty { null } ?: it.properties.sender ?: "NWS",
-            severity = when (it.properties.severity?.lowercase()) {
-                "extreme" -> AlertSeverity.EXTREME
-                "severe" -> AlertSeverity.SEVERE
-                "moderate" -> AlertSeverity.MODERATE
-                "minor" -> AlertSeverity.MINOR
-                else -> AlertSeverity.UNKNOWN
-            },
-            color = getAlertColor(it.properties.event)
+            severity = severity,
+            color = getAlertColor(it.properties.event) ?: Alert.colorFromSeverity(severity)
         )
     }
 }

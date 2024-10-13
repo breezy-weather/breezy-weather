@@ -35,9 +35,10 @@ import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class GeoSphereAtService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "geosphereat"

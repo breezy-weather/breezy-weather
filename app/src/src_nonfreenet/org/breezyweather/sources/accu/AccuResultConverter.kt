@@ -455,6 +455,13 @@ private fun getAlertList(
 ): List<Alert>? {
     if (resultList == null) return null
     return resultList.map { result ->
+        val severity = when (result.Priority) {
+            1 -> AlertSeverity.EXTREME
+            2 -> AlertSeverity.SEVERE
+            3 -> AlertSeverity.MODERATE
+            4, 5 -> AlertSeverity.MINOR
+            else -> AlertSeverity.UNKNOWN
+        }
         Alert(
             alertId = result.AlertID.toString(),
             startDate = result.Area?.getOrNull(0)?.let { area ->
@@ -466,14 +473,10 @@ private fun getAlertList(
             headline = result.Description?.Localized,
             description = result.Area?.getOrNull(0)?.Text,
             source = result.Source,
-            severity = when (result.Priority) {
-                1 -> AlertSeverity.EXTREME
-                2 -> AlertSeverity.SEVERE
-                3 -> AlertSeverity.MODERATE
-                4, 5 -> AlertSeverity.MINOR
-                else -> AlertSeverity.UNKNOWN
-            },
-            color = result.Color?.let { Color.rgb(it.Red, it.Green, it.Blue) }
+            severity = severity,
+            color = result.Color?.let {
+                Color.rgb(it.Red, it.Green, it.Blue)
+            } ?: Alert.colorFromSeverity(severity)
         )
     }
 }

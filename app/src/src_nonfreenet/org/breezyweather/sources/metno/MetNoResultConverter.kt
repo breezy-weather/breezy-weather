@@ -215,6 +215,13 @@ private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): 
 private fun getAlerts(metNoAlerts: MetNoAlertResult): List<Alert>? {
     return metNoAlerts.features?.mapNotNull { alert ->
         alert.properties?.let {
+            val severity = when (it.severity?.lowercase()) {
+                "extreme" -> AlertSeverity.EXTREME
+                "severe" -> AlertSeverity.SEVERE
+                "moderate" -> AlertSeverity.MODERATE
+                "minor" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
+            }
             Alert(
                 alertId = it.id,
                 startDate = alert.whenAlert?.interval?.getOrNull(0),
@@ -223,13 +230,8 @@ private fun getAlerts(metNoAlerts: MetNoAlertResult): List<Alert>? {
                 description = it.description,
                 instruction = it.instruction,
                 source = "MET Norway",
-                severity = when (it.severity?.lowercase()) {
-                    "extreme" -> AlertSeverity.EXTREME
-                    "severe" -> AlertSeverity.SEVERE
-                    "moderate" -> AlertSeverity.MODERATE
-                    "minor" -> AlertSeverity.MINOR
-                    else -> AlertSeverity.UNKNOWN
-                }
+                severity = severity,
+                color = Alert.colorFromSeverity(severity)
             )
         }
     }

@@ -38,9 +38,10 @@ import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class ChinaService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
 

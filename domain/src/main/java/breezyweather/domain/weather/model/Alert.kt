@@ -26,7 +26,7 @@ import java.util.Date
  *
  * All properties are [androidx.annotation.NonNull].
  */
-class Alert(
+data class Alert(
     /**
      * If not provided by the source, can be created from Object.hash().toString()
      * Usually, you will use three parameters: alert type or title, alert level, alert start time
@@ -39,16 +39,20 @@ class Alert(
     val instruction: String? = null,
     val source: String? = null,
     val severity: AlertSeverity = AlertSeverity.UNKNOWN,
-    @ColorInt color: Int? = null
+    @ColorInt val color: Int
 ) : Serializable {
 
-    @ColorInt
-    val color: Int = color ?: when (severity) {
-        AlertSeverity.EXTREME -> Color.rgb(212, 45, 65)
-        AlertSeverity.SEVERE -> Color.rgb(240, 140, 17)
-        AlertSeverity.MODERATE -> Color.rgb(244, 207, 0)
-        AlertSeverity.MINOR -> Color.rgb(57, 156, 199)
-        else -> Color.rgb(130, 168, 223)
+    companion object {
+        @ColorInt
+        fun colorFromSeverity(severity: AlertSeverity): Int {
+            return when (severity) {
+                AlertSeverity.EXTREME -> Color.rgb(212, 45, 65)
+                AlertSeverity.SEVERE -> Color.rgb(240, 140, 17)
+                AlertSeverity.MODERATE -> Color.rgb(244, 207, 0)
+                AlertSeverity.MINOR -> Color.rgb(57, 156, 199)
+                else -> Color.rgb(130, 168, 223)
+            }
+        }
     }
 
 }

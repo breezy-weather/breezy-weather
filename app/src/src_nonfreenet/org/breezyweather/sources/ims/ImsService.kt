@@ -38,12 +38,13 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.utils.helpers.LogHelper
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Israel Meteorological Service
  */
 class ImsService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, LocationParametersSource {
 

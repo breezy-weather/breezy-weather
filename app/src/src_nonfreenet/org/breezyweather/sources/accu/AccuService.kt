@@ -60,10 +60,11 @@ import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
+import javax.inject.Named
 
 class AccuService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     LocationSearchSource, ReverseGeocodingSource,
     ConfigurableSource, LocationParametersSource {

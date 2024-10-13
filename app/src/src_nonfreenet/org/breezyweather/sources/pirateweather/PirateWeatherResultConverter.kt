@@ -201,6 +201,13 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
 private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
+        val severity = when (alert.severity?.lowercase()) {
+            "extreme" -> AlertSeverity.EXTREME
+            "severe" -> AlertSeverity.SEVERE
+            "moderate" -> AlertSeverity.MODERATE
+            "minor" -> AlertSeverity.MINOR
+            else -> AlertSeverity.UNKNOWN
+        }
         Alert(
             // Create unique ID from: title, severity, start time
             alertId = Objects.hash(alert.title, alert.severity, alert.start).toString(),
@@ -209,13 +216,8 @@ private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
             headline = alert.title,
             description = alert.description,
             source = alert.uri,
-            severity = when (alert.severity?.lowercase()) {
-                "extreme" -> AlertSeverity.EXTREME
-                "severe" -> AlertSeverity.SEVERE
-                "moderate" -> AlertSeverity.MODERATE
-                "minor" -> AlertSeverity.MINOR
-                else -> AlertSeverity.UNKNOWN
-            }
+            severity = severity,
+            color = Alert.colorFromSeverity(severity)
         )
     }
 }

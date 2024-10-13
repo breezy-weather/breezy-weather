@@ -38,13 +38,14 @@ import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * ATMO Auvergne-Rhône-Alpes air quality service.
  */
 class AtmoAuraService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "atmoaura"

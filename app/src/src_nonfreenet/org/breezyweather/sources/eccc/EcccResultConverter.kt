@@ -223,6 +223,12 @@ private fun getHourlyForecast(
 private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
+        val severity = when (alert.type) {
+            "warning" -> AlertSeverity.SEVERE
+            "watch" -> AlertSeverity.MODERATE
+            "statement" -> AlertSeverity.MINOR
+            else -> AlertSeverity.UNKNOWN
+        }
         Alert(
             alertId = alert.alertId ?: Objects.hash(alert.alertBannerText, alert.issueTime).toString(),
             startDate = alert.issueTime,
@@ -230,16 +236,11 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             headline = alert.alertBannerText,
             description = alert.text,
             source = alert.specialText?.firstOrNull { it.type == "email" }?.link,
-            severity = when (alert.type) {
-                "warning" -> AlertSeverity.SEVERE
-                "watch" -> AlertSeverity.MODERATE
-                "statement" -> AlertSeverity.MINOR
-                else -> AlertSeverity.UNKNOWN
-            },
-            color = if (!alert.bannerColour.isNullOrEmpty() &&
+            severity = severity,
+            color = (if (!alert.bannerColour.isNullOrEmpty() &&
                 alert.bannerColour.startsWith("#")) {
                 Color.parseColor(alert.bannerColour)
-            } else null
+            } else null) ?: Alert.colorFromSeverity(severity)
         )
     }
 }

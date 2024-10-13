@@ -38,9 +38,10 @@ import org.breezyweather.sources.metno.json.MetNoSunResult
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
+import javax.inject.Named
 
 class MetNoService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"

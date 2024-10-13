@@ -271,7 +271,7 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
             headline = alert.title,
             description = alert.detail,
             severity = getAlertPriority(alert.level),
-            color = getAlertColor(alert.level)
+            color = getAlertColor(alert.level) ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
         )
     }
 }

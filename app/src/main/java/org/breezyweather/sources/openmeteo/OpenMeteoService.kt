@@ -62,10 +62,11 @@ import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.text.Collator
 import javax.inject.Inject
+import javax.inject.Named
 
 class OpenMeteoService @Inject constructor(
     @ApplicationContext context: Context,
-    val client: Retrofit.Builder
+    @Named("JsonClient") val client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, LocationSearchSource,
     ConfigurableSource, PreferencesParametersSource {
 

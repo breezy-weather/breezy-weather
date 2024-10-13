@@ -51,10 +51,11 @@ import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
 import org.breezyweather.sources.cwa.json.CwaWeatherResult
 import retrofit2.Retrofit
+import javax.inject.Named
 
 class CwaService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 

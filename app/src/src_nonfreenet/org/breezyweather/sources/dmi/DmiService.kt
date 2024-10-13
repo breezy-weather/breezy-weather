@@ -34,9 +34,10 @@ import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiWarningResult
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class DmiService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, LocationParametersSource {
 

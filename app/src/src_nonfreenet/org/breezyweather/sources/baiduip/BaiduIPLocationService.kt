@@ -36,10 +36,11 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class BaiduIPLocationService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), LocationSource, ConfigurableSource {
 
     override val id = "baidu_ip"

@@ -16,15 +16,23 @@
 
 package org.breezyweather.sources.wmosevereweather
 
+import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.capitalize
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.codeWithCountry
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
+import org.breezyweather.sources.wmosevereweather.xml.WmoSevereWeatherCapResult
 import java.util.Date
 
-fun convert(alertResult: WmoSevereWeatherAlertResult): SecondaryWeatherWrapper {
+fun convert(
+    alertResult: WmoSevereWeatherAlertResult, client: WmoSevereWeatherXmlApi, context: Context
+): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         alertList = alertResult.features
             ?.filter {
@@ -32,7 +40,7 @@ fun convert(alertResult: WmoSevereWeatherAlertResult): SecondaryWeatherWrapper {
                     (it.properties.expires == null || it.properties.expires > Date())
             }?.map {
                 val severity = AlertSeverity.getInstance(it.properties!!.s)
-                Alert(
+                val originalAlert = Alert(
                     alertId = (it.id?.ifEmpty { null }
                         ?: it.properties.identifier?.ifEmpty { null }
                         ?: it.properties.capurl?.ifEmpty { null }
@@ -50,12 +58,110 @@ fun convert(alertResult: WmoSevereWeatherAlertResult): SecondaryWeatherWrapper {
                         else -> Color.rgb(130, 168, 223)
                     }
                 )
-                // TODO: Use URL to get more info (description, instruction, translations)
-                /*val url = it.url?.let { url ->
-                    WmoSevereWeatherService.WMO_ALERTS_URL_BASE_URL + url
-                } ?: it.capURL?.let { capURL ->
-                    WmoSevereWeatherService.WMO_ALERTS_CAP_URL_BASE_URL + capURL
-                }*/
+
+                // Use URL to get more info (description, instruction, translations)
+                try {
+                    val urlToLoad = if (it.properties.rlink.isNullOrEmpty() && it.properties.capurl.isNullOrEmpty()) {
+                        null
+                    } else if (it.properties.capurl.isNullOrEmpty()) {
+                        it.properties.rlink
+                    } else if (it.properties.rlink.isNullOrEmpty()) {
+                        it.properties.capurl
+                    } else if (it.properties.rlink.contains("sa-ncm-")) {
+                        // Source for this hack: https://severeweather.wmo.int/js/new-layout.js
+                        if (context.currentLocale.code.startsWith("ar")) {
+                            it.properties.rlink
+                        } else it.properties.capurl
+                    } else {
+                        // TODO: The only way to know which URL contains which language… is to load
+                        // both URL. Source: https://severeweather.wmo.int/js/new-layout.js
+                        null
+                    }
+
+                    if (!urlToLoad.isNullOrEmpty()) {
+                        val xmlAlert = client.getAlert("v2/cap-alerts/$urlToLoad").execute().body()
+
+                        val selectedInfo = if (xmlAlert?.info.isNullOrEmpty()) {
+                            null
+                        } else if (xmlAlert!!.info!!.size == 1) {
+                            xmlAlert.info!![0]
+                        } else {
+                            val notNullLanguageInfo = xmlAlert.info!!.filter { info ->
+                                info.language?.value != null
+                            }
+
+                            if (notNullLanguageInfo.isEmpty()) {
+                                xmlAlert.info.first() // Arbitrarily takes the first
+                            } else {
+                                notNullLanguageInfo.firstOrNull { info ->
+                                    info.language!!.value!!.lowercase() == context.currentLocale.codeWithCountry.lowercase()
+                                } ?: xmlAlert.info.firstOrNull { info ->
+                                    info.language!!.value!!.lowercase().startsWith(context.currentLocale.code)
+                                } ?: xmlAlert.info.firstOrNull { info ->
+                                    info.language!!.value!!.lowercase().startsWith("en")
+                                } ?: xmlAlert.info.first() // Arbitrarily takes the first
+                            }
+                        }
+
+                        alertFromInfo(xmlAlert, selectedInfo, originalAlert)
+                    } else if (it.properties.rlink.isNullOrEmpty() && it.properties.capurl.isNullOrEmpty()) {
+                        originalAlert
+                    } else {
+                        val capurlAlert = client.getAlert("v2/cap-alerts/${it.properties.capurl}").execute().body()
+                        val rlinkAlert = client.getAlert("v2/cap-alerts/${it.properties.rlink}").execute().body()
+
+                        // There is only one Info block when there are two links
+                        val capurlLanguage = capurlAlert?.info?.getOrNull(0)?.language?.value?.lowercase()
+                        val rlinkLanguage = rlinkAlert?.info?.getOrNull(0)?.language?.value?.lowercase()
+
+                        val selectedAlert = if (capurlLanguage.isNullOrEmpty() || rlinkLanguage.isNullOrEmpty()) {
+                            capurlAlert
+                        } else if (capurlLanguage == context.currentLocale.codeWithCountry.lowercase()) {
+                            capurlAlert
+                        } else if (rlinkLanguage == context.currentLocale.codeWithCountry.lowercase()) {
+                            rlinkAlert
+                        } else if (capurlLanguage.startsWith(context.currentLocale.code)) {
+                            capurlAlert
+                        } else if (rlinkLanguage.startsWith(context.currentLocale.code)) {
+                            rlinkAlert
+                        } else if (capurlLanguage.startsWith("en")) {
+                            capurlAlert
+                        } else if (rlinkLanguage.startsWith("en")) {
+                            rlinkAlert
+                        } else {
+                            capurlAlert // Arbitrarily takes capurl
+                        }
+
+                        alertFromInfo(selectedAlert, selectedAlert?.info?.getOrNull(0), originalAlert)
+                    }
+                } catch (e: Throwable) {
+                    if (BreezyWeather.instance.debugMode) {
+                        throw e
+                    } else {
+                        e.printStackTrace()
+                    }
+
+                    originalAlert
+                }
             }
     )
+}
+
+fun alertFromInfo(
+    xmlAlert: WmoSevereWeatherCapResult?,
+    selectedInfo: WmoSevereWeatherCapResult.Info?,
+    originalAlert: Alert
+): Alert {
+    return selectedInfo?.let { info ->
+        originalAlert.copy(
+            alertId = xmlAlert!!.identifier?.value ?: originalAlert.alertId,
+            startDate = info.onset?.value ?: info.effective?.value
+            ?: originalAlert.startDate ?: xmlAlert.sent?.value,
+            endDate = info.expires?.value ?: originalAlert.endDate,
+            headline = info.headline?.value ?: info.event?.value ?: originalAlert.headline,
+            description = info.description?.value ?: originalAlert.description,
+            instruction = info.instruction?.value ?: originalAlert.instruction,
+            source = info.senderName?.value
+        )
+    } ?: originalAlert
 }

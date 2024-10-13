@@ -405,21 +405,21 @@ private fun getWarningText(colorId: Int): String = when (colorId) {
 }
 
 @ColorInt
-private fun getWarningColor(colors: List<String>): Int? = when {
+private fun getWarningColor(colors: List<String>): Int = when {
     colors.contains("Rouge") -> Color.rgb(204, 0, 0)
     colors.contains("Orange") -> Color.rgb(255, 184, 43)
     colors.contains("Jaune") -> Color.rgb(255, 246, 0)
     colors.contains("Vert") -> Color.rgb(49, 170, 53)
-    else -> null
+    else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
 }
 
 @ColorInt
-private fun getWarningColor(colorId: Int): Int? = when (colorId) {
+private fun getWarningColor(colorId: Int): Int = when (colorId) {
     4 -> Color.rgb(204, 0, 0)
     3 -> Color.rgb(255, 184, 43)
     2 -> Color.rgb(255, 246, 0)
     1 -> Color.rgb(49, 170, 53)
-    else -> null
+    else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
 }
 
 private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsResult): String? {
