@@ -211,7 +211,9 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
     implementation(libs.kotlinx.serialization.json)
-    //implementation(libs.kotlinx.serialization.xml)
+    // Not used in free sources
+    "basicImplementation"(libs.kotlinx.serialization.xml.core)
+    "basicImplementation"(libs.kotlinx.serialization.xml)
 
     // data store
     //implementation(libs.datastore)
