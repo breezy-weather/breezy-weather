@@ -22,6 +22,7 @@ import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
@@ -29,14 +30,16 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
 import org.breezyweather.sources.metie.json.MetIeWarningResult
+import org.breezyweather.sources.metie.xml.MetIeTime
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.math.roundToInt
 
 fun convert(
     location: Location,
@@ -51,7 +54,7 @@ fun convert(
     )
 }
 fun convert(
-    hourlyResult: List<MetIeHourly>?,
+    hourlyResult: List<MetIeTime>?,
     warningsResult: MetIeWarningResult?,
     location: Location,
 ): WeatherWrapper {
@@ -69,10 +72,12 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    hourlyResult: List<MetIeHourly>,
+    hourlyResult: List<MetIeTime>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
-    val hourlyListByDay = hourlyResult.groupBy { it.date }
+    val hourlyListByDay = hourlyResult.groupBy {
+        it.from.getFormattedDate("yyyy-MM-dd", location)
+    }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
@@ -90,29 +95,38 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<MetIeHourly>,
+    hourlyResult: List<MetIeTime>,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Dublin")
 
-    return hourlyResult.map { result ->
-        HourlyWrapper(
-            date = formatter.parse("${result.date} ${result.time}")!!,
-            weatherCode = getWeatherCode(result.weatherNumber),
-            weatherText = result.weatherDescription,
-            temperature = Temperature(
-                temperature = result.temperature?.toDouble()
-            ),
-            precipitation = Precipitation(
-                total = result.rainfall?.toDoubleOrNull()
-            ),
-            wind = Wind(
-                degree = result.windDirection?.toDoubleOrNull(),
-                speed = result.windSpeed?.div(3.6)
-            ),
-            relativeHumidity = result.humidity?.toDoubleOrNull(),
-            pressure = result.pressure?.toDoubleOrNull()
-        )
+    // TODO: Deduplicate
+    // There are two blocks, not from the same period
+    return hourlyResult.mapNotNull { time ->
+        time.location?.let { result ->
+            HourlyWrapper(
+                date = time.from,
+                weatherCode = getWeatherCode(result.symbol?.number),
+                temperature = Temperature(
+                    temperature = result.temperature?.value
+                ),
+                precipitation = Precipitation(
+                    total = result.precipitation?.value
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = result.precipitation?.probability
+                ),
+                wind = Wind(
+                    degree = result.windDirection?.deg,
+                    speed = result.windSpeed?.mps,
+                    gusts = result.windGust?.mps
+                ),
+                relativeHumidity = result.humidity?.percent,
+                dewPoint = result.dewpointTemperature?.value,
+                pressure = result.pressure?.value,
+                cloudCover = result.cloudiness?.percent?.roundToInt()
+            )
+        }
     }
 }
 
@@ -168,45 +182,18 @@ fun convertSecondary(
     )
 }
 
-private fun getWeatherCode(icon: String?): WeatherCode? {
+private fun getWeatherCode(icon: Int?): WeatherCode? {
     if (icon == null) return null
-    return with(icon) {
-        when {
-            startsWith("01") ||
-                startsWith("02") -> WeatherCode.CLEAR
-            startsWith("03") -> WeatherCode.PARTLY_CLOUDY
-            startsWith("04") -> WeatherCode.CLOUDY
-            startsWith("05") ||
-                startsWith("09") ||
-                startsWith("10") ||
-                startsWith("40") ||
-                startsWith("41") ||
-                startsWith("46") -> WeatherCode.RAIN
-            startsWith("06") ||
-                startsWith("11") ||
-                startsWith("14") ||
-                startsWith("2") ||
-                startsWith("30") ||
-                startsWith("31") ||
-                startsWith("32") ||
-                startsWith("33") ||
-                startsWith("34") -> WeatherCode.THUNDERSTORM
-            startsWith("07") ||
-                startsWith("12") ||
-                startsWith("42") ||
-                startsWith("43") ||
-                startsWith("47") ||
-                startsWith("48") -> WeatherCode.SLEET
-            startsWith("08") ||
-                startsWith("13") ||
-                startsWith("44") ||
-                startsWith("45") ||
-                startsWith("49") ||
-                startsWith("50") -> WeatherCode.SNOW
-            startsWith("15") -> WeatherCode.FOG
-            startsWith("51") ||
-                startsWith("52") -> WeatherCode.HAIL
-            else -> null
-        }
+    return when (icon) {
+        1, 2 -> WeatherCode.CLEAR
+        3 -> WeatherCode.PARTLY_CLOUDY
+        4 -> WeatherCode.CLOUDY
+        5, 9, 10, 40, 41, 46 -> WeatherCode.RAIN
+        6, 11, 14, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 -> WeatherCode.THUNDERSTORM
+        7, 12, 42, 43, 47, 48 -> WeatherCode.SLEET
+        8, 13, 44, 45, 49, 50 -> WeatherCode.SNOW
+        15 -> WeatherCode.FOG
+        51, 52 -> WeatherCode.HAIL
+        else -> null
     }
 }

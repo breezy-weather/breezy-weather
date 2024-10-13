@@ -29,8 +29,8 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
-import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeWarningResult
+import org.breezyweather.sources.metie.xml.MetIeWeatherData
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -39,7 +39,8 @@ import javax.inject.Named
  * MET Éireann service
  */
 class MetIeService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder,
+    @Named("JsonClient") jsonClient: Retrofit.Builder,
+    @Named("XmlClient") xmlClient: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "metie"
@@ -55,11 +56,17 @@ class MetIeService @Inject constructor(
         "any loss or damage arising from their use. This material has been modified from the original by " +
         "Breezy Weather, mainly to compute or extrapolate missing data."
 
-    private val mApi by lazy {
-        client
-            .baseUrl(MET_IE_BASE_URL)
+    private val mJsonApi by lazy {
+        jsonClient
+            .baseUrl(MET_IE_JSON_BASE_URL)
             .build()
-            .create(MetIeApi::class.java)
+            .create(MetIeJsonApi::class.java)
+    }
+    private val mXmlApi by lazy {
+        xmlClient
+            .baseUrl(MET_IE_XML_BASE_URL)
+            .build()
+            .create(MetIeXmlApi::class.java)
     }
 
     override val supportedFeaturesInMain = listOf(
@@ -78,21 +85,21 @@ class MetIeService @Inject constructor(
         location: Location,
         ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
-        val forecast = mApi.getForecast(
+        val forecast = mXmlApi.getForecast(
             location.latitude,
             location.longitude
         )
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-            mApi.getWarnings()
+            mJsonApi.getWarnings()
         } else {
             Observable.create { emitter ->
                 emitter.onNext(MetIeWarningResult())
             }
         }
 
-        return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->
-            convert(forecastResult, alertsResult, location)
+        return Observable.zip(forecast, alerts) { forecastResult: MetIeWeatherData, alertsResult: MetIeWarningResult ->
+            convert(forecastResult.product?.time, alertsResult, location)
         }
     }
 
@@ -118,7 +125,7 @@ class MetIeService @Inject constructor(
         location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        return mApi.getWarnings().map {
+        return mJsonApi.getWarnings().map {
             convertSecondary(it, location)
         }
     }
@@ -127,7 +134,7 @@ class MetIeService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        return mApi.getReverseLocation(
+        return mJsonApi.getReverseLocation(
             location.latitude,
             location.longitude
         ).map {
@@ -157,7 +164,7 @@ class MetIeService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        return mApi.getReverseLocation(
+        return mJsonApi.getReverseLocation(
             location.latitude,
             location.longitude
         ).map {
@@ -173,7 +180,8 @@ class MetIeService @Inject constructor(
     }
 
     companion object {
-        private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
+        private const val MET_IE_JSON_BASE_URL = "https://prodapi.metweb.ie/"
+        private const val MET_IE_XML_BASE_URL = "https://openaccess.pf.api.met.ie/metno-wdb2ts/"
 
         // Last checked: 2024-03-02 https://prodapi.metweb.ie/v2/warnings/regions
         val regionsMapping = mapOf(
