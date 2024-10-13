@@ -210,7 +210,7 @@ fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
                 3 -> Color.rgb(255, 0, 0)
                 2 -> Color.rgb(255, 196, 0)
                 1 -> Color.rgb(255, 255, 0)
-                else -> null
+                else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
             }
         )
     }

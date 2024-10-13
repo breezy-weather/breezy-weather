@@ -35,13 +35,14 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Recosanté pollen service.
  */
 class RecosanteService @Inject constructor(
     @ApplicationContext context: Context,
-    val client: Retrofit.Builder
+    @Named("JsonClient") val client: Retrofit.Builder
 ) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource,
     ConfigurableSource {
 

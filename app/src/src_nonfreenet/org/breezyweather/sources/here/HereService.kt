@@ -39,10 +39,11 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, /*LocationSearchSource, */ReverseGeocodingSource,
     ConfigurableSource {
     override val id = "here"

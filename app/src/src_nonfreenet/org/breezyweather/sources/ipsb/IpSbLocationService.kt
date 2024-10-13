@@ -25,9 +25,10 @@ import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class IpSbLocationService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), LocationSource {
 
     override val id = "ipsb"

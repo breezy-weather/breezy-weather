@@ -34,9 +34,10 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class NwsService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, LocationParametersSource {
 

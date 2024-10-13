@@ -157,7 +157,7 @@ private fun getAlertList(
                 2 -> Color.rgb(254, 142, 82)
                 1 -> Color.rgb(255, 217, 3)
                 0 -> Color.rgb(146, 208, 245)
-                else -> null
+                else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
             }
         )
     }

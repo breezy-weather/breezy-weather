@@ -152,6 +152,13 @@ fun getCurrent(data: ImsWeatherData): Current? {
 
 fun getAlerts(data: ImsWeatherData): List<Alert>? {
     return data.allWarnings?.mapNotNull { warningEntry ->
+        val severity = when (warningEntry.value.severityId) {
+            "6" -> AlertSeverity.EXTREME
+            "4", "5" -> AlertSeverity.SEVERE
+            "2", "3" -> AlertSeverity.MODERATE
+            "0", "1" -> AlertSeverity.MINOR
+            else -> AlertSeverity.UNKNOWN
+        }
         Alert(
             alertId = warningEntry.value.alertId,
             startDate = warningEntry.value.validFromUnix?.let { Date(it.times(1000L)) },
@@ -161,18 +168,12 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
             },
             description = warningEntry.value.text,
             source = "Israel Meteorological Service",
-            severity = when (warningEntry.value.severityId) {
-                "6" -> AlertSeverity.EXTREME
-                "4", "5" -> AlertSeverity.SEVERE
-                "2", "3" -> AlertSeverity.MODERATE
-                "0", "1" -> AlertSeverity.MINOR
-                else -> AlertSeverity.UNKNOWN
-            },
+            severity = severity,
             color = warningEntry.value.severityId?.let { severityId ->
                 data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.let {
                     Color.parseColor(it)
                 }
-            }
+            } ?: Alert.colorFromSeverity(severity)
         )
     }
 }

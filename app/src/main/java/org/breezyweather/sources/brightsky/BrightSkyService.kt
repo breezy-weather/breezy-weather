@@ -42,10 +42,11 @@ import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
+import javax.inject.Named
 
 class BrightSkyService @Inject constructor(
     @ApplicationContext context: Context,
-    val client: Retrofit.Builder
+    @Named("JsonClient") val client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "brightsky"

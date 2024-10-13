@@ -26,9 +26,10 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class SmhiService @Inject constructor(
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource {
 
     override val id = "smhi"

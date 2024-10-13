@@ -20,7 +20,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import nl.adaptivity.xmlutil.serialization.UnknownChildHandler
 import nl.adaptivity.xmlutil.serialization.XML
+import nl.adaptivity.xmlutil.serialization.XmlConfig
+import nl.adaptivity.xmlutil.serialization.XmlSerializationPolicy
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -32,26 +35,30 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class RetrofitModule {
+class RetrofitXmlModule {
 
     @Provides
     @Singleton
     @Named("XmlSerializer")
     fun provideKotlinxXmlSerializationConverterFactory(): Converter.Factory {
         val contentType = "application/xml".toMediaType()
-        return XML().asConverterFactory(contentType)
+        return XML {
+            defaultPolicy {
+                pedantic = false
+                ignoreUnknownChildren()
+            }
+        }.asConverterFactory(contentType)
     }
 
     @Provides
-    fun provideRetrofitBuilder(
+    @Named("XmlClient")
+    fun provideXmlRetrofitBuilder(
         client: OkHttpClient,
-        @Named("JsonSerializer") jsonConverterFactory: Converter.Factory,
         @Named("XmlSerializer") xmlConverterFactory: Converter.Factory,
         callAdapterFactory: RxJava3CallAdapterFactory
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(client)
-            .addConverterFactory(jsonConverterFactory)
             .addConverterFactory(xmlConverterFactory)
             // TODO: We should probably migrate to suspend
             // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05

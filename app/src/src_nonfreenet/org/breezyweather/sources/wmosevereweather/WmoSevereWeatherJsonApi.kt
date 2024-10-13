@@ -24,7 +24,7 @@ import retrofit2.http.Query
 /**
  * API World Meteorological Organization
  */
-interface WmoSevereWeatherApi {
+interface WmoSevereWeatherJsonApi {
     @GET("f/wfs")
     fun getAlerts(
         @Query("request") request: String = "GetFeature",
@@ -33,4 +33,5 @@ interface WmoSevereWeatherApi {
         @Query("cql_filter", encoded = true) cqlFilter: String,
         @Query("outputFormat") outputFormat: String = "json"
     ): Observable<WmoSevereWeatherAlertResult>
+
 }

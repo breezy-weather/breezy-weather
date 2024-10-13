@@ -128,6 +128,13 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
     return warnings
         .filter { it.regions.contains("EI0") /* National */ || it.regions.contains(eiRegion) }
         .map { alert ->
+            val severity = when (alert.severity?.lowercase()) {
+                "extreme" -> AlertSeverity.EXTREME
+                "severe" -> AlertSeverity.SEVERE
+                "moderate" -> AlertSeverity.MODERATE
+                "minor" -> AlertSeverity.MINOR
+                else -> AlertSeverity.UNKNOWN
+            }
             Alert(
                 alertId = alert.id,
                 startDate = alert.onset,
@@ -135,18 +142,12 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
                 headline = alert.headline,
                 description = alert.description,
                 source = "MET Éireann",
-                severity = when (alert.severity?.lowercase()) {
-                    "extreme" -> AlertSeverity.EXTREME
-                    "severe" -> AlertSeverity.SEVERE
-                    "moderate" -> AlertSeverity.MODERATE
-                    "minor" -> AlertSeverity.MINOR
-                    else -> AlertSeverity.UNKNOWN
-                },
+                severity = severity,
                 color = when (alert.level?.lowercase()) {
                     "red" -> Color.rgb(224, 0, 0)
                     "orange" -> Color.rgb(255, 140, 0)
                     "yellow" -> Color.rgb(255, 255, 0)
-                    else -> null
+                    else -> Alert.colorFromSeverity(severity)
                 }
             )
         }

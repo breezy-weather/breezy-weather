@@ -31,6 +31,7 @@ import okhttp3.tls.HandshakeCertificates
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import retrofit2.Converter
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.io.File
@@ -110,5 +111,20 @@ class HttpModule {
             isLenient = !BreezyWeather.instance.debugMode
         }
         return json.asConverterFactory(contentType)
+    }
+
+    @Provides
+    @Named("JsonClient")
+    fun provideJsonRetrofitBuilder(
+        client: OkHttpClient,
+        @Named("JsonSerializer") jsonConverterFactory: Converter.Factory,
+        callAdapterFactory: RxJava3CallAdapterFactory
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .client(client)
+            .addConverterFactory(jsonConverterFactory)
+            // TODO: We should probably migrate to suspend
+            // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
+            .addCallAdapterFactory(callAdapterFactory)
     }
 }

@@ -35,10 +35,11 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
+import javax.inject.Named
 
 class GeoNamesService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), LocationSearchSource, ConfigurableSource {
 
     override val id = "geonames"

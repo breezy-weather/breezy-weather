@@ -176,7 +176,7 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
                 "severe" -> Color.rgb(255, 48, 48)
                 "moderate" -> Color.rgb(255, 179, 48)
                 "minor" -> Color.rgb(255, 238, 48)
-                else -> null
+                else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
             }
         )
     }

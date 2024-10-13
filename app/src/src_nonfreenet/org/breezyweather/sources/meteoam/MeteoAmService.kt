@@ -32,10 +32,11 @@ import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
 import retrofit2.Retrofit
+import javax.inject.Named
 
 class MeteoAmService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, ReverseGeocodingSource {
 
     override val id = "meteoam"

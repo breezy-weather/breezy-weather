@@ -43,6 +43,7 @@ import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * OpenWeatherMap
@@ -50,7 +51,7 @@ import javax.inject.Inject
  */
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
-    client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "openweather"
