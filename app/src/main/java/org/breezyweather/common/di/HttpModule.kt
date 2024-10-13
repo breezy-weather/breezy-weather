@@ -31,7 +31,6 @@ import okhttp3.tls.HandshakeCertificates
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import retrofit2.Converter
-import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.io.File
@@ -43,7 +42,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class RetrofitModule {
+class HttpModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(app: Application, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
@@ -111,32 +110,5 @@ class RetrofitModule {
             isLenient = !BreezyWeather.instance.debugMode
         }
         return json.asConverterFactory(contentType)
-    }
-
-    /*@Provides
-    @Singleton
-    @Named("XmlSerializer")
-    fun provideKotlinxXmlSerializationConverterFactory(): Converter.Factory {
-        val contentType = "application/xml".toMediaType()
-        val xml = Xml {
-            ignoreUnknownKeys = true
-            explicitNulls = false
-            isLenient = !BreezyWeather.instance.debugMode
-        }
-        return xml.asConverterFactory(contentType)
-    }*/
-
-    @Provides
-    fun provideRetrofitBuilder(
-        client: OkHttpClient,
-        @Named("JsonSerializer") jsonConverterFactory: Converter.Factory,
-        callAdapterFactory: RxJava3CallAdapterFactory
-    ): Retrofit.Builder {
-        return Retrofit.Builder()
-            .client(client)
-            .addConverterFactory(jsonConverterFactory)
-            // TODO: We should probably migrate to suspend
-            // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
-            .addCallAdapterFactory(callAdapterFactory)
     }
 }

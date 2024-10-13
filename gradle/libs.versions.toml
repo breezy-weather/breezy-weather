@@ -21,7 +21,7 @@ kotest-assertions = "5.9.1"
 kotlin = "2.0.21"
 kotlinx-coroutines = "1.9.0"
 kotlinx-serialization-json = "1.7.3"
-#kotlinx-serialization-xml = "3980721899b8a990d9e5df170459e17b81fbc34d"
+kotlinx-serialization-xml = "0.90.1"
 ktlint = "12.1.1"
 #leakcanary = "2.14"
 lifecycle = "2.8.6"
@@ -80,7 +80,8 @@ kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coro
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
-#kotlinx-serialization-xml = { group = "com.github.rharter", name = "kotlinx-serialization-xml", version.ref = "kotlinx-serialization-xml" }
+kotlinx-serialization-xml-core = { group = "io.github.pdvrieze.xmlutil", name = "core-android", version.ref = "kotlinx-serialization-xml" }
+kotlinx-serialization-xml = { group = "io.github.pdvrieze.xmlutil", name = "serialization-android", version.ref = "kotlinx-serialization-xml" }
 ktlint = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 #leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
