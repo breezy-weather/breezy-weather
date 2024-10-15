@@ -678,4 +678,16 @@
     <string name="settings_main_section_options">Indstillinger</string>
     <string name="settings_main_threshold_lines_on_charts">Grænselinjer på grafer</string>
     <string name="settings_main_section_animations">Animationer</string>
+    <string name="action_download">Hent</string>
+    <string name="about_no_new_updates">Ikke flere opdateringer</string>
+    <string name="settings_unavailable_no_animations">Ikke tilgængelig. Aktiver animationer i Android-indstillinger</string>
+    <string name="notification_channel_app_updates">App opdateringer</string>
+    <string name="notification_app_update_available">Ny udgave tilgængelig!</string>
+    <string name="about_check_for_app_updates">Se efter appopdateringer</string>
+    <string name="common_weather_text_sand_storm">Sandstorme</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tornado eller vandspir</string>
+    <string name="meteoam_weather_text_smoke">Røg</string>
+    <string name="dialog_app_update_check_title">Holde sig opdateret</string>
+    <string name="dialog_app_update_check_content">Tryk her for at aktivere meddelelser om appopdateringer.</string>
+    <string name="settings_notifications_app_updates_check">Meddelelser om appopdateringer</string>
 </resources>
