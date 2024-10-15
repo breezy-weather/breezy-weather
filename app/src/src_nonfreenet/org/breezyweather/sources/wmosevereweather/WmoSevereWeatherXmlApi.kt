@@ -16,7 +16,7 @@
 
 package org.breezyweather.sources.wmosevereweather
 
-import org.breezyweather.sources.wmosevereweather.xml.WmoSevereWeatherCapResult
+import org.breezyweather.sources.common.xml.CapAlert
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Url
@@ -26,9 +26,8 @@ import retrofit2.http.Url
  */
 interface WmoSevereWeatherXmlApi {
 
-    // FIXME: Alerts in India and Argentina are prefixed with "cap"
     @GET
     fun getAlert(
         @Url capUrl: String
-    ): Call<WmoSevereWeatherCapResult>
+    ): Call<CapAlert>
 }

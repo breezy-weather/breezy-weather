@@ -27,7 +27,7 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
-import org.breezyweather.sources.wmosevereweather.xml.WmoSevereWeatherCapResult
+import org.breezyweather.sources.common.xml.CapAlert
 import java.util.Date
 
 fun convert(
@@ -73,8 +73,6 @@ fun convert(
                             it.properties.rlink
                         } else it.properties.capurl
                     } else {
-                        // TODO: The only way to know which URL contains which language… is to load
-                        // both URL. Source: https://severeweather.wmo.int/js/new-layout.js
                         null
                     }
 
@@ -107,6 +105,9 @@ fun convert(
                     } else if (it.properties.rlink.isNullOrEmpty() && it.properties.capurl.isNullOrEmpty()) {
                         originalAlert
                     } else {
+                        // "else" case from urlToLoad
+                        // The only way to know which URL contains which language… is to load
+                        // both URL. Source: https://severeweather.wmo.int/js/new-layout.js
                         val capurlAlert = client.getAlert("v2/cap-alerts/${it.properties.capurl}").execute().body()
                         val rlinkAlert = client.getAlert("v2/cap-alerts/${it.properties.rlink}").execute().body()
 
@@ -148,8 +149,8 @@ fun convert(
 }
 
 fun alertFromInfo(
-    xmlAlert: WmoSevereWeatherCapResult?,
-    selectedInfo: WmoSevereWeatherCapResult.Info?,
+    xmlAlert: CapAlert?,
+    selectedInfo: CapAlert.Info?,
     originalAlert: Alert
 ): Alert {
     return selectedInfo?.let { info ->

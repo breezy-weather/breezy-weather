@@ -20,10 +20,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import nl.adaptivity.xmlutil.serialization.UnknownChildHandler
 import nl.adaptivity.xmlutil.serialization.XML
-import nl.adaptivity.xmlutil.serialization.XmlConfig
-import nl.adaptivity.xmlutil.serialization.XmlSerializationPolicy
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -47,6 +44,7 @@ class RetrofitXmlModule {
                 pedantic = false
                 ignoreUnknownChildren()
             }
+            autoPolymorphic = true
         }.asConverterFactory(contentType)
     }
 
