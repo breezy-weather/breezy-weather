@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
-import breezyweather.domain.weather.model.Normals
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.currentLocale
@@ -61,7 +60,6 @@ import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
 import java.util.Calendar
-import java.util.Date
 
 class DailyWeatherAdapter(
     activity: DailyWeatherActivity,

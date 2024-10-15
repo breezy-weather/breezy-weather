@@ -39,7 +39,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
@@ -51,10 +50,8 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunProperties
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import java.util.Date
-import java.util.Objects
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     context: Context,
@@ -318,6 +315,9 @@ fun convertSecondary(
         } else null,
         minutelyForecast = if (nowcastResult != null) {
             getMinutelyList(nowcastResult.properties?.timeseries)
+        } else null,
+        alertList = if (metNoAlertResults != null) {
+            getAlerts(metNoAlertResults)
         } else null
     )
 }

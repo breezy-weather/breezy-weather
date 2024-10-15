@@ -14,6 +14,7 @@
 
 **Weather sources**
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
+- [MET Norway] Fix alerts not working when used as a secondary source
 
 
 # Version 5.2.8 (2024-09-15)

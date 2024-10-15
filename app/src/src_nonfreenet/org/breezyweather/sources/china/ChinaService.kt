@@ -18,7 +18,6 @@ package org.breezyweather.sources.china
 
 import android.content.Context
 import android.graphics.Color
-import androidx.compose.ui.text.toLowerCase
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
