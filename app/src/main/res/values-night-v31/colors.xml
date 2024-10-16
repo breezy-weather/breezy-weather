@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- theme -->
+    <color name="colorSplashScreen">#0a0e16</color>
+
     <!-- widget S. -->
 
     <color name="colorWidgetM3Root">@android:color/system_accent2_800</color>

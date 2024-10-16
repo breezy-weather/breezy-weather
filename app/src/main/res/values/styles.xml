@@ -41,7 +41,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
-        <item name="colorControlHighlight">@color/colorRipple</item>
+        <item name="colorControlHighlight">@color/colorRipple_regular</item>
         <item name="colorTitleText">@color/colorTextTitle</item>
         <item name="colorBodyText">@color/colorTextContent</item>
         <item name="colorCaptionText">@color/colorTextSubtitle</item>
@@ -50,9 +50,10 @@
         <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
 
-    <style name="BreezyWeatherTheme.Main" parent="BreezyWeatherTheme">
-        <item name="android:windowBackground">@drawable/launch_background</item>
-        <item name="colorControlHighlight">@color/colorRipple_regular</item>
+    <style name="BreezyWeatherTheme.Main" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/colorSplashScreen</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/BreezyWeatherTheme</item>
     </style>
 
     <style name="BreezyWeatherTheme.Search" parent="BreezyWeatherTheme">
