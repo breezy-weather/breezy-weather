@@ -54,6 +54,8 @@ Just swipe from right to left on location list, or tap the pencil icon on top ri
 
 ### Background updates are not working
 
+If the app is installed in a work or private profile, turning off that profile will disable background updates, so if you are in that case and want background updates, make sure to not turn off the profile or move the app to the main profile.
+
 Certain manufacturers implement non-standard Android behaviors, which prevents the app from working properly.
 
 The first thing to try is to whitelist Breezy Weather from battery optimization. From the app, go to Settings > Background updates and tap on “Disable battery optimization” (don’t worry, our background update job is optimized to be very battery-friendly, and you can change “Refresh rate” to “Never” at any time!).

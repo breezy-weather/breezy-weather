@@ -45,20 +45,6 @@
     <declare-styleable name="AnimatableIconView">
         <attr name="inner_margins" format="dimension" />
     </declare-styleable>
-    
-    <!-- Round corner transition. -->
-    <declare-styleable name="RoundCornerTransition">
-        <attr name="radius_from" format="dimension" />
-        <attr name="radius_to" format="dimension" />
-    </declare-styleable>
-
-    <!-- Scale transition. -->
-    <declare-styleable name="ScaleTransition">
-        <attr name="scale_type">
-            <enum name="show" value="1" />
-            <enum name="hide" value="2" />
-        </attr>
-    </declare-styleable>
 
     <!-- Tag view. -->
     <declare-styleable name="TagView">
