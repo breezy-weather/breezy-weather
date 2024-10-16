@@ -277,6 +277,7 @@ class PrecipitationNowcastViewHolder(
                     guideline = null,
                     tick = null, // Workaround: no custom ticks
                     label = null, // Workaround: no custom ticks
+                    itemPlacer = HorizontalAxis.ItemPlacer.aligned(addExtremeLabelPadding = false) // FIXME: Workaround for #1320
                 ),
                 decorations = listOfNotNull(
                     /**
