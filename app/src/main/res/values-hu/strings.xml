@@ -696,4 +696,6 @@
     <string name="dialog_app_update_check_content">Koppintson ide az alkalmazás-frissítésekkel kapcsolatos értesítések engedélyezéséhez.</string>
     <string name="dialog_app_update_check_title">Legyen naprakész</string>
     <string name="settings_unavailable_no_animations">Nem érhető el, először engedélyezze az animációkat az Android beállításaiban</string>
+    <string name="current_weather">Jelenlegi időjárás</string>
+    <string name="weather_current_data_by">A jelenlegi időjárás adatainak forrása: %s</string>
 </resources>
