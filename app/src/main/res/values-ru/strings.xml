@@ -697,4 +697,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо или водный смерч</string>
     <string name="meteoam_weather_text_smoke">Дым</string>
     <string name="settings_unavailable_no_animations">Недоступно, сначала включите анимацию в настройках Android</string>
+    <string name="current_weather">Текущая погода</string>
+    <string name="weather_current_data_by">Данные о текущей погоде предоставлены %s</string>
 </resources>
