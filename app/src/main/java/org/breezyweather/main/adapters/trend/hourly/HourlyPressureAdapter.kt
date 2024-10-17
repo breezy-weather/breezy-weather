@@ -150,8 +150,6 @@ class HourlyPressureAdapter(
                 i += 2
             }
         }
-        mHighestPressure = PressureUnit.NORMAL.toFloat()
-        mLowestPressure = PressureUnit.NORMAL.toFloat()
         weather.nextHourlyForecast
             .forEach { hourly ->
                 hourly.pressure?.let {
@@ -178,10 +176,7 @@ class HourlyPressureAdapter(
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return mHighestPressure != null &&
-            mLowestPressure != null &&
-            mHighestPressure != PressureUnit.NORMAL.toFloat() &&
-            mLowestPressure != PressureUnit.NORMAL.toFloat()
+        return location.weather?.nextHourlyForecast?.any { it.pressure != null } == true
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)
