@@ -385,12 +385,13 @@ class MainActivity : GeoActivity(),
                 val shortMessage = if (!error.source.isNullOrEmpty()) {
                     "${error.source}${getString(R.string.colon_separator)}${getString(error.error.shortMessage)}"
                 } else getString(error.error.shortMessage)
+
                 error.error.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
                         content = shortMessage,
                         action = getString(error.error.actionButtonMessage)
                     ) {
-                        showDialogAction(this)
+                        showDialogAction(this, viewModel.currentLocation.value?.daylight)
                     }
                 } ?: SnackbarHelper.showSnackbar(shortMessage)
             }

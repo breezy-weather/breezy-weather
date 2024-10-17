@@ -52,7 +52,7 @@ class SearchViewModel @Inject constructor(
                         action = (getApplication() as Application).getString(msg.actionButtonMessage)
                     ) {
                         BreezyWeather.instance.topActivity?.let { topActivity ->
-                            showDialogAction(topActivity)
+                            showDialogAction(topActivity, null)
                         }
                     }
                 } ?: SnackbarHelper.showSnackbar((getApplication() as Application).getString(msg.shortMessage))
