@@ -709,4 +709,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Angin topan atau puting beliung</string>
     <string name="meteoam_weather_text_smoke">Asap</string>
     <string name="settings_unavailable_no_animations">Tidak tersedia. Mohon nyalakan animasi pada setelan Android terlebih dahulu</string>
+    <string name="current_weather">Cuaca saat ini</string>
+    <string name="weather_current_data_by">Data cuaca saat ini oleh %s</string>
 </resources>
