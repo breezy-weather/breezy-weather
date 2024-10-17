@@ -701,4 +701,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Tornado lub trąba wodna</string>
     <string name="meteoam_weather_text_smoke">Dym</string>
     <string name="settings_unavailable_no_animations">Niedostępne. Najpierw włącz animacje w ustawieniach Androida.</string>
+    <string name="current_weather">Aktualna pogoda</string>
+    <string name="weather_current_data_by">Aktualne dane pogodowe dostarczone przez %s</string>
 </resources>
