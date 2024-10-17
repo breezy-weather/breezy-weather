@@ -46,6 +46,7 @@ import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoLocationResult
+import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherCurrent
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherDaily
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherMinutely
@@ -94,28 +95,34 @@ fun convert(
     }
 
     return WeatherWrapper(
-        current = Current(
-            weatherText = getWeatherText(context, weatherResult.current?.weatherCode),
-            weatherCode = getWeatherCode(weatherResult.current?.weatherCode),
-            temperature = Temperature(
-                temperature = weatherResult.current?.temperature,
-                apparentTemperature = weatherResult.current?.apparentTemperature
-            ),
-            wind = Wind(
-                degree = weatherResult.current?.windDirection,
-                speed = weatherResult.current?.windSpeed,
-                gusts = weatherResult.current?.windGusts
-            ),
-            uV = UV(index = weatherResult.current?.uvIndex),
-            relativeHumidity = weatherResult.current?.relativeHumidity?.toDouble(),
-            dewPoint = weatherResult.current?.dewPoint,
-            pressure = weatherResult.current?.pressureMsl,
-            cloudCover = weatherResult.current?.cloudCover,
-            visibility = weatherResult.current?.visibility
-        ),
+        current = getCurrent(weatherResult.current, context),
         dailyForecast = getDailyList(weatherResult.daily, location),
         hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult),
         minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
+    )
+}
+
+fun getCurrent(current: OpenMeteoWeatherCurrent?, context: Context): Current? {
+    if (current == null) return null
+
+    return Current(
+        weatherText = getWeatherText(context, current.weatherCode),
+        weatherCode = getWeatherCode(current.weatherCode),
+        temperature = Temperature(
+            temperature = current.temperature,
+            apparentTemperature = current.apparentTemperature
+        ),
+        wind = Wind(
+            degree = current.windDirection,
+            speed = current.windSpeed,
+            gusts = current.windGusts
+        ),
+        uV = UV(index = current.uvIndex),
+        relativeHumidity = current.relativeHumidity?.toDouble(),
+        dewPoint = current.dewPoint,
+        pressure = current.pressureMsl,
+        cloudCover = current.cloudCover,
+        visibility = current.visibility
     )
 }
 
@@ -300,9 +307,10 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  * Secondary convert
  */
 fun convertSecondary(
-    minutelyFifteen: OpenMeteoWeatherMinutely?,
+    weatherResult: OpenMeteoWeatherResult,
     hourlyAirQualityResult: OpenMeteoAirQualityHourly?,
-    requestedFeatures: List<SecondaryWeatherSourceFeature>
+    requestedFeatures: List<SecondaryWeatherSourceFeature>,
+    context: Context
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
     val pollenHourly = mutableMapOf<Date, Pollen>()
@@ -333,13 +341,14 @@ fun convertSecondary(
     }
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(weatherResult.current, context),
         airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             AirQualityWrapper(hourlyForecast = airQualityHourly)
         } else null,
         pollen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
             PollenWrapper(hourlyForecast = pollenHourly)
         } else null,
-        minutelyForecast = getMinutelyList(minutelyFifteen)
+        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
     )
 }
 

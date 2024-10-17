@@ -84,7 +84,7 @@ fun convert(
 
 fun convert(
     location: Location,
-    currentResult: AccuCurrentResult,
+    currentResult: AccuCurrentResult?,
     dailyResult: AccuForecastDailyResult,
     hourlyResultList: List<AccuForecastHourlyResult>,
     minuteResult: AccuMinutelyResult?,
@@ -102,32 +102,7 @@ fun convert(
         /*base = Base(
             publishDate = currentResult.EpochTime.seconds.inWholeMilliseconds.toDate(),
         ),*/
-        current = Current(
-            weatherText = currentResult.WeatherText,
-            weatherCode = getWeatherCode(currentResult.WeatherIcon),
-            temperature = Temperature(
-                temperature = currentResult.Temperature?.Metric?.Value,
-                realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value,
-                realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value,
-                apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value,
-                windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value,
-                wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value
-            ),
-            wind = Wind(
-                degree = currentResult.Wind?.Direction?.Degrees?.toDouble(),
-                speed = currentResult.Wind?.Speed?.Metric?.Value?.div(3.6),
-                gusts = currentResult.WindGust?.Speed?.Metric?.Value?.div(3.6)
-            ),
-            uV = UV(index = currentResult.UVIndex?.toDouble()),
-            relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
-            dewPoint = currentResult.DewPoint?.Metric?.Value,
-            pressure = currentResult.Pressure?.Metric?.Value,
-            cloudCover = currentResult.CloudCover,
-            visibility = currentResult.Visibility?.Metric?.Value?.times(1000),
-            ceiling = currentResult.Ceiling?.Metric?.Value,
-            dailyForecast = dailyResult.Headline?.Text,
-            hourlyForecast = minuteResult?.Summary?.LongPhrase
-        ),
+        current = getCurrent(currentResult, dailyResult, minuteResult),
         normals = if (climoSummaryResult.Normals?.Temperatures != null) {
             Normals(
                 month = currentMonth,
@@ -139,6 +114,41 @@ fun convert(
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)
+    )
+}
+
+fun getCurrent(
+    currentResult: AccuCurrentResult?,
+    dailyResult: AccuForecastDailyResult? = null,
+    minuteResult: AccuMinutelyResult? = null
+): Current? {
+    if (currentResult == null) return null
+
+    return Current(
+        weatherText = currentResult.WeatherText,
+        weatherCode = getWeatherCode(currentResult.WeatherIcon),
+        temperature = Temperature(
+            temperature = currentResult.Temperature?.Metric?.Value,
+            realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value,
+            realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value,
+            apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value,
+            windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value,
+            wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value
+        ),
+        wind = Wind(
+            degree = currentResult.Wind?.Direction?.Degrees?.toDouble(),
+            speed = currentResult.Wind?.Speed?.Metric?.Value?.div(3.6),
+            gusts = currentResult.WindGust?.Speed?.Metric?.Value?.div(3.6)
+        ),
+        uV = UV(index = currentResult.UVIndex?.toDouble()),
+        relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
+        dewPoint = currentResult.DewPoint?.Metric?.Value,
+        pressure = currentResult.Pressure?.Metric?.Value,
+        cloudCover = currentResult.CloudCover,
+        visibility = currentResult.Visibility?.Metric?.Value?.times(1000),
+        ceiling = currentResult.Ceiling?.Metric?.Value,
+        dailyForecast = dailyResult?.Headline?.Text,
+        hourlyForecast = minuteResult?.Summary?.LongPhrase
     )
 }
 
@@ -504,6 +514,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  */
 fun convertSecondary(
     location: Location,
+    currentResult: AccuCurrentResult?,
     airQualityHourlyResult: AccuAirQualityResult?,
     dailyPollenResult: AccuForecastDailyResult?,
     minuteResult: AccuMinutelyResult?,
@@ -512,6 +523,7 @@ fun convertSecondary(
     currentMonth: Int
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
+        current = getCurrent(currentResult),
         airQuality = getAirQualityWrapper(airQualityHourlyResult?.data),
         pollen = getPollenWrapper(dailyPollenResult?.DailyForecasts, location),
         minutelyForecast = getMinutelyList(minuteResult),

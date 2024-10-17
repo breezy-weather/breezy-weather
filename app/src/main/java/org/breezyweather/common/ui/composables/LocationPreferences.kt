@@ -207,6 +207,7 @@ fun LocationPreference(
                                                 base = weather.base.copy(
                                                     refreshTime = null,
                                                     mainUpdateTime = null,
+                                                    currentUpdateTime = null,
                                                     airQualityUpdateTime = null,
                                                     pollenUpdateTime = null,
                                                     minutelyUpdateTime = null,
@@ -264,6 +265,7 @@ fun SecondarySourcesPreference(
     val hasChangedMainSource = remember { mutableStateOf(false) }
     val hasChangedASecondarySource = remember { mutableStateOf(false) }
     val weatherSource = remember { mutableStateOf(location.weatherSource) }
+    val currentSource = remember { mutableStateOf(location.currentSource ?: "") }
     val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
     val pollenSource = remember { mutableStateOf(location.pollenSource ?: "") }
     val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
@@ -277,13 +279,21 @@ fun SecondarySourcesPreference(
     }.associate { it.id to it.name }
     val secondarySources = sourceManager.getSecondaryWeatherSources()
     val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
+    val compatibleCurrentSources = secondarySources.filter {
+        (it !is ConfigurableSource || it.isConfigured || it.id == currentSource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location, SecondaryWeatherSourceFeature.FEATURE_CURRENT
+                )
+    }.associate { it.id to it.name }
     val compatibleAirQualitySources = secondarySources.filter {
         (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value) &&
-        it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
-            )
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+                )
     }.associate { it.id to it.name }
     val compatiblePollenSources = secondarySources.filter {
         (it !is ConfigurableSource || it.isConfigured || it.id == pollenSource.value) &&
@@ -359,6 +369,9 @@ fun SecondarySourcesPreference(
                     } else weatherSources,
                     withState = false
                 ) { sourceId ->
+                    if (currentSource.value == sourceId) {
+                        currentSource.value = ""
+                    }
                     if (airQualitySource.value == sourceId) {
                         airQualitySource.value = ""
                     }
@@ -376,6 +389,33 @@ fun SecondarySourcesPreference(
                     }
                     weatherSource.value = sourceId
                     hasChangedMainSource.value = true
+                }
+                SourceView(
+                    title = stringResource(R.string.current_weather),
+                    selectedKey = currentSource.value,
+                    sourceList = (if (currentSource.value.isNotEmpty() &&
+                        !compatibleCurrentSources.contains(currentSource.value)) {
+                        mapOf(
+                            currentSource.value to stringResource(
+                                R.string.settings_weather_source_unavailable,
+                                currentSource.value
+                            )
+                        )
+                    } else mapOf()) + mapOf(
+                        "" to if (mainSource?.supportedFeaturesInMain
+                                ?.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+                            == true
+                            && mainSource.isFeatureSupportedInMainForLocation(
+                                location, SecondaryWeatherSourceFeature.FEATURE_CURRENT
+                            )
+                        ) {
+                            stringResource(R.string.settings_weather_source_main)
+                        } else stringResource(R.string.settings_weather_source_none)
+                    ) + compatibleCurrentSources,
+                    withState = false
+                ) { sourceId ->
+                    currentSource.value = sourceId
+                    hasChangedASecondarySource.value = true
                 }
                 SourceView(
                     title = stringResource(R.string.air_quality),
@@ -523,6 +563,7 @@ fun SecondarySourcesPreference(
                             // Also reset secondary weather sources which are the new main source
                             cityId = if (hasChangedMainSource.value) "" else location.cityId,
                             weatherSource = weatherSource.value,
+                            currentSource = if (hasChangedMainSource.value && currentSource.value == weatherSource.value) "" else currentSource.value,
                             airQualitySource = if (hasChangedMainSource.value && airQualitySource.value == weatherSource.value) "" else airQualitySource.value,
                             pollenSource = if (hasChangedMainSource.value && pollenSource.value == weatherSource.value) "" else pollenSource.value,
                             minutelySource = if (hasChangedMainSource.value && minutelySource.value == weatherSource.value) "" else minutelySource.value,
@@ -536,6 +577,7 @@ fun SecondarySourcesPreference(
                                     base = weather.base.copy(
                                         refreshTime = null,
                                         mainUpdateTime = null,
+                                        currentUpdateTime = null,
                                         airQualityUpdateTime = null,
                                         pollenUpdateTime = null,
                                         minutelyUpdateTime = null,

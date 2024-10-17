@@ -199,11 +199,13 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 }
 
 fun convertSecondary(
+    currentWeather: BrightSkyCurrentWeatherResult,
     alertsResult: BrightSkyAlertsResult,
     languageCode: String
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(currentWeather.weather),
         alertList = getAlertList(alertsResult.alerts, languageCode)
     )
 }

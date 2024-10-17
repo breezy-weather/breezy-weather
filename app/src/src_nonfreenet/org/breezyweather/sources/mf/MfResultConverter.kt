@@ -95,17 +95,7 @@ fun convert(
         /*base = Base(
             publishDate = forecastResult.updateTime ?: Date()
         ),*/
-        current = Current(
-            weatherText = currentResult.properties?.gridded?.weatherDescription,
-            weatherCode = getWeatherCode(currentResult.properties?.gridded?.weatherIcon),
-            temperature = Temperature(
-                temperature = currentResult.properties?.gridded?.temperature
-            ),
-            wind = if (currentResult.properties?.gridded != null) Wind(
-                degree = currentResult.properties.gridded.windDirection?.toDouble(),
-                speed = currentResult.properties.gridded.windSpeed
-            ) else null
-        ),
+        current = getCurrent(currentResult),
         normals = getNormals(location, normalsResult),
         dailyForecast = getDailyList(
             location,
@@ -118,6 +108,24 @@ fun convert(
         ),
         minutelyForecast = getMinutelyList(rainResult),
         alertList = getWarningsList(warningsResult)
+    )
+}
+
+fun getCurrent(currentResult: MfCurrentResult): Current? {
+    if (currentResult.properties?.gridded == null) {
+        return null
+    }
+
+    return Current(
+        weatherText = currentResult.properties.gridded.weatherDescription,
+        weatherCode = getWeatherCode(currentResult.properties.gridded.weatherIcon),
+        temperature = Temperature(
+            temperature = currentResult.properties.gridded.temperature
+        ),
+        wind = Wind(
+            degree = currentResult.properties.gridded.windDirection?.toDouble(),
+            speed = currentResult.properties.gridded.windSpeed
+        )
     )
 }
 
@@ -509,11 +517,15 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
  */
 fun convertSecondary(
     location: Location,
+    currentResult: MfCurrentResult?,
     minuteResult: MfRainResult?,
     alertResultList: MfWarningsResult?,
     normalsResult: MfNormalsResult?
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
+        current = if (currentResult != null) {
+            getCurrent(currentResult)
+        } else null,
         minutelyForecast = if (minuteResult != null) {
             getMinutelyList(minuteResult)
         } else null,

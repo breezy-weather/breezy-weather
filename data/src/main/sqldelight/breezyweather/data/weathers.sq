@@ -7,6 +7,7 @@ CREATE TABLE weathers(
     -- Base
     refresh_time INTEGER,
     main_update_time INTEGER,
+    current_update_time INTEGER,
     air_quality_update_time INTEGER,
     pollen_update_time INTEGER,
     minutely_update_time INTEGER,
@@ -59,19 +60,20 @@ CREATE TABLE weathers(
 CREATE INDEX weathers_location_formatted_id_index ON weathers(location_formatted_id);
 
 getWeatherByLocationId:
-SELECT refresh_time, main_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature
+SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature
 FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
 
 insert:
-INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature)
-VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :weatherText, :weatherCode, :temperature, :realFeelTemperature, :realFeelShaderTemperature, :apparentTemperature, :windChillTemperature, :wetBulbTemperature, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast, :normalsMonth, :normalsDaytimeTemperature, :normalsNighttimeTemperature);
+INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature)
+VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :weatherText, :weatherCode, :temperature, :realFeelTemperature, :realFeelShaderTemperature, :apparentTemperature, :windChillTemperature, :wetBulbTemperature, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast, :normalsMonth, :normalsDaytimeTemperature, :normalsNighttimeTemperature);
 
 update:
 UPDATE weathers SET
     location_formatted_id = coalesce(:locationFormattedId, location_formatted_id),
     refresh_time = coalesce(:refreshTime, refresh_time),
     main_update_time = coalesce(:mainUpdateTime, main_update_time),
+    current_update_time = coalesce(:currentUpdateTime, current_update_time),
     air_quality_update_time = coalesce(:airQualityUpdateTime, air_quality_update_time),
     pollen_update_time = coalesce(:pollenUpdateTime, pollen_update_time),
     minutely_update_time = coalesce(:minutelyUpdateTime, minutely_update_time),

@@ -106,6 +106,7 @@ class ImsService @Inject constructor(
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
@@ -131,7 +132,7 @@ class ImsService @Inject constructor(
 
         return mApi.getWeather(languageCode, locationId)
             .map {
-                convertSecondary(it, location)
+                convertSecondary(it)
             }
     }
 

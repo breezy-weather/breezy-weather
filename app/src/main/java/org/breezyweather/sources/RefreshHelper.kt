@@ -317,6 +317,7 @@ class RefreshHelper @Inject constructor(
                 mutableMapOf()
             with(location) {
                 listOf(
+                    Pair(currentSource, SecondaryWeatherSourceFeature.FEATURE_CURRENT),
                     Pair(airQualitySource, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY),
                     Pair(pollenSource, SecondaryWeatherSourceFeature.FEATURE_POLLEN),
                     Pair(minutelySource, SecondaryWeatherSourceFeature.FEATURE_MINUTELY),
@@ -427,6 +428,10 @@ class RefreshHelper @Inject constructor(
                     )
                 }
             }
+            var currentUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                Date()
+            } else base.currentUpdateTime
             var airQualityUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
                 !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                 Date()
@@ -540,6 +545,12 @@ class RefreshHelper @Inject constructor(
                  * Make sure we return data from the correct secondary source
                  */
                 SecondaryWeatherWrapper(
+                    current = if (!location.currentSource.isNullOrEmpty() && location.currentSource != location.weatherSource) {
+                        secondarySourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
+                            currentUpdateTime = Date()
+                            it
+                        } // Don't fallback to old current, we will use forecast instead later
+                    } else null,
                     airQuality = if (!location.airQualitySource.isNullOrEmpty() && location.airQualitySource != location.weatherSource) {
                         secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
                             airQualityUpdateTime = Date()
@@ -615,6 +626,7 @@ class RefreshHelper @Inject constructor(
             val weather = Weather(
                 base = base.copy(
                     mainUpdateTime = if (isMainDataValid) base.mainUpdateTime else Date(),
+                    currentUpdateTime = currentUpdateTime,
                     airQualityUpdateTime = airQualityUpdateTime,
                     pollenUpdateTime = pollenUpdateTime,
                     minutelyUpdateTime = minutelyUpdateTime,
@@ -622,7 +634,7 @@ class RefreshHelper @Inject constructor(
                     normalsUpdateTime = normalsUpdateTime
                 ),
                 current = completeCurrentFromSecondaryData(
-                    mainWeatherCompleted.current,
+                    secondaryWeatherWrapper?.current ?: mainWeatherCompleted.current,
                     currentHour,
                     currentDay,
                     secondaryWeatherWrapperCompleted?.airQuality?.current,
@@ -954,6 +966,13 @@ class RefreshHelper @Inject constructor(
         if (location.weather?.base == null) return false
 
         when (feature) {
+            SecondaryWeatherSourceFeature.FEATURE_CURRENT -> {
+                return isUpdateStillValid(
+                    location.weather!!.base.currentUpdateTime,
+                    if (isRestricted) WAIT_CURRENT_RESTRICTED else WAIT_CURRENT,
+                    minimumTime
+                )
+            }
             SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY -> {
                 return isUpdateStillValid(
                     location.weather!!.base.airQualityUpdateTime,
@@ -1034,6 +1053,8 @@ class RefreshHelper @Inject constructor(
 
         const val WAIT_MAIN = WAIT_REGULAR // 5 min
         const val WAIT_MAIN_RESTRICTED = WAIT_RESTRICTED // 15 min
+        const val WAIT_CURRENT = WAIT_MINIMUM // 1 min
+        const val WAIT_CURRENT_RESTRICTED = WAIT_RESTRICTED // 15 min
         const val WAIT_AIR_QUALITY = WAIT_REGULAR // 5 min
         const val WAIT_AIR_QUALITY_RESTRICTED = WAIT_ONE_HOUR // 1 hour
         const val WAIT_POLLEN = WAIT_REGULAR // 5 min

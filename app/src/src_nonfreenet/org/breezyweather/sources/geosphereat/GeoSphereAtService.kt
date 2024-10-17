@@ -169,6 +169,7 @@ class GeoSphereAtService @Inject constructor(
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
+    override val currentAttribution = null
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution

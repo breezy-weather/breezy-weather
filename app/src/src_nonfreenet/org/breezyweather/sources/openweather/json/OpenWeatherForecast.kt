@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OpenWeatherForecast(
-    val dt: Long,
+    val dt: Long? = null,
     val main: OpenWeatherForecastMain? = null,
     val weather: List<OpenWeatherForecastWeather>? = null,
     val clouds: OpenWeatherForecastClouds? = null,

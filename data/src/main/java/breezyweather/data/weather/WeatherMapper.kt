@@ -29,6 +29,7 @@ object WeatherMapper {
     fun mapWeather(
         refreshTime: Long?,
         mainUpdateTime: Long?,
+        currentUpdateTime: Long?,
         airQualityUpdateTime: Long?,
         pollenUpdateTime: Long?,
         minutelyUpdateTime: Long?,
@@ -67,6 +68,7 @@ object WeatherMapper {
         Base(
             refreshTime?.let { Date(it) },
             mainUpdateTime?.let { Date(it) },
+            currentUpdateTime?.let { Date(it) },
             airQualityUpdateTime?.let { Date(it) },
             pollenUpdateTime?.let { Date(it) },
             minutelyUpdateTime?.let { Date(it) },

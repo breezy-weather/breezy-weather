@@ -80,13 +80,14 @@ Basically, depending on the features requested and your latest time of refresh, 
 
 Given different features have different caching delay, you may end up with a mix of restored weather data for some features, and newer data for other data.
 
-| Feature      | Non-restricted sources                                                | Restricted sources¹                                                    |
-|--------------|-----------------------------------------------------------------------|------------------------------------------------------------------------|
-| Main weather | 5 min                                                                 | 15 min                                                                 |
-| Air quality  | 5 min                                                                 | 1 hour                                                                 |
-| Allergen     | 5 min                                                                 | 1 hour                                                                 |
-| Minutely     | 1 min if minutely list is not empty, 5 min otherwise                  | 5 min if minutely list is not empty, 15 min otherwise                  |
-| Alerts       | 1 min if alert list is not empty, 5 min otherwise                     | 5 min if alert list is not empty, 1 hour otherwise                     |
-| Normals      | Once a month (when it becomes obsolete), or 5 min if current location | Once a month (when it becomes obsolete), or 15 min if current location |
+| Feature         | Non-restricted sources                                                | Restricted sources¹                                                    |
+|-----------------|-----------------------------------------------------------------------|------------------------------------------------------------------------|
+| Main weather    | 5 min                                                                 | 15 min                                                                 |
+| Current weather | 1 min                                                                 | 15 min                                                                 |
+| Air quality     | 5 min                                                                 | 1 hour                                                                 |
+| Allergen        | 5 min                                                                 | 1 hour                                                                 |
+| Minutely        | 1 min if minutely list is not empty, 5 min otherwise                  | 5 min if minutely list is not empty, 15 min otherwise                  |
+| Alerts          | 1 min if alert list is not empty, 5 min otherwise                     | 5 min if alert list is not empty, 1 hour otherwise                     |
+| Normals         | Once a month (when it becomes obsolete), or 5 min if current location | Once a month (when it becomes obsolete), or 15 min if current location |
 
 ¹ Restricted sources are: OpenWeather (unless you use your own API key)

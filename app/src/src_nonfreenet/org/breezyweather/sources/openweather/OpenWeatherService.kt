@@ -69,6 +69,7 @@ class OpenWeatherService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
     )
 
@@ -87,19 +88,21 @@ class OpenWeatherService @Inject constructor(
             "metric",
             languageCode
         )
-        val current = mApi.getCurrent(
-            apiKey,
-            location.latitude,
-            location.longitude,
-            "metric",
-            languageCode
-        ).onErrorResumeNext {
+        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                apiKey,
+                location.latitude,
+                location.longitude,
+                "metric",
+                languageCode
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(OpenWeatherForecast())
+                }
+            }
+        } else {
             Observable.create { emitter ->
-                emitter.onNext(
-                    OpenWeatherForecast(
-                        dt = Date().time.div(1000)
-                    )
-                )
+                emitter.onNext(OpenWeatherForecast())
             }
         }
         val airPollution = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -133,8 +136,10 @@ class OpenWeatherService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
     )
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
     override val minutelyAttribution = null
@@ -145,20 +150,51 @@ class OpenWeatherService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            !requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             return Observable.error(SourceNotInstalledException())
         }
+
         val apiKey = getApiKeyOrDefault()
         if (apiKey.isEmpty()) {
             return Observable.error(ApiKeyMissingException())
         }
+        val languageCode = context.currentLocale.code
 
-        return mApi.getAirPollution(
-            apiKey,
-            location.latitude,
-            location.longitude
-        ).map {
-            convertSecondary(it)
+        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                apiKey,
+                location.latitude,
+                location.longitude,
+                "metric",
+                languageCode
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(OpenWeatherForecast())
+            }
+        }
+
+        val airPollution = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getAirPollution(
+                apiKey,
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(OpenWeatherAirPollutionResult())
+            }
+        }
+
+        return Observable.zip(current, airPollution) {
+                openWeatherCurrentResult: OpenWeatherForecast,
+                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
+            ->
+            convertSecondary(
+                openWeatherCurrentResult,
+                openWeatherAirPollutionResult
+            )
         }
     }
 

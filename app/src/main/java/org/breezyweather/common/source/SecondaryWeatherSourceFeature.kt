@@ -19,6 +19,7 @@ package org.breezyweather.common.source
 enum class SecondaryWeatherSourceFeature(
     val id: String
 ) {
+    FEATURE_CURRENT("current"),
     FEATURE_AIR_QUALITY("airQuality"),
     FEATURE_POLLEN("pollen"),
     FEATURE_MINUTELY("minutely"),

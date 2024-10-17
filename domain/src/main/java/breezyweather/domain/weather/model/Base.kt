@@ -26,6 +26,7 @@ data class Base(
     //val publishDate: Date = Date(),
     val refreshTime: Date? = null,
     val mainUpdateTime: Date? = null,
+    val currentUpdateTime: Date? = null,
     val airQualityUpdateTime: Date? = null,
     val pollenUpdateTime: Date? = null,
     val minutelyUpdateTime: Date? = null,

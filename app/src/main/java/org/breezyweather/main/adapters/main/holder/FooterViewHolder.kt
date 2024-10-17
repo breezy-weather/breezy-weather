@@ -67,6 +67,7 @@ class FooterViewHolder(
         val distinctSources = mutableMapOf<String, Source?>()
         listOf(
             location.weatherSource,
+            location.currentSourceNotNull,
             location.airQualitySourceNotNull,
             location.pollenSourceNotNull,
             location.minutelySourceNotNull,
@@ -79,6 +80,10 @@ class FooterViewHolder(
         val credits = mutableMapOf<String, String?>()
         credits["weather"] = if (distinctSources[location.weatherSource] is MainWeatherSource) {
             (distinctSources[location.weatherSource] as MainWeatherSource).weatherAttribution
+        } else null
+        credits["current"] = if (distinctSources[location.currentSourceNotNull] is SecondaryWeatherSource &&
+            (distinctSources[location.currentSourceNotNull] as SecondaryWeatherSource).currentAttribution != credits["weather"]) {
+            (distinctSources[location.currentSourceNotNull] as SecondaryWeatherSource).currentAttribution
         } else null
         credits["minutely"] = if (distinctSources[location.minutelySourceNotNull] is SecondaryWeatherSource &&
             (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution != credits["weather"]) {
@@ -109,6 +114,12 @@ class FooterViewHolder(
                     credits["weather"] ?: context.getString(R.string.null_data_text)
                 )
             )
+            if (!credits["current"].isNullOrEmpty()) {
+                creditsText.append(
+                    "\n" +
+                    context.getString(R.string.weather_current_data_by, credits["current"]!!)
+                )
+            }
             if (weather.minutelyForecast.isNotEmpty() &&
                 !credits["minutely"].isNullOrEmpty()) {
                 creditsText.append(
@@ -120,7 +131,7 @@ class FooterViewHolder(
                 !credits["alert"].isNullOrEmpty()) {
                 creditsText.append(
                     "\n" +
-                            context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
+                    context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
                 )
             }
             // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case

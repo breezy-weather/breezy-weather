@@ -105,6 +105,7 @@ class DmiService @Inject constructor(
     ): Boolean {
         return location.countryCode.equals("DK", ignoreCase = true)
     }
+    override val currentAttribution = null
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null

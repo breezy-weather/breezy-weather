@@ -1,6 +1,6 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.2.8 or later of Breezy Weather**.
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.2.8 or later of Breezy Weather**. Note: Current source is only available starting from (unreleased) v5.2.9.
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features.
 
@@ -64,19 +64,21 @@ The following features, if not available from your selected source, can be added
 
 | Worldwide sources            | Open-Meteo | AccuWeather   | MET Norway  | OpenWeather | Météo-France | DMI     | Meteo AM |
 |------------------------------|------------|---------------|-------------|-------------|--------------|---------|----------|
+| **Current**                  | ✅          | ✅             | Nordic Area | ✅           | ✅            | ❌       | ✅        |
 | **Air quality**              | ✅          | ✅             | Norway      | ✅           | ❌            | ❌       | ❌        |
 | **Pollen**                   | ✅          | North America | ❌           | ❌           | ❌            | ❌       | ❌        |
 | **Precipitation nowcasting** | ✅          | ✅             | Nordic area | ❌           | France       | ❌       | ❌        |
 | **Alerts**                   | ❌          | ✅             | ✅           | ❌           | France       | Denmark | ❌        |
 | **Normals**                  | Average    | ✅             | Average     | Average     | ✅            | Average | ❌        |
 
-| National sources             | China   | NWS           | GeoSphere Austria  | Bright Sky | ECCC   | IMS     | SMHI    | MET Éireann |
-|------------------------------|---------|---------------|--------------------|------------|--------|---------|---------|-------------|
-| **Air quality**              | Current | ❌             | Europe and nearby  | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Pollen**                   | ❌       | ❌             | ❌                  | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Precipitation nowcasting** | ✅       | ❌             | Austria and nearby | ❌          | ❌      | ❌       | ❌       | ❌           |
-| **Alerts**                   | China   | United States | Austria            | Germany    | Canada | ✅       | ❌       | Ireland     |
-| **Normals**                  | Average | Average       | *In progress*      | Average    | ✅      | Average | Average | Average     |
+| National sources             | China   | NWS           | GeoSphere Austria  | Bright Sky | ECCC   | IMS                           | SMHI    | MET Éireann |
+|------------------------------|---------|---------------|--------------------|------------|--------|-------------------------------|---------|-------------|
+| **Current**                  | China   | ❌             | ❌                  | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | ❌           |
+| **Air quality**              | Current | ❌             | Europe and nearby  | ❌          | ❌      | ❌                             | ❌       | ❌           |
+| **Pollen**                   | ❌       | ❌             | ❌                  | ❌          | ❌      | ❌                             | ❌       | ❌           |
+| **Precipitation nowcasting** | China   | ❌             | Austria and nearby | ❌          | ❌      | ❌                             | ❌       | ❌           |
+| **Alerts**                   | China   | United States | Austria            | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | Ireland     |
+| **Normals**                  | Average | Average       | *In progress*      | Average    | Canada | Average                       | Average | Average     |
 
 
 Legend:
@@ -170,6 +172,7 @@ Legend:
 
 | Worldwide sources            | Pirate Weather | HERE     |
 |------------------------------|----------------|----------|
+| **Current**                  | ✅              | ✅        |
 | **Air quality**              | ❌              | ❌        |
 | **Pollen**                   | ❌              | ❌        |
 | **Precipitation nowcasting** | ✅              | ❌        |
@@ -178,6 +181,7 @@ Legend:
 
 | National sources             | CWA     |
 |------------------------------|---------|
+| **Current**                  | Taiwan  |
 | **Air quality**              | Current |
 | **Pollen**                   | ❌       |
 | **Precipitation nowcasting** | ❌       |
@@ -227,16 +231,18 @@ Legend:
 
 # Combinable sources
 
-| Worldwide sources            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | DMI           | Meteo AM |
-|------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------------|----------|
-| **Air quality**              | ✅          | ✅           | Norway      | ✅           | ❌              | ❌            | ❌             | ❌        |
-| **Pollen**                   | ✅²         | ✅           | ❌           | ❌           | ❌              | ❌            | ❌             | ❌        |
-| **Precipitation nowcasting** | ✅³         | ✅           | Nordic area | ❌           | ✅              | France       | ❌             | ❌        |
-| **Alerts**                   | ❌          | ✅           | ✅           | ❌           | ✅              | France       | *In progress* | ❌        |
-| **Normals**                  | ❌          | ✅           | ❌           | ❌           | ❌              | ✅⁴           | ❌             | ❌        |
+| Worldwide sources            | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | Météo-France | DMI     | Meteo AM      | HERE          |
+|------------------------------|------------|-------------|-------------|-------------|----------------|--------------|---------|---------------|---------------|
+| **Current**                  | ✅          | ✅           | Nordic Area | ✅           | ✅              | France       | ❌       | *In progress* | *In progress* |
+| **Air quality**              | ✅          | ✅           | Norway      | ✅           | ❌              | ❌            | ❌       | ❌             | ❌             |
+| **Pollen**                   | ✅²         | ✅           | ❌           | ❌           | ❌              | ❌            | ❌       | ❌             | ❌             |
+| **Precipitation nowcasting** | ✅³         | ✅           | Nordic area | ❌           | ✅              | France       | ❌       | ❌             | ❌             |
+| **Alerts**                   | ❌          | ✅           | ✅           | ❌           | ✅              | France       | Denmark | ❌             | ❌             |
+| **Normals**                  | ❌          | ✅           | ❌           | ❌           | ❌              | France       | ❌       | ❌             | ❌             |
 
 | National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | CWA    | IMS                           | MET Éireann | ATMO AuRA     |
 |------------------------------|-------|---------------|--------------------|--------------------|------------|--------|--------|-------------------------------|-------------|---------------|
+| **Current**                  | China | ❌             | ❌                  | ❌                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | ❌           | ❌             |
 | **Air quality**              | China | ❌             | Europe and nearby  | ❌                  | ❌          | ❌      | Taiwan | ❌                             | ❌           | France (AuRA) |
 | **Pollen**                   | ❌     | ❌             | ❌                  | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |
 | **Precipitation nowcasting** | China | ❌             | Austria and nearby | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |

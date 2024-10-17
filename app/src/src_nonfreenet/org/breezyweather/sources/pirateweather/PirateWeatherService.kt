@@ -61,6 +61,7 @@ class PirateWeatherService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
@@ -89,9 +90,11 @@ class PirateWeatherService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
@@ -107,7 +110,10 @@ class PirateWeatherService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val exclude = mutableListOf("currently", "hourly", "daily")
+        val exclude = mutableListOf("hourly", "daily")
+        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            exclude.add("currently")
+        }
         if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             exclude.add("alerts")
         }

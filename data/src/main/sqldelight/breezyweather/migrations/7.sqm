@@ -1,0 +1,5 @@
+ALTER TABLE locations
+ADD COLUMN current_source TEXT;
+
+ALTER TABLE weathers
+ADD COLUMN current_update_time INTEGER;

@@ -76,6 +76,7 @@ class HereService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
@@ -90,8 +91,10 @@ class HereService @Inject constructor(
         }
 
         val apiKey = getApiKeyOrDefault()
-        val products = listOf(
-            "observation",
+        val products = listOfNotNull(
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                "observation"
+            } else null,
             "forecast7daysSimple",
             "forecastHourly",
             "forecastAstronomy"

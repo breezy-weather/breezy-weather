@@ -66,7 +66,9 @@ fun convert(
     }
 
     return WeatherWrapper(
-        current = if (observation != null) getCurrent(context, oParams, observation) else null,
+        current = if (observation != null) {
+            getCurrent(context, oParams, observation)
+        } else null,
         dailyForecast = getDailyForecast(context, stats),
         hourlyForecast = getHourlyForecast(context, timeseries, params, data)
     )

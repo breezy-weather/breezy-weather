@@ -21,7 +21,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 import org.breezyweather.common.source.HttpSource
@@ -35,7 +34,6 @@ import retrofit2.Retrofit
 import javax.inject.Named
 
 class MeteoAmService @Inject constructor(
-    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, ReverseGeocodingSource {
 
@@ -54,7 +52,9 @@ class MeteoAmService @Inject constructor(
             .create(MeteoAmApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT
+    )
 
     @SuppressLint("CheckResult")
     override fun requestWeather(
@@ -64,10 +64,16 @@ class MeteoAmService @Inject constructor(
             location.latitude,
             location.longitude
         )
-        val observation = mApi.getCurrent(
-            location.latitude,
-            location.longitude
-        )
+        val observation = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MeteoAmObservationResult())
+            }
+        }
         return Observable.zip(forecast, observation) {
             forecastResult: MeteoAmForecastResult,
             observationResult: MeteoAmObservationResult

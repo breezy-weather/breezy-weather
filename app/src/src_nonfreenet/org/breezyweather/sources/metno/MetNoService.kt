@@ -90,11 +90,12 @@ class MetNoService @Inject constructor(
         // Nowcast only for Norway, Sweden, Finland and Denmark
         // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
         // but safer to limit to guaranteed countries
-        // Even if minutely is in "ignoredFeatures", we keep it as it also contains "current"
         val nowcast = if (!location.countryCode.isNullOrEmpty() &&
             arrayOf("NO", "SE", "FI", "DK").any {
                 it.equals(location.countryCode, ignoreCase = true)
-            }
+            } &&
+            !(ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
+                ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY))
         ) {
             mApi.getNowcast(
                 USER_AGENT,
@@ -185,6 +186,7 @@ class MetNoService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
@@ -193,7 +195,8 @@ class MetNoService @Inject constructor(
         location: Location,
         feature: SecondaryWeatherSourceFeature
     ): Boolean {
-        return (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+        return ((feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT ||
+                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
                 !location.countryCode.isNullOrEmpty() &&
                 arrayOf("NO", "SE", "FI", "DK").any {
                     it.equals(location.countryCode, ignoreCase = true)
@@ -206,6 +209,7 @@ class MetNoService @Inject constructor(
                 location.countryCode.equals("NO", ignoreCase = true)
             )
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
@@ -217,7 +221,8 @@ class MetNoService @Inject constructor(
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
         val nowcast =
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
+                requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 mApi.getNowcast(
                     USER_AGENT,
                     location.latitude,
@@ -273,7 +278,8 @@ class MetNoService @Inject constructor(
             metNoAlerts: MetNoAlertResult
             ->
             convertSecondary(
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
+                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                     metNoNowcast
                 } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -281,7 +287,8 @@ class MetNoService @Inject constructor(
                 } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     metNoAlerts
-                } else null
+                } else null,
+                context
             )
         }
     }

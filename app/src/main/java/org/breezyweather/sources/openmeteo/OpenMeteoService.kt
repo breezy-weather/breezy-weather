@@ -100,6 +100,20 @@ class OpenMeteoService @Inject constructor(
                 .create(OpenMeteoAirQualityApi::class.java)
         }
 
+    val current = arrayOf(
+        "temperature_2m",
+        "apparent_temperature",
+        "weathercode",
+        "windspeed_10m",
+        "winddirection_10m",
+        "windgusts_10m",
+        "uv_index",
+        "relativehumidity_2m",
+        "dewpoint_2m",
+        "pressure_msl",
+        "cloudcover",
+        "visibility"
+    )
     val airQualityHourly = arrayOf(
         "pm10",
         "pm2_5",
@@ -122,6 +136,7 @@ class OpenMeteoService @Inject constructor(
     )
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
@@ -159,20 +174,6 @@ class OpenMeteoService @Inject constructor(
             "cloudcover",
             "visibility"
         )
-        val current = arrayOf(
-            "temperature_2m",
-            "apparent_temperature",
-            "weathercode",
-            "windspeed_10m",
-            "winddirection_10m",
-            "windgusts_10m",
-            "uv_index",
-            "relativehumidity_2m",
-            "dewpoint_2m",
-            "pressure_msl",
-            "cloudcover",
-            "visibility"
-        )
         val weather = mForecastApi.getWeather(
             location.latitude,
             location.longitude,
@@ -182,7 +183,9 @@ class OpenMeteoService @Inject constructor(
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                 minutely.joinToString(",")
             } else "",
-            current.joinToString(","),
+            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                current.joinToString(",")
+            } else "",
             forecastDays = 16,
             pastDays = 1,
             windspeedUnit = "ms"
@@ -237,10 +240,12 @@ class OpenMeteoService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY
     )
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution =
         "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
     override val pollenAttribution = airQualityAttribution
@@ -252,15 +257,20 @@ class OpenMeteoService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mForecastApi.getWeather(
                 location.latitude,
                 location.longitude,
                 getWeatherModels(location).joinToString(",") { it.id },
                 "",
                 "",
-                minutely.joinToString(","),
-                "",
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    minutely.joinToString(",")
+                } else "",
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                    current.joinToString(",")
+                } else "",
                 forecastDays = 2, // In case current + 2 hours overlap two days
                 pastDays = 0,
                 windspeedUnit = "ms"
@@ -305,9 +315,10 @@ class OpenMeteoService @Inject constructor(
             openMeteoAirQualityResult: OpenMeteoAirQualityResult
             ->
             convertSecondary(
-                openMeteoWeatherResult.minutelyFifteen,
+                openMeteoWeatherResult,
                 openMeteoAirQualityResult.hourly,
-                requestedFeatures
+                requestedFeatures,
+                context
             )
         }
     }

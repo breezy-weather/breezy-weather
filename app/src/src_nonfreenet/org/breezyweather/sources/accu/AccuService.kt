@@ -91,6 +91,7 @@ class AccuService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
@@ -120,12 +121,18 @@ class AccuService @Inject constructor(
             "he"
         } else "en"
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
-        val current = mApi.getCurrent(
-            locationKey,
-            apiKey,
-            languageCode,
-            details = true
-        )
+        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                locationKey,
+                apiKey,
+                languageCode,
+                details = true
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(emptyList())
+            }
+        }
         val daily = mApi.getDaily(
             days.id,
             locationKey,
@@ -250,7 +257,7 @@ class AccuService @Inject constructor(
             ->
             convert(
                 location,
-                accuRealtimeResults[0],
+                accuRealtimeResults.getOrNull(0),
                 accuDailyResult,
                 accuHourlyResults,
                 accuMinutelyResult,
@@ -264,6 +271,7 @@ class AccuService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_POLLEN,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
@@ -274,8 +282,11 @@ class AccuService @Inject constructor(
         location: Location,
         feature: SecondaryWeatherSourceFeature
     ): Boolean {
-        return (isConfigured && portal == AccuPortalPreference.ENTERPRISE)
+        return (isConfigured && (portal == AccuPortalPreference.ENTERPRISE ||
+                feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT ||
+                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT))
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = weatherAttribution
     override val pollenAttribution = weatherAttribution
     override val minutelyAttribution = weatherAttribution
@@ -300,6 +311,22 @@ class AccuService @Inject constructor(
             "he"
         } else "en"
         val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
+
+        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            if (locationKey.isNullOrEmpty()) {
+                return Observable.error(InvalidLocationException())
+            }
+            mApi.getCurrent(
+                locationKey,
+                apiKey,
+                languageCode,
+                details = true
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(emptyList())
+            }
+        }
 
         val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             if (portal != AccuPortalPreference.ENTERPRISE) {
@@ -408,12 +435,14 @@ class AccuService @Inject constructor(
         }
 
         return Observable.zip(
+            current,
             airQuality,
             dailyPollen,
             minute,
             alert,
             climoSummary
-        ) { accuAirQualityResult: AccuAirQualityResult,
+        ) { accuRealtimeResults: List<AccuCurrentResult>,
+            accuAirQualityResult: AccuAirQualityResult,
             accuDailyPollenResult: AccuForecastDailyResult,
             accuMinutelyResult: AccuMinutelyResult,
             accuAlertResults: List<AccuAlertResult>,
@@ -421,6 +450,7 @@ class AccuService @Inject constructor(
             ->
             convertSecondary(
                 location,
+                accuRealtimeResults.getOrNull(0),
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     accuAirQualityResult
                 } else null,

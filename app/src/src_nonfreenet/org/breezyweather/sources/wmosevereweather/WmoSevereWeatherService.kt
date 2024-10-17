@@ -57,6 +57,7 @@ class WmoSevereWeatherService @Inject constructor(
 
     override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_ALERT)
 
+    override val currentAttribution = null
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null

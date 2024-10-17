@@ -38,6 +38,8 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.sources.china.json.ChinaAqi
+import org.breezyweather.sources.china.json.ChinaCurrent
 import org.breezyweather.sources.china.json.ChinaForecastDaily
 import org.breezyweather.sources.china.json.ChinaForecastHourly
 import org.breezyweather.sources.china.json.ChinaForecastResult
@@ -75,43 +77,7 @@ fun convert(
     }
 
     return WeatherWrapper(
-        current = Current(
-            weatherText = getWeatherText(forecastResult.current.weather),
-            weatherCode = getWeatherCode(forecastResult.current.weather),
-            temperature = Temperature(
-                temperature = forecastResult.current.temperature?.value?.toDoubleOrNull(),
-                apparentTemperature = forecastResult.current.feelsLike?.value?.toDoubleOrNull()
-            ),
-            wind = if (forecastResult.current.wind != null) Wind(
-                degree = forecastResult.current.wind.direction?.value?.toDoubleOrNull(),
-                speed = forecastResult.current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)
-            ) else null,
-            uV = if (forecastResult.current.uvIndex != null) {
-                UV(index = forecastResult.current.uvIndex.toDoubleOrNull())
-            } else null,
-            airQuality = forecastResult.aqi?.let {
-                AirQuality(
-                    pM25 = it.pm25?.toDoubleOrNull(),
-                    pM10 = it.pm10?.toDoubleOrNull(),
-                    sO2 = it.so2?.toDoubleOrNull(),
-                    nO2 = it.no2?.toDoubleOrNull(),
-                    o3 = it.o3?.toDoubleOrNull(),
-                    cO = it.co?.toDoubleOrNull()
-                )
-            },
-            relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) {
-                forecastResult.current.humidity!!.value!!.toDoubleOrNull()
-            } else null,
-            pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) {
-                forecastResult.current.pressure!!.value!!.toDoubleOrNull()
-            } else null,
-            visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) {
-                forecastResult.current.visibility!!.value!!.toDoubleOrNull()?.times(1000)
-            } else null,
-            hourlyForecast = if (minutelyResult.precipitation != null) {
-                minutelyResult.precipitation.description
-            } else null
-        ),
+        current = getCurrent(forecastResult.current, forecastResult.aqi, minutelyResult),
         dailyForecast = getDailyList(
             forecastResult.current.pubTime,
             location,
@@ -127,6 +93,52 @@ fun convert(
             minutelyResult
         ),
         alertList = getAlertList(forecastResult)
+    )
+}
+
+fun getCurrent(
+    current: ChinaCurrent?,
+    aqi: ChinaAqi?,
+    minutelyResult: ChinaMinutelyResult? = null
+): Current? {
+    if (current == null) return null
+
+    return Current(
+        weatherText = getWeatherText(current.weather),
+        weatherCode = getWeatherCode(current.weather),
+        temperature = Temperature(
+            temperature = current.temperature?.value?.toDoubleOrNull(),
+            apparentTemperature = current.feelsLike?.value?.toDoubleOrNull()
+        ),
+        wind = if (current.wind != null) Wind(
+            degree = current.wind.direction?.value?.toDoubleOrNull(),
+            speed = current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)
+        ) else null,
+        uV = if (current.uvIndex != null) {
+            UV(index = current.uvIndex.toDoubleOrNull())
+        } else null,
+        airQuality = aqi?.let {
+            AirQuality(
+                pM25 = it.pm25?.toDoubleOrNull(),
+                pM10 = it.pm10?.toDoubleOrNull(),
+                sO2 = it.so2?.toDoubleOrNull(),
+                nO2 = it.no2?.toDoubleOrNull(),
+                o3 = it.o3?.toDoubleOrNull(),
+                cO = it.co?.toDoubleOrNull()
+            )
+        },
+        relativeHumidity = if (!current.humidity?.value.isNullOrEmpty()) {
+            current.humidity!!.value!!.toDoubleOrNull()
+        } else null,
+        pressure = if (!current.pressure?.value.isNullOrEmpty()) {
+            current.pressure!!.value!!.toDoubleOrNull()
+        } else null,
+        visibility = if (!current.visibility?.value.isNullOrEmpty()) {
+            current.visibility!!.value!!.toDoubleOrNull()?.times(1000)
+        } else null,
+        hourlyForecast = if (minutelyResult?.precipitation != null) {
+            minutelyResult.precipitation.description
+        } else null
     )
 }
 
@@ -283,6 +295,7 @@ fun convertSecondary(
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(forecastResult.current, forecastResult.aqi),
         airQuality = forecastResult.aqi?.let {
             AirQualityWrapper(
                 current = AirQuality(

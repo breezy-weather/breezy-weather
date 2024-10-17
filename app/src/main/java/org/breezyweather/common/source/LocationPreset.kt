@@ -25,6 +25,7 @@ import java.util.Locale
  * When a preset doesn't have a secondary source listed (null values), it will use main source
  * Current recommendations:
  * - Main source: national weather source or Open-Meteo
+ * - Current: national weather source or Open-Meteo
  * - Air quality: national weather source or Open-Meteo
  * - Pollen: Open-Meteo
  * - Minutely: national weather source or Open-Meteo
@@ -33,6 +34,7 @@ import java.util.Locale
  */
 enum class LocationPreset(
     val main: String,
+    val current: String? = null,
     val airQuality: String? = null,
     val pollen: String? = null,
     val minutely: String? = null,
@@ -108,6 +110,7 @@ enum class LocationPreset(
 
             return location.copy(
                 weatherSource = locationPreset.main,
+                currentSource = locationPreset.current,
                 airQualitySource = locationPreset.airQuality,
                 pollenSource = locationPreset.pollen,
                 minutelySource = locationPreset.minutely,

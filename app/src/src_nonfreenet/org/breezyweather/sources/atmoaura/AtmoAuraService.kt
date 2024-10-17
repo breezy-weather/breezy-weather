@@ -73,6 +73,7 @@ class AtmoAuraService @Inject constructor(
             )
         )
     }
+    override val currentAttribution = null
     override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"
     override val pollenAttribution = null
     override val minutelyAttribution = null

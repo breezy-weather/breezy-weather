@@ -241,6 +241,7 @@ fun convertSecondary(
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(forecastResult.currently),
         minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
         alertList = getAlertList(forecastResult.alerts)
     )

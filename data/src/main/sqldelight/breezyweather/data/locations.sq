@@ -23,6 +23,7 @@ CREATE TABLE locations(
 
     -- Sources
     weather_source TEXT NOT NULL,
+    current_source TEXT,
     air_quality_source TEXT,
     pollen_source TEXT,
     minutely_source TEXT,
@@ -38,30 +39,30 @@ CREATE TABLE locations(
 );
 
 getLocationById:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 WHERE formatted_id = :formattedId;
 
 getAllLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order;
 
 getXLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT :limit;
 
 getFirstLocation:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT 1;
 
 insert:
-INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type)
-VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :admin1, :admin1Code, :admin2, :admin2Code, :admin3, :admin3Code, :admin4, :admin4Code, :city, :district, :weatherSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh, :backgroundWeatherKind, :backgroundDayNightType)
+INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type)
+VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :admin1, :admin1Code, :admin2, :admin2Code, :admin3, :admin3Code, :admin4, :admin4Code, :city, :district, :weatherSource, :currentSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh, :backgroundWeatherKind, :backgroundDayNightType)
 ON CONFLICT(formatted_id) DO UPDATE SET
     list_order = coalesce(:listOrder, list_order),
     city_id = coalesce(:cityId, city_id),
@@ -81,6 +82,7 @@ ON CONFLICT(formatted_id) DO UPDATE SET
     city = coalesce(:city, city),
     district = coalesce(:district, district),
     weather_source = coalesce(:weatherSource, weather_source),
+    current_source = coalesce(:currentSource, current_source),
     air_quality_source = coalesce(:airQualitySource, air_quality_source),
     pollen_source = coalesce(:pollenSource, pollen_source),
     minutely_source = coalesce(:minutelySource, minutely_source),
@@ -115,6 +117,7 @@ SET city_id = coalesce(:cityId, city_id),
     city = coalesce(:city, city),
     district = coalesce(:district, district),
     weather_source = coalesce(:weatherSource, weather_source),
+    current_source = coalesce(:currentSource, current_source),
     air_quality_source = coalesce(:airQualitySource, air_quality_source),
     pollen_source = coalesce(:pollenSource, pollen_source),
     minutely_source = coalesce(:minutelySource, minutely_source),

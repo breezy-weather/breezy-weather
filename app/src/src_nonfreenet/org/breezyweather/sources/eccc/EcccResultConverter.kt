@@ -306,6 +306,7 @@ fun convertSecondary(
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(ecccResult.observation),
         alertList = getAlertList(ecccResult.alert?.alerts),
         normals = getNormals(location, ecccResult.dailyFcst?.regionalNormals?.metric)
     )

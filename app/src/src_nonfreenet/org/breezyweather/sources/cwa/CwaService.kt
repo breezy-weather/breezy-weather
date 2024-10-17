@@ -76,6 +76,7 @@ class CwaService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -196,6 +197,7 @@ class CwaService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -206,6 +208,7 @@ class CwaService @Inject constructor(
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = "環境部"
     override val pollenAttribution = null
     override val minutelyAttribution = null
@@ -217,7 +220,8 @@ class CwaService @Inject constructor(
     ): Observable<SecondaryWeatherWrapper> {
         if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
             || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -244,7 +248,8 @@ class CwaService @Inject constructor(
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
         val body = "{\"query\":\"query aqi { aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) { sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime } }\",\"variables\":null}"
 
-        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getWeather(
                 apiKey,
                 body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -286,14 +291,14 @@ class CwaService @Inject constructor(
             }
         }
 
-        return Observable.zip(airQuality, alerts, normals) {
-                airQualityResult: CwaWeatherResult,
+        return Observable.zip(weather, alerts, normals) {
+                weatherResult: CwaWeatherResult,
                 alertResult: CwaAlertResult,
                 normalsResult: CwaNormalsResult
             ->
             convertSecondary(
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-                    airQualityResult
+                    weatherResult
                 } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     alertResult

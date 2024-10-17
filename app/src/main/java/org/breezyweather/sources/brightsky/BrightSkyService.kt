@@ -38,6 +38,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
+import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -66,6 +67,7 @@ class BrightSkyService @Inject constructor(
         }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
 
@@ -95,10 +97,16 @@ class BrightSkyService @Inject constructor(
             lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
         )
 
-        val currentWeather = mApi.getCurrentWeather(
-            location.latitude,
-            location.longitude
-        )
+        val currentWeather = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrentWeather(
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(BrightSkyCurrentWeatherResult())
+            }
+        }
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
@@ -127,6 +135,7 @@ class BrightSkyService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
@@ -134,6 +143,7 @@ class BrightSkyService @Inject constructor(
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
@@ -144,12 +154,34 @@ class BrightSkyService @Inject constructor(
         context: Context, location: Location,
         requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        return mApi.getAlerts(
-            location.latitude,
-            location.longitude
-        ).map {
+
+        val currentWeather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mApi.getCurrentWeather(
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(BrightSkyCurrentWeatherResult())
+            }
+        }
+
+        val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            mApi.getAlerts(
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(BrightSkyAlertsResult())
+            }
+        }
+
+        return Observable.zip(
+            currentWeather, alerts
+        ) { brightSkyCurrentWeather, brightSkyAlerts ->
             val languageCode = context.currentLocale.code
-            convertSecondary(it, languageCode)
+            convertSecondary(brightSkyCurrentWeather, brightSkyAlerts, languageCode)
         }
     }
 

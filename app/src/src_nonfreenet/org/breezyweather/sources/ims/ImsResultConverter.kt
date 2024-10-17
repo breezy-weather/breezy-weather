@@ -125,8 +125,8 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-fun getCurrent(data: ImsWeatherData): Current? {
-    if (data.analysis == null) return null
+fun getCurrent(data: ImsWeatherData?): Current? {
+    if (data?.analysis == null) return null
 
     return Current(
         temperature = data.analysis.temperature?.toDoubleOrNull()?.let {
@@ -179,11 +179,11 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
 }
 
 fun convertSecondary(
-    weatherResult: ImsWeatherResult?,
-    location: Location
+    weatherResult: ImsWeatherResult?
 ): SecondaryWeatherWrapper {
 
     return SecondaryWeatherWrapper(
+        current = getCurrent(weatherResult?.data),
         alertList = weatherResult?.data?.let { getAlerts(it) }
     )
 }

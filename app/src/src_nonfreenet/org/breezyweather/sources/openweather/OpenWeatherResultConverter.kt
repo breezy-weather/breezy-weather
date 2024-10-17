@@ -56,25 +56,31 @@ fun convert(
     val hourlyAirQuality = getHourlyAirQuality(airPollutionResult?.list)
 
     return WeatherWrapper(
-        current = Current(
-            weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
-            weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
-            temperature = Temperature(
-                temperature = currentResult.main?.temp,
-                apparentTemperature = currentResult.main?.feelsLike
-            ),
-            wind = Wind(
-                degree = currentResult.wind?.deg?.toDouble(),
-                speed = currentResult.wind?.speed,
-                gusts = currentResult.wind?.gust
-            ),
-            relativeHumidity = currentResult.main?.humidity?.toDouble(),
-            pressure = currentResult.main?.pressure?.toDouble(),
-            cloudCover = currentResult.clouds?.all,
-            visibility = currentResult.visibility?.toDouble()
-        ),
+        current = getCurrent(currentResult),
         dailyForecast = getDailyList(forecastResult.list, hourlyAirQuality, location),
         hourlyForecast = getHourlyList(forecastResult.list, hourlyAirQuality)
+    )
+}
+
+fun getCurrent(currentResult: OpenWeatherForecast): Current? {
+    if (currentResult.dt == null) return null
+
+    return Current(
+        weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
+        weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
+        temperature = Temperature(
+            temperature = currentResult.main?.temp,
+            apparentTemperature = currentResult.main?.feelsLike
+        ),
+        wind = Wind(
+            degree = currentResult.wind?.deg?.toDouble(),
+            speed = currentResult.wind?.speed,
+            gusts = currentResult.wind?.gust
+        ),
+        relativeHumidity = currentResult.main?.humidity?.toDouble(),
+        pressure = currentResult.main?.pressure?.toDouble(),
+        cloudCover = currentResult.clouds?.all,
+        visibility = currentResult.visibility?.toDouble()
     )
 }
 
@@ -86,7 +92,7 @@ private fun getDailyList(
     val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, location)
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = hourlyResult.groupBy {
-        it.dt.seconds.inWholeMilliseconds.toDate().getFormattedDate("yyyy-MM-dd", location)
+        it.dt!!.seconds.inWholeMilliseconds.toDate().getFormattedDate("yyyy-MM-dd", location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
@@ -107,7 +113,7 @@ private fun getHourlyList(
     hourlyAirQuality: MutableMap<Date, AirQuality>
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
-        val theDate = result.dt.seconds.inWholeMilliseconds.toDate()
+        val theDate = result.dt!!.seconds.inWholeMilliseconds.toDate()
         HourlyWrapper(
             date = theDate,
             weatherText = result.weather?.getOrNull(0)?.main?.capitalize(),
@@ -187,9 +193,11 @@ private fun getHourlyAirQuality(
 }
 
 fun convertSecondary(
+    currentResult: OpenWeatherForecast,
     airPollutionResult: OpenWeatherAirPollutionResult?
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
+        current = getCurrent(currentResult),
         airQuality = if (airPollutionResult != null) {
             AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list))
         } else null

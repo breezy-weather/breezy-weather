@@ -6,6 +6,7 @@
     <!-- Card names -->
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
+    <string name="current_weather">Current weather</string>
     <!-- Nowcasting is a FORECAST of the next 2-3 hours, also called "immediate forecast" -->
     <string name="precipitation_nowcasting">Precipitation nowcasting</string>
     <string name="air_quality">Air quality</string>
@@ -237,6 +238,7 @@
     <string name="ceiling_short">Ceiling</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Data by %s</string>
+    <string name="weather_current_data_by">Current weather data by %s</string>
     <string name="weather_air_quality_data_by">Air quality data by %s</string>
     <string name="weather_pollen_data_by">Pollen data by %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by %s</string>

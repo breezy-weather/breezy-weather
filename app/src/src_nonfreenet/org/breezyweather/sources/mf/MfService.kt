@@ -77,6 +77,7 @@ class MfService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -90,14 +91,20 @@ class MfService @Inject constructor(
         }
         val languageCode = context.currentLocale.code
         val token = getToken()
-        val current = mApi.getCurrent(
-            USER_AGENT,
-            location.latitude,
-            location.longitude,
-            languageCode,
-            "iso",
-            token
-        )
+        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                languageCode,
+                "iso",
+                token
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MfCurrentResult())
+            }
+        }
         val forecast = mApi.getForecast(
             USER_AGENT,
             location.latitude,
@@ -198,6 +205,7 @@ class MfService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -207,7 +215,10 @@ class MfService @Inject constructor(
         feature: SecondaryWeatherSourceFeature
     ): Boolean {
         return isConfigured &&
-            (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+            (feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT &&
+                !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true)
+            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("FR", ignoreCase = true)
             ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
@@ -220,6 +231,7 @@ class MfService @Inject constructor(
             ) // Technically, works anywhere but as a France-focused source, we don’t want the whole
             // world to use this source, as currently the only alternative is AccuWeather
     }
+    override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = weatherAttribution
@@ -236,6 +248,20 @@ class MfService @Inject constructor(
         val languageCode = context.currentLocale.code
         val token = getToken()
 
+        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                languageCode,
+                "iso",
+                token
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MfCurrentResult())
+            }
+        }
         val rain = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
                 USER_AGENT,
@@ -283,15 +309,20 @@ class MfService @Inject constructor(
         }
 
         return Observable.zip(
+            current,
             rain,
             warnings,
             normals
-        ) { mfRainResult: MfRainResult,
+        ) { mfCurrentResult: MfCurrentResult,
+            mfRainResult: MfRainResult,
             mfWarningResults: MfWarningsResult,
             mfNormalsResult: MfNormalsResult
             ->
             convertSecondary(
                 location,
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                    mfCurrentResult
+                } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                     mfRainResult
                 } else null,

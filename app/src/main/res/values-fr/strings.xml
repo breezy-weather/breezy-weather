@@ -151,6 +151,7 @@
 
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
+    <string name="current_weather">Météo actuelle</string>
     <string name="precipitation_nowcasting">Prévisions immédiates de précipitations</string>
     <string name="air_quality">Qualité de l’air</string>
     <string name="pollen">Pollen</string>
@@ -418,6 +419,7 @@
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
+    <string name="weather_current_data_by">Données de météo actuelle par %s</string> <!-- $ = weather source. -->
     <string name="weather_air_quality_data_by">Données de qualité de l’air par %s</string>
     <string name="weather_pollen_data_by">Données de pollen par %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par %s</string>
