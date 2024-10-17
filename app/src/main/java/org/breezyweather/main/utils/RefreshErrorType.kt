@@ -25,7 +25,7 @@ import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog
 
 enum class RefreshErrorType(
     @StringRes val shortMessage: Int,
-    val showDialogAction: ((activity: Activity) -> Unit)? = null,
+    val showDialogAction: ((activity: Activity, daylight: Boolean?) -> Unit)? = null,
     @StringRes val actionButtonMessage: Int = R.string.action_help
 ) {
     // Common
@@ -37,9 +37,10 @@ enum class RefreshErrorType(
     ),
     API_KEY_REQUIRED_MISSING(
         shortMessage = R.string.weather_api_key_required_missing_title,
-        showDialogAction = {
+        showDialogAction = { a, d ->
             ApiHelpDialog.show(
-                it,
+                a,
+                d,
                 R.string.weather_api_key_required_missing_title,
                 R.string.weather_api_key_required_missing_content
             )
@@ -47,9 +48,10 @@ enum class RefreshErrorType(
     ),
     API_LIMIT_REACHED(
         shortMessage = R.string.weather_api_limit_reached_title,
-        showDialogAction = {
+        showDialogAction = { a, d ->
             ApiHelpDialog.show(
-                it,
+                a,
+                d,
                 R.string.weather_api_limit_reached_title,
                 R.string.weather_api_limit_reached_content
             )
@@ -57,9 +59,10 @@ enum class RefreshErrorType(
     ),
     API_UNAUTHORIZED(
         shortMessage = R.string.weather_api_unauthorized_title,
-        showDialogAction = {
+        showDialogAction = { a, d ->
             ApiHelpDialog.show(
-                it,
+                a,
+                d,
                 R.string.weather_api_unauthorized_title,
                 R.string.weather_api_unauthorized_content
             )
@@ -87,9 +90,10 @@ enum class RefreshErrorType(
     ),
     SOURCE_NOT_INSTALLED(
         shortMessage = R.string.message_source_not_installed_error_title,
-        showDialogAction = {
+        showDialogAction = { a, d ->
             SourceNoLongerAvailableHelpDialog.show(
-                it,
+                a,
+                d,
                 R.string.message_source_not_installed_error_title
             )
         }
@@ -98,7 +102,11 @@ enum class RefreshErrorType(
     // Location-specific
     LOCATION_FAILED(
         shortMessage = R.string.location_message_failed_to_locate,
-        showDialogAction = { LocationHelpDialog.show(it) }
+        showDialogAction = { a, d ->
+            LocationHelpDialog.show(
+            a,
+            d
+        ) }
     ),
     ACCESS_LOCATION_PERMISSION_MISSING(
         shortMessage = R.string.location_message_permission_missing,

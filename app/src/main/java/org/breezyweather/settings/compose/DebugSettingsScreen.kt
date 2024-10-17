@@ -91,7 +91,7 @@ fun DebugSettingsScreen(
                                         content = context.getString(shortMessage),
                                         action = context.getString(refreshError.actionButtonMessage)
                                     ) {
-                                        showDialogAction(context)
+                                        showDialogAction(context, null)
                                     }
                                 } ?: SnackbarHelper.showSnackbar(context.getString(shortMessage))
                             }
