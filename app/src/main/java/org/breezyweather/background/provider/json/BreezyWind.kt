@@ -14,16 +14,25 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Minutely
+ * Wind
  */
 @Serializable
-data class BreezyMinutely(
-    val date: Long,
-    val minuteInterval: Int,
-    val precipitationIntensity: BreezyDoubleUnit? = null
+data class BreezyWind(
+    /**
+     * Between 0 and 360, or -1 if variable
+     */
+    val degree: Double? = null,
+    /**
+     * In m/s
+     */
+    val speed: BreezyDoubleUnit? = null,
+    /**
+     * In m/s
+     */
+    val gusts: BreezyDoubleUnit? = null
 )

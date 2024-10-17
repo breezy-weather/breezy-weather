@@ -1,23 +1,14 @@
-/**
- * This file is part of Breezy Weather.
- *
- * Breezy Weather is free software: you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License.
- *
- * Breezy Weather is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
- */
+package org.breezyweather.background.provider
 
-package org.breezyweather.sources.breezydatashare
-
-import android.content.Context
-import android.os.Bundle
+import android.content.ContentProvider
+import android.content.ContentValues
+import android.content.UriMatcher
+import android.database.Cursor
+import android.database.MatrixCursor
+import android.net.Uri
+import android.os.Build
+import android.util.Log
+import breezyweather.data.location.LocationRepository
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -34,6 +25,7 @@ import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.Wind
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
@@ -43,8 +35,6 @@ import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.source.BroadcastSource
-import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getDescription
@@ -56,72 +46,112 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.domain.weather.model.validPollutants
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.sources.breezydatashare.json.BreezyAirQuality
-import org.breezyweather.sources.breezydatashare.json.BreezyAlert
-import org.breezyweather.sources.breezydatashare.json.BreezyAstro
-import org.breezyweather.sources.breezydatashare.json.BreezyBulletin
-import org.breezyweather.sources.breezydatashare.json.BreezyCurrent
-import org.breezyweather.sources.breezydatashare.json.BreezyDaily
-import org.breezyweather.sources.breezydatashare.json.BreezyData
-import org.breezyweather.sources.breezydatashare.json.BreezyDegreeDay
-import org.breezyweather.sources.breezydatashare.json.BreezyDoubleUnit
-import org.breezyweather.sources.breezydatashare.json.BreezyHalfDay
-import org.breezyweather.sources.breezydatashare.json.BreezyHourly
-import org.breezyweather.sources.breezydatashare.json.BreezyLocation
-import org.breezyweather.sources.breezydatashare.json.BreezyMinutely
-import org.breezyweather.sources.breezydatashare.json.BreezyMoonPhase
-import org.breezyweather.sources.breezydatashare.json.BreezyNormals
-import org.breezyweather.sources.breezydatashare.json.BreezyPercent
-import org.breezyweather.sources.breezydatashare.json.BreezyPollen
-import org.breezyweather.sources.breezydatashare.json.BreezyPollutant
-import org.breezyweather.sources.breezydatashare.json.BreezyPrecipitation
-import org.breezyweather.sources.breezydatashare.json.BreezyPrecipitationDuration
-import org.breezyweather.sources.breezydatashare.json.BreezyPrecipitationProbability
-import org.breezyweather.sources.breezydatashare.json.BreezyTemperature
-import org.breezyweather.sources.breezydatashare.json.BreezyUV
-import org.breezyweather.sources.breezydatashare.json.BreezyWeather
-import org.breezyweather.sources.breezydatashare.json.BreezyWind
+import org.breezyweather.background.provider.json.BreezyAirQuality
+import org.breezyweather.background.provider.json.BreezyAlert
+import org.breezyweather.background.provider.json.BreezyAstro
+import org.breezyweather.background.provider.json.BreezyBulletin
+import org.breezyweather.background.provider.json.BreezyCurrent
+import org.breezyweather.background.provider.json.BreezyDaily
+import org.breezyweather.background.provider.json.BreezyDegreeDay
+import org.breezyweather.background.provider.json.BreezyDoubleUnit
+import org.breezyweather.background.provider.json.BreezyHalfDay
+import org.breezyweather.background.provider.json.BreezyHourly
+import org.breezyweather.background.provider.json.BreezyLocation
+import org.breezyweather.background.provider.json.BreezyMinutely
+import org.breezyweather.background.provider.json.BreezyMoonPhase
+import org.breezyweather.background.provider.json.BreezyNormals
+import org.breezyweather.background.provider.json.BreezyPercent
+import org.breezyweather.background.provider.json.BreezyPollen
+import org.breezyweather.background.provider.json.BreezyPollutant
+import org.breezyweather.background.provider.json.BreezyPrecipitation
+import org.breezyweather.background.provider.json.BreezyPrecipitationDuration
+import org.breezyweather.background.provider.json.BreezyPrecipitationProbability
+import org.breezyweather.background.provider.json.BreezyTemperature
+import org.breezyweather.background.provider.json.BreezyUV
+import org.breezyweather.background.provider.json.BreezyWeather
+import org.breezyweather.background.provider.json.BreezyWind
 import java.text.NumberFormat
 import javax.inject.Inject
 
-class BreezyService @Inject constructor() : BroadcastSource {
+class WeatherContentProvider : ContentProvider() {
 
-    override val id = "breezydatashare"
-    override val name = "Breezy Weather"
+    @Inject internal lateinit var locationRepository: Lazy<LocationRepository>
 
-    override val intentAction = "org.breezyweather.ACTION_GENERIC_WEATHER"
+    override fun onCreate(): Boolean {
+        return true
+    }
 
-    override fun getExtras(context: Context, locations: List<Location>): Bundle {
-        return Bundle().apply {
-            putString(
-                "WeatherJson",
-                Json.encodeToString(
-                    BreezyData(
-                        appVersion = BuildConfig.VERSION_NAME,
-                        locations = locations.mapNotNull {
-                            if (it.weather?.current != null) {
-                                getWeatherData(context, it)
-                            } else null
-                        }
-                    )
-                )
-            )
+    override fun query(
+        uri: Uri,
+        projection: Array<String>?,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        sortOrder: String?
+    ): Cursor? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // Disable the content provider on SDK < 23 since it grants dangerous
+            // permissions at install-time
+            Log.w(TAG, "Content provider read is only available for SDK >= 23")
+            return null
+        }
+
+        if (!isAllowedPackage()) {
+            Log.w(TAG, "Content provider is disabled for this app")
+            return null
+        }
+
+        return when (uriMatcher.match(uri)) {
+            URI_VERSION -> queryVersion()
+            URI_WEATHER -> queryWeather()
+            else -> {
+                Log.w(TAG, "Unrecognized URI $uri")
+                null
+            }
         }
     }
 
+    private fun isAllowedPackage(): Boolean {
+        // Can check callingPackage here
+        return true
+    }
+
+    private fun queryVersion(): Cursor {
+        val columns = arrayOf(Version.MAJOR_COLUMN, Version.MINOR_COLUMN)
+        val matrixCursor = MatrixCursor(columns).apply {
+            addRow(arrayOf<Any>(Version.MAJOR, Version.MINOR))
+        }
+        return matrixCursor
+    }
+
+    private fun queryWeather(): Cursor {
+        val columns = arrayOf(Weather.INFO_COLUMN)
+        val locations = runBlocking {
+            locationRepository.value.getAllLocations(withParameters = false)
+        }
+        val matrixCursor = MatrixCursor(columns).apply {
+            locations.forEach {
+                if (it.weather?.current != null) {
+                    addRow(arrayOf<Any>(Json.encodeToString(getWeatherData(it))))
+                }
+            }
+        }
+        return matrixCursor
+    }
+
+
     private fun getWeatherData(
-        context: Context,
         location: Location
     ): BreezyLocation {
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-        val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
-        val distanceUnit = SettingsManager.getInstance(context).distanceUnit
-        val pressureUnit = SettingsManager.getInstance(context).pressureUnit
-        val percentUnit = NumberFormat.getPercentInstance(context.currentLocale)
+        val settings = SettingsManager.getInstance(context!!)
+        val temperatureUnit = settings.temperatureUnit
+        val precipitationUnit = settings.precipitationUnit
+        val distanceUnit = settings.distanceUnit
+        val pressureUnit = settings.pressureUnit
+        val percentUnit = NumberFormat.getPercentInstance(context!!.currentLocale)
 
         // TODO: Need to create a lib for these classes so they can be included in other projects
         return BreezyLocation(
-            id = "TODO", // TODO: Can't use cityId because it leaks longitude and latitude
+            id = location.cityId!!,
             timezone = location.timeZone,
             country = location.country,
             countryCode = location.countryCode,
@@ -141,29 +171,28 @@ class BreezyService @Inject constructor() : BroadcastSource {
                     bulletin = BreezyBulletin(
                         dailyForecast = weather.current?.dailyForecast,
                         hourlyForecast = weather.current?.hourlyForecast,
-                        minutelyForecastTitle = weather.getMinutelyTitle(context),
-                        minutelyForecastDescription = weather.getMinutelyDescription(context, location)
+                        minutelyForecastTitle = weather.getMinutelyTitle(context!!),
+                        minutelyForecastDescription = weather.getMinutelyDescription(context!!, location)
                     ),
                     current = getCurrent(
-                        context, weather.current,
-                        temperatureUnit, distanceUnit, pressureUnit, percentUnit
+                        weather.current, temperatureUnit, distanceUnit, pressureUnit, percentUnit
                     ),
                     daily = getDaily(
-                        context, weather.dailyForecast,
+                        weather.dailyForecast,
                         temperatureUnit, precipitationUnit, distanceUnit, percentUnit
                     ),
                     hourly = getHourly(
-                        context, weather.hourlyForecast,
+                        weather.hourlyForecast,
                         temperatureUnit, precipitationUnit, distanceUnit, pressureUnit, percentUnit
                     ),
                     minutely = getMinutely(
-                        context, weather.minutelyForecast, precipitationUnit
+                        weather.minutelyForecast, precipitationUnit
                     ),
                     alerts = getAlerts(
                         weather.alertList
                     ),
                     normals = getNormals(
-                        context, weather.normals, temperatureUnit
+                        weather.normals, temperatureUnit
                     )
                 )
             },
@@ -171,18 +200,23 @@ class BreezyService @Inject constructor() : BroadcastSource {
         )
     }
 
-    private fun getNormals(context: Context, normals: Normals?, temperatureUnit: TemperatureUnit): BreezyNormals? {
+    private fun getNormals(
+        normals: Normals?, temperatureUnit: TemperatureUnit
+    ): BreezyNormals? {
         return normals?.let {
             BreezyNormals(
                 month = it.month,
-                daytimeTemperature = getTemperatureDoubleUnit(context, it.daytimeTemperature, temperatureUnit),
-                nighttimeTemperature = getTemperatureDoubleUnit(context, it.nighttimeTemperature, temperatureUnit)
+                daytimeTemperature = getTemperatureDoubleUnit(
+                    it.daytimeTemperature, temperatureUnit
+                ),
+                nighttimeTemperature = getTemperatureDoubleUnit(
+                    it.nighttimeTemperature, temperatureUnit
+                )
             )
         }
     }
 
     private fun getCurrent(
-        context: Context,
         current: Current?,
         temperatureUnit: TemperatureUnit,
         distanceUnit: DistanceUnit,
@@ -193,22 +227,21 @@ class BreezyService @Inject constructor() : BroadcastSource {
             BreezyCurrent(
                 weatherText = cur.weatherText,
                 weatherCode = cur.weatherCode?.id,
-                temperature = getTemperature(context, cur.temperature, temperatureUnit),
-                wind = getWind(context, cur.wind, distanceUnit),
+                temperature = getTemperature(cur.temperature, temperatureUnit),
+                wind = getWind(cur.wind, distanceUnit),
                 uV = cur.uV?.let { BreezyUV(it.index) },
-                airQuality = getAirQuality(context, cur.airQuality),
+                airQuality = getAirQuality(cur.airQuality),
                 relativeHumidity = getPercentUnit(cur.relativeHumidity, percentUnit, 0),
-                dewPoint = getTemperatureDoubleUnit(context, cur.dewPoint, temperatureUnit),
-                pressure = getPressureDoubleUnit(context, cur.pressure, pressureUnit),
+                dewPoint = getTemperatureDoubleUnit(cur.dewPoint, temperatureUnit),
+                pressure = getPressureDoubleUnit(cur.pressure, pressureUnit),
                 cloudCover = getPercentUnit(cur.cloudCover?.toDouble(), percentUnit, 0),
-                visibility = getDistanceDoubleUnit(context, cur.visibility, distanceUnit),
-                ceiling = getDistanceDoubleUnit(context, cur.ceiling, distanceUnit)
+                visibility = getDistanceDoubleUnit(cur.visibility, distanceUnit),
+                ceiling = getDistanceDoubleUnit(cur.ceiling, distanceUnit)
             )
         }
     }
 
     private fun getDaily(
-        context: Context,
         daily: List<Daily>?,
         temperatureUnit: TemperatureUnit,
         precipitationUnit: PrecipitationUnit,
@@ -219,15 +252,19 @@ class BreezyService @Inject constructor() : BroadcastSource {
             BreezyDaily(
                 date = day.date.time,
                 day = getHalfDay(
-                    context, day.day, temperatureUnit, precipitationUnit, distanceUnit, percentUnit
+                    day.day, temperatureUnit, precipitationUnit, distanceUnit, percentUnit
                 ),
                 night = getHalfDay(
-                    context, day.night, temperatureUnit, precipitationUnit, distanceUnit, percentUnit
+                    day.night, temperatureUnit, precipitationUnit, distanceUnit, percentUnit
                 ),
                 degreeDay = day.degreeDay?.let {
                     BreezyDegreeDay(
-                        heating = getDegreeDayTemperatureDoubleUnit(context, it.heating, temperatureUnit),
-                        cooling = getDegreeDayTemperatureDoubleUnit(context, it.cooling, temperatureUnit)
+                        heating = getDegreeDayTemperatureDoubleUnit(
+                            it.heating, temperatureUnit
+                        ),
+                        cooling = getDegreeDayTemperatureDoubleUnit(
+                            it.cooling, temperatureUnit
+                        )
                     )
                 },
                 sun = getAstro(day.sun),
@@ -235,19 +272,18 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 moonPhase = day.moonPhase?.let {
                     BreezyMoonPhase(
                         angle = it.angle,
-                        description = it.getDescription(context)
+                        description = it.getDescription(context!!)
                     )
                 },
-                airQuality = getAirQuality(context, day.airQuality),
-                pollen = getPollen(context, day.pollen),
+                airQuality = getAirQuality(day.airQuality),
+                pollen = getPollen(day.pollen),
                 uV = day.uV?.let { BreezyUV(it.index) },
-                sunshineDuration = getDurationUnit(context, day.sunshineDuration)
+                sunshineDuration = getDurationUnit(day.sunshineDuration)
             )
         }
     }
 
     private fun getHourly(
-        context: Context,
         hourly: List<Hourly>?,
         temperatureUnit: TemperatureUnit,
         precipitationUnit: PrecipitationUnit,
@@ -261,23 +297,24 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 isDaylight = hour.isDaylight,
                 weatherText = hour.weatherText,
                 weatherCode = hour.weatherCode?.id,
-                temperature = getTemperature(context, hour.temperature, temperatureUnit),
-                precipitation = getPrecipitation(context, hour.precipitation, precipitationUnit),
-                precipitationProbability = getPrecipitationProbability(hour.precipitationProbability, percentUnit),
-                wind = getWind(context, hour.wind, distanceUnit),
-                airQuality = getAirQuality(context, hour.airQuality),
+                temperature = getTemperature(hour.temperature, temperatureUnit),
+                precipitation = getPrecipitation(hour.precipitation, precipitationUnit),
+                precipitationProbability = getPrecipitationProbability(
+                    hour.precipitationProbability, percentUnit
+                ),
+                wind = getWind(hour.wind, distanceUnit),
+                airQuality = getAirQuality(hour.airQuality),
                 uV = hour.uV?.let { BreezyUV(it.index) },
                 relativeHumidity = getPercentUnit(hour.relativeHumidity, percentUnit, 0),
-                dewPoint = getTemperatureDoubleUnit(context, hour.dewPoint, temperatureUnit),
-                pressure = getPressureDoubleUnit(context, hour.pressure, pressureUnit),
+                dewPoint = getTemperatureDoubleUnit(hour.dewPoint, temperatureUnit),
+                pressure = getPressureDoubleUnit(hour.pressure, pressureUnit),
                 cloudCover = getPercentUnit(hour.cloudCover?.toDouble(), percentUnit, 0),
-                visibility = getDistanceDoubleUnit(context, hour.visibility, distanceUnit),
+                visibility = getDistanceDoubleUnit(hour.visibility, distanceUnit),
             )
         }
     }
 
     private fun getMinutely(
-        context: Context,
         minutely: List<Minutely>?,
         precipitationUnit: PrecipitationUnit
     ): List<BreezyMinutely>? {
@@ -286,7 +323,7 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 date = minute.date.time,
                 minuteInterval = minute.minuteInterval,
                 precipitationIntensity = getPrecipitationDoubleUnit(
-                    context, minute.precipitationIntensity, precipitationUnit
+                    minute.precipitationIntensity, precipitationUnit
                 )
             )
         }
@@ -302,7 +339,6 @@ class BreezyService @Inject constructor() : BroadcastSource {
     }
 
     private fun getHalfDay(
-        context: Context,
         halfDay: HalfDay?,
         temperatureUnit: TemperatureUnit,
         precipitationUnit: PrecipitationUnit,
@@ -314,37 +350,45 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 weatherText = hd.weatherText,
                 weatherPhase = hd.weatherPhase,
                 weatherCode = hd.weatherCode?.id,
-                temperature = getTemperature(context, hd.temperature, temperatureUnit),
-                precipitation = getPrecipitation(context, hd.precipitation, precipitationUnit),
+                temperature = getTemperature(hd.temperature, temperatureUnit),
+                precipitation = getPrecipitation(hd.precipitation, precipitationUnit),
                 precipitationProbability = getPrecipitationProbability(
                     hd.precipitationProbability, percentUnit
                 ),
-                precipitationDuration = getPrecipitationDuration(context, hd.precipitationDuration),
-                wind = getWind(context, hd.wind, distanceUnit),
+                precipitationDuration = getPrecipitationDuration(hd.precipitationDuration),
+                wind = getWind(hd.wind, distanceUnit),
                 cloudCover = getPercentUnit(hd.cloudCover?.toDouble(), percentUnit, 0)
             )
         }
     }
 
     private fun getTemperature(
-        context: Context,
         temperature: Temperature?,
         temperatureUnit: TemperatureUnit
     ): BreezyTemperature? {
         return temperature?.let {
             BreezyTemperature(
-                temperature = getTemperatureDoubleUnit(context, it.temperature, temperatureUnit),
-                realFeelTemperature = getTemperatureDoubleUnit(context, it.realFeelTemperature, temperatureUnit),
-                realFeelShaderTemperature = getTemperatureDoubleUnit(context, it.realFeelShaderTemperature, temperatureUnit),
-                apparentTemperature = getTemperatureDoubleUnit(context, it.apparentTemperature, temperatureUnit),
-                windChillTemperature = getTemperatureDoubleUnit(context, it.windChillTemperature, temperatureUnit),
-                wetBulbTemperature = getTemperatureDoubleUnit(context, it.wetBulbTemperature, temperatureUnit),
+                temperature = getTemperatureDoubleUnit(it.temperature, temperatureUnit),
+                realFeelTemperature = getTemperatureDoubleUnit(
+                    it.realFeelTemperature, temperatureUnit
+                ),
+                realFeelShaderTemperature = getTemperatureDoubleUnit(
+                    it.realFeelShaderTemperature, temperatureUnit
+                ),
+                apparentTemperature = getTemperatureDoubleUnit(
+                    it.apparentTemperature, temperatureUnit
+                ),
+                windChillTemperature = getTemperatureDoubleUnit(
+                    it.windChillTemperature, temperatureUnit
+                ),
+                wetBulbTemperature = getTemperatureDoubleUnit(
+                    it.wetBulbTemperature, temperatureUnit
+                ),
             )
         }
     }
 
     private fun getTemperatureDoubleUnit(
-        context: Context,
         temperature: Double?,
         temperatureUnit: TemperatureUnit
     ): BreezyDoubleUnit? {
@@ -354,8 +398,8 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "c",
                 preferredUnitValue = temperatureUnit.convertUnit(it),
                 preferredUnitUnit = temperatureUnit.id,
-                preferredUnitFormatted = temperatureUnit.getValueText(context, it, 0),
-                preferredUnitFormattedShort = temperatureUnit.getShortValueText(context, it)
+                preferredUnitFormatted = temperatureUnit.getValueText(context!!, it, 0),
+                preferredUnitFormattedShort = temperatureUnit.getShortValueText(context!!, it)
             )
         }
     }
@@ -365,7 +409,6 @@ class BreezyService @Inject constructor() : BroadcastSource {
      * (missing equivalent ValueText functions)
      */
     private fun getDegreeDayTemperatureDoubleUnit(
-        context: Context,
         temperature: Double?,
         temperatureUnit: TemperatureUnit
     ): BreezyDoubleUnit? {
@@ -375,30 +418,28 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "c",
                 preferredUnitValue = temperatureUnit.convertDegreeDayUnit(it),
                 preferredUnitUnit = temperatureUnit.id,
-                preferredUnitFormatted = temperatureUnit.getDegreeDayValueText(context, it),
-                preferredUnitFormattedShort = temperatureUnit.getDegreeDayValueText(context, it)
+                preferredUnitFormatted = temperatureUnit.getDegreeDayValueText(context!!, it),
+                preferredUnitFormattedShort = temperatureUnit.getDegreeDayValueText(context!!, it)
             )
         }
     }
 
     private fun getPrecipitation(
-        context: Context,
         precipitation: Precipitation?,
         precipitationUnit: PrecipitationUnit
     ): BreezyPrecipitation? {
         return precipitation?.let {
             BreezyPrecipitation(
-                total = getPrecipitationDoubleUnit(context, it.total, precipitationUnit),
-                thunderstorm = getPrecipitationDoubleUnit(context, it.thunderstorm, precipitationUnit),
-                rain = getPrecipitationDoubleUnit(context, it.rain, precipitationUnit),
-                snow = getPrecipitationDoubleUnit(context, it.snow, precipitationUnit),
-                ice = getPrecipitationDoubleUnit(context, it.ice, precipitationUnit)
+                total = getPrecipitationDoubleUnit(it.total, precipitationUnit),
+                thunderstorm = getPrecipitationDoubleUnit(it.thunderstorm, precipitationUnit),
+                rain = getPrecipitationDoubleUnit(it.rain, precipitationUnit),
+                snow = getPrecipitationDoubleUnit(it.snow, precipitationUnit),
+                ice = getPrecipitationDoubleUnit(it.ice, precipitationUnit)
             )
         }
     }
 
     private fun getPrecipitationDoubleUnit(
-        context: Context,
         precipitation: Double?,
         precipitationUnit: PrecipitationUnit
     ): BreezyDoubleUnit? {
@@ -408,8 +449,8 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "mm",
                 preferredUnitValue = precipitationUnit.convertUnit(it),
                 preferredUnitUnit = precipitationUnit.id,
-                preferredUnitFormatted = precipitationUnit.getValueText(context, it),
-                preferredUnitFormattedShort = precipitationUnit.getValueText(context, it)
+                preferredUnitFormatted = precipitationUnit.getValueText(context!!, it),
+                preferredUnitFormattedShort = precipitationUnit.getValueText(context!!, it)
             )
         }
     }
@@ -430,34 +471,32 @@ class BreezyService @Inject constructor() : BroadcastSource {
     }
 
     private fun getPrecipitationDuration(
-        context: Context,
         precipitationDuration: PrecipitationDuration?
     ): BreezyPrecipitationDuration? {
         return precipitationDuration?.let {
             BreezyPrecipitationDuration(
-                total = getDurationUnit(context, it.total),
-                thunderstorm = getDurationUnit(context, it.thunderstorm),
-                rain = getDurationUnit(context, it.rain),
-                snow = getDurationUnit(context, it.snow),
-                ice = getDurationUnit(context, it.ice)
+                total = getDurationUnit(it.total),
+                thunderstorm = getDurationUnit(it.thunderstorm),
+                rain = getDurationUnit(it.rain),
+                snow = getDurationUnit(it.snow),
+                ice = getDurationUnit(it.ice)
             )
         }
     }
 
     private fun getWind(
-        context: Context, wind: Wind?, distanceUnit: DistanceUnit
+        wind: Wind?, distanceUnit: DistanceUnit
     ): BreezyWind? {
         return wind?.let {
             BreezyWind(
                 degree = wind.degree,
-                speed = getDistanceDoubleUnit(context, wind.speed, distanceUnit),
-                gusts = getDistanceDoubleUnit(context, wind.gusts, distanceUnit)
+                speed = getDistanceDoubleUnit(wind.speed, distanceUnit),
+                gusts = getDistanceDoubleUnit(wind.gusts, distanceUnit)
             )
         }
     }
 
     private fun getDistanceDoubleUnit(
-        context: Context,
         distance: Double?,
         distanceUnit: DistanceUnit
     ): BreezyDoubleUnit? {
@@ -467,14 +506,13 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "m",
                 preferredUnitValue = distanceUnit.convertUnit(it),
                 preferredUnitUnit = distanceUnit.id,
-                preferredUnitFormatted = distanceUnit.getValueText(context, it),
-                preferredUnitFormattedShort = distanceUnit.getValueText(context, it)
+                preferredUnitFormatted = distanceUnit.getValueText(context!!, it),
+                preferredUnitFormattedShort = distanceUnit.getValueText(context!!, it)
             )
         }
     }
 
     private fun getPressureDoubleUnit(
-        context: Context,
         pressure: Double?,
         pressureUnit: PressureUnit
     ): BreezyDoubleUnit? {
@@ -484,8 +522,8 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "mb",
                 preferredUnitValue = pressureUnit.convertUnit(it),
                 preferredUnitUnit = pressureUnit.id,
-                preferredUnitFormatted = pressureUnit.getValueText(context, it),
-                preferredUnitFormattedShort = pressureUnit.getValueText(context, it)
+                preferredUnitFormatted = pressureUnit.getValueText(context!!, it),
+                preferredUnitFormattedShort = pressureUnit.getValueText(context!!, it)
             )
         }
     }
@@ -506,7 +544,7 @@ class BreezyService @Inject constructor() : BroadcastSource {
     }
 
     private fun getDurationUnit(
-        context: Context, duration: Double?
+        duration: Double?
     ): BreezyDoubleUnit? {
         return duration?.let {
             BreezyDoubleUnit(
@@ -514,27 +552,27 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 originalUnit = "h",
                 preferredUnitValue = it,
                 preferredUnitUnit = "h",
-                preferredUnitFormatted = DurationUnit.H.getValueText(context, it),
-                preferredUnitFormattedShort = DurationUnit.H.getValueText(context, it)
+                preferredUnitFormatted = DurationUnit.H.getValueText(context!!, it),
+                preferredUnitFormattedShort = DurationUnit.H.getValueText(context!!, it)
             )
         }
     }
 
     private fun getAirQuality(
-        context: Context, airQuality: AirQuality?
+        airQuality: AirQuality?
     ): BreezyAirQuality? {
         return airQuality?.let {
             if (airQuality.isValid) {
                 BreezyAirQuality(
                     index = airQuality.getIndex(),
-                    indexColor = airQuality.getColor(context),
+                    indexColor = airQuality.getColor(context!!),
                     pollutants = airQuality.validPollutants.associate {
                         it.id to BreezyPollutant(
                             id = it.id,
-                            name = airQuality.getName(context, it),
+                            name = airQuality.getName(context!!, it),
                             concentration = airQuality.getConcentration(it),
                             index = airQuality.getIndex(it),
-                            color = airQuality.getColor(context, it)
+                            color = airQuality.getColor(context!!, it)
                         )
                     }
                 )
@@ -546,17 +584,17 @@ class BreezyService @Inject constructor() : BroadcastSource {
      * TODO: Support for source-based pollen index
      */
     private fun getPollen(
-        context: Context, pollen: Pollen?
+        pollen: Pollen?
     ): Map<String, BreezyPollen>? {
         return pollen?.let {
             if (it.isValid) {
                 it.validPollens.associate { component ->
                     component.id to BreezyPollen(
                         id = component.id,
-                        name = it.getName(context, component),
+                        name = it.getName(context!!, component),
                         concentration = it.getConcentration(component), // TODO: Remove when from source
-                        indexName = it.getIndexName(context, component), // TODO: getIndexNameFromSource when applies
-                        color = it.getColor(context, component)
+                        indexName = it.getIndexName(context!!, component), // TODO: getIndexNameFromSource when applies
+                        color = it.getColor(context!!, component)
                     )
                 }
             } else null
@@ -576,6 +614,66 @@ class BreezyService @Inject constructor() : BroadcastSource {
                 severity = alert.severity.id,
                 color = alert.color
             )
+        }
+    }
+
+
+    override fun getType(uri: Uri): String? {
+        // MIME types are not relevant (for now at least)
+        return null
+    }
+
+    override fun insert(
+        uri: Uri,
+        values: ContentValues?
+    ): Uri? {
+        // This content provider is read-only for now, so we always return null
+        return null
+    }
+
+    override fun delete(
+        uri: Uri,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): Int {
+        // This content provider is read-only for now, so we always return 0
+        return 0
+    }
+
+    override fun update(
+        uri: Uri,
+        values: ContentValues?,
+        selection: String?,
+        selectionArgs: Array<String>?
+    ): Int {
+        // This content provider is read-only for now, so we always return 0
+        return 0
+    }
+
+    object Version {
+        const val MAJOR_COLUMN: String = "major" // Renamed, changed type or deleted fields
+        const val MINOR_COLUMN: String = "minor" // Added features/fields
+        const val MAJOR: Int = 0
+        const val MINOR: Int = 1
+    }
+
+    object Weather {
+        const val INFO_COLUMN: String = "info"
+    }
+
+    companion object {
+        private const val TAG = "Breezy"
+
+        val AUTHORITY: String = BuildConfig.APPLICATION_ID + ".provider.weather"
+
+        private const val URI_VERSION = 0
+        private const val URI_WEATHER = 1
+
+        private val uriMatcher: UriMatcher = object : UriMatcher(NO_MATCH) {
+            init {
+                addURI(AUTHORITY, "version", URI_VERSION)
+                addURI(AUTHORITY, "weather", URI_WEATHER)
+            }
         }
     }
 }

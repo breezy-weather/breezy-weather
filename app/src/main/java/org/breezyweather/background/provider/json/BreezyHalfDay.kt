@@ -14,14 +14,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * UV.
+ * Half day (day or night)
  */
 @Serializable
-class BreezyUV(
-    val index: Double? = null
+data class BreezyHalfDay(
+    val weatherText: String? = null,
+    val weatherPhase: String? = null,
+    val weatherCode: String? = null,
+    val temperature: BreezyTemperature? = null,
+    val precipitation: BreezyPrecipitation? = null,
+    val precipitationProbability: BreezyPrecipitationProbability? = null,
+    val precipitationDuration: BreezyPrecipitationDuration? = null,
+    val wind: BreezyWind? = null,
+    val cloudCover: BreezyPercent? = null
 )

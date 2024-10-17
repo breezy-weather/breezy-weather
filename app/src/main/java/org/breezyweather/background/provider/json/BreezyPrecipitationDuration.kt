@@ -14,19 +14,18 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Normals
+ * Precipitation duration
  */
 @Serializable
-data class BreezyNormals(
-    /**
-     * Between 1 and 12
-     */
-    val month: Int? = null,
-    val daytimeTemperature: BreezyDoubleUnit? = null,
-    val nighttimeTemperature: BreezyDoubleUnit? = null
+data class BreezyPrecipitationDuration(
+    val total: BreezyDoubleUnit? = null,
+    val thunderstorm: BreezyDoubleUnit? = null,
+    val rain: BreezyDoubleUnit? = null,
+    val snow: BreezyDoubleUnit? = null,
+    val ice: BreezyDoubleUnit? = null
 )

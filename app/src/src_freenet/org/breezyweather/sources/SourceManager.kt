@@ -33,7 +33,6 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.Source
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.android.AndroidLocationService
-import org.breezyweather.sources.breezydatashare.BreezyService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
@@ -43,7 +42,6 @@ import javax.inject.Inject
 
 class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
-    breezyService: BreezyService,
     brightSkyService: BrightSkyService,
     gadgetbridgeService: GadgetbridgeService,
     naturalEarthService: NaturalEarthService,
@@ -69,7 +67,6 @@ class SourceManager @Inject constructor(
         recosanteService,
 
         // Broadcast sources
-        breezyService,
         gadgetbridgeService
     )
 

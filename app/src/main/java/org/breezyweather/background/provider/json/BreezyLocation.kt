@@ -14,12 +14,16 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class BreezyLocation (
+    /**
+     * Unique ID of the location
+     * The ID can change, so don’t rely on it between different queries
+     */
     val id: String,
     val timezone: String,
     val country: String? = null,

@@ -14,18 +14,21 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Precipitation
+ * Moon phase
  */
 @Serializable
-data class BreezyPrecipitation(
-    val total: BreezyDoubleUnit? = null,
-    val thunderstorm: BreezyDoubleUnit? = null,
-    val rain: BreezyDoubleUnit? = null,
-    val snow: BreezyDoubleUnit? = null,
-    val ice: BreezyDoubleUnit? = null
+data class BreezyMoonPhase(
+    /**
+     * Between 0 and 360 degrees
+     */
+    val angle: Int? = null,
+    /**
+     * A description of the phase in the language preferred by the user
+     */
+    val description: String? = null
 )

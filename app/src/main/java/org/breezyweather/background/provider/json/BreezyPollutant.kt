@@ -14,15 +14,18 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Degree day
+ * Air Quality pollutants
  */
 @Serializable
-data class BreezyDegreeDay(
-    val heating: BreezyDoubleUnit? = null,
-    val cooling: BreezyDoubleUnit? = null
+class BreezyPollutant(
+    val id: String,
+    val name: String? = null,
+    val concentration: Double? = null,
+    val index: Int? = null,
+    val color: Int? = null
 )

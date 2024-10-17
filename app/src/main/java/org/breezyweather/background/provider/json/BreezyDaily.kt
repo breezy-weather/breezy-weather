@@ -14,21 +14,28 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Moon phase
+ * Daily.
  */
 @Serializable
-data class BreezyMoonPhase(
+data class BreezyDaily(
     /**
-     * Between 0 and 360 degrees
+     * Daily date initialized at 00:00 in the TimeZone of the location
      */
-    val angle: Int? = null,
-    /**
-     * A description of the phase in the language preferred by the user
-     */
-    val description: String? = null
+    val date: Long,
+    val day: BreezyHalfDay? = null,
+    val night: BreezyHalfDay? = null,
+    val degreeDay: BreezyDegreeDay? = null,
+    val sun: BreezyAstro? = null,
+    val moon: BreezyAstro? = null,
+    val moonPhase: BreezyMoonPhase? = null,
+    val airQuality: BreezyAirQuality? = null,
+    // id of the pollen => details
+    val pollen: Map<String, BreezyPollen>? = null,
+    val uV: BreezyUV? = null,
+    val sunshineDuration: BreezyDoubleUnit? = null
 )

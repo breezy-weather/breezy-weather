@@ -14,28 +14,19 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.breezydatashare.json
+package org.breezyweather.background.provider.json
 
 import kotlinx.serialization.Serializable
 
 /**
- * Daily.
+ * Normals
  */
 @Serializable
-data class BreezyDaily(
+data class BreezyNormals(
     /**
-     * Daily date initialized at 00:00 in the TimeZone of the location
+     * Between 1 and 12
      */
-    val date: Long,
-    val day: BreezyHalfDay? = null,
-    val night: BreezyHalfDay? = null,
-    val degreeDay: BreezyDegreeDay? = null,
-    val sun: BreezyAstro? = null,
-    val moon: BreezyAstro? = null,
-    val moonPhase: BreezyMoonPhase? = null,
-    val airQuality: BreezyAirQuality? = null,
-    // id of the pollen => details
-    val pollen: Map<String, BreezyPollen>? = null,
-    val uV: BreezyUV? = null,
-    val sunshineDuration: BreezyDoubleUnit? = null
+    val month: Int? = null,
+    val daytimeTemperature: BreezyDoubleUnit? = null,
+    val nighttimeTemperature: BreezyDoubleUnit? = null
 )
