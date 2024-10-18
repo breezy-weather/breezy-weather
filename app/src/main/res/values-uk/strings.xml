@@ -690,4 +690,6 @@
     <string name="common_weather_text_sand_storm">Піщана буря</string>
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо або водяний смерч</string>
     <string name="settings_unavailable_no_animations">Недоступно, спочатку увімкніть анімацію в налаштуваннях Android</string>
+    <string name="weather_current_data_by">Дані про поточну погоду надані %s</string>
+    <string name="current_weather">Поточна погода</string>
 </resources>

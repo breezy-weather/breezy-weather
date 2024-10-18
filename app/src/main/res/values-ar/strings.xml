@@ -697,4 +697,6 @@
     <string name="dialog_app_update_check_title">البقاء على احدث إصدار</string>
     <string name="dialog_app_update_check_content">اضغط هنا لتمكين الإشعارات حول تحديثات التطبيق.</string>
     <string name="settings_unavailable_no_animations">غير متاح، قم بتمكين الرسوم المتحركة في إعدادات الجهاز أولاً</string>
+    <string name="weather_current_data_by">بيانات الطقس الحالية بواسطة %s</string>
+    <string name="current_weather">الطقس الحالي</string>
 </resources>
