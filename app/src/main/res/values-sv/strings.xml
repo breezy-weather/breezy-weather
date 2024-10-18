@@ -348,7 +348,7 @@
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
     <string name="wind_direction_short_variable">Skiftande</string>
-    <string name="air_quality_o3_info_consequences">Överdriven exponering för ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
+    <string name="air_quality_o3_info_consequences">Exponering för alltför höga halter av ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
     <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från överdriven UV-strålning.</string>
     <string name="widget_material_you_current">Material You - nuvarande</string>
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
@@ -624,7 +624,7 @@
     <string name="message_invalid_incomplete_data">Ogiltig eller ofullständig data mottagen från server</string>
     <string name="location_delete_location_dialog_message">“%s” kommer att tas bort från sparade platser.</string>
     <string name="location_delete_location_dialog_message_no_name">Den här platsen kommer tas bort från dina sparade platser.</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindex idag, imorgon, …, om 4 dagar</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindex för i dag, i morgon, …, 4 dagar senare</string>
     <string name="widget_label_hide_header">Göm rubrik</string>
     <string name="pollen_carpinus">Avenbok</string>
     <string name="pollen_castanea">Kastanjeträd</string>
@@ -660,7 +660,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sömlös</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerar alla vädermodeller från denna leverantör, till en sömlös prognos</string>
     <string name="settings_weather_source_open_meteo_weather_models">Väderprognosmodeller</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för idag, imorgon, …, om 4 dagar</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_source_instance_invalid">Måste vara en HTTPS-URL som slutar med /</string>
     <string name="settings_invalid_syntax">Ogiltig syntax</string>
     <string name="dialog_time_picker_select_time">Välj tid</string>
