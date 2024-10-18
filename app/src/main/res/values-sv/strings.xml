@@ -83,7 +83,7 @@
     <string name="ephemeris_sunset_at">Solnedgång vid %s</string>
     <string name="widget_live_wallpaper_day_night_type">Tid</string>
     <string name="pollen_tap_to_see_more">Klicka för att se mer…</string>
-    <string name="precipitation_intensity_heavy">Kraftigt regn</string>
+    <string name="precipitation_intensity_heavy">Kraftig</string>
     <string name="weather_pollen_data_by">Pollendata från %s</string>
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
     <string name="pollen_level_2">Låg</string>
@@ -129,7 +129,7 @@
     <string name="pollen_level_4">Hög</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_custom_subtitle_keyword_at_description">Känns för närvarande som temperatur (°C/°F)</string>
-    <string name="precipitation_intensity_light">Duggregn</string>
+    <string name="precipitation_intensity_light">Lätt</string>
     <string name="location_search_placeholder">Sök efter en plats…</string>
     <string name="action_preview">Förhandsvisning</string>
     <string name="location_search_no_results_advice">Se till att din sökning är rättstavad och inte för specifik. Alternativt kan du prova en annan platssökningskälla som kan ge andra resultat.</string>
@@ -673,4 +673,9 @@
     <string name="settings_global">Globala inställningar</string>
     <string name="action_download">Ladda ner</string>
     <string name="meteoam_weather_text_smoke">Rök</string>
+    <string name="notification_channel_app_updates">Appuppdateringar</string>
+    <string name="about_no_new_updates">Inga nya uppdateringar tillgängliga</string>
+    <string name="about_check_for_app_updates">Sök efter appuppdateringar</string>
+    <string name="precipitation_intensity_medium">Måttlig</string>
+    <string name="settings_widgets_broadcast_send_data_summary_empty">Inga kompatibla paket hittades</string>
 </resources>
