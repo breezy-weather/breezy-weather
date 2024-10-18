@@ -161,7 +161,7 @@
     <string name="air_quality_pm25">PM2,5</string>
     <string name="unit_mmph_voice">Millimeter per timme</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_co_info_introduction">Kolmonoxid (CO) är en giftig, icke irriterande, lättantändligt gas som är färg, lukt och smaklös.</string>
+    <string name="air_quality_co_info_introduction">Kolmonoxid (CO) är en giftig, brandfarlig gas som är färglös, luktlös, smaklös och icke-irriterande.</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Oliv</string>
     <string name="action_location_list">Platslista</string>
@@ -171,7 +171,7 @@
     <string name="common_weather_text_fog">Dimma</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="weather_air_quality_data_by">Luftkvalitetsdata från %s</string>
-    <string name="air_quality_so2_info_introduction">Svaveldioxid (SO₂) är en färglös giftig gas som luktar bränd tändsticka.</string>
+    <string name="air_quality_so2_info_introduction">Svaveldioxid (SO₂) är en färglös giftig gas som luktar brända tändstickor.</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="details">Detaljer</string>
     <string name="air_quality_o3">O₃</string>
@@ -387,7 +387,7 @@
     <string name="widget_label_text_color">Textfärg</string>
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="air_quality_so2_info_consequences">Exponering mot SO₂ förknippas med astma, sjukhusvistelse och besök hos akutmottagning.</string>
+    <string name="air_quality_so2_info_consequences">Exponering för SO₂ är förknippad med sjukhusvistelse och akutmottagningsbesök för astmatiker.</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
     <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
@@ -440,7 +440,7 @@
     <string name="common_weather_text_rain_snow_mixed">Snöblandat regn</string>
     <string name="settings_background_updates_battery_optimization_summary">Detta är den första åtgärden att vidta när du inte får aviseringar eller widgetar inte uppdateras.</string>
     <string name="widget_subtitle_data_custom">Anpassad</string>
-    <string name="air_quality_so2_info_origin">Naturliga utsläpp kommer från vulkaner men kommer övervägande ifrån förbränning av fossila bränslen för hushållsvärme, industrier och elkraftproduktion.</string>
+    <string name="air_quality_so2_info_origin">Den frigörs naturligt genom vulkanisk aktivitet och härrör huvudsakligen från förbränning av fossila bränslen för uppvärmning av bostäder, industrier och elproduktion.</string>
     <string name="settings_follow_system">Följ systemet</string>
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
@@ -485,7 +485,7 @@
     <string name="settings_main_section_options">Alternativ</string>
     <string name="weather_kind_haze">Dimma</string>
     <string name="settings_main_section_animations">Animationer</string>
-    <string name="air_quality_no2_info_consequences">Exponering mot kvävedioxid kan irritera luftvägarna och förvärra lungsjukdomar. NO₂ är ett viktigt försteg till ozonbildning, en förorening som är starkt koplad till astma och lungsjukdomar.</string>
+    <string name="air_quality_no2_info_consequences">Exponering för kvävedioxid kan irritera luftvägarna och förvärra luftvägssjukdomar. Vidare är NO₂ ett viktigt förstadium till ozon, en förorening som är starkt kopplad till astma och andra luftvägsbesvär.</string>
     <string name="widget_multi_city">Flera orter</string>
     <string name="weather_kind_thunderstorm">Åskstorm</string>
     <string name="common_weather_text_rain_light">Lätt regn</string>
@@ -507,7 +507,7 @@
     <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
-    <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodsystemet, och försvårar för kroppen celler att binda syre. Syrebristen skadar vävnad och celler. Exponering mot kolmonoxid kan orsaka andningsproble, utmattning, yrsel och influensaliknande symptom. Exponering mot höga halter av kolmonoxid kan vara dödligt.</string>
+    <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodomloppet, vilket gör det svårt för kroppens celler att binda till sig syre. Denna syrebrist skadar vävnader och celler. Exponering för kolmonoxid kan orsaka andningssvårigheter, utmattning, yrsel och andra influensaliknande symtom. Exponering för höga halter av kolmonoxid kan vara dödlig.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering för nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="unit_bf">Bf</string>
@@ -516,7 +516,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Inget nätverk</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
-    <string name="air_quality_co_info_origin">Det skapas av ofullständing förbränning av kolhaltiga bränslen så som trä, bensin, kol, naturgas och fotogen i enkla kök, öppna eldar, oljelampor, ugnar och eldstäder. Den vanligaste källan till kolmonoxid (CO) i omgivande luft är från förbränning från fordonsmotorer.</string>
+    <string name="air_quality_co_info_origin">Den skapas av ofullständig förbränning av kolhaltiga bränslen såsom trä, bensin, kol, naturgas och fotogen i enkla spisar, öppna eldar, oljelampor, ugnar och eldstäder. Den huvudsakliga källan till kolmonoxid (CO) i omgivande luft är från motorfordon.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
@@ -667,4 +667,10 @@
     <string name="widget_label_hide_alternate_calendar">Göm alternativ kalender</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="message_server_unavailable_title">Servern är otillgänglig</string>
+    <string name="common_weather_text_sand_storm">Sandstorm</string>
+    <string name="current_weather">Nuvarande väder</string>
+    <string name="notification_app_update_available">Ny version tillgänglig!</string>
+    <string name="settings_global">Globala inställningar</string>
+    <string name="action_download">Ladda ner</string>
+    <string name="meteoam_weather_text_smoke">Rök</string>
 </resources>
