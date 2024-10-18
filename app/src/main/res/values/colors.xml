@@ -67,6 +67,8 @@
 
     <color name="colorNotificationSecondary">@color/secondary_text_default_material_light</color>
 
+    <color name="colorSplashScreen">#5F96D0</color>
+
     <!-- widget. -->
 
     <color name="colorWidgetRoot">@color/md_theme_surface</color>
