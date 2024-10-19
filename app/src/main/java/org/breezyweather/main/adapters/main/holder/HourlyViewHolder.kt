@@ -105,6 +105,7 @@ class HourlyViewHolder(
         if (tagList.size < 2) {
             tagView.visibility = View.GONE
         } else {
+            tagView.visibility = View.VISIBLE
             val decorCount = tagView.itemDecorationCount
             for (i in 0 until decorCount) {
                 tagView.removeItemDecorationAt(0)
