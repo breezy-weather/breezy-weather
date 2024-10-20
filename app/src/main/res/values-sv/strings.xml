@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unit_celsius_short">°</string>
-    <string name="short_yesterday">Igår</string>
+    <string name="short_yesterday">I går</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
     <string name="precipitation_thunderstorm">Åskväder</string>
@@ -243,7 +243,7 @@
     <string name="wind_direction_short_NW">NV</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
-    <string name="short_today">Idag</string>
+    <string name="short_today">I dag</string>
     <string name="humidity">Luftfuktighet</string>
     <string name="humidity_dew_point">Luftfuktighet / Daggpunkt</string>
     <string name="of_clock">:00</string>
