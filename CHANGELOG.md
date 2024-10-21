@@ -15,6 +15,7 @@
 - Fix dark mode not immediately changed on Edit location screen in case Dark mode setting is changed (@Mushfiq1060)
 - Fix duplicate drawer + location list icons in portrait mode on tablets in some cases (@ecawthorne)
 - Fix hourly pressure tab disappearing when pressure for the whole period is either all below or all above normal pressure threshold
+- Fix hourly tabs disappearing sometimes (@ccyybn)
 
 **Weather sources**
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
