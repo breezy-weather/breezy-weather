@@ -1,6 +1,6 @@
 ## Weather update process
 
-*Latest update of this document: 2024-07-14 (v5.2.6)*
+*Latest update of this document: 2024-10-21 (v5.2.9)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
@@ -33,6 +33,7 @@ At your selected refresh rate, this is what happens:
 - The weather for secondary locations are:
   - not refreshed if you don’t use multi cities widget or notification-widget, or data sharing feature (they will, however, be automatically refreshed if outdated as soon as you try to access them in the app)
   - otherwise, refreshed once a day at most to avoid battery/bandwidth consumption in the background from less-used locations
+  - a maximum of 3 (widget), 4 (notification-widget) or 5 (data sharing) locations are refreshed in the background. If you use more, later locations are assumed to be less used, and they will be refreshed once you open them instead
 
 When weather for the location(s) is done refreshing in the background, the following tasks are executed:
 - If enabled, notifications are sent for each new severe alerts for the first location

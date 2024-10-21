@@ -167,7 +167,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             } else emptyList()
         } else {
             val locationList = when {
-                refreshHelper.isBroadcastSourcesEnabled(context) -> locationRepository.getAllLocations()
+                refreshHelper.isBroadcastSourcesEnabled(context) -> locationRepository.getXLocations(5) // Should be getAllLocations(), but some rare users have 100+ locations. No need to refresh all of them in that case, they don't actually use them every day, they just add them as "bookmarks"
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled &&
                     SettingsManager.getInstance(context).widgetNotificationStyle == NotificationStyle.CITIES -> locationRepository.getXLocations(4)
                 MultiCityWidgetIMP.isInUse(context) -> locationRepository.getXLocations(3)
