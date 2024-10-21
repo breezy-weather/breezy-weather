@@ -1,4 +1,4 @@
-# Version 5.2.9 (not yet released)
+# Version 5.3.0 (not yet released)
 
 **New features**
 - Current weather source: It is now possible to select a "current weather" source different from the main (forecast) source

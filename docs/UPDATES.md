@@ -1,6 +1,6 @@
 ## Weather update process
 
-*Latest update of this document: 2024-10-21 (v5.2.9)*
+*Latest update of this document: 2024-10-21 (v5.3.0)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
