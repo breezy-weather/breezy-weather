@@ -700,4 +700,6 @@
     <string name="dialog_app_update_check_title">Mantente al día</string>
     <string name="dialog_app_update_check_content">Pulsa aquí para habilitar notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
+    <string name="current_weather">Estado del tiempo</string>
+    <string name="weather_current_data_by">Datos del tiempo actual por %s</string>
 </resources>
