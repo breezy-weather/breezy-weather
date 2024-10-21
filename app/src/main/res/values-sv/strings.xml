@@ -82,7 +82,7 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Solnedgång vid %s</string>
     <string name="widget_live_wallpaper_day_night_type">Tid</string>
-    <string name="pollen_tap_to_see_more">Klicka för att se mer…</string>
+    <string name="pollen_tap_to_see_more">Tryck för att visa mer …</string>
     <string name="precipitation_intensity_heavy">Kraftig</string>
     <string name="weather_pollen_data_by">Pollendata från %s</string>
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
@@ -322,7 +322,7 @@
     <string name="temperature_apparent">Upplevd</string>
     <string name="temperature_degree_day">Dagsgrad</string>
     <string name="widget_refreshing">Uppdaterar</string>
-    <string name="dialog_permissions_notification_title">Håll dig uppdaterad</string>
+    <string name="dialog_permissions_notification_title">Håll dig informerad</string>
     <string name="widget_day_week">Daglig + veckovis</string>
     <string name="widget_clock_day_horizontal">Klocka + daglig (vågrät stil)</string>
     <string name="weather_minutely_data_by">Nederbörd direktdata från %s</string>
@@ -362,7 +362,7 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Tilltagande skära</string>
     <string name="visibility">Sikt</string>
     <string name="settings_main">Huvudskärm</string>
-    <string name="settings_notifications_summary">Notifieringar för vädervarningar, nederbör eller prognoser för den första platsen</string>
+    <string name="settings_notifications_summary">Aviseringar om vädervarningar, nederbörd eller prognos för den första platsen</string>
     <string name="settings_location_summary">Inställningar för platstjänster</string>
     <string name="settings_location">Positionering</string>
     <string name="settings_weather_sources_summary">Förvald väderkälla för nya platser, egna API-nycklar, andra källinställningar</string>
@@ -406,7 +406,7 @@
 \nExempelvis, ”Nuvarande väder är: $cw$” kommer att visas som ”Nuvarande väder är: Klart väder”.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Varningar (korta)</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Åskstorm med lätt hagel</string>
-    <string name="settings_notifications_forecast_today_title">Avisering för dagens prognos</string>
+    <string name="settings_notifications_forecast_today_title">Avisering om dagens prognos</string>
     <string name="common_weather_text_rain_heavy">Kraftigt regn</string>
     <string name="settings_color_day_always">Alltid dag</string>
     <string name="settings_color_night_always">Alltid natt</string>
@@ -451,7 +451,7 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="settings_color_grey">Grå</string>
     <string name="unit_atm">atm</string>
-    <string name="settings_notifications_alerts_title">Aviseringar för vädervarningar</string>
+    <string name="settings_notifications_alerts_title">Aviseringar om allvarliga vädervarningar</string>
     <string name="notification_running_in_background">Körs i bakgrunden för att uppdatera</string>
     <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet ”Tillåt alltid”.</string>
     <string name="settings_main_background_animation_enabled">Aktiverad</string>
@@ -508,7 +508,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodomloppet, vilket gör det svårt för kroppens celler att binda till sig syre. Denna syrebrist skadar vävnader och celler. Exponering för kolmonoxid kan orsaka andningssvårigheter, utmattning, yrsel och andra influensaliknande symtom. Exponering för höga halter av kolmonoxid kan vara dödlig.</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Avisering för nästa dags prognos</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Avisering om nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
@@ -528,7 +528,7 @@
     <string name="unit_bf_voice">på Beauforts skala</string>
     <string name="settings_none">Ingen</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
-    <string name="message_server_timeout">Begäran timade ut</string>
+    <string name="message_server_timeout">Tiden för begäran löpte ut</string>
     <string name="action_set">Välj</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Åskstorm med kraftigt hagel</string>
     <string name="settings_item_delete">Ta bort detta objekt</string>
@@ -649,7 +649,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Prognosserver</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftkvalitetsserver</string>
     <string name="settings_source_instance">Server</string>
-    <string name="settings_source_instance_geocoding">Server för geo-kodning</string>
+    <string name="settings_source_instance_geocoding">Server för geokodning</string>
     <string name="settings_weather_source_unavailable">%s (otillgänglig)</string>
     <string name="settings_widgets_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
@@ -678,4 +678,10 @@
     <string name="about_check_for_app_updates">Sök efter appuppdateringar</string>
     <string name="precipitation_intensity_medium">Måttlig</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Inga kompatibla paket hittades</string>
+    <string name="settings_notifications_app_updates_check">Aviseringar om appuppdateringar</string>
+    <string name="weather_current_data_by">Nuvarande väder-data från %s</string>
+    <string name="dialog_time_picker_input_time">Ange tid</string>
+    <string name="action_edit_location">Redigera denna plats</string>
+    <string name="dialog_app_update_check_title">Håll dig uppdaterad</string>
+    <string name="dialog_app_update_check_content">Tryck här för att aktivera aviseringar om appuppdateringar.</string>
 </resources>
