@@ -115,7 +115,7 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Vääveldioksiid</string>
     <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_co_voice">Süsinikmonooksiid ehk vingugaas</string>
+    <string name="air_quality_co_voice">Süsinikmonooksiid</string>
     <string name="air_quality_no2_voice">Lämmastikdioksiid</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Osoon</string>
@@ -320,7 +320,7 @@
     <string name="unit_kpa_voice">Kilopaskalid</string>
     <string name="air_quality_pm10_voice">PM kümme</string>
     <string name="air_quality_no2_info_origin">NO₂ keskkonnaallikad tulenevad kütuste kõrgtemperatuurilisest põletamisest sellistes protsessides nagu kütte-, transpordi-, tööstus- ja elektritootmisprotsessid. Lämmastikoksiidide (NOₓ) kodumajapidamiste allikate hulka kuuluvad seadmed, mis põletavad kütuseid, nagu ahjud, kaminad ning gaasipliidid ja -ahjud.</string>
-    <string name="air_quality_no2_info_consequences">"Kokkupuude lämmastik dioksiidiga võib ärritada hingamisteid ja raskendada hingamisteede haigusi. Lisaks on NO₂  oluline osooni lähteaine, mis on tihedalt seotud astma ja muude hingamisteede haigustega."</string>
+    <string name="air_quality_no2_info_consequences">Kokkupuude lämmastik dioksiidiga võib ärritada hingamisteid ja raskendada hingamisteede haigusi. Lisaks on NO₂ oluline osooni lähteaine, mis on tihedalt seotud astma ja muude hingamisteede haigustega.</string>
     <string name="air_quality_co_info_introduction">Vingugaas (CO) on mürgine, tuleohtlik gaas, mis on värvitu, lõhnatu, maitsetu ja mitteärritav.</string>
     <string name="air_quality_so2_info_origin">See vabaneb looduslikult vulkaanilise tegevuse tagajärjel ja pärineb peamiselt fossiilsete kütuste põletamisel kodumajapidamiste kütmiseks, tööstuses ja elektrienergia tootmiseks.</string>
     <string name="air_quality_so2_info_consequences">Kokkupuude SO₂-ga on seotud astma haiglaravi ja erakorralise hädaabi osakonna külastustega.</string>
@@ -407,7 +407,7 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Praegune õhurõhk</string>
     <string name="widget_custom_subtitle_keyword_l_description">Asukoht</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Laiuskraad</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Nädal</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Nädal (lühike)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Päevane kirjeldus</string>
     <string name="widget_style_tile">Paan</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -430,7 +430,7 @@
     <string name="settings_widgets_live_wallpaper_summary">Sea ilmaanimatsioon taustapildina</string>
     <string name="unit_ft_voice">Jalad</string>
     <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Millibaar</string>
+    <string name="unit_mb_voice">Millibaarid</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_atm">atm</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
@@ -620,7 +620,7 @@
     <string name="settings_enabled">Sees</string>
     <string name="settings_unavailable_no_background_updates">Pole kättesaadav, lülita tagataustauuendused sisse</string>
     <string name="settings_automatic">Automaatne</string>
-    <string name="unit_hpa_voice">Hektopaskal</string>
+    <string name="unit_hpa_voice">Hektopaskalid</string>
     <string name="common_weather_text_snow_showers_light">Hõredad lumehood</string>
     <string name="weather_kind_thunder">Äike</string>
     <string name="weather_kind_wind">Tuul</string>
@@ -690,4 +690,6 @@
     <string name="about_check_for_app_updates">Kontrolli uuendusi</string>
     <string name="about_no_new_updates">Uuendusi pole</string>
     <string name="meteoam_weather_text_smoke">Suits</string>
+    <string name="current_weather">Praegune ilm</string>
+    <string name="weather_current_data_by">Pragused ilmaandmed %s\'ilt</string>
 </resources>
