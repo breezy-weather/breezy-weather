@@ -92,7 +92,7 @@
     <string name="about_translators">Traductores</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
-    <string name="weather_message_data_refresh_failed">La solicitud de datos del clima falló</string>
+    <string name="weather_message_data_refresh_failed">La actualización de los datos meteorológicos ha fallado</string>
     <string name="location_dialog_failed_to_locate_title">¿No pudo obtener la ubicación correctamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilite la información de la ubicación</string>
@@ -360,7 +360,7 @@
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Calidad de aire y datos de polen por %s</string>
+    <string name="weather_air_quality_and_pollen_data_by">Calidad del aire y datos del polen por %s</string>
     <string name="location_results_by">Resultados de ubicación según %s</string>
     <string name="widget_label_align_end">Alinear a la derecha</string>
     <string name="locations">Ubicaciones</string>
@@ -435,11 +435,11 @@
     <string name="air_quality_co_info_origin">Se produce por la combustión incompleta de combustibles carbonosos como madera, gasolina, carbón, gas natural y queroseno en estufas simples, hogueras, lámparas de mecha, hornos y chimeneas. La fuente predominante de monóxido de carbono (CO) en el aire ambiente proviene de los vehículos de motor.</string>
     <string name="pollen_level_5">Muy alto</string>
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
-    <string name="weather_pollen_data_by">Datos de polen por %s</string>
-    <string name="weather_air_quality_data_by">Datos sobre la calidad del aire por %s</string>
+    <string name="weather_pollen_data_by">Datos del polen por %s</string>
+    <string name="weather_air_quality_data_by">Datos de la calidad del aire por %s</string>
     <string name="weather_minutely_data_by">Previsión de las precipitaciones por %s</string>
-    <string name="weather_alert_data_by">Alerta por %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Fallo en la actualización de los datos meteorológicos desde una fuente meteorológica secundaria</string>
+    <string name="weather_alert_data_by">Información de la alerta por %s</string>
+    <string name="weather_message_secondary_data_refresh_failed">Error en la actualización de datos meteorológicos para una fuente meteorológica secundaria</string>
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
     <string name="ephemeris_moonrise_at">Anochece a las %s</string>
     <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como los compuestos orgánicos volátiles, el monóxido de carbono y los óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a su naturaleza fotoquímica, los niveles más altos de ozono se observan durante los periodos de tiempo soleado.</string>
@@ -700,6 +700,6 @@
     <string name="dialog_app_update_check_title">Mantente al día</string>
     <string name="dialog_app_update_check_content">Pulsa aquí para habilitar notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
-    <string name="current_weather">Estado del tiempo</string>
-    <string name="weather_current_data_by">Datos del tiempo actual por %s</string>
+    <string name="current_weather">Clima actual</string>
+    <string name="weather_current_data_by">Información meteorológica actual por %s</string>
 </resources>
