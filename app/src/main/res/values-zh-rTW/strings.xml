@@ -93,7 +93,7 @@
     <string name="dialog_permissions_location_title">取得位置資訊</string>
     <string name="dialog_permissions_location_content">要使用此功能，您需要授權應用程式存取您目前的位置。此位置僅會與選定的天氣來源分享。如果您改變主意，可以取消此過程並手動新增固定位置。</string>
     <string name="dialog_permissions_location_background_title">背景取得位置資訊</string>
-    <string name="dialog_permissions_location_background_content">要允許在背景中刷新天氣以取得 Android 已知的最新位置，您需要將位置權限設定為「始終允許」。如果不這麼做，天氣將基於前景中最後一次取得的座標刷新，這些座標可能已過時。</string>
+    <string name="dialog_permissions_location_background_content">為了能按照 Android 所知的目前位置，在背景重新整理天氣資訊，請將位置權限設定為「始終允許」。否則，只能按照本裝置最近一次在前景存取的位置來重新整理天氣資料，而該位置到時可能已經過時。</string>
     <string name="location_message_failed_to_locate">無法找到目前位置</string>
     <string name="weather_message_data_refresh_failed">無法更新氣象資料</string>
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
@@ -628,7 +628,7 @@
     <string name="location_search_no_results_advice">請確保您搜尋位置的拼字正確，而且位置不會過於細緻。您也可以嘗試別的位置搜尋來源，也許會得到不同結果。</string>
     <string name="settings_weather_sources_default_source">新位置的預設資料來源</string>
     <string name="settings_weather_source_unavailable">%s（無法使用）</string>
-    <string name="settings_weather_source_freenet_disclaimer">其他版本的應用程式提供更多天氣來源。點擊這裡了解更多。</string>
+    <string name="settings_weather_source_freenet_disclaimer">本應用程式的其他版本提供更多天氣來源。點選這裡以了解更多。</string>
     <string name="location_delete_location_dialog_title">刪除位置？</string>
     <string name="location_delete_location_dialog_message_no_name">您即將從已儲存的位置清單中刪除這個位置。</string>
     <string name="action_confirm">確認</string>
@@ -650,7 +650,7 @@
     <string name="pollen_fraxinus">白蠟樹</string>
     <string name="pollen_rumex">酸模</string>
     <string name="pollen_urticaceae">蕁麻/牆草</string>
-    <string name="message_source_not_installed_error_content_tip_1">這種情況可能發生在您在應用程式的標準版本中新增了您的位置，然後切換到僅使用自由網路來源的版本。返回標準版本可能會解決此問題。</string>
+    <string name="message_source_not_installed_error_content_tip_1">當您在本應用程式的標準版本中新增位置後，再切換到僅使用自由網路來源的版本時，可能會出現這種情況。返回標準版本可能會解決此問題。</string>
     <string name="message_source_not_installed_error_content_tip_2">請更改此位置的天氣來源，或刪除並重新新增此位置。</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天、…、4 天後的花粉指數摘要</string>
     <string name="sunshine">日照</string>
@@ -694,7 +694,7 @@
     <string name="notification_app_update_available">有新版本！</string>
     <string name="about_check_for_app_updates">檢查應用程式更新</string>
     <string name="dialog_app_update_check_title">保持最新</string>
-    <string name="dialog_app_update_check_content">點擊這裡啟用應用程式更新通知。</string>
+    <string name="dialog_app_update_check_content">點選這裡以啟用應用程式更新通知。</string>
     <string name="settings_notifications_app_updates_check">應用程式更新通知</string>
     <string name="common_weather_text_sand_storm">沙塵暴</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
