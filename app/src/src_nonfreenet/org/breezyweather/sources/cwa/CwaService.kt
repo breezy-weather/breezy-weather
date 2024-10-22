@@ -47,6 +47,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.cwa.json.CwaAlertResult
+import org.breezyweather.sources.cwa.json.CwaAssistantResult
 import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
 import org.breezyweather.sources.cwa.json.CwaWeatherResult
@@ -116,6 +117,21 @@ class CwaService @Inject constructor(
             body.toRequestBody("application/json".toMediaTypeOrNull())
         )
 
+        // "Weather Assistant" provides human-written forecast summary on a county level.
+        val assistantEndpoint = CWA_ASSISTANT_ENDPOINTS.getOrElse(county) { "" }
+        val assistant = if (assistantEndpoint != "") {
+            mApi.getAssistant(
+                assistantEndpoint,
+                apiKey,
+                "WEB",
+                "JSON"
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAssistantResult())
+            }
+        }
+
         // The sunrise/sunset, moonrise/moonset API calls require start and end dates.
         // We will cover 8 days including "today" in the calls.
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -175,12 +191,13 @@ class CwaService @Inject constructor(
             }
         }
 
-        return Observable.zip(weather, normals, alerts, sun, moon) {
+        return Observable.zip(weather, normals, alerts, sun, moon, assistant) {
                 weatherResult: CwaWeatherResult,
                 normalsResult: CwaNormalsResult,
                 alertResult: CwaAlertResult,
                 sunResult: CwaAstroResult,
-                moonResult: CwaAstroResult
+                moonResult: CwaAstroResult,
+                assistantResult: CwaAssistantResult
             ->
             convert(
                 weatherResult = weatherResult,
@@ -188,6 +205,7 @@ class CwaService @Inject constructor(
                 alertResult = alertResult,
                 sunResult = sunResult,
                 moonResult = moonResult,
+                assistantResult = assistantResult,
                 location = location,
                 id = id,
                 ignoreFeatures = ignoreFeatures
