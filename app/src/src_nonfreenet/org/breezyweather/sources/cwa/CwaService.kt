@@ -125,7 +125,11 @@ class CwaService @Inject constructor(
                 apiKey,
                 "WEB",
                 "JSON"
-            )
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(CwaAssistantResult())
+                }
+            }
         } else {
             Observable.create { emitter ->
                 emitter.onNext(CwaAssistantResult())
@@ -150,7 +154,11 @@ class CwaService @Inject constructor(
             SUN_PARAMETERS,
             timeFrom,
             timeTo
-        )
+        ).onErrorResumeNext {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAstroResult())
+            }
+        }
         val moon = mApi.getAstro(
             MOON_ENDPOINT,
             apiKey,
@@ -159,7 +167,11 @@ class CwaService @Inject constructor(
             MOON_PARAMETERS,
             timeFrom,
             timeTo
-        )
+        ).onErrorResumeNext {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAstroResult())
+            }
+        }
 
         // Temperature normals are only available at 26 stations (out of 700+),
         // and not available in the main weather API call.
@@ -173,7 +185,11 @@ class CwaService @Inject constructor(
                 station,
                 "AirTemperature",
                 (now.get(Calendar.MONTH) + 1).toString()
-            )
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(CwaNormalsResult())
+                }
+            }
         } else {
             Observable.create { emitter ->
                 emitter.onNext(CwaNormalsResult())
@@ -315,7 +331,8 @@ class CwaService @Inject constructor(
                 normalsResult: CwaNormalsResult
             ->
             convertSecondary(
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                     weatherResult
                 } else null,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {

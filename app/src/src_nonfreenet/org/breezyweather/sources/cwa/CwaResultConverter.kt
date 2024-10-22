@@ -78,7 +78,7 @@ fun convert(
         throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
-        current = getCurrent(weatherResult, assistantResult, ignoreFeatures),
+        current = getCurrent(weatherResult, assistantResult),
         normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             getNormals(normalsResult)
         } else null,
@@ -91,14 +91,17 @@ fun convert(
 }
 
 fun convertSecondary(
-    airQualityResult: CwaWeatherResult?,
+    weatherResult: CwaWeatherResult?,
     alertResult: CwaAlertResult?,
     normalsResult: CwaNormalsResult?,
     location: Location,
     id: String
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        airQuality = airQualityResult?.let {
+        current = weatherResult?.let {
+            getCurrent(weatherResult)
+        },
+        airQuality = weatherResult?.let {
             AirQualityWrapper(current = getAirQuality(it, null, null))
         },
         alertList = alertResult?.let { getAlertList(it, location, id) },
@@ -108,8 +111,7 @@ fun convertSecondary(
 
 private fun getCurrent(
     weatherResult: CwaWeatherResult,
-    assistantResult: CwaAssistantResult,
-    ignoreFeatures: List<SecondaryWeatherSourceFeature>
+    assistantResult: CwaAssistantResult? = null
 ): Current? {
     if (weatherResult.data?.aqi?.getOrNull(0)?.station?.weatherElement.isNullOrEmpty()) {
         return null
@@ -141,7 +143,7 @@ private fun getCurrent(
 
     // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
     // We only want the first paragraph to keep it concise.
-    dailyForecast = assistantResult.cwaopendata!!.dataset!!.parameterSet!!.parameter!![0].parameterValue!!
+    dailyForecast = assistantResult?.cwaopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -189,9 +191,7 @@ private fun getCurrent(
             speed = windSpeed,
             gusts = windGusts
         ),
-        airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            getAirQuality(weatherResult, temperature?.temperature, pressure)
-        } else null,
+        airQuality = getAirQuality(weatherResult, temperature?.temperature, pressure),
         relativeHumidity = relativeHumidity,
         pressure = pressure,
         dailyForecast = dailyForecast
@@ -310,10 +310,10 @@ private fun getDailyForecast(
         // CWA API returns ">= 11" as forecast speed for windy periods.
         // Its official stance is that it can't confidently forecast extremely high winds with
         // precision. Take 11.0 as output so that the chart does not go blank.
-        if (it.windSpeed!! == ">= 11") {
+        if (it.windSpeed != null && it.windSpeed == ">= 11") {
             wsMap[timeKey] = 11.0
         } else {
-            wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+            wsMap[timeKey] = it.windSpeed?.toDoubleOrNull()
         }
     }
     dailyResult.PoP12h?.timePeriods?.forEach {
