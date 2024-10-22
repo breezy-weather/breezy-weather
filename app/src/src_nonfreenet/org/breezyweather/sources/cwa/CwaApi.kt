@@ -19,6 +19,7 @@ package org.breezyweather.sources.cwa
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.RequestBody
 import org.breezyweather.sources.cwa.json.CwaAlertResult
+import org.breezyweather.sources.cwa.json.CwaAssistantResult
 import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaLocationResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
@@ -68,4 +69,12 @@ interface CwaApi {
         @Query("weatherElement") weatherElement: String,
         @Query("Month") month: String
     ): Observable<CwaNormalsResult>
+
+    @GET("fileapi/v1/opendataapi/{endpoint}")
+    fun getAssistant(
+        @Path("endpoint") endpoint: String,
+        @Query("Authorization") apiKey: String,
+        @Query("downloadType") downloadType: String,
+        @Query("format") format: String
+    ): Observable<CwaAssistantResult>
 }

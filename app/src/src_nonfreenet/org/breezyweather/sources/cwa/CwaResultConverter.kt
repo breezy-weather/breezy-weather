@@ -39,6 +39,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.cwa.json.CwaAlertResult
+import org.breezyweather.sources.cwa.json.CwaAssistantResult
 import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaLocationTown
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
@@ -68,6 +69,7 @@ fun convert(
     alertResult: CwaAlertResult,
     sunResult: CwaAstroResult,
     moonResult: CwaAstroResult,
+    assistantResult: CwaAssistantResult,
     location: Location,
     id: String,
     ignoreFeatures: List<SecondaryWeatherSourceFeature>
@@ -76,7 +78,7 @@ fun convert(
         throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
-        current = getCurrent(weatherResult, ignoreFeatures),
+        current = getCurrent(weatherResult, assistantResult, ignoreFeatures),
         normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             getNormals(normalsResult)
         } else null,
@@ -106,6 +108,7 @@ fun convertSecondary(
 
 private fun getCurrent(
     weatherResult: CwaWeatherResult,
+    assistantResult: CwaAssistantResult,
     ignoreFeatures: List<SecondaryWeatherSourceFeature>
 ): Current? {
     if (weatherResult.data?.aqi?.getOrNull(0)?.station?.weatherElement.isNullOrEmpty()) {
@@ -120,6 +123,7 @@ private fun getCurrent(
     var windGusts: Double? = null
     var relativeHumidity: Double? = null
     var pressure: Double? = null
+    var dailyForecast: String? = null
 
     weatherResult.data!!.aqi!![0].station!!.weatherElement!!.forEach {
         if (it.elementValue != "-99" && it.elementValue != "-99.0") {
@@ -134,6 +138,10 @@ private fun getCurrent(
             }
         }
     }
+
+    // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
+    // We only want the first paragraph to keep it concise.
+    dailyForecast = assistantResult.cwaopendata!!.dataset!!.parameterSet!!.parameter!![0].parameterValue!!
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -185,7 +193,8 @@ private fun getCurrent(
             getAirQuality(weatherResult, temperature?.temperature, pressure)
         } else null,
         relativeHumidity = relativeHumidity,
-        pressure = pressure
+        pressure = pressure,
+        dailyForecast = dailyForecast
     )
 }
 
@@ -298,7 +307,14 @@ private fun getDailyForecast(
     }
     dailyResult.WS?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+        // CWA API returns ">= 11" as forecast speed for windy periods.
+        // Its official stance is that it can't confidently forecast extremely high winds with
+        // precision. Take 11.0 as output so that the chart does not go blank.
+        if (it.windSpeed!! == ">= 11") {
+            wsMap[timeKey] = 11.0
+        } else {
+            wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+        }
     }
     dailyResult.PoP12h?.timePeriods?.forEach {
         timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
@@ -448,7 +464,14 @@ private fun getHourlyForecast(
     }
     hourlyResult.WS?.timePeriods?.forEach {
         timeKey = it.dataTime!!.replace('T', ' ')
-        wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+        // CWA API returns ">= 11" as forecast speed for windy periods.
+        // Its official stance is that it can't confidently forecast extremely high winds with
+        // precision. Take 11.0 as output so that the chart does not go blank.
+        if (it.windSpeed!! == ">= 11") {
+            wsMap[timeKey] = 11.0
+        } else {
+            wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+        }
     }
     hourlyResult.PoP6h?.timePeriods?.forEach {
         timeKey = it.startTime!!.replace('T', ' ')

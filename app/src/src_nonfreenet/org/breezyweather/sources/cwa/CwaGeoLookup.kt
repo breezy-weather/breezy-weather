@@ -174,3 +174,33 @@ val CWA_TOWNSHIP_WARNING_AREAS = mapOf<String, String>(
     "67000250" to "M", // 臺南市南化區 Nanhua District, Tainan City
     "68000130" to "M"  // 桃園市復興區 Fuxing District, Taoyuan City
 )
+
+// API endpoints for "Weather Assistant", a collection of human-written text-based
+// forecast summary for the general public. "Assistants" are organized by counties.
+// List of endpoints can be seen on this page:
+// https://opendata.cwa.gov.tw/dataset/all?page=1
+// Search for 天氣小幫手
+val CWA_ASSISTANT_ENDPOINTS = mapOf<String, String>(
+    "臺北市" to "F-C0032-009", // Taipei City
+    "新北市" to "F-C0032-010", // New Taipei City
+    "基隆市" to "F-C0032-011", // Keelung City
+    "花蓮縣" to "F-C0032-012", // Hualien County
+    "宜蘭縣" to "F-C0032-013", // Yilan County
+    "金門縣" to "F-C0032-014", // Kinmen County
+    "澎湖縣" to "F-C0032-015", // Penghu County
+    "臺南市" to "F-C0032-016", // Tainan City
+    "高雄市" to "F-C0032-017", // Kaohsiung City
+    "嘉義縣" to "F-C0032-018", // Chiayi County
+    "嘉義市" to "F-C0032-019", // Chiayi City
+    "苗栗縣" to "F-C0032-020", // Miaoli County
+    "臺中市" to "F-C0032-021", // Taichung City
+    "桃園市" to "F-C0032-022", // Taoyuan City
+    "新竹縣" to "F-C0032-023", // Hsinchu County
+    "新竹市" to "F-C0032-024", // Hsinchu City
+    "屏東縣" to "F-C0032-025", // Pingtung County
+    "南投縣" to "F-C0032-026", // Nantou County
+    "臺東縣" to "F-C0032-027", // Taitung County
+    "彰化縣" to "F-C0032-028", // Changhua County
+    "雲林縣" to "F-C0032-029", // Yunlin County
+    "連江縣" to "F-C0032-030"  // Lienchiang County
+)
