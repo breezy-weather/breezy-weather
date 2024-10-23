@@ -29,6 +29,7 @@ import org.breezyweather.R
 object SourceNoLongerAvailableHelpDialog {
     fun show(
         activity: Activity,
+        daylight: Boolean? = null,
         @StringRes title: Int
     ) {
         val view = LayoutInflater

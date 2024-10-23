@@ -28,7 +28,10 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.MainActivity
 
 object LocationHelpDialog {
-    fun show(activity: Activity) {
+    fun show(
+        activity: Activity,
+        daylight: Boolean? = null
+    ) {
         val view = LayoutInflater
             .from(activity)
             .inflate(R.layout.dialog_location_help, null, false)
