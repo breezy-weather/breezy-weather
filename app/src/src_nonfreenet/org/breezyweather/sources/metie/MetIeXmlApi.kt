@@ -17,25 +17,15 @@
 package org.breezyweather.sources.metie
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.metie.json.MetIeHourly
-import org.breezyweather.sources.metie.json.MetIeLocationResult
-import org.breezyweather.sources.metie.json.MetIeWarningResult
+import org.breezyweather.sources.metie.xml.MetIeWeatherData
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
-interface MetIeApi {
-    @GET("weather/details/{lat}/{lon}")
+interface MetIeXmlApi {
+    @GET("locationforecast")
     fun getForecast(
-        @Path("lat") lat: Double,
-        @Path("lon") lon: Double
-    ): Observable<List<MetIeHourly>>
+        @Query("lat") lat: Double,
+        @Query("long") long: Double
+    ): Observable<MetIeWeatherData>
 
-    @GET("v3/warnings")
-    fun getWarnings(): Observable<MetIeWarningResult>
-
-    @GET("location/reverse/{lat}/{lon}")
-    fun getReverseLocation(
-        @Path("lat") lat: Double,
-        @Path("lon") lon: Double
-    ): Observable<MetIeLocationResult>
 }

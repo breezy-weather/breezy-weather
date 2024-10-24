@@ -14,21 +14,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.metie.json
+package org.breezyweather.sources.metie
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.metie.json.MetIeLocationResult
+import org.breezyweather.sources.metie.json.MetIeWarningResult
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-@Serializable
-data class MetIeHourly(
-    val date: String,
-    val time: String,
-    val weatherNumber: String?,
-    val weatherDescription: String?,
-    @SerialName("wind-speed") val windSpeed: Int?,
-    val rainfall: String?,
-    @SerialName("wind-direction") val windDirection: String?,
-    val temperature: Int?,
-    val humidity: String?,
-    val pressure: String?
-)
+interface MetIeJsonApi {
+
+    @GET("v3/warnings")
+    fun getWarnings(): Observable<MetIeWarningResult>
+
+    @GET("location/reverse/{lat}/{lon}")
+    fun getReverseLocation(
+        @Path("lat") lat: Double,
+        @Path("lon") lon: Double
+    ): Observable<MetIeLocationResult>
+}
