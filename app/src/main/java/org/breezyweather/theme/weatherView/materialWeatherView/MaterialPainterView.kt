@@ -28,7 +28,6 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
-import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.sensorManager
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
@@ -172,6 +171,14 @@ class MaterialPainterView(
     ) {
         override fun onOrientationChanged(orientation: Int) {
             mDeviceOrientation = getDeviceOrientation(orientation)
+
+            val metrics = resources.displayMetrics
+            canvasSize = intArrayOf(
+                metrics.widthPixels,
+                metrics.heightPixels
+            )
+
+            setWeatherImplementor()
         }
 
         private fun getDeviceOrientation(orientation: Int): DeviceOrientation {
@@ -196,7 +203,7 @@ class MaterialPainterView(
 
         val metrics = resources.displayMetrics
         canvasSize = intArrayOf(
-            context.getTabletListAdaptiveWidth(metrics.widthPixels),
+            metrics.widthPixels,
             metrics.heightPixels
         )
 
@@ -226,21 +233,6 @@ class MaterialPainterView(
         }
 
         background = getWeatherBackgroundDrawable(weatherKind, daylight)
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
-        if (measuredWidth != 0 && measuredHeight != 0) {
-            val width = context.getTabletListAdaptiveWidth(measuredWidth)
-            val height = measuredHeight
-
-            if (canvasSize[0] != width || canvasSize[1] != height) {
-                canvasSize[0] = width
-                canvasSize[1] = height
-                setWeatherImplementor()
-            }
-        }
     }
 
     // this is inefficient for cases when animations are disabled,
