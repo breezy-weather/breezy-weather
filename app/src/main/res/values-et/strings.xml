@@ -691,5 +691,5 @@
     <string name="about_no_new_updates">Uuendusi pole</string>
     <string name="meteoam_weather_text_smoke">Suits</string>
     <string name="current_weather">Praegune ilm</string>
-    <string name="weather_current_data_by">Pragused ilmaandmed %s\'ilt</string>
+    <string name="weather_current_data_by">Praegune ilm andmete allikas: %s</string>
 </resources>
