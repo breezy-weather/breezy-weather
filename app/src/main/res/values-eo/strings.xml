@@ -184,6 +184,8 @@
     <string name="ceiling_short">Nubplafono</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Datumoj de %s</string>
+    <string name="current_weather">Nuna vetero</string>
+    <string name="weather_current_data_by">Nuna vetero datumoj de %s</string>
     <string name="weather_air_quality_data_by">Aerkvalito datumoj de %s</string>
     <string name="weather_pollen_data_by">Poleno datumoj de %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Aerkvalito kaj poleno datumoj de %s</string>
@@ -713,5 +715,4 @@
     <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn aktualigojn unue</string>
     <string name="notification_running_in_background">Rulante fone por plue aktualigi</string>
     <string name="settings_debug_dump_crash_logs_summary">Registras erorprotokolon al dosiero por doni ilin al la programistoj</string>
-    <string name="current_weather">Nuna vetero</string>
 </resources>
