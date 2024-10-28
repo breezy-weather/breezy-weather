@@ -426,7 +426,7 @@
     <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som t.ex. de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="message_parsing_error_content">Försäkra dig om att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt otillgänglig, i så fall vänligen försök igen senare. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
+    <string name="message_parsing_error_content">Se till att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt ej tillgänglig, vänligen försök igen senare i så fall. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
     <string name="common_weather_text_snow_heavy">Kraftigt snöfall</string>
     <string name="settings_weather_source_main">Huvudkälla</string>
     <string name="settings_debug_dump_crash_logs_summary">Sparar felloggar i en fil för att dela med utvecklarna</string>
@@ -514,7 +514,7 @@
     <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
     <string name="settings_appearance_dark_mode_title">Mörkt läge</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
-    <string name="message_network_unavailable">Inget nätverk</string>
+    <string name="message_network_unavailable">Nätverk ej tillgängligt</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
     <string name="air_quality_co_info_origin">Den skapas av ofullständig förbränning av kolhaltiga bränslen såsom trä, bensin, kol, naturgas och fotogen i enkla spisar, öppna eldar, oljelampor, ugnar och eldstäder. Den huvudsakliga källan till kolmonoxid (CO) i omgivande luft är från motorfordon.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
@@ -650,7 +650,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftkvalitetsserver</string>
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Server för geokodning</string>
-    <string name="settings_weather_source_unavailable">%s (otillgänglig)</string>
+    <string name="settings_weather_source_unavailable">%s (ej tillgänglig)</string>
     <string name="settings_widgets_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
@@ -666,7 +666,7 @@
     <string name="dialog_time_picker_select_time">Välj tid</string>
     <string name="widget_label_hide_alternate_calendar">Göm alternativ kalender</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
-    <string name="message_server_unavailable_title">Servern är otillgänglig</string>
+    <string name="message_server_unavailable_title">Server ej tillgänglig</string>
     <string name="common_weather_text_sand_storm">Sandstorm</string>
     <string name="current_weather">Nuvarande väder</string>
     <string name="notification_app_update_available">Ny version tillgänglig!</string>
@@ -684,4 +684,10 @@
     <string name="action_edit_location">Redigera denna plats</string>
     <string name="dialog_app_update_check_title">Håll dig uppdaterad</string>
     <string name="dialog_app_update_check_content">Tryck här för att aktivera aviseringar om appuppdateringar.</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Byt till textinmatning</string>
+    <string name="message_server_unavailable_content">Detta är vanligtvis ett tillfälligt fel. Om felet kvarstår, vänligen rapportera ett problem på GitHub.</string>
+    <string name="settings_unavailable_no_animations">Ej tillgängliga, aktivera animationer i Android-inställningarna först</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Tromb eller havstromb</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">Byt till pekinmatning</string>
+    <string name="settings_background_updates_refresh_never_warning1">Genom att stänga av bakgrundsuppdateringar får du inte längre aviseringar om varningar eller nederbörd. Widgetar uppdateras inte förrän du öppnar appen.</string>
 </resources>
