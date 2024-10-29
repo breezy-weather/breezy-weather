@@ -690,4 +690,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Tromb eller havstromb</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Byt till pekinmatning</string>
     <string name="settings_background_updates_refresh_never_warning1">Genom att stänga av bakgrundsuppdateringar får du inte längre aviseringar om varningar eller nederbörd. Widgetar uppdateras inte förrän du öppnar appen.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Överväg att använda en lägre uppdateringsfrekvens i stället för att stänga av bakgrundsuppdateringar, annars tryck på ”Fortsätt” om du fortfarande vill gå vidare.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Bakgrundsuppdateringsprocessen är resurssnål: den uppdaterar endast din första plats med din valda frekvens och sekundära platser endast om du behöver dem, en gång per dag. Den är batterisnål och bör inte överskrida %d MB dataförbrukning per månad.</string>
 </resources>
