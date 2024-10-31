@@ -98,7 +98,7 @@
     <string name="widget_custom_subtitle_keyword_l_description">Plats</string>
     <string name="precipitation_total">Totalt</string>
     <string name="pollen_mold">Mögel</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Känns för närvarande som temperatur (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Nuvarande känns som-temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
     <string name="weather_source_accu_preference_hours_72">72 timmar</string>
     <string name="air_quality_co">CO</string>
@@ -128,7 +128,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Välj platstjänst</string>
     <string name="pollen_level_4">Hög</string>
     <string name="widget_style_temperature">Temperatur</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Känns för närvarande som temperatur (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Nuvarande känns som-temperatur (°C/°F)</string>
     <string name="precipitation_intensity_light">Lätt</string>
     <string name="location_search_placeholder">Sök efter en plats…</string>
     <string name="action_preview">Förhandsvisning</string>
@@ -458,7 +458,7 @@
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beskrivning av timvis</string>
-    <string name="settings_widgets_notification_feels_like_switch">Använd upplevd temperatur</string>
+    <string name="settings_widgets_notification_feels_like_switch">Använd känns som-temperatur</string>
     <string name="dialog_permissions_location_content">Breezy Weather behöver samla din platsinformatin i förgrunden eller bakgrunden för att erbjuda väderdata för din nuvarande plats. För detta begär vi några behörigheter. Din platsinfromation kommer endast att användas för at hämta väderdata för din nuvarande plats. Om du inte vill dela din platsinformation så kan du neka behörigheterna och manuellt välja din plats i hanteringsmenyn.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
     <string name="location_dialog_failed_to_locate_title">Kan inte få platsen korrekt\?</string>
@@ -474,7 +474,7 @@
     <string name="settings_widgets_configure_widget_summary">Konfigurera denna widget</string>
     <string name="widget_label_view_style">Vystil</string>
     <string name="settings_widgets_monochrome_icons_title">Enfärgade ikoner</string>
-    <string name="widget_subtitle_data_feels_like">Upplevd temperatur</string>
+    <string name="widget_subtitle_data_feels_like">Känns som-temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
     <string name="weather_api_unauthorized_content">För vissa väderkällor så behöver du ange din egen API-nyckel. Om du redan har angett en så dubbelkolla din API-nyckel.</string>
@@ -498,7 +498,7 @@
     <string name="settings_main_daily_trends_title">Dagstrender</string>
     <string name="settings_background_updates_worker_info_summary">Senast körd: %s</string>
     <string name="unit_mmhg">mmHg</string>
-    <string name="action_learn_more">Lär dig mer</string>
+    <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
     <string name="weather_normals_data_by">Temperaturnormalerdata från %s</string>
     <string name="settings_widgets_notification_persistent_switch">Pågående</string>
@@ -555,7 +555,7 @@
     <string name="weather_api_unauthorized_title">Obehörig API-tillgång</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="settings_location_access_precise_summaryOn">Aktiverad. Både enhetens nätverks- och gps-operatörer används.</string>
+    <string name="settings_location_access_precise_summaryOn">Aktiverad. Enhetens nätoperatör kommer att användas i första hand och för det mesta, men gps kan också användas som reserv.</string>
     <string name="unit_mmhg_voice">Millimeter kvicksilver</string>
     <string name="common_weather_text_rain_showers_moderate">Måttliga regnskurar</string>
     <string name="settings_notifications_section_forecast">Prognos</string>
@@ -590,7 +590,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt underkylt duggregn</string>
     <string name="common_weather_text_drizzle_heavy">Kraftigt duggregn</string>
     <string name="common_weather_text_snow_showers_light">Lätta snöbyar</string>
-    <string name="widget_label_align_end">Justera mot slutet</string>
+    <string name="widget_label_align_end">Justera till höger</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
     <string name="settings_color_app">Följ appen</string>
     <string name="unit_mi">mi</string>
@@ -654,11 +654,11 @@
     <string name="settings_widgets_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
-    <string name="settings_weather_source_freenet_disclaimer">Fler väderkällor finns tillgängliga från andra versioner av Breezy Weather. Tryck här för att veta mer.</string>
-    <string name="settings_weather_source_open_meteo_weather_models_best_match">Närmast matchning</string>
+    <string name="settings_weather_source_freenet_disclaimer">Fler väderkällor är tillgängliga i andra varianter av appen. Tryck här för att läsa mer.</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Bästa matchning</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerar de bästa vädermodellerna för denna plats</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sömlös</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerar alla vädermodeller från denna leverantör, till en sömlös prognos</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinerar alla vädermodeller från denna leverantör till en sömlös prognos</string>
     <string name="settings_weather_source_open_meteo_weather_models">Väderprognosmodeller</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Summering av pollenindex för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_source_instance_invalid">Måste vara en HTTPS-URL som slutar med /</string>
