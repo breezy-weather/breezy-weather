@@ -58,7 +58,7 @@
     <string name="wind_strength_10">狂風</string>
     <string name="wind_strength_11">暴風</string>
     <string name="wind_strength_12">颶風</string>
-    <string name="precipitation_intensity_light">毛雨</string>
+    <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">蛾眉月</string>
@@ -525,7 +525,7 @@
     <string name="settings_main_background_animation_disabled">停用</string>
     <string name="settings_main_cards_fade_in_switch">卡片淡入</string>
     <string name="settings_notifications_summary">首要位置的天氣警特報、降水或預報通知</string>
-    <string name="settings_notifications_alerts_title">災害性天氣警特報通知</string>
+    <string name="settings_notifications_alerts_title">劇烈天氣警特報通知</string>
     <string name="settings_notifications_forecast_today_title">當日天氣預報通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
     <string name="action_location_list">位置清單</string>
@@ -589,7 +589,7 @@
     <string name="unit_bf_voice">蒲福風級</string>
     <string name="settings_appearance_dark_mode_locations_title">跟隨日出日沒的深色模式</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
-    <string name="about_contribution_designer">Logo設計</string>
+    <string name="about_contribution_designer">Logo 設計</string>
     <string name="temperature_average_short">平均</string>
     <string name="temperature_normal_short">正常</string>
     <string name="temperature_normals">正常溫度範圍</string>
@@ -694,7 +694,7 @@
     <string name="dialog_app_update_check_title">保持最新</string>
     <string name="dialog_app_update_check_content">點選這裡以啟用應用程式更新通知。</string>
     <string name="settings_notifications_app_updates_check">應用程式更新通知</string>
-    <string name="common_weather_text_sand_storm">沙塵暴</string>
+    <string name="common_weather_text_sand_storm">沙暴</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
     <string name="meteoam_weather_text_smoke">煙霧</string>
     <string name="settings_unavailable_no_animations">無法使用，請先在 Android 設定中啟用動畫</string>
