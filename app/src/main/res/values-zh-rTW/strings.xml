@@ -72,12 +72,12 @@
     <string name="pollen_mold">黴菌</string>
     <string name="pollen_ambrosia">豬草</string>
     <string name="pollen_tree">樹木花粉</string>
-    <string name="daily_forecast">每日預報</string>
-    <string name="hourly_forecast">每小時預報</string>
+    <string name="daily_forecast">逐日預報</string>
+    <string name="hourly_forecast">逐小時預報</string>
     <string name="air_quality">空氣品質</string>
     <string name="pollen">花粉濃度</string>
     <string name="details">詳細資訊</string>
-    <string name="ephemeris">日月升落</string>
+    <string name="ephemeris">日月出沒</string>
     <string name="action_next">下一步</string>
     <string name="action_done">完成</string>
     <string name="action_cancel">取消</string>
@@ -110,9 +110,7 @@
     <string name="widget_label_text_size">文字大小</string>
     <string name="widget_label_clock_font">時鐘字體</string>
     <string name="widget_label_align_end">向右對齊</string>
-    <string name="widget_custom_subtitle_explanation">您可以輸入任何文字，但請注意文字的長度。如果您想要引用天氣資料，請使用 $ 符號引用對應的關鍵字。
-\n
-\n例如：「目前的天氣是：$cw$。」將會顯示為「目前的天氣是：晴天。」。</string>
+    <string name="widget_custom_subtitle_explanation">您可以輸入任何文字，但請注意文字的長度。如果您想要引用天氣資料，請使用 $ 符號引用對應的關鍵字。\n\n例如：「目前的天氣是：$cw$。」將會顯示為「目前的天氣是：天晴。」。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">目前天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">目前溫度 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">目前溫度 (°)</string>
@@ -136,21 +134,21 @@
     <string name="widget_custom_subtitle_keyword_dd_description">每天概述</string>
     <string name="widget_custom_subtitle_keyword_hd_description">每小時概述</string>
     <string name="widget_custom_subtitle_keyword_enter_description">換行</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">今天、明天、…、4 天後的日間天氣</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">今天、明天、…、4 天後的夜間天氣</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">今天、明天、…、4 天後的日間溫度（°C／°F）</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">今天、明天、…、4 天後的夜間溫度（°C／°F）</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">今天、明天、…、4 天後的日間溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">今天、明天、…、4 天後的夜間溫度（°）</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">今天、明天、…、4 天後的日間降水機率（%）</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">今天、明天、…、4 天後的夜間降水機率（%）</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">今天、明天、…、4 天後的日間風況</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">今天、明天、…、4 天後的夜間風況</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">今天、明天、…、4 天後的日出時刻</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">今天、明天、…、4 天後的日沒時刻</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">今天、明天、…、4 天後的月出時刻</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">今天、明天、…、4 天後的月沒時刻</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">今天、明天、…、4 天後的月相</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">今日、明日、…、4 天後的白天天氣</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">今日、明日、…、4 天後的晚上天氣</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">今日、明日、…、4 天後的白天溫度 (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">今日、明日、…、4 天後的晚上溫度 (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">今日、明日、…、4 天後的白天溫度 (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">今日、明日、…、4 天後的晚上溫度 (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">今日、明日、…、4 天後的白天降水機率 (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">今日、明日、…、4 天後的晚上降水機率 (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">今日、明日、…、4 天後的白天風況</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">今日、明日、…、4 天後的晚上風況</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">今日、明日、…、4 天後的日出時刻</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">今日、明日、…、4 天後的日沒時刻</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">今日、明日、…、4 天後的月出時刻</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">今日、明日、…、4 天後的月沒時刻</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">今日、明日、…、4 天後的月相</string>
     <string name="widget_live_wallpaper_weather_kind">天氣</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
     <string name="location_message_added">位置已新增</string>
@@ -205,7 +203,7 @@
     <string name="widget_trend_hourly">每小時趨勢</string>
     <string name="widget_multi_city">多個城市</string>
     <string name="widget_material_you_forecast">Material You - 預報</string>
-    <string name="widget_material_you_current">Material You - 實時</string>
+    <string name="widget_material_you_current">Material You - 目前</string>
     <string name="widget_refreshing">重新整理中</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -220,8 +218,8 @@
     <string name="settings_units_temperature">溫度單位</string>
     <string name="settings_units_distance">距離單位</string>
     <string name="settings_units_precipitation">降水單位</string>
-    <string name="settings_units_pressure">壓力單位</string>
-    <string name="settings_units_speed">速度單位</string>
+    <string name="settings_units_pressure">氣壓單位</string>
+    <string name="settings_units_speed">風速單位</string>
     <string name="settings_notifications_section_forecast">預報</string>
     <string name="settings_widgets_notification_temp_icon_switch">溫度作為狀態列圖示</string>
     <string name="settings_widgets_notification_feels_like_switch">使用體感溫度</string>
@@ -352,7 +350,7 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
     <string name="action_undo">復原</string>
-    <string name="widget_clock_font_analog">模擬時鐘</string>
+    <string name="widget_clock_font_analog">類比時鐘</string>
     <string name="settings_background_updates_refresh_title">更新率</string>
     <string name="settings_background_updates_refresh_never">手動</string>
     <string name="settings_background_updates_section_troubleshoot">疑難排解</string>
@@ -411,7 +409,7 @@
     <string name="settings_location_access_switch_summaryOff">如果您希望在位置清單新增目前位置，請允許該權限。</string>
     <string name="settings_location_access_background_title">在背景存取位置</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">電池電量低時忽略更新</string>
-    <string name="settings_main_hourly_trends_title">每小時趨勢</string>
+    <string name="settings_main_hourly_trends_title">逐小時趨勢</string>
     <string name="settings_notifications_forecast_time_today_title">當日天氣預報通知時間</string>
     <string name="settings_widgets_monochrome_icons_title">單色圖示</string>
     <string name="notification_channel_background_services">背景服務</string>
@@ -457,7 +455,7 @@
     <string name="action_share">分享</string>
     <string name="settings_widgets_summary">設定桌布、使用中的小工具、通知小工具</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="notification_channel_alerts">預警</string>
+    <string name="notification_channel_alerts">警特報</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="weather_pollen_data_by">花粉資料由 %s 提供</string>
     <string name="weather_minutely_data_by">臨近降水預報資料由 %s 提供</string>
@@ -527,13 +525,13 @@
     <string name="settings_main_background_animation_disabled">停用</string>
     <string name="settings_main_cards_fade_in_switch">卡片淡入</string>
     <string name="settings_notifications_summary">首要位置的天氣警特報、降水或預報通知</string>
-    <string name="settings_notifications_alerts_title">惡劣天氣警報通知</string>
+    <string name="settings_notifications_alerts_title">災害性天氣警特報通知</string>
     <string name="settings_notifications_forecast_today_title">當日天氣預報通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
     <string name="action_location_list">位置清單</string>
     <string name="action_see_more">查看更多</string>
     <string name="settings_main_cards_title">卡片</string>
-    <string name="settings_main_daily_trends_title">每日趨勢</string>
+    <string name="settings_main_daily_trends_title">逐日趨勢</string>
     <string name="settings_background_updates_battery_optimization_summary">當您未收到通知或小工具未重新整理時，首先嘗試這個選項。</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">無法開啟裝置設定。</string>
     <string name="settings_main_background_animation_enabled">啟用</string>
@@ -545,7 +543,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">製造商特定指示</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些製造商有額外的應用程式限制，會終止背景服務。Don’t kill my app! 網站上有相關的修復資訊。</string>
     <string name="settings_background_updates_worker_info_title">執行資訊</string>
-    <string name="settings_units_summary">溫度、降水、距離、速度、壓力</string>
+    <string name="settings_units_summary">溫度、降水、距離、風速、氣壓</string>
     <string name="about_contribution_WangDaYeeeeee">原始項目 幾何天氣 開發者</string>
     <string name="settings_location">定位</string>
     <string name="settings_location_summary">位置服務設定</string>
@@ -589,7 +587,7 @@
     <string name="common_weather_text_rain_showers_light">小陣雨</string>
     <string name="unit_bf">級</string>
     <string name="unit_bf_voice">蒲福風級</string>
-    <string name="settings_appearance_dark_mode_locations_title">跟隨日升日落的深色模式</string>
+    <string name="settings_appearance_dark_mode_locations_title">跟隨日出日沒的深色模式</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
     <string name="about_contribution_designer">Logo設計</string>
     <string name="temperature_average_short">平均</string>
@@ -633,7 +631,7 @@
     <string name="location_delete_location_dialog_message_no_name">您即將從已儲存的位置清單中刪除這個位置。</string>
     <string name="action_confirm">確認</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">目前空氣品質指標</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">今天、明天、…、4 天後的空氣品質指標</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">今日、明日、…、4 天後的空氣品質指標</string>
     <string name="location_delete_location_dialog_message">您即將從已儲存的位置清單中刪除「%s」。</string>
     <string name="weather_message_too_frequent_refreshes">請稍候幾秒鐘再試…</string>
     <string name="widget_label_hide_header">隱藏標題</string>
@@ -652,7 +650,7 @@
     <string name="pollen_urticaceae">蕁麻/牆草</string>
     <string name="message_source_not_installed_error_content_tip_1">當您在本應用程式的標準版本中新增位置後，再切換到僅使用自由網路來源的版本時，可能會出現這種情況。返回標準版本可能會解決此問題。</string>
     <string name="message_source_not_installed_error_content_tip_2">請更改此位置的天氣來源，或刪除並重新新增此位置。</string>
-    <string name="widget_custom_subtitle_keyword_xpis_description">今天、明天、…、4 天後的花粉指數摘要</string>
+    <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4 天後的花粉指數摘要</string>
     <string name="sunshine">日照</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>
     <string name="settings_widgets_broadcast_title">資料共用</string>
@@ -678,12 +676,12 @@
     <string name="settings_invalid_syntax">無效的語法</string>
     <string name="settings_appearance_calendar_title">備用日曆</string>
     <string name="settings_global">全域設定</string>
-    <string name="settings_background_updates_refresh_never_warning1">關閉背景更新後，您將不會再收到警報或降雨通知。在您開啟應用程式之前，小工具不會重新整理。</string>
+    <string name="settings_background_updates_refresh_never_warning1">關閉背景更新後，您將不會再收到警特報或降雨通知。在您開啟應用程式之前，小工具不會重新整理。</string>
     <string name="settings_weather_source_open_meteo_weather_models">天氣模型</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空氣品質伺服器</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">找不到相容套件</string>
-    <string name="settings_background_updates_refresh_never_warning2">幕後更新處理是輕量級的：它只會按您選擇的頻率重新整理您的第一個位置，而次要位置只在您需要時每天重新整理一次。它的耗電效率高，每月的資料使用量不應超過 %d MB。</string>
+    <string name="settings_background_updates_refresh_never_warning2">幕後更新處理不會消耗太多資源：它只會按您選擇的頻率重新整理您的第一個位置，而次要位置只在您需要時每天重新整理一次。該處理耗電量低，每月的資料使用量不應超過 %d MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用較低的重新整理頻率而不是關閉背景更新，如果您仍想關閉背景更新，請點選「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
     <string name="settings_per_location_theme">主題</string>
