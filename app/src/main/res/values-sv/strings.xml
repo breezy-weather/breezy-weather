@@ -315,7 +315,7 @@
     <string name="air_quality_level_5_description">Känsliga personer kan omedelbart uppleva hälsopåverkan och bör undvika utomhusaktiviteter. Även friska personer kan uppleva andningssvårigheter och irritation i halsen och bör överväga att stanna inomhus och planera om utomhusaktiviteter.</string>
     <string name="air_quality_level_6">Fara</string>
     <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
-    <string name="temperature_wet_bulb">Våttemp.</string>
+    <string name="temperature_wet_bulb">Våt</string>
     <string name="temperature_normals">Temperaturnormaler</string>
     <string name="temperature_degree_day_heating">Uppvärmningsgrad dag</string>
     <string name="temperature_degree_day_cooling">Nedkylningsgrad dag</string>
