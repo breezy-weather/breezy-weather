@@ -44,7 +44,7 @@
     <string name="settings_widgets_configure_widget_summary">設定這個小工具</string>
     <string name="settings_widgets_notification_widget_title">通知小工具</string>
     <string name="settings_widgets_broadcast_send_data_title">傳送天氣資料到 %s</string>
-    <string name="about_privacy_policy">隱私政策</string>
+    <string name="about_privacy_policy">私隱政策</string>
     <string name="settings_color_day_always">總是日間</string>
     <string name="settings_color_night_always">總是晚間</string>
     <string name="settings_color_grey">灰色</string>
@@ -662,9 +662,9 @@
     <string name="common_weather_text_rain_snow_mixed">雨夾雪</string>
     <string name="common_weather_text_rain_snow_mixed_light">小雨夾雪</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">大雨夾雪</string>
-    <string name="common_weather_text_rain_snow_mixed_showers">陣雨夾雪</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_light">小陣雨夾雪</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_heavy">大陣雨夾雪</string>
+    <string name="common_weather_text_rain_snow_mixed_showers">驟雨夾雪</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">小驟雨夾雪</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">大驟雨夾雪</string>
     <string name="common_weather_text_snow">雪</string>
     <string name="common_weather_text_snow_light">小雪</string>
     <string name="common_weather_text_snow_moderate">中雪</string>
