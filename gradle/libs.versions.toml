@@ -43,7 +43,7 @@ sqlite-android = "2.4.0"
 suncalc = "2.14"
 swiperefreshlayout = "1.1.0"
 vico = "2.0.0-beta.2"
-work-runtime = "2.9.1"
+work-runtime = "2.10.0"
 
 [libraries]
 aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutlib_version" }
