@@ -53,13 +53,7 @@ object LocaleHelper {
     }
 
     fun getDisplayName(lang: String): String {
-        val normalizedLang = when (lang) {
-            "zh-CN" -> "zh-Hans"
-            "zh-TW" -> "zh-Hant"
-            else -> lang
-        }
-
-        return Locale.forLanguageTag(normalizedLang).displayName
+        return Locale.forLanguageTag(lang).displayName
     }
 
     /**
@@ -74,8 +68,6 @@ object LocaleHelper {
 
         val locale = when (lang) {
             "" -> LocaleListCompat.getAdjustedDefault()[0]
-            "zh-CN" -> Locale.forLanguageTag("zh-Hans")
-            "zh-TW" -> Locale.forLanguageTag("zh-Hant")
             else -> Locale.forLanguageTag(lang)
         }
         return locale!!.getDisplayName(locale).capitalize(locale)
