@@ -700,4 +700,6 @@
     <string name="meteoam_weather_text_smoke">Fum</string>
     <string name="settings_background_updates_refresh_never_warning1">En desactivar les actualitzacions en rerefons, no tornareu a rebre cap notificació d’alerta o precipitació. Els ginys no s’actualitzaran fins no obriu l’aplicació.</string>
     <string name="settings_notifications_app_updates_check">Mostra notificacions de l’aplicació</string>
+    <string name="current_weather">Clima actual</string>
+    <string name="weather_current_data_by">Informació meteorològica proveïda per %s</string>
 </resources>
