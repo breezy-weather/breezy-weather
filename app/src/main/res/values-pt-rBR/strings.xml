@@ -707,4 +707,6 @@
     <string name="common_weather_text_sand_storm">Tempestade de areia</string>
     <string name="meteoam_weather_text_smoke">Fumaça</string>
     <string name="settings_unavailable_no_animations">Indisponível. Ative primeiro as animações nas configurações do Android</string>
+    <string name="current_weather">Clima atual</string>
+    <string name="weather_current_data_by">Dados meteorológicos atuais por %s</string>
 </resources>
