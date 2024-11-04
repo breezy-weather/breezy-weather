@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+@file:Suppress("ChromeOsAbiSupport")
+
 import java.util.Properties
 
 plugins {
@@ -147,6 +148,17 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll(
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
+            "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
+        )
+    }
+}
+
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
@@ -260,13 +272,6 @@ tasks {
 
     preBuild {
         dependsOn(copyHebrewStrings, localesConfigTask)
-    }
-
-    withType<KotlinCompile> {
-        compilerOptions.freeCompilerArgs.add("-opt-in=androidx.compose.material3.ExperimentalMaterial3Api")
-        compilerOptions.freeCompilerArgs.add("-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi")
-        compilerOptions.freeCompilerArgs.add("-opt-in=kotlinx.serialization.ExperimentalSerializationApi")
-        compilerOptions.freeCompilerArgs.add("-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi")
     }
 }
 
