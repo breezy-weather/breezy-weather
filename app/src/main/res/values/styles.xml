@@ -41,6 +41,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
+        <!-- Reset flag to default to fix a bug in the SplashScreen API which keeps an incorrect
+         value for the postSplashScreenTheme causing layouts to be unintentionally offset into the
+         display cutout area in landscape mode.
+         Related issue: https://issuetracker.google.com/issues/214408199 -->
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">default</item>
+
         <item name="colorControlHighlight">@color/colorRipple_regular</item>
         <item name="colorTitleText">@color/colorTextTitle</item>
         <item name="colorBodyText">@color/colorTextContent</item>
