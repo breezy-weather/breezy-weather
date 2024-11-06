@@ -46,7 +46,7 @@
     <string name="setting_weather_source_accu_hours">Giờ</string>
     <string name="weather_source_accu_preference_hours_12">12 tiếng</string>
     <string name="action_add_new_location">Thêm vị trí mới</string>
-    <string name="action_settings">Cài đặt</string>
+    <string name="action_settings">Thiết đặt</string>
     <string name="location_message_list_cannot_be_empty">Danh sách vị trí không thể để trống</string>
     <string name="action_edit">Chỉnh sửa</string>
     <string name="dialog_permissions_location_background_title">Truy cập vị trí dưới nền</string>
@@ -60,12 +60,12 @@
     <string name="widget_custom_subtitle_keyword_ctd_description">Nhiệt độ hiện tại (°)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Chỉ số UV hiện tại</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tuần</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">Mô tả hàng ngày</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Mô tả hằng ngày</string>
     <string name="widget_custom_subtitle_keyword_al_description">Cảnh báo</string>
     <string name="widget_custom_subtitle_keyword_d_description">Ngày</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">Tuần (Ngắn)</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Tuần (ngắn)</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Thời tiết ban đêm của hôm nay, ngày mai, …, 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Nhiệt độ ban ngày hôm nay, ngày mai, …, 4 ngày sau (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Lượng mưa ban đêm của hôm nay, ngày mai, …, 4 ngày sau (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Gió ban ngày của hôm nay, ngày mai, …, 4 ngày sau</string>
@@ -226,7 +226,7 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Độ ẩm hiện tại</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Tầm nhìn xa hiện tại</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Điểm sương hiện tại</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Cảnh báo (Ngắn)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Cảnh báo (ngắn)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Vị trí</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Vĩ độ</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Kinh độ</string>
@@ -234,10 +234,10 @@
     <string name="widget_custom_subtitle_keyword_hd_description">Mô tả hàng giờ</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Hàng mới</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Thời tiết ban ngày của hôm nay, ngày mai, …, 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nhiệt độ ban đêm hôm nay, ngày mai, …, 4 ngày sau (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nhiệt độ ban đêm của hôm nay, ngày mai, …, 4 ngày sau (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nhiệt độ ban đêm của hôm nay, ngày mai, …, 4 ngày sau (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Lượng mưa ban ngày của hôm nay, ngày mai, …, 4 ngày sau (%)</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Chu kỳ mặt trăng của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Chu kỳ trăng của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="widget_style_rectangle">Chữ nhật</string>
     <string name="widget_style_symmetry">Cân đối</string>
     <string name="widget_style_tile">Tấm lát</string>
@@ -262,7 +262,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don’t kill my app! có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>
     <string name="settings_location">Vị trí</string>
-    <string name="settings_location_summary">Cài đặt dịch vụ cung cấp vị trí</string>
+    <string name="settings_location_summary">Thiết đặt dịch vụ cung cấp vị trí</string>
     <string name="settings_location_service">Dịch vụ vị trí</string>
     <string name="settings_location_access_permission_already_granted">Quyền đã được cấp</string>
     <string name="settings_location_access_switch_title">Truy cập vị trí</string>
@@ -383,7 +383,7 @@
     <string name="settings_widgets_section_widgets_in_use">Tiện ích đã sử dụng</string>
     <string name="settings_widgets_notification_widget_title">Tiện ích thông báo</string>
     <string name="settings_widgets_notification_temp_icon_switch">Dùng nhiệt độ làm biểu tượng ở thanh trạng thái</string>
-    <string name="settings_widgets_notification_feels_like_switch">Dùng nhiệt độ giống với cảm giác</string>
+    <string name="settings_widgets_notification_feels_like_switch">Dùng nhiệt độ cảm thấy</string>
     <string name="settings_items_drag_to_sort">Kéo thành phần trong danh sách để sắp xếp</string>
     <string name="settings_disabled">Đã tắt</string>
     <string name="settings_automatic">Tự động</string>
@@ -453,7 +453,7 @@
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền %s bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="air_quality_index">Chỉ số chất lượng không khí</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>
-    <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Cài đặt.</string>
+    <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Thiết đặt.</string>
     <string name="notification_style_native">Tự nhiên</string>
     <string name="notification_style_cities">Các thành phố</string>
     <string name="location_search_no_results">%1$s không thể tìm %2$s</string>
@@ -618,7 +618,7 @@
     <string name="settings_weather_sources_default_source">Nguồn mặc định cho vị trí mới</string>
     <string name="visibility_short">Tầm nhìn xa</string>
     <string name="pollen_castanea">Cây hạt dẻ</string>
-    <string name="message_source_not_installed_error_content_tip_1">Điều này có thể xảy ra khi bạn thêm vị trí của mình vào phiên bản Tiêu chuẩn của Breezy Weather và sau đó chuyển sang phiên bản chỉ có các nguồn mạng miễn phí. Quay trở lại phiên bản Tiêu chuẩn có thể giải quyết được vấn đề này.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Điều này có thể xảy ra khi bạn thêm vị trí của mình vào phiên bản Tiêu chuẩn của ứng dụng rồi chuyển sang phiên bản chỉ có nguồn mạng libre. Quay lại phiên bản Tiêu chuẩn có thể giải quyết được vấn đề này.</string>
     <string name="settings_invalid_syntax">Cú pháp không hợp lệ</string>
     <string name="alert">Báo động</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Tổng hợp chỉ số phấn hoa hôm nay, ngày mai,…, 4 ngày sau</string>
@@ -653,7 +653,7 @@
     <string name="location_delete_location_dialog_message">Bạn sắp xóa “%s” khỏi danh sách các vị trí đã lưu của mình.</string>
     <string name="message_server_unavailable_title">Máy chủ không có sẵn</string>
     <string name="action_confirm">Xác nhận</string>
-    <string name="settings_weather_source_freenet_disclaimer">Nhiều nguồn thời tiết hơn có sẵn từ các phiên bản khác của Breezy Weather. Nhấn vào đây để tìm hiểu thêm.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Có nhiều nguồn thời tiết hơn từ các phiên bản khác của ứng dụng. Nhấn vào đây để tìm hiểu thêm.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Chỉ số chất lượng không khí hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="action_edit_location">Chỉnh sửa vị trí này</string>
     <string name="message_server_unavailable_content">Đây thường là một lỗi tạm thời. Nếu lỗi vẫn tiếp diễn, vui lòng báo cáo sự cố trên GitHub.</string>
@@ -676,4 +676,16 @@
     <string name="dialog_app_update_check_content">Nhấn vào đây để bật thông báo về các bản cập nhật ứng dụng.</string>
     <string name="action_download">Tải về</string>
     <string name="dialog_app_update_check_title">Luôn cập nhật</string>
+    <string name="current_weather">Thời tiết hiện tại</string>
+    <string name="settings_unavailable_no_animations">Không khả dụng, trước tiên hãy bật hình ảnh động trong thiết đặt Android</string>
+    <string name="notification_channel_app_updates">Cập nhật ứng dụng</string>
+    <string name="weather_current_data_by">Dữ liệu thời tiết hiện tại theo %s</string>
+    <string name="meteoam_weather_text_smoke">Khói</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Lốc xoáy hoặc vòi rồng</string>
+    <string name="settings_global">Thiết đặt toàn bộ</string>
+    <string name="notification_app_update_available">Đã có phiên bản mới!</string>
+    <string name="about_check_for_app_updates">Kiểm tra cập nhật ứng dụng</string>
+    <string name="about_no_new_updates">Không có bản cập nhật mới nào</string>
+    <string name="common_weather_text_sand_storm">Bão cát</string>
+    <string name="settings_notifications_app_updates_check">Thông báo cập nhật ứng dụng</string>
 </resources>
