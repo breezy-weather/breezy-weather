@@ -45,6 +45,7 @@ import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.geosphereat.GeoSphereAtService
 import org.breezyweather.sources.here.HereService
+import org.breezyweather.sources.hko.HkoService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.meteoam.MeteoAmService
@@ -75,6 +76,7 @@ class SourceManager @Inject constructor(
     geoNamesService: GeoNamesService,
     geoSphereAtService: GeoSphereAtService,
     hereService: HereService,
+    hkoService: HkoService,
     imsService: ImsService,
     ipSbService: IpSbLocationService,
     meteoAmService: MeteoAmService,
@@ -126,6 +128,7 @@ class SourceManager @Inject constructor(
         cwaService,
         imsService,
         smhiService,
+        hkoService,
         metIeService,
 
         // Secondary weather sources
