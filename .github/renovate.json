@@ -1,16 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "schedule": ["every saturday"],
+  "schedule": [
+    "on saturday"
+  ],
   "ignoreDeps": [
     "dagger.hilt.android.plugin"
   ],
   "packageRules": [
     {
-      "matchPackagePrefixes": ["org.shredzone.commons"],
-      "allowedVersions": "<3.0"
+      "allowedVersions": "<3.0",
+      "matchPackageNames": [
+        "org.shredzone.commons{/,}**"
+      ]
     }
   ]
 }
