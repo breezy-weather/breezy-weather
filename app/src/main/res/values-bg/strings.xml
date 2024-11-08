@@ -192,8 +192,8 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
     <string name="location_search_no_results">%1$s не може да намери %2$s</string>
     <string name="location_search_no_results_advice">Уверете се, че заявката за търсене е написана правилно и не е твърде специфична. Можете също да опитате да използвате друг източник за търсене на местоположение, който може да даде различни резултати.</string>
-    <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
-    <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
+    <string name="dialog_permissions_location_content">За да използвате тази функция, трябва да дадете на приложението разрешение за достъп до текущото ви местоположение. То ще бъде споделено само с избраните метеорологични източници. Ако сте променили решението си, можете да отмените процеса и да добавите фиксирано местоположение ръчно.</string>
+    <string name="dialog_permissions_location_background_content">За да разрешите опресняването на времето във фонов режим за най-новото текущо местоположение, известно от Android, трябва да зададете разрешение за местоположение на „Разрешаване през цялото време“. Ако не го направите, времето ще се опреснява въз основа на най-новите извлечени координати на преден план, които може да са остарели.</string>
     <string name="widget_clock_day_horizontal">Часовник + Ежедневно (хоризонтален стил)</string>
     <string name="widget_clock_day_vertical">Часовник + Ежедневно (вертикален стил)</string>
     <string name="widget_material_you_forecast">Material You - Прогноза</string>
@@ -529,7 +529,7 @@
     <string name="pollen_artemisia">Пелин</string>
     <string name="pollen_olea">Маслиново дърво</string>
     <string name="pollen_level_2">Ниско</string>
-    <string name="pollen_level_3">Средно</string>
+    <string name="pollen_level_3">Умерено</string>
     <string name="pollen_level_0">Няма</string>
     <string name="pollen_alnus">Елша</string>
     <string name="pollen_level_1">Много ниско</string>
@@ -542,7 +542,7 @@
     <string name="weather_pollen_data_by">Данни за алергените от %s</string>
     <string name="weather_minutely_data_by">Поминутни данни за валежите от %s</string>
     <string name="weather_alert_data_by">Данни за предупредителните сигнали от %s</string>
-    <string name="wind_gusts">Пориви вятър</string>
+    <string name="wind_gusts">Пориви на вятъра</string>
     <string name="precipitation_nowcasting">Текуща прогноза за валежите</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
@@ -615,7 +615,7 @@
     <string name="pressure_short">Налягане</string>
     <string name="dew_point_short">Точка на оросяване</string>
     <string name="ceiling_short">Облачен Таван</string>
-    <string name="temperature_feels_like_short">Усеща се като</string>
+    <string name="temperature_feels_like_short">Усеща се</string>
     <string name="cloud_cover_short">Облачно покритие</string>
     <string name="settings_weather_sources_default_source">Източник по подразбиране за нови местоположения</string>
     <string name="location_delete_location_dialog_title">Изтрий местоположението?</string>
@@ -648,7 +648,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Комбинира всички метеорологични модели от този доставчик в обобщена прогноза</string>
     <string name="about_open_link_message">Отвари %s?</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Съчетава най-добрите метеорологични модели за това местоположение</string>
-    <string name="message_source_not_installed_error_content_tip_1">Това може да се случи, когато сте добавили местоположението си в стандартния вариант на Breezy Weather и след това сте превключили към Free-networks only, който има по-малко поддържани източници за времето. Връщането към стандартния вариант може да реши този проблем.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Това може да се случи, когато сте добавили местоположението си в стандартния вариант на приложението и след това сте превключили към варианта само с безплатни мрежови източници. Връщането към стандартния вкус може да реши този проблем.</string>
     <string name="message_source_not_installed_error_content_tip_2">Или променете метеорологичните източници за това местоположение, или изтрийте и добавете отново това местоположение.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Обобщение на индексa за алергени за днес, утре, …, 4 дни по-късно</string>
     <string name="sunshine">Слънчева светлина</string>
@@ -666,7 +666,7 @@
     <string name="settings_background_updates_refresh_never_warning2">Процесът на фоново актуализиране е лек: той само опреснява първото ви местоположение с избраната от вас скорост, а вторичните местоположения само ако имате нужда от тях, веднъж на ден. Той е енергийно-ефективен и не трябва да надвишава %d MB консумация на данни на месец.</string>
     <string name="settings_background_updates_refresh_never_warning1">При изключване на фоновите актуализации, вече няма да получавате известия за предупреждения или валежи. Приспособленията няма да се опресняват, докато не отворите приложението.</string>
     <string name="settings_background_updates_refresh_never_warning3">Вместо да изключвате фоновите актуализации, може да използвате на по-рядка честота на опресняване, ако все още искате да продължите, докоснете “Продължи”.</string>
-    <string name="settings_weather_source_freenet_disclaimer">Достъпни са още източници на метеорологични данни от други варианти на Breezy Weather. Докоснете тук, за да научите повече.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Достъпни са още източници на метеорологични данни от други варианти на приложението. Докоснете тук, за да научите повече.</string>
     <string name="action_edit_location">Редактирайте това местоположение</string>
     <string name="message_invalid_incomplete_data">Невалидни или непълни данни получени от сървъра</string>
     <string name="message_server_unavailable_title">Сървърът е недостъпен</string>
@@ -678,4 +678,18 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Сървър за прогноза</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Няма намерени съвместими пакети</string>
     <string name="settings_invalid_syntax">Невалиден синтаксис</string>
+    <string name="action_download">Изтегляне</string>
+    <string name="notification_app_update_available">Налична е нова версия!</string>
+    <string name="about_check_for_app_updates">Проверете за актуализации на приложението</string>
+    <string name="current_weather">Времето в момента</string>
+    <string name="weather_current_data_by">Данни за времето в момента от %s</string>
+    <string name="settings_notifications_app_updates_check">Известия за актуализации на приложението</string>
+    <string name="settings_unavailable_no_animations">Не е налично, първо активирайте анимациите в настройките на Android</string>
+    <string name="notification_channel_app_updates">Актуализации на приложението</string>
+    <string name="about_no_new_updates">Няма нови версии</string>
+    <string name="common_weather_text_sand_storm">Пясъчна буря</string>
+    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="meteoam_weather_text_tornado_watersprout">Торнадо или воден циклон</string>
+    <string name="dialog_app_update_check_content">Докоснете тук, за да активирате известия за актуализации на приложението.</string>
+    <string name="dialog_app_update_check_title">Бъдете в крак с новостите</string>
 </resources>
