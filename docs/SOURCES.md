@@ -1,6 +1,6 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.2.8 or later of Breezy Weather**. Note: Current source is only available starting from (unreleased) v5.3.0.
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.2.8 or later of Breezy Weather**. Note: Current source and HKO source are only available starting from (unreleased) v5.3.0.
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features.
 
@@ -17,10 +17,10 @@ Below, you can find details about the support and implementation status for feat
 |--------------------|------------|-------------|------------|---------------|----------------|----------|--------------|------|----------|
 | **API key**        | None       | Optional    | None       | Rate-limited¹ | Required       | Required | Optional     | None | None     |
 
-| National sources | China³ | NWS  | GeoSphere Austria  | Bright Sky | ECCC   | CWA      | IMS                           | SMHI   | MET Éireann |
-|------------------|--------|------|--------------------|------------|--------|----------|-------------------------------|--------|-------------|
-| **API key**      | None   | None | None               | None       | None   | Required | None                          | None   | None        |
-| **Countries**    | China  | USA  | Austria and nearby | Germany    | Canada | Taiwan   | Israel, West Bank, Gaza Strip | Sweden | Ireland     |
+| National sources | China³ | NWS  | GeoSphere Austria  | Bright Sky | ECCC   | CWA      | IMS                           | SMHI   | HKO       | MET Éireann |
+|------------------|--------|------|--------------------|------------|--------|----------|-------------------------------|--------|-----------|-------------|
+| **API key**      | None   | None | None               | None       | None   | Required | None                          | None   | None      | None        |
+| **Countries**    | China  | USA  | Austria and nearby | Germany    | Canada | Taiwan   | Israel, West Bank, Gaza Strip | Sweden | Hong Kong | Ireland     |
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features may not be available everywhere.
@@ -43,17 +43,17 @@ Sources with mandatory API key to use are at the bottom of this page.
 | **UV**                        | ✅          | ✅           | ✅          | ❌           | ✅            | ❌   | ❌        |
 | **Sun & Moon & Moon phase**   | ✅          | ✅           | ✅          | ✅           | ✅            | ✅   | ❌        |
 
-| National sources              | China | NWS    | GeoSphere Austria | Bright Sky | ECCC | IMS           | SMHI | MET Éireann |
-|-------------------------------|-------|--------|-------------------|------------|------|---------------|------|-------------|
-| **Daily (days)**              | 15    | 7      | 2.5               | 10         | 6    | 6             | 15   | 7           |
-| **Hourly (days)**             | 1     | 7      | 2.5               | 10         | 1    | 6             | 15   | 7           |
-| **Weather**                   | ✅     | ✅      | ✅                 | ✅          | ✅    | *In progress* | ✅    | ✅           |
-| **Temperature**               | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅           |
-| **Precipitation**             | ❌     | ✅ (SI) | ✅                 | ✅          | ❌    | ❌             | ✅    | ✅           |
-| **Precipitation probability** | Daily | ✅ (T)  | ❌                 | ✅          | ✅    | ✅             | T    | ❌           |
-| **Wind**                      | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅           |
-| **UV**                        | ❌     | ❌      | ❌                 | ❌          | ❌    | ✅             | ❌    | ❌           |
-| **Sun & Moon & Moon phase**   | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅           |
+| National sources              | China | NWS    | GeoSphere Austria | Bright Sky | ECCC | IMS           | SMHI | HKO     | MET Éireann |
+|-------------------------------|-------|--------|-------------------|------------|------|---------------|------|---------|-------------|
+| **Daily (days)**              | 15    | 7      | 2.5               | 10         | 6    | 6             | 15   | 10      | 7           |
+| **Hourly (days)**             | 1     | 7      | 2.5               | 10         | 1    | 6             | 15   | 10      | 7           |
+| **Weather**                   | ✅     | ✅      | ✅                 | ✅          | ✅    | *In progress* | ✅    | ✅       | ✅           |
+| **Temperature**               | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅       | ✅           |
+| **Precipitation**             | ❌     | ✅ (SI) | ✅                 | ✅          | ❌    | ❌             | ✅    | ❌       | ✅           |
+| **Precipitation probability** | Daily | ✅ (T)  | ❌                 | ✅          | ✅    | ✅             | T    | ✅       | ❌           |
+| **Wind**                      | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅       | ✅           |
+| **UV**                        | ❌     | ❌      | ❌                 | ❌          | ❌    | ✅             | ❌    | Current | ❌           |
+| **Sun & Moon & Moon phase**   | ✅     | ✅      | ✅                 | ✅          | ✅    | ✅             | ✅    | ✅       | ✅           |
 
 Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
@@ -71,14 +71,14 @@ The following features, if not available from your selected source, can be added
 | **Alerts**                   | ❌          | ✅             | ✅           | ❌           | France       | Denmark | ❌        |
 | **Normals**                  | Average    | ✅             | Average     | Average     | ✅            | Average | ❌        |
 
-| National sources             | China   | NWS           | GeoSphere Austria  | Bright Sky | ECCC   | IMS                           | SMHI    | MET Éireann |
-|------------------------------|---------|---------------|--------------------|------------|--------|-------------------------------|---------|-------------|
-| **Current**                  | China   | ❌             | ❌                  | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | ❌           |
-| **Air quality**              | Current | ❌             | Europe and nearby  | ❌          | ❌      | ❌                             | ❌       | ❌           |
-| **Pollen**                   | ❌       | ❌             | ❌                  | ❌          | ❌      | ❌                             | ❌       | ❌           |
-| **Precipitation nowcasting** | China   | ❌             | Austria and nearby | ❌          | ❌      | ❌                             | ❌       | ❌           |
-| **Alerts**                   | China   | United States | Austria            | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | Ireland     |
-| **Normals**                  | Average | Average       | *In progress*      | Average    | Canada | Average                       | Average | Average     |
+| National sources             | China   | NWS           | GeoSphere Austria  | Bright Sky | ECCC   | IMS                           | SMHI    | HKO       | MET Éireann |
+|------------------------------|---------|---------------|--------------------|------------|--------|-------------------------------|---------|-----------|-------------|
+| **Current**                  | China   | ❌             | ❌                  | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | Hong Kong | ❌           |
+| **Air quality**              | Current | ❌             | Europe and nearby  | ❌          | ❌      | ❌                             | ❌       | ❌         | ❌           |
+| **Pollen**                   | ❌       | ❌             | ❌                  | ❌          | ❌      | ❌                             | ❌       | ❌         | ❌           |
+| **Precipitation nowcasting** | China   | ❌             | Austria and nearby | ❌          | ❌      | ❌                             | ❌       | ❌         | ❌           |
+| **Alerts**                   | China   | United States | Austria            | Germany    | Canada | Israel, West Bank, Gaza Strip | ❌       | Hong Kong | Ireland     |
+| **Normals**                  | Average | Average       | *In progress*      | Average    | Canada | Average                       | Average | Hong Kong | Average     |
 
 
 Legend:
@@ -104,16 +104,16 @@ Legend:
 | **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌   | ❌        |
 | **Sunshine duration**      | ✅          | ✅           | ❌          | ❌           | ❌            | ❌   | ❌        |
 
-| National sources           | China   | NWS | GeoSphere Austria | Bright Sky | ECCC    | IMS | SMHI | MET Éireann |
-|----------------------------|---------|-----|-------------------|------------|---------|-----|------|-------------|
-| **Humidity**               | Current | ✅   | ✅                 | ✅          | Current | ✅   | ✅    | ✅           |
-| **Dew point**              | Current | ✅   | ✅                 | ✅          | Current | ✅   | ✅    | ✅           |
-| **Pressure**               | ❌       | ✅   | ✅                 | ✅          | Current | ❌   | ✅    | ✅           |
-| **Cloud cover**            | ❌       | ✅   | ✅                 | ✅          | ❌       | ❌   | ❌    | ❌           |
-| **Visibility**             | Current | ✅   | ❌                 | ✅          | Current | ❌   | ✅    | ❌           |
-| **Ceiling**                | ❌       | ❌   | ❌                 | ❌          | ❌       | ❌   | ❌    | ❌           |
-| **Precipitation duration** | ❌       | ❌   | ❌                 | ❌          | ❌       | ❌   | ❌    | ❌           |
-| **Sunshine duration**      | ❌       | ❌   | ❌                 | ✅          | ✅       | ❌   | ❌    | ❌           |
+| National sources           | China   | NWS | GeoSphere Austria | Bright Sky | ECCC    | IMS | SMHI | HKO     | MET Éireann |
+|----------------------------|---------|-----|-------------------|------------|---------|-----|------|---------|-------------|
+| **Humidity**               | Current | ✅   | ✅                 | ✅          | Current | ✅   | ✅    | ✅       | ✅           |
+| **Dew point**              | Current | ✅   | ✅                 | ✅          | Current | ✅   | ✅    | ✅       | ✅           |
+| **Pressure**               | ❌       | ✅   | ✅                 | ✅          | Current | ❌   | ✅    | Current | ✅           |
+| **Cloud cover**            | ❌       | ✅   | ✅                 | ✅          | ❌       | ❌   | ❌    | ❌       | ❌           |
+| **Visibility**             | Current | ✅   | ❌                 | ✅          | Current | ❌   | ✅    | ❌       | ❌           |
+| **Ceiling**                | ❌       | ❌   | ❌                 | ❌          | ❌       | ❌   | ❌    | ❌       | ❌           |
+| **Precipitation duration** | ❌       | ❌   | ❌                 | ❌          | ❌       | ❌   | ❌    | ❌       | ❌           |
+| **Sunshine duration**      | ❌       | ❌   | ❌                 | ✅          | ✅       | ❌   | ❌    | ❌       | ❌           |
 
 ¹ Median from daily forecast
 
@@ -125,16 +125,17 @@ Legend:
 | **Search**            | ✅          | ✅           | Default    | Default     | Default      | Default | Default  |
 | **Reverse geocoding** | ❌²         | ✅           | ❌²         | ❌²          | ✅²           | ✅       | ✅        |
 
-| National sources      | China | NWS     | GeoSphere Austria | Bright Sky | ECCC    | IMS     | SMHI    | MET Éireann |
-|-----------------------|-------|---------|-------------------|------------|---------|---------|---------|-------------|
-| **Search**            | ✅³    | Default | Default           | Default    | Default | Default | Default | Default     |
-| **Reverse geocoding** | ✅³    | ✅       | ❌²                | ❌²         | ✅²      | ✅⁴      | ❌²      | ✅⁵          |
+| National sources      | China | NWS     | GeoSphere Austria | Bright Sky | ECCC    | IMS     | SMHI    | HKO     | MET Éireann |
+|-----------------------|-------|---------|-------------------|------------|---------|---------|---------|---------|-------------|
+| **Search**            | ✅³    | Default | Default           | Default    | Default | Default | Default | Default | Default     |
+| **Reverse geocoding** | ✅³    | ✅       | ❌²                | ❌²         | ✅²      | ✅⁴      | ❌²      | ✅⁵      | ✅⁶          |
 
 * ¹ Default means it will use the configured location search source in settings. By default, it is Open-Meteo.
 * ² TimeZone is assumed to be the same as device
 * ³ TimeZone is assumed to be Asia/Shanghai
 * ⁴ TimeZone is assumed to be Asia/Jerusalem
-* ⁵ TimeZone is assumed to be Europe/Dublin
+* ⁵ TimeZone is assumed to be Asia/Hong_Kong
+* ⁶ TimeZone is assumed to be Europe/Dublin
 
 
 # Additional sources with mandatory API key
@@ -240,14 +241,14 @@ Legend:
 | **Alerts**                   | ❌          | ✅           | ✅           | ❌           | ✅              | France       | Denmark | ❌             | ❌             |
 | **Normals**                  | ❌          | ✅           | ❌           | ❌           | ❌              | France       | ❌       | ❌             | ❌             |
 
-| National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | CWA    | IMS                           | MET Éireann | ATMO AuRA     |
-|------------------------------|-------|---------------|--------------------|--------------------|------------|--------|--------|-------------------------------|-------------|---------------|
-| **Current**                  | China | ❌             | ❌                  | ❌                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | ❌           | ❌             |
-| **Air quality**              | China | ❌             | Europe and nearby  | ❌                  | ❌          | ❌      | Taiwan | ❌                             | ❌           | France (AuRA) |
-| **Pollen**                   | ❌     | ❌             | ❌                  | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |
-| **Precipitation nowcasting** | China | ❌             | Austria and nearby | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌           | ❌             |
-| **Alerts**                   | China | United States | Austria            | ✅                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | Ireland     | ❌             |
-| **Normals**                  | ❌     | ❌             | *In progress*      | ❌                  | ❌          | Canada | Taiwan | ❌                             | ❌           | ❌             |
+| National sources             | China | NWS           | GeoSphere Austria  | WMO Severe Weather | Bright Sky | ECCC   | CWA    | IMS                           | HKO       | MET Éireann | ATMO AuRA     |
+|------------------------------|-------|---------------|--------------------|--------------------|------------|--------|--------|-------------------------------|-----------|-------------|---------------|
+| **Current**                  | China | ❌             | ❌                  | ❌                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | Hong Kong | ❌           | ❌             |
+| **Air quality**              | China | ❌             | Europe and nearby  | ❌                  | ❌          | ❌      | Taiwan | ❌                             | ❌         | ❌           | France (AuRA) |
+| **Pollen**                   | ❌     | ❌             | ❌                  | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌         | ❌           | ❌             |
+| **Precipitation nowcasting** | China | ❌             | Austria and nearby | ❌                  | ❌          | ❌      | ❌      | ❌                             | ❌         | ❌           | ❌             |
+| **Alerts**                   | China | United States | Austria            | ✅                  | Germany    | Canada | Taiwan | Israel, West Bank, Gaza Strip | Hong Kong | Ireland     | ❌             |
+| **Normals**                  | ❌     | ❌             | *In progress*      | ❌                  | ❌          | Canada | Taiwan | ❌                             | Hong Kong | ❌           | ❌             |
 
 * ¹ Only supports NWS alerts, but has many duplicate issues, so not worth implementing
 * ² Not restricted but currently only works in Europe

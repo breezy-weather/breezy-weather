@@ -806,6 +806,13 @@
     <string name="common_weather_text_drizzle_freezing_light">Light freezing drizzle</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Heavy freezing drizzle</string>
     <string name="common_weather_text_sand_storm">Sand storm</string>
+    <string name="common_weather_text_mist">Mist</string>
+    <string name="common_weather_text_dry">Dry</string>
+    <string name="common_weather_text_humid">Humid</string>
+    <string name="common_weather_text_hot">Hot</string>
+    <string name="common_weather_text_warm">Warm</string>
+    <string name="common_weather_text_cool">Cool</string>
+    <string name="common_weather_text_cold">Cold</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
@@ -894,6 +901,55 @@
     <string name="meteoam_weather_text_sand_storm" translatable="false">@string/common_weather_text_sand_storm</string>
     <!-- Example: Heavy rain and thunder -->
     <string name="metno_weather_text_andthunder">%s and thunder</string>
+    <!-- Weather texts for HKO -->
+    <string name="hko_weather_text_sunny" translatable="false">@string/common_weather_text_clear_sky</string>
+    <string name="hko_weather_text_sunny_periods" translatable="false">Sunny periods</string>
+    <string name="hko_weather_text_sunny_intervals" translatable="false">Sunny intervals</string>
+    <string name="hko_weather_text_sunny_periods_with_a_few_showers" translatable="false">Sunny periods with a few showers</string>
+    <string name="hko_weather_text_sunny_intervals_with_showers" translatable="false">Sunny intervals with showers</string>
+    <string name="hko_weather_text_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
+    <string name="hko_weather_text_overcast" translatable="false">@string/common_weather_text_overcast</string>
+    <string name="hko_weather_text_light_rain" translatable="false">@string/common_weather_text_rain_light</string>
+    <string name="hko_weather_text_rain" translatable="false">@string/common_weather_text_rain</string>
+    <string name="hko_weather_text_heavy_rain" translatable="false">@string/common_weather_text_rain_heavy</string>
+    <string name="hko_weather_text_thunderstorms" translatable="false">@string/weather_kind_thunderstorm</string>
+    <string name="hko_weather_text_fine" translatable="false">@string/common_weather_text_clear_sky</string>
+    <string name="hko_weather_text_mainly_cloudy" translatable="false">@string/common_weather_text_cloudy</string>
+    <string name="hko_weather_text_mainly_fine" translatable="false">@string/common_weather_text_mainly_clear</string>
+    <string name="hko_weather_text_windy" translatable="false">@string/weather_kind_wind</string>
+    <string name="hko_weather_text_dry" translatable="false">@string/common_weather_text_dry</string>
+    <string name="hko_weather_text_humid" translatable="false">@string/common_weather_text_humid</string>
+    <string name="hko_weather_text_fog" translatable="false">@string/weather_kind_fog</string>
+    <string name="hko_weather_text_mist" translatable="false">@string/common_weather_text_mist</string>
+    <string name="hko_weather_text_haze" translatable="false">@string/weather_kind_haze</string>
+    <string name="hko_weather_text_hot" translatable="false">@string/common_weather_text_hot</string>
+    <string name="hko_weather_text_warm" translatable="false">@string/common_weather_text_warm</string>
+    <string name="hko_weather_text_cool" translatable="false">@string/common_weather_text_cool</string>
+    <string name="hko_weather_text_cold" translatable="false">@string/common_weather_text_cold</string>
+    <string name="hko_warning_text_tropical_cyclone_1" translatable="false">Standby Signal No. 1</string>
+    <string name="hko_warning_text_tropical_cyclone_3" translatable="false">Strong Wind Signal No. 3</string>
+    <string name="hko_warning_text_tropical_cyclone_8_northeast" translatable="false">No. 8 Northeast Gale or Storm Signal</string>
+    <string name="hko_warning_text_tropical_cyclone_8_northwest" translatable="false">No. 8 Northwest Gale or Storm Signal</string>
+    <string name="hko_warning_text_tropical_cyclone_8_southeast" translatable="false">No. 8 Southeast Gale or Storm Signal</string>
+    <string name="hko_warning_text_tropical_cyclone_8_southwest" translatable="false">No. 8 Southwest Gale or Storm Signal</string>
+    <string name="hko_warning_text_tropical_cyclone_9" translatable="false">Increasing Gale or Storm Signal No. 9</string>
+    <string name="hko_warning_text_tropical_cyclone_10" translatable="false">Hurricane Signal No. 10</string>
+    <string name="hko_warning_text_tropical_cyclone_pre_8" translatable="false">Pre-8 Tropical Cyclone Special Announcement</string>
+    <string name="hko_warning_text_rainstorm_amber" translatable="false">Amber Rainstorm Warning Signal</string>
+    <string name="hko_warning_text_rainstorm_red" translatable="false">Red Rainstorm Warning Signal</string>
+    <string name="hko_warning_text_rainstorm_black" translatable="false">Black Rainstorm Warning Signal</string>
+    <string name="hko_warning_text_fire_yellow" translatable="false">Yellow Fire Danger Warning</string>
+    <string name="hko_warning_text_fire_red" translatable="false">Red Fire Danger Warning</string>
+    <string name="hko_warning_text_thunderstorm" translatable="false">Thunderstorm Warning</string>
+    <string name="hko_warning_text_flooding_northern_nt" translatable="false">Special Announcement on Flooding in Northern New Territories</string>
+    <string name="hko_warning_text_landslip" translatable="false">Landslip Warning</string>
+    <string name="hko_warning_text_strong_monsoon" translatable="false">Strong Monsoon Signal</string>
+    <string name="hko_warning_text_frost" translatable="false">Frost Warning</string>
+    <string name="hko_warning_text_cold" translatable="false">Cold Weather Warning</string>
+    <string name="hko_warning_text_very_hot" translatable="false">Very Hot Weather Warning</string>
+    <string name="hko_warning_text_tsunami" translatable="false">Tsunami Warning</string>
+    <string name="hko_warning_text_fire_yellow_description" translatable="false">The Fire Danger Warning is Yellow and the fire risk is High.</string>
+    <string name="hko_warning_text_fire_red_description" translatable="false">The Fire Danger Warning is Red and the fire risk is Extreme.</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
