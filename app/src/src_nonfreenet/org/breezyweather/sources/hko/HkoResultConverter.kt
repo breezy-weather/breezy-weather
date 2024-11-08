@@ -140,22 +140,22 @@ private fun getNormals(
     normalsResult: HkoNormalsResult
 ): Normals {
     val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
-    var maxTemps = mutableListOf<Double>()
-    var minTemps = mutableListOf<Double>()
+    val maxTemps = mutableListOf<Double>()
+    val minTemps = mutableListOf<Double>()
     val month = now.get(Calendar.MONTH) + 1
     var value: Double?
     normalsResult.stn?.data?.forEach {
         if (it.code == "MEAN_MAX") {
-            it.monData?.forEach {
-                value = it?.getOrElse(month) {null}?.toDoubleOrNull()
+            it.monData?.forEach { mon ->
+                value = mon?.getOrElse(month) {null}?.toDoubleOrNull()
                 if (value != null) {
                     maxTemps.add(value!!)
                 }
             }
         }
         if (it.code == "MEAN_MIN") {
-            it.monData?.forEach {
-                value = it?.getOrElse(month) {null}?.toDoubleOrNull()
+            it.monData?.forEach { mon ->
+                value = mon?.getOrElse(month) {null}?.toDoubleOrNull()
                 if (value != null) {
                     minTemps.add(value!!)
                 }
@@ -167,8 +167,12 @@ private fun getNormals(
 
     return Normals(
         month = month,
-        daytimeTemperature = if (maxTemps.isNotEmpty()) maxTemps.average() else null,
-        nighttimeTemperature = if (minTemps.isNotEmpty()) minTemps.average() else null
+        daytimeTemperature = if (maxTemps.isNotEmpty()) {
+            maxTemps.average()
+        } else null,
+        nighttimeTemperature = if (minTemps.isNotEmpty()) {
+            minTemps.average()
+        } else null
     )
 }
 
@@ -184,7 +188,7 @@ private fun getDailyForecast(
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
 
-    var dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
+    val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
     val dateRegex = Regex("""^\d{4}-\d{2}-\d{2}$""")
     val timeRegex = Regex("""^\d{2}:\d{2}$""")
@@ -206,31 +210,40 @@ private fun getDailyForecast(
     var key: String
     var value: Astro
 
-    listOf(sun1, sun2).forEach {
-        it.data?.forEach {
+    listOf(sun1, sun2).forEach { sun ->
+        sun.data?.forEach {
             if (it.size == 4) {
                 if (dateRegex.matches(it[0])) {
                     key = it[0].replace("-", "")
                     value = Astro(
-                        riseDate = if (timeRegex.matches(it[1])) dateTimeFormatter.parse(it[0] + " " + it[1]) else null,
-                        setDate = if (timeRegex.matches(it[3])) dateTimeFormatter.parse(it[0] + " " + it[3]) else null
+                        riseDate = if (timeRegex.matches(it[1])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[1])
+                        } else null,
+                        setDate = if (timeRegex.matches(it[3])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[3])
+                        } else null
                     )
-                    sunMap.put(key, value)
+                    sunMap[key] = value
                 }
             }
         }
     }
 
-    listOf(moon1, moon2).forEach {
-        it.data?.forEach {
+    // TODO: Create a function to remove redundancy with above
+    listOf(moon1, moon2).forEach { moon ->
+        moon.data?.forEach {
             if (it.size == 4) {
                 if (dateRegex.matches(it[0])) {
                     key = it[0].replace("-", "")
                     value = Astro(
-                        riseDate = if (timeRegex.matches(it[1])) dateTimeFormatter.parse(it[0] + " " + it[1]) else null,
-                        setDate = if (timeRegex.matches(it[3])) dateTimeFormatter.parse(it[0] + " " + it[3]) else null
+                        riseDate = if (timeRegex.matches(it[1])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[1])
+                        } else null,
+                        setDate = if (timeRegex.matches(it[3])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[3])
+                        } else null
                     )
-                    moonMap.put(key, value)
+                    moonMap[key] = value
                 }
             }
         }
@@ -287,8 +300,8 @@ private fun getHourlyForecast(
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
 
     val hourlyList = mutableListOf<HourlyWrapper>()
-    var currentHourWeather: Int? = null
-    var index: Int? = null
+    var currentHourWeather: Int?
+    var index: Int?
     val iconRegex = Regex("""^pic\d{2}\.png$""")
     val oneJsonDailyWeather = mutableMapOf<String, Int>()
 
@@ -366,9 +379,9 @@ private fun getAlertList(
     var alertId: String
     var startDate: Date?
     var warningCode: String?
-    var severity: AlertSeverity = AlertSeverity.UNKNOWN
-    var headline: String? = null
-    var color: Int
+    var severity: AlertSeverity
+    var headline: String?
+    var color: Int?
 
     // Each warning type has a combination of strings.
     // The combination for each warning type are defined here:
@@ -378,8 +391,8 @@ private fun getAlertList(
     var warning: Map<String, Map<String, String>>?
     var descriptionKeys: List<String>
     var instructionKeys: List<String>
-    var descriptionText: String? = null
-    var instructionText: String? = null
+    var descriptionText: String?
+    var instructionText: String?
 
     for ((key, value) in warningMap) {
         warning = when (key) {
@@ -686,7 +699,7 @@ private fun getAlertList(
                 instruction = instructionText,
                 source = source,
                 severity = severity,
-                color = Alert.colorFromSeverity(severity)
+                color = color
             )
         )
     }
@@ -698,10 +711,9 @@ private fun formatWarningText(
     warning: Map<String, Map<String, String>>?,
     stringKeys: List<String>
 ): String {
-    val languageKey = when (context.currentLocale.code) {
-        "zh-tw", "zh-hk", "zh" -> "Val_Chi"
-        else -> "Val_Eng"
-    }
+    val languageKey = if (context.currentLocale.code.startsWith("zh")) {
+        "Val_Chi"
+    } else "Val_Eng"
     val multipleLineFeeds = Regex("\n{3,}")
     val strings = mutableListOf<String>()
     stringKeys.forEach {
