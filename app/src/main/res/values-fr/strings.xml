@@ -750,6 +750,13 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Averses de neige mouillée</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Averses de neige mouillée légères</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Averses de neige mouillée fortes</string>
+    <string name="common_weather_text_mist">Brumeux</string>
+    <string name="common_weather_text_dry">Sec</string>
+    <string name="common_weather_text_humid">Humide</string>
+    <string name="common_weather_text_hot">Chaud</string>
+    <string name="common_weather_text_warm">Doux</string>
+    <string name="common_weather_text_cool">Frais</string>
+    <string name="common_weather_text_cold">Froid</string>
     <string name="meteoam_weather_text_tornado_watersprout">Trombe terrestre ou marine</string>
     <string name="meteoam_weather_text_smoke">Fumée</string>
     <string name="metno_weather_text_andthunder">%s et tonnerre</string>
