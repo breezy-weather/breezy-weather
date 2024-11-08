@@ -13,7 +13,7 @@
     {
       "allowedVersions": "<3.0",
       "matchPackageNames": [
-        "org.shredzone.commons{/,}**"
+        "org.shredzone.commons:commons-suncalc"
       ]
     }
   ]
