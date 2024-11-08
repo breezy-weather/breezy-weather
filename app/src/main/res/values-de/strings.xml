@@ -460,7 +460,7 @@
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
     <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden bevorzugt die Netzwerkdienste Ihres Geräts genutzt, aber als Ersatz kann auch auf GPS zurückgegriffen werden.</string>
     <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">Benachrichtigungszeit für die Tagesprognose des nächsten Tages</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Benachrichtigungszeit für die Vorhersage des nächsten Tages</string>
     <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
     <string name="settings_location_access_switch_title">Standortzugriff</string>
     <string name="settings_location_access_background_summaryOn">Aktiviert. Die App kann die Wetterdaten für den aktuellen Standort im Hintergrund aktualisieren.</string>
@@ -468,9 +468,9 @@
     <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
     <string name="settings_location_access_precise_summaryOff">Aktivieren Sie „Genauen Standort verwenden“, wenn Sie Probleme bei der Standortermittlung haben.</string>
     <string name="settings_notifications_alerts_title">Benachrichtigungen über schwere Unwetterwarnungen</string>
-    <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesprognose</string>
-    <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesprognose</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung für die Tagesprognose des nächsten Tages</string>
+    <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesvorhersage</string>
+    <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesvorhersage</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung für die Vorhersage des nächsten Tages</string>
     <string name="location_message_permission_missing">Standortberechtigung fehlt</string>
     <string name="location_message_permission_background_missing">Berechtigung zum Zugriff auf Standort im Hintergrund fehlt</string>
     <string name="settings_icon_packs_check_details">Details prüfen</string>
@@ -674,7 +674,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
     <string name="settings_background_updates_refresh_never_warning1">Wenn Sie die Hintergrundaktualisierung deaktivieren, erhalten Sie keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn Sie die App öffnen.</string>
     <string name="settings_background_updates_refresh_never_warning2">Der Hintergrundaktualisierungsprozess ist ressourcenschonend: Nur Ihr erster Ort wird mit der von Ihnen gewählten Rate aktualisiert und weitere Orte einmal täglich, wenn Sie sie benötigen. Der Prozess ist akkuschonend und sollte einen Datenverbrauch von %d MB pro Monat nicht überschreiten.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Ziehen Sie in Erwägung, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Ansonsten tippen Sie auf „Weiter“, wenn Sie trotzdem fortfahren möchten.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Erwägen Sie, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Tippen Sie ansonsten auf „Weiter“, um trotzdem fortzufahren.</string>
     <string name="message_server_unavailable_content">Dies ist normalerweise ein temporärer Fehler. Wenn er weiterhin besteht, melden Sie ihn bitte auf GitHub.</string>
     <string name="message_server_unavailable_title">Server nicht erreichbar</string>
     <string name="action_edit_location">Diesen Ort bearbeiten</string>
@@ -694,4 +694,11 @@
     <string name="settings_unavailable_no_animations">Nicht verfügbar, aktivieren Sie Animationen zuerst in den Android-Einstellungen</string>
     <string name="current_weather">Aktuelles Wetter</string>
     <string name="weather_current_data_by">Daten für aktuelles Wetter von %s</string>
+    <string name="common_weather_text_humid">Feucht</string>
+    <string name="common_weather_text_warm">Warm</string>
+    <string name="common_weather_text_cold">Kalt</string>
+    <string name="common_weather_text_cool">Kühl</string>
+    <string name="common_weather_text_mist">feiner Nebel</string>
+    <string name="common_weather_text_dry">Trocken</string>
+    <string name="common_weather_text_hot">Heiß</string>
 </resources>
