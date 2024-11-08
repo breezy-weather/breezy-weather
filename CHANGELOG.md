@@ -24,6 +24,7 @@
 - [MET Norway] Fix alerts not working when used as a secondary source
 - [CWA] Add support for daily bulletin
 - [CWA] Fix wind speed when >= 11 m/s
+- Add translation for a few source names and privacy policies
 
 
 # Version 5.2.8 (2024-09-15)

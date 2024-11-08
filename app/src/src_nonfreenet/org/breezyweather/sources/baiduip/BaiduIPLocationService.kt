@@ -26,6 +26,8 @@ import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.ApiUnauthorizedException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.rxjava.SchedulerTransformer
@@ -44,7 +46,14 @@ class BaiduIPLocationService @Inject constructor(
 ) : HttpSource(), LocationSource, ConfigurableSource {
 
     override val id = "baidu_ip"
-    override val name = "百度IP定位 (Baidu)"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "百度IP定位"
+                else -> "Baidu IP location"
+            }
+        }
+    }
     override val privacyPolicyUrl = "https://lbs.baidu.com/index.php?title=openprivacy"
 
     private val mApi by lazy {

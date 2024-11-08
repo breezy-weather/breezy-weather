@@ -23,6 +23,7 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -44,13 +45,28 @@ import javax.inject.Named
  * Israel Meteorological Service
  */
 class ImsService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ims"
-    override val name = "Israel Meteorological Service"
-    override val privacyPolicyUrl = "https://ims.gov.il/en/termOfuse"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
+                else -> "Israel Meteorological Service"
+            }
+        }
+    }
+    override val privacyPolicyUrl by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("he") || startsWith("iw") -> "https://ims.gov.il/he/termOfuse"
+                else -> "https://ims.gov.il/en/termOfuse"
+            }
+        }
+    }
 
     override val color = Color.rgb(52, 79, 110)
     override val weatherAttribution = "Israel Meteorological Service"

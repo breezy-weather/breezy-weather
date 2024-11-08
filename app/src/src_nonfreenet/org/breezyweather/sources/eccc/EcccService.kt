@@ -21,6 +21,7 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
@@ -35,12 +36,27 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class EcccService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
 
     override val id = "eccc"
-    override val name = "Environment and Climate Change Canada"
-    override val privacyPolicyUrl = "https://app.weather.gc.ca/privacy-en.html"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("fr") -> "Environnement et Changement Climatique Canada"
+                else -> "Environment and Climate Change Canada"
+            }
+        }
+    }
+    override val privacyPolicyUrl by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("fr") -> "https://app.weather.gc.ca/privacy-fr.html"
+                else -> "https://app.weather.gc.ca/privacy-en.html"
+            }
+        }
+    }
 
     override val color = Color.rgb(255, 0, 0)
     override val weatherAttribution = "Environment and Climate Change Canada (Environment and Climate Change Canada Data Servers End-use Licence)"

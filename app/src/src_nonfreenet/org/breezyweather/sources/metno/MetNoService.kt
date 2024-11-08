@@ -21,8 +21,10 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
@@ -41,12 +43,27 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class MetNoService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"
-    override val name = "MET Norway"
-    override val privacyPolicyUrl = "https://www.met.no/en/About-us/privacy"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("no") -> "Meteorologisk institutt"
+                else -> "MET Norway"
+            }
+        }
+    }
+    override val privacyPolicyUrl by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("no") -> "https://www.met.no/om-oss/personvern"
+                else -> "https://www.met.no/en/About-us/privacy"
+            }
+        }
+    }
 
     override val color = Color.rgb(11, 69, 94)
     override val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"

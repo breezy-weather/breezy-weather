@@ -36,6 +36,8 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -61,8 +63,22 @@ class CwaService @Inject constructor(
     ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "cwa"
-    override val name = "中央氣象署"
-    override val privacyPolicyUrl = "https://www.cwa.gov.tw/V8/E/private.html"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "中央氣象署"
+                else -> "Central Weather Administration (CWA)"
+            }
+        }
+    }
+    override val privacyPolicyUrl by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "https://www.cwa.gov.tw/V8/C/private.html"
+                else -> "https://www.cwa.gov.tw/V8/E/private.html"
+            }
+        }
+    }
 
     // Color of CWA's logo
     // Source: https://www.cwa.gov.tw/V8/assets/img/logoBlue.svg
