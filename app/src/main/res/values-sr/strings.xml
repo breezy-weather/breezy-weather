@@ -698,4 +698,11 @@
     <string name="settings_unavailable_no_animations">Недоступно, прво омогућите анимације у Android подешавањима</string>
     <string name="current_weather">Тренутно време</string>
     <string name="weather_current_data_by">Тренутни подаци о времену од %s</string>
+    <string name="common_weather_text_mist">Магла</string>
+    <string name="common_weather_text_dry">Суво</string>
+    <string name="common_weather_text_humid">Влажно</string>
+    <string name="common_weather_text_hot">Вруће</string>
+    <string name="common_weather_text_cool">Прохладно</string>
+    <string name="common_weather_text_cold">Хладно</string>
+    <string name="common_weather_text_warm">Топло</string>
 </resources>
