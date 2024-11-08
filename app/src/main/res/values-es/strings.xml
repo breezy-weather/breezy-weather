@@ -702,4 +702,11 @@
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
     <string name="current_weather">Clima actual</string>
     <string name="weather_current_data_by">Información meteorológica actual por %s</string>
+    <string name="common_weather_text_dry">Seco</string>
+    <string name="common_weather_text_humid">Húmedo</string>
+    <string name="common_weather_text_hot">Caliente</string>
+    <string name="common_weather_text_warm">Cálido</string>
+    <string name="common_weather_text_mist">Neblina</string>
+    <string name="common_weather_text_cool">Fresco</string>
+    <string name="common_weather_text_cold">Frío</string>
 </resources>
