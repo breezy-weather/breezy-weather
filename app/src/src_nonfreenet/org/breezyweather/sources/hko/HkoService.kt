@@ -127,8 +127,11 @@ class HkoService @Inject constructor(
 
         // Several of the API endpoints output text in English and Traditional Chinese,
         // while text in Simplified Chinese are at an endpoint under different path.
-        val path = if (languageCode.startsWith("zh") &&
-            !equals("zh-tw") && !equals("zh-hk") && !equals("zh-mo")) {
+        val path = if (languageCode.startsWith("zh")
+            && languageCode != "zh-tw"
+            && languageCode != "zh-hk"
+            && languageCode != "zh-mo"
+        ) {
             HKO_SIMPLIFIED_CHINESE_PATH
         } else ""
 
