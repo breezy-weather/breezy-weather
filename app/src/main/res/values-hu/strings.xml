@@ -698,4 +698,11 @@
     <string name="settings_unavailable_no_animations">Nem érhető el, először engedélyezze az animációkat az Android beállításaiban</string>
     <string name="current_weather">Jelenlegi időjárás</string>
     <string name="weather_current_data_by">A jelenlegi időjárás adatainak forrása: %s</string>
+    <string name="common_weather_text_mist">Fátyolköd</string>
+    <string name="common_weather_text_humid">Pára</string>
+    <string name="common_weather_text_hot">Forró</string>
+    <string name="common_weather_text_warm">Meleg</string>
+    <string name="common_weather_text_dry">Száraz</string>
+    <string name="common_weather_text_cool">Hűvös</string>
+    <string name="common_weather_text_cold">Hideg</string>
 </resources>
