@@ -18,7 +18,6 @@ package org.breezyweather.sources.hko
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
@@ -51,6 +50,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.collections.set
 
 fun convert(
     context: Context,
@@ -188,14 +188,12 @@ private fun getDailyForecast(
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
 
-    val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
-    dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
-    val dateRegex = Regex("""^\d{4}-\d{2}-\d{2}$""")
-    val timeRegex = Regex("""^\d{2}:\d{2}$""")
-    val iconRegex = Regex("""^pic\d{2}\.png$""")
-    val oneJsonDailyWeather = mutableMapOf<String, Int>()
+    val sunMap = getAstroMap(listOf(sun1, sun2))
+    val moonMap = getAstroMap(listOf(moon1, moon2))
 
     // City-wide forecast in case the grid forecast fails to return forecast weather conditions
+    val iconRegex = Regex("""^pic\d{2}\.png$""")
+    val oneJsonDailyWeather = mutableMapOf<String, Int>()
     oneJson.F9D?.WeatherForecast?.forEach {
         if (it.ForecastDate !== null && it.ForecastIcon !== null && iconRegex.matches(it.ForecastIcon))
             oneJsonDailyWeather[it.ForecastDate] = it.ForecastIcon.substring(3, 5).toInt()
@@ -204,50 +202,6 @@ private fun getDailyForecast(
     val dailyList = mutableListOf<Daily>()
     var daytimeWeather: Int? = null
     var nightTimeWeather: Int? = null
-
-    val sunMap = mutableMapOf<String, Astro>()
-    val moonMap = mutableMapOf<String, Astro>()
-    var key: String
-    var value: Astro
-
-    listOf(sun1, sun2).forEach { sun ->
-        sun.data?.forEach {
-            if (it.size == 4) {
-                if (dateRegex.matches(it[0])) {
-                    key = it[0].replace("-", "")
-                    value = Astro(
-                        riseDate = if (timeRegex.matches(it[1])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[1])
-                        } else null,
-                        setDate = if (timeRegex.matches(it[3])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[3])
-                        } else null
-                    )
-                    sunMap[key] = value
-                }
-            }
-        }
-    }
-
-    // TODO: Create a function to remove redundancy with above
-    listOf(moon1, moon2).forEach { moon ->
-        moon.data?.forEach {
-            if (it.size == 4) {
-                if (dateRegex.matches(it[0])) {
-                    key = it[0].replace("-", "")
-                    value = Astro(
-                        riseDate = if (timeRegex.matches(it[1])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[1])
-                        } else null,
-                        setDate = if (timeRegex.matches(it[3])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[3])
-                        } else null
-                    )
-                    moonMap[key] = value
-                }
-            }
-        }
-    }
 
     dailyForecast?.forEach {
         daytimeWeather = it.ForecastDailyWeather
@@ -812,4 +766,36 @@ private fun getAlertColor(
         "WTMW" -> Color.rgb(0, 124, 188)
         else -> Alert.colorFromSeverity(severity)
     }
+}
+
+private fun getAstroMap(
+    astro: List<HkoAstroResult>
+): MutableMap<String, Astro> {
+    val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
+    dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
+    val dateRegex = Regex("""^\d{4}-\d{2}-\d{2}$""")
+    val timeRegex = Regex("""^\d{2}:\d{2}$""")
+    var key: String
+    var value: Astro
+
+    val astroMap = mutableMapOf<String, Astro>()
+    astro.forEach { a ->
+        a.data?.forEach {
+            if (it.size == 4) {
+                if (dateRegex.matches(it[0])) {
+                    key = it[0].replace("-", "")
+                    value = Astro(
+                        riseDate = if (timeRegex.matches(it[1])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[1])
+                        } else null,
+                        setDate = if (timeRegex.matches(it[3])) {
+                            dateTimeFormatter.parse(it[0] + " " + it[3])
+                        } else null
+                    )
+                    astroMap[key] = value
+                }
+            }
+        }
+    }
+    return astroMap
 }
