@@ -123,8 +123,9 @@ class AboutActivity : GeoActivity() {
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", github = "papjul"),
         ContributorItem("WangDaYeeeeee", github = "WangDaYeeeeee", contribution = R.string.about_contribution_WangDaYeeeeee),
-        ContributorItem("Cod3d.", github = "Cod3dDOT"),
         ContributorItem("min7-i", github = "min7-i"),
+        ContributorItem("chunshek", github = "chunshek"),
+        ContributorItem("Cod3d.", github = "Cod3dDOT"),
         ContributorItem("ecawthorne", github = "ecawthorne"),
         ContributorItem("Suyash Gupta", github = "suyashgupta25"),
         ContributorItem("Romain Théry", github = "rthery"),
@@ -133,7 +134,6 @@ class AboutActivity : GeoActivity() {
         ContributorItem("Mark Bestavros", github = "mbestavros"),
         ContributorItem("Coelacanthus", github = "CoelacanthusHex"),
         ContributorItem("jayyuz", github = "jayyuz"),
-        ContributorItem("chunshek", github = "chunshek"),
         ContributorItem("ecawthorne", github = "ecawthorne"),
         ContributorItem("JiunnTarn", github = "JiunnTarn"),
         ContributorItem("mags0ft", github = "mags0ft"),

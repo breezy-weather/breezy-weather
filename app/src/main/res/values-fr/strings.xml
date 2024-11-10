@@ -750,7 +750,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Averses de neige mouillée</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Averses de neige mouillée légères</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Averses de neige mouillée fortes</string>
-    <string name="common_weather_text_mist">Brumeux</string>
+    <string name="common_weather_text_mist">Brume</string>
     <string name="common_weather_text_dry">Sec</string>
     <string name="common_weather_text_humid">Humide</string>
     <string name="common_weather_text_hot">Chaud</string>
