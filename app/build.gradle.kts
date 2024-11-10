@@ -70,6 +70,7 @@ android {
         it.buildConfigField("String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\"")
         it.buildConfigField("String", "ATMO_AURA_KEY", "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\"")
         it.buildConfigField("String", "BAIDU_IP_LOCATION_AK", "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\"")
+        it.buildConfigField("String", "BMKG_KEY", "\"${properties.getProperty("breezy.bmkg.key") ?: ""}\"")
         it.buildConfigField("String", "CWA_KEY", "\"${properties.getProperty("breezy.cwa.key") ?: ""}\"")
         it.buildConfigField("String", "GEO_NAMES_KEY", "\"${properties.getProperty("breezy.geonames.key") ?: ""}\"")
         it.buildConfigField("String", "HERE_KEY", "\"${properties.getProperty("breezy.here.key") ?: ""}\"")

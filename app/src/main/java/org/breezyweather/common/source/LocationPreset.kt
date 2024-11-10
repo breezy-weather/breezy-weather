@@ -65,6 +65,7 @@ enum class LocationPreset(
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     CHINA("china"),
     HONG_KONG("hko"),
+    INDONESIA("bmkg"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
     // Don’t add cwa for TAIWAN as it is a rate-limited source
 
@@ -90,6 +91,7 @@ enum class LocationPreset(
                     // Asia
                     "CN" -> CHINA
                     "HK" -> HONG_KONG
+                    "ID" -> INDONESIA
                     "IL", "PS" -> ISRAEL
 
                     else -> DEFAULT
