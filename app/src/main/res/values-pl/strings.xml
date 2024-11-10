@@ -703,4 +703,5 @@
     <string name="settings_unavailable_no_animations">Niedostępne. Najpierw włącz animacje w ustawieniach Androida.</string>
     <string name="current_weather">Aktualna pogoda</string>
     <string name="weather_current_data_by">Aktualne dane pogodowe dostarczone przez %s</string>
+    <string name="common_weather_text_mist">Mgła</string>
 </resources>
