@@ -33,6 +33,7 @@ interface MetOfficeApi {
         @Header("apikey") apikey: String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
+        @Query("includeLocationName") includeLocationName: Boolean = false
     ): Observable<MetOfficeForecast<MetOfficeHourly>>
 
     @GET("point/daily?dataSource=BD1")
@@ -40,5 +41,6 @@ interface MetOfficeApi {
         @Header("apikey") apikey: String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
+        @Query("includeLocationName") includeLocationName: Boolean = false
     ): Observable<MetOfficeForecast<MetOfficeDaily>>
 }

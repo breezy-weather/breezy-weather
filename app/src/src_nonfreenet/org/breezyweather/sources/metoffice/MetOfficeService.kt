@@ -30,6 +30,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
@@ -39,7 +40,7 @@ import javax.inject.Named
 class MetOfficeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, ConfigurableSource, ReverseGeocodingSource {
 
     override val id = "metoffice"
     override val name = "Met Office"
@@ -72,6 +73,25 @@ class MetOfficeService @Inject constructor(
         ) { hourly, daily -> convert(hourly, daily) }
     }
 
+    override fun requestReverseGeocodingLocation(
+        context: Context,
+        location: Location
+    ): Observable<List<Location>> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+
+        val apiKey = getApiKeyOrDefault()
+
+        return mApi.getHourlyForecast(apiKey, location.latitude, location.longitude, true).map {
+            listOf(Location(
+                latitude = location.latitude,
+                longitude = location.longitude,
+                district = it.features[0].properties.location?.name,
+                weatherSource = "metoffice"
+            ))
+        }
+    }
 
     // CONFIG
     private val config = SourceConfigStore(context, id)
@@ -93,7 +113,7 @@ class MetOfficeService @Inject constructor(
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             EditTextPreference(
-                titleId = R.string.settings_weather_source_pirate_weather_api_key,
+                titleId = R.string.settings_weather_source_met_office_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
                         c.getString(R.string.settings_source_default_value)
