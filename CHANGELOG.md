@@ -19,11 +19,12 @@
 - Fix hourly tabs disappearing sometimes (@ccyybn)
 
 **Weather sources**
+- [BMKG] Added as main and secondary current/alert/air quality source for Indonesia (@chunshek)
 - [Hong Kong Observatory] Added as main and secondary current/alert/normals source for Hong Kong (@chunshek)
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
 - [MET Norway] Fix alerts not working when used as a secondary source
-- [CWA] Add support for daily bulletin
-- [CWA] Fix wind speed when >= 11 m/s
+- [CWA] Add support for daily bulletin (@chunshek)
+- [CWA] Fix wind speed when >= 11 m/s (@chunshek)
 - Add translation for a few source names and privacy policies
 
 
