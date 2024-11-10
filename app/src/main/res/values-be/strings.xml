@@ -692,4 +692,11 @@
     <string name="settings_unavailable_no_animations">Недаступна, спачатку уключыце анімацыю ў наладах Android</string>
     <string name="weather_current_data_by">Дадзеныя аб бягучай надвор\'і предоставлны %s</string>
     <string name="current_weather">Бягучая надвор\'е</string>
+    <string name="common_weather_text_dry">Сухі</string>
+    <string name="common_weather_text_warm">Цяпло</string>
+    <string name="common_weather_text_cool">Прахалодна</string>
+    <string name="common_weather_text_cold">Холадна</string>
+    <string name="common_weather_text_humid">Вільготны</string>
+    <string name="common_weather_text_mist">Імгла</string>
+    <string name="common_weather_text_hot">Горача</string>
 </resources>
