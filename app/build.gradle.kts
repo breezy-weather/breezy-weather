@@ -270,8 +270,15 @@ tasks {
         include("**/*")
     }
 
+    // Duplicating Indonesian string assets due to some locale code issues on different devices
+    val copyIndonesianStrings by registering(Copy::class) {
+        from("./src/main/res/values-id")
+        into("./src/main/res/values-in")
+        include("**/*")
+    }
+
     preBuild {
-        dependsOn(copyHebrewStrings, localesConfigTask)
+        dependsOn(copyHebrewStrings, copyIndonesianStrings, localesConfigTask)
     }
 }
 
