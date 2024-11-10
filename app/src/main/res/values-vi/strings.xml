@@ -680,7 +680,7 @@
     <string name="settings_unavailable_no_animations">Không khả dụng, trước tiên hãy bật hình ảnh động trong thiết đặt Android</string>
     <string name="notification_channel_app_updates">Cập nhật ứng dụng</string>
     <string name="weather_current_data_by">Dữ liệu thời tiết hiện tại theo %s</string>
-    <string name="meteoam_weather_text_smoke">Khói</string>
+    <string name="common_weather_text_smoke">Khói</string>
     <string name="meteoam_weather_text_tornado_watersprout">Lốc xoáy hoặc vòi rồng</string>
     <string name="settings_global">Thiết đặt toàn bộ</string>
     <string name="notification_app_update_available">Đã có phiên bản mới!</string>

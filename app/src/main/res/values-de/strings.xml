@@ -687,7 +687,7 @@
     <string name="notification_channel_app_updates">App-Updates</string>
     <string name="action_download">Herunterladen</string>
     <string name="common_weather_text_sand_storm">Sandsturm</string>
-    <string name="meteoam_weather_text_smoke">Rauch</string>
+    <string name="common_weather_text_smoke">Rauch</string>
     <string name="dialog_app_update_check_content">Tippen Sie hier, um Benachrichtigungen über App-Updates zu aktivieren.</string>
     <string name="dialog_app_update_check_title">Aktuell bleiben</string>
     <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>

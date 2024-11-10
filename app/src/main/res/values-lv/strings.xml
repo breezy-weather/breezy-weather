@@ -687,7 +687,7 @@
     <string name="about_check_for_app_updates">Pārbaudīt, vai ir atjauninājumu</string>
     <string name="about_no_new_updates">Nav jaunu atjauninājumu</string>
     <string name="common_weather_text_sand_storm">Smilšu vētra</string>
-    <string name="meteoam_weather_text_smoke">Dūmi</string>
+    <string name="common_weather_text_smoke">Dūmi</string>
     <string name="meteoam_weather_text_tornado_watersprout">Virpuļvētra vai smerčs</string>
     <string name="settings_unavailable_no_animations">Nav pieejamas, vispirms jāiespējo animācijas Android iestatījumos</string>
     <string name="current_weather">Pašreizējie laikapstākļi</string>

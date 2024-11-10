@@ -688,7 +688,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷暴伴有小冰雹</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷暴伴有大冰雹</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
-    <string name="meteoam_weather_text_smoke">濃煙</string>
+    <string name="common_weather_text_smoke">濃煙</string>
     <string name="metno_weather_text_andthunder">%s伴有閃電</string>
     <string name="common_weather_text_mist">薄霧</string>
     <string name="common_weather_text_dry">乾燥</string>

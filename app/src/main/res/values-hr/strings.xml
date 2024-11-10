@@ -678,7 +678,7 @@
     <string name="notification_channel_app_updates">Ažuriranje aplikacije</string>
     <string name="about_check_for_app_updates">Traži ažuriranja aplikacije</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado ili morski vrtlog</string>
-    <string name="meteoam_weather_text_smoke">Dim</string>
+    <string name="common_weather_text_smoke">Dim</string>
     <string name="settings_notifications_app_updates_check">Obavijesti o aktualiziranjima aplikacije</string>
     <string name="notification_app_update_available">Dostupna je nova verzija!</string>
     <string name="about_no_new_updates">Nema novih ažuriranja</string>

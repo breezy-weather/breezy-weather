@@ -571,7 +571,7 @@
     <string name="common_weather_text_drizzle">Pioggerella</string>
     <string name="common_weather_text_drizzle_moderate">Pioggerella moderata</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tromba d’aria o marina</string>
-    <string name="meteoam_weather_text_smoke">Fumo</string>
+    <string name="common_weather_text_smoke">Fumo</string>
     <string name="metno_weather_text_andthunder">%s e tuoni</string>
     <string name="settings_background_updates_worker_info_summary">Ultima esecuzione: %s</string>
     <string name="notification_update_error">%d aggiornamento/i fallito/i</string>

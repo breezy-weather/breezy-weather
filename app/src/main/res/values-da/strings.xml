@@ -686,7 +686,7 @@
     <string name="about_check_for_app_updates">Se efter appopdateringer</string>
     <string name="common_weather_text_sand_storm">Sandstorme</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado eller vandspir</string>
-    <string name="meteoam_weather_text_smoke">Røg</string>
+    <string name="common_weather_text_smoke">Røg</string>
     <string name="dialog_app_update_check_title">Holde sig opdateret</string>
     <string name="dialog_app_update_check_content">Tryk her for at aktivere meddelelser om appopdateringer.</string>
     <string name="settings_notifications_app_updates_check">Meddelelser om appopdateringer</string>

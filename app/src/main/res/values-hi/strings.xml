@@ -684,7 +684,7 @@
     <string name="settings_unavailable_no_animations">अनुपलब्ध, पहले एंड्रॉइड सेटिंग में एनिमेशन सक्षम करें</string>
     <string name="meteoam_weather_text_tornado_watersprout">बवंडर या जलस्तंभ</string>
     <string name="common_weather_text_sand_storm">रेतीला तूफ़ान</string>
-    <string name="meteoam_weather_text_smoke">धुआँ</string>
+    <string name="common_weather_text_smoke">धुआँ</string>
     <string name="dialog_app_update_check_title">नवीनतम जानकारी रखें</string>
     <string name="settings_notifications_app_updates_check">ऐप अपडेट की सूचनाएं</string>
     <string name="notification_app_update_available">नया संस्करण उपलब्ध है!</string>

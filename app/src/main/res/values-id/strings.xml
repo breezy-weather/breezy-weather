@@ -707,7 +707,7 @@
     <string name="about_check_for_app_updates">Periksa pembaruan aplikasi</string>
     <string name="about_no_new_updates">Tidak ada pembaruan aplikasi tersedia</string>
     <string name="meteoam_weather_text_tornado_watersprout">Angin topan atau puting beliung</string>
-    <string name="meteoam_weather_text_smoke">Asap</string>
+    <string name="common_weather_text_smoke">Asap</string>
     <string name="settings_unavailable_no_animations">Tidak tersedia. Mohon nyalakan animasi pada setelan Android terlebih dahulu</string>
     <string name="current_weather">Cuaca saat ini</string>
     <string name="weather_current_data_by">Data cuaca saat ini oleh %s</string>

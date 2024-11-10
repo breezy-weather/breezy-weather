@@ -694,7 +694,7 @@
     <string name="dialog_app_update_check_content">Додирните овде да бисте омогућили обавештења о ажурирањима апликације.</string>
     <string name="settings_notifications_app_updates_check">Обавештења о ажурирањима апликације</string>
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо или излив воде</string>
-    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="common_weather_text_smoke">Дим</string>
     <string name="settings_unavailable_no_animations">Недоступно, прво омогућите анимације у Android подешавањима</string>
     <string name="current_weather">Тренутно време</string>
     <string name="weather_current_data_by">Тренутни подаци о времену од %s</string>

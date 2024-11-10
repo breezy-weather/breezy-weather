@@ -693,7 +693,7 @@
     <string name="settings_unavailable_no_animations">Kullanılamıyor, önce Android ayarlarında animasyonları etkinleştirin</string>
     <string name="common_weather_text_sand_storm">Kum fırtınası</string>
     <string name="meteoam_weather_text_tornado_watersprout">Hortum veya su hortumu</string>
-    <string name="meteoam_weather_text_smoke">Duman</string>
+    <string name="common_weather_text_smoke">Duman</string>
     <string name="dialog_app_update_check_title">Güncel kalın</string>
     <string name="dialog_app_update_check_content">Uygulama güncellemeleriyle ilgili bildirimleri etkinleştirmek için buraya dokunun.</string>
 </resources>

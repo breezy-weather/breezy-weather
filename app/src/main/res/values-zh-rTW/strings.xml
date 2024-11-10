@@ -696,7 +696,7 @@
     <string name="settings_notifications_app_updates_check">應用程式更新通知</string>
     <string name="common_weather_text_sand_storm">沙暴</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
-    <string name="meteoam_weather_text_smoke">煙霧</string>
+    <string name="common_weather_text_smoke">煙霧</string>
     <string name="settings_unavailable_no_animations">無法使用，請先在 Android 設定中啟用動畫</string>
     <string name="current_weather">目前天氣</string>
     <string name="weather_current_data_by">目前天氣資料由 %s 提供</string>

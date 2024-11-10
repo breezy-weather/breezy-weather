@@ -688,7 +688,7 @@
     <string name="notification_channel_app_updates">Актуализации на приложението</string>
     <string name="about_no_new_updates">Няма нови версии</string>
     <string name="common_weather_text_sand_storm">Пясъчна буря</string>
-    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="common_weather_text_smoke">Дим</string>
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо или воден циклон</string>
     <string name="dialog_app_update_check_content">Докоснете тук, за да активирате известия за актуализации на приложението.</string>
     <string name="dialog_app_update_check_title">Бъдете в крак с новостите</string>
