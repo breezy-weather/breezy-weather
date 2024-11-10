@@ -29,7 +29,7 @@ import java.util.Locale
  * - Air quality: national weather source or Open-Meteo
  * - Pollen: Open-Meteo
  * - Minutely: national weather source or Open-Meteo
- * - Alerts: national weather source or AccuWeather (or WMO if Accu is broken, but should be avoided as it is a very slow source)
+ * - Alerts: national weather source or AccuWeather (or WMO if Accu is broken, but should be avoided as it may not be reliable in every country)
  * - Normals: national weather source or AccuWeather
  */
 enum class LocationPreset(
@@ -65,7 +65,7 @@ enum class LocationPreset(
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     CHINA("china"),
     HONG_KONG("hko"),
-    INDONESIA("bmkg"),
+    INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
     // Don’t add cwa for TAIWAN as it is a rate-limited source
 

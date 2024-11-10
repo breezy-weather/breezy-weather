@@ -41,6 +41,7 @@ jobs:
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
           echo "breezy.baiduip.key=$BAIDU_IP_LOCATION_AK" >> local.properties
+          echo "breezy.bmkg.key=$BMKG_KEY" >> local.properties
           echo "breezy.cwa.key=$CWA_KEY" >> local.properties
           echo "breezy.geonames.key=$GEO_NAMES_KEY" >> local.properties
           echo "breezy.mf.jwtKey=$MF_WSFT_JWT_KEY" >> local.properties
@@ -50,6 +51,7 @@ jobs:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
           ATMO_AURA_KEY: ${{ secrets.ATMO_AURA_KEY }}
           BAIDU_IP_LOCATION_AK: ${{ secrets.BAIDU_IP_LOCATION_AK }}
+          BMKG_KEY: ${{ secrets.BMKG_KEY }}
           CWA_KEY: ${{ secrets.CWA_KEY }}
           GEO_NAMES_KEY: ${{ secrets.GEO_NAMES_KEY }}
           MF_WSFT_JWT_KEY: ${{ secrets.MF_WSFT_JWT_KEY }}

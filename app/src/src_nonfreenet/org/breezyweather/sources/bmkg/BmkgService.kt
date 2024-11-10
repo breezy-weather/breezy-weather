@@ -96,9 +96,6 @@ class BmkgService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val headers = mapOf<String, String>(
-            "X-API-KEY" to apiKey
-        )
 
         val forecast = mApi.getForecast(
             lat = location.latitude,
@@ -126,7 +123,7 @@ class BmkgService @Inject constructor(
 
         val warning = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getWarning(
-                headers = headers,
+                apiKey = apiKey,
                 lat = location.latitude,
                 lon = location.longitude,
             ).onErrorResumeNext {
@@ -146,7 +143,7 @@ class BmkgService @Inject constructor(
             ibf.add(
                 if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     mApi.getIbf(
-                        headers = headers,
+                        apiKey = apiKey,
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day,
@@ -224,9 +221,6 @@ class BmkgService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
-        val headers = mapOf<String, String>(
-            "X-API-KEY" to apiKey
-        )
 
         val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
@@ -245,7 +239,7 @@ class BmkgService @Inject constructor(
 
         val warning = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getWarning(
-                headers = headers,
+                apiKey = apiKey,
                 lat = location.latitude,
                 lon = location.longitude,
             ).onErrorResumeNext {
@@ -265,7 +259,7 @@ class BmkgService @Inject constructor(
             ibf.add(
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     mApi.getIbf(
-                        headers = headers,
+                        apiKey = apiKey,
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day,

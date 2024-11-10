@@ -132,7 +132,7 @@ private fun getCurrent(
             temperature = currentResult.data?.cuaca?.t
         ),
         wind = Wind(
-            degree = currentResult.data?.cuaca?.wd_deg,
+            degree = currentResult.data?.cuaca?.wdDeg,
             speed = currentResult.data?.cuaca?.ws?.div(3.6) // convert km/h to m/s
         ),
         airQuality = getAirQuality(location, pm25Result),
@@ -153,12 +153,14 @@ private fun getDailyForecast(
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
     val dailyList = mutableListOf<Daily>()
-    hourlyListDates.forEach {
-        dailyList.add(
-            Daily(
-                date = formatter.parse(it)!!
+    hourlyListDates.forEachIndexed { i, date ->
+        if (i < hourlyListDates.size - 1) { // Don't store last index to avoid incomplete day
+            dailyList.add(
+                Daily(
+                    date = formatter.parse(date)!!
+                )
             )
-        )
+        }
     }
     return dailyList
 }
@@ -168,8 +170,8 @@ private fun getHourlyForecast(
     forecastResult: BmkgForecastResult
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
-    forecastResult.data?.forEach {
-        it.cuaca?.forEach { cuaca ->
+    forecastResult.data?.forEach { data ->
+        data.cuaca?.forEach { cuaca ->
             cuaca.forEach {
                 if (it.datetime != null)
                 hourlyList.add(
@@ -184,7 +186,7 @@ private fun getHourlyForecast(
                             total = it.tp
                         ),
                         wind = Wind(
-                            degree = it.wd_deg,
+                            degree = it.wdDeg,
                             speed = it.ws?.div(3.6) // convert km/h to m/s
                         ),
                         relativeHumidity = it.hu,
@@ -215,9 +217,9 @@ private fun getAlertList(
     warningResult.data?.today?.description?.let {
         alertList.add(
             Alert(
-                alertId = it.ID_Kode,
-                startDate = if (it.date_start !== null) {
-                    formatter.parse(it.date_start)
+                alertId = it.idKode,
+                startDate = if (it.dateStart !== null) {
+                    formatter.parse(it.dateStart)
                 } else null,
                 endDate = if (it.expired !== null) {
                     formatter.parse(it.expired)
@@ -231,8 +233,8 @@ private fun getAlertList(
     }
 
     // Impact Based Forecast
-    listOf(ibf1Result, ibf2Result, ibf3Result).forEach {
-        it.data?.forEach {
+    listOf(ibf1Result, ibf2Result, ibf3Result).forEach { item ->
+        item.data?.forEach {
             // IBFs are issued in 10 categories:
             // • 1: minor impact, medium likelihood
             // • 2: minor impact, high likelihood
@@ -257,14 +259,15 @@ private fun getAlertList(
             // When BMKG starts issuing IBFs for events other than "heavy rain", we'll have to adjust.
             // Currently a proprietary code "in" is used for Indonesian in Breezy Weather.
             // We are future-proofing this with "id" which is the actual ISO 639-1 code.
-            val headline = if (context.currentLocale.code.startsWith("in") || context.currentLocale.code.startsWith("id")) {
+            val headline = if (context.currentLocale.code.startsWith("in") ||
+                context.currentLocale.code.startsWith("id")) {
                 "Hujan Lebat (kategory ${it.category})"
             } else "Heavy Rain (category ${it.category})"
 
             alertList.add(
                 Alert(
                     alertId = it.id,
-                    startDate = it.valid_for,
+                    startDate = it.validFor,
                     headline = headline,
                     description = getWarningText(context, it.effect),
                     instruction = getWarningText(context, it.response?.public),
@@ -306,17 +309,18 @@ private fun getWarningText(
     context: Context,
     messages: List<BmkgIbfMessage>?
 ): String {
-    var text: String = ""
+    var text = ""
     messages?.forEach {
         // Currently a proprietary code "in" is used for Indonesian in Breezy Weather.
         // We are future-proofing this with "id" which is the actual ISO 639-1 code.
-        if (context.currentLocale.code.startsWith("in") || context.currentLocale.code.startsWith("id")) {
+        if (context.currentLocale.code.startsWith("in") ||
+            context.currentLocale.code.startsWith("id")) {
             if (!it.id.isNullOrEmpty()) {
-                text = text + "• " + it.id.trim() + "\n"
+                text += "• ${it.id.trim()}\n"
             }
         } else {
             if (!it.en.isNullOrEmpty()) {
-                text = text + "• " + it.en.trim() + "\n"
+                text += "• ${it.en.trim()}\n"
             }
         }
     }

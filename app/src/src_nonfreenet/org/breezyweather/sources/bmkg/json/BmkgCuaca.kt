@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.bmkg.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
@@ -27,7 +28,7 @@ data class BmkgCuaca (
     val tcc: Double?,
     val tp: Double?,
     val weather: Int?,
-    val wd_deg: Double?,
+    @SerialName("wd_deg") val wdDeg: Double?,
     val ws: Double?,
     val hu: Double?,
     val vs: Double?

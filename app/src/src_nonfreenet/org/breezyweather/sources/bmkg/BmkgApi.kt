@@ -23,7 +23,7 @@ import org.breezyweather.sources.bmkg.json.BmkgIbfResult
 import org.breezyweather.sources.bmkg.json.BmkgLocationResult
 import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import retrofit2.http.GET
-import retrofit2.http.HeaderMap
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface BmkgApi {
@@ -47,14 +47,14 @@ interface BmkgApi {
 
     @GET("api/v1/public/weather/warning")
     fun getWarning(
-        @HeaderMap headers: Map<String, String>,
+        @Header("X-API-KEY") apiKey: String,
         @Query("lat") lat: Double,
         @Query("long") lon: Double,
     ): Observable<BmkgWarningResult>
 
     @GET("api/v1/public/weather/warning/ibf")
     fun getIbf(
-        @HeaderMap headers: Map<String, String>,
+        @Header("X-API-KEY") apiKey: String,
         @Query("lat") lat: Double,
         @Query("long") lon: Double,
         @Query("day") day: Int,
