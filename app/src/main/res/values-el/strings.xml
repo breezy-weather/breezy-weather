@@ -697,4 +697,13 @@
     <string name="dialog_app_update_check_title">Μείνε ενημερωμένος</string>
     <string name="dialog_app_update_check_content">Πάτα εδώ για να ενεργοποιήσεις ειδοποιήσεις περί ενημερώσεων εφαρμογής.</string>
     <string name="settings_unavailable_no_animations">Μη διαθέσιμη, ενεργοποίησε τα εφέ κίνησης στις ρυθμίσεις του Android πρώτα</string>
+    <string name="common_weather_text_mist">Ομίχλη</string>
+    <string name="common_weather_text_dry">Ξηρός</string>
+    <string name="common_weather_text_humid">Υγρός</string>
+    <string name="common_weather_text_hot">Καυτός</string>
+    <string name="common_weather_text_warm">Ζεστός</string>
+    <string name="common_weather_text_cold">Ψυχρός</string>
+    <string name="common_weather_text_cool">Κρύος</string>
+    <string name="current_weather">Τρέχων καιρός</string>
+    <string name="weather_current_data_by">Τρέχοντα δεδομένα καιρού από %s</string>
 </resources>
