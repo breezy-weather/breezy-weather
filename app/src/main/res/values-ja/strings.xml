@@ -696,7 +696,7 @@
     <string name="notification_channel_app_updates">アプリのアップデート</string>
     <string name="settings_notifications_app_updates_check">アプリのアップデートの通知</string>
     <string name="common_weather_text_sand_storm">砂あらし</string>
-    <string name="meteoam_weather_text_smoke">煙</string>
+    <string name="common_weather_text_smoke">煙</string>
     <string name="settings_unavailable_no_animations">利用できません。最初にAndroidの設定でアニメーションを有効にしてください</string>
     <string name="meteoam_weather_text_tornado_watersprout">竜巻または水上竜巻</string>
     <string name="dialog_app_update_check_title">アップデートを通知</string>

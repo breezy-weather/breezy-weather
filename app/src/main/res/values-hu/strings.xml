@@ -692,7 +692,7 @@
     <string name="notification_channel_app_updates">Alkalmazás frissítések</string>
     <string name="common_weather_text_sand_storm">Homokvihar</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornádó vagy víztölcsér</string>
-    <string name="meteoam_weather_text_smoke">Füst</string>
+    <string name="common_weather_text_smoke">Füst</string>
     <string name="dialog_app_update_check_content">Koppintson ide az alkalmazás-frissítésekkel kapcsolatos értesítések engedélyezéséhez.</string>
     <string name="dialog_app_update_check_title">Legyen naprakész</string>
     <string name="settings_unavailable_no_animations">Nem érhető el, először engedélyezze az animációkat az Android beállításaiban</string>

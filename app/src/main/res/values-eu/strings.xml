@@ -677,7 +677,7 @@
     <string name="pollen_carpinus">Xarma</string>
     <string name="settings_weather_source_freenet_disclaimer">Denbora-iturri gehiago daude eskuragarri aplikazioaren beste betsio batzuetan. Hemen sakatu gehiago ikasteko.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Ez da pakete bateragarririk aurkitu</string>
-    <string name="meteoam_weather_text_smoke">Kea</string>
+    <string name="common_weather_text_smoke">Kea</string>
     <string name="settings_source_instance_invalid">URL-a https bat izan behar du, / batekin amaitzen dena</string>
     <string name="settings_unavailable_no_animations">Ez dago eskuragarri; gaitu animazioak Androiden lehenengo</string>
     <string name="notification_channel_app_updates">Aplikazioaren eguneratzeak</string>

@@ -705,7 +705,7 @@
     <string name="meteoam_weather_text_tornado_watersprout">Tornádo nebo vodní smršť</string>
     <string name="dialog_app_update_check_title">Udržovat aktuální</string>
     <string name="dialog_app_update_check_content">Klepněte sem pro povolení oznámení o aktualizacích aplikace.</string>
-    <string name="meteoam_weather_text_smoke">Kouř</string>
+    <string name="common_weather_text_smoke">Kouř</string>
     <string name="settings_unavailable_no_animations">Nedostupné, nejprve povolte animace v nastavení systému Android</string>
     <string name="current_weather">Aktuální počasí</string>
     <string name="weather_current_data_by">Aktuální data o počasí od %s</string>

@@ -697,7 +697,7 @@
     <string name="about_check_for_app_updates">Cerca actualitzacions</string>
     <string name="about_no_new_updates">No s’ha trobat cap actualització</string>
     <string name="common_weather_text_sand_storm">Tempesta de sorra</string>
-    <string name="meteoam_weather_text_smoke">Fum</string>
+    <string name="common_weather_text_smoke">Fum</string>
     <string name="settings_background_updates_refresh_never_warning1">En desactivar les actualitzacions en rerefons, no tornareu a rebre cap notificació d’alerta o precipitació. Els ginys no s’actualitzaran fins no obriu l’aplicació.</string>
     <string name="settings_notifications_app_updates_check">Mostra notificacions de l’aplicació</string>
     <string name="current_weather">Clima actual</string>

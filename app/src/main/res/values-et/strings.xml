@@ -689,7 +689,7 @@
     <string name="notification_app_update_available">Uus versioon saadaval!</string>
     <string name="about_check_for_app_updates">Kontrolli uuendusi</string>
     <string name="about_no_new_updates">Uuendusi pole</string>
-    <string name="meteoam_weather_text_smoke">Suits</string>
+    <string name="common_weather_text_smoke">Suits</string>
     <string name="current_weather">Praegune ilm</string>
     <string name="weather_current_data_by">Praegune ilm andmete allikas: %s</string>
 </resources>

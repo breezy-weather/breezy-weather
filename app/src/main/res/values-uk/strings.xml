@@ -686,7 +686,7 @@
     <string name="notification_channel_app_updates">Оновлення застосунку</string>
     <string name="dialog_app_update_check_title">Слідкуйте за оновленнями</string>
     <string name="dialog_app_update_check_content">Натисніть тут, щоб увімкнути сповіщення про оновлення застосунку.</string>
-    <string name="meteoam_weather_text_smoke">Дим</string>
+    <string name="common_weather_text_smoke">Дим</string>
     <string name="common_weather_text_sand_storm">Піщана буря</string>
     <string name="meteoam_weather_text_tornado_watersprout">Торнадо або водяний смерч</string>
     <string name="settings_unavailable_no_animations">Недоступно, спочатку увімкніть анімацію в налаштуваннях Android</string>

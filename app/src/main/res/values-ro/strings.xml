@@ -690,7 +690,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Comută la introducerea textului</string>
     <string name="action_download">Descarcă</string>
     <string name="settings_unavailable_no_animations">Indisponibil, activați mai întâi efectele de animații în setările Android</string>
-    <string name="meteoam_weather_text_smoke">Fum</string>
+    <string name="common_weather_text_smoke">Fum</string>
     <string name="dialog_app_update_check_title">Stai la curent</string>
     <string name="dialog_app_update_check_content">Atingeți aici pentru a activa notificările privind actualizările aplicației.</string>
     <string name="settings_notifications_app_updates_check">Notificări privind actualizările aplicației</string>

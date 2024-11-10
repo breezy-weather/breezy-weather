@@ -689,6 +689,6 @@
     <string name="notification_channel_app_updates">App updates</string>
     <string name="notification_app_update_available">Nieuwe versie beschikbaar!</string>
     <string name="common_weather_text_sand_storm">Zandstorm</string>
-    <string name="meteoam_weather_text_smoke">Rook</string>
+    <string name="common_weather_text_smoke">Rook</string>
     <string name="about_check_for_app_updates">Check voor app updates</string>
 </resources>

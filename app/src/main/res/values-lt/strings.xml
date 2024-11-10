@@ -683,7 +683,7 @@
     <string name="about_check_for_app_updates">Tikrinti, ar yra programėlės atnaujinimų</string>
     <string name="about_no_new_updates">Naujų atnaujinimų nėra</string>
     <string name="common_weather_text_sand_storm">Smėlio audra</string>
-    <string name="meteoam_weather_text_smoke">Dūmai</string>
+    <string name="common_weather_text_smoke">Dūmai</string>
     <string name="dialog_app_update_check_content">Bakstelėkite čia, kad įjungtumėte pranešimus apie programėlės atnaujinimus.</string>
     <string name="dialog_app_update_check_title">Būkite nuolat atnaujinami</string>
     <string name="notification_channel_app_updates">Programėlės atnaujinimai</string>

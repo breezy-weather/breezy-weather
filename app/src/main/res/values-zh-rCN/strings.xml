@@ -698,7 +698,7 @@
     <string name="dialog_app_update_check_title">保持最新</string>
     <string name="dialog_app_update_check_content">轻按此处启用应用更新的通知。</string>
     <string name="meteoam_weather_text_tornado_watersprout">龙卷风或海龙卷</string>
-    <string name="meteoam_weather_text_smoke">烟尘</string>
+    <string name="common_weather_text_smoke">烟尘</string>
     <string name="common_weather_text_sand_storm">沙尘暴</string>
     <string name="settings_unavailable_no_animations">不可用，请先在安卓系统设置中启用动画</string>
     <string name="weather_current_data_by">当前天气数据提供方 %s</string>

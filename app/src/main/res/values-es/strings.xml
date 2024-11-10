@@ -694,7 +694,7 @@
     <string name="action_download">Descargar</string>
     <string name="settings_notifications_app_updates_check">Notificarme actualizaciones de la aplicación</string>
     <string name="about_no_new_updates">No hay nuevas actualizaciones disponibles</string>
-    <string name="meteoam_weather_text_smoke">Humo</string>
+    <string name="common_weather_text_smoke">Humo</string>
     <string name="common_weather_text_sand_storm">Tormenta de arena</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
     <string name="dialog_app_update_check_title">Mantente al día</string>

@@ -664,7 +664,7 @@
     <string name="about_no_new_updates">Ingen nye oppdateringer tilgjengelig</string>
     <string name="notification_channel_app_updates">App oppdateringer</string>
     <string name="common_weather_text_sand_storm">Sandstorm</string>
-    <string name="meteoam_weather_text_smoke">Røyk</string>
+    <string name="common_weather_text_smoke">Røyk</string>
     <string name="pollen_ambrosia">Beiskambrosia</string>
     <string name="pollen_alnus">Or</string>
     <string name="sunshine">Solskinn</string>

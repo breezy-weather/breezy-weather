@@ -709,7 +709,7 @@
     <string name="about_no_new_updates">Neniu nova aktualigo disponebla</string>
     <string name="common_weather_text_sand_storm">Sabltempesto</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado aŭ trombo</string>
-    <string name="meteoam_weather_text_smoke">Fumo</string>
+    <string name="common_weather_text_smoke">Fumo</string>
     <string name="settings_location_access_background_summaryOn">Aktivigita. Apo povos fone aktualigi veterajn datenojn por via nuna loko.</string>
     <string name="settings_items_drag_to_sort">Frapeti por treni la listerojn, kiun vi volas ordigi</string>
     <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn aktualigojn unue</string>
