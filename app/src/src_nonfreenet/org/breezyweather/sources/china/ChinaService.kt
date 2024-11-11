@@ -21,6 +21,7 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
@@ -40,13 +41,28 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class ChinaService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
     LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "china"
-    override val name = "中国"
-    override val privacyPolicyUrl = "https://privacy.mi.com/all/zh_CN"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "中国"
+                else -> "China"
+            }
+        }
+    }
+    override val privacyPolicyUrl by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "https://privacy.mi.com/all/zh_CN"
+                else -> "https://privacy.mi.com/all/en_US"
+            }
+        }
+    }
 
     override val color = Color.rgb(255, 105, 0)
     override val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"

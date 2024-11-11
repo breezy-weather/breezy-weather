@@ -18,7 +18,9 @@ package org.breezyweather.sources
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
@@ -62,9 +64,11 @@ import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
 import org.breezyweather.sources.smhi.SmhiService
 import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
+import java.text.Collator
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
+    @ApplicationContext context: Context,
     accuService: AccuService,
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
@@ -97,54 +101,80 @@ class SourceManager @Inject constructor(
     wmoSevereWeatherService: WmoSevereWeatherService
 ) {
     // TODO: Initialize lazily
-    // The order of this list is preserved in "source chooser" dialogs
-    private val sourceList: List<Source> = listOf(
-        // Location sources
+
+    // Location sources
+    private val locationSourceList = listOf(
         androidLocationService,
         ipSbService,
-        baiduIPService,
+        baiduIPService
+    )
 
-        // Location search sources
-        geoNamesService,
+    // Location search sources
+    private val locationSearchSourceList = listOf(
+        geoNamesService
+    )
 
-        // Reverse geocoding sources
-        naturalEarthService,
+    // Reverse geocoding sources
+    private val reverseGeocodingSourceList = listOf(
+        naturalEarthService
+    )
 
-        // Weather sources
+    // Worldwide weather sources, excluding national sources with worldwide support,
+    // with the exception of MET Norway
+    private val worldwideWeatherSourceList = listOf(
         openMeteoService,
         accuService,
-        metNoService,
-        metOfficeService,
-        openWeatherService,
-        pirateWeatherService,
         hereService,
+        metNoService,
+        openWeatherService,
+        pirateWeatherService
+    )
 
-        // National sources supporting worldwide
-        mfService,
-        dmiService,
-        meteoAmService,
-
-        // National-only sources (sorted by population)
-        chinaService,
-        nwsService,
+    // Region-specific or national weather sources
+    private val nationalWeatherSourceList = listOf(
         bmkgService,
-        geoSphereAtService, // Austria and nearby
         brightSkyService,
-        ecccService,
+        chinaService,
         cwaService,
-        imsService,
-        smhiService,
+        dmiService,
+        ecccService,
+        geoSphereAtService,
         hkoService,
+        imsService,
+        meteoAmService,
         metIeService,
+        metOfficeService,
+        mfService,
+        nwsService,
+        smhiService
+    )
 
-        // Secondary weather sources
+    // Secondary weather sources
+    private val secondaryWeatherSourceList = listOf(
         wmoSevereWeatherService,
-        recosanteService,
         atmoAuraService,
+        recosanteService
+    )
 
-        // Broadcast sources
+    // Broadcast sources
+    private val broadcastSourceList = listOf(
         gadgetbridgeService
     )
+
+    // The order of this list is preserved in "source chooser" dialogs
+    private val sourceList: List<Source> = buildList {
+        addAll(locationSourceList)
+        addAll(locationSearchSourceList)
+        addAll(reverseGeocodingSourceList)
+        addAll(worldwideWeatherSourceList)
+        addAll(nationalWeatherSourceList
+            .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+                Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
+            }
+        )
+        addAll(secondaryWeatherSourceList)
+        addAll(broadcastSourceList)
+    }
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
     fun getHttpSources(): List<HttpSource> = sourceList.filterIsInstance<HttpSource>()

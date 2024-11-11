@@ -1,7 +1,7 @@
 # Version 5.3.0 (not yet released)
 
 **New features**
-- Current weather source: It is now possible to select a "current weather" source different from the main (forecast) source
+- Current weather source: It is now possible to select a “current weather” source different from the main (forecast) source
 - Added support for more administration levels (province, regions, county, departments, etc) on locations. Existing manually added locations will need to be re-added
 - Added night sky background for splash screen when using the app in dark mode (@min7-i)
 
@@ -19,8 +19,9 @@
 - Fix hourly tabs disappearing sometimes (@ccyybn)
 
 **Weather sources**
-- [BMKG] Added as main and secondary current/alert/air quality source for Indonesia (@chunshek)
-- [Hong Kong Observatory] Added as main and secondary current/alert/normals source for Hong Kong (@chunshek)
+- [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+- [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
+- [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
 - [MET Norway] Fix alerts not working when used as a secondary source
 - [CWA] Add support for daily bulletin (@chunshek)

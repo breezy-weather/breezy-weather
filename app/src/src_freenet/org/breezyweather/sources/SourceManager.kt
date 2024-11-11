@@ -49,26 +49,51 @@ class SourceManager @Inject constructor(
     recosanteService: RecosanteService,
 ) {
     // TODO: Initialize lazily
-    // The order of this list is preserved in "source chooser" dialogs
-    private val sourceList: List<Source> = listOf(
-        // Location sources
-        androidLocationService,
 
-        // Reverse geocoding sources
-        naturalEarthService,
+    // Location sources
+    private val locationSourceList = listOf(
+        androidLocationService
+    )
 
-        // National-only sources (sorted by population)
-        brightSkyService,
+    // Reverse geocoding sources
+    private val reverseGeocodingSourceList = listOf(
+        naturalEarthService
+    )
 
-        // Weather sources
-        openMeteoService,
+    // Worldwide weather sources, excluding national sources with worldwide support
+    private val worldwideWeatherSourceList = listOf(
+        openMeteoService
+    )
 
-        // Secondary weather sources
-        recosanteService,
+    // Region-specific or national weather sources
+    private val nationalWeatherSourceList = listOf(
+        brightSkyService
+    )
 
-        // Broadcast sources
+    // Secondary weather sources
+    private val secondaryWeatherSourceList = listOf(
+        recosanteService
+    )
+
+    // Broadcast sources
+    private val broadcastSourceList = listOf(
         gadgetbridgeService
     )
+
+    // The order of this list is preserved in "source chooser" dialogs
+    private val sourceList: List<Source> = buildList {
+        addAll(locationSourceList)
+        addAll(reverseGeocodingSourceList)
+        addAll(worldwideWeatherSourceList)
+        addAll(nationalWeatherSourceList
+            // Only one source in the freenet flavor, so no need to do that atm
+            /*.sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+                Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
+            }*/
+        )
+        addAll(secondaryWeatherSourceList)
+        addAll(broadcastSourceList)
+    }
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
     fun getHttpSources(): List<HttpSource> = sourceList.filterIsInstance<HttpSource>()

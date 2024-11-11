@@ -58,7 +58,14 @@ class HkoService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "hko"
-    override val name = "HKO 香港天文台"
+    override val name by lazy {
+        with (context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "香港天文台"
+                else -> "Hong Kong Observatory"
+            }
+        }
+    }
     override val privacyPolicyUrl by lazy {
         with (context.currentLocale.code) {
             when {
