@@ -271,7 +271,7 @@
     <string name="common_weather_text_rain">Déšť</string>
     <string name="common_weather_text_snow">Sníh</string>
     <string name="weather_kind_hail">Kroupy</string>
-    <string name="common_weather_text_fog">Mhla</string>
+    <string name="common_weather_text_fog">Mlha</string>
     <string name="weather_kind_haze">Opar</string>
     <string name="weather_kind_thunder">Hřmění</string>
     <string name="weather_kind_thunderstorm">Bouřka</string>
@@ -709,4 +709,11 @@
     <string name="settings_unavailable_no_animations">Nedostupné, nejprve povolte animace v nastavení systému Android</string>
     <string name="current_weather">Aktuální počasí</string>
     <string name="weather_current_data_by">Aktuální data o počasí od %s</string>
+    <string name="common_weather_text_humid">Vlhko</string>
+    <string name="common_weather_text_hot">Horko</string>
+    <string name="common_weather_text_warm">Teplo</string>
+    <string name="common_weather_text_cool">Chladno</string>
+    <string name="common_weather_text_dry">Sucho</string>
+    <string name="common_weather_text_mist">Opar</string>
+    <string name="common_weather_text_cold">Zima</string>
 </resources>
