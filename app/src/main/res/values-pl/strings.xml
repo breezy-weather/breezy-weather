@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!--
         EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.
         PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń (“wet bulb temperature” lub “degree day temperature”) w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.

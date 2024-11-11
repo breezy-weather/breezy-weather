@@ -470,7 +470,7 @@ private fun getHourlyForecast(
         if (it.windSpeed!! == ">= 11") {
             wsMap[timeKey] = 11.0
         } else {
-            wsMap[timeKey] = it.windSpeed!!.toDoubleOrNull()
+            wsMap[timeKey] = it.windSpeed.toDoubleOrNull()
         }
     }
     hourlyResult.PoP6h?.timePeriods?.forEach {

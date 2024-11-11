@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
     <string name="alerts">Warnungen</string>

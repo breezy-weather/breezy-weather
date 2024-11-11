@@ -41,7 +41,6 @@ import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import retrofit2.Retrofit
-import java.util.Date
 import javax.inject.Inject
 import javax.inject.Named
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="short_today">Hnay</string>
     <string name="ephemeris">Mặt trời &amp; mặt trăng</string>
     <string name="pollen">Dị ứng phấn hoa</string>

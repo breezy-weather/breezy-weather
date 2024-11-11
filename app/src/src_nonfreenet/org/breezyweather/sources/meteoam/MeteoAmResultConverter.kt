@@ -43,7 +43,7 @@ fun convert(
     return location.copy(
         timeZone = timezone,
         country = reverseLocation.country,
-        countryCode = reverseLocation.country_code,
+        countryCode = reverseLocation.countryCode,
         admin2 = reverseLocation.county,
         city = reverseLocation.city
     )

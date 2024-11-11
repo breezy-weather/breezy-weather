@@ -60,14 +60,14 @@ enum class LocationPreset(
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
-    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
 
     // Asia
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     CHINA("china"),
     HONG_KONG("hko"),
     INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
+    ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
     // Don’t add cwa for TAIWAN as it is a rate-limited source
 
     companion object {
@@ -88,13 +88,13 @@ enum class LocationPreset(
                     "IT", "SM", "VA" -> ITALY
                     "NO" -> NORWAY
                     "SE" -> SWEDEN
-                    "TR" -> TURKIYE
 
                     // Asia
                     "CN" -> CHINA
                     "HK" -> HONG_KONG
                     "ID" -> INDONESIA
                     "IL", "PS" -> ISRAEL
+                    "TR" -> TURKIYE
 
                     else -> DEFAULT
                 }
