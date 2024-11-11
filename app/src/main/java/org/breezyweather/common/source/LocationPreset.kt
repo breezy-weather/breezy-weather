@@ -60,6 +60,7 @@ enum class LocationPreset(
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
+    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
 
     // Asia
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
@@ -87,6 +88,7 @@ enum class LocationPreset(
                     "IT", "SM", "VA" -> ITALY
                     "NO" -> NORWAY
                     "SE" -> SWEDEN
+                    "TR" -> TURKIYE
 
                     // Asia
                     "CN" -> CHINA
