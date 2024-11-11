@@ -151,6 +151,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ar"), "sodqe muhammad", mail = "sodqe.younes@gmail.com"),
         TranslatorItem(arrayOf("ar"), "Rex_sa", github = "rex07"),
         TranslatorItem(arrayOf("ar"), "TomatoScriptCPP", github = "TomatoScriptCPP"),
+        TranslatorItem(arrayOf("ar"), "jonnysemon", weblate = "jonnysemon"),
         TranslatorItem(arrayOf("bg"), "elgratea", weblate = "flantito"),
         TranslatorItem(arrayOf("bg"), "StoyanDimitrov", github = "StoyanDimitrov"),
         TranslatorItem(arrayOf("bg"), "srmihnev", github = "srmihnev"),
