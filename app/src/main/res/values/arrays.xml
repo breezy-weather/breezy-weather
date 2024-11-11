@@ -275,10 +275,10 @@
         <item>ECMWF AIFS 0.25°</item>
         <item>CMA GRAPES Global</item>
         <item>BOM ACCESS Global</item>
-        <item>MET Norway Nordic</item>
-        <item>GFS Seamless</item>
-        <item>GFS Global</item>
-        <item>GFS HRRR</item>
+        <item>NCEP GFS Seamless</item>
+        <item>NCEP GFS Global 0.11° / 0.25°</item>
+        <item>NCEP HRRR U.S. Conus</item>
+        <item>NCEP NBM U.S. Conus</item>
         <item>GFS GraphCast</item>
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
@@ -298,8 +298,17 @@
         <item>Météo-France AROME France HD</item>
         <item>ARPAE Seamless</item>
         <item>ARPAE COSMO 2I</item>
-        <item>ARPAE COSMO 2I RUC</item>
         <item>ARPAE COSMO 5M</item>
+        <item>MET Norway Nordic (with ECMWF) Seamless</item>
+        <item>MET Norway Nordic</item>
+        <item>KNMI (with ECMWF) Seamless</item>
+        <item>KNMI HARMONIE-AROME Europe</item>
+        <item>KNMI HARMONIE-AROME Netherlands</item>
+        <item>DMI (with ECMWF) Seamless</item>
+        <item>DMI HARMONIE-AROME Europe</item>
+        <item>UK Met Office Seamless</item>
+        <item>UK Met Office Global 10 km</item>
+        <item>UK Met Office UK 2 km</item>
     </string-array>
     <string-array name="open_meteo_weather_models_values">
         <item>best_match</item>
@@ -308,10 +317,10 @@
         <item>ecmwf_aifs025</item>
         <item>cma_grapes_global</item>
         <item>bom_access_global</item>
-        <item>metno_nordic</item>
         <item>gfs_seamless</item>
         <item>gfs_global</item>
         <item>gfs_hrrr</item>
+        <item>ncep_nbm_conus</item>
         <item>gfs_graphcast025</item>
         <item>jma_seamless</item>
         <item>jma_msm</item>
@@ -331,8 +340,17 @@
         <item>meteofrance_arome_france_hd</item>
         <item>arpae_cosmo_seamless</item>
         <item>arpae_cosmo_2i</item>
-        <item>arpae_cosmo_2i_ruc</item>
         <item>arpae_cosmo_5m</item>
+        <item>metno_seamless</item>
+        <item>metno_nordic</item>
+        <item>knmi_seamless</item>
+        <item>knmi_harmonie_arome_europe</item>
+        <item>knmi_harmonie_arome_netherlands</item>
+        <item>dmi_seamless</item>
+        <item>dmi_harmonie_arome_europe</item>
+        <item>ukmo_seamless</item>
+        <item>ukmo_global_deterministic_10km</item>
+        <item>ukmo_uk_deterministic_2km</item>
     </string-array>
 
     <!-- air quality levels -->

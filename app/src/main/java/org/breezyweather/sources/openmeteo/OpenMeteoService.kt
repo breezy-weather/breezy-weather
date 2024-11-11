@@ -511,13 +511,16 @@ class OpenMeteoService @Inject constructor(
                                 colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
                             ) { checked ->
                                 if (checked) {
-                                    model.model.incompatibleSources.forEach { incompatibleSource ->
-                                        weatherModels.indexOfFirst { it.model.id == incompatibleSource }.let {
-                                            if (it != -1) {
-                                                weatherModels[it] = weatherModels[it].copy(enabled = false)
+                                    OpenMeteoWeatherModel
+                                        .entries
+                                        .filter { id != model.model.id }
+                                        .forEach { incompatibleSource ->
+                                            weatherModels.indexOfFirst { it.model.id == incompatibleSource.id }.let {
+                                                if (it != -1) {
+                                                    weatherModels[it] = weatherModels[it].copy(enabled = false)
+                                                }
                                             }
                                         }
-                                    }
                                     weatherModels.indexOfFirst { it.model == model.model }.let {
                                         if (it != -1) {
                                             weatherModels[it] = weatherModels[it].copy(enabled = true)
