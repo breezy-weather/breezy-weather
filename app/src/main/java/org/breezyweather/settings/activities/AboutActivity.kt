@@ -135,6 +135,7 @@ class AboutActivity : GeoActivity() {
         ContributorItem("Coelacanthus", github = "CoelacanthusHex"),
         ContributorItem("jayyuz", github = "jayyuz"),
         ContributorItem("ecawthorne", github = "ecawthorne"),
+        ContributorItem("bunburya", github = "bunburya"),
         ContributorItem("JiunnTarn", github = "JiunnTarn"),
         ContributorItem("mags0ft", github = "mags0ft"),
         ContributorItem("Devy Ballard", github = "devycarol"),
