@@ -70,7 +70,7 @@ class MetOfficeService @Inject constructor(
         return Observable.zip(
             mApi.getHourlyForecast(apiKey, location.latitude, location.longitude),
             mApi.getDailyForecast(apiKey, location.latitude, location.longitude)
-        ) { hourly, daily -> convert(hourly, daily) }
+        ) { hourly, daily -> convert(hourly, daily, context) }
     }
 
     override fun requestReverseGeocodingLocation(
@@ -84,12 +84,16 @@ class MetOfficeService @Inject constructor(
         val apiKey = getApiKeyOrDefault()
 
         return mApi.getHourlyForecast(apiKey, location.latitude, location.longitude, true).map {
-            listOf(Location(
-                latitude = location.latitude,
-                longitude = location.longitude,
-                district = it.features[0].properties.location?.name,
-                weatherSource = "metoffice"
-            ))
+            buildList {
+                it.features.getOrNull(0)?.let { feature ->
+                    add(
+                        location.copy(
+                            district = feature.properties.location?.name,
+                            countryCode = "GB"
+                        )
+                    )
+                }
+            }
         }
     }
 

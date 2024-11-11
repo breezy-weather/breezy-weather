@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.metoffice
 
+import android.content.Context
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
@@ -26,6 +27,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
@@ -36,26 +38,28 @@ import org.breezyweather.sources.metoffice.json.MetOfficeHourly
  */
 fun convert(
     hourlyForecastResult: MetOfficeForecast<MetOfficeHourly>,
-    dailyForecastResult: MetOfficeForecast<MetOfficeDaily>
+    dailyForecastResult: MetOfficeForecast<MetOfficeDaily>,
+    context: Context
 ): WeatherWrapper {
-    if (hourlyForecastResult.features.isEmpty() && dailyForecastResult.features.isEmpty()) {
+    if (hourlyForecastResult.features.isEmpty() || dailyForecastResult.features.isEmpty()) {
         throw InvalidOrIncompleteDataException()
     }
 
     return WeatherWrapper(
-        hourlyForecast = getHourlyForecast(hourlyForecastResult),
-        dailyForecast = getDailyForecast(dailyForecastResult)
+        hourlyForecast = getHourlyForecast(hourlyForecastResult, context),
+        dailyForecast = getDailyForecast(dailyForecastResult, context)
     )
 }
 
 private fun getDailyForecast(
-    dailyResult: MetOfficeForecast<MetOfficeDaily>
+    dailyResult: MetOfficeForecast<MetOfficeDaily>,
+    context: Context
 ): List<Daily> {
     val feature = dailyResult.features[0] // should only be one feature for this kind of API call
     return feature.properties.timeSeries.map { result ->
-        val (dayText, dayCode) = convertWeatherCode(result.daySignificantWeatherCode)
+        val (dayText, dayCode) = convertWeatherCode(result.daySignificantWeatherCode, context)
             ?: Pair(null, null)
-        val (nightText, nightCode) = convertWeatherCode(result.nightSignificantWeatherCode)
+        val (nightText, nightCode) = convertWeatherCode(result.nightSignificantWeatherCode, context)
             ?: Pair(null, null)
         Daily(
             date = result.time,
@@ -96,11 +100,12 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: MetOfficeForecast<MetOfficeHourly>
+    hourlyResult: MetOfficeForecast<MetOfficeHourly>,
+    context: Context
 ): List<HourlyWrapper> {
     val feature = hourlyResult.features[0] // should only be one feature for this kind of API call
     return feature.properties.timeSeries.map { result ->
-        val (weatherText, weatherCode) = convertWeatherCode(result.significantWeatherCode)
+        val (weatherText, weatherCode) = convertWeatherCode(result.significantWeatherCode, context)
             ?: Pair(null, null)
         HourlyWrapper(
             date = result.time,
@@ -133,31 +138,34 @@ private fun getHourlyForecast(
     }
 }
 
-private fun convertWeatherCode(significantWeatherCode: Int?): Pair<String, WeatherCode>? {
+private fun convertWeatherCode(
+    significantWeatherCode: Int?,
+    context: Context
+): Pair<String, WeatherCode>? {
     return when (significantWeatherCode) {
         -1 -> Pair("Trace rain", WeatherCode.CLOUDY)
-        0 -> Pair("Clear night", WeatherCode.CLEAR)
-        1 -> Pair("Sunny day", WeatherCode.CLEAR)
-        2, 3 -> Pair("Partly cloudy", WeatherCode.PARTLY_CLOUDY)
-        5 -> Pair("Mist", WeatherCode.FOG)
-        6 -> Pair("Fog", WeatherCode.FOG)
-        7 -> Pair("Cloudy", WeatherCode.CLOUDY)
-        8 -> Pair("Overcast", WeatherCode.CLOUDY)
-        9, 10 -> Pair("Light rain shower", WeatherCode.RAIN)
-        11 -> Pair("Drizzle", WeatherCode.RAIN)
-        12 -> Pair("Light rain", WeatherCode.RAIN)
-        13, 14 -> Pair("Heavy rain shower", WeatherCode.RAIN)
-        15 -> Pair("Heavy rain", WeatherCode.RAIN)
-        16, 17 -> Pair("Sleet shower", WeatherCode.SLEET)
-        18 -> Pair("Sleet", WeatherCode.SLEET)
+        0 -> Pair(context.getString(R.string.common_weather_text_clear_sky), WeatherCode.CLEAR)
+        1 -> Pair(context.getString(R.string.common_weather_text_clear_sky), WeatherCode.CLEAR)
+        2, 3 -> Pair(context.getString(R.string.common_weather_text_partly_cloudy), WeatherCode.PARTLY_CLOUDY)
+        5 -> Pair(context.getString(R.string.common_weather_text_mist), WeatherCode.FOG)
+        6 -> Pair(context.getString(R.string.common_weather_text_fog), WeatherCode.FOG)
+        7 -> Pair(context.getString(R.string.common_weather_text_cloudy), WeatherCode.CLOUDY)
+        8 -> Pair(context.getString(R.string.common_weather_text_overcast), WeatherCode.CLOUDY)
+        9, 10 -> Pair(context.getString(R.string.common_weather_text_rain_showers_light), WeatherCode.RAIN)
+        11 -> Pair(context.getString(R.string.common_weather_text_drizzle), WeatherCode.RAIN)
+        12 -> Pair(context.getString(R.string.common_weather_text_rain_light), WeatherCode.RAIN)
+        13, 14 -> Pair(context.getString(R.string.common_weather_text_rain_showers_heavy), WeatherCode.RAIN)
+        15 -> Pair(context.getString(R.string.common_weather_text_rain_heavy), WeatherCode.RAIN)
+        16, 17 -> Pair(context.getString(R.string.metno_weather_text_sleetshowers), WeatherCode.SLEET)
+        18 -> Pair(context.getString(R.string.metno_weather_text_sleet), WeatherCode.SLEET)
         19, 20 -> Pair("Hail shower", WeatherCode.HAIL)
-        21 -> Pair("Hail", WeatherCode.HAIL)
-        22, 23 -> Pair("Light snow shower", WeatherCode.SNOW)
-        24 -> Pair("Light snow", WeatherCode.SNOW)
-        25, 26 -> Pair("Heavy snow shower", WeatherCode.SNOW)
-        27 -> Pair("Heavy snow", WeatherCode.SNOW)
-        28, 29 -> Pair("Thunder shower", WeatherCode.THUNDER)
-        30 -> Pair("Thunder", WeatherCode.THUNDER)
+        21 -> Pair(context.getString(R.string.weather_kind_hail), WeatherCode.HAIL)
+        22, 23 -> Pair(context.getString(R.string.common_weather_text_snow_showers_light), WeatherCode.SNOW)
+        24 -> Pair(context.getString(R.string.common_weather_text_snow_light), WeatherCode.SNOW)
+        25, 26 -> Pair(context.getString(R.string.common_weather_text_snow_showers_heavy), WeatherCode.SNOW)
+        27 -> Pair(context.getString(R.string.common_weather_text_snow_heavy), WeatherCode.SNOW)
+        28, 29 -> Pair(context.getString(R.string.weather_kind_thunderstorm), WeatherCode.THUNDERSTORM)
+        30 -> Pair(context.getString(R.string.weather_kind_thunder), WeatherCode.THUNDER)
         else -> null
     }
 }
