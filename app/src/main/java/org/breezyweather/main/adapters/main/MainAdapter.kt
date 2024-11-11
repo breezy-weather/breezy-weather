@@ -86,6 +86,12 @@ class MainAdapter(
                 ) {
                     continue
                 }
+                if (c === CardDisplay.CARD_DAILY_OVERVIEW && weather.dailyForecast.isEmpty()) {
+                    continue
+                }
+                if (c === CardDisplay.CARD_HOURLY_OVERVIEW && weather.nextHourlyForecast.isEmpty()) {
+                    continue
+                }
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }

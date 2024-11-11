@@ -142,18 +142,14 @@ class HkoService @Inject constructor(
             HKO_SIMPLIFIED_CHINESE_PATH
         } else ""
 
-        var warnings = mutableMapOf<String, HkoWarningResult>()
+        val warnings = mutableMapOf<String, HkoWarningResult>()
         var warningKey: String
         var endPoint: String
 
         val forecast = mMapsApi.getForecast(
             grid = forecastGrid,
             v = System.currentTimeMillis()
-        ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoForecastResult())
-            }
-        }
+        )
 
         // ASTRO
         // Get sun and moon data for both the current month and next month,
@@ -357,11 +353,7 @@ class HkoService @Inject constructor(
         val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 grid = currentGrid
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(HkoCurrentResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(HkoCurrentResult())
@@ -374,11 +366,7 @@ class HkoService @Inject constructor(
                 suffix = if (languageCode.startsWith("zh")) {
                     "_uc"
                 } else ""
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(HkoOneJsonResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(HkoOneJsonResult())
@@ -389,16 +377,8 @@ class HkoService @Inject constructor(
         // HKO has its own normals endpoint from all the other stations.
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             when (currentStation) {
-                "HKO" -> mApi.getHkoNormals().onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(HkoNormalsResult())
-                    }
-                }
-                else -> mApi.getNormals(currentStation).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(HkoNormalsResult())
-                    }
-                }
+                "HKO" -> mApi.getHkoNormals()
+                else -> mApi.getNormals(currentStation)
             }
         } else {
             Observable.create { emitter ->
@@ -420,19 +400,12 @@ class HkoService @Inject constructor(
                         if (HKO_WARNING_ENDPOINTS.containsKey(warningKey)) {
                             endPoint = HKO_WARNING_ENDPOINTS[warningKey]!!
                             if (it.value.Warning_Action != null && it.value.Warning_Action != "" && it.value.Warning_Action != "CANCEL") {
-                                warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
-                                    Observable.create { emitter ->
-                                        emitter.onNext(HkoWarningResult())
-                                    }
-                                }.blockingFirst()                            }
+                                warnings[endPoint] = mApi.getWarningText(path, endPoint).blockingFirst()
+                            }
                         }
                     }
                 }
                 warnings
-            }.onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(mutableMapOf())
-                }
             }
         } else {
             Observable.create { emitter ->

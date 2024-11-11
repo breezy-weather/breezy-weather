@@ -62,7 +62,7 @@ class MgmService @Inject constructor(
             .create(MgmApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>(
+    override val supportedFeaturesInMain = listOf(
         SecondaryWeatherSourceFeature.FEATURE_CURRENT,
         SecondaryWeatherSourceFeature.FEATURE_ALERT,
         SecondaryWeatherSourceFeature.FEATURE_NORMALS
@@ -102,11 +102,7 @@ class MgmService @Inject constructor(
             }
         }
 
-        val daily = mApi.getDaily(dailyStation).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
-        }
+        val daily = mApi.getDaily(dailyStation)
 
         // Some rural locations in Türkiye are not assigned to an hourlyStation
         val hourly = if (!hourlyStation.isNullOrEmpty()) {
@@ -224,11 +220,7 @@ class MgmService @Inject constructor(
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
         val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(currentStation).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
-            }
+            mApi.getCurrent(currentStation)
         } else {
             Observable.create { emitter ->
                 emitter.onNext(listOf())
@@ -236,11 +228,7 @@ class MgmService @Inject constructor(
         }
 
         val today = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert("today").onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
-            }
+            mApi.getAlert("today")
         } else {
             Observable.create { emitter ->
                 emitter.onNext(listOf())
@@ -248,11 +236,7 @@ class MgmService @Inject constructor(
         }
 
         val tomorrow = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert("tomorrow").onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
-            }
+            mApi.getAlert("tomorrow")
         } else {
             Observable.create { emitter ->
                 emitter.onNext(listOf())
@@ -264,11 +248,7 @@ class MgmService @Inject constructor(
                 station = dailyStation,
                 month = now.get(Calendar.MONTH) + 1,
                 day = now.get(Calendar.DATE)
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(listOf())

@@ -20,6 +20,7 @@
 
 **Weather sources**
 - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+- [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
 - [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
 - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.

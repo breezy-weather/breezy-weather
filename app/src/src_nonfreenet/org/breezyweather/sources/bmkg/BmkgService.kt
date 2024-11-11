@@ -100,11 +100,7 @@ class BmkgService @Inject constructor(
         val forecast = mApi.getForecast(
             lat = location.latitude,
             lon = location.longitude
-        ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(BmkgForecastResult())
-            }
-        }
+        )
 
         val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
@@ -226,11 +222,7 @@ class BmkgService @Inject constructor(
             mApi.getCurrent(
                 lat = location.latitude,
                 lon = location.longitude
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(BmkgCurrentResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(BmkgCurrentResult())
@@ -242,11 +234,7 @@ class BmkgService @Inject constructor(
                 apiKey = apiKey,
                 lat = location.latitude,
                 lon = location.longitude,
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(BmkgWarningResult())
-                }
-            }
+            )
         } else {
             Observable.create { emitter ->
                 emitter.onNext(BmkgWarningResult())
@@ -263,11 +251,7 @@ class BmkgService @Inject constructor(
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day,
-                    ).onErrorResumeNext {
-                        Observable.create { emitter ->
-                            emitter.onNext(BmkgIbfResult())
-                        }
-                    }
+                    )
                 } else {
                     Observable.create { emitter ->
                         emitter.onNext(BmkgIbfResult())
@@ -277,11 +261,7 @@ class BmkgService @Inject constructor(
         }
 
         val pm25 = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-            mAppApi.getPm25().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
-            }
+            mAppApi.getPm25()
         } else {
             Observable.create { emitter ->
                 emitter.onNext(listOf())

@@ -51,7 +51,7 @@ fun convert(
     result: MgmLocationResult
 ): Location {
     // Make sure location is within 50km of a known location in Türkiye
-    var distance = SphericalUtil.computeDistanceBetween(
+    val distance = SphericalUtil.computeDistanceBetween(
         LatLng(location.latitude, location.longitude),
         LatLng(result.latitude, result.longitude)
     )

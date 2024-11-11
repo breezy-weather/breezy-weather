@@ -29,42 +29,47 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MgmApi {
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/merkezler/lokasyon")
     fun getLocation(
         @Query("enlem") lat: Double,
         @Query("boylam") lon: Double
     ): Observable<MgmLocationResult>
 
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/tahminler/saatlik")
     fun getHourly(
         @Query("istno") station: String
     ): Observable<List<MgmHourlyForecastResult>>
 
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/sondurumlar")
     fun getCurrent(
         @Query("merkezid") station: String
     ): Observable<List<MgmCurrentResult>>
 
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/tahminler/gunluk")
     fun getDaily(
         @Query("istno") station: String
     ): Observable<List<MgmDailyForecastResult>>
 
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/meteoalarm/{day}")
     fun getAlert(
         @Path("day") day: String
     ): Observable<List<MgmAlertResult>>
 
-    @Headers("Origin: https://www.mgm.gov.tr")
+    @Headers("Origin: $ORIGIN_URL")
     @GET("web/ucdegerler")
     fun getNormals(
         @Query("merkezid") station: String,
         @Query("ay") month: Int,
         @Query("gun") day: Int
     ): Observable<List<MgmNormalsResult>>
+
+    companion object {
+        const val ORIGIN_URL = "https://www.mgm.gov.tr"
+    }
+
 }
