@@ -699,4 +699,11 @@
     <string name="settings_unavailable_no_animations">غير متاح، قم بتمكين الرسوم المتحركة في إعدادات الجهاز أولاً</string>
     <string name="weather_current_data_by">بيانات الطقس الحالية بواسطة %s</string>
     <string name="current_weather">الطقس الحالي</string>
+    <string name="common_weather_text_mist">سَدِيم</string>
+    <string name="common_weather_text_dry">جاف</string>
+    <string name="common_weather_text_humid">رطب</string>
+    <string name="common_weather_text_hot">حار</string>
+    <string name="common_weather_text_warm">دافئ</string>
+    <string name="common_weather_text_cold">بارد</string>
+    <string name="common_weather_text_cool">نَسِم</string>
 </resources>
