@@ -453,13 +453,13 @@
     <string name="unit_atm">atm</string>
     <string name="settings_notifications_alerts_title">Aviseringar om allvarliga vädervarningar</string>
     <string name="notification_running_in_background">Körs i bakgrunden för att uppdatera</string>
-    <string name="dialog_permissions_location_background_content">För att ge appen tillgång till platsinformation i bakgrunden, så appen kan uppfatta platsändringar och erbjuda rätt väderdata, ge appen platsbehörighet ”Tillåt alltid”.</string>
+    <string name="dialog_permissions_location_background_content">För att tillåta att väderuppdatering i bakgrunden görs för den senaste nuvarande plats som Android känner till, måste du ställa in platsbehörighet på ”Tillåt alltid”. Om du inte gör det, kommer vädret att uppdateras baserat på de senast hämtade koordinaterna i förgrunden, vilka kan vara inaktuella.</string>
     <string name="settings_main_background_animation_enabled">Aktiverad</string>
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beskrivning av timvis</string>
     <string name="settings_widgets_notification_feels_like_switch">Använd känns som-temperatur</string>
-    <string name="dialog_permissions_location_content">Breezy Weather behöver samla din platsinformatin i förgrunden eller bakgrunden för att erbjuda väderdata för din nuvarande plats. För detta begär vi några behörigheter. Din platsinfromation kommer endast att användas för at hämta väderdata för din nuvarande plats. Om du inte vill dela din platsinformation så kan du neka behörigheterna och manuellt välja din plats i hanteringsmenyn.</string>
+    <string name="dialog_permissions_location_content">För att använda denna funktion måste du ge appen behörighet att komma åt din nuvarande plats. Den kommer endast att delas med de valda väderkällorna. Om du har ångrat dig, kan du avbryta processen och lägga till en fast plats manuellt.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
     <string name="location_dialog_failed_to_locate_title">Kan inte få platsen korrekt\?</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°)</string>
@@ -483,7 +483,7 @@
     <string name="common_weather_text_overcast">Mulet</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nederbörd nattetid för i dag, i morgon, …, 4 dagar senare (%)</string>
     <string name="settings_main_section_options">Alternativ</string>
-    <string name="weather_kind_haze">Dimma</string>
+    <string name="weather_kind_haze">Smog</string>
     <string name="settings_main_section_animations">Animationer</string>
     <string name="air_quality_no2_info_consequences">Exponering för kvävedioxid kan irritera luftvägarna och förvärra luftvägssjukdomar. Vidare är NO₂ ett viktigt förstadium till ozon, en förorening som är starkt kopplad till astma och andra luftvägsbesvär.</string>
     <string name="widget_multi_city">Flera orter</string>
@@ -639,7 +639,7 @@
     <string name="pollen_salix">Vide</string>
     <string name="pollen_tilia">Lind</string>
     <string name="pollen_urticaceae">Nässla/Nysört</string>
-    <string name="message_source_not_installed_error_content_tip_1">Detta kan ske om du lagt till platsen i Standard-versionen av Breezy Weather och sedan bytt till Free-networks only-versionen som stödjer färre väderdatakällor. Detta kan eventuellt lösas genom att byta tillbaka till Standard-versionen.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Detta kan hända när du har lagt till din plats i appens standardversion och sedan bytt till versionen med endast fria nätverkskällor. Att gå tillbaka till standardversionen kan lösa detta problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ändra antingen väderkällor för denna plats, eller ta bort platsen och lägg till den igen.</string>
     <string name="sunshine">Solsken</string>
     <string name="action_confirm">Bekräfta</string>
@@ -692,4 +692,11 @@
     <string name="settings_background_updates_refresh_never_warning1">Genom att stänga av bakgrundsuppdateringar får du inte längre aviseringar om varningar eller nederbörd. Widgetar uppdateras inte förrän du öppnar appen.</string>
     <string name="settings_background_updates_refresh_never_warning3">Överväg att använda en lägre uppdateringsfrekvens i stället för att stänga av bakgrundsuppdateringar, annars tryck på ”Fortsätt” om du fortfarande vill gå vidare.</string>
     <string name="settings_background_updates_refresh_never_warning2">Bakgrundsuppdateringsprocessen är resurssnål: den uppdaterar endast din första plats med din valda frekvens och sekundära platser endast om du behöver dem, en gång per dag. Den är batterisnål och bör inte överskrida %d MB dataförbrukning per månad.</string>
+    <string name="common_weather_text_mist">Dis</string>
+    <string name="common_weather_text_cool">Svalt</string>
+    <string name="common_weather_text_cold">Kallt</string>
+    <string name="common_weather_text_humid">Fuktigt</string>
+    <string name="common_weather_text_hot">Hett</string>
+    <string name="common_weather_text_warm">Varmt</string>
+    <string name="common_weather_text_dry">Torrt</string>
 </resources>
