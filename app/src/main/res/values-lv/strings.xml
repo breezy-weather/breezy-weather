@@ -692,4 +692,11 @@
     <string name="settings_unavailable_no_animations">Nav pieejamas, vispirms jāiespējo animācijas Android iestatījumos</string>
     <string name="current_weather">Pašreizējie laikapstākļi</string>
     <string name="weather_current_data_by">Pašreizējie laikapstākļu dati no %s</string>
+    <string name="common_weather_text_mist">Migla</string>
+    <string name="common_weather_text_dry">Sauss</string>
+    <string name="common_weather_text_humid">Mitrs</string>
+    <string name="common_weather_text_hot">Karsts</string>
+    <string name="common_weather_text_warm">Silts</string>
+    <string name="common_weather_text_cool">Vēss</string>
+    <string name="common_weather_text_cold">Auksts</string>
 </resources>
