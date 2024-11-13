@@ -698,7 +698,7 @@
     <string name="common_weather_text_warm">Warm</string>
     <string name="common_weather_text_cold">Kalt</string>
     <string name="common_weather_text_cool">Kühl</string>
-    <string name="common_weather_text_mist">feiner Nebel</string>
+    <string name="common_weather_text_mist">Feiner Nebel</string>
     <string name="common_weather_text_dry">Trocken</string>
     <string name="common_weather_text_hot">Heiß</string>
 </resources>
