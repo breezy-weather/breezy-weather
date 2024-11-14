@@ -66,6 +66,7 @@ enum class LocationPreset(
     CHINA("china"),
     HONG_KONG("hko"),
     INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    INDIA("imd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
     // Don’t add cwa for TAIWAN as it is a rate-limited source
@@ -94,6 +95,7 @@ enum class LocationPreset(
                     "HK" -> HONG_KONG
                     "ID" -> INDONESIA
                     "IL", "PS" -> ISRAEL
+                    "IN" -> INDIA
                     "TR" -> TURKIYE
 
                     else -> DEFAULT
