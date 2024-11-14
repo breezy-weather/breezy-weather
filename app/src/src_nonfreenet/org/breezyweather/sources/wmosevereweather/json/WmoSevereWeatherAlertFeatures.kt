@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WmoSevereWeatherAlertFeatures(
     val id: String?,
-    val properties: WmoSevereWeatherAlertProperties?
+    val properties: WmoSevereWeatherAlertProperties?,
 )

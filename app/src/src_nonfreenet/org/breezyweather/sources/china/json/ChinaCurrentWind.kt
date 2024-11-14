@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ChinaCurrentWind(
     val direction: ChinaUnitValue?,
-    val speed: ChinaUnitValue?
+    val speed: ChinaUnitValue?,
 )

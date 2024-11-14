@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuCurrentTemperatureSummary(
-    val Past24HourRange: AccuCurrentTemperaturePast24HourRange?
+    val Past24HourRange: AccuCurrentTemperaturePast24HourRange?,
 )

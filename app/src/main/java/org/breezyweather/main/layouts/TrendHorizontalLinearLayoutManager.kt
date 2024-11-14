@@ -28,7 +28,7 @@ import kotlin.math.max
 
 class TrendHorizontalLinearLayoutManager @JvmOverloads constructor(
     private val mContext: Context,
-    private val mFillCount: Int = 0
+    private val mFillCount: Int = 0,
 ) : TrendLayoutManager(mContext) {
     override fun scrollHorizontallyBy(dx: Int, recycler: Recycler, state: RecyclerView.State): Int {
         val consumed = super.scrollHorizontallyBy(dx, recycler, state)

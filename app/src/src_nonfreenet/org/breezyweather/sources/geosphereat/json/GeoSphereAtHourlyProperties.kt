@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GeoSphereAtHourlyProperties(
-    val parameters: GeoSphereAtHourlyParameters?
+    val parameters: GeoSphereAtHourlyParameters?,
 )

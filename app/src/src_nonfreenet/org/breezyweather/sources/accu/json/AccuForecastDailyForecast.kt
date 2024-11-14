@@ -31,5 +31,5 @@ data class AccuForecastDailyForecast(
     val Day: AccuForecastHalfDay?,
     val Night: AccuForecastHalfDay?,
     val AirAndPollen: List<AccuForecastAirAndPollen>?,
-    val Sources: List<String>?
+    val Sources: List<String>?,
 )

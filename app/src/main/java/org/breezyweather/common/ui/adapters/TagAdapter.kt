@@ -31,7 +31,7 @@ class TagAdapter @JvmOverloads constructor(
     @field:ColorInt @param:ColorInt private val mCheckedBackgroundColor: Int,
     @field:ColorInt @param:ColorInt private val mUncheckedBackgroundColor: Int,
     private val mListener: ((checked: Boolean, oldPosition: Int, newPosition: Int) -> Boolean)? = null,
-    private var mCheckedIndex: Int = UNCHECKABLE_INDEX
+    private var mCheckedIndex: Int = UNCHECKABLE_INDEX,
 ) : RecyclerView.Adapter<TagAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val mTagView: TagView

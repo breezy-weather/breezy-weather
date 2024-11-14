@@ -39,5 +39,5 @@ data class AccuForecastHalfDay(
     val HoursOfRain: Double?,
     val HoursOfSnow: Double?,
     val HoursOfIce: Double?,
-    val CloudCover: Int?
+    val CloudCover: Int?,
 )

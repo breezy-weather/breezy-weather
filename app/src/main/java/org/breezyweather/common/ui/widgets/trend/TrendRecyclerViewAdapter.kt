@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 
 abstract class TrendRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(
-    private var mLocation: Location
+    private var mLocation: Location,
 ) : RecyclerView.Adapter<VH>() {
     var location: Location
         get() = mLocation

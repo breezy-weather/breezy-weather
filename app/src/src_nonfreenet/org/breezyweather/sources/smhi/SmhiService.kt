@@ -29,12 +29,13 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class SmhiService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource {
 
     override val id = "smhi"
     override val name = "SMHI"
-    override val privacyPolicyUrl = "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
+    override val privacyPolicyUrl =
+        "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
 
     override val color = Color.rgb(0, 0, 0)
     override val weatherAttribution = "SMHI (Creative commons Erkännande 4.0 SE)"
@@ -50,13 +51,15 @@ class SmhiService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("SE", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             location.longitude,

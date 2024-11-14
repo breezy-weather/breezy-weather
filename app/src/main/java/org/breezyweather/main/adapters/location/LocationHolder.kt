@@ -36,7 +36,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 class LocationHolder(
     private val mBinding: ItemLocationCardBinding,
     private val mClickListener: (String) -> Unit,
-    private val mDragListener: (LocationHolder) -> Unit
+    private val mDragListener: (LocationHolder) -> Unit,
 ) : RecyclerView.ViewHolder(mBinding.root) {
     @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     fun onBindView(context: Context, model: LocationModel, resourceProvider: ResourceProvider) {
@@ -69,58 +69,59 @@ class LocationHolder(
         mBinding.container.apply {
             backgroundColorStart =
                 MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorErrorContainer)
-            backgroundColorEnd = if (model.location.isCurrentPosition) MainThemeColorProvider.getColor(
-                lightTheme,
-                com.google.android.material.R.attr.colorTertiaryContainer
-            ) else MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSecondaryContainer)
+            backgroundColorEnd = if (model.location.isCurrentPosition) {
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorTertiaryContainer)
+            } else {
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSecondaryContainer)
+            }
             tintColorStart =
                 MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnErrorContainer)
-            tintColorEnd = if (model.location.isCurrentPosition) MainThemeColorProvider.getColor(
-                lightTheme,
-                com.google.android.material.R.attr.colorOnTertiaryContainer
-            ) else MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnSecondaryContainer)
+            tintColorEnd = if (model.location.isCurrentPosition) {
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnTertiaryContainer)
+            } else {
+                MainThemeColorProvider.getColor(
+                    lightTheme,
+                    com.google.android.material.R.attr.colorOnSecondaryContainer
+                )
+            }
         }
         mBinding.item.setBackgroundColor(
-            if (model.selected) org.breezyweather.common.utils.ColorUtils.blendColor(
-                ColorUtils.setAlphaComponent(elevatedSurfaceColor, (255 * 0.5).toInt()),
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
-            ) else elevatedSurfaceColor
+            if (model.selected) {
+                org.breezyweather.common.utils.ColorUtils.blendColor(
+                    ColorUtils.setAlphaComponent(elevatedSurfaceColor, (255 * 0.5).toInt()),
+                    MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
+                )
+            } else {
+                elevatedSurfaceColor
+            }
         )
         ImageViewCompat.setImageTintList(
             mBinding.sortButton,
-            ColorStateList.valueOf(
-                MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary)
-            )
+            ColorStateList.valueOf(MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary))
         )
         mBinding.sortButton.visibility = View.VISIBLE
         mBinding.content.setPaddingRelative(0, 0, 0, 0)
         if (model.weatherCode != null) {
             mBinding.weatherIcon.apply {
                 visibility = View.VISIBLE
-                setImageDrawable(
-                    resourceProvider.getWeatherIcon(
-                        model.weatherCode,
-                        model.location.isDaylight
-                    )
-                )
+                setImageDrawable(resourceProvider.getWeatherIcon(model.weatherCode, model.location.isDaylight))
             }
         } else {
             mBinding.weatherIcon.visibility = View.GONE
         }
         mBinding.title1.setTextColor(
-            if (model.selected) MainThemeColorProvider.getColor(
-                lightTheme,
-                com.google.android.material.R.attr.colorOnPrimaryContainer
-            ) else MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+            if (model.selected) {
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnPrimaryContainer)
+            } else {
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+            }
         )
         mBinding.title1.text = model.title
         if (model.body.isEmpty()) {
             mBinding.title2.visibility = View.GONE
         } else {
             mBinding.title2.visibility = View.VISIBLE
-            mBinding.title2.setTextColor(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
-            )
+            mBinding.title2.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
             mBinding.title2.text = model.body
         }
 
@@ -129,7 +130,9 @@ class LocationHolder(
             R.string.weather_data_by,
             model.mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text)
         )
-        mBinding.source.setTextColor(model.mainWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
+        mBinding.source.setTextColor(
+            model.mainWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+        )
         mBinding.container.setOnClickListener { mClickListener(model.location.formattedId) }
         // TODO
         mBinding.sortButton.setOnTouchListener { _: View?, event: MotionEvent ->

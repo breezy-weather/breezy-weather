@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgIbfResponse(
-    val public: List<BmkgIbfMessage>?
+    val public: List<BmkgIbfMessage>?,
 )

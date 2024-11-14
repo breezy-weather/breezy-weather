@@ -30,7 +30,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import org.breezyweather.R
 
 class TagView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
     private val mOutline: RectF = RectF()
     private val mPaint: Paint = Paint().apply {
@@ -74,9 +76,7 @@ class TagView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         mPaint.color = if (mChecked) mCheckedBackgroundColor else mUncheckedBackgroundColor
-        canvas.drawRoundRect(
-            mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint
-        )
+        canvas.drawRoundRect(mOutline, mOutline.height() / 2, mOutline.height() / 2, mPaint)
         super.onDraw(canvas)
     }
 

@@ -31,5 +31,5 @@ data class EcccDaily(
 
     val precip: String?,
 
-    val sun: EcccSun?
+    val sun: EcccSun?,
 )

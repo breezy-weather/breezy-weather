@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuCurrentPrecipitationSummary(
-    val Precipitation: AccuValueContainer?
+    val Precipitation: AccuValueContainer?,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfWarningSubdivisionText(
-    val text: List<String>?
+    val text: List<String>?,
 )

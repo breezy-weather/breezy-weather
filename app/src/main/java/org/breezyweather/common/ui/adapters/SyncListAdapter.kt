@@ -23,7 +23,7 @@ import java.util.Collections
 
 abstract class SyncListAdapter<T : Any, VH : RecyclerView.ViewHolder>(
     private var mModelList: List<T>,
-    private val mCallback: DiffUtil.ItemCallback<T>
+    private val mCallback: DiffUtil.ItemCallback<T>,
 ) : RecyclerView.Adapter<VH>() {
     open fun submitList(newList: List<T>) {
         if (newList === mModelList) {
@@ -45,29 +45,32 @@ abstract class SyncListAdapter<T : Any, VH : RecyclerView.ViewHolder>(
             notifyItemRangeRemoved(0, removedCount)
             return
         }
-        val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-            override fun getOldListSize(): Int {
-                return oldList.size
-            }
+        val result = DiffUtil.calculateDiff(
+            object : DiffUtil.Callback() {
+                override fun getOldListSize(): Int {
+                    return oldList.size
+                }
 
-            override fun getNewListSize(): Int {
-                return newList.size
-            }
+                override fun getNewListSize(): Int {
+                    return newList.size
+                }
 
-            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return mCallback.areItemsTheSame(
-                    oldList[oldItemPosition],
-                    newList[newItemPosition]
-                )
-            }
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return mCallback.areItemsTheSame(
+                        oldList[oldItemPosition],
+                        newList[newItemPosition]
+                    )
+                }
 
-            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return mCallback.areContentsTheSame(
-                    oldList[oldItemPosition],
-                    newList[newItemPosition]
-                )
-            }
-        }, true)
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return mCallback.areContentsTheSame(
+                        oldList[oldItemPosition],
+                        newList[newItemPosition]
+                    )
+                }
+            },
+            true
+        )
         mModelList = newList
         result.dispatchUpdatesTo(this)
     }

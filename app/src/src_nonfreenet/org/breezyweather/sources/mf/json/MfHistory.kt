@@ -24,5 +24,5 @@ import java.util.Date
 @Serializable
 data class MfHistory(
     @Serializable(DateSerializer::class) val dt: Date?,
-    @SerialName("T") val temperature: MfHistoryTemperature?
+    @SerialName("T") val temperature: MfHistoryTemperature?,
 )

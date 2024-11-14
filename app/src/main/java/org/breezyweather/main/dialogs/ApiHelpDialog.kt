@@ -32,7 +32,7 @@ object ApiHelpDialog {
     fun show(
         activity: Activity,
         @StringRes title: Int,
-        @StringRes content: Int
+        @StringRes content: Int,
     ) {
         val view = LayoutInflater
             .from(activity)

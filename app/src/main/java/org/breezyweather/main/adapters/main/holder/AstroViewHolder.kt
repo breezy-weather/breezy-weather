@@ -51,9 +51,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_sun_moon, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_sun_moon, parent, false)
 ) {
     private val mTitle: TextView
     private val mPhaseText: TextView
@@ -95,14 +93,14 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
-        activity: GeoActivity, location: Location,
+        activity: GeoActivity,
+        location: Location,
         provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean, firstCard: Boolean
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity, location, provider,
-            listAnimationEnabled, itemAnimationEnabled, firstCard
-        )
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
         mWeather = location.weather!!
         val themeColors = ThemeManager.getInstance(context)
             .weatherThemeDelegate
@@ -222,9 +220,13 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             val totalRotationDay = 360.0 * 7 * (mCurrentTimes[0] - mStartTimes[0]) / (mEndTimes[0] - mStartTimes[0])
             val rotateDay = ValueAnimator.ofObject(
-                FloatEvaluator(), 0, (totalRotationDay - totalRotationDay % 360).toInt()
+                FloatEvaluator(),
+                0,
+                (totalRotationDay - totalRotationDay % 360).toInt()
             )
-            rotateDay.addUpdateListener { animation: ValueAnimator -> mSunMoonView.setDayIndicatorRotation((animation.animatedValue as Float)) }
+            rotateDay.addUpdateListener { animation: ValueAnimator ->
+                mSunMoonView.setDayIndicatorRotation((animation.animatedValue as Float))
+            }
             mAttachAnimatorSets[0] = AnimatorSet().apply {
                 playTogether(timeDay, rotateDay)
                 interpolator = OvershootInterpolator(1f)
@@ -237,9 +239,13 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             val totalRotationNight = 360.0 * 4 * (mCurrentTimes[1] - mStartTimes[1]) / (mEndTimes[1] - mStartTimes[1])
             val rotateNight = ValueAnimator.ofObject(
-                FloatEvaluator(), 0, (totalRotationNight - totalRotationNight % 360).toInt()
+                FloatEvaluator(),
+                0,
+                (totalRotationNight - totalRotationNight % 360).toInt()
             )
-            rotateNight.addUpdateListener { animation: ValueAnimator -> mSunMoonView.setNightIndicatorRotation(-1 * animation.animatedValue as Float) }
+            rotateNight.addUpdateListener { animation: ValueAnimator ->
+                mSunMoonView.setNightIndicatorRotation(-1 * animation.animatedValue as Float)
+            }
             mAttachAnimatorSets[1] = AnimatorSet().apply {
                 playTogether(timeNight, rotateNight)
                 interpolator = OvershootInterpolator(1f)
@@ -247,7 +253,9 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }.also { it.start() }
             if (mPhaseAngle > 0) {
                 val moonAngle = ValueAnimator.ofObject(FloatEvaluator(), 0, mPhaseAngle)
-                moonAngle.addUpdateListener { animation: ValueAnimator -> mPhaseView.setSurfaceAngle((animation.animatedValue as Float)) }
+                moonAngle.addUpdateListener { animation: ValueAnimator ->
+                    mPhaseView.setSurfaceAngle((animation.animatedValue as Float))
+                }
                 mAttachAnimatorSets[2] = AnimatorSet().apply {
                     playTogether(moonAngle)
                     interpolator = DecelerateInterpolator()
@@ -302,9 +310,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     private fun getPathAnimatorDuration(index: Int): Long {
         val duration = max(
-            1000 + 3000.0
-                * (mCurrentTimes[index] - mStartTimes[index])
-                / (mEndTimes[index] - mStartTimes[index]),
+            1000 + 3000.0 * (mCurrentTimes[index] - mStartTimes[index]) / (mEndTimes[index] - mStartTimes[index]),
             0.0
         ).toLong()
         return min(duration, 4000)

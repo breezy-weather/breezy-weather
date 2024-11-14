@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaNormalsResult(
-    val records: CwaNormalsRecords? = null
+    val records: CwaNormalsRecords? = null,
 )

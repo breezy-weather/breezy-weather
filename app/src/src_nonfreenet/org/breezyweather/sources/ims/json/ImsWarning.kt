@@ -26,5 +26,5 @@ data class ImsWarning(
     @SerialName("warning_type_id") val warningTypeId: String?,
     @SerialName("valid_from_unix") val validFromUnix: Int?,
     @SerialName("valid_to") val validTo: String?, // TimeZone dependant!
-    @SerialName("text") val text: String?
+    @SerialName("text") val text: String?,
 )

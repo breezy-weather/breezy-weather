@@ -22,7 +22,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class DailyPollen(
     val pollen: Pollen,
-    val pollenIndexSource: PollenIndexSource? = null
+    val pollenIndexSource: PollenIndexSource? = null,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 6
 

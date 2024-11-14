@@ -45,7 +45,7 @@ import javax.inject.Named
  */
 class AtmoAuraService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "atmoaura"
@@ -62,16 +62,13 @@ class AtmoAuraService @Inject constructor(
     override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
-        return (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+        return feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             !location.admin2Code.isNullOrEmpty() &&
-            location.admin2Code in arrayOf(
-                "01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"
-            )
-        )
+            location.admin2Code in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74")
     }
     override val currentAttribution = null
     override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"
@@ -81,8 +78,9 @@ class AtmoAuraService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

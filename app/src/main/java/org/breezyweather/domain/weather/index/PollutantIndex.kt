@@ -24,14 +24,35 @@ import kotlin.math.roundToInt
 
 enum class PollutantIndex(
     val id: String,
-    val thresholds: List<Int>
+    val thresholds: List<Int>,
 ) {
     O3("o3", listOf(0, 50, 100, 160, 240, 480)), // Plume 2023
     NO2("no2", listOf(0, 10, 25, 200, 400, 1000)), // Plume 2023
     PM10("pm10", listOf(0, 15, 45, 80, 160, 400)), // Plume 2023
     PM25("pm25", listOf(0, 5, 15, 30, 60, 150)), // Plume 2023
-    SO2("so2", listOf(0, 20, 40 /* daily */, 270, 500 /* 10 min */, 960 /* linear prolongation */)), // WHO 2021
-    CO("co", listOf(0, 2, 4 /* daily */, 35 /* hourly */, 100 /* 15 min */, 230 /* linear prolongation */)); // WHO 2021
+    SO2(
+        "so2",
+        listOf(
+            0,
+            20,
+            40, // daily
+            270,
+            500, // 10 min
+            960 // linear prolongation
+        )
+    ), // WHO 2021
+    CO(
+        "co",
+        listOf(
+            0,
+            2,
+            4, // daily
+            35, // hourly
+            100, // 15 min
+            230 // linear prolongation
+        )
+    ),
+    ; // WHO 2021
 
     companion object {
         // Plume 2023
@@ -54,9 +75,11 @@ enum class PollutantIndex(
         fun getAqiToColor(context: Context, aqi: Int?): Int {
             if (aqi == null) return Color.TRANSPARENT
             val level = getAqiToLevel(aqi)
-            return if (level != null) context.resources.getIntArray(colorsArrayId)
-                .getOrNull(level) ?: Color.TRANSPARENT
-            else Color.TRANSPARENT
+            return if (level != null) {
+                context.resources.getIntArray(colorsArrayId).getOrNull(level) ?: Color.TRANSPARENT
+            } else {
+                Color.TRANSPARENT
+            }
         }
 
         fun getAqiToName(context: Context, aqi: Int?): String? {
@@ -74,7 +97,10 @@ enum class PollutantIndex(
 
     private fun getIndex(cp: Double, bpLo: Int, bpHi: Int, inLo: Int, inHi: Int): Int {
         // Result will be incorrect if we don’t cast to double
-        return ((inHi.toDouble() - inLo.toDouble()) / (bpHi.toDouble() - bpLo.toDouble()) * (cp - bpLo.toDouble()) + inLo.toDouble()).roundToInt()
+        return (
+            (inHi.toDouble() - inLo.toDouble()) / (bpHi.toDouble() - bpLo.toDouble()) * (cp - bpLo.toDouble()) +
+                inLo.toDouble()
+            ).roundToInt()
     }
 
     private fun getIndex(cp: Double, level: Int): Int {

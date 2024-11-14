@@ -23,5 +23,5 @@ data class HereGeocodingData(
     val id: String,
     val position: HereGeocodingPosition,
     val address: HereGeocodingAddress,
-    val timeZone: HereGeocodingTimezone
+    val timeZone: HereGeocodingTimezone,
 )

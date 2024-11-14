@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuMinutelySummary(
-    val LongPhrase: String?
+    val LongPhrase: String?,
 )

@@ -25,5 +25,5 @@ data class NwsPointProperties(
     val gridY: Int,
     val relativeLocation: NwsPointLocation?,
     val forecastZone: String?,
-    val timeZone: String
+    val timeZone: String,
 )

@@ -36,22 +36,22 @@ abstract class ResourceProvider {
     abstract var providerName: String?
     abstract val providerIcon: Drawable?
     override fun equals(other: Any?): Boolean {
-        return if (other is ResourceProvider) {
-            other.packageName == packageName
-        } else false
+        return if (other is ResourceProvider) other.packageName == packageName else false
     }
 
     // weather icon.
-    abstract fun getWeatherIcon(code: WeatherCode?, dayTime: Boolean): Drawable
-    abstract fun getWeatherIconUri(code: WeatherCode?, dayTime: Boolean): Uri
     @Size(3)
     abstract fun getWeatherIcons(code: WeatherCode?, dayTime: Boolean): Array<Drawable?>
+    abstract fun getWeatherIcon(code: WeatherCode?, dayTime: Boolean): Drawable
+    abstract fun getWeatherIconUri(code: WeatherCode?, dayTime: Boolean): Uri
 
     // animator.
     @Size(3)
     abstract fun getWeatherAnimators(code: WeatherCode?, dayTime: Boolean): Array<Animator?>
 
     // minimal icon.
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    abstract fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon
     abstract fun getMinimalLightIcon(code: WeatherCode?, dayTime: Boolean): Drawable
     abstract fun getMinimalLightIconUri(code: WeatherCode?, dayTime: Boolean): Uri
     abstract fun getMinimalGreyIcon(code: WeatherCode?, dayTime: Boolean): Drawable
@@ -59,8 +59,6 @@ abstract class ResourceProvider {
     abstract fun getMinimalDarkIcon(code: WeatherCode?, dayTime: Boolean): Drawable
     abstract fun getMinimalDarkIconUri(code: WeatherCode?, dayTime: Boolean): Uri
     abstract fun getMinimalXmlIcon(code: WeatherCode?, dayTime: Boolean): Drawable
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    abstract fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon
 
     // shortcut.
     abstract fun getShortcutsIcon(code: WeatherCode?, dayTime: Boolean): Drawable

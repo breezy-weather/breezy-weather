@@ -137,7 +137,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     override fun onCreateView(
         inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         initModel()
         initView()
@@ -185,7 +186,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             FloatingActionButton(
                                 onClick = {
                                     viewModel.openChooseWeatherSourcesDialog(null)
-                                },
+                                }
                             ) {
                                 Icon(
                                     Icons.Outlined.MyLocation,
@@ -205,7 +206,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             )
                         }
                     }
-                } else null
+                } else {
+                    null
+                }
             }
         ) { paddings ->
             if (validLocationListState.value.isNotEmpty()) {
@@ -217,13 +220,14 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             // landscape mode.
                             top = paddings.calculateTopPadding(),
                             bottom = paddings.calculateBottomPadding()
-                        ),
+                        )
                 ) {
                     if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&
                         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
                         !notificationDismissed
                     ) {
-                        val notificationPermissionState = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+                        val notificationPermissionState =
+                            rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
                         if (notificationPermissionState.status != PermissionStatus.Granted) {
                             NotificationCard(
                                 title = stringResource(R.string.dialog_permissions_notification_title),
@@ -255,7 +259,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         !notificationAppUpdateCheckDismissed
                     ) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            val notificationPermissionState = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+                            val notificationPermissionState =
+                                rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
                             if (notificationPermissionState.status == PermissionStatus.Granted) {
                                 NotificationCard(
                                     title = stringResource(R.string.dialog_app_update_check_title),
@@ -307,10 +312,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             // landscape mode.
                             PaddingValues(
                                 top = paddings.calculateTopPadding(),
-                                bottom = paddings.calculateBottomPadding() +
-                                        dimensionResource(R.dimen.large_margin)
-                            )
-                            + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                                bottom = paddings.calculateBottomPadding() + dimensionResource(R.dimen.large_margin)
+                            ) + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -417,7 +420,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 ArrayList(),
                 null,
                 (requireActivity() as MainActivity).sourceManager,
-                { formattedId ->  // on click.
+                mClickListener = { formattedId ->
                     viewModel.setLocation(formattedId)
                     parentFragmentManager.popBackStack()
                 }

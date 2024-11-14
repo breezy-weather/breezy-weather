@@ -43,7 +43,7 @@ class HourlyHumidityAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit
+    unit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mDewPointUnit: TemperatureUnit = unit
@@ -172,8 +172,7 @@ class HourlyHumidityAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

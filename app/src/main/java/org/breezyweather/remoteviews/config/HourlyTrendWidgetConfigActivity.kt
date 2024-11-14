@@ -75,8 +75,11 @@ class HourlyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return HourlyTrendWidgetIMP.getRemoteViews(
-                this, locationNow,
-                resources.displayMetrics.widthPixels, cardStyleValueNow, cardAlpha
+                this,
+                locationNow,
+                resources.displayMetrics.widthPixels,
+                this.cardStyleValueNow,
+                cardAlpha
             )
         }
 

@@ -25,5 +25,5 @@ data class ChinaMinutelyPrecipitation(
     @Serializable(DateSerializer::class) val pubTime: Date?,
     val weather: String?,
     val description: String?,
-    val value: List<Double>?
+    val value: List<Double>?,
 )

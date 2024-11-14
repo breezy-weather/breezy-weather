@@ -51,11 +51,21 @@ private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoAuraPointR
         ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
         ?.forEach { p ->
             when (p.polluant) {
-                "o3" -> o3 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toDouble()
-                "no2" -> no2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toDouble()
-                "pm2.5" -> pm25 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toDouble()
-                "pm10" -> pm10 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toDouble()
-                "so2" -> so2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toDouble()
+                "o3" -> o3 = p.horaires?.firstOrNull {
+                    it.datetimeEcheance == requestedDate
+                }?.concentration?.toDouble()
+                "no2" -> no2 = p.horaires?.firstOrNull {
+                    it.datetimeEcheance == requestedDate
+                }?.concentration?.toDouble()
+                "pm2.5" -> pm25 = p.horaires?.firstOrNull {
+                    it.datetimeEcheance == requestedDate
+                }?.concentration?.toDouble()
+                "pm10" -> pm10 = p.horaires?.firstOrNull {
+                    it.datetimeEcheance == requestedDate
+                }?.concentration?.toDouble()
+                "so2" -> so2 = p.horaires?.firstOrNull {
+                    it.datetimeEcheance == requestedDate
+                }?.concentration?.toDouble()
             }
         }
 

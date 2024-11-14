@@ -76,7 +76,7 @@ fun SwitchPreferenceView(
     enabled = enabled,
     card = card,
     colors = colors,
-    onValueChanged = onValueChanged,
+    onValueChanged = onValueChanged
 )
 
 @Composable
@@ -110,10 +110,10 @@ fun SwitchPreferenceView(
                             state.value = !state.value
                             onValueChanged(state.value)
                         },
-                        enabled = enabled,
+                        enabled = enabled
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(
                     modifier = Modifier.weight(1f)
@@ -121,14 +121,14 @@ fun SwitchPreferenceView(
                     Text(
                         text = title,
                         color = DayNightTheme.colors.titleColor,
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.titleMedium
                     )
                     if (currentSummary?.isNotEmpty() == true) {
                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
@@ -136,9 +136,7 @@ fun SwitchPreferenceView(
                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
                 Switch(
                     enabled = enabled,
-                    checked = if (withState) {
-                        state.value
-                    } else checked,
+                    checked = if (withState) state.value else checked,
                     onCheckedChange = {
                         state.value = it
                         onValueChanged(it)
@@ -160,7 +158,7 @@ fun SwitchPreferenceView(
                         state.value = !state.value
                         onValueChanged(state.value)
                     },
-                    enabled = enabled,
+                    enabled = enabled
                 ),
             leadingContent = if (iconId != null) {
                 {
@@ -168,10 +166,12 @@ fun SwitchPreferenceView(
                         painter = painterResource(iconId),
                         tint = DayNightTheme.colors.titleColor,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
-            } else null,
+            } else {
+                null
+            },
             headlineContent = {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -183,7 +183,7 @@ fun SwitchPreferenceView(
                         Text(
                             text = title,
                             color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium,
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
                 }
@@ -195,17 +195,17 @@ fun SwitchPreferenceView(
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
-            } else null,
+            } else {
+                null
+            },
             trailingContent = {
                 Switch(
                     enabled = enabled,
-                    checked = if (withState) {
-                        state.value
-                    } else checked,
+                    checked = if (withState) state.value else checked,
                     onCheckedChange = {
                         state.value = it
                         onValueChanged(it)

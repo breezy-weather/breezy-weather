@@ -42,13 +42,17 @@ import javax.inject.Named
 
 class ChinaService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(),
+    MainWeatherSource,
+    SecondaryWeatherSource,
+    LocationSearchSource,
+    ReverseGeocodingSource,
+    LocationParametersSource {
 
     override val id = "china"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("zh") -> "中国"
                 else -> "China"
@@ -56,7 +60,7 @@ class ChinaService @Inject constructor(
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("zh") -> "https://privacy.mi.com/all/zh_CN"
                 else -> "https://privacy.mi.com/all/en_US"
@@ -84,13 +88,15 @@ class ChinaService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("CN", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val locationKey = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationKey") { null }
@@ -103,7 +109,7 @@ class ChinaService @Inject constructor(
             }
         }
 
-        val mainly = mApi.getForecastWeather(
+        val main = mApi.getForecastWeather(
             location.latitude,
             location.longitude,
             location.isCurrentPosition,
@@ -129,13 +135,10 @@ class ChinaService @Inject constructor(
                 emitter.onNext(ChinaMinutelyResult())
             }
         }
-        return Observable.zip(mainly, minutely) {
-                mainlyResult: ChinaForecastResult,
-                minutelyResult: ChinaMinutelyResult
-            ->
+        return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->
             convert(
                 location,
-                mainlyResult,
+                mainResult,
                 minutelyResult
             )
         }
@@ -149,7 +152,8 @@ class ChinaService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location, feature: SecondaryWeatherSourceFeature
+        location: Location,
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -161,8 +165,9 @@ class ChinaService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val locationKey = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationKey") { null }
@@ -175,9 +180,10 @@ class ChinaService @Inject constructor(
             }
         }
 
-        val mainly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
+        val main = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        ) {
             mApi.getForecastWeather(
                 location.latitude,
                 location.longitude,
@@ -211,60 +217,55 @@ class ChinaService @Inject constructor(
             }
         }
 
-        return Observable.zip(mainly, minutely) {
-                mainlyResult: ChinaForecastResult,
-                minutelyResult: ChinaMinutelyResult
-            ->
+        return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->
             convertSecondary(
                 location,
-                mainlyResult,
+                mainResult,
                 minutelyResult
             )
         }
     }
 
     override fun requestLocationSearch(
-        context: Context, query: String
+        context: Context,
+        query: String,
     ): Observable<List<Location>> {
         return mApi.getLocationSearch(
             query,
             context.currentLocale.code
-        )
-            .map { results ->
-                val locationList = mutableListOf<Location>()
-                results.forEach {
-                    if (it.locationKey?.startsWith("weathercn:") == true && it.status == 0) {
-                        locationList.add(convert(null, it))
-                    }
+        ).map { results ->
+            val locationList = mutableListOf<Location>()
+            results.forEach {
+                if (it.locationKey?.startsWith("weathercn:") == true && it.status == 0) {
+                    locationList.add(convert(null, it))
                 }
-                locationList
             }
+            locationList
+        }
     }
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getLocationByGeoPosition(
             location.latitude,
             location.longitude,
             context.currentLocale.code
-        )
-            .map {
-                val locationList = mutableListOf<Location>()
-                if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
-                    it[0].status == 0) {
-                    locationList.add(convert(location, it[0]))
-                }
-                locationList
+        ).map {
+            val locationList = mutableListOf<Location>()
+            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true && it[0].status == 0) {
+                locationList.add(convert(location, it[0]))
             }
+            locationList
+        }
     }
 
     // Location parameters
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
@@ -275,18 +276,16 @@ class ChinaService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getLocationByGeoPosition(
             location.latitude,
             location.longitude,
             context.currentLocale.code
         ).map {
-            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true &&
-                it[0].status == 0) {
-                mapOf(
-                    "locationKey" to it[0].locationKey!!.replace("weathercn:", "")
-                )
+            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true && it[0].status == 0) {
+                mapOf("locationKey" to it[0].locationKey!!.replace("weathercn:", ""))
             } else {
                 throw InvalidLocationException()
             }

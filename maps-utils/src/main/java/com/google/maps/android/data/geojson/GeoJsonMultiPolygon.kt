@@ -21,7 +21,7 @@ import com.google.maps.android.data.MultiGeometry
  * A GeoJsonMultiPolygon geometry contains a number of [GeoJsonPolygon]s.
  */
 class GeoJsonMultiPolygon(
-    geoJsonPolygons: List<GeoJsonPolygon>
+    geoJsonPolygons: List<GeoJsonPolygon>,
 ) : MultiGeometry(geoJsonPolygons) {
     /**
      * Creates a new GeoJsonMultiPolygon
@@ -48,7 +48,7 @@ class GeoJsonMultiPolygon(
      */
     val polygons: List<GeoJsonPolygon>
         get() {
-            //convert list of Geometry types to list of GeoJsonPolygon types
+            // convert list of Geometry types to list of GeoJsonPolygon types
             val geometryList = geometryObject
             val geoJsonPolygon = mutableListOf<GeoJsonPolygon>()
             for (geometry in geometryList as List<GeoJsonPolygon>) {

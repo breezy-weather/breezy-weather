@@ -25,5 +25,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OpenMeteoLocationResults(
     val results: List<OpenMeteoLocationResult>?,
-    @SerialName("generationtime_ms") val generationtimeMs: Double?
+    @SerialName("generationtime_ms") val generationtimeMs: Double?,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgWarningResult(
-    val data: BmkgWarningData? = null
+    val data: BmkgWarningData? = null,
 )

@@ -45,5 +45,5 @@ data class Current(
     val ceiling: Double? = null,
     val dailyForecast: String? = null,
     // Is actually a description of the nowcast
-    val hourlyForecast: String? = null
+    val hourlyForecast: String? = null,
 ) : Serializable

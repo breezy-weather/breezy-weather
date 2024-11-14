@@ -29,5 +29,5 @@ data class PirateWeatherForecastResult(
     val minutely: PirateWeatherForecast<PirateWeatherMinutely>?,
     val hourly: PirateWeatherForecast<PirateWeatherHourly>?,
     val daily: PirateWeatherForecast<PirateWeatherDaily>?,
-    val alerts: List<PirateWeatherAlert>?
+    val alerts: List<PirateWeatherAlert>?,
 )

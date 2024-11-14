@@ -41,7 +41,8 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 object ResourceHelper {
     fun getWeatherIcon(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
     ): Drawable {
         return provider.getWeatherIcon(code, dayTime)
     }
@@ -49,7 +50,8 @@ object ResourceHelper {
     @Size(3)
     fun getWeatherIcons(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
     ): Array<Drawable?> {
         return provider.getWeatherIcons(code, dayTime)
     }
@@ -57,15 +59,18 @@ object ResourceHelper {
     @Size(3)
     fun getWeatherAnimators(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
     ): Array<Animator?> {
         return provider.getWeatherAnimators(code, dayTime)
     }
 
     fun getWidgetNotificationIcon(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean,
-        minimal: Boolean, textColor: String?
+        code: WeatherCode,
+        dayTime: Boolean,
+        minimal: Boolean,
+        textColor: String?,
     ): Drawable {
         if (minimal) {
             return when (textColor) {
@@ -79,18 +84,20 @@ object ResourceHelper {
 
     fun getWidgetNotificationIcon(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean,
-        minimal: Boolean, darkText: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
+        minimal: Boolean,
+        darkText: Boolean,
     ): Drawable {
-        return getWidgetNotificationIcon(
-            provider, code, dayTime, minimal, if (darkText) "dark" else "light"
-        )
+        return getWidgetNotificationIcon(provider, code, dayTime, minimal, if (darkText) "dark" else "light")
     }
 
     fun getWidgetNotificationIconUri(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean,
-        minimal: Boolean, textColor: NotificationTextColor?
+        code: WeatherCode,
+        dayTime: Boolean,
+        minimal: Boolean,
+        textColor: NotificationTextColor?,
     ): Uri {
         if (minimal) {
             return when (textColor) {
@@ -104,7 +111,8 @@ object ResourceHelper {
 
     fun getMinimalXmlIcon(
         provider: ResourceProvider,
-        code: WeatherCode, daytime: Boolean
+        code: WeatherCode,
+        daytime: Boolean,
     ): Drawable {
         return provider.getMinimalXmlIcon(code, daytime)
     }
@@ -112,32 +120,36 @@ object ResourceHelper {
     @RequiresApi(api = Build.VERSION_CODES.M)
     fun getMinimalIcon(
         provider: ResourceProvider,
-        code: WeatherCode, daytime: Boolean
+        code: WeatherCode,
+        daytime: Boolean,
     ): Icon {
         return provider.getMinimalIcon(code, daytime)
     }
 
     @DrawableRes
-    fun getDefaultMinimalXmlIconId(code: WeatherCode?, daytime: Boolean): Int {
+    fun getDefaultMinimalXmlIconId(
+        code: WeatherCode?,
+        daytime: Boolean,
+    ): Int {
         if (code == null) {
             return R.drawable.weather_clear_day_mini_xml
         }
         val id = DefaultResourceProvider().getMinimalXmlIconId(code, daytime)
-        return if (id == 0) {
-            R.drawable.weather_clear_day_mini_xml
-        } else id
+        return if (id == 0) R.drawable.weather_clear_day_mini_xml else id
     }
 
     fun getShortcutsIcon(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
     ): Drawable {
         return provider.getShortcutsIcon(code, dayTime)
     }
 
     fun getShortcutsForegroundIcon(
         provider: ResourceProvider,
-        code: WeatherCode, dayTime: Boolean
+        code: WeatherCode,
+        dayTime: Boolean,
     ): Drawable {
         return provider.getShortcutsForegroundIcon(code, dayTime)
     }

@@ -40,7 +40,7 @@ import java.util.Date
 
 fun convert(
     location: Location,
-    result: ImsLocation
+    result: ImsLocation,
 ): Location {
     return location.copy(
         timeZone = "Asia/Jerusalem",
@@ -51,7 +51,7 @@ fun convert(
 }
 fun convert(
     weatherResult: ImsWeatherResult?,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (weatherResult?.data?.forecastData.isNullOrEmpty()) {
@@ -68,7 +68,7 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    data: ImsWeatherData
+    data: ImsWeatherData,
 ): List<Daily> {
     return data.forecastData!!.keys.mapNotNull {
         it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
@@ -84,7 +84,7 @@ private fun getDailyForecast(
 
 private fun getHourlyForecast(
     location: Location,
-    data: ImsWeatherData
+    data: ImsWeatherData,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     data.forecastData!!.keys.forEach {
@@ -179,9 +179,8 @@ fun getAlerts(data: ImsWeatherData): List<Alert>? {
 }
 
 fun convertSecondary(
-    weatherResult: ImsWeatherResult?
+    weatherResult: ImsWeatherResult?,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         current = getCurrent(weatherResult?.data),
         alertList = weatherResult?.data?.let { getAlerts(it) }

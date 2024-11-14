@@ -37,18 +37,22 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 
-class ForecastNotificationNotifier(private val context: Context) {
+class ForecastNotificationNotifier(
+    private val context: Context,
+) {
 
-    private val progressNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_FORECAST) {
-        setSmallIcon(R.drawable.ic_running_in_background)
-        setAutoCancel(false)
-        setOngoing(true)
-        setOnlyAlertOnce(true)
-    }
+    private val progressNotificationBuilder = context
+        .notificationBuilder(Notifications.CHANNEL_FORECAST) {
+            setSmallIcon(R.drawable.ic_running_in_background)
+            setAutoCancel(false)
+            setOngoing(true)
+            setOnlyAlertOnce(true)
+        }
 
-    private val completeNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_FORECAST) {
-        setAutoCancel(false)
-    }
+    private val completeNotificationBuilder = context
+        .notificationBuilder(Notifications.CHANNEL_FORECAST) {
+            setAutoCancel(false)
+        }
 
     fun showProgress(): Notification {
         return progressNotificationBuilder
@@ -60,7 +64,13 @@ class ForecastNotificationNotifier(private val context: Context) {
     }
 
     fun showComplete(location: Location, today: Boolean) {
-        context.cancelNotification(if (today) Notifications.ID_UPDATING_TODAY_FORECAST else Notifications.ID_UPDATING_TOMORROW_FORECAST)
+        context.cancelNotification(
+            if (today) {
+                Notifications.ID_UPDATING_TODAY_FORECAST
+            } else {
+                Notifications.ID_UPDATING_TOMORROW_FORECAST
+            }
+        )
 
         val weather = location.weather ?: return
         val daily = (if (today) weather.today else weather.tomorrow) ?: return
@@ -78,47 +88,53 @@ class ForecastNotificationNotifier(private val context: Context) {
         val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            setSubText(if (today) context.getString(R.string.short_today) else context.getString(R.string.short_tomorrow))
+            setSubText(
+                if (today) context.getString(R.string.short_today) else context.getString(R.string.short_tomorrow)
+            )
             setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
             setAutoCancel(true)
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
             setSmallIcon(ResourceHelper.getDefaultMinimalXmlIconId(weatherCode, daytime))
             weatherCode?.let {
-                setLargeIcon(
-                    ResourceHelper.getWeatherIcon(
-                        provider,
-                        it,
-                        daytime
-                    ).toBitmap()
-                )
+                setLargeIcon(ResourceHelper.getWeatherIcon(provider, it, daytime).toBitmap())
             }
 
             setContentTitle(getDayString(daily, temperatureUnit))
             setContentText(getNightString(daily, temperatureUnit))
-            setStyle(NotificationCompat.BigTextStyle()
-                .bigText(
-                    getDayString(daily, temperatureUnit) + "\n" +
+            setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText(
+                        getDayString(daily, temperatureUnit) + "\n" +
                             getNightString(daily, temperatureUnit)
-                )
-                .setBigContentTitle("") // do not show any title when expanding the notification
+                    )
+                    // do not show any title when expanding the notification
+                    .setBigContentTitle("")
             )
             setContentIntent(
                 AbstractRemoteViewsPresenter.getWeatherPendingIntent(
                     context,
                     null,
-                    if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST
+                    if (today) {
+                        Notifications.ID_TODAY_FORECAST
+                    } else {
+                        Notifications.ID_TOMORROW_FORECAST
+                    }
                 )
             )
         }.build()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && weather.current?.weatherCode != null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+            weather.current?.weatherCode != null
+        ) {
             try {
                 notification.javaClass
                     .getMethod("setSmallIcon", Icon::class.java)
                     .invoke(
                         notification,
                         ResourceHelper.getMinimalIcon(
-                            provider, weather.current!!.weatherCode!!, daytime
+                            provider,
+                            weather.current!!.weatherCode!!,
+                            daytime
                         )
                     )
             } catch (ignore: Exception) {

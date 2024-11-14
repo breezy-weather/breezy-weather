@@ -39,9 +39,10 @@ import org.breezyweather.theme.weatherView.WeatherViewController
 /**
  * Hourly UV adapter.
  */
-class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTrendAdapter(
-    activity, location
-) {
+class HourlyUVAdapter(
+    activity: GeoActivity,
+    location: Location,
+) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestIndex: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
@@ -107,8 +108,7 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 
@@ -126,7 +126,8 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH.toFloat(), UV.UV_INDEX_HIGH.format(0),
+                UV.UV_INDEX_HIGH.toFloat(),
+                UV.UV_INDEX_HIGH.format(0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

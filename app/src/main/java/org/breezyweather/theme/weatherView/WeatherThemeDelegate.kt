@@ -61,7 +61,7 @@ interface WeatherThemeDelegate {
         statusShader: Boolean,
         lightStatus: Boolean,
         navigationShader: Boolean,
-        lightNavigation: Boolean
+        lightNavigation: Boolean,
     )
 
     @Px

@@ -27,5 +27,5 @@ data class DmiWarning(
     val warningTitle: String?,
     val warningText: String?,
     val additionalText: String?,
-    val formattedCategory: Int? // Severity
+    val formattedCategory: Int?, // Severity
 )

@@ -12,7 +12,7 @@ import javax.inject.Named
  * https://github.com/mihonapp/mihon/blob/02864ebd60ac9eb974a1b54b06368d20b0ca3ce5/data/src/main/java/tachiyomi/data/release/ReleaseServiceImpl.kt
  */
 class ReleaseService @Inject constructor(
-    @Named("JsonClient") val client: Retrofit.Builder
+    @Named("JsonClient") val client: Retrofit.Builder,
 ) {
 
     suspend fun latest(org: String, repository: String): Release {

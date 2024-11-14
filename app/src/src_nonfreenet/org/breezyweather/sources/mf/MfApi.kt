@@ -38,7 +38,7 @@ interface MfApi {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("formatDate") formatDate: String,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfForecastResult>
 
     @GET("v2/observation")
@@ -48,7 +48,7 @@ interface MfApi {
         @Query("lon") lon: Double,
         @Query("lang") lang: String,
         @Query("formatDate") formatDate: String,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfCurrentResult>
 
     @GET("v3/nowcast/rain")
@@ -58,7 +58,7 @@ interface MfApi {
         @Query("lon") lon: Double,
         @Query("lang") lang: String,
         @Query("formatDate") formatDate: String,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfRainResult>
 
     @GET("ephemeris")
@@ -68,7 +68,7 @@ interface MfApi {
         @Query("lon") lon: Double,
         @Query("lang") lang: String,
         @Query("formatDate") formatDate: String,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfEphemerisResult>
 
     @GET("v2/normals")
@@ -76,7 +76,7 @@ interface MfApi {
         @Header("User-Agent") userAgent: String,
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfNormalsResult>
 
     @GET("v3/warning/full")
@@ -84,6 +84,6 @@ interface MfApi {
         @Header("User-Agent") userAgent: String,
         @Query(encoded = true, value = "domain") domain: String,
         @Query("formatDate") formatDate: String,
-        @Query("token") token: String
+        @Query("token") token: String,
     ): Observable<MfWarningsResult>
 }

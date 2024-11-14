@@ -32,7 +32,7 @@ object MinimalIconDialog {
         context: Context,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val view = LayoutInflater
             .from(context)
@@ -49,25 +49,19 @@ object MinimalIconDialog {
         view: View,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val lightIconView = view.findViewById<AppCompatImageView>(R.id.dialog_minimal_icon_lightIcon)
         lightIconView.setImageDrawable(
-            ResourceHelper.getWidgetNotificationIcon(
-                provider, code, daytime, true, "light"
-            )
+            ResourceHelper.getWidgetNotificationIcon(provider, code, daytime, true, "light")
         )
         val greyIconView = view.findViewById<AppCompatImageView>(R.id.dialog_minimal_icon_greyIcon)
         greyIconView.setImageDrawable(
-            ResourceHelper.getWidgetNotificationIcon(
-                provider, code, daytime, true, "grey"
-            )
+            ResourceHelper.getWidgetNotificationIcon(provider, code, daytime, true, "grey")
         )
         val darkIconView = view.findViewById<AppCompatImageView>(R.id.dialog_minimal_icon_darkIcon)
         darkIconView.setImageDrawable(
-            ResourceHelper.getWidgetNotificationIcon(
-                provider, code, daytime, true, "dark"
-            )
+            ResourceHelper.getWidgetNotificationIcon(provider, code, daytime, true, "dark")
         )
     }
 }

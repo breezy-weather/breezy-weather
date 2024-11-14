@@ -49,11 +49,13 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         private fun innerGetBackgroundColor(
             context: Context,
             @WeatherKindRule weatherKind: Int,
-            daytime: Boolean
+            daytime: Boolean,
         ): Int = when (weatherKind) {
             WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
                 SunImplementor.themeColor
-            } else MeteorShowerImplementor.themeColor
+            } else {
+                MeteorShowerImplementor.themeColor
+            }
 
             WeatherView.WEATHER_KIND_CLOUDY ->
                 CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY, daytime)
@@ -118,9 +120,8 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         return innerGetBackgroundColor(context, weatherKind, daylight)
     }
 
-    override fun getHeaderTopMargin(context: Context): Int = (
-        context.resources.displayMetrics.heightPixels * 0.25 // 0.66
-    ).toInt()
+    override fun getHeaderTopMargin(context: Context): Int =
+        (context.resources.displayMetrics.heightPixels * 0.25).toInt()
 
     override fun getHeaderTextColor(context: Context): Int {
         return Color.WHITE
@@ -132,7 +133,7 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         statusShader: Boolean,
         lightStatus: Boolean,
         navigationShader: Boolean,
-        lightNavigation: Boolean
+        lightNavigation: Boolean,
     ) {
         window.setSystemBarStyle(
             statusShaderP = statusShader,

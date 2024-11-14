@@ -51,7 +51,8 @@ import java.util.Date
 
 @SuppressLint("InflateParams")
 class FirstCardHeaderController(
-    private val mActivity: GeoActivity, location: Location
+    private val mActivity: GeoActivity,
+    location: Location,
 ) : View.OnClickListener {
     private val mView: View = LayoutInflater.from(mActivity).inflate(R.layout.container_main_first_card_header, null)
     private val mFormattedId: String = location.formattedId
@@ -59,9 +60,7 @@ class FirstCardHeaderController(
 
     init {
         // Don’t show if alertList only contains alerts in the past
-        if (location.weather?.alertList?.any {
-            it.endDate == null || it.endDate!!.time > Date().time
-        } == true) {
+        if (location.weather?.alertList?.any { it.endDate == null || it.endDate!!.time > Date().time } == true) {
             mView.visibility = View.VISIBLE
             mView.setOnClickListener {
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
@@ -135,30 +134,18 @@ class FirstCardHeaderController(
                         supportingContent = currentAlert.startDate?.let { startDate ->
                             {
                                 val builder = StringBuilder()
-                                val startDateDay = startDate.getFormattedMediumDayAndMonth(
-                                    location, mActivity
-                                )
+                                val startDateDay = startDate.getFormattedMediumDayAndMonth(location, mActivity)
                                 builder.append(startDateDay)
                                     .append(stringResource(R.string.comma_separator))
-                                    .append(
-                                        startDate.getFormattedTime(
-                                            location, mActivity, mActivity.is12Hour
-                                        )
-                                    )
+                                    .append(startDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
                                 currentAlert.endDate?.let { endDate ->
                                     builder.append(" — ")
-                                    val endDateDay = endDate.getFormattedMediumDayAndMonth(
-                                        location, mActivity
-                                    )
+                                    val endDateDay = endDate.getFormattedMediumDayAndMonth(location, mActivity)
                                     if (startDateDay != endDateDay) {
                                         builder.append(endDateDay)
                                             .append(stringResource(R.string.comma_separator))
                                     }
-                                    builder.append(
-                                        endDate.getFormattedTime(
-                                            location, mActivity, mActivity.is12Hour
-                                        )
-                                    )
+                                    builder.append(endDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
                                 }
                                 Text(
                                     builder.toString(),

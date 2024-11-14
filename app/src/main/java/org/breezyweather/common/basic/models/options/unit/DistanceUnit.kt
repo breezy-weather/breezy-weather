@@ -18,27 +18,28 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
 // actual distance = distance(km) * factor.
 enum class DistanceUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
-    val decimalNumbers: Int = 0
-): UnitEnum<Double> {
+    val decimalNumbers: Int = 0,
+) : UnitEnum<Double> {
 
     M("m", { valueInDefaultUnit -> valueInDefaultUnit }),
     KM("km", { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) }, 1),
     MI("mi", { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344f) }, 1),
     NMI("nmi", { valueInDefaultUnit -> valueInDefaultUnit.div(1852f) }, 1),
-    FT("ft", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) });
+    FT("ft", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) }),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = DistanceUnit.entries.firstOrNull {
             it.id == value
         } ?: M
@@ -55,18 +56,18 @@ enum class DistanceUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimalNumbers)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -77,13 +78,13 @@ enum class DistanceUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

@@ -50,7 +50,10 @@ import kotlin.math.min
 
 object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context,
+        location: Location?,
+    ) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             innerUpdateWidget(context, location)
             return
@@ -59,7 +62,10 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     @WorkerThread
-    private fun innerUpdateWidget(context: Context, location: Location?) {
+    private fun innerUpdateWidget(
+        context: Context,
+        location: Location?,
+    ) {
         val config = getWidgetConfig(
             context,
             context.getString(R.string.sp_widget_hourly_trend_setting)
@@ -70,16 +76,22 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTrendHourlyProvider::class.java),
             getRemoteViews(
-                context, location,
+                context,
+                location,
                 context.getTabletListAdaptiveWidth(context.resources.displayMetrics.widthPixels),
-                config.cardStyle, config.cardAlpha
+                config.cardStyle,
+                config.cardAlpha
             )
         )
     }
 
     @WorkerThread
     @SuppressLint("InflateParams", "WrongThread")
-    private fun getDrawableView(context: Context, location: Location?, color: WidgetColor): View? {
+    private fun getDrawableView(
+        context: Context,
+        location: Location?,
+        color: WidgetColor,
+    ): View? {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.nextHourlyForecast.size)
@@ -130,7 +142,8 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             if (normals.daytimeTemperature != null &&
                 normals.nighttimeTemperature != null &&
                 highestTemperature != null &&
-                lowestTemperature != null) {
+                lowestTemperature != null
+            ) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
                 trendParent.normals = normals.month != null
                 trendParent.setData(
@@ -141,9 +154,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     false
                 )
                 trendParent.setColor(lightTheme)
-                trendParent.setKeyLineVisibility(
-                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-                )
+                trendParent.setKeyLineVisibility(SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled)
             }
         }
 
@@ -166,7 +177,11 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 hourly.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(
                         ResourceHelper.getWidgetNotificationIcon(
-                            provider, it, hourly.isDaylight, minimalIcon, lightTheme
+                            provider,
+                            it,
+                            hourly.isDaylight,
+                            minimalIcon,
+                            lightTheme
                         )
                     )
                 }
@@ -179,14 +194,19 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     null,
                     highestTemperature,
                     lowestTemperature,
-                    null, null, null, null
+                    null,
+                    null,
+                    null,
+                    null
                 )
                 widgetItemView.trendItemView.setLineColors(
                     colors[1],
                     colors[2],
                     if (lightTheme) {
                         ColorUtils.setAlphaComponent(Color.BLACK, (255 * 0.05).toInt())
-                    } else ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.1).toInt())
+                    } else {
+                        ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.1).toInt())
+                    }
                 )
                 widgetItemView.trendItemView.setShadowColors(colors[1], colors[2], lightTheme)
                 widgetItemView.trendItemView.setTextColors(
@@ -219,7 +239,11 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
     @WorkerThread
     fun getRemoteViews(
-        context: Context, location: Location?, width: Int, cardStyle: String?, cardAlpha: Int
+        context: Context,
+        location: Location?,
+        width: Int,
+        cardStyle: String?,
+        cardAlpha: Int,
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_remote)
         val color = WidgetColor(
@@ -261,9 +285,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)
         views.setViewVisibility(R.id.widget_remote_progress, View.GONE)
         views.setImageViewResource(R.id.widget_remote_card, getCardBackgroundId(color))
-        views.setInt(
-            R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
-        )
+        views.setInt(R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         setOnClickPendingIntent(context, views, location)
         return views
     }
@@ -291,13 +313,13 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location
+        context: Context,
+        views: RemoteViews,
+        location: Location,
     ) {
         views.setOnClickPendingIntent(
             R.id.widget_remote_drawable,
-            getWeatherPendingIntent(
-                context, location, Widgets.TREND_HOURLY_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.TREND_HOURLY_PENDING_INTENT_CODE_WEATHER)
         )
     }
 }

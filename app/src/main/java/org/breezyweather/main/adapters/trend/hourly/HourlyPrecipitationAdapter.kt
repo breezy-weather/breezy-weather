@@ -43,7 +43,7 @@ class HourlyPrecipitationAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: PrecipitationUnit
+    unit: PrecipitationUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mPrecipitationUnit: PrecipitationUnit = unit
@@ -117,14 +117,15 @@ class HourlyPrecipitationAdapter(
     }
 
     init {
-        mHighestPrecipitation = (location.weather!!.nextHourlyForecast
-            .mapNotNull { it.precipitation?.total }
-            .maxOrNull() ?: 0.0).toFloat()
+        mHighestPrecipitation = (
+            location.weather!!.nextHourlyForecast
+                .mapNotNull { it.precipitation?.total }
+                .maxOrNull() ?: 0.0
+            ).toFloat()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

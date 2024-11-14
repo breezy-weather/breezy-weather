@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfGeometry(
-    val coordinates: List<Double>?
+    val coordinates: List<Double>?,
 )

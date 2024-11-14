@@ -34,5 +34,5 @@ data class OpenMeteoLocationResult(
     val admin1: String?,
     val admin2: String?,
     val admin3: String?,
-    val admin4: String?
+    val admin4: String?,
 )

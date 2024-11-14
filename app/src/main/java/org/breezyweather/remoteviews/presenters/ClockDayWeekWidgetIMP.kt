@@ -42,11 +42,20 @@ import java.util.Date
 
 object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context,
+        location: Location?,
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_week_setting))
         val views = getRemoteViews(
-            context, location,
-            config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont, config.hideAlternateCalendar
+            context,
+            location,
+            config.cardStyle,
+            config.cardAlpha,
+            config.textColor,
+            config.textSize,
+            config.clockFont,
+            config.hideAlternateCalendar
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetClockDayWeekProvider::class.java),
@@ -55,8 +64,14 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?,
-        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideAlternateCalendar: Boolean
+        context: Context,
+        location: Location?,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
+        clockFont: String?,
+        hideAlternateCalendar: Boolean,
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
@@ -125,16 +140,16 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setViewVisibility(R.id.widget_clock_day_week_icon, View.VISIBLE)
             views.setImageViewUri(
                 R.id.widget_clock_day_week_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, dayTime, minimalIcon, color.minimalIconColor
-                )
+                ResourceHelper.getWidgetNotificationIconUri(provider, it, dayTime, minimalIcon, color.minimalIconColor)
             )
         } ?: views.setViewVisibility(R.id.widget_clock_day_week_icon, View.INVISIBLE)
         views.setTextViewText(
             R.id.widget_clock_day_week_alternate_calendar,
             if (CalendarHelper.getAlternateCalendarSetting(context) != null && !hideAlternateCalendar) {
                 " - ${Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)}"
-            } else ""
+            } else {
+                ""
+            }
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
@@ -147,11 +162,31 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime)
         val dailyIds = arrayOf(
-            arrayOf(R.id.widget_clock_day_week_week_1, R.id.widget_clock_day_week_temp_1, R.id.widget_clock_day_week_icon_1),
-            arrayOf(R.id.widget_clock_day_week_week_2, R.id.widget_clock_day_week_temp_2, R.id.widget_clock_day_week_icon_2),
-            arrayOf(R.id.widget_clock_day_week_week_3, R.id.widget_clock_day_week_temp_3, R.id.widget_clock_day_week_icon_3),
-            arrayOf(R.id.widget_clock_day_week_week_4, R.id.widget_clock_day_week_temp_4, R.id.widget_clock_day_week_icon_4),
-            arrayOf(R.id.widget_clock_day_week_week_5, R.id.widget_clock_day_week_temp_5, R.id.widget_clock_day_week_icon_5),
+            arrayOf(
+                R.id.widget_clock_day_week_week_1,
+                R.id.widget_clock_day_week_temp_1,
+                R.id.widget_clock_day_week_icon_1
+            ),
+            arrayOf(
+                R.id.widget_clock_day_week_week_2,
+                R.id.widget_clock_day_week_temp_2,
+                R.id.widget_clock_day_week_icon_2
+            ),
+            arrayOf(
+                R.id.widget_clock_day_week_week_3,
+                R.id.widget_clock_day_week_temp_3,
+                R.id.widget_clock_day_week_icon_3
+            ),
+            arrayOf(
+                R.id.widget_clock_day_week_week_4,
+                R.id.widget_clock_day_week_temp_4,
+                R.id.widget_clock_day_week_icon_4
+            ),
+            arrayOf(
+                R.id.widget_clock_day_week_week_5,
+                R.id.widget_clock_day_week_temp_5,
+                R.id.widget_clock_day_week_icon_5
+            )
         )
         dailyIds.forEachIndexed { i, dailyId ->
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
@@ -159,7 +194,9 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     dailyId[0],
                     if (it.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(location, context)
+                    } else {
+                        it.getWeek(location, context)
+                    }
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
@@ -175,7 +212,11 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = true, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = true,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -185,7 +226,11 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = false, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = false,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -230,7 +275,11 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_normal, TypedValue.COMPLEX_UNIT_PX, clockAASize)
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_aa_black, TypedValue.COMPLEX_UNIT_PX, clockAASize)
                 setTextViewTextSize(R.id.widget_clock_day_week_title, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_clock_day_week_alternate_calendar, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                setTextViewTextSize(
+                    R.id.widget_clock_day_week_alternate_calendar,
+                    TypedValue.COMPLEX_UNIT_PX,
+                    contentSize
+                )
                 setTextViewTextSize(R.id.widget_clock_day_week_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize)
@@ -285,9 +334,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         // weather.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_weather,
-            getWeatherPendingIntent(
-                context, location, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER)
         )
 
         // daily forecast.
@@ -295,60 +342,67 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, index, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context,
+                location,
+                index,
+                Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, index + 1, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context,
+                location,
+                index + 1,
+                Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, index + 2, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context,
+                location,
+                index + 2,
+                Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_4,
             getDailyForecastPendingIntent(
-                context, location, index + 3, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                context,
+                location,
+                index + 3,
+                Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_5,
             getDailyForecastPendingIntent(
-                context, location,index + 4, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                context,
+                location,
+                index + 4,
+                Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
             )
         )
 
         // clock.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_light,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT)
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_normal,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL)
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_black,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK)
         )
 
         // title.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_title,
-            getCalendarPendingIntent(
-                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR
-            )
+            getCalendarPendingIntent(context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR)
         )
     }
 }

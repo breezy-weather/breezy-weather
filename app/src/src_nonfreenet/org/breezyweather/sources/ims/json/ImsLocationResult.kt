@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImsLocationResult(
-    val data: Map<String, ImsLocation>?
+    val data: Map<String, ImsLocation>?,
 )

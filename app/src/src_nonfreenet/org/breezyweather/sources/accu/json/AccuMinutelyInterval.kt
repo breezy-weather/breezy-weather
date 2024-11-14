@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class AccuMinutelyInterval(
     val StartEpochDateTime: Long,
     val Minute: Int,
-    val Dbz: Double
+    val Dbz: Double,
 )

@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class HereGeocodingPosition(
     val lat: Double,
-    val lng: Double
+    val lng: Double,
 )

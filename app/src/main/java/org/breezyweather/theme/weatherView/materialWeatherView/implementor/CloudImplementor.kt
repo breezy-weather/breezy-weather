@@ -37,7 +37,7 @@ class CloudImplementor(
     @Size(2) canvasSizes: IntArray,
     animate: Boolean,
     @TypeRule type: Int,
-    daylight: Boolean
+    daylight: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private var mPaint = Paint().apply {
@@ -60,7 +60,7 @@ class CloudImplementor(
         @ColorInt val color: Int,
         val alpha: Float,
         val duration: Long,
-        initProgress: Long
+        initProgress: Long,
     ) {
         var centerX: Float = mInitCX
         var centerY: Float = mInitCY
@@ -93,7 +93,7 @@ class CloudImplementor(
         radius: Float,
         @field:ColorInt @param:ColorInt val color: Int,
         val duration: Long,
-        val animate: Boolean
+        val animate: Boolean,
     ) {
         var radius: Float
         var alpha = 0f
@@ -177,18 +177,26 @@ class CloudImplementor(
             val cloudColors: IntArray
             val cloudAlphas: FloatArray
             if (type == TYPE_FOG) {
-                cloudColors = if (daylight) intArrayOf(-0x8e8260, -0x8e8260, -0x8e8260) else intArrayOf(
-                    Color.rgb(85, 99, 110),
-                    Color.rgb(91, 104, 114),
-                    Color.rgb(99, 113, 123)
-                )
+                cloudColors = if (daylight) {
+                    intArrayOf(-0x8e8260, -0x8e8260, -0x8e8260)
+                } else {
+                    intArrayOf(
+                        Color.rgb(85, 99, 110),
+                        Color.rgb(91, 104, 114),
+                        Color.rgb(99, 113, 123)
+                    )
+                }
                 cloudAlphas = if (daylight) floatArrayOf(0.1f, 0.1f, 0.1f) else floatArrayOf(0.4f, 0.6f, 0.4f)
             } else {
-                cloudColors = if (daylight) intArrayOf(-0x53627e, -0x53627e, -0x53627e) else intArrayOf(
-                    Color.rgb(179, 158, 132),
-                    Color.rgb(179, 158, 132),
-                    Color.rgb(179, 158, 132)
-                )
+                cloudColors = if (daylight) {
+                    intArrayOf(-0x53627e, -0x53627e, -0x53627e)
+                } else {
+                    intArrayOf(
+                        Color.rgb(179, 158, 132),
+                        Color.rgb(179, 158, 132),
+                        Color.rgb(179, 158, 132)
+                    )
+                }
                 cloudAlphas = floatArrayOf(0.3f, 0.3f, 0.3f)
             }
             val clouds = arrayOf(
@@ -298,20 +306,28 @@ class CloudImplementor(
             var cloudAlphas = FloatArray(2)
             when (type) {
                 TYPE_CLOUDY -> {
-                    cloudColors = if (daylight) intArrayOf(
-                        Color.rgb(160, 179, 191),
-                        Color.rgb(160, 179, 191)
-                    ) else intArrayOf(
-                        Color.rgb(95, 104, 108),
-                        Color.rgb(95, 104, 108)
-                    )
+                    cloudColors = if (daylight) {
+                        intArrayOf(
+                            Color.rgb(160, 179, 191),
+                            Color.rgb(160, 179, 191)
+                        )
+                    } else {
+                        intArrayOf(
+                            Color.rgb(95, 104, 108),
+                            Color.rgb(95, 104, 108)
+                        )
+                    }
                     cloudAlphas = floatArrayOf(0.3f, 0.3f)
                 }
                 TYPE_THUNDER -> {
-                    cloudColors = if (daylight) intArrayOf(-0x43523f, -0x43523f) else intArrayOf(
-                        Color.rgb(43, 30, 66),
-                        Color.rgb(43, 30, 66)
-                    )
+                    cloudColors = if (daylight) {
+                        intArrayOf(-0x43523f, -0x43523f)
+                    } else {
+                        intArrayOf(
+                            Color.rgb(43, 30, 66),
+                            Color.rgb(43, 30, 66)
+                        )
+                    }
                     cloudAlphas = if (daylight) floatArrayOf(0.2f, 0.3f) else floatArrayOf(0.8f, 0.8f)
                 }
             }
@@ -512,8 +528,10 @@ class CloudImplementor(
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         for (c in mClouds) {
             c.move(interval, rotation2D, rotation3D)
@@ -525,8 +543,11 @@ class CloudImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         if (scrollRate < 1) {
             mThunder?.let {
@@ -558,6 +579,7 @@ class CloudImplementor(
         const val TYPE_THUNDER = 5
         const val TYPE_FOG = 6
         const val TYPE_HAZE = 7
+
         @ColorInt
         fun getThemeColor(context: Context, @TypeRule type: Int, daylight: Boolean): Int {
             when (type) {

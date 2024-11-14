@@ -24,5 +24,5 @@ data class MeteoAmReverseLocation(
     val city: String,
     val county: String?,
     val country: String,
-    @SerialName("country_code") val countryCode: String?
+    @SerialName("country_code") val countryCode: String?,
 )

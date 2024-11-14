@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfRainProperties(
-    @SerialName("forecast") val rainForecasts: List<MfRainForecast>?
+    @SerialName("forecast") val rainForecasts: List<MfRainForecast>?,
 )

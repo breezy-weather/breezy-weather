@@ -38,7 +38,8 @@ class MainLayoutManager : RecyclerView.LayoutManager() {
     }
 
     override fun generateDefaultLayoutParams() = RecyclerView.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
     )
 
     override fun onAdapterChanged(oldAdapter: RecyclerView.Adapter<*>?, newAdapter: RecyclerView.Adapter<*>?) {

@@ -46,7 +46,7 @@ class ThemeManager private constructor(
                     if (instance == null) {
                         instance = ThemeManager(
                             weatherThemeDelegate = MaterialWeatherThemeDelegate(),
-                            darkMode = SettingsManager.getInstance(context).darkMode,
+                            darkMode = SettingsManager.getInstance(context).darkMode
                         )
                     }
                 }
@@ -55,7 +55,7 @@ class ThemeManager private constructor(
         }
 
         private fun generateGlobalUIMode(
-            darkMode: DarkMode
+            darkMode: DarkMode,
         ): Int = when (darkMode) {
             DarkMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
             DarkMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
@@ -96,7 +96,7 @@ class ThemeManager private constructor(
 
     fun generateThemeContext(
         context: Context,
-        lightTheme: Boolean
+        lightTheme: Boolean,
     ): Context = context.createConfigurationContext(
         Configuration(context.resources.configuration).apply {
             uiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()

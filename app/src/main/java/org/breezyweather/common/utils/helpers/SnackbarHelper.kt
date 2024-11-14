@@ -27,7 +27,7 @@ object SnackbarHelper {
         content: String,
         action: String? = null,
         activity: GeoActivity? = null,
-        listener: View.OnClickListener? = null
+        listener: View.OnClickListener? = null,
     ) {
         if (action != null && listener == null) {
             throw RuntimeException("Must send a non null listener as parameter.")

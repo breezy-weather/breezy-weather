@@ -46,7 +46,7 @@ fun convert(
     location: Location,
     forecastResult: OpenWeatherForecastResult,
     currentResult: OpenWeatherForecast,
-    airPollutionResult: OpenWeatherAirPollutionResult?
+    airPollutionResult: OpenWeatherAirPollutionResult?,
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.list.isNullOrEmpty()) {
@@ -87,7 +87,7 @@ fun getCurrent(currentResult: OpenWeatherForecast): Current? {
 private fun getDailyList(
     hourlyResult: List<OpenWeatherForecast>,
     hourlyAirQuality: MutableMap<Date, AirQuality>,
-    location: Location
+    location: Location,
 ): List<Daily> {
     val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, location)
     val dailyList = mutableListOf<Daily>()
@@ -110,7 +110,7 @@ private fun getDailyList(
 
 private fun getHourlyList(
     hourlyResult: List<OpenWeatherForecast>,
-    hourlyAirQuality: MutableMap<Date, AirQuality>
+    hourlyAirQuality: MutableMap<Date, AirQuality>,
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         val theDate = result.dt!!.seconds.inWholeMilliseconds.toDate()
@@ -149,7 +149,9 @@ private fun getTotalPrecipitation(rain: Double?, snow: Double?): Double? {
     }
     return if (snow == null) {
         rain
-    } else rain + snow
+    } else {
+        rain + snow
+    }
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {
@@ -176,7 +178,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
 }
 
 private fun getHourlyAirQuality(
-    airPollutionResultList: List<OpenWeatherAirPollution>?
+    airPollutionResultList: List<OpenWeatherAirPollution>?,
 ): MutableMap<Date, AirQuality> {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
     airPollutionResultList?.forEach {
@@ -194,12 +196,14 @@ private fun getHourlyAirQuality(
 
 fun convertSecondary(
     currentResult: OpenWeatherForecast,
-    airPollutionResult: OpenWeatherAirPollutionResult?
+    airPollutionResult: OpenWeatherAirPollutionResult?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = getCurrent(currentResult),
         airQuality = if (airPollutionResult != null) {
             AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list))
-        } else null
+        } else {
+            null
+        }
     )
 }

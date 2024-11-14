@@ -42,23 +42,22 @@ import kotlin.math.roundToInt
  */
 fun convert(
     location: Location?,
-    results: List<HereGeocodingData>
+    results: List<HereGeocodingData>,
 ): List<Location> {
     return results.map { item ->
         val newLocation = (location ?: Location())
-        newLocation
-            .copy(
-                cityId = item.id,
-                latitude = location?.latitude ?: item.position.lat,
-                longitude = location?.longitude ?: item.position.lng,
-                timeZone = item.timeZone.name,
-                country = item.address.countryName,
-                countryCode = item.address.countryCode,
-                admin1 = item.address.state,
-                admin1Code = item.address.stateCode,
-                admin2 = item.address.county,
-                city = item.address.city
-            )
+        newLocation.copy(
+            cityId = item.id,
+            latitude = location?.latitude ?: item.position.lat,
+            longitude = location?.longitude ?: item.position.lng,
+            timeZone = item.timeZone.name,
+            country = item.address.countryName,
+            countryCode = item.address.countryCode,
+            admin1 = item.address.state,
+            admin1Code = item.address.stateCode,
+            admin2 = item.address.county,
+            city = item.address.city
+        )
     }
 }
 
@@ -66,7 +65,7 @@ fun convert(
  * Converts here.com weather result into a forecast
  */
 fun convert(
-    hereWeatherForecastResult: HereWeatherForecastResult
+    hereWeatherForecastResult: HereWeatherForecastResult,
 ): WeatherWrapper {
     if (hereWeatherForecastResult.places.isNullOrEmpty()) {
         throw InvalidOrIncompleteDataException()
@@ -129,7 +128,7 @@ private fun getCurrentForecast(result: HereWeatherData?): Current? {
  */
 private fun getDailyForecast(
     dailySimpleForecasts: List<HereWeatherData>,
-    astroForecasts: List<HereWeatherAstronomy>?
+    astroForecasts: List<HereWeatherAstronomy>?,
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailySimpleForecasts.size)
     for (i in 0 until dailySimpleForecasts.size - 1) { // Skip last day
@@ -143,7 +142,9 @@ private fun getDailyForecast(
                     temperature = Temperature(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
                             dailyForecast.highTemperature.toDouble()
-                        } else null
+                        } else {
+                            null
+                        }
                     )
                 ),
                 night = HalfDay(
@@ -152,7 +153,9 @@ private fun getDailyForecast(
                     temperature = Temperature(
                         temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
                             dailySimpleForecasts[i + 1].lowTemperature!!.toDouble()
-                        } else null
+                        } else {
+                            null
+                        }
                     )
                 ),
                 moonPhase = MoonPhase(angle = astro?.moonPhase?.times(360)?.roundToInt()),
@@ -167,7 +170,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<HereWeatherData>
+    hourlyResult: List<HereWeatherData>,
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
@@ -181,7 +184,7 @@ private fun getHourlyForecast(
             precipitation = Precipitation(
                 total = result.precipitation1H ?: (result.rainFall + result.snowFall),
                 rain = result.rainFall,
-                snow = result.snowFall,
+                snow = result.snowFall
             ),
             precipitationProbability = PrecipitationProbability(
                 total = result.precipitationProbability?.toDouble()

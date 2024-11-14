@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoNowcastResult(
-    val properties: MetNoNowcastProperties? = null
+    val properties: MetNoNowcastProperties? = null,
 )

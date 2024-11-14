@@ -42,7 +42,7 @@ class DailyFeelsLikeAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit
+    unit: TemperatureUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatureUnit: TemperatureUnit = unit
@@ -159,8 +159,9 @@ class DailyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mDaytimeTemperatures.size) {
-                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.toFloat()
-                    ?: weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                mDaytimeTemperatures[i] =
+                    weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.toFloat()
+                        ?: weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -179,8 +180,9 @@ class DailyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mNighttimeTemperatures.size) {
-                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.toFloat()
-                    ?: weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                mNighttimeTemperatures[i] =
+                    weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.toFloat()
+                        ?: weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -219,8 +221,7 @@ class DailyFeelsLikeAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 
@@ -232,8 +233,7 @@ class DailyFeelsLikeAdapter(
 
     override fun isValid(location: Location): Boolean {
         return location.weather?.dailyForecast?.any {
-            it.day?.temperature?.feelsLikeTemperature != null ||
-            it.night?.temperature?.feelsLikeTemperature != null
+            it.day?.temperature?.feelsLikeTemperature != null || it.night?.temperature?.feelsLikeTemperature != null
         } == true
     }
 

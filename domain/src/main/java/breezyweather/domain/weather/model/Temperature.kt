@@ -28,7 +28,7 @@ data class Temperature(
     val realFeelShaderTemperature: Double? = null,
     val apparentTemperature: Double? = null,
     val windChillTemperature: Double? = null,
-    val wetBulbTemperature: Double? = null
+    val wetBulbTemperature: Double? = null,
 ) : Serializable {
 
     val feelsLikeTemperature: Double? = realFeelTemperature ?: realFeelShaderTemperature

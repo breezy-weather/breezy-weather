@@ -21,7 +21,7 @@ import com.google.maps.android.data.MultiGeometry
  * A GeoJsonMultiLineString geometry contains a number of [GeoJsonLineString]s.
  */
 class GeoJsonMultiLineString(
-    geoJsonLineStrings: List<GeoJsonLineString>
+    geoJsonLineStrings: List<GeoJsonLineString>,
 ) : MultiGeometry(geoJsonLineStrings) {
     /**
      * Creates a new GeoJsonMultiLineString object

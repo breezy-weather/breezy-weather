@@ -51,7 +51,7 @@ import kotlin.time.Duration.Companion.seconds
 interface WeatherRequestCallback {
     fun onCompleted(
         location: Location,
-        errors: List<RefreshError> = emptyList()
+        errors: List<RefreshError> = emptyList(),
     )
 }
 
@@ -63,7 +63,7 @@ class MainActivityViewModel @Inject constructor(
     private val refreshHelper: RefreshHelper,
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
-    private val updateChecker: AppUpdateChecker
+    private val updateChecker: AppUpdateChecker,
 ) : GeoViewModel(application), WeatherRequestCallback {
 
     // flow
@@ -97,7 +97,8 @@ class MainActivityViewModel @Inject constructor(
         onCleared()
 
         // init live data.
-        runBlocking { // TODO: Not doing that causes blinking, to be investigated
+        // TODO: Not doing that causes blinking, to be investigated
+        runBlocking {
             val validList = initLocations()
 
             val id = formattedId ?: validList.getOrNull(0)?.formattedId
@@ -192,7 +193,9 @@ class MainActivityViewModel @Inject constructor(
 
         // check difference in valid locations.
         val diffInValidLocations = validLocationList.value != newValid
-        if (diffInValidLocations || (currentLocation.value?.location?.formattedId ?: "") != newValid[index].formattedId) {
+        if (diffInValidLocations ||
+            (currentLocation.value?.location?.formattedId ?: "") != newValid[index].formattedId
+        ) {
             // update current location.
             setCurrentLocation(newValid[index])
 
@@ -219,7 +222,7 @@ class MainActivityViewModel @Inject constructor(
      */
     private fun onUpdateResult(
         location: Location,
-        errors: List<RefreshError> = emptyList()
+        errors: List<RefreshError> = emptyList(),
     ) {
         // Arbitrarily post only the first error, as we can only show one snackbar at a time
         snackbarError.postValue(errors.getOrNull(0))
@@ -248,7 +251,7 @@ class MainActivityViewModel @Inject constructor(
             if (initCompleted.value) {
                 updateWithUpdatingChecking(
                     triggeredByUser = false,
-                    checkPermissions = true,
+                    checkPermissions = true
                 )
             } else {
                 _loading.value = true
@@ -281,8 +284,12 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId == locationToCheck.formattedId &&
-            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp + DELAY_BEFORE_NEXT_MANUAL_REFRESH > Date().time) {
+        if (SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId ==
+            locationToCheck.formattedId &&
+            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp +
+            DELAY_BEFORE_NEXT_MANUAL_REFRESH >
+            Date().time
+        ) {
             _loading.value = true
             _loading.value = false
             SnackbarHelper.showSnackbar(
@@ -306,8 +313,10 @@ class MainActivityViewModel @Inject constructor(
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
-            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
-            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
+            SettingsManager.getInstance(getApplication())
+                .weatherManualUpdateLastTimestamp = Date().time
+            SettingsManager.getInstance(getApplication())
+                .weatherManualUpdateLastLocationId = locationToCheck.formattedId
             viewModelScope.launchIO {
                 getWeather(
                     getApplication(),
@@ -321,15 +330,19 @@ class MainActivityViewModel @Inject constructor(
         // check permissions.
         val locationPermissionList: MutableList<String> = mutableListOf()
         if (locationToCheck.isCurrentPosition) {
-            locationPermissionList.addAll(getLocatePermissionList(getApplication())
-                .filter { !(getApplication() as Application).hasPermission(it) }
-                .toMutableList())
+            locationPermissionList.addAll(
+                getLocatePermissionList(getApplication())
+                    .filter { !(getApplication() as Application).hasPermission(it) }
+                    .toMutableList()
+            )
         }
         if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
-            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastTimestamp = Date().time
-            SettingsManager.getInstance(getApplication()).weatherManualUpdateLastLocationId = locationToCheck.formattedId
+            SettingsManager.getInstance(getApplication())
+                .weatherManualUpdateLastTimestamp = Date().time
+            SettingsManager.getInstance(getApplication())
+                .weatherManualUpdateLastLocationId = locationToCheck.formattedId
             viewModelScope.launchIO {
                 getWeather(
                     getApplication(),
@@ -428,9 +441,7 @@ class MainActivityViewModel @Inject constructor(
         index: Int? = null,
     ): Boolean {
         // do not add an existing location.
-        if (validLocationList.value.firstOrNull {
-            it.formattedId == location.formattedId
-        } != null) {
+        if (validLocationList.value.firstOrNull { it.formattedId == location.formattedId } != null) {
             return false
         }
 
@@ -469,12 +480,11 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun locationExists(location: Location): Boolean {
-        return validLocationList.value
-            .firstOrNull { item ->
-                item.longitude == location.longitude &&
+        return validLocationList.value.firstOrNull { item ->
+            item.longitude == location.longitude &&
                 item.latitude == location.latitude &&
                 item.weatherSource == location.weatherSource
-            } != null
+        } != null
     }
 
     fun deleteLocation(position: Int): Location {
@@ -502,7 +512,9 @@ class MainActivityViewModel @Inject constructor(
         }
 
         return index?.let {
-            return validLocationList.value.getOrNull((it + offset + validLocationList.value.size) % validLocationList.value.size)
+            return validLocationList.value.getOrNull(
+                (it + offset + validLocationList.value.size) % validLocationList.value.size
+            )
         }
     }
 
@@ -544,9 +556,7 @@ class MainActivityViewModel @Inject constructor(
         callback: WeatherRequestCallback,
     ) {
         try {
-            val locationResult = refreshHelper.getLocation(
-                context, location, false
-            )
+            val locationResult = refreshHelper.getLocation(context, location, false)
 
             if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
                 val weatherResult = refreshHelper.getWeather(

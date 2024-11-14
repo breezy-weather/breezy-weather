@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class AccuAlertArea(
     val EpochStartTime: Long?,
     val EpochEndTime: Long?,
-    val Text: String?
+    val Text: String?,
 )

@@ -39,7 +39,8 @@ import org.breezyweather.theme.weatherView.WeatherViewController
  * Daily air quality adapter.
  */
 class DailyAirQualityAdapter(
-    activity: GeoActivity, location: Location
+    activity: GeoActivity,
+    location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Int = 0
 
@@ -54,7 +55,7 @@ class DailyAirQualityAdapter(
         fun onBindView(
             activity: GeoActivity,
             location: Location,
-            position: Int
+            position: Int,
         ) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_aqi))
             super.onBindView(activity, location, talkBackBuilder, position)
@@ -68,11 +69,16 @@ class DailyAirQualityAdapter(
                     .append(daily.airQuality!!.getName(itemView.context))
             }
             mPolylineAndHistogramView.setData(
-                null, null,
-                null, null,
-                null, null,
-                index?.toFloat(), if (index != null) String.format("%d", index) else null,
-                mHighestIndex.toFloat(), 0f
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                index?.toFloat(),
+                if (index != null) String.format("%d", index) else null,
+                mHighestIndex.toFloat(),
+                0f
             )
             mPolylineAndHistogramView.setLineColors(
                 if (index != null) daily.airQuality!!.getColor(activity) else Color.TRANSPARENT,
@@ -106,8 +112,7 @@ class DailyAirQualityAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 
@@ -126,7 +131,8 @@ class DailyAirQualityAdapter(
         val goodPollutionLevel = PollutantIndex.indexFreshAir
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                goodPollutionLevel.toFloat(), goodPollutionLevel.toString(),
+                goodPollutionLevel.toFloat(),
+                goodPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[1],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -134,7 +140,8 @@ class DailyAirQualityAdapter(
         val moderatePollutionLevel = PollutantIndex.indexHighPollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                moderatePollutionLevel.toFloat(), moderatePollutionLevel.toString(),
+                moderatePollutionLevel.toFloat(),
+                moderatePollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[3],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -142,7 +149,8 @@ class DailyAirQualityAdapter(
         val heavyPollutionLevel = PollutantIndex.indexExcessivePollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                heavyPollutionLevel.toFloat(), heavyPollutionLevel.toString(),
+                heavyPollutionLevel.toFloat(),
+                heavyPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[5],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

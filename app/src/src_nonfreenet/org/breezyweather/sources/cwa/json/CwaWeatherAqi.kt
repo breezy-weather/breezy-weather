@@ -27,5 +27,5 @@ data class CwaWeatherAqi(
     val o3: String?,
     val pm10: String?,
     val pm2_5: String?,
-    val no2: String?
+    val no2: String?,
 )

@@ -21,15 +21,29 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.settings.ConfigStore
 import javax.inject.Inject
 
-class StatementManager @Inject constructor(@ApplicationContext context: Context) {
+class StatementManager @Inject constructor(
+    @ApplicationContext context: Context,
+) {
     private val config: ConfigStore = ConfigStore(context, SP_STATEMENT_RECORD)
-    var isLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(KEY_LOCATION_PERMISSION_DECLARED, false)
+    var isLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(
+        KEY_LOCATION_PERMISSION_DECLARED,
+        false
+    )
         private set
-    var isBackgroundLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(KEY_BACKGROUND_LOCATION_DECLARED, false)
+    var isBackgroundLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(
+        KEY_BACKGROUND_LOCATION_DECLARED,
+        false
+    )
         private set
-    var isPostNotificationDialogAlreadyShown: Boolean = config.getBoolean(KEY_POST_NOTIFICATION_REQUIRED, false)
+    var isPostNotificationDialogAlreadyShown: Boolean = config.getBoolean(
+        KEY_POST_NOTIFICATION_REQUIRED,
+        false
+    )
         private set
-    var isAppUpdateCheckDialogAlreadyShown: Boolean = config.getBoolean(KEY_APP_UPDATE_CHECK_ASKED, false)
+    var isAppUpdateCheckDialogAlreadyShown: Boolean = config.getBoolean(
+        KEY_APP_UPDATE_CHECK_ASKED,
+        false
+    )
         private set
 
     fun setLocationPermissionDialogAlreadyShown() {

@@ -100,15 +100,15 @@ class WorkerInfoActivity : GeoActivity() {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.settings_background_updates_worker_info_title),
                     onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = scrollBehavior
                 )
-            },
+            }
         ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxHeight(),
-                    //.horizontalScroll(rememberScrollState()),
-                contentPadding = it,
+                // .horizontalScroll(rememberScrollState()),
+                contentPadding = it
             ) {
                 sectionHeaderItem(R.string.settings_background_updates_worker_info_enqueued)
                 item { SectionText(enqueued) }
@@ -134,8 +134,8 @@ class WorkerInfoActivity : GeoActivity() {
         Box(modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))) {
             Text(
                 text = text,
-                //softWrap = false,
-                fontFamily = FontFamily.Monospace,
+                // softWrap = false,
+                fontFamily = FontFamily.Monospace
             )
         }
     }
@@ -185,15 +185,14 @@ class WorkerInfoViewModel @Inject constructor(application: Application) : GeoVie
                 if (workInfo.state == WorkInfo.State.ENQUEUED) {
                     appendLine(
                         "Next scheduled run: ${workInfo.nextScheduleTimeMillis.toDate()
-                            .getFormattedDate("yyyy-MM-dd HH:mm")}",
+                            .getFormattedDate("yyyy-MM-dd HH:mm")}"
                     )
                     appendLine("Attempt #${workInfo.runAttemptCount + 1}")
                 }
                 if (workInfo.state == WorkInfo.State.CANCELLED ||
-                    workInfo.state == WorkInfo.State.FAILED) {
-                    appendLine(
-                        "Stop reason code: ${workInfo.stopReason}",
-                    )
+                    workInfo.state == WorkInfo.State.FAILED
+                ) {
+                    appendLine("Stop reason code: ${workInfo.stopReason}")
                 }
                 appendLine()
             }

@@ -42,8 +42,12 @@ object PolyUtil {
      * Longitudes are offset by -lng1; the implicit lng1 becomes 0.
      */
     private fun intersects(
-        lat1: Double, lat2: Double, lng2: Double,
-        lat3: Double, lng3: Double, geodesic: Boolean
+        lat1: Double,
+        lat2: Double,
+        lng2: Double,
+        lat3: Double,
+        lng3: Double,
+        geodesic: Boolean,
     ): Boolean {
         // Both ends on the same side of lng3.
         if (lng3 >= 0 && lng3 >= lng2 || lng3 < 0 && lng3 < lng2) {
@@ -77,7 +81,9 @@ object PolyUtil {
         // Compare through a strictly-increasing function (tan() or mercator()) as convenient.
         return if (geodesic) {
             tan(lat3) >= tanLatGC(lat1, lat2, lng2, lng3)
-        } else MathUtil.mercator(lat3) >= mercatorLatRhumb(lat1, lat2, lng2, lng3)
+        } else {
+            MathUtil.mercator(lat3) >= mercatorLatRhumb(lat1, lat2, lng2, lng3)
+        }
     }
 
     fun containsLocation(point: LatLng, polygon: List<LatLng>, geodesic: Boolean): Boolean {
@@ -96,7 +102,7 @@ object PolyUtil {
         latitude: Double,
         longitude: Double,
         polygon: List<LatLng>,
-        geodesic: Boolean
+        geodesic: Boolean,
     ): Boolean {
         val size = polygon.size
         if (size == 0) {

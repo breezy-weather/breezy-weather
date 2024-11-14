@@ -25,5 +25,5 @@ import java.util.Date
 data class AtmoAuraPointHoraire(
     @SerialName("datetime_echeance") @Serializable(DateSerializer::class) val datetimeEcheance: Date,
     @SerialName("indice_atmo") val indiceAtmo: Int?,
-    val concentration: Int?
+    val concentration: Int?,
 )

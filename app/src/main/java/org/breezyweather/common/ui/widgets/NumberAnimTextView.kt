@@ -38,7 +38,9 @@ import java.text.DecimalFormat
  */
 @SuppressLint("AppCompatCustomView")
 class NumberAnimTextView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : TextView(context, attrs, defStyleAttr) {
     /**
      * 起始值 默认 0
@@ -102,8 +104,7 @@ class NumberAnimTextView @JvmOverloads constructor(
      */
     private fun checkNumString(numberStart: String, numberEnd: String): Boolean {
         val regexInteger = "-?\\d*"
-        isInt =
-            numberEnd.matches(regexInteger.toRegex()) && numberStart.matches(regexInteger.toRegex())
+        isInt = numberEnd.matches(regexInteger.toRegex()) && numberStart.matches(regexInteger.toRegex())
         if (isInt) {
             return true
         }

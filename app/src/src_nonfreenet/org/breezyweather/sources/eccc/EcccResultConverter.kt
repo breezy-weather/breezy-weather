@@ -50,7 +50,7 @@ import kotlin.time.Duration.Companion.seconds
 
 fun convert(
     location: Location,
-    result: EcccResult
+    result: EcccResult,
 ): Location {
     return location.copy(
         country = "Canada",
@@ -78,12 +78,13 @@ fun convert(
  */
 fun convert(
     ecccResult: EcccResult,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (ecccResult.dailyFcst?.daily.isNullOrEmpty() ||
         ecccResult.dailyFcst?.dailyIssuedTimeEpoch.isNullOrEmpty() ||
-        ecccResult.hourlyFcst?.hourly.isNullOrEmpty()) {
+        ecccResult.hourlyFcst?.hourly.isNullOrEmpty()
+    ) {
         throw InvalidOrIncompleteDataException()
     }
 
@@ -127,9 +128,10 @@ private fun getCurrent(result: EcccObservation?): Current? {
  */
 private fun getDailyForecast(
     location: Location,
-    dailyResult: EcccDailyFcst
+    dailyResult: EcccDailyFcst,
 ): List<Daily> {
-    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)
+    val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate()
+        .toTimezoneNoHour(location.javaTimeZone)
     val dailyList = mutableListOf<Daily>()
     if (dailyFirstDay != null) {
         val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null
@@ -139,20 +141,25 @@ private fun getDailyForecast(
             } else {
                 if (i != 0) {
                     dailyResult.daily.getOrNull((i * 2) - 1)
-                } else null
+                } else {
+                    null
+                }
             }
             val nighttime = if (!firstDayIsNight) {
                 dailyResult.daily.getOrNull((i * 2) + 1)
-            } else dailyResult.daily.getOrNull(i * 2)
+            } else {
+                dailyResult.daily.getOrNull(i * 2)
+            }
 
-            if ((daytime != null && nighttime != null) ||
-                (firstDayIsNight && i == 0 && nighttime != null)) {
+            if ((daytime != null && nighttime != null) || (firstDayIsNight && i == 0 && nighttime != null)) {
                 val currentDay = if (i != 0) {
                     val cal = Calendar.getInstance()
                     cal.setTime(dailyFirstDay)
                     cal.add(Calendar.DAY_OF_YEAR, i)
                     cal.time
-                } else dailyFirstDay
+                } else {
+                    dailyFirstDay
+                }
 
                 dailyList.add(
                     Daily(
@@ -169,7 +176,9 @@ private fun getDailyForecast(
                                     total = daytime.precip?.toDoubleOrNull()
                                 )
                             )
-                        } else null,
+                        } else {
+                            null
+                        },
                         night = HalfDay(
                             weatherCode = getWeatherCode(nighttime.iconCode),
                             weatherText = nighttime.summary,
@@ -194,7 +203,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<EcccHourly>
+    hourlyResult: List<EcccHourly>,
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
@@ -207,7 +216,9 @@ private fun getHourlyForecast(
             ),
             precipitationProbability = if (!result.precip.isNullOrEmpty()) {
                 PrecipitationProbability(total = result.precip.toDoubleOrNull())
-            } else null,
+            } else {
+                null
+            },
             wind = Wind(
                 degree = getWindDegree(result.windDir),
                 speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
@@ -237,10 +248,8 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             description = alert.text,
             source = alert.specialText?.firstOrNull { it.type == "email" }?.link,
             severity = severity,
-            color = (if (!alert.bannerColour.isNullOrEmpty() &&
-                alert.bannerColour.startsWith("#")) {
-                Color.parseColor(alert.bannerColour)
-            } else null) ?: Alert.colorFromSeverity(severity)
+            color = (if (alert.bannerColour?.startsWith("#") == true) Color.parseColor(alert.bannerColour) else null)
+                ?: Alert.colorFromSeverity(severity)
         )
     }
 }
@@ -259,13 +268,14 @@ private fun getNormals(location: Location, normals: EcccRegionalNormalsMetric?):
 }
 
 private fun getNonEmptyMetric(ecccUnit: EcccUnit?): Double? {
-    if (ecccUnit == null ||
-        (ecccUnit.metric.isNullOrEmpty() && ecccUnit.metricUnrounded.isNullOrEmpty())) {
+    if (ecccUnit == null || (ecccUnit.metric.isNullOrEmpty() && ecccUnit.metricUnrounded.isNullOrEmpty())) {
         return null
     }
     return if (!ecccUnit.metricUnrounded.isNullOrEmpty()) {
         ecccUnit.metricUnrounded.toDoubleOrNull()
-    } else ecccUnit.metric!!.toDoubleOrNull()
+    } else {
+        ecccUnit.metric!!.toDoubleOrNull()
+    }
 }
 
 private fun getWeatherCode(icon: String?): WeatherCode? {
@@ -302,9 +312,8 @@ private fun getWindDegree(direction: String?): Double? {
 
 fun convertSecondary(
     ecccResult: EcccResult,
-    location: Location
+    location: Location,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         current = getCurrent(ecccResult.observation),
         alertList = getAlertList(ecccResult.alert?.alerts),

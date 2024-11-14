@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfEphemerisProperties(
-    val ephemeris: MfEphemeris?
+    val ephemeris: MfEphemeris?,
 )

@@ -36,7 +36,7 @@ interface AccuDeveloperApi {
         @Query("q") q: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
-        @Query("alias") alias: String
+        @Query("alias") alias: String,
     ): Observable<List<AccuLocationResult>>
 
     @GET("locations/v1/cities/geoposition/search")
@@ -44,7 +44,7 @@ interface AccuDeveloperApi {
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
-        @Query("q") q: String
+        @Query("q") q: String,
     ): Observable<AccuLocationResult>
 
     @GET("currentconditions/v1/{city_key}")
@@ -52,7 +52,7 @@ interface AccuDeveloperApi {
         @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
-        @Query("details") details: Boolean
+        @Query("details") details: Boolean,
     ): Observable<List<AccuCurrentResult>>
 
     @GET("forecasts/v1/daily/{days}day/{city_key}")
@@ -62,7 +62,7 @@ interface AccuDeveloperApi {
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
-        @Query("metric") metric: Boolean
+        @Query("metric") metric: Boolean,
     ): Observable<AccuForecastDailyResult>
 
     @GET("forecasts/v1/hourly/{hours}hour/{city_key}")
@@ -72,7 +72,7 @@ interface AccuDeveloperApi {
         @Query("apikey") apikey: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
-        @Query("metric") metric: Boolean
+        @Query("metric") metric: Boolean,
     ): Observable<List<AccuForecastHourlyResult>>
 
     @GET("alerts/v1/{city_key}")
@@ -80,6 +80,6 @@ interface AccuDeveloperApi {
         @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
-        @Query("details") details: Boolean
+        @Query("details") details: Boolean,
     ): Observable<List<AccuAlertResult>>
 }

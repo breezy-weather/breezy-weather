@@ -35,5 +35,5 @@ data class MfWarningsResult(
     @SerialName("max_count_items") val maxCountItems: List<MfWarningMaxCountItems>? = null,
     val comments: MfWarningComments? = null,
     val text: MfWarningComments? = null,
-    @SerialName("text_avalanche") val textAvalanche: MfWarningComments? = null
+    @SerialName("text_avalanche") val textAvalanche: MfWarningComments? = null,
 )

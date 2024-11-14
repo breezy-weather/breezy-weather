@@ -53,7 +53,9 @@ import kotlin.math.roundToInt
 object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
     fun updateWidgetView(
-        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        pollenIndexSource: PollenIndexSource?,
     ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_day_setting))
         val views = getRemoteViews(
@@ -68,9 +70,16 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?,
-        viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
-        hideSubtitle: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        viewStyle: String?,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
+        hideSubtitle: Boolean,
+        subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
@@ -78,15 +87,26 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(
             context,
-            if (viewStyle == "pixel" || viewStyle == "nano" || viewStyle == "oreo" || viewStyle == "oreo_google_sans" || viewStyle == "temp") {
+            if (arrayOf("pixel", "nano", "oreo", "oreo_google_sans", "temp").contains(viewStyle)) {
                 "none"
-            } else cardStyle!!,
+            } else {
+                cardStyle!!
+            },
             textColor!!,
             location?.isDaylight ?: true
         )
         val views = buildWidgetView(
-            context, location, temperatureUnit, speedUnit,
-            color, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData, pollenIndexSource
+            context,
+            location,
+            temperatureUnit,
+            speedUnit,
+            color,
+            minimalIcon,
+            viewStyle,
+            textSize,
+            hideSubtitle,
+            subtitleData,
+            pollenIndexSource
         )
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_day_card, getCardBackgroundId(color))
@@ -97,22 +117,66 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun buildWidgetView(
-        context: Context, location: Location?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        color: WidgetColor, minimalIcon: Boolean, viewStyle: String?, textSize: Int,
-        hideSubtitle: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit,
+        color: WidgetColor,
+        minimalIcon: Boolean,
+        viewStyle: String?,
+        textSize: Int,
+        hideSubtitle: Boolean,
+        subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
             when (viewStyle) {
-                "rectangle" -> if (!color.showCard) R.layout.widget_day_rectangle else R.layout.widget_day_rectangle_card
-                "tile" -> if (!color.showCard) R.layout.widget_day_tile else R.layout.widget_day_tile_card
-                "mini" -> if (!color.showCard) R.layout.widget_day_mini else R.layout.widget_day_mini_card
-                "nano" -> if (!color.showCard) R.layout.widget_day_nano else R.layout.widget_day_nano_card
-                "pixel" -> if (!color.showCard) R.layout.widget_day_pixel else R.layout.widget_day_pixel_card
-                "vertical" -> if (!color.showCard) R.layout.widget_day_vertical else R.layout.widget_day_vertical_card
-                "oreo", "oreo_google_sans" -> if (!color.showCard) R.layout.widget_day_oreo else R.layout.widget_day_oreo_card
-                "temp" -> if (!color.showCard) R.layout.widget_day_temp else R.layout.widget_day_temp_card
-                else -> if (!color.showCard) R.layout.widget_day_symmetry else R.layout.widget_day_symmetry_card
+                "rectangle" -> if (!color.showCard) {
+                    R.layout.widget_day_rectangle
+                } else {
+                    R.layout.widget_day_rectangle_card
+                }
+                "tile" -> if (!color.showCard) {
+                    R.layout.widget_day_tile
+                } else {
+                    R.layout.widget_day_tile_card
+                }
+                "mini" -> if (!color.showCard) {
+                    R.layout.widget_day_mini
+                } else {
+                    R.layout.widget_day_mini_card
+                }
+                "nano" -> if (!color.showCard) {
+                    R.layout.widget_day_nano
+                } else {
+                    R.layout.widget_day_nano_card
+                }
+                "pixel" -> if (!color.showCard) {
+                    R.layout.widget_day_pixel
+                } else {
+                    R.layout.widget_day_pixel_card
+                }
+                "vertical" -> if (!color.showCard) {
+                    R.layout.widget_day_vertical
+                } else {
+                    R.layout.widget_day_vertical_card
+                }
+                "oreo", "oreo_google_sans" -> if (!color.showCard) {
+                    R.layout.widget_day_oreo
+                } else {
+                    R.layout.widget_day_oreo_card
+                }
+                "temp" -> if (!color.showCard) {
+                    R.layout.widget_day_temp
+                } else {
+                    R.layout.widget_day_temp_card
+                }
+                else -> if (!color.showCard) {
+                    R.layout.widget_day_symmetry
+                } else {
+                    R.layout.widget_day_symmetry_card
+                }
             }
         )
         val weather = location?.weather ?: return views
@@ -122,7 +186,11 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setImageViewUri(
                 R.id.widget_day_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, location.isDaylight, minimalIcon, color.minimalIconColor
+                    provider,
+                    it,
+                    location.isDaylight,
+                    minimalIcon,
+                    color.minimalIconColor
                 )
             )
         } ?: views.setViewVisibility(R.id.widget_day_icon, View.INVISIBLE)
@@ -148,8 +216,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
         if (viewStyle == "oreo" || viewStyle == "oreo_google_sans") {
             val dateFormat = (if (context.isRtl) " | " else "") +
-                    getLongWeekdayDayMonth(context) +
-                    (if (!context.isRtl) " | " else "")
+                getLongWeekdayDayMonth(context) +
+                (if (!context.isRtl) " | " else "")
             views.setString(
                 R.id.widget_day_title,
                 "setTimeZone",
@@ -183,7 +251,16 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         if (viewStyle != "pixel") {
             views.setTextViewText(
                 R.id.widget_day_time,
-                getTimeText(context, location, weather, viewStyle, subtitleData, temperatureUnit, speedUnit, pollenIndexSource)
+                getTimeText(
+                    context,
+                    location,
+                    weather,
+                    viewStyle,
+                    subtitleData,
+                    temperatureUnit,
+                    speedUnit,
+                    pollenIndexSource
+                )
             )
         }
         if (color.textColor != Color.TRANSPARENT) {
@@ -200,17 +277,20 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 .toFloat() * textSize / 100f
             views.apply {
                 setTextViewTextSize(
-                    R.id.widget_day_title, TypedValue.COMPLEX_UNIT_PX,
+                    R.id.widget_day_title,
+                    TypedValue.COMPLEX_UNIT_PX,
                     getTitleSize(context, viewStyle) * textSize / 100f
                 )
                 setTextViewTextSize(R.id.widget_day_sign, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(R.id.widget_day_symbol, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(
-                    R.id.widget_day_subtitle, TypedValue.COMPLEX_UNIT_PX,
+                    R.id.widget_day_subtitle,
+                    TypedValue.COMPLEX_UNIT_PX,
                     getSubtitleSize(context, viewStyle) * textSize / 100f
                 )
                 setTextViewTextSize(
-                    R.id.widget_day_time, TypedValue.COMPLEX_UNIT_PX,
+                    R.id.widget_day_time,
+                    TypedValue.COMPLEX_UNIT_PX,
                     getTimeSize(context, viewStyle) * textSize / 100f
                 )
             }
@@ -226,7 +306,10 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getTitleText(
-        context: Context, location: Location, viewStyle: String?, unit: TemperatureUnit
+        context: Context,
+        location: Location,
+        viewStyle: String?,
+        unit: TemperatureUnit,
     ): String? {
         val weather = location.weather ?: return null
         return when (viewStyle) {
@@ -267,7 +350,10 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getSubtitleText(
-        context: Context, weather: Weather, viewStyle: String?, unit: TemperatureUnit
+        context: Context,
+        weather: Weather,
+        viewStyle: String?,
+        unit: TemperatureUnit,
     ): String? {
         return when (viewStyle) {
             "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
@@ -279,7 +365,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
                 if (weather.dailyForecast.isNotEmpty() &&
                     weather.today?.day?.temperature?.temperature != null &&
-                    weather.today?.night?.temperature?.temperature != null) {
+                    weather.today?.night?.temperature?.temperature != null
+                ) {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
@@ -295,55 +382,51 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getTimeText(
-        context: Context, location: Location, weather: Weather,
-        viewStyle: String?, subtitleData: String?, temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location,
+        weather: Weather,
+        viewStyle: String?,
+        subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
-                "rectangle" -> (location.getPlace(context)
-                    + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "rectangle" -> location.getPlace(context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "symmetry" -> (Date().getWeek(location, context)
-                    + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "symmetry" -> Date().getWeek(location, context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "tile", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, context)
-                    + " " + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "tile", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
                 else -> null
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
-                    (airQuality.getName(context, null)
-                        + " ("
-                        + airQuality.getIndex(null)
-                        + ")")
-                } else null
+                    airQuality.getName(context, null) + " (" + airQuality.getIndex(null) + ")"
+                } else {
+                    null
+                }
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
-                "rectangle" -> (location.getPlace(context)
-                    + " "
-                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "rectangle" -> location.getPlace(context) + " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "symmetry" -> (Date().getWeek(location, context)
-                    + " "
-                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "symmetry" -> Date().getWeek(location, context) + " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "tile", "mini", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, context)
-                    + " " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "tile", "mini", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) +
+                    " " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                (context.getString(R.string.temperature_feels_like)
-                    + " "
-                    + temperatureUnit.getValueText(context, it, 0)
-                )
+                context.getString(R.string.temperature_feels_like) + " " +
+                    temperatureUnit.getValueText(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
@@ -351,49 +434,54 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
     private fun getTitleSize(context: Context, viewStyle: String?): Float {
         return when (viewStyle) {
-            "rectangle", "symmetry", "tile" -> context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+            "rectangle", "symmetry", "tile" ->
+                context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
             "mini", "nano" -> context.resources.getDimensionPixelSize(R.dimen.widget_subtitle_text_size).toFloat()
             "pixel" -> context.resources.getDimensionPixelSize(R.dimen.widget_design_title_text_size).toFloat()
             "vertical" -> context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size).toFloat()
-            "oreo", "oreo_google_sans", "temp" -> context.resources.getDimensionPixelSize(R.dimen.widget_large_title_text_size).toFloat()
+            "oreo", "oreo_google_sans", "temp" ->
+                context.resources.getDimensionPixelSize(R.dimen.widget_large_title_text_size).toFloat()
             else -> 0f
         }
     }
 
     private fun getSubtitleSize(context: Context, viewStyle: String?): Float {
         return when (viewStyle) {
-            "rectangle", "symmetry", "tile", "vertical" -> context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
-            "oreo", "oreo_google_sans" -> context.resources.getDimensionPixelSize(R.dimen.widget_large_title_text_size).toFloat()
+            "rectangle", "symmetry", "tile", "vertical" ->
+                context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+            "oreo", "oreo_google_sans" ->
+                context.resources.getDimensionPixelSize(R.dimen.widget_large_title_text_size).toFloat()
             else -> 0f
         }
     }
 
     private fun getTimeSize(context: Context, viewStyle: String?): Float {
         return when (viewStyle) {
-            "rectangle", "symmetry", "tile", "vertical", "mini" -> context.resources.getDimensionPixelSize(R.dimen.widget_time_text_size).toFloat()
+            "rectangle", "symmetry", "tile", "vertical", "mini" ->
+                context.resources.getDimensionPixelSize(R.dimen.widget_time_text_size).toFloat()
             "pixel" -> context.resources.getDimensionPixelSize(R.dimen.widget_subtitle_text_size).toFloat()
             else -> 0f
         }
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location, viewStyle: String?, subtitleData: String?
+        context: Context,
+        views: RemoteViews,
+        location: Location,
+        viewStyle: String?,
+        subtitleData: String?,
     ) {
         // weather.
         views.setOnClickPendingIntent(
             R.id.widget_day_weather,
-            getWeatherPendingIntent(
-                context, location, Widgets.DAY_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.DAY_PENDING_INTENT_CODE_WEATHER)
         )
 
         // title.
         if (viewStyle == "oreo" || viewStyle == "oreo_google_sans") {
             views.setOnClickPendingIntent(
                 R.id.widget_day_title,
-                getCalendarPendingIntent(
-                    context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR
-                )
+                getCalendarPendingIntent(context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR)
             )
         }
 
@@ -401,9 +489,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         if (viewStyle == "pixel" || subtitleData == "lunar") {
             views.setOnClickPendingIntent(
                 R.id.widget_day_time,
-                getCalendarPendingIntent(
-                    context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR
-                )
+                getCalendarPendingIntent(context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR)
             )
         }
     }

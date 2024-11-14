@@ -98,9 +98,11 @@ abstract class AbstractRemoteViewsPresenter {
             }
             textType = when (backgroundType) {
                 WidgetBackgroundType.NONE -> {
-                    if(textColor == "dark" || textColor == "auto" && isLightWallpaper(context)) {
+                    if (textColor == "dark" || textColor == "auto" && isLightWallpaper(context)) {
                         NotificationTextColor.DARK
-                    } else NotificationTextColor.LIGHT
+                    } else {
+                        NotificationTextColor.LIGHT
+                    }
                 }
                 else -> {
                     if (isLightThemed) NotificationTextColor.DARK else NotificationTextColor.LIGHT
@@ -123,7 +125,8 @@ abstract class AbstractRemoteViewsPresenter {
             LIGHT("light"),
             DARK("dark"),
             AUTO("auto"),
-            NONE("none");
+            NONE("none"),
+            ;
 
             companion object {
                 fun find(id: String): WidgetBackgroundType = entries.find { it.id == id }
@@ -187,11 +190,11 @@ abstract class AbstractRemoteViewsPresenter {
                 val manager = WallpaperManager.getInstance(context) ?: return false
                 if (!context.hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) return false
                 val drawable = manager.drawable
-                if (drawable !is BitmapDrawable) {
+                if (drawable is BitmapDrawable) {
+                    ColorUtils.isLightColor(ColorUtils.bitmapToColorInt(drawable.bitmap))
+                } else {
                     false
-                } else ColorUtils.isLightColor(
-                    ColorUtils.bitmapToColorInt(drawable.bitmap)
-                )
+                }
             } catch (ignore: Exception) {
                 false
             }
@@ -203,10 +206,7 @@ abstract class AbstractRemoteViewsPresenter {
                 WidgetColor.WidgetBackgroundType.NONE -> {
                     throw IllegalArgumentException("Trying to get widget background when background type is NONE")
                 }
-                else -> {
-                    if (color.isLightThemed) R.drawable.widget_card_light
-                    else R.drawable.widget_card_dark
-                }
+                else -> if (color.isLightThemed) R.drawable.widget_card_light else R.drawable.widget_card_dark
             }
         }
 
@@ -230,7 +230,10 @@ abstract class AbstractRemoteViewsPresenter {
 
         @SuppressLint("InlinedApi")
         fun getDailyForecastPendingIntent(
-            context: Context, location: Location?, index: Int, requestCode: Int
+            context: Context,
+            location: Location?,
+            index: Int,
+            requestCode: Int,
         ): PendingIntent {
             return PendingIntent.getActivity(
                 context,
@@ -264,12 +267,15 @@ abstract class AbstractRemoteViewsPresenter {
         }
 
         fun getCustomSubtitle(
-            context: Context, subtitleP: String?, location: Location, weather: Weather,
-            pollenIndexSource: PollenIndexSource?
+            context: Context,
+            subtitleP: String?,
+            location: Location,
+            weather: Weather,
+            pollenIndexSource: PollenIndexSource?,
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
             val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-            //val precipitationUnit = getInstance(context).precipitationUnit
+            // val precipitationUnit = getInstance(context).precipitationUnit
             val pressureUnit = SettingsManager.getInstance(context).pressureUnit
             val distanceUnit = SettingsManager.getInstance(context).distanceUnit
             val speedUnit = SettingsManager.getInstance(context).speedUnit
@@ -306,8 +312,10 @@ abstract class AbstractRemoteViewsPresenter {
                     "\$caqi$",
                     if (weather.current?.airQuality?.isIndexValid == true) {
                         weather.current!!.airQuality!!.getIndex().toString() + " (" +
-                                weather.current!!.airQuality!!.getName(context) + ")"
-                    } else context.getString(R.string.null_data_text)
+                            weather.current!!.airQuality!!.getName(context) + ")"
+                    } else {
+                        context.getString(R.string.null_data_text)
+                    }
                 ).replace(
                     "\$cuv$",
                     weather.current?.uV?.getShortUVDescription(context)
@@ -337,15 +345,17 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
-                .replace("\$ut$", weather.base.refreshTime?.getFormattedTime(
-                    location, context, context.is12Hour
-                ) ?: context.getString(R.string.null_data_text))
                 .replace(
+                    "\$ut$",
+                    weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
+                        ?: context.getString(R.string.null_data_text)
+                ).replace(
                     "\$d$",
                     Date().getFormattedMediumDayAndMonth(location, context)
                 ).replace(
                     "\$lc$",
-                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context) ?: context.getString(R.string.null_data_text)
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$w$",
                     Date().getFormattedDate("EEEE", location, context)
@@ -363,13 +373,22 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace("\$enter$", "\n")
             subtitle = replaceAlerts(context, subtitle, location, weather)
             subtitle = replaceDailyWeatherSubtitle(
-                context, subtitle, location, weather, temperatureUnit, speedUnit, pollenIndexSource
+                context,
+                subtitle,
+                location,
+                weather,
+                temperatureUnit,
+                speedUnit,
+                pollenIndexSource
             )
             return subtitle
         }
 
         private fun replaceAlerts(
-            context: Context, subtitle: String, location: Location, weather: Weather
+            context: Context,
+            subtitle: String,
+            location: Location,
+            weather: Weather,
         ): String {
             val defaultBuilder = StringBuilder()
             val shortBuilder = StringBuilder()
@@ -415,9 +434,13 @@ abstract class AbstractRemoteViewsPresenter {
         }
 
         private fun replaceDailyWeatherSubtitle(
-            context: Context, subtitleP: String, location: Location, weather: Weather,
-            temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-            pollenIndexSource: PollenIndexSource?
+            context: Context,
+            subtitleP: String,
+            location: Location,
+            weather: Weather,
+            temperatureUnit: TemperatureUnit,
+            speedUnit: SpeedUnit,
+            pollenIndexSource: PollenIndexSource?,
         ): String {
             var subtitle = subtitleP
             for (i in 0 until SUBTITLE_DAILY_ITEM_LENGTH) {
@@ -476,16 +499,23 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
                         weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
                             weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
-                    } else context.getString(R.string.null_data_text)
+                    } else {
+                        context.getString(R.string.null_data_text)
+                    }
                 ).replace(
                     "$" + i + "pis$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen?.pollensWithConcentration?.isNotEmpty() == true) {
                         if (pollenIndexSource != null) {
-                            weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(context, pollenIndexSource)
+                            weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(
+                                context,
+                                pollenIndexSource
+                            )
                         } else {
                             weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
                         }
-                    } else context.getString(R.string.null_data_text)
+                    } else {
+                        context.getString(R.string.null_data_text)
+                    }
                 ).replace(
                     "$" + i + "sr$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(location, context, context.is12Hour)

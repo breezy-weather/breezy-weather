@@ -28,19 +28,21 @@ import retrofit2.http.Query
  * See https://datahub.metoffice.gov.uk/docs/f/category/site-specific/type/site-specific/api-documentation
  */
 interface MetOfficeApi {
-    @GET("point/hourly?dataSource=BD1")
+    @GET("point/hourly")
     fun getHourlyForecast(
         @Header("apikey") apikey: String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("includeLocationName") includeLocationName: Boolean = false
+        @Query("includeLocationName") includeLocationName: Boolean = false,
+        @Query("dataSource") dataSource: String = "BD1",
     ): Observable<MetOfficeForecast<MetOfficeHourly>>
 
-    @GET("point/daily?dataSource=BD1")
+    @GET("point/daily")
     fun getDailyForecast(
         @Header("apikey") apikey: String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("includeLocationName") includeLocationName: Boolean = false
+        @Query("includeLocationName") includeLocationName: Boolean = false,
+        @Query("dataSource") dataSource: String = "BD1",
     ): Observable<MetOfficeForecast<MetOfficeDaily>>
 }

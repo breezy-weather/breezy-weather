@@ -42,9 +42,8 @@ import javax.inject.Named
  */
 class RecosanteService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") val client: Retrofit.Builder
-) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource,
-    ConfigurableSource {
+    @Named("JsonClient") val client: Retrofit.Builder,
+) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "recosante"
     override val name = "Recosanté"
@@ -68,21 +67,22 @@ class RecosanteService @Inject constructor(
     override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
-        return !location.countryCode.isNullOrEmpty()
-            && location.countryCode.equals("FR", ignoreCase = true)
+        return !location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true)
     }
     override val currentAttribution = null
     override val airQualityAttribution = null
-    override val pollenAttribution = "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
+    override val pollenAttribution =
+        "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
     override val minutelyAttribution = null
     override val alertAttribution = null
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
@@ -106,7 +106,7 @@ class RecosanteService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
@@ -117,7 +117,8 @@ class RecosanteService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mGeoApi.getCommunes(location.longitude, location.latitude)
             .map { result ->

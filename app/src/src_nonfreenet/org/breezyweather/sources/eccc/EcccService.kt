@@ -37,12 +37,12 @@ import javax.inject.Named
 
 class EcccService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
 
     override val id = "eccc"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("fr") -> "Environnement et Changement Climatique Canada"
                 else -> "Environment and Climate Change Canada"
@@ -50,7 +50,7 @@ class EcccService @Inject constructor(
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("fr") -> "https://app.weather.gc.ca/privacy-fr.html"
                 else -> "https://app.weather.gc.ca/privacy-en.html"
@@ -59,7 +59,8 @@ class EcccService @Inject constructor(
     }
 
     override val color = Color.rgb(255, 0, 0)
-    override val weatherAttribution = "Environment and Climate Change Canada (Environment and Climate Change Canada Data Servers End-use Licence)"
+    override val weatherAttribution =
+        "Environment and Climate Change Canada (Environment and Climate Change Canada Data Servers End-use Licence)"
 
     private val mApi by lazy {
         client
@@ -76,13 +77,15 @@ class EcccService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("CA", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             context.currentLocale.code,
@@ -90,7 +93,7 @@ class EcccService @Inject constructor(
             location.longitude
         ).map {
             // Can’t do that because it is a List when it succeed
-            //if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
+            // if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }
@@ -105,7 +108,7 @@ class EcccService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -117,8 +120,9 @@ class EcccService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mApi.getForecast(
             context.currentLocale.code,
@@ -126,7 +130,7 @@ class EcccService @Inject constructor(
             location.longitude
         ).map {
             // Can’t do that because it is a List when it succeed
-            //if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
+            // if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }
@@ -136,7 +140,7 @@ class EcccService @Inject constructor(
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getForecast(
             context.currentLocale.code,

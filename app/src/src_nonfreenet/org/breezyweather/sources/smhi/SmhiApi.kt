@@ -25,6 +25,6 @@ interface SmhiApi {
     @GET("category/pmp3g/version/2/geotype/point/lon/{lon}/lat/{lat}/data.json")
     fun getForecast(
         @Path("lon") lon: Double,
-        @Path("lat") lat: Double
+        @Path("lat") lat: Double,
     ): Observable<SmhiForecastResult>
 }

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaNormalsData(
-    val surfaceObs: CwaNormalsSurfaceObs?
+    val surfaceObs: CwaNormalsSurfaceObs?,
 )

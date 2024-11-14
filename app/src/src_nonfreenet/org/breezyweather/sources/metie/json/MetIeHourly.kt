@@ -30,5 +30,5 @@ data class MetIeHourly(
     @SerialName("wind-direction") val windDirection: String?,
     val temperature: Int?,
     val humidity: String?,
-    val pressure: String?
+    val pressure: String?,
 )

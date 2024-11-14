@@ -21,5 +21,5 @@ import org.breezyweather.sources.eccc.serializers.EcccEpochTimeSerializer
 
 @Serializable(with = EcccEpochTimeSerializer::class)
 data class EcccEpochTime(
-    val epochTimeRounded: Int?
+    val epochTimeRounded: Int?,
 )

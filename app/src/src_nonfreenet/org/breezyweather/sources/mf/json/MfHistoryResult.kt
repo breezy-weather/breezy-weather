@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfHistoryResult(
-    val history: List<MfHistory>?
+    val history: List<MfHistory>?,
 )

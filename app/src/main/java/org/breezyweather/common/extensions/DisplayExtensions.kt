@@ -48,8 +48,10 @@ val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
 
 val Context.isTabletDevice: Boolean
-    get() = (this.resources.configuration.screenLayout
-        and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    get() = (
+        this.resources.configuration.screenLayout
+            and Configuration.SCREENLAYOUT_SIZE_MASK
+        ) >= Configuration.SCREENLAYOUT_SIZE_LARGE
 
 val Context.isLandscape: Boolean
     get() = this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -58,8 +60,10 @@ val Context.isRtl: Boolean
     get() = this.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
 val Context.isDarkMode: Boolean
-    get() = (this.resources.configuration.uiMode
-        and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+    get() = (
+        this.resources.configuration.uiMode
+            and Configuration.UI_MODE_NIGHT_MASK
+        ) == Configuration.UI_MODE_NIGHT_YES
 
 val Context.isMotionReduced: Boolean
     get() {
@@ -86,17 +90,23 @@ fun Context.pxToDp(@Px px: Int): Float {
 fun Context.getTabletListAdaptiveWidth(@Px width: Int): Int {
     return if (!this.isTabletDevice && !this.isLandscape) {
         width
-    } else min(
-        width.toFloat(),
-        this.dpToPx((if (this.isTabletDevice) {
-            MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
-        } else MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE).toFloat())
-    ).toInt()
+    } else {
+        min(
+            width.toFloat(),
+            this.dpToPx(
+                if (this.isTabletDevice) {
+                    MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
+                } else {
+                    MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE
+                }.toFloat()
+            )
+        ).toInt()
+    }
 }
 
 @SuppressLint("RestrictedApi", "VisibleForTests")
 fun Context.getTypefaceFromTextAppearance(
-    @StyleRes textAppearanceId: Int
+    @StyleRes textAppearanceId: Int,
 ): Typeface {
     return TextAppearance(this, textAppearanceId).getFont(this)
 }
@@ -105,7 +115,7 @@ fun Window.setSystemBarStyle(
     statusShaderP: Boolean,
     lightStatusP: Boolean,
     navigationShaderP: Boolean,
-    lightNavigationP: Boolean
+    lightNavigationP: Boolean,
 ) {
     var lightStatus = lightStatusP
     var statusShader = statusShaderP
@@ -167,9 +177,7 @@ fun View.getFloatingOvershotEnterAnimators(): Array<Animator> {
 
 @Size(3)
 fun View.getFloatingOvershotEnterAnimators(overshootFactor: Float): Array<Animator> {
-    return this.getFloatingOvershotEnterAnimators(
-        overshootFactor, this.translationY, this.scaleX, this.scaleY
-    )
+    return this.getFloatingOvershotEnterAnimators(overshootFactor, this.translationY, this.scaleX, this.scaleY)
 }
 
 @Size(3)
@@ -177,19 +185,13 @@ fun View.getFloatingOvershotEnterAnimators(
     overshootFactor: Float,
     translationYFrom: Float,
     scaleXFrom: Float,
-    scaleYFrom: Float
+    scaleYFrom: Float,
 ): Array<Animator> {
-    val translation: Animator = ObjectAnimator.ofFloat(
-        this, "translationY", translationYFrom, 0f
-    )
+    val translation: Animator = ObjectAnimator.ofFloat(this, "translationY", translationYFrom, 0f)
     translation.interpolator = OvershootInterpolator(overshootFactor)
-    val scaleX: Animator = ObjectAnimator.ofFloat(
-        this, "scaleX", scaleXFrom, 1f
-    )
+    val scaleX: Animator = ObjectAnimator.ofFloat(this, "scaleX", scaleXFrom, 1f)
     scaleX.interpolator = FLOATING_DECELERATE_INTERPOLATOR
-    val scaleY: Animator = ObjectAnimator.ofFloat(
-        this, "scaleY", scaleYFrom, 1f
-    )
+    val scaleY: Animator = ObjectAnimator.ofFloat(this, "scaleY", scaleYFrom, 1f)
     scaleY.interpolator = FLOATING_DECELERATE_INTERPOLATOR
     return arrayOf(translation, scaleX, scaleY)
 }

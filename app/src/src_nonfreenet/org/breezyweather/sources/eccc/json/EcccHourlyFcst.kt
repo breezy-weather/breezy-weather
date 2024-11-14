@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EcccHourlyFcst(
-    val hourly: List<EcccHourly>?
+    val hourly: List<EcccHourly>?,
 )

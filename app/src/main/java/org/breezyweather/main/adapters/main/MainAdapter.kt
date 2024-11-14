@@ -43,8 +43,13 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 
 class MainAdapter(
-    activity: MainActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
-    provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+    activity: MainActivity,
+    host: RecyclerView,
+    weatherView: WeatherView,
+    location: Location?,
+    provider: ResourceProvider,
+    listAnimationEnabled: Boolean,
+    itemAnimationEnabled: Boolean,
 ) : RecyclerView.Adapter<AbstractMainViewHolder?>() {
     private lateinit var mActivity: MainActivity
     private var mHost: RecyclerView? = null
@@ -63,8 +68,13 @@ class MainAdapter(
     }
 
     fun update(
-        activity: MainActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
-        provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+        activity: MainActivity,
+        host: RecyclerView,
+        weatherView: WeatherView,
+        location: Location?,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
     ) {
         mActivity = activity
         mHost = host
@@ -106,15 +116,18 @@ class MainAdapter(
                     continue
                 }
                 if (c === CardDisplay.CARD_LIVE &&
-                    (weather.current == null ||
-                        (DetailsViewHolder.availableDetails(
-                            activity,
-                            SettingsManager.getInstance(activity).detailDisplayList,
-                            SettingsManager.getInstance(activity).detailDisplayUnlisted,
-                            weather.current!!,
-                            location.isDaylight
-                        )).isEmpty()
-                    )
+                    (
+                        weather.current == null ||
+                            (
+                                DetailsViewHolder.availableDetails(
+                                    activity,
+                                    SettingsManager.getInstance(activity).detailDisplayList,
+                                    SettingsManager.getInstance(activity).detailDisplayUnlisted,
+                                    weather.current!!,
+                                    location.isDaylight
+                                )
+                                ).isEmpty()
+                        )
                 ) {
                     continue
                 }
@@ -157,7 +170,13 @@ class MainAdapter(
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)
             }
-            mHost!!.post { holder.checkEnterScreen(mHost!!, mPendingAnimatorList ?: ArrayList(), mListAnimationEnabled) }
+            mHost!!.post {
+                holder.checkEnterScreen(
+                    mHost!!,
+                    mPendingAnimatorList ?: ArrayList(),
+                    mListAnimationEnabled
+                )
+            }
         }
     }
 
@@ -173,7 +192,16 @@ class MainAdapter(
         mFirstCardPosition = null
         for (i in 0 until itemCount) {
             val type = getItemViewType(i)
-            if (setOf(ViewType.PRECIPITATION_NOWCAST, ViewType.DAILY, ViewType.HOURLY, ViewType.AIR_QUALITY, ViewType.POLLEN, ViewType.ASTRO, ViewType.LIVE).contains(type)) {
+            if (setOf(
+                    ViewType.PRECIPITATION_NOWCAST,
+                    ViewType.DAILY,
+                    ViewType.HOURLY,
+                    ViewType.AIR_QUALITY,
+                    ViewType.POLLEN,
+                    ViewType.ASTRO,
+                    ViewType.LIVE
+                ).contains(type)
+            ) {
                 mFirstCardPosition = i
                 return
             }

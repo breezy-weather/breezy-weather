@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AtmoAuraPointResult(
-    val polluants: List<AtmoAuraPointPolluant>? = null
+    val polluants: List<AtmoAuraPointPolluant>? = null,
 )

@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ImsWeatherCode(
     val id: String?,
-    val desc: String?
+    val desc: String?,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAlertContents(
-    val content: CwaAlertContent?
+    val content: CwaAlertContent?,
 )

@@ -27,7 +27,7 @@ class Normals(
      */
     val month: Int? = null,
     val daytimeTemperature: Double? = null,
-    val nighttimeTemperature: Double? = null
+    val nighttimeTemperature: Double? = null,
 ) : Serializable {
 
     val isValid: Boolean

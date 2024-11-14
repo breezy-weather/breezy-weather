@@ -21,7 +21,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
@@ -32,10 +32,15 @@ enum class DetailDisplay(
     override val id: String,
     @StringRes private val nameId: Int,
     @StringRes private val nameShortId: Int,
-    @DrawableRes val iconId: Int
-): BaseEnum {
+    @DrawableRes val iconId: Int,
+) : BaseEnum {
 
-    DETAIL_FEELS_LIKE("feels_like", R.string.temperature_feels_like, R.string.temperature_feels_like_short, R.drawable.ic_device_thermostat),
+    DETAIL_FEELS_LIKE(
+        "feels_like",
+        R.string.temperature_feels_like,
+        R.string.temperature_feels_like_short,
+        R.drawable.ic_device_thermostat
+    ),
     DETAIL_WIND("wind", R.string.wind, R.string.wind_short, R.drawable.ic_wind),
     DETAIL_UV_INDEX("uv_index", R.string.uv_index, R.string.uv_index_short, R.drawable.ic_uv),
     DETAIL_HUMIDITY("humidity", R.string.humidity, R.string.humidity_short, R.drawable.ic_humidity_percentage),
@@ -43,60 +48,65 @@ enum class DetailDisplay(
     DETAIL_PRESSURE("pressure", R.string.pressure, R.string.pressure_short, R.drawable.ic_gauge),
     DETAIL_VISIBILITY("visibility", R.string.visibility, R.string.visibility_short, R.drawable.ic_eye),
     DETAIL_CLOUD_COVER("cloud_cover", R.string.cloud_cover, R.string.cloud_cover_short, R.drawable.ic_cloud),
-    DETAIL_CEILING("ceiling", R.string.ceiling, R.string.ceiling_short, R.drawable.ic_top);
+    DETAIL_CEILING("ceiling", R.string.ceiling, R.string.ceiling_short, R.drawable.ic_top),
+    ;
 
     companion object {
 
         fun toDetailDisplayList(
-            value: String?
+            value: String?,
         ) = if (value.isNullOrEmpty()) {
             mutableListOf()
-        } else try {
-            val details = value.split("&").toTypedArray()
-            val list = mutableListOf<DetailDisplay>()
-            for (detail in details) {
-                when (detail) {
-                    "feels_like" -> list.add(DETAIL_FEELS_LIKE)
-                    "wind" -> list.add(DETAIL_WIND)
-                    "uv_index" -> list.add(DETAIL_UV_INDEX)
-                    "humidity" -> list.add(DETAIL_HUMIDITY)
-                    "dew_point" -> list.add(DETAIL_DEW_POINT)
-                    "pressure" -> list.add(DETAIL_PRESSURE)
-                    "visibility" -> list.add(DETAIL_VISIBILITY)
-                    "cloud_cover" -> list.add(DETAIL_CLOUD_COVER)
-                    "ceiling" -> list.add(DETAIL_CEILING)
+        } else {
+            try {
+                val details = value.split("&").toTypedArray()
+                val list = mutableListOf<DetailDisplay>()
+                for (detail in details) {
+                    when (detail) {
+                        "feels_like" -> list.add(DETAIL_FEELS_LIKE)
+                        "wind" -> list.add(DETAIL_WIND)
+                        "uv_index" -> list.add(DETAIL_UV_INDEX)
+                        "humidity" -> list.add(DETAIL_HUMIDITY)
+                        "dew_point" -> list.add(DETAIL_DEW_POINT)
+                        "pressure" -> list.add(DETAIL_PRESSURE)
+                        "visibility" -> list.add(DETAIL_VISIBILITY)
+                        "cloud_cover" -> list.add(DETAIL_CLOUD_COVER)
+                        "ceiling" -> list.add(DETAIL_CEILING)
+                    }
                 }
-            }
 
-            list
-        } catch (e: Exception) {
-            emptyList()
+                list
+            } catch (e: Exception) {
+                emptyList()
+            }
         }
 
         fun toDetailDisplayUnlisted(
-            value: String?
+            value: String?,
         ) = if (value.isNullOrEmpty()) {
             DetailDisplay.entries.toMutableList()
-        } else try {
-            val list = DetailDisplay.entries.toMutableList()
-            val details = value.split("&").toTypedArray()
-            for (detail in details) {
-                when (detail) {
-                    "feels_like" -> list.remove(DETAIL_FEELS_LIKE)
-                    "wind" -> list.remove(DETAIL_WIND)
-                    "uv_index" -> list.remove(DETAIL_UV_INDEX)
-                    "humidity" -> list.remove(DETAIL_HUMIDITY)
-                    "dew_point" -> list.remove(DETAIL_DEW_POINT)
-                    "pressure" -> list.remove(DETAIL_PRESSURE)
-                    "visibility" -> list.remove(DETAIL_VISIBILITY)
-                    "cloud_cover" -> list.remove(DETAIL_CLOUD_COVER)
-                    "ceiling" -> list.remove(DETAIL_CEILING)
+        } else {
+            try {
+                val list = DetailDisplay.entries.toMutableList()
+                val details = value.split("&").toTypedArray()
+                for (detail in details) {
+                    when (detail) {
+                        "feels_like" -> list.remove(DETAIL_FEELS_LIKE)
+                        "wind" -> list.remove(DETAIL_WIND)
+                        "uv_index" -> list.remove(DETAIL_UV_INDEX)
+                        "humidity" -> list.remove(DETAIL_HUMIDITY)
+                        "dew_point" -> list.remove(DETAIL_DEW_POINT)
+                        "pressure" -> list.remove(DETAIL_PRESSURE)
+                        "visibility" -> list.remove(DETAIL_VISIBILITY)
+                        "cloud_cover" -> list.remove(DETAIL_CLOUD_COVER)
+                        "ceiling" -> list.remove(DETAIL_CEILING)
+                    }
                 }
-            }
 
-            list
-        } catch (e: Exception) {
-            DetailDisplay.entries.toMutableList()
+                list
+            } catch (e: Exception) {
+                DetailDisplay.entries.toMutableList()
+            }
         }
 
         fun toValue(list: List<DetailDisplay>): String {
@@ -129,14 +139,24 @@ enum class DetailDisplay(
 
     fun getShortName(context: Context) = context.getString(nameShortId)
 
-    fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when(id) {
+    fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when (id) {
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
             SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
         }
-        "wind" -> if (!current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit) else null
+        "wind" -> if (!current.wind?.getShortDescription(
+                context,
+                SettingsManager.getInstance(context).speedUnit
+            ).isNullOrEmpty()
+        ) {
+            current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit)
+        } else {
+            null
+        }
         "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) {
             current.uV!!.getShortUVDescription(context)
-        } else null
+        } else {
+            null
+        }
         "humidity" -> current.relativeHumidity?.let {
             NumberFormat.getPercentInstance(context.currentLocale).apply {
                 maximumFractionDigits = 0

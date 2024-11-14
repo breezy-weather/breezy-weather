@@ -25,5 +25,5 @@ data class MeteoAmForecastResult(
     val timeseries: List<@Serializable(DateSerializer::class) Date>?,
     val paramlist: List<String>?,
     val extrainfo: MeteoAmForecastExtraInfo?,
-    val datasets: MeteoAmForecastDatasets?
+    val datasets: MeteoAmForecastDatasets?,
 )

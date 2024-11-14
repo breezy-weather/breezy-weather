@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EcccRegionalNormals(
-    val metric: EcccRegionalNormalsMetric?
+    val metric: EcccRegionalNormalsMetric?,
 )

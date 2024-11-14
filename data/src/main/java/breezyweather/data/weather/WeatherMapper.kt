@@ -63,7 +63,7 @@ object WeatherMapper {
         hourlyForecast: String?,
         normalsMonth: Long?,
         normalsDaytimeTemperature: Double?,
-        normalsNighttimeTemperature: Double?
+        normalsNighttimeTemperature: Double?,
     ): Weather = Weather(
         Base(
             refreshTime?.let { Date(it) },
@@ -87,7 +87,9 @@ object WeatherMapper {
                 wetBulbTemperature
             ),
             Wind(
-                windDegree, windSpeed, windGusts
+                windDegree,
+                windSpeed,
+                windGusts
             ),
             UV(uvIndex),
             AirQuality(
@@ -207,7 +209,7 @@ object WeatherMapper {
         urticaceae: Long?,
         willow: Long?,
         uvIndex: Double?,
-        sunshineDuration: Double?
+        sunshineDuration: Double?,
     ): Daily = Daily(
         Date(date),
         HalfDay(
@@ -362,7 +364,7 @@ object WeatherMapper {
         dewPoint: Double?,
         pressure: Double?,
         cloudCover: Long?,
-        visibility: Double?
+        visibility: Double?,
     ): Hourly = Hourly(
         Date(date),
         daylight,
@@ -420,7 +422,7 @@ object WeatherMapper {
         instruction: String?,
         source: String?,
         severity: AlertSeverity,
-        color: Long
+        color: Long,
     ): Alert = Alert(
         alertId = alertId,
         startDate = startDate?.let { Date(it) },
@@ -436,7 +438,7 @@ object WeatherMapper {
     fun mapMinutely(
         date: Long,
         minuteInterval: Long,
-        intensity: Double?
+        intensity: Double?,
     ): Minutely = Minutely(
         Date(date),
         minuteInterval.toInt(),

@@ -51,11 +51,13 @@ object CalendarHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private fun getDisplayName(
-        calendar: String, locale: Locale = Locale("en", "001")
+        calendar: String,
+        locale: Locale = Locale("en", "001"),
     ): String {
         val localeWithCalendar = Locale.Builder()
             .setUnicodeLocaleKeyword(CALENDAR_EXTENSION_TYPE, calendar)
             .build()
+
         return ULocale.getDisplayKeywordValue(
             localeWithCalendar.toLanguageTag(),
             DISPLAY_KEYWORD_OF_CALENDAR,
@@ -71,7 +73,9 @@ object CalendarHelper {
                     if (result.equals(it, ignoreCase = false)) {
                         // Fallback to English if there is no translation
                         getDisplayName(it).capitalize(context.currentLocale)
-                    } else result.capitalize()
+                    } else {
+                        result.capitalize()
+                    }
                 }
             } catch (ignored: Exception) {
                 try {
@@ -110,7 +114,7 @@ object CalendarHelper {
             return null
         }
         val alternateCalendar = alternateCalendarSetting.ifEmpty {
-            with (context.currentLocale) {
+            with(context.currentLocale) {
                 when {
                     isChinese -> LocalePreferences.CalendarType.CHINESE
                     isIndian -> LocalePreferences.CalendarType.INDIAN
@@ -122,13 +126,15 @@ object CalendarHelper {
         }
         return if (supportedCalendars.contains(alternateCalendar)) {
             alternateCalendar
-        } else null
+        } else {
+            null
+        }
     }
 
     data class AlternateCalendar(
         val id: String,
         val displayName: String,
         val additionalParams: Map<String, String>? = null,
-        val specificPattern: String? = null
+        val specificPattern: String? = null,
     )
 }

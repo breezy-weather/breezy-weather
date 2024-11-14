@@ -35,5 +35,5 @@ data class GeoNamesLocation(
     val adminName4: String?,
     val adminCode4: String?,
     val countryName: String?,
-    val countryCode: String?
+    val countryCode: String?,
 )

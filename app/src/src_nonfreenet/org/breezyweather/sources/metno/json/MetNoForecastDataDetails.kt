@@ -32,5 +32,5 @@ data class MetNoForecastDataDetails(
     @SerialName("ultraviolet_index_clear_sky") val ultravioletIndexClearSky: Double?,
     @SerialName("wind_from_direction") val windFromDirection: Double?,
     @SerialName("wind_speed") val windSpeed: Double?,
-    @SerialName("cloud_area_fraction") val cloudAreaFraction: Double?
+    @SerialName("cloud_area_fraction") val cloudAreaFraction: Double?,
 )

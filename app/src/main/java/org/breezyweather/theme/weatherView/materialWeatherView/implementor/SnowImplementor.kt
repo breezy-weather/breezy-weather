@@ -32,7 +32,7 @@ import kotlin.math.sin
 class SnowImplementor(
     @Size(2) canvasSizes: IntArray,
     animate: Boolean,
-    daylight: Boolean
+    daylight: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
@@ -46,7 +46,7 @@ class SnowImplementor(
         private val mViewWidth: Int,
         private val mViewHeight: Int,
         @field:ColorInt @param:ColorInt val color: Int,
-        val scale: Float
+        val scale: Float,
     ) {
         private var mCX = 0f
         private var mCY = 0f
@@ -83,7 +83,8 @@ class SnowImplementor(
 
         fun move(interval: Long, deltaRotation3D: Float) {
             mCX += (speedX * interval * scale.toDouble().pow(1.5)).toFloat()
-            mCY += (speedY * interval * (scale.toDouble().pow(1.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0))).toFloat()
+            mCY +=
+                (speedY * interval * (scale.toDouble().pow(1.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0))).toFloat()
             if (centerY >= mCanvasSize) {
                 init(false)
             } else {
@@ -93,17 +94,21 @@ class SnowImplementor(
     }
 
     init {
-        val colors = if (daylight) intArrayOf(
-            Color.rgb(128, 197, 255),
-            Color.rgb(185, 222, 255),
-            Color.rgb(255, 255, 255)
-        ) else intArrayOf(
-            Color.rgb(40, 102, 155),
-            Color.rgb(99, 144, 182),
-            Color.rgb(255, 255, 255)
-        )
+        val colors = if (daylight) {
+            intArrayOf(
+                Color.rgb(128, 197, 255),
+                Color.rgb(185, 222, 255),
+                Color.rgb(255, 255, 255)
+            )
+        } else {
+            intArrayOf(
+                Color.rgb(40, 102, 155),
+                Color.rgb(99, 144, 182),
+                Color.rgb(255, 255, 255)
+            )
+        }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
-        mSnows = Array(SNOW_COUNT) { i->
+        mSnows = Array(SNOW_COUNT) { i ->
             Snow(
                 canvasSizes[0],
                 canvasSizes[1],
@@ -115,8 +120,10 @@ class SnowImplementor(
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         for (s in mSnows) {
             s.move(interval, if (mLastRotation3D == INITIAL_ROTATION_3D) 0f else rotation3D - mLastRotation3D)
@@ -125,8 +132,11 @@ class SnowImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         if (scrollRate < 1) {
             canvas.rotate(
@@ -145,6 +155,7 @@ class SnowImplementor(
     companion object {
         private const val INITIAL_ROTATION_3D = 1000f
         private const val SNOW_COUNT = 90
+
         @ColorInt
         fun getThemeColor(daylight: Boolean): Int {
             return if (daylight) -0x974501 else -0xe5a46e

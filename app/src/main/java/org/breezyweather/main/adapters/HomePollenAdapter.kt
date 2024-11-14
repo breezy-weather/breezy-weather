@@ -38,7 +38,7 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 open class HomePollenAdapter(
     private val location: Location,
     private val pollenIndexSource: PollenIndexSource?,
-    private val specificPollens: Set<PollenIndex>
+    private val specificPollens: Set<PollenIndex>,
 ) : RecyclerView.Adapter<HomePollenViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
@@ -64,22 +64,20 @@ open class HomePollenAdapter(
 }
 
 class HomePollenViewHolder internal constructor(
-    private val binding: ItemPollenDailyBinding
-) : RecyclerView.ViewHolder(
-    binding.root
-) {
+    private val binding: ItemPollenDailyBinding,
+) : RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SetTextI18n", "RestrictedApi")
     fun onBindView(
         location: Location,
         daily: Daily,
         pollenIndexSource: PollenIndexSource?,
-        specificPollens: Set<PollenIndex>
+        specificPollens: Set<PollenIndex>,
     ) {
         val context = itemView.context
 
-        binding.title.text = daily.date.getFormattedDate(
-            getLongWeekdayDayMonth(context), location, context
-        ).capitalize(context.currentLocale)
+        binding.title.text = daily.date
+            .getFormattedDate(getLongWeekdayDayMonth(context), location, context)
+            .capitalize(context.currentLocale)
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         daily.pollen?.let {

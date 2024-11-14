@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MfCurrentResult(
-    val properties: MfCurrentProperties? = null
+    val properties: MfCurrentProperties? = null,
 )

@@ -43,7 +43,7 @@ open class Feature(
      * @return id
      */
     id: String?,
-    properties: MutableMap<String, String?>?
+    properties: MutableMap<String, String?>?,
 ) {
     var mId: String? = id
         protected set

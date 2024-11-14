@@ -13,7 +13,7 @@ fun Daily.getWeek(location: Location, context: Context?): String {
 
 fun Daily.isToday(location: Location): Boolean {
     val current = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
-    val thisDay = Calendar.getInstance(location.javaTimeZone) // TOOD: Use ICU
+    val thisDay = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
     thisDay.time = date
     return current[Calendar.YEAR] == thisDay[Calendar.YEAR] &&
         current[Calendar.DAY_OF_YEAR] == thisDay[Calendar.DAY_OF_YEAR]

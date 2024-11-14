@@ -53,7 +53,8 @@ interface MainWeatherSource : Source {
      * @feature When null, it is used as main source
      */
     fun isFeatureSupportedInMainForLocation(
-        location: Location, feature: SecondaryWeatherSourceFeature? = null
+        location: Location,
+        feature: SecondaryWeatherSourceFeature? = null,
     ): Boolean = true
 
     /**
@@ -63,6 +64,8 @@ interface MainWeatherSource : Source {
      * additional API endpoint), as they will be overwritten later anyway
      */
     fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper>
 }

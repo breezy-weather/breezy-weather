@@ -37,9 +37,8 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class NwsService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, LocationParametersSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "nws"
     override val name = "National Weather Service (NWS)"
@@ -73,7 +72,7 @@ class NwsService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
@@ -81,7 +80,9 @@ class NwsService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val gridId = location.parameters
             .getOrElse(id) { null }?.getOrElse("gridId") { null }
@@ -130,7 +131,7 @@ class NwsService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -142,7 +143,9 @@ class NwsService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location, requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
@@ -159,7 +162,8 @@ class NwsService @Inject constructor(
 
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getPoints(
             USER_AGENT,
@@ -179,7 +183,7 @@ class NwsService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         // Not needed for alert endpoint
         if (features.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) return false
@@ -198,7 +202,8 @@ class NwsService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getPoints(
             USER_AGENT,

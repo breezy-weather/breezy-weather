@@ -48,7 +48,7 @@ fun convert(
     currentWeatherResult: BrightSkyCurrentWeatherResult,
     alertsResult: BrightSkyAlertsResult,
     location: Location,
-    languageCode: String
+    languageCode: String,
 ): WeatherWrapper {
     // If the API doesn’t return weather, consider data as garbage and keep cached data
     if (weatherResult.weather.isNullOrEmpty()) {
@@ -91,7 +91,7 @@ private fun getCurrent(result: BrightSkyCurrentWeather?): Current? {
  */
 private fun getDailyForecast(
     location: Location,
-    weatherResult: List<BrightSkyWeather>
+    weatherResult: List<BrightSkyWeather>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = weatherResult.groupBy {
@@ -114,7 +114,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    weatherResult: List<BrightSkyWeather>
+    weatherResult: List<BrightSkyWeather>,
 ): List<HourlyWrapper> {
     return weatherResult.map { result ->
         HourlyWrapper(
@@ -154,15 +154,9 @@ private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String)
             alertId = alert.id.toString(),
             startDate = alert.onset,
             endDate = alert.expires,
-            headline = if (languageCode == "de") {
-                alert.headlineDe
-            } else alert.headlineEn,
-            description = if (languageCode == "de") {
-                alert.descriptionDe
-            } else alert.descriptionEn,
-            instruction = if (languageCode == "de") {
-                alert.instructionDe
-            } else alert.instructionEn,
+            headline = if (languageCode == "de") alert.headlineDe else alert.headlineEn,
+            description = if (languageCode == "de") alert.descriptionDe else alert.descriptionEn,
+            instruction = if (languageCode == "de") alert.instructionDe else alert.instructionEn,
             source = "Deutscher Wetterdienst",
             severity = when (alert.severity?.lowercase()) {
                 "extreme" -> AlertSeverity.EXTREME
@@ -201,9 +195,8 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 fun convertSecondary(
     currentWeather: BrightSkyCurrentWeatherResult,
     alertsResult: BrightSkyAlertsResult,
-    languageCode: String
+    languageCode: String,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         current = getCurrent(currentWeather.weather),
         alertList = getAlertList(alertsResult.alerts, languageCode)

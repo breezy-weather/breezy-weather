@@ -53,7 +53,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
     fun buildNotificationAndSendIt(
         context: Context,
-        locationList: List<Location>
+        locationList: List<Location>,
     ) {
         val location = locationList.getOrNull(0)
         val current = location?.weather?.current ?: return
@@ -89,8 +89,12 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val temperature = if (tempIcon) {
             if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
                 current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
-            } else current.temperature?.temperature
-        } else null
+            } else {
+                current.temperature?.temperature
+            }
+        } else {
+            null
+        }
 
         val notification = context.notificationBuilder(Notifications.CHANNEL_WIDGET).apply {
             priority = NotificationCompat.PRIORITY_MAX
@@ -156,16 +160,20 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
     // TODO: Identical to MultiCityWidgetNotificationIMP.buildBaseView
     private fun buildBaseView(
-        context: Context, views: RemoteViews,
-        provider: ResourceProvider, location: Location,
+        context: Context,
+        views: RemoteViews,
+        provider: ResourceProvider,
+        location: Location,
         temperatureUnit: TemperatureUnit,
-        dayTime: Boolean
+        dayTime: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
 
         val temperature = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
-        } else current.temperature?.temperature
+        } else {
+            current.temperature?.temperature
+        }
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
@@ -197,11 +205,13 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     R.id.notification_base_aqiAndWind,
                     context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
                 )
-            } else current.wind?.getStrength(context)?.let { strength ->
-                setTextViewText(
-                    R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.wind) + " - " + strength
-                )
+            } else {
+                current.wind?.getStrength(context)?.let { strength ->
+                    setTextViewText(
+                        R.id.notification_base_aqiAndWind,
+                        context.getString(R.string.wind) + " - " + strength
+                    )
+                }
             }
             if (!current.weatherText.isNullOrEmpty()) {
                 setTextViewText(
@@ -216,10 +226,13 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun buildBigView(
-        context: Context, viewsP: RemoteViews, daily: Boolean,
-        provider: ResourceProvider, location: Location,
+        context: Context,
+        viewsP: RemoteViews,
+        daily: Boolean,
+        provider: ResourceProvider,
+        location: Location,
         temperatureUnit: TemperatureUnit,
-        dayTime: Boolean
+        dayTime: Boolean,
     ): RemoteViews {
         val weather = location.weather ?: return viewsP
 
@@ -245,7 +258,9 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                             viewId.first,
                             if (daily.isToday(location)) {
                                 context.getString(R.string.short_today)
-                            } else daily.getWeek(location, context)
+                            } else {
+                                daily.getWeek(location, context)
+                            }
                         )
                         setTextViewText(
                             viewId.second,

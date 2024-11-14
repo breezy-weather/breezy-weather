@@ -30,19 +30,19 @@ interface BmkgApi {
     @GET("api/df/v1/adm/coord")
     fun getLocation(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double
+        @Query("lon") lon: Double,
     ): Observable<BmkgLocationResult>
 
     @GET("api/presentwx/coord")
     fun getCurrent(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double
+        @Query("lon") lon: Double,
     ): Observable<BmkgCurrentResult>
 
     @GET("api/df/v1/forecast/coord")
     fun getForecast(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double
+        @Query("lon") lon: Double,
     ): Observable<BmkgForecastResult>
 
     @GET("api/v1/public/weather/warning")

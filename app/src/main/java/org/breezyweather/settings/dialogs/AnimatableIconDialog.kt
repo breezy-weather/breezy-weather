@@ -33,7 +33,7 @@ object AnimatableIconDialog {
         context: Context,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val view = LayoutInflater
             .from(context)
@@ -50,7 +50,7 @@ object AnimatableIconDialog {
         view: View,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val iconView = view.findViewById<AnimatableIconView>(R.id.dialog_animatable_icon_icon)
         iconView.setAnimatableIcon(

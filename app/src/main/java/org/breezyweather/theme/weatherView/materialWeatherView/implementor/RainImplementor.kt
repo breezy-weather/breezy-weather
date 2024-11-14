@@ -39,7 +39,7 @@ class RainImplementor(
     @Size(2) canvasSizes: IntArray,
     animate: Boolean,
     @TypeRule type: Int,
-    daylight: Boolean
+    daylight: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
@@ -56,7 +56,7 @@ class RainImplementor(
         private val mViewWidth: Int,
         private val mViewHeight: Int,
         @ColorInt val color: Int,
-        val scale: Float
+        val scale: Float,
     ) {
         var x = 0f
         var y = 0f
@@ -66,18 +66,18 @@ class RainImplementor(
         var speed: Float
 
         private val mCanvasSize: Int
-        private val MAX_WIDTH: Float
-        private val MIN_WIDTH: Float
-        private val MAX_HEIGHT: Float
-        private val MIN_HEIGHT: Float
+        private val maxWidth: Float
+        private val minWidth: Float
+        private val maxHeight: Float
+        private val minHeight: Float
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
             speed = (mCanvasSize / (1000.0 * (1.75 + Random().nextDouble())) * 5.0).toFloat()
-            MAX_WIDTH = (0.006 * mCanvasSize).toFloat()
-            MIN_WIDTH = (0.003 * mCanvasSize).toFloat()
-            MAX_HEIGHT = MAX_WIDTH * 10
-            MIN_HEIGHT = MIN_WIDTH * 6
+            maxWidth = (0.006 * mCanvasSize).toFloat()
+            minWidth = (0.003 * mCanvasSize).toFloat()
+            maxHeight = maxWidth * 10
+            minHeight = minWidth * 6
             init(true)
         }
 
@@ -85,12 +85,12 @@ class RainImplementor(
             val r = Random()
             x = r.nextInt(mCanvasSize).toFloat()
             y = if (firstTime) {
-                (r.nextInt((mCanvasSize - MAX_HEIGHT).toInt()) - mCanvasSize).toFloat()
+                (r.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
             } else {
-                -MAX_HEIGHT * (1 + 2 * r.nextFloat())
+                -maxHeight * (1 + 2 * r.nextFloat())
             }
-            width = MIN_WIDTH + r.nextFloat() * (MAX_WIDTH - MIN_WIDTH)
-            height = MIN_HEIGHT + r.nextFloat() * (MAX_HEIGHT - MIN_HEIGHT)
+            width = minWidth + r.nextFloat() * (maxWidth - minWidth)
+            height = minHeight + r.nextFloat() * (maxHeight - minHeight)
             buildRectF()
         }
 
@@ -101,11 +101,13 @@ class RainImplementor(
         }
 
         fun move(interval: Long, deltaRotation3D: Float) {
-            y += (speed * interval
-                * (scale.toDouble().pow(1.5)
-                - 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(8 * Math.PI / 180.0))).toFloat()
-            x -= (speed * interval
-                * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(8 * Math.PI / 180.0)).toFloat()
+            y += speed
+                .times(interval)
+                .times(
+                    scale.toDouble().pow(1.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(8 * Math.PI / 180.0)
+                ).toFloat()
+            x -= (speed * interval * 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(8 * Math.PI / 180.0))
+                .toFloat()
             if (y >= mCanvasSize) {
                 init(false)
             } else {
@@ -230,8 +232,10 @@ class RainImplementor(
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         // do not display any rain effects if animations are turned off
         if (!mAnimate) return
@@ -247,8 +251,11 @@ class RainImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         var rotation2Dc = rotation2D
         if (scrollRate < 1) {
@@ -283,6 +290,7 @@ class RainImplementor(
         const val TYPE_SLEET = 4
         private const val RAIN_COUNT = 75
         private const val SLEET_COUNT = 45
+
         @ColorInt
         fun getThemeColor(context: Context, @TypeRule type: Int, daylight: Boolean): Int {
             when (type) {

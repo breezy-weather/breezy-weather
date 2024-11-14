@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsGridPointResult(
-    val properties: NwsGridPointProperties?
+    val properties: NwsGridPointProperties?,
 )

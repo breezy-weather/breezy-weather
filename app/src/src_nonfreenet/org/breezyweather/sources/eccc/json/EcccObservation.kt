@@ -34,5 +34,5 @@ data class EcccObservation(
 
     val windSpeed: EcccUnit?,
     val windGust: EcccUnit?,
-    val windBearing: String?
+    val windBearing: String?,
 )

@@ -46,7 +46,7 @@ import kotlin.time.Duration.Companion.parseIsoString
 
 fun convert(
     location: Location,
-    locationProperties: NwsPointProperties
+    locationProperties: NwsPointProperties,
 ): Location {
     return location.copy(
         timeZone = locationProperties.timeZone,
@@ -60,30 +60,35 @@ fun convert(
 fun convert(
     forecastResult: NwsGridPointResult,
     alertResult: NwsAlertsResult,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.properties == null) {
         throw InvalidOrIncompleteDataException()
     }
 
-    //val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)
+    // val weatherForecastList = getWeatherForecast(forecastResult.properties.weather, timeZone)
 
     val temperatureForecastList = getDoubleForecast(forecastResult.properties.temperature, false, location)
-    val apparentTemperatureForecastList = getDoubleForecast(forecastResult.properties.apparentTemperature, false, location)
-    val wetBulbGlobeTemperatureForecastList = getDoubleForecast(forecastResult.properties.wetBulbGlobeTemperature, false, location)
-    //val heatIndexForecastList = getDoubleForecast(forecastResult.properties.heatIndex, false, timeZone)
+    val apparentTemperatureForecastList =
+        getDoubleForecast(forecastResult.properties.apparentTemperature, false, location)
+    val wetBulbGlobeTemperatureForecastList =
+        getDoubleForecast(forecastResult.properties.wetBulbGlobeTemperature, false, location)
+    // val heatIndexForecastList = getDoubleForecast(forecastResult.properties.heatIndex, false, timeZone)
     val windChillForecastList = getDoubleForecast(forecastResult.properties.windChill, false, location)
 
     val dewpointForecastList = getDoubleForecast(forecastResult.properties.dewpoint, false, location)
     val relativeHumidityList = getIntForecast(forecastResult.properties.relativeHumidity, location)
 
-    val quantitativePrecipitationForecastList = getDoubleForecast(forecastResult.properties.quantitativePrecipitation, true, location)
+    val quantitativePrecipitationForecastList =
+        getDoubleForecast(forecastResult.properties.quantitativePrecipitation, true, location)
     val snowfallAmountForecastList = getDoubleForecast(forecastResult.properties.snowfallAmount, true, location)
     val iceAccumulationForecastList = getDoubleForecast(forecastResult.properties.iceAccumulation, true, location)
 
-    val probabilityOfPrecipitationForecastList = getIntForecast(forecastResult.properties.probabilityOfPrecipitation, location)
-    val probabilityOfThunderForecastList = getDoubleForecast(forecastResult.properties.probabilityOfThunder, false, location)
+    val probabilityOfPrecipitationForecastList =
+        getIntForecast(forecastResult.properties.probabilityOfPrecipitation, location)
+    val probabilityOfThunderForecastList =
+        getDoubleForecast(forecastResult.properties.probabilityOfThunder, false, location)
 
     val windDirectionForecastList = getIntForecast(forecastResult.properties.windDirection, location)
     val windSpeedForecastList = getDoubleForecast(forecastResult.properties.windSpeed, false, location)
@@ -93,30 +98,32 @@ fun convert(
 
     val skyCoverForecastList = getIntForecast(forecastResult.properties.skyCover, location)
     val visibilityForecastList = getDoubleForecast(forecastResult.properties.visibility, false, location)
-    //val ceilingHeightForecastList = getDoubleForecast(forecastResult.properties.ceilingHeight, false, timeZone)
+    // val ceilingHeightForecastList = getDoubleForecast(forecastResult.properties.ceilingHeight, false, timeZone)
 
-    val uniqueDates = (temperatureForecastList.keys + dewpointForecastList.keys +
-        relativeHumidityList.keys + apparentTemperatureForecastList.keys +
-        wetBulbGlobeTemperatureForecastList.keys + //heatIndexForecastList.keys +
-        windChillForecastList.keys + skyCoverForecastList.keys +
-        windDirectionForecastList.keys + windSpeedForecastList.keys +
-        windGustForecastList.keys + //weatherForecastList.keys +
-        probabilityOfPrecipitationForecastList.keys +
-        quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
-        snowfallAmountForecastList.keys + //ceilingHeightForecastList.keys +
-        visibilityForecastList.keys + pressureForecastList.keys +
-        probabilityOfThunderForecastList.keys).sorted()
+    val uniqueDates = (
+        temperatureForecastList.keys + dewpointForecastList.keys +
+            relativeHumidityList.keys + apparentTemperatureForecastList.keys +
+            wetBulbGlobeTemperatureForecastList.keys + // heatIndexForecastList.keys +
+            windChillForecastList.keys + skyCoverForecastList.keys +
+            windDirectionForecastList.keys + windSpeedForecastList.keys +
+            windGustForecastList.keys + // weatherForecastList.keys +
+            probabilityOfPrecipitationForecastList.keys +
+            quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
+            snowfallAmountForecastList.keys + // ceilingHeightForecastList.keys +
+            visibilityForecastList.keys + pressureForecastList.keys +
+            probabilityOfThunderForecastList.keys
+        ).sorted()
 
     return WeatherWrapper(
         dailyForecast = getDailyForecast(location, uniqueDates),
         hourlyForecast = uniqueDates.map {
-            //val weather = weatherForecastList.getOrElse(it) { null }
+            // val weather = weatherForecastList.getOrElse(it) { null }
 
             HourlyWrapper(
                 date = it,
-                //Let our CommonConverter process it instead
-                //weatherCode = getWeatherCode(weather),
-                //weatherText = getWeatherText(weather),
+                // Let our CommonConverter process it instead
+                // weatherCode = getWeatherCode(weather),
+                // weatherText = getWeatherText(weather),
                 temperature = Temperature(
                     temperature = temperatureForecastList.getOrElse(it) { null },
                     apparentTemperature = apparentTemperatureForecastList.getOrElse(it) { null },
@@ -151,7 +158,7 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    uniqueDates: List<Date>
+    uniqueDates: List<Date>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = uniqueDates.groupBy {
@@ -194,9 +201,8 @@ fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
 }
 
 fun convertSecondary(
-    alertsResult: NwsAlertsResult
+    alertsResult: NwsAlertsResult,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         alertList = getAlerts(alertsResult.features)
     )
@@ -205,7 +211,7 @@ fun convertSecondary(
 private fun getDoubleForecast(
     doubleProperties: NwsValueDoubleContainer?,
     multipleHoursAreDivided: Boolean = false,
-    location: Location
+    location: Location,
 ): Map<Date, Double> {
     if (doubleProperties?.values == null) return emptyMap()
 
@@ -226,10 +232,14 @@ private fun getDoubleForecast(
                     date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
-                } else date
+                } else {
+                    date
+                }
                 doubleForecast[newDate] = if (multipleHoursAreDivided) {
                     it.value.div(durationInHours)
-                } else it.value
+                } else {
+                    it.value
+                }
             }
         }
     }
@@ -239,7 +249,7 @@ private fun getDoubleForecast(
 
 private fun getIntForecast(
     intProperties: NwsValueIntContainer?,
-    location: Location
+    location: Location,
 ): Map<Date, Int> {
     if (intProperties?.values == null) return emptyMap()
 
@@ -260,7 +270,9 @@ private fun getIntForecast(
                     date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
-                } else date
+                } else {
+                    date
+                }
                 intForecast[newDate] = it.value
             }
         }
@@ -271,7 +283,7 @@ private fun getIntForecast(
 
 /*private fun getWeatherForecast(
     weatherProperties: NwsValueWeatherContainer?,
-    location: Location
+    location: Location,
 ): Map<Date, String> {
     if (weatherProperties?.values == null) return emptyMap()
 
@@ -292,7 +304,9 @@ private fun getIntForecast(
                     date.toCalendarWithTimeZone(location.javaTimeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
-                } else date
+                } else {
+                    date
+                }
                 weatherForecast[newDate] = it.value!![0].weather!!
             }
         }
@@ -321,7 +335,7 @@ private fun getIntForecast(
  * Last updated March 24th, 2021
  */
 private fun getAlertColor(event: String?): Int? {
-    return when(event) {
+    return when (event) {
         "Tsunami Warning" -> Color.rgb(253, 99, 71)
         "Tornado Warning" -> Color.rgb(255, 0, 0)
         "Extreme Wind Warning" -> Color.rgb(255, 140, 0)

@@ -25,5 +25,5 @@ data class BmkgWarningDescription(
     @SerialName("date_start") val dateStart: String?,
     val expired: String?,
     val headline: String?,
-    val description: String?
+    val description: String?,
 )

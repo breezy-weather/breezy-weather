@@ -102,10 +102,12 @@ import kotlin.time.Duration.Companion.minutes
 class RefreshHelper @Inject constructor(
     private val sourceManager: SourceManager,
     private val locationRepository: LocationRepository,
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
 ) {
     suspend fun getLocation(
-        context: Context, location: Location, background: Boolean
+        context: Context,
+        location: Location,
+        background: Boolean,
     ): LocationResult {
         if (!location.isCurrentPosition) {
             return LocationResult(location)
@@ -177,7 +179,9 @@ class RefreshHelper @Inject constructor(
                         )
                     )
                 }
-            } else currentLocation
+            } else {
+                currentLocation
+            }
             return LocationResult(locationGeocoded, currentErrors)
         } else {
             return LocationResult(currentLocation, currentErrors)
@@ -185,7 +189,9 @@ class RefreshHelper @Inject constructor(
     }
 
     private suspend fun requestCurrentLocation(
-        context: Context, location: Location, background: Boolean
+        context: Context,
+        location: Location,
+        background: Boolean,
     ): LocationResult {
         val locationSource = SettingsManager.getInstance(context).locationSource
         val locationService = sourceManager.getLocationSourceOrDefault(locationSource)
@@ -242,7 +248,10 @@ class RefreshHelper @Inject constructor(
                         city = result.city ?: "",
                         district = result.district ?: ""
                     )
-                } else location // Return as-is without overwriting reverse geocoding info
+                } else {
+                    // Return as-is without overwriting reverse geocoding info
+                    location
+                }
             )
         } catch (e: Throwable) {
             LocationResult(
@@ -281,7 +290,9 @@ class RefreshHelper @Inject constructor(
     }
 
     suspend fun getWeather(
-        context: Context, location: Location, coordinatesChanged: Boolean
+        context: Context,
+        location: Location,
+        coordinatesChanged: Boolean,
     ): WeatherResult {
         try {
             if (!location.isUsable || location.needsGeocodeRefresh) {
@@ -313,8 +324,7 @@ class RefreshHelper @Inject constructor(
 
             // Group data requested to secondary sources by source
             val mainFeaturesIgnored: MutableList<SecondaryWeatherSourceFeature> = mutableListOf()
-            val secondarySources: MutableMap<String, MutableList<SecondaryWeatherSourceFeature>> =
-                mutableMapOf()
+            val secondarySources: MutableMap<String, MutableList<SecondaryWeatherSourceFeature>> = mutableMapOf()
             with(location) {
                 listOf(
                     Pair(currentSource, SecondaryWeatherSourceFeature.FEATURE_CURRENT),
@@ -394,15 +404,20 @@ class RefreshHelper @Inject constructor(
             } else {
                 try {
                     if (service is LocationParametersSource &&
-                        service.needsLocationParametersRefresh(location, coordinatesChanged)) {
-                        locationParameters[service.id] =
-                            (if (locationParameters.getOrElse(service.id) { null } != null) {
-                                locationParameters[service.id]!!
-                            } else emptyMap()) + service
-                            .requestLocationParameters(context, location.copy())
-                            .awaitFirstOrElse {
-                                throw WeatherException()
+                        service.needsLocationParametersRefresh(location, coordinatesChanged)
+                    ) {
+                        locationParameters[service.id] = buildMap {
+                            if (locationParameters.getOrElse(service.id) { null } != null) {
+                                putAll(locationParameters[service.id]!!)
                             }
+                            putAll(
+                                service
+                                    .requestLocationParameters(context, location.copy())
+                                    .awaitFirstOrElse {
+                                        throw WeatherException()
+                                    }
+                            )
+                        }
                     }
                     service
                         .requestWeather(
@@ -428,30 +443,54 @@ class RefreshHelper @Inject constructor(
                     )
                 }
             }
-            var currentUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            var currentUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+            ) {
                 Date()
-            } else base.currentUpdateTime
-            var airQualityUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            } else {
+                base.currentUpdateTime
+            }
+            var airQualityUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+            ) {
                 Date()
-            } else base.airQualityUpdateTime
-            var pollenUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            } else {
+                base.airQualityUpdateTime
+            }
+            var pollenUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+            ) {
                 Date()
-            } else base.pollenUpdateTime
-            var minutelyUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            } else {
+                base.pollenUpdateTime
+            }
+            var minutelyUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+            ) {
                 Date()
-            } else base.minutelyUpdateTime
-            var alertsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+            } else {
+                base.minutelyUpdateTime
+            }
+            var alertsUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+            ) {
                 Date()
-            } else base.alertsUpdateTime
-            var normalsUpdateTime = if (service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+            } else {
+                base.alertsUpdateTime
+            }
+            var normalsUpdateTime = if (
+                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
+                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+            ) {
                 Date()
-            } else base.normalsUpdateTime
+            } else {
+                base.normalsUpdateTime
+            }
 
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
@@ -504,15 +543,20 @@ class RefreshHelper @Inject constructor(
                                 }
                                 secondarySourceCalls[entry.key] = try {
                                     if (secondaryService is LocationParametersSource &&
-                                        secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)) {
-                                        locationParameters[secondaryService.id] =
-                                            (if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
-                                                locationParameters[secondaryService.id]!!
-                                            } else emptyMap()) + secondaryService
-                                            .requestLocationParameters(context, location.copy())
-                                            .awaitFirstOrElse {
-                                                throw WeatherException()
+                                        secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)
+                                    ) {
+                                        locationParameters[secondaryService.id] = buildMap {
+                                            if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
+                                                putAll(locationParameters[secondaryService.id]!!)
                                             }
+                                            putAll(
+                                                secondaryService
+                                                    .requestLocationParameters(context, location.copy())
+                                                    .awaitFirstOrElse {
+                                                        throw WeatherException()
+                                                    }
+                                            )
+                                        }
                                     }
                                     secondaryService
                                         .requestSecondaryWeather(
@@ -545,44 +589,70 @@ class RefreshHelper @Inject constructor(
                  * Make sure we return data from the correct secondary source
                  */
                 SecondaryWeatherWrapper(
-                    current = if (!location.currentSource.isNullOrEmpty() && location.currentSource != location.weatherSource) {
+                    current = if (!location.currentSource.isNullOrEmpty() &&
+                        location.currentSource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
                             currentUpdateTime = Date()
                             it
                         } // Don't fallback to old current, we will use forecast instead later
-                    } else null,
-                    airQuality = if (!location.airQualitySource.isNullOrEmpty() && location.airQualitySource != location.weatherSource) {
+                    } else {
+                        null
+                    },
+                    airQuality = if (!location.airQualitySource.isNullOrEmpty() &&
+                        location.airQualitySource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
                             airQualityUpdateTime = Date()
                             it
                         } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
-                    } else null,
-                    pollen = if (!location.pollenSource.isNullOrEmpty() && location.pollenSource != location.weatherSource) {
+                    } else {
+                        null
+                    },
+                    pollen = if (!location.pollenSource.isNullOrEmpty() &&
+                        location.pollenSource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
                             pollenUpdateTime = Date()
                             it
                         } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
-                    } else null,
-                    minutelyForecast = if (!location.minutelySource.isNullOrEmpty() && location.minutelySource != location.weatherSource) {
+                    } else {
+                        null
+                    },
+                    minutelyForecast = if (!location.minutelySource.isNullOrEmpty() &&
+                        location.minutelySource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
                             minutelyUpdateTime = Date()
                             it
                         } ?: getMinutelyFromWeather(location.weather)
-                    } else null,
-                    alertList = if (!location.alertSource.isNullOrEmpty() && location.alertSource != location.weatherSource) {
+                    } else {
+                        null
+                    },
+                    alertList = if (!location.alertSource.isNullOrEmpty() &&
+                        location.alertSource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
                             alertsUpdateTime = Date()
                             it
                         } ?: getAlertsFromWeather(location.weather)
-                    } else null,
-                    normals = if (!location.normalsSource.isNullOrEmpty() && location.normalsSource != location.weatherSource) {
+                    } else {
+                        null
+                    },
+                    normals = if (!location.normalsSource.isNullOrEmpty() &&
+                        location.normalsSource != location.weatherSource
+                    ) {
                         secondarySourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
                             normalsUpdateTime = Date()
                             it
                         } ?: getNormalsFromWeather(location)
-                    } else null
+                    } else {
+                        null
+                    }
                 )
-            } else null
+            } else {
+                null
+            }
 
             /**
              * Most sources starts hourly forecast at current time (13:00 for example)
@@ -593,17 +663,20 @@ class RefreshHelper @Inject constructor(
              * For this reason, we complete missing data earlier for the secondary data
              */
             val secondaryWeatherWrapperCompleted = completeMissingSecondaryWeatherDailyData(
-                secondaryWeatherWrapper, location
+                secondaryWeatherWrapper,
+                location
             )
 
             val hourlyMissingComputed = computeMissingHourlyData(
                 mergeSecondaryWeatherDataIntoHourlyWrapperList(
-                    mainWeatherCompleted.hourlyForecast, secondaryWeatherWrapperCompleted
+                    mainWeatherCompleted.hourlyForecast,
+                    secondaryWeatherWrapperCompleted
                 )
             )
             val dailyForecast = completeDailyListFromHourlyList(
                 mergeSecondaryWeatherDataIntoDailyList(
-                    mainWeatherCompleted.dailyForecast, secondaryWeatherWrapperCompleted
+                    mainWeatherCompleted.dailyForecast,
+                    secondaryWeatherWrapperCompleted
                 ),
                 hourlyMissingComputed,
                 location
@@ -666,7 +739,7 @@ class RefreshHelper @Inject constructor(
     private fun getRequestErrorType(
         context: Context,
         e: Throwable,
-        defaultRefreshError: RefreshErrorType
+        defaultRefreshError: RefreshErrorType,
     ): RefreshErrorType {
         val refreshErrorType = when (e) {
             is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
@@ -691,11 +764,11 @@ class RefreshHelper @Inject constructor(
             is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
             is LocationException -> RefreshErrorType.LOCATION_FAILED
             is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-            is MissingPermissionLocationBackgroundException -> RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
+            is MissingPermissionLocationBackgroundException ->
+                RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
             is ReverseGeocodingException -> RefreshErrorType.REVERSE_GEOCODING_FAILED
             is SecondaryWeatherException -> RefreshErrorType.SECONDARY_WEATHER_FAILED
-            is MissingFieldException, is SerializationException, is ParsingException,
-            is ParseException -> {
+            is MissingFieldException, is SerializationException, is ParsingException, is ParseException -> {
                 e.printStackTrace()
                 RefreshErrorType.PARSING_ERROR
             }
@@ -717,7 +790,7 @@ class RefreshHelper @Inject constructor(
     fun requestSearchLocations(
         context: Context,
         query: String,
-        locationSearchSource: String
+        locationSearchSource: String,
     ): Observable<List<Location>> {
         val searchService = sourceManager.getLocationSearchSourceOrDefault(locationSearchSource)
 
@@ -734,8 +807,9 @@ class RefreshHelper @Inject constructor(
             DayWidgetIMP.updateWidgetView(
                 context,
                 locationList[0],
-                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
-                    .ifEmpty { locationList[0].weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (locationList[0].pollenSource ?: "").ifEmpty { locationList[0].weatherSource }
+                )
             )
         }
         if (WeekWidgetIMP.isInUse(context)) {
@@ -745,8 +819,9 @@ class RefreshHelper @Inject constructor(
             DayWeekWidgetIMP.updateWidgetView(
                 context,
                 locationList[0],
-                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
-                    .ifEmpty { locationList[0].weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (locationList[0].pollenSource ?: "").ifEmpty { locationList[0].weatherSource }
+                )
             )
         }
         if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
@@ -756,8 +831,9 @@ class RefreshHelper @Inject constructor(
             ClockDayVerticalWidgetIMP.updateWidgetView(
                 context,
                 locationList[0],
-                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
-                    .ifEmpty { locationList[0].weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (locationList[0].pollenSource ?: "").ifEmpty { locationList[0].weatherSource }
+                )
             )
         }
         if (ClockDayWeekWidgetIMP.isInUse(context)) {
@@ -770,8 +846,9 @@ class RefreshHelper @Inject constructor(
             TextWidgetIMP.updateWidgetView(
                 context,
                 locationList[0],
-                sourceManager.getPollenIndexSource((locationList[0].pollenSource ?: "")
-                    .ifEmpty { locationList[0].weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (locationList[0].pollenSource ?: "").ifEmpty { locationList[0].weatherSource }
+                )
             )
         }
         if (DailyTrendWidgetIMP.isInUse(context)) {
@@ -838,7 +915,8 @@ class RefreshHelper @Inject constructor(
      * @param sourceId if you only want to send data for a specific source
      */
     suspend fun broadcastDataIfNecessary(
-        context: Context, sourceId: String? = null
+        context: Context,
+        sourceId: String? = null,
     ) {
         val locationList = locationRepository.getAllLocations(withParameters = false)
             .map {
@@ -861,28 +939,31 @@ class RefreshHelper @Inject constructor(
      * @param sourceId if you only want to send data for a specific source
      */
     fun broadcastDataIfNecessary(
-        context: Context, locationList: List<Location>, sourceId: String? = null
+        context: Context,
+        locationList: List<Location>,
+        sourceId: String? = null,
     ) {
         sourceManager.getBroadcastSources()
             .filter { sourceId == null || sourceId == it.id }
             .forEach { source ->
                 val config = SourceConfigStore(context, source.id)
                 val enabledPackages = (config.getString("packages", null) ?: "").let {
-                    if (it.isNotEmpty()) {
-                        it.split(",")
-                    } else emptyList()
+                    if (it.isNotEmpty()) it.split(",") else emptyList()
                 }
 
                 if (enabledPackages.isNotEmpty()) {
                     val packageInfoList = context.packageManager.queryBroadcastReceivers(
-                        Intent(source.intentAction), PackageManager.GET_RESOLVED_FILTER
+                        Intent(source.intentAction),
+                        PackageManager.GET_RESOLVED_FILTER
                     )
                     val enabledAndAvailablePackages = enabledPackages
                         .filter { enabledPackage ->
                             packageInfoList.any { it.activityInfo.applicationInfo.packageName == enabledPackage }
                         }
                     if (enabledPackages.size != enabledAndAvailablePackages.size) {
-                        LogHelper.log(msg = "[${source.name}] Updating packages setting as some packages are no longer available")
+                        LogHelper.log(
+                            msg = "[${source.name}] Updating packages setting as some packages are no longer available"
+                        )
                         // Update to remove unavailable packages
                         config.edit().putString("packages", enabledAndAvailablePackages.joinToString(",")).apply()
                         // Don't notify settings changed, we are already sending data!
@@ -917,7 +998,8 @@ class RefreshHelper @Inject constructor(
         // location list.
         val count = min(shortcutManager.maxShortcutCountPerActivity - 1, locationList.size)
         for (i in 0 until count) {
-            val weather = locationList[i].weather ?: weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
+            val weather = locationList[i].weather
+                ?: weatherRepository.getWeatherByLocationId(locationList[i].formattedId)
             val icon =
                 weather?.current?.weatherCode?.let { weatherCode ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -961,7 +1043,7 @@ class RefreshHelper @Inject constructor(
         location: Location,
         feature: SecondaryWeatherSourceFeature? = null,
         isRestricted: Boolean = false,
-        minimumTime: Long = 0
+        minimumTime: Long = 0,
     ): Boolean {
         if (location.weather?.base == null) return false
 
@@ -1036,7 +1118,7 @@ class RefreshHelper @Inject constructor(
     private fun isUpdateStillValid(
         updateTime: Date?,
         wait: Int,
-        minimumTime: Long = 0
+        minimumTime: Long = 0,
     ): Boolean {
         if (updateTime == null || updateTime.time < minimumTime) return false
 

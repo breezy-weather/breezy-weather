@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenMeteoAirQualityResult(
-    val hourly: OpenMeteoAirQualityHourly? = null
+    val hourly: OpenMeteoAirQualityHourly? = null,
 )

@@ -23,5 +23,5 @@ import java.util.Date
 @Serializable
 data class MetNoForecastTimeseries(
     @Serializable(DateSerializer::class) val time: Date,
-    val data: MetNoForecastData?
+    val data: MetNoForecastData?,
 )

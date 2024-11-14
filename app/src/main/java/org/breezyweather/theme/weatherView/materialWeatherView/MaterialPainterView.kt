@@ -47,7 +47,7 @@ class MaterialPainterView(
     currentScrollRate: Float,
 
     var gravitySensorEnabled: Boolean,
-    var animatable: Boolean
+    var animatable: Boolean,
 ) : View(context) {
 
     private var intervalComputer: IntervalComputer? = null
@@ -95,7 +95,10 @@ class MaterialPainterView(
     private var mDeviceOrientation: DeviceOrientation? = null
 
     private enum class DeviceOrientation {
-        TOP, LEFT, BOTTOM, RIGHT
+        TOP,
+        LEFT,
+        BOTTOM,
+        RIGHT,
     }
 
     private val mGravityListener: SensorEventListener = object : SensorEventListener {
@@ -212,7 +215,7 @@ class MaterialPainterView(
         @WeatherKindRule weatherKind: Int,
         daylight: Boolean,
         gravitySensorEnabled: Boolean,
-        animate: Boolean
+        animate: Boolean,
     ) {
         this.weatherKind = weatherKind
         this.daylight = daylight
@@ -259,8 +262,11 @@ class MaterialPainterView(
 
         var interval = intervalComputer!!.interval
         if (!animatable) {
-            if (hasDrawn) interval = 0.0
-            else hasDrawn = true
+            if (hasDrawn) {
+                interval = 0.0
+            } else {
+                hasDrawn = true
+            }
         }
 
         impl!!.updateData(

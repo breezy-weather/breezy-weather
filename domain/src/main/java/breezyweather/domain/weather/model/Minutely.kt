@@ -27,7 +27,7 @@ import kotlin.math.pow
 data class Minutely(
     val date: Date,
     val minuteInterval: Int,
-    val precipitationIntensity: Double? = null
+    val precipitationIntensity: Double? = null,
 ) : Serializable {
 
     val dbz: Int?
@@ -36,9 +36,9 @@ data class Minutely(
     companion object {
 
         private fun precipitationIntensityToDBZ(intensity: Double?): Int? {
-            return if (intensity == null) null else (10.0 * log10(
-                200.0 * Math.pow(intensity, 8.0 / 5.0)
-            )).toInt()
+            return intensity?.let {
+                (10.0 * log10(200.0 * Math.pow(intensity, 8.0 / 5.0))).toInt()
+            }
         }
 
         fun dbzToPrecipitationIntensity(dbz: Double?): Double? {

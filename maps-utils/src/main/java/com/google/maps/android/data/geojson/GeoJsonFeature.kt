@@ -27,7 +27,7 @@ class GeoJsonFeature(
     geometry: Geometry<*>?,
     id: String?,
     properties: HashMap<String, String?>?,
-    boundingBox: LatLngBounds?
+    boundingBox: LatLngBounds?,
 ) : Feature(geometry, id, properties) {
     private val mBoundingBox: LatLngBounds?
 
@@ -66,7 +66,6 @@ class GeoJsonFeature(
     }
 
     override fun toString(): String {
-        return """Feature{ bounding box=$mBoundingBox, geometry=${geometry}, id=$mId, properties=$properties}"""
+        return """Feature{ bounding box=$mBoundingBox, geometry=$geometry, id=$mId, properties=$properties}"""
     }
-
 }

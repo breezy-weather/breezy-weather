@@ -33,18 +33,18 @@ import java.util.Date
 data class CapAlert(
     val identifier: Identifier? = null,
     val sent: Sent? = null,
-    val info: List<Info>? = null
+    val info: List<Info>? = null,
 ) {
     @Serializable
     @XmlSerialName("identifier", "", "cap")
     data class Identifier(
-        @XmlValue(true) val value: String? = null
+        @XmlValue(true) val value: String? = null,
     )
 
     @Serializable
     @XmlSerialName("sent", "", "cap")
     data class Sent(
-        @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null
+        @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null,
     )
 
     @Serializable
@@ -59,66 +59,66 @@ data class CapAlert(
         val senderName: SenderName? = null,
         val headline: Headline? = null,
         val description: Description? = null,
-        val instruction: Instruction? = null
+        val instruction: Instruction? = null,
     ) {
         @Serializable
         @XmlSerialName("language", "", "cap")
         data class Language(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("event", "", "cap")
         data class Event(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("severity", "", "cap")
         data class Severity(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("effective", "", "cap")
         data class Effective(
-            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null
+            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null,
         )
 
         @Serializable
         @XmlSerialName("onset", "", "cap")
         data class Onset(
-            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null
+            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null,
         )
 
         @Serializable
         @XmlSerialName("expires", "", "cap")
         data class Expires(
-            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null
+            @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null,
         )
 
         @Serializable
         @XmlSerialName("senderName", "", "cap")
         data class SenderName(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("headline", "", "cap")
         data class Headline(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("description", "", "cap")
         data class Description(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
 
         @Serializable
         @XmlSerialName("instruction", "", "cap")
         data class Instruction(
-            @XmlValue(true) val value: String? = null
+            @XmlValue(true) val value: String? = null,
         )
     }
 }

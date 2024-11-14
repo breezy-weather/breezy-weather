@@ -29,16 +29,15 @@ import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProv
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.remoteviews.common.WidgetSizeUtils
 import org.breezyweather.remoteviews.common.WidgetSize
+import org.breezyweather.remoteviews.common.WidgetSizeUtils
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-
-class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
+class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
 
     companion object {
 
@@ -50,35 +49,38 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
 
         fun updateWidgetView(context: Context, location: Location?) {
             val appWidgetManager = AppWidgetManager.getInstance(context)
-            val defaultDimension = context.resources.getDimensionPixelSize(R.dimen.widget_material_you_default_size).toDouble()
+            val defaultDimension = context.resources.getDimensionPixelSize(
+                R.dimen.widget_material_you_default_size
+            ).toDouble()
             appWidgetManager.getAppWidgetIds(
                 ComponentName(context, WidgetMaterialYouCurrentProvider::class.java)
             ).forEach { widgetId ->
                 val views = WidgetSizeUtils.initializeRemoteViews(
-                    appWidgetManager, widgetId
+                    appWidgetManager,
+                    widgetId
                 ) { widgetSize: WidgetSize ->
-                    val layoutId = //if (!isMini(context, widgetSize)) {
+                    val layoutId = // if (!isMini(context, widgetSize)) {
                         R.layout.widget_material_you_current
-                    //} else R.layout.widget_material_you_current_mini
+                    // } else R.layout.widget_material_you_current_mini
                     val remoteViews = RemoteViews(context.packageName, layoutId)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        //if (!isMini(context, widgetSize)) {
-                            val min = min(
-                                min(widgetSize.widthPx.toDouble(), widgetSize.heightPx.toDouble()),
-                                defaultDimension
-                            ).toFloat()
-                            remoteViews.setViewLayoutWidth(
-                                R.id.widget_material_you_current,
-                                min,
-                                TypedValue.COMPLEX_UNIT_PX
-                            )
-                            remoteViews.setViewLayoutHeight(
-                                R.id.widget_material_you_current,
-                                min,
-                                TypedValue.COMPLEX_UNIT_PX
-                            )
-                        //}
+                        // if (!isMini(context, widgetSize)) {
+                        val min = min(
+                            min(widgetSize.widthPx.toDouble(), widgetSize.heightPx.toDouble()),
+                            defaultDimension
+                        ).toFloat()
+                        remoteViews.setViewLayoutWidth(
+                            R.id.widget_material_you_current,
+                            min,
+                            TypedValue.COMPLEX_UNIT_PX
+                        )
+                        remoteViews.setViewLayoutHeight(
+                            R.id.widget_material_you_current,
+                            min,
+                            TypedValue.COMPLEX_UNIT_PX
+                        )
+                        // }
                     }
 
                     buildRemoteViews(context, remoteViews, location, widgetSize)
@@ -101,7 +103,7 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
             context: Context,
             views: RemoteViews,
             location: Location?,
-            widgetSize: WidgetSize
+            widgetSize: WidgetSize,
         ): RemoteViews {
             val weather = location?.weather ?: return views
 
@@ -125,14 +127,16 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
                 )
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    val defaultDimension =
-                        context.resources.getDimensionPixelSize(R.dimen.widget_material_you_default_size)
-                            .toDouble()
+                    val defaultDimension = context.resources.getDimensionPixelSize(
+                        R.dimen.widget_material_you_default_size
+                    ).toDouble()
                     var ratio = min(
                         defaultDimension,
                         min(widgetSize.heightPx, widgetSize.widthPx).toDouble()
                     ) / defaultDimension
-                    val iconDimension = context.resources.getDimensionPixelSize(R.dimen.widget_material_you_current_default_icon_size)
+                    val iconDimension = context.resources.getDimensionPixelSize(
+                        R.dimen.widget_material_you_current_default_icon_size
+                    )
                     val ratioIcon = ((iconDimension * ratio).roundToInt()).toFloat()
                     views.setViewLayoutWidth(
                         R.id.widget_material_you_current_currentIcon,
@@ -147,9 +151,9 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
                     if (ratio < 1.0) {
                         ratio *= 0.7
                     }
-                    val iconMarginDimension =
-                        context.resources.getDimensionPixelSize(R.dimen.widget_material_you_current_default_icon_margin)
-                            .toDouble()
+                    val iconMarginDimension = context.resources.getDimensionPixelSize(
+                        R.dimen.widget_material_you_current_default_icon_margin
+                    ).toDouble()
                     val ratioIconMargin = (iconMarginDimension * ratio).toInt().toFloat()
                     views.setViewLayoutMargin(
                         R.id.widget_material_you_current_currentIcon,
@@ -164,7 +168,6 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
                         TypedValue.COMPLEX_UNIT_PX
                     )
                 }
-
             } ?: views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.INVISIBLE)
 
             val temperatureText = weather.current?.temperature?.temperature?.let {

@@ -32,7 +32,9 @@ import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
  * Double histogram view.
  */
 class DoubleHistogramView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : AbsChartItemView(context, attrs, defStyleAttr) {
     private val mPaint = Paint().apply {
         strokeCap = Paint.Cap.ROUND
@@ -94,8 +96,10 @@ class DoubleHistogramView @JvmOverloads constructor(
         mPaint.strokeWidth = mChartLineWith.toFloat()
         mPaint.color = mLineColors[2]
         canvas.drawLine(
-            measuredWidth / 2f, mMargins.toFloat(),
-            measuredWidth / 2f, (measuredHeight - mMargins).toFloat(),
+            measuredWidth / 2f,
+            mMargins.toFloat(),
+            measuredWidth / 2f,
+            (measuredHeight - mMargins).toFloat(),
             mPaint
         )
     }
@@ -119,7 +123,8 @@ class DoubleHistogramView @JvmOverloads constructor(
                 cx + mHistogramWidth / 2f,
                 cy
             ),
-            mHistogramWidth / 2f, mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
             mPaint
         )
 
@@ -160,7 +165,8 @@ class DoubleHistogramView @JvmOverloads constructor(
                 cx + mHistogramWidth / 2f,
                 mLowHistogramY.toFloat()
             ),
-            mHistogramWidth / 2f, mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
             mPaint
         )
 
@@ -188,7 +194,7 @@ class DoubleHistogramView @JvmOverloads constructor(
         lowHistogramValues: Float?,
         highHistogramValueStr: String?,
         lowHistogramValueStr: String?,
-        highestHistogramValue: Float?
+        highestHistogramValue: Float?,
     ) {
         mHighHistogramValue = highHistogramValues
         mLowHistogramValue = lowHistogramValues
@@ -199,8 +205,9 @@ class DoubleHistogramView @JvmOverloads constructor(
     }
 
     fun setLineColors(
-        @ColorInt colorHigh: Int, @ColorInt colorLow: Int,
-        @ColorInt colorSubLine: Int
+        @ColorInt colorHigh: Int,
+        @ColorInt colorLow: Int,
+        @ColorInt colorSubLine: Int,
     ) {
         mLineColors[0] = colorHigh
         mLineColors[1] = colorLow

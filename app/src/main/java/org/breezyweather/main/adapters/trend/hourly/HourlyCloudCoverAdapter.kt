@@ -38,9 +38,10 @@ import java.text.NumberFormat
 /**
  * Hourly Cloud Cover adapter.
  */
-class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHourlyTrendAdapter(
-    activity, location
-) {
+class HourlyCloudCoverAdapter(
+    activity: GeoActivity,
+    location: Location,
+) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestCloudCover: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
@@ -117,8 +118,7 @@ class HourlyCloudCoverAdapter(activity: GeoActivity, location: Location) : AbsHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

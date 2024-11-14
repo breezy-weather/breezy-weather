@@ -97,8 +97,7 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                    .ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
             }
         )
     }
@@ -106,12 +105,18 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return ClockDayVerticalWidgetIMP.getRemoteViews(
-                this, locationNow,
-                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
-                hideSubtitle, subtitleDataValueNow, clockFontValueNow,
+                this,
+                locationNow,
+                viewTypeValueNow,
+                cardStyleValueNow,
+                cardAlpha,
+                textColorValueNow,
+                textSize,
+                hideSubtitle,
+                subtitleDataValueNow,
+                clockFontValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                        .ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
                 }
             )
         }

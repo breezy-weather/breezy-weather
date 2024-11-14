@@ -47,5 +47,5 @@ data class AccuForecastHourlyResult(
     val RelativeHumidity: Int?,
     val DewPoint: AccuValue?,
     val CloudCover: Int?,
-    val Visibility: AccuValue?
+    val Visibility: AccuValue?,
 )

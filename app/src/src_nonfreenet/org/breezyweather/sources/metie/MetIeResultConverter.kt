@@ -40,7 +40,7 @@ import java.util.TimeZone
 
 fun convert(
     location: Location,
-    result: MetIeLocationResult
+    result: MetIeLocationResult,
 ): Location {
     return location.copy(
         timeZone = "Europe/Dublin",
@@ -53,7 +53,7 @@ fun convert(
 fun convert(
     hourlyResult: List<MetIeHourly>?,
     warningsResult: MetIeWarningResult?,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (hourlyResult.isNullOrEmpty()) {
@@ -69,7 +69,7 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    hourlyResult: List<MetIeHourly>
+    hourlyResult: List<MetIeHourly>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = hourlyResult.groupBy { it.date }
@@ -90,7 +90,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<MetIeHourly>
+    hourlyResult: List<MetIeHourly>,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Dublin")
@@ -111,7 +111,7 @@ private fun getHourlyForecast(
                 speed = result.windSpeed?.div(3.6)
             ),
             relativeHumidity = result.humidity?.toDoubleOrNull(),
-            pressure = result.pressure?.toDoubleOrNull(),
+            pressure = result.pressure?.toDoubleOrNull()
         )
     }
 }
@@ -122,11 +122,17 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
 
     val region = if (MetIeService.regionsMapping.containsKey(location.admin2)) {
         location.admin2
-    } else location.parameters.getOrElse("metie") { null }?.getOrElse("region") { null }
+    } else {
+        location.parameters.getOrElse("metie") { null }?.getOrElse("region") { null }
+    }
     val eiRegion = region?.let { MetIeService.regionsMapping.getOrElse(region) { null } }
 
     return warnings
-        .filter { it.regions.contains("EI0") /* National */ || it.regions.contains(eiRegion) }
+        .filter {
+            // National
+            it.regions.contains("EI0") ||
+                it.regions.contains(eiRegion)
+        }
         .map { alert ->
             val severity = when (alert.severity?.lowercase()) {
                 "extreme" -> AlertSeverity.EXTREME
@@ -155,9 +161,8 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
 
 fun convertSecondary(
     warningsResult: MetIeWarningResult?,
-    location: Location
+    location: Location,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         alertList = getAlertList(location, warningsResult?.warnings?.national)
     )
@@ -165,26 +170,42 @@ fun convertSecondary(
 
 private fun getWeatherCode(icon: String?): WeatherCode? {
     if (icon == null) return null
-    return with (icon) {
+    return with(icon) {
         when {
-            startsWith("01") || startsWith("02") -> WeatherCode.CLEAR
+            startsWith("01") ||
+                startsWith("02") -> WeatherCode.CLEAR
             startsWith("03") -> WeatherCode.PARTLY_CLOUDY
             startsWith("04") -> WeatherCode.CLOUDY
-            startsWith("05") || startsWith("09") || startsWith("10") ||
-                startsWith("40") || startsWith("41") ||
+            startsWith("05") ||
+                startsWith("09") ||
+                startsWith("10") ||
+                startsWith("40") ||
+                startsWith("41") ||
                 startsWith("46") -> WeatherCode.RAIN
-            startsWith("06") || startsWith("11") || startsWith("14") ||
-                startsWith("2")  || startsWith("30") || startsWith("31") ||
-                startsWith("32") || startsWith("33") ||
+            startsWith("06") ||
+                startsWith("11") ||
+                startsWith("14") ||
+                startsWith("2") ||
+                startsWith("30") ||
+                startsWith("31") ||
+                startsWith("32") ||
+                startsWith("33") ||
                 startsWith("34") -> WeatherCode.THUNDERSTORM
-            startsWith("07") || startsWith("12") || startsWith("42") ||
-                startsWith("43") || startsWith("47") ||
+            startsWith("07") ||
+                startsWith("12") ||
+                startsWith("42") ||
+                startsWith("43") ||
+                startsWith("47") ||
                 startsWith("48") -> WeatherCode.SLEET
-            startsWith("08") || startsWith("13") || startsWith("44") ||
-                startsWith("45") || startsWith("49") ||
+            startsWith("08") ||
+                startsWith("13") ||
+                startsWith("44") ||
+                startsWith("45") ||
+                startsWith("49") ||
                 startsWith("50") -> WeatherCode.SNOW
             startsWith("15") -> WeatherCode.FOG
-            startsWith("51") || startsWith("52") -> WeatherCode.HAIL
+            startsWith("51") ||
+                startsWith("52") -> WeatherCode.HAIL
             else -> null
         }
     }

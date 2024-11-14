@@ -19,6 +19,6 @@ package org.breezyweather.sources.hko.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HkoCurrentRH (
-    val Value: String?
+data class HkoCurrentRH(
+    val Value: String?,
 )

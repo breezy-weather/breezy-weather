@@ -26,7 +26,7 @@ import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog
 enum class RefreshErrorType(
     @StringRes val shortMessage: Int,
     val showDialogAction: ((activity: Activity) -> Unit)? = null,
-    @StringRes val actionButtonMessage: Int = R.string.action_help
+    @StringRes val actionButtonMessage: Int = R.string.action_help,
 ) {
     // Common
     NETWORK_UNAVAILABLE(
@@ -66,7 +66,7 @@ enum class RefreshErrorType(
         }
     ),
     SERVER_UNAVAILABLE(
-        shortMessage = R.string.message_server_unavailable_title,
+        shortMessage = R.string.message_server_unavailable_title
         /*showDialogAction = { TODO
             ServerUnavailableErrorHelpDialog.show(
                 it,
@@ -76,7 +76,7 @@ enum class RefreshErrorType(
         }*/
     ),
     PARSING_ERROR(
-        shortMessage = R.string.message_parsing_error_title,
+        shortMessage = R.string.message_parsing_error_title
         /*showDialogAction = { TODO
             ParsingErrorHelpDialog.show(
                 it,
@@ -101,15 +101,15 @@ enum class RefreshErrorType(
         showDialogAction = { LocationHelpDialog.show(it) }
     ),
     ACCESS_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_missing,
-        //showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_missing
+        // showDialogAction = { } // TODO
     ),
     ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_background_missing,
-        //showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_background_missing
+        // showDialogAction = { } // TODO
     ),
     REVERSE_GEOCODING_FAILED(
-        shortMessage = R.string.location_message_reverse_geocoding_failed,
+        shortMessage = R.string.location_message_reverse_geocoding_failed
     ),
 
     // Location search-specific
@@ -132,5 +132,5 @@ enum class RefreshErrorType(
     ),
     WEATHER_REQ_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
-    );
+    ),
 }

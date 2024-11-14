@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
 data class MfNormalsStats(
     val period: String?,
     @SerialName("T_min") val tMin: Double?,
-    @SerialName("T_max") val tMax: Double?
+    @SerialName("T_max") val tMax: Double?,
 )

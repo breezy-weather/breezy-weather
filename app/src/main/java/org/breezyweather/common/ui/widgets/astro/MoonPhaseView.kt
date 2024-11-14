@@ -29,7 +29,9 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class MoonPhaseView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
     private var mPaint = Paint().apply {
         isAntiAlias = true
@@ -47,17 +49,18 @@ class MoonPhaseView @JvmOverloads constructor(
 
     @ColorInt
     private var mStrokeColor = 0
-    private var LINE_WIDTH = 1f
+    private var lineWidth = 1f
 
     init {
         setColor(Color.WHITE, Color.BLACK, Color.GRAY)
         setSurfaceAngle(0f) // from 0 -> phase : 🌑 (new)
-        LINE_WIDTH = context.dpToPx(LINE_WIDTH.toInt().toFloat())
+        lineWidth = context.dpToPx(lineWidth.toInt().toFloat())
     }
 
     fun setColor(
-        @ColorInt lightColor: Int, @ColorInt darkColor: Int,
-        @ColorInt strokeColor: Int
+        @ColorInt lightColor: Int,
+        @ColorInt darkColor: Int,
+        @ColorInt strokeColor: Int,
     ) {
         mLightColor = lightColor
         mDarkColor = darkColor
@@ -108,7 +111,8 @@ class MoonPhaseView @JvmOverloads constructor(
             drawDarkCircle(canvas)
             mPaint.color = mLightColor
             canvas.drawArc(mBackgroundRectF, 270f, 180f, true, mPaint)
-            val halfWidth = (mBackgroundRectF.width() / 2 * sin(Math.toRadians((mSurfaceAngle - 90).toDouble()))).toFloat()
+            val halfWidth = (mBackgroundRectF.width() / 2 * sin(Math.toRadians((mSurfaceAngle - 90).toDouble())))
+                .toFloat()
             mForegroundRectF.set(
                 mBackgroundRectF.centerX() - halfWidth,
                 mBackgroundRectF.top,
@@ -122,7 +126,8 @@ class MoonPhaseView @JvmOverloads constructor(
             drawDarkCircle(canvas)
             mPaint.color = mLightColor
             canvas.drawArc(mBackgroundRectF, 90f, 180f, true, mPaint)
-            val halfWidth = (mBackgroundRectF.width() / 2 * cos(Math.toRadians((mSurfaceAngle - 180).toDouble()))).toFloat()
+            val halfWidth = (mBackgroundRectF.width() / 2 * cos(Math.toRadians((mSurfaceAngle - 180).toDouble())))
+                .toFloat()
             mForegroundRectF.set(
                 mBackgroundRectF.centerX() - halfWidth,
                 mBackgroundRectF.top,
@@ -138,7 +143,8 @@ class MoonPhaseView @JvmOverloads constructor(
             drawLightCircle(canvas)
             mPaint.color = mDarkColor
             canvas.drawArc(mBackgroundRectF, 270f, 180f, true, mPaint)
-            val halfWidth = (mBackgroundRectF.width() / 2 * cos(Math.toRadians((360 - mSurfaceAngle).toDouble()))).toFloat()
+            val halfWidth = (mBackgroundRectF.width() / 2 * cos(Math.toRadians((360 - mSurfaceAngle).toDouble())))
+                .toFloat()
             mForegroundRectF.set(
                 mBackgroundRectF.centerX() - halfWidth,
                 mBackgroundRectF.top,
@@ -148,19 +154,23 @@ class MoonPhaseView @JvmOverloads constructor(
             canvas.drawArc(mForegroundRectF, 90f, 180f, true, mPaint)
         }
         mPaint.style = Paint.Style.STROKE
-        mPaint.strokeWidth = LINE_WIDTH
+        mPaint.strokeWidth = lineWidth
         if (mSurfaceAngle < 90 || 270 < mSurfaceAngle) {
             mPaint.color = mDarkColor
             canvas.drawLine(
-                mBackgroundRectF.centerX(), mBackgroundRectF.top,
-                mBackgroundRectF.centerX(), mBackgroundRectF.bottom,
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.top,
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.bottom,
                 mPaint
             )
         } else if (90 < mSurfaceAngle && mSurfaceAngle < 270) {
             mPaint.color = mLightColor
             canvas.drawLine(
-                mBackgroundRectF.centerX(), mBackgroundRectF.top,
-                mBackgroundRectF.centerX(), mBackgroundRectF.bottom,
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.top,
+                mBackgroundRectF.centerX(),
+                mBackgroundRectF.bottom,
                 mPaint
             )
         }

@@ -23,5 +23,5 @@ import java.util.Date
 @Serializable
 data class ChinaValueListInt(
     @Serializable(DateSerializer::class) val pubTime: Date?,
-    val value: List<Int>?
+    val value: List<Int>?,
 )

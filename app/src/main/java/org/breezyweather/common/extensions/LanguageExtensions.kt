@@ -32,18 +32,24 @@ val Context.currentLocale: Locale
             }
     }
 
+// TODO: Review this use vs toString()
 val Locale.code: String
     get() {
         val language = language
         val country = country
         return if (!country.isNullOrEmpty() &&
-            (country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true))
+            (
+                country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true)
+                )
         ) {
             language.lowercase() + "-" + country.lowercase()
-        } else language.lowercase()
+        } else {
+            language.lowercase()
+        }
     }
 
+// TODO: Review this use vs toString().replace("_", "-")
 val Locale.codeWithCountry: String
     get() {
         val language = language
@@ -61,8 +67,10 @@ val Locale.codeForGeonames: String
         val language = language
         val country = country
         return if (!country.isNullOrEmpty() &&
-            (country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true))
+            (
+                country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true)
+                )
         ) {
             language.lowercase() + "-Hant"
         } else {
@@ -76,11 +84,15 @@ val Locale.codeForNaturalEarthService: String
         val language = language
         val country = country
         return if (!country.isNullOrEmpty() &&
-            (country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true))
+            (
+                country.equals("tw", ignoreCase = true) ||
+                    country.equals("hk", ignoreCase = true)
+                )
         ) {
             language.uppercase() + "T"
-        } else language.uppercase()
+        } else {
+            language.uppercase()
+        }
     }
 
 val Locale.isChinese: Boolean
@@ -105,7 +117,9 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
     return this.replaceFirstChar { firstChar ->
         if (firstChar.isLowerCase()) {
             firstChar.titlecase(locale)
-        } else firstChar.toString()
+        } else {
+            firstChar.toString()
+        }
     }
 }
 

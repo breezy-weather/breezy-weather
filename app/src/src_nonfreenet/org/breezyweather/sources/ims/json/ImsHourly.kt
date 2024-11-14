@@ -29,5 +29,5 @@ data class ImsHourly(
     @SerialName("wind_direction_id") val windDirectionId: String?,
     @SerialName("wind_speed") val windSpeed: Int?,
     @SerialName("wind_chill") val windChill: String?,
-    @SerialName("u_v_index") val uvIndex: String?
+    @SerialName("u_v_index") val uvIndex: String?,
 )

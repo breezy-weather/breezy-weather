@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgForecastData(
-    val cuaca: List<List<BmkgCuaca>>?
+    val cuaca: List<List<BmkgCuaca>>?,
 )

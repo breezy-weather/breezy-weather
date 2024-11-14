@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GeoSphereAtWarningsResult(
-    val properties: GeoSphereAtWarningsProperties? = null
+    val properties: GeoSphereAtWarningsProperties? = null,
 )

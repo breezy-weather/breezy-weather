@@ -71,7 +71,7 @@ class DbModule {
                     cursor.moveToFirst()
                     cursor.close()
                 }
-            },
+            }
         )
     }
 

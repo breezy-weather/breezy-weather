@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class OpenWeatherForecastWind(
     val speed: Double?,
     val deg: Int?,
-    val gust: Double?
+    val gust: Double?,
 )

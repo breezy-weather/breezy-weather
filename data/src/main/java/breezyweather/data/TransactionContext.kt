@@ -54,8 +54,7 @@ internal suspend fun AndroidDatabaseHandler.getCurrentDatabaseContext(): Corouti
  */
 internal suspend fun <T> AndroidDatabaseHandler.withTransaction(block: suspend () -> T): T {
     // Use inherited transaction context if available, this allows nested suspending transactions.
-    val transactionContext =
-        coroutineContext[TransactionElement]?.transactionDispatcher ?: createTransactionContext()
+    val transactionContext = coroutineContext[TransactionElement]?.transactionDispatcher ?: createTransactionContext()
     return withContext(transactionContext) {
         val transactionElement = coroutineContext[TransactionElement]!!
         transactionElement.acquire()
@@ -134,8 +133,8 @@ private suspend fun CoroutineDispatcher.acquireTransactionThread(
             continuation.cancel(
                 IllegalStateException(
                     "Unable to acquire a thread to perform the database transaction",
-                    ex,
-                ),
+                    ex
+                )
             )
         }
     }

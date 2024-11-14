@@ -55,5 +55,4 @@ interface DatabaseHandler {
     fun <T : Any> subscribeToOne(block: Database.() -> Query<T>): Flow<T>
 
     fun <T : Any> subscribeToOneOrNull(block: Database.() -> Query<T>): Flow<T?>
-
 }

@@ -36,7 +36,7 @@ import kotlin.math.max
 @Composable
 fun AlertDialogLink(
     onClose: () -> Unit,
-    linkToOpen: String
+    linkToOpen: String,
 ) {
     val uriHandler = LocalUriHandler.current
 
@@ -45,7 +45,7 @@ fun AlertDialogLink(
             Text(
                 text = stringResource(R.string.about_open_link_title),
                 color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineSmall
             )
         },*/
         text = {
@@ -68,7 +68,7 @@ fun AlertDialogLink(
                 Text(
                     text = stringResource(R.string.action_confirm),
                     color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
         },
@@ -81,7 +81,7 @@ fun AlertDialogLink(
                 Text(
                     text = stringResource(R.string.action_cancel),
                     color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
         }
@@ -106,7 +106,7 @@ fun AlertDialogNoPadding(
     titleContentColor: Color = AlertDialogDefaults.titleContentColor,
     textContentColor: Color = AlertDialogDefaults.textContentColor,
     tonalElevation: Dp = AlertDialogDefaults.TonalElevation,
-    properties: DialogProperties = DialogProperties()
+    properties: DialogProperties = DialogProperties(),
 ) = BasicAlertDialog(
     onDismissRequest = onDismissRequest,
     modifier = modifier,
@@ -135,7 +135,7 @@ fun AlertDialogNoPadding(
         buttonContentColor = MaterialTheme.colorScheme.primary,
         iconContentColor = iconContentColor,
         titleContentColor = titleContentColor,
-        textContentColor = textContentColor,
+        textContentColor = textContentColor
     )
 }
 
@@ -158,7 +158,7 @@ internal fun AlertDialogNoPaddingContent(
         modifier = modifier,
         shape = shape,
         color = containerColor,
-        tonalElevation = tonalElevation,
+        tonalElevation = tonalElevation
     ) {
         Column(
             modifier = Modifier.padding(DialogPadding)
@@ -177,7 +177,8 @@ internal fun AlertDialogNoPaddingContent(
             title?.let {
                 CompositionLocalProvider(
                     LocalContentColor provides titleContentColor,
-                    LocalTextStyle provides MaterialTheme.typography.headlineSmall) {
+                    LocalTextStyle provides MaterialTheme.typography.headlineSmall
+                ) {
                     Box(
                         // Align the title to the center when an icon is present.
                         Modifier
@@ -198,7 +199,8 @@ internal fun AlertDialogNoPaddingContent(
                 val textStyle = MaterialTheme.typography.bodyMedium
                 CompositionLocalProvider(
                     LocalContentColor provides textContentColor,
-                    LocalTextStyle provides textStyle) {
+                    LocalTextStyle provides textStyle
+                ) {
                     Box(
                         Modifier
                             .weight(weight = 1f, fill = false)
@@ -218,7 +220,8 @@ internal fun AlertDialogNoPaddingContent(
                 CompositionLocalProvider(
                     LocalContentColor provides buttonContentColor,
                     LocalTextStyle provides textStyle,
-                    content = buttons)
+                    content = buttons
+                )
             }
         }
     }
@@ -232,7 +235,7 @@ internal fun AlertDialogNoPaddingContent(
 internal fun AlertDialogNoPaddingFlowRow(
     mainAxisSpacing: Dp,
     crossAxisSpacing: Dp,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Layout(content) { measurables, constraints ->
         val sequences = mutableListOf<List<Placeable>>()
@@ -248,8 +251,8 @@ internal fun AlertDialogNoPaddingFlowRow(
 
         // Return whether the placeable can be added to the current sequence.
         fun canAddToCurrentSequence(placeable: Placeable) =
-            currentSequence.isEmpty() || currentMainAxisSize + mainAxisSpacing.roundToPx() +
-                    placeable.width <= constraints.maxWidth
+            currentSequence.isEmpty() ||
+                currentMainAxisSize + mainAxisSpacing.roundToPx() + placeable.width <= constraints.maxWidth
 
         // Store current sequence information and start a new sequence.
         fun startNewSequence() {
@@ -305,8 +308,7 @@ internal fun AlertDialogNoPaddingFlowRow(
                 val arrangement = Arrangement.End
                 val mainAxisPositions = IntArray(childrenMainAxisSizes.size) { 0 }
                 with(arrangement) {
-                    arrange(mainAxisLayoutSize, childrenMainAxisSizes,
-                        layoutDirection, mainAxisPositions)
+                    arrange(mainAxisLayoutSize, childrenMainAxisSizes, layoutDirection, mainAxisPositions)
                 }
                 placeables.fastForEachIndexed { j, placeable ->
                     placeable.place(

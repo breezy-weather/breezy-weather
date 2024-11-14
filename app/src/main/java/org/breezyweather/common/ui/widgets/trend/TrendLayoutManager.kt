@@ -20,5 +20,6 @@ import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-open class TrendLayoutManager(context: Context) :
-    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+open class TrendLayoutManager(
+    context: Context,
+) : LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)

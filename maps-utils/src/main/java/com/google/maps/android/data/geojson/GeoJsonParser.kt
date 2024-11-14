@@ -28,7 +28,9 @@ import org.json.JSONObject
  * array of
  * GeoJsonFeature objects parsed from the GeoJSON file.
  */
-class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
+class GeoJsonParser(
+    private val mGeoJsonFile: JSONObject,
+) {
     /**
      * Gets the array of GeoJsonFeature objects
      *
@@ -114,8 +116,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
                     } else {
                         Log.w(
                             LOG_TAG,
-                            "Index of Feature in Feature Collection that could not be created: "
-                                    + i
+                            "Index of Feature in Feature Collection that could not be created: $i"
                         )
                     }
                 }
@@ -167,8 +168,10 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
         private const val MULTIPOLYGON = "MultiPolygon"
         private fun isGeometry(type: String): Boolean {
             return type.matches(
-                (POINT + "|" + MULTIPOINT + "|" + LINESTRING + "|" + MULTILINESTRING +
-                        "|" + POLYGON + "|" + MULTIPOLYGON + "|" + GEOMETRY_COLLECTION).toRegex()
+                (
+                    POINT + "|" + MULTIPOINT + "|" + LINESTRING + "|" + MULTILINESTRING +
+                        "|" + POLYGON + "|" + MULTIPOLYGON + "|" + GEOMETRY_COLLECTION
+                    ).toRegex()
             )
         }
 
@@ -464,7 +467,7 @@ class GeoJsonParser(private val mGeoJsonFile: JSONObject) {
             val coordinatesArray = mutableListOf<MutableList<LatLng>>()
             for (i in 0 until coordinates.length()) {
                 val latLngAlts = parseCoordinatesArray(coordinates.getJSONArray(i))
-                //this method is called for polygons, which do not have altitude values
+                // this method is called for polygons, which do not have altitude values
                 val latLngs = mutableListOf<LatLng>()
                 for (latLngAlt in latLngAlts) {
                     latLngs.add(latLngAlt.latLng)

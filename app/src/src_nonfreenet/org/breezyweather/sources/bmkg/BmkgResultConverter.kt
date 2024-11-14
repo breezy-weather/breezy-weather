@@ -51,7 +51,7 @@ import java.util.TimeZone
 
 fun convert(
     location: Location,
-    result: BmkgLocationResult
+    result: BmkgLocationResult,
 ): Location {
     // Make sure location is within 10km of a known location in Indonesia
     if (result.distance !== null && result.distance > 10000.0) {
@@ -86,7 +86,7 @@ fun convert(
     ibf1Result: BmkgIbfResult,
     ibf2Result: BmkgIbfResult,
     ibf3Result: BmkgIbfResult,
-    pm25Result: List<BmkgPm25Result>
+    pm25Result: List<BmkgPm25Result>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, location, currentResult, pm25Result),
@@ -104,18 +104,24 @@ fun convertSecondary(
     ibf1Result: BmkgIbfResult?,
     ibf2Result: BmkgIbfResult?,
     ibf3Result: BmkgIbfResult?,
-    pm25Result: List<BmkgPm25Result>?
+    pm25Result: List<BmkgPm25Result>?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult !== null) {
             getCurrent(context, location, currentResult, pm25Result)
-        } else null,
+        } else {
+            null
+        },
         airQuality = if (pm25Result !== null) {
             AirQualityWrapper(current = getAirQuality(location, pm25Result))
-        } else null,
+        } else {
+            null
+        },
         alertList = if (warningResult !== null && ibf1Result !== null && ibf2Result !== null && ibf3Result !== null) {
             getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result)
-        } else null
+        } else {
+            null
+        }
     )
 }
 
@@ -123,7 +129,7 @@ private fun getCurrent(
     context: Context,
     location: Location,
     currentResult: BmkgCurrentResult,
-    pm25Result: List<BmkgPm25Result>?
+    pm25Result: List<BmkgPm25Result>?,
 ): Current {
     return Current(
         weatherText = getWeatherText(context, currentResult.data?.cuaca?.weather),
@@ -144,7 +150,7 @@ private fun getCurrent(
 private fun getDailyForecast(
     context: Context,
     location: Location,
-    forecastResult: BmkgForecastResult
+    forecastResult: BmkgForecastResult,
 ): List<Daily> {
     // CommonConverter.kt does not compute daily for this source
     // without providing at least a empty list filled with dates.
@@ -167,33 +173,34 @@ private fun getDailyForecast(
 
 private fun getHourlyForecast(
     context: Context,
-    forecastResult: BmkgForecastResult
+    forecastResult: BmkgForecastResult,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     forecastResult.data?.forEach { data ->
         data.cuaca?.forEach { cuaca ->
             cuaca.forEach {
-                if (it.datetime != null)
-                hourlyList.add(
-                    HourlyWrapper(
-                        date = it.datetime,
-                        weatherText = getWeatherText(context, it.weather),
-                        weatherCode = getWeatherCode(it.weather),
-                        temperature = Temperature(
-                            temperature = it.t
-                        ),
-                        precipitation = Precipitation(
-                            total = it.tp
-                        ),
-                        wind = Wind(
-                            degree = it.wdDeg,
-                            speed = it.ws?.div(3.6) // convert km/h to m/s
-                        ),
-                        relativeHumidity = it.hu,
-                        cloudCover = it.tcc?.toInt(),
-                        visibility = it.vs
+                if (it.datetime != null) {
+                    hourlyList.add(
+                        HourlyWrapper(
+                            date = it.datetime,
+                            weatherText = getWeatherText(context, it.weather),
+                            weatherCode = getWeatherCode(it.weather),
+                            temperature = Temperature(
+                                temperature = it.t
+                            ),
+                            precipitation = Precipitation(
+                                total = it.tp
+                            ),
+                            wind = Wind(
+                                degree = it.wdDeg,
+                                speed = it.ws?.div(3.6) // convert km/h to m/s
+                            ),
+                            relativeHumidity = it.hu,
+                            cloudCover = it.tcc?.toInt(),
+                            visibility = it.vs
+                        )
                     )
-                )
+                }
             }
         }
     }
@@ -205,7 +212,7 @@ private fun getAlertList(
     warningResult: BmkgWarningResult,
     ibf1Result: BmkgIbfResult,
     ibf2Result: BmkgIbfResult,
-    ibf3Result: BmkgIbfResult
+    ibf3Result: BmkgIbfResult,
 ): List<Alert> {
     val source = "Badan Meteorologi, Klimatologi, dan Geofisika"
     var severity: AlertSeverity
@@ -220,10 +227,14 @@ private fun getAlertList(
                 alertId = it.idKode,
                 startDate = if (it.dateStart !== null) {
                     formatter.parse(it.dateStart)
-                } else null,
+                } else {
+                    null
+                },
                 endDate = if (it.expired !== null) {
                     formatter.parse(it.expired)
-                } else null,
+                } else {
+                    null
+                },
                 headline = it.headline?.trim(),
                 description = it.description?.trim(),
                 source = source,
@@ -260,9 +271,12 @@ private fun getAlertList(
             // Currently a proprietary code "in" is used for Indonesian in Breezy Weather.
             // We are future-proofing this with "id" which is the actual ISO 639-1 code.
             val headline = if (context.currentLocale.code.startsWith("in") ||
-                context.currentLocale.code.startsWith("id")) {
+                context.currentLocale.code.startsWith("id")
+            ) {
                 "Hujan Lebat (kategory ${it.category})"
-            } else "Heavy Rain (category ${it.category})"
+            } else {
+                "Heavy Rain (category ${it.category})"
+            }
 
             alertList.add(
                 Alert(
@@ -283,7 +297,7 @@ private fun getAlertList(
 
 private fun getAirQuality(
     location: Location,
-    pm25Result: List<BmkgPm25Result>?
+    pm25Result: List<BmkgPm25Result>?,
 ): AirQuality {
     var pm25: Double? = null
     var distance: Double
@@ -307,14 +321,15 @@ private fun getAirQuality(
 
 private fun getWarningText(
     context: Context,
-    messages: List<BmkgIbfMessage>?
+    messages: List<BmkgIbfMessage>?,
 ): String {
     var text = ""
     messages?.forEach {
         // Currently a proprietary code "in" is used for Indonesian in Breezy Weather.
         // We are future-proofing this with "id" which is the actual ISO 639-1 code.
         if (context.currentLocale.code.startsWith("in") ||
-            context.currentLocale.code.startsWith("id")) {
+            context.currentLocale.code.startsWith("id")
+        ) {
             if (!it.id.isNullOrEmpty()) {
                 text += "• ${it.id.trim()}\n"
             }
@@ -330,10 +345,10 @@ private fun getWarningText(
 // Source: https://cuaca.bmkg.go.id/_nuxt/B5IL8-NA.js
 private fun getWeatherText(
     context: Context,
-    weather: Int?
+    weather: Int?,
 ): String? {
     return when (weather) {
-        0, 1-> context.getString(R.string.common_weather_text_clear_sky)
+        0, 1 -> context.getString(R.string.common_weather_text_clear_sky)
         2 -> context.getString(R.string.common_weather_text_partly_cloudy)
         3 -> context.getString(R.string.common_weather_text_cloudy)
         4 -> context.getString(R.string.common_weather_text_overcast)
@@ -349,7 +364,7 @@ private fun getWeatherText(
 }
 
 private fun getWeatherCode(
-    weather: Int?
+    weather: Int?,
 ): WeatherCode? {
     return when (weather) {
         0, 1 -> WeatherCode.CLEAR
@@ -367,7 +382,7 @@ private fun getWeatherCode(
 // Time zones in Indonesia: https://en.wikipedia.org/wiki/Time_in_Indonesia
 // Province codes of Indonesia: https://en.wikipedia.org/wiki/Provinces_of_Indonesia
 private fun getTimeZone(
-    province: String?
+    province: String?,
 ): String {
     return when (province) {
         "11", // Aceh
@@ -386,10 +401,12 @@ private fun getTimeZone(
         "34", // Special Region of Yogyakarta
         "35", // East Java
         "36", // Banten
-            -> "Asia/Jakarta"
+        -> "Asia/Jakarta"
+
         "61", // West Kalimantan
         "62", // Central Kalimantan
-            -> "Asia/Pontianak"
+        -> "Asia/Pontianak"
+
         "51", // Bali
         "52", // West Nusa Tenggara
         "53", // East Nusa Tenggara
@@ -402,7 +419,8 @@ private fun getTimeZone(
         "74", // Southeast Sulawesi
         "75", // Gorontalo
         "76", // West Sulawesi
-            -> "Asia/Makassar"
+        -> "Asia/Makassar"
+
         "81", // Maluku
         "82", // North Maluku
         "91", // Papua
@@ -411,7 +429,8 @@ private fun getTimeZone(
         "94", // Central Papua
         "95", // Highland Papua
         "96", // Southwest Papua
-            -> "Asia/Jayapura"
+        -> "Asia/Jayapura"
+
         else -> "Asia/Jakarta"
     }
 }

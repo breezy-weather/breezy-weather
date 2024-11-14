@@ -20,7 +20,7 @@ import breezyweather.domain.weather.model.AirQuality
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class DailyAirQuality(
-    val airQuality: AirQuality
+    val airQuality: AirQuality,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 5
 

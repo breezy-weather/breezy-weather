@@ -25,7 +25,7 @@ class DailyAstro(
     val location: Location,
     val sun: Astro?,
     val moon: Astro?,
-    val moonPhase: MoonPhase?
+    val moonPhase: MoonPhase?,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 7
 

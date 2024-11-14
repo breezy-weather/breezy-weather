@@ -33,7 +33,9 @@ import org.breezyweather.remoteviews.Notifications
  * Apache License, Version 2.0
  * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/data/library/LibraryUpdateNotifier.kt
  */
-class WeatherUpdateNotifier(private val context: Context) {
+class WeatherUpdateNotifier(
+    private val context: Context,
+) {
 
     /**
      * Pending intent of action that cancels the weather update
@@ -74,7 +76,7 @@ class WeatherUpdateNotifier(private val context: Context) {
             Notifications.ID_WEATHER_PROGRESS,
             progressNotificationBuilder
                 .setProgress(total, current, false)
-                .build(),
+                .build()
         )
     }
 
@@ -91,7 +93,7 @@ class WeatherUpdateNotifier(private val context: Context) {
 
         context.notify(
             Notifications.ID_WEATHER_ERROR,
-            Notifications.CHANNEL_BACKGROUND,
+            Notifications.CHANNEL_BACKGROUND
         ) {
             setContentTitle(context.resources.getString(R.string.notification_update_error, failed))
             setContentText(context.getString(R.string.action_show_errors))

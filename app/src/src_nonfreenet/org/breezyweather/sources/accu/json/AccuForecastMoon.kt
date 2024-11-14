@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class AccuForecastMoon(
     val EpochRise: Long?,
     val EpochSet: Long?,
-    val Phase: String?
+    val Phase: String?,
 )

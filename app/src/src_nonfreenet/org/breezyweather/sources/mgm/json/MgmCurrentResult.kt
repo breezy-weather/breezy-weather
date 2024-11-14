@@ -26,5 +26,5 @@ data class MgmCurrentResult(
     @SerialName("nem") val humidity: Double?,
     @SerialName("ruzgarHiz") val windSpeed: Double?,
     @SerialName("ruzgarYon") val windDirection: Double?,
-    @SerialName("sicaklik") val temperature: Double?
+    @SerialName("sicaklik") val temperature: Double?,
 )

@@ -35,7 +35,7 @@ interface CwaApi {
     @GET("api/v1/rest/datastore/W-C0033-002")
     fun getAlerts(
         @Query("Authorization") apiKey: String,
-        @Query("format") format: String
+        @Query("format") format: String,
     ): Observable<CwaAlertResult>
 
     @GET("api/v1/rest/datastore/{endpoint}")
@@ -46,19 +46,19 @@ interface CwaApi {
         @Query("CountyName") countyName: String,
         @Query("parameter") parameter: String,
         @Query("timeFrom") timeFrom: String,
-        @Query("timeTo") timeTo: String
+        @Query("timeTo") timeTo: String,
     ): Observable<CwaAstroResult>
 
     @POST("linked/graphql")
     fun getLocation(
         @Query("Authorization") apiKey: String,
-        @Body body: RequestBody
+        @Body body: RequestBody,
     ): Observable<CwaLocationResult>
 
     @POST("linked/graphql")
     fun getWeather(
         @Query("Authorization") apiKey: String,
-        @Body body: RequestBody
+        @Body body: RequestBody,
     ): Observable<CwaWeatherResult>
 
     @GET("api/v1/rest/datastore/C-B0027-001")
@@ -67,7 +67,7 @@ interface CwaApi {
         @Query("format") format: String,
         @Query("StationID") stationId: String,
         @Query("weatherElement") weatherElement: String,
-        @Query("Month") month: String
+        @Query("Month") month: String,
     ): Observable<CwaNormalsResult>
 
     @GET("fileapi/v1/opendataapi/{endpoint}")
@@ -75,6 +75,6 @@ interface CwaApi {
         @Path("endpoint") endpoint: String,
         @Query("Authorization") apiKey: String,
         @Query("downloadType") downloadType: String,
-        @Query("format") format: String
+        @Query("format") format: String,
     ): Observable<CwaAssistantResult>
 }

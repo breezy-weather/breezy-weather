@@ -32,7 +32,10 @@ import kotlin.time.Duration.Companion.minutes
 @SuppressLint("AppCompatCustomView")
 @RemoteView
 class TextRelativeClock @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0,
 ) : TextView(context, attrs, defStyleAttr, defStyleRes) {
     private var mShouldRunTicker = false
     private var mDate = Date()
@@ -44,7 +47,7 @@ class TextRelativeClock @JvmOverloads constructor(
             }
             onTimeChanged()
 
-            //Date now = new Date();
+            // Date now = new Date();
             val millisUntilNextTick = 1.minutes.inWholeMilliseconds
             // It is currently refreshing every minute
             // It's not precise (but enough for our use case) as it won't refresh on second 0 of next minute

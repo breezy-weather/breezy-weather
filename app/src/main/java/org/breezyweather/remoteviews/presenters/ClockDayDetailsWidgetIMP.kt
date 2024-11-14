@@ -46,11 +46,20 @@ import java.util.Date
 
 object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context,
+        location: Location?,
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_details_setting))
         val views = getRemoteViews(
-            context, location,
-            config.cardStyle, config.cardAlpha, config.textColor, config.textSize, config.clockFont, config.hideAlternateCalendar
+            context,
+            location,
+            config.cardStyle,
+            config.cardAlpha,
+            config.textColor,
+            config.textSize,
+            config.clockFont,
+            config.hideAlternateCalendar
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetClockDayDetailsProvider::class.java),
@@ -59,8 +68,14 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?,
-        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideAlternateCalendar: Boolean
+        context: Context,
+        location: Location?,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
+        clockFont: String?,
+        hideAlternateCalendar: Boolean,
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
@@ -128,16 +143,16 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setViewVisibility(R.id.widget_clock_day_icon, View.VISIBLE)
             views.setImageViewUri(
                 R.id.widget_clock_day_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, dayTime, minimalIcon, color.minimalIconColor
-                )
+                ResourceHelper.getWidgetNotificationIconUri(provider, it, dayTime, minimalIcon, color.minimalIconColor)
             )
         } ?: views.setViewVisibility(R.id.widget_clock_day_icon, View.INVISIBLE)
         views.setTextViewText(
             R.id.widget_clock_day_alternate_calendar,
             if (CalendarHelper.getAlternateCalendarSetting(context) != null && !hideAlternateCalendar) {
                 " - " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
-            } else ""
+            } else {
+                ""
+            }
         )
         val builder = StringBuilder()
         builder.append(location.getPlace(context))
@@ -155,9 +170,9 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         weather.current?.temperature?.feelsLikeTemperature?.let {
             views.setTextViewText(
                 R.id.widget_clock_day_feelsLikeTemp,
-                context.getString(R.string.temperature_feels_like)
-                    + " "
-                    + temperatureUnit.getValueText(context, it, 0)
+                context.getString(R.string.temperature_feels_like) +
+                    " " +
+                    temperatureUnit.getValueText(context, it, 0)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_clock_day_feelsLikeTemp, null)
@@ -251,18 +266,20 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         return if (weather.current?.airQuality?.getIndex() != null &&
             weather.current!!.airQuality!!.getName(context) != null
         ) {
-            (context.getString(R.string.air_quality) + " "
-                + weather.current!!.airQuality!!.getIndex()
-                + " ("
-                + weather.current!!.airQuality!!.getName(context)
-                + ")")
-        } else weather.current?.relativeHumidity?.let {
-            (context.getString(R.string.humidity)
-                + " "
-                + NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(it.div(100.0))
-            )
+            context.getString(R.string.air_quality) +
+                " " +
+                weather.current!!.airQuality!!.getIndex() +
+                " (" +
+                weather.current!!.airQuality!!.getName(context) +
+                ")"
+        } else {
+            weather.current?.relativeHumidity?.let {
+                context.getString(R.string.humidity) +
+                    " " +
+                    NumberFormat.getPercentInstance(context.currentLocale).apply {
+                        maximumFractionDigits = 0
+                    }.format(it.div(100.0))
+            }
         }
     }
 
@@ -270,37 +287,27 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         // weather.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_weather,
-            getWeatherPendingIntent(
-                context, location, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER)
         )
 
         // clock.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_light,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_LIGHT
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_LIGHT)
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_normal,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_NORMAL
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_NORMAL)
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_black,
-            getAlarmPendingIntent(
-                context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_BLACK
-            )
+            getAlarmPendingIntent(context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_BLACK)
         )
 
         // title.
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_title,
-            getCalendarPendingIntent(
-                context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CALENDAR
-            )
+            getCalendarPendingIntent(context, Widgets.CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CALENDAR)
         )
     }
 }

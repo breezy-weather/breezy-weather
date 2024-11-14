@@ -24,5 +24,5 @@ data class AccuForecastAirAndPollen(
     val Value: Int?,
     val Category: String?,
     val CategoryValue: Int?,
-    val Type: String?
+    val Type: String?,
 )

@@ -40,5 +40,5 @@ data class PirateWeatherHourly(
     val windBearing: Double?,
     val uvIndex: Double?,
     val cloudCover: Double?,
-    val visibility: Double?
+    val visibility: Double?,
 )

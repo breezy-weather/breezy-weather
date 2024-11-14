@@ -67,12 +67,12 @@ private val preloadAttrIds = intArrayOf(
     R.attr.colorBodyText,
     R.attr.colorCaptionText,
     R.attr.colorMainCardBackground,
-    R.attr.colorPrecipitationProbability,
+    R.attr.colorPrecipitationProbability
 )
 
 class MainThemeColorProvider(
-    private val host: MainActivity
-): LifecycleEventObserver {
+    private val host: MainActivity,
+) : LifecycleEventObserver {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -112,10 +112,10 @@ class MainThemeColorProvider(
 
         fun isLightTheme(
             context: Context,
-            location: Location?
+            location: Location?,
         ) = isLightTheme(
             context = context,
-            daylight = location?.isDaylight,
+            daylight = location?.isDaylight
         )
 
         fun isLightTheme(
@@ -123,7 +123,8 @@ class MainThemeColorProvider(
             daylight: Boolean?,
         ): Boolean = if (SettingsManager.getInstance(context).dayNightModeForLocations &&
             instance?.host?.isDaylight != null &&
-            daylight != null) {
+            daylight != null
+        ) {
             daylight
         } else {
             when (SettingsManager.getInstance(context).darkMode) {
@@ -134,7 +135,7 @@ class MainThemeColorProvider(
         }
 
         fun getContext(
-            lightTheme: Boolean
+            lightTheme: Boolean,
         ) = instance?.let {
             if (lightTheme) {
                 it.lightContext
@@ -144,10 +145,10 @@ class MainThemeColorProvider(
         }
 
         fun getContext(
-            location: Location
+            location: Location,
         ) = instance?.let {
             getContext(
-                lightTheme = isLightTheme(it.host, location),
+                lightTheme = isLightTheme(it.host, location)
             )
         }
 
@@ -178,7 +179,7 @@ class MainThemeColorProvider(
         ) = instance?.let {
             getColor(
                 id = id,
-                lightTheme = isLightTheme(it.host, location),
+                lightTheme = isLightTheme(it.host, location)
             )
         } ?: 0
     }
@@ -197,7 +198,8 @@ class MainThemeColorProvider(
         preloadAttrIds.zip(
             ThemeManager.getInstance(host).getThemeColors(lightContext, preloadAttrIds)
                 .zip(ThemeManager.getInstance(host).getThemeColors(darkContext, preloadAttrIds))
-        ).forEach { // attr id, <light color, dark color>
+        ).forEach {
+            // first = attr id, second = <light color, dark color>
             lightColorCache[it.first] = it.second.first
             darkColorCache[it.first] = it.second.second
         }

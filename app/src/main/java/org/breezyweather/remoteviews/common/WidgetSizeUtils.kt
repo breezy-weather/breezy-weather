@@ -12,13 +12,18 @@ object WidgetSizeUtils {
     fun initializeRemoteViews(
         appWidgetManager: AppWidgetManager,
         widgetId: Int,
-        getRemoteViews: (widgetSize: WidgetSize) -> RemoteViews
+        getRemoteViews: (widgetSize: WidgetSize) -> RemoteViews,
     ): RemoteViews {
         val appWidgetOptions = appWidgetManager.getAppWidgetOptions(widgetId)
         val parcelableArrayList: ArrayList<*>? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             appWidgetOptions.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES)
-        } else null
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S || parcelableArrayList == null || parcelableArrayList.isEmpty()) {
+        } else {
+            null
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
+            parcelableArrayList == null ||
+            parcelableArrayList.isEmpty()
+        ) {
             return RemoteViews(
                 getRemoteViews(getWidgetSize(appWidgetOptions, portrait = false)),
                 getRemoteViews(getWidgetSize(appWidgetOptions, portrait = true))

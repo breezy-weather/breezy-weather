@@ -24,7 +24,9 @@ import com.google.maps.android.model.LatLng
  * [GeoJsonLineString]
  * @param coordinates array of coordinates
  */
-open class LineString(coordinates: List<LatLng>) : Geometry<List<LatLng>> {
+open class LineString(
+    coordinates: List<LatLng>,
+) : Geometry<List<LatLng>> {
 
     override val geometryType: String = GEOMETRY_TYPE
 

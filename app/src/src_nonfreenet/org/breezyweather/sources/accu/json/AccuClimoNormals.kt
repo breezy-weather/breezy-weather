@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuClimoNormals(
-    val Temperatures: AccuClimoNormalsTemperatures?
+    val Temperatures: AccuClimoNormalsTemperatures?,
 )

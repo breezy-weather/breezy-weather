@@ -85,9 +85,11 @@ class SourceManager @Inject constructor(
         addAll(locationSourceList)
         addAll(reverseGeocodingSourceList)
         addAll(worldwideWeatherSourceList)
-        addAll(nationalWeatherSourceList
+        addAll(
+            nationalWeatherSourceList
             // Only one source in the freenet flavor, so no need to do that atm
-            /*.sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+            /*.sortedWith { ws1, ws2 ->
+                // Sort by name because there are now a lot of sources
                 Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
             }*/
         )
@@ -110,18 +112,21 @@ class SourceManager @Inject constructor(
     // Weather
     fun getMainWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
     fun getMainWeatherSource(id: String): MainWeatherSource? = getMainWeatherSources().firstOrNull { it.id == id }
-    fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources().filter {
-        it !is ConfigurableSource || it.isConfigured
-    }
+    fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources()
+        .filter { it !is ConfigurableSource || it.isConfigured }
 
     // Secondary weather
-    fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> = sourceList.filterIsInstance<SecondaryWeatherSource>()
-    fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources().firstOrNull { it.id == id }
-    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>().firstOrNull { it.id == id }
+    fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> =
+        sourceList.filterIsInstance<SecondaryWeatherSource>()
+    fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources()
+        .firstOrNull { it.id == id }
+    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>()
+        .firstOrNull { it.id == id }
 
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()
-    fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources().firstOrNull { it.id == id }
+    fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources()
+        .firstOrNull { it.id == id }
     fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id)
         ?: getLocationSearchSource(BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE)!!
     fun getConfiguredLocationSearchSources(): List<LocationSearchSource> = getLocationSearchSources().filter {
@@ -129,8 +134,10 @@ class SourceManager @Inject constructor(
     }
 
     // Reverse geocoding
-    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
-    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
+    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> =
+        sourceList.filterIsInstance<ReverseGeocodingSource>()
+    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources()
+        .firstOrNull { it.id == id }
     fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
         ?: getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!
 
@@ -146,13 +153,12 @@ class SourceManager @Inject constructor(
     fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()
 
     fun sourcesWithPreferencesScreen(
-        location: Location
+        location: Location,
     ): List<PreferencesParametersSource> {
         val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
 
         val mainSource = getMainWeatherSource(location.weatherSource)
-        if (mainSource is PreferencesParametersSource &&
-            mainSource.hasPreferencesScreen(location, emptyList())) {
+        if (mainSource is PreferencesParametersSource && mainSource.hasPreferencesScreen(location, emptyList())) {
             preferencesScreenSources.add(mainSource)
         }
 
@@ -168,14 +174,16 @@ class SourceManager @Inject constructor(
                 val secondarySource = getSecondaryWeatherSource(it.first ?: location.weatherSource)
                 if (secondarySource is PreferencesParametersSource &&
                     secondarySource.hasPreferencesScreen(location, listOf(it.second)) &&
-                    !preferencesScreenSources.contains(secondarySource)) {
+                    !preferencesScreenSources.contains(secondarySource)
+                ) {
                     preferencesScreenSources.add(secondarySource)
                 }
             }
         }
 
         return preferencesScreenSources
-        /*.sortedWith { s1, s2 -> // Sort by name because there are now a lot of sources
+        /*.sortedWith { s1, s2 ->
+            // Sort by name because there are now a lot of sources
             Collator.getInstance(
                 SettingsManager.getInstance(context).language.locale
             ).compare(s1.name, s2.name)

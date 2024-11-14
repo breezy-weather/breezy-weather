@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgCurrentResult(
-    val data: BmkgCurrentData? = null
+    val data: BmkgCurrentData? = null,
 )

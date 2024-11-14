@@ -55,7 +55,7 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
     private var mElevation = 0
 
     private inner class DailyTrendTag(
-        var tag: DailyTrendDisplay
+        var tag: DailyTrendDisplay,
     ) : TagAdapter.Tag {
         override val name = tag.getName(this@DailyTrendDisplayManageActivity)
     }
@@ -64,7 +64,7 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
         override fun onMove(
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
+            target: RecyclerView.ViewHolder,
         ): Boolean {
             val fromPosition = viewHolder.bindingAdapterPosition
             val toPosition = target.bindingAdapterPosition
@@ -72,14 +72,21 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             return true
         }
 
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        override fun onSwiped(
+            viewHolder: RecyclerView.ViewHolder,
+            direction: Int,
+        ) {
             mDailyTrendDisplayAdapter.removeItem(viewHolder.bindingAdapterPosition)
         }
 
         override fun onChildDraw(
             c: Canvas,
-            recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-            dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            dX: Float,
+            dY: Float,
+            actionState: Int,
+            isCurrentlyActive: Boolean,
         ) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             ViewCompat.setElevation(
@@ -146,7 +153,8 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             tagList.add(DailyTrendTag(tag))
         }
         val colors = ThemeManager.getInstance(this).getThemeColors(
-            this, intArrayOf(
+            this,
+            intArrayOf(
                 com.google.android.material.R.attr.colorOnPrimaryContainer,
                 com.google.android.material.R.attr.colorOnSecondaryContainer,
                 com.google.android.material.R.attr.colorPrimaryContainer,
@@ -176,9 +184,7 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             )
         }
         mBinding.bottomRecyclerView.addItemDecoration(
-            GridMarginsDecoration(
-                resources.getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView
-            )
+            GridMarginsDecoration(resources.getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView)
         )
         mBinding.bottomRecyclerView.adapter = mTagAdapter
         mBottomAnimator = null
@@ -208,12 +214,16 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             mBottomAnimator = AnimatorSet().apply {
                 playTogether(
                     ObjectAnimator.ofFloat(
-                        mBinding.bottomBar, "alpha",
-                        mBinding.bottomBar.alpha, (if (visible) 1 else 0).toFloat()
+                        mBinding.bottomBar,
+                        "alpha",
+                        mBinding.bottomBar.alpha,
+                        (if (visible) 1 else 0).toFloat()
                     ),
                     ObjectAnimator.ofFloat(
-                        mBinding.bottomBar, "translationY",
-                        mBinding.bottomBar.translationY, (if (visible) 0 else mBinding.bottomBar.measuredHeight).toFloat()
+                        mBinding.bottomBar,
+                        "translationY",
+                        mBinding.bottomBar.translationY,
+                        (if (visible) 0 else mBinding.bottomBar.measuredHeight).toFloat()
                     )
                 )
                 duration = (if (visible) 350 else 150).toLong()

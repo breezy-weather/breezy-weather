@@ -33,7 +33,7 @@ import org.breezyweather.settings.preference.composables.PreferenceView
 @Composable
 fun RootSettingsView(
     onNavigateTo: (route: String) -> Unit,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -46,7 +46,7 @@ fun RootSettingsView(
                 actions = { AboutActivityIconButton(LocalContext.current) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             clickablePreferenceItem(R.string.settings_background_updates) { id ->

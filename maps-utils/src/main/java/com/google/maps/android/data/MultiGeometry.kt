@@ -24,7 +24,9 @@ import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
  * [KmlMultiGeometry] and [GeoJsonMultiLineString], [GeoJsonMultiPoint] and [GeoJsonMultiPolygon]
  * @param geometries contains list of Polygons, Linestrings or Points
  */
-open class MultiGeometry(geometries: List<Geometry<*>>) : Geometry<Any> {
+open class MultiGeometry(
+    geometries: List<Geometry<*>>,
+) : Geometry<Any> {
     /**
      * Gets the type of geometry
      *

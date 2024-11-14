@@ -15,12 +15,14 @@ import kotlin.time.Duration.Companion.days
  *
  * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/domain/src/main/java/tachiyomi/domain/release/interactor/GetApplicationRelease.kt
  */
-class GetApplicationRelease @Inject constructor (
+class GetApplicationRelease @Inject constructor(
     @ApplicationContext val context: Context,
-    val service: ReleaseService
+    val service: ReleaseService,
 ) {
 
-    suspend fun await(arguments: Arguments): Result {
+    suspend fun await(
+        arguments: Arguments,
+    ): Result {
         val now = Date().time
 
         val lastChecked = SettingsManager.getInstance(context).appUpdateCheckLastTimestamp
@@ -37,7 +39,7 @@ class GetApplicationRelease @Inject constructor (
         // Check if latest version is different from current version
         val isNewVersion = isNewVersion(
             arguments.versionName,
-            release.version,
+            release.version
         )
         return when {
             isNewVersion -> Result.NewUpdate(release)

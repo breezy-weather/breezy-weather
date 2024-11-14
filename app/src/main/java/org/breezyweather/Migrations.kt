@@ -33,9 +33,7 @@ object Migrations {
      *
      * @return true if a migration is performed, false otherwise.
      */
-    fun upgrade(
-        context: Context
-    ): Boolean {
+    fun upgrade(context: Context): Boolean {
         val lastVersionCode = SettingsManager.getInstance(context).lastVersionCode
         val oldVersion = lastVersionCode
         if (oldVersion < BuildConfig.VERSION_CODE) {
@@ -46,13 +44,21 @@ object Migrations {
                     // this new feature. This can still be removed by user from settings
                     // as this code is only executed once, after migrating from a version < 5.0.0
                     try {
-                        val curHourlyTrendDisplayList = HourlyTrendDisplay.toValue(SettingsManager.getInstance(context).hourlyTrendDisplayList)
+                        val curHourlyTrendDisplayList = HourlyTrendDisplay.toValue(
+                            SettingsManager.getInstance(context).hourlyTrendDisplayList
+                        )
                         if (curHourlyTrendDisplayList != SettingsManager.DEFAULT_HOURLY_TREND_DISPLAY) {
-                            SettingsManager.getInstance(context).hourlyTrendDisplayList = HourlyTrendDisplay.toHourlyTrendDisplayList("${curHourlyTrendDisplayList}&feels_like&humidity&pressure&cloud_cover&visibility")
+                            SettingsManager.getInstance(context).hourlyTrendDisplayList =
+                                HourlyTrendDisplay.toHourlyTrendDisplayList(
+                                    "$curHourlyTrendDisplayList&feels_like&humidity&pressure&cloud_cover&visibility"
+                                )
                         }
-                        val curDailyTrendDisplayList = DailyTrendDisplay.toValue(SettingsManager.getInstance(context).dailyTrendDisplayList)
+                        val curDailyTrendDisplayList = DailyTrendDisplay.toValue(
+                            SettingsManager.getInstance(context).dailyTrendDisplayList
+                        )
                         if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
-                            SettingsManager.getInstance(context).dailyTrendDisplayList = DailyTrendDisplay.toDailyTrendDisplayList("${curDailyTrendDisplayList}&feels_like")
+                            SettingsManager.getInstance(context).dailyTrendDisplayList =
+                                DailyTrendDisplay.toDailyTrendDisplayList("$curDailyTrendDisplayList&feels_like")
                         }
                     } catch (ignored: Throwable) {
                         // ignored
@@ -73,7 +79,7 @@ object Migrations {
                             DailyTrendDisplay.toValue(SettingsManager.getInstance(context).dailyTrendDisplayList)
                         if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
                             SettingsManager.getInstance(context).dailyTrendDisplayList =
-                                DailyTrendDisplay.toDailyTrendDisplayList("${curDailyTrendDisplayList}&sunshine")
+                                DailyTrendDisplay.toDailyTrendDisplayList("$curDailyTrendDisplayList&sunshine")
                         }
                     } catch (ignored: Throwable) {
                         // ignored
@@ -87,7 +93,7 @@ object Migrations {
                             CardDisplay.toValue(SettingsManager.getInstance(context).cardDisplayList)
                         if (curCardDisplayList != SettingsManager.DEFAULT_CARD_DISPLAY) {
                             SettingsManager.getInstance(context).cardDisplayList =
-                                CardDisplay.toCardDisplayList("precipitation_nowcast&${curCardDisplayList}")
+                                CardDisplay.toCardDisplayList("precipitation_nowcast&$curCardDisplayList")
                         }
                     } catch (ignored: Throwable) {
                         // ignored

@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NwsValueDouble(
     val validTime: String, // Convert to Date + interval later
-    val value: Double?
+    val value: Double?,
 )

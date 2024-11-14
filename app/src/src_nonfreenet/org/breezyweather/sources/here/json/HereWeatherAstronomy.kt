@@ -27,5 +27,5 @@ import java.util.Date
 @Serializable
 data class HereWeatherAstronomy(
     @Serializable(DateSerializer::class) val time: Date?,
-    val moonPhase: Double?
+    val moonPhase: Double?,
 )

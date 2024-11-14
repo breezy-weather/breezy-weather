@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImsWeatherResult(
-    val data: ImsWeatherData?
+    val data: ImsWeatherData?,
 )

@@ -24,5 +24,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoAirQualityResult(
-    val data: MetNoAirQualityData? = null
+    val data: MetNoAirQualityData? = null,
 )

@@ -69,9 +69,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMainViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_header, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
     private val mContainer: LinearLayout = itemView.findViewById(R.id.container_main_header)
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
@@ -87,8 +85,11 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
-        context: Context, location: Location, provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+        context: Context,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
         val textColor = ThemeManager
@@ -122,7 +123,13 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                         it.getCurrentValue(LocalContext.current, current, location.isDaylight) != null
                     }
                     HeaderDetails(
-                        detailList.subList(0, min(detailList.size, if (context.isLandscape) NB_CURRENT_ITEMS_LANDSCAPE else NB_CURRENT_ITEMS_PORTRAIT)),
+                        detailList.subList(
+                            0,
+                            min(
+                                detailList.size,
+                                if (context.isLandscape) NB_CURRENT_ITEMS_LANDSCAPE else NB_CURRENT_ITEMS_PORTRAIT
+                            )
+                        ),
                         current,
                         location.isDaylight
                     )
@@ -138,7 +145,11 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     }
 
     @Composable
-    private fun HeaderDetails(detailDisplayList: List<DetailDisplay>, current: Current, isDaylight: Boolean = true) {
+    private fun HeaderDetails(
+        detailDisplayList: List<DetailDisplay>,
+        current: Current,
+        isDaylight: Boolean = true,
+    ) {
         if (detailDisplayList.isNotEmpty()) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -161,7 +172,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                     .fillMaxWidth()
                                     .weight(1f)
                                     .padding(horizontal = 5.dp)
-                                //.background(Color.Blue) // For debugging purposes
+                                // .background(Color.Blue) // For debugging purposes
                             ) {
                                 Icon(
                                     painterResource(detailDisplay.iconId),
@@ -171,7 +182,9 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                 Text(
                                     currentValue,
                                     color = Color.White,
-                                    fontSize = dimensionResource(R.dimen.current_weather_details_value_text_size).value.sp,
+                                    fontSize = dimensionResource(
+                                        R.dimen.current_weather_details_value_text_size
+                                    ).value.sp,
                                     textAlign = TextAlign.Center,
                                     fontWeight = FontWeight.Black,
                                     maxLines = 1,
@@ -180,7 +193,9 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                 Text(
                                     detailDisplay.getShortName(LocalContext.current),
                                     color = Color.White,
-                                    fontSize = dimensionResource(R.dimen.current_weather_details_name_text_size).value.sp,
+                                    fontSize = dimensionResource(
+                                        R.dimen.current_weather_details_name_text_size
+                                    ).value.sp,
                                     textAlign = TextAlign.Center,
                                     fontWeight = FontWeight.Light,
                                     maxLines = 1,

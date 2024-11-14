@@ -62,12 +62,20 @@ fun convert(
     sun1Result: HkoAstroResult,
     sun2Result: HkoAstroResult,
     moon1Result: HkoAstroResult,
-    moon2Result: HkoAstroResult
+    moon2Result: HkoAstroResult,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, currentResult.RegionalWeather, oneJsonResult),
         normals = getNormals(normalsResult),
-        dailyForecast = getDailyForecast(context, forecastResult.DailyForecast, sun1Result, sun2Result, moon1Result, moon2Result, oneJsonResult),
+        dailyForecast = getDailyForecast(
+            context,
+            forecastResult.DailyForecast,
+            sun1Result,
+            sun2Result,
+            moon1Result,
+            moon2Result,
+            oneJsonResult
+        ),
         hourlyForecast = getHourlyForecast(context, forecastResult.HourlyWeatherForecast, oneJsonResult),
         alertList = getAlertList(context, warningDetailsResult)
     )
@@ -78,25 +86,31 @@ fun convertSecondary(
     currentResult: HkoCurrentResult?,
     normalsResult: HkoNormalsResult?,
     oneJsonResult: HkoOneJsonResult?,
-    warningDetailsResult: MutableMap<String, HkoWarningResult>?
+    warningDetailsResult: MutableMap<String, HkoWarningResult>?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult != null && oneJsonResult !== null) {
             getCurrent(context, currentResult.RegionalWeather, oneJsonResult)
-        } else null,
+        } else {
+            null
+        },
         normals = if (normalsResult !== null) {
             getNormals(normalsResult)
-        } else null,
+        } else {
+            null
+        },
         alertList = if (warningDetailsResult !== null) {
             getAlertList(context, warningDetailsResult)
-        } else null
+        } else {
+            null
+        }
     )
 }
 
 private fun getCurrent(
     context: Context,
     regionalWeather: HkoCurrentRegionalWeather?,
-    oneJson: HkoOneJsonResult
+    oneJson: HkoOneJsonResult,
 ): Current {
     return Current(
         weatherText = getWeatherText(context, oneJson.FLW?.Icon1?.toIntOrNull()),
@@ -132,12 +146,12 @@ private fun getCurrent(
         ),
         relativeHumidity = regionalWeather?.RH?.Value?.toDoubleOrNull(),
         pressure = regionalWeather?.Pressure?.Value?.toDoubleOrNull(),
-        dailyForecast = oneJson.F9D?.WeatherForecast?.getOrElse(0) {null}?.ForecastWeather,
+        dailyForecast = oneJson.F9D?.WeatherForecast?.getOrElse(0) { null }?.ForecastWeather
     )
 }
 
 private fun getNormals(
-    normalsResult: HkoNormalsResult
+    normalsResult: HkoNormalsResult,
 ): Normals {
     val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
     val maxTemps = mutableListOf<Double>()
@@ -147,7 +161,7 @@ private fun getNormals(
     normalsResult.stn?.data?.forEach {
         if (it.code == "MEAN_MAX") {
             it.monData?.forEach { mon ->
-                value = mon?.getOrElse(month) {null}?.toDoubleOrNull()
+                value = mon?.getOrElse(month) { null }?.toDoubleOrNull()
                 if (value != null) {
                     maxTemps.add(value!!)
                 }
@@ -155,7 +169,7 @@ private fun getNormals(
         }
         if (it.code == "MEAN_MIN") {
             it.monData?.forEach { mon ->
-                value = mon?.getOrElse(month) {null}?.toDoubleOrNull()
+                value = mon?.getOrElse(month) { null }?.toDoubleOrNull()
                 if (value != null) {
                     minTemps.add(value!!)
                 }
@@ -169,10 +183,14 @@ private fun getNormals(
         month = month,
         daytimeTemperature = if (maxTemps.isNotEmpty()) {
             maxTemps.average()
-        } else null,
+        } else {
+            null
+        },
         nighttimeTemperature = if (minTemps.isNotEmpty()) {
             minTemps.average()
-        } else null
+        } else {
+            null
+        }
     )
 }
 
@@ -183,7 +201,7 @@ private fun getDailyForecast(
     sun2: HkoAstroResult,
     moon1: HkoAstroResult,
     moon2: HkoAstroResult,
-    oneJson: HkoOneJsonResult
+    oneJson: HkoOneJsonResult,
 ): List<Daily> {
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
@@ -195,13 +213,14 @@ private fun getDailyForecast(
     val iconRegex = Regex("""^pic\d{2}\.png$""")
     val oneJsonDailyWeather = mutableMapOf<String, Int>()
     oneJson.F9D?.WeatherForecast?.forEach {
-        if (it.ForecastDate !== null && it.ForecastIcon !== null && iconRegex.matches(it.ForecastIcon))
+        if (it.ForecastDate !== null && it.ForecastIcon !== null && iconRegex.matches(it.ForecastIcon)) {
             oneJsonDailyWeather[it.ForecastDate] = it.ForecastIcon.substring(3, 5).toInt()
+        }
     }
 
     val dailyList = mutableListOf<Daily>()
-    var daytimeWeather: Int? = null
-    var nightTimeWeather: Int? = null
+    var daytimeWeather: Int?
+    var nightTimeWeather: Int?
 
     dailyForecast?.forEach {
         daytimeWeather = it.ForecastDailyWeather
@@ -237,8 +256,8 @@ private fun getDailyForecast(
                         total = getPrecipitationProbability(it.ForecastChanceOfRain)
                     )
                 ),
-                sun = sunMap.getOrElse(it.ForecastDate) {null},
-                moon = moonMap.getOrElse(it.ForecastDate) {null}
+                sun = sunMap.getOrElse(it.ForecastDate) { null },
+                moon = moonMap.getOrElse(it.ForecastDate) { null }
             )
         )
     }
@@ -248,7 +267,7 @@ private fun getDailyForecast(
 private fun getHourlyForecast(
     context: Context,
     hourlyWeatherForecast: List<HkoHourlyWeatherForecast>?,
-    oneJson: HkoOneJsonResult
+    oneJson: HkoOneJsonResult,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyyMMddHH", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
@@ -261,8 +280,9 @@ private fun getHourlyForecast(
 
     // City-wide forecast in case the grid forecast fails to return forecast weather conditions
     oneJson.F9D?.WeatherForecast?.forEach {
-        if (it.ForecastDate !== null && it.ForecastIcon !== null && iconRegex.matches(it.ForecastIcon))
+        if (it.ForecastDate !== null && it.ForecastIcon !== null && iconRegex.matches(it.ForecastIcon)) {
             oneJsonDailyWeather[it.ForecastDate] = it.ForecastIcon.substring(3, 5).toInt()
+        }
     }
 
     if (hourlyWeatherForecast != null) {
@@ -270,12 +290,12 @@ private fun getHourlyForecast(
             // For some reason, ForecastWeather in the output refers to the condition in the previous 3 hours.
             // Therefore we must back fill 3 hours of weather with the next known weather condition.
             currentHourWeather = null
-            index = i+1
+            index = i + 1
             while (currentHourWeather == null && index < hourlyWeatherForecast.size) {
                 if (hourlyWeatherForecast[index].ForecastWeather != null) {
                     currentHourWeather = hourlyWeatherForecast[index].ForecastWeather
                 }
-                index++
+                ++index
             }
 
             // If the grid forecast does not return forecast hourly weather,
@@ -286,7 +306,7 @@ private fun getHourlyForecast(
             }
 
             // The last hour in the output is just the condition for the previous 3 hours. Don't add to the list.
-            if (i < hourlyWeatherForecast.size-1) {
+            if (i < hourlyWeatherForecast.size - 1) {
                 hourlyList.add(
                     HourlyWrapper(
                         date = formatter.parse(value.ForecastHour)!!,
@@ -311,7 +331,7 @@ private fun getHourlyForecast(
 
 private fun getAlertList(
     context: Context,
-    warningMap: MutableMap<String, HkoWarningResult>
+    warningMap: MutableMap<String, HkoWarningResult>,
 ): List<Alert> {
     val languageKey: String
     val source: String
@@ -365,7 +385,8 @@ private fun getAlertList(
             else -> null
         }
 
-        alertDate = warning?.getOrElse("BulletinDate") {null}?.getOrElse(languageKey) {null} + warning?.getOrElse("BulletinTime") {null}?.getOrElse(languageKey) {null}
+        alertDate = warning?.getOrElse("BulletinDate") { null }?.getOrElse(languageKey) { null } +
+            warning?.getOrElse("BulletinTime") { null }?.getOrElse(languageKey) { null }
         alertId = "$key $alertDate"
         startDate = formatter.parse(alertDate)
         headline = null
@@ -387,7 +408,7 @@ private fun getAlertList(
             descriptionText = formatWarningText(context, warning, descriptionKeys)
         }
         if (key == "WTCB") { // Tropical Cyclone Warning Signal
-            warningCode = warning?.getOrElse("WTCSGNL_WxWarningCode") {null}?.getOrElse(languageKey) {null}
+            warningCode = warning?.getOrElse("WTCSGNL_WxWarningCode") { null }?.getOrElse(languageKey) { null }
             severity = when (warningCode) {
                 "TC1" -> AlertSeverity.MINOR
                 "TC3" -> AlertSeverity.MODERATE
@@ -462,7 +483,7 @@ private fun getAlertList(
             instructionText = formatWarningText(context, warning, instructionKeys)
         }
         if (key == "WRAINSA") { // Rainstorm Warning Signal
-            warningCode = warning?.getOrElse("WRAIN_WxWarningCode") {null}?.getOrElse(languageKey) {null}
+            warningCode = warning?.getOrElse("WRAIN_WxWarningCode") { null }?.getOrElse(languageKey) { null }
             severity = when (warningCode) {
                 "WRAINA" -> AlertSeverity.MODERATE
                 "WRAINR" -> AlertSeverity.SEVERE
@@ -579,7 +600,8 @@ private fun getAlertList(
             descriptionText = formatWarningText(context, warning, descriptionKeys)
         }
         if (key == "WFIRE") { // Fire Danger Warning
-            warningCode = value.DYN_DAT_MINDS_WFIRE?.getOrElse("WFIRE_WxWarningCode") {null}?.getOrElse(languageKey) {null}
+            warningCode = value.DYN_DAT_MINDS_WFIRE?.getOrElse("WFIRE_WxWarningCode") { null }
+                ?.getOrElse(languageKey) { null }
             headline = when (warningCode) {
                 "WFIREY" -> context.getString(R.string.hko_warning_text_fire_yellow)
                 "WFIRER" -> context.getString(R.string.hko_warning_text_fire_red)
@@ -663,15 +685,13 @@ private fun getAlertList(
 private fun formatWarningText(
     context: Context,
     warning: Map<String, Map<String, String>>?,
-    stringKeys: List<String>
+    stringKeys: List<String>,
 ): String {
-    val languageKey = if (context.currentLocale.code.startsWith("zh")) {
-        "Val_Chi"
-    } else "Val_Eng"
+    val languageKey = if (context.currentLocale.code.startsWith("zh")) "Val_Chi" else "Val_Eng"
     val multipleLineFeeds = Regex("\n{3,}")
     val strings = mutableListOf<String>()
     stringKeys.forEach {
-        strings.add(warning?.getOrElse(it) {null}?.getOrElse(languageKey) {null} ?: "")
+        strings.add(warning?.getOrElse(it) { null }?.getOrElse(languageKey) { null } ?: "")
     }
     return multipleLineFeeds.replace(strings.joinToString("\n"), "\n\n").trim()
 }
@@ -679,44 +699,43 @@ private fun formatWarningText(
 // Source: https://www.hko.gov.hk/textonly/v2/explain/wxicon_e.htm
 private fun getWeatherText(
     context: Context,
-    icon: Int?
+    icon: Int?,
 ): String? {
     return when (icon) {
         50 -> context.getString(R.string.hko_weather_text_sunny) // Sunny
-        51 -> context.getString(R.string.hko_weather_text_sunny_periods) // Sunny Periods
-        52 -> context.getString(R.string.hko_weather_text_sunny_intervals) // Sunny Intervals
-        53 -> context.getString(R.string.hko_weather_text_sunny_periods_with_a_few_showers) // Sunny Periods with a Few Showers
-        54 -> context.getString(R.string.hko_weather_text_sunny_intervals_with_showers) // Sunny Intervals with Showers
-        60 -> context.getString(R.string.hko_weather_text_cloudy) // Cloudy
-        61 -> context.getString(R.string.hko_weather_text_overcast) // Overcast
-        62 -> context.getString(R.string.hko_weather_text_light_rain) // Light Rain
-        63 -> context.getString(R.string.hko_weather_text_rain) // Rain
-        64 -> context.getString(R.string.hko_weather_text_heavy_rain) // Heavy Rain
-        65 -> context.getString(R.string.hko_weather_text_thunderstorms) // Thunderstorms
+        51 -> context.getString(R.string.hko_weather_text_sunny_periods)
+        52 -> context.getString(R.string.hko_weather_text_sunny_intervals)
+        53 -> context.getString(R.string.hko_weather_text_sunny_periods_with_a_few_showers)
+        54 -> context.getString(R.string.hko_weather_text_sunny_intervals_with_showers)
+        60 -> context.getString(R.string.hko_weather_text_cloudy)
+        61 -> context.getString(R.string.hko_weather_text_overcast)
+        62 -> context.getString(R.string.hko_weather_text_light_rain)
+        63 -> context.getString(R.string.hko_weather_text_rain)
+        64 -> context.getString(R.string.hko_weather_text_heavy_rain)
+        65 -> context.getString(R.string.hko_weather_text_thunderstorms)
         70, 71, 72, 73, 74, 75 -> context.getString(R.string.hko_weather_text_fine) // Fine
         76, 701, 711, 721, 741, 751 -> context.getString(R.string.hko_weather_text_mainly_cloudy) // Mainly Cloudy
         77, 702, 712, 722, 742, 752 -> context.getString(R.string.hko_weather_text_mainly_fine) // Mainly Fine
         80 -> context.getString(R.string.hko_weather_text_windy) // Windy
-        81 -> context.getString(R.string.hko_weather_text_dry) // Dry
-        82 -> context.getString(R.string.hko_weather_text_humid) // Humid
-        83 -> context.getString(R.string.hko_weather_text_fog) // Fog
-        84 -> context.getString(R.string.hko_weather_text_mist) // Mist
-        85 -> context.getString(R.string.hko_weather_text_haze) // Haze
-        90 -> context.getString(R.string.hko_weather_text_hot) // Hot
-        91 -> context.getString(R.string.hko_weather_text_warm) // Warm
-        92 -> context.getString(R.string.hko_weather_text_cool) // Cool
-        93 -> context.getString(R.string.hko_weather_text_cold) // Cold
+        81 -> context.getString(R.string.hko_weather_text_dry)
+        82 -> context.getString(R.string.hko_weather_text_humid)
+        83 -> context.getString(R.string.hko_weather_text_fog)
+        84 -> context.getString(R.string.hko_weather_text_mist)
+        85 -> context.getString(R.string.hko_weather_text_haze)
+        90 -> context.getString(R.string.hko_weather_text_hot)
+        91 -> context.getString(R.string.hko_weather_text_warm)
+        92 -> context.getString(R.string.hko_weather_text_cool)
+        93 -> context.getString(R.string.hko_weather_text_cold)
         else -> null
     }
 }
 
 // Source: https://www.hko.gov.hk/textonly/v2/explain/wxicon_e.htm
 private fun getWeatherCode(
-    icon: Int?
+    icon: Int?,
 ): WeatherCode? {
     return when (icon) {
-        50, 51, 70, 71, 72, 73, 74, 75,
-        77, 702, 712, 722, 742, 752 -> WeatherCode.CLEAR
+        50, 51, 70, 71, 72, 73, 74, 75, 77, 702, 712, 722, 742, 752 -> WeatherCode.CLEAR
         52, 76, 701, 711, 721, 741, 751 -> WeatherCode.PARTLY_CLOUDY
         53, 54, 62, 63, 64 -> WeatherCode.RAIN
         60, 61 -> WeatherCode.CLOUDY
@@ -738,7 +757,7 @@ private fun getWeatherCode(
 }
 
 private fun getPrecipitationProbability(
-    probability: String?
+    probability: String?,
 ): Double? {
     return when (probability) {
         "<10%" -> 10.0
@@ -753,7 +772,7 @@ private fun getPrecipitationProbability(
 
 private fun getAlertColor(
     warningCode: String?,
-    severity: AlertSeverity = AlertSeverity.UNKNOWN
+    severity: AlertSeverity = AlertSeverity.UNKNOWN,
 ): Int {
     return when (warningCode) {
         "WRAINY" -> Color.rgb(255, 204, 0)
@@ -769,7 +788,7 @@ private fun getAlertColor(
 }
 
 private fun getAstroMap(
-    astro: List<HkoAstroResult>
+    astro: List<HkoAstroResult>,
 ): MutableMap<String, Astro> {
     val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
     dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
@@ -787,10 +806,14 @@ private fun getAstroMap(
                     value = Astro(
                         riseDate = if (timeRegex.matches(it[1])) {
                             dateTimeFormatter.parse(it[0] + " " + it[1])
-                        } else null,
+                        } else {
+                            null
+                        },
                         setDate = if (timeRegex.matches(it[3])) {
                             dateTimeFormatter.parse(it[0] + " " + it[3])
-                        } else null
+                        } else {
+                            null
+                        }
                     )
                     astroMap[key] = value
                 }

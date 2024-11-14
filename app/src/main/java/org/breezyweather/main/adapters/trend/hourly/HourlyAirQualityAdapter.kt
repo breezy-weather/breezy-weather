@@ -38,7 +38,10 @@ import org.breezyweather.theme.weatherView.WeatherViewController
 /**
  * Hourly air quality adapter.
  */
-class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHourlyTrendAdapter(activity, location) {
+class HourlyAirQualityAdapter(
+    activity: GeoActivity,
+    location: Location,
+) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestIndex: Int = 0
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
@@ -52,7 +55,7 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
         fun onBindView(
             activity: GeoActivity,
             location: Location,
-            position: Int
+            position: Int,
         ) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_aqi))
             super.onBindView(activity, location, talkBackBuilder, position)
@@ -104,8 +107,7 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 
@@ -130,7 +132,8 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
         val goodPollutionLevel = PollutantIndex.indexFreshAir
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                goodPollutionLevel.toFloat(), goodPollutionLevel.toString(),
+                goodPollutionLevel.toFloat(),
+                goodPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[1],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -138,7 +141,8 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
         val moderatePollutionLevel = PollutantIndex.indexHighPollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                moderatePollutionLevel.toFloat(), moderatePollutionLevel.toString(),
+                moderatePollutionLevel.toFloat(),
+                moderatePollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[3],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -146,7 +150,8 @@ class HourlyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsHo
         val heavyPollutionLevel = PollutantIndex.indexExcessivePollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                heavyPollutionLevel.toFloat(), heavyPollutionLevel.toString(),
+                heavyPollutionLevel.toFloat(),
+                heavyPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[5],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

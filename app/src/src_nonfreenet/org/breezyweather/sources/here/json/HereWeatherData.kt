@@ -47,5 +47,5 @@ data class HereWeatherData(
     val barometerPressure: Double?,
     val visibility: Double?,
     val snowCover: Double?,
-    val iconId: Int?
+    val iconId: Int?,
 )

@@ -49,7 +49,7 @@ import kotlin.time.Duration.Companion.seconds
  * Converts PirateWeather result into a forecast
  */
 fun convert(
-    forecastResult: PirateWeatherForecastResult
+    forecastResult: PirateWeatherForecastResult,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.daily?.data.isNullOrEmpty() || forecastResult.hourly?.data.isNullOrEmpty()) {
@@ -78,7 +78,7 @@ private fun getCurrent(result: PirateWeatherCurrently?): Current? {
         weatherCode = getWeatherCode(result.icon),
         temperature = Temperature(
             temperature = result.temperature,
-            apparentTemperature = result.apparentTemperature,
+            apparentTemperature = result.apparentTemperature
         ),
         wind = Wind(
             degree = result.windBearing,
@@ -95,7 +95,7 @@ private fun getCurrent(result: PirateWeatherCurrently?): Current? {
 }
 
 private fun getDailyForecast(
-    dailyResult: List<PirateWeatherDaily>
+    dailyResult: List<PirateWeatherDaily>,
 ): List<Daily> {
     return dailyResult.map { result ->
         Daily(
@@ -105,7 +105,7 @@ private fun getDailyForecast(
                 weatherCode = getWeatherCode(result.icon),
                 temperature = Temperature(
                     temperature = result.temperatureHigh,
-                    apparentTemperature = result.apparentTemperatureHigh,
+                    apparentTemperature = result.apparentTemperatureHigh
                 )
             ),
             night = HalfDay(
@@ -115,16 +115,16 @@ private fun getDailyForecast(
                 // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
                 temperature = Temperature(
                     temperature = result.temperatureLow,
-                    apparentTemperature = result.apparentTemperatureLow,
-                ),
+                    apparentTemperature = result.apparentTemperatureLow
+                )
             ),
             sun = Astro(
                 riseDate = result.sunrise?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = result.sunset?.seconds?.inWholeMilliseconds?.toDate(),
+                setDate = result.sunset?.seconds?.inWholeMilliseconds?.toDate()
             ),
             moon = Astro(),
             moonPhase = MoonPhase(
-                angle = result.moonPhase?.times(360)?.roundToInt(), // Seems correct
+                angle = result.moonPhase?.times(360)?.roundToInt() // Seems correct
             ),
             uV = UV(index = result.uvIndex)
         )
@@ -135,7 +135,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<PirateWeatherHourly>
+    hourlyResult: List<PirateWeatherHourly>,
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
@@ -144,16 +144,16 @@ private fun getHourlyForecast(
             weatherCode = getWeatherCode(result.icon),
             temperature = Temperature(
                 temperature = result.temperature,
-                apparentTemperature = result.apparentTemperature,
+                apparentTemperature = result.apparentTemperature
             ),
             // see https://docs.pirateweather.net/en/latest/API/#preciptype
             precipitation = Precipitation(
                 total = result.precipAccumulation,
                 rain = if (result.precipType.equals("rain")) result.precipIntensity else null,
-                snow = if (result.precipType.equals("snow")) result.precipIntensity else null,
+                snow = if (result.precipType.equals("snow")) result.precipIntensity else null
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.precipProbability?.times(100),
+                total = result.precipProbability?.times(100)
             ),
             wind = Wind(
                 degree = result.windBearing,
@@ -161,7 +161,7 @@ private fun getHourlyForecast(
                 gusts = result.windGust
             ),
             uV = UV(
-                index = result.uvIndex,
+                index = result.uvIndex
             ),
             relativeHumidity = result.humidity?.times(100),
             dewPoint = result.dewPoint,
@@ -184,10 +184,10 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
             Minutely(
                 date = minutelyForecast.time.seconds.inWholeMilliseconds.toDate(),
                 minuteInterval = if (i < minutelyResult.size - 1) {
-                    ((minutelyResult[i + 1].time - minutelyForecast.time) / 60).toDouble()
-                        .roundToInt()
-                } else ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble()
-                    .roundToInt(),
+                    ((minutelyResult[i + 1].time - minutelyForecast.time) / 60).toDouble().roundToInt()
+                } else {
+                    ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble().roundToInt()
+                },
                 precipitationIntensity = minutelyForecast.precipIntensity
             )
         )
@@ -237,9 +237,8 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 }
 
 fun convertSecondary(
-    forecastResult: PirateWeatherForecastResult
+    forecastResult: PirateWeatherForecastResult,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         current = getCurrent(forecastResult.currently),
         minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),

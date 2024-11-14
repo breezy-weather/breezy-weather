@@ -34,8 +34,10 @@ object SphericalUtil {
      */
     fun computeAngleBetween(from: LatLng, to: LatLng): Double {
         return distanceRadians(
-            Math.toRadians(from.latitude), Math.toRadians(from.longitude),
-            Math.toRadians(to.latitude), Math.toRadians(to.longitude)
+            Math.toRadians(from.latitude),
+            Math.toRadians(from.longitude),
+            Math.toRadians(to.latitude),
+            Math.toRadians(to.longitude)
         )
     }
 

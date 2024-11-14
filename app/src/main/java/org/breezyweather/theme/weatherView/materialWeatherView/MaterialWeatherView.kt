@@ -29,7 +29,9 @@ import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.min
 
-class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
+class MaterialWeatherView(
+    context: Context,
+) : ViewGroup(context), WeatherView {
     private var mCurrentView: MaterialPainterView? = null
     private var mPreviousView: MaterialPainterView? = null
     private var mSwitchAnimator: Animator? = null
@@ -51,7 +53,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
             @Size(2) canvasSizes: IntArray,
             interval: Long,
             rotation2D: Float,
-            rotation3D: Float
+            rotation3D: Float,
         )
 
         // return true if finish drawing.
@@ -60,7 +62,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
             canvas: Canvas,
             scrollRate: Float,
             rotation2D: Float,
-            rotation3D: Float
+            rotation3D: Float,
         )
     }
 
@@ -105,7 +107,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
     override fun setWeather(
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
-        provider: ResourceProvider?
+        provider: ResourceProvider?,
     ) {
         // do nothing if weather not change.
         if (this.weatherKind == weatherKind && mDaytime == daytime) {

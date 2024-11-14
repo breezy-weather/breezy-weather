@@ -29,5 +29,5 @@ data class OpenMeteoWeatherDaily(
     val sunrise: Array<Long?>?,
     val sunset: Array<Long?>?,
     @SerialName("sunshine_duration") val sunshineDuration: Array<Double?>?,
-    @SerialName("uv_index_max") val uvIndexMax: Array<Double?>?
+    @SerialName("uv_index_max") val uvIndexMax: Array<Double?>?,
 )

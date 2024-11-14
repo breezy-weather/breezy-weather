@@ -32,5 +32,5 @@ data class AccuAlertResult(
     val Color: AccuColor?,
     val Source: String?,
     val SourceId: Int,
-    val Area: List<AccuAlertArea>?
+    val Area: List<AccuAlertArea>?,
 )

@@ -37,7 +37,10 @@ import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView
  * Daily trend item view.
  */
 class DailyTrendItemView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0,
 ) : AbsTrendItemView(context, attrs, defStyleAttr, defStyleRes) {
     private var mChartItem: AbsChartItemView? = null
     private val mWeekTextPaint = Paint().apply {
@@ -85,13 +88,11 @@ class DailyTrendItemView @JvmOverloads constructor(
         setWillNotDraw(false)
         mWeekTextPaint.apply {
             typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
-            textSize =
-                getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
+            textSize = getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
         }
         mDateTextPaint.apply {
             typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
-            textSize =
-                getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
+            textSize = getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
         }
         setTextColor(Color.BLACK, Color.GRAY)
         mIconSize = getContext().dpToPx(ICON_SIZE_DIP.toFloat()).toInt()
@@ -146,14 +147,14 @@ class DailyTrendItemView @JvmOverloads constructor(
         )
         mTrendViewTop = y
         chartTop = (mTrendViewTop + mChartItem!!.marginTop).toInt()
-        chartBottom =
-            (mTrendViewTop + mChartItem!!.measuredHeight - mChartItem!!.marginBottom).toInt()
+        chartBottom = (mTrendViewTop + mChartItem!!.measuredHeight - mChartItem!!.marginBottom).toInt()
         setMeasuredDimension(width, height)
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         mChartItem?.layout(
-            0, mTrendViewTop.toInt(),
+            0,
+            mTrendViewTop.toInt(),
             mChartItem!!.measuredWidth,
             mTrendViewTop.toInt() + mChartItem!!.measuredHeight
         )

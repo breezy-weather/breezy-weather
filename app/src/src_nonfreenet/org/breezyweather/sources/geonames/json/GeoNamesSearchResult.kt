@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GeoNamesSearchResult(
     val status: GeoNamesStatus?,
-    val geonames: List<GeoNamesLocation>?
+    val geonames: List<GeoNamesLocation>?,
 )

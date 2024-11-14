@@ -38,9 +38,10 @@ class LocationAdapter(
     selectedId: String?,
     private val sourceManager: SourceManager,
     private val mClickListener: (String) -> Unit,
-    private val mDragListener: (LocationHolder) -> Unit
+    private val mDragListener: (LocationHolder) -> Unit,
 ) : SyncListAdapter<LocationModel, LocationHolder>(
-    ArrayList(), object : DiffUtil.ItemCallback<LocationModel>() {
+    ArrayList(),
+    object : DiffUtil.ItemCallback<LocationModel>() {
         override fun areItemsTheSame(oldItem: LocationModel, newItem: LocationModel): Boolean {
             return oldItem.areItemsTheSame(newItem)
         }
@@ -78,7 +79,11 @@ class LocationAdapter(
         for (model in currentList) {
             modelList.add(
                 LocationModel(
-                    mContext, model.location, sourceManager.getMainWeatherSource(model.location.weatherSource), mTemperatureUnit, model.location.formattedId == selectedId
+                    mContext,
+                    model.location,
+                    sourceManager.getMainWeatherSource(model.location.weatherSource),
+                    mTemperatureUnit,
+                    model.location.formattedId == selectedId
                 )
             )
         }
@@ -88,7 +93,15 @@ class LocationAdapter(
     fun update(newList: List<Location>, selectedId: String?) {
         val modelList: MutableList<LocationModel> = ArrayList(newList.size)
         for (l in newList) {
-            modelList.add(LocationModel(mContext, l, sourceManager.getMainWeatherSource(l.weatherSource), mTemperatureUnit, l.formattedId == selectedId))
+            modelList.add(
+                LocationModel(
+                    mContext,
+                    l,
+                    sourceManager.getMainWeatherSource(l.weatherSource),
+                    mTemperatureUnit,
+                    l.formattedId == selectedId
+                )
+            )
         }
         submitList(modelList)
     }

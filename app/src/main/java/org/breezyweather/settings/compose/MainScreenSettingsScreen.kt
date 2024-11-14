@@ -55,7 +55,7 @@ fun MainScreenSettingsScreen(
     dailyTrendDisplayList: List<DailyTrendDisplay>,
     hourlyTrendDisplayList: List<HourlyTrendDisplay>,
     detailDisplayList: List<DetailDisplay>,
-    updateWidgetIfNecessary: (Context) -> Unit
+    updateWidgetIfNecessary: (Context) -> Unit,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -68,7 +68,7 @@ fun MainScreenSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             sectionHeaderItem(R.string.settings_main_section_displayed_data)
@@ -77,7 +77,7 @@ fun MainScreenSettingsScreen(
             ) {
                 PreferenceView(
                     title = stringResource(it),
-                    summary = CardDisplay.getSummary(context, cardDisplayList),
+                    summary = CardDisplay.getSummary(context, cardDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startCardDisplayManageActivity(a)
@@ -89,7 +89,7 @@ fun MainScreenSettingsScreen(
             ) {
                 PreferenceView(
                     title = stringResource(it),
-                    summary = DailyTrendDisplay.getSummary(context, dailyTrendDisplayList),
+                    summary = DailyTrendDisplay.getSummary(context, dailyTrendDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startDailyTrendDisplayManageActivity(a)
@@ -101,7 +101,7 @@ fun MainScreenSettingsScreen(
             ) {
                 PreferenceView(
                     title = stringResource(it),
-                    summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList),
+                    summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
@@ -113,7 +113,7 @@ fun MainScreenSettingsScreen(
             ) {
                 PreferenceView(
                     title = stringResource(it),
-                    summary = DetailDisplay.getSummary(context, detailDisplayList),
+                    summary = DetailDisplay.getSummary(context, detailDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startDetailDisplayManageActivity(a)
@@ -140,7 +140,7 @@ fun MainScreenSettingsScreen(
                         ) {
                             BreezyWeather.instance.recreateAllActivities()
                         }
-                    },
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_main_section_options)
@@ -164,7 +164,7 @@ fun MainScreenSettingsScreen(
                         ) {
                             BreezyWeather.instance.recreateAllActivities()
                         }
-                    },
+                    }
                 )
             }
 
@@ -183,7 +183,7 @@ fun MainScreenSettingsScreen(
                         ) {
                             BreezyWeather.instance.recreateAllActivities()
                         }
-                    },
+                    }
                 )
             }
 
@@ -201,8 +201,7 @@ fun MainScreenSettingsScreen(
                     } else {
                         R.string.settings_unavailable_no_animations
                     },
-                    checked = SettingsManager.getInstance(context).isCardsFadeInEnabled
-                            && animationsEnabled,
+                    checked = SettingsManager.getInstance(context).isCardsFadeInEnabled && animationsEnabled,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isCardsFadeInEnabled = it
                     },
@@ -222,8 +221,7 @@ fun MainScreenSettingsScreen(
                     } else {
                         R.string.settings_unavailable_no_animations
                     },
-                    checked = SettingsManager.getInstance(context).isElementsAnimationEnabled
-                            && animationsEnabled,
+                    checked = SettingsManager.getInstance(context).isElementsAnimationEnabled && animationsEnabled,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isElementsAnimationEnabled = it
                     },

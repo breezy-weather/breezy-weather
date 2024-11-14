@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImsWindDirection(
-    val direction: String?
+    val direction: String?,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaWeatherStation(
-    val weatherElement: List<CwaWeatherElement>?
+    val weatherElement: List<CwaWeatherElement>?,
 )

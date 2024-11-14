@@ -34,8 +34,7 @@ import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.settings.SettingsManager
 
 class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_wind, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_wind, parent, false)
 ) {
     private val mIcon: AppCompatImageView = itemView.findViewById(R.id.item_weather_daily_wind_arrow)
     private val mDirectionText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_directionValue)
@@ -63,8 +62,10 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 if (wind.degree == -1.0 || degree % 45 == 0.0) {
                     mDirectionText.text = wind.getDirection(itemView.context)
                 } else {
-                    mDirectionText.text = (wind.getDirection(itemView.context)
-                        + " (" + (degree % 360).toInt() + "°)")
+                    mDirectionText.text = (
+                        wind.getDirection(itemView.context) +
+                            " (" + (degree % 360).toInt() + "°)"
+                        )
                 }
             }
             if ((wind.speed ?: 0.0) > 0) {

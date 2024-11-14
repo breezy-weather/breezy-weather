@@ -75,7 +75,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         TOP,
         LEFT,
         BOTTOM,
-        RIGHT
+        RIGHT,
     }
 
     override fun onCreateEngine(): Engine {
@@ -84,7 +84,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
 
     private inner class WeatherEngine(
         private val locationRepository: LocationRepository,
-        private val weatherRepository: WeatherRepository
+        private val weatherRepository: WeatherRepository,
     ) : Engine() {
 
         private var mHolder: SurfaceHolder? = null
@@ -141,8 +141,11 @@ class MaterialLiveWallpaperService : WallpaperService() {
                     if (mIntervalComputer != null && mRotators != null) {
                         var interval = mIntervalComputer!!.interval
                         if (!mAnimate) {
-                            if (hasDrawn) interval = 0.0
-                            else hasDrawn = true
+                            if (hasDrawn) {
+                                interval = 0.0
+                            } else {
+                                hasDrawn = true
+                            }
                         }
                         mImplementor?.updateData(
                             mAdaptiveSize,
@@ -198,7 +201,9 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         DeviceOrientation.RIGHT -> mRotation2D += 90f
                         DeviceOrientation.BOTTOM -> if (mRotation2D > 0) {
                             mRotation2D -= 180f
-                        } else mRotation2D += 180f
+                        } else {
+                            mRotation2D += 180f
+                        }
                     }
                     if (60 < abs(mRotation3D) && abs(mRotation3D) < 120) {
                         mRotation2D *= (abs(abs(mRotation3D) - 90) / 30.0).toFloat()
@@ -292,7 +297,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         holder: SurfaceHolder,
                         format: Int,
                         width: Int,
-                        height: Int
+                        height: Int,
                     ) {
                         if (holder.surface.isValid) {
                             mSizes[0] = width
@@ -350,14 +355,13 @@ class MaterialLiveWallpaperService : WallpaperService() {
             if (mOrientationListener.canDetectOrientation()) {
                 mOrientationListener.enable()
             }
-            val configManager = LiveWallpaperConfigManager(
-                this@MaterialLiveWallpaperService
-            )
+            val configManager = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService)
 
             val location: Location? = if (configManager.weatherKind == "auto" || configManager.dayNightType == "auto") {
                 // TODO: Isn't there a more efficient way than reloading the location from database
                 // everytime the visibility changes??
-                runBlocking { // TODO
+                // TODO
+                runBlocking {
                     locationRepository.getFirstLocation(withParameters = false)
                         .let {
                             it?.copy(
@@ -371,7 +375,9 @@ class MaterialLiveWallpaperService : WallpaperService() {
                             )
                         }
                 }
-            } else null
+            } else {
+                null
+            }
             val weatherKind = when (configManager.weatherKind) {
                 "auto" -> location?.weather?.current?.weatherCode
                 else -> WeatherCode.getInstance(configManager.weatherKind)
@@ -400,9 +406,10 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             setWeatherBackgroundDrawable()
-            val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService).refreshRate.let {
-                if (it > 60f) 60f else it
-            }
+            val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService)
+                .refreshRate.let {
+                    if (it > 60f) 60f else it
+                }
             mIntervalController = AsyncHelper.intervalRunOnUI(
                 { mHandler?.post(mDrawableRunnable) },
                 (1000.0 / screenRefreshRate).toLong(),
@@ -414,7 +421,9 @@ class MaterialLiveWallpaperService : WallpaperService() {
         override fun onComputeColors(): WallpaperColors? {
             return if (mBackground != null) {
                 WallpaperColors.fromDrawable(mBackground)
-            } else null
+            } else {
+                null
+            }
         }
 
         override fun onDestroy() {

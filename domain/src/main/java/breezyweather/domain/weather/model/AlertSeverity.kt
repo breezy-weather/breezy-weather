@@ -21,11 +21,12 @@ enum class AlertSeverity(val id: Int) {
     SEVERE(3),
     MODERATE(2),
     MINOR(1),
-    UNKNOWN(0);
+    UNKNOWN(0),
+    ;
 
     companion object {
         fun getInstance(
-            value: Int?
+            value: Int?,
         ): AlertSeverity = AlertSeverity.entries.firstOrNull {
             it.id == value
         } ?: UNKNOWN

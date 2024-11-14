@@ -41,7 +41,7 @@ class HourlyPressureAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: PressureUnit
+    unit: PressureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mPressureUnit: PressureUnit = unit
@@ -166,8 +166,7 @@ class HourlyPressureAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 
@@ -180,8 +179,7 @@ class HourlyPressureAdapter(
     override fun isValid(location: Location): Boolean {
         return mHighestPressure != null &&
             mLowestPressure != null &&
-                (mHighestPressure != PressureUnit.NORMAL.toFloat() ||
-                mLowestPressure != PressureUnit.NORMAL.toFloat())
+            (mHighestPressure != PressureUnit.NORMAL.toFloat() || mLowestPressure != PressureUnit.NORMAL.toFloat())
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)

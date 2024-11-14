@@ -26,13 +26,15 @@ data class GithubRelease(
  * Assets class containing download url.
  */
 @Serializable
-data class GitHubAssets(@SerialName("browser_download_url") val downloadLink: String)
+data class GitHubAssets(
+    @SerialName("browser_download_url") val downloadLink: String,
+)
 
 val releaseMapper: (GithubRelease) -> Release = {
     Release(
         it.version,
         it.info,
         it.releaseLink,
-        it.assets.map(GitHubAssets::downloadLink),
+        it.assets.map(GitHubAssets::downloadLink)
     )
 }

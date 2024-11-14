@@ -22,7 +22,9 @@ import android.graphics.PixelFormat
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 
-class RotateDrawable(private val mDrawable: Drawable?) : Drawable() {
+class RotateDrawable(
+    private val mDrawable: Drawable?,
+) : Drawable() {
     private var mDegree = 0f
     override fun draw(canvas: Canvas) {
         if (mDrawable == null) return

@@ -19,7 +19,10 @@ package org.breezyweather.main
 import breezyweather.domain.location.model.Location
 import org.breezyweather.domain.location.model.isDaylight
 
-class Indicator(val total: Int, val index: Int) {
+class Indicator(
+    val total: Int,
+    val index: Int,
+) {
 
     override fun equals(other: Any?): Boolean {
         return if (other is Indicator) {
@@ -39,7 +42,7 @@ class Indicator(val total: Int, val index: Int) {
 class PermissionsRequest(
     val permissionList: List<String>,
     val target: Location?,
-    val triggeredByUser: Boolean
+    val triggeredByUser: Boolean,
 ) {
 
     private var consumed = false
@@ -56,7 +59,7 @@ class PermissionsRequest(
 
 class DayNightLocation(
     val location: Location,
-    val daylight: Boolean = location.isDaylight
+    val daylight: Boolean = location.isDaylight,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) {

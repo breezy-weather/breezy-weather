@@ -29,7 +29,7 @@ import kotlin.math.sin
  */
 class SunImplementor(
     @Size(2) canvasSizes: IntArray,
-    animate: Boolean
+    animate: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
@@ -45,8 +45,10 @@ class SunImplementor(
     )
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         for (i in mAngles.indices) {
             mAngles[i] = ((mAngles[i] + 90.0 / (3000 + 1000 * i) * interval) % 90).toFloat()
@@ -54,8 +56,11 @@ class SunImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         if (scrollRate < 1) {
             val deltaX = (sin(rotation2D * Math.PI / 180.0) * 0.3 * canvasSizes[0]).toFloat()

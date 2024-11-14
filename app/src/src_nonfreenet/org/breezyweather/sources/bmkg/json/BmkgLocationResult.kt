@@ -28,5 +28,5 @@ data class BmkgLocationResult(
     val kotkab: String?,
     val kecamatan: String?,
     val desa: String?,
-    val distance: Double?
+    val distance: Double?,
 )

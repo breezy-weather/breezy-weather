@@ -67,7 +67,7 @@ import kotlin.math.ln
 @Composable
 fun getWidgetSurfaceColor(
     elevation: Dp,
-    surface: Color = MaterialTheme.colorScheme.surface
+    surface: Color = MaterialTheme.colorScheme.surface,
 ): Color {
     if (elevation == 0.dp) {
         return surface
@@ -97,7 +97,7 @@ fun Material3Scaffold(
     containerColor: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = MaterialTheme.colorScheme.onSurface,
     contentWindowInsets: WindowInsets = WindowInsets.safeDrawing,
-    content: @Composable (PaddingValues) -> Unit
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     Scaffold(
         modifier = modifier,
@@ -150,7 +150,7 @@ fun Material3SearchBarInputField(
         textStyle = MaterialTheme.typography.titleMedium.copy(
             color = MaterialTheme.colorScheme.onBackground,
             fontWeight = FontWeight.Normal,
-            fontSize = 18.sp,
+            fontSize = 18.sp
         ),
         cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -165,16 +165,20 @@ fun Material3SearchBarInputField(
                 visualTransformation = VisualTransformation.None,
                 interactionSource = interactionSource,
                 placeholder = placeholder,
-                leadingIcon = leadingIcon?.let { leading -> {
-                    Box(Modifier.offset(x = 4.dp)) { leading() }
-                } },
-                trailingIcon = trailingIcon?.let { trailing -> {
-                    Box(Modifier.offset(x = (-4).dp)) { trailing() }
-                } },
+                leadingIcon = leadingIcon?.let { leading ->
+                    {
+                        Box(Modifier.offset(x = 4.dp)) { leading() }
+                    }
+                },
+                trailingIcon = trailingIcon?.let { trailing ->
+                    {
+                        Box(Modifier.offset(x = (-4).dp)) { trailing() }
+                    }
+                },
                 shape = SearchBarDefaults.inputFieldShape,
                 colors = colors,
                 contentPadding = TextFieldDefaults.contentPaddingWithoutLabel(),
-                container = {},
+                container = {}
             )
         }
     )

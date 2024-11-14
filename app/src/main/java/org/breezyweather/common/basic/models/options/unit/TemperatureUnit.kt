@@ -19,23 +19,26 @@ package org.breezyweather.common.basic.models.options.unit
 import android.content.Context
 import android.text.BidiFormatter
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
 enum class TemperatureUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
-    val convertDegreeDayUnit: (Double) -> Double
-): UnitEnum<Double> {
+    val convertDegreeDayUnit: (Double) -> Double,
+) : UnitEnum<Double> {
 
     C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
-    F("f", { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8) }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }),
-    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit });
+    F("f", { valueInDefaultUnit ->
+        32 + valueInDefaultUnit.times(1.8)
+    }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }),
+    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
+    ;
 
     companion object {
         fun getInstance(
-            value: String
+            value: String,
         ) = TemperatureUnit.entries.firstOrNull {
             it.id == value
         } ?: C
@@ -49,7 +52,7 @@ enum class TemperatureUnit(
     override fun getName(context: Context) = Utils.getName(context, this)
 
     fun getShortName(
-        context: Context
+        context: Context,
     ) = Utils.getNameByValue(
         res = context.resources,
         value = id,
@@ -58,7 +61,7 @@ enum class TemperatureUnit(
     )!!
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 0)!!
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
@@ -75,7 +78,7 @@ enum class TemperatureUnit(
     fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        decimalNumber: Int = 1
+        decimalNumber: Int = 1,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -87,7 +90,7 @@ enum class TemperatureUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -100,23 +103,22 @@ enum class TemperatureUnit(
         context: Context,
         valueInDefaultUnit: Double,
     ) = if (context.isRtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
                 Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
             ) + "\u202f" + Utils.getName(context, this)
-        )
     } else {
-        (Utils.formatDouble(
-            getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
-            + "\u202f" + Utils.getName(context, this)
-        )
+        Utils.formatDouble(
+            getDegreeDayValueWithoutUnit(valueInDefaultUnit),
+            1
+        ) + "\u202f" + Utils.getName(context, this)
     }
 
     fun getDegreeDayValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -127,39 +129,39 @@ enum class TemperatureUnit(
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getShortValueText(context, valueInDefaultUnit, 0, context.isRtl)
 
     fun getShortValueText(
         context: Context,
         valueInDefaultUnit: Double,
         decimalNumber: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = if (rtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
                 Utils.formatDouble(
                     getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
-            ) + getShortName(context))
+            ) + getShortName(context)
     } else {
-        (Utils.formatDouble(
+        Utils.formatDouble(
             getValueWithoutUnit(valueInDefaultUnit),
             decimalNumber
-        ) + getShortName(context))
+        ) + getShortName(context)
     }
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

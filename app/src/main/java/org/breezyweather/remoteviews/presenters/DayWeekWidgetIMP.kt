@@ -52,13 +52,22 @@ import java.util.Date
 object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
     fun updateWidgetView(
-        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        pollenIndexSource: PollenIndexSource?,
     ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_day_week_setting))
         val views = getRemoteViews(
-            context, location,
-            config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor,
-            config.textSize, config.hideSubtitle, config.subtitleData, pollenIndexSource
+            context,
+            location,
+            config.viewStyle,
+            config.cardStyle,
+            config.cardAlpha,
+            config.textColor,
+            config.textSize,
+            config.hideSubtitle,
+            config.subtitleData,
+            pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetDayWeekProvider::class.java),
@@ -67,10 +76,16 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?,
-        viewStyle: String?, cardStyle: String?, cardAlpha: Int,
-        textColor: String?, textSize: Int, hideSubtitle: Boolean, subtitleData: String?,
-        pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        viewStyle: String?,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
+        hideSubtitle: Boolean,
+        subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
         val settings = SettingsManager.getInstance(context)
@@ -93,7 +108,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             arrayOf(R.id.widget_day_week_week_2, R.id.widget_day_week_temp_2, R.id.widget_day_week_icon_2),
             arrayOf(R.id.widget_day_week_week_3, R.id.widget_day_week_temp_3, R.id.widget_day_week_icon_3),
             arrayOf(R.id.widget_day_week_week_4, R.id.widget_day_week_temp_4, R.id.widget_day_week_icon_4),
-            arrayOf(R.id.widget_day_week_week_5, R.id.widget_day_week_temp_5, R.id.widget_day_week_icon_5),
+            arrayOf(R.id.widget_day_week_week_5, R.id.widget_day_week_temp_5, R.id.widget_day_week_icon_5)
         )
         dailyIds.forEachIndexed { i, dailyId ->
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
@@ -101,7 +116,9 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     dailyId[0],
                     if (it.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(location, context)
+                    } else {
+                        it.getWeek(location, context)
+                    }
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
@@ -117,7 +134,11 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = true, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = true,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -127,7 +148,11 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = false, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = false,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -180,18 +205,37 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun buildWidgetViewDayPart(
-        context: Context, helper: ResourceProvider, location: Location?,
-        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        color: WidgetColor, textSize: Int, minimalIcon: Boolean,
-        viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?,
-        pollenIndexSource: PollenIndexSource?
+        context: Context,
+        helper: ResourceProvider,
+        location: Location?,
+        temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit,
+        color: WidgetColor,
+        textSize: Int,
+        minimalIcon: Boolean,
+        viewStyle: String?,
+        hideSubtitle: Boolean,
+        subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
             when (viewStyle) {
-                "rectangle" -> if (!color.showCard) R.layout.widget_day_week_rectangle else R.layout.widget_day_week_rectangle_card
-                "tile" -> if (!color.showCard) R.layout.widget_day_week_tile else R.layout.widget_day_week_tile_card
-                else -> if (!color.showCard) R.layout.widget_day_week_symmetry else R.layout.widget_day_week_symmetry_card
+                "rectangle" -> if (!color.showCard) {
+                    R.layout.widget_day_week_rectangle
+                } else {
+                    R.layout.widget_day_week_rectangle_card
+                }
+                "tile" -> if (!color.showCard) {
+                    R.layout.widget_day_week_tile
+                } else {
+                    R.layout.widget_day_week_tile_card
+                }
+                else -> if (!color.showCard) {
+                    R.layout.widget_day_week_symmetry
+                } else {
+                    R.layout.widget_day_week_symmetry_card
+                }
             }
         )
         val weather = location?.weather ?: return views
@@ -200,7 +244,11 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setImageViewUri(
                 R.id.widget_day_week_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
-                    helper, it, location.isDaylight, minimalIcon, color.minimalIconColor
+                    helper,
+                    it,
+                    location.isDaylight,
+                    minimalIcon,
+                    color.minimalIconColor
                 )
             )
         } ?: views.setViewVisibility(R.id.widget_day_week_icon, View.INVISIBLE)
@@ -247,7 +295,10 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getTitleText(
-        context: Context, location: Location, viewStyle: String?, unit: TemperatureUnit
+        context: Context,
+        location: Location,
+        viewStyle: String?,
+        unit: TemperatureUnit,
     ): String? {
         val weather = location.weather ?: return null
         return when (viewStyle) {
@@ -279,7 +330,10 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getSubtitleText(
-        context: Context, weather: Weather, viewStyle: String?, unit: TemperatureUnit
+        context: Context,
+        weather: Weather,
+        viewStyle: String?,
+        unit: TemperatureUnit,
     ): String? {
         return when (viewStyle) {
             "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
@@ -291,7 +345,8 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
                 if (weather.dailyForecast.isNotEmpty() &&
                     weather.today?.day?.temperature?.temperature != null &&
-                    weather.today?.night?.temperature?.temperature != null) {
+                    weather.today?.night?.temperature?.temperature != null
+                ) {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
@@ -304,72 +359,66 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getTimeText(
-        context: Context, location: Location, viewStyle: String?, subtitleData: String?,
-        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location,
+        viewStyle: String?,
+        subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?,
     ): String? {
         val weather = location.weather ?: return null
         return when (subtitleData) {
             "time" -> when (viewStyle) {
-                "rectangle" -> (location.getPlace(context)
-                    + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "rectangle" -> location.getPlace(context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "symmetry" -> (Date().getWeek(location, context)
-                    + " "
-                    + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "symmetry" -> Date().getWeek(location, context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "tile", "vertical" -> (location.getPlace(context)
-                    + " " + Date().getWeek(location, context)
-                    + " " + (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: ""))
+                "tile", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) + " " +
+                    (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
                 else -> null
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
-                if (airQuality.getIndex() != null &&
-                    airQuality.getName(context) != null) {
-                    (airQuality.getName(context)
-                        + " ("
-                        + airQuality.getIndex()
-                        + ")")
-                } else null
+                if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
+                    airQuality.getName(context) + " (" + airQuality.getIndex() + ")"
+                } else {
+                    null
+                }
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
-                "rectangle" -> (location.getPlace(context)
-                    + " "
-                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "rectangle" -> location.getPlace(context) + " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "symmetry" -> (Date().getWeek(location, context)
-                    + " "
-                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "symmetry" -> Date().getWeek(location, context) + " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "tile" -> (location.getPlace(context)
-                    + " "
-                    + Date().getWeek(location, context)
-                    + " "
-                    + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
+                "tile" -> location.getPlace(context) + " " + Date().getWeek(location, context) + " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                (context.getString(R.string.temperature_feels_like)
-                    + " "
-                    + temperatureUnit.getValueText(context, it, 0))
+                context.getString(R.string.temperature_feels_like) + " " +
+                    temperatureUnit.getValueText(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location, subtitleData: String?
+        context: Context,
+        views: RemoteViews,
+        location: Location,
+        subtitleData: String?,
     ) {
         // weather.
         views.setOnClickPendingIntent(
             R.id.widget_day_week_weather,
-            getWeatherPendingIntent(
-                context, location, Widgets.DAY_WEEK_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.DAY_WEEK_PENDING_INTENT_CODE_WEATHER)
         )
 
         // daily forecast.
@@ -377,31 +426,46 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, index, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context,
+                location,
+                index,
+                Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, index + 1, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context,
+                location,
+                index + 1,
+                Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, index + 2, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context,
+                location,
+                index + 2,
+                Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_4,
             getDailyForecastPendingIntent(
-                context, location, index + 3, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                context,
+                location,
+                index + 3,
+                Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_day_week_icon_5,
             getDailyForecastPendingIntent(
-                context, location, index + 4, Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                context,
+                location,
+                index + 4,
+                Widgets.DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
             )
         )
 
@@ -409,9 +473,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         if (subtitleData == "lunar") {
             views.setOnClickPendingIntent(
                 R.id.widget_day_week_subtitle,
-                getCalendarPendingIntent(
-                    context, Widgets.DAY_WEEK_PENDING_INTENT_CODE_CALENDAR
-                )
+                getCalendarPendingIntent(context, Widgets.DAY_WEEK_PENDING_INTENT_CODE_CALENDAR)
             )
         }
     }

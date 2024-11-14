@@ -40,7 +40,7 @@ val Context.notificationManager: NotificationManager
 fun Context.notify(
     id: Int,
     channelId: String,
-    block: (NotificationCompat.Builder.() -> Unit)? = null
+    block: (NotificationCompat.Builder.() -> Unit)? = null,
 ) {
     val notification = notificationBuilder(channelId, block).build()
     this.notify(id, notification)
@@ -73,7 +73,7 @@ fun Context.cancelNotification(id: Int) {
  */
 fun Context.notificationBuilder(
     channelId: String,
-    block: (NotificationCompat.Builder.() -> Unit)? = null
+    block: (NotificationCompat.Builder.() -> Unit)? = null,
 ): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
     if (block != null) {

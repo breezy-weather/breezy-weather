@@ -53,5 +53,5 @@ data class MgmDailyForecastResult(
     @SerialName("tarihGun2") val dateDay2: String,
     @SerialName("tarihGun3") val dateDay3: String,
     @SerialName("tarihGun4") val dateDay4: String,
-    @SerialName("tarihGun5") val dateDay5: String
+    @SerialName("tarihGun5") val dateDay5: String,
 )

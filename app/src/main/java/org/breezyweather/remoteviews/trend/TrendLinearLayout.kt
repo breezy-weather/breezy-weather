@@ -34,7 +34,9 @@ import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
  * Trend linear layout.
  */
 class TrendLinearLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0,
 ) : LinearLayout(context, attrs, defStyle) {
     private val mPaint = Paint().apply {
         isAntiAlias = true
@@ -53,27 +55,27 @@ class TrendLinearLayout @JvmOverloads constructor(
 
     @ColorInt
     private var mTextColor = 0
-    private var TREND_ITEM_HEIGHT = 0f
-    private var BOTTOM_MARGIN = 0f
-    private var TREND_MARGIN_TOP = 24f
-    private var TREND_MARGIN_BOTTOM = 36f
-    private var CHART_LINE_SIZE = 1f
-    private var TEXT_SIZE = 12f
-    private var MARGIN_TEXT = 2f
+    private var trendItemHeight = 0f
+    private var bottomMargin = 0f
+    private var trendMarginTop = 24f
+    private var trendMarginBottom = 36f
+    private var chartLineSize = 1f
+    private var textSize = 12f
+    private var marginText = 2f
 
     var normals = false
 
     init {
         setWillNotDraw(false)
         mPaint.setTypeface(getContext().getTypefaceFromTextAppearance(R.style.subtitle_text))
-        mPaint.textSize = TEXT_SIZE
+        mPaint.textSize = textSize
         mTemperatureUnit = TemperatureUnit.C
         setColor(true)
-        TREND_MARGIN_TOP = getContext().dpToPx(TREND_MARGIN_TOP.toInt().toFloat())
-        TREND_MARGIN_BOTTOM = getContext().dpToPx(TREND_MARGIN_BOTTOM.toInt().toFloat())
-        TEXT_SIZE = getContext().dpToPx(TEXT_SIZE.toInt().toFloat())
-        CHART_LINE_SIZE = getContext().dpToPx(CHART_LINE_SIZE.toInt().toFloat())
-        MARGIN_TEXT = getContext().dpToPx(MARGIN_TEXT.toInt().toFloat())
+        trendMarginTop = getContext().dpToPx(trendMarginTop.toInt().toFloat())
+        trendMarginBottom = getContext().dpToPx(trendMarginBottom.toInt().toFloat())
+        textSize = getContext().dpToPx(textSize.toInt().toFloat())
+        chartLineSize = getContext().dpToPx(chartLineSize.toInt().toFloat())
+        marginText = getContext().dpToPx(marginText.toInt().toFloat())
     }
 
     public override fun onDraw(canvas: Canvas) {
@@ -84,46 +86,50 @@ class TrendLinearLayout @JvmOverloads constructor(
         if (!mKeyLineVisibility) return
 
         mPaint.style = Paint.Style.STROKE
-        mPaint.strokeWidth = CHART_LINE_SIZE
+        mPaint.strokeWidth = chartLineSize
         mPaint.color = mLineColor
         canvas.drawLine(
-            0f, mHistoryTempYs[0],
-            measuredWidth.toFloat(), mHistoryTempYs[0],
+            0f,
+            mHistoryTempYs[0],
+            measuredWidth.toFloat(),
+            mHistoryTempYs[0],
             mPaint
         )
         canvas.drawLine(
-            0f, mHistoryTempYs[1],
-            measuredWidth.toFloat(), mHistoryTempYs[1],
+            0f,
+            mHistoryTempYs[1],
+            measuredWidth.toFloat(),
+            mHistoryTempYs[1],
             mPaint
         )
 
         mPaint.style = Paint.Style.FILL
-        mPaint.textSize = TEXT_SIZE
+        mPaint.textSize = textSize
         mPaint.textAlign = Paint.Align.LEFT
         mPaint.color = mTextColor
         canvas.drawText(
             mTemperatureUnit.getShortValueText(context, mHistoryTemps[0].toDouble()),
-            2 * MARGIN_TEXT,
-            mHistoryTempYs[0] - mPaint.fontMetrics.bottom - MARGIN_TEXT,
+            2 * marginText,
+            mHistoryTempYs[0] - mPaint.fontMetrics.bottom - marginText,
             mPaint
         )
         canvas.drawText(
             mTemperatureUnit.getShortValueText(context, mHistoryTemps[1].toDouble()),
-            2 * MARGIN_TEXT,
-            mHistoryTempYs[1] - mPaint.fontMetrics.top + MARGIN_TEXT,
+            2 * marginText,
+            mHistoryTempYs[1] - mPaint.fontMetrics.top + marginText,
             mPaint
         )
         mPaint.textAlign = Paint.Align.RIGHT
         canvas.drawText(
             context.getString(if (normals) R.string.temperature_normal_short else R.string.temperature_average_short),
-            measuredWidth - 2 * MARGIN_TEXT,
-            mHistoryTempYs[0] - mPaint.fontMetrics.bottom - MARGIN_TEXT,
+            measuredWidth - 2 * marginText,
+            mHistoryTempYs[0] - mPaint.fontMetrics.bottom - marginText,
             mPaint
         )
         canvas.drawText(
             context.getString(if (normals) R.string.temperature_normal_short else R.string.temperature_average_short),
-            measuredWidth - 2 * MARGIN_TEXT,
-            mHistoryTempYs[1] - mPaint.fontMetrics.top + MARGIN_TEXT,
+            measuredWidth - 2 * marginText,
+            mHistoryTempYs[1] - mPaint.fontMetrics.top + marginText,
             mPaint
         )
     }
@@ -132,39 +138,39 @@ class TrendLinearLayout @JvmOverloads constructor(
         if (lightTheme) {
             mLineColor = ColorUtils.setAlphaComponent(Color.BLACK, (255 * 0.075).toInt())
             mTextColor = ColorUtils.setAlphaComponent(
-                ContextCompat.getColor(
-                    context,
-                    R.color.colorTextDark2nd
-                ), (255 * 0.65).toInt()
+                ContextCompat.getColor(context, R.color.colorTextDark2nd),
+                (255 * 0.65).toInt()
             )
         } else {
             mLineColor = ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.15).toInt())
             mTextColor = ColorUtils.setAlphaComponent(
-                ContextCompat.getColor(
-                    context,
-                    R.color.colorTextLight2nd
-                ), (255 * 0.65).toInt()
+                ContextCompat.getColor(context, R.color.colorTextLight2nd),
+                (255 * 0.65).toInt()
             )
         }
     }
 
     fun setData(
-        historyTemps: Array<Float>, highestTemp: Float, lowestTemp: Float, unit: TemperatureUnit, daily: Boolean
+        historyTemps: Array<Float>,
+        highestTemp: Float,
+        lowestTemp: Float,
+        unit: TemperatureUnit,
+        daily: Boolean,
     ) {
         mHistoryTemps = historyTemps
         mHighestTemp = highestTemp
         mLowestTemp = lowestTemp
         mTemperatureUnit = unit
         if (daily) {
-            TREND_ITEM_HEIGHT = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X.toFloat())
-            BOTTOM_MARGIN = context.dpToPx(
-                (WidgetItemView.ICON_SIZE_DIP
-                    + WidgetItemView.ICON_MARGIN_DIP
-                    + WidgetItemView.MARGIN_VERTICAL_DIP).toFloat()
+            trendItemHeight = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X.toFloat())
+            bottomMargin = context.dpToPx(
+                (
+                    WidgetItemView.ICON_SIZE_DIP + WidgetItemView.ICON_MARGIN_DIP + WidgetItemView.MARGIN_VERTICAL_DIP
+                    ).toFloat()
             )
         } else {
-            TREND_ITEM_HEIGHT = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_1X.toFloat())
-            BOTTOM_MARGIN = context.dpToPx(WidgetItemView.MARGIN_VERTICAL_DIP.toFloat())
+            trendItemHeight = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_1X.toFloat())
+            bottomMargin = context.dpToPx(WidgetItemView.MARGIN_VERTICAL_DIP.toFloat())
         }
         invalidate()
     }
@@ -175,12 +181,14 @@ class TrendLinearLayout @JvmOverloads constructor(
                 computeSingleCoordinate(mHistoryTemps[0], mHighestTemp!!, mLowestTemp!!),
                 computeSingleCoordinate(mHistoryTemps[1], mHighestTemp!!, mLowestTemp!!)
             )
-        } else emptyArray()
+        } else {
+            emptyArray()
+        }
     }
 
     private fun computeSingleCoordinate(value: Float, max: Float, min: Float): Float {
-        val canvasHeight = TREND_ITEM_HEIGHT - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM
-        return (measuredHeight - BOTTOM_MARGIN - TREND_MARGIN_BOTTOM - canvasHeight * (value - min) / (max - min))
+        val canvasHeight = trendItemHeight - trendMarginTop - trendMarginBottom
+        return (measuredHeight - bottomMargin - trendMarginBottom - canvasHeight * (value - min) / (max - min))
     }
 
     fun setKeyLineVisibility(visibility: Boolean) {

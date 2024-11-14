@@ -38,7 +38,13 @@ object LocaleHelper {
                         val langTag = parser.getAttributeValue(i)
                         val displayName = getLocalizedDisplayName(langTag)
                         if (displayName.isNotEmpty()) {
-                            langs.add(Language(langTag, displayName/*, getDisplayName(langTag)*/))
+                            langs.add(
+                                Language(
+                                    langTag,
+                                    displayName
+                                    // getDisplayName(langTag)
+                                )
+                            )
                         }
                     }
                 }
@@ -47,7 +53,14 @@ object LocaleHelper {
         }
 
         langs.sortBy { it.displayName }
-        langs.add(0, Language("", context.getString(R.string.settings_follow_system)/*, null*/))
+        langs.add(
+            0,
+            Language(
+                "",
+                context.getString(R.string.settings_follow_system)
+                // null
+            )
+        )
 
         return langs.toImmutableList()
     }
@@ -76,6 +89,6 @@ object LocaleHelper {
     data class Language(
         val langTag: String,
         val displayName: String,
-        //val localizedDisplayName: String?,
+        // val localizedDisplayName: String?,
     )
 }

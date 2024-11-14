@@ -32,6 +32,7 @@ interface BroadcastSource : Source {
      * Return null if anything happens and you no longer want to send any data
      */
     fun getExtras(
-        context: Context, locations: List<Location>
+        context: Context,
+        locations: List<Location>,
     ): Bundle?
 }

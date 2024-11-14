@@ -18,16 +18,16 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
 // actual pressure = pressure(mb) * factor.
 enum class PressureUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
-    val decimalNumbers: Int = 0
-): UnitEnum<Double> {
+    val decimalNumbers: Int = 0,
+) : UnitEnum<Double> {
 
     MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }),
     KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10) }, 1),
@@ -35,14 +35,15 @@ enum class PressureUnit(
     ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, 3),
     MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) }),
     INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, 2),
-    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, 3);
+    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, 3),
+    ;
 
     companion object {
 
         const val NORMAL = 1013.25
 
         fun getInstance(
-            value: String
+            value: String,
         ) = PressureUnit.entries.firstOrNull {
             it.id == value
         } ?: MB
@@ -59,18 +60,18 @@ enum class PressureUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, this.decimalNumbers)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -81,13 +82,13 @@ enum class PressureUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

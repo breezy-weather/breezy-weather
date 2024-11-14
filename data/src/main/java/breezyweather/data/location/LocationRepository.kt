@@ -35,12 +35,15 @@ class LocationRepository(
                 parameters = handler.awaitList {
                     location_parametersQueries.getLocationParametersByLocationId(location.formattedId)
                 }.groupBy(
-                    { it.source }, { it.parameter to it.value_ }
+                    { it.source },
+                    { it.parameter to it.value_ }
                 ).mapValues { parameterList ->
                     parameterList.value.associate { it.first to it.second }
                 }
             )
-        } else location
+        } else {
+            location
+        }
     }
 
     suspend fun getFirstLocation(withParameters: Boolean = true): Location? {
@@ -53,12 +56,15 @@ class LocationRepository(
                 parameters = handler.awaitList {
                     location_parametersQueries.getLocationParametersByLocationId(location.formattedId)
                 }.groupBy(
-                    { it.source }, { it.parameter to it.value_ }
+                    { it.source },
+                    { it.parameter to it.value_ }
                 ).mapValues { parameterList ->
                     parameterList.value.associate { it.first to it.second }
                 }
             )
-        } else location
+        } else {
+            location
+        }
     }
 
     suspend fun getXLocations(limit: Int, withParameters: Boolean = true): List<Location> {
@@ -72,13 +78,16 @@ class LocationRepository(
                     parameters = handler.awaitList {
                         location_parametersQueries.getLocationParametersByLocationId(location.formattedId)
                     }.groupBy(
-                        { it.source }, { it.parameter to it.value_ }
+                        { it.source },
+                        { it.parameter to it.value_ }
                     ).mapValues { parameterList ->
                         parameterList.value.associate { it.first to it.second }
                     }
                 )
             }
-        } else locations
+        } else {
+            locations
+        }
     }
 
     suspend fun getAllLocations(withParameters: Boolean = true): List<Location> {
@@ -92,13 +101,16 @@ class LocationRepository(
                     parameters = handler.awaitList {
                         location_parametersQueries.getLocationParametersByLocationId(location.formattedId)
                     }.groupBy(
-                        { it.source }, { it.parameter to it.value_ }
+                        { it.source },
+                        { it.parameter to it.value_ }
                     ).mapValues { parameterList ->
                         parameterList.value.associate { it.first to it.second }
                     }
                 )
             }
-        } else locations
+        } else {
+            locations
+        }
     }
 
     suspend fun addAll(locations: List<Location>): List<Location> {
@@ -144,7 +156,8 @@ class LocationRepository(
                     // 3. Update location parameters
                     // 3a. Delete no longer existing parameters
                     location_parametersQueries.deleteAllNonMatchingParameters(
-                        location.formattedId, location.parameters.map { it.key }
+                        location.formattedId,
+                        location.parameters.map { it.key }
                     )
 
                     // 3b. Insert/replace parameters
@@ -173,7 +186,8 @@ class LocationRepository(
         handler.await(inTransaction = true) {
             // 3a. Delete no longer existing parameters
             location_parametersQueries.deleteAllNonMatchingParameters(
-                locationFormattedId, locationParameters.map { it.key }
+                locationFormattedId,
+                locationParameters.map { it.key }
             )
 
             // 3b. Insert/replace parameters
@@ -243,5 +257,4 @@ class LocationRepository(
             locationsQueries.deleteLocation(formattedId)
         }
     }
-
 }

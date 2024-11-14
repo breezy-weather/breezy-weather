@@ -27,5 +27,5 @@ data class MgmLocationResult(
     @SerialName("il") val province: String,
     @SerialName("ilce") val district: String?,
     @SerialName("merkezId") val currentStationId: Int,
-    @SerialName("saatlikTahminIstNo") val hourlyStationId: Int?
+    @SerialName("saatlikTahminIstNo") val hourlyStationId: Int?,
 )

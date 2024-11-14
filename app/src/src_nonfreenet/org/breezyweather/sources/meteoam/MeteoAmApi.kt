@@ -27,18 +27,18 @@ interface MeteoAmApi {
     @GET("deda-meteograms/api/GetMeteogram/preset1/{lat},{lon}")
     fun getForecast(
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<MeteoAmForecastResult>
 
     @GET("deda-ows/api/GetStationRadius/{lat}/{lon}")
     fun getCurrent(
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<MeteoAmObservationResult>
 
     @GET("geocoder/r/{lon}/{lat}")
     fun getReverseLocation(
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<MeteoAmReverseLocationResult>
 }

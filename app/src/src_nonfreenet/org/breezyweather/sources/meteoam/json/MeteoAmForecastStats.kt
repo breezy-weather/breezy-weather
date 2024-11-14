@@ -23,5 +23,5 @@ import java.util.Date
 @Serializable
 data class MeteoAmForecastStats(
     @Serializable(DateSerializer::class) val localDate: Date,
-    val icon: String?
+    val icon: String?,
 )

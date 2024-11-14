@@ -50,7 +50,7 @@ import javax.inject.Named
  */
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "openweather"
@@ -73,7 +73,9 @@ class OpenWeatherService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val apiKey = getApiKeyOrDefault()
         if (apiKey.isEmpty()) {
@@ -122,7 +124,7 @@ class OpenWeatherService @Inject constructor(
         return Observable.zip(forecast, current, airPollution) {
                 openWeatherForecastResult: OpenWeatherForecastResult,
                 openWeatherCurrentResult: OpenWeatherForecast,
-                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
+                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult,
             ->
             convert(
                 location,
@@ -146,11 +148,13 @@ class OpenWeatherService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            !requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            !requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        ) {
             return Observable.error(SourceNotInstalledException())
         }
 
@@ -188,7 +192,7 @@ class OpenWeatherService @Inject constructor(
 
         return Observable.zip(current, airPollution) {
                 openWeatherCurrentResult: OpenWeatherForecast,
-                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
+                openWeatherAirPollutionResult: OpenWeatherAirPollutionResult,
             ->
             convertSecondary(
                 openWeatherCurrentResult,

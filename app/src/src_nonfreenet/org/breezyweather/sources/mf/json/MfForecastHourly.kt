@@ -44,5 +44,5 @@ data class MfForecastHourly(
     @SerialName("snow_6h") val snow6h: Double?,
     @SerialName("snow_12h") val snow12h: Double?,
     @SerialName("snow_24h") val snow24h: Double?,
-    @SerialName("total_cloud_cover") val totalCloudCover: Int?
+    @SerialName("total_cloud_cover") val totalCloudCover: Int?,
 )

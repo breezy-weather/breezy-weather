@@ -67,9 +67,9 @@ class PrivacyPolicyActivity : GeoActivity() {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.about_privacy_policy),
                     onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = scrollBehavior
                 )
-            },
+            }
         ) { paddingValues ->
             PreferenceScreen(paddingValues = paddingValues) {
                 clickablePreferenceItem(R.string.breezy_weather) { id ->
@@ -82,13 +82,16 @@ class PrivacyPolicyActivity : GeoActivity() {
                     }
                 }
 
-                items(sourceManager.getHttpSources()
-                    .filter { it.privacyPolicyUrl.startsWith("http") }
-                    .sortedWith { s1, s2 -> // Sort by name because there are now a lot of sources
-                        Collator.getInstance(
-                            this@PrivacyPolicyActivity.currentLocale
-                        ).compare(s1.name, s2.name)
-                    }) { preferenceSource ->
+                items(
+                    sourceManager.getHttpSources()
+                        .filter { it.privacyPolicyUrl.startsWith("http") }
+                        .sortedWith { s1, s2 ->
+                            // Sort by name because there are now a lot of sources
+                            Collator.getInstance(
+                                this@PrivacyPolicyActivity.currentLocale
+                            ).compare(s1.name, s2.name)
+                        }
+                ) { preferenceSource ->
                     PreferenceView(
                         title = preferenceSource.name,
                         summary = preferenceSource.privacyPolicyUrl

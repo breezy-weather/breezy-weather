@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoAlertResult(
-    val features: List<MetNoAlert>? = null
+    val features: List<MetNoAlert>? = null,
 )

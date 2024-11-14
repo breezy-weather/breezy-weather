@@ -33,5 +33,5 @@ data class OpenMeteoAirQualityHourly(
     @SerialName("grass_pollen") val grassPollen: Array<Double?>?,
     @SerialName("mugwort_pollen") val mugwortPollen: Array<Double?>?,
     @SerialName("olive_pollen") val olivePollen: Array<Double?>?,
-    @SerialName("ragweed_pollen") val ragweedPollen: Array<Double?>?
+    @SerialName("ragweed_pollen") val ragweedPollen: Array<Double?>?,
 )

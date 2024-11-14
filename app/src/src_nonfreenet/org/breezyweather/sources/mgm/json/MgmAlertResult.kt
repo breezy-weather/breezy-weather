@@ -28,5 +28,5 @@ data class MgmAlertResult(
     val weather: MgmAlertWeather?,
     val towns: MgmAlertTowns?,
     @Serializable(DateSerializer::class) val begin: Date?,
-    @Serializable(DateSerializer::class) val end: Date?
+    @Serializable(DateSerializer::class) val end: Date?,
 )

@@ -39,11 +39,13 @@ object ResourcesProviderFactory {
         }
         return if (ChronusResourceProvider.isChronusIconProvider(context, packageName)) {
             ChronusResourceProvider(context, packageName, defaultProvider)
-        } else IconPackResourcesProvider(
-            context,
-            packageName,
-            defaultProvider
-        )
+        } else {
+            IconPackResourcesProvider(
+                context,
+                packageName,
+                defaultProvider
+            )
+        }
     }
 
     fun getProviderList(context: Context): List<ResourceProvider> {
@@ -55,9 +57,7 @@ object ResourcesProviderFactory {
         providerList.addAll(IconPackResourcesProvider.getProviderList(context, defaultProvider))
 
         // chronus icon pack.
-        val chronusIconPackList = ChronusResourceProvider.getProviderList(
-            context, defaultProvider
-        ).toMutableList()
+        val chronusIconPackList = ChronusResourceProvider.getProviderList(context, defaultProvider).toMutableList()
         for (i in chronusIconPackList.indices.reversed()) {
             for (resourceProvider in providerList) {
                 if (chronusIconPackList[i] == resourceProvider) {

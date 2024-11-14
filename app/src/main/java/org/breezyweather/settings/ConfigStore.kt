@@ -25,7 +25,7 @@ import android.content.Context
  */
 open class ConfigStore(
     context: Context,
-    name: String = context.packageName + "_preferences"
+    name: String = context.packageName + "_preferences",
 ) {
 
     private val preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE)

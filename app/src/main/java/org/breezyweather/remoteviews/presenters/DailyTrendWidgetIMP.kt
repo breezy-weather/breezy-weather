@@ -54,7 +54,10 @@ import kotlin.math.min
 
 object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context,
+        location: Location?,
+    ) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             innerUpdateWidget(context, location)
             return
@@ -63,7 +66,10 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     @WorkerThread
-    private fun innerUpdateWidget(context: Context, location: Location?) {
+    private fun innerUpdateWidget(
+        context: Context,
+        location: Location?,
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_daily_trend_setting))
         if (config.cardStyle == "none") {
             config.cardStyle = "auto"
@@ -71,9 +77,11 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTrendDailyProvider::class.java),
             getRemoteViews(
-                context, location,
+                context,
+                location,
                 context.getTabletListAdaptiveWidth(context.resources.displayMetrics.widthPixels),
-                config.cardStyle, config.cardAlpha
+                config.cardStyle,
+                config.cardAlpha
             )
         )
     }
@@ -81,7 +89,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     @WorkerThread
     @SuppressLint("InflateParams", "WrongThread")
     private fun getDrawableView(
-        context: Context, location: Location?, color: WidgetColor
+        context: Context,
+        location: Location?,
+        color: WidgetColor,
     ): View? {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
@@ -97,7 +107,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < daytimeTemperatures.size) {
-                daytimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                daytimeTemperatures[i] =
+                    weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -117,7 +128,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < nighttimeTemperatures.size) {
-                nighttimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                nighttimeTemperatures[i] =
+                    weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -157,7 +169,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             if (normals.daytimeTemperature != null &&
                 normals.nighttimeTemperature != null &&
                 highestTemperature != null &&
-                lowestTemperature != null) {
+                lowestTemperature != null
+            ) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
                 trendParent.normals = normals.month != null
                 trendParent.setData(
@@ -168,9 +181,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     true
                 )
                 trendParent.setColor(lightTheme)
-                trendParent.setKeyLineVisibility(
-                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-                )
+                trendParent.setKeyLineVisibility(SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled)
             }
         }
 
@@ -191,16 +202,16 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.setTitleText(
                     if (daily.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else daily.getWeek(location, context)
+                    } else {
+                        daily.getWeek(location, context)
+                    }
                 )
                 widgetItemView.setSubtitleText(
                     daily.date.getFormattedShortDayAndMonth(location, context)
                 )
                 daily.day?.weatherCode?.let {
                     widgetItemView.setTopIconDrawable(
-                        ResourceHelper.getWidgetNotificationIcon(
-                            provider, it, true, minimalIcon, lightTheme
-                        )
+                        ResourceHelper.getWidgetNotificationIcon(provider, it, true, minimalIcon, lightTheme)
                     )
                 }
                 val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total?.toFloat()
@@ -225,7 +236,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                         NumberFormat.getPercentInstance(context.currentLocale).apply {
                             maximumFractionDigits = 0
                         }.format(p.div(100.0))
-                    } else null,
+                    } else {
+                        null
+                    },
                     100f,
                     0f
                 )
@@ -234,7 +247,9 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     colors[2],
                     if (lightTheme) {
                         ColorUtils.setAlphaComponent(Color.BLACK, (255 * 0.05).toInt())
-                    } else ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.1).toInt())
+                    } else {
+                        ColorUtils.setAlphaComponent(Color.WHITE, (255 * 0.1).toInt())
+                    }
                 )
                 widgetItemView.trendItemView.setShadowColors(colors[1], colors[2], lightTheme)
                 widgetItemView.trendItemView.setTextColors(
@@ -260,9 +275,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.trendItemView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
                 daily.night?.weatherCode?.let {
                     widgetItemView.setBottomIconDrawable(
-                        ResourceHelper.getWidgetNotificationIcon(
-                            provider, it, false, minimalIcon, lightTheme
-                        )
+                        ResourceHelper.getWidgetNotificationIcon(provider, it, false, minimalIcon, lightTheme)
                     )
                 }
                 widgetItemView.setColor(lightTheme)
@@ -273,8 +286,11 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
     @WorkerThread
     fun getRemoteViews(
-        context: Context, location: Location?,
-        width: Int, cardStyle: String?, cardAlpha: Int
+        context: Context,
+        location: Location?,
+        width: Int,
+        cardStyle: String?,
+        cardAlpha: Int,
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_remote)
         val color = WidgetColor(
@@ -315,9 +331,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)
         views.setViewVisibility(R.id.widget_remote_progress, View.GONE)
         views.setImageViewResource(R.id.widget_remote_card, getCardBackgroundId(color))
-        views.setInt(
-            R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
-        )
+        views.setInt(R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         setOnClickPendingIntent(context, views, location!!)
         return views
     }
@@ -345,13 +359,13 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location
+        context: Context,
+        views: RemoteViews,
+        location: Location,
     ) {
         views.setOnClickPendingIntent(
             R.id.widget_remote_drawable,
-            getWeatherPendingIntent(
-                context, location, Widgets.TREND_DAILY_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.TREND_DAILY_PENDING_INTENT_CODE_WEATHER)
         )
     }
 }

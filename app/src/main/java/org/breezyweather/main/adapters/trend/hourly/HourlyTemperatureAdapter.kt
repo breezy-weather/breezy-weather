@@ -45,7 +45,7 @@ class HourlyTemperatureAdapter(
     location: Location,
     provider: ResourceProvider,
     unit: TemperatureUnit,
-    showPrecipitationProbability: Boolean = true
+    showPrecipitationProbability: Boolean = true,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatureUnit: TemperatureUnit = unit
@@ -99,7 +99,9 @@ class HourlyTemperatureAdapter(
                     NumberFormat.getPercentInstance(activity.currentLocale).apply {
                         maximumFractionDigits = 0
                     }.format(p.div(100.0))
-                } else null,
+                } else {
+                    null
+                },
                 100f,
                 0f
             )
@@ -155,7 +157,8 @@ class HourlyTemperatureAdapter(
         run {
             var i = 0
             while (i < mTemperatures.size) {
-                mTemperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                mTemperatures[i] =
+                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -189,8 +192,7 @@ class HourlyTemperatureAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 
@@ -218,7 +220,13 @@ class HourlyTemperatureAdapter(
                         activity,
                         normals.daytimeTemperature!!
                     ),
-                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(
+                        if (normals.month != null) {
+                            R.string.temperature_normal_short
+                        } else {
+                            R.string.temperature_average_short
+                        }
+                    ),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
@@ -229,7 +237,13 @@ class HourlyTemperatureAdapter(
                         activity,
                         normals.nighttimeTemperature!!
                     ),
-                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(
+                        if (normals.month != null) {
+                            R.string.temperature_normal_short
+                        } else {
+                            R.string.temperature_average_short
+                        }
+                    ),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )

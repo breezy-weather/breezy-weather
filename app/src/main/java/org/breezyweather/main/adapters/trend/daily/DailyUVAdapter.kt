@@ -39,9 +39,10 @@ import org.breezyweather.theme.weatherView.WeatherViewController
 /**
  * Daily UV adapter.
  */
-class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendAdapter(
-    activity, location
-) {
+class DailyUVAdapter(
+    activity: GeoActivity,
+    location: Location,
+) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
@@ -98,14 +99,11 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
     }
 
     init {
-        mHighestIndex = (location.weather!!.dailyForecast
-            .mapNotNull { it.uV?.index }
-            .maxOrNull() ?: 0.0).toFloat()
+        mHighestIndex = (location.weather!!.dailyForecast.mapNotNull { it.uV?.index }.maxOrNull() ?: 0.0).toFloat()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 
@@ -123,7 +121,8 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH.toFloat(), UV.UV_INDEX_HIGH.format(0),
+                UV.UV_INDEX_HIGH.toFloat(),
+                UV.UV_INDEX_HIGH.format(0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

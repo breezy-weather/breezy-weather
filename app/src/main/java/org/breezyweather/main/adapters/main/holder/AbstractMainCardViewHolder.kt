@@ -32,15 +32,20 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 @SuppressLint("ObjectAnimatorBinding")
-abstract class AbstractMainCardViewHolder(view: View) :
-    AbstractMainViewHolder(view) {
+abstract class AbstractMainCardViewHolder(
+    view: View,
+) : AbstractMainViewHolder(view) {
     private var mFirstCardHeaderController: FirstCardHeaderController? = null
     protected var mLocation: Location? = null
+
     @CallSuper
     open fun onBindView(
-        activity: GeoActivity, location: Location,
+        activity: GeoActivity,
+        location: Location,
         provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean, firstCard: Boolean
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        firstCard: Boolean,
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mLocation = location
@@ -67,9 +72,11 @@ abstract class AbstractMainCardViewHolder(view: View) :
 
     @SuppressLint("MissingSuperCall")
     override fun onBindView(
-        context: Context, location: Location,
+        context: Context,
+        location: Location,
         provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
     ) {
         throw RuntimeException("Deprecated method.")
     }

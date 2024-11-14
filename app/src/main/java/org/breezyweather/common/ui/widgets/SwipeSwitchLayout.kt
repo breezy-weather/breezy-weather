@@ -38,7 +38,9 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class SwipeSwitchLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr), NestedScrollingParent2, NestedScrollingParent3 {
     private var mTarget: View? = null
     private var mResetAnimation: SpringAnimation? = null
@@ -186,8 +188,9 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         val swipeDirection = if (mSwipeDistance < 0) SWIPE_DIRECTION_LEFT else SWIPE_DIRECTION_RIGHT
         val progress = abs(realDistance) / triggerDistance
         mTarget?.alpha = 1 - progress
-        mTarget?.translationX = (swipeDirection * translateRatio * triggerDistance
-            * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
+        mTarget?.translationX = (
+            swipeDirection * translateRatio * triggerDistance
+                * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
             ).toFloat()
         mSwitchListener?.onSwiped(swipeDirection, progress)
         mPageSwipeListener?.let {
@@ -233,7 +236,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     fun setData(currentIndex: Int, pageCount: Int) {
         if (currentIndex < 0 || currentIndex >= pageCount) {
             // Ignore, happens when location list is empty (initial install)
-            //throw RuntimeException("Invalid current index.")
+            // throw RuntimeException("Invalid current index.")
         } else {
             mPosition = currentIndex
             totalCount = pageCount
@@ -268,7 +271,11 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         if (mTarget == null && childCount > 0) {
             mTarget = getChildAt(0)
         }
-        return axes and ViewCompat.SCROLL_AXIS_HORIZONTAL != 0 && mSwitchListener != null && type == ViewCompat.TYPE_TOUCH && isEnabled && mTarget != null
+        return axes and ViewCompat.SCROLL_AXIS_HORIZONTAL != 0 &&
+            mSwitchListener != null &&
+            type == ViewCompat.TYPE_TOUCH &&
+            isEnabled &&
+            mTarget != null
     }
 
     override fun onNestedScrollAccepted(child: View, target: View, axes: Int, type: Int) {
@@ -280,7 +287,9 @@ class SwipeSwitchLayout @JvmOverloads constructor(
                     mSwipeDistance != 0
                 ) {
                     mNestedScrollingTrigger
-                } else 0f
+                } else {
+                    0f
+                }
         }
     }
 
@@ -302,8 +311,12 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     override fun onNestedScroll(
         target: View,
-        dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int,
-        type: Int, consumed: IntArray
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int,
+        consumed: IntArray,
     ) {
         innerNestedScroll(dxUnconsumed)
         consumed[0] += dxUnconsumed
@@ -311,8 +324,11 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     override fun onNestedScroll(
         target: View,
-        dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int,
-        type: Int
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int,
     ) {
         innerNestedScroll(dxUnconsumed)
     }
@@ -325,7 +341,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         target: View,
         velocityX: Float,
         velocityY: Float,
-        consumed: Boolean
+        consumed: Boolean,
     ): Boolean {
         return false
     }

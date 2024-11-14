@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AccuClimoNormalsTemperatures(
     val Maximum: AccuValueContainer,
-    val Minimum: AccuValueContainer
+    val Minimum: AccuValueContainer,
 )

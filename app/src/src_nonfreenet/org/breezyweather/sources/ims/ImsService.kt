@@ -46,13 +46,12 @@ import javax.inject.Named
  */
 class ImsService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, LocationParametersSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ims"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
                 else -> "Israel Meteorological Service"
@@ -60,7 +59,7 @@ class ImsService @Inject constructor(
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("he") || startsWith("iw") -> "https://ims.gov.il/he/termOfuse"
                 else -> "https://ims.gov.il/en/termOfuse"
@@ -84,14 +83,17 @@ class ImsService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
-        return location.countryCode.equals("IL", ignoreCase = true) || // Israel
-            location.countryCode.equals("PS", ignoreCase = true) // West Bank + Gaza Strip
+        // Israel + West Bank + Gaza Strip
+        return location.countryCode.equals("IL", ignoreCase = true) ||
+            location.countryCode.equals("PS", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val locationId = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationId") { null }
@@ -106,10 +108,7 @@ class ImsService @Inject constructor(
             else -> "en"
         }
 
-        return mApi.getWeather(languageCode, locationId)
-            .map {
-                convert(it, location)
-            }
+        return mApi.getWeather(languageCode, locationId).map { convert(it, location) }
     }
 
     // SECONDARY WEATHER SOURCE
@@ -118,7 +117,7 @@ class ImsService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -130,8 +129,9 @@ class ImsService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val locationId = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationId") { null }
@@ -146,15 +146,12 @@ class ImsService @Inject constructor(
             else -> "en"
         }
 
-        return mApi.getWeather(languageCode, locationId)
-            .map {
-                convertSecondary(it)
-            }
+        return mApi.getWeather(languageCode, locationId).map { convertSecondary(it) }
     }
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
@@ -201,7 +198,7 @@ class ImsService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
@@ -213,7 +210,8 @@ class ImsService @Inject constructor(
 
     // TODO: Redundant with reverse geocoding
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"

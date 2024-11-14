@@ -55,16 +55,20 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 fun LocationSettingsScreen(
     context: Activity,
     onNavigateBack: () -> Unit,
-    locationSources: List<LocationSource>
+    locationSources: List<LocationSource>,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
-    val accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION)
-    val accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION)
+    val accessCoarseLocationPermissionState =
+        rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION)
+    val accessFineLocationPermissionState =
+        rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION)
     val accessBackgroundLocationPermissionState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         // Only save the permission state on supported Android versions to
         // prevent a crash on older Android versions.
         rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-    } else null
+    } else {
+        null
+    }
 
     Material3Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -75,7 +79,7 @@ fun LocationSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             if (BuildConfig.FLAVOR != "freenet") {
@@ -107,36 +111,50 @@ fun LocationSettingsScreen(
                         },
                         onClick = {
                             if (accessCoarseLocationPermissionState.status != PermissionStatus.Granted) {
-                            if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                                if (
+                                    ActivityCompat.shouldShowRequestPermissionRationale(
+                                        context,
+                                        Manifest.permission.ACCESS_COARSE_LOCATION
+                                    )
+                                ) {
                                     accessCoarseLocationPermissionState.launchPermissionRequest()
                                 } else {
                                     context.openApplicationDetailsSettings()
                                 }
                             } else {
-                                SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
+                                SnackbarHelper.showSnackbar(
+                                    context.getString(R.string.settings_location_access_permission_already_granted)
+                                )
                             }
                         }
                     )
                 }
-            accessBackgroundLocationPermissionState?.let {
+                accessBackgroundLocationPermissionState?.let {
                     clickablePreferenceItem(R.string.settings_location_access_background_title) { id ->
                         PreferenceView(
                             titleId = id,
-                        summaryId = if (it.status == PermissionStatus.Granted) {
+                            summaryId = if (it.status == PermissionStatus.Granted) {
                                 R.string.settings_location_access_background_summaryOn
                             } else {
                                 R.string.settings_location_access_background_summaryOff
                             },
                             enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
                             onClick = {
-                            if (it.status != PermissionStatus.Granted) {
-                                if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
-                                    it.launchPermissionRequest()
+                                if (it.status != PermissionStatus.Granted) {
+                                    if (
+                                        ActivityCompat.shouldShowRequestPermissionRationale(
+                                            context,
+                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                                        )
+                                    ) {
+                                        it.launchPermissionRequest()
                                     } else {
                                         context.openApplicationDetailsSettings()
                                     }
                                 } else {
-                                    SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
+                                    SnackbarHelper.showSnackbar(
+                                        context.getString(R.string.settings_location_access_permission_already_granted)
+                                    )
                                 }
                             }
                         )
@@ -154,13 +172,20 @@ fun LocationSettingsScreen(
                             enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
                             onClick = {
                                 if (accessFineLocationPermissionState.status != PermissionStatus.Granted) {
-                                if (ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                                    if (
+                                        ActivityCompat.shouldShowRequestPermissionRationale(
+                                            context,
+                                            Manifest.permission.ACCESS_FINE_LOCATION
+                                        )
+                                    ) {
                                         accessFineLocationPermissionState.launchPermissionRequest()
                                     } else {
                                         context.openApplicationDetailsSettings()
                                     }
                                 } else {
-                                    SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
+                                    SnackbarHelper.showSnackbar(
+                                        context.getString(R.string.settings_location_access_permission_already_granted)
+                                    )
                                 }
                             }
                         )
@@ -183,7 +208,7 @@ fun LocationSettingsScreen(
                                     selectedKey = preference.selectedKey,
                                     valueArrayId = preference.valueArrayId,
                                     nameArrayId = preference.nameArrayId,
-                                    onValueChanged = preference.onValueChanged,
+                                    onValueChanged = preference.onValueChanged
                                 )
                             }
                         }

@@ -84,7 +84,7 @@ fun WidgetsSettingsScreen(
     updateWidgetIfNecessary: (Context) -> Unit,
     updateNotificationIfNecessary: (Context) -> Unit,
     broadcastDataIfNecessary: (Context, String) -> Unit,
-    broadcastSources: List<BroadcastSource>
+    broadcastSources: List<BroadcastSource>,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -97,7 +97,7 @@ fun WidgetsSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             // widget.
@@ -108,15 +108,24 @@ fun WidgetsSettingsScreen(
                     summaryId = R.string.settings_widgets_live_wallpaper_summary
                 ) {
                     try {
-                context.startActivity(Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
-                    .putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                        context.startActivity(
+                            Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+                                .putExtra(
+                                    WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
                                     ComponentName(context, MaterialLiveWallpaperService::class.java)
                                 )
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS))
+                                .addFlags(
+                                    Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                                )
+                        )
                     } catch (e: ActivityNotFoundException) {
                         try {
-                    context.startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS))
+                            context.startActivity(
+                                Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
+                                    .addFlags(
+                                        Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                                    )
+                            )
                         } catch (e2: ActivityNotFoundException) {
                             SnackbarHelper.showSnackbar(
                                 context.getString(
@@ -139,7 +148,7 @@ fun WidgetsSettingsScreen(
                             .getInstance(context)
                             .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
                         updateWidgetIfNecessary(context)
-                    },
+                    }
                 )
             }
             switchPreferenceItem(R.string.settings_widgets_monochrome_icons_title) { id ->
@@ -151,16 +160,23 @@ fun WidgetsSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons = it
                         updateWidgetIfNecessary(context)
-                    },
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_widgets_section_general)
 
-    if (DayWidgetIMP.isInUse(context) || WeekWidgetIMP.isInUse(context) || DayWeekWidgetIMP.isInUse(context) ||
-        ClockDayHorizontalWidgetIMP.isInUse(context) || ClockDayDetailsWidgetIMP.isInUse(context) ||
-                ClockDayVerticalWidgetIMP.isInUse(context) || ClockDayWeekWidgetIMP.isInUse(context) ||
-                TextWidgetIMP.isInUse(context) || DailyTrendWidgetIMP.isInUse(context) ||
-        HourlyTrendWidgetIMP.isInUse(context) || MultiCityWidgetIMP.isInUse(context)) {
+            if (DayWidgetIMP.isInUse(context) ||
+                WeekWidgetIMP.isInUse(context) ||
+                DayWeekWidgetIMP.isInUse(context) ||
+                ClockDayHorizontalWidgetIMP.isInUse(context) ||
+                ClockDayDetailsWidgetIMP.isInUse(context) ||
+                ClockDayVerticalWidgetIMP.isInUse(context) ||
+                ClockDayWeekWidgetIMP.isInUse(context) ||
+                TextWidgetIMP.isInUse(context) ||
+                DailyTrendWidgetIMP.isInUse(context) ||
+                HourlyTrendWidgetIMP.isInUse(context) ||
+                MultiCityWidgetIMP.isInUse(context)
+            ) {
                 sectionHeaderItem(R.string.settings_widgets_section_widgets_in_use)
                 if (DayWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_day) {
@@ -168,7 +184,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, DayWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, DayWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -178,7 +194,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, WeekWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, WeekWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -188,7 +204,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, DayWeekWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, DayWeekWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -198,7 +214,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, ClockDayHorizontalWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, ClockDayHorizontalWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -208,7 +224,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, ClockDayDetailsWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, ClockDayDetailsWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -218,7 +234,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, ClockDayVerticalWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, ClockDayVerticalWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -228,7 +244,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, ClockDayWeekWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, ClockDayWeekWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -238,7 +254,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, TextWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, TextWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -248,7 +264,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, DailyTrendWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, DailyTrendWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -258,7 +274,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, HourlyTrendWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, HourlyTrendWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -268,7 +284,7 @@ fun WidgetsSettingsScreen(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
-                    context.startActivity(Intent(context, MultiCityWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, MultiCityWidgetConfigActivity::class.java))
                         }
                     }
                 }
@@ -324,7 +340,7 @@ fun WidgetsSettingsScreen(
                             .getInstance(context)
                             .widgetNotificationStyle = NotificationStyle.getInstance(it)
                         updateNotificationIfNecessary(context)
-                    },
+                    }
                 )
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -376,10 +392,15 @@ fun WidgetsSettingsScreen(
                         val enabledPackages = (config.getString("packages", null) ?: "").let {
                             if (it.isNotEmpty()) {
                                 it.split(",")
-                            } else emptyList()
+                            } else {
+                                emptyList()
+                            }
                         }
                         PackagePreferenceView(
-                    title = stringResource(R.string.settings_widgets_broadcast_send_data_title, broadcastSource.name),
+                            title = stringResource(
+                                R.string.settings_widgets_broadcast_send_data_title,
+                                broadcastSource.name
+                            ),
                             intent = broadcastSource.intentAction,
                             selectedKeys = enabledPackages
                         ) {

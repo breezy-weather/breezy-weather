@@ -21,5 +21,5 @@ data class Config(
     var hasWeatherAnimators: Boolean = false,
     var hasMinimalIcons: Boolean = true,
     var hasShortcutIcons: Boolean = true,
-    var hasSunMoonDrawables: Boolean = true
+    var hasSunMoonDrawables: Boolean = true,
 )

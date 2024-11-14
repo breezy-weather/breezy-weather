@@ -26,8 +26,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.Title
 
 class TitleHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_title, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_title, parent, false)
 ) {
     private val mIcon: ImageView = itemView.findViewById(R.id.item_weather_daily_title_icon)
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_title_title)

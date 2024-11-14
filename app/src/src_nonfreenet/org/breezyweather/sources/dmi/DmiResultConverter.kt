@@ -39,7 +39,7 @@ import java.util.Objects
 
 fun convert(
     location: Location,
-    result: DmiResult
+    result: DmiResult,
 ): Location {
     return location.copy(
         cityId = result.id,
@@ -64,7 +64,7 @@ fun convert(
 fun convert(
     dmiResult: DmiResult,
     dmiWarningResult: DmiWarningResult,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
     if (dmiResult.timeserie.isNullOrEmpty()) {
@@ -84,7 +84,7 @@ fun convert(
  */
 private fun getDailyForecast(
     location: Location,
-    dailyResult: List<DmiTimeserie>
+    dailyResult: List<DmiTimeserie>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = dailyResult.groupBy {
@@ -107,7 +107,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    hourlyResult: List<DmiTimeserie>
+    hourlyResult: List<DmiTimeserie>,
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
@@ -119,7 +119,9 @@ private fun getHourlyForecast(
             ),
             precipitation = if (result.precip != null) {
                 Precipitation(total = result.precip)
-            } else null,
+            } else {
+                null
+            },
             wind = Wind(
                 degree = result.windDegree,
                 speed = result.windSpeed,
@@ -133,7 +135,7 @@ private fun getHourlyForecast(
 }
 
 private fun getAlertList(
-    resultList: List<DmiWarning>?
+    resultList: List<DmiWarning>?,
 ): List<Alert>? {
     if (resultList.isNullOrEmpty()) return null
     return resultList.map {
@@ -166,7 +168,6 @@ private fun getAlertList(
 fun convertSecondary(
     dmiWarningResult: DmiWarningResult,
 ): SecondaryWeatherWrapper {
-
     return SecondaryWeatherWrapper(
         alertList = getAlertList(dmiWarningResult.locationWarnings)
     )

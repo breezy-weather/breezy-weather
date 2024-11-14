@@ -87,7 +87,9 @@ fun PreferenceView(
 ) {
     val paddingValues = if (onClose == null) {
         PaddingValues(vertical = 8.dp)
-    } else PaddingValues(bottom = 8.dp)
+    } else {
+        PaddingValues(bottom = 8.dp)
+    }
     // TODO: Redundant
     if (card) {
         Material3CardListItem(
@@ -102,7 +104,7 @@ fun PreferenceView(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
                         onClick = onClick,
-                        enabled = enabled,
+                        enabled = enabled
                     )
                     .padding(paddingValues),
                 leadingContent = if (iconId != null) {
@@ -111,10 +113,12 @@ fun PreferenceView(
                             painter = painterResource(iconId),
                             tint = DayNightTheme.colors.titleColor,
                             contentDescription = null,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(24.dp)
                         )
                     }
-                } else null,
+                } else {
+                    null
+                },
                 headlineContent = {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -126,7 +130,7 @@ fun PreferenceView(
                             Text(
                                 text = title,
                                 color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleMedium
                             )
                         }
                         if (onClose != null) {
@@ -155,11 +159,13 @@ fun PreferenceView(
                             Text(
                                 text = summary,
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                         }
                     }
-                } else null
+                } else {
+                    null
+                }
             )
         }
     } else {
@@ -173,7 +179,7 @@ fun PreferenceView(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = onClick,
-                    enabled = enabled,
+                    enabled = enabled
                 )
                 .padding(paddingValues),
             leadingContent = if (iconId != null) {
@@ -182,10 +188,12 @@ fun PreferenceView(
                         painter = painterResource(iconId),
                         tint = DayNightTheme.colors.titleColor,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
-            } else null,
+            } else {
+                null
+            },
             headlineContent = {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -197,7 +205,7 @@ fun PreferenceView(
                         Text(
                             text = title,
                             color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium,
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
                     if (onClose != null) {
@@ -226,11 +234,13 @@ fun PreferenceView(
                         Text(
                             text = summary,
                             color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
-            } else null
+            } else {
+                null
+            }
         )
     }
 }

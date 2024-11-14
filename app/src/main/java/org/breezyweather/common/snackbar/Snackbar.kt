@@ -47,7 +47,7 @@ import org.breezyweather.common.extensions.doOnApplyWindowInsets
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,
-    private val mCardStyle: Boolean
+    private val mCardStyle: Boolean,
 ) {
     @Retention(AnnotationRetention.SOURCE)
     @IntDef(LENGTH_INDEFINITE, LENGTH_SHORT, LENGTH_LONG)
@@ -64,7 +64,13 @@ class Snackbar private constructor(
 
     class Callback {
         @Retention(AnnotationRetention.SOURCE)
-        @IntDef(DISMISS_EVENT_SWIPE, DISMISS_EVENT_ACTION, DISMISS_EVENT_TIMEOUT, DISMISS_EVENT_MANUAL, DISMISS_EVENT_CONSECUTIVE)
+        @IntDef(
+            DISMISS_EVENT_SWIPE,
+            DISMISS_EVENT_ACTION,
+            DISMISS_EVENT_TIMEOUT,
+            DISMISS_EVENT_MANUAL,
+            DISMISS_EVENT_CONSECUTIVE
+        )
         annotation class DismissEvent
 
         fun onDismissed(snackbar: Snackbar?, @DismissEvent event: Int) {}
@@ -113,8 +119,9 @@ class Snackbar private constructor(
     }
 
     fun setAction(
-        text: CharSequence?, shouldDismissOnClick: Boolean,
-        listener: View.OnClickListener?
+        text: CharSequence?,
+        shouldDismissOnClick: Boolean,
+        listener: View.OnClickListener?,
     ): Snackbar {
         mView.actionView?.let { tv ->
             if (text.isNullOrEmpty() || listener == null) {
@@ -198,11 +205,11 @@ class Snackbar private constructor(
 
                         override fun onDragStateChanged(state: Int) {
                             when (state) {
-                                SwipeDismissBehavior.STATE_DRAGGING, SwipeDismissBehavior.STATE_SETTLING -> SnackbarManager.instance
-                                    .cancelTimeout(mManagerCallback)
+                                SwipeDismissBehavior.STATE_DRAGGING, SwipeDismissBehavior.STATE_SETTLING ->
+                                    SnackbarManager.instance.cancelTimeout(mManagerCallback)
 
-                                SwipeDismissBehavior.STATE_IDLE -> SnackbarManager.instance
-                                    .restoreTimeout(mManagerCallback)
+                                SwipeDismissBehavior.STATE_IDLE ->
+                                    SnackbarManager.instance.restoreTimeout(mManagerCallback)
                             }
                         }
                     }
@@ -251,8 +258,10 @@ class Snackbar private constructor(
     private fun animateViewOut(event: Int) {
         mAnimator?.cancel()
         mAnimator = ObjectAnimator.ofFloat(
-            mView, "translationY", mView.translationY, mView.height
-                .toFloat()
+            mView,
+            "translationY",
+            mView.translationY,
+            mView.height.toFloat()
         ).apply {
             duration = ANIMATION_DURATION.toLong()
             interpolator = SnackbarAnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR
@@ -298,7 +307,8 @@ class Snackbar private constructor(
         }
 
     open class SnackbarLayout @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null
+        context: Context,
+        attrs: AttributeSet? = null,
     ) : ViewGroup(context, attrs) {
         private val mWindowInsets: Rect = Rect()
         var messageView: TextView? = null
@@ -312,7 +322,9 @@ class Snackbar private constructor(
             fun onViewDetachedFromWindow(v: View?)
         }
 
-        private var mOnLayoutChangeListener: ((view: View?, left: Int, top: Int, right: Int, bottom: Int) -> Unit)? = null
+        private var mOnLayoutChangeListener: (
+            (view: View?, left: Int, top: Int, right: Int, bottom: Int) -> Unit
+        )? = null
         private var mOnAttachStateChangeListener: OnAttachStateChangeListener? = null
 
         init {
@@ -340,10 +352,7 @@ class Snackbar private constructor(
             // Do not apply horizontal insets in home fragment
             val isHomeFragment = this.parent is CoordinatorLayout
             val insets = ViewCompat.getRootWindowInsets(this)
-            val i = insets?.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-                        + WindowInsetsCompat.Type.displayCutout()
-            )
+            val i = insets?.getInsets(WindowInsetsCompat.Type.systemBars() + WindowInsetsCompat.Type.displayCutout())
             if (i != null) {
                 val rInsets = Rect(
                     if (isHomeFragment) 0 else i.left,
@@ -392,10 +401,8 @@ class Snackbar private constructor(
                 heightUsed
             )
             var lp = child.layoutParams as MarginLayoutParams
-            width = (child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin
-                + paddingLeft + paddingRight)
-            height = (child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin
-                + paddingTop + paddingBottom)
+            width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
+            height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
             if (mMaxWidth > 0 && width > mMaxWidth) {
                 widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.EXACTLY)
                 measureChildWithMargins(
@@ -406,10 +413,8 @@ class Snackbar private constructor(
                     heightUsed
                 )
                 lp = child.layoutParams as MarginLayoutParams
-                width = (child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin
-                    + paddingLeft + paddingRight)
-                height = (child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin
-                    + paddingTop + paddingBottom)
+                width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
+                height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
             }
             setMeasuredDimension(width, height)
         }
@@ -419,8 +424,9 @@ class Snackbar private constructor(
 
             // Set left insets for system bars and evenly align the snackbar
             // within the safe drawing area.
-            val x = mWindowInsets.left + (measuredWidth - child.measuredWidth - mWindowInsets.left
-                    - mWindowInsets.right) / 2
+            val x = mWindowInsets.left + (
+                measuredWidth - child.measuredWidth - mWindowInsets.left - mWindowInsets.right
+                ) / 2
             child.layout(x, 0, x + child.measuredWidth, child.measuredHeight)
             mOnLayoutChangeListener?.invoke(this, l, t, r, b)
         }
@@ -479,7 +485,9 @@ class Snackbar private constructor(
             }
         }
 
-        fun setOnLayoutChangeListener(onLayoutChangeListener: ((view: View?, left: Int, top: Int, right: Int, bottom: Int) -> Unit)?) {
+        fun setOnLayoutChangeListener(
+            onLayoutChangeListener: ((view: View?, left: Int, top: Int, right: Int, bottom: Int) -> Unit)?,
+        ) {
             mOnLayoutChangeListener = onLayoutChangeListener
         }
 
@@ -502,16 +510,16 @@ class Snackbar private constructor(
         }
 
         override fun onInterceptTouchEvent(
-            parent: CoordinatorLayout, child: SnackbarLayout,
-            event: MotionEvent
+            parent: CoordinatorLayout,
+            child: SnackbarLayout,
+            event: MotionEvent,
         ): Boolean {
             if (parent.isPointInChildBounds(child, event.x.toInt(), event.y.toInt())) {
                 when (event.actionMasked) {
-                    MotionEvent.ACTION_DOWN -> SnackbarManager.instance
-                        .cancelTimeout(mManagerCallback)
+                    MotionEvent.ACTION_DOWN -> SnackbarManager.instance.cancelTimeout(mManagerCallback)
 
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> SnackbarManager.instance
-                        .restoreTimeout(mManagerCallback)
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
+                        SnackbarManager.instance.restoreTimeout(mManagerCallback)
                 }
             }
             return super.onInterceptTouchEvent(parent, child, event)
@@ -524,26 +532,31 @@ class Snackbar private constructor(
         const val LENGTH_LONG = 0
         const val ANIMATION_DURATION = 450
         const val ANIMATION_FADE_DURATION = 200
-        private val sHandler: Handler = Handler(Looper.getMainLooper(), Handler.Callback { message: Message ->
-            when (message.what) {
-                MSG_SHOW -> {
-                    (message.obj as Snackbar).showView()
-                    return@Callback true
-                }
+        private val sHandler: Handler = Handler(
+            Looper.getMainLooper(),
+            Handler.Callback { message: Message ->
+                when (message.what) {
+                    MSG_SHOW -> {
+                        (message.obj as Snackbar).showView()
+                        return@Callback true
+                    }
 
-                MSG_DISMISS -> {
-                    (message.obj as Snackbar).hideView(message.arg1)
-                    return@Callback true
+                    MSG_DISMISS -> {
+                        (message.obj as Snackbar).hideView(message.arg1)
+                        return@Callback true
+                    }
                 }
+                false
             }
-            false
-        })
+        )
         private const val MSG_SHOW = 0
         private const val MSG_DISMISS = 1
 
         fun make(
-            view: View, text: CharSequence,
-            @Duration duration: Int, cardStyle: Boolean
+            view: View,
+            text: CharSequence,
+            @Duration duration: Int,
+            cardStyle: Boolean,
         ): Snackbar {
             val snackbar = Snackbar(findSuitableParent(view), cardStyle)
             snackbar.setText(text)
@@ -552,8 +565,10 @@ class Snackbar private constructor(
         }
 
         fun make(
-            view: View, @StringRes resId: Int,
-            @Duration duration: Int, cardStyle: Boolean
+            view: View,
+            @StringRes resId: Int,
+            @Duration duration: Int,
+            cardStyle: Boolean,
         ): Snackbar {
             return make(view, view.resources.getText(resId), duration, cardStyle)
         }

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MeteoAmReverseLocationResult(
-    val results: List<MeteoAmReverseLocation>?
+    val results: List<MeteoAmReverseLocation>?,
 )

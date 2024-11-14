@@ -34,7 +34,9 @@ import org.breezyweather.common.ui.widgets.trend.item.AbsTrendItemView
  * Trend recycler view.
  */
 class TrendRecyclerView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0,
 ) : RecyclerView(context, attrs, defStyle) {
     private val mPaint = Paint().apply {
         isAntiAlias = true
@@ -57,11 +59,11 @@ class TrendRecyclerView @JvmOverloads constructor(
         var value: Float,
         var contentLeft: String?,
         var contentRight: String?,
-        var contentPosition: ContentPosition
+        var contentPosition: ContentPosition,
     ) {
         enum class ContentPosition {
             ABOVE_LINE,
-            BELOW_LINE
+            BELOW_LINE,
         }
     }
 
@@ -83,7 +85,12 @@ class TrendRecyclerView @JvmOverloads constructor(
     }
 
     private fun drawKeyLines(canvas: Canvas) {
-        if (!mKeyLineVisibility || mKeyLineList == null || mKeyLineList!!.isEmpty() || mHighestData == null || mLowestData == null) {
+        if (!mKeyLineVisibility ||
+            mKeyLineList == null ||
+            mKeyLineList!!.isEmpty() ||
+            mHighestData == null ||
+            mLowestData == null
+        ) {
             return
         }
         if (childCount > 0) {
@@ -111,7 +118,9 @@ class TrendRecyclerView @JvmOverloads constructor(
                 textSize = mTextSize.toFloat()
                 color = if (context.isDarkMode) {
                     ContextCompat.getColor(context, R.color.colorTextGrey)
-                } else ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+                } else {
+                    ContextCompat.getColor(context, R.color.colorTextGrey2nd)
+                }
             }
             when (line.contentPosition) {
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE -> {

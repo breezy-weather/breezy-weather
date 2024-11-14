@@ -39,7 +39,7 @@ data class Alert(
     val instruction: String? = null,
     val source: String? = null,
     val severity: AlertSeverity = AlertSeverity.UNKNOWN,
-    @ColorInt val color: Int
+    @ColorInt val color: Int,
 ) : Serializable {
 
     companion object {
@@ -54,5 +54,4 @@ data class Alert(
             }
         }
     }
-
 }

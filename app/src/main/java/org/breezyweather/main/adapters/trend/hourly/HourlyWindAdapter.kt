@@ -40,9 +40,11 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 /**
  * Hourly wind adapter.
  */
-class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUnit) : AbsHourlyTrendAdapter(
-    activity, location
-) {
+class HourlyWindAdapter(
+    activity: GeoActivity,
+    location: Location,
+    unit: SpeedUnit,
+) : AbsHourlyTrendAdapter(activity, location) {
     private val mSpeedUnit: SpeedUnit = unit
     private var mHighestWindSpeed: Float = 0f
 
@@ -112,8 +114,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

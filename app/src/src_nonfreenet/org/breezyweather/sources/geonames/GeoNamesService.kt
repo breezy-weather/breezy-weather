@@ -39,7 +39,7 @@ import javax.inject.Named
 
 class GeoNamesService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), LocationSearchSource, ConfigurableSource {
 
     override val id = "geonames"
@@ -57,7 +57,7 @@ class GeoNamesService @Inject constructor(
 
     override fun requestLocationSearch(
         context: Context,
-        query: String
+        query: String,
     ): Observable<List<Location>> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

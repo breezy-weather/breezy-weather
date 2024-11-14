@@ -30,8 +30,7 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_overview, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_overview, parent, false)
 ) {
     private val mIcon: AnimatableIconView = itemView.findViewById(R.id.item_weather_daily_overview_icon)
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_overview_text)

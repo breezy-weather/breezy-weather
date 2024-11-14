@@ -29,7 +29,7 @@ data class EcccResult(
     // Especially around midnight
     // Or when you have something like that:
     /**
-     * {
+      {
          "set": {
            "time12h": "",
            "epochTimeRounded": "",
@@ -44,7 +44,7 @@ data class EcccResult(
          }
        }
      */
-    //val riseSet: EcccRiseSet?,
-    //val riseSetNextDay: EcccRiseSet?
-    // val riseData: List<EcccRiseSet>?
+    // val riseSet: EcccRiseSet?,
+    // val riseSetNextDay: EcccRiseSet?,
+    // val riseData: List<EcccRiseSet>?,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaNormalsLocation(
-    val stationObsStatistics: CwaNormalsStationObsStatistics?
+    val stationObsStatistics: CwaNormalsStationObsStatistics?,
 )

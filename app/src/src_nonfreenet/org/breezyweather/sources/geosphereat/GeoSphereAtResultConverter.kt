@@ -53,10 +53,12 @@ fun convert(
     airQualityResult: GeoSphereAtTimeseriesResult,
     nowcastResult: GeoSphereAtTimeseriesResult,
     alertsResult: GeoSphereAtWarningsResult,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
-    if (hourlyResult.timestamps.isNullOrEmpty() || hourlyResult.features?.getOrNull(0)?.properties?.parameters == null) {
+    if (hourlyResult.timestamps.isNullOrEmpty() ||
+        hourlyResult.features?.getOrNull(0)?.properties?.parameters == null
+    ) {
         throw InvalidOrIncompleteDataException()
     }
 
@@ -73,7 +75,7 @@ fun convert(
  */
 private fun getDailyForecast(
     hourlyResult: GeoSphereAtTimeseriesResult,
-    location: Location
+    location: Location,
 ): List<Daily> {
     val dayList = hourlyResult.timestamps!!.map {
         it.getFormattedDate("yyyy-MM-dd", location)
@@ -99,7 +101,7 @@ private fun getDailyForecast(
  */
 private fun getHourlyForecast(
     hourlyResult: GeoSphereAtTimeseriesResult,
-    airQualityResult: GeoSphereAtTimeseriesResult
+    airQualityResult: GeoSphereAtTimeseriesResult,
 ): List<HourlyWrapper> {
     return hourlyResult.timestamps!!.mapIndexed { i, date ->
         // Wind
@@ -115,13 +117,19 @@ private fun getHourlyForecast(
                 // https://confluence.ecmwf.int/pages/viewpage.action?pageId=133262398
                 (180 + (180 / Math.PI) * atan2(windU, windV)).mod(360.0)
             }
-        } else null
+        } else {
+            null
+        }
         val windSpeed = if (windU != null && windV != null) {
             sqrt(windU.pow(2) + windV.pow(2))
-        } else null
+        } else {
+            null
+        }
         val windGustSpeed = if (windGustU != null && windGustV != null) {
             sqrt(windGustU.pow(2) + windGustV.pow(2))
-        } else null
+        } else {
+            null
+        }
 
         // Air quality
         val airQualityIndex = airQualityResult.timestamps?.indexOfFirst { it == date }
@@ -146,28 +154,41 @@ private fun getHourlyForecast(
                     degree = windDegree,
                     gusts = windGustSpeed
                 )
-            } else null,
+            } else {
+                null
+            },
             airQuality = if (airQualityIndex != null &&
-                airQualityResult.features?.getOrNull(0)?.properties?.parameters != null) {
+                airQualityResult.features?.getOrNull(0)?.properties?.parameters != null
+            ) {
                 AirQuality(
-                    pM25 = airQualityResult.features[0].properties!!.parameters!!.pm25surf?.data?.getOrNull(airQualityIndex),
-                    pM10 = airQualityResult.features[0].properties!!.parameters!!.pm10surf?.data?.getOrNull(airQualityIndex),
-                    nO2 = airQualityResult.features[0].properties!!.parameters!!.no2surf?.data?.getOrNull(airQualityIndex),
+                    pM25 = airQualityResult.features[0].properties!!.parameters!!.pm25surf?.data?.getOrNull(
+                        airQualityIndex
+                    ),
+                    pM10 = airQualityResult.features[0].properties!!.parameters!!.pm10surf?.data?.getOrNull(
+                        airQualityIndex
+                    ),
+                    nO2 = airQualityResult.features[0].properties!!.parameters!!.no2surf?.data?.getOrNull(
+                        airQualityIndex
+                    ),
                     o3 = airQualityResult.features[0].properties!!.parameters!!.o3surf?.data?.getOrNull(airQualityIndex)
                 )
-            } else null,
+            } else {
+                null
+            },
             relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i),
             pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.div(100),
-            cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)?.roundToInt()
+            cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)
+                ?.roundToInt()
         )
     }
 }
 
 private fun getMinutelyForecast(
-    nowcastResult: GeoSphereAtTimeseriesResult
+    nowcastResult: GeoSphereAtTimeseriesResult,
 ): List<Minutely>? {
-    if (nowcastResult.timestamps.isNullOrEmpty()
-        || nowcastResult.features?.getOrNull(0)?.properties?.parameters?.rr?.data == null) {
+    if (nowcastResult.timestamps.isNullOrEmpty() ||
+        nowcastResult.features?.getOrNull(0)?.properties?.parameters?.rr?.data == null
+    ) {
         return null
     }
 
@@ -180,7 +201,8 @@ private fun getMinutelyForecast(
              * However, since it's 15 min by 15 min, and we want mm/h unit, we just have to multiply
              * by 4, right?
              */
-            precipitationIntensity = nowcastResult.features[0].properties!!.parameters!!.rr!!.data!!.getOrNull(i)?.times(4)
+            precipitationIntensity = nowcastResult.features[0].properties!!.parameters!!.rr!!.data!!.getOrNull(i)
+                ?.times(4)
         )
     }
 }
@@ -194,9 +216,7 @@ fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
             endDate = result.properties.rawInfo?.end?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
             headline = result.properties.text,
             description = "${result.properties.meteotext.let {
-                if (!it.isNullOrEmpty()) {
-                    it + "\n\n"
-                } else ""
+                if (!it.isNullOrEmpty()) it + "\n\n" else ""
             }}${result.properties.consequences}",
             instruction = result.properties.instructions,
             source = "GeoSphere Austria",
@@ -219,12 +239,13 @@ fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
 fun convertSecondary(
     airQualityResult: GeoSphereAtTimeseriesResult,
     nowcastResult: GeoSphereAtTimeseriesResult,
-    alertsResult: GeoSphereAtWarningsResult
+    alertsResult: GeoSphereAtWarningsResult,
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
 
-    if (!airQualityResult.timestamps.isNullOrEmpty()
-        && airQualityResult.features?.getOrNull(0)?.properties?.parameters != null) {
+    if (!airQualityResult.timestamps.isNullOrEmpty() &&
+        airQualityResult.features?.getOrNull(0)?.properties?.parameters != null
+    ) {
         airQualityResult.timestamps.forEachIndexed { i, date ->
             airQualityHourly[date] = AirQuality(
                 pM25 = airQualityResult.features[0].properties!!.parameters!!.pm25surf?.data?.getOrNull(i),
@@ -238,7 +259,9 @@ fun convertSecondary(
     return SecondaryWeatherWrapper(
         airQuality = if (airQualityHourly.isNotEmpty()) {
             AirQualityWrapper(hourlyForecast = airQualityHourly)
-        } else null,
+        } else {
+            null
+        },
         minutelyForecast = getMinutelyForecast(nowcastResult),
         alertList = getAlerts(alertsResult)
     )

@@ -32,13 +32,17 @@ class LocationModel(
     val location: Location,
     val mainWeatherSource: MainWeatherSource?,
     unit: TemperatureUnit, // TODO: Add back temperature
-    var selected: Boolean
+    var selected: Boolean,
 ) {
     var weatherCode: WeatherCode? = null
     var weatherText: String? = null
     val currentPosition: Boolean = location.isCurrentPosition
     val title: String = location.getPlace(context, true)
-    val body: String = if (location.isUsable) location.administrationLevels() else context.getString(R.string.location_current_not_found_yet)
+    val body: String = if (location.isUsable) {
+        location.administrationLevels()
+    } else {
+        context.getString(R.string.location_current_not_found_yet)
+    }
     var alerts: String? = null
 
     init {
@@ -57,27 +61,19 @@ class LocationModel(
                         } ?: context.getString(R.string.alert)
                     )
                     alert.startDate?.let { startDate ->
-                        val startDateDay = startDate.getFormattedShortDayAndMonth(
-                            location, context
-                        )
+                        val startDateDay = startDate.getFormattedShortDayAndMonth(location, context)
                         builder.append(context.getString(R.string.comma_separator))
                             .append(startDateDay)
                             .append(context.getString(R.string.comma_separator))
-                            .append(
-                                startDate.getFormattedTime(location, context, context.is12Hour)
-                            )
+                            .append(startDate.getFormattedTime(location, context, context.is12Hour))
                         alert.endDate?.let { endDate ->
                             builder.append("-")
-                            val endDateDay = endDate.getFormattedShortDayAndMonth(
-                                location, context
-                            )
+                            val endDateDay = endDate.getFormattedShortDayAndMonth(location, context)
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(context.getString(R.string.comma_separator))
                             }
-                            builder.append(
-                                endDate.getFormattedTime(location, context, context.is12Hour)
-                            )
+                            builder.append(endDate.getFormattedTime(location, context, context.is12Hour))
                         }
                     }
                 }

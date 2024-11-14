@@ -34,7 +34,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 class MeteorShowerImplementor(
     @Size(2) canvasSizes: IntArray,
-    animate: Boolean
+    animate: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
@@ -50,7 +50,7 @@ class MeteorShowerImplementor(
         private val mViewWidth: Int,
         private val mViewHeight: Int,
         @ColorInt val color: Int,
-        val scale: Float
+        val scale: Float,
     ) {
         var x = 0f
         var y = 0f
@@ -64,32 +64,33 @@ class MeteorShowerImplementor(
         private val random: Random = Random()
 
         private val mCanvasSize: Int
-        private val MAX_HEIGHT: Float
-        private val MIN_HEIGHT: Float
+        private val maxHeight: Float
+        private val minHeight: Float
 
         init { // 1, 0.7, 0.4
-            mCanvasSize =
-                (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
+            mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
             width = (mViewWidth * 0.0088 * scale).toFloat()
             speed = mViewWidth / 200f
-            MAX_HEIGHT = (1.1 * mViewWidth / cos(60.0 * Math.PI / 180.0)).toFloat()
-            MIN_HEIGHT = (MAX_HEIGHT * 0.7).toFloat()
+            maxHeight = (1.1 * mViewWidth / cos(60.0 * Math.PI / 180.0)).toFloat()
+            minHeight = (maxHeight * 0.7).toFloat()
 
             init(true)
         }
 
         private fun init(firstTime: Boolean) {
             progress = 0
-            delay = (random.nextInt(
-                METEOR_REVIVE_SECONDS_MAX - METEOR_REVIVE_SECONDS_MIN
-            ) + METEOR_REVIVE_SECONDS_MIN).seconds.inWholeMilliseconds
+            delay = (random.nextInt(METEOR_REVIVE_SEC_MAX - METEOR_REVIVE_SEC_MIN) + METEOR_REVIVE_SEC_MIN)
+                .seconds.inWholeMilliseconds
 
             x = random.nextInt(mCanvasSize).toFloat()
             y = if (!firstTime) {
-                random.nextInt(mCanvasSize) - MAX_HEIGHT - mCanvasSize
-            } else mCanvasSize.toFloat() * 2 // prevents spawning all at once
+                random.nextInt(mCanvasSize) - maxHeight - mCanvasSize
+            } else {
+                // prevents spawning all at once
+                mCanvasSize.toFloat() * 2
+            }
 
-            height = MIN_HEIGHT + random.nextFloat() * (MAX_HEIGHT - MIN_HEIGHT)
+            height = minHeight + random.nextFloat() * (maxHeight - minHeight)
             buildRectF()
         }
 
@@ -110,18 +111,22 @@ class MeteorShowerImplementor(
         }
 
         private fun move(interval: Long, deltaRotation3D: Float) {
-            x -= (speed * interval * 5
-                * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0)).toFloat()
-            y += (speed * interval
-                * (scale.toDouble().pow(0.5)
-                - 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(60 * Math.PI / 180.0))).toFloat()
+            x -= (speed * interval * 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0))
+                .toFloat()
+            y += speed
+                .times(interval)
+                .times(
+                    scale.toDouble().pow(0.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0) * sin(60 * Math.PI / 180.0)
+                ).toFloat()
         }
     }
 
     private class Star(
-        var centerX: Float, var centerY: Float, radius: Float,
+        var centerX: Float,
+        var centerY: Float,
+        radius: Float,
         @field:ColorInt @param:ColorInt var color: Int,
-        var duration: Long
+        var duration: Long,
     ) {
         var radius: Float
         var alpha = 0f
@@ -164,14 +169,15 @@ class MeteorShowerImplementor(
             Color.rgb(240, 220, 151)
         )
 
-        mMeteors = Array(if(mAnimate) 10 else 0) {
+        mMeteors = Array(if (mAnimate) 10 else 0) {
             Meteor(
-                viewWidth, viewHeight,
-                colors[random.nextInt(colors.size)], random.nextFloat()
+                viewWidth,
+                viewHeight,
+                colors[random.nextInt(colors.size)],
+                random.nextFloat()
             )
         }
-        val canvasSize =
-            (viewWidth.toDouble().pow(2.0) + viewHeight.toDouble().pow(2.0)).pow(0.5).toInt()
+        val canvasSize = (viewWidth.toDouble().pow(2.0) + viewHeight.toDouble().pow(2.0)).pow(0.5).toInt()
         val width = (1.0 * canvasSize).toInt()
         val height = ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111).toInt()
         val radius = (0.00125 * canvasSize * (0.5 + random.nextFloat())).toFloat()
@@ -191,8 +197,10 @@ class MeteorShowerImplementor(
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         for (m in mMeteors) {
             m.update(
@@ -207,8 +215,11 @@ class MeteorShowerImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         if (scrollRate < 1) {
             canvas.rotate(
@@ -236,8 +247,10 @@ class MeteorShowerImplementor(
                     alpha = ((1 - scrollRate) * 255).toInt()
                 }
                 canvas.drawLine(
-                    m.rectF.centerX(), m.rectF.top,
-                    m.rectF.centerX(), m.rectF.bottom,
+                    m.rectF.centerX(),
+                    m.rectF.top,
+                    m.rectF.centerX(),
+                    m.rectF.bottom,
                     mPaint
                 )
             }
@@ -246,8 +259,8 @@ class MeteorShowerImplementor(
 
     companion object {
         private const val INITIAL_ROTATION_3D = 1000f
-        private const val METEOR_REVIVE_SECONDS_MIN = 5
-        private const val METEOR_REVIVE_SECONDS_MAX = 25
+        private const val METEOR_REVIVE_SEC_MIN = 5
+        private const val METEOR_REVIVE_SEC_MAX = 25
 
         @get:ColorInt
         val themeColor: Int

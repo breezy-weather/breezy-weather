@@ -43,7 +43,10 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -93,7 +96,7 @@ fun ListPreferenceView(
         card = card,
         colors = colors,
         withState = withState,
-        onValueChanged = onValueChanged,
+        onValueChanged = onValueChanged
     )
 }
 
@@ -130,7 +133,7 @@ fun ListPreferenceView(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
                         onClick = { dialogOpenState.value = true },
-                        enabled = enabled,
+                        enabled = enabled
                     )
                     .padding(PaddingValues(vertical = 8.dp)),
                 leadingContent = if (iconId != null) {
@@ -139,10 +142,12 @@ fun ListPreferenceView(
                             painter = painterResource(iconId),
                             tint = DayNightTheme.colors.titleColor,
                             contentDescription = null,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(24.dp)
                         )
                     }
-                } else null,
+                } else {
+                    null
+                },
                 headlineContent = {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -154,7 +159,7 @@ fun ListPreferenceView(
                             Text(
                                 text = title,
                                 color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleMedium
                             )
                         }
                     }
@@ -166,11 +171,13 @@ fun ListPreferenceView(
                             Text(
                                 text = currentSummary,
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                         }
                     }
-                } else null
+                } else {
+                    null
+                }
             )
         }
     } else {
@@ -184,7 +191,7 @@ fun ListPreferenceView(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = { dialogOpenState.value = true },
-                    enabled = enabled,
+                    enabled = enabled
                 )
                 .padding(PaddingValues(vertical = 8.dp)),
             leadingContent = if (iconId != null) {
@@ -193,10 +200,12 @@ fun ListPreferenceView(
                         painter = painterResource(iconId),
                         tint = DayNightTheme.colors.titleColor,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
-            } else null,
+            } else {
+                null
+            },
             headlineContent = {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -208,7 +217,7 @@ fun ListPreferenceView(
                         Text(
                             text = title,
                             color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium,
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
                 }
@@ -220,11 +229,13 @@ fun ListPreferenceView(
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
-            } else null
+            } else {
+                null
+            }
         )
     }
 
@@ -235,18 +246,20 @@ fun ListPreferenceView(
                 Text(
                     text = title,
                     color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall
                 )
             },
             text = {
                 LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     items(valueArray.zip(nameArray)) {
                         RadioButton(
                             selected = if (withState) {
                                 listSelectedState.value == it.first
-                            } else selectedKey == it.first,
+                            } else {
+                                selectedKey == it.first
+                            },
                             onClick = {
                                 if (withState) {
                                     listSelectedState.value = it.first
@@ -254,7 +267,7 @@ fun ListPreferenceView(
                                 dialogOpenState.value = false
                                 onValueChanged(it.first)
                             },
-                            text = it.second,
+                            text = it.second
                         )
                     }
                 }
@@ -266,7 +279,7 @@ fun ListPreferenceView(
                     Text(
                         text = stringResource(R.string.action_cancel),
                         color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
+                        style = MaterialTheme.typography.labelLarge
                     )
                 }
             },
@@ -287,12 +300,12 @@ internal fun RadioButton(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = themeRipple(),
-                onClick = onClick,
+                onClick = onClick
             )
             .padding(
-                horizontal = dimensionResource(R.dimen.little_margin),
+                horizontal = dimensionResource(R.dimen.little_margin)
             ),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         androidx.compose.material3.RadioButton(
             selected = selected,
@@ -302,7 +315,7 @@ internal fun RadioButton(
         Text(
             text = text,
             color = DayNightTheme.colors.titleColor,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleMedium
         )
     }
 }
@@ -357,4 +370,3 @@ fun CalendarPreferenceView(
         SettingsManager.getInstance(context).alternateCalendar = it
     }
 }
-

@@ -37,9 +37,8 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class DmiService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, LocationParametersSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "dmi"
     override val name = "Danmarks Meteorologiske Institut (DMI)"
@@ -60,7 +59,9 @@ class DmiService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val weather = mApi.getWeather(
             location.latitude,
@@ -88,9 +89,7 @@ class DmiService @Inject constructor(
         return Observable.zip(
             weather,
             alerts
-        ) { weatherResult: DmiResult,
-            alertsResult: DmiWarningResult
-            ->
+        ) { weatherResult: DmiResult, alertsResult: DmiWarningResult ->
             convert(weatherResult, alertsResult, location)
         }
     }
@@ -101,7 +100,7 @@ class DmiService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return location.countryCode.equals("DK", ignoreCase = true)
     }
@@ -113,8 +112,9 @@ class DmiService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
@@ -133,7 +133,7 @@ class DmiService @Inject constructor(
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getWeather(
             location.latitude,
@@ -150,30 +150,30 @@ class DmiService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         // If we are in Denmark, we need location parameters (update it if coordinates changes,
         // OR if we didn't have it yet)
         return location.countryCode.equals("DK", ignoreCase = true) &&
-            (coordinatesChanged ||
-                location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty()
-            )
+            (
+                coordinatesChanged ||
+                    location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty()
+                )
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getWeather(
             location.latitude,
             location.longitude,
             DMI_WEATHER_CMD
         ).map {
-            if (it.id.isNullOrEmpty())  {
+            if (it.id.isNullOrEmpty()) {
                 throw InvalidLocationException()
             }
-            mapOf(
-                "id" to it.id
-            )
+            mapOf("id" to it.id)
         }
     }
 

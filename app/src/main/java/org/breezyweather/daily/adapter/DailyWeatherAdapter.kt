@@ -66,7 +66,7 @@ class DailyWeatherAdapter(
     location: Location,
     daily: Daily,
     pollenIndexSource: PollenIndexSource?,
-    spanCount: Int
+    spanCount: Int,
 ) : RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder>() {
     private val mModelList: MutableList<ViewModel>
     private val mSpanCount: Int = spanCount
@@ -92,7 +92,9 @@ class DailyWeatherAdapter(
         val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
         val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
             location.weather!!.normals
-        } else null
+        } else {
+            null
+        }
         daily.day?.let { day ->
             mModelList.add(LargeTitle(activity.getString(R.string.daytime)))
             mModelList.add(Overview(day, true))
@@ -239,7 +241,9 @@ class DailyWeatherAdapter(
     override fun getItemCount() = mModelList.size
 
     private fun getHalfDayOptionalModelList(
-        context: Context, halfDay: HalfDay, normals: Double?
+        context: Context,
+        halfDay: HalfDay,
+        normals: Double?,
     ): List<ViewModel> {
         val list = mutableListOf<ViewModel>()
         // temperature.

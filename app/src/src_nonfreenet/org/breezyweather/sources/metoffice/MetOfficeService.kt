@@ -39,7 +39,7 @@ import javax.inject.Named
 
 class MetOfficeService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, ConfigurableSource, ReverseGeocodingSource {
 
     override val id = "metoffice"
@@ -59,7 +59,9 @@ class MetOfficeService @Inject constructor(
     override val supportedFeaturesInMain = emptyList<SecondaryWeatherSourceFeature>()
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -70,12 +72,14 @@ class MetOfficeService @Inject constructor(
         return Observable.zip(
             mApi.getHourlyForecast(apiKey, location.latitude, location.longitude),
             mApi.getDailyForecast(apiKey, location.latitude, location.longitude)
-        ) { hourly, daily -> convert(hourly, daily, context) }
+        ) { hourly, daily ->
+            convert(hourly, daily, context)
+        }
     }
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

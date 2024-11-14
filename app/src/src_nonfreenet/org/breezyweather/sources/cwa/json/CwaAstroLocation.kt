@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAstroLocation(
-    val time: List<CwaAstroTime>?
+    val time: List<CwaAstroTime>?,
 )

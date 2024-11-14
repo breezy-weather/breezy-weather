@@ -40,9 +40,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
 class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_pollen, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_pollen, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_pollen_title)
     private val mSubtitle: TextView = itemView.findViewById(R.id.container_main_pollen_subtitle)
@@ -53,7 +51,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private class DailyPollenPagerAdapter(
         location: Location,
         pollenIndexSource: PollenIndexSource?,
-        specificPollens: Set<PollenIndex>
+        specificPollens: Set<PollenIndex>,
     ) : HomePollenAdapter(location, pollenIndexSource, specificPollens) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
@@ -67,7 +65,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     private inner class DailyPollenPageChangeCallback(
         private val mContext: Context,
-        private val mLocation: Location
+        private val mLocation: Location,
     ) : ViewPager2.OnPageChangeCallback() {
         @SuppressLint("SetTextI18n")
         override fun onPageSelected(position: Int) {
@@ -75,24 +73,24 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (daily.isToday(mLocation)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
-                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather!!.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
+                mIndicator.text = (position + 1).toString() +
+                    "/" +
+                    mLocation.weather!!.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
-        activity: GeoActivity, location: Location,
+        activity: GeoActivity,
+        location: Location,
         provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean, firstCard: Boolean
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity, location, provider,
-            listAnimationEnabled, itemAnimationEnabled, firstCard
-        )
-        if (location.weather?.dailyForecast?.any {
-                it.pollen?.isMoldValid == true
-            } == true) {
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        if (location.weather?.dailyForecast?.any { it.pollen?.isMoldValid == true } == true) {
             mTitle.text = context.getString(R.string.pollen_and_mold)
         } else {
             mTitle.text = context.getString(R.string.pollen)
@@ -112,7 +110,9 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             (activity as MainActivity).sourceManager.getPollenIndexSource(
                 if (!location.pollenSource.isNullOrEmpty()) {
                     location.pollenSource!!
-                } else location.weatherSource
+                } else {
+                    location.weatherSource
+                }
             ),
             location.weather?.dailyForecast?.map { daily ->
                 daily.pollen?.pollensWithConcentration ?: setOf()

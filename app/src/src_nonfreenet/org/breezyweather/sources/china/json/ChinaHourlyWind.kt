@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChinaHourlyWind(
-    val value: List<ChinaHourlyWindValue>?
+    val value: List<ChinaHourlyWindValue>?,
 )

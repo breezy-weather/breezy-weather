@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAlertAffectedAreas(
-    val location: List<CwaAlertLocation>?
+    val location: List<CwaAlertLocation>?,
 )

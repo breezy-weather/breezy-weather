@@ -37,10 +37,19 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, location: Location?) {
+    fun updateWidgetView(
+        context: Context,
+        location: Location?,
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_week_setting))
         val views = getRemoteViews(
-            context, location, config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor, config.textSize
+            context,
+            location,
+            config.viewStyle,
+            config.cardStyle,
+            config.cardAlpha,
+            config.textColor,
+            config.textSize
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetWeekProvider::class.java),
@@ -49,8 +58,13 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?, viewStyle: String?,
-        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int
+        context: Context,
+        location: Location?,
+        viewStyle: String?,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val views = RemoteViews(
@@ -81,9 +95,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setViewVisibility(R.id.widget_week_icon, View.VISIBLE)
             views.setImageViewUri(
                 R.id.widget_week_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, dayTime, minimalIcon, color.minimalIconColor
-                )
+                ResourceHelper.getWidgetNotificationIconUri(provider, it, dayTime, minimalIcon, color.minimalIconColor)
             )
         } ?: views.setViewVisibility(R.id.widget_week_icon, View.INVISIBLE)
 
@@ -93,7 +105,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
             arrayOf(R.id.widget_week_week_2, R.id.widget_week_temp_2, R.id.widget_week_icon_2),
             arrayOf(R.id.widget_week_week_3, R.id.widget_week_temp_3, R.id.widget_week_icon_3),
             arrayOf(R.id.widget_week_week_4, R.id.widget_week_temp_4, R.id.widget_week_icon_4),
-            arrayOf(R.id.widget_week_week_5, R.id.widget_week_temp_5, R.id.widget_week_icon_5),
+            arrayOf(R.id.widget_week_week_5, R.id.widget_week_temp_5, R.id.widget_week_icon_5)
         )
         dailyIds.forEachIndexed { i, dailyId ->
             weather.dailyForecastStartingToday.getOrNull(i)?.let {
@@ -101,7 +113,9 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     dailyId[0],
                     if (it.isToday(location)) {
                         context.getString(R.string.short_today)
-                    } else it.getWeek(location, context)
+                    } else {
+                        it.getWeek(location, context)
+                    }
                 )
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
@@ -117,7 +131,11 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = true, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = true,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -127,7 +145,11 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     views.setImageViewUri(
                         dailyId[2],
                         ResourceHelper.getWidgetNotificationIconUri(
-                            provider, it, dayTime = false, minimalIcon, color.minimalIconColor
+                            provider,
+                            it,
+                            dayTime = false,
+                            minimalIcon,
+                            color.minimalIconColor
                         )
                     )
                 } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
@@ -188,7 +210,10 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location, viewType: String?
+        context: Context,
+        views: RemoteViews,
+        location: Location,
+        viewType: String?,
     ) {
         // weather.
         views.setOnClickPendingIntent(
@@ -201,32 +226,47 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, index, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context,
+                location,
+                index,
+                Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, index + 1, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context,
+                location,
+                index + 1,
+                Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, index + 2, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context,
+                location,
+                index + 2,
+                Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         if (viewType == "5_days") {
             views.setOnClickPendingIntent(
                 R.id.widget_week_icon_4,
                 getDailyForecastPendingIntent(
-                    context, location, index + 3, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                    context,
+                    location,
+                    index + 3,
+                    Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
                 )
             )
             views.setOnClickPendingIntent(
                 R.id.widget_week_icon_5,
                 getDailyForecastPendingIntent(
-                    context, location, index + 4, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                    context,
+                    location,
+                    index + 4,
+                    Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
                 )
             )
         }

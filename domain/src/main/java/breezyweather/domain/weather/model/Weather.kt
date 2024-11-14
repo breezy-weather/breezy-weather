@@ -30,7 +30,7 @@ data class Weather(
     val dailyForecast: List<Daily> = emptyList(),
     val hourlyForecast: List<Hourly> = emptyList(),
     val minutelyForecast: List<Minutely> = emptyList(),
-    val alertList: List<Alert> = emptyList()
+    val alertList: List<Alert> = emptyList(),
 ) : Serializable {
 
     // Only hourly in the future, starting from current hour
@@ -51,14 +51,15 @@ data class Weather(
 
     val dailyForecastStartingToday = if (todayIndex >= 0) {
         dailyForecast.subList(todayIndex, dailyForecast.size)
-    } else emptyList()
+    } else {
+        emptyList()
+    }
 
     fun isValid(pollingIntervalHours: Float?): Boolean {
         val updateTime = base.refreshTime?.time ?: 0
         val currentTime = System.currentTimeMillis()
-        return (pollingIntervalHours == null ||
-            (currentTime >= updateTime &&
-                currentTime - updateTime < pollingIntervalHours * 1.hours.inWholeMilliseconds))
+        return pollingIntervalHours == null ||
+            (currentTime >= updateTime && currentTime - updateTime < pollingIntervalHours * 1.hours.inWholeMilliseconds)
     }
 
     val currentAlertList: List<Alert> = alertList
@@ -99,7 +100,9 @@ data class Weather(
                             for (j in 0..<minutelyForecast[i].minuteInterval.div(5)) {
                                 newMinutelyList.add(
                                     minutelyForecast[i].copy(
-                                        date = Date(minutelyForecast[i].date.time + (j.times(5)).minutes.inWholeMilliseconds),
+                                        date = Date(
+                                            minutelyForecast[i].date.time + (j.times(5)).minutes.inWholeMilliseconds
+                                        ),
                                         minuteInterval = 5
                                     )
                                 )
@@ -108,7 +111,9 @@ data class Weather(
                     }
                 }
                 return newMinutelyList
-            } else minutelyForecast
+            } else {
+                minutelyForecast
+            }
         }
 
     fun toWeatherWrapper() = WeatherWrapper(

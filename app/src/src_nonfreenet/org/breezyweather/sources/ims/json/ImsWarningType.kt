@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImsWarningType(
-    val name: String?
+    val name: String?,
 )

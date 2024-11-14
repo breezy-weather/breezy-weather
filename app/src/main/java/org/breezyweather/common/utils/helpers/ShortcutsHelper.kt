@@ -48,7 +48,7 @@ object ShortcutsHelper {
     fun getAdaptiveIcon(
         provider: ResourceProvider,
         code: WeatherCode,
-        daytime: Boolean
+        daytime: Boolean,
     ): Icon {
         return Icon.createWithAdaptiveBitmap(
             drawableToBitmap(

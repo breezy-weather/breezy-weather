@@ -24,7 +24,7 @@ fun Wind.getColor(context: Context): Int {
 
 fun Wind.getDirection(context: Context): String? {
     if (degree == null) return null
-    return when(degree!!) {
+    return when (degree!!) {
         in 0.0..22.5 -> context.getString(R.string.wind_direction_short_N)
         in 22.5..67.5 -> context.getString(R.string.wind_direction_short_NE)
         in 67.5..112.5 -> context.getString(R.string.wind_direction_short_E)

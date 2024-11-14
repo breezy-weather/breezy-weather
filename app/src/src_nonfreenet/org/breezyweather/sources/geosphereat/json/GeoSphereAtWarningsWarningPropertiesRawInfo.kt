@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class GeoSphereAtWarningsWarningPropertiesRawInfo(
     val wlevel: Int,
     val start: String?,
-    val end: String?
+    val end: String?,
 )

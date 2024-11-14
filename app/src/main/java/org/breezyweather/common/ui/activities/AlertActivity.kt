@@ -185,9 +185,9 @@ class AlertActivity : GeoActivity() {
                     FitStatusBarTopAppBar(
                         title = stringResource(R.string.alerts),
                         onBackPressed = { finish() },
-                        scrollBehavior = scrollBehavior,
+                        scrollBehavior = scrollBehavior
                     )
-                },
+                }
             ) {
                 LazyColumn(
                     modifier = Modifier.fillMaxHeight(),
@@ -199,7 +199,7 @@ class AlertActivity : GeoActivity() {
                             Column(
                                 modifier = Modifier
                                     .padding(dimensionResource(R.dimen.normal_margin))
-                                    .fillMaxWidth(),
+                                    .fillMaxWidth()
                             ) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically
@@ -219,12 +219,12 @@ class AlertActivity : GeoActivity() {
                                             } ?: stringResource(R.string.alert),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,
-                                            style = MaterialTheme.typography.titleMedium,
+                                            style = MaterialTheme.typography.titleMedium
                                         )
                                         Text(
                                             text = getAlertDate(context, alert, location.value!!),
                                             color = DayNightTheme.colors.captionColor,
-                                            style = MaterialTheme.typography.labelMedium,
+                                            style = MaterialTheme.typography.labelMedium
                                         )
                                     }
                                 }
@@ -233,7 +233,7 @@ class AlertActivity : GeoActivity() {
                                     Text(
                                         text = alert.description!!,
                                         color = DayNightTheme.colors.bodyColor,
-                                        style = MaterialTheme.typography.bodyMedium,
+                                        style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
                                 if (!alert.instruction.isNullOrBlank()) {
@@ -245,7 +245,7 @@ class AlertActivity : GeoActivity() {
                                     Text(
                                         text = alert.instruction!!,
                                         color = DayNightTheme.colors.bodyColor,
-                                        style = MaterialTheme.typography.bodyMedium,
+                                        style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
                                 if (!alert.source.isNullOrBlank()) {
@@ -257,7 +257,7 @@ class AlertActivity : GeoActivity() {
                                     Text(
                                         text = stringResource(R.string.alert_source, alert.source!!),
                                         color = DayNightTheme.colors.bodyColor,
-                                        style = MaterialTheme.typography.bodyMedium,
+                                        style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
                             }

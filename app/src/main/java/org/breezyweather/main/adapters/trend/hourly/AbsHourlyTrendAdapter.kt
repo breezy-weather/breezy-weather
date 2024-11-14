@@ -32,22 +32,24 @@ import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
 import org.breezyweather.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.main.utils.MainThemeColorProvider
 
-abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Location) :
-    TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>(location) {
+abstract class AbsHourlyTrendAdapter(
+    val activity: GeoActivity,
+    location: Location,
+) : TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>(location) {
 
     open class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hourlyItem: HourlyTrendItemView = itemView.findViewById(R.id.item_trend_hourly)
 
         fun onBindView(
-            activity: GeoActivity, location: Location,
-            talkBackBuilder: StringBuilder, position: Int
+            activity: GeoActivity,
+            location: Location,
+            talkBackBuilder: StringBuilder,
+            position: Int,
         ) {
             val context = itemView.context
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            hourlyItem.setDayText(
-                hourly.date.getFormattedShortDayAndMonth(location, context)
-            )
+            hourlyItem.setDayText(hourly.date.getFormattedShortDayAndMonth(location, context))
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
                 .append(hourly.date.getFormattedMediumDayAndMonth(location, context))
@@ -63,9 +65,7 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
                 )
             )
             hourlyItem.setOnClickListener {
-                onItemClicked(
-                    activity, location, bindingAdapterPosition
-                )
+                onItemClicked(activity, location, bindingAdapterPosition)
             }
         }
     }
@@ -78,7 +78,7 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
         protected fun onItemClicked(
             activity: GeoActivity,
             location: Location,
-            adapterPosition: Int
+            adapterPosition: Int,
         ) {
             if (activity.isActivityResumed) {
                 HourlyWeatherDialog.show(

@@ -29,6 +29,6 @@ interface GeoNamesApi {
         @Query("fuzzy") fuzzy: Double,
         @Query("maxRows") maxRows: Int,
         @Query("username") username: String,
-        @Query("style") style: String
+        @Query("style") style: String,
     ): Observable<GeoNamesSearchResult>
 }

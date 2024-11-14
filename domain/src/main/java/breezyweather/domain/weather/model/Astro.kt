@@ -21,7 +21,7 @@ import java.util.Date
 
 class Astro(
     val riseDate: Date? = null,
-    val setDate: Date? = null
+    val setDate: Date? = null,
 ) : Serializable {
 
     // Not made to be used for moon astro, only sun
@@ -32,12 +32,12 @@ class Astro(
         } else if (riseDate.after(setDate)) {
             null
         } else {
-            ((setDate.time - riseDate.time) // get delta millisecond.
-                    / 1000 // second.
-                    / 60 // minutes.
-                    / 60.0 // hours.
-                    )
+            (setDate.time - riseDate.time) // get delta milliseconds
+                .div(1000) // seconds
+                .div(60) // minutes
+                .div(60.0) // hours
         }
+
     val isValid: Boolean
         get() = riseDate != null && setDate != null
 }

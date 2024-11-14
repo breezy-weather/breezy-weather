@@ -34,7 +34,9 @@ import kotlin.math.max
 import kotlin.math.min
 
 class DrawerLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : ViewGroup(context, attrs, defStyleAttr) {
     private var mDrawer: View? = null
     private var mContent: View? = null
@@ -53,9 +55,7 @@ class DrawerLayout @JvmOverloads constructor(
     }
 
     override fun generateDefaultLayoutParams(): LayoutParams {
-        return LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
-        )
+        return LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
     }
 
     override fun generateLayoutParams(attrs: AttributeSet): LayoutParams {
@@ -75,8 +75,7 @@ class DrawerLayout @JvmOverloads constructor(
             lp = drawer.layoutParams
             var width = lp.width
             if (width == LayoutParams.WRAP_CONTENT) {
-                width = (measuredWidth
-                    - context.getTabletListAdaptiveWidth(measuredWidth))
+                width = measuredWidth - context.getTabletListAdaptiveWidth(measuredWidth)
                 if (width == 0) {
                     width = LayoutParams.MATCH_PARENT
                 } else {
@@ -119,7 +118,8 @@ class DrawerLayout @JvmOverloads constructor(
             mDrawer?.let { drawer ->
                 drawer.layout(
                     (measuredWidth - drawer.measuredWidth * mProgress).toInt(),
-                    0, (measuredWidth + drawer.measuredWidth * (1 - mProgress)).toInt(),
+                    0,
+                    (measuredWidth + drawer.measuredWidth * (1 - mProgress)).toInt(),
                     drawer.measuredHeight
                 )
                 mContent?.let { content ->
@@ -135,7 +135,8 @@ class DrawerLayout @JvmOverloads constructor(
             mDrawer?.let { drawer ->
                 drawer.layout(
                     (drawer.measuredWidth * (mProgress - 1)).toInt(),
-                    0, (drawer.measuredWidth * mProgress).toInt(),
+                    0,
+                    (drawer.measuredWidth * mProgress).toInt(),
                     drawer.measuredHeight
                 )
                 mContent?.let { content ->
@@ -161,8 +162,7 @@ class DrawerLayout @JvmOverloads constructor(
                 it.cancel()
                 mProgressAnimator = null
             }
-            mProgressAnimator = generateProgressAnimator(mProgress, if (unfold) 1f else 0f)
-                .also { it.start() }
+            mProgressAnimator = generateProgressAnimator(mProgress, if (unfold) 1f else 0f).also { it.start() }
         }
 
     private fun generateProgressAnimator(from: Float, to: Float): ValueAnimator {

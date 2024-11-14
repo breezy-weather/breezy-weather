@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options._basic
+package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
 import android.content.res.Resources
@@ -27,7 +27,7 @@ object Utils {
 
     fun getName(
         context: Context,
-        enum: BaseEnum
+        enum: BaseEnum,
     ) = getNameByValue(
         res = context.resources,
         value = enum.id,
@@ -37,7 +37,7 @@ object Utils {
 
     fun getVoice(
         context: Context,
-        enum: VoiceEnum
+        enum: VoiceEnum,
     ) = getNameByValue(
         res = context.resources,
         value = enum.id,
@@ -49,7 +49,7 @@ object Utils {
         res: Resources,
         value: String,
         @ArrayRes nameArrayId: Int,
-        @ArrayRes valueArrayId: Int
+        @ArrayRes valueArrayId: Int,
     ): String? {
         val names = res.getStringArray(nameArrayId)
         val values = res.getStringArray(valueArrayId)
@@ -59,31 +59,26 @@ object Utils {
     private fun getNameByValue(
         value: String,
         names: Array<String>,
-        values: Array<String>
+        values: Array<String>,
     ) = values.zip(names).firstOrNull { it.first == value }?.second
 
     fun getValueTextWithoutUnit(
         enum: UnitEnum<Double>,
         valueInDefaultUnit: Double,
-        decimalNumber: Int
+        decimalNumber: Int,
     ) = BidiFormatter
         .getInstance()
         .unicodeWrap(
-            formatDouble(
-                enum.getValueWithoutUnit(valueInDefaultUnit),
-                decimalNumber
-            )
+            formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber)
         )
 
     fun getValueTextWithoutUnit(
         enum: UnitEnum<Int>,
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Int,
     ) = BidiFormatter
         .getInstance()
         .unicodeWrap(
-            formatInt(
-                enum.getValueWithoutUnit(valueInDefaultUnit),
-            )
+            formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
         )
 
     fun getValueText(
@@ -91,40 +86,30 @@ object Utils {
         enum: UnitEnum<Double>,
         valueInDefaultUnit: Double,
         decimalNumber: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = if (rtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatDouble(
-                    enum.getValueWithoutUnit(valueInDefaultUnit),
-                    decimalNumber
-                )
-            ) + "\u202f" + getName(context, enum))
+                formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber)
+            ) + "\u202f" + getName(context, enum)
     } else {
-        (formatDouble(
-            enum.getValueWithoutUnit(valueInDefaultUnit),
-            decimalNumber
-        ) + "\u202f" + getName(context, enum))
+        formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber) + "\u202f" + getName(context, enum)
     }
 
     fun getValueText(
         context: Context,
         enum: UnitEnum<Int>,
         valueInDefaultUnit: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = if (rtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatInt(
-                    enum.getValueWithoutUnit(valueInDefaultUnit),
-                )
-            ) + "\u202f" + getName(context, enum))
+                formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
+            ) + "\u202f" + getName(context, enum)
     } else {
-        (formatInt(
-            enum.getValueWithoutUnit(valueInDefaultUnit),
-        ) + "\u202f" + getName(context, enum))
+        formatInt(enum.getValueWithoutUnit(valueInDefaultUnit)) + "\u202f" + getName(context, enum)
     }
 
     fun getVoiceText(
@@ -132,40 +117,33 @@ object Utils {
         enum: UnitEnum<Double>,
         valueInDefaultUnit: Double,
         decimalNumber: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = if (rtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
                 formatDouble(
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
-            ) + "\u202f" + getVoice(context, enum))
+            ) + "\u202f" + getVoice(context, enum)
     } else {
-        (formatDouble(
-            enum.getValueWithoutUnit(valueInDefaultUnit),
-            decimalNumber
-        ) + "\u202f" + getVoice(context, enum))
+        formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber) + "\u202f" + getVoice(context, enum)
     }
 
     fun getVoiceText(
         context: Context,
         enum: UnitEnum<Int>,
         valueInDefaultUnit: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = if (rtl) {
-        (BidiFormatter
+        BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatInt(
-                    enum.getValueWithoutUnit(valueInDefaultUnit),
-                )
-            ) + "\u202f" + getVoice(context, enum))
+                formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
+            ) + "\u202f" + getVoice(context, enum)
     } else {
-        (formatInt(
-            enum.getValueWithoutUnit(valueInDefaultUnit),
-        ) + "\u202f" + getVoice(context, enum))
+        formatInt(enum.getValueWithoutUnit(valueInDefaultUnit)) + "\u202f" + getVoice(context, enum)
     }
 
     fun formatDouble(value: Double, decimalNumber: Int = 2): String {

@@ -19,7 +19,7 @@ package org.breezyweather.daily.adapter.model
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class LargeTitle(
-    val title: String
+    val title: String,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 0
 

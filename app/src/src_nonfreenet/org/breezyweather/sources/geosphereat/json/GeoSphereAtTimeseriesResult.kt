@@ -23,5 +23,5 @@ import java.util.Date
 @Serializable
 data class GeoSphereAtTimeseriesResult(
     val timestamps: List<@Serializable(DateSerializer::class) Date>? = null,
-    val features: List<GeoSphereAtHourlyFeature>? = null
+    val features: List<GeoSphereAtHourlyFeature>? = null,
 )

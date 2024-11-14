@@ -84,7 +84,7 @@ class WeatherUpdateJob @AssistedInject constructor(
     private val refreshHelper: RefreshHelper,
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
-    private val updateChecker: AppUpdateChecker
+    private val updateChecker: AppUpdateChecker,
 ) : CoroutineWorker(context, workerParams) {
 
     private val notifier = WeatherUpdateNotifier(context)
@@ -164,12 +164,17 @@ class WeatherUpdateJob @AssistedInject constructor(
                         weather = weatherRepository.getWeatherByLocationId(location.formattedId)
                     )
                 )
-            } else emptyList()
+            } else {
+                emptyList()
+            }
         } else {
             val locationList = when {
-                refreshHelper.isBroadcastSourcesEnabled(context) -> locationRepository.getXLocations(5) // Should be getAllLocations(), but some rare users have 100+ locations. No need to refresh all of them in that case, they don't actually use them every day, they just add them as "bookmarks"
+                // Should be getAllLocations(), but some rare users have 100+ locations. No need to refresh all of them
+                // in that case, they don't actually use them every day, they just add them as "bookmarks"
+                refreshHelper.isBroadcastSourcesEnabled(context) -> locationRepository.getXLocations(5)
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled &&
-                    SettingsManager.getInstance(context).widgetNotificationStyle == NotificationStyle.CITIES -> locationRepository.getXLocations(4)
+                    SettingsManager.getInstance(context).widgetNotificationStyle == NotificationStyle.CITIES ->
+                    locationRepository.getXLocations(4)
                 MultiCityWidgetIMP.isInUse(context) -> locationRepository.getXLocations(3)
                 else -> locationRepository.getXLocations(1)
             }
@@ -182,8 +187,10 @@ class WeatherUpdateJob @AssistedInject constructor(
                 }
                 .filterIndexed { i, location ->
                     // Only refresh secondary locations once a day as we only need daily info
-                    i == 0 || location.weather?.base?.refreshTime == null ||
-                        location.weather!!.base.refreshTime!!.getFormattedDate("yyyy-MM-dd", location) < Date().getFormattedDate("yyyy-MM-dd")
+                    i == 0 ||
+                        location.weather?.base?.refreshTime == null ||
+                        location.weather!!.base.refreshTime!!.getFormattedDate("yyyy-MM-dd", location) <
+                        Date().getFormattedDate("yyyy-MM-dd")
                 }
                 .toMutableList()
         }
@@ -216,7 +223,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                                 withUpdateNotification(
                                     currentlyUpdatingLocation,
                                     progressCount,
-                                    location,
+                                    location
                                 ) {
                                     // TODO: Implement this, it’s a good idea
                                     /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
@@ -227,16 +234,22 @@ class WeatherUpdateJob @AssistedInject constructor(
 
                                         locationResult.errors.forEach {
                                             val shortMessage = if (!it.source.isNullOrEmpty()) {
-                                                "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
-                                            } else context.getString(it.error.shortMessage)
+                                                "${it.source}${context.getString(
+                                                    R.string.colon_separator
+                                                )}${context.getString(it.error.shortMessage)}"
+                                            } else {
+                                                context.getString(it.error.shortMessage)
+                                            }
                                             if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
                                                 it.error != RefreshErrorType.SERVER_TIMEOUT &&
-                                                it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING) {
+                                                it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                                            ) {
                                                 failedUpdates.add(locationResult.location to shortMessage)
                                             } else {
                                                 // Report this error only if we can’t refresh weather data
                                                 if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
-                                                    !locationResult.location.isUsable) {
+                                                    !locationResult.location.isUsable
+                                                ) {
                                                     failedUpdates.add(locationResult.location to shortMessage)
                                                 } else {
                                                     skippedUpdates.add(locationResult.location to shortMessage)
@@ -244,17 +257,25 @@ class WeatherUpdateJob @AssistedInject constructor(
                                             }
                                         }
                                         if (locationResult.location.isUsable &&
-                                            !locationResult.location.needsGeocodeRefresh) {
+                                            !locationResult.location.needsGeocodeRefresh
+                                        ) {
                                             val weatherResult = updateWeather(
                                                 locationResult.location,
                                                 location.longitude != locationResult.location.longitude ||
                                                     location.latitude != locationResult.location.latitude
                                             )
-                                            newUpdates.add(location to locationResult.location.copy(weather = weatherResult.weather))
+                                            newUpdates.add(
+                                                location to
+                                                    locationResult.location.copy(weather = weatherResult.weather)
+                                            )
                                             weatherResult.errors.forEach {
                                                 val shortMessage = if (!it.source.isNullOrEmpty()) {
-                                                    "${it.source}${context.getString(R.string.colon_separator)}${context.getString(it.error.shortMessage)}"
-                                                } else context.getString(it.error.shortMessage)
+                                                    "${it.source}${context.getString(
+                                                        R.string.colon_separator
+                                                    )}${context.getString(it.error.shortMessage)}"
+                                                } else {
+                                                    context.getString(it.error.shortMessage)
+                                                }
                                                 failedUpdates.add(location to shortMessage)
                                             }
                                         }
@@ -262,10 +283,12 @@ class WeatherUpdateJob @AssistedInject constructor(
                                         e.printStackTrace()
                                         val errorMessage = if (e.message.isNullOrEmpty()) {
                                             context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                        } else e.message
+                                        } else {
+                                            e.message
+                                        }
                                         failedUpdates.add(location to errorMessage)
                                     }
-                                    //}
+                                    // }
                                 }
                             }
                         }
@@ -300,7 +323,11 @@ class WeatherUpdateJob @AssistedInject constructor(
 
             // Send alert and precipitation for the first location
             if (indexOfFirstLocation != null) {
-                Notifications.checkAndSendAlert(applicationContext, location, locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather)
+                Notifications.checkAndSendAlert(
+                    applicationContext,
+                    location,
+                    locationsToUpdate.firstOrNull { it.formattedId == location.formattedId }?.weather
+                )
                 Notifications.checkAndSendPrecipitation(applicationContext, location)
             }
 
@@ -318,7 +345,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             val errorFile = writeErrorFile(failedUpdates)
             notifier.showUpdateErrorNotification(
                 failedUpdates.size,
-                errorFile.getUriCompat(context),
+                errorFile.getUriCompat(context)
             )
         }
         /*if (skippedUpdates.isNotEmpty()) {
@@ -367,7 +394,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             notifier.showProgressNotification(
                 updatingLocation,
                 completed.get(),
-                locationsToUpdate.size,
+                locationsToUpdate.size
             )
 
             block()
@@ -379,7 +406,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             notifier.showProgressNotification(
                 updatingLocation,
                 completed.get(),
-                locationsToUpdate.size,
+                locationsToUpdate.size
             )
         }
     }
@@ -427,21 +454,21 @@ class WeatherUpdateJob @AssistedInject constructor(
         }
 
         fun setupTask(
-            context: Context
+            context: Context,
         ) {
             val settings = SettingsManager.getInstance(context)
             val pollingRate = settings.updateInterval.intervalInHour
             if (pollingRate != null && pollingRate > 0.25f) {
                 val constraints = Constraints(
                     requiredNetworkType = NetworkType.CONNECTED,
-                    requiresBatteryNotLow = settings.ignoreUpdatesWhenBatteryLow,
+                    requiresBatteryNotLow = settings.ignoreUpdatesWhenBatteryLow
                 )
 
                 val request = PeriodicWorkRequestBuilder<WeatherUpdateJob>(
                     (pollingRate * MINUTES_PER_HOUR).toLong(),
                     TimeUnit.MINUTES,
                     BACKOFF_DELAY_MINUTES,
-                    TimeUnit.MINUTES,
+                    TimeUnit.MINUTES
                 )
                     .addTag(TAG)
                     .addTag(WORK_NAME_AUTO)
@@ -449,7 +476,11 @@ class WeatherUpdateJob @AssistedInject constructor(
                     .setBackoffCriteria(BackoffPolicy.LINEAR, 10, TimeUnit.MINUTES)
                     .build()
 
-                context.workManager.enqueueUniquePeriodicWork(WORK_NAME_AUTO, ExistingPeriodicWorkPolicy.UPDATE, request)
+                context.workManager.enqueueUniquePeriodicWork(
+                    WORK_NAME_AUTO,
+                    ExistingPeriodicWorkPolicy.UPDATE,
+                    request
+                )
             } else {
                 context.workManager.cancelUniqueWork(WORK_NAME_AUTO)
             }
@@ -457,7 +488,7 @@ class WeatherUpdateJob @AssistedInject constructor(
 
         fun startNow(
             context: Context,
-            location: Location? = null
+            location: Location? = null,
         ): Boolean {
             val wm = context.workManager
             if (wm.isRunning(TAG)) {

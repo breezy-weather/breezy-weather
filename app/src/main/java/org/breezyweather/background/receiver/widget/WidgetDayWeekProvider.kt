@@ -44,7 +44,11 @@ class WidgetDayWeekProvider : AppWidgetProvider() {
     @Inject
     lateinit var sourceManager: SourceManager
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         if (DayWeekWidgetIMP.isInUse(context)) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -61,8 +65,10 @@ class WidgetDayWeekProvider : AppWidgetProvider() {
                         )
                     ),
                     location?.let { locationNow ->
-                        sourceManager.getPollenIndexSource((locationNow.pollenSource ?: "")
-                            .ifEmpty { locationNow.weatherSource })
+                        sourceManager.getPollenIndexSource(
+                            (locationNow.pollenSource ?: "")
+                                .ifEmpty { locationNow.weatherSource }
+                        )
                     }
                 )
             }

@@ -22,7 +22,10 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import org.breezyweather.common.snackbar.Snackbar
 
-class FloatingAboveSnackbarBehavior<V : View>(context: Context, attrs: AttributeSet?) :
+class FloatingAboveSnackbarBehavior<V : View>(
+    context: Context,
+    attrs: AttributeSet?,
+) :
     CoordinatorLayout.Behavior<V>(context, attrs) {
     override fun layoutDependsOn(parent: CoordinatorLayout, child: V, dependency: View): Boolean {
         return dependency is Snackbar.SnackbarLayout

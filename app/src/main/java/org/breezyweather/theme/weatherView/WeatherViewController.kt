@@ -26,7 +26,7 @@ import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 object WeatherViewController {
 
     fun getWeatherCode(
-        @WeatherKindRule weatherKind: Int
+        @WeatherKindRule weatherKind: Int,
     ): WeatherCode = when (weatherKind) {
         WeatherView.WEATHER_KIND_CLOUDY -> WeatherCode.CLOUDY
         WeatherView.WEATHER_KIND_CLOUD -> WeatherCode.PARTLY_CLOUDY

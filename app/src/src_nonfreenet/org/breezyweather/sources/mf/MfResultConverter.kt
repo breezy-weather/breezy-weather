@@ -69,7 +69,9 @@ fun convert(location: Location, result: MfForecastResult): Location {
             countryCode = result.properties.country.substring(0, 2),
             admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
                 getFrenchDepartmentName(result.properties.frenchDepartment)
-            } else null, // Département
+            } else {
+                null
+            }, // Département
             admin2Code = result.properties.frenchDepartment, // Département
             city = result.properties.name
         )
@@ -83,12 +85,13 @@ fun convert(
     ephemerisResult: MfEphemerisResult,
     rainResult: MfRainResult?,
     warningsResult: MfWarningsResult,
-    normalsResult: MfNormalsResult
+    normalsResult: MfNormalsResult,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null ||
         forecastResult.properties.forecast.isNullOrEmpty() ||
-        forecastResult.properties.dailyForecast.isNullOrEmpty()) {
+        forecastResult.properties.dailyForecast.isNullOrEmpty()
+    ) {
         throw InvalidOrIncompleteDataException()
     }
     return WeatherWrapper(
@@ -132,7 +135,7 @@ fun getCurrent(currentResult: MfCurrentResult): Current? {
 private fun getDailyList(
     location: Location,
     dailyForecasts: List<MfForecastDaily>,
-    ephemerisResult: MfEphemeris?
+    ephemerisResult: MfEphemeris?,
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
     for (i in 0 until dailyForecasts.size - 1) {
@@ -171,13 +174,21 @@ private fun getDailyList(
                     riseDate = dailyForecast.sunriseTime,
                     setDate = dailyForecast.sunsetTime
                 ),
-                moon = if (i == 0) Astro(
-                    riseDate = ephemerisResult?.moonriseTime,
-                    setDate = ephemerisResult?.moonsetTime
-                ) else null,
-                moonPhase = if (i == 0) MoonPhase(
-                    angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
-                ) else null,
+                moon = if (i == 0) {
+                    Astro(
+                        riseDate = ephemerisResult?.moonriseTime,
+                        setDate = ephemerisResult?.moonsetTime
+                    )
+                } else {
+                    null
+                },
+                moonPhase = if (i == 0) {
+                    MoonPhase(
+                        angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
+                    )
+                } else {
+                    null
+                },
                 uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )
@@ -187,7 +198,7 @@ private fun getDailyList(
 
 private fun getHourlyList(
     hourlyForecastList: List<MfForecastHourly>,
-    probabilityForecastResult: List<MfForecastProbability>?
+    probabilityForecastResult: List<MfForecastProbability>?,
 ): List<HourlyWrapper> {
     return hourlyForecastList.map { hourlyForecast ->
         HourlyWrapper(
@@ -206,7 +217,8 @@ private fun getHourlyList(
             wind = Wind(
                 degree = hourlyForecast.windDirection?.toDouble(),
                 speed = hourlyForecast.windSpeed?.toDouble(),
-                gusts = hourlyForecast.windSpeedGust?.toDouble() // Seems to be always 0? Or not available in low wind speeds maybe
+                // Seems to be always 0? Or not available in low wind speeds maybe
+                gusts = hourlyForecast.windSpeedGust?.toDouble()
             ),
             relativeHumidity = hourlyForecast.relativeHumidity?.toDouble(),
             pressure = hourlyForecast.pSea,
@@ -216,10 +228,10 @@ private fun getHourlyList(
 }
 
 private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitation {
-    val rainCumul = with (hourlyForecast) {
+    val rainCumul = with(hourlyForecast) {
         rain1h ?: rain3h ?: rain6h ?: rain12h ?: rain24h
     }
-    val snowCumul = with (hourlyForecast) {
+    val snowCumul = with(hourlyForecast) {
         snow1h ?: snow3h ?: snow6h ?: snow12h ?: snow24h
     }
     return Precipitation(
@@ -234,7 +246,7 @@ private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitat
  */
 private fun getHourlyPrecipitationProbability(
     probabilityForecastResult: List<MfForecastProbability>?,
-    dt: Date
+    dt: Date,
 ): PrecipitationProbability? {
     if (probabilityForecastResult.isNullOrEmpty()) return null
 
@@ -250,7 +262,8 @@ private fun getHourlyPrecipitationProbability(
          */
         if (probabilityForecast.time.time == dt.time ||
             probabilityForecast.time.time + 1.hours.inWholeMilliseconds == dt.time ||
-            probabilityForecast.time.time + 2.hours.inWholeMilliseconds == dt.time) {
+            probabilityForecast.time.time + 2.hours.inWholeMilliseconds == dt.time
+        ) {
             if (probabilityForecast.rainHazard3h != null) {
                 rainProbability = probabilityForecast.rainHazard3h.toDouble()
             } else if (probabilityForecast.rainHazard6h != null) {
@@ -272,7 +285,8 @@ private fun getHourlyPrecipitationProbability(
          */
         if (probabilityForecast.time.time + 3.hours.inWholeMilliseconds == dt.time ||
             probabilityForecast.time.time + 4.hours.inWholeMilliseconds == dt.time ||
-            probabilityForecast.time.time + 5.hours.inWholeMilliseconds == dt.time) {
+            probabilityForecast.time.time + 5.hours.inWholeMilliseconds == dt.time
+        ) {
             if (probabilityForecast.rainHazard6h != null) {
                 rainProbability = probabilityForecast.rainHazard6h.toDouble()
             }
@@ -300,11 +314,19 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
             Minutely(
                 date = rainForecast.time,
                 minuteInterval = if (i < rainResult.properties.rainForecasts.size - 1) {
-                    ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / 1.minutes.inWholeMilliseconds).toDouble()
-                        .roundToInt()
-                } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / 1.minutes.inWholeMilliseconds).toDouble()
-                    .roundToInt(),
-                precipitationIntensity = if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null
+                    (rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time)
+                        .div(1.minutes.inWholeMilliseconds)
+                        .toDouble().roundToInt()
+                } else {
+                    (rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time)
+                        .div(1.minutes.inWholeMilliseconds)
+                        .toDouble().roundToInt()
+                },
+                precipitationIntensity = if (rainForecast.rainIntensity != null) {
+                    getPrecipitationIntensity(rainForecast.rainIntensity)
+                } else {
+                    null
+                }
             )
         )
     }
@@ -356,13 +378,16 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                 alertList.add(
                     Alert(
                         // Create unique ID from: alert type ID, alert level, start time
-                        alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time).toString(),
+                        alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time)
+                            .toString(),
                         startDate = timelapsItem.beginTime,
                         endDate = timelapsItem.endTime,
                         headline = getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
-                        description = if (timelapsItem.colorId >= 3) getWarningContent(
-                            timelaps.phenomenonId, warningsResult
-                        ) else null,
+                        description = if (timelapsItem.colorId >= 3) {
+                            getWarningContent(timelaps.phenomenonId, warningsResult)
+                        } else {
+                            null
+                        },
                         source = "Météo-France",
                         severity = AlertSeverity.getInstance(timelapsItem.colorId),
                         color = getWarningColor(timelapsItem.colorId)
@@ -382,7 +407,9 @@ fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
             daytimeTemperature = normalsStats.tMax,
             nighttimeTemperature = normalsStats.tMin
         )
-    } else null
+    } else {
+        null
+    }
 }
 
 private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
@@ -434,8 +461,10 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
     val textBlocs = warningsResult.text?.textBlocItems?.filter { textBlocItem ->
         textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
     }
-    val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }?.textConsequence?.replace("<br>", "\n")
-    val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }?.textAdvice?.replace("<br>", "\n")
+    val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textConsequence?.replace("<br>", "\n")
+    val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textAdvice?.replace("<br>", "\n")
 
     val content = StringBuilder()
     if (!textBlocs.isNullOrEmpty()) {
@@ -482,32 +511,50 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
 private fun getWeatherCode(icon: String?): WeatherCode? {
     return if (icon == null) {
         null
-    } else with (icon) {
-        when {
-            // We need to take care of two-digits first
-            startsWith("p32") || startsWith("p33") ||
-                startsWith("p34") -> WeatherCode.WIND
-            startsWith("p31") -> null // What is this?
-            startsWith("p26") || startsWith("p27") || startsWith("p28") ||
-                startsWith("p29") -> WeatherCode.THUNDER
-            startsWith("p26") || startsWith("p27") || startsWith("p28") ||
-                startsWith("p29") -> WeatherCode.THUNDER
-            startsWith("p21") || startsWith("p22") ||
-                startsWith("p23") -> WeatherCode.SNOW
-            startsWith("p19") || startsWith("p20") -> WeatherCode.HAIL
-            startsWith("p17") || startsWith("p18") -> WeatherCode.SLEET
-            startsWith("p16") || startsWith("p24") || startsWith("p25") ||
-                startsWith("p30") -> WeatherCode.THUNDERSTORM
-            startsWith("p9") || startsWith("p10") || startsWith("p11") ||
-                startsWith("p12") || startsWith("p13") || startsWith("p14") ||
-                startsWith("p15") -> WeatherCode.RAIN
-            startsWith("p6") || startsWith("p7") ||
-                startsWith("p8") -> WeatherCode.FOG
-            startsWith("p4") || startsWith("p5") -> WeatherCode.HAZE
-            startsWith("p3") -> WeatherCode.CLOUDY
-            startsWith("p2") -> WeatherCode.PARTLY_CLOUDY
-            startsWith("p1") -> WeatherCode.CLEAR
-            else -> null
+    } else {
+        with(icon) {
+            when {
+                // We need to take care of two-digits first
+                startsWith("p32") ||
+                    startsWith("p33") ||
+                    startsWith("p34") -> WeatherCode.WIND
+                startsWith("p31") -> null // What is this?
+                startsWith("p26") ||
+                    startsWith("p27") ||
+                    startsWith("p28") ||
+                    startsWith("p29") -> WeatherCode.THUNDER
+                startsWith("p26") ||
+                    startsWith("p27") ||
+                    startsWith("p28") ||
+                    startsWith("p29") -> WeatherCode.THUNDER
+                startsWith("p21") ||
+                    startsWith("p22") ||
+                    startsWith("p23") -> WeatherCode.SNOW
+                startsWith("p19") ||
+                    startsWith("p20") -> WeatherCode.HAIL
+                startsWith("p17") ||
+                    startsWith("p18") -> WeatherCode.SLEET
+                startsWith("p16") ||
+                    startsWith("p24") ||
+                    startsWith("p25") ||
+                    startsWith("p30") -> WeatherCode.THUNDERSTORM
+                startsWith("p9") ||
+                    startsWith("p10") ||
+                    startsWith("p11") ||
+                    startsWith("p12") ||
+                    startsWith("p13") ||
+                    startsWith("p14") ||
+                    startsWith("p15") -> WeatherCode.RAIN
+                startsWith("p6") ||
+                    startsWith("p7") ||
+                    startsWith("p8") -> WeatherCode.FOG
+                startsWith("p4") ||
+                    startsWith("p5") -> WeatherCode.HAZE
+                startsWith("p3") -> WeatherCode.CLOUDY
+                startsWith("p2") -> WeatherCode.PARTLY_CLOUDY
+                startsWith("p1") -> WeatherCode.CLEAR
+                else -> null
+            }
         }
     }
 }
@@ -520,21 +567,29 @@ fun convertSecondary(
     currentResult: MfCurrentResult?,
     minuteResult: MfRainResult?,
     alertResultList: MfWarningsResult?,
-    normalsResult: MfNormalsResult?
+    normalsResult: MfNormalsResult?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult != null) {
             getCurrent(currentResult)
-        } else null,
+        } else {
+            null
+        },
         minutelyForecast = if (minuteResult != null) {
             getMinutelyList(minuteResult)
-        } else null,
+        } else {
+            null
+        },
         alertList = if (alertResultList != null) {
             getWarningsList(alertResultList)
-        } else null,
+        } else {
+            null
+        },
         normals = if (normalsResult != null) {
             getNormals(location, normalsResult)
-        } else null
+        } else {
+            null
+        }
     )
 }
 

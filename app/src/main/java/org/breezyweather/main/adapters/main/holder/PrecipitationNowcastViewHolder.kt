@@ -87,21 +87,17 @@ import kotlin.time.Duration.Companion.minutes
  * - Improve marker: make always showing, initialize the marker on "current time"
  * - Check what's the best way to make thick bars (currently we just put a very high random value)
  */
-class PrecipitationNowcastViewHolder(
-    parent: ViewGroup
-) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
+class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
-    private val minutelyTitle = itemView.findViewById<TextView>(R.id.container_main_minutely_card_title)
-    private val minutelySubtitle = itemView.findViewById<TextView>(R.id.container_main_minutely_card_subtitle)
-    private val minutelyChartComposeView = itemView.findViewById<ComposeView>(R.id.container_main_minutely_chart_composeView)
-    private val minutelyStartText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyStartText)
-    private val minutelyCenterText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyCenterText)
-    private val minutelyEndText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyEndText)
-    private val minutelyStartLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyStartLine)
-    private val minutelyEndLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyEndLine)
+    private val title = itemView.findViewById<TextView>(R.id.container_main_minutely_card_title)
+    private val subtitle = itemView.findViewById<TextView>(R.id.container_main_minutely_card_subtitle)
+    private val chartComposeView = itemView.findViewById<ComposeView>(R.id.container_main_minutely_chart_composeView)
+    private val startText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyStartText)
+    private val centerText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyCenterText)
+    private val endText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyEndText)
+    private val startLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyStartLine)
+    private val endLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyEndLine)
 
     override fun onBindView(
         activity: GeoActivity,
@@ -109,16 +105,9 @@ class PrecipitationNowcastViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity,
-            location,
-            provider,
-            listAnimationEnabled,
-            itemAnimationEnabled,
-            firstCard
-        )
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
 
         val weather = location.weather ?: return
         val colors = ThemeManager
@@ -130,19 +119,19 @@ class PrecipitationNowcastViewHolder(
                 WeatherViewController.isDaylight(location)
             )
 
-        minutelyTitle.setTextColor(colors[0])
-        minutelyTitle.text = weather.getMinutelyTitle(context)
-        minutelySubtitle.text = weather.getMinutelyDescription(context, location)
+        title.setTextColor(colors[0])
+        title.text = weather.getMinutelyTitle(context)
+        subtitle.text = weather.getMinutelyDescription(context, location)
 
         val minutelyList = weather.minutelyForecast
-        minutelyChartComposeView.setContent {
+        chartComposeView.setContent {
             BreezyWeatherTheme(
                 lightTheme = MainThemeColorProvider.isLightTheme(context, location)
             ) {
                 ContentView(location)
             }
         }
-        minutelyChartComposeView.contentDescription =
+        chartComposeView.contentDescription =
             activity.getString(
                 R.string.precipitation_between_time,
                 minutelyList.first().date.getFormattedTime(location, context, context.is12Hour),
@@ -150,37 +139,28 @@ class PrecipitationNowcastViewHolder(
             )
 
         val firstTime = minutelyList.first().date
-        val lastTime = Date(minutelyList.last().date.time +
-            minutelyList.last().minuteInterval.minutes.inWholeMilliseconds)
-        minutelyStartText.text = firstTime.getFormattedTime(location, context, context.is12Hour)
-        minutelyCenterText.text = Date(firstTime.time + (lastTime.time - firstTime.time) / 2)
+        val lastTime = Date(
+            minutelyList.last().date.time + minutelyList.last().minuteInterval.minutes.inWholeMilliseconds
+        )
+        startText.text = firstTime.getFormattedTime(location, context, context.is12Hour)
+        centerText.text = Date(firstTime.time + (lastTime.time - firstTime.time) / 2)
             .getFormattedTime(location, context, context.is12Hour)
-        minutelyEndText.text = lastTime.getFormattedTime(location, context, context.is12Hour)
-        minutelyStartText.setTextColor(
-            MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
-        )
-        minutelyCenterText.setTextColor(
-            MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
-        )
-        minutelyEndText.setTextColor(
-            MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
-        )
+        endText.text = lastTime.getFormattedTime(location, context, context.is12Hour)
+        startText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        centerText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        endText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
-        minutelyStartLine.setBackgroundColor(
-            MainThemeColorProvider.getColor(
-                location, com.google.android.material.R.attr.colorOutline
-            )
+        startLine.setBackgroundColor(
+            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
         )
-        minutelyEndLine.setBackgroundColor(
-            MainThemeColorProvider.getColor(
-                location, com.google.android.material.R.attr.colorOutline
-            )
+        endLine.setBackgroundColor(
+            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
         )
     }
 
     @Composable
     private fun ContentView(
-        location: Location
+        location: Location,
     ) {
         val view = LocalView.current
         val minutely = location.weather!!.minutelyForecastBy5Minutes
@@ -201,26 +181,16 @@ class PrecipitationNowcastViewHolder(
         val modelProducer = remember { CartesianChartModelProducer() }
 
         val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        val thresholdLineColor = if (context.isDarkMode) {
-            R.color.colorTextGrey
-        } else R.color.colorTextGrey2nd
+        val thresholdLineColor = if (context.isDarkMode) R.color.colorTextGrey else R.color.colorTextGrey2nd
 
-        val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(
-            maxY = maxY
-        )
+        val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(maxY = maxY)
         val marker = rememberDefaultCartesianMarker(
             label = rememberTextComponent(
                 color = Color(
-                    MainThemeColorProvider.getColor(
-                        location, com.google.android.material.R.attr.colorOnPrimary
-                    )
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary)
                 ),
                 background = rememberShapeComponent(
-                    Color(
-                        MainThemeColorProvider.getColor(
-                            location, androidx.appcompat.R.attr.colorPrimary
-                        )
-                    ),
+                    Color(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
@@ -232,11 +202,9 @@ class PrecipitationNowcastViewHolder(
                     dimensionResource(R.dimen.little_margin)
                 ),
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
-                minWidth = TextComponent.MinWidth.fixed(40f),
+                minWidth = TextComponent.MinWidth.fixed(40f)
             ),
-            valueFormatter = MarkerLabelFormatterMinutelyDecorator(
-                minutely, location, context, hasOnlyThresholdsValues
-            )
+            valueFormatter = MarkerLabelFormatterMinutelyDecorator(minutely, location, context, hasOnlyThresholdsValues)
         )
 
         LaunchedEffect(location) {
@@ -268,7 +236,7 @@ class PrecipitationNowcastViewHolder(
                                     )[0]
                             ),
                             thickness = 500.dp,
-                            shape = remember { CorneredShape.rounded(allPercent = 15) },
+                            shape = remember { CorneredShape.rounded(allPercent = 15) }
                         )
                     ),
                     rangeProvider = cartesianLayerRangeProvider
@@ -276,7 +244,7 @@ class PrecipitationNowcastViewHolder(
                 bottomAxis = HorizontalAxis.rememberBottom(
                     guideline = null,
                     tick = null, // Workaround: no custom ticks
-                    label = null, // Workaround: no custom ticks
+                    label = null // Workaround: no custom ticks
                 ),
                 decorations = listOfNotNull(
                     /**
@@ -298,7 +266,9 @@ class PrecipitationNowcastViewHolder(
                                 ),
                                 label = { context.getString(R.string.precipitation_intensity_light) }
                             )
-                        } else null
+                        } else {
+                            null
+                        }
                     },
                     (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY).let {
                         if (it && isTrendHorizontalLinesEnabled) {
@@ -313,7 +283,9 @@ class PrecipitationNowcastViewHolder(
                                 ),
                                 label = { context.getString(R.string.precipitation_intensity_medium) }
                             )
-                        } else null
+                        } else {
+                            null
+                        }
                     },
                     if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
                         HorizontalLine(
@@ -327,11 +299,13 @@ class PrecipitationNowcastViewHolder(
                             ),
                             label = { context.getString(R.string.precipitation_intensity_heavy) }
                         )
-                    } else null
+                    } else {
+                        null
+                    }
                 ),
                 // TODO: Makes two markers instead of fading away when tapped somewhere else
-                //persistentMarkers = mapOf(minutely.indexOfLast { it.date < Date() }.toFloat() to marker),
-                marker = marker,
+                // persistentMarkers = mapOf(minutely.indexOfLast { it.date < Date() }.toFloat() to marker),
+                marker = marker
             ),
             modelProducer = modelProducer,
             scrollState = rememberVicoScrollState(scrollEnabled = false),
@@ -342,76 +316,79 @@ class PrecipitationNowcastViewHolder(
 
 // Simplified version of https://stackoverflow.com/a/77321467
 private fun Modifier.handleNestedHorizontalDragGesture(
-    view: View
+    view: View,
 ) = this.pointerInput(Unit) {
-        var initialX = 0f
-        var initialY = 0f
+    var initialX = 0f
+    var initialY = 0f
 
-        awaitEachGesture {
-            do {
-                val event = awaitPointerEvent(PointerEventPass.Initial)
-                when (event.type) {
-                    PointerEventType.Press -> {
-                        view.parent.requestDisallowInterceptTouchEvent(true)
-                        event.changes.firstOrNull()?.let {
-                            initialX = it.position.x
-                            initialY = it.position.y
-                        }
+    awaitEachGesture {
+        do {
+            val event = awaitPointerEvent(PointerEventPass.Initial)
+            when (event.type) {
+                PointerEventType.Press -> {
+                    view.parent.requestDisallowInterceptTouchEvent(true)
+                    event.changes.firstOrNull()?.let {
+                        initialX = it.position.x
+                        initialY = it.position.y
                     }
-                    PointerEventType.Move -> {
-                        event.changes.firstOrNull()?.let {
-                            val changedX = it.previousPosition.x - initialX
-                            val changedY = it.previousPosition.y - initialY
+                }
+                PointerEventType.Move -> {
+                    event.changes.firstOrNull()?.let {
+                        val changedX = it.previousPosition.x - initialX
+                        val changedY = it.previousPosition.y - initialY
 
-                            if (changedY.absoluteValue > changedX.absoluteValue) {
-                                view.parent.requestDisallowInterceptTouchEvent(false)
-                            } else {
-                                view.parent.requestDisallowInterceptTouchEvent(true)
-                            }
+                        if (changedY.absoluteValue > changedX.absoluteValue) {
+                            view.parent.requestDisallowInterceptTouchEvent(false)
+                        } else {
+                            view.parent.requestDisallowInterceptTouchEvent(true)
                         }
                     }
                 }
-            } while (event.changes.any { it.pressed })
-        }
+            }
+        } while (event.changes.any { it.pressed })
     }
+}
 
 private class MarkerLabelFormatterMinutelyDecorator(
     private val minutely: List<Minutely>,
     private val location: Location,
-    private val androidContext: Context,
-    private val hasOnlyThresholdValues: Boolean
+    private val aContext: Context,
+    private val hasOnlyThresholdValues: Boolean,
 ) : CartesianMarkerValueFormatter {
+
     override fun format(
         context: CartesianDrawingContext,
-        targets: List<CartesianMarker.Target>
+        targets: List<CartesianMarker.Target>,
     ): CharSequence {
         val model = targets.first()
-        val startTime = minutely[model.x.toInt()].date.getFormattedTime(location, androidContext, androidContext.is12Hour)
-        val endTime = (minutely[model.x.toInt()].date.time + 5.minutes.inWholeMilliseconds)
-            .toDate().getFormattedTime(location, androidContext, androidContext.is12Hour)
+        val startTime = minutely[model.x.toInt()].date
+            .getFormattedTime(location, aContext, aContext.is12Hour)
+        val endTime = (minutely[model.x.toInt()].date.time + 5.minutes.inWholeMilliseconds).toDate()
+            .getFormattedTime(location, aContext, aContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
             when (minutely[model.x.toInt()].precipitationIntensity!!) {
-                0.0 -> androidContext.getString(R.string.precipitation_none)
-                Precipitation.PRECIPITATION_HOURLY_LIGHT -> androidContext.getString(R.string.precipitation_intensity_light)
-                Precipitation.PRECIPITATION_HOURLY_MEDIUM -> androidContext.getString(R.string.precipitation_intensity_medium)
-                Precipitation.PRECIPITATION_HOURLY_HEAVY -> androidContext.getString(R.string.precipitation_intensity_heavy)
-                else -> SettingsManager
-                    .getInstance(androidContext)
-                    .precipitationIntensityUnit
-                    .getValueText(androidContext, minutely[model.x.toInt()].precipitationIntensity!!)
+                0.0 -> aContext.getString(R.string.precipitation_none)
+                Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
+                Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
+                Precipitation.PRECIPITATION_HOURLY_HEAVY -> aContext.getString(R.string.precipitation_intensity_heavy)
+                else ->
+                    SettingsManager
+                        .getInstance(aContext)
+                        .precipitationIntensityUnit
+                        .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity!!)
             }
         } else {
             SettingsManager
-                .getInstance(androidContext)
+                .getInstance(aContext)
                 .precipitationIntensityUnit
-                .getValueText(androidContext, minutely[model.x.toInt()].precipitationIntensity!!)
+                .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity!!)
         }
 
         return SpannableStringBuilder().append(
             startTime,
             "-",
             endTime,
-            androidContext.getString(R.string.colon_separator),
+            aContext.getString(R.string.colon_separator),
             quantityFormatted
         )
     }

@@ -13,7 +13,9 @@ import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.remoteviews.Notifications
 
-internal class AppUpdateNotifier(private val context: Context) {
+internal class AppUpdateNotifier(
+    private val context: Context,
+) {
 
     private val notificationBuilder = context.notificationBuilder(Notifications.CHANNEL_APP_UPDATE)
 
@@ -44,7 +46,7 @@ internal class AppUpdateNotifier(private val context: Context) {
                 context,
                 release.hashCode(),
                 this,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }
 
@@ -52,14 +54,14 @@ internal class AppUpdateNotifier(private val context: Context) {
             setContentTitle(context.getString(R.string.notification_app_update_available))
             setContentText(release.version)
             setSmallIcon(android.R.drawable.stat_sys_download_done)
-            //setContentIntent(updateIntent)
+            // setContentIntent(updateIntent)
             setContentIntent(releaseIntent)
 
             clearActions()
             addAction(
                 android.R.drawable.stat_sys_download_done,
                 context.getString(R.string.action_download),
-                //updateIntent,
+                // updateIntent,
                 releaseIntent
             )
             /*addAction(
@@ -70,5 +72,4 @@ internal class AppUpdateNotifier(private val context: Context) {
         }
         notificationBuilder.show()
     }
-
 }

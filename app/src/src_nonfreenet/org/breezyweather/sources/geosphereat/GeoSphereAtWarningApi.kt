@@ -27,7 +27,6 @@ interface GeoSphereAtWarningApi {
     fun getWarningsForCoords(
         @Query("lon") lon: Double,
         @Query("lat") lat: Double,
-        @Query("lang") lang: String // "en" or "de"
+        @Query("lang") lang: String, // "en" or "de"
     ): Observable<GeoSphereAtWarningsResult>
-
 }

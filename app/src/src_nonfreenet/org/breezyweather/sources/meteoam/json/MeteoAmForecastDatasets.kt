@@ -22,5 +22,5 @@ import org.breezyweather.sources.meteoam.serializers.MeteoAmAnySerializer
 
 @Serializable
 data class MeteoAmForecastDatasets(
-    @SerialName("0") val data: Map<String, Map<String, @Serializable(with = MeteoAmAnySerializer::class) Any?>>?
+    @SerialName("0") val data: Map<String, Map<String, @Serializable(with = MeteoAmAnySerializer::class) Any?>>?,
 )

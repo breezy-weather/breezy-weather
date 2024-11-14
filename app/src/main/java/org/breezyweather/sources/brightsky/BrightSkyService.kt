@@ -47,7 +47,7 @@ import javax.inject.Named
 
 class BrightSkyService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") val client: Retrofit.Builder
+    @Named("JsonClient") val client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "brightsky"
@@ -55,8 +55,8 @@ class BrightSkyService @Inject constructor(
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
     override val color = Color.rgb(240, 177, 138)
-    // Mandatory mentions from DWD terms:
-    override val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
+    override val weatherAttribution =
+        "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
 
     private val mApi: BrightSkyApi
         get() {
@@ -72,13 +72,16 @@ class BrightSkyService @Inject constructor(
     )
 
     override fun isFeatureSupportedInMainForLocation(
-        location: Location, feature: SecondaryWeatherSourceFeature?
+        location: Location,
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("DE", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
         val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
@@ -97,7 +100,7 @@ class BrightSkyService @Inject constructor(
             lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
         )
 
-        val currentWeather = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val curWeather = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
@@ -119,13 +122,11 @@ class BrightSkyService @Inject constructor(
             }
         }
 
-        return Observable.zip(
-            weather, currentWeather, alerts
-        ) { brightSkyWeather, brightSkyCurrentWeather, brightSkyAlerts ->
+        return Observable.zip(weather, curWeather, alerts) { brightSkyWeather, brightSkyCurWeather, brightSkyAlerts ->
             val languageCode = context.currentLocale.code
             convert(
                 brightSkyWeather,
-                brightSkyCurrentWeather,
+                brightSkyCurWeather,
                 brightSkyAlerts,
                 location,
                 languageCode
@@ -139,7 +140,8 @@ class BrightSkyService @Inject constructor(
         SecondaryWeatherSourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location, feature: SecondaryWeatherSourceFeature
+        location: Location,
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -151,10 +153,10 @@ class BrightSkyService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-
         val currentWeather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getCurrentWeather(
                 location.latitude,
@@ -177,9 +179,7 @@ class BrightSkyService @Inject constructor(
             }
         }
 
-        return Observable.zip(
-            currentWeather, alerts
-        ) { brightSkyCurrentWeather, brightSkyAlerts ->
+        return Observable.zip(currentWeather, alerts) { brightSkyCurrentWeather, brightSkyAlerts ->
             val languageCode = context.currentLocale.code
             convertSecondary(brightSkyCurrentWeather, brightSkyAlerts, languageCode)
         }

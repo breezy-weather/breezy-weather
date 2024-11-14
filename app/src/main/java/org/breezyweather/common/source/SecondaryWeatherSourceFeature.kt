@@ -17,19 +17,20 @@
 package org.breezyweather.common.source
 
 enum class SecondaryWeatherSourceFeature(
-    val id: String
+    val id: String,
 ) {
     FEATURE_CURRENT("current"),
     FEATURE_AIR_QUALITY("airQuality"),
     FEATURE_POLLEN("pollen"),
     FEATURE_MINUTELY("minutely"),
     FEATURE_ALERT("alert"),
-    FEATURE_NORMALS("normals");
+    FEATURE_NORMALS("normals"),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = SecondaryWeatherSourceFeature.entries.firstOrNull {
             it.id == value
         }

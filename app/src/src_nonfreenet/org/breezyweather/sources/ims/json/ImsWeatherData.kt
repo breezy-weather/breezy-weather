@@ -26,5 +26,5 @@ data class ImsWeatherData(
     val analysis: ImsAnalysis?,
     @SerialName("forecast_data") val forecastData: Map<String, ImsForecastData>?,
     @SerialName("wind_directions") val windDirections: Map<String, ImsWindDirection>?,
-    @SerialName("weather_codes") val weatherCodes: Map<String, ImsWeatherCode>?
+    @SerialName("weather_codes") val weatherCodes: Map<String, ImsWeatherCode>?,
 )

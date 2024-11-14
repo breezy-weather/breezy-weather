@@ -20,7 +20,7 @@ import breezyweather.domain.weather.model.UV
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class DailyUV(
-    val uv: UV
+    val uv: UV,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 8
 

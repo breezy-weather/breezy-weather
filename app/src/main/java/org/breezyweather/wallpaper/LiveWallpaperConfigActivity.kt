@@ -96,52 +96,52 @@ class LiveWallpaperConfigActivity : GeoActivity() {
             topBar = {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.settings_widgets_live_wallpaper_title),
-                    onBackPressed = { finish() },
+                    onBackPressed = { finish() }
                 )
-            },
+            }
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
+                contentPadding = it
             ) {
                 items(1) {
                     Spinner(
                         currentVal = weatherKindValueNow,
                         names = weatherKinds,
                         values = weatherKindValues,
-                        titleId = R.string.widget_live_wallpaper_weather_kind,
+                        titleId = R.string.widget_live_wallpaper_weather_kind
                     )
                     Spinner(
                         currentVal = dayNightTypeValueNow,
                         names = dayNightTypeKinds,
                         values = dayNightTypeValues,
-                        titleId = R.string.widget_live_wallpaper_day_night_type,
+                        titleId = R.string.widget_live_wallpaper_day_night_type
                     )
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(dimensionResource(R.dimen.normal_margin)),
-                        contentAlignment = Alignment.CenterEnd,
+                        contentAlignment = Alignment.CenterEnd
                     ) {
                         Button(
                             onClick = {
                                 LiveWallpaperConfigManager.update(
                                     this@LiveWallpaperConfigActivity,
                                     weatherKindValueNow.value,
-                                    dayNightTypeValueNow.value,
+                                    dayNightTypeValueNow.value
                                 )
                                 finish()
                             },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.primary,
-                                contentColor = MaterialTheme.colorScheme.onPrimary,
-                            ),
+                                contentColor = MaterialTheme.colorScheme.onPrimary
+                            )
                         ) {
                             Text(
                                 text = stringResource(R.string.action_done),
                                 color = MaterialTheme.colorScheme.onPrimary,
                                 fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleMedium
                             )
                         }
                     }
@@ -181,13 +181,13 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
-                        onClick = { expanded.value = !expanded.value },
+                        onClick = { expanded.value = !expanded.value }
                     ),
                 label = {
                     Text(
                         text = label,
                         color = MaterialTheme.colorScheme.secondary,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Bold
                     )
                 },
                 trailingIcon = {
@@ -197,20 +197,20 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                         modifier = Modifier.clickable {
                             expanded.value = !expanded.value
                         },
-                        tint = MaterialTheme.colorScheme.secondary,
+                        tint = MaterialTheme.colorScheme.secondary
                     )
                 },
                 readOnly = true,
                 enabled = false,
                 textStyle = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.SemiBold
-                ),
+                )
             )
             DropdownMenu(
                 expanded = expanded.value,
                 onDismissRequest = { expanded.value = false },
                 modifier = Modifier
-                    .width(with(LocalDensity.current){ textFieldSize.value.width.toDp() })
+                    .width(with(LocalDensity.current) { textFieldSize.value.width.toDp() })
             ) {
                 names.forEachIndexed { index, item ->
                     DropdownMenuItem(
@@ -218,7 +218,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                             Text(
                                 text = item,
                                 color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleMedium
                             )
                         },
                         onClick = {

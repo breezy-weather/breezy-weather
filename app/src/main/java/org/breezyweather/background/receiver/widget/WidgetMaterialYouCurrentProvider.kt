@@ -39,7 +39,9 @@ class WidgetMaterialYouCurrentProvider : AppWidgetProvider() {
     lateinit var weatherRepository: WeatherRepository
 
     override fun onUpdate(
-        context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         if (MaterialYouCurrentWidgetIMP.isEnabled(context)) {
@@ -62,7 +64,10 @@ class WidgetMaterialYouCurrentProvider : AppWidgetProvider() {
     }
 
     override fun onAppWidgetOptionsChanged(
-        context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: Bundle,
     ) {
         onUpdate(context, appWidgetManager, intArrayOf(appWidgetId))
     }

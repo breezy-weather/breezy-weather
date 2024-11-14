@@ -31,7 +31,6 @@ interface WmoSevereWeatherJsonApi {
         @Query("version") version: String = "1.1.0",
         @Query("typeName", encoded = true) typeName: String,
         @Query("cql_filter", encoded = true) cqlFilter: String,
-        @Query("outputFormat") outputFormat: String = "json"
+        @Query("outputFormat") outputFormat: String = "json",
     ): Observable<WmoSevereWeatherAlertResult>
-
 }

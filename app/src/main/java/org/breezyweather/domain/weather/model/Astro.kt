@@ -17,14 +17,14 @@ import kotlin.time.Duration.Companion.minutes
  * */
 fun getRiseProgress(
     astro: Astro?,
-    location: Location
+    location: Location,
 ): Double {
     val defaultRiseHour = 6
     val defaultDurationHour = 12
 
     val timezoneCalendar = Calendar.getInstance(location.javaTimeZone)
-    val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY].hours +
-        timezoneCalendar[Calendar.MINUTE].minutes).inWholeMilliseconds
+    val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY].hours + timezoneCalendar[Calendar.MINUTE].minutes)
+        .inWholeMilliseconds
 
     val riseTime = astro?.riseDate?.toTimezone(location.javaTimeZone)?.time
     val setTime = astro?.setDate?.toTimezone(location.javaTimeZone)?.time
@@ -35,13 +35,12 @@ fun getRiseProgress(
         if (setHourMinuteTime == riseHourMinuteTime) {
             return -1.0
         }
-        return (currentTime - riseHourMinuteTime).toDouble() / (
-            setHourMinuteTime - riseHourMinuteTime).toDouble()
+        return (currentTime - riseHourMinuteTime).toDouble() / (setHourMinuteTime - riseHourMinuteTime).toDouble()
     }
 
     val riseCalendar = Calendar.getInstance().apply { time = Date(riseTime) }
-    val riseHourMinuteTime = (riseCalendar[Calendar.HOUR_OF_DAY].hours +
-            riseCalendar[Calendar.MINUTE].minutes).inWholeMilliseconds
+    val riseHourMinuteTime = (riseCalendar[Calendar.HOUR_OF_DAY].hours + riseCalendar[Calendar.MINUTE].minutes)
+        .inWholeMilliseconds
 
     var safeSetTime = setTime
     while (safeSetTime <= riseTime) {
@@ -49,6 +48,5 @@ fun getRiseProgress(
     }
     val setHourMinuteTime = riseHourMinuteTime + (safeSetTime - riseTime)
 
-    return (currentTime - riseHourMinuteTime).toDouble() / (
-        setHourMinuteTime - riseHourMinuteTime).toDouble()
+    return (currentTime - riseHourMinuteTime).toDouble() / (setHourMinuteTime - riseHourMinuteTime).toDouble()
 }

@@ -42,7 +42,7 @@ class DailyPrecipitationAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: PrecipitationUnit
+    unit: PrecipitationUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mPrecipitationUnit: PrecipitationUnit = unit
@@ -65,19 +65,28 @@ class DailyPrecipitationAdapter(
             val daytimePrecipitation = daily.day?.precipitation?.total
             val nighttimePrecipitation = daily.night?.precipitation?.total
             if ((daytimePrecipitation != null && daytimePrecipitation > 0f) ||
-                (nighttimePrecipitation != null && nighttimePrecipitation > 0f)) {
+                (nighttimePrecipitation != null && nighttimePrecipitation > 0f)
+            ) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
-                        mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
-                    } else activity.getString(R.string.precipitation_none))
+                    .append(
+                        if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
+                            mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
+                        } else {
+                            activity.getString(R.string.precipitation_none)
+                        }
+                    )
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
-                        mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
-                    } else activity.getString(R.string.precipitation_none))
+                    .append(
+                        if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
+                            mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
+                        } else {
+                            activity.getString(R.string.precipitation_none)
+                        }
+                    )
             } else {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_none))
@@ -122,8 +131,7 @@ class DailyPrecipitationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 

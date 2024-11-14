@@ -23,7 +23,7 @@ import java.lang.ref.WeakReference
 internal class MyObserverWrapper<T> internal constructor(
     host: BusLiveData<T>,
     internal val observer: Observer<in T>,
-    private var version: Int
+    private var version: Int,
 ) : Observer<T> {
 
     private val host = WeakReference(host)

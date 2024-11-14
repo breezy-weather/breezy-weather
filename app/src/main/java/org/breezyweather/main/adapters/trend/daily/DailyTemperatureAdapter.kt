@@ -121,7 +121,9 @@ class DailyTemperatureAdapter(
                     NumberFormat.getPercentInstance(activity.currentLocale).apply {
                         maximumFractionDigits = 0
                     }.format(p.div(100.0))
-                } else null,
+                } else {
+                    null
+                },
                 100f,
                 0f
             )
@@ -181,7 +183,8 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mDaytimeTemperatures.size) {
-                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                mDaytimeTemperatures[i] =
+                    weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -200,7 +203,8 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mNighttimeTemperatures.size) {
-                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                mNighttimeTemperatures[i] =
+                    weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -236,8 +240,7 @@ class DailyTemperatureAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 
@@ -262,9 +265,16 @@ class DailyTemperatureAdapter(
                 TrendRecyclerView.KeyLine(
                     normals.daytimeTemperature!!.toFloat(),
                     SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
-                        activity, normals.daytimeTemperature!!
+                        activity,
+                        normals.daytimeTemperature!!
                     ),
-                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(
+                        if (normals.month != null) {
+                            R.string.temperature_normal_short
+                        } else {
+                            R.string.temperature_average_short
+                        }
+                    ),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
@@ -272,9 +282,16 @@ class DailyTemperatureAdapter(
                 TrendRecyclerView.KeyLine(
                     normals.nighttimeTemperature!!.toFloat(),
                     SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
-                        activity, normals.nighttimeTemperature!!
+                        activity,
+                        normals.nighttimeTemperature!!
                     ),
-                    activity.getString(if (normals.month != null) R.string.temperature_normal_short else R.string.temperature_average_short),
+                    activity.getString(
+                        if (normals.month != null) {
+                            R.string.temperature_normal_short
+                        } else {
+                            R.string.temperature_average_short
+                        }
+                    ),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )

@@ -22,7 +22,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
-import javax.inject.Inject
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -31,10 +30,11 @@ import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
 import retrofit2.Retrofit
+import javax.inject.Inject
 import javax.inject.Named
 
 class MeteoAmService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, ReverseGeocodingSource {
 
     override val id = "meteoam"
@@ -42,8 +42,10 @@ class MeteoAmService @Inject constructor(
     override val privacyPolicyUrl = "https://www.meteoam.it/it/privacy-policy"
 
     override val color = Color.rgb(20, 122, 179)
+
     // Required wording for third-party use taken from https://www.meteoam.it/it/condizioni-utilizzo
-    override val weatherAttribution = "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati sul sito www.meteoam.it"
+    override val weatherAttribution =
+        "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati sul sito www.meteoam.it"
 
     private val mApi by lazy {
         client
@@ -58,7 +60,9 @@ class MeteoAmService @Inject constructor(
 
     @SuppressLint("CheckResult")
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             location.latitude,
@@ -75,8 +79,8 @@ class MeteoAmService @Inject constructor(
             }
         }
         return Observable.zip(forecast, observation) {
-            forecastResult: MeteoAmForecastResult,
-            observationResult: MeteoAmObservationResult
+                forecastResult: MeteoAmForecastResult,
+                observationResult: MeteoAmObservationResult,
             ->
             convert(context, forecastResult, observationResult)
         }
@@ -85,17 +89,19 @@ class MeteoAmService @Inject constructor(
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         val reverseLocation = mApi.getReverseLocation(location.latitude, location.longitude)
         val forecast = mApi.getForecast(location.latitude, location.longitude)
         val locationList = mutableListOf<Location>()
         return Observable.zip(reverseLocation, forecast) {
-            reverseLocationResult: MeteoAmReverseLocationResult,
-            forecastResult: MeteoAmForecastResult
+                reverseLocationResult: MeteoAmReverseLocationResult,
+                forecastResult: MeteoAmForecastResult,
             ->
             if (!reverseLocationResult.results.isNullOrEmpty() && !forecastResult.extrainfo?.timezone.isNullOrEmpty()) {
-                locationList.add(convert(location, reverseLocationResult.results[0], forecastResult.extrainfo?.timezone!!))
+                locationList.add(
+                    convert(location, reverseLocationResult.results[0], forecastResult.extrainfo?.timezone!!)
+                )
             }
             locationList
         }
@@ -103,5 +109,5 @@ class MeteoAmService @Inject constructor(
 
     companion object {
         private const val METEOAM_BASE_URL = "https://api.meteoam.it/"
-   }
+    }
 }

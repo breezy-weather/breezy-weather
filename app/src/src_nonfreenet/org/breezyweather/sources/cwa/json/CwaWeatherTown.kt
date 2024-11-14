@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CwaWeatherTown(
     @SerialName("forecast72hr") val hourly: CwaWeatherForecast?,
-    @SerialName("forecastWeekday") val daily: CwaWeatherForecast?
+    @SerialName("forecastWeekday") val daily: CwaWeatherForecast?,
 )

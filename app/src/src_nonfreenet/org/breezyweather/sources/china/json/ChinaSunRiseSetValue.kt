@@ -23,5 +23,5 @@ import java.util.Date
 @Serializable
 data class ChinaSunRiseSetValue(
     @Serializable(DateSerializer::class) val from: Date?,
-    @Serializable(DateSerializer::class) val to: Date?
+    @Serializable(DateSerializer::class) val to: Date?,
 )

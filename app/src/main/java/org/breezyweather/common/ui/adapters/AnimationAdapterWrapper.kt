@@ -23,8 +23,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 
-abstract class AnimationAdapterWrapper<A : RecyclerView.Adapter<VH>, VH : RecyclerView.ViewHolder> @JvmOverloads constructor(
-    adapter: A, firstOnly: Boolean = true
+abstract class AnimationAdapterWrapper<A : RecyclerView.Adapter<VH>, VH : RecyclerView.ViewHolder>
+@JvmOverloads constructor(
+    adapter: A,
+    firstOnly: Boolean = true,
 ) : RecyclerView.Adapter<VH>() {
     val wrappedAdapter: A
     private val mAnimatorSet: MutableMap<Int, Animator>

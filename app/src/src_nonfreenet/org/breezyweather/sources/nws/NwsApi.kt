@@ -30,7 +30,7 @@ interface NwsApi {
     fun getPoints(
         @Header("User-Agent") userAgent: String,
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<NwsPointResult>
 
     @GET("gridpoints/{gridId}/{gridX},{gridY}")
@@ -38,15 +38,12 @@ interface NwsApi {
         @Header("User-Agent") userAgent: String,
         @Path("gridId") gridId: String,
         @Path("gridX") gridX: Int,
-        @Path("gridY") gridY: Int
+        @Path("gridY") gridY: Int,
     ): Observable<NwsGridPointResult>
 
     @GET("alerts/active")
     fun getActiveAlerts(
         @Header("User-Agent") userAgent: String,
-        /**
-         * Format: lat,lon
-         */
-        @Query("point") point: String
+        @Query("point") point: String, // Format: lat,lon
     ): Observable<NwsAlertsResult>
 }

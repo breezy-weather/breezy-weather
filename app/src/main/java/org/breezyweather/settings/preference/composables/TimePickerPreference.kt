@@ -85,7 +85,7 @@ fun TimePickerPreferenceView(
     title = stringResource(titleId),
     currentTime = currentTime,
     enabled = enabled,
-    onValueChanged = onValueChanged,
+    onValueChanged = onValueChanged
 )
 
 @Composable
@@ -113,16 +113,16 @@ private fun TimePickerPreferenceView(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = { showTimePicker = true },
-                    enabled = enabled,
+                    enabled = enabled
                 )
                 .padding(dimensionResource(R.dimen.normal_margin)),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Center
         ) {
             Column {
                 Text(
                     text = title,
                     color = DayNightTheme.colors.titleColor,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium
                 )
                 val currentSummary = time?.getFormattedTime(null, LocalContext.current, is12Hour)
                 if (currentSummary?.isNotEmpty() == true) {
@@ -130,7 +130,7 @@ private fun TimePickerPreferenceView(
                     Text(
                         text = currentSummary,
                         color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }
@@ -183,7 +183,8 @@ private fun TimePickerPreferenceView(
                                 .size(64.dp, 72.dp)
                                 .align(Alignment.BottomStart)
                                 .zIndex(5f),
-                            onClick = { showingPicker.value = !showingPicker.value }) {
+                            onClick = { showingPicker.value = !showingPicker.value }
+                        ) {
                             val icon = if (showingPicker.value) {
                                 Icons.Outlined.Keyboard
                             } else {
@@ -213,7 +214,7 @@ private fun TimePickerPreferenceView(
 
 private fun timeToString(
     hour: Int,
-    minute: Int
+    minute: Int,
 ): String {
     return Calendar.getInstance()
         .also {
@@ -233,13 +234,13 @@ private fun TimePickerDialog(
     onConfirm: () -> Unit,
     title: String = stringResource(R.string.dialog_time_picker_select_time),
     toggle: @Composable () -> Unit = {},
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Dialog(
         onDismissRequest = onCancel,
         properties = DialogProperties(
             usePlatformDefaultWidth = false
-        ),
+        )
     ) {
         Surface(
             shape = MaterialTheme.shapes.extraLarge,
@@ -250,7 +251,7 @@ private fun TimePickerDialog(
                 .background(
                     shape = MaterialTheme.shapes.extraLarge,
                     color = MaterialTheme.colorScheme.surface
-                ),
+                )
         ) {
             toggle()
             Column(

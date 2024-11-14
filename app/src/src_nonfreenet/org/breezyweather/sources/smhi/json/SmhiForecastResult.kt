@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SmhiForecastResult(
-    val timeSeries: List<SmhiTimeSeries>?
+    val timeSeries: List<SmhiTimeSeries>?,
 )

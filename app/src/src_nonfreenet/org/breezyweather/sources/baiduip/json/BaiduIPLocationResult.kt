@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BaiduIPLocationResult(
     val status: Int,
-    val content: BaiduIPLocationContent?
+    val content: BaiduIPLocationContent?,
 )

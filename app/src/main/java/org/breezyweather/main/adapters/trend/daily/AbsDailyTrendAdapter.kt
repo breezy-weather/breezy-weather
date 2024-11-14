@@ -34,16 +34,20 @@ import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.main.utils.MainThemeColorProvider
 import java.util.Date
 
-abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Location) :
-    TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>(location) {
+abstract class AbsDailyTrendAdapter(
+    val activity: GeoActivity,
+    location: Location,
+) : TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>(location) {
 
     open class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dailyItem: DailyTrendItemView = itemView.findViewById(R.id.item_trend_daily)
 
         @SuppressLint("SetTextI18n, InflateParams", "DefaultLocale")
         fun onBindView(
-            activity: GeoActivity, location: Location,
-            talkBackBuilder: StringBuilder, position: Int
+            activity: GeoActivity,
+            location: Location,
+            talkBackBuilder: StringBuilder,
+            position: Int,
         ) {
             val context = itemView.context
             val weather = location.weather
@@ -61,9 +65,7 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
                 .append(
                     daily.date.getFormattedMediumDayAndMonth(location, context)
                 )
-            dailyItem.setDateText(
-                daily.date.getFormattedShortDayAndMonth(location, context)
-            )
+            dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(
                 MainThemeColorProvider.getColor(

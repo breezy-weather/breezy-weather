@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class MgmAlertWeather(
     val yellow: List<String>?,
     val orange: List<String>?,
-    val red: List<String>?
+    val red: List<String>?,
 )

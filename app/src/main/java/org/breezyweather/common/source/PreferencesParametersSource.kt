@@ -35,7 +35,7 @@ interface PreferencesParametersSource : Source {
      */
     fun hasPreferencesScreen(
         location: Location,
-        features: List<SecondaryWeatherSourceFeature> = emptyList()
+        features: List<SecondaryWeatherSourceFeature> = emptyList(),
     ): Boolean
 
     @Composable
@@ -43,6 +43,6 @@ interface PreferencesParametersSource : Source {
         context: Context,
         location: Location,
         features: List<SecondaryWeatherSourceFeature>,
-        onSave: (Map<String, String>) -> Unit
+        onSave: (Map<String, String>) -> Unit,
     )
 }

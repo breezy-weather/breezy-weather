@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaWeatherResult(
-    val data: CwaWeatherData? = null
+    val data: CwaWeatherData? = null,
 )

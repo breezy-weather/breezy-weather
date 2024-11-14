@@ -28,7 +28,9 @@ import androidx.appcompat.widget.AppCompatImageView
 import org.breezyweather.R
 
 class AnimatableIconView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
     @Size(3)
     private var mIconImageViews: Array<AppCompatImageView>
@@ -39,12 +41,8 @@ class AnimatableIconView @JvmOverloads constructor(
     init {
         val attributes = context.theme
             .obtainStyledAttributes(attrs, R.styleable.AnimatableIconView, defStyleAttr, 0)
-        val innerMargin = attributes.getDimensionPixelSize(
-            R.styleable.AnimatableIconView_inner_margins, 0
-        )
-        val params = LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-        )
+        val innerMargin = attributes.getDimensionPixelSize(R.styleable.AnimatableIconView_inner_margins, 0)
+        val params = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         params.setMargins(innerMargin, innerMargin, innerMargin, innerMargin)
         mIconImageViews = arrayOf(
             AppCompatImageView(context),
@@ -59,7 +57,7 @@ class AnimatableIconView @JvmOverloads constructor(
 
     fun setAnimatableIcon(
         @Size(3) drawables: Array<Drawable?>,
-        @Size(3) animators: Array<Animator?>
+        @Size(3) animators: Array<Animator?>,
     ) {
         endAnimators()
         for (i in drawables.indices) {

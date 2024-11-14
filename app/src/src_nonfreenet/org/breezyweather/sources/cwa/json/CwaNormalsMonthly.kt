@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class CwaNormalsMonthly(
     val Month: String?,
     val Maximum: String?,
-    val Minimum: String?
+    val Minimum: String?,
 )

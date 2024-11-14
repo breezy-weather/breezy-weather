@@ -85,7 +85,7 @@ class HomeFragment : MainModuleFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
@@ -205,9 +205,7 @@ class HomeFragment : MainModuleFragment() {
             true
         }
         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
-        binding.toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(
-            Color.WHITE, PorterDuff.Mode.SRC_ATOP
-        )
+        binding.toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
 
         // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
         // start padding).
@@ -413,7 +411,10 @@ class HomeFragment : MainModuleFragment() {
         // Show "current position" icon:
         // - On the left on mobile because it might not be visible on small displays otherwise
         // - On the right on tablet because on the left it would be confused with the action icon
-        binding.toolbar.title = (if (location?.isCurrentPosition == true && !requireContext().isTabletDevice) "⊙ " else "") + (location?.getPlace(requireContext()) ?: "") + (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
+        binding.toolbar.title =
+            (if (location?.isCurrentPosition == true && !requireContext().isTabletDevice) "⊙ " else "") +
+            (location?.getPlace(requireContext()) ?: "") +
+            (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
         val textColor = ThemeManager.getInstance(requireContext())
             .weatherThemeDelegate
@@ -524,7 +525,9 @@ class HomeFragment : MainModuleFragment() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             mFirstCardMarginTop = if (recyclerView.childCount > 0) {
                 recyclerView.getChildAt(0).top
-            } else -1
+            } else {
+                -1
+            }
 
             mScrollY = recyclerView.computeVerticalScrollOffset()
             mLastAppBarTranslationY = binding.appBar.translationY
@@ -539,11 +542,8 @@ class HomeFragment : MainModuleFragment() {
                     binding.appBar.translationY = 0f
                 } else if (mScrollY < adapter!!.headerTop) {
                     // Make the app bar disappear when we reach top of temperature
-                    binding.appBar.translationY = (
-                        adapter!!.headerTop
-                            - binding.appBar.measuredHeight
-                            - mScrollY
-                        ).toFloat()
+                    binding.appBar.translationY = (adapter!!.headerTop - binding.appBar.measuredHeight - mScrollY)
+                        .toFloat()
                 } else {
                     // Make appbar completely disappear in other cases
                     binding.appBar.translationY = -binding.appBar.measuredHeight.toFloat()
@@ -553,7 +553,9 @@ class HomeFragment : MainModuleFragment() {
             // set system bar style.
             mTopChanged = if (mFirstCardMarginTop <= 0) {
                 (binding.appBar.translationY != 0f) != (mLastAppBarTranslationY != 0f)
-            } else true
+            } else {
+                true
+            }
             topOverlap = binding.appBar.translationY != 0f
             if (mTopChanged!!) {
                 checkToSetSystemBarStyle()

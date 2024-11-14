@@ -127,19 +127,40 @@ object ISO8601Utils {
             var offset = pos.index
 
             // extract year
-            val year = parseInt(date, offset, 4.let { offset += it; offset })
+            val year = parseInt(
+                date,
+                offset,
+                4.let {
+                    offset += it
+                    offset
+                }
+            )
             if (checkOffset(date, offset, '-')) {
                 offset += 1
             }
 
             // extract month
-            val month = parseInt(date, offset, 2.let { offset += it; offset })
+            val month = parseInt(
+                date,
+                offset,
+                2.let {
+                    offset += it
+                    offset
+                }
+            )
             if (checkOffset(date, offset, '-')) {
                 offset += 1
             }
 
             // extract day
-            val day = parseInt(date, offset, 2.let { offset += it; offset })
+            val day = parseInt(
+                date,
+                offset,
+                2.let {
+                    offset += it
+                    offset
+                }
+            )
             // default time value
             var hour = 0
             var minutes = 0
@@ -159,12 +180,29 @@ object ISO8601Utils {
 
             if (hasT) {
                 // extract hours, minutes, seconds and milliseconds
-                hour = parseInt(date, 1.let { offset += it; offset }, 2.let { offset += it; offset })
+                hour = parseInt(
+                    date,
+                    1.let {
+                        offset += it
+                        offset
+                    },
+                    2.let {
+                        offset += it
+                        offset
+                    }
+                )
                 if (checkOffset(date, offset, ':')) {
                     offset += 1
                 }
 
-                minutes = parseInt(date, offset, 2.let { offset += it; offset })
+                minutes = parseInt(
+                    date,
+                    offset,
+                    2.let {
+                        offset += it
+                        offset
+                    }
+                )
                 if (checkOffset(date, offset, ':')) {
                     offset += 1
                 }
@@ -172,7 +210,14 @@ object ISO8601Utils {
                 if (date!!.length > offset) {
                     val c = date[offset]
                     if (c != 'Z' && c != '+' && c != '-') {
-                        seconds = parseInt(date, offset, 2.let { offset += it; offset })
+                        seconds = parseInt(
+                            date,
+                            offset,
+                            2.let {
+                                offset += it
+                                offset
+                            }
+                        )
                         if (seconds in 60..62) seconds = 59 // truncate up to 3 leap seconds
                         // milliseconds can be optional in the format
                         if (checkOffset(date, offset, '.')) {
@@ -203,7 +248,8 @@ object ISO8601Utils {
             } else if (timezoneIndicator == '+' || timezoneIndicator == '-') {
                 var timezoneOffset = date.substring(offset)
 
-                // When timezone has no minutes, we should append it, valid timezones are, for example: +00:00, +0000 and +00
+                // When timezone has no minutes, we should append it, valid timezones are,
+                // for example: +00:00, +0000 and +00
                 timezoneOffset = if (timezoneOffset.length >= 5) timezoneOffset else timezoneOffset + "00"
 
                 offset += timezoneOffset.length

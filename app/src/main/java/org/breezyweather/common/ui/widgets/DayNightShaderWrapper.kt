@@ -23,7 +23,7 @@ class DayNightShaderWrapper @JvmOverloads constructor(
     targetHeight: Int,
     lightTheme: Boolean = true,
     colors: IntArray = IntArray(0),
-    shader: Shader? = null
+    shader: Shader? = null,
 ) {
     var shader: Shader? = null
         private set
@@ -40,14 +40,17 @@ class DayNightShaderWrapper @JvmOverloads constructor(
     }
 
     fun isDifferent(
-        targetWidth: Int, targetHeight: Int,
-        lightTheme: Boolean, colors: IntArray
+        targetWidth: Int,
+        targetHeight: Int,
+        lightTheme: Boolean,
+        colors: IntArray,
     ): Boolean {
         if (shader == null ||
             this.targetWidth != targetWidth ||
             this.targetHeight != targetHeight ||
             isLightTheme != lightTheme ||
-            mColors.size != colors.size) {
+            mColors.size != colors.size
+        ) {
             return true
         }
         for (i in colors.indices) {
@@ -60,8 +63,10 @@ class DayNightShaderWrapper @JvmOverloads constructor(
 
     fun setShader(
         shader: Shader?,
-        targetWidth: Int, targetHeight: Int,
-        lightTheme: Boolean, colors: IntArray
+        targetWidth: Int,
+        targetHeight: Int,
+        lightTheme: Boolean,
+        colors: IntArray,
     ) {
         this.shader = shader
         this.targetWidth = targetWidth

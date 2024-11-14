@@ -21,7 +21,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class Overview(
     val halfDay: HalfDay,
-    val isDaytime: Boolean
+    val isDaytime: Boolean,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 1
 

@@ -25,10 +25,8 @@ import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
 class PollenHolder(
-    private val mBinding: ItemWeatherDailyPollenBinding
-) : DailyWeatherAdapter.ViewHolder(
-    mBinding.root
-) {
+    private val mBinding: ItemWeatherDailyPollenBinding,
+) : DailyWeatherAdapter.ViewHolder(mBinding.root) {
     @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
         mBinding.composeView.setContent {

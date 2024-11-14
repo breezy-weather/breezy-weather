@@ -70,7 +70,9 @@ class HttpModule {
             } catch (ignored: Exception) {
                 OkHttpClient.Builder()
             }
-        } else OkHttpClient.Builder()
+        } else {
+            OkHttpClient.Builder()
+        }
 
         return client
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -96,7 +98,11 @@ class HttpModule {
     @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
-            level = if (BreezyWeather.instance.debugMode) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            level = if (BreezyWeather.instance.debugMode) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
         }
     }
 
@@ -118,7 +124,7 @@ class HttpModule {
     fun provideJsonRetrofitBuilder(
         client: OkHttpClient,
         @Named("JsonSerializer") jsonConverterFactory: Converter.Factory,
-        callAdapterFactory: RxJava3CallAdapterFactory
+        callAdapterFactory: RxJava3CallAdapterFactory,
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(client)

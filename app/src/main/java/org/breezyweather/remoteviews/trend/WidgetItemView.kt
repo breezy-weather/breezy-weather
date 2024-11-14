@@ -34,7 +34,10 @@ import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
  * Widget item view.
  */
 class WidgetItemView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0,
 ) : ViewGroup(context, attrs, defStyleAttr, defStyleRes) {
     val trendItemView: PolylineAndHistogramView
     private val mTitleTextPaint: Paint
@@ -117,7 +120,9 @@ class WidgetItemView @JvmOverloads constructor(
         mTrendViewTop = height
         val trendViewHeight = if (mBottomIconDrawable == null) {
             context.dpToPx(TREND_VIEW_HEIGHT_DIP_1X.toFloat()).toInt()
-        } else context.dpToPx(TREND_VIEW_HEIGHT_DIP_2X.toFloat()).toInt()
+        } else {
+            context.dpToPx(TREND_VIEW_HEIGHT_DIP_2X.toFloat()).toInt()
+        }
         trendItemView.measure(
             MeasureSpec.makeMeasureSpec(mWidth.toInt(), MeasureSpec.EXACTLY),
             MeasureSpec.makeMeasureSpec(trendViewHeight, MeasureSpec.EXACTLY)
@@ -139,8 +144,10 @@ class WidgetItemView @JvmOverloads constructor(
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         trendItemView.layout(
-            0, mTrendViewTop.toInt(),
-            trendItemView.measuredWidth, (mTrendViewTop + trendItemView.measuredHeight).toInt()
+            0,
+            mTrendViewTop.toInt(),
+            trendItemView.measuredWidth,
+            (mTrendViewTop + trendItemView.measuredHeight).toInt()
         )
     }
 

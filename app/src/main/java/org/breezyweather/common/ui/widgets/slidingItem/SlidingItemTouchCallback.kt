@@ -34,7 +34,7 @@ abstract class SlidingItemTouchCallback : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder
+        viewHolder: RecyclerView.ViewHolder,
     ): Int {
         return makeMovementFlags(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -44,8 +44,12 @@ abstract class SlidingItemTouchCallback : ItemTouchHelper.Callback() {
 
     override fun onChildDraw(
         c: Canvas,
-        recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-        dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean,
     ) {
         val slidingContainer = findSlidingContainer(viewHolder)
         if (isCurrentlyActive) {
@@ -84,7 +88,7 @@ abstract class SlidingItemTouchCallback : ItemTouchHelper.Callback() {
         }
 
         private fun findSlidingContainer(
-            viewHolder: RecyclerView.ViewHolder
+            viewHolder: RecyclerView.ViewHolder,
         ): SlidingItemContainerLayout {
             if (viewHolder.itemView is SlidingItemContainerLayout) {
                 return viewHolder.itemView as SlidingItemContainerLayout

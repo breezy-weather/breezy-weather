@@ -73,7 +73,7 @@ data class Location(
      * "nws": {"gridId": "8", "gridX": "20", "gridY": "30"}
      * etc
      */
-    val parameters: Map<String, Map<String, String>> = emptyMap()
+    val parameters: Map<String, Map<String, String>> = emptyMap(),
 ) : Parcelable {
 
     val javaTimeZone: java.util.TimeZone = java.util.TimeZone.getTimeZone(timeZone)
@@ -83,8 +83,8 @@ data class Location(
             CURRENT_POSITION_ID
         } else {
             String.format(Locale.US, "%f", latitude) + "&" +
-                    String.format(Locale.US, "%f", longitude) + "&" +
-                    weatherSource
+                String.format(Locale.US, "%f", longitude) + "&" +
+                weatherSource
         }
 
     val isUsable: Boolean
@@ -291,7 +291,8 @@ data class Location(
             isEquals(admin2, location.admin2) &&
             isEquals(admin3, location.admin3) &&
             isEquals(admin4, location.admin4) &&
-            isEquals(city, location.city)) {
+            isEquals(city, location.city)
+        ) {
             return true
         }
         return if (isEquals(admin1, location.admin1) &&
@@ -347,8 +348,10 @@ data class Location(
 
         fun distance(location1: Location, location2: Location): Double {
             return distance(
-                location1.latitude, location1.longitude,
-                location2.latitude, location2.longitude
+                location1.latitude,
+                location1.longitude,
+                location2.latitude,
+                location2.longitude
             )
         }
 
@@ -361,16 +364,17 @@ data class Location(
          * @returns Distance in Meters
          */
         fun distance(
-            lat1: Double, lon1: Double,
-            lat2: Double, lon2: Double
+            lat1: Double,
+            lon1: Double,
+            lat2: Double,
+            lon2: Double,
         ): Double {
             val r = 6371 // Radius of the earth
 
             val latDistance = Math.toRadians(lat2 - lat1)
             val lonDistance = Math.toRadians(lon2 - lon1)
-            val a = (sin(latDistance / 2) * sin(latDistance / 2)
-                    + (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2))
-                    * sin(lonDistance / 2) * sin(lonDistance / 2)))
+            val a = sin(latDistance / 2) * sin(latDistance / 2) +
+                (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * sin(lonDistance / 2) * sin(lonDistance / 2))
             val c = 2 * atan2(sqrt(a), sqrt(1 - a))
             var distance = r * c * 1000 // convert to meters
 

@@ -46,7 +46,7 @@ class TodayForecastNotificationJob @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val locationRepository: LocationRepository,
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
 ) : CoroutineWorker(context, workerParams) {
 
     private val notifier = ForecastNotificationNotifier(context)
@@ -90,7 +90,7 @@ class TodayForecastNotificationJob @AssistedInject constructor(
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE
             } else {
                 0
-            },
+            }
         )
     }
 

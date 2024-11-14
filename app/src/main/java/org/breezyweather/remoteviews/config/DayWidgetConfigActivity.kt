@@ -72,8 +72,7 @@ class DayWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                    .ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
             }
         )
     }
@@ -81,12 +80,17 @@ class DayWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return DayWidgetIMP.getRemoteViews(
-                this, locationNow,
-                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
-                hideSubtitle, subtitleDataValueNow,
+                this,
+                locationNow,
+                viewTypeValueNow,
+                cardStyleValueNow,
+                cardAlpha,
+                textColorValueNow,
+                textSize,
+                hideSubtitle,
+                subtitleDataValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                        .ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
                 }
             )
         }

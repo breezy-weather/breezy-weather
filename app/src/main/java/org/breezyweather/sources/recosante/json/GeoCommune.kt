@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GeoCommune(
     val code: String, // INSEE
-    val nom: String?
+    val nom: String?,
 )

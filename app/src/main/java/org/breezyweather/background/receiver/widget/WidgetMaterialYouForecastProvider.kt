@@ -37,7 +37,11 @@ class WidgetMaterialYouForecastProvider : AppWidgetProvider() {
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         if (MaterialYouForecastWidgetIMP.isEnabled(context)) {
             GlobalScope.launch(Dispatchers.IO) {

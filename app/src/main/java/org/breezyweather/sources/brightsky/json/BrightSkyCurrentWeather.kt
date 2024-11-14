@@ -34,5 +34,5 @@ data class BrightSkyCurrentWeather(
     @SerialName("dew_point") val dewPoint: Double?,
     @SerialName("relative_humidity") val relativeHumidity: Int?,
     @SerialName("pressure_msl") val pressure: Double?,
-    val visibility: Int?
+    val visibility: Int?,
 )

@@ -34,6 +34,6 @@ interface PirateWeatherApi {
         @Query("units") units: String,
         @Query("lang") lang: String,
         @Query("exclude") exclude: String?,
-        @Query("extend") extend: String?
+        @Query("extend") extend: String?,
     ): Observable<PirateWeatherForecastResult>
 }

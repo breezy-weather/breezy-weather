@@ -24,7 +24,7 @@ import androidx.lifecycle.Observer
 import org.breezyweather.common.bus.MyObserverWrapper
 
 class BusLiveData<T>(
-    private val mainHandler: Handler
+    private val mainHandler: Handler,
 ) : MutableLiveData<T>() {
 
     companion object {
@@ -78,7 +78,7 @@ class BusLiveData<T>(
     }
 
     override fun setValue(value: T) {
-        version ++
+        ++version
         super.setValue(value)
     }
 

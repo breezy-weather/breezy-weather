@@ -36,8 +36,9 @@ import org.breezyweather.theme.resource.utils.Constants
 import org.breezyweather.theme.resource.utils.XmlHelper
 
 open class IconPackResourcesProvider(
-    c: Context, pkgName: String,
-    private val mDefaultProvider: ResourceProvider
+    c: Context,
+    pkgName: String,
+    private val mDefaultProvider: ResourceProvider,
 ) : ResourceProvider() {
     private lateinit var mContext: Context
     override var providerName: String? = null
@@ -50,9 +51,7 @@ open class IconPackResourcesProvider(
 
     init {
         try {
-            mContext = c.createPackageContext(
-                pkgName, Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY
-            )
+            mContext = c.createPackageContext(pkgName, Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY)
             val manager = mContext.packageManager
             val info = manager.getApplicationInfo(pkgName, PackageManager.GET_META_DATA)
             providerName = manager.getApplicationLabel(info).toString()
@@ -193,7 +192,9 @@ open class IconPackResourcesProvider(
             } else {
                 arrayOf(getWeatherIcon(code, dayTime), null, null)
             }
-        } else mDefaultProvider.getWeatherIcons(code, dayTime)
+        } else {
+            mDefaultProvider.getWeatherIcons(code, dayTime)
+        }
     }
 
     private fun getDrawable(resName: String?): Drawable? {
@@ -217,8 +218,9 @@ open class IconPackResourcesProvider(
     }
 
     open fun getWeatherIconName(
-        code: WeatherCode?, daytime: Boolean,
-        @IntRange(from = 1, to = 3) index: Int
+        code: WeatherCode?,
+        daytime: Boolean,
+        @IntRange(from = 1, to = 3) index: Int,
     ): String? {
         return getFilterResource(
             mDrawableFilter,
@@ -239,7 +241,9 @@ open class IconPackResourcesProvider(
             } else {
                 arrayOf(null, null, null)
             }
-        } else mDefaultProvider.getWeatherAnimators(code, dayTime)
+        } else {
+            mDefaultProvider.getWeatherAnimators(code, dayTime)
+        }
     }
 
     private fun getAnimator(resName: String?): Animator? {
@@ -255,8 +259,9 @@ open class IconPackResourcesProvider(
     }
 
     open fun getWeatherAnimatorName(
-        code: WeatherCode?, daytime: Boolean,
-        @IntRange(from = 1, to = 3) index: Int
+        code: WeatherCode?,
+        daytime: Boolean,
+        @IntRange(from = 1, to = 3) index: Int,
     ): String? {
         return getFilterResource(
             mAnimatorFilter,
@@ -423,7 +428,9 @@ open class IconPackResourcesProvider(
             } catch (e: Exception) {
                 getWeatherIcon(WeatherCode.CLEAR, true)
             }
-        } else mDefaultProvider.sunDrawable
+        } else {
+            mDefaultProvider.sunDrawable
+        }
     override val moonDrawable: Drawable
         get() = if (mConfig.hasSunMoonDrawables) {
             try {
@@ -431,7 +438,9 @@ open class IconPackResourcesProvider(
             } catch (e: Exception) {
                 getWeatherIcon(WeatherCode.CLEAR, false)
             }
-        } else mDefaultProvider.moonDrawable
+        } else {
+            mDefaultProvider.moonDrawable
+        }
 
     private fun getReflectDrawable(className: String?): Drawable? {
         return try {
@@ -450,7 +459,7 @@ open class IconPackResourcesProvider(
     companion object {
         fun getProviderList(
             context: Context,
-            defaultProvider: ResourceProvider
+            defaultProvider: ResourceProvider,
         ): List<IconPackResourcesProvider> {
             val providerList = mutableListOf<IconPackResourcesProvider>()
             val infoList = context.packageManager.queryIntentActivities(
@@ -509,23 +518,25 @@ open class IconPackResourcesProvider(
         }
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getResourcesName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getResourcesName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
 
         private fun innerGetWeatherAnimatorName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getResourcesName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getResourcesName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
 
         private fun innerGetMiniIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (innerGetWeatherIconName(code, daytime)
-                + Constants.SEPARATOR + Constants.MINI)
+            return innerGetWeatherIconName(code, daytime) + Constants.SEPARATOR + Constants.MINI
         }
 
         private fun innerGetShortcutsIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getShortcutsName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getShortcutsName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
     }
 }

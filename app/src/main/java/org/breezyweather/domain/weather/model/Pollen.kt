@@ -131,7 +131,7 @@ fun Pollen.getIndexName(context: Context, pollen: PollenIndex? = null): String? 
 fun Pollen.getIndexNameFromSource(
     context: Context,
     pollen: PollenIndex,
-    source: PollenIndexSource
+    source: PollenIndexSource,
 ): String? {
     return getConcentration(pollen)?.let {
         context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
@@ -169,7 +169,7 @@ fun Pollen.getColor(context: Context, pollen: PollenIndex? = null): Int {
 fun Pollen.getColorFromSource(
     context: Context,
     pollen: PollenIndex,
-    source: PollenIndexSource
+    source: PollenIndexSource,
 ): Int {
     return getConcentration(pollen)?.let {
         context.resources.getIntArray(source.pollenColors).getOrElse(it) { Color.TRANSPARENT }

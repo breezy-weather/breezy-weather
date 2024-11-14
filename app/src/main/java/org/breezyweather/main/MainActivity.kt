@@ -35,8 +35,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
-import androidx.core.view.updatePadding
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -76,9 +76,7 @@ import org.breezyweather.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : GeoActivity(),
-    HomeFragment.Callback,
-    ManagementFragment.Callback {
+class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Callback {
 
     @Inject
     lateinit var sourceManager: SourceManager
@@ -132,7 +130,9 @@ class MainActivity : GeoActivity(),
             it.formattedId == location.formattedId
         } ?: viewModel.currentLocation.value?.location
 
-        if (viewModel.currentLocation.value?.location?.formattedId == (oldLocation?.formattedId ?: location.formattedId)) {
+        if (viewModel.currentLocation.value?.location?.formattedId ==
+            (oldLocation?.formattedId ?: location.formattedId)
+        ) {
             viewModel.cancelRequest()
         }
         viewModel.updateLocation(location, oldLocation)
@@ -166,7 +166,7 @@ class MainActivity : GeoActivity(),
             fm: FragmentManager,
             f: Fragment,
             v: View,
-            savedInstanceState: Bundle?
+            savedInstanceState: Bundle?,
         ) {
             updateSystemBarStyle()
         }
@@ -188,9 +188,7 @@ class MainActivity : GeoActivity(),
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        supportFragmentManager.registerFragmentLifecycleCallbacks(
-            fragmentsLifecycleCallback, false
-        )
+        supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentsLifecycleCallback, false)
         setContentView(binding.root)
 
         MainThemeColorProvider.bind(this)
@@ -355,7 +353,9 @@ class MainActivity : GeoActivity(),
                             }
                         }
 
-                        if (showLocationPermissionDialog && !viewModel.statementManager.isLocationPermissionDialogAlreadyShown) {
+                        if (showLocationPermissionDialog &&
+                            !viewModel.statementManager.isLocationPermissionDialogAlreadyShown
+                        ) {
                             dialogPerLocationAlert = MaterialAlertDialogBuilder(this@MainActivity)
                                 .setTitle(R.string.dialog_permissions_location_title)
                                 .setMessage(R.string.dialog_permissions_location_content)
@@ -387,7 +387,9 @@ class MainActivity : GeoActivity(),
             if (error != null) {
                 val shortMessage = if (!error.source.isNullOrEmpty()) {
                     "${error.source}${getString(R.string.colon_separator)}${getString(error.error.shortMessage)}"
-                } else getString(error.error.shortMessage)
+                } else {
+                    getString(error.error.shortMessage)
+                }
                 error.error.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
                         content = shortMessage,
@@ -416,7 +418,7 @@ class MainActivity : GeoActivity(),
 
     @Composable
     fun PerLocationSettingsDialog(
-        location: Location?
+        location: Location?,
     ) {
         val dialogPerLocationSettingsOpenState = dialogPerLocationSettingsOpen.collectAsState()
         if (dialogPerLocationSettingsOpenState.value) {
@@ -430,7 +432,7 @@ class MainActivity : GeoActivity(),
                         Text(
                             text = stringResource(R.string.action_edit_location),
                             color = MaterialTheme.colorScheme.onSurface,
-                            style = MaterialTheme.typography.headlineSmall,
+                            style = MaterialTheme.typography.headlineSmall
                         )
                     },
                     text = {
@@ -450,7 +452,7 @@ class MainActivity : GeoActivity(),
                             Text(
                                 text = stringResource(R.string.action_close),
                                 color = MaterialTheme.colorScheme.primary,
-                                style = MaterialTheme.typography.labelLarge,
+                                style = MaterialTheme.typography.labelLarge
                             )
                         }
                     },
@@ -464,11 +466,13 @@ class MainActivity : GeoActivity(),
                                 Text(
                                     text = stringResource(R.string.action_delete),
                                     color = MaterialTheme.colorScheme.error,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         }
-                    } else null
+                    } else {
+                        null
+                    }
                 )
 
                 if (dialogDeleteLocationOpenState.value) {
@@ -480,7 +484,7 @@ class MainActivity : GeoActivity(),
                             Text(
                                 text = stringResource(R.string.location_delete_location_dialog_title),
                                 color = MaterialTheme.colorScheme.onSurface,
-                                style = MaterialTheme.typography.headlineSmall,
+                                style = MaterialTheme.typography.headlineSmall
                             )
                         },
                         text = {
@@ -494,7 +498,7 @@ class MainActivity : GeoActivity(),
                                     stringResource(R.string.location_delete_location_dialog_message_no_name)
                                 },
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                         },
                         confirmButton = {
@@ -508,7 +512,7 @@ class MainActivity : GeoActivity(),
                                 Text(
                                     text = stringResource(R.string.action_confirm),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         },
@@ -521,7 +525,7 @@ class MainActivity : GeoActivity(),
                                 Text(
                                     text = stringResource(R.string.action_cancel),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         }
@@ -534,7 +538,7 @@ class MainActivity : GeoActivity(),
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -543,9 +547,9 @@ class MainActivity : GeoActivity(),
             return
         }
 
-        grantResults.zip(permissions).firstOrNull { // result, permission
-            it.first != PackageManager.PERMISSION_GRANTED &&
-                isEssentialLocationPermission(permission = it.second)
+        grantResults.zip(permissions).firstOrNull {
+            // result, permission
+            it.first != PackageManager.PERMISSION_GRANTED && isEssentialLocationPermission(permission = it.second)
         }?.let {
             // if the user denied an essential location permissions.
             if (request.target.isUsable || isLocationPermissionsGranted) {
@@ -587,11 +591,12 @@ class MainActivity : GeoActivity(),
     }
 
     private fun isLocationPermission(
-        permission: String
+        permission: String,
     ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        permission == Manifest.permission.ACCESS_BACKGROUND_LOCATION ||
-            isEssentialLocationPermission(permission)
-    } else isEssentialLocationPermission(permission)
+        permission == Manifest.permission.ACCESS_BACKGROUND_LOCATION || isEssentialLocationPermission(permission)
+    } else {
+        isEssentialLocationPermission(permission)
+    }
 
     private fun isEssentialLocationPermission(permission: String): Boolean {
         return permission == Manifest.permission.ACCESS_COARSE_LOCATION ||
@@ -686,12 +691,12 @@ class MainActivity : GeoActivity(),
                 R.anim.fragment_manage_enter,
                 R.anim.fragment_main_exit,
                 R.anim.fragment_main_pop_enter,
-                R.anim.fragment_manage_pop_exit,
+                R.anim.fragment_manage_pop_exit
             )
             .add(
                 R.id.fragment,
                 PushedManagementFragment.getInstance(),
-                TAG_FRAGMENT_MANAGEMENT,
+                TAG_FRAGMENT_MANAGEMENT
             )
             .addToBackStack(null)
 

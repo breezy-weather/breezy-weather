@@ -48,7 +48,8 @@ object DateUtcSerializer : KSerializer<Date?> {
                 !jsonValue.matches(
                     // Supports dates from 2000 to 2099
                     Regex("20[0-9][0-9]-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])[ T]([0-1][0-9]|2[0-3]):[0-5][0-9](.*)")
-                )) {
+                )
+            ) {
                 throw SerializationException("Failed parsing '$jsonValue' as UTC Date")
             } else {
                 val timeZone = TimeZone.getTimeZone("UTC")

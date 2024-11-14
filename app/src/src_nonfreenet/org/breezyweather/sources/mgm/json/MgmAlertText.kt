@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class MgmAlertText(
     val yellow: String?,
     val orange: String?,
-    val red: String?
+    val red: String?,
 )

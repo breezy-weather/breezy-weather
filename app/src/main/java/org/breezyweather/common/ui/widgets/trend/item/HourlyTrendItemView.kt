@@ -37,7 +37,10 @@ import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView
  * Hourly trend item view.
  */
 class HourlyTrendItemView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0,
 ) : AbsTrendItemView(context, attrs, defStyleAttr, defStyleRes) {
     private var mChartItem: AbsChartItemView? = null
     private val mHourTextPaint = Paint().apply {
@@ -79,13 +82,11 @@ class HourlyTrendItemView @JvmOverloads constructor(
         setWillNotDraw(false)
         mHourTextPaint.apply {
             typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
-            textSize =
-                getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
+            textSize = getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
         }
         mDateTextPaint.apply {
             typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
-            textSize =
-                getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
+            textSize = getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
         }
         setTextColor(Color.BLACK, Color.GRAY)
         mIconSize = getContext().dpToPx(ICON_SIZE_DIP.toFloat()).toInt()
@@ -129,7 +130,8 @@ class HourlyTrendItemView @JvmOverloads constructor(
             MeasureSpec.makeMeasureSpec(
                 width,
                 MeasureSpec.EXACTLY
-            ), MeasureSpec.makeMeasureSpec(
+            ),
+            MeasureSpec.makeMeasureSpec(
                 (height - marginBottom - y).toInt(),
                 MeasureSpec.EXACTLY
             )
@@ -137,14 +139,14 @@ class HourlyTrendItemView @JvmOverloads constructor(
 
         mTrendViewTop = y
         chartTop = (mTrendViewTop + mChartItem!!.marginTop).toInt()
-        chartBottom =
-            (mTrendViewTop + mChartItem!!.measuredHeight - mChartItem!!.marginBottom).toInt()
+        chartBottom = (mTrendViewTop + mChartItem!!.measuredHeight - mChartItem!!.marginBottom).toInt()
         setMeasuredDimension(width, height)
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         mChartItem?.layout(
-            0, mTrendViewTop.toInt(),
+            0,
+            mTrendViewTop.toInt(),
             mChartItem!!.measuredWidth,
             mTrendViewTop.toInt() + mChartItem!!.measuredHeight
         )

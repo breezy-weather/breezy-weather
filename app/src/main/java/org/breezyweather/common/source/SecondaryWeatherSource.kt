@@ -29,7 +29,8 @@ interface SecondaryWeatherSource : Source {
     val supportedFeaturesInSecondary: List<SecondaryWeatherSourceFeature>
 
     fun isFeatureSupportedInSecondaryForLocation(
-        location: Location, feature: SecondaryWeatherSourceFeature
+        location: Location,
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean = true
 
     val currentAttribution: String?
@@ -53,6 +54,6 @@ interface SecondaryWeatherSource : Source {
     fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper>
 }

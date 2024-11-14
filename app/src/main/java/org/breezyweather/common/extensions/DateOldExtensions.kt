@@ -83,11 +83,9 @@ fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date? {
 fun Date.getFormattedDate(
     pattern: String,
     timeZone: TimeZone?,
-    locale: Locale
+    locale: Locale,
 ): String {
-    return SimpleDateFormat(
-        pattern, locale
-    ).apply {
+    return SimpleDateFormat(pattern, locale).apply {
         setTimeZone(timeZone ?: TimeZone.getDefault())
     }.format(this)
 }

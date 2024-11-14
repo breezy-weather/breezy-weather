@@ -19,7 +19,7 @@ package org.breezyweather.sources.hko.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HkoAstroResult (
+data class HkoAstroResult(
     val fields: List<String>? = null,
-    val data: List<List<String>>? = null
+    val data: List<List<String>>? = null,
 )

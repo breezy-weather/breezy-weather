@@ -40,7 +40,11 @@ class WidgetClockDayWeekProvider : AppWidgetProvider() {
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         if (ClockDayWeekWidgetIMP.isInUse(context)) {
             GlobalScope.launch(Dispatchers.IO) {

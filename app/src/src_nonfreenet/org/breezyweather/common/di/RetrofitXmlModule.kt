@@ -53,7 +53,7 @@ class RetrofitXmlModule {
     fun provideXmlRetrofitBuilder(
         client: OkHttpClient,
         @Named("XmlSerializer") xmlConverterFactory: Converter.Factory,
-        callAdapterFactory: RxJava3CallAdapterFactory
+        callAdapterFactory: RxJava3CallAdapterFactory,
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(client)

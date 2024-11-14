@@ -74,9 +74,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
 class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_aqi, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_aqi, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_aqi_title)
     private val mTime: TextView = itemView.findViewById(R.id.container_main_aqi_time)
@@ -93,14 +91,14 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("DefaultLocale")
     override fun onBindView(
-        activity: GeoActivity, location: Location,
+        activity: GeoActivity,
+        location: Location,
         provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean, firstCard: Boolean
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity, location, provider,
-            listAnimationEnabled, itemAnimationEnabled, firstCard
-        )
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
 
         val isDaily = (location.weather?.current?.airQuality?.isIndexValid == true)
         location.weather!!.validAirQuality?.let { airQuality ->
@@ -117,15 +115,20 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
             mTime.text = if (isDaily) {
                 context.getString(R.string.short_today)
-            } else location.weather!!.base.refreshTime?.getFormattedTime(
-                location, context, context.is12Hour
-            )
+            } else {
+                location.weather!!.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
+            }
             if (itemAnimationEnabled) {
                 mProgress.apply {
                     progress = 0f
                     setText(String.format("%d", 0))
-                    setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1), MainThemeColorProvider.isLightTheme(context, location))
-                    setArcBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+                    setProgressColor(
+                        ContextCompat.getColor(context, R.color.colorLevel_1),
+                        MainThemeColorProvider.isLightTheme(context, location)
+                    )
+                    setArcBackgroundColor(
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                    )
                 }
             } else {
                 val aqiColor = airQuality.getColor(mProgress.context)
@@ -208,7 +211,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         Text(
                             text = stringResource(R.string.action_close),
                             color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 }
@@ -227,14 +230,22 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     aqiColor
                 )
                 progressColor.addUpdateListener { animation: ValueAnimator ->
-                    mProgress.setProgressColor(animation.animatedValue as Int, MainThemeColorProvider.isLightTheme(context, mLocation!!))
+                    mProgress.setProgressColor(
+                        animation.animatedValue as Int,
+                        MainThemeColorProvider.isLightTheme(context, mLocation!!)
+                    )
                 }
                 val backgroundColor = ValueAnimator.ofObject(
                     ArgbEvaluator(),
-                    MainThemeColorProvider.getColor(mLocation!!.isDaylight, com.google.android.material.R.attr.colorOutline),
+                    MainThemeColorProvider.getColor(
+                        mLocation!!.isDaylight,
+                        com.google.android.material.R.attr.colorOutline
+                    ),
                     ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt())
                 )
-                backgroundColor.addUpdateListener { animation: ValueAnimator -> mProgress.setArcBackgroundColor((animation.animatedValue as Int)) }
+                backgroundColor.addUpdateListener { animation: ValueAnimator ->
+                    mProgress.setArcBackgroundColor((animation.animatedValue as Int))
+                }
                 val aqiNumber = ValueAnimator.ofObject(FloatEvaluator(), 0, mAqiIndex)
                 aqiNumber.addUpdateListener { animation: ValueAnimator ->
                     mProgress.apply {

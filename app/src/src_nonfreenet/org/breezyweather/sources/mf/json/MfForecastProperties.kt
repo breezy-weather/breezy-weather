@@ -27,5 +27,5 @@ data class MfForecastProperties(
     @SerialName("french_department") val frenchDepartment: String?,
     val name: String,
     @SerialName("probability_forecast") val probabilityForecast: List<MfForecastProbability>?,
-    val timezone: String
+    val timezone: String,
 )

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecosanteRaepIndice(
-    val details: List<RecosanteRaepIndiceDetail>?
+    val details: List<RecosanteRaepIndiceDetail>?,
 )

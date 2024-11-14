@@ -62,7 +62,7 @@ fun WeatherSourcesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
     configuredWorldwideSources: List<MainWeatherSource>,
-    configurableSources: List<ConfigurableSource>
+    configurableSources: List<ConfigurableSource>,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -75,7 +75,7 @@ fun WeatherSourcesSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             if (BuildConfig.FLAVOR == "freenet") {
@@ -111,7 +111,9 @@ fun WeatherSourcesSettingsScreen(
                     title = stringResource(id),
                     selectedKey = if (configuredWorldwideSourcesAssociated.contains(defaultWeatherSource)) {
                         defaultWeatherSource
-                    } else "auto",
+                    } else {
+                        "auto"
+                    },
                     sourceList = mapOf(
                         "auto" to stringResource(R.string.settings_automatic)
                     ) + configuredWorldwideSources.associate { it.id to it.name },
@@ -124,10 +126,11 @@ fun WeatherSourcesSettingsScreen(
 
             configurableSources
                 .filter {
-                    it !is LocationSource && // Exclude location sources configured in their own screen
-                            it.getPreferences(context).isNotEmpty()
+                    // Exclude location sources configured in their own screen
+                    it !is LocationSource && it.getPreferences(context).isNotEmpty()
                 }
-                .sortedWith { ws1, ws2 -> // Sort by name because there are now a lot of sources
+                .sortedWith { ws1, ws2 ->
+                    // Sort by name because there are now a lot of sources
                     Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
                 }
                 .forEach { preferenceSource ->
@@ -143,7 +146,7 @@ fun WeatherSourcesSettingsScreen(
                                         selectedKey = preference.selectedKey,
                                         valueArrayId = preference.valueArrayId,
                                         nameArrayId = preference.nameArrayId,
-                                        onValueChanged = preference.onValueChanged,
+                                        onValueChanged = preference.onValueChanged
                                     )
                                 }
                             }

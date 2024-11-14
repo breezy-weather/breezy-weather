@@ -25,8 +25,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.Value
 
 class ValueHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_value, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_value, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_value_title)
     private val mValue: TextView = itemView.findViewById(R.id.item_weather_daily_value_value)

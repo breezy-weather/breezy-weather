@@ -45,7 +45,9 @@ import kotlin.math.sin
 import kotlin.math.tan
 
 class SunMoonView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
     // 0 - day / 1 - night.
     @Size(2)
@@ -111,14 +113,15 @@ class SunMoonView @JvmOverloads constructor(
             floatArrayOf(
                 context.dpToPx(3f),
                 2 * context.dpToPx(3f)
-            ), 0f
+            ),
+            0f
         )
     }
 
     fun setTime(
         @Size(2) startTimes: LongArray,
         @Size(2) endTimes: LongArray,
-        @Size(2) currentTimes: LongArray
+        @Size(2) currentTimes: LongArray,
     ) {
         mStartTimes = startTimes
         mEndTimes = endTimes
@@ -129,9 +132,11 @@ class SunMoonView @JvmOverloads constructor(
     }
 
     fun setColors(
-        @ColorInt sunLineColor: Int, @ColorInt moonLineColor: Int,
-        @ColorInt backgroundLineColor: Int, @ColorInt rootColor: Int,
-        lightTheme: Boolean
+        @ColorInt sunLineColor: Int,
+        @ColorInt moonLineColor: Int,
+        @ColorInt backgroundLineColor: Int,
+        @ColorInt rootColor: Int,
+        lightTheme: Boolean,
     ) {
         mLineColors = intArrayOf(sunLineColor, moonLineColor, backgroundLineColor)
         ensureShader(rootColor, sunLineColor, moonLineColor, lightTheme)
@@ -150,13 +155,15 @@ class SunMoonView @JvmOverloads constructor(
 
     private fun ensureShader(
         @ColorInt rootColor: Int,
-        @ColorInt sunLineColor: Int, @ColorInt moonLineColor: Int,
-        lightTheme: Boolean
+        @ColorInt sunLineColor: Int,
+        @ColorInt moonLineColor: Int,
+        lightTheme: Boolean,
     ) {
-        val lineShadowShader = if (lightTheme) ColorUtils.setAlphaComponent(
-            sunLineColor,
-            (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt()
-        ) else ColorUtils.setAlphaComponent(moonLineColor, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
+        val lineShadowShader = if (lightTheme) {
+            ColorUtils.setAlphaComponent(sunLineColor, (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt())
+        } else {
+            ColorUtils.setAlphaComponent(moonLineColor, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
+        }
         mX1ShaderColors[0] = org.breezyweather.common.utils.ColorUtils.blendColor(lineShadowShader, rootColor)
         mX1ShaderColors[1] = rootColor
         mX2ShaderColors[0] = org.breezyweather.common.utils.ColorUtils.blendColor(lineShadowShader, mX1ShaderColors[0])
@@ -165,28 +172,33 @@ class SunMoonView @JvmOverloads constructor(
         if (mX1ShaderWrapper.isDifferent(measuredWidth, measuredHeight, lightTheme, mX1ShaderColors)) {
             mX1ShaderWrapper.setShader(
                 LinearGradient(
-                    0f, mRectF.top,
-                    0f, measuredHeight - mMargin,
-                    mX1ShaderColors[0], mX1ShaderColors[1],
+                    0f,
+                    mRectF.top,
+                    0f,
+                    measuredHeight - mMargin,
+                    mX1ShaderColors[0],
+                    mX1ShaderColors[1],
                     Shader.TileMode.CLAMP
                 ),
-                measuredWidth, measuredHeight,
+                measuredWidth,
+                measuredHeight,
                 lightTheme,
                 mX1ShaderColors
             )
         }
-        if (mX2ShaderWrapper.isDifferent(
-                measuredWidth, measuredHeight, lightTheme, mX2ShaderColors
-            )
-        ) {
+        if (mX2ShaderWrapper.isDifferent(measuredWidth, measuredHeight, lightTheme, mX2ShaderColors)) {
             mX2ShaderWrapper.setShader(
                 LinearGradient(
-                    0f, mRectF.top,
-                    0f, measuredHeight - mMargin,
-                    mX2ShaderColors[0], mX2ShaderColors[1],
+                    0f,
+                    mRectF.top,
+                    0f,
+                    measuredHeight - mMargin,
+                    mX2ShaderColors[0],
+                    mX2ShaderColors[1],
                     Shader.TileMode.CLAMP
                 ),
-                measuredWidth, measuredHeight,
+                measuredWidth,
+                measuredHeight,
                 lightTheme,
                 mX2ShaderColors
             )
@@ -307,8 +319,12 @@ class SunMoonView @JvmOverloads constructor(
     private fun drawShadow(canvas: Canvas, index: Int, progressEndAngle: Float, shader: Shader?) {
         if (mProgresses[index] > 0) {
             val layerId = canvas.saveLayer(
-                mRectF.left, mRectF.top, mRectF.right, mRectF.top + mRectF.height() / 2,
-                null, Canvas.ALL_SAVE_FLAG
+                mRectF.left,
+                mRectF.top,
+                mRectF.right,
+                mRectF.top + mRectF.height() / 2,
+                null,
+                Canvas.ALL_SAVE_FLAG
             )
             mPaint.style = Paint.Style.FILL
             mPaint.setShader(shader)
@@ -322,8 +338,7 @@ class SunMoonView @JvmOverloads constructor(
             mPaint.setShader(null)
             mPaint.setXfermode(mClearXfermode)
             canvas.drawRect(
-                (mRectF.centerX() + mRectF.width() / 2
-                    * cos((360 - progressEndAngle) * Math.PI / 180)).toFloat(),
+                (mRectF.centerX() + mRectF.width() / 2 * cos((360 - progressEndAngle) * Math.PI / 180)).toFloat(),
                 mRectF.top,
                 mRectF.right,
                 mRectF.top + mRectF.height() / 2,
@@ -338,7 +353,7 @@ class SunMoonView @JvmOverloads constructor(
         canvas: Canvas,
         index: Int,
         startAngle: Float,
-        progressSweepAngle: Float
+        progressSweepAngle: Float,
     ) {
         if (mProgresses[index] > 0) {
             mPaint.apply {

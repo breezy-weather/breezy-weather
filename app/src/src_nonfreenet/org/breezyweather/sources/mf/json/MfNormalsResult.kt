@@ -24,5 +24,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MfNormalsResult(
     val geometry: MfGeometry? = null,
-    val properties: MfNormalsProperties? = null
+    val properties: MfNormalsProperties? = null,
 )

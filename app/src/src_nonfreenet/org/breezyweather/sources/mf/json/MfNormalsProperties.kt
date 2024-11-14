@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfNormalsProperties(
-    val stats: List<MfNormalsStats>?
+    val stats: List<MfNormalsStats>?,
 )

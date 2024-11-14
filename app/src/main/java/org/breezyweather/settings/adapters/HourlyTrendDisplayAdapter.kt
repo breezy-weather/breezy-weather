@@ -32,11 +32,14 @@ import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemContainerLayou
 class HourlyTrendDisplayAdapter(
     private val mHourlyTrendDisplayList: MutableList<HourlyTrendDisplay>,
     private val mRemoveListener: (HourlyTrendDisplay) -> Unit,
-    private val mDragListener: (ViewHolder) -> Unit
+    private val mDragListener: (ViewHolder) -> Unit,
 ) : RecyclerView.Adapter<HourlyTrendDisplayAdapter.ViewHolder>() {
 
-    inner class ViewHolder @SuppressLint("ClickableViewAccessibility") constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder
+    @SuppressLint("ClickableViewAccessibility")
+    constructor(
+        itemView: View,
+    ) : RecyclerView.ViewHolder(itemView) {
         val container: SlidingItemContainerLayout = itemView.findViewById(R.id.item_card_display_container)
         val item: RelativeLayout = itemView.findViewById(R.id.item_card_display)
         val title: TextView = itemView.findViewById(R.id.item_card_display_title)
@@ -63,9 +66,7 @@ class HourlyTrendDisplayAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_card_display, parent, false
-            )
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card_display, parent, false)
         )
     }
 

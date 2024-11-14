@@ -23,7 +23,9 @@ import kotlin.math.pow
 /**
  * Delay Rotate controller.
  */
-class DelayRotateController(initRotation: Double) : RotateController() {
+class DelayRotateController(
+    initRotation: Double,
+) : RotateController() {
     private var mTargetRotation: Double = getRotationInScope(initRotation)
     private var mCurrentRotation: Double = mTargetRotation
     private var mVelocity: Double = 0.0

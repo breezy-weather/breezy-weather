@@ -31,8 +31,9 @@ import org.breezyweather.R
 import org.breezyweather.theme.resource.utils.Constants
 
 class ChronusResourceProvider(
-    c: Context, pkgName: String,
-    private val mDefaultProvider: ResourceProvider
+    c: Context,
+    pkgName: String,
+    private val mDefaultProvider: ResourceProvider,
 ) : ResourceProvider() {
     private lateinit var mContext: Context
     override var providerName: String? = null
@@ -41,7 +42,8 @@ class ChronusResourceProvider(
     init {
         try {
             mContext = c.createPackageContext(
-                pkgName, Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY
+                pkgName,
+                Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY
             )
             val manager = mContext.packageManager
             val info = manager.getApplicationInfo(pkgName, PackageManager.GET_META_DATA)
@@ -67,8 +69,7 @@ class ChronusResourceProvider(
     override fun getWeatherIcon(code: WeatherCode?, dayTime: Boolean): Drawable {
         try {
             return getDrawable(getWeatherIconName(code, dayTime))!!
-        } catch (ignore: Exception) {
-        }
+        } catch (ignore: Exception) { }
         return mDefaultProvider.getWeatherIcon(code, dayTime)
     }
 
@@ -176,7 +177,7 @@ class ChronusResourceProvider(
     companion object {
         fun getProviderList(
             context: Context,
-            defaultProvider: ResourceProvider
+            defaultProvider: ResourceProvider,
         ): List<ChronusResourceProvider> {
             val providerList = mutableListOf<ChronusResourceProvider>()
             val infoList = context.packageManager.queryIntentActivities(

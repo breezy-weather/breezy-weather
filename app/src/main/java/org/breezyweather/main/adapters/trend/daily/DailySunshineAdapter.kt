@@ -37,7 +37,8 @@ import org.breezyweather.theme.weatherView.WeatherViewController
  * Daily sunshine adapter.
  */
 class DailySunshineAdapter(
-    activity: GeoActivity, location: Location
+    activity: GeoActivity,
+    location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Double = 0.0
 
@@ -52,16 +53,14 @@ class DailySunshineAdapter(
         fun onBindView(
             activity: GeoActivity,
             location: Location,
-            position: Int
+            position: Int,
         ) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_sunshine))
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
 
             val sunshineDuration = daily.sunshineDuration?.let {
-                if (it > mHighestIndex) {
-                    mHighestIndex
-                } else it
+                if (it > mHighestIndex) mHighestIndex else it
             }
             daily.sunshineDuration?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
@@ -82,10 +81,14 @@ class DailySunshineAdapter(
             mPolylineAndHistogramView.setLineColors(
                 if (sunshineDuration != null) {
                     ContextCompat.getColor(itemView.context, R.color.sunshine)
-                } else Color.TRANSPARENT,
+                } else {
+                    Color.TRANSPARENT
+                },
                 if (sunshineDuration != null) {
                     ContextCompat.getColor(itemView.context, R.color.sunshine)
-                } else Color.TRANSPARENT,
+                } else {
+                    Color.TRANSPARENT
+                },
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             )
 
@@ -117,8 +120,7 @@ class DailySunshineAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 

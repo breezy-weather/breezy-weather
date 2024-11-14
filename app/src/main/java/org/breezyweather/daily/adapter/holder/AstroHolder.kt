@@ -36,8 +36,7 @@ import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.theme.ThemeManager
 
 class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_astro, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_astro, parent, false)
 ) {
     private val mSun: LinearLayout = itemView.findViewById(R.id.item_weather_daily_astro_sun)
     private val mSunText: TextView = itemView.findViewById(R.id.item_weather_daily_astro_sunText)
@@ -59,7 +58,9 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     context.getString(
                         R.string.ephemeris_sunrise_at,
                         model.sun.riseDate?.getFormattedTime(
-                            location, context, context.is12Hour
+                            location,
+                            context,
+                            context.is12Hour
                         ) ?: context.getString(R.string.null_data_text)
                     )
                 )
@@ -68,18 +69,36 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     context.getString(
                         R.string.ephemeris_sunset_at,
                         model.sun.setDate?.getFormattedTime(
-                            location, context, context.is12Hour
+                            location,
+                            context,
+                            context.is12Hour
                         ) ?: context.getString(R.string.null_data_text)
                     )
                 )
             mSun.visibility = View.VISIBLE
             mSunText.text = if (BreezyWeather.instance.debugMode) {
-                (model.sun.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↑ / " +
-                    (model.sun.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↓" +
+                (
+                    model.sun.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                        ?: context.getString(R.string.null_data_text)
+                    ) +
+                    "↑ / " +
+                    (
+                        model.sun.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                            ?: context.getString(R.string.null_data_text)
+                        ) +
+                    "↓" +
                     (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
             } else {
-                (model.sun.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " +
-                    (model.sun.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓" +
+                (
+                    model.sun.riseDate?.getFormattedTime(location, context, context.is12Hour)
+                        ?: context.getString(R.string.null_data_text)
+                    ) +
+                    "↑ / " +
+                    (
+                        model.sun.setDate?.getFormattedTime(location, context, context.is12Hour)
+                            ?: context.getString(R.string.null_data_text)
+                        ) +
+                    "↓" +
                     (model.sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
             }
         } else {
@@ -91,35 +110,60 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 .append(
                     context.getString(
                         R.string.ephemeris_moonrise_at,
-                        model.moon.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.moon.riseDate?.getFormattedTime(
+                            location,
+                            context,
+                            context.is12Hour
+                        ) ?: context.getString(R.string.null_data_text)
                     )
                 )
                 .append(context.getString(R.string.comma_separator))
                 .append(
                     context.getString(
                         R.string.ephemeris_moonset_at,
-                        model.moon.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)
+                        model.moon.setDate?.getFormattedTime(
+                            location,
+                            context,
+                            context.is12Hour
+                        ) ?: context.getString(R.string.null_data_text)
                     )
                 )
             mMoon.visibility = View.VISIBLE
             mMoonText.text = if (BreezyWeather.instance.debugMode) {
-                (model.moon.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context) ?: context.getString(R.string.null_data_text)) + "↓"
+                (
+                    model.moon.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                        ?: context.getString(R.string.null_data_text)
+                    ) +
+                    "↑ / " +
+                    (
+                        model.moon.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                            ?: context.getString(R.string.null_data_text)
+                        ) +
+                    "↓"
             } else {
-                (model.moon.riseDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↑ / " + (model.moon.setDate?.getFormattedTime(location, context, context.is12Hour) ?: context.getString(R.string.null_data_text)) + "↓"
+                (
+                    model.moon.riseDate?.getFormattedTime(location, context, context.is12Hour)
+                        ?: context.getString(R.string.null_data_text)
+                    ) +
+                    "↑ / " +
+                    (
+                        model.moon.setDate?.getFormattedTime(location, context, context.is12Hour)
+                            ?: context.getString(R.string.null_data_text)
+                        ) +
+                    "↓"
             }
         } else {
             mMoon.visibility = View.GONE
         }
         if (model.moonPhase != null && model.moonPhase.isValid) {
-            talkBackBuilder.append(context.getString(R.string.comma_separator)).append(model.moonPhase.getDescription(context))
+            talkBackBuilder.append(context.getString(R.string.comma_separator))
+                .append(model.moonPhase.getDescription(context))
             mMoonPhase.visibility = View.VISIBLE
             mMoonPhaseIcon.setSurfaceAngle(model.moonPhase.angle!!.toFloat())
             mMoonPhaseIcon.setColor(
                 ContextCompat.getColor(context, R.color.colorTextLight2nd),
                 ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                ThemeManager.getInstance(context).getThemeColor(
-                    context, R.attr.colorBodyText
-                )
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
             )
             mMoonPhaseText.text = model.moonPhase.getDescription(context)
         } else {

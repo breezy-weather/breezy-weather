@@ -26,5 +26,5 @@ data class ChinaForecastResult(
     val yesterday: ChinaYesterday? = null,
     val updateTime: Long? = null,
     val aqi: ChinaAqi? = null,
-    val alerts: List<ChinaAlert>? = null
+    val alerts: List<ChinaAlert>? = null,
 )

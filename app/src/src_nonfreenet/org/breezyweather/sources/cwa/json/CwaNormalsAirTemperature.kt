@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaNormalsAirTemperature(
-    val monthly: List<CwaNormalsMonthly>?
+    val monthly: List<CwaNormalsMonthly>?,
 )

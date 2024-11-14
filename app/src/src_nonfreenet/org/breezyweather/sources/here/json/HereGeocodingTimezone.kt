@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class HereGeocodingTimezone(
     val name: String,
-    val utcOffset: String?
+    val utcOffset: String?,
 )

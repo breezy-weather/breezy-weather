@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenWeatherForecastResult(
-    val list: List<OpenWeatherForecast>? = null
+    val list: List<OpenWeatherForecast>? = null,
 )

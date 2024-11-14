@@ -82,29 +82,25 @@ private val DayColors = BreezyWeatherDayNightColors(
     titleColor = BreezyWeatherColors.LightTitleText,
     bodyColor = BreezyWeatherColors.LightContentText,
     captionColor = BreezyWeatherColors.LightSubtitleText,
-    isDark = false,
+    isDark = false
 )
 private val NightColors = BreezyWeatherDayNightColors(
     titleColor = BreezyWeatherColors.DarkTitleText,
     bodyColor = BreezyWeatherColors.DarkContentText,
     captionColor = BreezyWeatherColors.DarkSubtitleText,
-    isDark = true,
+    isDark = true
 )
 
 @Composable
 fun BreezyWeatherTheme(
     lightTheme: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val scheme = when {
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && lightTheme ->
-            dynamicLightColors(LocalContext.current)
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !lightTheme ->
-            dynamicDarkColors(LocalContext.current)
-        lightTheme ->
-            LightThemeColors
-        else ->
-            DarkThemeColors
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && lightTheme -> dynamicLightColors(LocalContext.current)
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !lightTheme -> dynamicDarkColors(LocalContext.current)
+        lightTheme -> LightThemeColors
+        else -> DarkThemeColors
     }
     val colors = if (lightTheme) DayColors else NightColors
 
@@ -120,7 +116,7 @@ fun BreezyWeatherTheme(
 @Composable
 fun ProvideBreezyWeatherDayNightColors(
     colors: BreezyWeatherDayNightColors,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val value = remember {
         // Explicitly creating a new object here so we don't mutate the initial [colors]
@@ -149,7 +145,7 @@ class BreezyWeatherDayNightColors(
     titleColor: Color,
     bodyColor: Color,
     captionColor: Color,
-    isDark: Boolean
+    isDark: Boolean,
 ) {
     var titleColor by mutableStateOf(titleColor)
         private set
@@ -171,13 +167,13 @@ class BreezyWeatherDayNightColors(
         titleColor = titleColor,
         bodyColor = bodyColor,
         captionColor = captionColor,
-        isDark = isDark,
+        isDark = isDark
     )
 }
 
 @Composable
 fun themeRipple(
-    bounded: Boolean = true
+    bounded: Boolean = true,
 ) = ripple(
     color = MaterialTheme.colorScheme.primary,
     bounded = bounded

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MfCurrentProperties(
-    val gridded: MfCurrentGridded?
+    val gridded: MfCurrentGridded?,
 )

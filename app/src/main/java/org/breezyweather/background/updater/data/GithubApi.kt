@@ -26,6 +26,6 @@ interface GithubApi {
     @GET("repos/{org}/{repository}/releases/latest")
     suspend fun getLatest(
         @Path("org") org: String,
-        @Path("repository") repository: String
+        @Path("repository") repository: String,
     ): GithubRelease
 }

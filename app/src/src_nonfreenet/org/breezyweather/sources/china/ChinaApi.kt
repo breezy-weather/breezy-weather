@@ -27,14 +27,14 @@ interface ChinaApi {
     @GET("location/city/search")
     fun getLocationSearch(
         @Query("name") name: String,
-        @Query("locale") locale: String
+        @Query("locale") locale: String,
     ): Observable<List<ChinaLocationResult>>
 
     @GET("location/city/geo")
     fun getLocationByGeoPosition(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("locale") locale: String
+        @Query("locale") locale: String,
     ): Observable<List<ChinaLocationResult>>
 
     @GET("weather/all")
@@ -47,7 +47,7 @@ interface ChinaApi {
         @Query("appKey") appKey: String,
         @Query("sign") sign: String,
         @Query("isGlobal") isGlobal: Boolean,
-        @Query("locale") locale: String
+        @Query("locale") locale: String,
     ): Observable<ChinaForecastResult>
 
     @GET("weather/xm/forecast/minutely")
@@ -58,6 +58,6 @@ interface ChinaApi {
         @Query("isGlobal") isGlobal: Boolean,
         @Query("appKey") appKey: String,
         @Query("locationKey") locationKey: String,
-        @Query("sign") sign: String
+        @Query("sign") sign: String,
     ): Observable<ChinaMinutelyResult>
 }

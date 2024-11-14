@@ -34,7 +34,8 @@ import kotlin.math.max
 import kotlin.math.min
 
 class LocationAdapterAnimWrapper(
-    context: Context, adapter: LocationAdapter
+    context: Context,
+    adapter: LocationAdapter,
 ) : AnimationAdapterWrapper<LocationAdapter, LocationHolder>(adapter, true) {
     private var mStartAnimation = false
     private var mScrolled = false
@@ -67,9 +68,7 @@ class LocationAdapterAnimWrapper(
         val alpha: Animator = ObjectAnimator
             .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3)
         alpha.interpolator = FLOATING_DECELERATE_INTERPOLATOR
-        val animators = view.getFloatingOvershotEnterAnimators(
-            overShootTensor, mDY, 1.1f, 1.1f
-        )
+        val animators = view.getFloatingOvershotEnterAnimators(overShootTensor, mDY, 1.1f, 1.1f)
         for (a in animators) {
             a.setDuration(duration)
         }
@@ -101,10 +100,11 @@ class LocationAdapterAnimWrapper(
     }
 
     private fun setItemStateListAnimator(view: View, enabled: Boolean) {
-        view.stateListAnimator = if (enabled) AnimatorInflater.loadStateListAnimator(
-            view.context,
-            R.animator.touch_raise
-        ) else null
+        view.stateListAnimator = if (enabled) {
+            AnimatorInflater.loadStateListAnimator(view.context, R.animator.touch_raise)
+        } else {
+            null
+        }
     }
 
     fun setScrolled() {

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAssistantParameter(
-    val parameterValue: String?
+    val parameterValue: String?,
 )

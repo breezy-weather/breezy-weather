@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgWarningData(
-    val today: BmkgWarningToday?
+    val today: BmkgWarningToday?,
 )

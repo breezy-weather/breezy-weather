@@ -30,40 +30,39 @@ interface HkoApi {
     // The output is in JSON despite the file extension in the URL
     @GET("PDADATA/locspc/data/gridData/{grid}_en.xml")
     fun getCurrentWeather(
-        @Path("grid") grid: String = ""
+        @Path("grid") grid: String = "",
     ): Observable<HkoCurrentResult>
 
     // The output is in JSON despite the file extension in the URL
     @GET("cis/individual_month/monthlyElement.xml")
-    fun getHkoNormals(
-    ): Observable<HkoNormalsResult>
+    fun getHkoNormals(): Observable<HkoNormalsResult>
 
     // The output is in JSON despite the file extension in the URL
     @GET("cis/aws/individual_month/monthly_{station}.xml")
     fun getNormals(
-        @Path("station") station: String
+        @Path("station") station: String,
     ): Observable<HkoNormalsResult>
 
     @GET("{path}json/DYN_DAT_WARNSUM.json")
     fun getWarningSummary(
-        @Path("path") path: String = ""
+        @Path("path") path: String = "",
     ): Observable<HkoWarningSummaryResult>
 
     @GET("{path}json/DYN_DAT_MINDS_{key}.json")
     fun getWarningText(
         @Path("path") path: String = "",
-        @Path("key") key: String
+        @Path("key") key: String,
     ): Observable<HkoWarningResult>
 
     // The output is in JSON despite the file extension in the URL
     @GET("{path}wxinfo/json/one_json{suffix}.xml")
     fun getOneJson(
         @Path("path") path: String = "",
-        @Path("suffix") suffix: String = ""
+        @Path("suffix") suffix: String = "",
     ): Observable<HkoOneJsonResult>
 
     @GET("PDADATA/locspc/data/gridData/geojson/L{grid}.geojson")
     fun getLocations(
-        @Path("grid") grid: String
+        @Path("grid") grid: String,
     ): Observable<HkoLocationsResult>
 }

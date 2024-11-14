@@ -78,8 +78,13 @@ class WeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return WeekWidgetIMP.getRemoteViews(
-                this, locationNow,
-                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
+                this,
+                locationNow,
+                viewTypeValueNow,
+                cardStyleValueNow,
+                cardAlpha,
+                textColorValueNow,
+                textSize
             )
         }
 

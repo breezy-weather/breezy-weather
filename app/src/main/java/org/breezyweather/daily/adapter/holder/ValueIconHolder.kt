@@ -26,8 +26,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.ValueIcon
 
 class ValueIconHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_valueicon, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_valueicon, parent, false)
 ) {
     private val mIcon: ImageView = itemView.findViewById(R.id.item_weather_daily_valueicon_icon)
     private val mText: TextView = itemView.findViewById(R.id.item_weather_daily_valueicon_text)

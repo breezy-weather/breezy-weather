@@ -78,7 +78,7 @@ import javax.inject.Inject
 private class AboutAppLinkItem(
     @DrawableRes val iconId: Int,
     @StringRes val titleId: Int,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
 )
 
 private class ContributorItem(
@@ -87,7 +87,7 @@ private class ContributorItem(
     val weblate: String? = null,
     val mail: String? = null,
     val url: String? = null,
-    @StringRes val contribution: Int? = null
+    @StringRes val contribution: Int? = null,
 )
 
 private class TranslatorItem(
@@ -96,7 +96,7 @@ private class TranslatorItem(
     val github: String? = null,
     val weblate: String? = null,
     val mail: String? = null,
-    val url: String? = null
+    val url: String? = null,
 )
 
 @AndroidEntryPoint
@@ -122,7 +122,11 @@ class AboutActivity : GeoActivity() {
 
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", github = "papjul"),
-        ContributorItem("WangDaYeeeeee", github = "WangDaYeeeeee", contribution = R.string.about_contribution_WangDaYeeeeee),
+        ContributorItem(
+            "WangDaYeeeeee",
+            github = "WangDaYeeeeee",
+            contribution = R.string.about_contribution_WangDaYeeeeee
+        ),
         ContributorItem("min7-i", github = "min7-i"),
         ContributorItem("chunshek", github = "chunshek"),
         ContributorItem("Cod3d.", github = "Cod3dDOT"),
@@ -141,8 +145,13 @@ class AboutActivity : GeoActivity() {
         ContributorItem("Devy Ballard", github = "devycarol"),
         ContributorItem("Mushfiq1060", github = "Mushfiq1060"),
         ContributorItem("ccyybn", github = "ccyybn"),
-        ContributorItem("Anthony Dégrange", url = "https://anthony-degrange-design.fr/", contribution = R.string.about_contribution_designer)
+        ContributorItem(
+            "Anthony Dégrange",
+            url = "https://anthony-degrange-design.fr/",
+            contribution = R.string.about_contribution_designer
+        )
     )
+
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
     // Here, we want to sort by language code, which is a different order than in Language.kt
     // If you significantly contributed more than other translators, and you would like to appear
@@ -357,7 +366,28 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN"), "cloudfish", github = "cloudfish"),
         TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "chunshek", github = "chunshek"),
         TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rHK", "zh_rTW"), "天ツ風", github = "Yibuki"),
-        TranslatorItem(arrayOf("zh_rHK", "zh_rTW", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"), "kilimov25", github = "kilimov25")
+        TranslatorItem(
+            arrayOf(
+                "zh_rHK",
+                "zh_rTW",
+                "be",
+                "bg",
+                "bs",
+                "de",
+                "el",
+                "en",
+                "eu",
+                "it",
+                "ja",
+                "mk",
+                "pl",
+                "ru",
+                "uk",
+                "vi"
+            ),
+            "kilimov25",
+            github = "kilimov25"
+        )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -383,7 +413,7 @@ class AboutActivity : GeoActivity() {
 
         val locale = this.currentLocale
         val language = locale.language
-        val languageWithCountry = locale.language + (if(!locale.country.isNullOrEmpty()) "_r" + locale.country else "")
+        val languageWithCountry = locale.language + (if (!locale.country.isNullOrEmpty()) "_r" + locale.country else "")
         var filteredTranslators = translators.filter {
             it.lang.contains(language) || it.lang.contains(languageWithCountry)
         }
@@ -395,14 +425,14 @@ class AboutActivity : GeoActivity() {
         val contactLinks = arrayOf(
             AboutAppLinkItem(
                 iconId = R.drawable.ic_code,
-                titleId = R.string.about_source_code,
+                titleId = R.string.about_source_code
             ) {
                 linkToOpen.value = "https://github.com/breezy-weather/breezy-weather"
                 dialogLinkOpenState.value = true
             },
             AboutAppLinkItem(
                 iconId = R.drawable.ic_forum,
-                titleId = R.string.about_matrix,
+                titleId = R.string.about_matrix
             ) {
                 linkToOpen.value = "https://matrix.to/#/#breezy-weather:matrix.org"
                 dialogLinkOpenState.value = true
@@ -415,13 +445,13 @@ class AboutActivity : GeoActivity() {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.action_about),
                     onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = scrollBehavior
                 )
             }
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
+                contentPadding = it
             ) {
                 item {
                     Header()
@@ -430,7 +460,8 @@ class AboutActivity : GeoActivity() {
                         title = stringResource(R.string.about_check_for_app_updates),
                         onClick = {
                             if (BuildConfig.FLAVOR == "freenet") {
-                                // GitHub is a non-free network, so we cannot automatically check for updates in the "freenet" flavor
+                                // GitHub is a non-free network, so we cannot automatically check for updates in the
+                                // "freenet" flavor
                                 // We ask for permission to manually check updates in the browser instead
                                 linkToOpen.value = "https://github.com/breezy-weather/breezy-weather/releases/latest"
                                 dialogLinkOpenState.value = true
@@ -441,15 +472,19 @@ class AboutActivity : GeoActivity() {
 
                                         withUIContext {
                                             try {
-                                                when (val result = withIOContext {
-                                                    updateChecker.checkForUpdate(
-                                                        this@AboutActivity,
-                                                        forceCheck = true
-                                                    )
-                                                }) {
+                                                when (
+                                                    val result = withIOContext {
+                                                        updateChecker.checkForUpdate(
+                                                            this@AboutActivity,
+                                                            forceCheck = true
+                                                        )
+                                                    }
+                                                ) {
                                                     is GetApplicationRelease.Result.NewUpdate -> {
                                                         SnackbarHelper.showSnackbar(
-                                                            this@AboutActivity.getString(R.string.notification_app_update_available),
+                                                            this@AboutActivity.getString(
+                                                                R.string.notification_app_update_available
+                                                            ),
                                                             this@AboutActivity.getString(R.string.action_download)
                                                         ) {
                                                             uriHandler.openUri(result.release.releaseLink)
@@ -463,13 +498,15 @@ class AboutActivity : GeoActivity() {
                                                     }
                                                     /*is GetApplicationRelease.Result.OsTooOld -> {
                                                         SnackbarHelper.showSnackbar(
-                                                            this@AboutActivity.getString(R.string.about_update_check_eol)
+                                                            this@AboutActivity.getString(
+                                                                R.string.about_update_check_eol
+                                                            )
                                                         )
                                                     }*/
                                                     else -> {}
                                                 }
                                             } catch (e: Exception) {
-                                                e.message?.let { SnackbarHelper.showSnackbar(it) }
+                                                e.message?.let { msg -> SnackbarHelper.showSnackbar(msg) }
                                                 e.printStackTrace()
                                             } finally {
                                                 isCheckingUpdates.value = false
@@ -486,7 +523,7 @@ class AboutActivity : GeoActivity() {
                     AboutAppLink(
                         iconId = item.iconId,
                         title = stringResource(item.titleId),
-                        onClick = item.onClick,
+                        onClick = item.onClick
                     )
                 }
 
@@ -497,7 +534,7 @@ class AboutActivity : GeoActivity() {
                     AboutAppLink(
                         iconId = item.iconId,
                         title = stringResource(item.titleId),
-                        onClick = item.onClick,
+                        onClick = item.onClick
                     )
                 }
 
@@ -551,12 +588,12 @@ class AboutActivity : GeoActivity() {
     private fun Header() {
         Column(
             modifier = Modifier.padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(R.drawable.ic_launcher_round),
                 contentDescription = null,
-                modifier = Modifier.size(72.dp),
+                modifier = Modifier.size(72.dp)
             )
             Spacer(
                 modifier = Modifier
@@ -566,12 +603,12 @@ class AboutActivity : GeoActivity() {
             Text(
                 text = stringResource(R.string.breezy_weather),
                 color = DayNightTheme.colors.titleColor,
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineSmall
             )
             Text(
                 text = versionFormatted,
                 color = DayNightTheme.colors.captionColor,
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelMedium
             )
         }
     }
@@ -582,7 +619,7 @@ class AboutActivity : GeoActivity() {
             text = title,
             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
             color = DayNightTheme.colors.captionColor,
-            style = MaterialTheme.typography.labelMedium,
+            style = MaterialTheme.typography.labelMedium
         )
     }
 
@@ -605,7 +642,7 @@ class AboutActivity : GeoActivity() {
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
-                        onClick = onClick,
+                        onClick = onClick
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),
                 verticalAlignment = Alignment.CenterVertically
@@ -613,13 +650,13 @@ class AboutActivity : GeoActivity() {
                 Icon(
                     painter = painterResource(iconId),
                     contentDescription = null,
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = DayNightTheme.colors.titleColor
                 )
                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
                 Text(
                     text = title,
                     color = DayNightTheme.colors.titleColor,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium
                 )
             }
         }
@@ -629,7 +666,7 @@ class AboutActivity : GeoActivity() {
     private fun ContributorView(
         name: String,
         @StringRes contribution: Int? = null,
-        onClick: () -> Unit
+        onClick: () -> Unit,
     ) {
         Material3CardListItem {
             Column(
@@ -640,7 +677,7 @@ class AboutActivity : GeoActivity() {
                         indication = themeRipple(),
                         onClick = {
                             onClick()
-                        },
+                        }
                     )
                     .padding(dimensionResource(R.dimen.normal_margin))
             ) {
@@ -648,13 +685,13 @@ class AboutActivity : GeoActivity() {
                     Text(
                         text = name,
                         color = DayNightTheme.colors.titleColor,
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.titleMedium
                     )
                 }
                 if (contribution != null) {
                     Text(
                         text = stringResource(contribution),
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }

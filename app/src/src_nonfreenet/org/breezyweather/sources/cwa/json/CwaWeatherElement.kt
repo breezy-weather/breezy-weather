@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CwaWeatherElement(
     val elementName: String,
-    val elementValue: String
+    val elementValue: String,
 )

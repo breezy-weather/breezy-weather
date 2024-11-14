@@ -33,5 +33,5 @@ data class NwsAlertProperties(
     val description: String?,
     val instruction: String?,
     val sender: String?,
-    val senderName: String?
+    val senderName: String?,
 )

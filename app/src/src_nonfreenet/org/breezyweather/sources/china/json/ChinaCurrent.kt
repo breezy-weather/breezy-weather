@@ -30,5 +30,5 @@ data class ChinaCurrent(
     val uvIndex: String?,
     val visibility: ChinaUnitValue?,
     val weather: String?,
-    val wind: ChinaCurrentWind?
+    val wind: ChinaCurrentWind?,
 )

@@ -25,5 +25,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MetNoAlert(
     val properties: MetNoAlertProperties?,
-    @SerialName("when") val whenAlert: MetNoAlertWhen?
+    @SerialName("when") val whenAlert: MetNoAlertWhen?,
 )

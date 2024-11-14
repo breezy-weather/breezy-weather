@@ -18,17 +18,18 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
 // actual air quality = quality(μg/m³) * factor.
 enum class AirQualityUnit(
     override val id: String,
-    override val convertUnit: (Double) -> Double
-): UnitEnum<Double> {
+    override val convertUnit: (Double) -> Double,
+) : UnitEnum<Double> {
 
-    MUGPCUM("mugpcum", { valueInDefaultUnit -> valueInDefaultUnit });
+    MUGPCUM("mugpcum", { valueInDefaultUnit -> valueInDefaultUnit }),
+    ;
 
     override val valueArrayId = R.array.air_quality_unit_values
     override val nameArrayId = R.array.air_quality_units
@@ -41,18 +42,18 @@ enum class AirQualityUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -63,13 +64,13 @@ enum class AirQualityUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

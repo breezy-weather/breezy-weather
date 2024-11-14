@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class MetIeLocationResult(
     val city: String?,
     val province: String?,
-    val county: String?
+    val county: String?,
 )

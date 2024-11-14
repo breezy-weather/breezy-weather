@@ -45,11 +45,12 @@ class TrendRecyclerViewScrollBar : ItemDecoration() {
         mThemeChanged = true
         mEndPointsColor = MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
         mCenterColor = org.breezyweather.common.utils.ColorUtils.blendColor(
-            //lightTheme
+            // lightTheme
             //        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
             //        : Color.argb((int) (0.08 * 255), 0, 0, 0),
             ColorUtils.setAlphaComponent(
-                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary), (0.05 * 255).toInt()
+                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                (0.05 * 255).toInt()
             ),
             MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
         )
@@ -58,7 +59,7 @@ class TrendRecyclerViewScrollBar : ItemDecoration() {
     override fun onDraw(
         c: Canvas,
         parent: RecyclerView,
-        state: RecyclerView.State
+        state: RecyclerView.State,
     ) {
         if (parent.childCount > 0) {
             if (mScrollBarWidth == 0) mScrollBarWidth = parent.getChildAt(0).measuredWidth
@@ -71,7 +72,8 @@ class TrendRecyclerViewScrollBar : ItemDecoration() {
                     0f,
                     0f,
                     mScrollBarHeight / 2f,
-                    mEndPointsColor, mCenterColor,
+                    mEndPointsColor,
+                    mCenterColor,
                     Shader.TileMode.MIRROR
                 )
             )

@@ -18,26 +18,27 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
 // actual precipitation = precipitation(mm) * factor.
 enum class PrecipitationUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
-    val decimals: Int = 1
-): UnitEnum<Double> {
+    val decimals: Int = 1,
+) : UnitEnum<Double> {
 
     MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }),
     CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
     IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
-    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit });
+    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit }),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = PrecipitationUnit.entries.firstOrNull {
             it.id == value
         } ?: MM
@@ -54,18 +55,18 @@ enum class PrecipitationUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -76,13 +77,13 @@ enum class PrecipitationUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,
@@ -96,18 +97,19 @@ enum class PrecipitationUnit(
 enum class PrecipitationIntensityUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
-    val decimals: Int = 1
-): UnitEnum<Double> {
+    val decimals: Int = 1,
+) : UnitEnum<Double> {
 
     MMPH("mmph", { valueInDefaultUnit -> valueInDefaultUnit }),
     CMPH("cmph", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
     INPH("inph", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
-    LPSQMPH("lpsqmph", { valueInDefaultUnit -> valueInDefaultUnit });
+    LPSQMPH("lpsqmph", { valueInDefaultUnit -> valueInDefaultUnit }),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = PrecipitationIntensityUnit.entries.firstOrNull {
             it.id == value
         } ?: MMPH
@@ -124,18 +126,18 @@ enum class PrecipitationIntensityUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimals)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -146,13 +148,13 @@ enum class PrecipitationIntensityUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Double
+        valueInDefaultUnit: Double,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Double,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

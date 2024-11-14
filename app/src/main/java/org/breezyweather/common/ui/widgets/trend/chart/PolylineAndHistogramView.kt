@@ -38,7 +38,9 @@ import org.breezyweather.common.ui.widgets.DayNightShaderWrapper
  * Polyline and histogram view.
  */
 class PolylineAndHistogramView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : AbsChartItemView(context, attrs, defStyleAttr) {
     private val mPaint = Paint().apply {
         strokeCap = Paint.Cap.ROUND
@@ -101,7 +103,12 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         ensureShader(mShaderWrapper.isLightTheme)
         computeCoordinates()
         drawTimeLine(canvas)
-        if (mHistogramValue != null && (mHistogramValue != 0f || mHighestPolylineValue == null && mLowestPolylineValue == null) && mHistogramValueStr != null && mHighestHistogramValue != null && mLowestHistogramValue != null) {
+        if (mHistogramValue != null &&
+            (mHistogramValue != 0f || mHighestPolylineValue == null && mLowestPolylineValue == null) &&
+            mHistogramValueStr != null &&
+            mHighestHistogramValue != null &&
+            mLowestHistogramValue != null
+        ) {
             drawHistogram(canvas)
         }
         if (mHighestPolylineValue != null && mLowestPolylineValue != null) {
@@ -121,8 +128,10 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             color = mLineColors[2]
         }
         canvas.drawLine(
-            measuredWidth / 2f, marginTop.toFloat(),
-            measuredWidth / 2f, (measuredHeight - marginBottom).toFloat(),
+            measuredWidth / 2f,
+            marginTop.toFloat(),
+            measuredWidth / 2f,
+            (measuredHeight - marginBottom).toFloat(),
             mPaint
         )
     }
@@ -356,7 +365,8 @@ class PolylineAndHistogramView @JvmOverloads constructor(
                 (measuredWidth / 2.0 + mHistogramWidth).toFloat(),
                 (measuredHeight - marginBottom).toFloat()
             ),
-            mHistogramWidth.toFloat(), mHistogramWidth.toFloat(),
+            mHistogramWidth.toFloat(),
+            mHistogramWidth.toFloat(),
             mPaint
         )
         mPaint.apply {
@@ -368,8 +378,9 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         canvas.drawText(
             mHistogramValueStr ?: "",
             (measuredWidth / 2.0).toFloat(),
-            ((measuredHeight - marginBottom - mPaint.fontMetrics.top)
-                + 2.0 * mTextMargin + mPolylineTextSize).toFloat(),
+            (
+                (measuredHeight - marginBottom - mPaint.fontMetrics.top) + 2.0 * mTextMargin + mPolylineTextSize
+                ).toFloat(),
             mPaint
         )
         mPaint.alpha = 255
@@ -386,7 +397,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         histogramValue: Float?,
         histogramValueStr: String?,
         highestHistogramValue: Float?,
-        lowestHistogramValue: Float?
+        lowestHistogramValue: Float?,
     ) {
         mHighPolylineValues = highPolylineValues
         mLowPolylineValues = lowPolylineValues
@@ -402,8 +413,9 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     }
 
     fun setLineColors(
-        @ColorInt colorHigh: Int, @ColorInt colorLow: Int,
-        @ColorInt colorSubLine: Int
+        @ColorInt colorHigh: Int,
+        @ColorInt colorLow: Int,
+        @ColorInt colorSubLine: Int,
     ) {
         mLineColors[0] = colorHigh
         mLineColors[1] = colorLow
@@ -411,10 +423,16 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setShadowColors(@ColorInt colorHigh: Int, @ColorInt colorLow: Int, lightTheme: Boolean) {
-        mShadowColors[0] = if (lightTheme) ColorUtils.setAlphaComponent(
-            colorHigh, (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt()
-        ) else ColorUtils.setAlphaComponent(colorLow, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
+    fun setShadowColors(
+        @ColorInt colorHigh: Int,
+        @ColorInt colorLow: Int,
+        lightTheme: Boolean,
+    ) {
+        mShadowColors[0] = if (lightTheme) {
+            ColorUtils.setAlphaComponent(colorHigh, (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt())
+        } else {
+            ColorUtils.setAlphaComponent(colorLow, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
+        }
         mShadowColors[1] = Color.TRANSPARENT
         ensureShader(lightTheme)
         invalidate()
@@ -423,7 +441,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     fun setTextColors(
         @ColorInt highTextColor: Int,
         @ColorInt lowTextColor: Int,
-        @ColorInt histogramTextColor: Int
+        @ColorInt histogramTextColor: Int,
     ) {
         mHighTextColor = highTextColor
         mLowTextColor = lowTextColor
@@ -432,7 +450,9 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setHistogramAlpha(@FloatRange(from = 0.0, to = 1.0) histogramAlpha: Float) {
+    fun setHistogramAlpha(
+        @FloatRange(from = 0.0, to = 1.0) histogramAlpha: Float,
+    ) {
         mHistogramAlpha = histogramAlpha
         invalidate()
     }
@@ -441,12 +461,16 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         if (mShaderWrapper.isDifferent(measuredWidth, measuredHeight, lightTheme, mShadowColors)) {
             mShaderWrapper.setShader(
                 LinearGradient(
-                    0f, marginTop.toFloat(),
-                    0f, (measuredHeight - marginBottom).toFloat(),
-                    mShadowColors[0], mShadowColors[1],
+                    0f,
+                    marginTop.toFloat(),
+                    0f,
+                    (measuredHeight - marginBottom).toFloat(),
+                    mShadowColors[0],
+                    mShadowColors[1],
                     Shader.TileMode.CLAMP
                 ),
-                measuredWidth, measuredHeight,
+                measuredWidth,
+                measuredHeight,
                 lightTheme,
                 mShadowColors
             )
@@ -487,7 +511,10 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         }
         if (mHistogramValue != null && mHighestHistogramValue != null && mLowestHistogramValue != null) {
             mHistogramY = computeSingleCoordinate(
-                canvasHeight, mHistogramValue!!, mHighestHistogramValue!!, mLowestHistogramValue!!
+                canvasHeight,
+                mHistogramValue!!,
+                mHighestHistogramValue!!,
+                mLowestHistogramValue!!
             )
         }
     }
@@ -496,11 +523,9 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         canvasHeight: Float,
         value: Float,
         max: Float,
-        min: Float
+        min: Float,
     ): Int {
-        return ((measuredHeight
-            - marginBottom
-            - (canvasHeight * (value - min) / (max - min)))).toInt()
+        return ((measuredHeight - marginBottom - (canvasHeight * (value - min) / (max - min)))).toInt()
     }
 
     private fun getRTLCompactX(x: Float): Float {

@@ -22,7 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.breezyweather.R
 
 class FitSystemBarSwipeRefreshLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null,
 ) : SwipeRefreshLayout(context, attrs) {
 
     /**

@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MfHistoryTemperature(
     val value: Double?,
-    @SerialName("windchill") val windChill: Double?
+    @SerialName("windchill") val windChill: Double?,
 )

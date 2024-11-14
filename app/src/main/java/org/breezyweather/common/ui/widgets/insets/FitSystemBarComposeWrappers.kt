@@ -77,16 +77,14 @@ fun FitStatusBarTopAppBar(
         containerColor = MaterialTheme.colorScheme.surface,
         scrolledContainerColor = MaterialTheme.colorScheme.applyTonalElevation(
             backgroundColor = MaterialTheme.colorScheme.surface,
-            elevation = topAppBarElevation,
+            elevation = topAppBarElevation
         ),
         navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
         titleContentColor = MaterialTheme.colorScheme.onSurface,
-        actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+        actionIconContentColor = MaterialTheme.colorScheme.onSurface
     ),
     scrollBehavior = scrollBehavior,
-    windowInsets = WindowInsets.safeDrawing.only(
-        WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-    )
+    windowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
 )
 
 @Composable
@@ -102,12 +100,12 @@ fun FitStatusBarTopAppBar(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.action_back),
-                tint = MaterialTheme.colorScheme.onSurface,
+                tint = MaterialTheme.colorScheme.onSurface
             )
         }
     },
     actions = actions,
-    scrollBehavior = scrollBehavior,
+    scrollBehavior = scrollBehavior
 )
 
 @Composable
@@ -116,9 +114,7 @@ fun BWCenterAlignedTopAppBar(
     onBackPressed: () -> Unit,
     modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
-    windowInsets: WindowInsets = WindowInsets.safeDrawing.only(
-        WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-    )
+    windowInsets: WindowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top),
 ) = CenterAlignedTopAppBar(
     title = { Text(text = title) },
     modifier = modifier,
@@ -127,7 +123,7 @@ fun BWCenterAlignedTopAppBar(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.action_back),
-                tint = MaterialTheme.colorScheme.onSurface,
+                tint = MaterialTheme.colorScheme.onSurface
             )
         }
     },
@@ -140,7 +136,7 @@ fun LazyListScope.bottomInsetItem(
     extraHeight: Dp = 0.dp,
 ) = item(
     key = BottomInsetKey.INSTANCE,
-    contentType = BottomInsetKey.INSTANCE,
+    contentType = BottomInsetKey.INSTANCE
 ) {
     Column {
         Spacer(modifier = Modifier.height(extraHeight))

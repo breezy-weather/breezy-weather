@@ -23,5 +23,5 @@ data class ImsLocation(
     val lid: String,
     val name: String,
     val lat: String,
-    val lon: String
+    val lon: String,
 )

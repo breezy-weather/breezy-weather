@@ -29,18 +29,18 @@ interface BrightSkyApi {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
         @Query("date") date: String,
-        @Query("last_date") lastDate: String
+        @Query("last_date") lastDate: String,
     ): Observable<BrightSkyWeatherResult>
 
     @GET("current_weather")
     fun getCurrentWeather(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double
+        @Query("lon") lon: Double,
     ): Observable<BrightSkyCurrentWeatherResult>
 
     @GET("alerts")
     fun getAlerts(
         @Query("lat") lat: Double,
-        @Query("lon") lon: Double
+        @Query("lon") lon: Double,
     ): Observable<BrightSkyAlertsResult>
 }

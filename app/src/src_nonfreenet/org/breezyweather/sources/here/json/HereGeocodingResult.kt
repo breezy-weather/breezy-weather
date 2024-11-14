@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class HereGeocodingResult(
-    val items: List<HereGeocodingData>?
+    val items: List<HereGeocodingData>?,
 )

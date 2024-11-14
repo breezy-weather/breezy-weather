@@ -2,8 +2,8 @@ package org.breezyweather.sources.openmeteo
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 
 /**
  * List from:
@@ -12,8 +12,8 @@ import org.breezyweather.common.basic.models.options._basic.Utils
  * Up-to-date as of 2024-11-11
  */
 enum class OpenMeteoWeatherModel(
-    override val id: String
-): BaseEnum {
+    override val id: String,
+) : BaseEnum {
     BEST_MATCH("best_match"),
 
     ECMWF_IFS04("ecmwf_ifs04"),
@@ -64,12 +64,13 @@ enum class OpenMeteoWeatherModel(
 
     UKMO_SEAMLESS("ukmo_seamless"),
     UKMO_GLOBAL("ukmo_global_deterministic_10km"),
-    UKMO_UK("ukmo_uk_deterministic_2km");
+    UKMO_UK("ukmo_uk_deterministic_2km"),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = OpenMeteoWeatherModel.entries.firstOrNull {
             it.id == value
         }
@@ -80,12 +81,20 @@ enum class OpenMeteoWeatherModel(
 
     override fun getName(context: Context) =
         Utils.getName(context, this)
-            .replace("Best match", context.getString(R.string.settings_weather_source_open_meteo_weather_models_best_match))
-            .replace("Seamless", context.getString(R.string.settings_weather_source_open_meteo_weather_models_seamless))
+            .replace(
+                "Best match",
+                context.getString(R.string.settings_weather_source_open_meteo_weather_models_best_match)
+            )
+            .replace(
+                "Seamless",
+                context.getString(R.string.settings_weather_source_open_meteo_weather_models_seamless)
+            )
 
     fun getDescription(context: Context): String? = if (id == "best_match") {
         context.getString(R.string.settings_weather_source_open_meteo_weather_models_best_match_description)
     } else if (id.endsWith("_seamless")) {
         context.getString(R.string.settings_weather_source_open_meteo_weather_models_seamless_description)
-    } else null
+    } else {
+        null
+    }
 }

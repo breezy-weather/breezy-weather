@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BrightSkyAlertsResult(
-    val alerts: List<BrightSkyAlert>? = null
+    val alerts: List<BrightSkyAlert>? = null,
 )

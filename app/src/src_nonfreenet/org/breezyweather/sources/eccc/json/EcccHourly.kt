@@ -31,5 +31,5 @@ data class EcccHourly(
     val windGust: EcccUnit?,
     val windDir: String?,
 
-    val precip: String?
+    val precip: String?,
 )

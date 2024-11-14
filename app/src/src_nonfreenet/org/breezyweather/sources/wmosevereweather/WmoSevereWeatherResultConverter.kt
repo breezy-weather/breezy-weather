@@ -26,12 +26,14 @@ import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import org.breezyweather.sources.common.xml.CapAlert
+import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import java.util.Date
 
 fun convert(
-    alertResult: WmoSevereWeatherAlertResult, client: WmoSevereWeatherXmlApi, context: Context
+    alertResult: WmoSevereWeatherAlertResult,
+    client: WmoSevereWeatherXmlApi,
+    context: Context,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         alertList = alertResult.features
@@ -41,10 +43,12 @@ fun convert(
             }?.map {
                 val severity = AlertSeverity.getInstance(it.properties!!.s)
                 val originalAlert = Alert(
-                    alertId = (it.id?.ifEmpty { null }
-                        ?: it.properties.identifier?.ifEmpty { null }
-                        ?: it.properties.capurl?.ifEmpty { null }
-                        ?: it.properties.url)!!,
+                    alertId = (
+                        it.id?.ifEmpty { null }
+                            ?: it.properties.identifier?.ifEmpty { null }
+                            ?: it.properties.capurl?.ifEmpty { null }
+                            ?: it.properties.url
+                        )!!,
                     startDate = it.properties.onset ?: it.properties.effective ?: it.properties.sent,
                     endDate = it.properties.expires,
                     headline = it.properties.event?.capitalize(),
@@ -71,7 +75,9 @@ fun convert(
                         // Source for this hack: https://severeweather.wmo.int/js/new-layout.js
                         if (context.currentLocale.code.startsWith("ar")) {
                             it.properties.rlink
-                        } else it.properties.capurl
+                        } else {
+                            it.properties.capurl
+                        }
                     } else {
                         null
                     }
@@ -92,7 +98,8 @@ fun convert(
                                 xmlAlert.info.first() // Arbitrarily takes the first
                             } else {
                                 notNullLanguageInfo.firstOrNull { info ->
-                                    info.language!!.value!!.lowercase() == context.currentLocale.codeWithCountry.lowercase()
+                                    info.language!!.value!!.lowercase() ==
+                                        context.currentLocale.codeWithCountry.lowercase()
                                 } ?: xmlAlert.info.firstOrNull { info ->
                                     info.language!!.value!!.lowercase().startsWith(context.currentLocale.code)
                                 } ?: xmlAlert.info.firstOrNull { info ->
@@ -151,13 +158,12 @@ fun convert(
 fun alertFromInfo(
     xmlAlert: CapAlert?,
     selectedInfo: CapAlert.Info?,
-    originalAlert: Alert
+    originalAlert: Alert,
 ): Alert {
     return selectedInfo?.let { info ->
         originalAlert.copy(
             alertId = xmlAlert!!.identifier?.value ?: originalAlert.alertId,
-            startDate = info.onset?.value ?: info.effective?.value
-            ?: originalAlert.startDate ?: xmlAlert.sent?.value,
+            startDate = info.onset?.value ?: info.effective?.value ?: originalAlert.startDate ?: xmlAlert.sent?.value,
             endDate = info.expires?.value ?: originalAlert.endDate,
             headline = info.headline?.value ?: info.event?.value ?: originalAlert.headline,
             description = info.description?.value ?: originalAlert.description,

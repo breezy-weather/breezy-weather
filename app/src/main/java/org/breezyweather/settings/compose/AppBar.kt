@@ -15,7 +15,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 @Composable
 fun AboutActivityIconButton(
     context: Context,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = IconButton(
     modifier = modifier,
     onClick = { IntentHelper.startAboutActivity(context) }
@@ -23,6 +23,6 @@ fun AboutActivityIconButton(
     Icon(
         imageVector = Icons.Outlined.Info,
         contentDescription = stringResource(R.string.action_about),
-        tint = MaterialTheme.colorScheme.onSurface,
+        tint = MaterialTheme.colorScheme.onSurface
     )
 }

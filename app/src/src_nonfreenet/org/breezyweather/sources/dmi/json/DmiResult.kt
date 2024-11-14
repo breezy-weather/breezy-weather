@@ -26,5 +26,5 @@ data class DmiResult(
     val timezone: String,
     val sunrise: String?,
     val sunset: String?,
-    val timeserie: List<DmiTimeserie>?
+    val timeserie: List<DmiTimeserie>?,
 )

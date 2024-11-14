@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GeoNamesStatus(
     val message: String?,
-    val value: Int?
+    val value: Int?,
 )

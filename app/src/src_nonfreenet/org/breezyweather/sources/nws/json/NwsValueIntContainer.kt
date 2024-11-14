@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsValueIntContainer(
-    val values: List<NwsValueInt>?
+    val values: List<NwsValueInt>?,
 )

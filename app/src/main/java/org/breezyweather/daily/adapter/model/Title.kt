@@ -21,7 +21,7 @@ import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class Title(
     @field:DrawableRes val resId: Int? = null,
-    val title: String
+    val title: String,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 2
 

@@ -14,7 +14,6 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 package org.breezyweather.sources.hko.json
 
 import kotlinx.serialization.Serializable
@@ -26,5 +25,5 @@ data class HkoHourlyWeatherForecast(
     val ForecastTemperature: Double?,
     val ForecastWeather: Int?,
     val ForecastWindDirection: Double?,
-    val ForecastWindSpeed: Double?
+    val ForecastWindSpeed: Double?,
 )

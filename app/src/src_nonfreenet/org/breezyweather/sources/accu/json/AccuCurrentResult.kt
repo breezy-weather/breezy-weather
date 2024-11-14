@@ -43,5 +43,5 @@ data class AccuCurrentResult(
     val WindChillTemperature: AccuValueContainer?,
     val WetBulbTemperature: AccuValueContainer?,
     val PrecipitationSummary: AccuCurrentPrecipitationSummary?,
-    val TemperatureSummary: AccuCurrentTemperatureSummary?
+    val TemperatureSummary: AccuCurrentTemperatureSummary?,
 )

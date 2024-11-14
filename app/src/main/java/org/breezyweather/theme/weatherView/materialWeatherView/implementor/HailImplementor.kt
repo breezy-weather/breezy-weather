@@ -33,7 +33,7 @@ import kotlin.math.sin
 class HailImplementor(
     @Size(2) canvasSizes: IntArray,
     animate: Boolean,
-    daylight: Boolean
+    daylight: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
@@ -47,7 +47,7 @@ class HailImplementor(
         private val mViewWidth: Int,
         private val mViewHeight: Int,
         @field:ColorInt @param:ColorInt val color: Int,
-        val scale: Float
+        val scale: Float,
     ) {
         var cx = 0f
         var cy = 0f
@@ -89,7 +89,8 @@ class HailImplementor(
 
         fun move(interval: Long, deltaRotation3D: Float) {
             cx += (speedX * interval * scale.toDouble().pow(1.5)).toFloat()
-            cy += (speedY * interval * (scale.toDouble().pow(1.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0))).toFloat()
+            cy +=
+                (speedY * interval * (scale.toDouble().pow(1.5) - 5 * sin(deltaRotation3D * Math.PI / 180.0))).toFloat()
             rotation = (rotation + speedRotation * interval) % 360
             if (cy - size >= mCanvasSize) {
                 init(false)
@@ -117,16 +118,20 @@ class HailImplementor(
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
         mHails = Array(HAIL_COUNT) { i ->
             Hail(
-                canvasSizes[0], canvasSizes[1],
-                colors[i * 3 / HAIL_COUNT], scales[i * 3 / HAIL_COUNT]
+                canvasSizes[0],
+                canvasSizes[1],
+                colors[i * 3 / HAIL_COUNT],
+                scales[i * 3 / HAIL_COUNT]
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D
     }
 
     override fun updateData(
-        @Size(2) canvasSizes: IntArray, interval: Long,
-        rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        interval: Long,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         for (h in mHails) {
             h.move(interval, if (mLastRotation3D == INITIAL_ROTATION_3D) 0f else rotation3D - mLastRotation3D)
@@ -135,8 +140,11 @@ class HailImplementor(
     }
 
     override fun draw(
-        @Size(2) canvasSizes: IntArray, canvas: Canvas,
-        scrollRate: Float, rotation2D: Float, rotation3D: Float
+        @Size(2) canvasSizes: IntArray,
+        canvas: Canvas,
+        scrollRate: Float,
+        rotation2D: Float,
+        rotation3D: Float,
     ) {
         if (scrollRate < 1) {
             canvas.rotate(
@@ -157,6 +165,7 @@ class HailImplementor(
     companion object {
         private const val INITIAL_ROTATION_3D = 1000f
         private const val HAIL_COUNT = 51
+
         @ColorInt
         fun getThemeColor(daylight: Boolean): Int {
             return if (daylight) -0x974501 else -0xe5a46e

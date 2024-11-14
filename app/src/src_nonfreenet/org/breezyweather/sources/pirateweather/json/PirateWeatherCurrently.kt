@@ -40,5 +40,5 @@ data class PirateWeatherCurrently(
     val windBearing: Double?,
     val cloudCover: Double?,
     val uvIndex: Double?,
-    val visibility: Double?
+    val visibility: Double?,
 )

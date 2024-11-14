@@ -27,8 +27,7 @@ object ColorUtils {
 
     @ColorInt
     fun bitmapToColorInt(bitmap: Bitmap): Int {
-        return ThumbnailUtils.extractThumbnail(bitmap, 1, 1)
-            .getPixel(0, 0)
+        return ThumbnailUtils.extractThumbnail(bitmap, 1, 1).getPixel(0, 0)
     }
 
     fun isLightColor(@ColorInt color: Int): Boolean {
@@ -69,11 +68,12 @@ object ColorUtils {
     fun getWidgetSurfaceColor(
         elevationDp: Float,
         @ColorInt tintColor: Int,
-        @ColorInt surfaceColor: Int
+        @ColorInt surfaceColor: Int,
     ): Int {
         if (elevationDp == 0f) return surfaceColor
         val foreground = ColorUtils.setAlphaComponent(
-            tintColor, ((4.5f * ln((elevationDp + 1).toDouble()) + 2f) / 100f * 255).toInt()
+            tintColor,
+            ((4.5f * ln((elevationDp + 1).toDouble()) + 2f) / 100f * 255).toInt()
         )
         return blendColor(foreground, surfaceColor)
     }

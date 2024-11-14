@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecosanteRaepValidity(
     val start: String?,
-    val end: String?
+    val end: String?,
 )

@@ -30,11 +30,15 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     application: Application?,
-    repository: SearchActivityRepository
+    repository: SearchActivityRepository,
 ) : GeoViewModel(application!!) {
-    private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(Pair(emptyList(), LoadableLocationStatus.SUCCESS))
+    private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(
+        Pair(emptyList(), LoadableLocationStatus.SUCCESS)
+    )
     val listResource = _listResource.asStateFlow()
-    private val _locationSearchSource: MutableStateFlow<String> = MutableStateFlow(repository.lastSelectedLocationSearchSource)
+    private val _locationSearchSource: MutableStateFlow<String> = MutableStateFlow(
+        repository.lastSelectedLocationSearchSource
+    )
     val locationSearchSource = _locationSearchSource.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 

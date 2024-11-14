@@ -35,7 +35,7 @@ import javax.inject.Named
  */
 class WmoSevereWeatherService @Inject constructor(
     @Named("JsonClient") jsonClient: Retrofit.Builder,
-    @Named("XmlClient") xmlClient: Retrofit.Builder
+    @Named("XmlClient") xmlClient: Retrofit.Builder,
 ) : HttpSource(), SecondaryWeatherSource {
 
     override val id = "wmosevereweather"
@@ -61,16 +61,18 @@ class WmoSevereWeatherService @Inject constructor(
     override val airQualityAttribution = null
     override val pollenAttribution = null
     override val minutelyAttribution = null
-    override val alertAttribution = "Hong Kong Observatory on behalf of WMO + 136 issuing organizations https://severeweather.wmo.int/sources.html"
+    override val alertAttribution =
+        "Hong Kong Observatory on behalf of WMO + 136 issuing organizations https://severeweather.wmo.int/sources.html"
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mAlertsJsonApi.getAlerts(
             typeName = "local_postgis:postgis_geojsons",
-            //cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"
+            // cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"
             cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND row_type NEQ 'BOUNDARY'"
         ).map {
             convert(it, mAlertsXmlApi, context)

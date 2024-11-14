@@ -42,16 +42,32 @@ class Pollen(
     val sorrel: Int? = null,
     val tree: Int? = null,
     val urticaceae: Int? = null,
-    val willow: Int? = null
+    val willow: Int? = null,
 ) : Serializable {
 
     val isMoldValid: Boolean
         get() = mold != null
 
     val isValid: Boolean
-        get() = alder != null || ash != null || birch != null || chestnut != null ||
-                cypress != null || grass != null || hazel != null || hornbeam != null ||
-                linden != null || mold != null || mugwort != null || oak != null || olive != null ||
-                plane != null || plantain != null || poplar != null || ragweed != null ||
-                sorrel != null || tree != null || urticaceae != null || willow != null
+        get() = alder != null ||
+            ash != null ||
+            birch != null ||
+            chestnut != null ||
+            cypress != null ||
+            grass != null ||
+            hazel != null ||
+            hornbeam != null ||
+            linden != null ||
+            mold != null ||
+            mugwort != null ||
+            oak != null ||
+            olive != null ||
+            plane != null ||
+            plantain != null ||
+            poplar != null ||
+            ragweed != null ||
+            sorrel != null ||
+            tree != null ||
+            urticaceae != null ||
+            willow != null
 }

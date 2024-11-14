@@ -23,5 +23,5 @@ import java.util.Date
 
 @Serializable
 data class MetNoForecastPropertiesMeta(
-    @Serializable(DateSerializer::class) @SerialName("updated_at") val updatedAt: Date?
+    @Serializable(DateSerializer::class) @SerialName("updated_at") val updatedAt: Date?,
 )

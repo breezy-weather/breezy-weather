@@ -22,7 +22,9 @@ import com.google.maps.android.model.LatLng
  * A GeoJsonPoint geometry contains a single [LatLng].
  * @param coordinates coordinates of the KmlPoint
  */
-class GeoJsonPoint(val coordinates: LatLng) : Point(coordinates) {
+class GeoJsonPoint(
+    val coordinates: LatLng,
+) : Point(coordinates) {
     /**
      * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
      * specification.
@@ -31,5 +33,4 @@ class GeoJsonPoint(val coordinates: LatLng) : Point(coordinates) {
      */
     val type: String
         get() = geometryType
-
 }

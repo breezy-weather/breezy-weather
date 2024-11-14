@@ -33,11 +33,9 @@ class AirQuality(
     val sO2: Double? = null,
     val nO2: Double? = null,
     val o3: Double? = null,
-    val cO: Double? = null
+    val cO: Double? = null,
 ) : Serializable {
 
     val isValid: Boolean
-        get() = pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null ||
-            cO != null
-
+        get() = pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null || cO != null
 }

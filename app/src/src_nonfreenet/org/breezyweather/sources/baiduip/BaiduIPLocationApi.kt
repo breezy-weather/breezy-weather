@@ -25,6 +25,6 @@ interface BaiduIPLocationApi {
     @GET("location/ip")
     fun getLocation(
         @Query("ak") ak: String,
-        @Query("coor") coor: String
+        @Query("coor") coor: String,
     ): Observable<BaiduIPLocationResult>
 }

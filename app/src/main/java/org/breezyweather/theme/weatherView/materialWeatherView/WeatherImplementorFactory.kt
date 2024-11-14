@@ -36,7 +36,7 @@ object WeatherImplementorFactory {
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
         @Size(2) sizes: IntArray,
-        animate: Boolean
+        animate: Boolean,
     ): WeatherAnimationImplementor? = when (weatherKind) {
         WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
             SunImplementor(

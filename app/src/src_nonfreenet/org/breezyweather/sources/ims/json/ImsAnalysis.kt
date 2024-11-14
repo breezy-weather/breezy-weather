@@ -30,5 +30,5 @@ data class ImsAnalysis(
     @SerialName("wind_chill") val windChill: String?,
     // weather_code
     @SerialName("feels_like") val feelsLike: String?,
-    @SerialName("u_v_index") val uvIndex: String?
+    @SerialName("u_v_index") val uvIndex: String?,
 )

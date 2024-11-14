@@ -83,7 +83,7 @@ object IntentHelper {
 
     fun buildMainActivityShowDailyForecastIntent(
         location: Location?,
-        index: Int
+        index: Int,
     ): Intent {
         var formattedId: String? = null
         if (location != null) {
@@ -99,7 +99,8 @@ object IntentHelper {
 
     fun startDailyWeatherActivity(
         activity: Activity,
-        formattedId: String?, index: Int
+        formattedId: String?,
+        index: Int,
     ) {
         activity.startActivity(
             Intent(activity, DailyWeatherActivity::class.java).apply {
@@ -226,15 +227,6 @@ object IntentHelper {
 
     fun startLocationSettingsActivity(context: Context) {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-    }
-
-    fun startWebViewActivity(context: Context, url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent)
-        } else {
-            SnackbarHelper.showSnackbar("Unavailable internet browser.")
-        }
     }
 
     @SuppressLint("WrongConstant")

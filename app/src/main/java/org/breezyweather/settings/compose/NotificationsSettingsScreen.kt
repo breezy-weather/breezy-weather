@@ -45,7 +45,7 @@ fun NotificationsSettingsScreen(
     onNavigateBack: () -> Unit,
     todayForecastEnabled: Boolean,
     tomorrowForecastEnabled: Boolean,
-    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit
+    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -58,7 +58,7 @@ fun NotificationsSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             sectionHeaderItem(R.string.notification_channel_app_updates)
@@ -82,11 +82,15 @@ fun NotificationsSettingsScreen(
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
-                    summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
+                    summaryOffId = if (
+                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER
+                    ) {
                         R.string.settings_disabled
-                    } else R.string.settings_unavailable_no_background_updates,
+                    } else {
+                        R.string.settings_unavailable_no_background_updates
+                    },
                     checked = SettingsManager.getInstance(context).isAlertPushEnabled &&
-                            SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isAlertPushEnabled = it
@@ -95,18 +99,22 @@ fun NotificationsSettingsScreen(
                                 // Do nothing
                             }
                         }
-                    },
+                    }
                 )
             }
             switchPreferenceItem(R.string.settings_notifications_precipitations_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
-                    summaryOffId = if (SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER) {
+                    summaryOffId = if (
+                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER
+                    ) {
                         R.string.settings_disabled
-                    } else R.string.settings_unavailable_no_background_updates,
+                    } else {
+                        R.string.settings_unavailable_no_background_updates
+                    },
                     checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled &&
-                            SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
@@ -115,7 +123,7 @@ fun NotificationsSettingsScreen(
                                 // Do nothing
                             }
                         }
-                    },
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_notifications_section_general)
@@ -131,7 +139,7 @@ fun NotificationsSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTodayForecastEnabled = it
                         TodayForecastNotificationJob.setupTask(context, false)
-                    },
+                    }
                 )
             }
             timePickerPreferenceItem(R.string.settings_notifications_forecast_time_today_title) { id ->
@@ -142,7 +150,7 @@ fun NotificationsSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).todayForecastTime = it
                         TodayForecastNotificationJob.setupTask(context, false)
-                    },
+                    }
                 )
             }
             switchPreferenceItem(R.string.settings_notifications_forecast_tomorrow_title) { id ->
@@ -154,7 +162,7 @@ fun NotificationsSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTomorrowForecastEnabled = it
                         TomorrowForecastNotificationJob.setupTask(context, false)
-                    },
+                    }
                 )
             }
             timePickerPreferenceItem(R.string.settings_notifications_forecast_time_tomorrow_title) { id ->
@@ -165,7 +173,7 @@ fun NotificationsSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).tomorrowForecastTime = it
                         TomorrowForecastNotificationJob.setupTask(context, false)
-                    },
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_notifications_section_forecast)

@@ -19,12 +19,12 @@ package org.breezyweather.common.basic.models.options.appearance
 import android.content.Context
 import androidx.annotation.StringRes
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
 
 enum class CardDisplay(
     override val id: String,
-    @StringRes private val nameId: Int
-): BaseEnum {
+    @StringRes private val nameId: Int,
+) : BaseEnum {
 
     CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),
     CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
@@ -32,32 +32,35 @@ enum class CardDisplay(
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_POLLEN("pollen", R.string.pollen),
     CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
-    CARD_LIVE("live", R.string.details);
+    CARD_LIVE("live", R.string.details),
+    ;
 
     companion object {
 
         fun toCardDisplayList(
-            value: String?
+            value: String?,
         ) = if (value.isNullOrEmpty()) {
             mutableListOf()
-        } else try {
-            val cards = value.split("&").toTypedArray()
-            val list = mutableListOf<CardDisplay>()
-            for (card in cards) {
-                when (card) {
-                    "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)
-                    "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
-                    "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
-                    "air_quality" -> list.add(CARD_AIR_QUALITY)
-                    "allergen", "pollen" -> list.add(CARD_POLLEN)
-                    "sunrise_sunset" -> list.add(CARD_SUNRISE_SUNSET)
-                    "live" -> list.add(CARD_LIVE)
+        } else {
+            try {
+                val cards = value.split("&").toTypedArray()
+                val list = mutableListOf<CardDisplay>()
+                for (card in cards) {
+                    when (card) {
+                        "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)
+                        "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
+                        "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
+                        "air_quality" -> list.add(CARD_AIR_QUALITY)
+                        "allergen", "pollen" -> list.add(CARD_POLLEN)
+                        "sunrise_sunset" -> list.add(CARD_SUNRISE_SUNSET)
+                        "live" -> list.add(CARD_LIVE)
+                    }
                 }
-            }
 
-            list
-        } catch (e: Exception) {
-            emptyList()
+                list
+            } catch (e: Exception) {
+                emptyList()
+            }
         }
 
         fun toValue(list: List<CardDisplay>): String {

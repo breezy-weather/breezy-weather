@@ -61,9 +61,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 "WeatherSecondaryJson",
                 Json.encodeToString(
                     locations.drop(1).mapNotNull {
-                        if (it.weather?.current != null) {
-                            getWeatherData(context, it)
-                        } else null
+                        if (it.weather?.current != null) getWeatherData(context, it) else null
                     }
                 )
             )
@@ -72,7 +70,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
     private fun getWeatherData(
         context: Context,
-        location: Location
+        location: Location,
     ): GadgetbridgeData {
         val current = location.weather?.current
         val today = location.weather?.today
@@ -112,7 +110,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             airQuality = getAirQuality(current?.airQuality),
 
             forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday),
-            hourly = getHourlyForecasts(location.weather?.nextHourlyForecast),
+            hourly = getHourlyForecasts(location.weather?.nextHourlyForecast)
         )
     }
 
@@ -169,7 +167,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             o3Aqi = airQuality.getIndex(PollutantIndex.O3),
             pm10Aqi = airQuality.getIndex(PollutantIndex.PM10),
             pm25Aqi = airQuality.getIndex(PollutantIndex.PM25),
-            so2Aqi = airQuality.getIndex(PollutantIndex.SO2),
+            so2Aqi = airQuality.getIndex(PollutantIndex.SO2)
         )
     }
 

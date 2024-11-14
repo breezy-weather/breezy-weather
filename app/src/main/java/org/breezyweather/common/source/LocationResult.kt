@@ -20,5 +20,5 @@ import breezyweather.domain.location.model.Location
 
 class LocationResult(
     val location: Location,
-    val errors: List<RefreshError> = emptyList()
+    val errors: List<RefreshError> = emptyList(),
 )

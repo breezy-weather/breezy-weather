@@ -61,8 +61,11 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 
-class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean) :
-    RecyclerView.Adapter<AqiAdapter.ViewHolder>() {
+class AqiAdapter(
+    context: Context,
+    location: Location,
+    executeAnimation: Boolean,
+) : RecyclerView.Adapter<AqiAdapter.ViewHolder>() {
     private val mLightTheme: Boolean
     private val mItemList: MutableList<AqiItem>
     private val mHolderList: MutableList<ViewHolder>
@@ -75,10 +78,12 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
         val title: String,
         val content: String,
         val talkBack: String,
-        val executeAnimation: Boolean
+        val executeAnimation: Boolean,
     )
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(
+        itemView: View,
+    ) : RecyclerView.ViewHolder(itemView) {
         private var mItem: AqiItem? = null
         private var mLightTheme: Boolean? = null
         private var mExecuteAnimation = false
@@ -146,7 +151,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         Text(
                             text = stringResource(airQualityInfo[pollutantType]!![0]),
                             color = MaterialTheme.colorScheme.onSurface,
-                            style = MaterialTheme.typography.headlineSmall,
+                            style = MaterialTheme.typography.headlineSmall
                         )
                     },
                     text = {
@@ -157,19 +162,19 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                             Text(
                                 text = stringResource(airQualityInfo[pollutantType]!![1]),
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                             Text(
                                 text = stringResource(airQualityInfo[pollutantType]!![2]),
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                             Text(
                                 text = stringResource(airQualityInfo[pollutantType]!![3]),
                                 color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyMedium
                             )
                         }
                     },
@@ -182,7 +187,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                             Text(
                                 text = stringResource(R.string.action_close),
                                 color = MaterialTheme.colorScheme.primary,
-                                style = MaterialTheme.typography.labelLarge,
+                                style = MaterialTheme.typography.labelLarge
                             )
                         }
                     }
@@ -204,10 +209,15 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                     }
                     val backgroundColor = ValueAnimator.ofObject(
                         ArgbEvaluator(),
-                        MainThemeColorProvider.getColor(mLightTheme ?: false, com.google.android.material.R.attr.colorOutline),
+                        MainThemeColorProvider.getColor(
+                            mLightTheme ?: false,
+                            com.google.android.material.R.attr.colorOutline
+                        ),
                         ColorUtils.setAlphaComponent(item.color, (255 * 0.1).toInt())
                     )
-                    backgroundColor.addUpdateListener { animation: ValueAnimator -> mProgress.setProgressBackgroundColor((animation.animatedValue as Int)) }
+                    backgroundColor.addUpdateListener { animation: ValueAnimator ->
+                        mProgress.setProgressBackgroundColor((animation.animatedValue as Int))
+                    }
                     val aqiNumber = ValueAnimator.ofObject(FloatEvaluator(), 0, item.progress)
                     aqiNumber.addUpdateListener { animation: ValueAnimator ->
                         mProgress.progress = 100.0f * animation.animatedValue as Float / item.max
@@ -286,9 +296,9 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         PollutantIndex.indexExcessivePollution.toFloat(),
                         context.getString(R.string.air_quality_pm25),
                         AirQualityUnit.MUGPCUM.getValueText(context, it),
-                        context.getString(R.string.air_quality_pm25_voice)
-                            + context.getString(R.string.comma_separator)
-                            + AirQualityUnit.MUGPCUM.getValueVoice(context, it),
+                        context.getString(R.string.air_quality_pm25_voice) +
+                            context.getString(R.string.comma_separator) +
+                            AirQualityUnit.MUGPCUM.getValueVoice(context, it),
                         executeAnimation
                     )
                 )

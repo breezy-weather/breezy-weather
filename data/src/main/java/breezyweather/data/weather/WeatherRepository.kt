@@ -27,7 +27,7 @@ import breezyweather.domain.weather.model.Weather
 import java.util.Date
 
 class WeatherRepository(
-    private val handler: DatabaseHandler
+    private val handler: DatabaseHandler,
 ) {
 
     suspend fun getWeatherByLocationId(
@@ -35,7 +35,7 @@ class WeatherRepository(
         withDaily: Boolean = true,
         withHourly: Boolean = true,
         withMinutely: Boolean = true,
-        withAlerts: Boolean = true
+        withAlerts: Boolean = true,
     ): Weather? {
         val weather = handler.awaitOneOrNull {
             weathersQueries.getWeatherByLocationId(locationFormattedId, WeatherMapper::mapWeather)
@@ -45,18 +45,28 @@ class WeatherRepository(
             weather?.copy(
                 dailyForecast = if (withDaily) {
                     getDailyListByLocationId(locationFormattedId)
-                } else emptyList(),
+                } else {
+                    emptyList()
+                },
                 hourlyForecast = if (withHourly) {
                     getHourlyListByLocationId(locationFormattedId)
-                } else emptyList(),
+                } else {
+                    emptyList()
+                },
                 minutelyForecast = if (withMinutely) {
                     getMinutelyListByLocationId(locationFormattedId)
-                } else emptyList(),
+                } else {
+                    emptyList()
+                },
                 alertList = if (withAlerts) {
                     getAlertListByLocationId(locationFormattedId)
-                } else emptyList()
+                } else {
+                    emptyList()
+                }
             )
-        } else weather
+        } else {
+            weather
+        }
     }
 
     suspend fun getDailyListByLocationId(locationFormattedId: String): List<Daily> {
@@ -338,7 +348,7 @@ class WeatherRepository(
                     locationFormattedId = location.formattedId,
                     date = minutely.date.time,
                     minuteInterval = minutely.minuteInterval.toLong(),
-                    precipitationIntensity = minutely.precipitationIntensity,
+                    precipitationIntensity = minutely.precipitationIntensity
                 )
             }
 
@@ -360,5 +370,4 @@ class WeatherRepository(
             }
         }
     }
-
 }

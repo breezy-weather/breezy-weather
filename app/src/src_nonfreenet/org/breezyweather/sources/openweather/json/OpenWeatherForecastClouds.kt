@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OpenWeatherForecastClouds(
-    val all: Int?
+    val all: Int?,
 )

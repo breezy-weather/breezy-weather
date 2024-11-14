@@ -25,5 +25,5 @@ import java.util.Date
  */
 @Serializable
 data class MetNoAlertWhen(
-    val interval: List<@Serializable(DateSerializer::class) Date>?
+    val interval: List<@Serializable(DateSerializer::class) Date>?,
 )

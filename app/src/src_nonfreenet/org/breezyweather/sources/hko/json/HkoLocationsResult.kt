@@ -20,9 +20,10 @@ import kotlinx.serialization.Serializable
 import org.breezyweather.sources.hko.serializers.HkoAnySerializer
 
 @Serializable
-data class HkoLocationsResult (
+data class HkoLocationsResult(
     // Instead of reinventing the wheel to serialize GeoJson features,
     // we can just dump the entire JSON property as a String,
     // and reconstruct the GeoJson object using GeoJsonParser.
-    val features: @Serializable(with = HkoAnySerializer::class) Any?
+    @Serializable(with = HkoAnySerializer::class)
+    val features: Any?,
 )

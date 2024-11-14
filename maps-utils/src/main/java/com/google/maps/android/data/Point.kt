@@ -23,7 +23,9 @@ import com.google.maps.android.model.LatLng
  * [KmlPoint] and
  * [GeoJsonPoint]
  */
-open class Point(coordinates: LatLng) : Geometry<Any> {
+open class Point(
+    coordinates: LatLng,
+) : Geometry<Any> {
     private val mCoordinates: LatLng
 
     /**
@@ -44,7 +46,7 @@ open class Point(coordinates: LatLng) : Geometry<Any> {
         get() = mCoordinates
 
     override fun toString(): String {
-        return """${geometryType}{ coordinates=$mCoordinates}"""
+        return """$geometryType{ coordinates=$mCoordinates}"""
     }
 
     override val geometryType = "Point"

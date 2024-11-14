@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuValueContainer(
-    val Metric: AccuValue?
+    val Metric: AccuValue?,
 )

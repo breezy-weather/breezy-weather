@@ -48,7 +48,7 @@ import java.util.TimeZone
 
 fun convert(
     location: Location,
-    result: MgmLocationResult
+    result: MgmLocationResult,
 ): Location {
     // Make sure location is within 50km of a known location in Türkiye
     val distance = SphericalUtil.computeDistanceBetween(
@@ -66,7 +66,7 @@ fun convert(
         countryCode = "TR",
         admin1 = result.province,
         city = result.province,
-        district = result.district,
+        district = result.district
     )
 }
 
@@ -78,7 +78,7 @@ fun convert(
     hourlyForecastResult: MgmHourlyForecastResult?,
     todayAlertResult: List<MgmAlertResult>?,
     tomorrowAlertResult: List<MgmAlertResult>?,
-    normalsResult: MgmNormalsResult?
+    normalsResult: MgmNormalsResult?,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, currentResult),
@@ -95,24 +95,30 @@ fun convertSecondary(
     currentResult: MgmCurrentResult?,
     todayAlertResult: List<MgmAlertResult>?,
     tomorrowAlertResult: List<MgmAlertResult>?,
-    normalsResult: MgmNormalsResult?
+    normalsResult: MgmNormalsResult?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult !== null) {
             getCurrent(context, currentResult)
-        } else null,
+        } else {
+            null
+        },
         alertList = if (todayAlertResult !== null && tomorrowAlertResult !== null) {
-            getAlertList(townCode, todayAlertResult,tomorrowAlertResult)
-        } else null,
+            getAlertList(townCode, todayAlertResult, tomorrowAlertResult)
+        } else {
+            null
+        },
         normals = if (normalsResult !== null) {
             getNormals(normalsResult)
-        } else null
+        } else {
+            null
+        }
     )
 }
 
 private fun getCurrent(
     context: Context,
-    currentResult: MgmCurrentResult?
+    currentResult: MgmCurrentResult?,
 ): Current {
     return Current(
         weatherText = getWeatherText(context, currentResult?.condition),
@@ -131,22 +137,72 @@ private fun getCurrent(
 
 private fun getDailyForecast(
     context: Context,
-    dailyForecast: MgmDailyForecastResult?
+    dailyForecast: MgmDailyForecastResult?,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     dailyForecast?.let {
-        dailyList.add(getDaily(context, it.dateDay1, it.conditionDay1, it.maxTempDay1, it.minTempDay1, it.windDirectionDay1, it.windSpeedDay1))
-        dailyList.add(getDaily(context, it.dateDay2, it.conditionDay2, it.maxTempDay2, it.minTempDay2, it.windDirectionDay2, it.windSpeedDay2))
-        dailyList.add(getDaily(context, it.dateDay3, it.conditionDay3, it.maxTempDay3, it.minTempDay3, it.windDirectionDay3, it.windSpeedDay3))
-        dailyList.add(getDaily(context, it.dateDay4, it.conditionDay4, it.maxTempDay4, it.minTempDay4, it.windDirectionDay4, it.windSpeedDay4))
-        dailyList.add(getDaily(context, it.dateDay5, it.conditionDay5, it.maxTempDay5, it.minTempDay5, it.windDirectionDay5, it.windSpeedDay5))
+        dailyList.add(
+            getDaily(
+                context,
+                it.dateDay1,
+                it.conditionDay1,
+                it.maxTempDay1,
+                it.minTempDay1,
+                it.windDirectionDay1,
+                it.windSpeedDay1
+            )
+        )
+        dailyList.add(
+            getDaily(
+                context,
+                it.dateDay2,
+                it.conditionDay2,
+                it.maxTempDay2,
+                it.minTempDay2,
+                it.windDirectionDay2,
+                it.windSpeedDay2
+            )
+        )
+        dailyList.add(
+            getDaily(
+                context,
+                it.dateDay3,
+                it.conditionDay3,
+                it.maxTempDay3,
+                it.minTempDay3,
+                it.windDirectionDay3,
+                it.windSpeedDay3
+            )
+        )
+        dailyList.add(
+            getDaily(
+                context,
+                it.dateDay4,
+                it.conditionDay4,
+                it.maxTempDay4,
+                it.minTempDay4,
+                it.windDirectionDay4,
+                it.windSpeedDay4
+            )
+        )
+        dailyList.add(
+            getDaily(
+                context,
+                it.dateDay5,
+                it.conditionDay5,
+                it.maxTempDay5,
+                it.minTempDay5,
+                it.windDirectionDay5,
+                it.windSpeedDay5
+            )
+        )
     }
     return dailyList
 }
 
 private fun getHourlyForecast(
     context: Context,
-    hourlyForecast: List<MgmHourlyForecast>?
+    hourlyForecast: List<MgmHourlyForecast>?,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     // The 'Z' in the timestamp is misused. It is actually in Europe/Istanbul rather than Etc/UTC
@@ -176,7 +232,7 @@ private fun getHourlyForecast(
 private fun getAlertList(
     townCode: Int,
     todayAlertResult: List<MgmAlertResult>?,
-    tomorrowAlertResult: List<MgmAlertResult>?
+    tomorrowAlertResult: List<MgmAlertResult>?,
 ): List<Alert> {
     val alertList = mutableListOf<Alert>()
     val source = "Meteoroloji Genel Müdürlüğü"
@@ -228,7 +284,7 @@ private fun getAlertList(
 }
 
 private fun getNormals(
-    normalsResult: MgmNormalsResult?
+    normalsResult: MgmNormalsResult?,
 ): Normals {
     return Normals(
         month = normalsResult?.month,
@@ -244,7 +300,7 @@ private fun getDaily(
     maxTemp: Double?,
     minTemp: Double?,
     windDirection: Double?,
-    windSpeed: Double?
+    windSpeed: Double?,
 ): Daily {
     // The 'Z' in the timestamp is misused. It is actually in Europe/Istanbul rather than Etc/UTC
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
@@ -280,7 +336,7 @@ private fun getDaily(
 // under function convertHadise
 private fun getWeatherText(
     context: Context,
-    condition: String?
+    condition: String?,
 ): String? {
     return when (condition) {
         "A" -> context.getString(R.string.common_weather_text_clear_sky) // Açık
@@ -316,7 +372,7 @@ private fun getWeatherText(
 }
 
 private fun getWeatherCode(
-    condition: String?
+    condition: String?,
 ): WeatherCode? {
     return when (condition) {
         "A" -> WeatherCode.CLEAR // Açık
@@ -355,7 +411,7 @@ private fun getWeatherCode(
 // Turkish terminology from: https://www.mgm.gov.tr/meteouyari/turkiye.aspx?Gun=1
 // under "harita-alti-hadise"
 private fun getAlertHeadline(
-    weather: List<String>?
+    weather: List<String>?,
 ): String? {
     val items = mutableListOf<String>()
     weather?.forEach {
@@ -379,7 +435,7 @@ private fun getAlertHeadline(
 
 // Color source: https://www.mgm.gov.tr/meteouyari/meteouyari.css
 private fun getAlertColor(
-    severity: AlertSeverity
+    severity: AlertSeverity,
 ): Int {
     return when (severity) {
         AlertSeverity.EXTREME -> Color.rgb(249, 75, 101) // #btnKirmizi
@@ -390,7 +446,7 @@ private fun getAlertColor(
 }
 
 private fun getValid(
-    value: Double?
+    value: Double?,
 ): Double? {
     return if (value == -9999.0) null else value
 }

@@ -24,5 +24,5 @@ import java.util.Date
 data class MetNoAirQualityTime(
     @Serializable(DateSerializer::class) val from: Date,
     @Serializable(DateSerializer::class) val to: Date,
-    val variables: MetNoAirQualityVariables?
+    val variables: MetNoAirQualityVariables?,
 )

@@ -52,7 +52,7 @@ import java.util.TimeZone
 
 fun convert(
     location: Location,
-    town: CwaLocationTown
+    town: CwaLocationTown,
 ): Location {
     return location.copy(
         timeZone = "Asia/Taipei",
@@ -72,7 +72,7 @@ fun convert(
     assistantResult: CwaAssistantResult,
     location: Location,
     id: String,
-    ignoreFeatures: List<SecondaryWeatherSourceFeature>
+    ignoreFeatures: List<SecondaryWeatherSourceFeature>,
 ): WeatherWrapper {
     if (weatherResult.data?.aqi?.getOrNull(0)?.town?.daily == null || weatherResult.data.aqi[0].town!!.hourly == null) {
         throw InvalidOrIncompleteDataException()
@@ -81,12 +81,16 @@ fun convert(
         current = getCurrent(weatherResult, assistantResult),
         normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             getNormals(normalsResult)
-        } else null,
+        } else {
+            null
+        },
         dailyForecast = getDailyForecast(weatherResult.data.aqi[0].town!!.daily!!, sunResult, moonResult),
         hourlyForecast = getHourlyForecast(weatherResult.data.aqi[0].town!!.hourly!!),
         alertList = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             getAlertList(alertResult, location, id)
-        } else null
+        } else {
+            null
+        }
     )
 }
 
@@ -95,7 +99,7 @@ fun convertSecondary(
     alertResult: CwaAlertResult?,
     normalsResult: CwaNormalsResult?,
     location: Location,
-    id: String
+    id: String,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = weatherResult?.let {
@@ -111,7 +115,7 @@ fun convertSecondary(
 
 private fun getCurrent(
     weatherResult: CwaWeatherResult,
-    assistantResult: CwaAssistantResult? = null
+    assistantResult: CwaAssistantResult? = null,
 ): Current? {
     if (weatherResult.data?.aqi?.getOrNull(0)?.station?.weatherElement.isNullOrEmpty()) {
         return null
@@ -131,7 +135,7 @@ private fun getCurrent(
         if (it.elementValue != "-99" && it.elementValue != "-99.0") {
             when (it.elementName) {
                 "Weather" -> weatherText = it.elementValue
-                "TEMP" -> temperature = Temperature( temperature = it.elementValue.toDoubleOrNull() )
+                "TEMP" -> temperature = Temperature(temperature = it.elementValue.toDoubleOrNull())
                 "WDIR" -> windDegree = it.elementValue.toDoubleOrNull()
                 "WDSD" -> windSpeed = it.elementValue.toDoubleOrNull()
                 "H_FX" -> windGusts = it.elementValue.toDoubleOrNull()
@@ -199,15 +203,16 @@ private fun getCurrent(
 }
 
 private fun getNormals(
-    normalsResult: CwaNormalsResult
+    normalsResult: CwaNormalsResult,
 ): Normals? {
-    return normalsResult.records?.data?.surfaceObs?.location?.getOrNull(0)?.stationObsStatistics?.AirTemperature?.monthly?.getOrNull(0)?.let {
-        Normals(
-            month = it.Month?.toIntOrNull(),
-            daytimeTemperature = it.Maximum?.toDoubleOrNull(),
-            nighttimeTemperature = it.Minimum?.toDoubleOrNull()
-        )
-    }
+    return normalsResult.records?.data?.surfaceObs?.location?.getOrNull(0)
+        ?.stationObsStatistics?.AirTemperature?.monthly?.getOrNull(0)?.let {
+            Normals(
+                month = it.Month?.toIntOrNull(),
+                daytimeTemperature = it.Maximum?.toDoubleOrNull(),
+                nighttimeTemperature = it.Minimum?.toDoubleOrNull()
+            )
+        }
 }
 
 // Concentrations of SO₂, NO₂, O₃ are given in ppb (and in ppm for CO).
@@ -215,7 +220,7 @@ private fun getNormals(
 private fun getAirQuality(
     result: CwaWeatherResult,
     temperature: Double?,
-    pressure: Double?
+    pressure: Double?,
 ): AirQuality? {
     return if (result.data?.aqi?.getOrNull(0) != null) {
         AirQuality(
@@ -226,7 +231,9 @@ private fun getAirQuality(
             o3 = ppbToUgm3("O3", result.data.aqi[0].o3?.toDoubleOrNull(), temperature, pressure),
             cO = ppbToUgm3("CO", result.data.aqi[0].co?.toDoubleOrNull(), temperature, pressure)
         )
-    } else null
+    } else {
+        null
+    }
 }
 
 // Forecast data from the main weather API call are unsorted.
@@ -245,7 +252,7 @@ private fun getAirQuality(
 private fun getDailyForecast(
     dailyResult: CwaWeatherForecast,
     sunResult: CwaAstroResult,
-    moonResult: CwaAstroResult
+    moonResult: CwaAstroResult,
 ): List<Daily> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
@@ -385,18 +392,26 @@ private fun getDailyForecast(
                     sun = Astro(
                         riseDate = if (!ssMap[day].isNullOrBlank()) {
                             formatter.parse(day + " " + srMap[day] + ":00")
-                        } else null,
+                        } else {
+                            null
+                        },
                         setDate = if (!ssMap[day].isNullOrBlank()) {
                             formatter.parse(day + " " + ssMap[day] + ":00")
-                        } else null
+                        } else {
+                            null
+                        }
                     ),
                     moon = Astro(
                         riseDate = if (!mrMap[day].isNullOrBlank()) {
                             formatter.parse(day + " " + mrMap[day] + ":00")
-                        } else null,
+                        } else {
+                            null
+                        },
                         setDate = if (!msMap[day].isNullOrBlank()) {
                             formatter.parse(day + " " + msMap[day] + ":00")
-                        } else null
+                        } else {
+                            null
+                        }
                     ),
                     uV = UV(
                         index = uviMap[dayKey]
@@ -417,7 +432,7 @@ private fun getDailyForecast(
 // Precipitation probability figures are at 6-hour intervals,
 // so they are duplicated for the next "3-hourly" key.
 private fun getHourlyForecast(
-    hourlyResult: CwaWeatherForecast
+    hourlyResult: CwaWeatherForecast,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
@@ -519,7 +534,7 @@ private fun getHourlyForecast(
 private fun getAlertList(
     alertResult: CwaAlertResult,
     location: Location,
-    id: String
+    id: String,
 ): List<Alert> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
@@ -545,11 +560,11 @@ private fun getAlertList(
         record.hazardConditions?.hazards?.hazard?.forEach { hazard ->
             hazard.info?.affectedAreas?.location?.forEach { location ->
                 if (
-                    (location.locationName == county)
-                    || (location.locationName == county + "山區" && warningArea == "M")
-                    || (location.locationName == "基隆北海岸" && warningArea == "K")
-                    || (location.locationName == "恆春半島" && warningArea == "H")
-                    || (location.locationName == "蘭嶼綠島" && warningArea == "L")
+                    location.locationName == county ||
+                    (location.locationName == county + "山區" && warningArea == "M") ||
+                    (location.locationName == "基隆北海岸" && warningArea == "K") ||
+                    (location.locationName == "恆春半島" && warningArea == "H") ||
+                    (location.locationName == "蘭嶼綠島" && warningArea == "L")
                 ) {
                     // so we don't cover up a more severe level with a less severe one
                     // TODO: Why? There can be multiple same-type alerts at different times
@@ -598,16 +613,18 @@ private fun normalizeHalfDay(timestamp: String): String {
 private fun getWindDirection(direction: String?): Double? {
     return if (direction == null) {
         null
-    } else when (direction) {
-        "偏北風" -> 0.0
-        "東北風" -> 45.0
-        "偏東風" -> 90.0
-        "東南風" -> 135.0
-        "偏南風" -> 180.0
-        "西南風" -> 225.0
-        "偏西風" -> 270.0
-        "西北風" -> 315.0
-        else -> null
+    } else {
+        when (direction) {
+            "偏北風" -> 0.0
+            "東北風" -> 45.0
+            "偏東風" -> 90.0
+            "東南風" -> 135.0
+            "偏南風" -> 180.0
+            "西南風" -> 225.0
+            "偏西風" -> 270.0
+            "西北風" -> 315.0
+            else -> null
+        }
     }
 }
 
@@ -616,17 +633,19 @@ private fun getWindDirection(direction: String?): Double? {
 private fun getWeatherCode(icon: String?): WeatherCode? {
     return if (icon == null) {
         null
-    } else when (icon) {
-        "01", "02" -> WeatherCode.CLEAR
-        "03", "04" -> WeatherCode.PARTLY_CLOUDY
-        "05", "06", "07" -> WeatherCode.CLOUDY
-        "08", "09", "10", "11", "12", "13", "14", "19", "20", "29", "30", "31", "32", "38", "39" -> WeatherCode.RAIN
-        "15", "16", "21", "22", "33", "34", "35", "36" -> WeatherCode.THUNDER
-        "17", "18", "41" -> WeatherCode.THUNDERSTORM
-        "23", "37", "40" -> WeatherCode.SLEET
-        "24", "25", "26", "27", "28" -> WeatherCode.FOG
-        "42" -> WeatherCode.SNOW
-        else -> null
+    } else {
+        when (icon) {
+            "01", "02" -> WeatherCode.CLEAR
+            "03", "04" -> WeatherCode.PARTLY_CLOUDY
+            "05", "06", "07" -> WeatherCode.CLOUDY
+            "08", "09", "10", "11", "12", "13", "14", "19", "20", "29", "30", "31", "32", "38", "39" -> WeatherCode.RAIN
+            "15", "16", "21", "22", "33", "34", "35", "36" -> WeatherCode.THUNDER
+            "17", "18", "41" -> WeatherCode.THUNDERSTORM
+            "23", "37", "40" -> WeatherCode.SLEET
+            "24", "25", "26", "27", "28" -> WeatherCode.FOG
+            "42" -> WeatherCode.SNOW
+            else -> null
+        }
     }
 }
 

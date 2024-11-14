@@ -41,7 +41,7 @@ data class Hourly(
      */
     val pressure: Double? = null,
     val cloudCover: Int? = null,
-    val visibility: Double? = null
+    val visibility: Double? = null,
 ) : Serializable {
 
     fun toHourlyWrapper() = HourlyWrapper(

@@ -40,7 +40,9 @@ import org.breezyweather.common.bus.EventBus
 
 class SettingsChangedMessage
 
-class SettingsManager private constructor(context: Context) {
+class SettingsManager private constructor(
+    context: Context,
+) {
 
     companion object {
 
@@ -58,34 +60,34 @@ class SettingsManager private constructor(context: Context) {
             return instance!!
         }
 
-       const val DEFAULT_CARD_DISPLAY = ("precipitation_nowcast"
-            + "&daily_overview"
-            + "&hourly_overview"
-            + "&air_quality"
-            + "&pollen"
-            + "&sunrise_sunset"
-            + "&live")
-        const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
-            + "&air_quality"
-            + "&wind"
-            + "&uv_index"
-            + "&precipitation"
-            + "&sunshine"
-            + "&feels_like")
-        const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
-            + "&air_quality"
-            + "&wind"
-            + "&uv_index"
-            + "&precipitation"
-            + "&feels_like"
-            + "&humidity"
-            + "&pressure"
-            + "&cloud_cover"
-            + "&visibility")
-        private const val DEFAULT_DETAILS_DISPLAY = ("feels_like"
-            + "&wind"
-            + "&uv_index"
-            + "&humidity")
+        const val DEFAULT_CARD_DISPLAY = "precipitation_nowcast" +
+            "&daily_overview" +
+            "&hourly_overview" +
+            "&air_quality" +
+            "&pollen" +
+            "&sunrise_sunset" +
+            "&live"
+        const val DEFAULT_DAILY_TREND_DISPLAY = "temperature" +
+            "&air_quality" +
+            "&wind" +
+            "&uv_index" +
+            "&precipitation" +
+            "&sunshine" +
+            "&feels_like"
+        const val DEFAULT_HOURLY_TREND_DISPLAY = "temperature" +
+            "&air_quality" +
+            "&wind" +
+            "&uv_index" +
+            "&precipitation" +
+            "&feels_like" +
+            "&humidity" +
+            "&pressure" +
+            "&cloud_cover" +
+            "&visibility"
+        private const val DEFAULT_DETAILS_DISPLAY = "feels_like" +
+            "&wind" +
+            "&uv_index" +
+            "&humidity"
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -178,13 +180,14 @@ class SettingsManager private constructor(context: Context) {
             config.getString("dark_mode", null) ?: "system"
         )
 
+    // Default config is: follow system on Android 10+ (disabled), automatic day/night switch (enabled)
+    // on Android < 10 where dark mode doesn’t exist natively
     var dayNightModeForLocations: Boolean
         set(value) {
             config.edit().putBoolean("day_night_mode_locations", value).apply()
             notifySettingsChanged()
         }
         get() = config.getBoolean("day_night_mode_locations", Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
-        // Default config is: follow system on Android 10+ (disabled), automatic day/night switch (enabled) on Android < 10 where dark mode doesn’t exist natively
 
     // service providers.
     var locationSource: String
@@ -194,7 +197,9 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = if (BuildConfig.FLAVOR != "freenet") {
             config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
-        } else "native"
+        } else {
+            "native"
+        }
 
     var defaultWeatherSource: String
         set(value) {

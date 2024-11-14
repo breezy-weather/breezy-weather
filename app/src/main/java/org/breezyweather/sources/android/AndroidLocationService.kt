@@ -120,11 +120,13 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
 
         @SuppressLint("MissingPermission")
         private fun getLastKnownLocation(
-            locationManager: LocationManager
+            locationManager: LocationManager,
         ): Location? {
             val lastKnownFused = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 locationManager.getLastKnownLocation(LocationManager.FUSED_PROVIDER)
-            } else null
+            } else {
+                null
+            }
             return lastKnownFused
                 ?: locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                 ?: locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)

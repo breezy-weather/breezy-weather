@@ -50,33 +50,33 @@ fun getNearestStation(location: Location, stationList: Map<String, Map<String, D
 //
 // Source (last checked 2024-05-29):
 // https://opendata.cwa.gov.tw/dataset/climate/C-B0027-001
-val CWA_NORMALS_STATIONS = mapOf<String, Map<String, Double>>(
-    "466880" to mapOf("lat" to 24.997646, "lon" to 121.44202),  // 板橋 BANQIAO
+val CWA_NORMALS_STATIONS = mapOf(
+    "466880" to mapOf("lat" to 24.997646, "lon" to 121.44202), // 板橋 BANQIAO
     "466900" to mapOf("lat" to 25.164888, "lon" to 121.448906), // 淡水 TAMSUI
-    "466910" to mapOf("lat" to 25.182587, "lon" to 121.52973),  // 鞍部 ANBU
+    "466910" to mapOf("lat" to 25.182587, "lon" to 121.52973), // 鞍部 ANBU
     "466920" to mapOf("lat" to 25.037659, "lon" to 121.514854), // 臺北 TAIPEI
-    "466930" to mapOf("lat" to 25.162079, "lon" to 121.54455),  // 竹子湖 ZHUZIHU
-    "466940" to mapOf("lat" to 25.133314, "lon" to 121.74048),  // 基隆 KEELUNG
-    "466950" to mapOf("lat" to 25.627975, "lon" to 122.07974),  // 彭佳嶼 PENGJIAYU
-    "466990" to mapOf("lat" to 23.975128, "lon" to 121.61327),  // 花蓮 HUALIEN
-    "467060" to mapOf("lat" to 24.596737, "lon" to 121.85737),  // 蘇澳 SU-AO
-    "467080" to mapOf("lat" to 24.763975, "lon" to 121.75653),  // 宜蘭 YILAN
-    "467300" to mapOf("lat" to 23.25695, "lon" to 119.667465),  // 東吉島 DONGJIDAO
+    "466930" to mapOf("lat" to 25.162079, "lon" to 121.54455), // 竹子湖 ZHUZIHU
+    "466940" to mapOf("lat" to 25.133314, "lon" to 121.74048), // 基隆 KEELUNG
+    "466950" to mapOf("lat" to 25.627975, "lon" to 122.07974), // 彭佳嶼 PENGJIAYU
+    "466990" to mapOf("lat" to 23.975128, "lon" to 121.61327), // 花蓮 HUALIEN
+    "467060" to mapOf("lat" to 24.596737, "lon" to 121.85737), // 蘇澳 SU-AO
+    "467080" to mapOf("lat" to 24.763975, "lon" to 121.75653), // 宜蘭 YILAN
+    "467300" to mapOf("lat" to 23.25695, "lon" to 119.667465), // 東吉島 DONGJIDAO
     "467350" to mapOf("lat" to 23.565502, "lon" to 119.563095), // 澎湖 PENGHU
-    "467410" to mapOf("lat" to 22.993238, "lon" to 120.20477),  // 臺南 TAINAN
+    "467410" to mapOf("lat" to 22.993238, "lon" to 120.20477), // 臺南 TAINAN
     "467440" to mapOf("lat" to 22.565992, "lon" to 120.315735), // 高雄 KAOHSIUNG
-    "467480" to mapOf("lat" to 23.495926, "lon" to 120.43291),  // 嘉義 CHIAYI
+    "467480" to mapOf("lat" to 23.495926, "lon" to 120.43291), // 嘉義 CHIAYI
     "467490" to mapOf("lat" to 24.145737, "lon" to 120.684074), // 臺中 TAICHUNG
-    "467530" to mapOf("lat" to 23.508207, "lon" to 120.81324),  // 阿里山 ALISHAN
+    "467530" to mapOf("lat" to 23.508207, "lon" to 120.81324), // 阿里山 ALISHAN
     "467540" to mapOf("lat" to 22.355675, "lon" to 120.903786), // 大武 DAWU
-    "467550" to mapOf("lat" to 23.487614, "lon" to 120.95952),  // 玉山 YUSHAN
-    "467571" to mapOf("lat" to 24.827852, "lon" to 121.01422),  // 新竹 HSINCHU
-    "467590" to mapOf("lat" to 22.003897, "lon" to 120.74634),  // 恆春 HENGCHUN
-    "467610" to mapOf("lat" to 23.097486, "lon" to 121.37343),  // 成功 CHENGGONG
-    "467620" to mapOf("lat" to 22.036968, "lon" to 121.55834),  // 蘭嶼 LANYU
-    "467650" to mapOf("lat" to 23.881325, "lon" to 120.90805),  // 日月潭 SUN MOON LAKE
-    "467660" to mapOf("lat" to 22.75221, "lon" to 121.15459),   // 臺東 TAITUNG
-    "467770" to mapOf("lat" to 24.256002, "lon" to 120.523384)  // 梧棲 WUQI
+    "467550" to mapOf("lat" to 23.487614, "lon" to 120.95952), // 玉山 YUSHAN
+    "467571" to mapOf("lat" to 24.827852, "lon" to 121.01422), // 新竹 HSINCHU
+    "467590" to mapOf("lat" to 22.003897, "lon" to 120.74634), // 恆春 HENGCHUN
+    "467610" to mapOf("lat" to 23.097486, "lon" to 121.37343), // 成功 CHENGGONG
+    "467620" to mapOf("lat" to 22.036968, "lon" to 121.55834), // 蘭嶼 LANYU
+    "467650" to mapOf("lat" to 23.881325, "lon" to 120.90805), // 日月潭 SUN MOON LAKE
+    "467660" to mapOf("lat" to 22.75221, "lon" to 121.15459), // 臺東 TAITUNG
+    "467770" to mapOf("lat" to 24.256002, "lon" to 120.523384) // 梧棲 WUQI
 )
 
 // CWA issues warnings for different counties and specific townships classified as:
@@ -172,7 +172,7 @@ val CWA_TOWNSHIP_WARNING_AREAS = mapOf<String, String>(
     "66000290" to "M", // 臺中市和平區 Heping District, Taichung City
     "67000240" to "M", // 臺南市楠西區 Nanxi District, Tainan City
     "67000250" to "M", // 臺南市南化區 Nanhua District, Tainan City
-    "68000130" to "M"  // 桃園市復興區 Fuxing District, Taoyuan City
+    "68000130" to "M" // 桃園市復興區 Fuxing District, Taoyuan City
 )
 
 // API endpoints for "Weather Assistant", a collection of human-written text-based
@@ -202,5 +202,5 @@ val CWA_ASSISTANT_ENDPOINTS = mapOf<String, String>(
     "臺東縣" to "F-C0032-027", // Taitung County
     "彰化縣" to "F-C0032-028", // Changhua County
     "雲林縣" to "F-C0032-029", // Yunlin County
-    "連江縣" to "F-C0032-030"  // Lienchiang County
+    "連江縣" to "F-C0032-030" // Lienchiang County
 )

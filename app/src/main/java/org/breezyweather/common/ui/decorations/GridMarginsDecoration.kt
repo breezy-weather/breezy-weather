@@ -27,9 +27,12 @@ import org.breezyweather.R
 class GridMarginsDecoration(
     @field:Px @param:Px private val mMarginsVertical: Float,
     @field:Px @param:Px private val mMarginsHorizontal: Float,
-    recyclerView: RecyclerView
+    recyclerView: RecyclerView,
 ) : ItemDecoration() {
-    constructor(context: Context, recyclerView: RecyclerView) : this(context.resources.getDimensionPixelSize(R.dimen.little_margin).toFloat(), recyclerView)
+    constructor(
+        context: Context,
+        recyclerView: RecyclerView,
+    ) : this(context.resources.getDimensionPixelSize(R.dimen.little_margin).toFloat(), recyclerView)
     constructor(@Px margins: Float, recyclerView: RecyclerView) : this(margins, margins, recyclerView)
 
     init {
@@ -43,8 +46,10 @@ class GridMarginsDecoration(
     }
 
     override fun getItemOffsets(
-        outRect: Rect, view: View,
-        parent: RecyclerView, state: RecyclerView.State
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State,
     ) {
         super.getItemOffsets(outRect, view, parent, state)
         outRect.set(

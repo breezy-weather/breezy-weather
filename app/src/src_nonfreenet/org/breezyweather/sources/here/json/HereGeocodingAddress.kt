@@ -27,5 +27,5 @@ data class HereGeocodingAddress(
     val state: String?,
     val county: String?,
     val city: String,
-    val postalCode: String
+    val postalCode: String,
 )

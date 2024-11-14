@@ -30,7 +30,10 @@ import org.breezyweather.common.extensions.dpToPx
 /**
  * List decoration.
  */
-class ListDecoration(context: Context, @ColorInt colorP: Int) : ItemDecoration() {
+class ListDecoration(
+    context: Context,
+    @ColorInt colorP: Int,
+) : ItemDecoration() {
     private val mPaint: Paint
 
     @Px

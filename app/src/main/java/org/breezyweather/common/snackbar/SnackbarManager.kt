@@ -32,13 +32,16 @@ internal class SnackbarManager private constructor() {
     }
 
     init {
-        mHandler = Handler(Looper.getMainLooper(), Handler.Callback { message: Message ->
-            if (message.what == MSG_TIMEOUT) {
-                handleTimeout(message.obj as SnackbarRecord)
-                return@Callback true
+        mHandler = Handler(
+            Looper.getMainLooper(),
+            Handler.Callback { message: Message ->
+                if (message.what == MSG_TIMEOUT) {
+                    handleTimeout(message.obj as SnackbarRecord)
+                    return@Callback true
+                }
+                false
             }
-            false
-        })
+        )
     }
 
     fun show(duration: Int, callback: Callback) {

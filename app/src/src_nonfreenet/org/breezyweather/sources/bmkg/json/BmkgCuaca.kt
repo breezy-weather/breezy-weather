@@ -22,7 +22,7 @@ import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
 @Serializable
-data class BmkgCuaca (
+data class BmkgCuaca(
     @Serializable(DateSerializer::class) val datetime: Date?,
     val t: Double?,
     val tcc: Double?,
@@ -31,5 +31,5 @@ data class BmkgCuaca (
     @SerialName("wd_deg") val wdDeg: Double?,
     val ws: Double?,
     val hu: Double?,
-    val vs: Double?
+    val vs: Double?,
 )

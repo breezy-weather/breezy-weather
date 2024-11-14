@@ -44,7 +44,7 @@ import java.io.File
  * @return true if it has permissions.
  */
 fun Context.hasPermission(
-    permission: String
+    permission: String,
 ) = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
 val Context.inputMethodManager: InputMethodManager
@@ -56,7 +56,9 @@ val Context.powerManager: PowerManager
 val Context.sensorManager: SensorManager?
     get() = if (SettingsManager.getInstance(this).isGravitySensorEnabled) {
         getSystemService()
-    } else null
+    } else {
+        null
+    }
 
 val Context.windowManager: WindowManager?
     get() = getSystemService()

@@ -29,6 +29,6 @@ interface HereGeocodingApi {
         @Query("types") types: String,
         @Query("limit") limit: Int,
         @Query("lang") language: String,
-        @Query("show") show: String
+        @Query("show") show: String,
     ): Observable<HereGeocodingResult>
 }

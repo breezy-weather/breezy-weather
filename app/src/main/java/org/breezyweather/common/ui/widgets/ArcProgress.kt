@@ -35,7 +35,9 @@ import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import kotlin.math.cos
 
 class ArcProgress @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
     private val mProgressPaint: Paint
     private val mShadowPaint: Paint
@@ -82,26 +84,20 @@ class ArcProgress @JvmOverloads constructor(
         mProgressMaxed = attributes.getInt(R.styleable.ArcProgress_progress, 0).toFloat()
         mMax = attributes.getInt(R.styleable.ArcProgress_max, 100).toFloat()
         mArcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f)
-        mProgressWidth = attributes.getDimension(
-            R.styleable.ArcProgress_progress_width, getContext().dpToPx(8f)
-        )
+        mProgressWidth = attributes.getDimension(R.styleable.ArcProgress_progress_width, getContext().dpToPx(8f))
         mProgressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK)
         mShadowColor = Color.argb((0.2 * 255).toInt(), 0, 0, 0)
         mShaderColor = Color.argb((0.2 * 255).toInt(), 0, 0, 0)
-        mBackgroundColor = attributes.getColor(
-            R.styleable.ArcProgress_background_color, Color.GRAY
-        )
+        mBackgroundColor = attributes.getColor(R.styleable.ArcProgress_background_color, Color.GRAY)
         mText = attributes.getString(R.styleable.ArcProgress_text)
-        mTextSize = attributes.getDimension(
-            R.styleable.ArcProgress_text_size, getContext().dpToPx(36f)
-        )
+        mTextSize = attributes.getDimension(R.styleable.ArcProgress_text_size, getContext().dpToPx(36f))
         mTextColor = attributes.getColor(R.styleable.ArcProgress_text_color, Color.DKGRAY)
         mBottomText = attributes.getString(R.styleable.ArcProgress_bottom_text)
         mBottomTextSize = attributes.getDimension(
-            R.styleable.ArcProgress_bottom_text_size, getContext().dpToPx(14f)
+            R.styleable.ArcProgress_bottom_text_size,
+            getContext().dpToPx(14f)
         )
-        mBottomTextColor =
-            attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY)
+        mBottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY)
         attributes.recycle()
         mProgressPaint = Paint().apply {
             isAntiAlias = true
@@ -123,8 +119,7 @@ class ArcProgress @JvmOverloads constructor(
             typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
         }
         mShaderColors = intArrayOf(Color.BLACK, Color.WHITE)
-        mShaderWrapper = DayNightShaderWrapper(
-            measuredWidth, measuredHeight, lightTheme = true, mShaderColors)
+        mShaderWrapper = DayNightShaderWrapper(measuredWidth, measuredHeight, lightTheme = true, mShaderColors)
     }
 
     var progress: Float
@@ -189,18 +184,19 @@ class ArcProgress @JvmOverloads constructor(
     private fun ensureShadowShader() {
         mShaderColors[0] = mShaderColor
         mShaderColors[1] = Color.TRANSPARENT
-        if (mShaderWrapper.isDifferent(
-                measuredWidth, measuredHeight, false, mShaderColors
-            )
-        ) {
+        if (mShaderWrapper.isDifferent(measuredWidth, measuredHeight, false, mShaderColors)) {
             mShaderWrapper.setShader(
                 LinearGradient(
-                    0f, mRectF.top,
-                    0f, mRectF.bottom,
-                    mShaderColors[0], mShaderColors[1],
+                    0f,
+                    mRectF.top,
+                    0f,
+                    mRectF.bottom,
+                    mShaderColors[0],
+                    mShaderColors[1],
                     Shader.TileMode.CLAMP
                 ),
-                measuredWidth, measuredHeight,
+                measuredWidth,
+                measuredHeight,
                 false,
                 mShaderColors
             )
@@ -283,9 +279,11 @@ class ArcProgress @JvmOverloads constructor(
         if (!mBottomText.isNullOrEmpty()) {
             mBottomTextPaint.color = mBottomTextColor
             mBottomTextPaint.textSize = mBottomTextSize
-            val bottomTextBaseline = (height
-                + (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2
-                - mProgressWidth * 0.33f)
+            val bottomTextBaseline = (
+                height +
+                    (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2 -
+                    mProgressWidth * 0.33f
+                )
             canvas.drawText(
                 mBottomText!!,
                 (width - mBottomTextPaint.measureText(mBottomText)) / 2.0f,

@@ -22,7 +22,7 @@ import java.io.Serializable
  * UV.
  */
 class UV(
-    val index: Double? = null
+    val index: Double? = null,
 ) : Serializable {
 
     val isValid: Boolean

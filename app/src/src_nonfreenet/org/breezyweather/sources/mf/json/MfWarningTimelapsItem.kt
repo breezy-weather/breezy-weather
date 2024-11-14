@@ -25,5 +25,5 @@ import java.util.Date
 data class MfWarningTimelapsItem(
     @Serializable(DateSerializer::class) @SerialName("begin_time") val beginTime: Date,
     @Serializable(DateSerializer::class) @SerialName("end_time") val endTime: Date?,
-    @SerialName("color_id") val colorId: Int
+    @SerialName("color_id") val colorId: Int,
 )

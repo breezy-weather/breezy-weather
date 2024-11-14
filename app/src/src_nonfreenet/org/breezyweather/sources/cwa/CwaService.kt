@@ -24,11 +24,6 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
-import java.util.TimeZone
-import javax.inject.Inject
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.BuildConfig
@@ -54,17 +49,26 @@ import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
 import org.breezyweather.sources.cwa.json.CwaWeatherResult
 import retrofit2.Retrofit
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
+import javax.inject.Inject
 import javax.inject.Named
 
 class CwaService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(),
+    MainWeatherSource,
+    SecondaryWeatherSource,
+    ReverseGeocodingSource,
+    LocationParametersSource,
+    ConfigurableSource {
 
     override val id = "cwa"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("zh") -> "中央氣象署"
                 else -> "Central Weather Administration (CWA)"
@@ -72,7 +76,7 @@ class CwaService @Inject constructor(
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("zh") -> "https://www.cwa.gov.tw/V8/C/private.html"
                 else -> "https://www.cwa.gov.tw/V8/E/private.html"
@@ -101,14 +105,16 @@ class CwaService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("TW", ignoreCase = true)
     }
 
     @SuppressLint("CheckResult")
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         // Use of API key is mandatory for CWA's API calls.
         if (!isConfigured) {
@@ -127,7 +133,57 @@ class CwaService @Inject constructor(
 
         // The main weather API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = "{\"query\":\"query aqi { aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) { station { stationId, locationName, latitude, longitude, time { obsTime }, weatherElement { elementName, elementValue } }, sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime, town { forecast72hr { Wx { timePeriods { startTime, weather, weatherIcon } }, T { timePeriods { dataTime, temperature, } }, AT { timePeriods { dataTime, apparentTemperature, } }, Td { timePeriods { dataTime, dewPointTemperature } }, RH { timePeriods { dataTime, relativeHumidity } }, WD { timePeriods { dataTime, windDirectionDescription } }, WS { timePeriods { dataTime, windSpeed } }, PoP6h { timePeriods { startTime, probabilityOfPrecipitation, } } }, forecastWeekday { Wx { timePeriods { startTime, weather, weatherIcon } }, MinT { timePeriods { startTime, temperature } }, MaxT { timePeriods { startTime, temperature } }, MinAT { timePeriods { startTime, apparentTemperature } }, MaxAT { timePeriods { startTime, apparentTemperature } }, WD { timePeriods { startTime, windDirectionDescription } }, WS { timePeriods { startTime, windSpeed } }, PoP12h { timePeriods { startTime, probabilityOfPrecipitation, } }, UVI { timePeriods { startTime, UVIndex, } } } } } }\",\"variables\":null}"
+        val body = """
+            {
+                "query": "query aqi {
+                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
+                        station {
+                            stationId,
+                            locationName,
+                            latitude,
+                            longitude,
+                            time { obsTime },
+                            weatherElement { elementName, elementValue }
+                        },
+                        sitename,
+                        county,
+                        latitude,
+                        longitude,
+                        so2,
+                        co,
+                        o3,
+                        pm10,
+                        pm2_5,
+                        no2,
+                        publishtime,
+                        town {
+                            forecast72hr {
+                                Wx { timePeriods { startTime, weather, weatherIcon } },
+                                T { timePeriods { dataTime, temperature } },
+                                AT { timePeriods { dataTime, apparentTemperature } },
+                                Td { timePeriods { dataTime, dewPointTemperature } },
+                                RH { timePeriods { dataTime, relativeHumidity } },
+                                WD { timePeriods { dataTime, windDirectionDescription } },
+                                WS { timePeriods { dataTime, windSpeed } },
+                                PoP6h { timePeriods { startTime, probabilityOfPrecipitation } }
+                            },
+                            forecastWeekday {
+                                Wx { timePeriods { startTime, weather, weatherIcon } },
+                                MinT { timePeriods { startTime, temperature } },
+                                MaxT { timePeriods { startTime, temperature } },
+                                MinAT { timePeriods { startTime, apparentTemperature } },
+                                MaxAT { timePeriods { startTime, apparentTemperature } },
+                                WD { timePeriods { startTime, windDirectionDescription } },
+                                WS { timePeriods { startTime, windSpeed } },
+                                PoP12h { timePeriods { startTime, probabilityOfPrecipitation } },
+                                UVI { timePeriods { startTime, UVIndex } }
+                            }
+                        }
+                    }
+                }",
+                "variables": null
+            }
+        """.trimIndent()
         val weather = mApi.getWeather(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -229,7 +285,7 @@ class CwaService @Inject constructor(
                 alertResult: CwaAlertResult,
                 sunResult: CwaAstroResult,
                 moonResult: CwaAstroResult,
-                assistantResult: CwaAssistantResult
+                assistantResult: CwaAssistantResult,
             ->
             convert(
                 weatherResult = weatherResult,
@@ -254,7 +310,7 @@ class CwaService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -266,12 +322,15 @@ class CwaService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location, requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -285,10 +344,8 @@ class CwaService @Inject constructor(
         // County Name and Township Code are retrieved upon reverse geocoding,
         // but not for user-selected locations. Since a few API calls require these,
         // we will make sure these parameters are available before proceeding.
-        val county = location.parameters
-            .getOrElse(id) { null }?.getOrElse("county") { null }
-        val township = location.parameters
-            .getOrElse(id) { null }?.getOrElse("township") { null }
+        val county = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
+        val township = location.parameters.getOrElse(id) { null }?.getOrElse("township") { null }
 
         if (county.isNullOrEmpty() || township.isNullOrEmpty()) {
             return Observable.error(InvalidLocationException())
@@ -296,10 +353,21 @@ class CwaService @Inject constructor(
 
         // The air quality API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = "{\"query\":\"query aqi { aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) { sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime } }\",\"variables\":null}"
+        val body = """
+            {
+                "query": "query aqi {
+                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
+                        sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime
+                    }
+                }",
+                "variables": null
+            }
+        """.trimIndent()
 
-        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
-            || requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val weather = if (
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
+            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        ) {
             mApi.getWeather(
                 apiKey,
                 body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -327,7 +395,9 @@ class CwaService @Inject constructor(
         // but we must specify the station ID rather than using lat/lon.
         val station = getNearestStation(location, CWA_NORMALS_STATIONS)
         val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) && station != null) {
+        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
+            station != null
+        ) {
             mApi.getNormals(
                 apiKey,
                 "json",
@@ -344,19 +414,26 @@ class CwaService @Inject constructor(
         return Observable.zip(weather, alerts, normals) {
                 weatherResult: CwaWeatherResult,
                 alertResult: CwaAlertResult,
-                normalsResult: CwaNormalsResult
+                normalsResult: CwaNormalsResult,
             ->
             convertSecondary(
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+                ) {
                     weatherResult
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     alertResult
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                     normalsResult
-                } else null,
+                } else {
+                    null
+                },
                 location,
                 id
             )
@@ -365,9 +442,9 @@ class CwaService @Inject constructor(
 
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<List<Location>> {
-
         // Use of API key is mandatory for CWA's API calls.
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -376,7 +453,16 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = "{\"query\":\"query town { town (latitude: ${location.latitude}, longitude: ${location.longitude}) { townCode, ctyName, townName, villageName } }\",\"variables\":null}"
+        val body = """
+            {
+                "query": "query town {
+                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
+                        townCode, ctyName, townName, villageName
+                    }
+                }",
+                "variables": null
+            }
+        """.trimIndent()
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -394,21 +480,19 @@ class CwaService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
-        val currentCounty = location.parameters
-            .getOrElse(id) { null }?.getOrElse("county") { null }
-        val currentTownship = location.parameters
-            .getOrElse(id) { null }?.getOrElse("township") { null }
+        val currentCounty = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
+        val currentTownship = location.parameters.getOrElse(id) { null }?.getOrElse("township") { null }
 
-        return currentCounty.isNullOrEmpty() ||
-                currentTownship.isNullOrEmpty()
+        return currentCounty.isNullOrEmpty() || currentTownship.isNullOrEmpty()
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         // Use of API key is mandatory for CWA's API calls.
         if (!isConfigured) {
@@ -418,7 +502,16 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = "{\"query\":\"query town { town (latitude: ${location.latitude}, longitude: ${location.longitude}) { townCode, ctyName, townName, villageName } }\",\"variables\":null}"
+        val body = """
+            {
+                "query": "query town {
+                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
+                        townCode, ctyName, townName, villageName
+                    }
+                }",
+                "variables": null
+            }
+        """.trimIndent()
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -464,7 +557,7 @@ class CwaService @Inject constructor(
                 onValueChanged = {
                     apikey = it
                 }
-            ),
+            )
         )
     }
 
@@ -474,5 +567,5 @@ class CwaService @Inject constructor(
         private const val SUN_PARAMETERS = "SunRiseTime,SunSetTime"
         private const val MOON_ENDPOINT = "A-B0063-001"
         private const val MOON_PARAMETERS = "MoonRiseTime,MoonSetTime"
-   }
+    }
 }

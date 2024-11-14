@@ -57,7 +57,9 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
     override val name = "Natural Earth"
 
     private fun getMatchingFeaturesForLocation(
-        context: Context, file: Int, location: Location
+        context: Context,
+        file: Int,
+        location: Location,
     ): List<GeoJsonFeature> {
         val text = context.resources.openRawResource(file)
             .bufferedReader().use { it.readText() }
@@ -84,19 +86,18 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         val locationList = mutableListOf<Location>()
         val languageCode = context.currentLocale.codeForNaturalEarthService
 
         // Countries
-        val matchingCountries = getMatchingFeaturesForLocation(
-            context, R.raw.ne_50m_admin_0_countries, location
-        )
-
+        val matchingCountries = getMatchingFeaturesForLocation(context, R.raw.ne_50m_admin_0_countries, location)
         if (matchingCountries.size != 1) {
             locationList.add(location)
-            LogHelper.log(msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results")
+            LogHelper.log(
+                msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results"
+            )
             return Observable.just(locationList)
         }
 

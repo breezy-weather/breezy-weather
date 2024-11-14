@@ -53,7 +53,7 @@ import java.text.Collator
 fun PollenGrid(
     pollen: Pollen,
     pollenIndexSource: PollenIndexSource? = null,
-    specificPollens: Set<PollenIndex> = setOf()
+    specificPollens: Set<PollenIndex> = setOf(),
 ) {
     val context = LocalContext.current
     val unit = PollenUnit.PPCM
@@ -70,7 +70,6 @@ fun PollenGrid(
             }
             .forEach { validPollen ->
                 PollenItem(
-                    modifier = Modifier.fillMaxWidth(0.5f),
                     title = stringResource(validPollen.pollenName),
                     subtitle = if (pollenIndexSource != null) {
                         pollen.getIndexNameFromSource(context, validPollen, pollenIndexSource) ?: ""
@@ -83,8 +82,11 @@ fun PollenGrid(
                     tintColor = Color(
                         if (pollenIndexSource != null) {
                             pollen.getColorFromSource(context, validPollen, pollenIndexSource)
-                        } else pollen.getColor(context, validPollen)
-                    )
+                        } else {
+                            pollen.getColor(context, validPollen)
+                        }
+                    ),
+                    modifier = Modifier.fillMaxWidth(0.5f)
                 )
             }
     }
@@ -92,13 +94,13 @@ fun PollenGrid(
 
 @Composable
 private fun PollenItem(
-    modifier: Modifier = Modifier,
     title: String,
     subtitle: String,
     tintColor: Color,
+    modifier: Modifier = Modifier,
 ) = Row(
     modifier = modifier,
-    verticalAlignment = Alignment.CenterVertically,
+    verticalAlignment = Alignment.CenterVertically
 ) {
     Icon(
         modifier = Modifier
@@ -106,13 +108,13 @@ private fun PollenItem(
             .size(dimensionResource(R.dimen.material_icon_size)),
         painter = painterResource(R.drawable.ic_circle_medium),
         contentDescription = null,
-        tint = tintColor,
+        tint = tintColor
     )
     Column(
         Modifier.padding(
             end = dimensionResource(R.dimen.normal_margin),
             top = dimensionResource(R.dimen.normal_margin),
-            bottom = dimensionResource(R.dimen.normal_margin),
+            bottom = dimensionResource(R.dimen.normal_margin)
         )
     ) {
         Text(
@@ -120,14 +122,14 @@ private fun PollenItem(
             color = DayNightTheme.colors.titleColor,
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            overflow = TextOverflow.Ellipsis
         )
         Text(
             text = subtitle,
             color = DayNightTheme.colors.bodyColor,
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

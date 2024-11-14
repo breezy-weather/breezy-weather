@@ -28,6 +28,6 @@ interface HkoDataApi {
         @Query("year") year: Int,
         @Query("month") month: Int,
         @Query("lang") lang: String = "en",
-        @Query("rformat") rformat: String = "json"
+        @Query("rformat") rformat: String = "json",
     ): Observable<HkoAstroResult>
 }

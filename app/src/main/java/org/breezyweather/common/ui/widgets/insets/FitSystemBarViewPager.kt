@@ -24,12 +24,13 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 class FitSystemBarViewPager @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null,
 ) : ViewPager(context, attrs) {
 
     class FitBottomSystemBarPagerAdapter(
         private val mViewList: List<View>,
-        private val mTitleList: List<String>
+        private val mTitleList: List<String>,
     ) : PagerAdapter() {
         override fun getCount(): Int {
             return mViewList.size

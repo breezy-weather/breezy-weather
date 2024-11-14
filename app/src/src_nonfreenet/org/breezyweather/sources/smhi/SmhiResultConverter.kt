@@ -34,7 +34,7 @@ import kotlin.math.roundToInt
 
 fun convert(
     forecastResult: SmhiForecastResult,
-    location: Location
+    location: Location,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.timeSeries.isNullOrEmpty()) {
@@ -49,7 +49,7 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    forecastResult: List<SmhiTimeSeries>
+    forecastResult: List<SmhiTimeSeries>,
 ): List<Daily> {
     val dailyList = mutableListOf<Daily>()
     val hourlyListByDay = forecastResult.groupBy {
@@ -72,7 +72,7 @@ private fun getDailyForecast(
  * Returns hourly forecast
  */
 private fun getHourlyForecast(
-    forecastResult: List<SmhiTimeSeries>
+    forecastResult: List<SmhiTimeSeries>,
 ): List<HourlyWrapper> {
     return forecastResult.map { result ->
         HourlyWrapper(

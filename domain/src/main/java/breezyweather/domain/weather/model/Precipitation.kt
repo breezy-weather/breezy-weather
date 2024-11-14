@@ -28,7 +28,7 @@ class Precipitation(
     val thunderstorm: Double? = null,
     val rain: Double? = null,
     val snow: Double? = null,
-    val ice: Double? = null
+    val ice: Double? = null,
 ) : Serializable {
 
     companion object {

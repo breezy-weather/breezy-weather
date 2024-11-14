@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetIeWarnings(
-    val national: List<MetIeWarning>?
+    val national: List<MetIeWarning>?,
 )

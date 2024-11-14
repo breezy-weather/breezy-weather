@@ -30,5 +30,5 @@ data class MgmHourlyForecast(
     @SerialName("nem") val humidity: Double?,
     @SerialName("ruzgarYonu") val windDirection: Double?,
     @SerialName("ruzgarHizi") val windSpeed: Double?,
-    @SerialName("maksimumRuzgarHizi") val gust: Double?
+    @SerialName("maksimumRuzgarHizi") val gust: Double?,
 )

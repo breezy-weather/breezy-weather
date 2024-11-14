@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AccuValue(
     val Value: Double?,
-    val UnitType: Int?
+    val UnitType: Int?,
 )

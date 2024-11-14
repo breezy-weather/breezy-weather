@@ -89,6 +89,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SearchActivity : GeoActivity() {
     private lateinit var viewModel: SearchViewModel
+
     @Inject lateinit var sourceManager: SourceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,12 +148,14 @@ class SearchActivity : GeoActivity() {
                                 Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
                             }
                         }
-                    } else null
+                    } else {
+                        null
+                    }
                 )
             }
         ) { paddings ->
             Surface(
-                //shape = shape,
+                // shape = shape,
                 color = SearchBarDefaults.colors().containerColor,
                 contentColor = contentColorFor(SearchBarDefaults.colors().containerColor),
                 tonalElevation = SearchBarDefaults.TonalElevation,
@@ -267,12 +270,12 @@ class SearchActivity : GeoActivity() {
                     Text(
                         text = stringResource(R.string.location_search_source),
                         color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.headlineSmall
                     )
                 },
                 text = {
                     LazyColumn(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         items(sourceManager.getConfiguredLocationSearchSources()) {
                             RadioButton(
@@ -296,7 +299,7 @@ class SearchActivity : GeoActivity() {
                         Text(
                             text = stringResource(R.string.action_cancel),
                             color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 }

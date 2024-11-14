@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetNoAirQualityConcentration(
-    val value: Double?
+    val value: Double?,
 )

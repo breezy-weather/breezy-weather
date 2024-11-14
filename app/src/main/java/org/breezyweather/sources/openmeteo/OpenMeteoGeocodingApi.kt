@@ -29,6 +29,6 @@ interface OpenMeteoGeocodingApi {
     fun getLocations(
         @Query("name") name: String,
         @Query("count") count: Int,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Observable<OpenMeteoLocationResults>
 }

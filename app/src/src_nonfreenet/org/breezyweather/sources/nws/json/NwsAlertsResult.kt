@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsAlertsResult(
-    val features: List<NwsAlert>? = null
+    val features: List<NwsAlert>? = null,
 )

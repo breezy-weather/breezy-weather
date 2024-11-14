@@ -31,7 +31,7 @@ object LocationMapper {
         isCurrentPosition: Boolean,
         needsGeocodeRefresh: Boolean,
         backgroundWeatherKind: String?,
-        backgroundDayNightType: String?
+        backgroundDayNightType: String?,
     ): Location = Location(
         cityId = cityId,
         latitude = latitude,

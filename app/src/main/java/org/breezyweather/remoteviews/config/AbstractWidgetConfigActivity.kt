@@ -144,7 +144,8 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                     frameLayoutParams.height = usableHeightSansKeyboard - heightDifference
                 } else {
                     // keyboard probably just became hidden
-                    frameLayoutParams.height = usableHeightSansKeyboard - getNavigationBarHeight(mChildOfContent.context)
+                    frameLayoutParams.height =
+                        usableHeightSansKeyboard - getNavigationBarHeight(mChildOfContent.context)
                 }
                 mChildOfContent.requestLayout()
                 usableHeightPrevious = usableHeightNow
@@ -162,9 +163,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             if (!hasMenuKey) {
                 // This device has a navigation bar
                 val resourceId = context.resources.getIdentifier("navigation_bar_height", "dimen", "android")
-                return if (resourceId > 0) {
-                    context.resources.getDimensionPixelSize(resourceId)
-                } else 0
+                return if (resourceId > 0) context.resources.getDimensionPixelSize(resourceId) else 0
             }
             return 0
         }
@@ -197,8 +196,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                 setBottomSheetState(true)
             } else if (
                 (System.currentTimeMillis() - mLastBackPressedTime) <
-                (Snackbar.ANIMATION_DURATION + Snackbar.ANIMATION_FADE_DURATION +
-                    SnackbarManager.LONG_DURATION_MS)
+                (Snackbar.ANIMATION_DURATION + Snackbar.ANIMATION_FADE_DURATION + SnackbarManager.LONG_DURATION_MS)
             ) {
                 isEnabled = false
                 onBackPressedDispatcher.onBackPressed()
@@ -210,21 +208,28 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     }
 
     override fun onCreateView(
-        parent: View?, name: String, context: Context,
-        attrs: AttributeSet
+        parent: View?,
+        name: String,
+        context: Context,
+        attrs: AttributeSet,
     ): View? {
         return if (name == "ImageView") {
             ImageView(context, attrs)
-        } else super.onCreateView(parent, name, context, attrs)
+        } else {
+            super.onCreateView(parent, name, context, attrs)
+        }
     }
 
     override fun onCreateView(
-        name: String, context: Context,
-        attrs: AttributeSet
+        name: String,
+        context: Context,
+        attrs: AttributeSet,
     ): View? {
         return if (name == "ImageView") {
             ImageView(context, attrs)
-        } else super.onCreateView(name, context, attrs)
+        } else {
+            super.onCreateView(name, context, attrs)
+        }
     }
 
     override fun onDestroy() {
@@ -254,19 +259,18 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         val data = res.getStringArray(R.array.widget_subtitle_data)
         val dataValues = res.getStringArray(R.array.widget_subtitle_data_values)
         if (CalendarHelper.getAlternateCalendarSetting(this) != null) {
-            subtitleData = arrayOf(
-                data[0], data[1], data[2], data[3], data[4], data[5]
-            )
+            subtitleData = arrayOf(data[0], data[1], data[2], data[3], data[4], data[5])
             subtitleDataValues = arrayOf(
-                dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[4], dataValues[5]
+                dataValues[0],
+                dataValues[1],
+                dataValues[2],
+                dataValues[3],
+                dataValues[4],
+                dataValues[5]
             )
         } else {
-            subtitleData = arrayOf(
-                data[0], data[1], data[2], data[3], data[5]
-            )
-            subtitleDataValues = arrayOf(
-                dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[5]
-            )
+            subtitleData = arrayOf(data[0], data[1], data[2], data[3], data[5])
+            subtitleDataValues = arrayOf(dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[5])
         }
         textColorValueNow = "light"
         textColors = res.getStringArray(R.array.widget_text_colors)
@@ -289,7 +293,10 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         textColorValueNow = config.getString(getString(R.string.key_text_color), textColorValueNow)
         textSize = config.getInt(getString(R.string.key_text_size), textSize)
         clockFontValueNow = config.getString(getString(R.string.key_clock_font), clockFontValueNow)
-        hideAlternateCalendar = config.getBoolean(getString(R.string.key_hide_alternate_calendar), hideAlternateCalendar)
+        hideAlternateCalendar = config.getBoolean(
+            getString(R.string.key_hide_alternate_calendar),
+            hideAlternateCalendar
+        )
         alignEnd = config.getBoolean(getString(R.string.key_align_end), alignEnd)
     }
 
@@ -428,9 +435,10 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             it.setSelection(indexValue(clockFontValues, clockFontValueNow), true)
         }
 
-        mHideAlternateCalendarContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideAlternateCalendarContainer).apply {
-            visibility = View.GONE
-        }
+        mHideAlternateCalendarContainer =
+            findViewById<RelativeLayout>(R.id.activity_widget_config_hideAlternateCalendarContainer).apply {
+                visibility = View.GONE
+            }
         findViewById<Switch>(R.id.activity_widget_config_hideAlternateCalendarSwitch).apply {
             setOnCheckedChangeListener(HideAlternateCalendarSwitchCheckListener())
             isChecked = hideAlternateCalendar
@@ -497,9 +505,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         subtitleCustomKeywords.text = this.subtitleCustomKeywords
         val scrollContainer = findViewById<LinearLayout>(R.id.activity_widget_config_scrollContainer)
         scrollContainer.post {
-            scrollContainer.setPaddingRelative(
-                0, 0, 0, mSubtitleInputLayout!!.measuredHeight
-            )
+            scrollContainer.setPaddingRelative(0, 0, 0, mSubtitleInputLayout!!.measuredHeight)
         }
         val bottomSheet = findViewById<AppBarLayout>(R.id.activity_widget_config_custom_subtitle)
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet).apply {
@@ -639,7 +645,9 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected val isHideAlternateCalendarContainerVisible: Int
         get() = if (CalendarHelper.getAlternateCalendarSetting(this) != null) {
             View.VISIBLE
-        } else View.GONE
+        } else {
+            View.GONE
+        }
 
     @SuppressLint("MissingPermission")
     private fun bindWallpaper(checkPermissions: Boolean) {
@@ -674,7 +682,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -684,7 +692,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                     updateHostView()
                 }
             }
-
             1 -> {
                 bindWallpaper(false)
                 updateHostView()

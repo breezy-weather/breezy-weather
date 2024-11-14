@@ -79,8 +79,14 @@ class ClockDayHorizontalWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return ClockDayHorizontalWidgetIMP.getRemoteViews(
-                this, locationNow,
-                cardStyleValueNow, cardAlpha, textColorValueNow, textSize, clockFontValueNow, hideAlternateCalendar
+                this,
+                locationNow,
+                cardStyleValueNow,
+                cardAlpha,
+                textColorValueNow,
+                textSize,
+                clockFontValueNow,
+                hideAlternateCalendar
             )
         }
 

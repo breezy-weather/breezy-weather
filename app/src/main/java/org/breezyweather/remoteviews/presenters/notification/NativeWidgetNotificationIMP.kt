@@ -47,14 +47,16 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         location: Location,
         daytime: Boolean,
         tempIcon: Boolean,
-        persistent: Boolean
+        persistent: Boolean,
     ) {
         val current = location.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
 
         val tempFeelsLikeOrAir = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
-        } else current.temperature?.temperature
+        } else {
+            current.temperature?.temperature
+        }
         val temperature = if (tempIcon) tempFeelsLikeOrAir else null
 
         val subtitle = StringBuilder()
@@ -98,8 +100,11 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             current.weatherCode?.let { weatherCode ->
                 setLargeIcon(
                     ResourceHelper.getWidgetNotificationIcon(
-                        provider, weatherCode,
-                        daytime, minimal = false, darkText = false
+                        provider,
+                        weatherCode,
+                        daytime,
+                        minimal = false,
+                        darkText = false
                     ).toBitmap()
                 )
             }
@@ -107,8 +112,10 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setContentTitle(contentTitle.toString())
             if (current.airQuality?.isIndexValid == true) {
                 setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context))
-            } else current.wind?.getStrength(context)?.let { strength ->
-                setContentText(context.getString(R.string.wind) + " - " + strength)
+            } else {
+                current.wind?.getStrength(context)?.let { strength ->
+                    setContentText(context.getString(R.string.wind) + " - " + strength)
+                }
             }
             setOngoing(persistent)
             setOnlyAlertOnce(true)
@@ -122,9 +129,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         .getMethod("setSmallIcon", Icon::class.java)
                         .invoke(
                             notification,
-                            ResourceHelper.getMinimalIcon(
-                                provider, weatherCode, daytime
-                            )
+                            ResourceHelper.getMinimalIcon(provider, weatherCode, daytime)
                         )
                 } catch (ignore: Exception) {
                     // do nothing.

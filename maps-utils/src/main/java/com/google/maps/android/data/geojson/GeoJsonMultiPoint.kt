@@ -21,7 +21,7 @@ import com.google.maps.android.data.MultiGeometry
  * A GeoJsonMultiPoint geometry contains a number of [GeoJsonPoint]s.
  */
 class GeoJsonMultiPoint(
-    geoJsonPoints: List<GeoJsonPoint>
+    geoJsonPoints: List<GeoJsonPoint>,
 ) : MultiGeometry(geoJsonPoints) {
     /**
      * Creates a GeoJsonMultiPoint object

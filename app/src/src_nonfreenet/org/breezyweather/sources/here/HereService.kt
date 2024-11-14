@@ -43,16 +43,15 @@ import javax.inject.Named
 
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, /*LocationSearchSource, */ReverseGeocodingSource,
-    ConfigurableSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, ConfigurableSource {
     override val id = "here"
     override val name = "HERE"
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
 
     override val color = Color.rgb(72, 218, 208)
     override val weatherAttribution = "HERE"
-    //override val locationSearchAttribution = "HERE"
+    // override val locationSearchAttribution = "HERE"
 
     private val mWeatherApi by lazy {
         client
@@ -84,7 +83,9 @@ class HereService @Inject constructor(
      * Returns weather
      */
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -94,7 +95,9 @@ class HereService @Inject constructor(
         val products = listOfNotNull(
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                 "observation"
-            } else null,
+            } else {
+                null
+            },
             "forecast7daysSimple",
             "forecastHourly",
             "forecastAstronomy"
@@ -117,7 +120,7 @@ class HereService @Inject constructor(
      */
     /*override fun requestLocationSearch(
         context: Context,
-        query: String
+        query: String,
     ): Observable<List<Location>> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -147,7 +150,7 @@ class HereService @Inject constructor(
      */
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -202,14 +205,14 @@ class HereService @Inject constructor(
                 onValueChanged = {
                     apikey = it
                 }
-            ),
+            )
         )
     }
 
     companion object {
+        // private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
         private const val HERE_WEATHER_BASE_URL = "https://weather.cc.api.here.com/"
         private const val HERE_WEATHER_DEV_BASE_URL = "https://weather.cit.cc.api.here.com/"
-        //private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
         private const val HERE_REV_GEOCODING_BASE_URL = "https://revgeocode.search.hereapi.com/"
     }
 }

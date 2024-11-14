@@ -19,7 +19,7 @@ package org.breezyweather.option.unit
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.junit.jupiter.api.Test
 
 class UnitUtilsTest {

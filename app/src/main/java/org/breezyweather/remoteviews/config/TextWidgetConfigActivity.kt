@@ -73,8 +73,7 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                    .ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
             }
         )
     }
@@ -82,12 +81,15 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return getRemoteViews(
-                this, locationNow,
-                textColorValueNow, textSize, alignEnd,
-                hideSubtitle, subtitleDataValueNow,
+                this,
+                locationNow,
+                textColorValueNow,
+                textSize,
+                alignEnd,
+                hideSubtitle,
+                subtitleDataValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "")
-                        .ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
                 }
             )
         }

@@ -39,17 +39,15 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
-class HourlyViewHolder(
-    parent: ViewGroup
-) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_hourly_trend_card, parent, false)
+class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
     private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
     private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
     private val tagView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView)
-    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_trendRecyclerView)
+    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
+        R.id.container_main_hourly_trend_card_trendRecyclerView
+    )
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
     init {
@@ -63,16 +61,9 @@ class HourlyViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity,
-            location,
-            provider,
-            listAnimationEnabled,
-            itemAnimationEnabled,
-            firstCard
-        )
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
 
         val weather = location.weather ?: return
         val colors = ThemeManager
@@ -142,7 +133,9 @@ class HourlyViewHolder(
                 context,
                 if (context.isLandscape) 7 else 5
             )
-        trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+        trendRecyclerView.setLineColor(
+            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+        )
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled

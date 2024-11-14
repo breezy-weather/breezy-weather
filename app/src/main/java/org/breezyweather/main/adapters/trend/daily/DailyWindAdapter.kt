@@ -41,9 +41,11 @@ import org.breezyweather.settings.SettingsManager
 /**
  * Daily wind adapter.
  */
-class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUnit) : AbsDailyTrendAdapter(
-    activity, location
-) {
+class DailyWindAdapter(
+    activity: GeoActivity,
+    location: Location,
+    unit: SpeedUnit,
+) : AbsDailyTrendAdapter(activity, location) {
     private val mSpeedUnit: SpeedUnit = unit
     private var mHighestWindSpeed: Float = 0f
 
@@ -136,8 +138,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_daily, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_daily, parent, false)
         return ViewHolder(view)
     }
 

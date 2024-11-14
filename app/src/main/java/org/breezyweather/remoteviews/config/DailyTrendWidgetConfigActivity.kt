@@ -75,7 +75,11 @@ class DailyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return DailyTrendWidgetIMP.getRemoteViews(
-                this, locationNow, resources.displayMetrics.widthPixels, cardStyleValueNow, cardAlpha
+                this,
+                locationNow,
+                resources.displayMetrics.widthPixels,
+                cardStyleValueNow,
+                cardAlpha
             )
         }
 

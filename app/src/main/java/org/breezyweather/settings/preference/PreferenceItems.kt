@@ -34,24 +34,24 @@ import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 
 fun LazyListScope.sectionHeaderItem(
-    @StringRes sectionTitleId: Int
+    @StringRes sectionTitleId: Int,
 ) {
     val token = PreferenceToken.SectionHeader(sectionTitleId = sectionTitleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         SectionHeader(title = stringResource(sectionTitleId))
     }
 }
 
 fun LazyListScope.sectionFooterItem(
-    @StringRes sectionTitleId: Int
+    @StringRes sectionTitleId: Int,
 ) {
     val token = PreferenceToken.SectionFooter(sectionTitleId = sectionTitleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         SectionFooter()
     }
@@ -61,7 +61,7 @@ fun LazyListScope.bottomInsetItem() {
     val token = PreferenceToken.BottomInset()
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         Column {
             Spacer(modifier = Modifier.height(getCardListItemMarginDp(LocalContext.current).dp))
@@ -77,7 +77,7 @@ fun LazyListScope.clickablePreferenceItem(
     val token = PreferenceToken.ClickablePreference(titleId = titleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         content(titleId)
     }
@@ -90,7 +90,7 @@ fun LazyListScope.switchPreferenceItem(
     val token = PreferenceToken.SwitchPreference(titleId = titleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         content(titleId)
     }
@@ -103,7 +103,7 @@ fun LazyListScope.listPreferenceItem(
     val token = PreferenceToken.ListPreference(titleId = titleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         content(titleId)
     }
@@ -116,7 +116,7 @@ fun LazyListScope.timePickerPreferenceItem(
     val token = PreferenceToken.TimePickerPreference(titleId = titleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         content(titleId)
     }
@@ -129,7 +129,7 @@ fun LazyListScope.editTextPreferenceItem(
     val token = PreferenceToken.EditTextPreference(titleId = titleId)
     item(
         key = token.preferenceKey,
-        contentType = token::class.java,
+        contentType = token::class.java
     ) {
         content(titleId)
     }

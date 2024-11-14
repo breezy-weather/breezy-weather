@@ -29,5 +29,5 @@ data class OpenMeteoWeatherResult(
     val hourly: OpenMeteoWeatherHourly? = null,
     @SerialName("minutely_15") val minutelyFifteen: OpenMeteoWeatherMinutely? = null,
     val error: Boolean? = null,
-    val reason: String? = null
+    val reason: String? = null,
 )

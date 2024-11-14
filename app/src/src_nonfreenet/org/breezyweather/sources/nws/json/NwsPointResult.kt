@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsPointResult(
-    val properties: NwsPointProperties?
+    val properties: NwsPointProperties?,
 )

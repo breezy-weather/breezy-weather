@@ -42,7 +42,7 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 @Composable
 fun DebugSettingsScreen(
     context: SettingsActivity,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -56,7 +56,7 @@ fun DebugSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             clickablePreferenceItem(R.string.settings_debug_dump_crash_logs_title) { id ->

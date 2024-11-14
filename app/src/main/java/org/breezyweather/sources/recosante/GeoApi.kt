@@ -29,6 +29,6 @@ interface GeoApi {
     fun getCommunes(
         @Query("lon") lon: Double,
         @Query("lat") lat: Double,
-        @Query("fields", encoded = true) fields: String = "code,nom"
+        @Query("fields", encoded = true) fields: String = "code,nom",
     ): Observable<List<GeoCommune>>
 }

@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAlertResult(
-    val records: CwaAlertRecords? = null
+    val records: CwaAlertRecords? = null,
 )

@@ -18,22 +18,23 @@ package org.breezyweather.common.basic.models.options
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 
 enum class NotificationStyle(
-    override val id: String
-): BaseEnum {
+    override val id: String,
+) : BaseEnum {
 
     NATIVE("native"),
     CITIES("cities"),
     DAILY("daily"),
-    HOURLY("hourly");
+    HOURLY("hourly"),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = NotificationStyle.entries.firstOrNull {
             it.id == value
         } ?: DAILY

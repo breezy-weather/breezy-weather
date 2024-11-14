@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NwsPointLocationProperties(
     val city: String?,
-    val state: String?
+    val state: String?,
 )

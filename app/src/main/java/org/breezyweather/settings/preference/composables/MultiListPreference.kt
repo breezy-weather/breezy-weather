@@ -40,7 +40,10 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -64,7 +67,7 @@ data class PreferenceItem(
     val name: String,
     val value: String,
     val icon: Drawable? = null,
-    val subname: String? = null
+    val subname: String? = null,
 )
 
 @Composable
@@ -76,7 +79,7 @@ fun MultiListPreferenceView(
     noItemsMessage: String,
     enabled: Boolean = true,
     card: Boolean = true,
-    onValueChanged: (List<String>) -> Unit
+    onValueChanged: (List<String>) -> Unit,
 ) {
     val context = LocalContext.current
     val listSelectedState = remember {
@@ -85,10 +88,9 @@ fun MultiListPreferenceView(
         }
     }
     val dialogOpenState = remember { mutableStateOf(false) }
-    val currentSummary = (listSelectedState.mapNotNull {
-            selectedItem -> itemsArray.firstOrNull { it.value == selectedItem }?.name
-        })
-        .sortedWith(Collator.getInstance(context.currentLocale))
+    val currentSummary = listSelectedState.mapNotNull { selectedItem ->
+        itemsArray.firstOrNull { it.value == selectedItem }?.name
+    }.sortedWith(Collator.getInstance(context.currentLocale))
         .joinToString(stringResource(R.string.comma_separator))
         .ifEmpty {
             stringResource(R.string.settings_disabled)
@@ -108,7 +110,7 @@ fun MultiListPreferenceView(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
                         onClick = { dialogOpenState.value = true },
-                        enabled = enabled,
+                        enabled = enabled
                     )
                     .padding(PaddingValues(vertical = 8.dp)),
                 leadingContent = if (iconId != null) {
@@ -117,10 +119,12 @@ fun MultiListPreferenceView(
                             painter = painterResource(iconId),
                             tint = DayNightTheme.colors.titleColor,
                             contentDescription = null,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(24.dp)
                         )
                     }
-                } else null,
+                } else {
+                    null
+                },
                 headlineContent = {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -132,7 +136,7 @@ fun MultiListPreferenceView(
                             Text(
                                 text = title,
                                 color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = MaterialTheme.typography.titleMedium
                             )
                         }
                     }
@@ -143,7 +147,7 @@ fun MultiListPreferenceView(
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
@@ -159,7 +163,7 @@ fun MultiListPreferenceView(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = { dialogOpenState.value = true },
-                    enabled = enabled,
+                    enabled = enabled
                 )
                 .padding(PaddingValues(vertical = 8.dp)),
             leadingContent = if (iconId != null) {
@@ -168,10 +172,12 @@ fun MultiListPreferenceView(
                         painter = painterResource(iconId),
                         tint = DayNightTheme.colors.titleColor,
                         contentDescription = null,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(24.dp)
                     )
                 }
-            } else null,
+            } else {
+                null
+            },
             headlineContent = {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -183,7 +189,7 @@ fun MultiListPreferenceView(
                         Text(
                             text = title,
                             color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium,
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
                 }
@@ -194,7 +200,7 @@ fun MultiListPreferenceView(
                     Text(
                         text = currentSummary,
                         color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }
@@ -215,12 +221,12 @@ fun MultiListPreferenceView(
                     Text(
                         text = title,
                         color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.headlineSmall
                     )
                 },
                 text = {
                     LazyColumn(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         items(itemsArray) {
                             Switch(
@@ -249,7 +255,7 @@ fun MultiListPreferenceView(
                         Text(
                             text = stringResource(R.string.action_save),
                             color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 },
@@ -266,7 +272,7 @@ fun MultiListPreferenceView(
                         Text(
                             text = stringResource(R.string.action_cancel),
                             color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 }
@@ -280,7 +286,7 @@ fun MultiListPreferenceView(
                     Text(
                         text = title,
                         color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.headlineSmall
                     )
                 },
                 text = {
@@ -299,7 +305,7 @@ fun MultiListPreferenceView(
                         Text(
                             text = stringResource(R.string.action_close),
                             color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge,
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 }
@@ -324,7 +330,7 @@ internal fun Switch(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = themeRipple(),
-                onClick = onClick,
+                onClick = onClick
             ),
         leadingContent = {
             icon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
@@ -353,13 +359,11 @@ fun PackagePreferenceView(
     title: String,
     selectedKeys: List<String>,
     intent: String,
-    onValueChanged: (List<String>) -> Unit
+    onValueChanged: (List<String>) -> Unit,
 ) {
     val context = LocalContext.current
     val packages = remember {
-        context.packageManager.queryBroadcastReceivers(
-            Intent(intent), PackageManager.GET_RESOLVED_FILTER
-        )
+        context.packageManager.queryBroadcastReceivers(Intent(intent), PackageManager.GET_RESOLVED_FILTER)
     }
 
     MultiListPreferenceView(

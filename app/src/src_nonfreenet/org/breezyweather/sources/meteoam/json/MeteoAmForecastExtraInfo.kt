@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MeteoAmForecastExtraInfo(
     val timezone: String?,
-    val stats: List<MeteoAmForecastStats>?
+    val stats: List<MeteoAmForecastStats>?,
 )

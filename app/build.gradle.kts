@@ -12,7 +12,7 @@ plugins {
     kotlin("plugin.serialization")
 }
 
-val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+val supportedAbi = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
 
 android {
     namespace = "org.breezyweather"
@@ -27,7 +27,7 @@ android {
 
         multiDexEnabled = true
         ndk {
-            abiFilters += SUPPORTED_ABIS
+            abiFilters += supportedAbi
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,7 +39,7 @@ android {
         abi {
             isEnable = true
             reset()
-            include(*SUPPORTED_ABIS.toTypedArray())
+            include(*supportedAbi.toTypedArray())
             isUniversalApk = true
         }
     }
@@ -63,22 +63,86 @@ android {
         properties.load(project.rootProject.file("local.properties").inputStream())
     }
     buildTypes.forEach {
-        it.buildConfigField("String", "DEFAULT_LOCATION_SOURCE", "\"${properties.getProperty("breezy.source.default_location") ?: "native"}\"")
-        it.buildConfigField("String", "DEFAULT_LOCATION_SEARCH_SOURCE", "\"${properties.getProperty("breezy.source.default_location_search") ?: "openmeteo"}\"")
-        it.buildConfigField("String", "DEFAULT_GEOCODING_SOURCE", "\"${properties.getProperty("breezy.source.default_geocoding") ?: "naturalearth"}\"")
-        it.buildConfigField("String", "DEFAULT_WEATHER_SOURCE", "\"${properties.getProperty("breezy.source.default_weather") ?: "auto"}\"")
-        it.buildConfigField("String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\"")
-        it.buildConfigField("String", "ATMO_AURA_KEY", "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\"")
-        it.buildConfigField("String", "BAIDU_IP_LOCATION_AK", "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\"")
-        it.buildConfigField("String", "BMKG_KEY", "\"${properties.getProperty("breezy.bmkg.key") ?: ""}\"")
-        it.buildConfigField("String", "CWA_KEY", "\"${properties.getProperty("breezy.cwa.key") ?: ""}\"")
-        it.buildConfigField("String", "GEO_NAMES_KEY", "\"${properties.getProperty("breezy.geonames.key") ?: ""}\"")
-        it.buildConfigField("String", "HERE_KEY", "\"${properties.getProperty("breezy.here.key") ?: ""}\"")
-        it.buildConfigField("String", "MF_WSFT_JWT_KEY", "\"${properties.getProperty("breezy.mf.jwtKey") ?: ""}\"")
-        it.buildConfigField("String", "MF_WSFT_KEY", "\"${properties.getProperty("breezy.mf.key") ?: ""}\"")
-        it.buildConfigField("String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\"")
-        it.buildConfigField("String", "PIRATE_WEATHER_KEY", "\"${properties.getProperty("breezy.pirateweather.key") ?: ""}\"")
-        it.buildConfigField("String", "MET_OFFICE_KEY", "\"${properties.getProperty("breezy.metoffice.key") ?: ""}\"")
+        it.buildConfigField(
+            "String",
+            "DEFAULT_LOCATION_SOURCE",
+            "\"${properties.getProperty("breezy.source.default_location") ?: "native"}\""
+        )
+        it.buildConfigField(
+            "String",
+            "DEFAULT_LOCATION_SEARCH_SOURCE",
+            "\"${properties.getProperty("breezy.source.default_location_search") ?: "openmeteo"}\""
+        )
+        it.buildConfigField(
+            "String",
+            "DEFAULT_GEOCODING_SOURCE",
+            "\"${properties.getProperty("breezy.source.default_geocoding") ?: "naturalearth"}\""
+        )
+        it.buildConfigField(
+            "String",
+            "DEFAULT_WEATHER_SOURCE",
+            "\"${properties.getProperty("breezy.source.default_weather") ?: "auto"}\""
+        )
+        it.buildConfigField(
+            "String",
+            "ACCU_WEATHER_KEY",
+            "\"${properties.getProperty("breezy.accu.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "ATMO_AURA_KEY",
+            "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "BAIDU_IP_LOCATION_AK",
+            "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "BMKG_KEY",
+            "\"${properties.getProperty("breezy.bmkg.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "CWA_KEY",
+            "\"${properties.getProperty("breezy.cwa.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "GEO_NAMES_KEY",
+            "\"${properties.getProperty("breezy.geonames.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "HERE_KEY",
+            "\"${properties.getProperty("breezy.here.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "MF_WSFT_JWT_KEY",
+            "\"${properties.getProperty("breezy.mf.jwtKey") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "MF_WSFT_KEY",
+            "\"${properties.getProperty("breezy.mf.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "OPEN_WEATHER_KEY",
+            "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "PIRATE_WEATHER_KEY",
+            "\"${properties.getProperty("breezy.pirateweather.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "MET_OFFICE_KEY",
+            "\"${properties.getProperty("breezy.metoffice.key") ?: ""}\""
+        )
     }
 
     flavorDimensions.add("default")
@@ -167,8 +231,10 @@ kapt {
 }
 
 aboutLibraries {
-    // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
-    // Warning: Please do not use the parent folder of a module as path, as this can result in issues. More details: https://github.com/mikepenz/AboutLibraries/issues/936
+    // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the
+    // target .json
+    // Warning: Please do not use the parent folder of a module as path, as this can result in issues.
+    // More details: https://github.com/mikepenz/AboutLibraries/issues/936
     configPath = "config"
 
     // Remove the "generated" timestamp to allow for reproducible builds
@@ -231,7 +297,7 @@ dependencies {
     "basicImplementation"(libs.kotlinx.serialization.xml)
 
     // data store
-    //implementation(libs.datastore)
+    // implementation(libs.datastore)
 
     // jwt - Only used by MF at the moment
     "basicImplementation"(libs.jjwt.api)
@@ -259,7 +325,7 @@ dependencies {
     implementation(libs.restrictionBypass)
 
     // debugImplementation because LeakCanary should only run in debug builds.
-    //debugImplementation(libs.leakcanary)
+    // debugImplementation(libs.leakcanary)
 }
 
 tasks {

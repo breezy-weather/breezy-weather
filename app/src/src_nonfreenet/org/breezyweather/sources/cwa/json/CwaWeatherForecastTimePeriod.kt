@@ -31,5 +31,5 @@ data class CwaWeatherForecastTimePeriod(
     val windDirectionDescription: String?,
     val windSpeed: String?,
     val probabilityOfPrecipitation: String?,
-    val UVIndex: String?
+    val UVIndex: String?,
 )

@@ -52,7 +52,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
         tempIcon: Boolean,
-        persistent: Boolean
+        persistent: Boolean,
     ) {
         val current = locationList.getOrNull(0)?.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
@@ -60,8 +60,12 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val temperature = if (tempIcon) {
             if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
                 current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
-            } else current.temperature?.temperature
-        } else null
+            } else {
+                current.temperature?.temperature
+            }
+        } else {
+            null
+        }
         val notification = context.notificationBuilder(Notifications.CHANNEL_WIDGET).apply {
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -108,9 +112,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         .getMethod("setSmallIcon", Icon::class.java)
                         .invoke(
                             notification,
-                            ResourceHelper.getMinimalIcon(
-                                provider, weatherCode, dayTime
-                            )
+                            ResourceHelper.getMinimalIcon(provider, weatherCode, dayTime)
                         )
                 } catch (ignore: Exception) {
                     // do nothing.
@@ -122,15 +124,20 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun buildBaseView(
-        context: Context, views: RemoteViews,
-        provider: ResourceProvider, location: Location,
-        temperatureUnit: TemperatureUnit, dayTime: Boolean
+        context: Context,
+        views: RemoteViews,
+        provider: ResourceProvider,
+        location: Location,
+        temperatureUnit: TemperatureUnit,
+        dayTime: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
 
         val temperature = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
-        } else current.temperature?.temperature
+        } else {
+            current.temperature?.temperature
+        }
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
@@ -162,11 +169,13 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     R.id.notification_base_aqiAndWind,
                     context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
                 )
-            } else current.wind?.getStrength(context)?.let { strength ->
-                setTextViewText(
-                    R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.wind) + " - " + strength
-                )
+            } else {
+                current.wind?.getStrength(context)?.let { strength ->
+                    setTextViewText(
+                        R.id.notification_base_aqiAndWind,
+                        context.getString(R.string.wind) + " - " + strength
+                    )
+                }
             }
             if (!current.weatherText.isNullOrEmpty()) {
                 setTextViewText(
@@ -186,16 +195,28 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         provider: ResourceProvider,
         locationList: List<Location>,
         temperatureUnit: TemperatureUnit,
-        dayTime: Boolean
+        dayTime: Boolean,
     ): RemoteViews {
         if (locationList.getOrNull(0)?.weather == null) return viewsP
 
         // today
         val views = buildBaseView(context, viewsP, provider, locationList[0], temperatureUnit, dayTime)
         val viewIds = arrayOf(
-            Triple(R.id.notification_multi_city_1, R.id.notification_multi_city_icon_1, R.id.notification_multi_city_text_1),
-            Triple(R.id.notification_multi_city_2, R.id.notification_multi_city_icon_2, R.id.notification_multi_city_text_2),
-            Triple(R.id.notification_multi_city_3, R.id.notification_multi_city_icon_3, R.id.notification_multi_city_text_3)
+            Triple(
+                R.id.notification_multi_city_1,
+                R.id.notification_multi_city_icon_1,
+                R.id.notification_multi_city_text_1
+            ),
+            Triple(
+                R.id.notification_multi_city_2,
+                R.id.notification_multi_city_icon_2,
+                R.id.notification_multi_city_text_2
+            ),
+            Triple(
+                R.id.notification_multi_city_3,
+                R.id.notification_multi_city_icon_3,
+                R.id.notification_multi_city_text_3
+            )
         )
 
         // Loop through locations 1 to 3
@@ -205,14 +226,20 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 val cityDayTime = location.isDaylight
                 val weatherCode = if (cityDayTime) {
                     weather.today?.day?.weatherCode
-                } else weather.today?.night?.weatherCode
+                } else {
+                    weather.today?.night?.weatherCode
+                }
                 views.apply {
                     setViewVisibility(viewId.first, View.VISIBLE)
                     if (weatherCode != null) {
                         setImageViewUri(
                             viewId.second,
                             ResourceHelper.getWidgetNotificationIconUri(
-                                provider, weatherCode, cityDayTime, false, NotificationTextColor.GREY
+                                provider,
+                                weatherCode,
+                                cityDayTime,
+                                false,
+                                NotificationTextColor.GREY
                             )
                         )
                     }

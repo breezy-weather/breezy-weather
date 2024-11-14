@@ -38,7 +38,7 @@ import org.breezyweather.settings.preference.listPreferenceItem
 @Composable
 fun UnitSettingsScreen(
     context: Context,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -51,7 +51,7 @@ fun UnitSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             listPreferenceItem(R.string.settings_units_temperature) { id ->
@@ -64,7 +64,7 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .temperatureUnit = TemperatureUnit.getInstance(it)
-                    },
+                    }
                 )
             }
             listPreferenceItem(R.string.settings_units_precipitation) { id ->
@@ -77,7 +77,7 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .precipitationUnit = PrecipitationUnit.getInstance(it)
-                    },
+                    }
                 )
             }
             listPreferenceItem(R.string.settings_units_distance) { id ->
@@ -90,7 +90,7 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .distanceUnit = DistanceUnit.getInstance(it)
-                    },
+                    }
                 )
             }
             listPreferenceItem(R.string.settings_units_speed) { id ->
@@ -103,7 +103,7 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .speedUnit = SpeedUnit.getInstance(it)
-                    },
+                    }
                 )
             }
             listPreferenceItem(R.string.settings_units_pressure) { id ->
@@ -116,7 +116,7 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .pressureUnit = PressureUnit.getInstance(it)
-                    },
+                    }
                 )
             }
         }

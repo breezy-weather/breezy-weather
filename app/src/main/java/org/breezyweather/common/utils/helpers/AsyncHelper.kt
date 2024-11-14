@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
 object AsyncHelper {
     fun <T> runOnIO(
         task: (emitter: Emitter<T>) -> Unit,
-        callback: (t: T, done: Boolean) -> Unit
+        callback: (t: T, done: Boolean) -> Unit,
     ): Controller {
         return Controller(
             Observable.create { emitter: ObservableEmitter<Data<T>> ->
@@ -70,7 +70,8 @@ object AsyncHelper {
 
     fun intervalRunOnUI(
         runnable: Runnable,
-        intervalMilliSeconds: Long, initDelayMilliSeconds: Long
+        intervalMilliSeconds: Long,
+        initDelayMilliSeconds: Long,
     ): Controller {
         return Controller(
             Observable.interval(initDelayMilliSeconds, intervalMilliSeconds, TimeUnit.MILLISECONDS)

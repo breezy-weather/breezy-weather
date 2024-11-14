@@ -38,10 +38,18 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    fun updateWidgetView(context: Context, locationList: List<Location>) {
+    fun updateWidgetView(
+        context: Context,
+        locationList: List<Location>,
+    ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_multi_city))
         val views = getRemoteViews(
-            context, locationList, config.cardStyle, config.cardAlpha, config.textColor, config.textSize
+            context,
+            locationList,
+            config.cardStyle,
+            config.cardAlpha,
+            config.textColor,
+            config.textSize
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetMultiCityProvider::class.java),
@@ -50,8 +58,12 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, locationList: List<Location>,
-        cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int
+        context: Context,
+        locationList: List<Location>,
+        cardStyle: String?,
+        cardAlpha: Int,
+        textColor: String?,
+        textSize: Int,
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
         val settings = SettingsManager.getInstance(context)
@@ -94,7 +106,11 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                         views.setImageViewUri(
                             cityId[2],
                             ResourceHelper.getWidgetNotificationIconUri(
-                                provider, it, true, minimalIcon, color.minimalIconColor
+                                provider,
+                                it,
+                                true,
+                                minimalIcon,
+                                color.minimalIconColor
                             )
                         )
                     } ?: views.setViewVisibility(cityId[2], View.INVISIBLE)
@@ -104,7 +120,11 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                         views.setImageViewUri(
                             cityId[2],
                             ResourceHelper.getWidgetNotificationIconUri(
-                                provider, it, false, minimalIcon, color.minimalIconColor
+                                provider,
+                                it,
+                                false,
+                                minimalIcon,
+                                color.minimalIconColor
                             )
                         )
                     } ?: views.setViewVisibility(cityId[2], View.INVISIBLE)
@@ -136,16 +156,26 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_1, TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_2, TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_3, TypedValue.COMPLEX_UNIT_PX, titleSize)
-                setTextViewTextSize(R.id.widget_multi_city_horizontal_content_1, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_multi_city_horizontal_content_2, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                setTextViewTextSize(R.id.widget_multi_city_horizontal_content_3, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                setTextViewTextSize(
+                    R.id.widget_multi_city_horizontal_content_1,
+                    TypedValue.COMPLEX_UNIT_PX,
+                    contentSize
+                )
+                setTextViewTextSize(
+                    R.id.widget_multi_city_horizontal_content_2,
+                    TypedValue.COMPLEX_UNIT_PX,
+                    contentSize
+                )
+                setTextViewTextSize(
+                    R.id.widget_multi_city_horizontal_content_3,
+                    TypedValue.COMPLEX_UNIT_PX,
+                    contentSize
+                )
             }
         }
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_multi_city_horizontal_card, getCardBackgroundId(color))
-            views.setInt(
-                R.id.widget_multi_city_horizontal_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
-            )
+            views.setInt(R.id.widget_multi_city_horizontal_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
         return views
     }
@@ -157,13 +187,18 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun setOnClickPendingIntent(
-        context: Context, views: RemoteViews, location: Location,
-        @IdRes resId: Int, @IntRange(from = 0, to = 2) index: Int
+        context: Context,
+        views: RemoteViews,
+        location: Location,
+        @IdRes resId: Int,
+        @IntRange(from = 0, to = 2) index: Int,
     ) {
         views.setOnClickPendingIntent(
             resId,
             getWeatherPendingIntent(
-                context, location, Widgets.MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 + 2 * index
+                context,
+                location,
+                Widgets.MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 + 2 * index
             )
         )
     }

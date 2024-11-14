@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaNormalsStationObsStatistics(
-    val AirTemperature: CwaNormalsAirTemperature?
+    val AirTemperature: CwaNormalsAirTemperature?,
 )

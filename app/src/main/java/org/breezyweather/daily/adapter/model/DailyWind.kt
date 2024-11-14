@@ -20,7 +20,7 @@ import breezyweather.domain.weather.model.Wind
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class DailyWind(
-    val wind: Wind
+    val wind: Wind,
 ) : DailyWeatherAdapter.ViewModel {
     override val code = 4
 

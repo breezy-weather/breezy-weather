@@ -30,7 +30,10 @@ object MainModuleUtils {
 
     fun getEnterAnimator(view: View, pendingCount: Int): Animator {
         val animators = view.getFloatingOvershotEnterAnimators(
-            0.4f + 0.2f * pendingCount, view.context.dpToPx(120f), 1.025f, 1.025f
+            0.4f + 0.2f * pendingCount,
+            view.context.dpToPx(120f),
+            1.025f,
+            1.025f
         )
         return AnimatorSet().apply {
             playTogether(

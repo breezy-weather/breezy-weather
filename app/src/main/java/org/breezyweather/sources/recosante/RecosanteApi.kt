@@ -28,6 +28,6 @@ interface RecosanteApi {
     @GET("v1/")
     fun getData(
         @Query("show_raep") showRaep: Boolean,
-        @Query("insee") insee: String
+        @Query("insee") insee: String,
     ): Observable<RecosanteResult>
 }

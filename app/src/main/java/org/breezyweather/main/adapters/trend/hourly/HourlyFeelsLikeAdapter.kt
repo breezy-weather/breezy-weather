@@ -41,7 +41,7 @@ class HourlyFeelsLikeAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit
+    unit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatureUnit: TemperatureUnit = unit
@@ -85,7 +85,7 @@ class HourlyFeelsLikeAdapter(
                 null,
                 null,
                 null,
-                null,
+                null
             )
             val themeColors = ThemeManager
                 .getInstance(itemView.context)
@@ -139,8 +139,9 @@ class HourlyFeelsLikeAdapter(
         run {
             var i = 0
             while (i < mTemperatures.size) {
-                mTemperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.toFloat()
-                    ?: weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                mTemperatures[i] =
+                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.toFloat()
+                        ?: weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
                 i += 2
             }
         }
@@ -176,8 +177,7 @@ class HourlyFeelsLikeAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

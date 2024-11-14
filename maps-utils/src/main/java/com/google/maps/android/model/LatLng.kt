@@ -6,7 +6,7 @@ import kotlin.math.min
 
 class LatLng(
     latitude: Double,
-    longitude: Double
+    longitude: Double,
 ) {
     val latitude: Double
     val longitude: Double
@@ -19,7 +19,9 @@ class LatLng(
     override fun equals(other: Any?): Boolean {
         return if (other is LatLng) {
             latitude == other.latitude && longitude == other.longitude
-        } else false
+        } else {
+            false
+        }
     }
 
     override fun hashCode(): Int {

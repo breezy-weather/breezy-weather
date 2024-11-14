@@ -47,7 +47,7 @@ fun convert(
 
 private fun getLocalizedName(
     result: GeoNamesLocation,
-    languageCode: String
+    languageCode: String,
 ): String? {
     val localizedName = result.alternateNames?.firstOrNull {
         it.lang.equals(languageCode, ignoreCase = true)

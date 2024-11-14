@@ -35,5 +35,5 @@ data class ChinaAqi(
     val no2: String?,
     val no2Desc: String?,
     val co: String?,
-    val coDesc: String?
+    val coDesc: String?,
 )

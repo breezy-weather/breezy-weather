@@ -27,7 +27,6 @@ import com.google.maps.android.data.geojson.GeoJsonParser
 import com.google.maps.android.data.geojson.GeoJsonPolygon
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import kotlin.math.round
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
@@ -51,23 +50,23 @@ import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.math.round
 
 class HkoService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "hko"
     override val name by lazy {
-        with (context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "香港天文台"
-                else -> "Hong Kong Observatory"
-            }
+        if (context.currentLocale.code.startsWith("zh")) {
+            "香港天文台"
+        } else {
+            "Hong Kong Observatory"
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "https://www.hko.gov.hk/tc/privacy/policy.htm"
                 startsWith("zh") -> "https://www.hko.gov.hk/sc/privacy/policy.htm"
@@ -81,7 +80,9 @@ class HkoService @Inject constructor(
     override val weatherAttribution by lazy {
         if (context.currentLocale.code.startsWith("zh")) {
             "香港天文台"
-        } else "Hong Kong Observatory"
+        } else {
+            "Hong Kong Observatory"
+        }
     }
 
     private val mApi by lazy {
@@ -113,13 +114,15 @@ class HkoService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("HK", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val languageCode = context.currentLocale.code
 
@@ -134,13 +137,15 @@ class HkoService @Inject constructor(
 
         // Several of the API endpoints output text in English and Traditional Chinese,
         // while text in Simplified Chinese are at an endpoint under different path.
-        val path = if (languageCode.startsWith("zh")
-            && languageCode != "zh-tw"
-            && languageCode != "zh-hk"
-            && languageCode != "zh-mo"
+        val path = if (languageCode.startsWith("zh") &&
+            languageCode != "zh-tw" &&
+            languageCode != "zh-hk" &&
+            languageCode != "zh-mo"
         ) {
             HKO_SIMPLIFIED_CHINESE_PATH
-        } else ""
+        } else {
+            ""
+        }
 
         val warnings = mutableMapOf<String, HkoWarningResult>()
         var warningKey: String
@@ -203,7 +208,9 @@ class HkoService @Inject constructor(
                 path = path,
                 suffix = if (languageCode.startsWith("zh")) {
                     "_uc"
-                } else ""
+                } else {
+                    ""
+                }
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(HkoOneJsonResult())
@@ -216,9 +223,7 @@ class HkoService @Inject constructor(
         }
 
         // Keys in Warning Summary endpoint end in different suffixes depending on the language
-        val suffix = if (languageCode.startsWith("zh")) {
-            "_C"
-        } else "_E"
+        val suffix = if (languageCode.startsWith("zh")) "_C" else "_E"
 
         // ALERTS
         // First read the warning summary file.
@@ -227,13 +232,16 @@ class HkoService @Inject constructor(
         val warningDetails = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getWarningSummary(
                 path = path
-            ).map {
-                it.DYN_DAT_WARNSUM?.forEach {
+            ).map { warningSummary ->
+                warningSummary.DYN_DAT_WARNSUM?.forEach {
                     if (it.key.endsWith(suffix)) {
-                        warningKey = it.key.substring(0, it.key.length-2)
+                        warningKey = it.key.substring(0, it.key.length - 2)
                         if (HKO_WARNING_ENDPOINTS.containsKey(warningKey)) {
                             endPoint = HKO_WARNING_ENDPOINTS[warningKey]!!
-                            if (it.value.Warning_Action != null && it.value.Warning_Action != "" && it.value.Warning_Action != "CANCEL") {
+                            if (it.value.Warning_Action != null &&
+                                it.value.Warning_Action != "" &&
+                                it.value.Warning_Action != "CANCEL"
+                            ) {
                                 warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
                                     Observable.create { emitter ->
                                         emitter.onNext(HkoWarningResult())
@@ -285,9 +293,9 @@ class HkoService @Inject constructor(
                 sun1Result: HkoAstroResult,
                 sun2Result: HkoAstroResult,
                 moon1Result: HkoAstroResult,
-                moon2Result: HkoAstroResult
+                moon2Result: HkoAstroResult,
             ->
-            convert (
+            convert(
                 context = context,
                 currentResult = currentResult,
                 forecastResult = forecastResult,
@@ -310,7 +318,7 @@ class HkoService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -322,11 +330,14 @@ class HkoService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location, requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -338,12 +349,15 @@ class HkoService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
         val path = if (languageCode.startsWith("zh") &&
-            !equals("zh-tw") && !equals("zh-hk") && !equals("zh-mo")) {
+            languageCode != "zh-tw" &&
+            languageCode != "zh-hk" &&
+            languageCode != "zh-mo"
+        ) {
             HKO_SIMPLIFIED_CHINESE_PATH
-        } else ""
-        val suffix = if (languageCode.startsWith("zh")) {
-            "_C"
-        } else "_E"
+        } else {
+            ""
+        }
+        val suffix = if (languageCode.startsWith("zh")) "_C" else "_E"
         val warnings = mutableMapOf<String, HkoWarningResult>()
         var warningKey: String
         var endPoint: String
@@ -363,9 +377,7 @@ class HkoService @Inject constructor(
         val oneJson = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getOneJson(
                 path = path,
-                suffix = if (languageCode.startsWith("zh")) {
-                    "_uc"
-                } else ""
+                suffix = if (languageCode.startsWith("zh")) "_uc" else ""
             )
         } else {
             Observable.create { emitter ->
@@ -396,10 +408,13 @@ class HkoService @Inject constructor(
             ).map { result ->
                 result.DYN_DAT_WARNSUM?.forEach {
                     if (it.key.endsWith(suffix)) {
-                        warningKey = it.key.substring(0, it.key.length-2)
+                        warningKey = it.key.substring(0, it.key.length - 2)
                         if (HKO_WARNING_ENDPOINTS.containsKey(warningKey)) {
                             endPoint = HKO_WARNING_ENDPOINTS[warningKey]!!
-                            if (it.value.Warning_Action != null && it.value.Warning_Action != "" && it.value.Warning_Action != "CANCEL") {
+                            if (it.value.Warning_Action != null &&
+                                it.value.Warning_Action != "" &&
+                                it.value.Warning_Action != "CANCEL"
+                            ) {
                                 warnings[endPoint] = mApi.getWarningText(path, endPoint).blockingFirst()
                             }
                         }
@@ -417,29 +432,38 @@ class HkoService @Inject constructor(
                 currentResult: HkoCurrentResult,
                 normalsResult: HkoNormalsResult,
                 oneJsonResult: HkoOneJsonResult,
-                warningDetailsResult: MutableMap<String, HkoWarningResult>
+                warningDetailsResult: MutableMap<String, HkoWarningResult>,
             ->
-            convertSecondary (
+            convertSecondary(
                 context = context,
                 currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                     currentResult
-                } else null,
+                } else {
+                    null
+                },
                 normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                     normalsResult
-                } else null,
+                } else {
+                    null
+                },
                 oneJsonResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                     oneJsonResult
-                } else null,
+                } else {
+                    null
+                },
                 warningDetailsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     warningDetailsResult
-                } else null
+                } else {
+                    null
+                }
             )
         }
     }
 
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<List<Location>> {
         val languageCode = context.currentLocale.code
         val locationList = mutableListOf<Location>()
@@ -468,7 +492,7 @@ class HkoService @Inject constructor(
                         timeZone = "Asia/Hong_Kong",
                         country = "Hong Kong",
                         countryCode = "HK",
-                        city = with (languageCode) {
+                        city = with(languageCode) {
                             when {
                                 equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> {
                                     it.getProperty("tc") ?: it.getProperty("sc") ?: it.getProperty("en") ?: ""
@@ -492,7 +516,7 @@ class HkoService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
@@ -506,14 +530,18 @@ class HkoService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         // Forecast grid is valid between (21.75°N–23.25°N, 113.35°E–114.95°E).
         // Current grid is valid between (22.13°N–22.57°N, 113.82°E–114.54°E).
         // If the location is within the boundaries of the current grid,
         // it is definitely within the boundaries of the forecast grid.
-        if (location.latitude < HKO_CURRENT_GRID_LATITUDES.first() || location.latitude >= HKO_CURRENT_GRID_LATITUDES.last()
-            || location.longitude < HKO_CURRENT_GRID_LONGITUDES.first() || location.longitude >= HKO_CURRENT_GRID_LONGITUDES.last()) {
+        if (location.latitude < HKO_CURRENT_GRID_LATITUDES.first() ||
+            location.latitude >= HKO_CURRENT_GRID_LATITUDES.last() ||
+            location.longitude < HKO_CURRENT_GRID_LONGITUDES.first() ||
+            location.longitude >= HKO_CURRENT_GRID_LONGITUDES.last()
+        ) {
             throw InvalidLocationException()
         }
         val currentGrid = getCurrentGrid(location)
@@ -535,21 +563,24 @@ class HkoService @Inject constructor(
         val column = (round(location.longitude * 10) - 1133).toInt()
         val forecastGrid = "G" + (row * 16 + column).toString()
 
-        return Observable.just(mapOf(
-            "currentGrid" to currentGrid,
-            "currentStation" to station,
-            "forecastGrid" to forecastGrid
-        ))
+        return Observable.just(
+            mapOf(
+                "currentGrid" to currentGrid,
+                "currentStation" to station,
+                "forecastGrid" to forecastGrid
+            )
+        )
     }
 
     private fun getCurrentGrid(
-        location: Location
+        location: Location,
     ): String {
         // Make sure the location is within the boundaries of the current grid.
-        if (location.latitude < HKO_CURRENT_GRID_LATITUDES.first()
-            || location.latitude >= HKO_CURRENT_GRID_LATITUDES.last()
-            || location.longitude < HKO_CURRENT_GRID_LONGITUDES.first()
-            || location.longitude >= HKO_CURRENT_GRID_LONGITUDES.last()) {
+        if (location.latitude < HKO_CURRENT_GRID_LATITUDES.first() ||
+            location.latitude >= HKO_CURRENT_GRID_LATITUDES.last() ||
+            location.longitude < HKO_CURRENT_GRID_LONGITUDES.first() ||
+            location.longitude >= HKO_CURRENT_GRID_LONGITUDES.last()
+        ) {
             throw InvalidLocationException()
         }
         var row: Int? = null
@@ -560,7 +591,9 @@ class HkoService @Inject constructor(
         // The grid spacing is uneven, hence we iterate through the lists of the grid boundaries.
         var i = 1
         while (i < HKO_CURRENT_GRID_LATITUDES.size && row == null) {
-            if (location.latitude >= HKO_CURRENT_GRID_LATITUDES[i - 1] && location.latitude < HKO_CURRENT_GRID_LATITUDES[i]) {
+            if (location.latitude >= HKO_CURRENT_GRID_LATITUDES[i - 1] &&
+                location.latitude < HKO_CURRENT_GRID_LATITUDES[i]
+            ) {
                 row = i
             }
             i++
@@ -568,7 +601,9 @@ class HkoService @Inject constructor(
 
         i = 1
         while (i < HKO_CURRENT_GRID_LONGITUDES.size && column == null) {
-            if (location.longitude >= HKO_CURRENT_GRID_LONGITUDES[i - 1] && location.longitude < HKO_CURRENT_GRID_LONGITUDES[i]) {
+            if (location.longitude >= HKO_CURRENT_GRID_LONGITUDES[i - 1] &&
+                location.longitude < HKO_CURRENT_GRID_LONGITUDES[i]
+            ) {
                 column = i
             }
             i++
@@ -590,17 +625,17 @@ class HkoService @Inject constructor(
         // Some Warning Summary records have different keys from the corresponding end points
         private val HKO_WARNING_ENDPOINTS = mapOf<String, String>(
             "WTCPRE8" to "WTCPRE8", // Pre-8 Tropical Cyclone Special Announcement
-            "WTCSGNL" to "WTCB",    // Tropical Cyclone Warning Signal
-            "WRAIN" to "WRAINSA",   // Rainstorm Warning Signal
-            "WTMW" to "WTMW",       // Tsunami Warning
-            "WFNTSA" to "WFNTSA",   // Special Announcement on Flooding in Northern New Territories
-            "WMSGNL" to "WMNB",     // Strong Monsoon Signal
-            "WL" to "WLSA",         // Landslip Warning
-            "WTS" to "WTS",         // Thunderstorm Warning
-            "WFIRE" to "WFIRE",     // Fire Danger Warning
-            "WHOT" to "WHOT",       // Very Hot Weather Warning
-            "WCOLD" to "WCOLD",     // Cold Weather Warning
-            "WFROST" to "WFROST"    // Frost Warning
+            "WTCSGNL" to "WTCB", // Tropical Cyclone Warning Signal
+            "WRAIN" to "WRAINSA", // Rainstorm Warning Signal
+            "WTMW" to "WTMW", // Tsunami Warning
+            "WFNTSA" to "WFNTSA", // Special Announcement on Flooding in Northern New Territories
+            "WMSGNL" to "WMNB", // Strong Monsoon Signal
+            "WL" to "WLSA", // Landslip Warning
+            "WTS" to "WTS", // Thunderstorm Warning
+            "WFIRE" to "WFIRE", // Fire Danger Warning
+            "WHOT" to "WHOT", // Very Hot Weather Warning
+            "WCOLD" to "WCOLD", // Cold Weather Warning
+            "WFROST" to "WFROST" // Frost Warning
         )
 
         // Current grid boundaries are taken from

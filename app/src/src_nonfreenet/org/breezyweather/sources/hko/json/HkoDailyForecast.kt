@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class HkoDailyForecast(
     val ForecastDate: String,
     val ForecastChanceOfRain: String?,
-    val ForecastDailyWeather: Int?
+    val ForecastDailyWeather: Int?,
 )

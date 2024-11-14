@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaWeatherForecastElement(
-    val timePeriods: List<CwaWeatherForecastTimePeriod>?
+    val timePeriods: List<CwaWeatherForecastTimePeriod>?,
 )

@@ -42,12 +42,12 @@ import javax.inject.Named
 
 class BaiduIPLocationService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), LocationSource, ConfigurableSource {
 
     override val id = "baidu_ip"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("zh") -> "百度IP定位"
                 else -> "Baidu IP location"

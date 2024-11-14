@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecosanteResult(
-    val raep: RecosanteRaep?
+    val raep: RecosanteRaep?,
 )

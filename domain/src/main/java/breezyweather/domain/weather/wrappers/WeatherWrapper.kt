@@ -32,5 +32,5 @@ data class WeatherWrapper(
     val dailyForecast: List<Daily>? = null,
     val hourlyForecast: List<HourlyWrapper>? = null,
     val minutelyForecast: List<Minutely>? = null,
-    val alertList: List<Alert>? = null
+    val alertList: List<Alert>? = null,
 )

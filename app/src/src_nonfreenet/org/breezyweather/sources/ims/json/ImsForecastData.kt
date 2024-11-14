@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ImsForecastData(
     val daily: ImsDaily?,
-    val hourly: Map<String, ImsHourly>?
+    val hourly: Map<String, ImsHourly>?,
 )

@@ -90,9 +90,9 @@ object Notifications {
     private const val ALERT_GROUP_KEY = "breezy_weather_alert_notification_group"
     private const val PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE"
     private const val KEY_NOTIFICATION_ID = "NOTIFICATION_ID"
-    //private const val PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT = "SHORT_TERM_PRECIPITATION_ALERT_PREFERENCE"
-    //private const val KEY_PRECIPITATION_LOCATION_KEY = "PRECIPITATION_LOCATION_KEY"
-    //private const val KEY_PRECIPITATION_DATE = "PRECIPITATION_DATE"
+    // private const val PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT = "SHORT_TERM_PRECIPITATION_ALERT_PREFERENCE"
+    // private const val KEY_PRECIPITATION_LOCATION_KEY = "PRECIPITATION_LOCATION_KEY"
+    // private const val KEY_PRECIPITATION_DATE = "PRECIPITATION_DATE"
 
     private val deprecatedChannels = listOf(
         "normally"
@@ -112,7 +112,7 @@ object Notifications {
                 buildNotificationChannelGroup(GROUP_BREEZY_WEATHER) {
                     setName(context.getString(R.string.breezy_weather))
                 }
-            ),
+            )
         )
 
         notificationManager.createNotificationChannelsCompat(
@@ -140,15 +140,18 @@ object Notifications {
                 },
                 buildNotificationChannel(CHANNEL_APP_UPDATE, IMPORTANCE_DEFAULT) {
                     setName(context.getString(R.string.notification_channel_app_updates))
-                },
+                }
             )
         )
     }
 
     private fun getNotificationBuilder(
-        context: Context, @DrawableRes iconId: Int,
-        title: String, subtitle: String, content: String?,
-        intent: PendingIntent
+        context: Context,
+        @DrawableRes iconId: Int,
+        title: String,
+        subtitle: String,
+        content: String?,
+        intent: PendingIntent,
     ): NotificationCompat.Builder {
         return context.notificationBuilder(CHANNEL_ALERT).apply {
             setSmallIcon(iconId)
@@ -163,7 +166,11 @@ object Notifications {
         }
     }
 
-    fun checkAndSendAlert(context: Context, location: Location, oldResult: Weather?) {
+    fun checkAndSendAlert(
+        context: Context,
+        location: Location,
+        oldResult: Weather?,
+    ) {
         val weather = location.weather
         if (weather == null || !SettingsManager.getInstance(context).isAlertPushEnabled) return
 
@@ -198,14 +205,15 @@ object Notifications {
             }
         }
         alertList.forEach { alert ->
-            sendAlertNotification(
-                context, location, alert, alertList.size > 1
-            )
+            sendAlertNotification(context, location, alert, alertList.size > 1)
         }
     }
 
     private fun sendAlertNotification(
-        context: Context, location: Location, alert: Alert, inGroup: Boolean
+        context: Context,
+        location: Location,
+        alert: Alert,
+        inGroup: Boolean,
     ) {
         val notificationId = getAlertNotificationId(context)
         context.notify(
@@ -222,7 +230,11 @@ object Notifications {
 
     @SuppressLint("InlinedApi")
     private fun buildSingleAlertNotification(
-        context: Context, location: Location, alert: Alert, inGroup: Boolean, notificationId: Int
+        context: Context,
+        location: Location,
+        alert: Alert,
+        inGroup: Boolean,
+        notificationId: Int,
     ): Notification {
         val time = alert.startDate?.let {
             // FIXME: Timezone
@@ -260,7 +272,10 @@ object Notifications {
 
     @SuppressLint("InlinedApi")
     private fun buildAlertGroupSummaryNotification(
-        context: Context, location: Location, alert: Alert, notificationId: Int
+        context: Context,
+        location: Location,
+        alert: Alert,
+        notificationId: Int,
     ): Notification {
         return context.notificationBuilder(CHANNEL_ALERT).apply {
             setSmallIcon(R.drawable.ic_alert)
@@ -299,11 +314,12 @@ object Notifications {
     // precipitation.
     fun checkAndSendPrecipitation(context: Context, location: Location) {
         if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled ||
-            location.weather?.minutelyForecast.isNullOrEmpty()) {
+            location.weather?.minutelyForecast.isNullOrEmpty()
+        ) {
             return
         }
-        //val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
-        //val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
+        // val config = ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT)
+        // val timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0)
 
         if (location.weather!!.hasMinutelyPrecipitation) {
             context.notify(

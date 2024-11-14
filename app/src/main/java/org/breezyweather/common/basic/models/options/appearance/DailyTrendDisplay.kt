@@ -19,44 +19,47 @@ package org.breezyweather.common.basic.models.options.appearance
 import android.content.Context
 import androidx.annotation.StringRes
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
 
 enum class DailyTrendDisplay(
     override val id: String,
-    @StringRes val nameId: Int
-): BaseEnum {
+    @StringRes val nameId: Int,
+) : BaseEnum {
 
-    TAG_TEMPERATURE("temperature", R.string.temperature), 
+    TAG_TEMPERATURE("temperature", R.string.temperature),
     TAG_AIR_QUALITY("air_quality", R.string.air_quality),
-    TAG_WIND("wind", R.string.wind), 
+    TAG_WIND("wind", R.string.wind),
     TAG_UV_INDEX("uv_index", R.string.uv_index),
     TAG_PRECIPITATION("precipitation", R.string.precipitation),
     TAG_SUNSHINE("sunshine", R.string.sunshine),
-    TAG_FEELS_LIKE("feels_like", R.string.temperature_feels_like);
+    TAG_FEELS_LIKE("feels_like", R.string.temperature_feels_like),
+    ;
 
     companion object {
 
         fun toDailyTrendDisplayList(
-            value: String?
+            value: String?,
         ) = if (value.isNullOrEmpty()) {
             mutableListOf()
-        } else try {
-            val cards = value.split("&").toTypedArray()
-            val list = mutableListOf<DailyTrendDisplay>()
-            for (card in cards) {
-                when (card) {
-                    "temperature" -> list.add(TAG_TEMPERATURE)
-                    "air_quality" -> list.add(TAG_AIR_QUALITY)
-                    "wind" -> list.add(TAG_WIND)
-                    "uv_index" -> list.add(TAG_UV_INDEX)
-                    "precipitation" -> list.add(TAG_PRECIPITATION)
-                    "sunshine" -> list.add(TAG_SUNSHINE)
-                    "feels_like" -> list.add(TAG_FEELS_LIKE)
+        } else {
+            try {
+                val cards = value.split("&").toTypedArray()
+                val list = mutableListOf<DailyTrendDisplay>()
+                for (card in cards) {
+                    when (card) {
+                        "temperature" -> list.add(TAG_TEMPERATURE)
+                        "air_quality" -> list.add(TAG_AIR_QUALITY)
+                        "wind" -> list.add(TAG_WIND)
+                        "uv_index" -> list.add(TAG_UV_INDEX)
+                        "precipitation" -> list.add(TAG_PRECIPITATION)
+                        "sunshine" -> list.add(TAG_SUNSHINE)
+                        "feels_like" -> list.add(TAG_FEELS_LIKE)
+                    }
                 }
+                list
+            } catch (e: Exception) {
+                mutableListOf()
             }
-            list
-        } catch (e: Exception) {
-            mutableListOf()
         }
 
         fun toValue(list: List<DailyTrendDisplay>): String {

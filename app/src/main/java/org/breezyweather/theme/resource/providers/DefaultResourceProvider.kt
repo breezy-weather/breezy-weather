@@ -102,8 +102,9 @@ class DefaultResourceProvider : ResourceProvider() {
     }
 
     private fun getWeatherIconName(
-        code: WeatherCode?, daytime: Boolean,
-        @IntRange(from = 1, to = 3) index: Int
+        code: WeatherCode?,
+        daytime: Boolean,
+        @IntRange(from = 1, to = 3) index: Int,
     ): String {
         return getFilterResource(
             mDrawableFilter,
@@ -133,8 +134,9 @@ class DefaultResourceProvider : ResourceProvider() {
     }
 
     private fun getWeatherAnimatorName(
-        code: WeatherCode?, daytime: Boolean,
-        @IntRange(from = 1, to = 3) index: Int
+        code: WeatherCode?,
+        daytime: Boolean,
+        @IntRange(from = 1, to = 3) index: Int,
     ): String {
         return getFilterResource(
             mAnimatorFilter,
@@ -260,23 +262,27 @@ class DefaultResourceProvider : ResourceProvider() {
         }
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getResourcesName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getResourcesName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
 
         private fun innerGetWeatherAnimatorName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getResourcesName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getResourcesName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
 
         private fun innerGetMiniIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (innerGetWeatherIconName(code, daytime)
-                + Constants.SEPARATOR + Constants.MINI)
+            return innerGetWeatherIconName(code, daytime) +
+                Constants.SEPARATOR +
+                Constants.MINI
         }
 
         private fun innerGetShortcutsIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (Constants.getShortcutsName(code)
-                + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
+            return Constants.getShortcutsName(code) +
+                Constants.SEPARATOR +
+                if (daytime) Constants.DAY else Constants.NIGHT
         }
     }
 }

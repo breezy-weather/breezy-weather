@@ -68,7 +68,7 @@ import java.util.Date
 fun BackgroundSettingsScreen(
     context: Context,
     updateInterval: UpdateInterval,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val uriHandler = LocalUriHandler.current
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -82,7 +82,7 @@ fun BackgroundSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             sectionHeaderItem(R.string.settings_background_updates_section_general)
@@ -104,7 +104,7 @@ fun BackgroundSettingsScreen(
                                 .updateInterval = UpdateInterval.getInstance(it)
                             WeatherUpdateJob.setupTask(context)
                         }
-                    },
+                    }
                 )
                 if (dialogNeverRefreshOpenState.value) {
                     AlertDialog(
@@ -117,19 +117,22 @@ fun BackgroundSettingsScreen(
                                 Text(
                                     text = stringResource(R.string.settings_background_updates_refresh_never_warning1),
                                     color = DayNightTheme.colors.bodyColor,
-                                    style = MaterialTheme.typography.bodyMedium,
+                                    style = MaterialTheme.typography.bodyMedium
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                                 Text(
-                                text = stringResource(R.string.settings_background_updates_refresh_never_warning2, 5),
+                                    text = stringResource(
+                                        R.string.settings_background_updates_refresh_never_warning2,
+                                        5
+                                    ),
                                     color = DayNightTheme.colors.bodyColor,
-                                    style = MaterialTheme.typography.bodyMedium,
+                                    style = MaterialTheme.typography.bodyMedium
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                                 Text(
                                     text = stringResource(R.string.settings_background_updates_refresh_never_warning3),
                                     color = DayNightTheme.colors.bodyColor,
-                                    style = MaterialTheme.typography.bodyMedium,
+                                    style = MaterialTheme.typography.bodyMedium
                                 )
                             }
                         },
@@ -146,7 +149,7 @@ fun BackgroundSettingsScreen(
                                 Text(
                                     text = stringResource(R.string.action_continue),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         },
@@ -159,7 +162,7 @@ fun BackgroundSettingsScreen(
                                 Text(
                                     text = stringResource(R.string.action_cancel),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         }
@@ -176,7 +179,7 @@ fun BackgroundSettingsScreen(
                     onValueChanged = {
                         SettingsManager.getInstance(context).ignoreUpdatesWhenBatteryLow = it
                         WeatherUpdateJob.setupTask(context)
-                    },
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_background_updates_section_general)
@@ -199,10 +202,16 @@ fun BackgroundSettingsScreen(
                                 }
                                 context.startActivity(intent)
                             } catch (e: ActivityNotFoundException) {
-                                SnackbarHelper.showSnackbar(context.getString(R.string.settings_background_updates_battery_optimization_activity_not_found))
+                                SnackbarHelper.showSnackbar(
+                                    context.getString(
+                                        R.string.settings_background_updates_battery_optimization_activity_not_found
+                                    )
+                                )
                             }
                         } else {
-                            SnackbarHelper.showSnackbar(context.getString(R.string.settings_background_updates_battery_optimization_disabled))
+                            SnackbarHelper.showSnackbar(
+                                context.getString(R.string.settings_background_updates_battery_optimization_disabled)
+                            )
                         }
                     }
                 }
@@ -224,7 +233,9 @@ fun BackgroundSettingsScreen(
                             Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp)
                                 .getFormattedDate("yyyy-MM-dd HH:mm")
                         )
-                    } else null
+                    } else {
+                        null
+                    }
                 ) {
                     context.startActivity(Intent(context, WorkerInfoActivity::class.java))
                 }

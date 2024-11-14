@@ -60,6 +60,7 @@ private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 class SettingsActivity : GeoActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
+
     @Inject lateinit var refreshHelper: RefreshHelper
 
     companion object {
@@ -137,7 +138,8 @@ class SettingsActivity : GeoActivity() {
                 notificationEnabledState.value = notificationEnabled
             }
 
-            val notificationTemperatureIconEnabled = SettingsManager.getInstance(this).isWidgetNotificationTemperatureIconEnabled
+            val notificationTemperatureIconEnabled = SettingsManager.getInstance(this)
+                .isWidgetNotificationTemperatureIconEnabled
             if (notificationTemperatureIconEnabledState.value != notificationTemperatureIconEnabled) {
                 notificationTemperatureIconEnabledState.value = notificationTemperatureIconEnabled
             }
@@ -157,7 +159,7 @@ class SettingsActivity : GeoActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -181,7 +183,7 @@ class SettingsActivity : GeoActivity() {
 
         NavHost(
             navController = navController,
-            startDestination = startDestination,
+            startDestination = startDestination
         ) {
             composable(SettingsScreenRouter.Root.route) {
                 RootSettingsView(
@@ -232,8 +234,8 @@ class SettingsActivity : GeoActivity() {
                     tomorrowForecastEnabled = remember { tomorrowForecastEnabledState }.value,
                     postNotificationPermissionEnsurer = { succeedCallback ->
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-
+                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+                        ) {
                             requestPostNotificationPermissionSucceedCallback = succeedCallback
                             requestPermissions(
                                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),
@@ -253,8 +255,8 @@ class SettingsActivity : GeoActivity() {
                     notificationTemperatureIconEnabled = remember { notificationTemperatureIconEnabledState }.value,
                     postNotificationPermissionEnsurer = { succeedCallback ->
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-
+                            !this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+                        ) {
                             requestPostNotificationPermissionSucceedCallback = succeedCallback
                             requestPermissions(
                                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),

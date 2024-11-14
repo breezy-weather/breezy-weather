@@ -25,7 +25,7 @@ fun NotificationCard(
     title: String,
     summary: String,
     onClick: () -> Unit,
-    onClose: () -> Unit
+    onClose: () -> Unit,
 ) {
     PreferenceView(
         iconId = R.drawable.ic_notifications,

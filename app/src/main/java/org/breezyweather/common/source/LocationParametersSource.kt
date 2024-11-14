@@ -37,7 +37,7 @@ interface LocationParametersSource : Source {
     fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature> = emptyList()
+        features: List<SecondaryWeatherSourceFeature> = emptyList(),
     ): Boolean
 
     /**
@@ -45,6 +45,7 @@ interface LocationParametersSource : Source {
      * {"gridId": "20", "gridX": "30", "gridY": "25"}
      */
     fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>>
 }

@@ -36,7 +36,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Query("apikey") apikey: String,
         @Query("q") q: String,
         @Query("language") language: String,
-        @Query("details") details: Boolean
+        @Query("details") details: Boolean,
     ): Observable<AccuMinutelyResult>
 
     @GET("alerts/v1/geoposition")
@@ -44,7 +44,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Query("apikey") apikey: String,
         @Query("q") q: String,
         @Query("language") language: String,
-        @Query("details") details: Boolean
+        @Query("details") details: Boolean,
     ): Observable<List<AccuAlertResult>>
 
     @GET("airquality/v2/forecasts/hourly/96hour/{city_key}")
@@ -52,7 +52,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("pollutants") pollutants: Boolean,
-        @Query("language") language: String
+        @Query("language") language: String,
     ): Observable<AccuAirQualityResult>
 
     @GET("climo/v1/summary/{year}/{month}/{city_key}")
@@ -62,6 +62,6 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Path("city_key") cityKey: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
-        @Query("details") details: Boolean
+        @Query("details") details: Boolean,
     ): Observable<AccuClimoSummaryResult>
 }

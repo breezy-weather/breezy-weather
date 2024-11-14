@@ -22,7 +22,9 @@ import com.google.maps.android.model.LatLng
  * A GeoJsonLineString geometry represents a number of connected [ ]s.
  * @param coordinates array of coordinates
  */
-class GeoJsonLineString(coordinates: List<LatLng>) : LineString(coordinates) {
+class GeoJsonLineString(
+    coordinates: List<LatLng>,
+) : LineString(coordinates) {
     /**
      * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
      * specification.

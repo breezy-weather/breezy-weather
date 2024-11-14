@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImsDaily(
-    @SerialName("maximum_uvi") val maximumUVI: String?
+    @SerialName("maximum_uvi") val maximumUVI: String?,
 )

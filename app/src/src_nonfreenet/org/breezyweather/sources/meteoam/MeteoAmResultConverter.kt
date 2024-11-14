@@ -38,7 +38,7 @@ import java.util.Date
 fun convert(
     location: Location,
     reverseLocation: MeteoAmReverseLocation,
-    timezone: String
+    timezone: String,
 ): Location {
     return location.copy(
         timeZone = timezone,
@@ -52,7 +52,7 @@ fun convert(
 fun convert(
     context: Context,
     forecastResult: MeteoAmForecastResult,
-    observationResult: MeteoAmObservationResult
+    observationResult: MeteoAmObservationResult,
 ): WeatherWrapper {
     val timeseries = forecastResult.timeseries
     val params = forecastResult.paramlist
@@ -68,7 +68,9 @@ fun convert(
     return WeatherWrapper(
         current = if (observation != null) {
             getCurrent(context, oParams, observation)
-        } else null,
+        } else {
+            null
+        },
         dailyForecast = getDailyForecast(context, stats),
         hourlyForecast = getHourlyForecast(context, timeseries, params, data)
     )
@@ -77,7 +79,7 @@ fun convert(
 private fun getCurrent(
     context: Context,
     params: List<String>,
-    currentResult: Map<String, Map<String, Any?>>
+    currentResult: Map<String, Map<String, Any?>>,
 ): Current {
     val keys = mutableMapOf<String, String>()
     for (i in params.indices) {
@@ -123,7 +125,7 @@ private fun getCurrent(
 
 private fun getDailyForecast(
     context: Context,
-    dailyResult: List<MeteoAmForecastStats>
+    dailyResult: List<MeteoAmForecastStats>,
 ): List<Daily> {
     val dailyForecast = mutableListOf<Daily>()
     dailyResult.forEach {
@@ -150,7 +152,7 @@ private fun getHourlyForecast(
     context: Context,
     timeseries: List<Date>,
     params: List<String>,
-    data: Map<String, Map<String, Any?>>
+    data: Map<String, Map<String, Any?>>,
 ): List<HourlyWrapper> {
     val hourlyForecast = mutableListOf<HourlyWrapper>()
     val keys = mutableMapOf<String, String>()
@@ -240,23 +242,24 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 // Icons 06 and 07 are duplicates
 private fun getWeatherText(context: Context, icon: String?): String? {
     return when (icon) {
-        "01", "31" -> context.getString(R.string.meteoam_weather_text_clear_sky)     // "Sereno"
-        "02", "03", "32", "33" -> context.getString(R.string.meteoam_weather_text_mainly_cloudy) // "Parzialmente velato" o "Velato"
+        "01", "31" -> context.getString(R.string.meteoam_weather_text_clear_sky) // "Sereno"
+        // "Parzialmente velato" o "Velato":
+        "02", "03", "32", "33" -> context.getString(R.string.meteoam_weather_text_mainly_cloudy)
         "04", "34" -> context.getString(R.string.meteoam_weather_text_partly_cloudy) // "Poco nuvoloso"
-        "05", "35" -> context.getString(R.string.meteoam_weather_text_cloudy)        // "Molto nuvoloso"
-        "06", "07" -> context.getString(R.string.meteoam_weather_text_overcast)      // "Coperto"
-        "08" -> context.getString(R.string.meteoam_weather_text_rain_light)          // "Pioggia debole"
-        "09" -> context.getString(R.string.meteoam_weather_text_rain_heavy)          // "Pioggia forte"
-        "10" -> context.getString(R.string.meteoam_weather_text_thunderstorm)        // "Temporale"
-        "11" -> context.getString(R.string.meteoam_weather_text_rain_snow_mixed)     // "Pioggia mista a neve"
-        "12" -> context.getString(R.string.meteoam_weather_text_rain_freezing)       // "Pioggia che gela"
-        "13", "36" -> context.getString(R.string.meteoam_weather_text_haze)          // "Foschia"
-        "14" -> context.getString(R.string.meteoam_weather_text_fog)                 // "Nebbia"
-        "15" -> context.getString(R.string.meteoam_weather_text_hail)                // "Grandine"
-        "16" -> context.getString(R.string.meteoam_weather_text_snow)                // "Neve"
+        "05", "35" -> context.getString(R.string.meteoam_weather_text_cloudy) // "Molto nuvoloso"
+        "06", "07" -> context.getString(R.string.meteoam_weather_text_overcast) // "Coperto"
+        "08" -> context.getString(R.string.meteoam_weather_text_rain_light) // "Pioggia debole"
+        "09" -> context.getString(R.string.meteoam_weather_text_rain_heavy) // "Pioggia forte"
+        "10" -> context.getString(R.string.meteoam_weather_text_thunderstorm) // "Temporale"
+        "11" -> context.getString(R.string.meteoam_weather_text_rain_snow_mixed) // "Pioggia mista a neve"
+        "12" -> context.getString(R.string.meteoam_weather_text_rain_freezing) // "Pioggia che gela"
+        "13", "36" -> context.getString(R.string.meteoam_weather_text_haze) // "Foschia"
+        "14" -> context.getString(R.string.meteoam_weather_text_fog) // "Nebbia"
+        "15" -> context.getString(R.string.meteoam_weather_text_hail) // "Grandine"
+        "16" -> context.getString(R.string.meteoam_weather_text_snow) // "Neve"
         "17" -> context.getString(R.string.meteoam_weather_text_tornado_watersprout) // "Tromba d’aria o marina"
-        "18" -> context.getString(R.string.meteoam_weather_text_smoke)               // "Fumo"
-        "19" -> context.getString(R.string.meteoam_weather_text_sand_storm)          // "Tempesta di sabbia"
+        "18" -> context.getString(R.string.meteoam_weather_text_smoke) // "Fumo"
+        "19" -> context.getString(R.string.meteoam_weather_text_sand_storm) // "Tempesta di sabbia"
         else -> null
     }
 }

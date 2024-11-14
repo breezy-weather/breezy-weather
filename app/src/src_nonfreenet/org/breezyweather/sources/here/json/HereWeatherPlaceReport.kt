@@ -27,5 +27,5 @@ data class HereWeatherPlaceReport(
     val observations: List<HereWeatherData>?,
     val dailyForecasts: List<HereWeatherForecasts<HereWeatherData>>?,
     val hourlyForecasts: List<HereWeatherForecasts<HereWeatherData>>?,
-    val astronomyForecasts: List<HereWeatherForecasts<HereWeatherAstronomy>>?
+    val astronomyForecasts: List<HereWeatherForecasts<HereWeatherAstronomy>>?,
 )

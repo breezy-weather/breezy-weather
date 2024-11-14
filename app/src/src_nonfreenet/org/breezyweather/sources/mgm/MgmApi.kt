@@ -33,31 +33,31 @@ interface MgmApi {
     @GET("web/merkezler/lokasyon")
     fun getLocation(
         @Query("enlem") lat: Double,
-        @Query("boylam") lon: Double
+        @Query("boylam") lon: Double,
     ): Observable<MgmLocationResult>
 
     @Headers("Origin: $ORIGIN_URL")
     @GET("web/tahminler/saatlik")
     fun getHourly(
-        @Query("istno") station: String
+        @Query("istno") station: String,
     ): Observable<List<MgmHourlyForecastResult>>
 
     @Headers("Origin: $ORIGIN_URL")
     @GET("web/sondurumlar")
     fun getCurrent(
-        @Query("merkezid") station: String
+        @Query("merkezid") station: String,
     ): Observable<List<MgmCurrentResult>>
 
     @Headers("Origin: $ORIGIN_URL")
     @GET("web/tahminler/gunluk")
     fun getDaily(
-        @Query("istno") station: String
+        @Query("istno") station: String,
     ): Observable<List<MgmDailyForecastResult>>
 
     @Headers("Origin: $ORIGIN_URL")
     @GET("web/meteoalarm/{day}")
     fun getAlert(
-        @Path("day") day: String
+        @Path("day") day: String,
     ): Observable<List<MgmAlertResult>>
 
     @Headers("Origin: $ORIGIN_URL")
@@ -65,11 +65,10 @@ interface MgmApi {
     fun getNormals(
         @Query("merkezid") station: String,
         @Query("ay") month: Int,
-        @Query("gun") day: Int
+        @Query("gun") day: Int,
     ): Observable<List<MgmNormalsResult>>
 
     companion object {
         const val ORIGIN_URL = "https://www.mgm.gov.tr"
     }
-
 }

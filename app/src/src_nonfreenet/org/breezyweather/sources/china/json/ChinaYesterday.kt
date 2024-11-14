@@ -23,5 +23,5 @@ data class ChinaYesterday(
     val aqi: String?,
     val date: String?,
     val tempMax: String?,
-    val tempMin: String?
+    val tempMin: String?,
 )

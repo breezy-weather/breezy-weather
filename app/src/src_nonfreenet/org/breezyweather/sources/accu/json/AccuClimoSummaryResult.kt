@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class AccuClimoSummaryResult(
-    val Normals: AccuClimoNormals? = null
+    val Normals: AccuClimoNormals? = null,
 )

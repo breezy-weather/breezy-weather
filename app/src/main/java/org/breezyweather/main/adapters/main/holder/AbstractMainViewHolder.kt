@@ -27,7 +27,9 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.main.utils.MainModuleUtils
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
-abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+abstract class AbstractMainViewHolder(
+    view: View,
+) : RecyclerView.ViewHolder(view) {
     protected lateinit var context: Context
     protected var provider: ResourceProvider? = null
     protected var itemAnimationEnabled = false
@@ -37,8 +39,11 @@ abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view
 
     @CallSuper
     open fun onBindView(
-        context: Context, location: Location, provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+        context: Context,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
     ) {
         this.context = context
         this.provider = provider
@@ -56,7 +61,7 @@ abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view
     fun checkEnterScreen(
         host: RecyclerView,
         pendingAnimatorList: MutableList<Animator>,
-        listAnimationEnabled: Boolean
+        listAnimationEnabled: Boolean,
     ) {
         if (!itemView.isLaidOut || top >= host.measuredHeight) {
             return

@@ -28,20 +28,28 @@ import java.text.DecimalFormat
 
 operator fun Int?.plus(other: Int?): Int? = if (this != null || other != null) {
     (this ?: 0) + (other ?: 0)
-} else null
+} else {
+    null
+}
 
 operator fun Double?.plus(other: Double?): Double? = if (this != null || other != null) {
     (this ?: 0.0) + (other ?: 0.0)
-} else null
+} else {
+    null
+}
 
 operator fun Double?.minus(other: Double?): Double? = if (this != null || other != null) {
     (this ?: 0.0) - (other ?: 0.0)
-} else null
+} else {
+    null
+}
 
 fun Double.roundDecimals(decimals: Int): Double? {
     return if (!this.isNaN()) {
         BigDecimal(this).setScale(decimals, RoundingMode.HALF_EVEN).toDouble()
-    } else null
+    } else {
+        null
+    }
 }
 
 fun Double.format(decimals: Int): String {
@@ -58,7 +66,9 @@ val Array<Double>.median: Double
 
         return if (this.size % 2 != 0) {
             this[this.size / 2]
-        } else (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0
+        } else {
+            (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0
+        }
     }
 
 /**
@@ -77,6 +87,6 @@ operator fun PaddingValues.plus(other: PaddingValues): PaddingValues {
         end = calculateEndPadding(layoutDirection) +
             other.calculateEndPadding(layoutDirection),
         top = calculateTopPadding() + other.calculateTopPadding(),
-        bottom = calculateBottomPadding() + other.calculateBottomPadding(),
+        bottom = calculateBottomPadding() + other.calculateBottomPadding()
     )
 }

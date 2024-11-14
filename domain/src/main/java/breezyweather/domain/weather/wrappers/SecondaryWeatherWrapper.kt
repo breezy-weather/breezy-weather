@@ -30,5 +30,5 @@ data class SecondaryWeatherWrapper(
     val pollen: PollenWrapper? = null,
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null,
-    val normals: Normals? = null
+    val normals: Normals? = null,
 )

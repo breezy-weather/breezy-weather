@@ -33,5 +33,5 @@ data class CwaWeatherForecast(
     val WS: CwaWeatherForecastElement?,
     val PoP6h: CwaWeatherForecastElement?,
     val PoP12h: CwaWeatherForecastElement?,
-    val UVI: CwaWeatherForecastElement?
+    val UVI: CwaWeatherForecastElement?,
 )

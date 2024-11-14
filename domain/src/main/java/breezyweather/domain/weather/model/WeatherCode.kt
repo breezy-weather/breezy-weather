@@ -29,11 +29,12 @@ enum class WeatherCode(val id: String) {
     SLEET("sleet"),
     HAIL("hail"),
     THUNDER("thunder"),
-    THUNDERSTORM("thunderstorm");
+    THUNDERSTORM("thunderstorm"),
+    ;
 
     companion object {
         fun getInstance(
-            value: String?
+            value: String?,
         ): WeatherCode? = WeatherCode.entries.firstOrNull {
             it.id.equals(value, ignoreCase = true)
         }

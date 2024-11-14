@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetNoForecastDataInstant(
-    val details: MetNoForecastDataDetails?
+    val details: MetNoForecastDataDetails?,
 )

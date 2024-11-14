@@ -26,7 +26,7 @@ class MoonPhase(
     /**
      * Angle between 0 to 360 (no negative! Add 180 if you have negative numbers)
      */
-    val angle: Int? = null
+    val angle: Int? = null,
 ) : Serializable {
 
     val isValid: Boolean
@@ -36,15 +36,17 @@ class MoonPhase(
         fun getAngleFromEnglishDescription(phase: String?): Int? {
             return if (phase.isNullOrEmpty()) {
                 null
-            } else when (phase.lowercase(Locale.getDefault())) {
-                "waxingcrescent", "waxing crescent" -> 45
-                "first", "firstquarter", "first quarter" -> 90
-                "waxinggibbous", "waxing gibbous" -> 135
-                "full", "fullmoon", "full moon" -> 180
-                "waninggibbous", "waning gibbous" -> 225
-                "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
-                "waningcrescent", "waning crescent" -> 315
-                else -> 360
+            } else {
+                when (phase.lowercase(Locale.getDefault())) {
+                    "waxingcrescent", "waxing crescent" -> 45
+                    "first", "firstquarter", "first quarter" -> 90
+                    "waxinggibbous", "waxing gibbous" -> 135
+                    "full", "fullmoon", "full moon" -> 180
+                    "waninggibbous", "waning gibbous" -> 225
+                    "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
+                    "waningcrescent", "waning crescent" -> 315
+                    else -> 360
+                }
             }
         }
     }

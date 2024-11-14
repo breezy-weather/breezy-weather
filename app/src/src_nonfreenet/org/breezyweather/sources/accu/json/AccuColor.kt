@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class AccuColor(
     val Red: Int,
     val Green: Int,
-    val Blue: Int
+    val Blue: Int,
 )

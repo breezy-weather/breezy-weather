@@ -30,5 +30,5 @@ data class MetNoAlertProperties(
     val description: String?,
     val instruction: String?,
     val severity: String?,
-    @Serializable(DateSerializer::class) val eventEndingTime: Date?
+    @Serializable(DateSerializer::class) val eventEndingTime: Date?,
 )

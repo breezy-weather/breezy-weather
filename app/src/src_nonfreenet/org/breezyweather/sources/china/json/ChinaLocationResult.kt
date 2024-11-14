@@ -27,5 +27,5 @@ data class ChinaLocationResult(
     val longitude: String?,
     val name: String?,
     val status: Int?,
-    val timeZoneShift: Int?
+    val timeZoneShift: Int?,
 )

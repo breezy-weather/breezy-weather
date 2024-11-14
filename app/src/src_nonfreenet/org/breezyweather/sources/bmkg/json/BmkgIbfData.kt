@@ -28,5 +28,5 @@ data class BmkgIbfData(
     val category: String?,
     val response: BmkgIbfResponse?,
     val effect: List<BmkgIbfMessage>?,
-    @Serializable(DateSerializer::class) @SerialName("valid_for") val validFor: Date?
+    @Serializable(DateSerializer::class) @SerialName("valid_for") val validFor: Date?,
 )

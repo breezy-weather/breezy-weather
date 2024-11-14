@@ -35,12 +35,13 @@ object StringListColumnAdapter : ColumnAdapter<List<String>, String> {
         databaseValue.split(LIST_OF_STRINGS_SEPARATOR)
     }
     override fun encode(value: List<String>) = value.joinToString(
-        separator = LIST_OF_STRINGS_SEPARATOR,
+        separator = LIST_OF_STRINGS_SEPARATOR
     )
 }
 
 object WeatherCodeColumnAdapter : ColumnAdapter<WeatherCode, String> {
-    override fun decode(databaseValue: String): WeatherCode = WeatherCode.getInstance(databaseValue) ?: WeatherCode.CLEAR
+    override fun decode(databaseValue: String): WeatherCode =
+        WeatherCode.getInstance(databaseValue) ?: WeatherCode.CLEAR
 
     override fun encode(value: WeatherCode): String = value.id
 }

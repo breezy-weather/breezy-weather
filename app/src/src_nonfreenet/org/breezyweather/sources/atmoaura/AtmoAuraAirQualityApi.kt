@@ -30,6 +30,6 @@ interface AtmoAuraAirQualityApi {
         @Query("api_token") apiToken: String,
         @Query("x") longitude: Double,
         @Query("y") latitude: Double,
-        @Query("datetime_echeance") datetimeEcheance: String
+        @Query("datetime_echeance") datetimeEcheance: String,
     ): Observable<AtmoAuraPointResult>
 }

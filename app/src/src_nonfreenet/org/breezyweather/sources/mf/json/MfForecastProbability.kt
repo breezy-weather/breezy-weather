@@ -29,5 +29,5 @@ data class MfForecastProbability(
     @SerialName("snow_hazard_3h") val snowHazard3h: Int?,
     @SerialName("snow_hazard_6h") val snowHazard6h: Int?,
     @SerialName("storm_hazard") val stormHazard: Int?,
-    @SerialName("freezing_hazard") val freezingHazard: Int?
+    @SerialName("freezing_hazard") val freezingHazard: Int?,
 )

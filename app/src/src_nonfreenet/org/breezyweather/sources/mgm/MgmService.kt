@@ -45,7 +45,7 @@ import javax.inject.Named
 
 class MgmService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "mgm"
@@ -70,7 +70,7 @@ class MgmService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("TR", ignoreCase = true)
     }
@@ -78,7 +78,7 @@ class MgmService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val currentStation = location.parameters.getOrElse(id) { null }?.getOrElse("currentStation") { null }
         val hourlyStation = location.parameters.getOrElse(id) { null }?.getOrElse("hourlyStation") { null }
@@ -142,7 +142,7 @@ class MgmService @Inject constructor(
         }
 
         // can pull multiple days but seems to be an overkill
-        val normals = if(!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 station = dailyStation,
                 month = now.get(Calendar.MONTH) + 1,
@@ -164,7 +164,7 @@ class MgmService @Inject constructor(
                 hourlyForecastResult: List<MgmHourlyForecastResult>,
                 todayAlertResult: List<MgmAlertResult>,
                 tomorrowAlertResult: List<MgmAlertResult>,
-                normalsResult: List<MgmNormalsResult>
+                normalsResult: List<MgmNormalsResult>,
             ->
             convert(
                 context = context,
@@ -187,7 +187,7 @@ class MgmService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -199,12 +199,14 @@ class MgmService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)
-            || !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+        ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -259,23 +261,31 @@ class MgmService @Inject constructor(
                 currentResult: List<MgmCurrentResult>,
                 todayResult: List<MgmAlertResult>,
                 tomorrowResult: List<MgmAlertResult>,
-                normalsResult: List<MgmNormalsResult>
+                normalsResult: List<MgmNormalsResult>,
             ->
             convertSecondary(
                 context = context,
                 townCode = currentStation.toInt(),
                 currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                     currentResult.getOrNull(0)
-                } else null,
+                } else {
+                    null
+                },
                 todayAlertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     todayResult
-                } else null,
+                } else {
+                    null
+                },
                 tomorrowAlertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     tomorrowResult
-                } else null,
+                } else {
+                    null
+                },
                 normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                     normalsResult.getOrNull(0)
-                } else null
+                } else {
+                    null
+                }
             )
         }
     }
@@ -283,7 +293,7 @@ class MgmService @Inject constructor(
     // Reverse geocoding
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getLocation(
             lat = location.latitude,
@@ -299,7 +309,7 @@ class MgmService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 
@@ -311,7 +321,8 @@ class MgmService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getLocation(
             lat = location.latitude,
@@ -321,7 +332,9 @@ class MgmService @Inject constructor(
                 "currentStation" to it.currentStationId.toString(),
                 "hourlyStation" to if (it.hourlyStationId !== null) {
                     it.hourlyStationId.toString()
-                } else "",
+                } else {
+                    ""
+                },
                 "dailyStation" to it.dailyStationId.toString()
             )
         }
@@ -330,5 +343,4 @@ class MgmService @Inject constructor(
     companion object {
         private const val MGM_BASE_URL = "https://servis.mgm.gov.tr/"
     }
-
 }

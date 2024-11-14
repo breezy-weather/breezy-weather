@@ -44,12 +44,12 @@ import javax.inject.Named
 
 class MetNoService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"
     override val name by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("no") -> "Meteorologisk institutt"
                 else -> "MET Norway"
@@ -57,7 +57,7 @@ class MetNoService @Inject constructor(
         }
     }
     override val privacyPolicyUrl by lazy {
-        with (context.currentLocale.code) {
+        with(context.currentLocale.code) {
             when {
                 startsWith("no") -> "https://www.met.no/om-oss/personvern"
                 else -> "https://www.met.no/en/About-us/privacy"
@@ -82,7 +82,9 @@ class MetNoService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             USER_AGENT,
@@ -111,8 +113,10 @@ class MetNoService @Inject constructor(
             arrayOf("NO", "SE", "FI", "DK").any {
                 it.equals(location.countryCode, ignoreCase = true)
             } &&
-            !(ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
-                ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY))
+            !(
+                ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
+                    ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                )
         ) {
             mApi.getNowcast(
                 USER_AGENT,
@@ -158,9 +162,7 @@ class MetNoService @Inject constructor(
             ) {
                 mApi.getAlerts(
                     USER_AGENT,
-                    if (context.currentLocale.toString().lowercase().startsWith("no")) {
-                        "no"
-                    } else "en",
+                    if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
                 ).onErrorResumeNext {
@@ -174,19 +176,13 @@ class MetNoService @Inject constructor(
                 }
             }
 
-        return Observable.zip(
-            forecast,
-            sun,
-            moon,
-            nowcast,
-            airQuality,
-            alerts
-        ) { metNoForecast: MetNoForecastResult,
-            metNoSun: MetNoSunResult,
-            metNoMoon: MetNoMoonResult,
-            metNoNowcast: MetNoNowcastResult,
-            metNoAirQuality: MetNoAirQualityResult,
-            metNoAlerts: MetNoAlertResult
+        return Observable.zip(forecast, sun, moon, nowcast, airQuality, alerts) {
+                metNoForecast: MetNoForecastResult,
+                metNoSun: MetNoSunResult,
+                metNoMoon: MetNoMoonResult,
+                metNoNowcast: MetNoNowcastResult,
+                metNoAirQuality: MetNoAirQualityResult,
+                metNoAlerts: MetNoAlertResult,
             ->
             convert(
                 context,
@@ -210,21 +206,28 @@ class MetNoService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
-        return ((feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT ||
-                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
+        return (
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT ||
+                    feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+                ) &&
                 !location.countryCode.isNullOrEmpty() &&
                 arrayOf("NO", "SE", "FI", "DK").any {
                     it.equals(location.countryCode, ignoreCase = true)
                 }
-            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
-            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
-            )
+            ) ||
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("NO", ignoreCase = true)
+                ) ||
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("NO", ignoreCase = true)
+                )
     }
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = weatherAttribution
@@ -234,12 +237,14 @@ class MetNoService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val nowcast =
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-                requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+            ) {
                 mApi.getNowcast(
                     USER_AGENT,
                     location.latitude,
@@ -272,9 +277,7 @@ class MetNoService @Inject constructor(
             ) {
                 mApi.getAlerts(
                     USER_AGENT,
-                    if (context.currentLocale.toString().lowercase().startsWith("no")) {
-                        "no"
-                    } else "en",
+                    if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
                 ).onErrorResumeNext {
@@ -289,22 +292,28 @@ class MetNoService @Inject constructor(
             }
 
         return Observable.zip(
-            nowcast, airQuality, alerts
-        ) { metNoNowcast: MetNoNowcastResult,
-            metNoAirQuality: MetNoAirQualityResult,
-            metNoAlerts: MetNoAlertResult
-            ->
+            nowcast,
+            airQuality,
+            alerts
+        ) { metNoNowcast: MetNoNowcastResult, metNoAirQuality: MetNoAirQualityResult, metNoAlerts: MetNoAlertResult ->
             convertSecondary(
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                ) {
                     metNoNowcast
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
                     metNoAirQuality
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     metNoAlerts
-                } else null,
+                } else {
+                    null
+                },
                 context
             )
         }

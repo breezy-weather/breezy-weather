@@ -27,7 +27,7 @@ interface MetIeApi {
     @GET("weather/details/{lat}/{lon}")
     fun getForecast(
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<List<MetIeHourly>>
 
     @GET("v3/warnings")
@@ -36,6 +36,6 @@ interface MetIeApi {
     @GET("location/reverse/{lat}/{lon}")
     fun getReverseLocation(
         @Path("lat") lat: Double,
-        @Path("lon") lon: Double
+        @Path("lon") lon: Double,
     ): Observable<MetIeLocationResult>
 }

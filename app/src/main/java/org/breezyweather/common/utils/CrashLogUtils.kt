@@ -38,7 +38,9 @@ import org.breezyweather.remoteviews.Notifications
  * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/util/CrashLogUtil.kt
  */
 
-class CrashLogUtils(private val context: Context) {
+class CrashLogUtils(
+    private val context: Context,
+) {
 
     suspend fun dumpLogs() = withNonCancellableContext {
         try {
@@ -69,7 +71,7 @@ class CrashLogUtils(private val context: Context) {
 
         context.notify(
             Notifications.ID_CRASH_LOGS,
-            Notifications.CHANNEL_CRASH_LOGS,
+            Notifications.CHANNEL_CRASH_LOGS
         ) {
             setContentTitle(context.getString(R.string.settings_debug_dump_crash_logs_saved))
             setContentText(context.getString(R.string.settings_debug_dump_crash_logs_tap_to_open))

@@ -13,10 +13,13 @@ import javax.inject.Inject
  * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/data/updater/AppUpdateChecker.kt
  */
 class AppUpdateChecker @Inject constructor(
-    private val getApplicationRelease: GetApplicationRelease
+    private val getApplicationRelease: GetApplicationRelease,
 ) {
 
-    suspend fun checkForUpdate(context: Context, forceCheck: Boolean = false): GetApplicationRelease.Result {
+    suspend fun checkForUpdate(
+        context: Context,
+        forceCheck: Boolean = false,
+    ): GetApplicationRelease.Result {
         // Disable app update checks for older Android versions that we're going to drop support for
         // if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
         //     return GetApplicationRelease.Result.OsTooOld
@@ -28,8 +31,8 @@ class AppUpdateChecker @Inject constructor(
                     BuildConfig.VERSION_NAME,
                     GITHUB_ORG,
                     GITHUB_REPO,
-                    forceCheck,
-                ),
+                    forceCheck
+                )
             )
 
             when (result) {

@@ -28,5 +28,5 @@ data class OpenWeatherAirPollutionComponents(
     val so2: Double?,
     @SerialName("pm2_5") val pm25: Double?,
     val pm10: Double?,
-    val nh3: Double?
+    val nh3: Double?,
 )

@@ -29,7 +29,8 @@ import java.util.Locale
  * - Air quality: national weather source or Open-Meteo
  * - Pollen: Open-Meteo
  * - Minutely: national weather source or Open-Meteo
- * - Alerts: national weather source or AccuWeather (or WMO if Accu is broken, but should be avoided as it may not be reliable in every country)
+ * - Alerts: national weather source or AccuWeather (or WMO if Accu is broken,
+ *       but should be avoided as it may not be reliable in every country)
  * - Normals: national weather source or AccuWeather
  */
 enum class LocationPreset(
@@ -39,7 +40,7 @@ enum class LocationPreset(
     val pollen: String? = null,
     val minutely: String? = null,
     val alert: String? = null,
-    val normals: String? = null
+    val normals: String? = null,
 ) {
     DEFAULT("openmeteo", alert = "accu", normals = "accu"),
     DEFAULT_FREENET("openmeteo"),
@@ -49,7 +50,8 @@ enum class LocationPreset(
     USA("nws", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
 
     // Europe
-    //AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat", alert = "geosphereat", normals = "geosphereat"),
+    // AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat",
+    //     alert = "geosphereat", normals = "geosphereat"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
@@ -59,16 +61,24 @@ enum class LocationPreset(
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
-    SWEDEN("smhi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", alert = "accu", normals = "accu"),
+    SWEDEN(
+        "smhi",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "metno",
+        alert = "accu",
+        normals = "accu"
+    ),
 
     // Asia
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
+    // Don’t add cwa for TAIWAN as it is a rate-limited source
     CHINA("china"),
     HONG_KONG("hko"),
     INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
-    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo");
-    // Don’t add cwa for TAIWAN as it is a rate-limited source
+    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    ;
 
     companion object {
         fun getLocationPreset(countryCode: String?): LocationPreset {
@@ -125,7 +135,9 @@ enum class LocationPreset(
                     // feature an user might not be interested in, especially as AccuWeather has not
                     // the best privacy-policy
                     null
-                } else locationPreset.normals,
+                } else {
+                    locationPreset.normals
+                }
             )
         }
     }

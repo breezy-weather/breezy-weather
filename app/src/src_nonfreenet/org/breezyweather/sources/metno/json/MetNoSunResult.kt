@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoSunResult(
-    val properties: MetNoSunProperties?
+    val properties: MetNoSunProperties?,
 )

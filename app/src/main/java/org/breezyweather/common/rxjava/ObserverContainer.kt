@@ -22,7 +22,7 @@ import io.reactivex.rxjava3.observers.DisposableObserver
 
 class ObserverContainer<T : Any>(
     private val compositeDisposable: CompositeDisposable,
-    private val observer: Observer<T>
+    private val observer: Observer<T>,
 ) : DisposableObserver<T>() {
     override fun onStart() {
         compositeDisposable.add(this)

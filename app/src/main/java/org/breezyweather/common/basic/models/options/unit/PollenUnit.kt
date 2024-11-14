@@ -18,17 +18,18 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.UnitEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
 import kotlin.math.roundToInt
 
 enum class PollenUnit(
     override val id: String,
-    override val convertUnit: (Int) -> Double
-): UnitEnum<Int> {
+    override val convertUnit: (Int) -> Double,
+) : UnitEnum<Int> {
 
-    PPCM("ppcm", { valueInDefaultUnit -> valueInDefaultUnit * 1.0 });
+    PPCM("ppcm", { valueInDefaultUnit -> valueInDefaultUnit * 1.0 }),
+    ;
 
     override val valueArrayId = R.array.pollen_unit_values
     override val nameArrayId = R.array.pollen_units
@@ -39,22 +40,22 @@ enum class PollenUnit(
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
     override fun getValueWithoutUnit(
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Int,
     ) = convertUnit(valueInDefaultUnit).roundToInt()
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Int,
     ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit)!!
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Int,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
@@ -64,13 +65,13 @@ enum class PollenUnit(
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Int,
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Int,
-        rtl: Boolean
+        rtl: Boolean,
     ) = Utils.getVoiceText(
         context = context,
         enum = this,

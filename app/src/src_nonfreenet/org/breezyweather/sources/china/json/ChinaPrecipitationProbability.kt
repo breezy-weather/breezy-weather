@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChinaPrecipitationProbability(
-    val value: List<String>?
+    val value: List<String>?,
 )

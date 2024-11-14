@@ -13,7 +13,9 @@ val Weather.validAirQuality: AirQuality?
         current!!.airQuality
     } else if (today?.airQuality != null && today!!.airQuality!!.isIndexValid) {
         today!!.airQuality
-    } else null
+    } else {
+        null
+    }
 
 val Weather.hasMinutelyPrecipitation: Boolean
     get() = minutelyForecast.any { (it.dbz ?: 0) > 0 }
@@ -23,7 +25,9 @@ fun Weather.getMinutelyTitle(context: Context): String {
         // 1 = soon, 2 = continue, 3 = end
         val case = if (minutelyForecast.first().dbz != null && minutelyForecast.first().dbz!! > 0) {
             if (minutelyForecast.last().dbz != null && minutelyForecast.last().dbz!! > 0) 2 else 3
-        } else 1
+        } else {
+            1
+        }
 
         when (case) {
             1 -> context.getString(R.string.notification_precipitation_starting)
@@ -41,7 +45,9 @@ fun Weather.getMinutelyDescription(context: Context, location: Location): String
         // 1 = soon, 2 = continue, 3 = end
         val case = if (minutelyForecast.first().dbz != null && minutelyForecast.first().dbz!! > 0) {
             if (minutelyForecast.last().dbz != null && minutelyForecast.last().dbz!! > 0) 2 else 3
-        } else 1
+        } else {
+            1
+        }
 
         context.getString(
             when (case) {

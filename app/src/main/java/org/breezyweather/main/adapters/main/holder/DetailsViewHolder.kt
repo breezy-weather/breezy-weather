@@ -49,22 +49,21 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
 class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_details, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_details, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_details_title)
     private val mTime: TextView = itemView.findViewById(R.id.container_main_details_time)
     private val mDetailsList: ComposeView = itemView.findViewById(R.id.container_main_details_list)
 
     override fun onBindView(
-        activity: GeoActivity, location: Location, provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean, firstCard: Boolean
+        activity: GeoActivity,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        firstCard: Boolean,
     ) {
-        super.onBindView(
-            activity, location, provider,
-            listAnimationEnabled, itemAnimationEnabled, firstCard
-        )
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
         location.weather?.let { weather ->
             weather.current?.let { current ->
                 mTitle.setTextColor(
@@ -76,9 +75,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             WeatherViewController.isDaylight(location)
                         )[0]
                 )
-                mTime.text = weather.base.mainUpdateTime?.getFormattedTime(
-                    location, context, context.is12Hour
-                )
+                mTime.text = weather.base.mainUpdateTime?.getFormattedTime(location, context, context.is12Hour)
                 mDetailsList.setContent {
                     BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                         ContentView(
@@ -97,11 +94,18 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private fun ContentView(
         detailsInHeaderList: List<DetailDisplay>,
         detailsNotInHeaderList: List<DetailDisplay>,
-        current: Current, location: Location
+        current: Current,
+        location: Location,
     ) {
         // TODO: Lazy
         Column {
-            availableDetails(LocalContext.current, detailsInHeaderList, detailsNotInHeaderList, current, location.isDaylight).forEach { detailDisplay ->
+            availableDetails(
+                LocalContext.current,
+                detailsInHeaderList,
+                detailsNotInHeaderList,
+                current,
+                location.isDaylight
+            ).forEach { detailDisplay ->
                 ListItem(
                     colors = ListItemDefaults.colors(
                         containerColor = Color.Transparent
@@ -137,7 +141,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             detailsInHeaderList: List<DetailDisplay>,
             detailsNotInHeaderList: List<DetailDisplay>,
             current: Current,
-            isDaylight: Boolean
+            isDaylight: Boolean,
         ): List<DetailDisplay> {
             val detailsInHeaderNotNullList = detailsInHeaderList.filter {
                 it.getCurrentValue(context, current, isDaylight) != null
@@ -147,7 +151,9 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             val nbMaxInHeader = if (context.isLandscape) {
                 HeaderViewHolder.NB_CURRENT_ITEMS_LANDSCAPE
-            } else HeaderViewHolder.NB_CURRENT_ITEMS_PORTRAIT
+            } else {
+                HeaderViewHolder.NB_CURRENT_ITEMS_PORTRAIT
+            }
             return if (detailsInHeaderNotNullList.size > nbMaxInHeader) {
                 detailsInHeaderNotNullList.subList(nbMaxInHeader, detailsInHeaderNotNullList.size) +
                     detailsNotInHeaderNotNullList

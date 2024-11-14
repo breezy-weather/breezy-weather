@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NwsValueInt(
     val validTime: String, // Convert to Date + interval later
-    val value: Int?
+    val value: Int?,
 )

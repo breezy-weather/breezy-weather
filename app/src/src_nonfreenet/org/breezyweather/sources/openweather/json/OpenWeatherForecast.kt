@@ -28,5 +28,5 @@ data class OpenWeatherForecast(
     val visibility: Int? = null,
     val pop: Double? = null,
     val rain: OpenWeatherForecastPrecipitation? = null,
-    val snow: OpenWeatherForecastPrecipitation? = null
+    val snow: OpenWeatherForecastPrecipitation? = null,
 )

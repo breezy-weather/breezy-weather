@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NwsValueWeatherValue(
-    val weather: String?
+    val weather: String?,
 )

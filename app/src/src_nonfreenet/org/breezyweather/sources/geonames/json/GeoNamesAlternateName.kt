@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GeoNamesAlternateName(
     val name: String?,
-    val lang: String?
+    val lang: String?,
 )

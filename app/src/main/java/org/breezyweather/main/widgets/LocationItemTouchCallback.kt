@@ -30,8 +30,9 @@ import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivityViewModel
 
 class LocationItemTouchCallback(
-    private val mActivity: GeoActivity, private val mViewModel: MainActivityViewModel,
-    private val mReactor: TouchReactor
+    private val mActivity: GeoActivity,
+    private val mViewModel: MainActivityViewModel,
+    private val mReactor: TouchReactor,
 ) : SlidingItemTouchCallback() {
     @Px
     private val mElevation: Int = mActivity.resources.getDimensionPixelSize(R.dimen.touch_rise_z)
@@ -63,7 +64,7 @@ class LocationItemTouchCallback(
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ): Boolean {
         mDragTo = target.bindingAdapterPosition
         mReactor.reorderByDrag(viewHolder.bindingAdapterPosition, mDragTo)
@@ -97,8 +98,12 @@ class LocationItemTouchCallback(
 
     override fun onChildDraw(
         c: Canvas,
-        recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-        dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean,
     ) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         ViewCompat.setElevation(
@@ -110,7 +115,7 @@ class LocationItemTouchCallback(
     // on click listener.
     private inner class CancelDeleteListener(
         private val mLocation: Location,
-        private val mIndex: Int
+        private val mIndex: Int,
     ) : View.OnClickListener {
         override fun onClick(view: View) {
             mViewModel.addLocation(mLocation, mIndex)

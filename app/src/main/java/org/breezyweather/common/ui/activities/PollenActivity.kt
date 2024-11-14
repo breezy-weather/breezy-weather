@@ -67,7 +67,9 @@ import javax.inject.Inject
 class PollenActivity : GeoActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
+
     @Inject lateinit var locationRepository: LocationRepository
+
     @Inject lateinit var weatherRepository: WeatherRepository
 
     companion object {
@@ -140,22 +142,28 @@ class PollenActivity : GeoActivity() {
                     FitStatusBarTopAppBar(
                         title = stringResource(R.string.pollen),
                         onBackPressed = { finish() },
-                        scrollBehavior = scrollBehavior,
+                        scrollBehavior = scrollBehavior
                     )
-                },
+                }
             ) {
                 location.value?.weather?.let { weather ->
                     val pollenIndexSource = sourceManager.getPollenIndexSource(
                         if (!location.value!!.pollenSource.isNullOrEmpty()) {
                             location.value!!.pollenSource!!
-                        } else location.value!!.weatherSource
+                        } else {
+                            location.value!!.weatherSource
+                        }
                     )
 
                     LazyColumn(
                         modifier = Modifier.fillMaxHeight(),
-                        contentPadding = it,
+                        contentPadding = it
                     ) {
-                        items(weather.dailyForecastStartingToday.filter { d -> d.pollen?.isIndexValid == true }) { daily ->
+                        items(
+                            weather.dailyForecastStartingToday.filter { d ->
+                                d.pollen?.isIndexValid == true
+                            }
+                        ) { daily ->
                             daily.pollen?.let { pollen ->
                                 Material3CardListItem(
                                     modifier = Modifier.fillMaxWidth()
@@ -170,7 +178,7 @@ class PollenActivity : GeoActivity() {
                                             ).capitalize(this@PollenActivity.currentLocale),
                                             color = DayNightTheme.colors.titleColor,
                                             fontWeight = FontWeight.Bold,
-                                            style = MaterialTheme.typography.titleMedium,
+                                            style = MaterialTheme.typography.titleMedium
                                         )
                                         PollenGrid(
                                             pollen = pollen,

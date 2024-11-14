@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuForecastHeadline(
-    val Text: String?
+    val Text: String?,
 )

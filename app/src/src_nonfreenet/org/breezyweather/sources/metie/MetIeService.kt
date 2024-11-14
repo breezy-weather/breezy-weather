@@ -39,17 +39,21 @@ import javax.inject.Named
  * MET Éireann service
  */
 class MetIeService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, LocationParametersSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "metie"
     override val name = "MET Éireann"
     override val privacyPolicyUrl = "https://www.met.ie/about-us/privacy"
 
     override val color = Color.rgb(0, 48, 95)
+
     // Terms require: copyright + source + license (with link) + disclaimer + mention of modified data
-    override val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a Creative Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/. Met Éireann does not accept any liability whatsoever for any error or omission in the data, their availability, or for any loss or damage arising from their use. This material has been modified from the original by Breezy Weather, mainly to compute or extrapolate missing data."
+    override val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a Creative " +
+        "Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/. Met Éireann " +
+        "does not accept any liability whatsoever for any error or omission in the data, their availability, or for " +
+        "any loss or damage arising from their use. This material has been modified from the original by " +
+        "Breezy Weather, mainly to compute or extrapolate missing data."
 
     private val mApi by lazy {
         client
@@ -64,20 +68,22 @@ class MetIeService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
     }
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             location.latitude,
             location.longitude
         )
 
-        val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getWarnings()
         } else {
             Observable.create { emitter ->
@@ -85,11 +91,8 @@ class MetIeService @Inject constructor(
             }
         }
 
-        return Observable.zip(forecast, warnings) {
-                forecastResult: List<MetIeHourly>,
-                warningsResult: MetIeWarningResult
-            ->
-            convert(forecastResult, warningsResult, location)
+        return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->
+            convert(forecastResult, alertsResult, location)
         }
     }
 
@@ -99,7 +102,7 @@ class MetIeService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -111,8 +114,9 @@ class MetIeService @Inject constructor(
     override val normalsAttribution = null
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mApi.getWarnings().map {
             convertSecondary(it, location)
@@ -121,26 +125,25 @@ class MetIeService @Inject constructor(
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         return mApi.getReverseLocation(
             location.latitude,
             location.longitude
-        )
-            .map {
-                val locationList = mutableListOf<Location>()
-                if (it.city != "NO LOCATION SELECTED") {
-                    locationList.add(convert(location, it))
-                }
-                locationList
+        ).map {
+            val locationList = mutableListOf<Location>()
+            if (it.city != "NO LOCATION SELECTED") {
+                locationList.add(convert(location, it))
             }
+            locationList
+        }
     }
 
     // Location parameters
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>
+        features: List<SecondaryWeatherSourceFeature>,
     ): Boolean {
         if (regionsMapping.containsKey(location.admin2)) return false
 
@@ -151,7 +154,8 @@ class MetIeService @Inject constructor(
     }
 
     override fun requestLocationParameters(
-        context: Context, location: Location
+        context: Context,
+        location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getReverseLocation(
             location.latitude,
@@ -159,7 +163,8 @@ class MetIeService @Inject constructor(
         ).map {
             if (it.city != "NO LOCATION SELECTED" &&
                 !it.county.isNullOrEmpty() &&
-                regionsMapping.containsKey(it.county)) {
+                regionsMapping.containsKey(it.county)
+            ) {
                 mapOf("region" to it.county)
             } else {
                 throw InvalidLocationException()
@@ -169,6 +174,7 @@ class MetIeService @Inject constructor(
 
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
+
         // Last checked: 2024-03-02 https://prodapi.metweb.ie/v2/warnings/regions
         val regionsMapping = mapOf(
             "All Counties" to "EI0",

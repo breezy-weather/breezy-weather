@@ -32,5 +32,5 @@ data class WmoSevereWeatherAlertProperties(
     @Serializable(DateSerializer::class) val effective: Date?,
     @Serializable(DateSerializer::class) val onset: Date?,
     val url: String?,
-    @Serializable(DateSerializer::class) val expires: Date?
+    @Serializable(DateSerializer::class) val expires: Date?,
 )

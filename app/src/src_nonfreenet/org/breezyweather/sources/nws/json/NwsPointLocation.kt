@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NwsPointLocation(
     val properties: NwsPointLocationProperties?,
-    val geometry: NwsPointLocationGeometry?
+    val geometry: NwsPointLocationGeometry?,
 )

@@ -21,7 +21,7 @@ import org.breezyweather.common.bus.EventBus
 
 class ModifyMainSystemBarMessage
 
-abstract class MainModuleFragment: GeoFragment() {
+abstract class MainModuleFragment : GeoFragment() {
 
     protected fun checkToSetSystemBarStyle() {
         EventBus

@@ -32,5 +32,5 @@ data class DmiTimeserie(
     val windGust: Double?,
     val humidity: Double?,
     val pressure: Double?,
-    val visibility: Double?
+    val visibility: Double?,
 )

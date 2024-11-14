@@ -77,7 +77,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 fun AppearanceSettingsScreen(
     context: Context,
     onNavigateTo: (route: String) -> Unit,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
@@ -90,7 +90,7 @@ fun AppearanceSettingsScreen(
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
             )
-        },
+        }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             listPreferenceItem(R.string.settings_appearance_language_title) { id ->
@@ -114,7 +114,7 @@ fun AppearanceSettingsScreen(
                                 .getInstance(context)
                                 .update(darkMode = SettingsManager.getInstance(context).darkMode)
                         }, 300)
-                    },
+                    }
                 )
             }
             switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
@@ -125,7 +125,7 @@ fun AppearanceSettingsScreen(
                     checked = SettingsManager.getInstance(context).dayNightModeForLocations,
                     onValueChanged = {
                         SettingsManager.getInstance(context).dayNightModeForLocations = it
-                    },
+                    }
                 )
             }
             clickablePreferenceItem(
@@ -173,7 +173,7 @@ fun AppearanceSettingsScreen(
                                 Text(
                                     text = stringResource(R.string.settings_icon_packs_get_more),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         },
@@ -186,7 +186,7 @@ fun AppearanceSettingsScreen(
                                 Text(
                                     text = stringResource(R.string.action_close),
                                     color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge,
+                                    style = MaterialTheme.typography.labelLarge
                                 )
                             }
                         },
@@ -194,13 +194,13 @@ fun AppearanceSettingsScreen(
                             Text(
                                 text = stringResource(R.string.settings_icon_packs_title),
                                 color = MaterialTheme.colorScheme.onSurface,
-                                style = MaterialTheme.typography.headlineSmall,
+                                style = MaterialTheme.typography.headlineSmall
                             )
                         },
                         text = {
                             // 3 columns: icon / name / search icon
                             LazyColumn(
-                                modifier = Modifier.fillMaxWidth()/*.fillMaxHeight()*/,
+                                modifier = Modifier.fillMaxWidth(), // .fillMaxHeight()
                                 verticalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
                                 items(listProviderState.value) {
@@ -210,20 +210,20 @@ fun AppearanceSettingsScreen(
                                             Text(it.providerName ?: "")
                                         },
                                         modifier = Modifier.clickable {
-                                        SettingsManager.getInstance(context).iconProvider = it.packageName
+                                            SettingsManager.getInstance(context).iconProvider = it.packageName
                                             iconProviderState.value = it.packageName
                                             dialogIconPackOpenState.value = false
                                         },
                                         leadingContent = {
-                                        it.providerIcon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
-                                                    Image(
-                                                        bitmap,
-                                                        contentDescription = it.providerName,
-                                                        modifier = Modifier
-                                                            .height(42.dp)
-                                                            .width(42.dp)
-                                                    )
-                                                }
+                                            it.providerIcon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
+                                                Image(
+                                                    bitmap,
+                                                    contentDescription = it.providerName,
+                                                    modifier = Modifier
+                                                        .height(42.dp)
+                                                        .width(42.dp)
+                                                )
+                                            }
                                         },
                                         trailingContent = {
                                             IconButton(
@@ -237,7 +237,9 @@ fun AppearanceSettingsScreen(
                                             ) {
                                                 Icon(
                                                     painterResource(R.drawable.ic_search),
-                                                    contentDescription = stringResource(R.string.settings_icon_packs_check_details),
+                                                    contentDescription = stringResource(
+                                                        R.string.settings_icon_packs_check_details
+                                                    ),
                                                     tint = DayNightTheme.colors.titleColor
                                                 )
                                             }

@@ -70,7 +70,12 @@ class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override val remoteViews: RemoteViews
         get() {
             return MultiCityWidgetIMP.getRemoteViews(
-                this, locationList, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
+                this,
+                locationList,
+                cardStyleValueNow,
+                cardAlpha,
+                textColorValueNow,
+                textSize
             )
         }
 

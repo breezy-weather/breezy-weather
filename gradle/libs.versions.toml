@@ -23,7 +23,7 @@ kotlin = "2.0.21"
 kotlinx-coroutines = "1.9.0"
 kotlinx-serialization-json = "1.7.3"
 kotlinx-serialization-xml = "0.90.3"
-ktlint = "12.1.1"
+ktlint = "1.4.1"
 #leakcanary = "2.14"
 lifecycle = "2.8.7"
 lifecycle-extensions = "2.2.0"
@@ -37,6 +37,7 @@ restrictionBypass = "2.2"
 retrofit = "2.11.0"
 rxandroid = "3.0.2"
 rxjava = "3.1.9"
+spotless = "7.0.0.BETA4"
 sqldelight = "2.0.2"
 sqlite = "3.45.0"
 sqlite-android = "2.4.0"
@@ -77,6 +78,7 @@ jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" 
 jjwt-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
 jjwt-orgjson = { group = "io.jsonwebtoken", name = "jjwt-orgjson", version.ref = "jjwt" }
 junit = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+ktlint-core = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest-assertions" }
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
@@ -84,7 +86,6 @@ kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin",
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-serialization-xml-core = { group = "io.github.pdvrieze.xmlutil", name = "core-android", version.ref = "kotlinx-serialization-xml" }
 kotlinx-serialization-xml = { group = "io.github.pdvrieze.xmlutil", name = "serialization-android", version.ref = "kotlinx-serialization-xml" }
-ktlint = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlint" }
 #leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }
@@ -107,6 +108,7 @@ retrofit-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", n
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+spotless-gradle = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
 sqldelight-android-paging = { group = "app.cash.sqldelight", name = "androidx-paging3-extensions", version.ref = "sqldelight" }
 sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions-jvm", version.ref = "sqldelight" }

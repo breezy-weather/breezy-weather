@@ -28,5 +28,5 @@ data class ChinaAlert(
     val alertId: String?,
     val detail: String?,
     val title: String?,
-    val type: String?
+    val type: String?,
 )

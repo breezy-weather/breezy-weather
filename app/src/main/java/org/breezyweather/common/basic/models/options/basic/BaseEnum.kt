@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options._basic
+package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
 
@@ -25,12 +25,12 @@ interface BaseEnum {
     fun getName(context: Context): String
 }
 
-interface VoiceEnum: BaseEnum {
+interface VoiceEnum : BaseEnum {
     val voiceArrayId: Int
     fun getVoice(context: Context): String
 }
 
-interface UnitEnum<T: Number>: VoiceEnum {
+interface UnitEnum<T : Number> : VoiceEnum {
     val convertUnit: (T) -> Double
     fun getValueWithoutUnit(valueInDefaultUnit: T): T
     fun getValueTextWithoutUnit(valueInDefaultUnit: T): String

@@ -53,9 +53,9 @@ class DependenciesActivity : GeoActivity() {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.action_dependencies),
                     onBackPressed = { finish() },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = scrollBehavior
                 )
-            },
+            }
         ) {
             LibrariesContainer(
                 Modifier.padding(it),

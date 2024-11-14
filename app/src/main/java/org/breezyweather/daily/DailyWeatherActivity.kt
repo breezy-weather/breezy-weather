@@ -60,7 +60,9 @@ import javax.inject.Inject
 class DailyWeatherActivity : GeoActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
+
     @Inject lateinit var locationRepository: LocationRepository
+
     @Inject lateinit var weatherRepository: WeatherRepository
 
     private var mToolbar: MaterialToolbar? = null
@@ -101,7 +103,9 @@ class DailyWeatherActivity : GeoActivity() {
         mSubtitle = findViewById<TextView>(R.id.activity_weather_daily_subtitle).also {
             it.visibility = if (CalendarHelper.getAlternateCalendarSetting(this@DailyWeatherActivity) != null) {
                 View.VISIBLE
-            } else View.GONE
+            } else {
+                View.GONE
+            }
         }
         mIndicator = findViewById(R.id.activity_weather_daily_indicator)
         val formattedId = mFormattedId
@@ -153,10 +157,16 @@ class DailyWeatherActivity : GeoActivity() {
                 val pollenIndexSource = sourceManager.getPollenIndexSource(
                     if (!location.pollenSource.isNullOrEmpty()) {
                         location.pollenSource!!
-                    } else location.weatherSource
+                    } else {
+                        location.weatherSource
+                    }
                 )
                 val dailyWeatherAdapter = DailyWeatherAdapter(
-                    this@DailyWeatherActivity, location, daily, pollenIndexSource, 3
+                    this@DailyWeatherActivity,
+                    location,
+                    daily,
+                    pollenIndexSource,
+                    3
                 )
                 val gridLayoutManager = GridLayoutManager(this@DailyWeatherActivity, 3)
                 gridLayoutManager.spanSizeLookup = dailyWeatherAdapter.spanSizeLookup
@@ -167,9 +177,7 @@ class DailyWeatherActivity : GeoActivity() {
             }
 
             val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
-            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(
-                viewList, titleList
-            )
+            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(viewList, titleList)
             pager.pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
             pager.setPageMarginDrawable(
                 ColorDrawable(
@@ -182,39 +190,48 @@ class DailyWeatherActivity : GeoActivity() {
             )
             pager.currentItem = mPosition
             pager.clearOnPageChangeListeners()
-            pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(
-                    position: Int, positionOffset: Float, positionOffsetPixels: Int
-                ) {
-                    // do nothing.
-                }
+            pager.addOnPageChangeListener(
+                object : ViewPager.OnPageChangeListener {
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int,
+                    ) {
+                        // do nothing.
+                    }
 
-                override fun onPageSelected(position: Int) {
-                    selectPage(
-                        weather.dailyForecast[position],
-                        location,
-                        position,
-                        weather.dailyForecast.size
-                    )
-                }
+                    override fun onPageSelected(position: Int) {
+                        selectPage(
+                            weather.dailyForecast[position],
+                            location,
+                            position,
+                            weather.dailyForecast.size
+                        )
+                    }
 
-                override fun onPageScrollStateChanged(state: Int) {
-                    // do nothing.
+                    override fun onPageScrollStateChanged(state: Int) {
+                        // do nothing.
+                    }
                 }
-            })
+            )
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun selectPage(daily: Daily, location: Location, position: Int, size: Int) {
         mTitle?.text = daily.date.getFormattedDate(
-            getLongWeekdayDayMonth(this), location, this
+            getLongWeekdayDayMonth(this),
+            location,
+            this
         ).capitalize(this.currentLocale)
         mSubtitle?.text = daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, this)
-        mToolbar?.contentDescription = mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
+        mToolbar?.contentDescription =
+            mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
         mIndicator?.text = if (daily.isToday(location)) {
             getString(R.string.short_today)
-        } else (position + 1).toString() + "/" + size
+        } else {
+            (position + 1).toString() + "/" + size
+        }
     }
 
     companion object {

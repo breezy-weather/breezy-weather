@@ -37,14 +37,14 @@ data class Wind(
     /**
      * In m/s
      */
-    val gusts: Double? = null
+    val gusts: Double? = null,
 ) : Serializable {
 
     val isValid: Boolean
         get() = speed != null && speed > 0
 
     val arrow: String?
-        get() = when(degree) {
+        get() = when (degree) {
             null -> null
             -1.0 -> "⟳"
             in 22.5..67.5 -> "↙"

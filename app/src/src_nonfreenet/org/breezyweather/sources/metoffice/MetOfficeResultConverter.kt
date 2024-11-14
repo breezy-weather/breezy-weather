@@ -39,7 +39,7 @@ import org.breezyweather.sources.metoffice.json.MetOfficeHourly
 fun convert(
     hourlyForecastResult: MetOfficeForecast<MetOfficeHourly>,
     dailyForecastResult: MetOfficeForecast<MetOfficeDaily>,
-    context: Context
+    context: Context,
 ): WeatherWrapper {
     if (hourlyForecastResult.features.isEmpty() || dailyForecastResult.features.isEmpty()) {
         throw InvalidOrIncompleteDataException()
@@ -53,7 +53,7 @@ fun convert(
 
 private fun getDailyForecast(
     dailyResult: MetOfficeForecast<MetOfficeDaily>,
-    context: Context
+    context: Context,
 ): List<Daily> {
     val feature = dailyResult.features[0] // should only be one feature for this kind of API call
     return feature.properties.timeSeries.map { result ->
@@ -68,21 +68,21 @@ private fun getDailyForecast(
                 weatherCode = dayCode,
                 temperature = Temperature(
                     temperature = result.dayMaxScreenTemperature,
-                    apparentTemperature = result.dayMaxFeelsLikeTemp,
+                    apparentTemperature = result.dayMaxFeelsLikeTemp
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.dayProbabilityOfPrecipitation?.toDouble(),
                     rain = result.dayProbabilityOfRain?.toDouble(),
                     snow = result.dayProbabilityOfSnow?.toDouble(),
                     thunderstorm = result.dayProbabilityOfSferics?.toDouble()
-                ),
+                )
             ),
             night = HalfDay(
                 weatherText = nightText,
                 weatherCode = nightCode,
                 temperature = Temperature(
                     temperature = result.nightMinScreenTemperature,
-                    apparentTemperature = result.nightMinFeelsLikeTemp,
+                    apparentTemperature = result.nightMinFeelsLikeTemp
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.nightProbabilityOfPrecipitation?.toDouble(),
@@ -101,7 +101,7 @@ private fun getDailyForecast(
  */
 private fun getHourlyForecast(
     hourlyResult: MetOfficeForecast<MetOfficeHourly>,
-    context: Context
+    context: Context,
 ): List<HourlyWrapper> {
     val feature = hourlyResult.features[0] // should only be one feature for this kind of API call
     return feature.properties.timeSeries.map { result ->
@@ -113,14 +113,14 @@ private fun getHourlyForecast(
             weatherCode = weatherCode,
             temperature = Temperature(
                 temperature = result.screenTemperature,
-                apparentTemperature = result.feelsLikeTemperature,
+                apparentTemperature = result.feelsLikeTemperature
             ),
             precipitation = Precipitation(
                 total = result.totalPrecipAmount,
-                snow = result.totalSnowAmount,
+                snow = result.totalSnowAmount
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.probOfPrecipitation?.toDouble(),
+                total = result.probOfPrecipitation?.toDouble()
             ),
             wind = Wind(
                 degree = result.windDirectionFrom10m?.toDouble(),
@@ -128,7 +128,7 @@ private fun getHourlyForecast(
                 gusts = result.windGustSpeed10m
             ),
             uV = UV(
-                index = result.uvIndex?.toDouble(),
+                index = result.uvIndex?.toDouble()
             ),
             relativeHumidity = result.screenRelativeHumidity,
             dewPoint = result.screenDewPointTemperature,
@@ -140,7 +140,7 @@ private fun getHourlyForecast(
 
 private fun convertWeatherCode(
     significantWeatherCode: Int?,
-    context: Context
+    context: Context,
 ): Pair<String, WeatherCode>? {
     return when (significantWeatherCode) {
         -1 -> Pair("Trace rain", WeatherCode.CLOUDY)

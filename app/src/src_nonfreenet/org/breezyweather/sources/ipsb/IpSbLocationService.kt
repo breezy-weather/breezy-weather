@@ -28,7 +28,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class IpSbLocationService @Inject constructor(
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), LocationSource {
 
     override val id = "ipsb"

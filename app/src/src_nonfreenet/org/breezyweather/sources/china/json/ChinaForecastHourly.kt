@@ -23,5 +23,5 @@ data class ChinaForecastHourly(
     val desc: String?,
     val temperature: ChinaValueListInt?,
     val weather: ChinaValueListInt?,
-    val wind: ChinaHourlyWind?
+    val wind: ChinaHourlyWind?,
 )

@@ -18,13 +18,13 @@ package org.breezyweather.common.basic.models.options
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options._basic.BaseEnum
-import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.basic.models.options.basic.Utils
 
 enum class UpdateInterval(
     override val id: String,
-    val intervalInHour: Float?
-): BaseEnum {
+    val intervalInHour: Float?,
+) : BaseEnum {
 
     INTERVAL_NEVER("never", null),
     INTERVAL_0_30("0:30", 0.5f),
@@ -34,12 +34,13 @@ enum class UpdateInterval(
     INTERVAL_3_00("3:00", 3.0f),
     INTERVAL_6_00("6:00", 6.0f),
     INTERVAL_12_00("12:00", 12.0f),
-    INTERVAL_24_00("24:00", 24.0f);
+    INTERVAL_24_00("24:00", 24.0f),
+    ;
 
     companion object {
 
         fun getInstance(
-            value: String
+            value: String,
         ) = UpdateInterval.entries.firstOrNull {
             it.id == value
         } ?: INTERVAL_1_30

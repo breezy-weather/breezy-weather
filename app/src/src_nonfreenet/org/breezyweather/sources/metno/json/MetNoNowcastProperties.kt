@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MetNoNowcastProperties(
-    val timeseries: List<MetNoForecastTimeseries>?
+    val timeseries: List<MetNoForecastTimeseries>?,
 )

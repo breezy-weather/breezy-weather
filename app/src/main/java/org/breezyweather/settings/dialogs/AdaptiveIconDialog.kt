@@ -36,7 +36,7 @@ object AdaptiveIconDialog {
         context: Context,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val view = LayoutInflater
             .from(context)
@@ -53,7 +53,7 @@ object AdaptiveIconDialog {
         view: View,
         code: WeatherCode,
         daytime: Boolean,
-        provider: ResourceProvider
+        provider: ResourceProvider,
     ) {
         val iconView = view.findViewById<AdaptiveIconView>(R.id.dialog_adaptive_icon_icon)
         iconView.icon = AdaptiveIcon(

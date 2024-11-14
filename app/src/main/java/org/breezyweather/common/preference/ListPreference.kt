@@ -24,5 +24,5 @@ class ListPreference(
     @ArrayRes val valueArrayId: Int,
     @ArrayRes val nameArrayId: Int,
     val selectedKey: String,
-    val onValueChanged: (String) -> Unit
+    val onValueChanged: (String) -> Unit,
 ) : Preference

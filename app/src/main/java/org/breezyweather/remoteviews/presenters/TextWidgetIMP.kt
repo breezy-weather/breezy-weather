@@ -45,13 +45,20 @@ import java.util.Date
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
     fun updateWidgetView(
-        context: Context, location: Location?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        pollenIndexSource: PollenIndexSource?,
     ) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_text_setting))
         val views = getRemoteViews(
-            context, location,
-            config.textColor, config.textSize, config.alignEnd,
-            config.hideSubtitle, config.subtitleData, pollenIndexSource
+            context,
+            location,
+            config.textColor,
+            config.textSize,
+            config.alignEnd,
+            config.hideSubtitle,
+            config.subtitleData,
+            pollenIndexSource
         )
         AppWidgetManager.getInstance(context).updateAppWidget(
             ComponentName(context, WidgetTextProvider::class.java),
@@ -60,9 +67,14 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location?,
-        textColor: String?, textSize: Int, alignEnd: Boolean,
-        hideHeader: Boolean, subtitleData: String?, pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location?,
+        textColor: String?,
+        textSize: Int,
+        alignEnd: Boolean,
+        hideHeader: Boolean,
+        subtitleData: String?,
+        pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val views = RemoteViews(
             context.packageName,
@@ -107,8 +119,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 setViewVisibility(R.id.widget_text_temperature, View.VISIBLE)
                 setTextViewText(
                     R.id.widget_text_weather,
-                    weather.current?.weatherText
-                        ?: context.getString(R.string.null_data_text)
+                    weather.current?.weatherText ?: context.getString(R.string.null_data_text)
                 )
                 setTextViewText(
                     R.id.widget_text_temperature,
@@ -158,50 +169,51 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun getTimeText(
-        context: Context, location: Location, weather: Weather,
-        subtitleData: String?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        pollenIndexSource: PollenIndexSource?
+        context: Context,
+        location: Location,
+        weather: Weather,
+        subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
+        speedUnit: SpeedUnit,
+        pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
-            "time" -> weather.base.refreshTime?.getFormattedTime(
-                location, context, context.is12Hour
-            )
+            "time" -> weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null &&
-                    airQuality.getName(context) != null) {
-                    (airQuality.getName(context, null)
-                        + " ("
-                        + airQuality.getIndex(null)
-                        + ")")
-                } else null
+                    airQuality.getName(context) != null
+                ) {
+                    airQuality.getName(context, null) + " (" + airQuality.getIndex(null) + ")"
+                } else {
+                    null
+                }
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                (context.getString(R.string.temperature_feels_like)
-                    + " "
-                    + temperatureUnit.getValueText(context, it, 0)
-                )
+                context.getString(R.string.temperature_feels_like) +
+                    " " +
+                    temperatureUnit.getValueText(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }
     }
 
-    private fun setOnClickPendingIntent(context: Context, views: RemoteViews, location: Location) {
+    private fun setOnClickPendingIntent(
+        context: Context,
+        views: RemoteViews,
+        location: Location,
+    ) {
         // headerContainer.
         views.setOnClickPendingIntent(
             R.id.widget_text_container,
-            getWeatherPendingIntent(
-                context, location, Widgets.TEXT_PENDING_INTENT_CODE_WEATHER
-            )
+            getWeatherPendingIntent(context, location, Widgets.TEXT_PENDING_INTENT_CODE_WEATHER)
         )
 
         // date.
         views.setOnClickPendingIntent(
             R.id.widget_text_date,
-            getCalendarPendingIntent(
-                context, Widgets.TEXT_PENDING_INTENT_CODE_CALENDAR
-            )
+            getCalendarPendingIntent(context, Widgets.TEXT_PENDING_INTENT_CODE_CALENDAR)
         )
     }
 }

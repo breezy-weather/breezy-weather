@@ -29,5 +29,5 @@ data class MetIeWarning(
     @Serializable(DateSerializer::class) val expiry: Date?,
     val headline: String?,
     val description: String?,
-    val regions: List<String>
+    val regions: List<String>,
 )

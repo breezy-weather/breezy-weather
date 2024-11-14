@@ -40,8 +40,7 @@ import java.io.FileReader
 import javax.inject.Inject
 
 @HiltAndroidApp
-class BreezyWeather : Application(),
-    Configuration.Provider {
+class BreezyWeather : Application(), Configuration.Provider {
 
     companion object {
 
@@ -123,7 +122,7 @@ class BreezyWeather : Application(),
 
     private fun setDayNightMode() {
         updateDayNightMode(ThemeManager.getInstance(this).uiMode.value!!)
-        
+
         ThemeManager.getInstance(this).uiMode.observeForever {
             updateDayNightMode(it)
         }
@@ -142,7 +141,9 @@ class BreezyWeather : Application(),
                         else -> UiModeManager.MODE_NIGHT_YES
                     }
                 )
-        } else AppCompatDelegate.setDefaultNightMode(dayNightMode)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(dayNightMode)
+        }
     }
 
     private fun setupNotificationChannels() {

@@ -41,7 +41,7 @@ class HourlyVisibilityAdapter(
     activity: GeoActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: DistanceUnit
+    unit: DistanceUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mVisibilityUnit: DistanceUnit = unit
@@ -164,8 +164,7 @@ class HourlyVisibilityAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_trend_hourly, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
     }
 

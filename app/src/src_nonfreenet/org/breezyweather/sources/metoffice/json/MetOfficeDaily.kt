@@ -52,5 +52,5 @@ data class MetOfficeDaily(
     val dayProbabilityOfHail: Int?,
     val nightProbabilityOfHail: Int?,
     val dayProbabilityOfSferics: Int?,
-    val nightProbabilityOfSferics: Int?
+    val nightProbabilityOfSferics: Int?,
 )

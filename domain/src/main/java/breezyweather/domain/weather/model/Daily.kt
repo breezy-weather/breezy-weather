@@ -37,5 +37,5 @@ data class Daily(
     val pollen: Pollen? = null,
     val uV: UV? = null,
     // Expressed in hours:
-    val sunshineDuration: Double? = null
+    val sunshineDuration: Double? = null,
 ) : Serializable

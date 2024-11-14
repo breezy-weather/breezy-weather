@@ -29,8 +29,7 @@ import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.domain.weather.model.getUVDescription
 
 class UVHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
-    LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_weather_daily_uv, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.item_weather_daily_uv, parent, false)
 ) {
     private val mIcon: AppCompatImageView = itemView.findViewById(R.id.item_weather_daily_uv_icon)
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_uv_title)

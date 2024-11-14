@@ -28,5 +28,5 @@ import java.util.Date
 data class MfForecastResult(
     val geometry: MfGeometry?,
     val properties: MfForecastProperties?,
-    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date?
+    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date?,
 )

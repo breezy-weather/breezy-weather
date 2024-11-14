@@ -33,5 +33,5 @@ data class OpenMeteoWeatherCurrent(
     @SerialName("pressure_msl") val pressureMsl: Double?,
     @SerialName("cloudcover") val cloudCover: Int?,
     val visibility: Double?,
-    val time: Long
+    val time: Long,
 )

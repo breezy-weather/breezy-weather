@@ -28,6 +28,6 @@ interface WmoSevereWeatherXmlApi {
 
     @GET
     fun getAlert(
-        @Url capUrl: String
+        @Url capUrl: String,
     ): Call<CapAlert>
 }

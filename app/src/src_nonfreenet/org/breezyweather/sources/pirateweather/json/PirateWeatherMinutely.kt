@@ -24,5 +24,5 @@ data class PirateWeatherMinutely(
     val precipType: String?,
     val precipIntensity: Double?,
     val precipProbability: Double?,
-    val precipIntensityError: Double?
+    val precipIntensityError: Double?,
 )

@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MgmHourlyForecastResult(
-    @SerialName("tahmin") val forecast: List<MgmHourlyForecast>? = null
+    @SerialName("tahmin") val forecast: List<MgmHourlyForecast>? = null,
 )

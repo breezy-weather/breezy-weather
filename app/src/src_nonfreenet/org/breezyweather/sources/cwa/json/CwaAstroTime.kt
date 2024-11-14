@@ -25,5 +25,5 @@ data class CwaAstroTime(
     @SerialName("SunRiseTime") val sunRiseTime: String?,
     @SerialName("SunSetTime") val sunSetTime: String?,
     @SerialName("MoonRiseTime") val moonRiseTime: String?,
-    @SerialName("MoonSetTime") val moonSetTime: String?
+    @SerialName("MoonSetTime") val moonSetTime: String?,
 )

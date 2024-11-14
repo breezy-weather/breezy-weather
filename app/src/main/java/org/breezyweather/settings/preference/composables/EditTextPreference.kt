@@ -65,7 +65,7 @@ fun EditTextPreferenceView(
     enabled = enabled,
     regex = regex,
     regexError = regexError,
-    onValueChanged = onValueChanged,
+    onValueChanged = onValueChanged
 )
 
 @Composable
@@ -92,16 +92,16 @@ fun EditTextPreferenceView(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = { dialogOpenState.value = true },
-                    enabled = enabled,
+                    enabled = enabled
                 )
                 .padding(dimensionResource(R.dimen.normal_margin)),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Center
         ) {
             Column {
                 Text(
                     text = title,
                     color = DayNightTheme.colors.titleColor,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium
                 )
                 val currentSummary = summary(LocalContext.current, contentState.value)
                 if (currentSummary?.isNotEmpty() == true) {
@@ -109,7 +109,7 @@ fun EditTextPreferenceView(
                     Text(
                         text = currentSummary,
                         color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }
@@ -124,7 +124,7 @@ fun EditTextPreferenceView(
                 Text(
                     text = title,
                     color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall
                 )
             },
             text = {
@@ -143,7 +143,9 @@ fun EditTextPreferenceView(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = if (!regexError.isNullOrEmpty()) {
                                     regexError
-                                } else stringResource(R.string.settings_invalid_syntax),
+                                } else {
+                                    stringResource(R.string.settings_invalid_syntax)
+                                },
                                 color = MaterialTheme.colorScheme.error
                             )
                         }
@@ -157,7 +159,7 @@ fun EditTextPreferenceView(
                         disabledBorderColor = MaterialTheme.colorScheme.onSurface.copy(
                             alpha = 0.38f
                         ),
-                        errorBorderColor = MaterialTheme.colorScheme.error,
+                        errorBorderColor = MaterialTheme.colorScheme.error
                     )
                 )
             },
@@ -184,7 +186,7 @@ fun EditTextPreferenceView(
                     Text(
                         text = stringResource(R.string.action_cancel),
                         color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
+                        style = MaterialTheme.typography.labelLarge
                     )
                 }
             }

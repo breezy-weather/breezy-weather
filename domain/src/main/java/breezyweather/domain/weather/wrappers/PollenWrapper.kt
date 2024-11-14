@@ -22,5 +22,5 @@ import java.util.Date
 data class PollenWrapper(
     val current: Pollen? = null, // TODO: Not supported yet
     val dailyForecast: Map<Date, Pollen>? = null,
-    val hourlyForecast: Map<Date, Pollen>? = null
+    val hourlyForecast: Map<Date, Pollen>? = null,
 )

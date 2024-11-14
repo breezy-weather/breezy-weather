@@ -34,7 +34,9 @@ import kotlin.math.abs
 import kotlin.math.pow
 
 class SlidingItemContainerLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
 ) : FrameLayout(context, attrs, defStyleAttr) {
     private val mIcon: AppCompatImageView
     private var mChild: View?

@@ -49,7 +49,7 @@ fun Date.getRelativeTime(context: Context): String {
             Long::class.javaPrimitiveType,
             Long::class.javaPrimitiveType,
             Long::class.javaPrimitiveType,
-            Int::class.javaPrimitiveType,
+            Int::class.javaPrimitiveType
         )
         return getRelativeTimeSpanStringMethod.invoke(
             null,
@@ -82,69 +82,74 @@ fun Date.getFormattedDate(
     pattern: String,
     location: Location? = null,
     context: Context? = null,
-    withBestPattern: Boolean = false
+    withBestPattern: Boolean = false,
 ): String {
     val locale = context?.currentLocale ?: Locale("en", "001")
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat(
             if (withBestPattern) {
                 DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
-            } else pattern,
+            } else {
+                pattern
+            },
             locale
         ).apply {
             timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         }.format(this)
     } else {
-        this.getFormattedDate(
-            pattern, location?.javaTimeZone, locale
-        )
+        this.getFormattedDate(pattern, location?.javaTimeZone, locale)
     }
 }
 
 fun Date.getFormattedTime(
     location: Location? = null,
     context: Context?,
-    twelveHour: Boolean
+    twelveHour: Boolean,
 ): String {
     return if (twelveHour) {
         this.getFormattedDate("h:mm aa", location, context)
-    } else this.getFormattedDate("HH:mm", location, context)
+    } else {
+        this.getFormattedDate("HH:mm", location, context)
+    }
 }
 
 fun Date.getFormattedShortDayAndMonth(
     location: Location,
-    context: Context?
+    context: Context?,
 ): String {
     return this.getFormattedDate("MM-dd", location, context, withBestPattern = true)
 }
 
 fun Date.getFormattedMediumDayAndMonth(
     location: Location,
-    context: Context?
+    context: Context?,
 ): String {
     val locale = context?.currentLocale ?: Locale("en", "001")
-    return this.getFormattedDate("d MMM", location, context, withBestPattern = true)
-        .capitalize(locale)
+    return this.getFormattedDate("d MMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
 fun getShortWeekdayDayMonth(
-    context: Context?
+    context: Context?,
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         DateTimePatternGenerator.getInstance(
             context?.currentLocale ?: Locale("en", "001")
         ).getBestPattern("EEE d MMM")
-    } else "EEE d MMM"
+    } else {
+        "EEE d MMM"
+    }
 }
 
 fun getLongWeekdayDayMonth(
-    context: Context?
+    context: Context?,
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         DateTimePatternGenerator.getInstance(
             context?.currentLocale ?: Locale("en", "001")
         ).getBestPattern("EEEE d MMMM")
-    } else "EEEE d MMMM"
+    } else {
+        "EEEE d MMMM"
+    }
 }
 
 fun Date.getWeek(location: Location, context: Context?): String {
@@ -153,9 +158,8 @@ fun Date.getWeek(location: Location, context: Context?): String {
 }
 
 fun Date.getHour(location: Location, context: Context): String {
-    return getFormattedDate(
-        if (context.is12Hour) "h aa" else "H", location, context
-    ) + if (!context.is12Hour) context.getString(R.string.of_clock) else ""
+    return getFormattedDate(if (context.is12Hour) "h aa" else "H", location, context) +
+        if (!context.is12Hour) context.getString(R.string.of_clock) else ""
 }
 
 fun Date.getHourIn24Format(location: Location): String {
@@ -166,7 +170,8 @@ fun Date.getHourIn24Format(location: Location): String {
  * See CalendarHelper.supportedCalendars for full list of supported calendars
  */
 fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
-    location: Location? = null, context: Context
+    location: Location? = null,
+    context: Context,
 ): String? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         val calendarId = CalendarHelper.getAlternateCalendarSetting(context)
@@ -191,7 +196,13 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
                 ).apply {
                     timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
                 }.format(this)
-            } else null
-        } else null
-    } else null
+            } else {
+                null
+            }
+        } else {
+            null
+        }
+    } else {
+        null
+    }
 }

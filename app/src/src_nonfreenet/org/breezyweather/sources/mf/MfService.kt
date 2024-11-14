@@ -57,9 +57,8 @@ import javax.inject.Named
  */
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource,
-    ReverseGeocodingSource, ConfigurableSource {
+    @Named("JsonClient") client: Retrofit.Builder,
+) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "mf"
     override val name = "Météo-France"
@@ -84,7 +83,9 @@ class MfService @Inject constructor(
     )
 
     override fun requestWeather(
-        context: Context, location: Location, ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -177,19 +178,13 @@ class MfService @Inject constructor(
             }
         }
 
-        return Observable.zip(
-            current,
-            forecast,
-            ephemeris,
-            rain,
-            warnings,
-            normals
-        ) { mfCurrentResult: MfCurrentResult,
-            mfForecastResult: MfForecastResult,
-            mfEphemerisResult: MfEphemerisResult,
-            mfRainResult: MfRainResult,
-            mfWarningResults: MfWarningsResult,
-            mfNormalsResult: MfNormalsResult
+        return Observable.zip(current, forecast, ephemeris, rain, warnings, normals) {
+                mfCurrentResult: MfCurrentResult,
+                mfForecastResult: MfForecastResult,
+                mfEphemerisResult: MfEphemerisResult,
+                mfRainResult: MfRainResult,
+                mfWarningResults: MfWarningsResult,
+                mfNormalsResult: MfNormalsResult,
             ->
             convert(
                 location,
@@ -212,24 +207,32 @@ class MfService @Inject constructor(
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature
+        feature: SecondaryWeatherSourceFeature,
     ): Boolean {
         return isConfigured &&
-            (feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true)
-            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true)
-            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true) &&
-                !location.admin2Code.isNullOrEmpty()
-            ) || (feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true)
-            ) // Technically, works anywhere but as a France-focused source, we don’t want the whole
-            // world to use this source, as currently the only alternative is AccuWeather
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty()
+                ) ||
+            (
+                // Technically, works anywhere but as a France-focused source, we don’t want the whole
+                // world to use this source, as currently the only alternative is AccuWeather
+                feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                )
     }
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
@@ -239,8 +242,9 @@ class MfService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override fun requestSecondaryWeather(
-        context: Context, location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>
+        context: Context,
+        location: Location,
+        requestedFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -308,37 +312,41 @@ class MfService @Inject constructor(
             }
         }
 
-        return Observable.zip(
-            current,
-            rain,
-            warnings,
-            normals
-        ) { mfCurrentResult: MfCurrentResult,
-            mfRainResult: MfRainResult,
-            mfWarningResults: MfWarningsResult,
-            mfNormalsResult: MfNormalsResult
+        return Observable.zip(current, rain, warnings, normals) {
+                mfCurrentResult: MfCurrentResult,
+                mfRainResult: MfRainResult,
+                mfWarningResults: MfWarningsResult,
+                mfNormalsResult: MfNormalsResult,
             ->
             convertSecondary(
                 location,
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
                     mfCurrentResult
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
                     mfRainResult
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     mfWarningResults
-                } else null,
+                } else {
+                    null
+                },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                     mfNormalsResult
-                } else null
+                } else {
+                    null
+                }
             )
         }
     }
 
     override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location
+        location: Location,
     ): Observable<List<Location>> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
