@@ -49,6 +49,7 @@ import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.geosphereat.GeoSphereAtService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.hko.HkoService
+import org.breezyweather.sources.imd.ImdService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.meteoam.MeteoAmService
@@ -85,6 +86,7 @@ class SourceManager @Inject constructor(
     geoSphereAtService: GeoSphereAtService,
     hereService: HereService,
     hkoService: HkoService,
+    imdService: ImdService,
     imsService: ImsService,
     ipSbService: IpSbLocationService,
     meteoAmService: MeteoAmService,
@@ -142,6 +144,7 @@ class SourceManager @Inject constructor(
         ecccService,
         geoSphereAtService,
         hkoService,
+        imdService,
         imsService,
         meteoAmService,
         metIeService,
