@@ -107,10 +107,10 @@
             </intent-filter>
             <intent-filter>
                 <!--<action android:name="org.breezyweather.ICON_PROVIDER" />-->
-                <action android:name="org.breezyweather.Main" />
-                <action android:name="org.breezyweather.ACTION_SHOW_ALERTS" />
-                <action android:name="org.breezyweather.ACTION_SHOW_DAILY_FORECAST" />
-                <action android:name="org.breezyweather.ACTION_MANAGEMENT" />
+                <action android:name="${applicationId}.Main" />
+                <action android:name="${applicationId}.ACTION_SHOW_ALERTS" />
+                <action android:name="${applicationId}.ACTION_SHOW_DAILY_FORECAST" />
+                <action android:name="${applicationId}.ACTION_MANAGEMENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

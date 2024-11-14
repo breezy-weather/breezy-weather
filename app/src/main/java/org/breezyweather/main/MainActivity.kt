@@ -50,6 +50,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.breezyweather.BuildConfig
 import org.breezyweather.Migrations
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
@@ -91,14 +92,14 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     companion object {
         const val SEARCH_ACTIVITY = 4
 
-        const val ACTION_MAIN = "org.breezyweather.Main"
+        const val ACTION_MAIN = "${BuildConfig.APPLICATION_ID}.Main"
         const val KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID"
         const val KEY_MAIN_ACTIVITY_ALERT_ID = "MAIN_ACTIVITY_ALERT_ID"
 
-        const val ACTION_MANAGEMENT = "org.breezyweather.ACTION_MANAGEMENT"
-        const val ACTION_SHOW_ALERTS = "org.breezyweather.ACTION_SHOW_ALERTS"
+        const val ACTION_MANAGEMENT = "${BuildConfig.APPLICATION_ID}.ACTION_MANAGEMENT"
+        const val ACTION_SHOW_ALERTS = "${BuildConfig.APPLICATION_ID}.ACTION_SHOW_ALERTS"
 
-        const val ACTION_SHOW_DAILY_FORECAST = "org.breezyweather.ACTION_SHOW_DAILY_FORECAST"
+        const val ACTION_SHOW_DAILY_FORECAST = "${BuildConfig.APPLICATION_ID}.ACTION_SHOW_DAILY_FORECAST"
         const val KEY_DAILY_INDEX = "DAILY_INDEX"
 
         private const val TAG_FRAGMENT_HOME = "fragment_main"
