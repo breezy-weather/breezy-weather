@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add invalid version comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         if: ${{ github.event.label.name == 'Invalid version' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,7 +24,7 @@ jobs:
             It looks like the version in which you encounter the issue is not the [latest version](https://github.com/breezy-weather/breezy-weather/releases) of Breezy Weather. The latest version contains potential fixes and troubleshooting improvements, so we kindly ask you to update first. If you are getting updates from the F-Droid default repo, you don’t need to uninstall your currently installed version. If you can still reproduce your issue after updating, please re-open a new issue.
 
       - name: Add needs debug logs comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         if: ${{ github.event.label.name == 'Needs debug logs' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
