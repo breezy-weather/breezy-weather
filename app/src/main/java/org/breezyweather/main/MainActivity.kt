@@ -36,6 +36,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -45,7 +46,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import breezyweather.domain.location.model.Location
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -59,6 +59,7 @@ import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.ui.composables.AlertDialogConfirmOnly
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -357,26 +358,38 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                         if (showLocationPermissionDialog &&
                             !viewModel.statementManager.isLocationPermissionDialogAlreadyShown
                         ) {
-                            dialogPerLocationAlert = MaterialAlertDialogBuilder(this@MainActivity)
-                                .setTitle(R.string.dialog_permissions_location_title)
-                                .setMessage(R.string.dialog_permissions_location_content)
-                                .setPositiveButton(R.string.action_next) { _, _ ->
-                                    // mark declared.
-                                    viewModel.statementManager.setLocationPermissionDialogAlreadyShown()
+                            val dialogLocationPermissionOpenState = mutableStateOf(true)
+                            binding.locationPermissionDialog.setContent {
+                                BreezyWeatherTheme(
+                                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                                ) {
+                                    if (dialogLocationPermissionOpenState.value) {
+                                        AlertDialogConfirmOnly(
+                                            title = R.string.dialog_permissions_location_title,
+                                            content = R.string.dialog_permissions_location_content,
+                                            confirmButtonText = R.string.action_next,
+                                            onConfirm = {
+                                                // mark declared.
+                                                viewModel.statementManager
+                                                    .setLocationPermissionDialogAlreadyShown()
 
-                                    val request = viewModel.locationPermissionsRequest.value
-                                    if (request != null &&
-                                        request.permissionList.isNotEmpty() &&
-                                        request.target != null
-                                    ) {
-                                        requestPermissions(
-                                            request.permissionList.toTypedArray(),
-                                            0
+                                                val request = viewModel.locationPermissionsRequest.value
+                                                if (request != null &&
+                                                    request.permissionList.isNotEmpty() &&
+                                                    request.target != null
+                                                ) {
+                                                    requestPermissions(
+                                                        request.permissionList.toTypedArray(),
+                                                        0
+                                                    )
+                                                }
+
+                                                dialogLocationPermissionOpenState.value = false
+                                            }
                                         )
                                     }
                                 }
-                                .setCancelable(false)
-                                .show()
+                            }
                         } else {
                             requestPermissions(it.permissionList.toTypedArray(), 0)
                         }
@@ -570,20 +583,31 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown &&
             !this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
-            MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.dialog_permissions_location_background_title)
-                .setMessage(R.string.dialog_permissions_location_background_content)
-                .setPositiveButton(R.string.action_set) { _, _ ->
-                    // mark background location permission declared.
-                    viewModel.statementManager.setBackgroundLocationPermissionDialogAlreadyShown()
-                    // request background location permission.
-                    requestPermissions(
-                        arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                        0
-                    )
+            val dialogBackgroundLocationPermissionOpenState = mutableStateOf(true)
+            binding.locationPermissionDialog.setContent {
+                BreezyWeatherTheme(
+                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                ) {
+                    if (dialogBackgroundLocationPermissionOpenState.value) {
+                        AlertDialogConfirmOnly(
+                            title = R.string.dialog_permissions_location_background_title,
+                            content = R.string.dialog_permissions_location_background_content,
+                            confirmButtonText = R.string.action_set,
+                            onConfirm = {
+                                // mark background location permission declared.
+                                viewModel.statementManager
+                                    .setBackgroundLocationPermissionDialogAlreadyShown()
+                                // request background location permission.
+                                requestPermissions(
+                                    arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                                    0
+                                )
+                                dialogBackgroundLocationPermissionOpenState.value = false
+                            }
+                        )
+                    }
                 }
-                .setCancelable(false)
-                .show()
+            }
         }
         viewModel.updateWithUpdatingChecking(
             request.triggeredByUser,
@@ -669,10 +693,13 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             ?: findManagementFragment()?.let { !it.isRemoving }
             ?: false
 
-    private val isManagementFragmentVisible: Boolean
+    val isManagementFragmentVisible: Boolean
         get() = binding.drawerLayout?.isUnfold
             ?: findManagementFragment()?.isVisible
             ?: false
+
+    val isDrawerLayoutVisible: Boolean
+        get() = binding.drawerLayout?.isVisible ?: false
 
     fun setManagementFragmentVisibility(visible: Boolean) {
         val drawerLayout = binding.drawerLayout

@@ -35,6 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/location_permission_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </org.breezyweather.common.ui.widgets.DrawerLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

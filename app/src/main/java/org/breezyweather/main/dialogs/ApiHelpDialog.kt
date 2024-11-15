@@ -16,17 +16,24 @@
 
 package org.breezyweather.main.dialogs
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.breezyweather.BuildConfig
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.main.MainActivity
+import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 
 object ApiHelpDialog {
     fun show(
@@ -36,26 +43,67 @@ object ApiHelpDialog {
     ) {
         val view = LayoutInflater
             .from(activity)
-            .inflate(R.layout.dialog_api_help, null, false)
-        view.findViewById<TextView>(R.id.dialog_api_help_content).text = activity.getString(content)
-        initWidget(
-            activity,
-            view,
-            MaterialAlertDialogBuilder(activity)
-                .setTitle(title)
-                .setView(view)
-                .show()
-        )
-    }
+            .inflate(R.layout.dialog_api_help, activity.findViewById(android.R.id.content), true)
 
-    @SuppressLint("SetTextI18n")
-    private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
-        if (BuildConfig.FLAVOR != "freenet") {
-            view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener { IntentHelper.startWeatherProviderSettingsActivity(activity) }
+        val composeView = view.findViewById<ComposeView>(R.id.api_help_dialog)
+        val dialogOpenState = mutableStateOf(true)
+        val isDaylight = if (activity is MainActivity &&
+            (!activity.isManagementFragmentVisible || activity.isDrawerLayoutVisible)
+        ) { // only use the location-based daylight setting when the home fragment is visible
+            activity.isDaylight
         } else {
-            view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-                .visibility = View.GONE
+            null
+        }
+
+        composeView.setContent {
+            BreezyWeatherTheme(
+                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+            ) {
+                if (dialogOpenState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            dialogOpenState.value = false
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    IntentHelper.startWeatherProviderSettingsActivity(activity)
+                                    dialogOpenState.value = false
+                                }
+                            ) {
+                                Text(stringResource(id = R.string.action_settings))
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(
+                                onClick = {
+                                    dialogOpenState.value = false
+                                }
+                            ) {
+                                Text(stringResource(id = R.string.action_cancel))
+                            }
+                        },
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_factory),
+                                contentDescription = null
+                            )
+                        },
+                        title = {
+                            Text(
+                                stringResource(title)
+                            )
+                        },
+                        text = {
+                            Text(
+                                stringResource(content)
+                            )
+                        },
+                        textContentColor = DayNightTheme.colors.bodyColor,
+                        iconContentColor = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
         }
     }
 }

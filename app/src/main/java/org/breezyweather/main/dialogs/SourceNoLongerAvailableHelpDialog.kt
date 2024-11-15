@@ -16,15 +16,26 @@
 
 package org.breezyweather.main.dialogs
 
-import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.core.content.ContextCompat.getString
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.main.MainActivity
+import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 
 object SourceNoLongerAvailableHelpDialog {
     fun show(
@@ -33,22 +44,69 @@ object SourceNoLongerAvailableHelpDialog {
     ) {
         val view = LayoutInflater
             .from(activity)
-            .inflate(R.layout.dialog_source_no_longer_available_help, null, false)
-        initWidget(
-            activity,
-            view,
-            MaterialAlertDialogBuilder(activity)
-                .setTitle(title)
-                .setView(view)
-                .show()
-        )
+            .inflate(R.layout.dialog_source_no_longer_available_help, activity.findViewById(android.R.id.content), true)
+
+        val composeView = view.findViewById<ComposeView>(R.id.source_help_dialog)
+        val dialogOpenState = mutableStateOf(true)
+        val isDaylight = if (activity is MainActivity &&
+            (!activity.isManagementFragmentVisible || activity.isDrawerLayoutVisible)
+        ) { // only use the location-based daylight setting when the home fragment is visible
+            activity.isDaylight
+        } else {
+            null
+        }
+        val helpText = buildHelpText(view.context)
+
+        composeView.setContent {
+            BreezyWeatherTheme(
+                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+            ) {
+                if (dialogOpenState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            dialogOpenState.value = false
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    dialogOpenState.value = false
+                                }
+                            ) {
+                                Text(stringResource(R.string.action_close))
+                            }
+                        },
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_factory),
+                                contentDescription = null
+                            )
+                        },
+                        title = {
+                            Text(
+                                stringResource(title)
+                            )
+                        },
+                        text = {
+                            Text(
+                                helpText
+                            )
+                        },
+                        textContentColor = DayNightTheme.colors.bodyColor,
+                        iconContentColor = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
-        if (BuildConfig.FLAVOR != "freenet") {
-            view.findViewById<View>(R.id.dialog_message_help_freenetContainer)
-                .visibility = View.GONE
+    private fun buildHelpText(context: Context): String {
+        return buildString {
+            @Suppress("KotlinConstantConditions")
+            if (BuildConfig.FLAVOR == "freenet") {
+                append(getString(context, R.string.message_source_not_installed_error_content_tip_1))
+                append("\n\n")
+            }
+            append(getString(context, R.string.message_source_not_installed_error_content_tip_2))
         }
     }
 }

@@ -1,39 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialog_api_help_container"
+<androidx.compose.ui.platform.ComposeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/api_help_dialog"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/normal_margin">
-
-    <RelativeLayout
-        android:id="@+id/dialog_location_help_providerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="@drawable/selectable_item_background"
-        tools:ignore="UnusedAttribute">
-
-        <ImageView
-            android:id="@+id/dialog_api_help_keyIcon"
-            android:src="@drawable/ic_factory"
-            android:layout_centerVertical="true"
-            style="@style/material_icon"
-            tools:ignore="ContentDescription"
-            app:tint="#607d8b" />
-
-        <TextView
-            android:id="@+id/dialog_api_help_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/dialog_api_help_keyIcon"
-            tools:text="@string/weather_api_unauthorized_content"
-            style="@style/content_text" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+    android:layout_height="wrap_content" />

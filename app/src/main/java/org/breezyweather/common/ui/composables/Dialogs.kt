@@ -1,5 +1,23 @@
+/**
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.common.ui.composables
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +26,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +42,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -32,6 +52,53 @@ import androidx.compose.ui.window.DialogProperties
 import org.breezyweather.R
 import org.breezyweather.theme.compose.DayNightTheme
 import kotlin.math.max
+
+@Composable
+fun AlertDialogConfirmOnly(
+    @StringRes title: Int,
+    @StringRes content: Int,
+    @StringRes confirmButtonText: Int,
+    onConfirm: () -> Unit,
+    modifier: Modifier = Modifier,
+    @DrawableRes iconId: Int? = null,
+    onDismiss: (() -> Unit)? = null,
+) {
+    AlertDialog(
+        modifier = modifier,
+        onDismissRequest = {
+            onDismiss?.invoke()
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onConfirm()
+                }
+            ) {
+                Text(stringResource(confirmButtonText))
+            }
+        },
+        title = {
+            Text(
+                stringResource(title)
+            )
+        },
+        text = {
+            Text(
+                stringResource(content)
+            )
+        },
+        icon = iconId?.let {
+            {
+                Icon(
+                    painter = painterResource(it),
+                    contentDescription = null
+                )
+            }
+        },
+        textContentColor = DayNightTheme.colors.bodyColor,
+        iconContentColor = MaterialTheme.colorScheme.onSurface
+    )
+}
 
 @Composable
 fun AlertDialogLink(
@@ -142,7 +209,6 @@ fun AlertDialogNoPadding(
 @Composable
 internal fun AlertDialogNoPaddingContent(
     buttons: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
     icon: (@Composable () -> Unit)?,
     title: (@Composable () -> Unit)?,
     text: @Composable (() -> Unit)?,
@@ -153,6 +219,7 @@ internal fun AlertDialogNoPaddingContent(
     iconContentColor: Color,
     titleContentColor: Color,
     textContentColor: Color,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         modifier = modifier,
