@@ -45,7 +45,6 @@
     <string name="action_edit">Modifier</string>
 
     <!-- The following set of strings should be as short as possible. -->
-    <string name="of_clock"> h</string>
     <string name="short_yesterday">Hier</string>
     <string name="short_tomorrow">Dem.</string>
 

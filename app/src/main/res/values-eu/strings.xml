@@ -20,7 +20,6 @@
     <string name="temperature">Tenperatura</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="of_clock">:00</string>
     <string name="temperature_wind_chill">Haize hotza</string>
     <string name="temperature_degree_day">Egun-gradu</string>
     <string name="temperature_degree_day_heating">Berokuntzako egun-gradu</string>

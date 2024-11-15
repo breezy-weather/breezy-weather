@@ -31,7 +31,6 @@
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
     <string name="action_edit">Редактировать</string>
-    <string name="of_clock">:00</string>
     <string name="short_yesterday">Вчера</string>
     <string name="short_tomorrow">Завтра</string>
     <string name="temperature_apparent">По ощущениям</string>

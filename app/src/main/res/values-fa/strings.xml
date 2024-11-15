@@ -2,7 +2,6 @@
 <resources>
     <string name="hourly_forecast">پیش بینی ساعتی</string>
     <string name="pollen">گرده</string>
-    <string name="of_clock">:۰۰</string>
     <string name="temperature">دما</string>
     <string name="temperature_feels_like">احساس می شود</string>
     <string name="app_name">آب و هوا</string>

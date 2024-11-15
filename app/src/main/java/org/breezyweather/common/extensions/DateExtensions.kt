@@ -158,8 +158,7 @@ fun Date.getWeek(location: Location, context: Context?): String {
 }
 
 fun Date.getHour(location: Location, context: Context): String {
-    return getFormattedDate(if (context.is12Hour) "h aa" else "H", location, context) +
-        if (!context.is12Hour) context.getString(R.string.of_clock) else ""
+    return getFormattedDate(if (context.is12Hour) "h aa" else "H:mm", location, context)
 }
 
 fun Date.getHourIn24Format(location: Location): String {

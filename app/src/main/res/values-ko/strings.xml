@@ -31,7 +31,6 @@
     <string name="action_refresh">새로고침</string>
     <string name="action_restart">재시작</string>
     <string name="action_edit">편집</string>
-    <string name="of_clock">:00</string>
     <string name="short_yesterday">어제</string>
     <string name="short_tomorrow">내일</string>
     <string name="temperature_real_feel">RealFeel®</string>

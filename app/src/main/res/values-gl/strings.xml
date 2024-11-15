@@ -142,7 +142,6 @@
     <string name="short_yesterday">Onte</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="alert_source">Fonte: %s</string>
-    <string name="of_clock">:00</string>
     <string name="air_quality_o3_info_title">Ozono troposférico (O₃)</string>
     <string name="air_quality_o3_info_introduction">O ozono troposférico/a nivel do chan (O₃) é un dos compoñentes principais do smog. Aínda que se trate da mesma molécula, o ozono troposférico pode ser nocivo para a saúde humana, a diferenza do ozono estratosférico, que protexe a Terra do exceso de radiación ultravioleta.</string>
     <string name="air_quality_no2_info_origin">As fontes ambientais de NO2 resultan da combustión de combustibles a alta temperatura en procesos como os utilizados para a calefacción, o transporte, a industria e a xeración de enerxía. As fontes domésticas de óxidos de nitróxeno (NOx) inclúen equipos que queiman combustibles como fornos, chemineas e estufas e fornos de gas.</string>

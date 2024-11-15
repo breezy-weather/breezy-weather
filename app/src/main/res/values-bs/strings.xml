@@ -45,7 +45,6 @@
     <string name="wind_direction_short_NW">SZ</string>
     <string name="temperature_degree_day">Stepen dana</string>
     <string name="short_today">Danas</string>
-    <string name="of_clock">:00</string>
     <string name="precipitation_snow">Snijeg</string>
     <string name="wind_direction_short_SE">JI</string>
     <string name="app_name">Vrijeme</string>

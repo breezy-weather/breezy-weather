@@ -70,7 +70,6 @@
     <string name="alerts_to_follow">點選這裡查看即將發出的天氣警報。</string>
     <string name="short_today">今日</string>
     <string name="short_tomorrow">明日</string>
-    <string name="of_clock">時</string>
     <string name="temperature">氣溫</string>
     <string name="temperature_feels_like">體感溫度</string>
     <string name="temperature_feels_like_short">體感溫度</string>

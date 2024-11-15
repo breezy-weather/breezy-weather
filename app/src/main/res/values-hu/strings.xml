@@ -31,7 +31,6 @@
     <string name="action_refresh">Frissítés</string>
     <string name="action_restart">Újraindítás</string>
     <string name="action_edit">Szerkesztés</string>
-    <string name="of_clock">:00</string>
     <string name="short_yesterday">T</string>
     <string name="short_tomorrow">H</string>
     <string name="temperature_real_feel">RealFeel®</string>

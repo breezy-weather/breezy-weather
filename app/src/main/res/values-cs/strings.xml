@@ -31,8 +31,6 @@
     <string name="action_refresh">Obnovit</string>
     <string name="action_restart">Restartovat</string>
     <string name="action_edit">Upravit</string>
-    <!-- The following set of strings should be as short as possible. -->
-    <string name="of_clock">:00</string>
     <string name="short_yesterday">Včr</string>
     <string name="short_tomorrow">Zít</string>
     <string name="temperature_real_feel">RealFeel®</string>

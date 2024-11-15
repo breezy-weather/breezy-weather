@@ -65,7 +65,6 @@
     <string name="pollen_mold">Schimmel</string>
     <string name="action_next">Weiter</string>
     <string name="nighttime">Nacht</string>
-    <string name="of_clock">:00</string>
     <string name="settings_disabled">Aus</string>
     <string name="settings_enabled">Ein</string>
     <string name="ephemeris_moon_phase_first_quarter">Zunehmender Halbmond</string>

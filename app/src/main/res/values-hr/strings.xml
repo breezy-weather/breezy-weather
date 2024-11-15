@@ -379,7 +379,6 @@
     <string name="humidity">Vlažnost</string>
     <string name="humidity_dew_point">Vlažnost / Točka orošenja</string>
     <string name="settings_main_background_animation_disabled">Onemogućeno</string>
-    <string name="of_clock">:00</string>
     <string name="precipitation_snow">Snijeg</string>
     <string name="settings_debug">Otklanjanje pogrešaka</string>
     <string name="settings_main_cards_fade_in_switch">Nestajanje kartica</string>

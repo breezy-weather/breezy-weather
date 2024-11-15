@@ -22,7 +22,6 @@
     <string name="short_yesterday">Hie</string>
     <string name="short_today">Hod</string>
     <string name="short_tomorrow">Mor</string>
-    <string name="of_clock">:00</string>
     <!-- Temperature -->
     <string name="temperature">Temperaturo</string>
     <string name="temperature_feels_like">Sentotemperaturo</string>

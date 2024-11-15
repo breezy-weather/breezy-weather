@@ -308,7 +308,6 @@
     <string name="temperature_feels_like">Cảm giác như</string>
     <string name="temperature_wind_chill">Gió lạnh</string>
     <string name="temperature_wet_bulb">Bầu ướt</string>
-    <string name="of_clock">:00</string>
     <string name="temperature_apparent">Biểu kiến</string>
     <string name="temperature_degree_day">Nhiệt độ ban ngày</string>
     <string name="precipitation">Mưa</string>

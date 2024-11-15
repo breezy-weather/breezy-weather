@@ -31,7 +31,6 @@
     <string name="action_refresh">刷新</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
-    <string name="of_clock">时</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
     <string name="temperature_real_feel">体感温度®</string>

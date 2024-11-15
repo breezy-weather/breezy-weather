@@ -31,8 +31,6 @@
     <string name="action_refresh">更新</string>
     <string name="action_restart">再起動</string>
     <string name="action_edit">編集</string>
-    <!-- The following set of strings should be as short as possible. -->
-    <string name="of_clock">時</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
     <string name="temperature_apparent">地表温度</string>

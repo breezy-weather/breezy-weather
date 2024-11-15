@@ -8,7 +8,6 @@
     <string name="details">விவரங்கள்</string>
     <string name="short_today">இன்று</string>
     <string name="short_tomorrow">நாளை</string>
-    <string name="of_clock">:00</string>
     <string name="temperature_wind_chill">குளிர் காற்று</string>
     <string name="precipitation_nowcasting">இப்போது மழைப்பொழிவு</string>
     <string name="alert">எச்சரிக்கை</string>

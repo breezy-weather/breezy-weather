@@ -178,7 +178,6 @@
     <string name="cloud_cover">Хмарність</string>
     <string name="ceiling">Висота хмар</string>
     <string name="air_quality_co_info_title">Монооксид вуглецю (CO)</string>
-    <string name="of_clock">:00</string>
     <string name="wind_direction_short_SW">Пд. Зх.</string>
     <string name="wind_direction_short_W">Зх.</string>
     <string name="common_weather_text_partly_cloudy">Мінлива хмарність</string>

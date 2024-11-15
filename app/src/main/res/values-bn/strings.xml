@@ -96,7 +96,6 @@
     <string name="temperature_real_feel">প্রকৃত অনুভূত তাপমাত্রা</string>
     <string name="temperature_real_feel_shade">ছায়ায় প্রকৃত অনুভূত তাপমাত্রা</string>
     <string name="null_data_text">উপলভ্য নয়</string>
-    <string name="of_clock">:০০</string>
     <string name="temperature_wet_bulb">আর্দ্র বালব</string>
     <string name="temperature_degree_day_heating">হিটিং ডিগ্রি ডে</string>
     <string name="temperature_degree_day_cooling">শীতল ডিগ্রি দিন</string>

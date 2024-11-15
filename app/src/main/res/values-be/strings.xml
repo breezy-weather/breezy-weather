@@ -34,7 +34,6 @@
     <string name="air_quality_so2_info_consequences">Уздзеянне SO₂ звязана са шпіталізацыяй з-за астмы і зваротамі ў аддзяленне хуткай дапамогі.</string>
     <string name="air_quality_co_info_introduction">Монааксід вугляроду (угарны газ) (CO) - гэта атрутны лёгкаўзгаральны газ, які не мае колеру, паху, густу і не выклікае раздражнення.</string>
     <string name="air_quality_co_info_origin">Ён утворыцца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
-    <string name="of_clock">:00</string>
     <string name="temperature">Тэмпература</string>
     <string name="temperature_feels_like">Адчуваецца як</string>
     <string name="temperature_real_feel">RealFeel®</string>

@@ -32,7 +32,6 @@
     <string name="action_restart">Repornește</string>
     <string name="action_edit">Modifică</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="of_clock">:00</string>
     <string name="short_yesterday">Ieri</string>
     <string name="short_tomorrow">Mâine</string>
     <string name="temperature_real_feel">RealFeel®</string>
