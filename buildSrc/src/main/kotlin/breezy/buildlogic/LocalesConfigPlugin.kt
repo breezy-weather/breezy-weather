@@ -29,15 +29,15 @@ fun TaskContainerScope.registerLocalesConfigTask(project: Project): TaskProvider
                         .replace("-r", "-")
                         .replace("+", "-")
                         .takeIf(String::isNotBlank) ?: "en"
-                    "    <locale android:name=\"$language\" />"
+                    "|    <locale android:name=\"$language\" />"
                 }
 
             val content = """
-<?xml version="1.0" encoding="utf-8"?>
-<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
-$languages
-</locale-config>
-            """.trimIndent()
+            |<?xml version="1.0" encoding="utf-8"?>
+            |<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+            $languages
+            |</locale-config>
+            """.trimMargin()
 
             val localeFile = file("$projectDir/src/main/res/xml/locales_config.xml")
             localeFile.parentFile.mkdirs()
